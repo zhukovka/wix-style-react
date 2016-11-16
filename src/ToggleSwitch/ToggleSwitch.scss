@@ -1,4 +1,4 @@
-@transition-speed:.3s;
+$transition-speed:.3s;
 
 .toggleSwitch {
     display:inline-block;
@@ -15,11 +15,11 @@
         left:   23px;
         .toggleActive {
             display:block;
-            transition: all @transition-speed cubic-bezier(1,0,1,0);
+            transition: all $transition-speed cubic-bezier(1,0,1,0);
         }
         .toggleInactive {
             display:none;
-            transition: all @transition-speed cubic-bezier(0,1,0,1);
+            transition: all $transition-speed cubic-bezier(0,1,0,1);
         }
     }
 }
@@ -28,7 +28,7 @@
     -webkit-border-radius: 50px;
     -moz-border-radius: 50px;
     border-radius: 50px;
-    transition: all @transition-speed ease;
+    transition: all $transition-speed ease;
 }
 
 .outerLabel {
@@ -61,7 +61,7 @@
     display:none;
     width: 8px;
     height: 6px;
-    transition: all @transition-speed cubic-bezier(0,1,0,1);
+    transition: all $transition-speed cubic-bezier(0,1,0,1);
 
     path {
         fill:#3899eb;
@@ -69,7 +69,7 @@
 }
 
 .toggleInactive {
-    transition: all @transition-speed cubic-bezier(1,0,1,0);
+    transition: all $transition-speed cubic-bezier(1,0,1,0);
     width: 8px;
     height: 6px;
 

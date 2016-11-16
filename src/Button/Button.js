@@ -1,5 +1,5 @@
 import React from 'react';
-import styles from './Button.less';
+import styles from './Button.scss';
 import classNames from 'classnames';
 
 export default function Button(props) {

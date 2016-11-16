@@ -1,6 +1,6 @@
 import React from 'react';
 import _ from 'lodash';
-import styles from './RadioGroup.less';
+import styles from './RadioGroup.scss';
 import classNames from 'classnames';
 
 class RadioGroup extends React.Component {

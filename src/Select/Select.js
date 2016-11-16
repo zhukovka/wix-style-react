@@ -1,4 +1,4 @@
-import styles from './Select.less';
+import styles from './Select.scss';
 import React from 'react';
 import _ from 'lodash';
 import ReactDOM from 'react-dom';

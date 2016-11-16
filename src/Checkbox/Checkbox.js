@@ -1,4 +1,4 @@
-import styles from './Checkbox.less';
+import styles from './Checkbox.scss';
 import _ from 'lodash';
 import React from 'react';
 import classNames from 'classnames';

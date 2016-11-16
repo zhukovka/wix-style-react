@@ -1,6 +1,6 @@
 import React from 'react';
 import _ from 'lodash';
-import styles from './ToggleSwitch.less';
+import styles from './ToggleSwitch.scss';
 
 class ToggleSwitch extends React.Component {
 

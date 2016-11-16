@@ -1,5 +1,5 @@
 import React          from 'react';
-import styles         from './Input.less';
+import styles         from './Input.scss';
 import classNames     from 'classnames';
 import SvgExclamation from '../svg/Exclamation.js';
 

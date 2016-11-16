@@ -1,4 +1,4 @@
-@import (reference) '../common.less';
+@import '../common.scss';
 
 .wrapper {
     display: inline-block;
@@ -24,7 +24,7 @@
     position: relative;
     width: 17px;
     height: 17px;
-    border: 1px solid @B10;
+    border: 1px solid $B10;
     border-radius: 4px;
     box-sizing:border-box;
 }
@@ -38,7 +38,7 @@
     left: 0px;
     width: 15px;
     height: 15px;
-    color: @D80;
+    color: $D80;
 }
 
 .checkbox>.inner>svg {
@@ -61,7 +61,7 @@
 /* Checked State */
 
 .wrapper.checked .checkbox {
-    background-color: @B10;
+    background-color: $B10;
 }
 
 .wrapper.checked .checkbox >.inner {
@@ -71,7 +71,7 @@
 /* Unchecked State */
 
 .wrapper.unchecked .checkbox {
-    background-color: @D80;
+    background-color: $D80;
 }
 
 .wrapper.unchecked .checkbox > .inner {
@@ -79,11 +79,11 @@
 }
 
 .wrapper.unchecked:hover .checkbox, .wrapper.unchecked.hover .checkbox {
-    background-color: @B40;
+    background-color: $B40;
 }
 
 .wrapper.unchecked:active .checkbox, .wrapper.unchecked.active .checkbox {
-    background-color: @B20;
+    background-color: $B20;
 }
 
 .wrapper.unchecked:active .checkbox>.inner, .wrapper.unchecked.active .checkbox>.inner {
@@ -94,11 +94,11 @@
 
 .wrapper.disabled .checkbox, .wrapper.disabled:hover .checkbox, .wrapper.disabled.hover .checkbox, 
 .wrapper.disabled.active .checkbox, .wrapper.disabled:active .checkbox {
-    border-color: @GR20;
-    background-color: @GR30;
+    border-color: $GR20;
+    background-color: $GR30;
 }
 
 .wrapper.disabled.checked .checkbox, .wrapper.disabled.checked:hover .checkbox, .wrapper.disabled.checked.hover .checkbox, 
 .wrapper.disabled.checked.active .checkbox, .wrapper.disabled.checked:active .checkbox {
-    background-color: @GR20;
+    background-color: $GR20;
 }

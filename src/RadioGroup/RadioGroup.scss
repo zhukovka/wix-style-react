@@ -1,4 +1,4 @@
-@import (reference) '../common.less';
+@import '../common.scss';
 
 .wrapper
 {
@@ -56,7 +56,7 @@
     position:relative;
     width: 17px;
     height: 17px;
-    border: 1px solid @B10;
+    border: 1px solid $B10;
     border-radius: 50%;
 }
 
@@ -65,7 +65,7 @@
     content:' ';
     display: block;
     border-radius: 50%;
-    background-color: @B10;
+    background-color: $B10;
     width: 11px;
     height: 11px;
     top:0px;

@@ -1,4 +1,4 @@
-@import (reference) '../common.less';
+@import '../common.scss';
 
 .modal
 {
@@ -18,7 +18,7 @@
 
 .header
 {
-    .FontLight();
+    @include FontLight();
     box-sizing:border-box;
     min-height      : 60px;
     padding         : 16px 18px;
@@ -41,12 +41,12 @@
     display          : flex;
     justify-content  : center;
     align-items      : center;
-    background-color : rgba(red(@D10), green(@D10), blue(@D10), 0.2);
+    background-color : rgba(red($D10), green($D10), blue($D10), 0.2);
     cursor           : pointer;
 }
 
 .close:hover, .close:focus {
-    background-color : rgba(red(@D10), green(@D10), blue(@D10), 0.4);
+    background-color : rgba(red($D10), green($D10), blue($D10), 0.4);
 }
 
 .close > svg {
@@ -56,9 +56,9 @@
 
 .body
 {
-    .FontRoman();
+    @include FontRoman();
     padding   : 30px;
-    color     : @paletteD2;
+    color     : $paletteD2;
     font-size : 16px;
 
     .footer {
@@ -83,8 +83,8 @@
     margin-right : 10px;
 }
 
-.modal.red .header         { background-color: @paletteR1 }
-.modal.blue  .header       { background-color: @paletteB1 }
-.modal.green .header       { background-color: @paletteG1 }
-.modal.lightGreen .header  { background-color: @paletteG2 }
+.modal.red .header         { background-color: $paletteR1 }
+.modal.blue  .header       { background-color: $paletteB1 }
+.modal.green .header       { background-color: $paletteG1 }
+.modal.lightGreen .header  { background-color: $paletteG2 }
 

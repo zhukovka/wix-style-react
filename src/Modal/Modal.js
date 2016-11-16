@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactModal from 'react-modal';
 import Button from '../Button/Button.js';
-import styles from './Modal.less';
+import styles from './Modal.scss';
 import SvgX from '../svg/X.js';
 
 function Modal(props) {
