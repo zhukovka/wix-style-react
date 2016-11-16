@@ -20,13 +20,13 @@ Storybook will allow you to see all the different components implemented, and th
 The files are brough 'uncompiled' and 'unpacked'. You will need to make sure webpack standard loaders run on this project by adding 'node_modules/wix-style-react/src' to your loaders' include array, for example:
 ```javascript
     {
-        test: /\.less$/,
+        test: /\.scss$/,
         include:['node_modules/wix-style-react/src')],
         loaders: [
             'style-loader',
             'css-loader?modules&importLoaders=1&localIdentName=[name]__[local]___[hash:base64:5]',
             'postcss-loader',
-            'less-loader'
+            'sass-loader'
         ]
     }
 ```
