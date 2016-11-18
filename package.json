@@ -60,6 +60,7 @@
     "registry": "https://registry.npmjs.org/"
   },
   "dependencies": {
+    "classnames": "^2.2.5",
     "lodash": "^4.17.1",
     "react": "^15.0.0",
     "react-dom": "^15.0.0",
