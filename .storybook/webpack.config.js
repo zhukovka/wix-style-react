@@ -14,6 +14,14 @@ module.exports = function(config, env) {
             'postcss-loader',
             'sass-loader'
         ]
+    }, {
+        test: /\.scss2$/,
+        include:[path.resolve(__dirname, '../src')],
+        loaders: [
+            'style-loader',
+            'css',
+            'sass-loader'
+        ]
     });
 
     return config;

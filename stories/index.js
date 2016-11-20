@@ -8,6 +8,7 @@ import RadioGroup from './RadioGroup';
 import ToggleSwitch from './ToggleSwitch';
 import Select from './Select';
 import Modal from './Modal';
+import Slider from './Slider';
 
 storiesOf('Components', module)
   .add('Button', () => (
@@ -30,4 +31,7 @@ storiesOf('Components', module)
   ))
   .add('Modal', () => (
       <Modal />
+  ))
+  .add('Slider', () => (
+      <Slider />
   ));
