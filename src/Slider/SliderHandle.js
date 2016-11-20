@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import './SliderHandle.scss2';
+import './SliderHandle.scss';
 
 export default class SliderHandle extends Component {
     constructor(props) {

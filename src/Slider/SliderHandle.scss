@@ -1,4 +1,4 @@
-.slider-handle {
+:global(.slider-handle) {
     position: absolute;
     margin-left: -7px;
     margin-top: -5px;
@@ -10,7 +10,7 @@
     background-color: #fff;
     box-shadow: 0px 1px 3px 0px rgba(0, 0, 0, 0.4);
 
-    .slider-handle-inner {
+    :global(.slider-handle-inner) {
         border-radius: 50%;
         background-color: #6AA6DA;
         margin-top: 3px;
@@ -19,11 +19,11 @@
         height: 8px;
     }
 
-    .slider-tooltip {
+    :global(.slider-tooltip) {
         position: absolute;
     }
 
-    .slider-tooltip {
+    :global(.slider-tooltip) {
         position: absolute;
         background-color: #fff;
         border: 1px solid rgba(0,0,0,0.1);

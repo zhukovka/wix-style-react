@@ -3,7 +3,7 @@ import React, {Component} from 'react';
 import Rcslider from 'rc-slider';
 import SliderHandle from './SliderHandle';
 import 'rc-slider/assets/index.css';
-import './Slider.scss2';
+import './Slider.scss';
 
 export default class Slider extends Component {
     constructor(props) {
