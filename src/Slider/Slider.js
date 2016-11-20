@@ -8,10 +8,6 @@ import './Slider.scss';
 export default class Slider extends Component {
     constructor(props) {
         super(props);
-
-        this.state = {
-            value: props.value
-        };
     }
 
     getRange() {
@@ -57,7 +53,7 @@ export default class Slider extends Component {
                     handle={<SliderHandle/>}
                     min={this.props.min}
                     max={this.props.max}
-                    value={this.state.value}
+                    value={this.props.value}
                     marks={this.getMarks()}
                     range={true}
                     step={this.props.step}
