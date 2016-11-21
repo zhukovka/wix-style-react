@@ -58,7 +58,7 @@ export default class Slider extends Component {
                     range={true}
                     step={this.props.step}
                     onChange={this.props.onChange}
-                    onAfterChange={this.handleAfterChange}
+                    onAfterChange={this.props.onAfterChange}
                 />
             </div>
         );
@@ -72,12 +72,14 @@ Slider.propTypes = {
     min: PropTypes.number,
     max: PropTypes.number,
     step: PropTypes.number,
-    onChange: PropTypes.func.isRequired
+    onChange: PropTypes.func.isRequired,
+    onAfterChange: PropTypes.func
 };
 
 Slider.defaultProps = {
     min: 1,
     max: 20,
     step: 1,
-    value: [2, 7]
+    value: [2, 7],
+    onAfterChange: _.noop
 };
