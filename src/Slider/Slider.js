@@ -59,6 +59,7 @@ export default class Slider extends Component {
                     step={this.props.step}
                     onChange={this.props.onChange}
                     onAfterChange={this.props.onAfterChange}
+                    allowCross={this.props.allowCross}
                 />
             </div>
         );
@@ -73,7 +74,8 @@ Slider.propTypes = {
     max: PropTypes.number,
     step: PropTypes.number,
     onChange: PropTypes.func.isRequired,
-    onAfterChange: PropTypes.func
+    onAfterChange: PropTypes.func,
+    allowCross: PropTypes.bool
 };
 
 Slider.defaultProps = {
@@ -81,5 +83,6 @@ Slider.defaultProps = {
     max: 20,
     step: 1,
     value: [2, 7],
-    onAfterChange: _.noop
+    onAfterChange: _.noop,
+    allowCross: true
 };
