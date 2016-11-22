@@ -6,7 +6,11 @@
 
     box-sizing:border-box;
     -webkit-font-smoothing: antialiased;
-    border-radius: 15px;
+    border-radius: 26px;
+    transition: 
+      color 0.3s ease,
+      border-color 0.3s ease,
+      background-color 0.3s ease;
     height: 36px;
     padding: 0px 24px;
     text-align: center;
