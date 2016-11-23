@@ -2,7 +2,11 @@
 
 .button {
     @include FontRoman();
-    font-size: 14px;
+    $height: 36px;
+    height: $height;
+    border-radius: $height / 2;
+    font-size: 16px;
+    padding: 0px 24px;
 
     box-sizing:border-box;
     -webkit-font-smoothing: antialiased;
@@ -10,8 +14,6 @@
       color 0.3s ease,
       border-color 0.3s ease,
       background-color 0.3s ease;
-    height: 36px;
-    padding: 0px 24px;
     text-align: center;
     border: 1px solid;
     cursor: pointer;
@@ -24,6 +26,8 @@
     height:100%;
     justify-content: center;
     align-items: center;
+    font-size: inherit;
+    font-family: inherit;
 }
 
 .button>div, .button>.inner>div {
@@ -204,18 +208,16 @@
 
 .heightsmall
 {
-    height: 30px;
-    border-radius: 15px;
-}
-
-.heightmedium
-{
-    height: 36px;
-    border-radius: 15px;
+    $height: 30px;
+    height: $height;
+    border-radius: $height / 2;
+    font-size: 14px;
+    padding: 0px 18px;
 }
 
 .heightlarge
 {
-    height: 42px;
-    border-radius: 26px;
+    $height: 42px;
+    height: $height;
+    border-radius: $height / 2;
 }
