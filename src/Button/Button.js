@@ -12,7 +12,7 @@ export default function Button(props) {
         [styles.hover]: hover,
         [styles.active]:active,
         [styles.disabled]:disabled,
-        [styles[`height${height}`]]: true
+        [styles[`height${height}`]]: height !== 'medium'
     });
 
     const _style = {
