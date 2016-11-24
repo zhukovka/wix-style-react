@@ -45,7 +45,6 @@
     "file-loader": "^0.8.5",
     "ignore-styles": "^3.0.0",
     "imports-loader": "^0.6.5",
-    "jquery": "^1.12.4",
     "jsdom": "^9.2.1",
     "json-loader": "^0.5.4",
     "mocha": "^2.4.5",
@@ -61,6 +60,7 @@
   },
   "dependencies": {
     "classnames": "^2.2.5",
+    "jquery": "^1.12.4",
     "lodash": "^4.17.1",
     "rc-slider": "^5.3.4",
     "react": "^15.0.0",
