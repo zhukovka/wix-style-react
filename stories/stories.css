@@ -10,7 +10,7 @@ div
     font-size:13px;
 }
 
-table.attributes
+:global(table.attributes)
 {
     width:calc(100% - 40px);
     padding:20px;
@@ -18,31 +18,32 @@ table.attributes
     border-collapse: collapse;
 }
 
-table.attributes tr
+:global(table.attributes tr)
 {
     border-bottom: 1px solid #ebebeb;
 }
 
-table.attributes th
+:global(table.attributes th)
 {
     color: #000;
     font-weight: bolder;
     text-align: left;
 }
 
-table.attributes th, table.attributes td
+:global(table.attributes th, table.attributes td)
 {
     word-wrap: normal;
     height: 26px;
     padding: 0 10px;
 }
 
-table.attributes th, table.attributes td:first-child
+:global(table.attributes th, table.attributes td:first-child)
 {
     font-family: "HelveticaNeueW01-55Roma", "HelveticaNeueW02-55Roma", "HelveticaNeueW10-55Roma", "Helvetica Neue", "Helvetica", "Arial", "\30E1\30A4\30EA\30AA", "meiryo", "\30D2\30E9\30AE\30CE\89D2\30B4 pro w3", "hiragino kaku gothic pro";
 }
 
-pre {
+pre 
+{
     font-family: "Courier 10 Pitch", Courier, monospace;
     font-size: 95%;
     line-height: 140%;
@@ -53,7 +54,8 @@ pre {
     margin-bottom: 0px;
 }       
 
-code {
+code 
+{
     font-family: Monaco, Consolas, "Andale Mono", "DejaVu Sans Mono", monospace;
     font-size: 95%;
     line-height: 140%;
@@ -73,7 +75,8 @@ code {
     padding: 0.5em 1em;
     border: 1px solid #bebab0;
 }
-.coderun
+
+:global(.coderun)
 {
     margin-left: 30px;
 }

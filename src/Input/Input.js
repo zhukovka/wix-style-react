@@ -71,7 +71,7 @@ class Input extends React.Component {
 Input.displayName = 'Input';
 
 Input.propTypes = {
-    id: React.PropTypes.id,
+    id: React.PropTypes.string,
     value: React.PropTypes.string,
     forceHover: React.PropTypes.bool,
     forceFocus: React.PropTypes.bool,
