@@ -3,7 +3,6 @@ import styles          from './AutoCompleteInput.scss';
 import classNames      from 'classnames';
 import _               from 'lodash';
 import Input           from '../Input/Input.js';
-import MagnifyingGlass from '../svg/MagnifyingGlass.js';
 
 class AutoCompleteInput extends React.Component {
     constructor(params) {

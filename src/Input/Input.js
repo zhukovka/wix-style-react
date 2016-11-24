@@ -32,7 +32,7 @@ class Input extends React.Component {
         const unitDom = unit ? <div className={styles.unit} onClick={this._focus}>{unit}</div> : null;
 
         const magnifyingGlassDom = magnifyingGlass && !error ? 
-            <div className={styles.magnifying_glass} onClick={this._focus}><MagnifyingGlass alignLeft={true} /></div> : null;
+            <div className={styles.magnifying_glass} onClick={this._focus}><MagnifyingGlass alignLeft={!rtl} /></div> : null;
 
         const classes = classNames({
             [styles.input]            : true,
@@ -77,7 +77,13 @@ Input.propTypes = {
     error: React.PropTypes.bool,
     unit: React.PropTypes.string,
     defaultValue: React.PropTypes.string,
-    tabIndex: React.PropTypes.number
+    tabIndex: React.PropTypes.number,
+    magnifyingGlass: React.PropTypes.bool,
+    rtl: React.PropTypes.bool,
+    onChange: React.PropTypes.func,
+    onBlur: React.PropTypes.func,
+    onFocus: React.PropTypes.func,
+    onKeyDown: React.PropTypes.func
 }
 
 export default Input;
