@@ -60,7 +60,7 @@ This project is currently still in initial development. It is advisable to be de
 ### Test Kit
 This package comes with test-kits for the different components. Each component can receive an id parameter, which can be used by the test-kits to access different functionalities of the component. For example:
 ```javascript
-import ButtonDriver from 'wix-style-react/dist/testkit/Button.js';
+import ButtonDriver from 'wix-style-react/dist/testkit/Button';
 new ButtonDriver(id).click()
 ```
 
