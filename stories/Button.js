@@ -122,10 +122,11 @@ export default () => {
             <br/><br/>
             <pre><code>
                 import ButtonDriver from 'wix-style-react/test-kit-lib/Button.js';<br/>
-                new ButtonDriver(id).click()<br/>
+                const find = (id) => document.querySelector(id); // or enzyme's wrapper.find... <br/>
+                {'new ButtonDriver({id, find}).click();'}<br/>
             </code></pre>
             <a className='coderun' href='#' onClick={(e) => {
-                new ButtonDriver('test-button').click()
+                new ButtonDriver({id:'test-button', find:id=>document.querySelector(id)}).click()
                 e.preventDefault();
             }}>run code</a>
 

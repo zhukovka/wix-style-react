@@ -1,10 +1,11 @@
 export default class ButtonDriver {
 
-    constructor(id) {
+    constructor({id, find}) {
         this.id = id;
+        this.find = find;
     }
 
     click() {
-        document.getElementById(this.id).click();
+        this.find('#'+this.id).click();
     }
 }
