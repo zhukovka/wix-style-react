@@ -127,14 +127,6 @@
     box-shadow: inset 0px 0px 5px 0px fade($R10, 60%);
 }
 
-:global(.ltr) .input.error > input {
-    padding-right: 36px;
-}
-
-:global(.rtl) .input.error > input {
-    padding-left: 36px;
-}
-
 .input.error > svg {
     display:block;
     position: absolute;
@@ -159,6 +151,22 @@
     left:8px;
 }
 
+:global(.ltr) .input.endpadding > input {
+    padding-right: 36px;
+}
+
+:global(.rtl) .input.endpadding > input {
+    padding-left: 36px;
+}
+
+:global(.ltr) .input.inputWithUnit.endpadding > input {
+    padding-right: 76px;
+}
+
+:global(.rtl) .input.inputWithUnit.endpadding > input {
+    padding-left: 76px;
+}
+
 /******* ERROR + UNIT *******/
 
 :global(.ltr) .inputWithUnit.error>.unit:before {
@@ -171,11 +179,47 @@
 
 :global(.ltr) .inputWithUnit.error>svg {
     display:block;
-    right:55px;
+    right:45px;
 }
 
 :global(.rtl) .inputWithUnit.error>svg {
     display:block;
-    left:55px;
+    left:45px;
 }
 
+/******* MAGNIFYING GLASS *******/
+.magnifying_glass
+{
+    position: absolute;
+    z-index: 1;
+    font-size: 18px;
+    top: 50%;
+    box-sizing: content-box;
+    margin-top: -9px;
+    display: block;
+
+    path {
+        fill: $B10;
+    }
+    line {
+        stroke: $B10;
+    }
+}
+
+:global(.ltr) .magnifying_glass {
+    right: 9px;
+}
+
+:global(.rtl) .magnifying_glass {
+    left: 9px;
+}
+
+:global(.ltr) .inputWithUnit .magnifying_glass {
+    display:block;
+    right:45px;
+}
+
+:global(.rtl) .inputWithUnit .magnifying_glass {
+    display:block;
+    left:45px;
+}

@@ -48,6 +48,11 @@ export default () => {
                     <tr>
                         <td>unit</td>
                         <td>Unit to display in input box</td>
+                        <td>boolean:true or false</td>
+                    </tr>
+                    <tr>
+                        <td>magnifyingGlass</td>
+                        <td>Should the component include a magnifyingGlass</td>
                         <td></td>
                     </tr>
                     <tr style={{lineHeight:'1.5em'}}>
@@ -88,6 +93,28 @@ export default () => {
             <h5>RTL</h5>
             <div className='rtl' style={{width:'400px'}}>
                 <Input unit={'$'} error={true} />
+            </div>
+
+            <h4>MagnifyingGlass (magnifyingGlass=true)</h4>
+            <h5>LTR</h5>
+            <div className='ltr' style={{width:'400px'}}>
+                <Input magnifyingGlass={true} />
+                <br/>
+                <Input magnifyingGlass={true} unit={'$'} />
+                <br/>
+                <Input magnifyingGlass={true} error={true} />
+                <br/>
+                <Input magnifyingGlass={true} error={true} unit={'$'} />
+            </div>
+            <h5>RTL</h5>
+            <div className='rtl' style={{width:'400px'}}>
+                <Input magnifyingGlass={true} />
+                <br/>
+                <Input magnifyingGlass={true} unit={'$'} />
+                <br/>
+                <Input magnifyingGlass={true} error={true} />
+                <br/>
+                <Input magnifyingGlass={true} error={true} unit={'$'} />
             </div>
 
             <h4>Force Focus attribute Example (forceFocus=true)</h4>

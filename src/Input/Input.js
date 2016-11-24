@@ -1,7 +1,8 @@
-import React          from 'react';
-import styles         from './Input.scss';
-import classNames     from 'classnames';
-import SvgExclamation from '../svg/Exclamation.js';
+import React           from 'react';
+import styles          from './Input.scss';
+import classNames      from 'classnames';
+import SvgExclamation  from '../svg/Exclamation.js';
+import MagnifyingGlass from '../svg/MagnifyingGlass.js';
 
 class Input extends React.Component {
 
@@ -14,6 +15,7 @@ class Input extends React.Component {
             placeholder,
             error,
             unit,
+            magnifyingGlass,
             defaultValue,
             tabIndex
         } = this.props;
@@ -24,9 +26,13 @@ class Input extends React.Component {
 
         const unitDom = unit ? <div className={styles.unit} onClick={this._focus}>{unit}</div> : null;
 
+        const magnifyingGlassDom = magnifyingGlass && !error ? 
+            <div className={styles.magnifying_glass} onClick={this._focus}><MagnifyingGlass alignLeft={true} /></div> : null;
+
         const classes = classNames({
             [styles.input]            : true,
             [styles.error]            : !!error,
+            [styles.endpadding]       : !!magnifyingGlass || !!error,
             [styles.inputWithUnit]    : !!unit
         });
 
@@ -47,6 +53,8 @@ class Input extends React.Component {
                     tabIndex={tabIndex} />
 
                 {exclamation}
+
+                {magnifyingGlassDom}
 
             </div>
         );
