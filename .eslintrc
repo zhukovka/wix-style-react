@@ -51,6 +51,7 @@
         "no-underscore-dangle": 0,
         "no-trailing-spaces": 0,
         "no-unused-vars": 1,
-        "no-undef": 1
+        "no-undef": 1,
+        "react/no-find-dom-node": 0
     }
 }
