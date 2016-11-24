@@ -6,6 +6,7 @@ export default class ButtonDriver {
     }
 
     click() {
-        this.find('#'+this.id).click();
+        const element = this.find('#'+this.id);
+        element.simulate ? element.simulate('click') : element.click();
     }
 }
