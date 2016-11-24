@@ -9,6 +9,7 @@ class Input extends React.Component {
     render() {
 
         const {
+            id,
             value,
             forceHover,
             forceFocus,
@@ -43,7 +44,7 @@ class Input extends React.Component {
         });
 
         return (
-            <div className={classes} onDoubleClick={this._onDoubleClickMargin}>
+            <div className={classes} onDoubleClick={this._onDoubleClickMargin} id={id} >
                 {unitDom}
                 <input 
                     ref='input' 
@@ -70,6 +71,7 @@ class Input extends React.Component {
 Input.displayName = 'Input';
 
 Input.propTypes = {
+    id: React.PropTypes.id,
     value: React.PropTypes.string,
     forceHover: React.PropTypes.bool,
     forceFocus: React.PropTypes.bool,

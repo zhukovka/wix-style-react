@@ -57,6 +57,13 @@ __Important__: Make sure your body contains either the 'ltr' or 'rtl' class (dep
 
 This project is currently still in initial development. It is advisable to be dependent on a specific version of this component for the time being.
 
+### Test Kit
+This package comes with test-kits for the different components. Each component can receive an id parameter, which can be used by the test-kits to access different functionalities of the component. For example:
+```javascript
+import ButtonDriver from 'wix-style-react/test-kit-lib/Button.js';
+new ButtonDriver(id).click()
+```
+
 ## Contributing
 You're more than welcomed to contributed by creating pull-requests.
 

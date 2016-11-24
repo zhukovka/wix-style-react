@@ -1,5 +1,6 @@
 import React from 'react';
 import {Button} from '../src/index.js';
+import ButtonDriver from '../test-kit/Button.js';
 
 export default () => {
     return (
@@ -115,6 +116,20 @@ export default () => {
             <div>medium: <Button height={'medium'}>Click Me!</Button></div>
             <div>large: <Button height={'large'}>Click Me!</Button></div>
             </div>
+
+            <h2>TestKit</h2>
+            <Button id='test-button' onClick={()=>alert('Button clicked!')}>TestKit Target</Button>
+            <br/><br/>
+            <pre><code>
+                import ButtonDriver from 'wix-style-react/test-kit-lib/Button.js';<br/>
+                new ButtonDriver(id).click()<br/>
+            </code></pre>
+            <a className='coderun' href='#' onClick={(e) => {
+                new ButtonDriver('test-button').click()
+                e.preventDefault();
+            }}>run code</a>
+
+            <br/><br/>
         </div>
     )
 }

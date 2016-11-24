@@ -4,7 +4,7 @@ import classNames from 'classnames';
 
 export default function Button(props) {
 
-    const {style ='fullblue', hover, active, disabled, height, onClick} = props;
+    const {id, style ='fullblue', hover, active, disabled, height, onClick} = props;
 
     const className = classNames({
         [styles.button]:true,
@@ -20,7 +20,7 @@ export default function Button(props) {
     };
 
     return (
-        <button className={className} onClick={onClick} style={_style} >
+        <button className={className} onClick={onClick} style={_style} id={id} >
             <div className={styles.inner}>
                 {props.children}
             </div>
@@ -34,6 +34,7 @@ Button.defaultProps = {
     height: 'medium'
 }
 Button.propTypes = {
+    id: React.PropTypes.string,
     style: React.PropTypes.oneOf(['fullblue', 'emptyblue', 'fullpurple', 'emptypurple', 'fullgreen', 'emptygreen', 'fullred', 'emptyred']).isRequired,
     height: React.PropTypes.oneOf(['small', 'medium', 'large']),
     hover: React.PropTypes.bool,
