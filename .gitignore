@@ -3,3 +3,8 @@ node_modules
 npm-debug.log
 lib/
 test-kit-lib/
+dist
+target
+coverage
+.history
+storybook-static

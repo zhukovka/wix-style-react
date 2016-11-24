@@ -1,6 +1,6 @@
 import React from 'react';
 import {Button} from '../src/index.js';
-import ButtonDriver from '../test-kit/Button.js';
+import ButtonDriver from '../testkit/Button.js';
 
 export default () => {
     return (
