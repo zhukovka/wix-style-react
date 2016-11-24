@@ -50,11 +50,16 @@
     "mocha": "^2.4.5",
     "node-sass": "^3.13.0",
     "postcss-loader": "^0.9.1",
+    "react": "^15.0.0",
+    "react-dom": "^15.0.0",
     "sass-loader": "^4.0.2",
     "sinon": "^1.17.4",
     "style-loader": "^0.13.1"
   },
-  "peerDependencies": {},
+  "peerDependencies": {
+    "react": "^15.0.0",
+    "react-dom": "^15.0.0"
+  },
   "publishConfig": {
     "registry": "https://registry.npmjs.org/"
   },
@@ -63,8 +68,6 @@
     "jquery": "^1.12.4",
     "lodash": "^4.17.1",
     "rc-slider": "^5.3.4",
-    "react": "^15.0.0",
-    "react-dom": "^15.0.0",
     "react-modal": "^1.5.2"
   }
 }
