@@ -17,11 +17,11 @@ Storybook will allow you to see all the different components implemented, and th
     npm install --save wix-style-react
 ```
 #### Update webpack 
-The files are brough 'uncompiled' and 'unpacked'. You will need to make sure webpack standard loaders run on this project by adding 'node_modules/wix-style-react/src' to your loaders' include array, for example:
+The files are brough 'uncompiled' and 'unpacked'. You will need to make sure webpack standard loaders run on this project by adding 'node_modules/wix-style-react/lib' to your loaders' include array, for example:
 ```javascript
     {
         test: /\.scss$/,
-        include:['node_modules/wix-style-react/src')],
+        include:['node_modules/wix-style-react/lib')],
         loaders: [
             'style-loader',
             'css-loader?modules&importLoaders=1&localIdentName=[name]__[local]___[hash:base64:5]',
@@ -42,7 +42,7 @@ The files are brough 'uncompiled' and 'unpacked'. You will need to make sure web
 ```
 Optimization: If you prefer to include only specific elements, you can do so by:
 ```javascript
-    import Button from 'wix-style-react/src/Button';
+    import Button from 'wix-style-react/lib/Button';
 
     export default (props) => {
         return (

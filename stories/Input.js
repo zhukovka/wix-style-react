@@ -43,22 +43,42 @@ export default () => {
                     <tr>
                         <td>error</td>
                         <td>Is input value erroneous</td>
-                        <td>boolean:true or false</td>
+                        <td>boolean: true or false</td>
                     </tr>
                     <tr>
                         <td>unit</td>
                         <td>Unit to display in input box</td>
-                        <td>boolean:true or false</td>
+                        <td>boolean: true or false</td>
                     </tr>
                     <tr>
                         <td>magnifyingGlass</td>
                         <td>Should the component include a magnifyingGlass</td>
                         <td></td>
                     </tr>
-                    <tr style={{lineHeight:'1.5em'}}>
-                        <td>extraClasses</td>
-                        <td>Extra CSS classes to add to the component</td>
-                        <td>Classes are added to wrapper div</td>
+                    <tr>
+                        <td>rtl</td>
+                        <td>Should text input be RTL?</td>
+                        <td>boolean: true or false</td>
+                    </tr>
+                    <tr>
+                        <td>onChange</td>
+                        <td>Standard input onChange callback</td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>onBlur</td>
+                        <td>Standard input onBlur callback</td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>onFocus</td>
+                        <td>Standard input onFocus callback</td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>onKeyDown</td>
+                        <td>Standard input onKeyDown callback</td>
+                        <td></td>
                     </tr>
                 </tbody>
             </table>
@@ -72,7 +92,7 @@ export default () => {
             </div>
             <h5>RTL</h5>
             <div className='rtl' style={{width:'400px'}}>
-                <Input error={true} />
+                <Input rtl={true} error={true} />
             </div>
 
             <h4>Unit attribute Example (unit='$')</h4>
@@ -82,7 +102,7 @@ export default () => {
             </div>
             <h5>RTL</h5>
             <div className='rtl' style={{width:'400px'}}>
-                <Input unit={'$'}/>
+                <Input rtl={true} unit={'$'}/>
             </div>
 
             <h4>Unit + Error attribute Example (unit='$' & error=true)</h4>
@@ -92,7 +112,7 @@ export default () => {
             </div>
             <h5>RTL</h5>
             <div className='rtl' style={{width:'400px'}}>
-                <Input unit={'$'} error={true} />
+                <Input rtl={true} unit={'$'} error={true} />
             </div>
 
             <h4>MagnifyingGlass (magnifyingGlass=true)</h4>
@@ -108,13 +128,13 @@ export default () => {
             </div>
             <h5>RTL</h5>
             <div className='rtl' style={{width:'400px'}}>
-                <Input magnifyingGlass={true} />
+                <Input rtl={true} magnifyingGlass={true} />
                 <br/>
-                <Input magnifyingGlass={true} unit={'$'} />
+                <Input rtl={true} magnifyingGlass={true} unit={'$'} />
                 <br/>
-                <Input magnifyingGlass={true} error={true} />
+                <Input rtl={true} magnifyingGlass={true} error={true} />
                 <br/>
-                <Input magnifyingGlass={true} error={true} unit={'$'} />
+                <Input rtl={true} magnifyingGlass={true} error={true} unit={'$'} />
             </div>
 
             <h4>Force Focus attribute Example (forceFocus=true)</h4>

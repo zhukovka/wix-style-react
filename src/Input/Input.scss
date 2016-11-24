@@ -47,6 +47,11 @@
     }
 }
 
+.input.rtl>input
+{
+    direction:rtl;
+}
+
 /******* UNIT *****/
 
 :global(.ltr) .inputWithUnit>input

@@ -1,8 +1,9 @@
 import React from 'react';
-import { storiesOf, action, linkTo } from '@kadira/storybook';
+import { storiesOf, action } from '@kadira/storybook';
 import './stories.css';
 import Button from './Button';
 import Input from './Input';
+import AutoCompleteInput from './AutoCompleteInput';
 import Checkbox from './Checkbox';
 import RadioGroup from './RadioGroup';
 import ToggleSwitch from './ToggleSwitch';
@@ -16,6 +17,9 @@ storiesOf('Components', module)
   ))
   .add('Input', () => (
       <Input />
+  ))
+  .add('AutoCompleteInput', () => (
+      <AutoCompleteInput />
   ))
   .add('Checkbox', () => (
       <Checkbox />

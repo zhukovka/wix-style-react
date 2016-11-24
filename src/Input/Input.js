@@ -17,7 +17,12 @@ class Input extends React.Component {
             unit,
             magnifyingGlass,
             defaultValue,
-            tabIndex
+            tabIndex,
+            onChange,
+            rtl,
+            onFocus,
+            onBlur,
+            onKeyDown
         } = this.props;
 
         const inputClasses = forceFocus ? styles.focus : forceHover ? styles.hover : '';
@@ -31,6 +36,7 @@ class Input extends React.Component {
 
         const classes = classNames({
             [styles.input]            : true,
+            [styles.rtl]              : !!rtl,
             [styles.error]            : !!error,
             [styles.endpadding]       : !!magnifyingGlass || !!error,
             [styles.inputWithUnit]    : !!unit
@@ -44,10 +50,10 @@ class Input extends React.Component {
                     className={inputClasses} 
                     defaultValue={defaultValue} 
                     value={value} 
-                    onChange={this._onChange} 
-                    onFocus={this._onFocus} 
-                    onBlur={this._onBlur} 
-                    onKeyDown={this._onKeyDown} 
+                    onChange={onChange} 
+                    onFocus={onFocus} 
+                    onBlur={onBlur} 
+                    onKeyDown={onKeyDown} 
                     onDoubleClick={this._onDoubleClick} 
                     placeholder={placeholder} 
                     tabIndex={tabIndex} />
