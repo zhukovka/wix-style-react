@@ -65,7 +65,7 @@ new ButtonDriver(id).click()
 ```
 
 ## Contributing
-You're more than welcomed to contributed by creating pull-requests.
+You're more than welcome to contribute by creating pull-requests.
 
 ## License
 This project is offered under MIT License.
