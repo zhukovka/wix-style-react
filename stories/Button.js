@@ -10,7 +10,7 @@ export default () => {
             <p>General Buttons</p>
 
             <div style={{width:'400px'}}>
-                <Button style={'fullblue'}><div>Click Me!</div></Button>
+                <Button style={'fullblue'} id={'main-example'}><div>Click Me!</div></Button>
             </div>
 
             <h3>Attributes</h3>
