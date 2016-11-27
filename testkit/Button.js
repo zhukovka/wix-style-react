@@ -1,12 +1,16 @@
 export default class ButtonDriver {
 
-    constructor({id, find}) {
-        this.id = id;
-        this.find = find;
-    }
+  constructor({id, find}) {
+    this.id = id;
+    this.find = find;
+  }
 
-    click() {
-        const element = this.find('#'+this.id);
-        element.simulate ? element.simulate('click') : element.click();
-    }
+  click() {
+    const element = this.find('#'+this.id);
+    element.simulate ? element.simulate('click') : element.click();
+  }
+
+  get() {
+    return this.find('#'+this.id);
+  }
 }

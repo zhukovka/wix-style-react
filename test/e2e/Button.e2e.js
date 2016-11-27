@@ -3,13 +3,15 @@ import ButtonDriver from '../../testkit/Button';
 
 describe('Button', () => {
   let driver;
-  eyes.it('should have button', () => {
+  eyes.it('should click a button', () => {
     driver = new ButtonDriver({id: 'main-example', find: selector => $(selector)});
+
     browser.get('iframe.html?selectedKind=Components&selectedStory=Button');
+
     var EC = protractor.ExpectedConditions;
-    browser.wait(EC.visibilityOf($('#main-example')), 15000);
+    browser.wait(EC.visibilityOf(driver.get()), 15000);
 
     driver.click();
-    expect($('#main-example-label').getText()).toBe('clicked!');
+    expect(driver.get().getText()).toBe('clicked!');
   }, 30000);
 });
