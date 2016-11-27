@@ -47,14 +47,16 @@
     "babel-runtime": "^6.6.1",
     "enzyme": "^2.3.0",
     "eslint-plugin-react": "^5.0.1",
+    "eyes.it": "^1.0.232",
     "gh-pages-auto-release": "^1.1.2",
+    "identity-obj-proxy": "^3.0.0",
     "jsdom": "^9.2.1",
     "ps-tree": "^1.1.0",
-    "identity-obj-proxy": "^3.0.0",
     "react": "^15.0.0",
     "react-addons-test-utils": "^15.4.1",
     "react-dom": "^15.0.0",
     "react-test-utils": "0.0.1",
+    "wix-eyes-env": "^1.0.18",
     "wix-node-build": "^1.1.93"
   },
   "peerDependencies": {

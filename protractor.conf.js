@@ -1,5 +1,6 @@
 const {spawn} = require('child_process');
 const psTree = require('ps-tree');
+require('wix-eyes-env');
 let child;
 
 module.exports.config = {
