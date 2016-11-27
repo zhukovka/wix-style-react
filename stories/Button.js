@@ -3,6 +3,9 @@ import {Button} from '../src/index.js';
 import ButtonDriver from '../testkit/Button.js';
 
 export default () => {
+    const mainClick = () => {
+      document.getElementById('main-example-label').innerHTML = 'clicked!';
+    }
     return (
         <div style={{width:'900px'}}>
 
@@ -10,9 +13,11 @@ export default () => {
             <p>General Buttons</p>
 
             <div style={{width:'400px'}}>
-                <Button style={'fullblue'} id={'main-example'}><div>Click Me!</div></Button>
+                <Button style={'fullblue'} id={'main-example'} onClick={mainClick}><div>Click Me!</div></Button>
             </div>
-
+            <div>
+              <label id='main-example-label'></label>
+            </div>
             <h3>Attributes</h3>
             <table className='attributes'>
                 <tbody>
