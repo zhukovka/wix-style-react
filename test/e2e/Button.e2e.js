@@ -9,7 +9,7 @@ describe('Button', () => {
     var EC = protractor.ExpectedConditions;
     browser.wait(EC.visibilityOf($('#main-example')), 15000);
 
-    driver.click(); //TODO: integrate testkit here?
+    driver.click();
     expect($('#main-example-label').getText()).toBe('clicked!');
   }, 30000);
 });
