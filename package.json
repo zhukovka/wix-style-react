@@ -56,7 +56,6 @@
     "react-addons-test-utils": "^15.4.1",
     "react-dom": "^15.0.0",
     "react-test-utils": "0.0.1",
-    "wix-eyes-env": "^1.0.18",
     "wix-node-build": "^1.1.93"
   },
   "peerDependencies": {
@@ -84,5 +83,8 @@
     "setupFiles": [
       "<rootDir>/test/setup.js"
     ]
+  },
+  "optionalDependencies": {
+    "wix-eyes-env": "^1.0.18"
   }
 }
