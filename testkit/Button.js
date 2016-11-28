@@ -3,14 +3,20 @@ export default class ButtonDriver {
   constructor({id, find}) {
     this.id = id;
     this.find = find;
+    this._element = find(`#${id}`);
+  }
+
+  get element() {
+    return this._element;
   }
 
   click() {
-    const element = this.find('#'+this.id);
-    element.simulate ? element.simulate('click') : element.click();
+    this.element.simulate ? this.element.simulate('click') : this.element.click();
   }
 
-  get() {
-    return this.find('#'+this.id);
+  hover() {
+    if(this.element.simulate) {
+      this.element.simulate('mouseenter');
+    }
   }
 }

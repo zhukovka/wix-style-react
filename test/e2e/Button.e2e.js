@@ -9,9 +9,9 @@ describe('Button', () => {
     browser.get('iframe.html?selectedKind=Components&selectedStory=Button');
 
     var EC = protractor.ExpectedConditions;
-    browser.wait(EC.visibilityOf(driver.get()), 15000);
+    browser.wait(EC.visibilityOf(driver.element), 15000);
 
     driver.click();
-    expect(driver.get().getText()).toBe('clicked!');
+    expect(driver.element.getText()).toBe('clicked!');
   }, 30000);
 });
