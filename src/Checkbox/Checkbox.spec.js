@@ -1,38 +1,42 @@
-import React from 'react';
-import {shallow} from 'enzyme';
+import 'react';
 import styles from './Checkbox.scss';
-import Checkbox from './Checkbox';
-import CheckboxDriver from '../../testkit/Checkbox';
+import CheckboxDriver from './Checkbox.driver';
 
 describe('Checkbox', () => {
-  let checked = false;
-  let testkitDriver;
-  let wrapper;
-
-  const actions = {
-    onChangeHandler: jest.fn(() => {checked = !checked; wrapper.setProps({checked: checked});})
-  }
+  let driver;
 
   beforeEach(() => {
-    checked = false;
-    wrapper = shallow(
-      <Checkbox id="my-cb" checked={checked} onChange={actions.onChangeHandler} />
-    );
-    testkitDriver = new CheckboxDriver({id: 'my-cb', find: selector => wrapper.find(selector)});
+    driver = new CheckboxDriver();
   });
 
   it('should click a Checkbox', () => {
-    testkitDriver.change();
-    expect(actions.onChangeHandler).toBeCalled();
+    const onChange = jest.fn();
+    driver
+      .given.onChange(onChange)
+      .when.created()
+      .when.changed();
+
+    expect(onChange).toBeCalled();
   });
 
   it('should have correct class after checked/unchecked', () => {
-    expect(wrapper.find(`.${styles.wrapper}`).hasClass(styles.checked)).toBe(false);
-    expect(wrapper.find(`.${styles.wrapper}`).hasClass(styles.unchecked)).toBe(true);
-    testkitDriver.change();
-    expect(wrapper.find(`.${styles.wrapper}`).hasClass(styles.checked)).toBe(true);
-    testkitDriver.change();
-    expect(wrapper.find(`.${styles.wrapper}`).hasClass(styles.checked)).toBe(false);
-    expect(wrapper.find(`.${styles.wrapper}`).hasClass(styles.unchecked)).toBe(true);
+    let checked = false;
+    const onChange = jest.fn(() => {checked = !checked; driver.get.element().setProps({checked: checked});})
+
+    driver
+      .given.onChange(onChange)
+      .when.created();
+
+    expect(driver.get.element().find(`.${styles.wrapper}`).hasClass(styles.checked)).toBe(false);
+    expect(driver.get.element().find(`.${styles.wrapper}`).hasClass(styles.unchecked)).toBe(true);
+
+    driver.when.changed();
+
+    expect(driver.get.element().find(`.${styles.wrapper}`).hasClass(styles.checked)).toBe(true);
+
+    driver.when.changed();
+    
+    expect(driver.get.element().find(`.${styles.wrapper}`).hasClass(styles.checked)).toBe(false);
+    expect(driver.get.element().find(`.${styles.wrapper}`).hasClass(styles.unchecked)).toBe(true);
   });
 });
