@@ -14,6 +14,7 @@ describe('Checkbox', () => {
   }
 
   beforeEach(() => {
+    checked = false;
     wrapper = shallow(
       <Checkbox id="my-cb" checked={checked} onChange={actions.onChangeHandler} />
     );
@@ -21,13 +22,6 @@ describe('Checkbox', () => {
   });
 
   it('should click a Checkbox', () => {
-    const actions = {
-      onChangeHandler: jest.fn()
-    }
-    const wrapper = shallow(
-      <Checkbox id="my-cb" onChange={actions.onChangeHandler}/>
-    );
-    const testkitDriver = new CheckboxDriver({id: 'my-cb', find: selector => wrapper.find(selector)});
     testkitDriver.change();
     expect(actions.onChangeHandler).toBeCalled();
   });
