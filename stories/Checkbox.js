@@ -18,7 +18,7 @@ class CheckboxStory extends React.Component {
                 <div style={{width:'400px'}} className='ltr'>
                     <Checkbox
                         id={'main-example'}
-                        checked={this.state.checked} 
+                        checked={this.state.checked}
                         onChange={() => this.setState({checked:!this.state.checked})}
                         >
 
