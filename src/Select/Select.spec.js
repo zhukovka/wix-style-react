@@ -70,8 +70,34 @@ describe('Select', () => {
       .given.onChange(onChange)
       .when.created()
       .when.openSelect()
-      .when.clickOption(options[2].value);
+      .when.clickOptionAt(options[2].value);
 
     expect(driver.get.selectedContent().text()).toBe(options[2].text);
+  });
+
+  it('should hover over select items', () => {
+    const onChange = jest.fn();
+    const options = [
+      {value:'0', text:'Option 1'},
+      {value:'1', text:'Option 2'},
+      {value:'2', text:'Option 3'}
+    ];
+
+    driver
+      .given.options(options)
+      .given.onChange(onChange)
+      .when.created();
+
+    expect(driver.get.renderedOptions().at(2).hasClass('hovered')).toBe(false);
+
+    driver
+      .when.openSelect()
+      .when.mouseEnterOptionAt(options[2].value);
+
+    expect(driver.get.renderedOptions().at(2).hasClass('hovered')).toBe(true);
+
+    driver.when.mouseLeaveOptionAt(options[2].value);
+
+    expect(driver.get.renderedOptions().at(2).hasClass('hovered')).toBe(false);
   });
 });

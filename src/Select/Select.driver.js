@@ -28,8 +28,16 @@ export default class SelectDriver {
       this.wrapper.find('.wix-select-button').simulate('click');
       return this;
     },
-    clickOption: value => {
+    clickOptionAt: value => {
       this.wrapper.find('.option').at(value).simulate('click');
+      return this;
+    },
+    mouseEnterOptionAt: value => {
+      this.wrapper.find('.option').at(value).simulate('mouseEnter');
+      return this;
+    },
+    mouseLeaveOptionAt: value => {
+      this.wrapper.find('.option').at(value).simulate('mouseLeave');
       return this;
     }
   };
