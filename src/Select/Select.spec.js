@@ -24,7 +24,7 @@ describe('Select', () => {
     });
   });
 
-  it('should open select on tap', () => {
+  it('should open select on click', () => {
     const options = [
       {value:'0', text:'Option 1'},
       {value:'1', text:'Option 2'},
@@ -37,7 +37,7 @@ describe('Select', () => {
 
     expect(driver.get.content().length).toBe(0);
 
-    driver.when.clicked();
+    driver.when.openSelect();
 
     expect(driver.get.content().length).toBe(1);
   });
@@ -69,7 +69,7 @@ describe('Select', () => {
       .given.options(options)
       .given.onChange(onChange)
       .when.created()
-      .when.clicked()
+      .when.openSelect()
       .when.clickOption(options[2].value);
 
     expect(driver.get.selectedContent().text()).toBe(options[2].text);

@@ -24,7 +24,7 @@ export default class SelectDriver {
         <Select {...this.props} onChange={this.onChange}></Select>);
       return this;
     },
-    clicked: () => {
+    openSelect: () => {
       this.wrapper.find('.wix-select-button').simulate('click');
       return this;
     },
