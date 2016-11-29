@@ -162,7 +162,7 @@ describe('Select', () => {
     expect(driver.get.selectedContentText()).toBe(options[2].text);
   });
 
-  it('should move down between options using keyboard', () => {
+  it('should move up between options using keyboard', () => {
     const onChange = jest.fn(val => driver.get.element().setProps({value: val}));
     const options = [
       {value:'0', text:'Option 1'},
