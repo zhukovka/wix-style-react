@@ -1,7 +1,5 @@
-import React from 'react';
-import {shallow} from 'enzyme';
+import 'react';
 import styles from './Input.scss';
-import Input from './Input';
 import InputDriver from './Input.driver';
 
 describe('Input', () => {

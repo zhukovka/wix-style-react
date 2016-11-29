@@ -1,7 +1,4 @@
-import React from 'react';
-import {shallow} from 'enzyme';
-import styles from './ToggleSwitch.scss';
-import ToggleSwitch from './ToggleSwitch';
+import 'react';
 import ToggleSwitchDriver from './ToggleSwitch.driver';
 
 describe('ToggleSwitch', () => {
