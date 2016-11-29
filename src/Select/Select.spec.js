@@ -54,7 +54,7 @@ describe('Select', () => {
       .given.selectedOption('1')
       .when.created();
 
-    expect(driver.get.selectedContent().text()).toBe(options[1].text);
+    expect(driver.get.selectedContentText()).toBe(options[1].text);
   });
 
   it('should select value', () => {
@@ -72,7 +72,7 @@ describe('Select', () => {
       .when.openSelect()
       .when.clickOptionAt(options[2].value);
 
-    expect(driver.get.selectedContent().text()).toBe(options[2].text);
+    expect(driver.get.selectedContentText()).toBe(options[2].text);
   });
 
   it('should hover over select items', () => {
@@ -99,5 +99,46 @@ describe('Select', () => {
     driver.when.mouseLeaveOptionAt(options[2].value);
 
     expect(driver.get.renderedOptions().at(2).hasClass('hovered')).toBe(false);
+  });
+
+  it('should close select when pressing "esc" key', () => {
+    const onChange = jest.fn();
+    const options = [
+      {value:'0', text:'Option 1'},
+      {value:'1', text:'Option 2'},
+      {value:'2', text:'Option 3'}
+    ];
+
+    driver
+      .given.options(options)
+      .given.onChange(onChange)
+      .when.createdMount()
+      .when.openSelect()
+
+    expect(driver.get.content().length).toBe(1);
+
+    driver.when.pressEscape();
+
+    expect(driver.get.content().length).toBe(0);
+  });
+
+  it('should select value when pressing "enter"', () => {
+    const onChange = jest.fn(val => driver.get.element().setProps({value: val}));
+    const options = [
+      {value:'0', text:'Option 1'},
+      {value:'1', text:'Option 2'},
+      {value:'2', text:'Option 3'}
+    ];
+
+    driver
+      .given.options(options)
+      .given.onChange(onChange)
+      .when.createdMount()
+      .when.openSelect()
+      .when.mouseEnterOptionAt(options[2].value)
+      .when.pressEnter();
+
+    expect(driver.get.content().length).toBe(0);
+    expect(driver.get.selectedContentText()).toBe(options[2].text);
   });
 });

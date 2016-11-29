@@ -1,4 +1,4 @@
-import {shallow} from 'enzyme';
+import {mount, shallow} from 'enzyme';
 import Select from './Select';
 
 export default class SelectDriver {
@@ -24,6 +24,11 @@ export default class SelectDriver {
         <Select {...this.props} onChange={this.onChange}></Select>);
       return this;
     },
+    createdMount: () => {
+      this.wrapper = mount(
+        <Select {...this.props} onChange={this.onChange}></Select>);
+      return this;
+    },
     openSelect: () => {
       this.wrapper.find('.wix-select-button').simulate('click');
       return this;
@@ -39,14 +44,24 @@ export default class SelectDriver {
     mouseLeaveOptionAt: value => {
       this.wrapper.find('.option').at(value).simulate('mouseLeave');
       return this;
-    }
+    },
+    pressEscape: () => {
+      var esc = $.Event("keydown", { keyCode: 27 });
+      $(document).trigger(esc);
+      return this;
+    },
+    pressEnter: () => {
+      var esc = $.Event("keydown", { keyCode: 13 });
+      $(document).trigger(esc);
+      return this;
+    },
   };
 
   get = {
     element: () => this.wrapper,
     renderedOptions: () => this.wrapper.find('.option'),
     content: () => this.wrapper.find('.shown'),
-    selectedContent: () => this.wrapper.find('.buttonText')
+    selectedContentText: () => this.wrapper.find('.buttonText').text()
   }
 
   constructor() {
