@@ -35,11 +35,11 @@ describe('Select', () => {
       .given.options(options)
       .when.created();
 
-    expect(driver.get.content().length).toBe(0);
+    expect(driver.get.isSelectOpened()).toBe(false);
 
     driver.when.openSelect();
 
-    expect(driver.get.content().length).toBe(1);
+    expect(driver.get.isSelectOpened()).toBe(true);
   });
 
   it('should have initial selected value', () => {
@@ -115,11 +115,11 @@ describe('Select', () => {
       .when.createdMount()
       .when.openSelect()
 
-    expect(driver.get.content().length).toBe(1);
+    expect(driver.get.isSelectOpened()).toBe(true);
 
     driver.when.pressEscape();
 
-    expect(driver.get.content().length).toBe(0);
+    expect(driver.get.isSelectOpened()).toBe(false);
   });
 
   it('should select value when pressing "enter"', () => {
@@ -138,7 +138,7 @@ describe('Select', () => {
       .when.mouseEnterOptionAt(options[2].value)
       .when.pressEnter();
 
-    expect(driver.get.content().length).toBe(0);
+    expect(driver.get.isSelectOpened()).toBe(false);
     expect(driver.get.selectedContentText()).toBe(options[2].text);
   });
 });

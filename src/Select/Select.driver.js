@@ -61,7 +61,8 @@ export default class SelectDriver {
     element: () => this.wrapper,
     renderedOptions: () => this.wrapper.find('.option'),
     content: () => this.wrapper.find('.shown'),
-    selectedContentText: () => this.wrapper.find('.buttonText').text()
+    selectedContentText: () => this.wrapper.find('.buttonText').text(),
+    isSelectOpened: () => this.get.content().length > 0
   }
 
   constructor() {
