@@ -1,3 +1,4 @@
+import React from 'react';
 import {shallow} from 'enzyme';
 import Checkbox from './Checkbox';
 
@@ -17,7 +18,7 @@ export default class CheckboxDriver {
   when = {
     created: () => {
       this.wrapper = shallow(
-        <Checkbox id="my-cb" checked={this.checked} onChange={this.onChange} />
+        <Checkbox id="my-cb" checked={this.checked} onChange={this.onChange}/>
       );
       return this;
     },

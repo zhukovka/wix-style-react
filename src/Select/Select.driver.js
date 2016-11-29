@@ -1,3 +1,4 @@
+import React from 'react';
 import {mount, shallow} from 'enzyme';
 import Select from './Select';
 
@@ -21,12 +22,12 @@ export default class SelectDriver {
   when = {
     created: () => {
       this.wrapper = shallow(
-        <Select {...this.props} onChange={this.onChange}></Select>);
+        <Select {...this.props} onChange={this.onChange}/>);
       return this;
     },
     createdMount: () => {
       this.wrapper = mount(
-        <Select {...this.props} onChange={this.onChange}></Select>);
+        <Select {...this.props} onChange={this.onChange}/>);
       return this;
     },
     openSelect: () => {
@@ -76,7 +77,7 @@ export default class SelectDriver {
   }
 
   simulateKeyDown(value) {
-    var e = $.Event("keydown", { keyCode: value });
+    const e = $.Event('keydown', {keyCode: value}); // eslint-disable-line new-cap
     $(document).trigger(e);
   }
 }

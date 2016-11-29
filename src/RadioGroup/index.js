@@ -1,1 +1,1 @@
-export {default as default} from './RadioGroup.js';
+export {default} from './RadioGroup.js';

@@ -21,7 +21,10 @@ describe('Checkbox', () => {
 
   it('should have correct class after checked/unchecked', () => {
     let checked = false;
-    const onChange = jest.fn(() => {checked = !checked; driver.get.element().setProps({checked: checked});})
+    const onChange = jest.fn(() => {
+      checked = !checked;
+      driver.get.element().setProps({checked});
+    });
 
     driver
       .given.onChange(onChange)
@@ -35,7 +38,7 @@ describe('Checkbox', () => {
     expect(driver.get.element().find(`.${styles.wrapper}`).hasClass(styles.checked)).toBe(true);
 
     driver.when.changed();
-    
+
     expect(driver.get.element().find(`.${styles.wrapper}`).hasClass(styles.checked)).toBe(false);
     expect(driver.get.element().find(`.${styles.wrapper}`).hasClass(styles.unchecked)).toBe(true);
   });

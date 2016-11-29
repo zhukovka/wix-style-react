@@ -8,9 +8,9 @@ describe('Select', () => {
 
   it('should render select', () => {
     const options = [
-      {value:'0', text:'Option 1'},
-      {value:'1', text:'Option 2'},
-      {value:'2', text:'Option 3'}
+      {value: '0', text: 'Option 1'},
+      {value: '1', text: 'Option 2'},
+      {value: '2', text: 'Option 3'}
     ];
 
     driver
@@ -26,9 +26,9 @@ describe('Select', () => {
 
   it('should open select on click', () => {
     const options = [
-      {value:'0', text:'Option 1'},
-      {value:'1', text:'Option 2'},
-      {value:'2', text:'Option 3'}
+      {value: '0', text: 'Option 1'},
+      {value: '1', text: 'Option 2'},
+      {value: '2', text: 'Option 3'}
     ];
 
     driver
@@ -44,9 +44,9 @@ describe('Select', () => {
 
   it('should have initial selected value', () => {
     const options = [
-      {value:'0', text:'Option 1'},
-      {value:'1', text:'Option 2'},
-      {value:'2', text:'Option 3'}
+      {value: '0', text: 'Option 1'},
+      {value: '1', text: 'Option 2'},
+      {value: '2', text: 'Option 3'}
     ];
 
     driver
@@ -60,9 +60,9 @@ describe('Select', () => {
   it('should select value', () => {
     const onChange = jest.fn(val => driver.get.element().setProps({value: val}));
     const options = [
-      {value:'0', text:'Option 1'},
-      {value:'1', text:'Option 2'},
-      {value:'2', text:'Option 3'}
+      {value: '0', text: 'Option 1'},
+      {value: '1', text: 'Option 2'},
+      {value: '2', text: 'Option 3'}
     ];
 
     driver
@@ -78,9 +78,9 @@ describe('Select', () => {
   it('should hover over select items', () => {
     const onChange = jest.fn();
     const options = [
-      {value:'0', text:'Option 1'},
-      {value:'1', text:'Option 2'},
-      {value:'2', text:'Option 3'}
+      {value: '0', text: 'Option 1'},
+      {value: '1', text: 'Option 2'},
+      {value: '2', text: 'Option 3'}
     ];
 
     driver
@@ -104,16 +104,16 @@ describe('Select', () => {
   it('should close select when pressing "esc" key', () => {
     const onChange = jest.fn();
     const options = [
-      {value:'0', text:'Option 1'},
-      {value:'1', text:'Option 2'},
-      {value:'2', text:'Option 3'}
+      {value: '0', text: 'Option 1'},
+      {value: '1', text: 'Option 2'},
+      {value: '2', text: 'Option 3'}
     ];
 
     driver
       .given.options(options)
       .given.onChange(onChange)
       .when.createdMount()
-      .when.openSelect()
+      .when.openSelect();
 
     expect(driver.get.isSelectOpened()).toBe(true);
 
@@ -125,9 +125,9 @@ describe('Select', () => {
   it('should select value when pressing "enter"', () => {
     const onChange = jest.fn(val => driver.get.element().setProps({value: val}));
     const options = [
-      {value:'0', text:'Option 1'},
-      {value:'1', text:'Option 2'},
-      {value:'2', text:'Option 3'}
+      {value: '0', text: 'Option 1'},
+      {value: '1', text: 'Option 2'},
+      {value: '2', text: 'Option 3'}
     ];
 
     driver
@@ -145,9 +145,9 @@ describe('Select', () => {
   it('should move down between options using keyboard', () => {
     const onChange = jest.fn(val => driver.get.element().setProps({value: val}));
     const options = [
-      {value:'0', text:'Option 1'},
-      {value:'1', text:'Option 2'},
-      {value:'2', text:'Option 3'}
+      {value: '0', text: 'Option 1'},
+      {value: '1', text: 'Option 2'},
+      {value: '2', text: 'Option 3'}
     ];
 
     driver
@@ -165,9 +165,9 @@ describe('Select', () => {
   it('should move up between options using keyboard', () => {
     const onChange = jest.fn(val => driver.get.element().setProps({value: val}));
     const options = [
-      {value:'0', text:'Option 1'},
-      {value:'1', text:'Option 2'},
-      {value:'2', text:'Option 3'}
+      {value: '0', text: 'Option 1'},
+      {value: '1', text: 'Option 2'},
+      {value: '2', text: 'Option 3'}
     ];
 
     driver

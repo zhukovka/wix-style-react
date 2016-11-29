@@ -1,24 +1,26 @@
 initGlobals();
 
 function initGlobals() {
-  var _ = require("lodash");
-  var React = require("react");
-  var ReactDOM = require("react-dom");
-  var $ = require("jquery");
+  const _ = require('lodash');
+  const React = require('react');
+  const ReactDOM = require('react-dom');
+  const $ = require('jquery');
 
-  gloabalize("_", _);
-  gloabalize("React", React);
-  gloabalize("ReactDOM", ReactDOM);
-  gloabalize("$", $);
+  gloabalize('_', _);
+  gloabalize('React', React);
+  gloabalize('ReactDOM', ReactDOM);
+  gloabalize('$', $);
 }
 
 function gloabalize(key, value) {
-  var windowExists = typeof window !== "undefined";
-  var globalExists = typeof GLOBAL !== "undefined";
+  const windowExists = typeof window !== 'undefined';
+  const globalExists = typeof GLOBAL !== 'undefined';
 
-  if (windowExists)
+  if (windowExists) {
     window[key] = value;
+  }
 
-  if (globalExists)
+  if (globalExists) {
     GLOBAL[key] = value;
+  }
 }

@@ -20,7 +20,7 @@ describe('ToggleSwitch', () => {
         .when.created();
 
       expect(driver.get.checked()).toEqual(false);
-    })
+    });
   });
 
   describe('onChange attribute', () => {

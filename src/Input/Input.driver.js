@@ -1,3 +1,4 @@
+import React from 'react';
 import {shallow} from 'enzyme';
 import Input from './Input';
 import styles from './Input.scss';
@@ -14,7 +15,7 @@ export default class InputDriver {
   when = {
     created: () => {
       this.wrapper = shallow(
-        <Input {...this.props} />);
+        <Input {...this.props}/>);
       return this;
     },
     triggered: (trigger, event) => {

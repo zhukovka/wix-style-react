@@ -6,11 +6,11 @@ export default class CheckboxDriver {
   }
 
   change() {
-    const element = this.find('#'+this.id);
+    const element = this.find(`#${this.id}`);
     element.simulate ? element.simulate('change') : element.click();
   }
 
   get() {
-    return this.find('#'+this.id);
+    return this.find(`#${this.id}`);
   }
 }

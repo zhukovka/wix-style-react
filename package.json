@@ -38,7 +38,6 @@
     "@kadira/storybook-deployer": "^1.2.0",
     "babel-cli": "^6.18.0",
     "babel-core": "^6.18.2",
-    "babel-eslint": "^6.0.2",
     "babel-jest": "^17.0.2",
     "babel-plugin-transform-runtime": "^6.9.0",
     "babel-preset-es2015": "^6.14.0",
@@ -46,7 +45,6 @@
     "babel-preset-stage-2": "*",
     "babel-runtime": "^6.6.1",
     "enzyme": "^2.3.0",
-    "eslint-plugin-react": "^5.0.1",
     "eyes.it": "^1.0.232",
     "gh-pages-auto-release": "^1.1.2",
     "identity-obj-proxy": "^3.0.0",
@@ -86,5 +84,17 @@
   },
   "optionalDependencies": {
     "wix-eyes-env": "^1.0.18"
+  },
+  "eslintConfig": {
+    "extends": "wix/react",
+    "env": {
+      "jest": true
+    },
+    "rules": {
+      "react/jsx-handler-names": 0,
+      "react/no-find-dom-node": 0,
+      "react/no-string-refs": 0,
+      "react/jsx-boolean-value": 0
+    }
   }
 }

@@ -15,7 +15,7 @@ export default class ButtonDriver {
   }
 
   hover() {
-    if(this.element.simulate) {
+    if (this.element.simulate) {
       this.element.simulate('mouseenter');
     }
   }

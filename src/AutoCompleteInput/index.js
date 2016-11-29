@@ -1,2 +1,2 @@
-export {default as default} from './AutoCompleteInput.js';
+export {default} from './AutoCompleteInput.js';
 

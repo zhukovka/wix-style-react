@@ -1,9 +1,9 @@
 const {spawn} = require('child_process');
 const psTree = require('ps-tree');
-try{
+try {
   //Private wix applitools key
   require('wix-eyes-env');
-} catch(e) {
+} catch (e) {
   //skip wix' key for applitools
   //In case you want to use applitools & eyes.it (https://github.com/wix/eyes.it),
   //please use your own key

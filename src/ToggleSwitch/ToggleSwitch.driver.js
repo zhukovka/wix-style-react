@@ -1,3 +1,4 @@
+import React from 'react';
 import {shallow} from 'enzyme';
 import ToggleSwitch from './ToggleSwitch';
 
@@ -20,7 +21,7 @@ export default class ToggleSwitchDriver {
   when = {
     created: () => {
       this.wrapper = shallow(
-        <ToggleSwitch {...this.props} />
+        <ToggleSwitch {...this.props}/>
       );
       return this;
     },

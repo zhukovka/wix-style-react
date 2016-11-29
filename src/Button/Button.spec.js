@@ -7,7 +7,7 @@ describe('Button', () => {
 
   beforeEach(() => {
     driver = new ButtonDriver();
-  })
+  });
 
   it('should click a button', () => {
     const onClick = jest.fn();
