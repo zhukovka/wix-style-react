@@ -46,15 +46,21 @@ export default class SelectDriver {
       return this;
     },
     pressEscape: () => {
-      var esc = $.Event("keydown", { keyCode: 27 });
-      $(document).trigger(esc);
+      this.simulateKeyDown(27);
       return this;
     },
     pressEnter: () => {
-      var esc = $.Event("keydown", { keyCode: 13 });
-      $(document).trigger(esc);
+      this.simulateKeyDown(13);
       return this;
     },
+    pressDownArrow: () => {
+      this.simulateKeyDown(40);
+      return this;
+    },
+    pressUpArrow: () => {
+      this.simulateKeyDown(38);
+      return this;
+    }
   };
 
   get = {
@@ -67,5 +73,10 @@ export default class SelectDriver {
 
   constructor() {
     this.props = {};
+  }
+
+  simulateKeyDown(value) {
+    var e = $.Event("keydown", { keyCode: value });
+    $(document).trigger(e);
   }
 }

@@ -141,4 +141,44 @@ describe('Select', () => {
     expect(driver.get.isSelectOpened()).toBe(false);
     expect(driver.get.selectedContentText()).toBe(options[2].text);
   });
+
+  it('should move down between options using keyboard', () => {
+    const onChange = jest.fn(val => driver.get.element().setProps({value: val}));
+    const options = [
+      {value:'0', text:'Option 1'},
+      {value:'1', text:'Option 2'},
+      {value:'2', text:'Option 3'}
+    ];
+
+    driver
+      .given.options(options)
+      .given.onChange(onChange)
+      .when.createdMount()
+      .when.openSelect()
+      .when.mouseEnterOptionAt(options[1].value)
+      .when.pressDownArrow()
+      .when.pressEnter();
+
+    expect(driver.get.selectedContentText()).toBe(options[2].text);
+  });
+
+  it('should move down between options using keyboard', () => {
+    const onChange = jest.fn(val => driver.get.element().setProps({value: val}));
+    const options = [
+      {value:'0', text:'Option 1'},
+      {value:'1', text:'Option 2'},
+      {value:'2', text:'Option 3'}
+    ];
+
+    driver
+      .given.options(options)
+      .given.onChange(onChange)
+      .when.createdMount()
+      .when.openSelect()
+      .when.mouseEnterOptionAt(options[2].value)
+      .when.pressUpArrow()
+      .when.pressEnter();
+
+    expect(driver.get.selectedContentText()).toBe(options[1].text);
+  });
 });
