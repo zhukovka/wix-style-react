@@ -82,9 +82,6 @@
       "<rootDir>/test/setup.js"
     ]
   },
-  "optionalDependencies": {
-    "wix-eyes-env": "^1.0.18"
-  },
   "eslintConfig": {
     "extends": "wix/react",
     "env": {
