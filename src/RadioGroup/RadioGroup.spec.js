@@ -54,8 +54,7 @@ describe('RadioGroup', () => {
       .when.created();
 
     driver
-      .when.element(1).isChanged()
-      .when.updated();
+      .when.element(1).isChanged();
 
     expect(driver.get.radioAt(1).props().checked).toEqual(true);
   });

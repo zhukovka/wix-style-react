@@ -36,11 +36,7 @@ export default class RadioGroupDriver {
         this.wrapper.childAt(index).find('input').simulate('change');
         return this;
       }
-    }),
-    updated: () => {
-      this.wrapper.update();
-      return this;
-    }
+    })
   };
 
   get = {
