@@ -28,8 +28,6 @@ describe('Slider', () => {
       .given.onChange(onChange)
       .when.created();
 
-    driver.get.element().find('.slider-handle').at(0).simulate('mouseEnter');
-    console.log(driver.get.element().find('.slider-tooltip').text());
     expect(driver.get.sliderMarks().length).toBe(10);
     expect(driver.get.sliderHandles().length).toBe(3);
   });
