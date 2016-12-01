@@ -88,17 +88,17 @@ describe('Select', () => {
       .given.onChange(onChange)
       .when.created();
 
-    expect(driver.get.renderedOptions().at(2).hasClass('hovered')).toBe(false);
+    expect(driver.get.isOptionBeingHovered(2)).toBe(false);
 
     driver
       .when.openSelect()
       .when.mouseEnterOptionAt(options[2].value);
 
-    expect(driver.get.renderedOptions().at(2).hasClass('hovered')).toBe(true);
+    expect(driver.get.isOptionBeingHovered(2)).toBe(true);
 
     driver.when.mouseLeaveOptionAt(options[2].value);
 
-    expect(driver.get.renderedOptions().at(2).hasClass('hovered')).toBe(false);
+    expect(driver.get.isOptionBeingHovered(2)).toBe(false);
   });
 
   it('should close select when pressing "esc" key', () => {
@@ -154,10 +154,7 @@ describe('Select', () => {
       .given.options(options)
       .given.onChange(onChange)
       .when.createdWithMount()
-      .when.openSelect()
-      .when.mouseEnterOptionAt(options[1].value)
-      .when.pressDownArrow()
-      .when.pressEnter();
+      .when.selectValue(options[1].value);
 
     expect(driver.get.selectedContentText()).toBe(options[2].text);
   });

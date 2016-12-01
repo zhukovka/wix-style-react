@@ -61,6 +61,12 @@ export default class SelectDriver {
     pressUpArrow: () => {
       this.simulateKeyDown(38);
       return this;
+    },
+    selectValue: value => {
+      this.when.openSelect()
+        .when.mouseEnterOptionAt(value)
+        .when.pressDownArrow()
+        .when.pressEnter();
     }
   };
 
@@ -69,7 +75,8 @@ export default class SelectDriver {
     renderedOptions: () => this.wrapper.find('.option'),
     content: () => this.wrapper.find('.shown'),
     selectedContentText: () => this.wrapper.find('.buttonText').text(),
-    isSelectOpened: () => this.get.content().length > 0
+    isSelectOpened: () => this.get.content().length > 0,
+    isOptionBeingHovered: index => this.get.renderedOptions().at(index).hasClass('hovered')
   }
 
   constructor() {

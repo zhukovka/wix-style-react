@@ -34,9 +34,10 @@ export default class SliderDriver {
 
   get = {
     element: () => this.wrapper,
-    sliderMarks: () => this.wrapper.find('.mark'),
-    sliderHandles: () => this.wrapper.find('.slider-handle'),
-    toolTipValue: () => this.wrapper.find('.slider-tooltip').text()
+    isDotSelected: index => this.get.sliderDots().at(index - 1).hasClass('rc-slider-dot-active'),
+    sliderDots: () => this.get.element().find('.rc-slider-dot'),
+    sliderHandles: () => this.get.element().find('.slider-handle'),
+    toolTipValue: () => this.get.element().find('.slider-tooltip').text()
   }
 
   constructor() {
