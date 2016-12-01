@@ -1,4 +1,3 @@
-import styles from './Slider.scss';
 import SliderDriver from './Slider.driver';
 
 describe('Slider', () => {
