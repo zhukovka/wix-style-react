@@ -25,7 +25,7 @@ export default class SelectDriver {
         <Select {...this.props} onChange={this.onChange}/>);
       return this;
     },
-    createdMount: () => {
+    createdWithMount: () => {
       this.wrapper = mount(
         <Select {...this.props} onChange={this.onChange}/>);
       return this;

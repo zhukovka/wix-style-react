@@ -112,7 +112,7 @@ describe('Select', () => {
     driver
       .given.options(options)
       .given.onChange(onChange)
-      .when.createdMount()
+      .when.createdWithMount()
       .when.openSelect();
 
     expect(driver.get.isSelectOpened()).toBe(true);
@@ -133,7 +133,7 @@ describe('Select', () => {
     driver
       .given.options(options)
       .given.onChange(onChange)
-      .when.createdMount()
+      .when.createdWithMount()
       .when.openSelect()
       .when.mouseEnterOptionAt(options[2].value)
       .when.pressEnter();
@@ -153,7 +153,7 @@ describe('Select', () => {
     driver
       .given.options(options)
       .given.onChange(onChange)
-      .when.createdMount()
+      .when.createdWithMount()
       .when.openSelect()
       .when.mouseEnterOptionAt(options[1].value)
       .when.pressDownArrow()
@@ -173,7 +173,7 @@ describe('Select', () => {
     driver
       .given.options(options)
       .given.onChange(onChange)
-      .when.createdMount()
+      .when.createdWithMount()
       .when.openSelect()
       .when.mouseEnterOptionAt(options[2].value)
       .when.pressUpArrow()
