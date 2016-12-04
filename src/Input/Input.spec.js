@@ -1,116 +1,105 @@
 import 'react';
-import styles from './Input.scss';
-import InputDriver from './Input.driver';
+import {componentFactory, driverFactory} from './Input.driver';
+import _ from 'lodash/fp';
 
 describe('Input', () => {
-  let driver;
+  const {createShallow} = componentFactory();
 
-  beforeEach(() => driver = new InputDriver());
+  const createDriver = _.compose(driverFactory, createShallow);
 
   describe('value attribute', () => {
     it('should pass down to the wrapped input', () => {
-      driver
-        .given.props({value: 'hello'})
-        .when.created();
+      const value = 'hello';
+      const driver = createDriver({value});
 
-      expect(driver.get.value()).toEqual('hello');
+      expect(driver.getValue()).toEqual(value);
     });
   });
 
   describe('defaultValue attribute', () => {
     it('should pass down to the wrapped input', () => {
-      driver
-        .given.props({defaultValue: 'hello'})
-        .when.created();
+      const defaultValue = 'hello';
 
-      expect(driver.get.defaultValue()).toEqual('hello');
+      const driver = createDriver({defaultValue});
+
+      expect(driver.getDefaultValue()).toEqual(defaultValue);
     });
   });
 
   describe('tabIndex attribute', () => {
     it('should pass down to the wrapped input', () => {
-      driver
-        .given.props({tabIndex: 1})
-        .when.created();
 
-      expect(driver.get.tabIndex()).toEqual(1);
+      const tabIndex = 1;
+
+      const driver = createDriver({tabIndex});
+
+      expect(driver.getTabIndex()).toEqual(tabIndex);
     });
   });
 
   describe('error attribute', () => {
     it('should display an error icon if error is true', () => {
-      driver
-        .given.props({error: true})
-        .when.created();
+      const error = true;
 
-      expect(driver.get.exclamation().length).toEqual(1);
-      expect(driver.get.element().hasClass(styles.error)).toBe(true);
-    });
+      const driver = createDriver({error});
 
-    it('should not display an error icon if error is false', () => {
-      driver
-        .given.props({error: false})
-        .when.created();
-
-      expect(driver.get.exclamation().length).toEqual(0);
-      expect(driver.get.element().hasClass(styles.error)).toBe(false);
+      expect(driver.hasExclamation()).toEqual(true);
+      expect(driver.hasError()).toBe(true);
     });
   });
 
   describe('unit attribute', () => {
     it('should the unit text if passed', () => {
-      driver
-        .given.props({unit: '$'})
-        .when.created();
+      const unit = '$';
 
-      expect(driver.get.unit().text()).toEqual('$');
+      const driver = createDriver({unit});
+
+      expect(driver.getUnit()).toEqual(unit);
     });
   });
 
   describe('magnifyingGlass attribute', () => {
     it('should display a magnifying glass icon if magnifyingGlass is true', () => {
-      driver
-        .given.props({magnifyingGlass: true})
-        .when.created();
+      const magnifyingGlass = true;
 
-      expect(driver.get.magnifyingGlass().length).toEqual(1);
+      const driver = createDriver({magnifyingGlass});
+
+      expect(driver.hasMagnifyingGlass()).toEqual(true);
     });
 
     it('should not display a magnifying glass icon if magnifyingGlass is false', () => {
-      driver
-        .given.props({magnifyingGlass: false})
-        .when.created();
+      const magnifyingGlass = false;
 
-      expect(driver.get.magnifyingGlass().length).toEqual(0);
+      const driver = createDriver({magnifyingGlass});
+
+      expect(driver.hasMagnifyingGlass()).toEqual(false);
     });
 
     it('should not display a magnifying glass icon if error is true', () => {
-      driver
-        .given.props({
-          magnifyingGlass: true,
-          error: true
-        })
-        .when.created();
+      const magnifyingGlass = false;
+      const error = true;
 
-      expect(driver.get.magnifyingGlass().length).toEqual(0);
+      const driver = createDriver({magnifyingGlass, error});
+
+      expect(driver.hasMagnifyingGlass()).toEqual(false);
     });
   });
 
   describe('rtl attribute', () => {
-    it('should have rtl class if rtl is true', () => {
-      driver
-        .given.props({rtl: true})
-        .when.created();
+    it('should have rtl if rtl prop is true', () => {
+      const rtl = true;
 
-      expect(driver.get.element().hasClass(styles.rtl)).toBe(true);
+      const driver = createDriver({rtl});
+
+      expect(driver.isRTL()).toBe(true);
     });
 
-    it('should not have rtl class if rtl is false', () => {
-      driver
-        .given.props({rtl: false})
-        .when.created();
+    it('should not have rtl if rtl prop is false', () => {
+      const rtl = false;
 
-      expect(driver.get.element().hasClass(styles.rtl)).toBe(false);
+      const driver = createDriver({rtl});
+
+      expect(driver.isRTL()).toBe(false);
     });
   });
 
@@ -119,11 +108,9 @@ describe('Input', () => {
       const onChange = jest.fn();
       const event = {target: {value: 'world'}};
 
-      driver
-        .given.props({onChange})
-        .when.created();
+      const driver = createDriver({onChange});
 
-      driver.when.triggered('change', event);
+      driver.trigger('change', event);
 
       expect(onChange).toBeCalledWith(event);
     });
@@ -133,11 +120,9 @@ describe('Input', () => {
     it('should be called when the input gets focused', () => {
       const onFocus = jest.fn();
 
-      driver
-        .given.props({onFocus})
-        .when.created();
+      const driver = createDriver({onFocus});
 
-      driver.when.triggered('focus');
+      driver.trigger('focus');
 
       expect(onFocus).toBeCalled();
     });
@@ -147,11 +132,9 @@ describe('Input', () => {
     it('should be called when the input gets blured', () => {
       const onBlur = jest.fn();
 
-      driver
-        .given.props({onBlur})
-        .when.created();
+      const driver = createDriver({onBlur});
 
-      driver.when.triggered('blur');
+      driver.trigger('blur');
 
       expect(onBlur).toBeCalled();
     });
@@ -162,59 +145,58 @@ describe('Input', () => {
       const onKeyDown = jest.fn();
       const event = {keyCode: 40};
 
-      driver
-        .given.props({onKeyDown})
-        .when.created();
+      const driver = createDriver({onKeyDown});
 
-      driver.when.triggered('keyDown', event);
+      driver.trigger('keyDown', event);
 
       expect(onKeyDown).toBeCalledWith(event);
     });
   });
 
   describe('endpadding class', () => {
-    it('should have endpadding class when error is true', () => {
-      driver
-        .given.props({error: true})
-        .when.created();
+    it('should have endpadding when error is true', () => {
+      const error = true;
 
-      expect(driver.get.element().hasClass(styles.endpadding)).toBe(true);
+      const driver = createDriver({error});
+
+      expect(driver.hasEndWrapping()).toBe(true);
     });
 
-    it('should have endpadding class when magnifyingGlass is true', () => {
-      driver
-        .given.props({magnifyingGlass: true})
-        .when.created();
+    it('should have endpadding when magnifyingGlass is true', () => {
+      const magnifyingGlass = true;
 
-      expect(driver.get.element().hasClass(styles.endpadding)).toBe(true);
+      const driver = createDriver({magnifyingGlass});
+
+      expect(driver.hasEndWrapping()).toBe(true);
     });
   });
 
   describe('forceFocus attribute', () => {
     it('should have focus class on input if forceFocus is true', () => {
-      driver
-        .given.props({forceFocus: true})
-        .when.created();
+      const forceFocus = true;
 
-      expect(driver.get.input().hasClass(styles.focus)).toBe(true);
+      const driver = createDriver({forceFocus});
+
+      expect(driver.isFocused()).toBe(true);
     });
   });
 
   describe('forceHover attribute', () => {
-    it('should have hover class on input if forceFocus is true', () => {
-      driver
-        .given.props({forceHover: true})
-        .when.created();
+    it('should have hover class on input if forceHover is true', () => {
+      const forceHover = true;
 
-      expect(driver.get.input().hasClass(styles.hover)).toBe(true);
+      const driver = createDriver({forceHover});
+
+      expect(driver.isHovered()).toBe(true);
     });
 
-    it('should have hover class on input if forceFocus is true and forceFocus is not true', () => {
-      driver
-        .given.props({forceHover: true, forceFocus: true})
-        .when.created();
+    it('should have hover class on input if forceFocus is false and forceHover is not true', () => {
+      const forceFocus = false;
+      const forceHover = true;
 
-      expect(driver.get.input().hasClass(styles.hover)).toBe(false);
+      const driver = createDriver({forceHover, forceFocus});
+
+      expect(driver.isHovered()).toBe(true);
     });
   });
 });

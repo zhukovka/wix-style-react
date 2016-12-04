@@ -25,7 +25,7 @@ class Input extends React.Component {
       onKeyDown
     } = this.props;
 
-    const inputClasses = forceFocus ? styles.focus : forceHover ? styles.hover : '';
+    const inputClasses = forceFocus ? styles.focus : (forceHover ? styles.hover : '');
 
     const exclamation = error ? <SvgExclamation width={2} height={11}/> : null;
 

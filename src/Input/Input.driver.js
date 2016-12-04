@@ -3,39 +3,29 @@ import {shallow} from 'enzyme';
 import Input from './Input';
 import styles from './Input.scss';
 
-export default class InputDriver {
+const driverFactory = component => ({
+  trigger: (trigger, event) => component.find('input').simulate(trigger, event),
+  getValue: () => component.find('input').props().value,
+  getDefaultValue: () => component.find('input').props().defaultValue,
+  getTabIndex: () => component.find('input').props().tabIndex,
+  hasExclamation: () => component.find('Exclamation').length > 0,
+  hasError: () => component.hasClass(styles.error),
+  getUnit: () => component.find(`.${styles.unit}`).text(),
+  hasMagnifyingGlass: () => component.find(`.${styles.magnifying_glass}`).length > 0,
+  isRTL: () => component.hasClass(styles.rtl),
+  hasEndWrapping: () => component.hasClass(styles.endpadding),
+  isFocused: () => component.find('input').hasClass(styles.focus),
+  isHovered: () => component.find('input').hasClass(styles.hover)
+});
 
-  given = {
-    props: props => {
-      this.props = props;
-      return this;
-    }
+const componentFactory = () => {
+  const createShallow = (props = {}) => {
+    return shallow(
+      <Input {...props}/>
+    );
   };
 
-  when = {
-    created: () => {
-      this.wrapper = shallow(
-        <Input {...this.props}/>);
-      return this;
-    },
-    triggered: (trigger, event) => {
-      this.wrapper.find('input').simulate(trigger, event);
-      return this;
-    },
-  };
+  return {createShallow};
+};
 
-  get = {
-    element: () => this.wrapper,
-    input: () => this.wrapper.find('input'),
-    value: () => this.wrapper.find('input').props().value,
-    defaultValue: () => this.wrapper.find('input').props().defaultValue,
-    tabIndex: () => this.wrapper.find('input').props().tabIndex,
-    exclamation: () => this.wrapper.find('Exclamation'),
-    unit: () => this.wrapper.find(`.${styles.unit}`),
-    magnifyingGlass: () => this.wrapper.find(`.${styles.magnifying_glass}`)
-  }
-
-  constructor() {
-    this.props = {};
-  }
-}
+export {componentFactory, driverFactory};
