@@ -17,7 +17,8 @@ const inputDriverFactory = component => ({
   hasEndWrapping: () => component.hasClass(styles.endpadding),
   isFocusedStyle: () => component.find('input').hasClass(styles.focus),
   isHoveredStyle: () => component.find('input').hasClass(styles.hover),
-  isFocus: () => document.activeElement === component.find('input').node
+  isFocus: () => document.activeElement === component.find('input').node,
+  exists: () => component.find('input').length === 1
 });
 
 const componentFactory = () => {
