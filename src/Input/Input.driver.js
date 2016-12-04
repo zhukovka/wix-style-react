@@ -22,7 +22,6 @@ const inputDriverFactory = component => ({
 });
 
 const componentFactory = () => {
-
   const createShallow = (props = {}) => {
     return shallow(
       <Input {...props}/>

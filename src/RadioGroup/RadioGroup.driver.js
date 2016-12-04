@@ -1,48 +1,35 @@
 import React from 'react';
-import {mount} from 'enzyme';
+import {shallow, mount} from 'enzyme';
 import RadioGroup from './RadioGroup';
 
-export default class RadioGroupDriver {
-  constructor() {
-    this.props = {};
-  }
+const radioGroupDriverFactory = component => ({
+  component: () => component,
+  selectByValue: value => component.find(`input[type='radio'][value=${value}]`).simulate('change', value),
+  getSelectedValue: () => component.props().value,
+  exists: () => component.find('input').length > 1,
+  radioAt: index => component.find('input').at(index),
+  labelAt: index => component.childAt(index).find('label'),
+  allRadios: () => component.children().find('input')
+});
 
-  given = {
-    onChange: value => {
-      this.props.onChange = value;
-      return this;
-    },
-    value: value => {
-      this.props.value = value;
-      return this;
-    },
-    options: value => {
-      this.options = value;
-      return this;
-    },
+const componentFactory = options => {
+  const createShallow = (props = {}) => {
+    return shallow(
+      <RadioGroup {...props}>
+        {options.map((props, index) => <RadioGroup.Radio key={index} {...props}/>)}
+      </RadioGroup>
+    );
   };
 
-  when = {
-    created: () => {
-      this.wrapper = mount(
-        <RadioGroup {...this.props}>
-          {this.options.map((props, index) => <RadioGroup.Radio key={index} {...props}/>)}
-        </RadioGroup>
-      );
-      return this;
-    },
-    element: index => ({
-      isChanged: () => {
-        this.wrapper.childAt(index).find('input').simulate('change');
-        return this;
-      }
-    })
+  const createMount = (props = {}) => {
+    return mount(
+      <RadioGroup {...props}>
+        {options.map((props, index) => <RadioGroup.Radio key={index} {...props}/>)}
+      </RadioGroup>
+    );
   };
 
-  get = {
-    element: () => this.wrapper,
-    radioAt: index => this.wrapper.childAt(index).find('input'),
-    labelAt: index => this.wrapper.childAt(index).find('label'),
-    allRadios: () => this.wrapper.children().find('input')
-  }
-}
+  return {createShallow, createMount};
+};
+
+export {componentFactory, radioGroupDriverFactory};
