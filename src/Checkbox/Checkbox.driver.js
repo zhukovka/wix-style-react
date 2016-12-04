@@ -1,38 +1,23 @@
 import React from 'react';
 import {shallow} from 'enzyme';
 import Checkbox from './Checkbox';
+import styles from './Checkbox.scss';
 
-export default class CheckboxDriver {
+const driverFactory = component => ({
+  change: () => {
+    component.find('input').simulate('change');
+  },
+  isChecked: () => component.find(`.${styles.wrapper}`).hasClass(styles.checked)
+});
 
-  given = {
-    checked: checked => {
-      this.checked = checked;
-      return this;
-    },
-    onChange: fn => {
-      this.onChange = fn;
-      return this;
-    }
+const componentFactory = () => {
+  const createShallow = (props = {}) => {
+    return shallow(
+      <Checkbox {...props}/>
+    );
   };
 
-  when = {
-    created: () => {
-      this.wrapper = shallow(
-        <Checkbox id="my-cb" checked={this.checked} onChange={this.onChange}/>
-      );
-      return this;
-    },
-    changed: () => {
-      this.wrapper.find('#my-cb').simulate('change');
-      return this;
-    }
-  };
+  return {createShallow};
+};
 
-  get = {
-    element: () => this.wrapper
-  }
-
-  constructor() {
-    this.props = {};
-  }
-}
+export {componentFactory, driverFactory};

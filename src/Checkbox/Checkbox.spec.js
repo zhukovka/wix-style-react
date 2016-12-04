@@ -1,45 +1,41 @@
 import 'react';
-import styles from './Checkbox.scss';
-import CheckboxDriver from './Checkbox.driver';
+import {componentFactory, driverFactory} from './Checkbox.driver';
+import _ from 'lodash/fp';
 
 describe('Checkbox', () => {
-  let driver;
+  const {createShallow} = componentFactory();
 
-  beforeEach(() => {
-    driver = new CheckboxDriver();
-  });
+  const createDriver = _.compose(driverFactory, createShallow);
 
   it('should click a Checkbox', () => {
+    const checked = false;
     const onChange = jest.fn();
-    driver
-      .given.onChange(onChange)
-      .when.created()
-      .when.changed();
+
+    const driver = createDriver({onChange, checked});
+
+    driver.change();
 
     expect(onChange).toBeCalled();
   });
 
   it('should have correct class after checked/unchecked', () => {
     let checked = false;
-    const onChange = jest.fn(() => {
+
+    const component = createShallow({onChange: jest.fn(() => {
       checked = !checked;
-      driver.get.element().setProps({checked});
-    });
+      component.setProps({checked});
+    })});
 
-    driver
-      .given.onChange(onChange)
-      .when.created();
+    const driver = driverFactory(component);
 
-    expect(driver.get.element().find(`.${styles.wrapper}`).hasClass(styles.checked)).toBe(false);
-    expect(driver.get.element().find(`.${styles.wrapper}`).hasClass(styles.unchecked)).toBe(true);
+    expect(driver.isChecked()).toBe(false);
 
-    driver.when.changed();
+    driver.change();
 
-    expect(driver.get.element().find(`.${styles.wrapper}`).hasClass(styles.checked)).toBe(true);
+    expect(driver.isChecked()).toBe(true);
 
-    driver.when.changed();
+    driver.change();
 
-    expect(driver.get.element().find(`.${styles.wrapper}`).hasClass(styles.checked)).toBe(false);
-    expect(driver.get.element().find(`.${styles.wrapper}`).hasClass(styles.unchecked)).toBe(true);
+    expect(driver.isChecked()).toBe(false);
   });
 });
