@@ -58,9 +58,11 @@ __Important__: Make sure your body contains either the 'ltr' or 'rtl' class (dep
 This project is currently still in initial development. It is advisable to be dependent on a specific version of this component for the time being.
 
 ### Test Kit
-This package comes with test-kits for the different components. Each component has a `<componentName>DriverFactory` method which exposes an api for the certain component. It will receive a component as an input (for now we only support Enzyme component wrapper), and returns an object which contains all API methods. For example:
+This package comes with test-kits for the different components. Each component has a `<componentName>DriverFactory` method which exposes an api for the specific component. It will receive a component as an input (for now we only support Enzyme component wrapper), and returns an object which contains all API methods. 
 
-Production code:
+For example:
+
+Using wix style Button in your production code:
 
 ```js
 <myForm>
@@ -69,15 +71,19 @@ Production code:
   ...
 ```
 
+Inside your test:
+
 ```javascript
 import {buttonDriverFactory} from 'wix-style-react/dist/testkit';
-const myFormWrapper = mount(<myForm...>);
 
 //Find your button using whatever you like (the data-hook is only an example here)
+const myFormWrapper = mount(<myForm...>);
 const buttonComponent = myFormWrapper.findWhere(n => n.props()['data-hook'] === 'my-button');
 
+//Initial the testkit driver:
 const driver = buttonDriverFactory(buttonComponent);//driver factory should receive a component and expose an api for it. See https://github.com/wix/wix-style-react/blob/master/src/Button/Button.driver.js
 
+//Use the driver
 driver.click();
 
 //or
