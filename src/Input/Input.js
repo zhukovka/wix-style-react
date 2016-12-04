@@ -88,6 +88,7 @@ Input.propTypes = {
   tabIndex: React.PropTypes.number,
   magnifyingGlass: React.PropTypes.bool,
   rtl: React.PropTypes.bool,
+  autoFocus: React.PropTypes.bool,
   onChange: React.PropTypes.func,
   onBlur: React.PropTypes.func,
   onFocus: React.PropTypes.func,

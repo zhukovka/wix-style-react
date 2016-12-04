@@ -202,25 +202,25 @@ describe('Input', () => {
   });
 
   describe('autoFocus attribute', () => {
-      it('Mounting an input element with autoFocus=false, should give it the focus', () => {
-          const driver = createMountDriver({autoFocus:false});
-          expect(driver.isFocus()).toBe(false);
-          driver.component().setProps({autoFocus:true});
-          expect(driver.isFocus()).toBe(false);
-      });
+    it('Mounting an input element with autoFocus=false, should give it the focus', () => {
+      const driver = createMountDriver({autoFocus: false});
+      expect(driver.isFocus()).toBe(false);
+      driver.component().setProps({autoFocus: true});
+      expect(driver.isFocus()).toBe(false);
+    });
 
-      it('Mounting an input element with autoFocus=true, gives it the focus', () => {
-          const driver = createMountDriver({autoFocus:true});
-          expect(driver.isFocus()).toBe(true);
-      });
+    it('Mounting an input element with autoFocus=true, gives it the focus', () => {
+      const driver = createMountDriver({autoFocus: true});
+      expect(driver.isFocus()).toBe(true);
+    });
   });
 
   describe('focus function', () => {
-      it('calling focus should give focus to the input', () => {
-          const driver = createMountDriver({});
-          expect(driver.isFocus()).toBe(false);
-          driver.component().node.focus();
-          expect(driver.isFocus()).toBe(true);
-      });
+    it('calling focus should give focus to the input', () => {
+      const driver = createMountDriver({});
+      expect(driver.isFocus()).toBe(false);
+      driver.component().node.focus();
+      expect(driver.isFocus()).toBe(true);
+    });
   });
 });
