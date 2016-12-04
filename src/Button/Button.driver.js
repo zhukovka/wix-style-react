@@ -9,7 +9,7 @@ const buttonDriverFactory = component => ({
   isButtonDisabled: () => component.hasClass(styles.disabled),
   doesComponentHasClass: className => component.hasClass(className),
   isComponentHovered: () => component.hasClass(styles.hover),
-  Exists: () => component.find('button').length === 1
+  exists: () => component.find('button').length === 1
 });
 
 const componentFactory = () => {
