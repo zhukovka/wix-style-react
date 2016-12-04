@@ -3,7 +3,7 @@ import {shallow} from 'enzyme';
 import Input from './Input';
 import styles from './Input.scss';
 
-const driverFactory = component => ({
+const inputDriverFactory = component => ({
   trigger: (trigger, event) => component.find('input').simulate(trigger, event),
   getValue: () => component.find('input').props().value,
   getDefaultValue: () => component.find('input').props().defaultValue,
@@ -28,4 +28,4 @@ const componentFactory = () => {
   return {createShallow};
 };
 
-export {componentFactory, driverFactory};
+export {componentFactory, inputDriverFactory};

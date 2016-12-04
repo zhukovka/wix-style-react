@@ -3,7 +3,7 @@ import {shallow} from 'enzyme';
 import Checkbox from './Checkbox';
 import styles from './Checkbox.scss';
 
-const driverFactory = component => ({
+const checkboxDriverFactory = component => ({
   change: () => {
     component.find('input').simulate('change');
   },
@@ -20,4 +20,4 @@ const componentFactory = () => {
   return {createShallow};
 };
 
-export {componentFactory, driverFactory};
+export {componentFactory, checkboxDriverFactory};

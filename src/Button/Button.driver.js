@@ -3,7 +3,7 @@ import styles from './Button.scss';
 import {shallow} from 'enzyme';
 import Button from './Button';
 
-const driverFactory = component => ({
+const buttonDriverFactory = component => ({
   click: () => component.simulate('click'),
   getButtonChildren: () => component.text(),
   isButtonDisabled: () => component.hasClass(styles.disabled),
@@ -22,4 +22,4 @@ const componentFactory = () => {
   return {createShallow};
 };
 
-export {componentFactory, driverFactory};
+export {componentFactory, buttonDriverFactory};

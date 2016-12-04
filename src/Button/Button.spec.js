@@ -1,11 +1,11 @@
 import styles from './Button.scss';
-import {componentFactory, driverFactory} from './Button.driver';
+import {componentFactory, buttonDriverFactory} from './Button.driver';
 import _ from 'lodash/fp';
 
 describe('Button', () => {
   const {createShallow} = componentFactory();
 
-  const createDriver = _.compose(driverFactory, createShallow);
+  const createDriver = _.compose(buttonDriverFactory, createShallow);
 
   it('should click a button', () => {
     const onClick = jest.fn();

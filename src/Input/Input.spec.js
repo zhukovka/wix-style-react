@@ -1,11 +1,11 @@
 import 'react';
-import {componentFactory, driverFactory} from './Input.driver';
+import {componentFactory, inputDriverFactory} from './Input.driver';
 import _ from 'lodash/fp';
 
 describe('Input', () => {
   const {createShallow} = componentFactory();
 
-  const createDriver = _.compose(driverFactory, createShallow);
+  const createDriver = _.compose(inputDriverFactory, createShallow);
 
   describe('value attribute', () => {
     it('should pass down to the wrapped input', () => {
@@ -190,7 +190,7 @@ describe('Input', () => {
       expect(driver.isHovered()).toBe(true);
     });
 
-    it('should have hover class on input if forceFocus is false and forceHover is not true', () => {
+    it('should be hovered if forceFocus is false and forceHover is true', () => {
       const forceFocus = false;
       const forceHover = true;
 
