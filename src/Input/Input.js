@@ -70,7 +70,7 @@ class Input extends React.Component {
   }
 
   focus() {
-      this.refs.input.focus();
+    this.refs.input.focus();
   }
 }
 
