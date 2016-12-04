@@ -61,6 +61,11 @@ export default () => {
                         <td>boolean: true or false</td>
                     </tr>
                     <tr>
+                        <td>autoFocus</td>
+                        <td>Standard React Input autoFocus (focus the element on mount)</td>
+                        <td>boolean: true or false</td>
+                    </tr>
+                    <tr>
                         <td>onChange</td>
                         <td>Standard input onChange callback</td>
                         <td></td>
@@ -79,6 +84,19 @@ export default () => {
                         <td>onKeyDown</td>
                         <td>Standard input onKeyDown callback</td>
                         <td></td>
+                    </tr>
+                </tbody>
+            </table>
+            <h3>Functions</h3>
+            <table className='attributes'>
+                <tbody>
+                    <tr>
+                        <th>Function name</th>
+                        <th>Description</th>
+                    </tr>
+                    <tr>
+                        <td>focus</td>
+                        <td>Focuses on the input</td>
                     </tr>
                 </tbody>
             </table>

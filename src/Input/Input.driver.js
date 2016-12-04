@@ -1,9 +1,10 @@
 import React from 'react';
-import {shallow} from 'enzyme';
+import {shallow, mount} from 'enzyme';
 import Input from './Input';
 import styles from './Input.scss';
 
 const inputDriverFactory = component => ({
+  component: () => component,
   trigger: (trigger, event) => component.find('input').simulate(trigger, event),
   getValue: () => component.find('input').props().value,
   getDefaultValue: () => component.find('input').props().defaultValue,
@@ -14,18 +15,26 @@ const inputDriverFactory = component => ({
   hasMagnifyingGlass: () => component.find(`.${styles.magnifying_glass}`).length > 0,
   isRTL: () => component.hasClass(styles.rtl),
   hasEndWrapping: () => component.hasClass(styles.endpadding),
-  isFocused: () => component.find('input').hasClass(styles.focus),
-  isHovered: () => component.find('input').hasClass(styles.hover)
+  isFocusedStyle: () => component.find('input').hasClass(styles.focus),
+  isHoveredStyle: () => component.find('input').hasClass(styles.hover),
+  isFocus: () => document.activeElement == component.find('input').node
 });
 
 const componentFactory = () => {
+
   const createShallow = (props = {}) => {
     return shallow(
       <Input {...props}/>
     );
   };
 
-  return {createShallow};
+  const createMount = (props = {}) => {
+    return mount(
+      <Input {...props}/>
+    );
+  };
+
+  return {createShallow, createMount};
 };
 
 export {componentFactory, inputDriverFactory};

@@ -3,9 +3,10 @@ import {componentFactory, inputDriverFactory} from './Input.driver';
 import _ from 'lodash/fp';
 
 describe('Input', () => {
-  const {createShallow} = componentFactory();
+  const {createShallow, createMount} = componentFactory();
 
   const createDriver = _.compose(inputDriverFactory, createShallow);
+  const createMountDriver = _.compose(inputDriverFactory, createMount);
 
   describe('value attribute', () => {
     it('should pass down to the wrapped input', () => {
@@ -177,7 +178,7 @@ describe('Input', () => {
 
       const driver = createDriver({forceFocus});
 
-      expect(driver.isFocused()).toBe(true);
+      expect(driver.isFocusedStyle()).toBe(true);
     });
   });
 
@@ -187,7 +188,7 @@ describe('Input', () => {
 
       const driver = createDriver({forceHover});
 
-      expect(driver.isHovered()).toBe(true);
+      expect(driver.isHoveredStyle()).toBe(true);
     });
 
     it('should be hovered if forceFocus is false and forceHover is true', () => {
@@ -196,7 +197,30 @@ describe('Input', () => {
 
       const driver = createDriver({forceHover, forceFocus});
 
-      expect(driver.isHovered()).toBe(true);
+      expect(driver.isHoveredStyle()).toBe(true);
     });
+  });
+
+  describe('autoFocus attribute', () => {
+      it('Mounting an input element with autoFocus=false, should give it the focus', () => {
+          const driver = createMountDriver({autoFocus:false});
+          expect(driver.isFocus()).toBe(false);
+          driver.component().setProps({autoFocus:true});
+          expect(driver.isFocus()).toBe(false);
+      });
+
+      it('Mounting an input element with autoFocus=true, gives it the focus', () => {
+          const driver = createMountDriver({autoFocus:true});
+          expect(driver.isFocus()).toBe(true);
+      });
+  });
+
+  describe('focus function', () => {
+      it('calling focus should give focus to the input', () => {
+          const driver = createMountDriver({});
+          expect(driver.isFocus()).toBe(false);
+          driver.component().node.focus();
+          expect(driver.isFocus()).toBe(true);
+      });
   });
 });

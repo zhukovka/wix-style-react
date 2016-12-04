@@ -20,6 +20,7 @@ class Input extends React.Component {
       tabIndex,
       onChange,
       rtl,
+      autoFocus,
       onFocus,
       onBlur,
       onKeyDown
@@ -57,6 +58,7 @@ class Input extends React.Component {
           onDoubleClick={this._onDoubleClick}
           placeholder={placeholder}
           tabIndex={tabIndex}
+          autoFocus={autoFocus}
           />
 
         {exclamation}
@@ -65,6 +67,10 @@ class Input extends React.Component {
 
       </div>
     );
+  }
+
+  focus() {
+      this.refs.input.focus();
   }
 }
 
