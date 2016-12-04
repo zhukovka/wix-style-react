@@ -1,58 +1,25 @@
 import React from 'react';
+import styles from './Button.scss';
 import {shallow} from 'enzyme';
 import Button from './Button';
 
-export default class ButtonDriver {
+const driverFactory = component => ({
+  click: () => component.simulate('click'),
+  getButtonChildren: () => component.text(),
+  isButtonDisabled: () => component.hasClass(styles.disabled),
+  doesComponentHasClass: className => component.hasClass(className),
+  isComponentHovered: () => component.hasClass(styles.hover)
+});
 
-  given = {
-    onClick: fn => {
-      this.onClick = fn;
-      return this;
-    },
-    children: children => {
-      this.children = children;
-      return this;
-    },
-    disabled: disabled => {
-      this.props.disabled = disabled;
-      return this;
-    },
-    height: height => {
-      this.props.height = height;
-      return this;
-    },
-    style: style => {
-      this.props.style = style;
-      return this;
-    },
-    hover: () => {
-      this.props.hover = true;
-      return this;
-    },
-    id: id => {
-      this.id = id;
-      return this;
-    }
+const componentFactory = () => {
+  const createShallow = (props = {}) => {
+    const {children, ...otherProps} = props;
+    return shallow(
+      <Button {...otherProps}>{children}</Button>
+    );
   };
 
-  when = {
-    created: () => {
-      this.wrapper = shallow(
-        <Button id={this.id} onClick={this.onClick} {...this.props}>{this.children}</Button>
-      );
-      return this;
-    },
-    clicked: () => {
-      this.wrapper.simulate('click');
-      return this;
-    }
-  };
+  return {createShallow};
+};
 
-  get = {
-    element: () => this.wrapper
-  }
-
-  constructor() {
-    this.props = {};
-  }
-}
+export {componentFactory, driverFactory};

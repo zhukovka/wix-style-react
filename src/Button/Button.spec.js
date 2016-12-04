@@ -1,79 +1,73 @@
-import 'react';
 import styles from './Button.scss';
-import ButtonDriver from './Button.driver';
+import {componentFactory, driverFactory} from './Button.driver';
+import _ from 'lodash/fp';
 
 describe('Button', () => {
-  let driver;
+  const {createShallow} = componentFactory();
 
-  beforeEach(() => {
-    driver = new ButtonDriver();
-  });
+  const createDriver = _.compose(driverFactory, createShallow);
 
   it('should click a button', () => {
     const onClick = jest.fn();
 
-    driver
-      .given.onClick(onClick)
-      .when.created()
-      .when.clicked();
+    const driver = createDriver({onClick});
+    driver.click();
 
     expect(onClick).toBeCalled();
   });
 
   it('should render children', () => {
-    driver
-      .given.children('<div>123</div>')
-      .when.created();
+    const children = '<div>123</div>';
 
-    expect(driver.get.element().text()).toBe('<div>123</div>');
+    const driver = createDriver({children});
+
+    expect(driver.getButtonChildren()).toBe('<div>123</div>');
   });
 
   it('should get disabled class', () => {
-    driver
-      .given.disabled(true)
-      .when.created();
+    const disabled = true;
 
-    expect(driver.get.element().hasClass(styles.disabled)).toBe(true);
+    const driver = createDriver({disabled});
+
+    expect(driver.isButtonDisabled()).toBe(true);
   });
 
   it('should have default "fullblue" style', () => {
-    driver
-      .when.created();
 
-    expect(driver.get.element().hasClass(styles.fullblue)).toBe(true);
+    const driver = createDriver();
+
+    expect(driver.doesComponentHasClass(styles.fullblue)).toBe(true);
   });
 
   it('should get "small" height class', () => {
-    driver
-      .given.height(`${styles.small}`)
-      .when.created();
+    const height = `${styles.small}`;
 
-    expect(driver.get.element().hasClass(`height${styles.small}`)).toBe(true);
+    const driver = createDriver({height});
+
+    expect(driver.doesComponentHasClass(`height${styles.small}`)).toBe(true);
   });
 
   it('should get "large" height class', () => {
-    driver
-      .given.height(`${styles.large}`)
-      .when.created();
+    const height = `${styles.large}`;
 
-    expect(driver.get.element().hasClass(`height${styles.large}`)).toBe(true);
+    const driver = createDriver({height});
+
+    expect(driver.doesComponentHasClass(`height${styles.large}`)).toBe(true);
   });
 
   it('should get custom style', () => {
-    const customStyle = 'emptyblue';
+    const style = 'emptyblue';
 
-    driver
-      .given.style(customStyle)
-      .when.created();
+    const driver = createDriver({style});
 
-    expect(driver.get.element().hasClass(styles[customStyle])).toBe(true);
+    expect(driver.doesComponentHasClass(styles[style])).toBe(true);
   });
 
   it('should get "hover" class', () => {
-    driver
-      .given.hover()
-      .when.created();
+    const hover = true;
 
-    expect(driver.get.element().hasClass(styles.hover)).toBe(true);
+    const driver = createDriver({hover});
+
+    expect(driver.isComponentHovered()).toBe(true);
   });
 });
