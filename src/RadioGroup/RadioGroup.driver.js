@@ -4,7 +4,7 @@ import RadioGroup from './RadioGroup';
 
 const radioGroupDriverFactory = component => ({
   component: () => component,
-  selectByValue: value => component.find(`input[value=${value.toString()}]`).simulate('change', value),
+  selectByValue: value => component.findWhere(n => n.name() === 'input' && n.node.value === value.toString()).simulate('change', value),
   getSelectedValue: () => component.props().value,
   exists: () => component.find('input').length > 1,
   radioAt: index => component.find('input').at(index),
