@@ -9,7 +9,8 @@ const radioGroupDriverFactory = component => ({
   exists: () => component.find('input').length > 1,
   radioAt: index => component.find('input').at(index),
   labelAt: index => component.childAt(index).find('label'),
-  allRadios: () => component.children().find('input')
+  allRadios: () => component.children().find('input'),
+  getClassOfLabelAt: index => component.childAt(index).find('label').node.className
 });
 
 const componentFactory = options => {
