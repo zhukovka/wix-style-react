@@ -1,17 +1,17 @@
 import React from 'react';
 import {shallow, mount} from 'enzyme';
-import GoogleAddressInputBox from './GoogleAddressInputBox';
+import GoogleAddressInput from './GoogleAddressInput';
 
 const componentFactory = () => {
   const createShallow = (props = {}) => {
     return shallow(
-      <GoogleAddressInputBox {...props}/>
+      <GoogleAddressInput {...props}/>
     );
   };
 
   const createMount = (props = {}) => {
     return mount(
-      <GoogleAddressInputBox {...props}/>
+      <GoogleAddressInput {...props}/>
     );
   };
 

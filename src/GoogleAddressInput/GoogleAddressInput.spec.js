@@ -1,5 +1,5 @@
 import 'react';
-import {componentFactory} from './GoogleAddressInputBox.driver';
+import {componentFactory} from './GoogleAddressInput.driver';
 import _ from 'lodash/fp';
 import sinon from 'sinon';
 
@@ -31,7 +31,7 @@ class GmapsTestClient {
   }
 }
 
-describe('GoogleAddressInputBox', () => {
+describe('GoogleAddressInput', () => {
   const {createShallow} = componentFactory();
 
   describe('User Interactions', () => {

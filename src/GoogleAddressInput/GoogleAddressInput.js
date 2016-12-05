@@ -2,7 +2,7 @@ import React from 'react';
 import AutoCompleteInput from '../AutoCompleteInput';
 import _ from 'lodash';
 
-class GoogleAddressInputBox extends React.Component {
+class GoogleAddressInput extends React.Component {
   constructor(params) {
     super(params);
 
@@ -111,7 +111,7 @@ class GoogleAddressInputBox extends React.Component {
       }
 
       if (results.length === 0) {
-        console.error('[GoogleAddressInputBox] Geocode returned no results on', value);
+        console.error('[GoogleAddressInput] Geocode returned no results on', value);
         this.props.onSet && this.props.onSet(null);
         // This shouldn't happen since we're running geocode on exactly the same
         // value returned by suggestions list
@@ -127,7 +127,7 @@ class GoogleAddressInputBox extends React.Component {
       this.props.onSet && this.props.onSet(result);
 
     }).catch(e => {
-      console.error('[GoogleAddressInputBox] Geocode failed on', value, e.message);
+      console.error('[GoogleAddressInput] Geocode failed on', value, e.message);
       this.props.onSet && this.props.onSet(null);
     });
   }
@@ -223,7 +223,7 @@ function google2address(google) {
   return result;
 }
 
-GoogleAddressInputBox.propTypes = {
+GoogleAddressInput.propTypes = {
   placeholder: React.PropTypes.string,
   valuePrefix: React.PropTypes.string,
   countryCode: React.PropTypes.string,
@@ -237,4 +237,4 @@ GoogleAddressInputBox.propTypes = {
   Client: React.PropTypes.func.isRequired
 };
 
-export default GoogleAddressInputBox;
+export default GoogleAddressInput;

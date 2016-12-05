@@ -1,8 +1,8 @@
 import React from 'react';
-import {GoogleAddressInputBox} from '../src/index.js';
+import {GoogleAddressInput} from '../src/index.js';
 import {clients} from '../src/index.js';
 
-class GoogleAddressInputBoxStory extends React.Component {
+class GoogleAddressInputStory extends React.Component {
 
     constructor() {
         super();
@@ -13,11 +13,11 @@ class GoogleAddressInputBoxStory extends React.Component {
         return (
             <div style={{width:'900px'}}>
 
-                <h2>Google Address Input Box <small style={{fontSize:'11px'}}><a target='_blank' href='https://github.com/wix/wix-style-react/blob/master/stories/GoogleAddressInputBox.js'>source</a></small></h2>
+                <h2>Google Address Input Box <small style={{fontSize:'11px'}}><a target='_blank' href='https://github.com/wix/wix-style-react/blob/master/stories/GoogleAddressInput.js'>source</a></small></h2>
                 <p>Address input box (using Google Maps).</p>
 
                 <div style={{width:'400px'}} className={'ltr'} >
-                    <GoogleAddressInputBox countryCode={'US'} Client={clients.GoogleMapsClient} onSet={result => this.setState({result})} placeholder={'Enter Address...'}/>
+                    <GoogleAddressInput countryCode={'US'} Client={clients.GoogleMapsClient} onSet={result => this.setState({result})} placeholder={'Enter Address...'}/>
                 </div>
                 <small>
                     Result: {JSON.stringify(this.state.result, null, 4)}
@@ -93,5 +93,5 @@ class GoogleAddressInputBoxStory extends React.Component {
     }
 }
 
-export default GoogleAddressInputBoxStory;
+export default GoogleAddressInputStory;
 
