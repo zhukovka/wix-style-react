@@ -10,6 +10,7 @@ import ToggleSwitch from './ToggleSwitch';
 import Select from './Select';
 import Modal from './Modal';
 import Slider from './Slider';
+import GoogleAddressInputBox from './GoogleAddressInputBox';
 
 storiesOf('Components', module)
   .add('Button', () => (
@@ -38,4 +39,7 @@ storiesOf('Components', module)
   ))
   .add('Slider', () => (
       <Slider />
+  ))
+  .add('GoogleAddressInputBox', () => (
+      <GoogleAddressInputBox />
   ));

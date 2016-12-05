@@ -116,7 +116,9 @@ class AutoCompleteInput extends React.Component {
   }
 
   onKeyDown(event) {
-    this._onKeyDown(event);
+    if (this._onKeyDown(event)) {
+      return;
+    }
 
     if (this.props.onKeyDown) {
       this.props.onKeyDown(event);
@@ -134,7 +136,7 @@ class AutoCompleteInput extends React.Component {
         if (!suggestions || suggestions.length === 0 ||
           selectedSuggestion === -1) {
 
-          return;
+          return false;
         }
 
         if (suggestions[selectedSuggestion]) {
@@ -144,7 +146,7 @@ class AutoCompleteInput extends React.Component {
         }
 
         onSet(suggestions[selectedSuggestion]);
-        return;
+        return false;
 
       case 13: // enter
         if (!suggestions || suggestions.length === 0 ||
@@ -154,7 +156,7 @@ class AutoCompleteInput extends React.Component {
         }
 
         if (suggestions.length === 0) {
-          return;
+          return false;
         }
 
         if (suggestions[selectedSuggestion]) {
@@ -164,11 +166,10 @@ class AutoCompleteInput extends React.Component {
         }
 
         this.setState({
-          shouldHideSuggestions: true,
           selectedSuggestion: defaultSelection
         });
 
-        break;
+        return true;
 
       case 27: // escape
         this.setState({
@@ -181,7 +182,7 @@ class AutoCompleteInput extends React.Component {
 
       case 38: // up
         if (!suggestions) {
-          return;
+          return false;
         }
 
         do {
@@ -193,7 +194,7 @@ class AutoCompleteInput extends React.Component {
 
       case 40: // down
         if (!suggestions) {
-          return;
+          return false;
         }
 
         do {
@@ -203,10 +204,11 @@ class AutoCompleteInput extends React.Component {
         this.handleUpDownKeys(selectedSuggestion);
         break;
 
-      default: return;
+      default: return false;
     }
 
     event.preventDefault();
+    return false;
   }
 
   handleUpDownKeys(selectedSuggestion) {
@@ -242,9 +244,18 @@ class AutoCompleteInput extends React.Component {
       }
     }
   }
+
+  componentWillReceiveProps(nextProps) {
+    if (!_.isEqual(this.props.suggestions, nextProps.suggestions)) {
+      this.setState({selectedSuggestion: -1});
+    }
+  }
 }
 
 AutoCompleteInput.displayName = 'AutoCompleteInput';
+
+AutoCompleteInput.defaultProps = _.extend({
+}, Input.defaultProps);
 
 AutoCompleteInput.propTypes = _.extend({
 }, Input.propTypes);
