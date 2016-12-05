@@ -17,6 +17,7 @@
     height: 100%;
     width: 100%;
     border-radius: 6px;
+    border: 1px solid;
     padding: 0px 12px;
     @include FontRoman();
     font-size: 16px;
@@ -45,7 +46,7 @@
 /******* STYLE NORMAL ******/
 .input.normal>input
 {
-    border: solid 1px $B30;
+    border-color: $B30;
     background-color: $D80;
     color: $D10;
 }

@@ -85,7 +85,7 @@ Input.defaultProps = {
 Input.propTypes = {
   id: React.PropTypes.string,
   value: React.PropTypes.string,
-  style: React.PropTypes.string.isRequired,
+  style: React.PropTypes.oneOf(['normal', 'paneltitle']),
   forceHover: React.PropTypes.bool,
   forceFocus: React.PropTypes.bool,
   placeholder: React.PropTypes.string,
