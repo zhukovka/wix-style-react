@@ -203,9 +203,10 @@ describe('Input', () => {
 
   describe('autoFocus attribute', () => {
     it('Mounting an input element with autoFocus=false, should give it the focus', () => {
-      const driver = createMountDriver({autoFocus: false});
+      const component = createMount({autoFocus: false});
+      const driver = inputDriverFactory(component);
       expect(driver.isFocus()).toBe(false);
-      driver.component().setProps({autoFocus: true});
+      component.setProps({autoFocus: true});
       expect(driver.isFocus()).toBe(false);
     });
 
@@ -217,9 +218,10 @@ describe('Input', () => {
 
   describe('focus function', () => {
     it('calling focus should give focus to the input', () => {
-      const driver = createMountDriver({});
+      const component = createMount({autoFocus: false});
+      const driver = inputDriverFactory(component);
       expect(driver.isFocus()).toBe(false);
-      driver.component().node.focus();
+      component.node.focus();
       expect(driver.isFocus()).toBe(true);
     });
   });

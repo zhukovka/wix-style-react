@@ -4,7 +4,6 @@ import Input from './Input';
 import styles from './Input.scss';
 
 const inputDriverFactory = component => ({
-  component: () => component,
   trigger: (trigger, event) => component.find('input').simulate(trigger, event),
   getValue: () => component.find('input').props().value,
   getDefaultValue: () => component.find('input').props().defaultValue,
