@@ -55,6 +55,7 @@
     "react-addons-test-utils": "^15.4.1",
     "react-dom": "^15.0.0",
     "react-test-utils": "0.0.1",
+    "sinon": "^1.17.6",
     "wix-node-build": "^1.1.93"
   },
   "peerDependencies": {
