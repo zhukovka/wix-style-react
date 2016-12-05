@@ -21,9 +21,6 @@
     @include FontRoman();
     font-size: 16px;
 
-    border: solid 1px $B30;
-    background-color: $D80;
-    color: $D10;
     line-height: 24px;
 
     &::-webkit-input-placeholder { color: $paletteE6; }
@@ -34,22 +31,59 @@
     &::selection { background: $paletteB4; }
     &::-moz-selection { background: $paletteB4; }
 
-    &:hover, &.hover {
-        background-color: $B50;
-    }
-
     &:focus, &.focus {
-        background-color: $D80;
         outline: 0;
-        border-color: $B20;
         border-width: 1px;
-        box-shadow: inset 0px 0px 5px 0px fade($B10, 60%);
     }
 }
 
 .input.rtl>input
 {
     direction:rtl;
+}
+
+/******* STYLE NORMAL ******/
+.input.normal>input
+{
+    border: solid 1px $B30;
+    background-color: $D80;
+    color: $D10;
+}
+
+.input.normal>input:focus,
+.input.normal>input.focus
+{
+    background-color: $D80;
+    border-color: $B20;
+    box-shadow: inset 0px 0px 5px 0px fade($B10, 60%);
+}
+
+.input.normal>input:hover,
+.input.normal>input.hover
+{
+    background-color: $B50;
+}
+
+/******* STYLE PANELTITLE ******/
+.input.paneltitle>input
+{
+    background:rgba(22,45,61,0.6);
+    color: white;
+    border-color: #c1e4fe;
+}
+
+.input.paneltitle>input:focus,
+.input.paneltitle>input.focus
+{
+    border-color: #4eb7f5;
+    border-width: 1px;
+    box-shadow: inset 0 0 5px 0 rgba(56,153,236,0.6);
+}
+
+.input.paneltitle>input:hover,
+.input.paneltitle>input.hover
+{
+    background-color: rgba(22,45,61,0.4);
 }
 
 /******* UNIT *****/

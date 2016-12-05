@@ -45,6 +45,7 @@
     "babel-preset-stage-2": "*",
     "babel-runtime": "^6.6.1",
     "enzyme": "^2.3.0",
+    "eslint-plugin-react": "^6.8.0",
     "eyes.it": "^1.0.232",
     "gh-pages-auto-release": "^1.1.2",
     "identity-obj-proxy": "^3.0.0",

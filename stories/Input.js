@@ -26,6 +26,11 @@ export default () => {
                         <td></td>
                     </tr>
                     <tr>
+                        <td>style</td>
+                        <td>The style of the input</td>
+                        <td>'normal', 'paneltitle'</td>
+                    </tr>
+                    <tr>
                         <td>defaultValue</td>
                         <td>Default value for those who wants to use this component un-controlled</td>
                         <td></td>
@@ -163,6 +168,13 @@ export default () => {
             <h4>Force Hover attribute Example (forceHover=true)</h4>
             <div style={{width:'400px'}}>
                 <Input forceHover={true}/>
+            </div>
+
+            <h4>Style: paneltitle</h4>
+            <div style={{background:'#3899ec', padding:'20px', width:'400px'}}>
+                <div style={{width:'400px'}} className={'ltr'} >
+                    <Input style={'paneltitle'} />
+                </div>
             </div>
 
         </div>

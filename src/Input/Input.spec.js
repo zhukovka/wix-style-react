@@ -225,4 +225,16 @@ describe('Input', () => {
       expect(driver.isFocus()).toBe(true);
     });
   });
+
+  describe('style attribute', () => {
+    it('should set the style by default to "normal"', () => {
+      const driver = createDriver({});
+      expect(driver.isOfStyle('normal')).toBe(true);
+    });
+
+    it('should allowing setting the style to "paneltitle"', () => {
+      const driver = createDriver({style: 'paneltitle'});
+      expect(driver.isOfStyle('paneltitle')).toBe(true);
+    });
+  });
 });

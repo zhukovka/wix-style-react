@@ -9,6 +9,7 @@ class Input extends React.Component {
   render() {
     const {
       id,
+      style,
       value,
       forceHover,
       forceFocus,
@@ -37,6 +38,7 @@ class Input extends React.Component {
 
     const classes = classNames({
       [styles.input]: true,
+      [styles[style]]: true,
       [styles.rtl]: !!rtl,
       [styles.error]: !!error,
       [styles.endpadding]: !!magnifyingGlass || !!error,
@@ -76,9 +78,14 @@ class Input extends React.Component {
 
 Input.displayName = 'Input';
 
+Input.defaultProps = {
+  style: 'normal'
+};
+
 Input.propTypes = {
   id: React.PropTypes.string,
   value: React.PropTypes.string,
+  style: React.PropTypes.string.isRequired,
   forceHover: React.PropTypes.bool,
   forceFocus: React.PropTypes.bool,
   placeholder: React.PropTypes.string,
