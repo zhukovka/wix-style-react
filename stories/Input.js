@@ -1,7 +1,8 @@
 import React from 'react';
 import {Input} from '../src/index.js';
 
-export default () => {
+class InputStory extends React.Component {
+  render() {
     return (
         <div style={{width:'900px'}}>
 
@@ -9,7 +10,7 @@ export default () => {
             <p>General input container.</p>
 
             <div style={{width:'400px'}}>
-                <Input />
+                <Input onEnterPressed={()=>alert('Enter!')} onEscapePressed={()=>alert('Escape!')} />
             </div>
 
             <h3>Attributes</h3>
@@ -86,6 +87,16 @@ export default () => {
                         <td></td>
                     </tr>
                     <tr>
+                        <td>onEnterPressed</td>
+                        <td>Called when user presses -enter-</td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>onEscapePressed</td>
+                        <td>Called when user presses -escape-</td>
+                        <td></td>
+                    </tr>
+                    <tr>
                         <td>onKeyDown</td>
                         <td>Standard input onKeyDown callback</td>
                         <td></td>
@@ -102,6 +113,14 @@ export default () => {
                     <tr>
                         <td>focus</td>
                         <td>Focuses on the input</td>
+                    </tr>
+                    <tr>
+                        <td>blur</td>
+                        <td>Blurs the input (loses focus)</td>
+                    </tr>
+                    <tr>
+                        <td>select</td>
+                        <td>Selects all text in the input</td>
                     </tr>
                 </tbody>
             </table>
@@ -177,6 +196,17 @@ export default () => {
                 </div>
             </div>
 
+            <h4>Commands test</h4>
+            <div style={{width:'400px'}}>
+                <Input ref='inputtest' />
+            </div>
+            <button onClick={() => this.refs.inputtest.focus()}>Focus</button>
+            <button onClick={() => { this.refs.inputtest.focus(); setTimeout(() => this.refs.inputtest.blur(), 1000)}}>Focus & blur 1 second later</button>
+            <button onClick={() => { this.refs.inputtest.focus(); this.refs.inputtest.select()}}>Select text</button>
+
         </div>
     )
+  }
 }
+
+export default InputStory;

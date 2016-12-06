@@ -6,6 +6,11 @@ import MagnifyingGlass from '../svg/MagnifyingGlass.js';
 
 class Input extends React.Component {
 
+  constructor(params) {
+    super(params);
+    this._onKeyDown = this._onKeyDown.bind(this);
+  }
+
   render() {
     const {
       id,
@@ -56,7 +61,7 @@ class Input extends React.Component {
           onChange={onChange}
           onFocus={onFocus}
           onBlur={onBlur}
-          onKeyDown={onKeyDown}
+          onKeyDown={this._onKeyDown}
           onDoubleClick={this._onDoubleClick}
           placeholder={placeholder}
           tabIndex={tabIndex}
@@ -73,6 +78,24 @@ class Input extends React.Component {
 
   focus() {
     this.refs.input.focus();
+  }
+
+  blur() {
+    this.refs.input.blur();
+  }
+
+  select() {
+    this.refs.input.select();
+  }
+
+  _onKeyDown(e) {
+    this.props.onKeyDown && this.props.onKeyDown(e);
+
+    if (e.keyCode === 13 /* enter */) {
+      this.props.onEnterPressed && this.props.onEnterPressed();
+    } else if (e.keyCode === 27 /* esc */) {
+      this.props.onEscapePressed && this.props.onEscapePressed();
+    }
   }
 }
 

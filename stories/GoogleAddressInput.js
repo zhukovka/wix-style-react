@@ -6,7 +6,7 @@ class GoogleAddressInputStory extends React.Component {
 
     constructor() {
         super();
-        this.state = {result: null}
+        this.state = {result: null, controlledValue:'Hatomer'}
     }
 
     render() {
@@ -52,6 +52,16 @@ class GoogleAddressInputStory extends React.Component {
                             <td>Placeholder for the input box</td>
                         </tr>
                         <tr>
+                            <td>defaultValue</td>
+                            <td>string (optional)</td>
+                            <td>Initial value to display</td>
+                        </tr>
+                        <tr>
+                            <td>value</td>
+                            <td>string (optional)</td>
+                            <td>Controlled mode - value to display</td>
+                        </tr>
+                        <tr>
                             <td>valuePrefix</td>
                             <td>string (optional)</td>
                             <td>Value to place before every search term (normally should not be used)</td>
@@ -88,6 +98,31 @@ class GoogleAddressInputStory extends React.Component {
                         </tr>
                     </tbody>
                 </table>
+
+                <h3>Usage Examples</h3> 
+                <h4>defaultValue</h4>
+                Input should contain address, and be editable.
+                <br/>
+                <br/>
+                <div style={{width:'400px'}} className={'ltr'} >
+                    <GoogleAddressInput countryCode={'US'} Client={clients.GoogleMapsClient} placeholder={'Enter Address...'} defaultValue={'Default Address'}/>
+                </div>
+
+                <h4>value</h4>
+                Controlled mode
+                <br/>
+                <br/>
+                <div style={{width:'400px'}} className={'ltr'} >
+                    <GoogleAddressInput 
+                      countryCode={'US'} 
+                      Client={clients.GoogleMapsClient} 
+                      placeholder={'Enter Address...'} 
+                      value={this.state.controlledValue}
+                      onChange={(e) => this.setState({controlledValue:e.target.value})}
+                      onSet={(e) => e && this.setState({controlledValue:e.originValue})}
+                      />
+                </div>
+
             </div>
         );
     }

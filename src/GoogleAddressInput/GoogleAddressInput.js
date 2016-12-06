@@ -8,7 +8,7 @@ class GoogleAddressInput extends React.Component {
 
     this.state = {
       suggestions: [],
-      value: ''
+      value: params.defaultValue || params.value || ''
     };
 
     this.autoCompleteRequestId = 0;
@@ -21,14 +21,27 @@ class GoogleAddressInput extends React.Component {
     this.onSet = this.onSet.bind(this);
   }
 
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.value != this.props.value) {
+      this._getSuggestions(nextProps.value).then(suggestions => {
+        this.setState({suggestions});
+      }).catch(() => {
+        // Nothing really to do...
+        this.setState({suggestions: []});
+      });
+    }
+  }
+
   render() {
     const {
       placeholder,
-      error
+      error,
+      defaultValue
     } = this.props;
 
     const {
-      suggestions
+      suggestions,
+      value
     } = this.state;
 
     return (
@@ -41,7 +54,7 @@ class GoogleAddressInput extends React.Component {
           onBlur={this.onBlur}
           onFocus={this.onFocus}
           onSet={this.onSet}
-          value={this.state.value}
+          value={value}
           magnifyingGlass={true}
           suggestions={_.map(suggestions, 'description')}
           />
@@ -52,24 +65,19 @@ class GoogleAddressInput extends React.Component {
   onChange(e) {
     const value = e.target.value;
 
-    this.props.onChange && this.props.onChange(value);
+    this.props.onChange && this.props.onChange(e);
     this.props.onSet && this.props.onSet(null);
 
-    const requestId = ++this.autoCompleteRequestId;
+    if (!_.isUndefined(this.props.value)) {
+      // Controlled mode
+      return;
+    }
 
-    this.setState({value}, () => {
-
-      if (value === '') {
-        this.setState({suggestions: []});
-        return;
-      }
-
-      this._getSuggestions(value, requestId).then(suggestions => {
-        this.setState({suggestions});
-      }).catch(() => {
-        // Nothing really to do...
-        this.setState({suggestions: []});
-      });
+    this._getSuggestions(value).then(suggestions => {
+      this.setState({suggestions});
+    }).catch(() => {
+      // Nothing really to do...
+      this.setState({suggestions: []});
     });
   }
 
@@ -93,9 +101,7 @@ class GoogleAddressInput extends React.Component {
 
     const suggestion = _.find(this.state.suggestions, s => s.description === value);
 
-    this.props.onChange && this.props.onChange(value);
-
-    this.setState({suggestions: [], value});
+    this.setState({suggestions: [], value:this.props.value || value});
 
     const request = {
       region: countryCode,
@@ -134,12 +140,13 @@ class GoogleAddressInput extends React.Component {
 
   onKeyDown(e) {
 
+    this.props.onKeyDown && this.props.onKeyDown(value);
+
     if (e.keyCode === 13 /* enter */) {
 
       const value = e.target.value;
-      const requestId = ++this.autoCompleteRequestId;
 
-      this._getSuggestions(value, requestId).then(suggestions => {
+      this._getSuggestions(value, !_.isUndefined(this.props.value)).then(suggestions => {
 
         if (suggestions.length === 0) {
           // No suggestion to the text entered
@@ -158,7 +165,7 @@ class GoogleAddressInput extends React.Component {
     }
   }
 
-  _getSuggestions(value, requestId) {
+  _getSuggestions(value, skipSetState) {
     const {
       valuePrefix = '',
       countryCode,
@@ -167,19 +174,38 @@ class GoogleAddressInput extends React.Component {
       Client
     } = this.props;
 
-    const request = {types, components: 'country:' + countryCode, input: valuePrefix + value};
+    const requestId = ++this.autoCompleteRequestId;
 
-    return (new Client()).autocomplete({request}).then(results => {
+    return new Promise((resolve, reject) => {
 
-      if (requestId !== this.autoCompleteRequestId) {
+      if (skipSetState) {
+        // Controlled mode
+        resolve();
         return;
       }
 
-      if (filterTypes) {
-        results = _.filter(results, pred => _.includes(pred.types, filterTypes));
-      }
+      this.setState({value}, () => resolve());
 
-      return Promise.resolve(results);
+    }).then(() => {
+        if (value === '') {
+          return Promise.resolve([]);
+        }
+
+        const request = {types, components: 'country:' + countryCode, input: valuePrefix + value};
+
+        return (new Client()).autocomplete({request});
+    }).then(results => {
+        if (results.length === 0) return Promise.resolve([]);
+
+        if (requestId !== this.autoCompleteRequestId) {
+          return Promise.resolve([]);
+        }
+
+        if (filterTypes) {
+          results = _.filter(results, pred => _.includes(pred.types, filterTypes));
+        }
+
+        return Promise.resolve(results);
     });
   }
 }
@@ -227,6 +253,7 @@ GoogleAddressInput.propTypes = {
   placeholder: React.PropTypes.string,
   valuePrefix: React.PropTypes.string,
   countryCode: React.PropTypes.string,
+  defaultValue: React.PropTypes.string,
   types: React.PropTypes.array,
   filterTypes: React.PropTypes.array,
   error: React.PropTypes.bool,
