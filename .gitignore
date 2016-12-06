@@ -8,3 +8,5 @@ target
 coverage
 .history
 storybook-static
+/.idea/
+*.iml
