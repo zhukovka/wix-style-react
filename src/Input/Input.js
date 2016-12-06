@@ -28,8 +28,7 @@ class Input extends React.Component {
       rtl,
       autoFocus,
       onFocus,
-      onBlur,
-      onKeyDown
+      onBlur
     } = this.props;
 
     const inputClasses = forceFocus ? styles.focus : (forceHover ? styles.hover : '');
@@ -122,6 +121,8 @@ Input.propTypes = {
   onChange: React.PropTypes.func,
   onBlur: React.PropTypes.func,
   onFocus: React.PropTypes.func,
+  onEscapePressed: React.PropTypes.func,
+  onEnterPressed: React.PropTypes.func,
   onKeyDown: React.PropTypes.func
 };
 
