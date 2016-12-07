@@ -2,6 +2,8 @@ import React from 'react';
 import styles from './Button.scss';
 import {shallow} from 'enzyme';
 import Button from './Button';
+import $ from 'jquery';
+import _ from 'lodash/fp';
 
 const buttonDriverFactory = component => ({
   click: () => component.simulate('click'),
@@ -11,6 +13,11 @@ const buttonDriverFactory = component => ({
   isComponentHovered: () => component.hasClass(styles.hover),
   exists: () => component.find('button').length === 1
 });
+
+const buttonTestkitFactory = ({wrapper, id}) => {
+  const button = $(wrapper).find(id);
+  return _.compose(buttonDriverFactory, shallow)(button);
+};
 
 const componentFactory = () => {
   const createShallow = (props = {}) => {
@@ -23,4 +30,4 @@ const componentFactory = () => {
   return {createShallow};
 };
 
-export {componentFactory, buttonDriverFactory};
+export {componentFactory, buttonDriverFactory, buttonTestkitFactory};
