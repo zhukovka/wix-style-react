@@ -2,8 +2,6 @@ import React from 'react';
 import styles from './Button.scss';
 import {shallow} from 'enzyme';
 import Button from './Button';
-import $ from 'jquery';
-import _ from 'lodash/fp';
 
 const buttonDriverFactory = component => ({
   click: () => component.simulate('click'),
@@ -15,8 +13,8 @@ const buttonDriverFactory = component => ({
 });
 
 const buttonTestkitFactory = ({wrapper, id}) => {
-  const button = $(wrapper).find(id);
-  return _.compose(buttonDriverFactory, shallow)(button);
+  const button = wrapper.find(`#${id}`);
+  return buttonDriverFactory(button);
 };
 
 const componentFactory = () => {
