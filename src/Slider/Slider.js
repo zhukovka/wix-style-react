@@ -2,7 +2,7 @@ import _ from 'lodash';
 import React, {Component} from 'react';
 import Rcslider from 'rc-slider';
 import SliderHandle from './SliderHandle';
-import 'rc-slider/assets/index.css';
+import '!style!css?sourceMap!rc-slider/assets/index.css';
 import './Slider.scss';
 
 export default class Slider extends Component {
