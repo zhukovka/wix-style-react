@@ -51,12 +51,12 @@ function Modal(props) {
       >
       <div className={styles.content} >
 
-        <div className={styles.header} >
+        {!props.hideHeader ? <div className={styles.header} >
           {props.title}
           <button className={styles.close} onClick={props.onCancel}>
             <SvgX width={9} height={9} thickness={1} color={'white'}/>
           </button>
-        </div>
+        </div> : null}
 
         <div className={styles.body} >
           {props.children}
@@ -80,10 +80,11 @@ Modal.propTypes = {
   isOpen: React.PropTypes.bool.isRequired,
   onCancel: React.PropTypes.func.isRequired,
   hideFooter: React.PropTypes.bool,
+  hideHeader: React.PropTypes.bool,
   confirmText: React.PropTypes.string,
   cancelText: React.PropTypes.string,
   onOk: React.PropTypes.func,
-  style: React.PropTypes.oneOf([null, 'red', 'blue', 'green', 'lightGreen']),
+  style: React.PropTypes.oneOf([null, 'red', 'blue', 'green', 'lightGreen', 'plain']),
   title: React.PropTypes.node,
   zIndex: React.PropTypes.number,
   children: React.PropTypes.any

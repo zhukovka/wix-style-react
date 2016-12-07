@@ -11,6 +11,7 @@ import Select from './Select';
 import Modal from './Modal';
 import Slider from './Slider';
 import GoogleAddressInput from './GoogleAddressInput';
+import MessageBox from './MessageBox';
 
 storiesOf('Components', module)
   .add('Button', () => (
@@ -42,4 +43,7 @@ storiesOf('Components', module)
   ))
   .add('GoogleAddressInput', () => (
       <GoogleAddressInput />
+  ))
+   .add('MessageBox', () => (
+      <MessageBox />
   ));

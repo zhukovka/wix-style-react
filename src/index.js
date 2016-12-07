@@ -1,9 +1,12 @@
+import {MessageBoxLayout1} from './MessageBox';
+
 export {default as Button} from './Button';
 export {default as Input} from './Input';
 export {default as AutoCompleteInput} from './AutoCompleteInput';
 export {default as Checkbox} from './Checkbox';
 export {default as ToggleSwitch} from './ToggleSwitch';
 export {default as Modal} from './Modal';
+export {MessageBoxLayout1};
 export {default as RadioGroup} from './RadioGroup';
 export {default as Select} from './Select';
 export {default as Slider} from './Slider';

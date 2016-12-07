@@ -1,0 +1,96 @@
+@import '../common';
+.root {
+  background-color: #ffffff;
+}
+$headerHeight: 120px;
+$headerImageHeight: 185px;
+.header {
+  background-color: #3899ec;
+  height: $headerHeight;
+  margin-bottom: $headerImageHeight - $headerHeight;
+  position: relative;
+}
+
+.header-image {
+  width: 300px;
+  height: $headerImageHeight;
+  position: absolute;
+  z-index: 10;
+  left: 50%;
+  transform: translateX(-50%);
+  text-align: center;
+  img {
+    max-width: 300px;
+    max-height: $headerImageHeight;
+  }
+}
+
+.close
+{
+    position: absolute;
+    right: 18px;
+    top: 18px;
+    z-index: 10;
+    width            : 25px;
+    height           : 25px;
+    border-radius    : 50%;
+    border           : none;
+    display          : flex;
+    justify-content  : center;
+    align-items      : center;
+    background-color : rgba(red($D10), green($D10), blue($D10), 0.2);
+    cursor           : pointer;
+}
+
+.close:hover, .close:focus {
+    background-color : rgba(red($D10), green($D10), blue($D10), 0.4);
+}
+
+.close > svg {
+    margin-top : 1px;
+    path { stroke: #fff; }
+}
+
+.title {
+  @include FontThin();
+  width: 443px;
+  font-size: 36px;
+  line-height: 1.33;
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 19px;
+  color: #162d3d;
+}
+
+.content {
+  @include FontLight();
+  width: 385px;
+  margin-left: auto;
+  margin-right: auto;
+  font-size: 16px;
+  line-height: 1.63;
+  text-align: center;
+  color: $D10;
+  margin-bottom: 48px;
+}
+
+.buttons-container {
+  text-align: center;
+  padding-bottom: 44px;
+}
+
+.primary-button-container{
+  @include FontLight();
+  font-size: 14px;
+  line-height: 1.29;
+  color: $B10;
+}
+.secondary-button-container{
+  @include FontLight(); 
+  margin-top: 21px;
+  font-size: 14px;
+  line-height: 1.29;
+  color: $B10;
+  cursor: pointer;
+}
