@@ -4,7 +4,7 @@
 .input
 {
     border: none;
-    height: 38px;
+    height: 36px;
     position:relative;
 }
 
@@ -106,9 +106,11 @@
     color            : $paletteD3;
     @include FontLight();
     position         : absolute;
-    top              : 20px;
-    transform        : translateY(-50%);
     z-index          : 1;
+    height           : 100%;
+    display          : flex;
+    justify-content  : center;
+    align-items      : center;
 }
 
 :global(.ltr) .inputWithUnit .unit {
@@ -125,8 +127,7 @@
     content      : '';
     height       : 18px;
     position     : absolute;
-    top          : 50%;
-    transform    : translateY(-50%);
+    top          : 9px;
 }
 
 :global(.ltr) .inputWithUnit>.unit:before {
@@ -149,7 +150,7 @@
 /******* ERROR *****/
 
 .input.error:after {
-    top: 7px;
+    top: 8px;
     display:block;
 }
 
@@ -167,27 +168,28 @@
     box-shadow: inset 0px 0px 5px 0px fade($R10, 60%);
 }
 
-.input.error > svg {
-    display:block;
+.input.error > .exclamation {
     position: absolute;
-    top: 7px;
+    top: 8px;
     z-index: 2;
     background-color: $paletteR1;
-    padding:7px 12px;
-    width:2px;
+    width: 20px; height: 20px;
     border-radius:50%;
     box-sizing: content-box;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 
     >path {
         stroke: #fff;
     }
 }
 
-:global(.ltr) .input.error > svg {
+:global(.ltr) .input.error > .exclamation {
     right:8px;
 }
 
-:global(.rtl) .input.error > svg {
+:global(.rtl) .input.error > .exclamation {
     left:8px;
 }
 
@@ -217,13 +219,11 @@
     border-right : 1px solid $paletteR1 !important;
 }
 
-:global(.ltr) .inputWithUnit.error>svg {
-    display:block;
+:global(.ltr) .inputWithUnit.error>.exclamation {
     right:45px;
 }
 
-:global(.rtl) .inputWithUnit.error>svg {
-    display:block;
+:global(.rtl) .inputWithUnit.error>.exclamation {
     left:45px;
 }
 
