@@ -79,7 +79,7 @@ import {buttonTestkitFactory} from 'wix-style-react/dist/testkit';
 const myFormWrapper = mount(<myForm...>);
 
 //Initial the testkit driver:
-const driver = buttonTestkitFactory({wrapper: 'myFormWrapper', id: 'my-button');//driver factory should receive a wrapper and an id and expose an api for it
+const driver = buttonTestkitFactory({wrapper: 'myFormWrapper', id: 'my-button'});//driver factory should receive a wrapper and an id and expose an api for it
 
 //Use the driver
 driver.click();
