@@ -1,0 +1,16 @@
+.footer
+{
+    padding     : 30px;
+    padding-top : 4px;
+    display     : flex;
+    align-items : center;
+}
+
+.footerbuttons
+{
+    margin-left : auto;
+}
+
+.footerbuttons>button:first-of-type {
+    margin-right : 10px;
+}

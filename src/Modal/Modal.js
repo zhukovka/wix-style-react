@@ -49,29 +49,7 @@ function Modal(props) {
       style={modalStyles}
       className={modalClasses}
       >
-      <div className={styles.content} >
-
-        {!props.hideHeader ? <div className={styles.header} >
-          {props.title}
-          <button className={styles.close} onClick={props.onCancel}>
-            <SvgX width={9} height={9} thickness={1} color={'white'}/>
-          </button>
-        </div> : null}
-
-        <div className={styles.body} >
-          {props.children}
-        </div>
-
-        {props.hideFooter || (
-          <Footer
-            confirmText={props.confirmText}
-            onOk={props.onOk}
-            cancelText={props.cancelText}
-            onCancel={props.onCancel || props.onCancel}
-            style={props.style}
-            />
-        )}
-      </div>
+      {props.children}
     </ReactModal>
   );
 }
@@ -94,40 +72,5 @@ Modal.defaultProps = {
   onOk: () => { },
   style: 'blue'
 };
-
-// ----------------------------------------------------------------------
-
-function Footer(props) {
-  return (
-    <div className={styles.footer} >
-      {props.children}
-      <div className={styles.footerbuttons}>
-        {props.cancelText && (
-          <Button style={'empty' + props.style} onClick={props.onCancel} >
-            {props.cancelText}
-          </Button>
-        )}
-        <Button style={'full' + props.style} onClick={props.onOk} >
-          {props.confirmText}
-        </Button>
-      </div>
-    </div>
-  );
-}
-
-Footer.propTypes = {
-  confirmText: React.PropTypes.string,
-  cancelText: React.PropTypes.string,
-  onCancel: React.PropTypes.func,
-  onOk: React.PropTypes.func,
-  style: React.PropTypes.string,
-  children: React.PropTypes.any
-};
-
-Footer.defaultProps = {
-  style: 'blue'
-};
-
-Modal.Footer = Footer;
 
 export default Modal;

@@ -1,0 +1,20 @@
+@import '../common.scss';
+
+.content
+{
+    border-radius    : 8px;
+    background-color : white;
+    margin-bottom    : 50px;
+    width            : 564px;
+}
+
+.body
+{
+    @include FontRoman();
+    padding   : 30px;
+    color     : $paletteD2;
+    font-size : 16px;
+
+  
+}
+

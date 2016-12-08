@@ -92,5 +92,8 @@ $headerImageHeight: 185px;
   font-size: 14px;
   line-height: 1.29;
   color: $B10;
-  cursor: pointer;
+  & > span {
+    cursor: pointer;
+
+  }
 }

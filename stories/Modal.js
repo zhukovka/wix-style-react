@@ -1,5 +1,6 @@
 import React from 'react';
 import {Button, Modal} from '../src/index.js';
+import { MessageBoxLayout2 } from '../src';
 
 class ModalStory extends React.Component {
 
@@ -17,46 +18,52 @@ class ModalStory extends React.Component {
                 <div style={{width:'400px'}}>
 
                     <Button style={'fullblue'} onClick={() => this.setState({openModal:'blue'})} >Open Blue Modal</Button>
-                    <Modal isOpen={this.state.openModal === 'blue'} 
-                           title={'I am a blue title'} 
-                           confirmText={'OK'} 
-                           cancelText={'Cancel'} 
-                           style={'blue'}
-                           onOk={() => this.setState({openModal:null})}
-                           onCancel={() => this.setState({openModal:null})}
-                           >
-                           Hello blue world!
+                    <Modal isOpen={this.state.openModal === 'blue'}>
+                           <MessageBoxLayout2 title={'I am a blue title'}
+                                              confirmText={'OK'}
+                                              cancelText={'Cancel'}
+                                              style={'blue'}
+                                              hideFooter={false}
+                                              onOk={() => this.setState({openModal:null})}
+                                              onCancel={() => this.setState({openModal:null})}
+                                              >
+                                Hello blue world!
+                           </MessageBoxLayout2>
                     </Modal>
 
                     <br/>
                     <br/>
 
                     <Button style={'fullred'} onClick={() => this.setState({openModal:'red'})} >Open Red Modal</Button>
-                    <Modal isOpen={this.state.openModal === 'red'} 
-                           title={'I am a red title'} 
-                           confirmText={'OK'} 
-                           cancelText={'Cancel'} 
-                           style={'red'}
-                           onOk={() => this.setState({openModal:null})}
-                           onCancel={() => this.setState({openModal:null})}
-                           >
-                           Hello red world!
-                    </Modal>
+                    <Modal isOpen={this.state.openModal === 'red'}>
+                           <MessageBoxLayout2 title={'I am a red title'}
+                                              confirmText={'OK'}
+                                              cancelText={'Cancel'}
+                                              style={'red'}
+                                              hideFooter={false}
+                                              onOk={() => this.setState({openModal:null})}
+                                              onCancel={() => this.setState({openModal:null})}
+                                              >
+                                Hello blue world!
+                           </MessageBoxLayout2>
+                    </Modal>                    
 
                     <br/>
                     <br/>
 
                     <Button style={'fullgreen'} onClick={() => this.setState({openModal:'green'})} >Open Green Modal</Button>
-                    <Modal isOpen={this.state.openModal === 'green'} 
-                           title={'I am a green title'} 
-                           confirmText={'OK'} 
-                           cancelText={'Cancel'} 
-                           style={'green'}
-                           onOk={() => this.setState({openModal:null})}
-                           onCancel={() => this.setState({openModal:null})}
-                           >
-                           Hello green world!
-                    </Modal>
+                    <Modal isOpen={this.state.openModal === 'green'}>
+                           <MessageBoxLayout2 title={'I am a green title'}
+                                              confirmText={'OK'}
+                                              cancelText={'Cancel'}
+                                              style={'green'}
+                                              hideFooter={false}
+                                              onOk={() => this.setState({openModal:null})}
+                                              onCancel={() => this.setState({openModal:null})}
+                                              >
+                                Hello blue world!
+                           </MessageBoxLayout2>
+                    </Modal>  
 
                 </div>
 
