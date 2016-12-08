@@ -34,9 +34,9 @@ class Input extends React.Component {
     const inputClasses = forceFocus ? styles.focus : (forceHover ? styles.hover : '');
 
     const exclamation = error ? (
-        <div className={styles.exclamation}>
-            <SvgExclamation width={2} height={11}/> 
-        </div>) : null;
+      <div className={styles.exclamation}>
+        <SvgExclamation width={2} height={11}/>
+      </div>) : null;
 
     const unitDom = unit ? <div className={styles.unit} onClick={this._focus}>{unit}</div> : null;
 
