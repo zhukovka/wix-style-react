@@ -11,7 +11,7 @@ const MessageBoxLayout2 = ({title, onCancel, onOk, confirmText, children, hideFo
       </div>
       {
         !hideFooter ?
-          <FooterLayout1 confirmText={confirmText} cancelText={cancelText} onCancel={onCancel} onOk={onOk} style={style} /> : null
+          <FooterLayout1 confirmText={confirmText} cancelText={cancelText} onCancel={onCancel} onOk={onOk} style={style}/> : null
       }
     </div>
   );
@@ -27,4 +27,5 @@ MessageBoxLayout2.propTypes = {
   title: React.PropTypes.node,
   children: React.PropTypes.any
 };
+
 export default MessageBoxLayout2;

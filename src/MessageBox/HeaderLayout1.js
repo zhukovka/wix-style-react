@@ -3,7 +3,6 @@ import * as styles from './HeaderLayout1.scss';
 import SvgX from '../svg/X.js';
 import classNames from 'classnames';
 
-
 const HeaderLayout1 = ({title, onCancel, style}) => {
   return (
     <div className={classNames(styles.header, styles[style])} >
@@ -15,7 +14,10 @@ const HeaderLayout1 = ({title, onCancel, style}) => {
   );
 };
 
+HeaderLayout1.propTypes = {
+  title: React.PropTypes.string,
+  onCancel: React.PropTypes.func,
+  style: React.PropTypes.oneof(['red', 'green', 'blue', 'lightGreen'])
+};
+
 export default HeaderLayout1;
-
-
-
