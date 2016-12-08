@@ -1,6 +1,5 @@
 import React from 'react';
 import {Button} from '../src/index.js';
-import ButtonDriver from '../testkit/Button.js';
 
 export default () => {
     const mainClick = () => {
@@ -118,21 +117,6 @@ export default () => {
             <div>medium: <Button height={'medium'}>Click Me!</Button></div>
             <div>large: <Button height={'large'}>Click Me!</Button></div>
             </div>
-
-            <h2>TestKit</h2>
-            <Button id='test-button' onClick={()=>alert('Button clicked!')}>TestKit Target</Button>
-            <br/><br/>
-            <pre><code>
-                import ButtonDriver from 'wix-style-react/test-kit-lib/Button.js';<br/>
-                const find = (selector) => document.querySelector(selector); // or enzyme's wrapper.find... <br/>
-                {'new ButtonDriver({id, find}).click();'}<br/>
-            </code></pre>
-            <a className='coderun' href='#' onClick={(e) => {
-                new ButtonDriver({id:'test-button', find:selector=>document.querySelector(selector)}).click()
-                e.preventDefault();
-            }}>run code</a>
-
-            <br/><br/>
         </div>
     )
 }
