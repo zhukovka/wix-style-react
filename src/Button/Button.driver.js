@@ -12,11 +12,6 @@ const buttonDriverFactory = component => ({
   exists: () => component.find('button').length === 1
 });
 
-const buttonTestkitFactory = ({wrapper, id}) => {
-  const button = wrapper.find(`#${id}`);
-  return buttonDriverFactory(button);
-};
-
 const componentFactory = () => {
   const createShallow = (props = {}) => {
     const {children, ...otherProps} = props;
@@ -28,4 +23,4 @@ const componentFactory = () => {
   return {createShallow};
 };
 
-export {componentFactory, buttonDriverFactory, buttonTestkitFactory};
+export {componentFactory, buttonDriverFactory};
