@@ -1,14 +1,13 @@
 import React from 'react';
-import styles from './Button.scss';
 import {shallow} from 'enzyme';
 import Button from './Button';
 
 const buttonDriverFactory = component => ({
   click: () => component.simulate('click'),
   getButtonChildren: () => component.text(),
-  isButtonDisabled: () => component.hasClass(styles.disabled),
+  isButtonDisabled: () => component.hasClass('disabled'),
   doesComponentHasClass: className => component.hasClass(className),
-  isComponentHovered: () => component.hasClass(styles.hover),
+  isComponentHovered: () => component.hasClass('hover'),
   exists: () => component.find('button').length === 1
 });
 
