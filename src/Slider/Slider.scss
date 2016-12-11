@@ -1,3 +1,8 @@
+
+:global {
+  @import 'rc-slider/assets/index';
+}
+
 :global(.wix-slider) {
     $height: 6px;
     $borderRadius: 10px;

@@ -4,12 +4,6 @@ import Rcslider from 'rc-slider';
 import SliderHandle from './SliderHandle';
 import './Slider.scss';
 
-try {
-  // This is required for normal view in web mode. Under nodeJS this will
-  // fail (for example tests), because of the !..!..! syntax.
-  require('!style!css?sourceMap!rc-slider/assets/index.css');
-} catch (e) {}
-
 export default class Slider extends Component {
   getRange() {
     const {min, max, step} = this.props;
