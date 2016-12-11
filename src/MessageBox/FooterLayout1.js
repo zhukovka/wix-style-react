@@ -1,5 +1,5 @@
 import React from 'react';
-import {Button} from '../Button';
+import Button from '../Button';
 import * as styles from './FooterLayout.scss';
 
 const FooterLayout1 = ({children, style, cancelText, onCancel, onOk, confirmText}) => {

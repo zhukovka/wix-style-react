@@ -54,7 +54,7 @@ function Modal(props) {
 
 Modal.propTypes = {
   isOpen: React.PropTypes.bool.isRequired,
-  onCancel: React.PropTypes.func.isRequired,
+  onCancel: React.PropTypes.func,
   hideFooter: React.PropTypes.bool,
   hideHeader: React.PropTypes.bool,
   confirmText: React.PropTypes.string,

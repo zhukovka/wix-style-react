@@ -1,7 +1,7 @@
 import React from 'react';
+import classNames from 'classnames';
 import * as styles from './HeaderLayout1.scss';
 import SvgX from '../svg/X.js';
-import classNames from 'classnames';
 
 const HeaderLayout1 = ({title, onCancel, style}) => {
   return (
