@@ -1,6 +1,7 @@
 import React from 'react';
 import {Button, Modal} from '../src/index.js';
 import { MessageBoxLayout2 } from '../src';
+import { HeaderLayout1, FooterLayout1 } from '../src';
 
 class ModalStory extends React.Component {
 
@@ -64,6 +65,21 @@ class ModalStory extends React.Component {
                                 Hello blue world!
                            </MessageBoxLayout2>
                     </Modal>  
+                    <br/>
+                    <br/>    
+
+                    <Button style={'fullgreen'} onClick={() => this.setState({openModal:'custom'})} >Custom Modal</Button>
+                    <Modal isOpen={this.state.openModal === 'custom'}>
+                        <div>
+                            <HeaderLayout1 title="custom modal" style="red" onCancel={() => this.setState({openModal:null})}/>
+                               <div style={{padding: '20px', background: '#FFF'}}>
+                                   This is custom content with custom styling
+                               </div>
+                               <div style={{background:'#FFF'}}>
+                                    <FooterLayout1 confirmText="confirm" cancelText="Cancel" style="blue" onCancel={() => this.setState({openModal:null})}/>
+                               </div>
+                        </div>
+                    </Modal>                                    
 
                 </div>
 
@@ -86,75 +102,29 @@ class ModalStory extends React.Component {
                             <td>Is the modal open or not</td>
                         </tr>
                         <tr>
-                            <td>title</td>
-                            <td>string</td>
-                            <td>The title to show on the top bar</td>
-                        </tr>
-                        <tr>
-                            <td>confirmText</td>
-                            <td>string</td>
-                            <td>Text for the bottom 'ok' button</td>
-                        </tr>
-                        <tr>
-                            <td>cancelText</td>
-                            <td>string</td>
-                            <td>Text for the bottom 'cancel' button</td>
-                        </tr>
-                        <tr>
                             <td>onCancel</td>
                             <td>function</td>
                             <td>Called when user presses the X on the top bar, or the cancel button on the footer</td>
                         </tr>
-                        <tr>
-                            <td>onOk</td>
-                            <td>function</td>
-                            <td>Called when user presses the ok button</td>
-                        </tr>
-                        <tr>
-                            <td>hideFooter</td>
-                            <td>boolean</td>
-                            <td>Hides the standard footer from the bottom of the dialog. Note: You can add the footer using Modal.Footer</td>
-                        </tr>
                     </tbody>
                 </table>
 
-                <h3>Footer Attributes</h3>
-                <p>You can control the footer directly by setting hideFooter to true, and adding a Modal.Footer object directly</p>
-
-                <table className='attributes'>
-                    <tbody>
-                        <tr>
-                            <th>Attribute name</th>
-                            <th>Value</th>
-                            <th>Description</th>
-                        </tr>
-                        <tr>
-                            <td>style</td>
-                            <td>blue, red, green</td>
-                            <td></td>
-                        </tr>
-                        <tr>
-                            <td>confirmText</td>
-                            <td>string</td>
-                            <td>Text for the bottom 'ok' button</td>
-                        </tr>
-                        <tr>
-                            <td>cancelText</td>
-                            <td>string</td>
-                            <td>Text for the bottom 'cancel' button</td>
-                        </tr>
-                        <tr>
-                            <td>onCancel</td>
-                            <td>function</td>
-                            <td>Called when user presses the X on the top bar, or the cancel button on the footer</td>
-                        </tr>
-                        <tr>
-                            <td>onOk</td>
-                            <td>function</td>
-                            <td>Called when user presses the ok button</td>
-                        </tr>
-                    </tbody>
-                </table>
+                <h3>
+                    Note: 
+                </h3>
+                <div>
+                    Modal provides the ability to open a component on top of a backdrop <br/>
+                    you can 
+                    <ul>
+                        <li>
+                            Add MessageBox as child ( MessageBox is a predefined layout)
+                        </li>
+                        <li>
+                            Composite your own component with the help of UI-Lib existing layous (import HeaderLayout1, FooterLayout1) or your own.
+                        </li>                        
+                    </ul>
+                   Please check the source code
+                </div>
             </div>
         );
     }

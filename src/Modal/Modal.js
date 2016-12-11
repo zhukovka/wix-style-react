@@ -55,14 +55,7 @@ function Modal(props) {
 Modal.propTypes = {
   isOpen: React.PropTypes.bool.isRequired,
   onCancel: React.PropTypes.func,
-  hideFooter: React.PropTypes.bool,
-  hideHeader: React.PropTypes.bool,
-  confirmText: React.PropTypes.string,
-  cancelText: React.PropTypes.string,
-  onOk: React.PropTypes.func,
-  style: React.PropTypes.oneOf([null, 'red', 'blue', 'green', 'lightGreen', 'plain']),
-  title: React.PropTypes.node,
-  zIndex: React.PropTypes.number,
+  style: React.PropTypes.oneOf([null, 'red', 'blue', 'green']),
   children: React.PropTypes.any
 };
 

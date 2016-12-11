@@ -15,7 +15,7 @@ const HeaderLayout1 = ({title, onCancel, style}) => {
 };
 
 HeaderLayout1.propTypes = {
-  title: React.PropTypes.string,
+  title: React.PropTypes.node,
   onCancel: React.PropTypes.func,
   style: React.PropTypes.oneOf(['red', 'green', 'blue', 'lightGreen'])
 };
