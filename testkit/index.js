@@ -1,4 +1,3 @@
-export {buttonDriverFactory} from '../src/Button/Button.driver';
 export {buttonTestkitFactory} from './Button.driver';
 export {protractorButtonTestkitFactory} from './Button.protractor-driver';
 export {inputDriverFactory} from '../src/Input/Input.driver';

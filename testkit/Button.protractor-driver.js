@@ -1,9 +1,6 @@
 import {componentFactory, buttonDriverFactory} from '../test/e2e/Button/Button.driver';
+import _ from 'lodash/fp';
 
-const protractorButtonTestkitFactory = ({id}) => {
-  const component = componentFactory({id});
-
-  return buttonDriverFactory(component);
-};
+const protractorButtonTestkitFactory = _.compose(buttonDriverFactory, componentFactory);
 
 export {protractorButtonTestkitFactory};
