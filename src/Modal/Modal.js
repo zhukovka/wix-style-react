@@ -56,7 +56,8 @@ Modal.propTypes = {
   isOpen: React.PropTypes.bool.isRequired,
   onCancel: React.PropTypes.func,
   style: React.PropTypes.oneOf([null, 'red', 'blue', 'green']),
-  children: React.PropTypes.any
+  children: React.PropTypes.any,
+  zIndex: React.PropTypes.number
 };
 
 Modal.defaultProps = {
