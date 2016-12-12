@@ -45,6 +45,7 @@ function Modal(props) {
       isOpen={props.isOpen}
       shouldCloseOnOverlayClick={props.shouldCloseOnOverlayClick}
       onRequestClose={props.onRequestClose}
+      onAfterOpen={props.onAfterOpen}
       style={modalStyles}
       className={modalClasses}
       >
@@ -60,7 +61,8 @@ Modal.propTypes = {
   children: React.PropTypes.any,
   zIndex: React.PropTypes.number,
   shouldCloseOnOverlayClick: React.PropTypes.bool,
-  onRequestClose: React.PropTypes.func
+  onRequestClose: React.PropTypes.func,
+  onAfterOpen: React.PropTypes.func
 };
 
 Modal.defaultProps = {
