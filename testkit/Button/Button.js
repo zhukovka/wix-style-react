@@ -1,4 +1,4 @@
-import {buttonDriverFactory} from '../src/Button/Button.driver';
+import {buttonDriverFactory} from '../../src/Button/Button.driver';
 
 const buttonTestkitFactory = ({wrapper, id}) => {
   const button = wrapper.find(`#${id}`);
