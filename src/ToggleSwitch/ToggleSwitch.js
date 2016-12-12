@@ -1,6 +1,6 @@
 import React from 'react';
 import classnames from 'classnames';
-import {uniqueId} from 'lodash';
+import uniqueId from 'lodash.uniqueid';
 
 import styles from './ToggleSwitch.scss';
 
