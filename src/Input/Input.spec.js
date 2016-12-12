@@ -1,12 +1,11 @@
 import 'react';
 import {componentFactory, inputDriverFactory} from './Input.driver';
-import _ from 'lodash/fp';
 
 describe('Input', () => {
   const {createShallow, createMount} = componentFactory();
 
-  const createDriver = _.compose(inputDriverFactory, createShallow);
-  const createMountDriver = _.compose(inputDriverFactory, createMount);
+  const createDriver = args => inputDriverFactory(createShallow(args));
+  const createMountDriver = args => inputDriverFactory(createMount(args));
 
   describe('value attribute', () => {
     it('should pass down to the wrapped input', () => {

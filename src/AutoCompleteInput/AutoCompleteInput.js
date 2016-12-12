@@ -1,8 +1,8 @@
 import React from 'react';
 import styles from './AutoCompleteInput.scss';
 import classNames from 'classnames';
-import _ from 'lodash';
 import Input from '../Input/Input.js';
+import defer from 'lodash.defer';
 
 class AutoCompleteInput extends React.Component {
   constructor(params) {
@@ -24,7 +24,7 @@ class AutoCompleteInput extends React.Component {
 
     const autoSuggestionsWrapperClass = classNames({
       [styles.auto_suggestions_wrapper]: true,
-      [styles.hidden]: this.state.shouldHideSuggestions || _.isEmpty(this.props.suggestions)
+      [styles.hidden]: this.state.shouldHideSuggestions || !this.props.suggestions || this.props.suggestions.length == 0
     });
 
     return (
@@ -36,13 +36,13 @@ class AutoCompleteInput extends React.Component {
           onBlur={this.onBlur}
           onChange={this.onChange}
           onKeyDown={this.onKeyDown}
-          />
+        />
 
         <div className={autoSuggestionsWrapperClass}>
 
           {this.props.header}
 
-          {_.map(this.props.suggestions, (suggestion, index) => {
+          {this.props.suggestions.map((suggestion, index) => {
 
             if (!suggestion) {
               return;
@@ -66,7 +66,7 @@ class AutoCompleteInput extends React.Component {
                 <div
                   key={key}
                   className={classname}
-                  onMouseDown={_.partial(this.onMouseClickSuggestion, index)}
+                  onMouseDown={() => (this.onMouseClickSuggestion(index))}
                   >
                   {suggestion.node || suggestion.text || suggestion}
                 </div>
@@ -85,7 +85,7 @@ class AutoCompleteInput extends React.Component {
     const selectedSuggestion = suggestions[index];
 
     if (selectedSuggestion && !selectedSuggestion.disabled) {
-      _.defer(() => onSet(suggestions[index]));
+      defer(() => onSet(suggestions[index]));
     }
   }
 
@@ -225,7 +225,6 @@ class AutoCompleteInput extends React.Component {
         });
 
       } else {
-
         if (selectedSuggestion < 0) {
           selectedSuggestion = this.props.suggestions.length - 1;
         }
@@ -235,10 +234,6 @@ class AutoCompleteInput extends React.Component {
         }
 
         const newState = {selectedSuggestion};
-
-        if (_.isString(this.props.suggestions[selectedSuggestion])) {
-          newState.value = this.props.suggestions[selectedSuggestion];
-        }
 
         this.setState(newState);
       }
@@ -254,11 +249,7 @@ class AutoCompleteInput extends React.Component {
 
 AutoCompleteInput.displayName = 'AutoCompleteInput';
 
-AutoCompleteInput.defaultProps = _.extend({
-}, Input.defaultProps);
-
-AutoCompleteInput.propTypes = _.extend({
-}, Input.propTypes);
+AutoCompleteInput.defaultProps = Input.defaultProps;
+AutoCompleteInput.propTypes = Input.propTypes;
 
 export default AutoCompleteInput;
-

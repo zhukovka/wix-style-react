@@ -1,12 +1,12 @@
 import React from 'react';
-import _ from 'lodash';
+import uniqueId from 'lodash.uniqueid';
 import styles from './ToggleSwitch.scss';
 
 class ToggleSwitch extends React.Component {
 
   constructor(params) {
     super(params);
-    this.id = _.uniqueId();
+    this.id = uniqueId();
   }
 
   render() {

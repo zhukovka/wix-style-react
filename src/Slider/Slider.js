@@ -1,4 +1,3 @@
-import _ from 'lodash';
 import React, {Component} from 'react';
 import Rcslider from 'rc-slider';
 import SliderHandle from './SliderHandle';
@@ -32,7 +31,7 @@ export default class Slider extends Component {
   }
 
   getMarks() {
-    return _.reduce(this.getRange(), (acc, cur) => {
+    return this.getRange().reduce((acc, cur) => {
       acc[cur] = {
         label: this.renderLabel(cur)
       };
@@ -78,6 +77,6 @@ Slider.defaultProps = {
   max: 20,
   step: 1,
   value: [2, 7],
-  onAfterChange: _.noop,
+  onAfterChange: undefined,
   allowCross: true
 };

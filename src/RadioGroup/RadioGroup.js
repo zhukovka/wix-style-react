@@ -1,5 +1,5 @@
 import React from 'react';
-import _ from 'lodash';
+import uniqueId from 'lodash.uniqueid';
 import styles from './RadioGroup.scss';
 import classNames from 'classnames';
 
@@ -7,7 +7,7 @@ class RadioGroup extends React.Component {
 
   constructor(params) {
     super(params);
-    this.id = _.uniqueId();
+    this.id = uniqueId();
 
     this._onChange = this._onChange.bind(this);
   }
@@ -48,7 +48,7 @@ class RadioButton extends React.Component {
 
   constructor(params) {
     super(params);
-    this.id = _.uniqueId();
+    this.id = uniqueId();
   }
 
   render() {

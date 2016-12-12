@@ -1,11 +1,11 @@
 import styles from './Checkbox.scss';
-import _ from 'lodash';
+import uniqueId from 'lodash.uniqueid';
 import React from 'react';
 import classNames from 'classnames';
 
 class Checkbox extends React.Component {
   render() {
-    const {id = _.uniqueId(), checked, disabled, hover, active, onChange} = this.props;
+    const {id = uniqueId(), checked, disabled, hover, active, onChange} = this.props;
 
     const classname = classNames({
       [styles.wrapper]: true,

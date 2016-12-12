@@ -1,13 +1,12 @@
 import {componentFactory, radioGroupDriverFactory} from './RadioGroup.driver';
-import _ from 'lodash/fp';
 
 describe('RadioGroup', () => {
   const options = [{value: 0}, {value: 1}, {value: 2}];
   const {createShallow, createMount} = componentFactory(options);
-  const noop = () => {};
 
-  const createDriver = _.compose(radioGroupDriverFactory, createShallow);
-  const createMountDriver = _.compose(radioGroupDriverFactory, createMount);
+  const createDriver = args => radioGroupDriverFactory(createShallow(args));
+  const createMountDriver = args => radioGroupDriverFactory(createMount(args));
+  const noop = () => {};
 
   it('should check the option that matches the initial value', () => {
     const value = 2;

@@ -1,11 +1,10 @@
 import 'react';
 import {componentFactory, checkboxDriverFactory} from './Checkbox.driver';
-import _ from 'lodash/fp';
 
 describe('Checkbox', () => {
   const {createShallow} = componentFactory();
 
-  const createDriver = _.compose(checkboxDriverFactory, createShallow);
+  const createDriver = args => checkboxDriverFactory(createShallow(args));
 
   it('should click a Checkbox', () => {
     const checked = false;

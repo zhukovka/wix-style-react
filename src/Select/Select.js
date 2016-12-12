@@ -1,9 +1,10 @@
 import styles from './Select.scss';
 import React from 'react';
-import _ from 'lodash';
 import ReactDOM from 'react-dom';
 import classNames from 'classnames';
+import find from 'lodash.find'
 import $ from 'jquery';
+import defer from 'lodash.defer';
 
 class Select extends React.Component {
   constructor(props) {
@@ -85,7 +86,7 @@ class Select extends React.Component {
     if (e.target.parentElement === ReactDOM.findDOMNode(this.refs.button)) {
       return;
     }
-    _.defer(() => {
+    defer(() => {
       if (this.state.open) {
         this._toggleOpen(false);
       }
@@ -93,7 +94,7 @@ class Select extends React.Component {
   }
 
   _toggleOpen(value) {
-    const newOpen = _.isUndefined(value) ? !this.state.open : value;
+    const newOpen = (value === undefined) ? !this.state.open : value;
 
     if (newOpen) {
       $(document).on('click', this._documentClicked);
@@ -112,8 +113,8 @@ class Select extends React.Component {
 
     let title = placeHolder;
 
-    if (!_.isUndefined(value)) {
-      title = (_.find(options, o => o.value === value) || {}).text || title;
+    if (!(value === undefined)) {
+      title = (find(options, o => o.value === value) || {}).text || title;
     }
 
     const buttonClasses = classNames(styles.button, {
@@ -132,7 +133,7 @@ class Select extends React.Component {
           </svg>
         </div>
         <div data-testkey={(this.props.nameAttr) ? this.props.nameAttr + 'Select' : 'wixMenuSelect'} className={`${styles.options} ${this.state.open ? styles.shown : ''} ${this.props.dropDirectionUp ? styles.up : styles.down}`} ref="options">
-          {_.map(options, (option, idx) => (
+          {options.map((option, idx) => (
             option.text === '-' ? (this.renderDivider()) : (this.renderItem({option, idx, selected: option.value === value, hovered: idx === this.state.hovered}))
           ))}
         </div>
