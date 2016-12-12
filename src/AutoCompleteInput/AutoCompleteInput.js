@@ -19,6 +19,7 @@ class AutoCompleteInput extends React.Component {
     this.onBlur = this.onBlur.bind(this);
     this.onChange = this.onChange.bind(this);
     this.onKeyDown = this.onKeyDown.bind(this);
+    this.renderSuggestions = this.renderSuggestions.bind(this);
   }
 
   render() {
@@ -43,41 +44,48 @@ class AutoCompleteInput extends React.Component {
 
           {this.props.header}
 
-          {this.props.suggestions.map((suggestion, index) => {
-
-            if (!suggestion) {
-              return null;
-            }
-
-            const classname = classNames({
-              [styles.suggestion]: true,
-              [styles.selected]: index === this.state.selectedSuggestion
-            });
-
-            const key = suggestion.key || index;
-
-            if (suggestion.unselectable) {
-              return (
-                <div key={key} className={classname} >
-                  {suggestion.text}
-                </div>
-              );
-            } else {
-              return (
-                <div
-                  key={key}
-                  className={classname}
-                  onMouseDown={() => (this.onMouseClickSuggestion(index))}
-                  >
-                  {suggestion.node || suggestion.text || suggestion}
-                </div>
-              );
-            }
-          })
-          }
+          {this.renderSuggestions()}
         </div>
       </div>
     );
+  }
+
+  renderSuggestions() {
+    if (!this.props.suggestions) {
+      return null;
+    }
+
+    return this.props.suggestions.map((suggestion, index) => {
+
+      if (!suggestion) {
+        return null;
+      }
+
+      const classname = classNames({
+        [styles.suggestion]: true,
+        [styles.selected]: index === this.state.selectedSuggestion
+      });
+
+      const key = suggestion.key || index;
+
+      if (suggestion.unselectable) {
+        return (
+          <div key={key} className={classname} >
+            {suggestion.text}
+          </div>
+        );
+      } else {
+        return (
+          <div
+            key={key}
+            className={classname}
+            onMouseDown={() => (this.onMouseClickSuggestion(index))}
+            >
+            {suggestion.node || suggestion.text || suggestion}
+          </div>
+        );
+      }
+    });
   }
 
   onMouseClickSuggestion(index) {
