@@ -214,7 +214,7 @@ class AutoCompleteInput extends React.Component {
 
   handleUpDownKeys(selectedSuggestion) {
     if (!this.props.suggestions) {
-      return;
+      return false;
     }
 
     if (this.props.suggestions.length !== 0) {
@@ -238,7 +238,11 @@ class AutoCompleteInput extends React.Component {
 
         this.setState(newState);
       }
+
+      return true;
     }
+
+    return false;
   }
 
   componentWillReceiveProps(nextProps) {
