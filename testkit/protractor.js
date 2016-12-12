@@ -1,1 +1,1 @@
-export {protractorButtonTestkitFactory} from './Button.protractor-driver';
+export {protractorButtonTestkitFactory} from './Button/Button.protractor';
