@@ -3,6 +3,7 @@ import styles from './AutoCompleteInput.scss';
 import classNames from 'classnames';
 import Input from '../Input/Input.js';
 import defer from 'lodash.defer';
+import isEqual from 'lodash.isequal';
 
 class AutoCompleteInput extends React.Component {
   constructor(params) {
@@ -24,7 +25,7 @@ class AutoCompleteInput extends React.Component {
 
     const autoSuggestionsWrapperClass = classNames({
       [styles.auto_suggestions_wrapper]: true,
-      [styles.hidden]: this.state.shouldHideSuggestions || !this.props.suggestions || this.props.suggestions.length == 0
+      [styles.hidden]: this.state.shouldHideSuggestions || !this.props.suggestions || this.props.suggestions.length === 0
     });
 
     return (
@@ -36,7 +37,7 @@ class AutoCompleteInput extends React.Component {
           onBlur={this.onBlur}
           onChange={this.onChange}
           onKeyDown={this.onKeyDown}
-        />
+          />
 
         <div className={autoSuggestionsWrapperClass}>
 
@@ -45,7 +46,7 @@ class AutoCompleteInput extends React.Component {
           {this.props.suggestions.map((suggestion, index) => {
 
             if (!suggestion) {
-              return;
+              return null;
             }
 
             const classname = classNames({
@@ -241,7 +242,7 @@ class AutoCompleteInput extends React.Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    if (!_.isEqual(this.props.suggestions, nextProps.suggestions)) {
+    if (!isEqual(this.props.suggestions, nextProps.suggestions)) {
       this.setState({selectedSuggestion: -1});
     }
   }

@@ -2,7 +2,7 @@ import styles from './Select.scss';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import classNames from 'classnames';
-import find from 'lodash.find'
+import find from 'lodash.find';
 import $ from 'jquery';
 import defer from 'lodash.defer';
 
