@@ -5,7 +5,7 @@ class ToggleSwitchStory extends React.Component {
 
     constructor(params) {
         super(params);
-        this.state = {checked:false};
+        this.state = { large: false, small: false };
     }
 
     render() {
@@ -16,7 +16,8 @@ class ToggleSwitchStory extends React.Component {
                 <p>Controlled switch</p>
 
                 <div style={{width:'400px'}} className='ltr'>
-                    <ToggleSwitch checked={this.state.checked} onChange={() => this.setState({checked:!this.state.checked})} />
+                    <ToggleSwitch checked={this.state.large} onChange={() => this.setState({ large:!this.state.large })} />&nbsp;
+                    <ToggleSwitch checked={this.state.small} onChange={() => this.setState({ small:!this.state.small })} size="small"/>
                 </div>
 
                 <h3>Attributes</h3>
@@ -25,24 +26,37 @@ class ToggleSwitchStory extends React.Component {
                         <tr>
                             <th>Attribute name</th>
                             <th>Value</th>
+                            <th>Default</th>
                             <th>Description</th>
                         </tr>
                         <tr>
                             <td>checked</td>
                             <td>boolean</td>
                             <td></td>
+                            <td></td>
                         </tr>
                         <tr>
                             <td>onChange</td>
                             <td>function</td>
+                            <td></td>
                             <td>Callback function when user changes the value of the component</td>
+                        </tr>
+                        <tr>
+                            <td>size</td>
+                            <td>string</td>
+                            <td>large</td>
+                            <td>Specifies toggle size. One of [small, large].</td>
                         </tr>
                     </tbody>
                 </table>
 
                 <h3>Usage Examples</h3>
-                <ToggleSwitch checked={true} />
-                <ToggleSwitch checked={false} />
+                <div>
+                    <ToggleSwitch checked={true} />&nbsp;
+                    <ToggleSwitch checked={false} />&nbsp;
+                    <ToggleSwitch size="small" checked/>&nbsp;
+                    <ToggleSwitch size="small"/>
+                </div>
             </div>
         );
     }

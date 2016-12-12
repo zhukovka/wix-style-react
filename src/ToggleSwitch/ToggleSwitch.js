@@ -1,5 +1,7 @@
 import React from 'react';
-import uniqueId from 'lodash.uniqueid';
+import classnames from 'classnames';
+import { uniqueId } from 'lodash';
+
 import styles from './ToggleSwitch.scss';
 
 class ToggleSwitch extends React.Component {
@@ -10,11 +12,14 @@ class ToggleSwitch extends React.Component {
   }
 
   render() {
-    const {checked, onChange} = this.props;
+    const {checked, onChange, size} = this.props;
     const id = this.id;
+    const rootClassName = classnames(styles.toggleSwitch, {
+      [styles.toggleSwitchSmall]: size === 'small'
+    });
 
     return (
-      <div className={styles.toggleSwitch}>
+      <div className={rootClassName}>
         <input type="checkbox" id={id} checked={checked} onChange={onChange}/>
         <label htmlFor={id} className={styles.outerLabel}>
           <label htmlFor={id} className={styles.innerLabel}>
@@ -34,11 +39,14 @@ class ToggleSwitch extends React.Component {
 ToggleSwitch.displayName = 'ToggleSwitch';
 ToggleSwitch.propTypes = {
   checked: React.PropTypes.bool.isRequired,
-  onChange: React.PropTypes.func.isRequired
+  onChange: React.PropTypes.func.isRequired,
+  size: React.PropTypes.oneOf(['small', 'large'])
 };
+
 ToggleSwitch.defaultProps = {
   checked: false,
-  onChange: () => { }
+  onChange: () => { },
+  size: 'large'
 };
 
 export default ToggleSwitch;

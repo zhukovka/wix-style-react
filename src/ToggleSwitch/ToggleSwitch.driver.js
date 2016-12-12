@@ -8,6 +8,10 @@ export default class ToggleSwitchDriver {
   }
 
   given = {
+    size: size => {
+      this.props.size = size;
+      return this;
+    },
     checked: value => {
       this.props.checked = value;
       return this;
@@ -33,6 +37,8 @@ export default class ToggleSwitchDriver {
 
   get = {
     element: () => this.wrapper,
-    checked: () => this.wrapper.find('input').props().checked
+    checked: () => this.wrapper.find('input').props().checked,
+    isSmall: () => this.wrapper.hasClass('toggleSwitchSmall'),
+    isLarge: () => !this.get.isSmall()
   }
 }

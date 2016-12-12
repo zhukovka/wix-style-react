@@ -1,9 +1,8 @@
 $transition-speed:.3s;
 
 .toggleSwitch {
-    display:inline-block;
+    display: inline-block;
 }
-    
 
 .toggleSwitch input[type=checkbox] {
     display:none;
@@ -23,7 +22,7 @@ $transition-speed:.3s;
         }
     }
 }
-    
+
 .toggleSwitch label {
     -webkit-border-radius: 50px;
     -moz-border-radius: 50px;
@@ -75,5 +74,19 @@ $transition-speed:.3s;
 
     path {
         fill:#6daae3;
+    }
+}
+
+.toggleSwitchSmall {
+    .outerLabel {
+        width: 36px;
+        height: 20px;
+    }
+    .innerLabel {
+        width: 18px;
+        height: 18px;
+    }
+    input[type=checkbox]:checked + .outerLabel .innerLabel {
+        left: 17px;
     }
 }
