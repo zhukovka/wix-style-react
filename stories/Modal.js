@@ -19,7 +19,7 @@ class ModalStory extends React.Component {
                 <div style={{width:'400px'}}>
 
                     <Button style={'fullblue'} onClick={() => this.setState({openModal:'blue'})} >Open Blue Modal</Button>
-                    <Modal isOpen={this.state.openModal === 'blue'}>
+                    <Modal isOpen={this.state.openModal === 'blue'} shouldCloseOnOverlayClick={true} onRequestClose={()=> this.setState({openModal:null})}>
                            <MessageBoxLayout2 title={'I am a blue title'}
                                               confirmText={'OK'}
                                               cancelText={'Cancel'}
