@@ -7,7 +7,6 @@ function loadStories() {
  require('../stories/ToggleSwitch');
  require('../stories/Checkbox');
  require('../stories/RadioGroup');
- require('../stories/Select');
 
  require('../stories');
 }

@@ -19,6 +19,9 @@ storiesOf('Components', module)
   .add('AutoCompleteInput', () => (
       <AutoCompleteInput />
   ))
+  .add('Select', () => (
+      <Select />
+  ))
   .add('Modal', () => (
       <Modal />
   ))
