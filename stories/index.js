@@ -14,6 +14,9 @@ storiesOf('Components', module)
   .add('Modal', () => (
       <Modal />
   ))
+  .add('Slider', () => (
+      <Slider />
+  ))
   .add('GoogleAddressInput', () => (
       <GoogleAddressInput />
   ))

@@ -9,7 +9,6 @@ function loadStories() {
  require('../stories/RadioGroup');
  require('../stories/Select');
  require('../stories/AutoCompleteInput');
- require('../stories/Slider');
 
  require('../stories');
 }
