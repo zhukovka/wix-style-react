@@ -1,5 +1,4 @@
 import eyes from 'eyes.it';
-//import {buttonDriverFactory, componentFactory} from './Button.driver';
 import {protractorButtonTestkitFactory} from './testkit/Button.protractor';
 
 describe('Button', () => {

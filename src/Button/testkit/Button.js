@@ -7,8 +7,7 @@ const buttonDriverFactory = component => ({
   getButtonTextContent: () => component.textContent,
   isButtonDisabled: () => component.className.indexOf('disabled') > 0,
   doesComponentHasClass: className => component.className.indexOf(className) > 0,
-  isComponentHovered: () => component.className.indexOf('hover') > 0,
-  exists: () => component.find('button').length === 1
+  isComponentHovered: () => component.className.indexOf('hover') > 0
 });
 
 const componentFactory = (props = {}) => {
