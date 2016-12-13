@@ -8,7 +8,6 @@ function loadStories() {
  require('../stories/Checkbox');
  require('../stories/RadioGroup');
  require('../stories/Select');
- require('../stories/AutoCompleteInput');
 
  require('../stories');
 }

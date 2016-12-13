@@ -1,58 +1,89 @@
-import React, {Component, PropTypes} from 'react';
-import {storiesOf} from '@kadira/storybook';
-import Markdown from './utils/Components/Markdown';
-import AutoCompleteInput from '../src/AutoCompleteInput';
-import AutoCompleteInputReadme from '../src/AutoCompleteInput/README.md';
+import React from 'react';
+import {AutoCompleteInput} from '../src/index.js';
+import { linkTo } from '@kadira/storybook';
 
-class AutoCompleteInputWrapper extends Component {
-  static propTypes = {
-    value: PropTypes.string
-  };
+class AutoCompleteInputStory extends React.Component {
 
-  constructor({value}) {
-    super();
-    this.state = {value};
-  }
+    constructor(params) {
+        super(params);
 
-  render() {
-    const onChange = event => this.setState({value: event.target.value});
-    const onSet = value => this.setState({value: value.text});
+        this.state = {
+            value: '',
+            suggestions: [
+                {text:'First suggestion'}, 
+                {text:'Second suggestion'}, 
+                {text:'Third suggestion'}, 
+                {node: <span style={{color:'red'}}>Node suggestion</span>, text:'Text of node suggestion'},
+                {text:'Very long suggestion text jldlkasj ldk jsalkdjsal kdjaklsjdlkasj dklasj'}
+            ],
+            rtlValue: '',
+            rtlSuggestions: [
+                {text:'אפשרות ראשונה'}, 
+                {text:'אפשרות שניה'}, 
+                {text:'אפשרות שלישית'}
+            ]
+        };
+    }
 
-    return (
-      <AutoCompleteInput {...this.props} value={this.state.value} onChange={onChange} onSet={onSet}/>
-    );
-  }
+    render() {
+        return (
+            <div style={{width:'900px'}}>
+
+                <h2>AutoCompleteInput <small style={{fontSize:'11px'}}><a target='_blank' href='https://github.com/wix/wix-style-react/blob/master/stories/AutoCompleteInput.js'>source</a></small></h2>
+                <p>Suggestions component for Input. (Focus to see in action)</p>
+
+                <div className='ltr' style={{width:'400px'}}>
+
+                    <AutoCompleteInput 
+                        suggestions={this.state.suggestions}
+                        value={this.state.value}
+                        onSet={value => this.setState({value:value.text})}
+                        onChange={event => this.setState({value:event.target.value})}
+                    />
+
+                </div>
+
+                <h3>Attributes</h3>
+                <b>Note:</b> Most attributes are inherited from <a href='#' onClick={linkTo('Components', 'Input')}>Input</a>. Listed are only extending attributes.
+                <br/>
+                <br/>
+                <table className='attributes'>
+                    <tbody>
+                        <tr>
+                            <th>Attribute name</th>
+                            <th>Value</th>
+                            <th>Description</th>
+                        </tr>
+                        <tr>
+                            <td>suggestions</td>
+                            <td>Array of objects to display as suggestions when focused. Objects can include <i>text</i> and <i>node</i></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>onSet</td>
+                            <td>Callback when the user selects one of the selections. Called with the selection.</td>
+                            <td></td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <h3>Usage Examples</h3>
+
+                <h4>RTL</h4>
+                <div className='rtl' style={{width:'400px'}}>
+                    <AutoCompleteInput 
+                        rtl={true}
+                        suggestions={this.state.rtlSuggestions}
+                        value={this.state.rtlValue}
+                        onSet={value => this.setState({rtlValue:value.text})}
+                        onChange={event => this.setState({rtlValue:event.target.value})}
+                    />
+
+                </div>
+
+            </div>
+        );
+    }
 }
 
-const suggestions = [
-  {text: 'First suggestion'},
-  {text: 'Second suggestion'},
-  {text: 'Third suggestion'},
-  {node: <span style={{color: 'red'}}>Node suggestion</span>, text: 'Text of node suggestion'},
-  {text: 'Very long suggestion text jldlkasj ldk jsalkdjsal kdjaklsjdlkasj dklasj'}
-];
-
-const rtlSuggestions = [
-  {text: 'אפשרות ראשונה'},
-  {text: 'אפשרות שניה'},
-  {text: 'אפשרות שלישית'}
-];
-
-storiesOf('Input', module)
-  .add('AutoCompleteInput', () => (
-    <div>
-      <Markdown source={AutoCompleteInputReadme}/>
-
-      <h1>Examples</h1>
-
-      <div>
-        <h3>AutoCompleteInput</h3>
-        <AutoCompleteInputWrapper suggestions={suggestions}/>
-      </div>
-
-      <div>
-        <h3>Right to left</h3>
-        <AutoCompleteInputWrapper suggestions={rtlSuggestions} rtl/>
-      </div>
-    </div>
-  ));
+export default AutoCompleteInputStory;
