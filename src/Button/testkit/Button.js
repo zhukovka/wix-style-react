@@ -1,5 +1,5 @@
 import React from 'react';
-import Button from './Button';
+import Button from '../Button';
 import ReactTestUtils from 'react-addons-test-utils';
 
 const buttonDriverFactory = component => ({
@@ -17,4 +17,9 @@ const componentFactory = (props = {}) => {
   return component.childNodes[0];
 };
 
-export {componentFactory, buttonDriverFactory};
+const buttonTestkitFactory = ({wrapper, id}) => {
+  const button = wrapper.find(`#${id}`);
+  return buttonDriverFactory(button);
+};
+
+export {buttonTestkitFactory, componentFactory, buttonDriverFactory};

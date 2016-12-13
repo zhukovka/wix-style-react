@@ -1,1 +1,1 @@
-export {buttonTestkitFactory} from './Button/Button.enzyme';
+export {buttonTestkitFactory} from '../src/Button/testkit/Button.enzyme';

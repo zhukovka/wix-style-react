@@ -1,18 +1,16 @@
 import eyes from 'eyes.it';
-import {buttonDriverFactory, componentFactory} from './Button.driver';
+//import {buttonDriverFactory, componentFactory} from './Button.driver';
+import {protractorButtonTestkitFactory} from './testkit/Button.protractor';
 
 describe('Button', () => {
-  let driver;
-
   eyes.it('should click a button', () => {
-    const component = componentFactory({id: 'main-example'});
 
-    driver = buttonDriverFactory(component);
+    const driver = protractorButtonTestkitFactory({id: 'main-example'});
 
     browser.get('iframe.html?selectedKind=Components&selectedStory=Button');
 
     const EC = protractor.ExpectedConditions;
-    browser.wait(EC.visibilityOf(component), 15000);
+    browser.wait(EC.visibilityOf(driver.element()), 15000);
 
     driver.click();
     expect(driver.getButtonText()).toBe('clicked!');

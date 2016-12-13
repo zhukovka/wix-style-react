@@ -1,1 +1,1 @@
-export {protractorButtonTestkitFactory} from './Button/Button.protractor';
+export {protractorButtonTestkitFactory} from '../src/Button/testkit/Button.protractor';

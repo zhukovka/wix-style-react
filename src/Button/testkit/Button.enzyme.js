@@ -1,5 +1,5 @@
 import ReactDOM from 'react-dom';
-import {buttonDriverFactory} from '../../src/Button/Button.driver';
+import {buttonDriverFactory} from './Button';
 
 const buttonTestkitFactory = ({wrapper, id}) => {
   const button = wrapper.find(`#${id}`);

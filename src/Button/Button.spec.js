@@ -1,7 +1,7 @@
 import _ from 'lodash/fp';
 import styles from './Button.scss';
 
-import {componentFactory, buttonDriverFactory} from './Button.driver';
+import {componentFactory, buttonDriverFactory} from './testkit/Button';
 
 describe('Button', () => {
 
