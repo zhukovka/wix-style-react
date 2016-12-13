@@ -1,15 +1,17 @@
+import _ from 'lodash/fp';
 import styles from './Button.scss';
+
 import {componentFactory, buttonDriverFactory} from './Button.driver';
 
 describe('Button', () => {
-  const {createShallow} = componentFactory();
 
-  const createDriver = args => buttonDriverFactory(createShallow(args));
+  const createDriver = _.compose(buttonDriverFactory, componentFactory);
 
   it('should click a button', () => {
     const onClick = jest.fn();
 
     const driver = createDriver({onClick});
+
     driver.click();
 
     expect(onClick).toBeCalled();
@@ -20,7 +22,7 @@ describe('Button', () => {
 
     const driver = createDriver({children});
 
-    expect(driver.getButtonChildren()).toBe('<div>123</div>');
+    expect(driver.getButtonTextContent()).toBe('<div>123</div>');
   });
 
   it('should get disabled class', () => {

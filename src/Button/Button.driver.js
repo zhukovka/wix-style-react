@@ -1,25 +1,21 @@
 import React from 'react';
-import {shallow} from 'enzyme';
 import Button from './Button';
+import ReactTestUtils from 'react-addons-test-utils';
 
 const buttonDriverFactory = component => ({
-  click: () => component.simulate('click'),
-  getButtonChildren: () => component.text(),
-  isButtonDisabled: () => component.hasClass('disabled'),
-  doesComponentHasClass: className => component.hasClass(className),
-  isComponentHovered: () => component.hasClass('hover'),
+  click: () => ReactTestUtils.Simulate.click(component),
+  getButtonTextContent: () => component.textContent,
+  isButtonDisabled: () => component.className.indexOf('disabled') > 0,
+  doesComponentHasClass: className => component.className.indexOf(className) > 0,
+  isComponentHovered: () => component.className.indexOf('hover') > 0,
   exists: () => component.find('button').length === 1
 });
 
-const componentFactory = () => {
-  const createShallow = (props = {}) => {
-    const {children, ...otherProps} = props;
-    return shallow(
-      <Button {...otherProps}>{children}</Button>
-    );
-  };
-
-  return {createShallow};
+const componentFactory = (props = {}) => {
+  const {children, ...otherProps} = props;
+  const component = ReactTestUtils.renderIntoDocument(<div><Button {...otherProps}>{children}</Button></div>);
+  return component.childNodes[0];
+  //return ReactTestUtils.findRenderedDOMComponentWithClass(component, 'button');
 };
 
 export {componentFactory, buttonDriverFactory};
