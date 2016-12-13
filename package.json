@@ -67,16 +67,13 @@
   },
   "dependencies": {
     "classnames": "^2.2.5",
-    "github-markdown-css": "^2.4.1",
-    "highlight.js": "^9.8.0",
     "jquery": "^1.12.4",
     "lodash.defer": "^4.1.0",
     "lodash.find": "^4.6.0",
     "lodash.isequal": "^4.4.0",
     "lodash.uniqueid": "^4.0.1",
     "rc-slider": "^5.3.4",
-    "react-modal": "^1.5.2",
-    "react-remarkable": "^1.1.1"
+    "react-modal": "^1.5.2"
   },
   "jest": {
     "moduleNameMapper": {
