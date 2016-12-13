@@ -15,7 +15,6 @@ const componentFactory = (props = {}) => {
   const {children, ...otherProps} = props;
   const component = ReactTestUtils.renderIntoDocument(<div><Button {...otherProps}>{children}</Button></div>);
   return component.childNodes[0];
-  //return ReactTestUtils.findRenderedDOMComponentWithClass(component, 'button');
 };
 
 export {componentFactory, buttonDriverFactory};
