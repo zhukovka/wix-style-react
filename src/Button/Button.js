@@ -39,6 +39,7 @@ Button.defaultProps = {
   theme: 'fullblue',
   height: 'medium'
 };
+
 Button.propTypes = {
   id: React.PropTypes.string,
   theme: React.PropTypes.oneOf(['fullblue', 'emptyblue', 'fullpurple', 'emptypurple', 'fullgreen', 'emptygreen', 'fullred', 'emptyred']).isRequired,
