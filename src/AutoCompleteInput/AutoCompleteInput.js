@@ -31,7 +31,8 @@ class AutoCompleteInput extends React.Component {
 
     return (
       <div className={styles.wrapper}>
-        <Input ref='input'
+        <Input
+          ref={'input'}
           {...this.props}
 
           onFocus={this.onFocus}
