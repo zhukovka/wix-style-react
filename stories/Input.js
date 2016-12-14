@@ -2,6 +2,13 @@ import React from 'react';
 import {Input} from '../src/index.js';
 
 class InputStory extends React.Component {
+  constructor(params) {
+      super(params);
+      this.state = {
+          exampleMG: ''
+      };
+  }
+
   render() {
     return (
         <div style={{width:'900px'}}>
@@ -72,6 +79,11 @@ class InputStory extends React.Component {
                         <td>boolean: true or false</td>
                     </tr>
                     <tr>
+                        <td>autoSelect</td>
+                        <td>Standard React Input autoSelect (select the entire text of the element on focus)</td>
+                        <td>boolean: true or false</td>
+                    </tr>
+                    <tr>
                         <td>onChange</td>
                         <td>Standard input onChange callback</td>
                         <td></td>
@@ -99,6 +111,11 @@ class InputStory extends React.Component {
                     <tr>
                         <td>onKeyDown</td>
                         <td>Standard input onKeyDown callback</td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>onClear</td>
+                        <td>Displays a X button on a non-empty input, and calls this callback when pressed. This callback should normally erase the value of the controlled object, and call focus</td>
                         <td></td>
                     </tr>
                 </tbody>

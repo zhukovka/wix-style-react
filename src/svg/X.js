@@ -32,7 +32,7 @@ X.propTypes = {
   width: React.PropTypes.number.isRequired,
   height: React.PropTypes.number.isRequired,
   thickness: React.PropTypes.number.isRequired,
-  color: React.PropTypes.string.isRequired,
+  color: React.PropTypes.string,
   shapeRendering: React.PropTypes.string.isRequired
 };
 

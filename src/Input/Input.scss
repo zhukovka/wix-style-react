@@ -231,14 +231,6 @@
 /******* MAGNIFYING GLASS *******/
 .magnifying_glass
 {
-    position: absolute;
-    z-index: 1;
-    font-size: 18px;
-    top: 50%;
-    box-sizing: content-box;
-    margin-top: -9px;
-    display: block;
-
     path {
         fill: $B10;
     }
@@ -247,20 +239,52 @@
     }
 }
 
-:global(.ltr) .magnifying_glass {
+/******* CLEAR BUTTON *******/
+.clear_button
+{
+    path {
+        stroke: $B10;
+    }
+    cursor: pointer;
+}
+
+:global(.ltr) .clear_button {
+    margin-right: 4px;
+}
+
+:global(.rtl) .clear_button {
+    margin-left: 4px;
+}
+
+/********* END POS (m.g. and close) **********/
+.end_pos
+{
+    position: absolute;
+    z-index: 1;
+    font-size: 18px;
+    box-sizing: content-box;
+    top: 0px;
+    height: 100%;
+    display: flex;
+    align-items: center;
+}
+
+
+:global(.ltr) .end_pos {
     right: 9px;
 }
 
-:global(.rtl) .magnifying_glass {
+:global(.rtl) .end_pos {
     left: 9px;
 }
 
-:global(.ltr) .inputWithUnit .magnifying_glass {
-    display:block;
-    right:45px;
+:global(.ltr) .inputWithUnit .end_pos {
+    display: flex;
+    right: 45px;
 }
 
-:global(.rtl) .inputWithUnit .magnifying_glass {
-    display:block;
-    left:45px;
+:global(.rtl) .inputWithUnit .end_pos {
+    display: flex;
+    left: 45px;
 }
+

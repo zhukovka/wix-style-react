@@ -1,5 +1,6 @@
 import 'react';
 import {componentFactory, inputDriverFactory} from './Input.driver';
+import sinon from 'sinon';
 
 describe('Input', () => {
   const {createShallow, createMount} = componentFactory();
@@ -247,6 +248,22 @@ describe('Input', () => {
     it('should allowing setting the theme to "paneltitle"', () => {
       const driver = createDriver({theme: 'paneltitle'});
       expect(driver.isOfStyle('paneltitle')).toBe(true);
+    });
+  });
+
+  describe('onClear attribute', () => {
+    it('should not be displayed when text is empty', () => {
+      const onClear = sinon.spy();
+      const driver = createDriver({onClear, value: ''});
+      expect(driver.hasClearButton()).toBe(false);
+    });
+
+    it('should display a X when text is not null, and be clickable', () => {
+      const onClear = sinon.spy();
+      const driver = createDriver({onClear, value: 'some value'});
+      expect(driver.hasClearButton()).toBe(true);
+      driver.clickClear();
+      expect(onClear.calledOnce).toBe(true);
     });
   });
 });

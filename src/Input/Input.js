@@ -3,12 +3,14 @@ import styles from './Input.scss';
 import classNames from 'classnames';
 import SvgExclamation from '../svg/Exclamation.js';
 import MagnifyingGlass from '../svg/MagnifyingGlass.js';
+import SvgX from '../svg/X.js';
 
 class Input extends React.Component {
 
   constructor(params) {
     super(params);
     this._onKeyDown = this._onKeyDown.bind(this);
+    this._onFocus = this._onFocus.bind(this);
   }
 
   render() {
@@ -25,9 +27,9 @@ class Input extends React.Component {
       defaultValue,
       tabIndex,
       onChange,
+      onClear,
       rtl,
       autoFocus,
-      onFocus,
       onKeyUp,
       onBlur
     } = this.props;
@@ -43,8 +45,11 @@ class Input extends React.Component {
 
     const unitDom = unit ? <div className={styles.unit} onClick={this._focus}>{unit}</div> : null;
 
-    const magnifyingGlassDom = magnifyingGlass && !error ?
-      <div className={styles.magnifying_glass} onClick={this._focus}><MagnifyingGlass alignLeft={!rtl}/></div> : null;
+    const clearButtonDom = !!onClear && !error && !!value ?
+      <div onClick={onClear} className={classNames([styles.clear_button, styles.end_pos])}><SvgX width={6} height={6} thickness={1}/></div> : null;
+
+    const magnifyingGlassDom = magnifyingGlass && !clearButtonDom && !error ?
+      <div className={classNames([styles.magnifying_glass, styles.end_pos])} onClick={this._focus}><MagnifyingGlass alignLeft={!rtl}/></div> : null;
 
     if (style) {
       console.warn('[wix-style-react>Input] Warning. Property \'style\' has been deprecated, and will be removed Jan 1st 2017. Please use \'theme\' instead.');
@@ -69,7 +74,7 @@ class Input extends React.Component {
           defaultValue={defaultValue}
           value={value}
           onChange={onChange}
-          onFocus={onFocus}
+          onFocus={this._onFocus}
           onBlur={onBlur}
           onKeyDown={this._onKeyDown}
           onDoubleClick={this._onDoubleClick}
@@ -82,6 +87,7 @@ class Input extends React.Component {
         {exclamation}
 
         {magnifyingGlassDom}
+        {clearButtonDom}
 
       </div>
     );
@@ -97,6 +103,14 @@ class Input extends React.Component {
 
   select() {
     this.refs.input.select();
+  }
+
+  _onFocus() {
+    this.props.onFocus && this.props.onFocus();
+
+    if (this.props.autoSelect) {
+      this.select();
+    }
   }
 
   _onKeyDown(e) {
@@ -131,7 +145,9 @@ Input.propTypes = {
   magnifyingGlass: React.PropTypes.bool,
   rtl: React.PropTypes.bool,
   autoFocus: React.PropTypes.bool,
+  autoSelect: React.PropTypes.bool,
   onChange: React.PropTypes.func,
+  onClear: React.PropTypes.func,
   onBlur: React.PropTypes.func,
   onFocus: React.PropTypes.func,
   onEscapePressed: React.PropTypes.func,
