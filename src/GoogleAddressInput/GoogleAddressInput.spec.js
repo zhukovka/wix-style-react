@@ -36,11 +36,11 @@ describe('GoogleAddressInput', () => {
 
   describe('appearance', () => {
     it('should show magnifying glass by default', () => {
-      const component = createShallow({ Client: GmapsTestClient });
+      const component = createShallow({Client: GmapsTestClient});
       expect(component.find('AutoCompleteInput').props().magnifyingGlass).toEqual(true);
     });
     it('should allow hiding magnifying glass', () => {
-      const component = createShallow({ Client: GmapsTestClient, magnifyingGlass: false });
+      const component = createShallow({Client: GmapsTestClient, magnifyingGlass: false});
       expect(component.find('AutoCompleteInput').props().magnifyingGlass).toEqual(false);
     });
   });
