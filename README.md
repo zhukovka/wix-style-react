@@ -80,10 +80,10 @@ import {buttonTestkitFactory} from 'wix-style-react/dist/testkit';
 const myFormWrapper = ReactTestUtils.renderIntoDocument(<myForm...>);
 
 //Initial the testkit driver:
-const driver = buttonTestkitFactory({wrapper: myFormWrapper, id: 'my-button'});//driver factory should receive a DOM element wrapper and an id and expose an api for it
+const buttonDriver = buttonTestkitFactory({wrapper: myFormWrapper, id: 'my-button'});//driver factory should receive a DOM element wrapper and an id and expose an api for it
 
 //Use the driver
-driver.click();
+buttonDriver.click();
 
 ```
 
@@ -96,10 +96,10 @@ import {buttonTestkitFactory} from 'wix-style-react/dist/testkit/enzyme';
 const myFormWrapper = mount(<myForm...>);
 
 //Initial the testkit driver:
-const driver = buttonTestkitFactory({wrapper: myFormWrapper, id: 'my-button'});//driver factory should receive an Enzyme wrapper and an id and expose an api for it
+const buttonDriver = buttonTestkitFactory({wrapper: myFormWrapper, id: 'my-button'});//driver factory should receive an Enzyme wrapper and an id and expose an api for it
 
 //Use the driver
-driver.click();
+buttonDriver.click();
 
 ```
 
