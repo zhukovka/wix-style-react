@@ -1,6 +1,7 @@
 import React from 'react';
 import Button from '../Button';
 import ReactTestUtils from 'react-addons-test-utils';
+import $ from 'jQuery';
 
 const buttonDriverFactory = component => ({
   click: () => ReactTestUtils.Simulate.click(component),
@@ -18,7 +19,7 @@ const componentFactory = (props = {}) => {
 };
 
 const buttonTestkitFactory = ({wrapper, id}) => {
-  const button = wrapper.find(`#${id}`);
+  const button = $(wrapper).find(`#${id}`)[0];
   return buttonDriverFactory(button);
 };
 

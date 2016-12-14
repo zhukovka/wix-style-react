@@ -1,7 +1,9 @@
 import _ from 'lodash/fp';
+import React from 'react';
+import ReactTestUtils from 'react-addons-test-utils';
 import styles from './Button.scss';
-
-import {componentFactory, buttonDriverFactory} from './testkit/Button';
+import {buttonTestkitFactory, componentFactory, buttonDriverFactory} from './testkit/Button';
+import Button from './Button';
 
 describe('Button', () => {
 
@@ -70,5 +72,19 @@ describe('Button', () => {
     const driver = createDriver({hover});
 
     expect(driver.isComponentHovered()).toBe(true);
+  });
+});
+
+describe('testkit', () => {
+  it('should create new driver', () => {
+    const onClick = jest.fn();
+    const div = document.createElement('div');
+    const id = 'myId';
+
+    const wrapper = div.appendChild(ReactTestUtils.renderIntoDocument(<div><Button id={id} onClick={onClick}>{'123'}</Button></div>));
+
+    const driver = buttonTestkitFactory({wrapper, id});
+    driver.click();
+    expect(onClick).toBeCalled();
   });
 });
