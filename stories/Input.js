@@ -27,8 +27,8 @@ class InputStory extends React.Component {
                         <td></td>
                     </tr>
                     <tr>
-                        <td>style</td>
-                        <td>The style of the input</td>
+                        <td>theme</td>
+                        <td>The theme of the input</td>
                         <td>'normal', 'paneltitle'</td>
                     </tr>
                     <tr>
@@ -192,7 +192,7 @@ class InputStory extends React.Component {
             <h4>Style: paneltitle</h4>
             <div style={{background:'#3899ec', padding:'20px', width:'400px'}}>
                 <div style={{width:'400px'}} className={'ltr'} >
-                    <Input style={'paneltitle'} />
+                    <Input theme={'paneltitle'} />
                 </div>
             </div>
 

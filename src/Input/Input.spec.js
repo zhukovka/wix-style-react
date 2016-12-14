@@ -238,14 +238,14 @@ describe('Input', () => {
     });
   });
 
-  describe('style attribute', () => {
-    it('should set the style by default to "normal"', () => {
+  describe('theme attribute', () => {
+    it('should set the theme by default to "normal"', () => {
       const driver = createDriver({});
       expect(driver.isOfStyle('normal')).toBe(true);
     });
 
-    it('should allowing setting the style to "paneltitle"', () => {
-      const driver = createDriver({style: 'paneltitle'});
+    it('should allowing setting the theme to "paneltitle"', () => {
+      const driver = createDriver({theme: 'paneltitle'});
       expect(driver.isOfStyle('paneltitle')).toBe(true);
     });
   });

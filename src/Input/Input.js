@@ -32,6 +32,8 @@ class Input extends React.Component {
       onBlur
     } = this.props;
 
+    let {theme} = this.props; // When deprecation ends. theme should move to const.
+
     const inputClasses = forceFocus ? styles.focus : (forceHover ? styles.hover : '');
 
     const exclamation = error ? (
@@ -42,11 +44,16 @@ class Input extends React.Component {
     const unitDom = unit ? <div className={styles.unit} onClick={this._focus}>{unit}</div> : null;
 
     const magnifyingGlassDom = magnifyingGlass && !error ?
-      <div className={styles.magnifying_glass} onClick={this._focus}><MagnifyingGlass alignLeft={!rtl}/></div> : null;
+        <div className={styles.magnifying_glass} onClick={this._focus}><MagnifyingGlass alignLeft={!rtl}/></div> : null;
+
+    if (style) {
+        console.warn('[wix-style-react>Input] Warning. Property \'style\' has been deprecated, and will be removed Jan 1st 2017. Please use \'theme\' instead.');
+        theme = style;
+    }
 
     const classes = classNames({
       [styles.input]: true,
-      [styles[style]]: true,
+      [styles[theme]]: true,
       [styles.rtl]: !!rtl,
       [styles.error]: !!error,
       [styles.endpadding]: !!magnifyingGlass || !!error,
@@ -106,13 +113,14 @@ class Input extends React.Component {
 Input.displayName = 'Input';
 
 Input.defaultProps = {
-  style: 'normal'
+  theme: 'normal'
 };
 
 Input.propTypes = {
   id: React.PropTypes.string,
   value: React.PropTypes.string,
   style: React.PropTypes.oneOf(['normal', 'paneltitle']),
+  theme: React.PropTypes.oneOf(['normal', 'paneltitle']),
   forceHover: React.PropTypes.bool,
   forceFocus: React.PropTypes.bool,
   placeholder: React.PropTypes.string,
