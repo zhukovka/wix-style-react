@@ -35,7 +35,8 @@ class GoogleAddressInput extends React.Component {
   render() {
     const {
       placeholder,
-      error
+      error,
+      magnifyingGlass
     } = this.props;
 
     const {
@@ -54,7 +55,7 @@ class GoogleAddressInput extends React.Component {
           onFocus={this.onFocus}
           onSet={this.onSet}
           value={value}
-          magnifyingGlass={true}
+          magnifyingGlass={magnifyingGlass}
           suggestions={_.map(suggestions, 'description')}
           />
       </div>
@@ -250,6 +251,10 @@ function google2address(google) {
   return result;
 }
 
+GoogleAddressInput.defaultProps = {
+  magnifyingGlass: true
+};
+
 GoogleAddressInput.propTypes = {
   placeholder: React.PropTypes.string,
   valuePrefix: React.PropTypes.string,
@@ -264,7 +269,8 @@ GoogleAddressInput.propTypes = {
   onFocus: React.PropTypes.func,
   onKeyDown: React.PropTypes.func,
   onSet: React.PropTypes.func,
-  Client: React.PropTypes.func.isRequired
+  Client: React.PropTypes.func.isRequired,
+  magnifyingGlass: React.PropTypes.bool
 };
 
 export default GoogleAddressInput;

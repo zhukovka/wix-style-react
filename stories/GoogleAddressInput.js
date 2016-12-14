@@ -96,10 +96,15 @@ class GoogleAddressInputStory extends React.Component {
                             <td>callback (optional)</td>
                             <td></td>
                         </tr>
+                        <tr>
+                            <td>magnifyingGlass</td>
+                            <td>boolean (optional, default true)</td>
+                            <td>Show or hide magnifying glass icon</td>
+                        </tr>
                     </tbody>
                 </table>
 
-                <h3>Usage Examples</h3> 
+                <h3>Usage Examples</h3>
                 <h4>defaultValue</h4>
                 Input should contain address, and be editable.
                 <br/>
@@ -113,10 +118,10 @@ class GoogleAddressInputStory extends React.Component {
                 <br/>
                 <br/>
                 <div style={{width:'400px'}} className={'ltr'} >
-                    <GoogleAddressInput 
-                      countryCode={'US'} 
-                      Client={clients.GoogleMapsClient} 
-                      placeholder={'Enter Address...'} 
+                    <GoogleAddressInput
+                      countryCode={'US'}
+                      Client={clients.GoogleMapsClient}
+                      placeholder={'Enter Address...'}
                       value={this.state.controlledValue}
                       onChange={(e) => this.setState({controlledValue:e.target.value})}
                       onSet={(e) => e && this.setState({controlledValue:e.originValue})}

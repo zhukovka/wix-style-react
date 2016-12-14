@@ -34,6 +34,17 @@ class GmapsTestClient {
 describe('GoogleAddressInput', () => {
   const {createShallow} = componentFactory();
 
+  describe('appearance', () => {
+    it('should show magnifying glass by default', () => {
+      const component = createShallow({ Client: GmapsTestClient });
+      expect(component.find('AutoCompleteInput').props().magnifyingGlass).toEqual(true);
+    });
+    it('should allow hiding magnifying glass', () => {
+      const component = createShallow({ Client: GmapsTestClient, magnifyingGlass: false });
+      expect(component.find('AutoCompleteInput').props().magnifyingGlass).toEqual(false);
+    });
+  });
+
   describe('User Interactions', () => {
 
     it('If user changes the value in the autocomplete box, request suggestions from google.maps', done => {
