@@ -57,7 +57,7 @@ __Important__: Make sure your body contains either the 'ltr' or 'rtl' class (dep
 
 This project is currently still in initial development. It is advisable to be dependent on a specific version of this component for the time being.
 
-### Test Kit
+### TestKit (work in progress)
 This package comes with test-kits for the different components. Each component has a `<componentName>TestkitFactory` method which exposes an api for the specific component. It will receive a wrapper (for now we only support Enzyme wrapper) and component ID as an input , and returns an object which contains all API methods.
 
 For example:
