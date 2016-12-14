@@ -12,3 +12,4 @@ export {default as Select} from './Select';
 export {default as Slider} from './Slider';
 export {default as GoogleAddressInput} from './GoogleAddressInput';
 export {default as clients} from './clients';
+export {default as Loader} from './Loader';
