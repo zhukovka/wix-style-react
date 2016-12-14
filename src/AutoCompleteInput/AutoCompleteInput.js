@@ -31,7 +31,7 @@ class AutoCompleteInput extends React.Component {
 
     return (
       <div className={styles.wrapper}>
-        <Input
+        <Input ref='input'
           {...this.props}
 
           onFocus={this.onFocus}
@@ -257,6 +257,18 @@ class AutoCompleteInput extends React.Component {
     if (!isEqual(this.props.suggestions, nextProps.suggestions)) {
       this.setState({selectedSuggestion: -1});
     }
+  }
+
+  focus() {
+    this.refs.input.focus();
+  }
+
+  blur() {
+    this.refs.input.blur();
+  }
+
+  select() {
+    this.refs.input.select();
   }
 }
 
