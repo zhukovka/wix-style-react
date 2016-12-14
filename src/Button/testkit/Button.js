@@ -1,7 +1,7 @@
 import React from 'react';
 import Button from '../Button';
 import ReactTestUtils from 'react-addons-test-utils';
-import $ from 'jQuery';
+import $ from 'jquery';
 
 const buttonDriverFactory = component => ({
   click: () => ReactTestUtils.Simulate.click(component),

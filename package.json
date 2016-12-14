@@ -50,6 +50,7 @@
     "eyes.it": "^1.0.232",
     "gh-pages-auto-release": "^1.1.2",
     "identity-obj-proxy": "^3.0.0",
+    "jquery": "^1.12.4",
     "jsdom": "^9.2.1",
     "ps-tree": "^1.1.0",
     "react": "^15.0.0",
