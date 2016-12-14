@@ -44,11 +44,11 @@ class Input extends React.Component {
     const unitDom = unit ? <div className={styles.unit} onClick={this._focus}>{unit}</div> : null;
 
     const magnifyingGlassDom = magnifyingGlass && !error ?
-        <div className={styles.magnifying_glass} onClick={this._focus}><MagnifyingGlass alignLeft={!rtl}/></div> : null;
+      <div className={styles.magnifying_glass} onClick={this._focus}><MagnifyingGlass alignLeft={!rtl}/></div> : null;
 
     if (style) {
-        console.warn('[wix-style-react>Input] Warning. Property \'style\' has been deprecated, and will be removed Jan 1st 2017. Please use \'theme\' instead.');
-        theme = style;
+      console.warn('[wix-style-react>Input] Warning. Property \'style\' has been deprecated, and will be removed Jan 1st 2017. Please use \'theme\' instead.');
+      theme = style;
     }
 
     const classes = classNames({

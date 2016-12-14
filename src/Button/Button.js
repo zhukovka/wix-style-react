@@ -8,8 +8,8 @@ export default function Button(props) {
   let {theme} = props; // When deprecation ends. theme should move to const.
 
   if (style) {
-      console.warn('[wix-style-react>Button] Warning. Property \'style\' has been deprecated, and will be removed Jan 1st 2017. Please use \'theme\' instead.');
-      theme = style;
+    console.warn('[wix-style-react>Button] Warning. Property \'style\' has been deprecated, and will be removed Jan 1st 2017. Please use \'theme\' instead.');
+    theme = style;
   }
 
   const className = classNames({
@@ -42,6 +42,7 @@ Button.defaultProps = {
 Button.propTypes = {
   id: React.PropTypes.string,
   theme: React.PropTypes.oneOf(['fullblue', 'emptyblue', 'fullpurple', 'emptypurple', 'fullgreen', 'emptygreen', 'fullred', 'emptyred']).isRequired,
+  style: React.PropTypes.oneOf(['fullblue', 'emptyblue', 'fullpurple', 'emptypurple', 'fullgreen', 'emptygreen', 'fullred', 'emptyred']),
   height: React.PropTypes.oneOf(['small', 'medium', 'large']),
   hover: React.PropTypes.bool,
   active: React.PropTypes.bool,
