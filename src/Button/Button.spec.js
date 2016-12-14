@@ -57,11 +57,11 @@ describe('Button', () => {
   });
 
   it('should get custom style', () => {
-    const style = 'emptyblue';
+    const theme = 'emptyblue';
 
-    const driver = createDriver({style});
+    const driver = createDriver({theme});
 
-    expect(driver.doesComponentHasClass(styles[style])).toBe(true);
+    expect(driver.doesComponentHasClass(styles[theme])).toBe(true);
   });
 
   it('should get "hover" class', () => {

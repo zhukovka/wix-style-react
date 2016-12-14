@@ -4,11 +4,17 @@ import classNames from 'classnames';
 
 export default function Button(props) {
 
-  const {id, style = 'fullblue', hover, active, disabled, height, onClick} = props;
+  const {id, style, hover, active, disabled, height, onClick} = props;
+  let {theme} = props; // When deprecation ends. theme should move to const.
+
+  if (style) {
+      console.warn('[wix-style-react>Button] Warning. Property \'style\' has been deprecated, and will be removed Jan 1st 2017. Please use \'theme\' instead.');
+      theme = style;
+  }
 
   const className = classNames({
     [styles.button]: true,
-    [styles[style]]: true,
+    [styles[theme]]: true,
     [styles.hover]: hover,
     [styles.active]: active,
     [styles.disabled]: disabled,
@@ -30,12 +36,12 @@ export default function Button(props) {
 
 Button.displayName = 'Button';
 Button.defaultProps = {
-  style: 'fullblue',
+  theme: 'fullblue',
   height: 'medium'
 };
 Button.propTypes = {
   id: React.PropTypes.string,
-  style: React.PropTypes.oneOf(['fullblue', 'emptyblue', 'fullpurple', 'emptypurple', 'fullgreen', 'emptygreen', 'fullred', 'emptyred']).isRequired,
+  theme: React.PropTypes.oneOf(['fullblue', 'emptyblue', 'fullpurple', 'emptypurple', 'fullgreen', 'emptygreen', 'fullred', 'emptyred']).isRequired,
   height: React.PropTypes.oneOf(['small', 'medium', 'large']),
   hover: React.PropTypes.bool,
   active: React.PropTypes.bool,

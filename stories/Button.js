@@ -12,7 +12,7 @@ export default () => {
             <p>General Buttons</p>
 
             <div style={{width:'400px'}}>
-                <Button style={'fullblue'} id={'main-example'} onClick={mainClick}><div>Click Me!</div></Button>
+                <Button theme={'fullblue'} id={'main-example'} onClick={mainClick}><div>Click Me!</div></Button>
             </div>
             <h3>Attributes</h3>
             <table className='attributes'>
@@ -23,7 +23,7 @@ export default () => {
                         <th>Description</th>
                     </tr>
                     <tr>
-                        <td>style</td>
+                        <td>theme</td>
                         <td>fullblue, emptyblue, fullpurple, emptypurple, fullgreen, emptygreen, fullred, emptyred</td>
                         <td></td>
                     </tr>
@@ -49,66 +49,66 @@ export default () => {
 
             <h4>Style = fullblue</h4>
             <div style={{display:'flex', alignItems:'center', justifyContent:'space-between'}}>
-            <div>Standard: <Button style={'fullblue'} >Click Me!</Button></div>
-            <div>Hover: <Button style={'fullblue'} hover={true} >Click Me!</Button></div>
-            <div>Active: <Button style={'fullblue'} active={true} >Click Me!</Button></div>
-            <div>Disabled : <Button style={'fullblue'} disabled={true} >Click Me!</Button></div>
+            <div>Standard: <Button theme={'fullblue'} >Click Me!</Button></div>
+            <div>Hover: <Button theme={'fullblue'} hover={true} >Click Me!</Button></div>
+            <div>Active: <Button theme={'fullblue'} active={true} >Click Me!</Button></div>
+            <div>Disabled : <Button theme={'fullblue'} disabled={true} >Click Me!</Button></div>
             </div>
 
             <h4>Style = emptyblue</h4>
             <div style={{display:'flex', alignItems:'center', justifyContent:'space-between'}}>
-            <div>Standard: <Button style={'emptyblue'} >Click Me!</Button></div>
-            <div>Hover: <Button style={'emptyblue'} hover={true} >Click Me!</Button></div>
-            <div>Active: <Button style={'emptyblue'} active={true} >Click Me!</Button></div>
-            <div>Disabled: <Button style={'emptyblue'} disabled={true} >Click Me!</Button></div>
+            <div>Standard: <Button theme={'emptyblue'} >Click Me!</Button></div>
+            <div>Hover: <Button theme={'emptyblue'} hover={true} >Click Me!</Button></div>
+            <div>Active: <Button theme={'emptyblue'} active={true} >Click Me!</Button></div>
+            <div>Disabled: <Button theme={'emptyblue'} disabled={true} >Click Me!</Button></div>
             </div>
 
             <h4>Style = fullpurple</h4>
             <div style={{display:'flex', alignItems:'center', justifyContent:'space-between'}}>
-            <div>Standard: <Button style={'fullpurple'} >Click Me!</Button></div>
-            <div>Hover: <Button style={'fullpurple'} hover={true} >Click Me!</Button></div>
-            <div>Active: <Button style={'fullpurple'} active={true} >Click Me!</Button></div>
-            <div>Disabled: <Button style={'fullpurple'} disabled={true} >Click Me!</Button></div>
+            <div>Standard: <Button theme={'fullpurple'} >Click Me!</Button></div>
+            <div>Hover: <Button theme={'fullpurple'} hover={true} >Click Me!</Button></div>
+            <div>Active: <Button theme={'fullpurple'} active={true} >Click Me!</Button></div>
+            <div>Disabled: <Button theme={'fullpurple'} disabled={true} >Click Me!</Button></div>
             </div>
 
             <h4>Style = emptypurple</h4>
             <div style={{display:'flex', alignItems:'center', justifyContent:'space-between'}}>
-            <div>Standard: <Button style={'emptypurple'} >Click Me!</Button></div>
-            <div>Hover: <Button style={'emptypurple'} hover={true} >Click Me!</Button></div>
-            <div>Active: <Button style={'emptypurple'} active={true} >Click Me!</Button></div>
-            <div>Disabled: <Button style={'emptypurple'} disabled={true} >Click Me!</Button></div>
+            <div>Standard: <Button theme={'emptypurple'} >Click Me!</Button></div>
+            <div>Hover: <Button theme={'emptypurple'} hover={true} >Click Me!</Button></div>
+            <div>Active: <Button theme={'emptypurple'} active={true} >Click Me!</Button></div>
+            <div>Disabled: <Button theme={'emptypurple'} disabled={true} >Click Me!</Button></div>
             </div>
 
             <h4>Style = fullgreen</h4>
             <div style={{display:'flex', alignItems:'center', justifyContent:'space-between'}}>
-            <div>Standard: <Button style={'fullgreen'} >Click Me!</Button></div>
-            <div>Hover: <Button style={'fullgreen'} hover={true} >Click Me!</Button></div>
-            <div>Active: <Button style={'fullgreen'} active={true} >Click Me!</Button></div>
-            <div>Disabled: <Button style={'fullgreen'} disabled={true} >Click Me!</Button></div>
+            <div>Standard: <Button theme={'fullgreen'} >Click Me!</Button></div>
+            <div>Hover: <Button theme={'fullgreen'} hover={true} >Click Me!</Button></div>
+            <div>Active: <Button theme={'fullgreen'} active={true} >Click Me!</Button></div>
+            <div>Disabled: <Button theme={'fullgreen'} disabled={true} >Click Me!</Button></div>
             </div>
 
             <h4>Style = emptygreen</h4>
             <div style={{display:'flex', alignItems:'center', justifyContent:'space-between'}}>
-            <div>Standard: <Button style={'emptygreen'} >Click Me!</Button></div>
-            <div>Hover: <Button style={'emptygreen'} hover={true} >Click Me!</Button></div>
-            <div>Active: <Button style={'emptygreen'} active={true} >Click Me!</Button></div>
-            <div>Disabled: <Button style={'emptygreen'} disabled={true} >Click Me!</Button></div>
+            <div>Standard: <Button theme={'emptygreen'} >Click Me!</Button></div>
+            <div>Hover: <Button theme={'emptygreen'} hover={true} >Click Me!</Button></div>
+            <div>Active: <Button theme={'emptygreen'} active={true} >Click Me!</Button></div>
+            <div>Disabled: <Button theme={'emptygreen'} disabled={true} >Click Me!</Button></div>
             </div>
 
             <h4>Style = fullred</h4>
             <div style={{display:'flex', alignItems:'center', justifyContent:'space-between'}}>
-            <div>Standard: <Button style={'fullred'} >Click Me!</Button></div>
-            <div>Hover: <Button style={'fullred'} hover={true} >Click Me!</Button></div>
-            <div>Active: <Button style={'fullred'} active={true} >Click Me!</Button></div>
-            <div>Disabled: <Button style={'fullred'} disabled={true} >Click Me!</Button></div>
+            <div>Standard: <Button theme={'fullred'} >Click Me!</Button></div>
+            <div>Hover: <Button theme={'fullred'} hover={true} >Click Me!</Button></div>
+            <div>Active: <Button theme={'fullred'} active={true} >Click Me!</Button></div>
+            <div>Disabled: <Button theme={'fullred'} disabled={true} >Click Me!</Button></div>
             </div>
 
             <h4>Style = emptyred</h4>
             <div style={{display:'flex', alignItems:'center', justifyContent:'space-between'}}>
-            <div>Standard: <Button style={'emptyred'} >Click Me!</Button></div>
-            <div>Hover: <Button style={'emptyred'} hover={true} >Click Me!</Button></div>
-            <div>Active: <Button style={'emptyred'} active={true} >Click Me!</Button></div>
-            <div>Disabled: <Button style={'emptyred'} disabled={true} >Click Me!</Button></div>
+            <div>Standard: <Button theme={'emptyred'} >Click Me!</Button></div>
+            <div>Hover: <Button theme={'emptyred'} hover={true} >Click Me!</Button></div>
+            <div>Active: <Button theme={'emptyred'} active={true} >Click Me!</Button></div>
+            <div>Disabled: <Button theme={'emptyred'} disabled={true} >Click Me!</Button></div>
             </div>
 
             <h4>Heights</h4>
