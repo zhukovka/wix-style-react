@@ -2,7 +2,7 @@ import eyes from 'eyes.it';
 import {protractorButtonTestkitFactory} from './testkit/Button.protractor';
 
 describe('Button', () => {
-  eyes.it('should click a button', () => {
+  eyes.fit('should click a button', () => {
 
     const driver = protractorButtonTestkitFactory({id: 'main-example'});
 
