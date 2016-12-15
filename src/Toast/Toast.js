@@ -9,7 +9,7 @@ class Toast extends React.Component {
   constructor(params) {
     super(params);
 
-    this.state = { leaving: false };
+    this.state = {leaving: false};
   }
 
   render() {
@@ -21,7 +21,9 @@ class Toast extends React.Component {
       onClose
     } = this.props;
 
-    if ((!show) && (!this.state.leaving)) return null;
+    if ((!show) && (!this.state.leaving)) {
+      return null;
+    }
 
     const className = classnames({
       [styles.toast]: true,
@@ -91,8 +93,9 @@ Toast.propTypes = {
   type: PropTypes.oneOf(['topbar']).isRequired,
   theme: PropTypes.oneOf(['red', 'blue', 'purple', 'green']).isRequired,
   timeout: PropTypes.number,
+  children: PropTypes.any,
   onClose: PropTypes.func
-}
+};
 
 export default Toast;
 
