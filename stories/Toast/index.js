@@ -8,7 +8,7 @@ import ExampleTopbar from './ExampleTopbar';
 import ExampleTopbarRaw from '!raw!./ExampleTopbar';
 
 storiesOf('5. Others', module)
-  .add('1.5 Toast', () => (
+  .add('5.3 Toast', () => (
     <div>
       <Markdown source={Readme}/>
 
