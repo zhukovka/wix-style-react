@@ -1,0 +1,82 @@
+@import '../common.scss';
+
+.toast
+{
+}
+
+.close
+{
+    cursor: pointer;
+    margin: 0px 12px;
+    background: none;
+    border: none;
+}
+
+.enter
+{
+    animation: enter 1s ease forwards;
+}
+
+.leave
+{
+    animation: leave 1s ease forwards;
+}
+
+.toast.topbar {
+    position: fixed; top:0px; left:0px; width:100%; z-index: 100000;
+    display:flex; align-items:center; justify-content: center;
+    opacity: .95; 
+    font-size: 18px;
+    padding: 24px 0px;
+    @include FontLight();
+}
+
+.toast.blue {
+    background-color: $B20;
+    color: white;
+}
+
+.toast.purple {
+    background-color: $P20;
+    color: white;
+}
+
+.toast.red {
+    background-color: $R20;
+    color: white;
+}
+
+.toast.green {
+    background-color: $G20;
+    color: white;
+}
+
+.toast.red .close path, 
+.toast.blue .close path, 
+.toast.purple .close path,
+.toast.green .close path 
+{
+    stroke: white;
+}
+
+.children {
+    flex: 1; display:flex; align-items:center; justify-content: center;
+}
+
+@keyframes enter {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+@keyframes leave {
+    0% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+    }
+}

@@ -15,6 +15,7 @@ function loadStories() {
  require('../stories/MessageBox');
  require('../stories/Modal');
  require('../stories/Loader');
+ require('../stories/Toast');
 }
 
 configure(loadStories, module);
