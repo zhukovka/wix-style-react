@@ -17,6 +17,7 @@ class Toast extends React.Component {
     const {
       show,
       type,
+      position,
       theme,
       onClose
     } = this.props;
@@ -28,6 +29,7 @@ class Toast extends React.Component {
     const className = classnames({
       [styles.toast]: true,
       [styles[type]]: true,
+      [styles[position]]: true,
       [styles[theme]]: true,
       [styles.enter]: !this.state.leaving,
       [styles.leave]: this.state.leaving
@@ -41,7 +43,7 @@ class Toast extends React.Component {
           {this.props.children}
         </div>
 
-        <button onClick={onClose} className={styles.close}><SvgX width={9} height={9} thickness={1}/></button>
+        <button onClick={onClose} className={styles.close}><SvgX width={5} height={5} thickness={1}/></button>
       </div>
     );
   }
@@ -88,14 +90,36 @@ class Toast extends React.Component {
   }
 }
 
+Toast.defaultProps = {
+  show: false,
+  type: 'bar',
+  position: 'topfixed',
+  theme: 'red'
+};
+
 Toast.propTypes = {
   show: PropTypes.bool,
-  type: PropTypes.oneOf(['topbar']).isRequired,
+  type: PropTypes.oneOf(['bar', 'largebar']).isRequired,
+  position: PropTypes.oneOf(['topfixed']).isRequired,
   theme: PropTypes.oneOf(['red', 'blue', 'purple', 'green']).isRequired,
   timeout: PropTypes.number,
   children: PropTypes.any,
   onClose: PropTypes.func
 };
 
-export default Toast;
+const ToastButton = props => {
+  return (
+    <button onClick={props.onClick} className={styles.button}>
+      {props.children}
+    </button>
+  );
+};
 
+ToastButton.propTypes = {
+  onClick: PropTypes.func,
+  children: PropTypes.any
+};
+
+Toast.Button = ToastButton;
+
+export default Toast;
