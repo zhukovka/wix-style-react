@@ -25,7 +25,7 @@ const MessageBoxLayout1 = ({title, content, primaryButtonLabel, secondaryButtonL
       <div className={styles.buttonsContainer}>
         { primaryButtonLabel ?
           <div className={styles.primaryButtonContainer}>
-            <Button style="fullblue" onClick={onPrimaryButtonClick}> {primaryButtonLabel} </Button>
+            <Button theme="fullblue" onClick={onPrimaryButtonClick}> {primaryButtonLabel} </Button>
           </div> : null
         }
         { secondaryButtonLabel ?
