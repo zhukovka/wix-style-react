@@ -57,6 +57,7 @@ class Input extends React.Component {
     }
 
     const classes = classNames({
+      [styles.iconLeft]: !!this.props.iconLeft,
       [styles.input]: true,
       [styles[theme]]: true,
       [styles.rtl]: !!rtl,
@@ -67,6 +68,7 @@ class Input extends React.Component {
 
     return (
       <div className={classes} onDoubleClick={this._onDoubleClickMargin} id={id} >
+        {this.props.iconLeft}
         {unitDom}
         <input
           ref="input"
@@ -153,7 +155,8 @@ Input.propTypes = {
   onEscapePressed: React.PropTypes.func,
   onEnterPressed: React.PropTypes.func,
   onKeyDown: React.PropTypes.func,
-  onKeyUp: React.PropTypes.func
+  onKeyUp: React.PropTypes.func,
+  iconLeft: React.PropTypes.object
 };
 
 export default Input;

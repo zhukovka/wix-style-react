@@ -20,7 +20,8 @@ const inputDriverFactory = component => ({
   isHoveredStyle: () => component.find('input').hasClass(styles.hover),
   isOfStyle: style => component.hasClass(styles[style]),
   isFocus: () => document.activeElement === component.find('input').node,
-  exists: () => component.find('input').length === 1
+  exists: () => component.find('input').length === 1,
+  hasIconLeft: () => component.hasClass(styles.iconLeft)
 });
 
 const componentFactory = () => {

@@ -265,5 +265,10 @@ describe('Input', () => {
       driver.clickClear();
       expect(onClear.calledOnce).toBe(true);
     });
+
+    it('should display a left icon when one is passed', () => {
+      const driver = createDriver({iconLeft: {foo: 'bar'}});
+      expect(driver.hasIconLeft()).toBe(true);
+    });
   });
 });
