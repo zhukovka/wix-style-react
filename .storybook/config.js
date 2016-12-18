@@ -16,6 +16,7 @@ function loadStories() {
  require('../stories/Modal');
  require('../stories/Loader');
  require('../stories/Toast');
+ require('../stories/DatePicker');
 }
 
 configure(loadStories, module);

@@ -14,3 +14,4 @@ export {default as GoogleAddressInput} from './GoogleAddressInput';
 export {default as clients} from './clients';
 export {default as Loader} from './Loader';
 export {default as Toast} from './Toast';
+export {default as DatePicker} from './DatePicker';

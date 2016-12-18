@@ -78,7 +78,8 @@
     "lodash.uniqueid": "^4.0.1",
     "rc-slider": "^5.3.4",
     "react-modal": "^1.5.2",
-    "react-remarkable": "^1.1.1"
+    "react-remarkable": "^1.1.1",
+    "react-datepicker": "^0.39.0"
   },
   "jest": {
     "moduleNameMapper": {
