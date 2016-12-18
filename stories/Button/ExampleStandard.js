@@ -8,14 +8,8 @@ const style = {
   lineHeight: '22px'
 };
 
-export default () => {
-  const mainClick = () => {
-    document.getElementById('fullblue').innerText = 'clicked!';
-  };
-  return (
-    <div>
-      <div style={style}>Main<br/><Button id={'fullblue'} onClick={mainClick} theme="fullblue">Click Me!</Button></div>
-      <div style={style}>Secondary<br/><Button theme="emptyblue">Click Me!</Button></div>
-    </div>
-  );
-}
+export default () =>
+  <div>
+    <div style={style}>Main<br/><Button theme="fullblue">Click Me!</Button></div>
+    <div style={style}>Secondary<br/><Button theme="emptyblue">Click Me!</Button></div>
+  </div>;

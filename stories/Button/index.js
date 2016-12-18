@@ -19,6 +19,9 @@ import ExampleGreenRaw from '!raw!./ExampleGreen';
 import ExampleSizes from './ExampleSizes';
 import ExampleSizesRaw from '!raw!./ExampleSizes';
 
+import ExampleControlled from './ExampleControlled';
+import ExampleControlledRaw from '!raw!./ExampleControlled';
+
 storiesOf('3. Buttons', module)
   .add('3.1 Standard', () => (
     <div>
@@ -44,6 +47,10 @@ storiesOf('3. Buttons', module)
 
       <CodeExample title="Sizes" code={ExampleSizesRaw}>
         <ExampleSizes/>
+      </CodeExample>
+
+      <CodeExample title="Controlled" code={ExampleControlledRaw}>
+        <ExampleControlled/>
       </CodeExample>
     </div>
   ));
