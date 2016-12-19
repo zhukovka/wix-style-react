@@ -56,6 +56,7 @@ $calendarMargin: 15px;
 :global(.react-datepicker__day) {
     @include FontLight();
     margin: $cellMargin;
+    box-sizing: content-box;
 }
 :global(.react-datepicker__month) {
     margin: $calendarMargin;
