@@ -1,0 +1,71 @@
+.wrapper {
+  text-align: center;
+  display: flex;
+  flex-direction: row;
+
+  &.rtl {
+      flex-direction: row-reverse;
+  }
+}
+
+
+.time {
+    padding: 2px 7px 2px 7px;
+    cursor: pointer;
+    display: block;
+    margin-left: 12px;
+    margin-right: 12px;
+    width: 108px;
+    white-space: nowrap;
+    flex-direction: row;
+
+    &.focus {
+        outline: 1px solid black;
+    }
+
+    &.hover {
+        outline: 1px solid blue;
+    }
+
+    &.rtl {
+        flex-direction: row-reverse;
+    }
+}
+
+.ampm {
+    position: absolute;
+    width: 20px;
+    height: 16px;
+    font-size: 14px;
+    z-index: 1;
+    top: 0; bottom: 0; left: 30px; right: 0;
+    margin: auto;
+}
+
+.input {
+    position: relative;
+    text-align: left;
+    cursor: pointer;
+    text-align: center;
+    background-color: transparent;
+}
+
+.stepper {
+  position: absolute;
+  width: 5px;
+  right: 0;
+  top: 0; bottom: 0; left: 72%; right: 0;
+  margin: auto;
+  z-index: 1;
+}
+
+.timeButton {
+    cursor: pointer;
+    // .Unselectable();
+}
+
+.plus {
+}
+
+.minus {
+}
