@@ -7,13 +7,12 @@ const NgIf = ({show, children}) => show ? children : null;
 const log = text => () => console.log(text);
 
 class ControlledMessageBoxes extends Component {
-  constructor() {
-    super();
-    this.state = {opened: 'layout1'};
-  }
+  state = {
+    opened: null
+  };
 
   render() {
-    const open = openMessageBox => () => this.setState({openMessageBox});
+    const open = opened => () => this.setState({opened});
 
     const close = open(null);
     const openLayout1 = open('layout1');
@@ -24,7 +23,7 @@ class ControlledMessageBoxes extends Component {
         <Button onClick={openLayout1} >Show MessageBoxLayout1</Button>
         <Button onClick={openLayout2} >Show MessageBoxLayout2</Button>
 
-        <NgIf show={this.state.openMessageBox === 'layout1'}>
+        <NgIf show={this.state.opened === 'layout1'}>
           <MessageBoxLayout1
             title={<span>Looking Good! <br/> Your Site Is On Google</span>}
             content="All of your pages are indexed and now come up as separate search results on Google. This is great for your visbility!"
@@ -37,7 +36,8 @@ class ControlledMessageBoxes extends Component {
             imageUrl="http://www.domstechblog.com/wp-content/uploads/2015/09/wix.png"
             />
         </NgIf>
-        <NgIf show={this.state.openMessageBox === 'layout2'}>
+
+        <NgIf show={this.state.opened === 'layout2'}>
           <MessageBoxLayout2
             title={<span>This is title</span>}
             primaryButtonLabel="Got It"
@@ -58,6 +58,4 @@ class ControlledMessageBoxes extends Component {
 }
 
 export default () =>
-  <div>
-    <ControlledMessageBoxes/>
-  </div>;
+  <ControlledMessageBoxes/>;
