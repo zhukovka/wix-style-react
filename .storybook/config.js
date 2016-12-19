@@ -18,6 +18,7 @@ function loadStories() {
  require('../stories/Toast');
  require('../stories/DatePicker');
  require('../stories/TimeInput');
+ require('../stories/Tooltip');
 }
 
 configure(loadStories, module);
