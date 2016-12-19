@@ -2,6 +2,7 @@
   text-align: center;
   display: flex;
   flex-direction: row;
+  line-height: 15px;
 
   &.rtl {
       flex-direction: row-reverse;
@@ -13,8 +14,6 @@
     padding: 2px 7px 2px 7px;
     cursor: pointer;
     display: block;
-    margin-left: 12px;
-    margin-right: 12px;
     width: 108px;
     white-space: nowrap;
     flex-direction: row;
