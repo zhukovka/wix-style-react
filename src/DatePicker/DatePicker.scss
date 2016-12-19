@@ -9,6 +9,10 @@ $calendarMargin: 15px;
 
 :global(.wix-datepicker) {
 }
+:global(.react-datepicker) {
+    box-shadow: 0 0 5px 5px rgba(0,0,0,0.08);
+    border: 0;
+}
 :global(.react-datepicker__header) {
     background-color: #3899ec;
     border-bottom: 0;
