@@ -1,10 +1,19 @@
 import React, {Component, PropTypes} from 'react';
 import ToggleSwitch from 'wix-style-react/ToggleSwitch';
 
-const style = {
-  display: 'inline-block',
-  padding: '0 5px',
-  lineHeight: '10px'
+const styles = {
+  header: {
+    display: 'flex'
+  },
+  switch: {
+    display: 'flex',
+    flexDirection: 'column',
+    justifyContent: 'center',
+    height: '40px',
+  },
+  text: {
+    padding: '0 25px 0 5px'
+  }
 };
 
 class ControlledToggleSwitch extends Component {
@@ -27,7 +36,16 @@ class ControlledToggleSwitch extends Component {
 }
 
 export default () =>
-  <div>
-    <div style={{...style, lineHeight: '12.6px'}}>Small<br/><br/><ControlledToggleSwitch size="small"/></div>
-    <div style={style}>Large<br/><br/><ControlledToggleSwitch checked size="large"/></div>
+  <div style={styles.header}>
+    <div style={styles.text}>Small
+      <div style={styles.switch}>
+        <ControlledToggleSwitch size="small"/>
+      </div>
+    </div>
+
+    <div style={styles.text}>Large
+      <div style={styles.switch}>
+        <ControlledToggleSwitch checked size="large"/>
+      </div>
+    </div>
   </div>;

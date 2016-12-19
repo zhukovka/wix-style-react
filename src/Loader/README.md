@@ -1,5 +1,7 @@
 # Loader component
 
+> General Loader
+
 ## Properties
 
 | propName | propType | defaultValue | isRequired | description |

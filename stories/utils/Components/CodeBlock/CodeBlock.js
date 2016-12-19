@@ -9,14 +9,10 @@ export default class CodeBlock extends Component {
   };
 
   render() {
-    const style = {
-      margin: '20px 0 0 0'
-    };
-
     const source = toCodeBlock(this.props.source);
 
     return (
-      <div style={style}>
+      <div>
         <Markdown source={source}/>
       </div>
     );

@@ -1,5 +1,7 @@
 # Modal component
 
+> General Modal
+
 ## Properties
 
 | propName | propType | defaultValue | isRequired | description |

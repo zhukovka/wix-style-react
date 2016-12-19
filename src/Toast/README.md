@@ -6,9 +6,9 @@
 
 | propName | propType | defaultValue | isRequired | description |
 |----------|----------|--------------|------------|-------------|
-|type|string|bar|yes|Style of the toast (bar,largebar)|
-|position|string|topfixed|yes|Position to place the toast (currently just topfixed)|
-|theme|string|red|yes|Theme of the toast (red,blue,purple,green)|
+|type|string|bar|yes|Style of the toast (bar, largebar)|
+|location|string|topfixed|yes|Location to place the toast (currently just topfixed)|
+|theme|string|red|yes|Theme of the toast (red, blue, purple, green)|
 |show|boolean|false|yes|Should the toast be shown or not|
 |timeout|number|null|no|Time to hide the toast after (ms)|
 

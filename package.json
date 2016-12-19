@@ -58,7 +58,10 @@
     "react-dom": "^15.0.0",
     "react-test-utils": "0.0.1",
     "sinon": "^1.17.6",
-    "wix-node-build": "^1.1.93"
+    "wix-node-build": "^1.1.93",
+    "react-collapse": "^2.3.3",
+    "react-height": "^2.1.1",
+    "react-motion": "^0.4.7"
   },
   "peerDependencies": {
     "react": "^15.0.0",
@@ -77,9 +80,9 @@
     "lodash.isequal": "^4.4.0",
     "lodash.uniqueid": "^4.0.1",
     "rc-slider": "^5.3.4",
+    "react-datepicker": "^0.39.0",
     "react-modal": "^1.5.2",
-    "react-remarkable": "^1.1.1",
-    "react-datepicker": "^0.39.0"
+    "react-remarkable": "^1.1.1"
   },
   "jest": {
     "moduleNameMapper": {

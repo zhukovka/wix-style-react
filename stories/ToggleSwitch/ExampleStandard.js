@@ -3,7 +3,7 @@ import ToggleSwitch from 'wix-style-react/ToggleSwitch';
 
 const style = {
   display: 'inline-block',
-  padding: '0 5px',
+  padding: '0 25px 0 5px',
   lineHeight: '10px'
 };
 

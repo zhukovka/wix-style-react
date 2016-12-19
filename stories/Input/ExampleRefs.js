@@ -1,5 +1,6 @@
 import React from 'react';
 import Input from 'wix-style-react/Input';
+import TextButton from '../utils/Components/TextButton';
 
 class CommandsExample extends React.Component {
   render() {
@@ -20,9 +21,9 @@ class CommandsExample extends React.Component {
         <div style={{width: '400px'}}>
           <Input ref="inputtest"/>
         </div>
-        <button onClick={handleClick1}>Focus</button>
-        <button onClick={handleClick2}>Focus &amp; blur 1 second later</button>
-        <button onClick={handleClick3}>Select text</button>
+        <TextButton onClick={handleClick1}>Focus</TextButton>
+        <TextButton onClick={handleClick2}>Focus &amp; blur 1 second later</TextButton>
+        <TextButton onClick={handleClick3}>Select text</TextButton>
       </div>
     );
   }

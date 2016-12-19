@@ -20,8 +20,14 @@ class ControlledMessageBoxes extends Component {
 
     return (
       <div>
-        <Button onClick={openLayout1} >Show MessageBoxLayout1</Button>
-        <Button onClick={openLayout2} >Show MessageBoxLayout2</Button>
+        <div style={{padding: '0 5px 16px'}}>
+          <div style={{display: 'inline-block', padding: '0 5px'}}>
+            <Button onClick={openLayout1} >Show MessageBoxLayout1</Button>
+          </div>
+          <div style={{display: 'inline-block', padding: '0 5px'}}>
+            <Button onClick={openLayout2} >Show MessageBoxLayout2</Button>
+          </div>
+        </div>
 
         <NgIf show={this.state.opened === 'layout1'}>
           <MessageBoxLayout1

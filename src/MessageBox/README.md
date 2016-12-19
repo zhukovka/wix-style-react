@@ -1,5 +1,7 @@
 # MessageBox component
 
+> Message box Layouts 
+
 ## MessageBoxLayout1 Properties
 
 | propName | propType | defaultValue | isRequired | description |
