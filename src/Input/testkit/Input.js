@@ -29,7 +29,7 @@ const inputDriverFactory = ({component, wrapper}) => {
     isHoveredStyle: () => input.className.indexOf(styles.hover) >= 0,
     isOfStyle: style => component.className.indexOf(styles[style]) >= 0,
     isFocus: () => document.activeElement === input,
-    exists: () => component.find('input').length === 1,
+    exists: () => $component.find('input').lenght > 0,
     hasIconLeft: () => component.className.indexOf(styles.iconLeft) >= 0,
     setProps: props => {
       ReactDOM.render(<div ref={r => component = r}><Input {...props}/></div>, wrapper);
