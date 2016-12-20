@@ -25,11 +25,5 @@ function loadStories() {
 configure(loadStories, module);
 
 setOptions({
-  name: 'CUSTOM-OPTIONS',
-  url: 'https://github.com/kadirahq/storybook-addon-options',
-  goFullScreen: false,
-  showLeftPanel: true,
-  showDownPanel: false,
-  showSearchBox: false,
-  downPanelInRight: false,
+  showDownPanel: false
 });
