@@ -93,9 +93,6 @@
     "testPathIgnorePatterns": [
       "<rootDir>/dist/",
       "<rootDir>/node_modules/"
-    ],
-    "setupFiles": [
-      "<rootDir>/test/setup.js"
     ]
   },
   "eslintConfig": {
