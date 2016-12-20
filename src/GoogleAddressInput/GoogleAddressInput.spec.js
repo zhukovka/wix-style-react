@@ -47,6 +47,12 @@ describe('GoogleAddressInput', () => {
 
   describe('User Interactions', () => {
 
+    it('should provide select/focus methods', () => {
+      const component = createShallow({Client: GmapsTestClient, countryCode: 'XX'});
+      expect(typeof component.instance().select).toEqual('function');
+      expect(typeof component.instance().focus).toEqual('function');
+    });
+
     it('If user changes the value in the autocomplete box, request suggestions from google.maps', done => {
 
       const component = createShallow({Client: GmapsTestClient, countryCode: 'XX'});

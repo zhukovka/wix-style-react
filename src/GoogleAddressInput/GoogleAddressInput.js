@@ -47,6 +47,7 @@ class GoogleAddressInput extends React.Component {
     return (
       <div>
         <AutoCompleteInput
+          ref={'autocomplete'}
           placeholder={placeholder}
           error={error}
           onChange={this.onChange}
@@ -60,6 +61,14 @@ class GoogleAddressInput extends React.Component {
           />
       </div>
     );
+  }
+
+  focus() {
+    this.refs.autocomplete.focus();
+  }
+
+  select() {
+    this.refs.autocomplete.select();
   }
 
   onChange(e) {
