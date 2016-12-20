@@ -9,7 +9,7 @@ import ExampleUncontrolledRaw from '!raw!./ExampleUncontrolled';
 import moment from 'moment';
 
 storiesOf('1. Inputs', module)
-  .add('1.5 TimeInput', () => (
+  .add('1.6 TimeInput', () => (
     <div>
       <Markdown source={Readme}/>
 
