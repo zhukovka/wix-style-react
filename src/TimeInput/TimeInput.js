@@ -2,12 +2,10 @@ import React from 'react';
 import _ from 'lodash';
 import Input from '../Input/Input';
 import classNames from 'classnames';
-import onClickOutside from 'react-onclickoutside';
 import moment from 'moment';
 import styles from './TimeInput.scss';
-// import $ from 'jquery';
 
-export default onClickOutside(React.createClass({
+export default React.createClass({
   displayName: 'TimePicker',
 
   propTypes: {
@@ -37,10 +35,6 @@ export default onClickOutside(React.createClass({
     ({time, am} = normalized);
 
     return {time, am, focus, lastCaretIdx, hover, ampmMode, text};
-  },
-
-  handleClickOutside() {
-    this.handleBlur();
   },
 
   momentizeState(timeSet) {
@@ -193,7 +187,7 @@ export default onClickOutside(React.createClass({
     return (
       <div
         className={classNames(styles.timeButton, styles.minus)}
-        onClick={() => this.handleMinus()}
+        onClick={this.handleMinus}
         >
         <svg width="10px" height="4px" viewBox="0 0 10 4" version="1.1">
           <g id="Styleguides" stroke="none" strokeWidth="1" fill="none" fillRule="evenodd">
@@ -216,7 +210,7 @@ export default onClickOutside(React.createClass({
     return (
       <div
         className={classNames(styles.timeButton, styles.plus)}
-        onClick={() => this.handlePlus()}
+        onClick={this.handlePlus}
         >
         <svg width="10px" height="4px" viewBox="0 0 10 4" version="1.1">
           <g id="Styleguides" stroke="none" strokeWidth="1" fill="none" fillRule="evenodd">
@@ -252,9 +246,9 @@ export default onClickOutside(React.createClass({
         <Input
           ref={'input'}
           value={this.state.text}
-          onFocus={() => this.handleFocus()}
-          onChange={ev => this.handleInputChange(ev)}
-          onBlur={ev => this.handleInputBlur(ev)}
+          onFocus={this.handleFocus}
+          onChange={this.handleInputChange}
+          onBlur={this.handleInputBlur}
           />
       </div>
     );
@@ -270,7 +264,7 @@ export default onClickOutside(React.createClass({
     }
 
     return (
-      <span className={styles.ampm} onClick={() => this.toggleAmPm()}>
+      <span className={styles.ampm} onClick={this.toggleAmPm}>
         {this.state.am ? getAmText() : getPmText()}
       </span>
     );
@@ -299,4 +293,4 @@ export default onClickOutside(React.createClass({
       </div>
     );
   }
-}));
+});
