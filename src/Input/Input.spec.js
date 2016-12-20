@@ -1,12 +1,11 @@
 import 'react';
-import {componentFactory, inputDriverFactory} from './Input.driver';
+import _ from 'lodash/fp';
+import {componentFactory, inputDriverFactory} from './testkit/Input';
 import sinon from 'sinon';
 
 describe('Input', () => {
-  const {createShallow, createMount} = componentFactory();
 
-  const createDriver = args => inputDriverFactory(createShallow(args));
-  const createMountDriver = args => inputDriverFactory(createMount(args));
+  const createDriver = _.compose(inputDriverFactory, componentFactory);
 
   describe('value attribute', () => {
     it('should pass down to the wrapped input', () => {
@@ -106,27 +105,35 @@ describe('Input', () => {
 
   describe('onChange attribute', () => {
     it('should be called when text is entered to the input', () => {
-      const onChange = jest.fn();
+      let receivedEvent;
+      const onChange = e => {
+        receivedEvent = e;
+      };
+
       const event = {target: {value: 'world'}};
 
       const driver = createDriver({onChange});
 
       driver.trigger('change', event);
 
-      expect(onChange).toBeCalledWith(event);
+      expect(receivedEvent.target).toBe(event.target);
     });
   });
 
   describe('onKeyUp attribute', () => {
     it('should be called after keybord key got pressed and then released', () => {
-      const onKeyUp = jest.fn();
+      let receivedEvent;
+      const onKeyUp = e => {
+        receivedEvent = e;
+      };
+
       const event = {target: {value: 'world'}};
 
       const driver = createDriver({onKeyUp});
 
       driver.trigger('keyUp', event);
 
-      expect(onKeyUp).toBeCalledWith(event);
+      expect(receivedEvent.target).toBe(event.target);
     });
   });
 
@@ -156,14 +163,19 @@ describe('Input', () => {
 
   describe('onKeyDown attribute', () => {
     it('should be called when text is entered to the wrapped input', () => {
-      const onKeyDown = jest.fn();
+
+      let receivedEvent;
+      const onKeyDown = e => {
+        receivedEvent = e;
+      };
+
       const event = {keyCode: 40};
 
       const driver = createDriver({onKeyDown});
 
       driver.trigger('keyDown', event);
 
-      expect(onKeyDown).toBeCalledWith(event);
+      expect(receivedEvent.keyCode).toBe(event.keyCode);
     });
   });
 
@@ -216,25 +228,25 @@ describe('Input', () => {
 
   describe('autoFocus attribute', () => {
     it('Mounting an input element with autoFocus=false, should give it the focus', () => {
-      const component = createMount({autoFocus: false});
-      const driver = inputDriverFactory(component);
+      let autoFocus = false;
+      const driver = createDriver({autoFocus});
       expect(driver.isFocus()).toBe(false);
-      component.setProps({autoFocus: true});
+      autoFocus = true;
+      driver.setProps({autoFocus});
       expect(driver.isFocus()).toBe(false);
     });
 
     it('Mounting an input element with autoFocus=true, gives it the focus', () => {
-      const driver = createMountDriver({autoFocus: true});
+      const driver = createDriver({autoFocus: true});
       expect(driver.isFocus()).toBe(true);
     });
   });
 
   describe('focus function', () => {
     it('calling focus should give focus to the input', () => {
-      const component = createMount({autoFocus: false});
-      const driver = inputDriverFactory(component);
+      const driver = createDriver({autoFocus: false});
       expect(driver.isFocus()).toBe(false);
-      component.node.focus();
+      driver.focus();
       expect(driver.isFocus()).toBe(true);
     });
   });
@@ -267,7 +279,7 @@ describe('Input', () => {
     });
 
     it('should display a left icon when one is passed', () => {
-      const driver = createDriver({iconLeft: {foo: 'bar'}});
+      const driver = createDriver({iconLeft: true});
       expect(driver.hasIconLeft()).toBe(true);
     });
   });
