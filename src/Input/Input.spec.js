@@ -10,7 +10,8 @@ describe('Input', () => {
   describe('value attribute', () => {
     it('should pass down to the wrapped input', () => {
       const value = 'hello';
-      const driver = createDriver({value});
+      const onChange = () => {};
+      const driver = createDriver({value, onChange});
 
       expect(driver.getValue()).toEqual(value);
     });
@@ -266,13 +267,15 @@ describe('Input', () => {
   describe('onClear attribute', () => {
     it('should not be displayed when text is empty', () => {
       const onClear = sinon.spy();
-      const driver = createDriver({onClear, value: ''});
+      const onChange = () => {};
+      const driver = createDriver({onClear, value: '', onChange});
       expect(driver.hasClearButton()).toBe(false);
     });
 
     it('should display a X when text is not null, and be clickable', () => {
       const onClear = sinon.spy();
-      const driver = createDriver({onClear, value: 'some value'});
+      const onChange = () => {};
+      const driver = createDriver({onClear, value: 'some value', onChange});
       expect(driver.hasClearButton()).toBe(true);
       driver.clickClear();
       expect(onClear.calledOnce).toBe(true);

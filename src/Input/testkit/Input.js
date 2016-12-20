@@ -31,8 +31,7 @@ const inputDriverFactory = ({component, wrapper}) => {
     exists: () => component.find('input').length === 1,
     hasIconLeft: () => component.className.indexOf(styles.iconLeft) >= 0,
     setProps: props => {
-      const {onChange = () => {}, ...otherProps} = props;
-      ReactDOM.render(<div ref={r => component = r}><Input onChange={onChange} {...otherProps}/></div>, wrapper);
+      ReactDOM.render(<div ref={r => component = r}><Input {...props}/></div>, wrapper);
     }
   };
 };
@@ -41,8 +40,7 @@ const inputDriverFactory = ({component, wrapper}) => {
 const componentFactory = (props = {}) => {
   let component;
   const wrapperDiv = document.createElement('div');
-  const {onChange = () => {}, ...otherProps} = props;
-  ReactDOM.render(<div ref={r => component = r}><Input onChange={onChange} {...otherProps}/></div>, wrapperDiv);
+  ReactDOM.render(<div ref={r => component = r}><Input {...props}/></div>, wrapperDiv);
   return {component: component.childNodes[0], wrapper: wrapperDiv};
 };
 
