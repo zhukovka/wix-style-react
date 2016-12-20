@@ -1,4 +1,4 @@
-import 'react';
+import React from 'react';
 import _ from 'lodash/fp';
 import {componentFactory, inputDriverFactory} from './testkit/Input';
 import sinon from 'sinon';
@@ -282,7 +282,7 @@ describe('Input', () => {
     });
 
     it('should display a left icon when one is passed', () => {
-      const driver = createDriver({iconLeft: true});
+      const driver = createDriver({iconLeft: <div/>});
       expect(driver.hasIconLeft()).toBe(true);
     });
   });
