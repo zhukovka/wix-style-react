@@ -1,4 +1,5 @@
 import 'react';
+import {spy} from 'sinon';
 import {componentFactory} from './GoogleAddressInput.driver';
 import _ from 'lodash/fp';
 import sinon from 'sinon';
@@ -32,7 +33,7 @@ class GmapsTestClient {
 }
 
 describe('GoogleAddressInput', () => {
-  const {createShallow} = componentFactory();
+  const {createShallow, createMount} = componentFactory();
 
   describe('appearance', () => {
     it('should show magnifying glass by default', () => {
@@ -47,10 +48,20 @@ describe('GoogleAddressInput', () => {
 
   describe('User Interactions', () => {
 
-    it('should provide select/focus methods', () => {
-      const component = createShallow({Client: GmapsTestClient, countryCode: 'XX'});
-      expect(typeof component.instance().select).toEqual('function');
-      expect(typeof component.instance().focus).toEqual('function');
+    it('should allow focusing input', () => {
+      const component = createMount({Client: GmapsTestClient, countryCode: 'XX' });
+      const input = component.find('input').get(0);
+      spy(input, 'focus');
+      component.instance().focus();
+      expect(input.focus.calledOnce).toEqual(true);
+    });
+
+    it('should allow selecting input', () => {
+      const component = createMount({Client: GmapsTestClient, countryCode: 'XX' });
+      const input = component.find('input').get(0);
+      spy(input, 'select');
+      component.instance().select();
+      expect(input.select.calledOnce).toEqual(true);
     });
 
     it('If user changes the value in the autocomplete box, request suggestions from google.maps', done => {
