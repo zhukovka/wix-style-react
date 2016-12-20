@@ -1,5 +1,4 @@
 import 'react';
-import {spy} from 'sinon';
 import {componentFactory} from './GoogleAddressInput.driver';
 import _ from 'lodash/fp';
 import sinon from 'sinon';
@@ -49,17 +48,17 @@ describe('GoogleAddressInput', () => {
   describe('User Interactions', () => {
 
     it('should allow focusing input', () => {
-      const component = createMount({Client: GmapsTestClient, countryCode: 'XX' });
+      const component = createMount({Client: GmapsTestClient, countryCode: 'XX'});
       const input = component.find('input').get(0);
-      spy(input, 'focus');
+      sinon.spy(input, 'focus');
       component.instance().focus();
       expect(input.focus.calledOnce).toEqual(true);
     });
 
     it('should allow selecting input', () => {
-      const component = createMount({Client: GmapsTestClient, countryCode: 'XX' });
+      const component = createMount({Client: GmapsTestClient, countryCode: 'XX'});
       const input = component.find('input').get(0);
-      spy(input, 'select');
+      sinon.spy(input, 'select');
       component.instance().select();
       expect(input.select.calledOnce).toEqual(true);
     });
