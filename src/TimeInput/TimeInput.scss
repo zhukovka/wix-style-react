@@ -14,9 +14,10 @@
     padding: 2px 7px 2px 7px;
     cursor: pointer;
     display: block;
-    width: 108px;
+    width: 126px;
     white-space: nowrap;
     flex-direction: row;
+    box-sizing: border-box;
 
     &.focus {
         outline: 1px solid black;
