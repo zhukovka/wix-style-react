@@ -24,6 +24,6 @@ const rtlSuggestions = [
 
 export default () =>
   <div>
-    <div style={style} className="ltr">Left to right<AutoCompleteInput suggestions={suggestions}/></div>
+    <div style={style} className="ltr">Left to right<AutoCompleteInput suggestions={suggestions} bottomNode={<small><a href='#'>Powered by Me!</a></small>} /></div>
     <div style={style} className="rtl">Right to left<AutoCompleteInput suggestions={rtlSuggestions} rtl/></div>
   </div>;

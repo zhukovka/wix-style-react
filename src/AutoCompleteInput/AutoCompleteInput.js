@@ -19,7 +19,6 @@ class AutoCompleteInput extends React.Component {
     this.onBlur = this.onBlur.bind(this);
     this.onChange = this.onChange.bind(this);
     this.onKeyDown = this.onKeyDown.bind(this);
-    this.renderSuggestions = this.renderSuggestions.bind(this);
   }
 
   render() {
@@ -42,10 +41,9 @@ class AutoCompleteInput extends React.Component {
           />
 
         <div className={autoSuggestionsWrapperClass}>
-
           {this.props.header}
-
           {this.renderSuggestions()}
+          {this.renderBottomNode()}
         </div>
       </div>
     );
@@ -87,6 +85,16 @@ class AutoCompleteInput extends React.Component {
         );
       }
     });
+  }
+
+  renderBottomNode() {
+    const {bottomNode} = this.props;
+
+    if (bottomNode) {
+      return <div className={styles.bottommessage}>{bottomNode}</div>;
+    }
+
+    return null;
   }
 
   onMouseClickSuggestion(index) {
