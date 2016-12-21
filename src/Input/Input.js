@@ -104,7 +104,7 @@ class Input extends React.Component {
   }
 
   select() {
-    this.refs.input.select();
+    this.refs.input && this.refs.input.select();
   }
 
   _onFocus() {
