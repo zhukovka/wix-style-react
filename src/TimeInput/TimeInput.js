@@ -22,19 +22,38 @@ export default React.createClass({
   },
 
   getInitialState() {
-    let time = this.props.defaultValue || moment(),
-      am = time.hours() < 12;
-
     const focus = false,
       lastCaretIdx = 0,
-      hover = false,
-      ampmMode = moment('2016-04-03 13:14:00').format('LT').indexOf('PM') !== -1,
-      text = this.formatTime(time, ampmMode),
-      normalized = this.normalizeTime(am, time, ampmMode);
+      hover = false;
 
-    ({time, am} = normalized);
+    return {
+      focus,
+      lastCaretIdx,
+      hover,
+      ...this.getInitTime(this.props.defaultValue)
+    };
+  },
 
-    return {time, am, focus, lastCaretIdx, hover, ampmMode, text};
+  isAmPmMode() {
+    return moment('2016-04-03 13:14:00').format('LT').indexOf('PM') !== -1;
+  },
+
+  getInitTime(value) {
+    let time = value || moment(),
+      am = time.hours() < 12;
+
+    const ampmMode = this.isAmPmMode();
+
+    ({time, am} = this.normalizeTime(am, time, ampmMode));
+    const text = this.formatTime(time, ampmMode);
+
+    return {time, am, text, ampmMode};
+  },
+
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.defaultValue !== this.props.defaultValue) {
+      this.setState(this.getInitTime(nextProps.defaultValue));
+    }
   },
 
   momentizeState(timeSet) {
