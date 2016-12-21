@@ -1,5 +1,5 @@
 import _ from 'lodash/fp';
-import {componentFactory, sliderDriverFactory} from './Slider.driver';
+import {componentFactory, sliderDriverFactory} from './testkit/Slider';
 
 describe('Slider', () => {
   let driver;

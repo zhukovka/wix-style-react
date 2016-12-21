@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import ReactTestUtils from 'react-addons-test-utils';
 import $ from 'jquery';
-import Slider from './Slider';
+import Slider from '../Slider';
 import _ from 'lodash/fp';
 
 
@@ -35,4 +35,10 @@ const componentFactory = (props = {}) => {
   return component.childNodes[0];
 };
 
-export {componentFactory, sliderDriverFactory};
+const sliderTestkitFactory = ({wrapper, id}) => {
+  const component = $(wrapper).find(`#${id}`)[0];
+  return sliderDriverFactory(component);
+};
+
+
+export {componentFactory, sliderDriverFactory, sliderTestkitFactory};
