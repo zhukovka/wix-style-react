@@ -1,46 +1,38 @@
 import React from 'react';
-import {mount} from 'enzyme';
+import ReactDOM from 'react-dom';
+import ReactTestUtils from 'react-addons-test-utils';
+import $ from 'jquery';
 import Slider from './Slider';
+import _ from 'lodash/fp';
 
-export default class SliderDriver {
 
-  given = {
-    sliderData: data => {
-      this.props = data;
-      return this;
-    },
-    onChange: fn => {
-      this.onChange = fn;
-      return this;
-    }
-  };
+const sliderDriverFactory = component => {
+  const $component = $(component);
+  const $sliderHandles = $(component).find('.slider-handle');
+  const $sliderDots = $(component).find('.rc-slider-dot');
 
-  when = {
-    created: () => {
-      this.wrapper = mount(
-        <Slider onChange={value => this.setState({value})} {...this.props}/>
-      );
-      return this;
-    },
+  return {
+    isDotSelected: index => $sliderDots.filter(`:nth-child(${index})`).hasClass('rc-slider-dot-active'),
+    numOfSliderDots: () => $sliderDots.length,
+    numOfSLiderHandles: () => $sliderHandles.length,
+    getToolTipValue: () => $component.find('.slider-tooltip')[0].innerHTML,
     hoverHandle: ({handleIndex}) => {
-      this.get.element().find('.slider-handle').at(handleIndex).simulate('mouseEnter');
-      return this;
+      const handle = $sliderHandles[handleIndex];
+      ReactTestUtils.Simulate.mouseEnter(handle);
     },
     unHoverHandle: ({handleIndex}) => {
-      this.get.element().find('.slider-handle').at(handleIndex).simulate('mouseLeave');
-      return this;
+      const handle = $sliderHandles[handleIndex];
+      ReactTestUtils.Simulate.mouseLeave(handle);
     }
   };
+};
 
-  get = {
-    element: () => this.wrapper,
-    isDotSelected: index => this.get.sliderDots().at(index - 1).hasClass('rc-slider-dot-active'),
-    sliderDots: () => this.get.element().find('.rc-slider-dot'),
-    sliderHandles: () => this.get.element().find('.slider-handle'),
-    toolTipValue: () => this.get.element().find('.slider-tooltip').text()
-  }
+const componentFactory = (props = {}) => {
+  let component;
+  const wrapper = document.createElement('div');
+  ReactDOM.render(<div ref={r => component = r}><Slider onChange={() => {}} {...props}/></div>, wrapper);
 
-  constructor() {
-    this.props = {};
-  }
-}
+  return component.childNodes[0];
+};
+
+export {componentFactory, sliderDriverFactory};

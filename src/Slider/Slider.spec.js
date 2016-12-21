@@ -1,11 +1,10 @@
-import SliderDriver from './Slider.driver';
+import _ from 'lodash/fp';
+import {componentFactory, sliderDriverFactory} from './Slider.driver';
 
 describe('Slider', () => {
   let driver;
 
-  beforeEach(() => {
-    driver = new SliderDriver();
-  });
+  const createDriver = _.compose(sliderDriverFactory, componentFactory);
 
   it('should render slider', () => {
     const onChange = jest.fn(value => this.setState({value}));
@@ -13,14 +12,11 @@ describe('Slider', () => {
     const min = 1;
     const max = 10;
 
-    driver
-      .given.sliderData({min, max, value: [selectedValue]})
-      .given.onChange(onChange)
-      .when.created();
+    driver = createDriver({onChange, value: [selectedValue], min, max});
 
-    expect(driver.get.sliderDots().length).toBe(10);
-    expect(driver.get.sliderHandles().length).toBe(1);
-    expect(driver.get.isDotSelected(selectedValue)).toBe(true);
+    expect(driver.numOfSliderDots()).toBe(10);
+    expect(driver.numOfSLiderHandles()).toBe(1);
+    expect(driver.isDotSelected(selectedValue)).toBe(true);
   });
 
   it('should render slider with multi-range', () => {
@@ -29,15 +25,12 @@ describe('Slider', () => {
     const min = 1;
     const max = 10;
 
-    driver
-      .given.sliderData({min, max, value: selectedValues})
-      .given.onChange(onChange)
-      .when.created();
+    driver = createDriver({onChange, value: selectedValues, min, max});
 
-    expect(driver.get.sliderDots().length).toBe(10);
-    expect(driver.get.sliderHandles().length).toBe(3);
+    expect(driver.numOfSliderDots()).toBe(10);
+    expect(driver.numOfSLiderHandles()).toBe(3);
     selectedValues.forEach(selectedValue => {
-      expect(driver.get.isDotSelected(selectedValue)).toBe(true);
+      expect(driver.isDotSelected(selectedValue)).toBe(true);
     });
   });
 
@@ -47,18 +40,15 @@ describe('Slider', () => {
     const min = 1;
     const max = 10;
 
-    driver
-      .given.sliderData({min, max, value: selectedValues})
-      .given.onChange(onChange)
-      .when.created()
-      .when.hoverHandle({handleIndex: 0});
+    driver = createDriver({onChange, value: selectedValues, min, max});
 
-    expect(driver.get.toolTipValue()).toBe(`${selectedValues[0]}`);
+    driver.hoverHandle({handleIndex: 0});
 
-    driver
-      .when.unHoverHandle({handleIndex: 0})
-      .when.hoverHandle({handleIndex: 1});
+    expect(driver.getToolTipValue()).toBe(`${selectedValues[0]}`);
 
-    expect(driver.get.toolTipValue()).toBe(`${selectedValues[1]}`);
+    driver.unHoverHandle({handleIndex: 0});
+    driver.hoverHandle({handleIndex: 1});
+
+    expect(driver.getToolTipValue()).toBe(`${selectedValues[1]}`);
   });
 });
