@@ -111,7 +111,10 @@ class Input extends React.Component {
     this.props.onFocus && this.props.onFocus();
 
     if (this.props.autoSelect) {
-      this.select();
+      // Set timeout is needed here since onFocus is called before react
+      // gets the reference for the input (specifically when autoFocus
+      // is on. So setTimeout ensures we have the ref.input needed in select)
+      setTimeout(() => this.select(), 0);
     }
   }
 
