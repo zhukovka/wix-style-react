@@ -1,6 +1,8 @@
-import 'react';
+import React from 'react';
 import _ from 'lodash/fp';
-import {componentFactory, inputDriverFactory} from './testkit/Input';
+import ReactTestUtils from 'react-addons-test-utils';
+import {componentFactory, inputDriverFactory, inputTestkitFactory} from './testkit/Input';
+import Input from '../Input';
 import sinon from 'sinon';
 
 describe('Input', () => {
@@ -282,8 +284,20 @@ describe('Input', () => {
     });
 
     it('should display a left icon when one is passed', () => {
-      const driver = createDriver({iconLeft: true});
+      const driver = createDriver({iconLeft: <div/>});
       expect(driver.hasIconLeft()).toBe(true);
     });
+  });
+});
+
+describe('testkit', () => {
+  it('should exist', () => {
+    const div = document.createElement('div');
+    const value = 'hello';
+    const onChange = () => {};
+    const id = 'myID';
+    const wrapper = div.appendChild(ReactTestUtils.renderIntoDocument(<div><Input id={id} value={value} onChange={onChange}/></div>));
+    const driver = inputTestkitFactory({wrapper, id});
+    expect(driver.exists()).toEqual(true);
   });
 });
