@@ -11,7 +11,7 @@ class GoogleMapsClient {
           if ((status !== window.google.maps.GeocoderStatus.OK) && (status !== window.google.maps.GeocoderStatus.ZERO_RESULTS)) {
             reject({code: 'internal'});
           } else {
-            resolve(results);
+            resolve(results || []);
           }
         });
       } catch (e) {
@@ -27,7 +27,7 @@ class GoogleMapsClient {
           if ((status !== window.google.maps.GeocoderStatus.OK) && (status !== window.google.maps.GeocoderStatus.ZERO_RESULTS)) {
             reject({code: 'internal'});
           } else {
-            resolve(results);
+            resolve(results || []);
           }
         });
       } catch (e) {
