@@ -29,7 +29,6 @@
 
 .suggestion {
     box-sizing: border-box;
-    cursor: pointer;
     font-size: 14px;
     font-weight: 400;
     line-height: 38px;
@@ -42,14 +41,18 @@
     @include FontRoman();
 }
 
+.suggestion.selectable {
+    cursor: pointer;
+}
+
+.suggestion.selectable:hover {
+    background-color: $B60;
+}
+
 .suggestion.selected,
 .suggestion:hover.selected {
     background-color: $B20;
     color: $D80;
-}
-
-.suggestion:hover {
-    background-color: $B60;
 }
 
 :global(.rtl) .suggestion {

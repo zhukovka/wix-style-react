@@ -62,7 +62,8 @@ class AutoCompleteInput extends React.Component {
 
       const classname = classNames({
         [styles.suggestion]: true,
-        [styles.selected]: index === this.state.selectedSuggestion
+        [styles.selected]: index === this.state.selectedSuggestion,
+        [styles.selectable]: !suggestion.unselectable
       });
 
       const key = suggestion.key || index;
