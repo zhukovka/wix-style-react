@@ -11,7 +11,8 @@ class AutoCompleteInput extends React.Component {
 
     this.state = {
       selectedSuggestion: -1,
-      shouldHideSuggestions: true
+      shouldHideSuggestions: true,
+      isMouseDownOnWrapper: false
     };
 
     this.onMouseClickSuggestion = this.onMouseClickSuggestion.bind(this);
@@ -19,13 +20,23 @@ class AutoCompleteInput extends React.Component {
     this.onBlur = this.onBlur.bind(this);
     this.onChange = this.onChange.bind(this);
     this.onKeyDown = this.onKeyDown.bind(this);
+    this.onMouseUp = this.onMouseUp.bind(this);
+    this.onMouseDown = this.onMouseDown.bind(this);
   }
 
   render() {
 
+    const hidden = (this.state.shouldHideSuggestions && !this.state.isMouseDownOnWrapper) || !this.props.suggestions || this.props.suggestions.length === 0;
+
+    if (hidden) {
+      // Make sure the event listener is not connected when we're hidden
+      document.removeEventListener('mouseup', this.onMouseUp);
+    }
+
     const autoSuggestionsWrapperClass = classNames({
       [styles.auto_suggestions_wrapper]: true,
-      [styles.hidden]: this.state.shouldHideSuggestions || !this.props.suggestions || this.props.suggestions.length === 0
+      [styles.hidden]: hidden,
+      [styles.bottomnode]: !!this.props.bottomNode
     });
 
     return (
@@ -40,13 +51,18 @@ class AutoCompleteInput extends React.Component {
           onKeyDown={this.onKeyDown}
           />
 
-        <div className={autoSuggestionsWrapperClass}>
+        <div className={autoSuggestionsWrapperClass} onMouseDown={this.onMouseDown} >
           {this.props.header}
           {this.renderSuggestions()}
           {this.renderBottomNode()}
         </div>
       </div>
     );
+  }
+
+  componentWillUnmount() {
+    // Make sure the event listener is not connected when we're unmounting
+    document.removeEventListener('mouseup', this.onMouseUp);
   }
 
   renderSuggestions() {
@@ -79,7 +95,7 @@ class AutoCompleteInput extends React.Component {
           <div
             key={key}
             className={classname}
-            onMouseDown={() => (this.onMouseClickSuggestion(index))}
+            onClick={() => (this.onMouseClickSuggestion(index))}
             >
             {suggestion.node || suggestion.text || suggestion}
           </div>
@@ -109,6 +125,7 @@ class AutoCompleteInput extends React.Component {
   }
 
   onBlur(event) {
+
     this.setState({
       shouldHideSuggestions: true
     });
@@ -142,6 +159,23 @@ class AutoCompleteInput extends React.Component {
     if (this.props.onKeyDown) {
       this.props.onKeyDown(event);
     }
+  }
+
+  onMouseDown() {
+    this.setState({
+      isMouseDownOnWrapper: true
+    });
+
+    document.addEventListener('mouseup', this.onMouseUp);
+  }
+
+  onMouseUp() {
+
+    document.removeEventListener('mouseup', this.onMouseUp);
+
+    this.setState({
+      isMouseDownOnWrapper: false
+    });
   }
 
   _onKeyDown(event) {

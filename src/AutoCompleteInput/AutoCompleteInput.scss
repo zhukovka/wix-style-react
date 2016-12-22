@@ -22,6 +22,10 @@
     transition: height 0.3s;
 }
 
+.auto_suggestions_wrapper.bottomnode {
+    padding-bottom: 0px;
+}
+
 .auto_suggestions_wrapper.hidden
 {
     display:none;

@@ -22,8 +22,16 @@ const rtlSuggestions = [
   {text: 'אפשרות שלישית'}
 ];
 
+const bottomNode = (
+    <small>
+        <a href='#blah' onClick={e => {console.log(e); e.stopPropagation()}} >Footer!</a>
+    </small>
+);
+
+const onSet = (e) => console.log('Set', e);
+
 export default () =>
   <div>
-    <div style={style} className="ltr">Left to right<AutoCompleteInput suggestions={suggestions} bottomNode={<small><a href='#'>Footer!</a></small>} header={<div>Header</div>} /></div>
+    <div style={style} className="ltr">Left to right<AutoCompleteInput suggestions={suggestions} bottomNode={bottomNode} header={<div>Header</div>} onSet={onSet} /></div>
     <div style={style} className="rtl">Right to left<AutoCompleteInput suggestions={rtlSuggestions} rtl/></div>
   </div>;
