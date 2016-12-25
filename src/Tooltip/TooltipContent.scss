@@ -1,5 +1,6 @@
 @import '../common.scss';
 
+$zIndex: 2000;
 $min-width: 72px;
 $max-width: 264px;
 $font-size: 14px;
@@ -13,6 +14,7 @@ $shadow: 0 0 11px 0 $shadow-color;
 .tooltip {
   @include FontRoman;
   position: absolute;
+  z-index: $zIndex;
   display: inline-block;
   min-width: $min-width;
   max-width: $max-width;
