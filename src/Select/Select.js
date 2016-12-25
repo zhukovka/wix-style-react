@@ -29,10 +29,11 @@ class Select extends React.Component {
   }
 
   _onSelect(index) {
-    // TODO: Should we test if it actually changed? This will still be called if the same item was clicked
     const value = this.props.options[index].value;
     this._toggleOpen(false);
-    this.props.onChange(value);
+    if (value !== this.props.value) {
+      this.props.onChange(value);
+    }
   }
 
   _onMouseEnter(index) {

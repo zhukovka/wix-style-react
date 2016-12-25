@@ -75,6 +75,63 @@ describe('Select', () => {
     expect(driver.get.selectedContentText()).toBe(options[2].text);
   });
 
+  it('should not call onChange when reselecting the selected value', () => {
+    const onChange = jest.fn();
+    const options = [
+      {value: '0', text: 'Option 1'},
+      {value: '1', text: 'Option 2'},
+      {value: '2', text: 'Option 3'}
+    ];
+
+    driver
+      .given.options(options)
+      .given.onChange(onChange)
+      .given.selectedOption('1')
+      .when.created()
+      .when.openSelect()
+      .when.clickOptionAt(options[1].value);
+
+    expect(onChange.mock.calls.length).toBe(0);
+  });
+
+  it('should call onChange when selecting a value that is different from the selected value', () => {
+    const onChange = jest.fn();
+    const options = [
+      {value: '0', text: 'Option 1'},
+      {value: '1', text: 'Option 2'},
+      {value: '2', text: 'Option 3'}
+    ];
+
+    driver
+      .given.options(options)
+      .given.onChange(onChange)
+      .given.selectedOption('1')
+      .when.created()
+      .when.openSelect()
+      .when.clickOptionAt(options[2].value);
+
+    expect(onChange.mock.calls.length).toBeGreaterThan(0);
+  });
+
+  it('should call onChange when selecting a value for the first time', () => {
+    const onChange = jest.fn();
+    const options = [
+      {value: '0', text: 'Option 1'},
+      {value: '1', text: 'Option 2'},
+      {value: '2', text: 'Option 3'}
+    ];
+
+    driver
+      .given.options(options)
+      .given.onChange(onChange)
+      .when.created()
+      .when.openSelect()
+      .when.clickOptionAt(options[2].value);
+
+    expect(onChange.mock.calls.length).toBeGreaterThan(0);
+  });
+
+
   it('should hover over select items', () => {
     const onChange = jest.fn();
     const options = [
