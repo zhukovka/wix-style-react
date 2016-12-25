@@ -63,7 +63,6 @@
     "react-test-utils": "0.0.1",
     "sinon": "^1.17.6",
     "wix-node-build": "^1.1.93",
-    "react-autosuggest": "^7.0.1",
     "react-tagsinput": "3.14.0",
     "autosuggest-highlight": "^3.1.0"
   },
@@ -84,6 +83,7 @@
     "lodash.isequal": "^4.4.0",
     "lodash.uniqueid": "^4.0.1",
     "rc-slider": "^5.3.4",
+    "react-autosuggest": "^7.0.1",
     "react-datepicker": "^0.39.0",
     "react-modal": "^1.5.2",
     "react-onclickoutside": "^5.7.1",
