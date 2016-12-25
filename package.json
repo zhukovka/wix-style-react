@@ -11,7 +11,7 @@
   ],
   "scripts": {
     "test": "wix-node-build test --jest && wix-node-build test --protractor",
-    "build": "wix-node-build lint && wix-node-build build && build-storybook",
+    "build": "wix-node-build lint && wix-node-build build && cp -r src/MultiSelect/resources dist/src/MultiSelect/resources && build-storybook",
     "start": "wix-node-build start & npm run storybook",
     "release": "wix-node-build release && gh-pages-auto-release --dist=storybook-static",
     "storybook": "start-storybook -p 6006",
