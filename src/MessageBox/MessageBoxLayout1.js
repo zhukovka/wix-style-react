@@ -2,7 +2,7 @@
 
 import React from 'react';
 import Button from '../Button';
-import * as styles from './MessageBox.scss';
+import * as styles from './MessageBoxLayout1.scss';
 import SvgX from '../svg/X.js';
 
 const MessageBoxLayout1 = ({title, content, primaryButtonLabel, secondaryButtonLabel, onPrimaryButtonClick, onSecondaryButtonClick, imageUrl, onClose}) => {

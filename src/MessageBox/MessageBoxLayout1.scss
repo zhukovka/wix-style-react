@@ -1,10 +1,12 @@
 @import '../common';
 .root {
-  background-color: #ffffff;
+  background-color:#FFF;
+  border-radius: 8px;
 }
 $headerHeight: 120px;
 $headerImageHeight: 185px;
 .header {
+  border-radius: 8px 8px 0 0;
   background-color: #3899ec;
   height: $headerHeight;
   margin-bottom: $headerImageHeight - $headerHeight;

@@ -32,6 +32,7 @@ function Modal(props) {
       outline: 'none',
       borderRadius: '0px',
       padding: '0px',
+      'box-shadow': '0 0 14px 0 rgba(22, 45, 60, 0.3)',
       // Overriding defaults - END
       backgroundColor: 'transparent',
       marginBottom: '0px'
