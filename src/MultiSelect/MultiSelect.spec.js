@@ -181,26 +181,6 @@ describe('MultiSelect,', () => {
     expect(driver.get.inputElement().props().placeholder).toEqual('');
   });
 
-  it('should call the onAddTag callback when pressing on enter if "allowNotSuggestedTags" is true', () => {
-    driver.given
-      .defaultConfig()
-      .and.allowNotSuggestedTags(true)
-      .build();
-    driver.when.changeInput('test');
-    driver.when.enterIsPressed();
-    expect(driver.get.onAddTagCallback().calledWith({id: 'test'})).toEqual(true);
-  });
-
-  // it('should change the value when navigating through the suggestions with the keyboard but should not call the onChangeInput callback', () => {
-  //   driver.given
-  //     .defaultConfig()
-  //     .and.suggestions([{name: 'first', id:'first'}])
-  //     .build();
-  //   driver.when.downArrow();
-  //   expect(driver.get.inputValue()).toEqual('first');
-  //   expect(driver.get.onAddTagCallback().called).toEqual(false);
-  // });
-
   it('should NOT call the onAddTag callback when pressing on enter if "allowNotSuggestedTags" is false', () => {
     const input = 'test';
     driver.given
