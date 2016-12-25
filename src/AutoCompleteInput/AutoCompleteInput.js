@@ -95,7 +95,7 @@ class AutoCompleteInput extends React.Component {
           <div
             key={key}
             className={classname}
-            onClick={() => (this.onMouseClickSuggestion(index))}
+            onMouseDown={() => (this.onMouseClickSuggestion(index))}
             >
             {suggestion.node || suggestion.text || suggestion}
           </div>
