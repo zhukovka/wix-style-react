@@ -12,6 +12,7 @@ export {default as Select} from './Select';
 export {default as Slider} from './Slider';
 export {default as GoogleAddressInput} from './GoogleAddressInput';
 export {default as clients} from './clients';
+export {default as MultiSelect} from './MultiSelect';
 export {default as Loader} from './Loader';
 export {default as Toast} from './Toast';
 export {default as DatePicker} from './DatePicker';

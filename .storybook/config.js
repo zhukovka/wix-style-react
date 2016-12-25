@@ -20,6 +20,7 @@ function loadStories() {
   require('../stories/DatePicker');
   require('../stories/TimeInput');
   require('../stories/Tooltip');
+  require('../stories/MultiSelect');
 }
 
 configure(loadStories, module);
