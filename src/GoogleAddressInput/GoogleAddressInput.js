@@ -58,6 +58,7 @@ class GoogleAddressInput extends React.Component {
           value={value}
           magnifyingGlass={magnifyingGlass}
           suggestions={_.map(suggestions, 'description')}
+          autoSelect={true}
           />
       </div>
     );
