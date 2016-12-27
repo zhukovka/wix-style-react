@@ -29,9 +29,13 @@ class ControlledAutoCompleteInput extends Component {
   render() {
     const onChange = event => this.setState({value: event.target.value});
     const onSet = value => this.setState({value: value.text});
+    const predicate = element =>
+      this.state.value ?
+      element.text.toLowerCase().indexOf(this.state.value.toLowerCase()) !== -1 :
+      true;
 
     return (
-      <AutoCompleteInput {...this.props} suggestions={suggestions} value={this.state.value} onChange={onChange} onSet={onSet}/>
+      <AutoCompleteInput {...this.props} suggestions={suggestions.filter(predicate)} value={this.state.value} onChange={onChange} onSet={onSet}/>
     );
   }
 }
