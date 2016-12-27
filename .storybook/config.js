@@ -4,6 +4,7 @@ import {setOptions} from '@kadira/storybook-addon-options';
 function loadStories() {
   require('../stories/stories.css');
 
+  require('../stories/Introduction');
   require('../stories/Input');
   require('../stories/Select');
   require('../stories/AutoCompleteInput');

@@ -2,18 +2,18 @@
 'Wix Style' is a common name to the different UX style libraries designed by the UX guild (for dashboard, settings, editor, and viewer). The wix-style-react package contains React implemenations for the different components in the style library.
 
 ## Demo
-Storybook can be seen [here](https://wix.github.io/wix-style-react/).
+Storybook can be seen [here](https://wix.github.io/wix-style-react/?selectedKind=1.%20Inputs&selectedStory=1.1%20Standard&full=0&down=0&left=1&panelRight=0).
 
 ## Getting Started
 ### Storybook
 Storybook will allow you to see all the different components implemented, and the different usages of each one of them.
-```
+```javascript
     npm install
     npm start
 ```
 ### Using in a Project
 #### Install the npm
-```
+```javascript
     npm install --save wix-style-react
 ```
 #### Update webpack
@@ -31,25 +31,8 @@ The files are brought 'uncompiled' and 'unpacked'. You will need to make sure we
     }
 ```
 #### Use in your code
-```javascript
-    import * as WixStyle from 'wix-style-react';
+Please refer to the specific elements for code-based examples of how to use this library, e.g., [Button](https://wix.github.io/wix-style-react/?selectedKind=3.%20Buttons&selectedStory=3.1%20Standard&full=0&down=0&left=1&panelRight=0)
 
-    export default (props) => {
-        return (
-            <WixStyle.Button style='blue'>Click me!</WixStyle.Button>
-        );
-    }
-```
-Optimization: If you prefer to include only specific elements, you can do so by:
-```javascript
-    import Button from 'wix-style-react/dist/src/Button';
-
-    export default (props) => {
-        return (
-            <Button style='blue'>Click me!</Button>
-        );
-    }
-```
 #### Notes
 See the Storybook, and the story fields, for all the elements and the different parameters they receive.
 
@@ -57,55 +40,11 @@ __Important__: Make sure your body contains either the 'ltr' or 'rtl' class (dep
 
 This project is currently still in initial development. It is advisable to be dependent on a specific version of this component for the time being.
 
-### TestKit (work in progress)
-This package comes with test-kits for the different components. Each component has a `<componentName>TestkitFactory` method which exposes an api for the specific component. It will receive a wrapper (for now we only support Enzyme wrapper) and component ID as an input , and returns an object which contains all API methods.
-
-For example:
-
-Using wix style Button in your production code:
-
-```js
-<myForm>
-  ...
-  <Button id="my-button" />
-  ...
-```
-
-Inside your test:
-
-```javascript
-import ReactTestUtils from 'react-addons-test-utils';
-import {buttonTestkitFactory} from 'wix-style-react/dist/testkit';
-
-const myFormWrapper = ReactTestUtils.renderIntoDocument(<myForm...>);
-
-//Initial the testkit driver:
-const buttonDriver = buttonTestkitFactory({wrapper: myFormWrapper, id: 'my-button'});//driver factory should receive a DOM element wrapper and an id and expose an api for it
-
-//Use the driver
-buttonDriver.click();
-
-```
-
-If you are using Enzyme:
-
-```javascript
-import {mount} from 'enzyme';
-import {buttonTestkitFactory} from 'wix-style-react/dist/testkit/enzyme';
-
-const myFormWrapper = mount(<myForm...>);
-
-//Initial the testkit driver:
-const buttonDriver = buttonTestkitFactory({wrapper: myFormWrapper, id: 'my-button'});//driver factory should receive an Enzyme wrapper and an id and expose an api for it
-
-//Use the driver
-buttonDriver.click();
-
-```
-
+## Tests
+Please refer the [Testing page](https://wix.github.io/wix-style-react/?selectedKind=Introduction&selectedStory=Testing&full=0&down=0&left=1&panelRight=0)
 
 ## Contributing
-You are more than welcome to contribute by creating pull-requests.
+Please refer the [Contribution page](https://wix.github.io/wix-style-react/?selectedKind=Introduction&selectedStory=Testing&full=0&down=0&left=1&panelRight=0)
 
 ## License
 This project is offered under MIT License.

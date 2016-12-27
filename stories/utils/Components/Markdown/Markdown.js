@@ -10,7 +10,7 @@ export default class Markdown extends Component {
 
   render() {
     const options = {
-      linkTarget: '_blank',
+      linkTarget: '_parent',
       highlight(code, lang) {
         return hljs.highlight(lang, code).value;
       }
