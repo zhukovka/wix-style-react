@@ -32,7 +32,7 @@ function Modal(props) {
       outline: 'none',
       borderRadius: '0px',
       padding: '0px',
-      'box-shadow': '0 0 14px 0 rgba(22, 45, 60, 0.3)',
+      boxShadow: '0 0 14px 0 rgba(22, 45, 60, 0.3)',
       // Overriding defaults - END
       backgroundColor: 'transparent',
       marginBottom: '0px'
@@ -49,6 +49,7 @@ function Modal(props) {
       onAfterOpen={props.onAfterOpen}
       style={modalStyles}
       className={modalClasses}
+      contentLabel={props.contentLabel}
       >
       {props.children}
     </ReactModal>
@@ -57,6 +58,7 @@ function Modal(props) {
 
 Modal.propTypes = {
   isOpen: React.PropTypes.bool.isRequired,
+  contentLabel: React.PropTypes.string.isRequired,
   onCancel: React.PropTypes.func,
   style: React.PropTypes.oneOf([null, 'red', 'blue', 'green']),
   children: React.PropTypes.any,
