@@ -18,3 +18,4 @@ export {default as Toast} from './Toast';
 export {default as DatePicker} from './DatePicker';
 export {default as TimeInput} from './TimeInput';
 export {default as Tooltip} from './Tooltip';
+export {default as SideBar} from './SideBar';

@@ -21,6 +21,7 @@ function loadStories() {
   require('../stories/TimeInput');
   require('../stories/Tooltip');
   require('../stories/MultiSelect');
+  require('../stories/SideBar');
 }
 
 configure(loadStories, module);
