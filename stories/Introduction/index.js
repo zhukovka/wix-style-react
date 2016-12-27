@@ -2,8 +2,8 @@ import React from 'react';
 import {storiesOf} from '@kadira/storybook';
 import Markdown from '../utils/Components/Markdown';
 import Readme from '../../README.md';
-import TestsReadme from '../../stories/Introduction/Tests/README.md';
-import Contribution from '../../stories/Introduction/Contribution/README.md';
+import TestsReadme from '../../TESTS.md';
+import Contribution from '../../CONTRIBUTION.md';
 
 storiesOf('Introduction', {})
   .add('Getting started', () => (
@@ -15,7 +15,7 @@ storiesOf('Introduction', {})
       <Markdown source={TestsReadme}/>
     </div>
   )).add('Contribution', () => (
-  <div>
-    <Markdown source={Contribution}/>
-  </div>
-));
+    <div>
+      <Markdown source={Contribution}/>
+    </div>
+  ));

@@ -202,14 +202,8 @@ class AutoCompleteInput extends React.Component {
         return false;
 
       case 13: // enter
-        if (!suggestions || suggestions.length === 0 ||
-          selectedSuggestion === -1) {
-
+        if (!suggestions || suggestions.length === 0 || selectedSuggestion === -1) {
           break;
-        }
-
-        if (suggestions.length === 0) {
-          return false;
         }
 
         if (suggestions[selectedSuggestion]) {

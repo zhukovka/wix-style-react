@@ -5,6 +5,7 @@ Please see [Button](https://github.com/wix/wix-style-react/tree/master/src/Butto
 
 ### Components design (in progress)
 * This library is using es6 + jsx - please follow it
+* All assets are in src/assets folder
 * Each component must have e2e, unit testing and testkit provided
 * One React component per js file
 * Most of the components needs be a [controlled components](https://goshakkk.name/controlled-vs-uncontrolled-inputs-react/), if you still think that a component should be uncontrolled after you read the article you are welcome to push a pr for it. 
