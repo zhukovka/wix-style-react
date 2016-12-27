@@ -8,7 +8,7 @@ import ExampleStandard from './ExampleStandard';
 import ExampleStandardRaw from '!raw!./ExampleStandard';
 
 storiesOf('1. Inputs', module)
-  .add('1.7 MultiSelect', () => (
+  .add('1.8 MultiSelect', () => (
     <div>
       <Markdown source={Readme}/>
 

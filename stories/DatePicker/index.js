@@ -6,8 +6,8 @@ import Readme from '../../src/DatePicker/README.md';
 import ExampleControlled from './ExampleControlled';
 import ExampleControlledRaw from '!raw!./ExampleControlled';
 
-storiesOf('5. Others', module)
-  .add('5.4 DatePicker', () => (
+storiesOf('1. Inputs', module)
+  .add('1.6 DatePicker', () => (
     <div>
       <Markdown source={Readme}/>
 
@@ -18,4 +18,3 @@ storiesOf('5. Others', module)
       </CodeExample>
     </div>
   ));
-
