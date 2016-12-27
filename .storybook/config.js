@@ -14,6 +14,7 @@ function loadStories() {
   require('../stories/Checkbox');
   require('../stories/RadioGroup');
   require('../stories/Button');
+  require('../stories/ButtonSelection');
   require('../stories/MessageBox');
   require('../stories/Modal');
   require('../stories/Loader');
