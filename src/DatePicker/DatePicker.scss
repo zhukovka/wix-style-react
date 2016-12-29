@@ -7,8 +7,9 @@ $calendarMargin: 15px;
   @import 'react-datepicker/dist/react-datepicker';
 }
 
-:global(.wix-datepicker) {
+.wrapper {
 }
+
 :global(.react-datepicker) {
     box-shadow: 0 0 5px 5px rgba(0,0,0,0.08);
     border: 0;

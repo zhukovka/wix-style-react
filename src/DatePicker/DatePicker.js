@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import ReactDatepicker from 'react-datepicker';
 import DatePickerInput from './DatePickerInput';
 import moment from 'moment';
-import './DatePicker.scss';
+import css from './DatePicker.scss';
 
 export default class DatePicker extends Component {
   static propTypes = {
@@ -46,7 +46,7 @@ export default class DatePicker extends Component {
 
   render() {
     return (
-      <div className="wix-datepicker">
+      <div className={css.wrapper}>
         <ReactDatepicker
           {...this.props}
           selected={this.props.value}

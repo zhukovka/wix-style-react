@@ -2,6 +2,12 @@
 
 > A DatePicker component
 
+## ISSUES
+__Note__: This component has multiple issues and will most likely change in the near future (including interface). Such issues are:
+1. Component allows free 'style' to be given. (Issue #95)
+2. Component does not include tests.
+3. Component does not include a test kit. (Issue #86)
+
 ## Properties
 
 | propName | propType | defaultValue | isRequired | description |
