@@ -17,7 +17,7 @@
 }
 
 :global(.rtl) .wrapper > label {
-    flex-direction: row-reverse;
+    direction: rtl;
 }
 
 .checkbox {
