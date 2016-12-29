@@ -7,4 +7,5 @@
 | propName | propType | defaultValue | isRequired | description |
 |----------|----------|--------------|------------|-------------|
 | value | moment object | - | - | The selected date |
-| onChange | func | - | true | Called upon every value change |
+| onChange | func | - | + | Called upon every value change |
+| dateFormat | string | MM/DD/YYYY | - | Custom date format |

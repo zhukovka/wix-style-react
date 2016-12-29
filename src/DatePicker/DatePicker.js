@@ -6,7 +6,7 @@ import './DatePicker.scss';
 export default class DatePicker extends Component {
   static propTypes = {
     style: React.PropTypes.object,
-    value: React.PropTypes.value,
+    value: React.PropTypes.object,
     onChange: React.PropTypes.func.isRequired
   };
 
