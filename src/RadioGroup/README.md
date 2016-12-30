@@ -8,6 +8,7 @@
 |----------|----------|--------------|------------|-------------|
 | value | number, string | - | - | Selected radio button value |
 | onChange | func | - | - | Callback function when user selects a different value |
+| disabledRadios | arrayOf(number, string) | [] | - | the values of the disabled radio buttons |
 
 ## RadioGroup.Radio Properties
 

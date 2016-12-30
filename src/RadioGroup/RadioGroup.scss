@@ -11,7 +11,7 @@
     box-sizing:border-box;
 }
 
-.wrapper > input 
+.wrapper > input
 {
     display: none;
 }
@@ -76,4 +76,10 @@
 .radio:hover
 {
     background-color: $B50;
+}
+
+.radio.disabled
+{
+   border-color: $GR20;
+   background-color: $GR30;
 }
