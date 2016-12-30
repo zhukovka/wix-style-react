@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React, {Component, PropTypes} from 'react';
 import Rcslider from 'rc-slider';
 import uniqueId from 'lodash.uniqueid';
 import SliderHandle from './SliderHandle';
@@ -42,6 +42,7 @@ export default class Slider extends Component {
   }
 
   render() {
+    const marks = this.props.displayMarks ? this.getMarks() : {};
     return (
       <div className="wix-slider" id={this.props.id}>
         <Rcslider
@@ -49,7 +50,7 @@ export default class Slider extends Component {
           min={this.props.min}
           max={this.props.max}
           value={this.props.value}
-          marks={this.getMarks()}
+          marks={marks}
           range={true}
           step={this.props.step}
           onChange={this.props.onChange}
@@ -61,8 +62,6 @@ export default class Slider extends Component {
   }
 }
 
-const {PropTypes} = React;
-
 Slider.propTypes = {
   id: React.PropTypes.string,
   value: PropTypes.arrayOf(PropTypes.number),
@@ -71,7 +70,8 @@ Slider.propTypes = {
   step: PropTypes.number,
   onChange: PropTypes.func.isRequired,
   onAfterChange: PropTypes.func,
-  allowCross: PropTypes.bool
+  allowCross: PropTypes.bool,
+  displayMarks: PropTypes.bool
 };
 
 Slider.defaultProps = {
@@ -79,7 +79,7 @@ Slider.defaultProps = {
   max: 20,
   step: 1,
   value: [2, 7],
-  onAfterChange: undefined,
   allowCross: true,
-  id: uniqueId()
+  id: uniqueId(),
+  displayMarks: true
 };
