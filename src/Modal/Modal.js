@@ -1,8 +1,19 @@
 import React from 'react';
 import ReactModal from 'react-modal';
 import styles from './Modal.scss';
+import {colors, positions} from './ModalConstants';
 
-function Modal(props) {
+const Modal = props => {
+  //TODO When deprecation ends, _theme won't be needed.
+  const _theme = props.theme || props.style;
+
+  if (props.style) {
+    console.warn('[wix-style-react>Modal] Warning. Property \'style\' has been deprecated, and will be removed Jan 1st 2017. Please use \'theme\' instead.');
+  }
+
+  const justifyContent = positions[props.horizontalPosition];
+  const alignItems = positions[props.verticalPosition];
+
   const modalStyles = {
     overlay: {
       // Overriding defaults
@@ -15,8 +26,8 @@ function Modal(props) {
       backgroundColor: 'rgba(30, 30, 30, 0.55)',
       // Overriding defaults - END
       display: 'flex',
-      justifyContent: 'center',
-      alignItems: 'flex-start',
+      justifyContent,
+      alignItems,
       overflowY: 'auto'
     },
     content: {
@@ -39,7 +50,7 @@ function Modal(props) {
     }
   };
 
-  const modalClasses = `${styles.modal} ${styles[props.style]}`;
+  const modalClasses = `${styles.modal} ${styles[_theme]}`;
 
   return (
     <ReactModal
@@ -54,24 +65,29 @@ function Modal(props) {
       {props.children}
     </ReactModal>
   );
-}
+};
 
 Modal.propTypes = {
   isOpen: React.PropTypes.bool.isRequired,
   contentLabel: React.PropTypes.string.isRequired,
   onCancel: React.PropTypes.func,
-  style: React.PropTypes.oneOf([null, 'red', 'blue', 'green']),
+  style: React.PropTypes.oneOf(Object.keys(colors)),
+  theme: React.PropTypes.oneOf(Object.keys(colors)),
   children: React.PropTypes.any,
   zIndex: React.PropTypes.number,
   shouldCloseOnOverlayClick: React.PropTypes.bool,
   onRequestClose: React.PropTypes.func,
-  onAfterOpen: React.PropTypes.func
+  onAfterOpen: React.PropTypes.func,
+  horizontalPosition: React.PropTypes.oneOf(Object.keys(positions)),
+  verticalPosition: React.PropTypes.oneOf(Object.keys(positions))
 };
 
 Modal.defaultProps = {
   onOk: () => { },
-  style: 'blue',
-  shouldCloseOnOverlayClick: false
+  theme: colors.blue,
+  shouldCloseOnOverlayClick: false,
+  horizontalPosition: 'center',
+  verticalPosition: 'start',
 };
 
 export default Modal;
