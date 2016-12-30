@@ -1,6 +1,6 @@
 # MessageBox component
 
-> Message box Layouts 
+> Message box Layouts
 
 ## MessageBoxLayout1 Properties
 
@@ -22,7 +22,7 @@
 | hideFooter | bool | - | - | Hide or show footer |
 | confirmText | string | - | - | Confirm button Label |
 | cancelText | string | - | - | Cancel button Label |
-| style | string | - | - | style of the message box, (green, blue , red) |
+| theme | string | - | - | theme of the message box, (green, blue , red) |
 | onOk | func | - | - | Ok callback |
 | onCancel | func | - | - | Cancel callback |
 | title | Node | - | - | title of the Message Box |

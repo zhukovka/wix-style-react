@@ -38,7 +38,7 @@ class ControlledMessageBoxes extends Component {
             onSecondaryButtonClick={log('secondary button click')}
             onPrimaryButtonClick={log('primary button click')}
             onClose={close}
-            style="blue"
+            theme="blue"
             imageUrl="http://www.domstechblog.com/wp-content/uploads/2015/09/wix.png"
             />
         </NgIf>
@@ -49,7 +49,7 @@ class ControlledMessageBoxes extends Component {
             primaryButtonLabel="Got It"
             confirmText="Confirm"
             cancelText="Cancel"
-            style="red"
+            theme="red"
             onCancel={close}
             onOk={log('all ok')}
             >

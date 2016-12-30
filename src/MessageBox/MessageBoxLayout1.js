@@ -1,4 +1,5 @@
 /* eslint-disable react/style-prop-object */
+//TODO remove the above lint-disable after style is finaly deprecated
 
 import React from 'react';
 import Button from '../Button';
