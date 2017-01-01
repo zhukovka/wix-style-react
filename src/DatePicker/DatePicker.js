@@ -10,7 +10,9 @@ export default class DatePicker extends Component {
     value: React.PropTypes.object,
     onChange: React.PropTypes.func.isRequired,
     filterDate: React.PropTypes.func,
-    excludePastDates: React.PropTypes.bool
+    excludePastDates: React.PropTypes.bool,
+    readOnly: React.PropTypes.bool,
+    showYearDropdown: React.PropTypes.bool
   };
 
   static defaultProps = {
@@ -18,13 +20,11 @@ export default class DatePicker extends Component {
       width: 150
     },
 
-    filterDate: () => true,
-    excludePastDates: false
+    filterDate: () => true
   };
 
-  constructor() {
-    super();
-
+  constructor(props) {
+    super(props);
     this.filterDate = this.filterDate.bind(this);
   }
 
@@ -50,9 +50,16 @@ export default class DatePicker extends Component {
         <ReactDatepicker
           {...this.props}
           selected={this.props.value}
-          onChange={this.props.onChange}
+          onChange={val => {
+            if (this.filterDate(val)) {
+              this.props.onChange(val);
+            }
+          }}
           customInput={this.renderInput()}
           filterDate={this.filterDate}
+          readOnly={this.props.readOnly}
+          showYearDropdown={this.props.showYearDropdown}
+          scrollableYearDropdown
           />
       </div>
     );

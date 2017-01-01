@@ -1,12 +1,13 @@
 import React from 'react';
 import {DatePicker} from 'wix-style-react';
+import moment from 'moment';
 
 class ControlledDatePicker extends React.Component {
   constructor(params) {
     super(params);
 
     this.state = {
-      value: null
+      value: moment()
     };
   }
 

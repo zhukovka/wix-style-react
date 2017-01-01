@@ -81,6 +81,7 @@
     "lodash.find": "^4.6.0",
     "lodash.findindex": "^4.6.0",
     "lodash.isequal": "^4.4.0",
+    "lodash.omit": "^4.5.0",
     "lodash.uniqueid": "^4.0.1",
     "rc-slider": "^5.3.4",
     "react-autosuggest": "^7.0.1",

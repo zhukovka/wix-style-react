@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import Input from '../Input';
 import styles from './DatePickerInput.scss';
+import omit from 'lodash.omit';
 
 export default class DatePickerInput extends Component {
   static propTypes = {
@@ -16,14 +17,26 @@ export default class DatePickerInput extends Component {
   }
 
   render() {
+    const unWantedProps = ['value', 'style'];
+    const desiredProps = omit(this.props, unWantedProps);
+
     return (
       <div style={this.props.style} onClick={this.props.onClick}>
         <Input
+          ref={Input => this.input = Input}
           value={this.props.value}
-          onChange={this.props.onChange}
           iconLeft={this.renderIcon()}
+          onEnterPressed={() => this.blur()}
+          onEscapePressed={() => this.blur()}
+          {...desiredProps}
           />
       </div>
     );
   }
+
+  blur() {
+    this.input.blur();
+  }
+
+  focus = () => {}
 }

@@ -53,6 +53,30 @@ $calendarMargin: 15px;
     @include FontLight();
     margin: $cellMargin;
 }
+:global(.react-datepicker__year-read-view) {
+  color: #3899ec;
+  background-color: $B50;
+}
+:global(.react-datepicker__year-dropdown-container) {
+   font-weight: bold;
+   font-size: 14px;
+}
+:global(.react-datepicker__year-dropdown) {
+  color: #3899ec;
+  border-radius: 8px;
+  background-color: #fff;
+
+  &--scrollable {
+    height: 180px;
+    overflow-y: scroll;
+  }
+ }
+ :global(.react-datepicker__year-option) {
+  color: #3899ec;
+  &:hover {
+      background-color: $B50;
+  }
+}
 :global(.react-datepicker__day) {
     @include FontLight();
     margin: $cellMargin;
