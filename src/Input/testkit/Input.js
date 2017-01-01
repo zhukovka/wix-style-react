@@ -18,6 +18,7 @@ const inputDriverFactory = ({component, wrapper}) => {
     getValue: () => input.value,
     getDefaultValue: () => input.defaultValue,
     getTabIndex: () => input.tabIndex,
+    getReadOnly: () => input.readOnly,
     hasExclamation: () => !!innerDiv && innerDiv.className.indexOf(styles.exclamation) >= 0,
     hasError: () => component.className.indexOf(styles.error) >= 0,
     getUnit: () => $component.find(`.${styles.unit}`)[0].textContent,

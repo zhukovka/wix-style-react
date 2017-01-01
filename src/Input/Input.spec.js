@@ -40,6 +40,24 @@ describe('Input', () => {
     });
   });
 
+  describe('readOnly attribute', () => {
+    it('should pass down to the wrapped input', () => {
+
+      const readOnly = true;
+
+      const driver = createDriver({readOnly});
+
+      expect(driver.getReadOnly()).toEqual(readOnly);
+    });
+
+    it('should pass down to the wrapped input with default false value', () => {
+
+      const driver = createDriver();
+
+      expect(driver.getReadOnly()).toEqual(false);
+    });
+  });
+
   describe('error attribute', () => {
     it('should display an error icon if error is true', () => {
       const error = true;

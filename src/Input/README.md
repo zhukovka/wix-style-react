@@ -11,6 +11,7 @@
 | defaultValue | string | - | - | Default value for those who wants to use this component un-controlled |
 | tabIndex  | number | - | - | Standard component tabIndex |
 | placeholder  | string | - | - | Placeholder to display |
+| readOnly  | bool | false | - | Sets the input to readOnly |
 | error  | bool | false | - | Is input value erroneous |
 | unit  | string | - | - | Unit to display in input box |
 | magnifyingGlass | bool | false | - | Should the component include a magnifyingGlass |

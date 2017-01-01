@@ -10,3 +10,4 @@
 | disabled | bool | false | - | |
 | onSet | func | - | - | Callback when the user selects one of the selections. Called with the selection. |
 | bottomNode | node | | - | Extra node shown at the bottom of the suggestions list |
+| readOnly | bool | false | - | Sets the input to readOnly |

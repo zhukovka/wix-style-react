@@ -31,7 +31,8 @@ class Input extends React.Component {
       rtl,
       autoFocus,
       onKeyUp,
-      onBlur
+      onBlur,
+      readOnly
     } = this.props;
 
     let {theme} = this.props; // When deprecation ends. theme should move to const.
@@ -71,7 +72,7 @@ class Input extends React.Component {
         {this.props.iconLeft}
         {unitDom}
         <input
-          ref="input"
+          ref={input => this.input = input}
           className={inputClasses}
           defaultValue={defaultValue}
           value={value}
@@ -84,6 +85,7 @@ class Input extends React.Component {
           tabIndex={tabIndex}
           autoFocus={autoFocus}
           onKeyUp={onKeyUp}
+          readOnly={readOnly}
           />
         {theme === 'material' && <div className={styles.bar}/>}
         {exclamation}
@@ -94,15 +96,15 @@ class Input extends React.Component {
   }
 
   focus() {
-    this.refs.input.focus();
+    this.input.focus();
   }
 
   blur() {
-    this.refs.input.blur();
+    this.input.blur();
   }
 
   select() {
-    this.refs.input && this.refs.input.select();
+    this.input && this.input.select();
   }
 
   _onFocus() {
@@ -157,7 +159,8 @@ Input.propTypes = {
   onEnterPressed: React.PropTypes.func,
   onKeyDown: React.PropTypes.func,
   onKeyUp: React.PropTypes.func,
-  iconLeft: React.PropTypes.object
+  iconLeft: React.PropTypes.object,
+  readOnly: React.PropTypes.bool
 };
 
 export default Input;
