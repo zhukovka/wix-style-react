@@ -45,3 +45,7 @@
         }
     }
 }
+
+:global(.wix-slider.rtl .slider-handle .slider-handle-inner) {
+    margin-right: 3px;
+}

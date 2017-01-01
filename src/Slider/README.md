@@ -14,3 +14,4 @@
 | onAfterChange | func | - | - | Called after every value change |
 | allowCross | bool | true | - | Allows the slider's handles to cross. |
 | displayMarks | bool | {} | - | Controls the visibility of the marks. |
+| rtl | bool | false | - | Adjust for RTL dir. |

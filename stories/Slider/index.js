@@ -9,6 +9,8 @@ import ExampleStandardRaw from '!raw!./ExampleStandard';
 
 import ExampleControlled from './ExampleControlled';
 import ExampleControlledRaw from '!raw!./ExampleControlled';
+import ExampleRtl from './ExampleRtl';
+import ExampleRtlRaw from '!raw!./ExampleRtl';
 
 storiesOf('1. Inputs', module)
   .add('1.4 Slider', () => (
@@ -19,6 +21,10 @@ storiesOf('1. Inputs', module)
 
       <CodeExample title="Standard" code={ExampleStandardRaw}>
         <ExampleStandard/>
+      </CodeExample>
+
+      <CodeExample title="Standard RTL" code={ExampleRtlRaw}>
+          <ExampleRtl/>
       </CodeExample>
 
       <CodeExample title="Controlled input" code={ExampleControlledRaw}>

@@ -2,6 +2,7 @@ import React, {Component, PropTypes} from 'react';
 import Rcslider from 'rc-slider';
 import uniqueId from 'lodash.uniqueid';
 import SliderHandle from './SliderHandle';
+import classNames from 'classnames';
 import './Slider.scss';
 
 export default class Slider extends Component {
@@ -44,7 +45,7 @@ export default class Slider extends Component {
   render() {
     const marks = this.props.displayMarks ? this.getMarks() : {};
     return (
-      <div className="wix-slider" id={this.props.id}>
+      <div className={classNames('wix-slider', {rtl: this.props.rtl})} id={this.props.id}>
         <Rcslider
           handle={<SliderHandle/>}
           min={this.props.min}
@@ -71,7 +72,8 @@ Slider.propTypes = {
   onChange: PropTypes.func.isRequired,
   onAfterChange: PropTypes.func,
   allowCross: PropTypes.bool,
-  displayMarks: PropTypes.bool
+  displayMarks: PropTypes.bool,
+  rtl: PropTypes.bool
 };
 
 Slider.defaultProps = {
@@ -81,5 +83,6 @@ Slider.defaultProps = {
   value: [2, 7],
   allowCross: true,
   id: uniqueId(),
-  displayMarks: true
+  displayMarks: true,
+  rtl: false
 };
