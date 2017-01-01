@@ -1,4 +1,5 @@
 import React from 'react';
+import Input from '../Input';
 import AutoCompleteInput from '../AutoCompleteInput';
 import _ from 'lodash';
 
@@ -36,7 +37,8 @@ class GoogleAddressInput extends React.Component {
     const {
       placeholder,
       error,
-      magnifyingGlass
+      magnifyingGlass,
+      theme
     } = this.props;
 
     const {
@@ -59,6 +61,7 @@ class GoogleAddressInput extends React.Component {
           magnifyingGlass={magnifyingGlass}
           suggestions={_.map(suggestions, 'description')}
           autoSelect={true}
+          theme={theme}
           />
       </div>
     );
@@ -262,7 +265,8 @@ function google2address(google) {
 }
 
 GoogleAddressInput.defaultProps = {
-  magnifyingGlass: true
+  magnifyingGlass: true,
+  theme: Input.defaultProps.theme
 };
 
 GoogleAddressInput.propTypes = {
@@ -280,7 +284,8 @@ GoogleAddressInput.propTypes = {
   onKeyDown: React.PropTypes.func,
   onSet: React.PropTypes.func,
   Client: React.PropTypes.func.isRequired,
-  magnifyingGlass: React.PropTypes.bool
+  magnifyingGlass: React.PropTypes.bool,
+  theme: Input.propTypes.theme
 };
 
 export default GoogleAddressInput;

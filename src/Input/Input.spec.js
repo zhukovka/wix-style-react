@@ -264,6 +264,11 @@ describe('Input', () => {
       const driver = createDriver({theme: 'paneltitle'});
       expect(driver.isOfStyle('paneltitle')).toBe(true);
     });
+
+    it('should allow setting the theme to "material"', () => {
+      const driver = createDriver({theme: 'material'});
+      expect(driver.isOfStyle('material')).toBe(true);
+    });
   });
 
   describe('onClear attribute', () => {

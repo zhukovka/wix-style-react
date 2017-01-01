@@ -59,5 +59,6 @@ storiesOf('1. Inputs', module)
       <CodeExample title="Commands test" code={ExampleRefsRaw}>
         <ExampleRefs/>
       </CodeExample>
+
     </div>
   ));

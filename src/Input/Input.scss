@@ -292,3 +292,40 @@
     left: 45px;
 }
 
+.material {
+    input {
+        border: 0;
+        padding: 0 8px;
+        &:focus {
+            outline: none;
+        }
+    }
+    .bar {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        height: 1px;
+        background: $D60;
+        &:before,
+        &:after {
+            content: '';
+            height: 1px;
+            width: 0;
+            bottom: 0;
+            position: absolute;
+            background: $D50;
+            transition: 0.2s ease all;
+        }
+        &:before {
+            left: 50%;
+        }
+        &:after {
+            right: 50%;
+        }
+    }
+    input:focus ~ .bar:before,
+    input:focus ~ .bar:after {
+        width:50%;
+    }
+}

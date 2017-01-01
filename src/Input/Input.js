@@ -85,12 +85,10 @@ class Input extends React.Component {
           autoFocus={autoFocus}
           onKeyUp={onKeyUp}
           />
-
+        {theme === 'material' && <div className={styles.bar}/>}
         {exclamation}
-
         {magnifyingGlassDom}
         {clearButtonDom}
-
       </div>
     );
   }
@@ -138,8 +136,8 @@ Input.defaultProps = {
 Input.propTypes = {
   id: React.PropTypes.string,
   value: React.PropTypes.string,
-  style: React.PropTypes.oneOf(['normal', 'paneltitle']),
-  theme: React.PropTypes.oneOf(['normal', 'paneltitle']),
+  style: React.PropTypes.oneOf(['normal', 'paneltitle', 'material']),
+  theme: React.PropTypes.oneOf(['normal', 'paneltitle', 'material']),
   forceHover: React.PropTypes.bool,
   forceFocus: React.PropTypes.bool,
   placeholder: React.PropTypes.string,

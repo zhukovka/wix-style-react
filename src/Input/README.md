@@ -7,7 +7,7 @@
 | propName | propType | defaultValue | isRequired | description |
 |----------|----------|--------------|------------|-------------|
 | value | string | - | - | Inputs value |
-| theme | other | normal | - | The theme of the input, can be normal or paneltitle |
+| theme | string | normal | - | The theme of the input, can be one of `normal`, `paneltitle` |
 | defaultValue | string | - | - | Default value for those who wants to use this component un-controlled |
 | tabIndex  | number | - | - | Standard component tabIndex |
 | placeholder  | string | - | - | Placeholder to display |

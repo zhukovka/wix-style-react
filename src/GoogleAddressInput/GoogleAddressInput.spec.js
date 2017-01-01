@@ -43,6 +43,10 @@ describe('GoogleAddressInput', () => {
       const component = createShallow({Client: GmapsTestClient, magnifyingGlass: false});
       expect(component.find('AutoCompleteInput').props().magnifyingGlass).toEqual(false);
     });
+    it('should allow setting theme for the nested input', () => {
+      const component = createShallow({Client: GmapsTestClient, theme: 'material'});
+      expect(component.find('AutoCompleteInput').props().theme).toEqual('material');
+    });
   });
 
   describe('User Interactions', () => {
