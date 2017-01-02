@@ -25,6 +25,7 @@ function loadStories() {
   require('../stories/MultiSelect');
   require('../stories/SideBar');
   require('../stories/DataTable');
+  require('../stories/Dropdown');
 }
 
 configure(loadStories, module);
