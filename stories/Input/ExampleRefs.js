@@ -17,7 +17,7 @@ class CommandsExample extends React.Component {
     };
 
     return (
-      <div>
+      <div className="ltr">
         <div style={{width: '400px'}}>
           <Input ref="inputtest"/>
         </div>

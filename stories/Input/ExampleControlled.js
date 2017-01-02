@@ -20,6 +20,10 @@ class ControlledInput extends Component {
 
   render() {
     const onChange = event => this.setState({value: event.target.value});
+    const onClear = event => {
+      this.setState({value: ''});
+      this.refs.inputtest.focus();
+    };
 
     return (
       <Input {...this.props} error={this.state.value === 'Starwars'} value={this.state.value} onChange={onChange}/>

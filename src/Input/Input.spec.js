@@ -97,12 +97,48 @@ describe('Input', () => {
     });
 
     it('should not display a magnifying glass icon if error is true', () => {
-      const magnifyingGlass = false;
+      const magnifyingGlass = true;
       const error = true;
 
       const driver = createDriver({magnifyingGlass, error});
 
       expect(driver.hasMagnifyingGlass()).toEqual(false);
+    });
+  });
+
+  describe('menuArrow attribute', () => {
+    it('should display a menu arrow icon if menuArrow is true', () => {
+      const menuArrow = true;
+
+      const driver = createDriver({menuArrow});
+
+      expect(driver.hasMenuArrow()).toEqual(true);
+    });
+
+    it('should not display a menu arrow icon if menuArrow is false', () => {
+      const menuArrow = false;
+
+      const driver = createDriver({menuArrow});
+
+      expect(driver.hasMenuArrow()).toEqual(false);
+    });
+
+    it('should not display a menu arrow icon if error is true', () => {
+      const menuArrow = true;
+      const error = true;
+
+      const driver = createDriver({menuArrow, error});
+
+      expect(driver.hasMenuArrow()).toEqual(false);
+    });
+
+    it('should not display a menu arrow icon if magnifyingGlass is true', () => {
+      const menuArrow = true;
+      const magnifyingGlass = true;
+
+      const driver = createDriver({menuArrow, magnifyingGlass});
+
+      expect(driver.hasMenuArrow()).toEqual(false);
     });
   });
 

@@ -23,6 +23,7 @@ const inputDriverFactory = ({component, wrapper}) => {
     hasError: () => component.className.indexOf(styles.error) >= 0,
     getUnit: () => $component.find(`.${styles.unit}`)[0].textContent,
     hasMagnifyingGlass: () => !!innerDiv && innerDiv.className.indexOf(styles.magnifying_glass) >= 0,
+    hasMenuArrow: () => !!innerDiv && innerDiv.className.indexOf(styles.menu_arrow) >= 0,
     hasClearButton: () => clearButton.length > 0,
     isRTL: () => component.className.indexOf(styles.rtl) >= 0,
     hasEndWrapping: () => component.className.indexOf(styles.endpadding) >= 0,
