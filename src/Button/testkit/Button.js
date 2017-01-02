@@ -4,7 +4,7 @@ import ReactTestUtils from 'react-addons-test-utils';
 import $ from 'jquery';
 
 const buttonDriverFactory = component => {
-  const isClassExists = (component, className) => (component.className.indexOf(className) != -1);
+  const isClassExists = (component, className) => (component.className.indexOf(className) !== -1);
 
   return {
     click: () => ReactTestUtils.Simulate.click(component),
@@ -13,7 +13,7 @@ const buttonDriverFactory = component => {
     doesComponentHasClass: className => component.className.indexOf(className) > 0,
     isComponentHovered: () => isClassExists(component, 'hover'),
     exists: () => !!component
-  }
+  };
 };
 
 const componentFactory = (props = {}) => {

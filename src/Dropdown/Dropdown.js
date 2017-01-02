@@ -31,7 +31,7 @@ class Dropdown extends React.Component {
   }
 
   hoverNextState(step) {
-    step = step % this.props.options.length;
+    step %= this.props.options.length;
     const validOption = this.props.options.find(item => {
       return item.options !== '-';
     });
@@ -85,7 +85,7 @@ class Dropdown extends React.Component {
 
     return (
       <div tabIndex={tabIndex} className={styles.wrapper} onKeyDown={this._onKeyDown} onBlur={this._onClose} id={id}>
-        <div className={`${styles.options} ${visible? styles.shown : ''} ${dropDirectionUp? styles.up : styles.down}`} ref="options">
+        <div className={`${styles.options} ${visible ? styles.shown : ''} ${dropDirectionUp ? styles.up : styles.down}`} ref="options">
           {options.map((option, idx) => (
             option.text === '-' ? (this.renderDivider(idx)) : (this.renderItem({option, idx, selected: option.value === value, hovered: idx === this.state.hovered}))
           ))}

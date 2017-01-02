@@ -31,9 +31,9 @@ describe('Dropdown', () => {
     const driver = createDriver({options});
     expect(driver.optionsLength()).toBe(6);
 
-    expect(driver.optionContentAt(0)).toBe("Option 1");
+    expect(driver.optionContentAt(0)).toBe('Option 1');
     expect(driver.isOptionADivider(4)).toBeTruthy();
-    expect(driver.optionContentAt(5)).toBe("Option 4");
+    expect(driver.optionContentAt(5)).toBe('Option 4');
   });
 
   it('should hover when mouse enter and unhover when mouse leave', () => {
@@ -117,7 +117,6 @@ describe('Dropdown', () => {
 
   describe('testkit', () => {
     it('should create new driver', () => {
-      const onClick = jest.fn();
       const div = document.createElement('div');
       const id = 'myId';
 

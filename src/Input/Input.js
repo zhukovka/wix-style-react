@@ -54,7 +54,7 @@ class Input extends React.Component {
     const magnifyingGlassDom = magnifyingGlass && !clearButtonDom && !error ?
       <div className={classNames([styles.magnifying_glass, styles.end_pos])} onClick={this._focus}><MagnifyingGlass alignLeft={!rtl}/></div> : null;
 
-    const menuArrowDom =  menuArrow && !clearButtonDom && !error && !magnifyingGlass ?
+    const menuArrowDom = menuArrow && !clearButtonDom && !error && !magnifyingGlass ?
       <div className={classNames([styles.menu_arrow, styles.end_pos])}><MenuArrow/></div> : null;
 
     if (style) {
@@ -154,6 +154,7 @@ Input.propTypes = {
   defaultValue: React.PropTypes.string,
   tabIndex: React.PropTypes.number,
   magnifyingGlass: React.PropTypes.bool,
+  menuArrow: React.PropTypes.bool,
   rtl: React.PropTypes.bool,
   autoFocus: React.PropTypes.bool,
   autoSelect: React.PropTypes.bool,
