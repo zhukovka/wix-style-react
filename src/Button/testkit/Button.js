@@ -3,14 +3,18 @@ import Button from '../Button';
 import ReactTestUtils from 'react-addons-test-utils';
 import $ from 'jquery';
 
-const buttonDriverFactory = component => ({
-  click: () => ReactTestUtils.Simulate.click(component),
-  getButtonTextContent: () => component.textContent,
-  isButtonDisabled: () => component.className.indexOf('disabled') > 0,
-  doesComponentHasClass: className => component.className.indexOf(className) > 0,
-  isComponentHovered: () => component.className.indexOf('hover') > 0,
-  exists: () => !!component
-});
+const buttonDriverFactory = component => {
+  const isClassExists = (component, className) => (component.className.indexOf(className) != -1);
+
+  return {
+    click: () => ReactTestUtils.Simulate.click(component),
+    getButtonTextContent: () => component.textContent,
+    isButtonDisabled: () => isClassExists(component, 'disabled'),
+    doesComponentHasClass: className => component.className.indexOf(className) > 0,
+    isComponentHovered: () => isClassExists(component, 'hover'),
+    exists: () => !!component
+  }
+};
 
 const componentFactory = (props = {}) => {
   const {children, ...otherProps} = props;
