@@ -16,8 +16,8 @@ import ExampleReactElementRaw from '!raw!./ExampleReactElements';
 import ExampleControlled from './ExampleControlled';
 import ExampleControlledRaw from '!raw!./ExampleControlled';
 
-storiesOf('Layouts', module)
-  .add('4.2 Dropdown', () => (
+storiesOf('4. Layouts', module)
+  .add('4.2 Dropdown (In dev)', () => (
     <div>
       <Markdown source={Readme}/>
 

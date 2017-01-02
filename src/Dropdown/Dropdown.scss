@@ -122,3 +122,7 @@ $option_height: 35px;
     background-color: #e5e5e5; 
     margin: 0;
 }
+
+.wrapper * {
+    box-sizing:border-box;
+}
