@@ -86,18 +86,16 @@ $wix-font-family-helvetica-45: "HelveticaNeueW01-45Ligh", "HelveticaNeueW02-45Li
   max-height: 240px;
   overflow: scroll;
   margin-right: 5px;
-}
-
-::-webkit-scrollbar {
-  background-color: transparent;
-  width: 7px;
-}
-
-::-webkit-scrollbar-thumb {
-  background-color: rgba(182, 193, 205, 0.25);
-  z-index: 1;
-  position: relative;
-  border-radius: 100px;
+  &::-webkit-scrollbar {
+    background-color: transparent;
+    width: 7px;
+  }
+  &::-webkit-scrollbar-thumb {
+    background-color: rgba(182, 193, 205, 0.25);
+    z-index: 1;
+    position: relative;
+    border-radius: 100px;
+  }
 }
 
 .scrollbarVerticalThumb {
