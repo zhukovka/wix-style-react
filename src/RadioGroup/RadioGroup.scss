@@ -39,7 +39,7 @@
     align-items: top;
 }
 
-:global(.ltr) .children
+.children, :global(.ltr) .children
 {
     padding-left: 12px;
 }
