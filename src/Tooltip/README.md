@@ -17,3 +17,5 @@
 | hideTrigger     | string (custom, mouseenter, mouseleave, click, focus, blur) | mouseleave   |            |             |
 | active          | bool                                                        | false        |            |             |
 | bounce          | bool                                                        | false        |            |             |
+| style           | object                                                      |              |            |             |
+| arrowStyle      | object                                                      |              |            |             |

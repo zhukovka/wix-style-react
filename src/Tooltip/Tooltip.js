@@ -18,7 +18,9 @@ class Tooltip extends Component {
     hideTrigger: PropTypes.oneOf(['custom', 'mouseenter', 'mouseleave', 'click', 'focus', 'blur']).isRequired,
     active: PropTypes.bool,
     onActiveChange: PropTypes.func.isRequired,
-    bounce: PropTypes.bool
+    bounce: PropTypes.bool,
+    style: PropTypes.object,
+    arrowStyle: PropTypes.object
   }
 
   static defaultProps = {
@@ -48,6 +50,8 @@ class Tooltip extends Component {
   componentDidUpdate() {
     if (this._mountNode && this.state.visible) {
       const arrowPlacement = {top: 'bottom', left: 'right', right: 'left', bottom: 'top'};
+      const {arrowStyle} = this.props;
+      const style = this.props.style ? {...this.props.style, ...this.state.style} : this.state.style;
       const tooltip = (
         <TooltipContent
           onMouseEnter={() => this.show()}
@@ -56,7 +60,8 @@ class Tooltip extends Component {
           theme={this.props.theme}
           bounce={this.props.bounce}
           arrowPlacement={arrowPlacement[this.props.placement]}
-          style={this.state.style}
+          style={style}
+          arrowStyle={arrowStyle}
           >{this.props.content}</TooltipContent>
       );
       ReactDOM.render(tooltip, this._mountNode);
@@ -94,11 +99,11 @@ class Tooltip extends Component {
     const child = this.props.children;
     return cloneElement(child, {
       ref: ref => this._childNode = ReactDOM.findDOMNode(ref),
-      onClick: this._chainCallbacks(child.onClick, this._onClick),
-      onMouseEnter: this._chainCallbacks(child.onMouseEnter, this._onMouseEnter),
-      onMouseLeave: this._chainCallbacks(child.onMouseLeave, this._onMouseLeave),
-      onFocus: this._chainCallbacks(child.onFocus, this._onFocus),
-      onBlur: this._chainCallbacks(child.onBlur, this._onBlur)
+      onClick: this._chainCallbacks(child.props.onClick, this._onClick),
+      onMouseEnter: this._chainCallbacks(child.props.onMouseEnter, this._onMouseEnter),
+      onMouseLeave: this._chainCallbacks(child.props.onMouseLeave, this._onMouseLeave),
+      onFocus: this._chainCallbacks(child.props.onFocus, this._onFocus),
+      onBlur: this._chainCallbacks(child.props.onBlur, this._onBlur)
     });
   }
 
@@ -156,49 +161,32 @@ class Tooltip extends Component {
     }, this.props.hideDelay);
   }
 
-  _onBlur() {
-    if (this.state.visible && this.props.hideTrigger === 'blur') {
+  _hideOrShow(event) {
+    if (this.state.visible && this.props.hideTrigger === event) {
       this.hide();
     }
-    if (!this.state.visible && this.props.showTrigger === 'blur') {
+    if (!this.state.visible && this.props.showTrigger === event) {
       this.show();
     }
   }
 
+  _onBlur() {
+    this._hideOrShow('blur');
+  }
   _onFocus() {
-    if (this.state.visible && this.props.hideTrigger === 'focus') {
-      this.hide();
-    }
-    if (!this.state.visible && this.props.showTrigger === 'focus') {
-      this.show();
-    }
+    this._hideOrShow('focus');
   }
 
   _onClick() {
-    if (this.state.visible && this.props.hideTrigger === 'click') {
-      this.hide();
-    }
-    if (!this.state.visible && this.props.showTrigger === 'click') {
-      this.show();
-    }
+    this._hideOrShow('click');
   }
 
   _onMouseEnter() {
-    if (this.state.visible && this.props.hideTrigger === 'mouseenter') {
-      this.hide();
-    }
-    if (!this.state.visible && this.props.showTrigger === 'mouseenter') {
-      this.show();
-    }
+    this._hideOrShow('mouseenter');
   }
 
   _onMouseLeave() {
-    if (this.state.visible && this.props.hideTrigger === 'mouseleave') {
-      this.hide();
-    }
-    if (!this.state.visible && this.props.showTrigger === 'mouseleave') {
-      this.show();
-    }
+    this._hideOrShow('mouseleave');
   }
 
   _updatePosition() {

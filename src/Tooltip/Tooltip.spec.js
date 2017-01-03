@@ -1,4 +1,6 @@
 import React from 'react';
+import {spy} from 'sinon';
+
 import TooltipDriver from './Tooltip.driver';
 
 describe('<Tooltip/>', () => {
@@ -8,22 +10,101 @@ describe('<Tooltip/>', () => {
   beforeEach(() => driver = new TooltipDriver());
 
   it('should be hidden by default', () => {
-    driver.given.props({content: <div>I am the tooltip</div>});
-    driver.when.created(<div>I am the child</div>);
+    driver
+      .when.created(<div>Hover me</div>);
+
     expect(driver.get.isShown()).toEqual(false);
+    expect(driver.get.willBeShown()).toEqual(false);
+    expect(driver.get.willBeHidden()).toEqual(false);
   });
 
   it('should show a tooltip once hovering', () => {
-    driver.given.props({content: <div/>, showTrigger: 'mouseenter', showDelay: 50});
-    driver.when.created(<div>I am the child</div>);
-    driver.when.mouseEntered();
+    driver
+      .given.props({
+        showDelay: 10
+      })
+      .when.created(<div>Hover me</div>)
+      .when.mouseEntered();
+
     expect(driver.get.isShown()).toEqual(false);
     expect(driver.get.willBeShown()).toEqual(true);
-    return resolveIn(100)
-      .then(() => {
-        expect(driver.get.isShown()).toEqual(true);
-        expect(driver.get.willBeShown()).toEqual(false);
-      });
+    expect(driver.get.willBeHidden()).toEqual(false);
+
+    return resolveIn(15).then(() => {
+      expect(driver.get.isShown()).toEqual(true);
+      expect(driver.get.willBeShown()).toEqual(false);
+      expect(driver.get.willBeHidden()).toEqual(false);
+    });
+  });
+
+  it('should not override focus event', () => {
+    const onFocus = spy();
+
+    driver
+      .given.props({
+        showTrigger: 'custom',
+        hideTrigger: 'custom'
+      })
+      .when.created(<div onFocus={onFocus}>Focus me</div>)
+      .when.focused();
+
+    expect(onFocus.calledOnce).toEqual(true);
+  });
+
+  it('should not override blur event', () => {
+    const onBlur = spy();
+
+    driver
+      .given.props({
+        showTrigger: 'custom',
+        hideTrigger: 'custom'
+      })
+      .when.created(<div onBlur={onBlur}>Blur me</div>)
+      .when.blured();
+
+    expect(onBlur.calledOnce).toEqual(true);
+  });
+
+  it('should not override click event', () => {
+    const onClick = spy();
+
+    driver
+      .given.props({
+        showTrigger: 'custom',
+        hideTrigger: 'custom'
+      })
+      .when.created(<div onClick={onClick}>Click me</div>)
+      .when.clicked();
+
+    expect(onClick.calledOnce).toEqual(true);
+  });
+
+  it('should not override mouse enter event', () => {
+    const onMouseEnter = spy();
+
+    driver
+      .given.props({
+        showTrigger: 'custom',
+        hideTrigger: 'custom'
+      })
+      .when.created(<div onMouseEnter={onMouseEnter}>Move mouse over</div>)
+      .when.mouseEntered();
+
+    expect(onMouseEnter.calledOnce).toEqual(true);
+  });
+
+  it('should not override mouse leave event', () => {
+    const onMouseLeave = spy();
+
+    driver
+      .given.props({
+        showTrigger: 'custom',
+        hideTrigger: 'custom'
+      })
+      .when.created(<div onMouseLeave={onMouseLeave}>Move mouse out</div>)
+      .when.mouseLeft();
+
+    expect(onMouseLeave.calledOnce).toEqual(true);
   });
 
 });

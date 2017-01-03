@@ -5,24 +5,40 @@ import Tooltip from './Tooltip';
 
 export default class TooltipDriver {
 
-  _props = {};
+  _props = {content: <div/>};
   _component = null;
 
   given = {
     props: props => {
-      this._props = {...props};
+      this._props = {...this._props, ...props};
+      return this;
     }
   };
 
   when = {
     created: children => {
       this._component = mount(<Tooltip {...this._props}>{children}</Tooltip>);
+      return this;
+    },
+    clicked: () => {
+      this._component.find(Tooltip).simulate('click');
+      return this;
+    },
+    focused: () => {
+      this._component.find(Tooltip).simulate('focus');
+      return this;
+    },
+    blured: () => {
+      this._component.find(Tooltip).simulate('blur');
+      return this;
     },
     mouseEntered: () => {
       this._component.find(Tooltip).simulate('mouseenter');
+      return this;
     },
     mouseLeft: () => {
       this._component.find(Tooltip).simulate('mouseleave');
+      return this;
     }
   };
 
