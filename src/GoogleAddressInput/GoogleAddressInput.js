@@ -35,13 +35,6 @@ class GoogleAddressInput extends React.Component {
 
   render() {
     const {
-      placeholder,
-      error,
-      magnifyingGlass,
-      theme
-    } = this.props;
-
-    const {
       suggestions,
       value
     } = this.state;
@@ -49,30 +42,27 @@ class GoogleAddressInput extends React.Component {
     return (
       <div>
         <AutoCompleteInput
-          ref={'autocomplete'}
-          placeholder={placeholder}
-          error={error}
+          ref={autocomplete => this.autocomplete = autocomplete}
+          {...this.props}
           onChange={this.onChange}
           onKeyDown={this.onKeyDown}
           onBlur={this.onBlur}
           onFocus={this.onFocus}
           onSet={this.onSet}
           value={value}
-          magnifyingGlass={magnifyingGlass}
           suggestions={_.map(suggestions, 'description')}
           autoSelect={true}
-          theme={theme}
           />
       </div>
     );
   }
 
   focus() {
-    this.refs.autocomplete.focus();
+    this.autocomplete.focus();
   }
 
   select() {
-    this.refs.autocomplete.select();
+    this.autocomplete.select();
   }
 
   onChange(e) {
@@ -285,7 +275,8 @@ GoogleAddressInput.propTypes = {
   onSet: React.PropTypes.func,
   Client: React.PropTypes.func.isRequired,
   magnifyingGlass: React.PropTypes.bool,
-  theme: Input.propTypes.theme
+  theme: Input.propTypes.theme,
+  readOnly: React.PropTypes.bool
 };
 
 export default GoogleAddressInput;

@@ -20,3 +20,4 @@
 | onFocus | func | - | - |  |
 | onBlur | func | - | - |  |
 | magnifyingGlass | bool | true | - | Show or hide magnifying glass icon |
+| readOnly | bool | false | - | Sets the input to readOnly |
