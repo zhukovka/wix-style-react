@@ -72,10 +72,23 @@ describe('Table', () => {
 
     driver.clickRow(0);
 
+    expect(driver.isRowClickable(0)).toBe(true);
     expect(props.onRowClick).toBeCalledWith(props.data[0], 0);
 
     driver.clickRow(1);
 
+    expect(driver.isRowClickable(1)).toBe(true);
     expect(props.onRowClick).toHaveBeenLastCalledWith(props.data[1], 1);
+  });
+
+  it('should not have a row on click handler by default', () => {
+    const props = {
+      ...defaultProps
+    };
+
+    const driver = createDriver(props);
+
+    driver.clickRow(0); // should do nothing
+    expect(driver.isRowClickable(0)).toBe(false);
   });
 });

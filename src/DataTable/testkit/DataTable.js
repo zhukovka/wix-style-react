@@ -21,6 +21,7 @@ const tableDriverFactory = ({component, wrapper}) => {
     getRowsCount,
     getRowsWithClassCount: className => getRows().filter(`.${className}`).length,
     getRowText: index => getRows().eq(index).find('td').get().map(td => $(td).text()),
+    isRowClickable: index => getRows().eq(index).attr('class').indexOf('clickableDataRow') !== -1,
     getTitles: () => getHeader().find('th').get().map(th => $(th).text()),
     isDisplayingNothing: () => $component.find(rootElement).length === 0,
     isDisplayingHeaderOnly: () => hasHeader() && getRowsCount() === 0,

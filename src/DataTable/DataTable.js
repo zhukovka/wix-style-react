@@ -1,7 +1,6 @@
 import React, {PropTypes} from 'react';
 import s from './DataTable.scss';
 import classNames from 'classnames';
-import _ from 'lodash';
 import InfiniteScroll from 'react-infinite-scroller';
 
 class DataTable extends React.Component {
@@ -15,7 +14,7 @@ class DataTable extends React.Component {
 
   componentWillReceiveProps(nextProps) {
     if (this.props.infiniteScroll &&
-        nextProps.data !== this.props.data) {
+      nextProps.data !== this.props.data) {
       this.setState(this.createInitialScrollingState(nextProps));
     }
   }
@@ -32,8 +31,8 @@ class DataTable extends React.Component {
     }
 
     const rowsToRender = infiniteScroll ?
-        data.slice(0, ((this.state.currentPage + 1) * itemsPerPage)) :
-        data;
+      data.slice(0, ((this.state.currentPage + 1) * itemsPerPage)) :
+      data;
 
     const table = this.renderTable(rowsToRender);
 
@@ -45,15 +44,17 @@ class DataTable extends React.Component {
   }
 
   wrapWithInfiniteScroll = table => {
-    return (<InfiniteScroll
-      pageStart={0}
-      loadMore={this.loadMore}
-      hasMore={this.state.currentPage < this.state.lastPage}
-      loader={<div className="loader">Loading ...</div>}
-      >
-      {table}
-    </InfiniteScroll>);
-  }
+    return (
+      <InfiniteScroll
+        pageStart={0}
+        loadMore={this.loadMore}
+        hasMore={this.state.currentPage < this.state.lastPage}
+        loader={<div className="loader">Loading ...</div>}
+        >
+        {table}
+      </InfiniteScroll>
+    );
+  };
 
   renderTable = rowsToRender => (
     <div>
@@ -74,11 +75,25 @@ class DataTable extends React.Component {
   );
 
   renderRow = (rowData, rowNum) => {
+    const rowClasses = [this.props.rowClass];
+    const optionalRowProps = {};
+
+    if (this.props.onRowClick) {
+      optionalRowProps.onClick = () => this.props.onRowClick(rowData, rowNum);
+      rowClasses.push(s.clickableDataRow);
+    }
+
     return (
-      <tr key={rowNum} className={this.props.rowClass} data-hook={this.props.rowDataHook} onClick={() => this.props.onRowClick(rowData, rowNum)}>
+      <tr
+        key={rowNum}
+        className={classNames(rowClasses)}
+        data-hook={this.props.rowDataHook}
+        {...optionalRowProps}
+        >
         {this.props.columns.map((column, colNum) => this.renderCell(rowData, column, rowNum, colNum))}
-      </tr>);
-  }
+      </tr>
+    );
+  };
 
   renderCell = (rowData, column, rowNum, colNum) => {
     const classes = classNames({[s.important]: column.important});
@@ -86,7 +101,7 @@ class DataTable extends React.Component {
     return <td style={style} className={classes} key={colNum}>{column.render && column.render(rowData, rowNum)}</td>;
   };
 
-  calcLastPage = ({data, itemsPerPage}) => Math.ceil(data.length / itemsPerPage) - 1
+  calcLastPage = ({data, itemsPerPage}) => Math.ceil(data.length / itemsPerPage) - 1;
 
   loadMore = () => {
     this.setState({currentPage: this.state.currentPage + 1});
