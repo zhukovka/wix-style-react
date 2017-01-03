@@ -15,6 +15,7 @@
 | error  | bool | false | - | Is input value erroneous |
 | unit  | string | - | - | Unit to display in input box |
 | magnifyingGlass | bool | false | - | Should the component include a magnifyingGlass |
+| menuArrow | bool | false | - | Should the component include a menu arrow |
 | rtl  | bool | false | - | Should text input be RTL? |
 | autoFocus | bool | false  | - | Standard React Input autoFocus (focus the element on mount) |
 | autoSelect | bool | false | - | Standard React Input autoSelect (select the entire text of the element on focus) |

@@ -43,7 +43,7 @@
     padding-left: 42px;
 }
 
-.input.rtl>input
+:global(.rtl) .input
 {
     direction:rtl;
 }
@@ -204,6 +204,14 @@
 
 :global(.rtl) .input.endpadding > input {
     padding-left: 36px;
+}
+
+:global(.ltr) .input.inputWithArrow > input {
+    padding-right: 24px;
+}
+
+:global(.rtl) .input.inputWithArrow > input {
+    padding-left: 24px;
 }
 
 :global(.ltr) .input.inputWithUnit.endpadding > input {
