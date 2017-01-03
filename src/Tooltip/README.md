@@ -17,5 +17,5 @@
 | hideTrigger     | string (custom, mouseenter, mouseleave, click, focus, blur) | mouseleave   |            |             |
 | active          | bool                                                        | false        |            |             |
 | bounce          | bool                                                        | false        |            |             |
-| style           | object                                                      |              |            |             |
-| arrowStyle      | object                                                      |              |            |             |
+| moveBy          | object ({x: Number, y: Number})                             |              |            |             |
+| moveArrowTo     | Number                                                      |              |            | Allows to position the arrow relative to tooltip. Positive value calculates position from left/top. Negative one calculates position from right/bottom. |

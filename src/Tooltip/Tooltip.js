@@ -19,8 +19,22 @@ class Tooltip extends Component {
     active: PropTypes.bool,
     onActiveChange: PropTypes.func.isRequired,
     bounce: PropTypes.bool,
-    style: PropTypes.object,
-    arrowStyle: PropTypes.object
+
+    /**
+     * Allows to shift the tooltip position by x and y pixels.
+     * Both positive and negative values are accepted.
+     */
+    moveBy: PropTypes.shape({
+      x: PropTypes.number,
+      y: PropTypes.number
+    }),
+
+    /**
+     * Allows to position the arrow relative to tooltip.
+     * Positive value calculates position from left/top.
+     * Negative one calculates position from right/bottom.
+     */
+    moveArrowTo: PropTypes.number
   }
 
   static defaultProps = {
@@ -44,14 +58,13 @@ class Tooltip extends Component {
 
   state = {
     visible: false,
-    style: {}
+    style: {},
+    arrowStyle: {}
   }
 
   componentDidUpdate() {
     if (this._mountNode && this.state.visible) {
       const arrowPlacement = {top: 'bottom', left: 'right', right: 'left', bottom: 'top'};
-      const {arrowStyle} = this.props;
-      const style = this.props.style ? {...this.props.style, ...this.state.style} : this.state.style;
       const tooltip = (
         <TooltipContent
           onMouseEnter={() => this.show()}
@@ -60,8 +73,8 @@ class Tooltip extends Component {
           theme={this.props.theme}
           bounce={this.props.bounce}
           arrowPlacement={arrowPlacement[this.props.placement]}
-          style={style}
-          arrowStyle={arrowStyle}
+          style={this.state.style}
+          arrowStyle={this.state.arrowStyle}
           >{this.props.content}</TooltipContent>
       );
       ReactDOM.render(tooltip, this._mountNode);
@@ -191,21 +204,42 @@ class Tooltip extends Component {
 
   _updatePosition() {
     if (this._tooltipNode && this._childNode) {
-      const style = position(
+      const style = this._adjustPosition(position(
         this._childNode.getBoundingClientRect(),
         this._tooltipNode.getBoundingClientRect(), {
           placement: this.props.placement,
           alignment: this.props.alignment,
           margin: 20
         }
-      );
+      ));
       this.setState({
         style: {
           top: `${style.top}px`,
           left: `${style.left}px`
-        }
+        },
+        arrowStyle: this._adjustArrowPosition(this.props.placement, this.props.moveArrowTo)
       });
     }
+  }
+
+  _adjustArrowPosition(placement, moveTo) {
+    if (moveTo) {
+      const isPositive = moveTo > 0;
+      const pixels = isPositive ? moveTo : -moveTo;
+      if (['top', 'bottom'].includes(placement)) {
+        return isPositive ? {left: `${pixels}px`} : {left: 'auto', right: `${pixels}px`};
+      }
+      return isPositive ? {top: `${pixels}px`} : {top: 'auto', bottom: `${pixels}px`};
+    }
+    return {};
+  }
+
+  _adjustPosition(originalPosition) {
+    const {x = 0, y = 0} = this.props.moveBy || {};
+    return {
+      left: originalPosition.left + x,
+      top: originalPosition.top + y
+    };
   }
 
   isShown() {
