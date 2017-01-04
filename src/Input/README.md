@@ -16,7 +16,7 @@
 | unit  | string | - | - | Unit to display in input box |
 | magnifyingGlass | bool | false | - | Should the component include a magnifyingGlass |
 | menuArrow | bool | false | - | Should the component include a menu arrow |
-| rtl  | bool | false | - | Should text input be RTL? |
+| rtl  | bool | false | - | Flip the magnify glass image so it be more suitable to rtl |
 | autoFocus | bool | false  | - | Standard React Input autoFocus (focus the element on mount) |
 | autoSelect | bool | false | - | Standard React Input autoSelect (select the entire text of the element on focus) |
 | onChange  | func | - | - | Standard input onChange callback |
