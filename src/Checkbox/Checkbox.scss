@@ -36,11 +36,17 @@
     align-items:center;
     justify-content:center;
     position: absolute;
-    top: 0px;
-    left: 0px;
+    top: 0;
+    left: 0;
     width: 15px;
     height: 15px;
     color: $D80;
+}
+
+.indeterminate {
+    background-color: $D80;
+    width: 8px;
+    height: 2px;
 }
 
 .checkbox>.inner>svg {

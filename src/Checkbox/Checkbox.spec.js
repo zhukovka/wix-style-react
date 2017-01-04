@@ -37,4 +37,18 @@ describe('Checkbox', () => {
 
     expect(driver.isChecked()).toBe(false);
   });
+
+  it('should run in indeterminate mode when not specified', () => {
+    const component = createShallow({indeterminate: true});
+    const driver = checkboxDriverFactory(component);
+
+    expect(driver.isIndeterminate()).toBe(true);
+  });
+
+  it('should not run in indeterminate mode when not specified', () => {
+    const component = createShallow();
+    const driver = checkboxDriverFactory(component);
+
+    expect(driver.isIndeterminate()).toBe(false);
+  });
 });

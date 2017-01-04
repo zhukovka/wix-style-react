@@ -7,6 +7,9 @@ import Readme from '../../src/Checkbox/README.md';
 import ExampleStandard from './ExampleStandard';
 import ExampleStandardRaw from '!raw!./ExampleStandard';
 
+import ExampleIndeterminate from './ExampleIndeterminate';
+import ExampleIndeterminateRaw from '!raw!./ExampleIndeterminate';
+
 import ExampleRtl from './ExampleRtl';
 import ExampleRtlRaw from '!raw!./ExampleRtl';
 
@@ -22,6 +25,10 @@ storiesOf('2. Switches', module)
 
       <CodeExample title="Standard" code={ExampleStandardRaw}>
         <ExampleStandard/>
+      </CodeExample>
+
+      <CodeExample title="Indeterminate" code={ExampleIndeterminateRaw}>
+        <ExampleIndeterminate/>
       </CodeExample>
 
       <CodeExample title="Rtl" code={ExampleRtlRaw}>
