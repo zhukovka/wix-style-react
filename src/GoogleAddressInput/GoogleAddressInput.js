@@ -1,7 +1,12 @@
 import React from 'react';
 import Input from '../Input';
 import AutoCompleteInput from '../AutoCompleteInput';
-import _ from 'lodash';
+import find from 'lodash.find';
+import map from 'lodash.map';
+import isundefined from 'lodash.isundefined';
+import filter from 'lodash.filter';
+import includes from 'lodash.includes';
+import each from 'lodash.foreach';
 
 class GoogleAddressInput extends React.Component {
   constructor(params) {
@@ -50,8 +55,8 @@ class GoogleAddressInput extends React.Component {
           onFocus={this.onFocus}
           onSet={this.onSet}
           value={value}
-          suggestions={_.map(suggestions, 'description')}
-          autoSelect={true}
+          suggestions={map(suggestions, 'description')}
+          autoSelect
           />
       </div>
     );
@@ -71,7 +76,7 @@ class GoogleAddressInput extends React.Component {
     this.props.onChange && this.props.onChange(e);
     this.props.onSet && this.props.onSet(null);
 
-    if (!_.isUndefined(this.props.value)) {
+    if (!isundefined(this.props.value)) {
       // Controlled mode
       return;
     }
@@ -102,7 +107,7 @@ class GoogleAddressInput extends React.Component {
       countryCode
     } = this.props;
 
-    const suggestion = _.find(this.state.suggestions, s => s.description === value);
+    const suggestion = find(this.state.suggestions, s => s.description === value);
 
     this.setState({suggestions: [], value: this.props.value || value});
 
@@ -149,7 +154,7 @@ class GoogleAddressInput extends React.Component {
 
       const value = e.target.value;
 
-      this._getSuggestions(value, !_.isUndefined(this.props.value)).then(suggestions => {
+      this._getSuggestions(value, !isundefined(this.props.value)).then(suggestions => {
 
         if (suggestions.length === 0) {
           // No suggestion to the text entered
@@ -207,7 +212,7 @@ class GoogleAddressInput extends React.Component {
       }
 
       if (filterTypes) {
-        results = _.filter(results, pred => _.includes(pred.types, filterTypes));
+        results = filter(results, pred => includes(pred.types, filterTypes));
       }
 
       return Promise.resolve(results);
@@ -222,11 +227,11 @@ function google2address(google) {
       lat: google.geometry.location.lat(),
       lng: google.geometry.location.lng()
     },
-    approximate: (!_.includes(google.types, 'street_address') && (!_.includes(google.types, 'premise')))
+    approximate: (!includes(google.types, 'street_address') && (!includes(google.types, 'premise')))
   };
 
-  _.each(google.address_components, component => {
-    _.each(component.types, type => {
+  each(google.address_components, component => {
+    each(component.types, type => {
       switch (type) {
         case 'country':
           result.country = component.long_name || null;
