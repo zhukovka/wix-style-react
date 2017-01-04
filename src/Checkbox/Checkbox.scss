@@ -22,10 +22,10 @@
 
 .checkbox {
     position: relative;
-    width: 17px;
-    min-width: 17px;
-    height: 17px;
-    min-height: 17px;
+    width: 16px;
+    min-width: 16px;
+    height: 16px;
+    min-height: 16px;
     border: 1px solid $B10;
     border-radius: 4px;
     box-sizing:border-box;
@@ -38,8 +38,8 @@
     position: absolute;
     top: 0;
     left: 0;
-    width: 15px;
-    height: 15px;
+    width: 14px;
+    height: 14px;
     color: $D80;
 }
 
@@ -50,8 +50,8 @@
 }
 
 .checkbox>.inner>svg {
-    width:9px;
-    height:9px;
+    width:8px;
+    height:8px;
 }
 
 .checkbox>.inner>svg>path {
