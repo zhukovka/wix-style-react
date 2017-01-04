@@ -1,3 +1,5 @@
+@import '../common.scss';
+
 .wrapper {
   text-align: center;
   display: flex;
@@ -39,6 +41,11 @@
     z-index: 1;
     top: 0; bottom: 0; left: 30px; right: 0;
     margin: auto;
+    text-transform: uppercase;
+
+    &:hover {
+        color: $B10;
+    }
 }
 
 .input {
@@ -57,9 +64,8 @@
   position: absolute;
   width: 5px;
   right: 0;
-  top: 0; bottom: 0; left: 72%; right: 0;
-  margin: auto;
   z-index: 1;
+  margin-right: 15px;
 }
 
 .timeButton {
