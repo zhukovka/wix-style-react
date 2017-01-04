@@ -42,7 +42,7 @@ Button.defaultProps = {
 
 Button.propTypes = {
   id: React.PropTypes.string,
-  theme: React.PropTypes.oneOf(['fullblue', 'emptyblue', 'fullpurple', 'emptypurple', 'fullgreen', 'emptygreen', 'fullred', 'emptyred']).isRequired,
+  theme: React.PropTypes.oneOf(['fullblue', 'emptyblue', 'fullpurple', 'emptypurple', 'fullgreen', 'emptygreen', 'fullred', 'emptyred']),
   style: React.PropTypes.oneOf(['fullblue', 'emptyblue', 'fullpurple', 'emptypurple', 'fullgreen', 'emptygreen', 'fullred', 'emptyred']),
   height: React.PropTypes.oneOf(['small', 'medium', 'large']),
   hover: React.PropTypes.bool,
