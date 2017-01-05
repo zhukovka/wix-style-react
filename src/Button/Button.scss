@@ -18,6 +18,8 @@
     border: 1px solid;
     cursor: pointer;
     outline: none;
+
+    transition: background-color 300ms linear;
 }
 
 .button>.inner {
@@ -34,12 +36,26 @@
     color: inherit;
 }
 
-.button.disabled
+.button.fullblue.disabled,
+.button.fullred.disabled,
+.button.fullgreen.disabled,
+.button.fullpurple.disabled,
 {
     pointer-events:none;
     background-color: $GR10 !important;
     border-color: $GR10 !important;
     color: #fff !important;
+}
+
+.button.emptyred.disabled,
+.button.emptygreen.disabled,
+.button.emptyblue.disabled,
+.button.emptypurple.disabled,
+{
+    pointer-events:none;
+    background-color: transparent;
+    border-color: $GR10;
+    color: $GR10;
 }
 
 .fullblue
@@ -65,22 +81,22 @@
 .emptyblue
 {
     background-color: #fff;
-    border-color: #5babef;
+    border-color: #fff;
     color: #3899ec;
 }
 
 .emptyblue:hover, .emptyblue.hover
 {
-    background-color: $paletteB2;
-    border-color: $paletteB2;
-    color: #fff;
+    background-color: $paletteB5;
+    border-color: $paletteB5;
+    color: #3899ec;
 }
 
 .emptyblue:active, .emptyblue.active
 {
-    background-color: $B10;
-    border-color: $B10;
-    color: #fff;
+    background-color: #fff;
+    border-color: #fff;
+    color: #3899ec;
 }
 
 .fullpurple
