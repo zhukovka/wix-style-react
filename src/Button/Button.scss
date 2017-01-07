@@ -49,6 +49,7 @@
 
 .button.emptyred.disabled,
 .button.emptygreen.disabled,
+.button.emptybluesecondary.disabled,
 .button.emptyblue.disabled,
 .button.emptypurple.disabled,
 {
@@ -78,25 +79,46 @@
     color: #fff;
 }
 
-.emptyblue
+.emptybluesecondary
 {
     background-color: #fff;
     border-color: #fff;
     color: #3899ec;
 }
 
-.emptyblue:hover, .emptyblue.hover
+.emptybluesecondary:hover, .emptybluesecondary.hover
 {
     background-color: $paletteB5;
     border-color: $paletteB5;
     color: #3899ec;
 }
 
-.emptyblue:active, .emptyblue.active
+.emptybluesecondary:active, .emptybluesecondary.active
 {
     background-color: #fff;
     border-color: #fff;
     color: #3899ec;
+}
+
+ .emptyblue
+ {
+     background-color: #fff;
+     border-color: #5babef;
+     color: #3899ec;
+ }
+
+ .emptyblue:hover, .emptyblue.hover
+ {
+     background-color: $paletteB2;
+     border-color: $paletteB2;
+     color: #fff;
+}
+
+.emptyblue:active, .emptyblue.active
+{
+    background-color: $B10;
+    border-color: $B10;
+    color: #fff;
 }
 
 .fullpurple
