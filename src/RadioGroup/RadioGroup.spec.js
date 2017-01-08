@@ -34,6 +34,32 @@ describe('RadioGroup', () => {
     expect(onChange).toBeCalledWith(1);
   });
 
+  it('should not call onChange when called upon checked option', () => {
+    const value = 1, onChange = jest.fn();
+    const component = createMount({
+      value,
+      onChange
+    });
+
+    const driver = radioGroupDriverFactory(component);
+
+    driver.selectByValue(1);
+    expect(onChange.mock.calls.length).toBe(0);
+  });
+
+  it('should not call onChange when called upon disabled option', () => {
+    const onChange = jest.fn();
+    const component = createMount({
+      onChange,
+      disabledRadios: [1]
+    });
+
+    const driver = radioGroupDriverFactory(component);
+
+    driver.selectByValue(1);
+    expect(onChange.mock.calls.length).toBe(0);
+  });
+
   it('should change the matched options as the value changes', () => {
     const value = 10;
     const component = createMount({
@@ -47,8 +73,8 @@ describe('RadioGroup', () => {
     expect(driver.radioAt(1).props().checked).toEqual(true);
   });
 
-  it('should have a different class based on the vAlign attribute', () => {
-    const options = [{value: 0, vAlign: 'center'}, {value: 1, vAlign: 'top'}];
+  it('should have a default vcenter class based on the vAlign attribute', () => {
+    const options = [{value: 0}, {value: 1}];
     const {createMount} = componentFactory(options);
 
     const component = createMount({
@@ -58,6 +84,21 @@ describe('RadioGroup', () => {
     const driver = radioGroupDriverFactory(component);
 
     expect(driver.getClassOfLabelAt(0)).toEqual('vcenter');
+    expect(driver.getClassOfLabelAt(1)).toEqual('vcenter');
+  });
+
+  it('should have a vtop class based on the vAlign attribute', () => {
+    const options = [{value: 0}, {value: 1}];
+    const {createMount} = componentFactory(options);
+
+    const component = createMount({
+      onChange: noop,
+      vAlign: 'top'
+    });
+
+    const driver = radioGroupDriverFactory(component);
+
+    expect(driver.getClassOfLabelAt(0)).toEqual('vtop');
     expect(driver.getClassOfLabelAt(1)).toEqual('vtop');
   });
 });

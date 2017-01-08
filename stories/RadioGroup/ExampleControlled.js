@@ -24,10 +24,10 @@ class ControlledRadioGroup extends Component {
 
     return (
       <RadioGroup {...this.props} value={this.state.value} onChange={onChange} disabledRadios={[4]}>
-        <div><RadioGroup.Radio value={1}>Option 1</RadioGroup.Radio></div>
-        <div><RadioGroup.Radio value={2}>Option 2</RadioGroup.Radio></div>
-        <div><RadioGroup.Radio value={3}>Option 3</RadioGroup.Radio></div>
-        <div><RadioGroup.Radio value={4}>Option 4</RadioGroup.Radio></div>
+        <RadioGroup.Radio value={1}>Option 1</RadioGroup.Radio>
+        <RadioGroup.Radio value={2}>Option 2</RadioGroup.Radio>
+        <RadioGroup.Radio value={3}>Option 3</RadioGroup.Radio>
+        <RadioGroup.Radio value={4}>Option 4</RadioGroup.Radio>
       </RadioGroup>
     );
   }

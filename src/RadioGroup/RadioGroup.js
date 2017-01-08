@@ -1,113 +1,64 @@
 import React from 'react';
 import uniqueId from 'lodash.uniqueid';
+import RadioButton from './RadioButton';
 import styles from './RadioGroup.scss';
-import classNames from 'classnames';
-import _ from 'lodash';
 
 class RadioGroup extends React.Component {
   constructor(props) {
     super(props);
-    this.id = uniqueId();
+    this.name = uniqueId();
+
+    if (props.children.some(child => child.type.name !== 'RadioButton')) {
+      throw new Error(
+        'RadioGroup: Invalid RadioButtons provided. Hint: RadioButton is not allowed to be encapsulated by div'
+      );
+    }
   }
 
   render() {
-    return (<div>{this.props.children}</div>);
-  }
-
-  getChildContext() {
-    return {
-      radioId: this.id,
-      radioSelected: this.props.value,
-      radioOnChange: this.props.onChange,
-      disabledRadios: this.props.disabledRadios,
-    };
-  }
-}
-
-RadioGroup.displayName = 'RadioGroup';
-
-RadioGroup.propTypes = {
-  onChange: React.PropTypes.func.isRequired,
-  value: React.PropTypes.oneOfType([React.PropTypes.string, React.PropTypes.number]),
-  disabledRadios: React.PropTypes.arrayOf(React.PropTypes.oneOfType([React.PropTypes.string, React.PropTypes.number])),
-  children: React.PropTypes.any
-};
-
-RadioGroup.defaultProps = {
-  disabledRadios: []
-};
-
-RadioGroup.childContextTypes = {
-  radioOnChange: React.PropTypes.func,
-  radioId: React.PropTypes.oneOfType([React.PropTypes.string, React.PropTypes.number]),
-  radioSelected: React.PropTypes.oneOfType([React.PropTypes.string, React.PropTypes.number]),
-  disabledRadios: React.PropTypes.arrayOf(React.PropTypes.oneOfType([React.PropTypes.string, React.PropTypes.number]))
-};
-
-class RadioButton extends React.Component {
-  constructor(props) {
-    super(props);
-    this.id = uniqueId();
-  }
-
-  render() {
-    const {value, vAlign} = this.props;
-
-    const checked = this.context.radioSelected === value;
-    const disabled = _.indexOf(this.context.disabledRadios, value) !== -1;
-
-    const radioClasses = classNames({
-      [styles.radio]: true,
-      [styles.checked]: checked,
-      [styles.disabled]: disabled
-    });
-
-    const labelClasses = classNames({
-      [styles.vcenter]: vAlign === 'center',
-      [styles.vtop]: vAlign === 'top'
-    });
+    const {onChange, disabledRadios, value, vAlign, id} = this.props;
 
     return (
-      <div className={styles.wrapper}>
-        <input
-          type="radio"
-          name={this.context.radioId}
-          value={value}
-          id={this.id}
-          checked={checked}
-          disabled={disabled}
-          onChange={() => this.context.radioOnChange(value)}
-          />
-        <label htmlFor={this.id} className={labelClasses} >
-          <div className={radioClasses}/>
-          <div className={styles.children}>
-            {this.props.children}
-          </div>
-        </label>
+      <div className={styles.wrapper} id={id}>
+        {React.Children.map(this.props.children, radio => (
+          <RadioGroup.Radio
+            value={radio.props.value}
+            name={this.name}
+            onChange={onChange}
+            vAlign={vAlign}
+            disabled={disabledRadios.indexOf(radio.props.value) !== -1}
+            checked={radio.props.value === value}
+            >
+            {radio.props.children}
+          </RadioGroup.Radio>
+        ))}
       </div>
     );
   }
 }
 
-RadioButton.displayName = 'RadioGroup.Button';
-
-RadioButton.propTypes = {
+RadioGroup.propTypes = {
+  onChange: React.PropTypes.func,
   value: React.PropTypes.oneOfType([React.PropTypes.string, React.PropTypes.number]),
-  vAlign: React.PropTypes.oneOf(['center', 'top']).isRequired,
-  children: React.PropTypes.any
+  disabledRadios: React.PropTypes.arrayOf(React.PropTypes.oneOfType([React.PropTypes.string, React.PropTypes.number])),
+  vAlign: React.PropTypes.oneOf(['center', 'top']),
+  id: React.PropTypes.oneOfType([React.PropTypes.string, React.PropTypes.number]),
+  children: React.PropTypes.arrayOf((propValue, key) => {
+    if (propValue[key].type.name !== 'RadioButton') {
+      return new Error(`InputWithOptions: Invalid Prop children was given. Validation failed on child number ${key}`);
+    }
+  })
 };
 
-RadioButton.defaultProps = {
+RadioGroup.defaultProps = {
+  disabledRadios: [],
+  onChange: () => {},
+  value: '',
   vAlign: 'center'
 };
 
-RadioButton.contextTypes = {
-  radioOnChange: React.PropTypes.func,
-  radioId: React.PropTypes.oneOfType([React.PropTypes.string, React.PropTypes.number]),
-  radioSelected: React.PropTypes.oneOfType([React.PropTypes.string, React.PropTypes.number]),
-  disabledRadios: React.PropTypes.arrayOf(React.PropTypes.oneOfType([React.PropTypes.string, React.PropTypes.number]))
-};
-
 RadioGroup.Radio = RadioButton;
+
+RadioGroup.displayName = 'RadioGroup';
 
 export default RadioGroup;
