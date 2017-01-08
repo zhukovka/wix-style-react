@@ -11,13 +11,15 @@ export default React.createClass({
   propTypes: {
     defaultValue: React.PropTypes.object,
     onChange: React.PropTypes.func,
-    rtl: React.PropTypes.bool
+    rtl: React.PropTypes.bool,
+    style: React.PropTypes.object
   },
 
   getDefaultProps() {
     return {
       defaultValue: moment(),
-      onChange: _.noop
+      onChange: _.noop,
+      style: {}
     };
   },
 
@@ -307,7 +309,7 @@ export default React.createClass({
 
   render() {
     return (
-      <div className={styles.wrapper}>
+      <div className={styles.wrapper} style={this.props.style}>
         {this.renderTime()}
       </div>
     );
