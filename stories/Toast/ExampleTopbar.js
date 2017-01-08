@@ -6,7 +6,7 @@ class ExampleToastToolbar extends React.Component {
 
   constructor(params) {
     super(params);
-    this.state = {showToast: false, theme: 'red', location: 'topfixed', type: 'bar'};
+    this.state = {id: 'toast', showToast: false, theme: 'red', top: '0px', location: 'topfixed', type: 'bar'};
   }
 
   render() {
@@ -15,9 +15,11 @@ class ExampleToastToolbar extends React.Component {
       <div className="ltr">
 
         <Toast
+          id={this.state.id}
           type={this.state.type}
           location={this.state.location}
           theme={this.state.theme}
+          top={this.state.top}
           show={this.state.showToast}
           timeout={0}
           onClose={() => this.setState({showToast: false})}
@@ -28,7 +30,7 @@ class ExampleToastToolbar extends React.Component {
         </Toast>
 
         <div style={{display: 'flex', width: '620px', justifyContent: 'space-between'}}>
-          <Button theme="fullblue" onClick={() => this.setState({theme: 'blue', type: 'bar', showToast: true})}>Show Toast</Button>
+          <Button id="fullblue-toast" theme="fullblue" onClick={() => this.setState({theme: 'blue', type: 'bar', showToast: true})}>Show Toast</Button>
           <Button theme="fullred" onClick={() => this.setState({theme: 'red', type: 'bar', showToast: true})}>Show Toast</Button>
           <Button theme="fullpurple" onClick={() => this.setState({theme: 'purple', type: 'bar', showToast: true})}>Show Toast</Button>
           <Button theme="fullgreen" onClick={() => this.setState({theme: 'green', type: 'bar', showToast: true})}>Show Toast</Button>
