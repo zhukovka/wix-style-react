@@ -61,7 +61,7 @@ class DataTable extends React.Component {
       <table id={this.props.id} className={s.table}>
         <thead>
           <tr>
-            {this.props.columns.map((column, i) => <th key={i}>{column.title}</th>)}
+            {this.props.columns.map(this.renderHeaderCell)}
           </tr>
         </thead>
         {this.renderBody(rowsToRender)}
@@ -83,11 +83,15 @@ class DataTable extends React.Component {
       rowClasses.push(s.clickableDataRow);
     }
 
+    if (this.props.rowDataHook) {
+      optionalRowProps['data-hook'] = this.props.rowDataHook;
+    }
+
+    optionalRowProps.className = classNames(rowClasses);
+
     return (
       <tr
         key={rowNum}
-        className={classNames(rowClasses)}
-        data-hook={this.props.rowDataHook}
         {...optionalRowProps}
         >
         {this.props.columns.map((column, colNum) => this.renderCell(rowData, column, rowNum, colNum))}
@@ -97,9 +101,13 @@ class DataTable extends React.Component {
 
   renderCell = (rowData, column, rowNum, colNum) => {
     const classes = classNames({[s.important]: column.important});
-    const style = {width: column.width};
-    return <td style={style} className={classes} key={colNum}>{column.render && column.render(rowData, rowNum)}</td>;
+    return <td className={classes} key={colNum}>{column.render && column.render(rowData, rowNum)}</td>;
   };
+
+  renderHeaderCell = (column, colNum) => {
+    const style = {width: column.width, minWidth: column.minWidth};
+    return <th style={style} key={colNum}>{column.title}</th>;
+  }
 
   calcLastPage = ({data, itemsPerPage}) => Math.ceil(data.length / itemsPerPage) - 1;
 
