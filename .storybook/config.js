@@ -27,6 +27,7 @@ function loadStories() {
   require('../stories/DataTable');
   require('../stories/Dropdown');
   require('../stories/Common');
+  require('../stories/Composite');
 }
 
 configure(loadStories, module);
