@@ -107,6 +107,17 @@ describe('<Tooltip/>', () => {
     expect(onMouseLeave.calledOnce).toEqual(true);
   });
 
+  it('should be disabled', () => {
+    driver
+      .given.props({
+        disabled: true
+      })
+      .when.created(<div>this is tooltip</div>)
+      .when.mouseEntered();
+
+    expect(driver.get.isShown()).toEqual(false);
+  });
+
 });
 
 function resolveIn(timeout) {

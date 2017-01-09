@@ -19,6 +19,7 @@ class Tooltip extends Component {
     active: PropTypes.bool,
     onActiveChange: PropTypes.func.isRequired,
     bounce: PropTypes.bool,
+    disabled: PropTypes.bool,
 
     /**
      * Allows to shift the tooltip position by x and y pixels.
@@ -46,7 +47,8 @@ class Tooltip extends Component {
     hideDelay: 500,
     active: false,
     onActiveChange: () => {},
-    theme: 'light'
+    theme: 'light',
+    disabled: false
   }
 
   _childNode = null;
@@ -132,6 +134,9 @@ class Tooltip extends Component {
   }
 
   show() {
+    if (this.props.disabled) {
+      return;
+    }
     if (this._unmounted) {
       return;
     }
