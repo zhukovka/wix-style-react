@@ -1,4 +1,4 @@
-@import './common';
+@import '../common';
 
 @mixin typography($font, $font-size, $line-height, $color) {
 	font-family: $font;
