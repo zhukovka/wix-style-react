@@ -6,6 +6,7 @@
 
 | propName | propType | defaultValue | isRequired | description |
 |----------|----------|--------------|------------|-------------|
+|id|string|""|no|The id of the toast|
 |type|string|bar|yes|Style of the toast (bar, largebar)|
 |location|string|topfixed|yes|Location to place the toast (currently just topfixed)|
 |theme|string|red|yes|Theme of the toast (red, blue, purple, green)|

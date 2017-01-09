@@ -27,6 +27,7 @@ describe('Toast', () => {
   it('should show a Toast text', () => {
     const driver = createDriver(defaultProps);
     const innerComponentText = defaultProps.children.props.children;
+    expect(driver.toastExists()).toEqual(true);
     expect(driver.getToastText()).toEqual(innerComponentText);
   });
 
