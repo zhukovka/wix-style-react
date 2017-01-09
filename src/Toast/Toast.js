@@ -106,7 +106,7 @@ Toast.propTypes = {
   show: PropTypes.bool,
   type: PropTypes.oneOf(['bar', 'largebar']).isRequired,
   position: PropTypes.oneOf(['topfixed']).isRequired,
-  theme: PropTypes.oneOf(['red', 'blue', 'purple', 'green']).isRequired,
+  theme: PropTypes.oneOf(['red', 'blue', 'purple', 'green', 'yellow']).isRequired,
   top: React.PropTypes.string,
   timeout: PropTypes.number,
   children: PropTypes.any,

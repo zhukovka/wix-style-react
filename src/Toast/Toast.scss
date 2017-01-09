@@ -9,6 +9,7 @@
 .toast.purple { background-color: $P20; }
 .toast.red { background-color: $R20; }
 .toast.green { background-color: $G20; }
+.toast.yellow { background-color: $Y20; }
 
 .enter
 {
@@ -109,11 +110,13 @@
 .toast.bar.blue .close:hover { background: $B10; }
 .toast.bar.purple .close:hover { background: $P10; }
 .toast.bar.green .close:hover { background: $G10; }
+.toast.bar.yellow .close:hover { background: $O10; }
 
 .toast.red .close path, 
 .toast.blue .close path, 
 .toast.purple .close path,
-.toast.green .close path 
+.toast.green .close path,
+.toast.yellow .close path 
 {
     stroke: white;
 }

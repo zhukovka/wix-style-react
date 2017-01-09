@@ -34,6 +34,7 @@ class ExampleToastToolbar extends React.Component {
           <Button theme="fullred" onClick={() => this.setState({theme: 'red', type: 'bar', showToast: true})}>Show Toast</Button>
           <Button theme="fullpurple" onClick={() => this.setState({theme: 'purple', type: 'bar', showToast: true})}>Show Toast</Button>
           <Button theme="fullgreen" onClick={() => this.setState({theme: 'green', type: 'bar', showToast: true})}>Show Toast</Button>
+          <Button theme="fullgreen" onClick={() => this.setState({theme: 'yellow', type: 'bar', showToast: true})}>Show Yellow Toast</Button>
         </div>
         <br/>
         <div style={{display: 'flex', width: '800px', justifyContent: 'space-between'}}>
@@ -41,6 +42,7 @@ class ExampleToastToolbar extends React.Component {
           <Button theme="fullred" onClick={() => this.setState({theme: 'red', type: 'largebar', showToast: true})}>Show Toast (large)</Button>
           <Button theme="fullpurple" onClick={() => this.setState({theme: 'purple', type: 'largebar', showToast: true})}>Show Toast (large)</Button>
           <Button theme="fullgreen" onClick={() => this.setState({theme: 'green', type: 'largebar', showToast: true})}>Show Toast (large)</Button>
+          <Button theme="fullgreen" onClick={() => this.setState({theme: 'yellow', type: 'largebar', showToast: true})}>Show Yellow Toast (large)</Button>
         </div>
 
       </div>
