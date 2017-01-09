@@ -6,9 +6,8 @@ import $ from 'jquery';
 
 const byDataHook = hook => `[data-hook|="${hook}"]`;
 
-const toastDriverFactory = ({component, wrapper}) => {
+const toastDriverFactory = ({component}) => {
   const $component = $(component);
-  const $wrapper = $(wrapper);
 
   const styleStringToObj = input =>
     input //"key1: value1;key2: value2;"
