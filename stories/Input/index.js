@@ -25,6 +25,9 @@ import ExampleControlledRaw from '!raw!./ExampleControlled';
 import ExampleRefs from './ExampleRefs';
 import ExampleRefsRaw from '!raw!./ExampleRefs';
 
+import ExampleSizes from './ExampleSizes';
+import ExampleSizesRaw from '!raw!./ExampleSizes';
+
 storiesOf('1. Inputs', module)
   .add('1.1 Standard', () => (
     <div>
@@ -54,6 +57,10 @@ storiesOf('1. Inputs', module)
 
       <CodeExample title="Controlled input" code={ExampleControlledRaw}>
         <ExampleControlled/>
+      </CodeExample>
+
+      <CodeExample title="Sizes" code={ExampleSizesRaw}>
+        <ExampleSizes/>
       </CodeExample>
 
       <CodeExample title="Commands test" code={ExampleRefsRaw}>

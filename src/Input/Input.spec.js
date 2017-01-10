@@ -347,6 +347,26 @@ describe('Input', () => {
       expect(driver.hasIconLeft()).toBe(true);
     });
   });
+
+  describe('size attribute', () => {
+
+    it('should use "normal" size by default', () => {
+      const driver = createDriver({});
+      expect(driver.isOfSize('normal')).toEqual(true);
+    });
+
+    it('should use "small" size', () => {
+      const driver = createDriver({size: 'small'});
+      expect(driver.isOfSize('small')).toEqual(true);
+    });
+
+    it('should use "large" size', () => {
+      const driver = createDriver({size: 'large'});
+      expect(driver.isOfSize('large')).toEqual(true);
+    });
+
+  });
+
 });
 
 describe('testkit', () => {

@@ -30,6 +30,7 @@ const inputDriverFactory = ({component, wrapper}) => {
     isFocusedStyle: () => input.className.indexOf(styles.focus) >= 0,
     isHoveredStyle: () => input.className.indexOf(styles.hover) >= 0,
     isOfStyle: style => component.className.indexOf(styles[style]) >= 0,
+    isOfSize: size => component.classList.contains(styles[`size-${size}`]),
     isFocus: () => document.activeElement === input,
     exists: () => $component.find('input').length > 0,
     hasIconLeft: () => component.className.indexOf(styles.iconLeft) >= 0,

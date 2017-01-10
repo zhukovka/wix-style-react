@@ -34,7 +34,8 @@ class Input extends React.Component {
       autoFocus,
       onKeyUp,
       onBlur,
-      readOnly
+      readOnly,
+      size
     } = this.props;
 
     let {theme} = this.props; // When deprecation ends. theme should move to const.
@@ -62,7 +63,7 @@ class Input extends React.Component {
       theme = style;
     }
 
-    const classes = classNames({
+    const classes = classNames(styles[`size-${size}`], {
       [styles.iconLeft]: !!this.props.iconLeft,
       [styles.input]: true,
       [styles[theme]]: true,
@@ -139,7 +140,8 @@ class Input extends React.Component {
 Input.displayName = 'Input';
 
 Input.defaultProps = {
-  theme: 'normal'
+  theme: 'normal',
+  size: 'normal'
 };
 
 Input.propTypes = {
@@ -168,7 +170,8 @@ Input.propTypes = {
   onKeyDown: React.PropTypes.func,
   onKeyUp: React.PropTypes.func,
   iconLeft: React.PropTypes.object,
-  readOnly: React.PropTypes.bool
+  readOnly: React.PropTypes.bool,
+  size: React.PropTypes.oneOf(['small', 'normal', 'large'])
 };
 
 export default Input;
