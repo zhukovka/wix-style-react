@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {PropTypes} from 'react';
 import uniqueId from 'lodash.uniqueid';
 import styles from './RadioGroup.scss';
 import classNames from 'classnames';
@@ -24,7 +24,7 @@ class RadioButton extends React.Component {
     });
 
     return (
-      <div className={styles.wrapper}>
+      <div className={styles.radioWrapper}>
         <input
           type="radio"
           name={name}
@@ -45,16 +45,16 @@ class RadioButton extends React.Component {
   }
 }
 
-RadioButton.displayName = 'RadioGroup.Button';
-
 RadioButton.propTypes = {
-  value: React.PropTypes.oneOfType([React.PropTypes.string, React.PropTypes.number]),
-  vAlign: React.PropTypes.oneOf(['center', 'top']),
-  name: React.PropTypes.string,
-  onChange: React.PropTypes.func,
-  checked: React.PropTypes.bool,
-  disabled: React.PropTypes.bool,
-  children: React.PropTypes.any
+  value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+  vAlign: PropTypes.oneOf(['center', 'top']),
+  name: PropTypes.string,
+  onChange: PropTypes.func,
+  checked: PropTypes.bool,
+  disabled: PropTypes.bool,
+  children: PropTypes.any
 };
+
+RadioButton.displayName = 'RadioGroup.Button';
 
 export default RadioButton;

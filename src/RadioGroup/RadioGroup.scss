@@ -1,37 +1,73 @@
 @import '../common.scss';
 
-.wrapper, .wrapper > *
+.vertical
+{
+  display: flex;
+  flex-direction: column;
+}
+
+.horizontal
+{
+  display: flex;
+}
+
+.horizontal .radio-wrapper > label, :global(.ltr) .horizontal .radio-wrapper > label
+{
+  margin-right: 20px;
+}
+
+:global(.rtl) .horizontal .radio-wrapper > label
+{
+  margin-left: 20px;
+}
+
+.vertical .radio-wrapper
+{
+  margin-bottom: 12px;
+}
+
+.radio-wrapper
+{
+  display: flex;
+}
+
+.radio-wrapper, .radio-wrapper > *
 {
     cursor:pointer;
     box-sizing:border-box;
 }
 
-.wrapper > input
+.radio-wrapper > input
 {
     display: none;
 }
 
-.wrapper > label
+.radio-wrapper > label
 {
     display: flex;
 }
 
-:global(.ltr) .wrapper > label {
+:global(.ltr) .radio-wrapper > label {
     flex-direction: row;
 }
 
-:global(.rtl) .wrapper > label {
+:global(.rtl) .radio-wrapper > label {
     flex-direction: row-reverse;
 }
 
-.wrapper > label.vcenter
+.radio-wrapper > label.vcenter
 {
     align-items: center;
 }
 
-.wrapper > label.vtop
+.radio-wrapper > label.vtop
 {
     align-items: top;
+}
+
+.horizontal .children, :global(.ltr) .horizontal .children
+{
+    padding-left: 6px;
 }
 
 .children, :global(.ltr) .children
@@ -70,7 +106,7 @@
 
 .radio:hover
 {
-    background-color: $B50;
+  background-color: $B50;
 }
 
 .radio.disabled

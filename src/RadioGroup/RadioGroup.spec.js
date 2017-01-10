@@ -101,4 +101,24 @@ describe('RadioGroup', () => {
     expect(driver.getClassOfLabelAt(0)).toEqual('vtop');
     expect(driver.getClassOfLabelAt(1)).toEqual('vtop');
   });
+
+  it('should have a vertical class by default', () => {
+    const options = [{value: 0}, {value: 1}];
+    const {createMount} = componentFactory(options);
+
+    const component = createMount({});
+    const driver = radioGroupDriverFactory(component);
+
+    expect(driver.isVerticalDisplay()).toBeTruthy();
+  });
+
+  it('should have a horizontal class', () => {
+    const options = [{value: 0}, {value: 1}];
+    const {createMount} = componentFactory(options);
+
+    const component = createMount({display: 'horizontal'});
+    const driver = radioGroupDriverFactory(component);
+
+    expect(driver.isHorizontalDisplay()).toBeTruthy();
+  });
 });

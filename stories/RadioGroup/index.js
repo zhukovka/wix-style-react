@@ -10,6 +10,9 @@ import ExampleStandardRaw from '!raw!./ExampleStandard';
 import ExamplevAlign from './ExamplevAlign';
 import ExamplevAlignRaw from '!raw!./ExamplevAlign';
 
+import ExampleHorizontal from './ExampleHorizontal';
+import ExampleHorizontalRaw from '!raw!./ExampleHorizontal';
+
 import ExampleControlled from './ExampleControlled';
 import ExampleControlledRaw from '!raw!./ExampleControlled';
 
@@ -26,6 +29,10 @@ storiesOf('2. Switches', module)
 
       <CodeExample title="vAlign" code={ExamplevAlignRaw}>
         <ExamplevAlign/>
+      </CodeExample>
+
+      <CodeExample title="Horizontal" code={ExampleHorizontalRaw}>
+        <ExampleHorizontal/>
       </CodeExample>
 
       <CodeExample title="Controlled input" code={ExampleControlledRaw}>

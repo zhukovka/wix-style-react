@@ -10,7 +10,9 @@ const radioGroupDriverFactory = component => ({
   radioAt: index => component.find('input').at(index),
   labelAt: index => component.childAt(index).find('label'),
   allRadios: () => component.children().find('input'),
-  getClassOfLabelAt: index => component.childAt(index).find('label').node.className
+  getClassOfLabelAt: index => component.childAt(index).find('label').node.className,
+  isVerticalDisplay: () => component.find('.vertical').length > 0,
+  isHorizontalDisplay: () => component.find('.horizontal').length > 0
 });
 
 const componentFactory = options => {

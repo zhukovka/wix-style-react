@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {PropTypes} from 'react';
 import uniqueId from 'lodash.uniqueid';
 import RadioButton from './RadioButton';
 import styles from './RadioGroup.scss';
@@ -6,7 +6,7 @@ import styles from './RadioGroup.scss';
 class RadioGroup extends React.Component {
   constructor(props) {
     super(props);
-    this.name = uniqueId();
+    this.name = uniqueId('RadioGroup_');
 
     if (props.children.some(child => child.type.name !== 'RadioButton')) {
       throw new Error(
@@ -16,10 +16,10 @@ class RadioGroup extends React.Component {
   }
 
   render() {
-    const {onChange, disabledRadios, value, vAlign, id} = this.props;
+    const {onChange, disabledRadios, value, vAlign, display, id} = this.props;
 
     return (
-      <div className={styles.wrapper} id={id}>
+      <div className={styles[display]} id={id}>
         {React.Children.map(this.props.children, radio => (
           <RadioGroup.Radio
             value={radio.props.value}
@@ -38,12 +38,13 @@ class RadioGroup extends React.Component {
 }
 
 RadioGroup.propTypes = {
-  onChange: React.PropTypes.func,
-  value: React.PropTypes.oneOfType([React.PropTypes.string, React.PropTypes.number]),
-  disabledRadios: React.PropTypes.arrayOf(React.PropTypes.oneOfType([React.PropTypes.string, React.PropTypes.number])),
-  vAlign: React.PropTypes.oneOf(['center', 'top']),
-  id: React.PropTypes.oneOfType([React.PropTypes.string, React.PropTypes.number]),
-  children: React.PropTypes.arrayOf((propValue, key) => {
+  onChange: PropTypes.func,
+  value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+  disabledRadios: PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.string, PropTypes.number])),
+  vAlign: PropTypes.oneOf(['center', 'top']),
+  display: PropTypes.oneOf(['vertical', 'horizontal']),
+  id: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+  children: PropTypes.arrayOf((propValue, key) => {
     if (propValue[key].type.name !== 'RadioButton') {
       return new Error(`InputWithOptions: Invalid Prop children was given. Validation failed on child number ${key}`);
     }
@@ -54,7 +55,8 @@ RadioGroup.defaultProps = {
   disabledRadios: [],
   onChange: () => {},
   value: '',
-  vAlign: 'center'
+  vAlign: 'center',
+  display: 'vertical'
 };
 
 RadioGroup.Radio = RadioButton;
