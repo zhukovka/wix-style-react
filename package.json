@@ -10,7 +10,9 @@
     "testkit"
   ],
   "scripts": {
-    "test": "wix-node-build test --jest && wix-node-build test --protractor",
+    "test": "npm run test:unit && npm run test:e2e",
+    "test:unit": "wix-node-build test --jest",
+    "test:e2e": "wix-node-build test --protractor",
     "build": "wix-node-build lint && wix-node-build build && build-storybook",
     "start": "wix-node-build start & npm run storybook",
     "release": "wix-node-build release && gh-pages-auto-release --dist=storybook-static",

@@ -29,6 +29,7 @@ function loadStories() {
   require('../stories/Dropdown');
   require('../stories/Common');
   require('../stories/Composite');
+  require('../stories/Label');
 }
 
 configure(loadStories, module);
