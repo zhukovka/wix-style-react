@@ -23,6 +23,7 @@ function loadStories() {
   require('../stories/TimeInput');
   require('../stories/Tooltip');
   require('../stories/MultiSelect');
+  require('../stories/Tag');
   require('../stories/SideBar');
   require('../stories/DataTable');
   require('../stories/Dropdown');

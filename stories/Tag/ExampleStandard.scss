@@ -1,0 +1,24 @@
+ .main {
+  display: flex;
+  flex-direction: column;
+};
+
+.thumb {
+  width: 15px;
+  height: 15px;
+  background-color: green;
+  float: left;
+  border-radius: 50%;
+}
+
+.thumb2 {
+  width: 20px;
+  height: 20px;
+  background-color: green;
+  float: left;
+  border-radius: 50%;
+}
+
+.row {
+  display: flex;
+}
