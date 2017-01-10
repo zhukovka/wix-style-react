@@ -1,39 +1,45 @@
-import React, {Component} from 'react';
+import React from 'react';
 import Dropdown from 'wix-style-react/Dropdown';
+import InputWithOptions from 'wix-style-react/InputWithOptions';
 
 const style = {
   display: 'inline-block',
-  padding: '0 5px',
-  width: '140px',
-  lineHeight: '22px'
+  padding: '0 5px 0',
+  width: '200px',
+  lineHeight: '22px',
+  marginBottom: '350px'
 };
 
 const options = [
-  {value: 1, text: 'Option 1'},
-  {value: 2, text: 'Option 2'},
-  {value: 0, text: '-'},
-  {value: 3, text: 'Option 3'},
-  {value: 4, text: 'Option 4'},
+  {id: 1, value: 'Option 1'},
+  {id: 2, value: 'Option 2'},
+  {id: 3, value: 'Option 3'},
+  {id: 4, value: 'Option 4', disabled: true},
+  {id: 5, value: 'Option 5'},
 ];
 
-class ControlledExample extends Component {
-  constructor() {
-    super();
-    this.state = {selected: null, show: true};
+class ControlledDropdown extends React.Component {
+  constructor(props) {
+    super(props);
+    this.onSelect = this.onSelect.bind(this);
+  }
+
+  onSelect(option) {
+    console.log(`Option ${JSON.stringify(option)} selected`);
   }
 
   render() {
-    const onSelect = (value) => this.setState({selected: value});
-    const onClose = () => this.setState({selected: null});
-
     return (
-      <div className='ltr' style={style}> Left to right
-        <Dropdown options={options} onSelect={onSelect} value={this.state.selected} onClose={onClose}/>
-        <div style={{padding: '120px 0 16px'}}>Selected value: {this.state.selected}</div>
-      </div>
+      <Dropdown
+        options={options}
+        onSelect={this.onSelect}
+        placeholder={'Choose an option'}
+        />
     );
   }
 }
 
 export default () =>
-  <ControlledExample/>;
+  <div className="ltr" style={style}>
+    <ControlledDropdown/>
+  </div>;

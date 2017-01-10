@@ -6,8 +6,8 @@ function loadStories() {
 
   require('../stories/Introduction');
   require('../stories/Input');
-  require('../stories/Select');
-  require('../stories/AutoCompleteInput');
+  require('../stories/InputWithOptions');
+  require('../stories/AutoComplete');
   require('../stories/Slider');
   require('../stories/GoogleAddressInput');
   require('../stories/ToggleSwitch');
@@ -26,6 +26,7 @@ function loadStories() {
   require('../stories/Tag');
   require('../stories/SideBar');
   require('../stories/DataTable');
+  require('../stories/DropdownLayout');
   require('../stories/Dropdown');
   require('../stories/Common');
   require('../stories/Composite');

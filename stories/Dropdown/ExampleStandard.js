@@ -9,21 +9,21 @@ const style = {
 };
 
 const options = [
-  {value: 0, text: 'Option 1'},
-  {value: 1, text: 'Option 2'},
-  {value: 2, text: 'Option 3'},
-  {value: 3, text: 'Option 4'},
+  {id: 0, value: 'Option 1'},
+  {id: 1, value: 'Option 2'},
+  {id: 2, value: 'Option 3'},
+  {id: 3, value: 'Option 4'},
 ];
 
 const rtlOptions = [
-  {value: 0, text: 'אופציה 1'},
-  {value: 1, text: 'אופציה 2'},
-  {value: 2, text: 'אופציה 3'},
-  {value: 3, text: 'אופציה 4'},
+  {id: 0, value: 'אופציה 1'},
+  {id: 1, value: 'אופציה 2'},
+  {id: 2, value: 'אופציה 3'},
+  {id: 3, value: 'אופציה 4'},
 ];
 
 export default () =>
   <div>
-    <div className="ltr" style={style}>Left to right<br/><Dropdown value={0} options={options}/></div>
-    <div className="rtl" style={style}>Right to left<br/><Dropdown value={0} options={rtlOptions}/></div>
+    <div className="ltr" style={style}>Left to right<br/><Dropdown options={options}/></div>
+    <div className="rtl" style={style}>Right to left<br/><Dropdown options={rtlOptions}/></div>
   </div>;

@@ -13,7 +13,7 @@ import ExampleRtl from './ExampleRtl';
 import ExampleRtlRaw from '!raw!./ExampleRtl';
 
 storiesOf('1. Inputs', module)
-  .add('1.4 Slider', () => (
+  .add('1.3 Slider', () => (
     <div>
       <Markdown source={Readme}/>
 
@@ -24,7 +24,7 @@ storiesOf('1. Inputs', module)
       </CodeExample>
 
       <CodeExample title="Standard RTL" code={ExampleRtlRaw}>
-          <ExampleRtl/>
+        <ExampleRtl/>
       </CodeExample>
 
       <CodeExample title="Controlled input" code={ExampleControlledRaw}>

@@ -6,7 +6,8 @@ const style = {
   display: 'inline-block',
   padding: '0 5px 0',
   width: '400px',
-  lineHeight: '22px'
+  lineHeight: '22px',
+  paddingBottom: '350px'
 };
 
 class ControlledGoogleAddressInput extends Component {

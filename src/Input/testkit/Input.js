@@ -15,6 +15,10 @@ const inputDriverFactory = ({component, wrapper}) => {
     trigger: (trigger, event) => ReactTestUtils.Simulate[trigger](input, event),
     focus: () => input.focus(),
     clickClear: () => ReactTestUtils.Simulate.click(clearButton[0]),
+    enterText: keys => {
+      input.value = keys;
+      ReactTestUtils.Simulate.change(input);
+    },
     getValue: () => input.value,
     getDefaultValue: () => input.defaultValue,
     getTabIndex: () => input.tabIndex,

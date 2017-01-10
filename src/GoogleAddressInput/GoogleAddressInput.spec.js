@@ -37,19 +37,19 @@ describe('GoogleAddressInput', () => {
   describe('appearance', () => {
     it('should show magnifying glass by default', () => {
       const component = createShallow({Client: GmapsTestClient});
-      expect(component.find('AutoCompleteInput').props().magnifyingGlass).toEqual(true);
+      expect(component.find('InputWithOptions').props().magnifyingGlass).toEqual(true);
     });
     it('should allow hiding magnifying glass', () => {
       const component = createShallow({Client: GmapsTestClient, magnifyingGlass: false});
-      expect(component.find('AutoCompleteInput').props().magnifyingGlass).toEqual(false);
+      expect(component.find('InputWithOptions').props().magnifyingGlass).toEqual(false);
     });
     it('should allow setting theme for the nested input', () => {
       const component = createShallow({Client: GmapsTestClient, theme: 'material'});
-      expect(component.find('AutoCompleteInput').props().theme).toEqual('material');
+      expect(component.find('InputWithOptions').props().theme).toEqual('material');
     });
     it('should allow the input to be readOnly', () => {
       const component = createShallow({Client: GmapsTestClient, readOnly: true});
-      expect(component.find('AutoCompleteInput').props().readOnly).toEqual(true);
+      expect(component.find('InputWithOptions').props().readOnly).toEqual(true);
     });
   });
 
@@ -75,15 +75,15 @@ describe('GoogleAddressInput', () => {
 
       const component = createShallow({Client: GmapsTestClient, countryCode: 'XX'});
       const event = {target: {value: 'Hatomer 49'}};
-      component.find('AutoCompleteInput').props().onChange(event);
+      component.find('InputWithOptions').props().onChange(event);
 
       // Defer to make sure all promises run
       _.defer(() => {
         try {
           component.update();
-          expect(component.find('AutoCompleteInput').props().suggestions).toEqual([
-            '{"components":"country:XX","input":"Hatomer 49"} - 1',
-            '{"components":"country:XX","input":"Hatomer 49"} - 2'
+          expect(component.find('InputWithOptions').props().options).toEqual([
+            {id: 0, value: '{"components":"country:XX","input":"Hatomer 49"} - 1'},
+            {id: 1, value: '{"components":"country:XX","input":"Hatomer 49"} - 2'}
           ]);
           done();
         } catch (e) {
@@ -98,7 +98,7 @@ describe('GoogleAddressInput', () => {
 
       const component = createShallow({Client: GmapsTestClient, countryCode: 'XX', onSet});
       component.setState({suggestions: [JSON.parse('{"description": "my address", "place_id": 123}')]});
-      component.find('AutoCompleteInput').props().onSet('my address');
+      component.find('InputWithOptions').props().onSelect('my address');
 
       // Defer to make sure all promises run
       _.defer(() => {
@@ -128,7 +128,7 @@ describe('GoogleAddressInput', () => {
 
       const component = createShallow({Client: GmapsTestClient, countryCode: 'XX', onSet});
       component.setState({suggestions: [JSON.parse('{"description": "my address", "place_id": 123}')]});
-      component.find('AutoCompleteInput').props().onKeyDown({keyCode: 13, target: {value: 'my addr'}});
+      component.find('InputWithOptions').props().onKeyDown({keyCode: 13, target: {value: 'my addr'}});
 
       // Defer to make sure all promises run
       _.defer(() => {
@@ -157,7 +157,7 @@ describe('GoogleAddressInput', () => {
       const onSet = sinon.spy();
       const component = createShallow({Client: GmapsTestClient, countryCode: 'YY', onSet});
       component.setState({suggestions: [JSON.parse('{"description": "my address", "place_id": 123}')]});
-      component.find('AutoCompleteInput').props().onKeyDown({keyCode: 13, target: {value: 'dontfind'}});
+      component.find('InputWithOptions').props().onKeyDown({keyCode: 13, target: {value: 'dontfind'}});
 
       // Defer to make sure all promises run
       _.defer(() => {

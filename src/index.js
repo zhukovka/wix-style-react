@@ -2,13 +2,12 @@ import {MessageBoxLayout1, MessageBoxLayout2, HeaderLayout1, FooterLayout1} from
 
 export {default as Button} from './Button';
 export {default as Input} from './Input';
-export {default as AutoCompleteInput} from './AutoCompleteInput';
+export {default as InputWithOptions} from './InputWithOptions';
 export {default as Checkbox} from './Checkbox';
 export {default as ToggleSwitch} from './ToggleSwitch';
 export {default as Modal} from './Modal';
 export {MessageBoxLayout1, MessageBoxLayout2, HeaderLayout1, FooterLayout1};
 export {default as RadioGroup} from './RadioGroup';
-export {default as Select} from './Select';
 export {default as Slider} from './Slider';
 export {default as GoogleAddressInput} from './GoogleAddressInput';
 export {default as clients} from './clients';
@@ -19,3 +18,7 @@ export {default as DatePicker} from './DatePicker';
 export {default as TimeInput} from './TimeInput';
 export {default as Tooltip} from './Tooltip';
 export {default as SideBar} from './SideBar';
+export {default as DropdownLayout} from './DropdownLayout';
+export {default as Dropdown} from './Dropdown';
+export {default as Autocomplete} from './AutoComplete';
+

@@ -1,8 +1,8 @@
 import React from 'react';
 import Input from '../Input';
-import AutoCompleteInput from '../AutoCompleteInput';
+import InputWithOptions from '../InputWithOptions';
 import find from 'lodash.find';
-import map from 'lodash.map';
+import reduce from 'lodash.reduce';
 import isundefined from 'lodash.isundefined';
 import filter from 'lodash.filter';
 import includes from 'lodash.includes';
@@ -46,16 +46,19 @@ class GoogleAddressInput extends React.Component {
 
     return (
       <div>
-        <AutoCompleteInput
+        <InputWithOptions
           ref={autocomplete => this.autocomplete = autocomplete}
           {...this.props}
           onChange={this.onChange}
           onKeyDown={this.onKeyDown}
           onBlur={this.onBlur}
           onFocus={this.onFocus}
-          onSet={this.onSet}
+          onSelect={this.onSet}
           value={value}
-          suggestions={map(suggestions, 'description')}
+          options={reduce(suggestions, (result, value) => {
+            result.push({id: result.length, value: value.description});
+            return result;
+          }, [])}
           autoSelect
           />
       </div>

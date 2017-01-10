@@ -7,17 +7,11 @@ import Readme from '../../src/Dropdown/README.md';
 import ExampleStandard from './ExampleStandard';
 import ExampleStandardRaw from '!raw!./ExampleStandard';
 
-import ExampleManyOptions from './ExampleManyOptions';
-import ExampleManyOptionsRaw from '!raw!./ExampleManyOptions';
-
-import ExampleReactElement from './ExampleReactElements';
-import ExampleReactElementRaw from '!raw!./ExampleReactElements';
-
 import ExampleControlled from './ExampleControlled';
 import ExampleControlledRaw from '!raw!./ExampleControlled';
 
-storiesOf('4. Layouts', module)
-  .add('4.2 Dropdown (In dev)', () => (
+storiesOf('1. Inputs', module)
+  .add('1.8 Dropdown', () => (
     <div>
       <Markdown source={Readme}/>
 
@@ -27,21 +21,7 @@ storiesOf('4. Layouts', module)
         <ExampleStandard/>
       </CodeExample>
 
-      <div style={{paddingTop: '110px'}}/>
-
-      <CodeExample title="Many options" code={ExampleManyOptionsRaw}>
-        <ExampleManyOptions/>
-      </CodeExample>
-
-      <div style={{paddingTop: '230px'}}/>
-
-      <CodeExample title="React elements" code={ExampleReactElementRaw}>
-        <ExampleReactElement/>
-      </CodeExample>
-
-      <div style={{paddingTop: '110px'}}/>
-
-      <CodeExample title="Controlled" code={ExampleControlledRaw}>
+      <CodeExample title="Controlled Dropdown" code={ExampleControlledRaw}>
         <ExampleControlled/>
       </CodeExample>
     </div>

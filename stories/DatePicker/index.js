@@ -9,7 +9,7 @@ import ExampleControlledExcludePast from './ExampleControlledExcludePast';
 import ExampleControlledRawExcludePast from '!raw!./ExampleControlledExcludePast';
 
 storiesOf('1. Inputs', module)
-  .add('1.6 DatePicker', () => (
+  .add('1.5 DatePicker', () => (
     <div>
       <Markdown source={Readme}/>
 

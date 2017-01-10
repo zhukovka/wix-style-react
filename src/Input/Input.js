@@ -12,6 +12,9 @@ class Input extends React.Component {
     super(params);
     this._onKeyDown = this._onKeyDown.bind(this);
     this._onFocus = this._onFocus.bind(this);
+    this.focus = this.focus.bind(this);
+    this.blur = this.blur.bind(this);
+    this.select = this.select.bind(this);
   }
 
   render() {
@@ -47,16 +50,16 @@ class Input extends React.Component {
         <SvgExclamation width={2} height={11}/>
       </div>) : null;
 
-    const unitDom = unit ? <div className={styles.unit} onClick={this._focus}>{unit}</div> : null;
+    const unitDom = unit ? <div className={styles.unit} onClick={this.focus}>{unit}</div> : null;
 
     const clearButtonDom = !!onClear && !error && !!value ?
       <div onClick={onClear} className={classNames([styles.clear_button, styles.end_pos])}><SvgX width={6} height={6} thickness={1}/></div> : null;
 
     const magnifyingGlassDom = magnifyingGlass && !clearButtonDom && !error ?
-      <div className={classNames([styles.magnifying_glass, styles.end_pos])} onClick={this._focus}><MagnifyingGlass alignLeft={!rtl}/></div> : null;
+      <div className={classNames([styles.magnifying_glass, styles.end_pos])} onClick={this.focus}><MagnifyingGlass alignLeft={!rtl}/></div> : null;
 
     const menuArrowDom = menuArrow && !clearButtonDom && !error && !magnifyingGlass ?
-      <div className={classNames([styles.menu_arrow, styles.end_pos])} onClick={this._focus}><MenuArrow/></div> : null;
+      <div className={classNames([styles.menu_arrow, styles.end_pos])}><MenuArrow/></div> : null;
 
     if (style) {
       console.warn('[wix-style-react>Input] Warning. Property \'style\' has been deprecated, and will be removed Jan 1st 2017. Please use \'theme\' instead.');
@@ -112,7 +115,7 @@ class Input extends React.Component {
   }
 
   select() {
-    this.input && this.input.select();
+    this.input.select();
   }
 
   _onFocus() {

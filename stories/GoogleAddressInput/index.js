@@ -11,7 +11,7 @@ import ExampleControlled from './ExampleControlled';
 import ExampleControlledRaw from '!raw!./ExampleControlled';
 
 storiesOf('1. Inputs', module)
-  .add('1.5 GoogleAddressInput', () => (
+  .add('1.4 GoogleAddressInput', () => (
     <div>
       <Markdown source={Readme}/>
 
