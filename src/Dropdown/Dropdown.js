@@ -5,7 +5,18 @@ class Dropdown extends InputWithOptions {
 
   constructor(props) {
     super(props);
-    this.state = {value: '', selectedId: -1};
+    let value = '', selectedId = -1;
+    if (props.selectedId) {
+      const option = props.options.find(option => {
+        return option.id === props.selectedId;
+      });
+
+      if (option) {
+        value = option.value;
+        selectedId = option.id;
+      }
+    }
+    this.state = {value, selectedId};
   }
 
   inputClasses() {

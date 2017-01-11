@@ -24,6 +24,6 @@ const rtlOptions = [
 
 export default () =>
   <div>
-    <div className="ltr" style={style}>Left to right<br/><Dropdown options={options}/></div>
+    <div className="ltr" style={style}>Left to right<br/><Dropdown selectedId={1} options={options}/></div>
     <div className="rtl" style={style}>Right to left<br/><Dropdown options={rtlOptions}/></div>
   </div>;
