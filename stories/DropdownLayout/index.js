@@ -27,7 +27,7 @@ storiesOf('4. Layouts', module)
         <ExampleStandard/>
       </CodeExample>
 
-      <div style={{paddingTop: '110px'}}/>
+      <div style={{paddingTop: '250px'}}/>
 
       <CodeExample title="Many options" code={ExampleManyOptionsRaw}>
         <ExampleManyOptions/>

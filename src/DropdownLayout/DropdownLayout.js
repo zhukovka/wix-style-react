@@ -152,7 +152,8 @@ class DropdownLayout extends React.Component {
                 idx,
                 selected: option.id === selectedId,
                 hovered: idx === this.state.hovered,
-                disabled: option.disabled
+                disabled: option.disabled,
+                overrideStyle: option.overrideStyle
               }))
           ))}
         </div>
@@ -164,9 +165,9 @@ class DropdownLayout extends React.Component {
     return (<div key={idx} className={styles.divider}/>);
   }
 
-  renderItem({option, idx, selected, hovered, disabled}) {
+  renderItem({option, idx, selected, hovered, disabled, overrideStyle}) {
     const optionClassName = classNames({
-      [styles.option]: true,
+      [styles.option]: !overrideStyle,
       [styles.selected]: selected,
       [styles.hovered]: hovered,
       [styles.disabled]: disabled,
@@ -223,7 +224,8 @@ DropdownLayout.propTypes = {
       React.PropTypes.node,
       React.PropTypes.string
     ]).isRequired,
-    disabled: React.PropTypes.bool
+    disabled: React.PropTypes.bool,
+    overrideStyle: React.PropTypes.bool
   })),
   selectedId: React.PropTypes.oneOfType([
     React.PropTypes.string,
