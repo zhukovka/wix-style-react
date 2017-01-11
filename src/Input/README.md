@@ -27,6 +27,7 @@
 | onKeyDown | func | - | - | Standard input onKeyDown callback |
 | onClear | func | - | - | Displays a X button on a non-empty input, and calls this callback when pressed. This callback should normally erase the value of the controlled object, and call focus |
 | size | string | normal | - | Specifies the size of the input (small, normal, large) |
+| dataHook | string | normal | - | Specifies a data-hook for tests |
 
 ## Functions
 

@@ -375,8 +375,9 @@ describe('testkit', () => {
     const value = 'hello';
     const onChange = () => {};
     const id = 'myID';
-    const wrapper = div.appendChild(ReactTestUtils.renderIntoDocument(<div><Input id={id} value={value} onChange={onChange}/></div>));
-    const driver = inputTestkitFactory({wrapper, id});
+    const dataHook = 'myDataHook';
+    const wrapper = div.appendChild(ReactTestUtils.renderIntoDocument(<div><Input id={id} value={value} onChange={onChange} dataHook={dataHook}/></div>));
+    const driver = inputTestkitFactory({wrapper, dataHook});
     expect(driver.exists()).toEqual(true);
   });
 });

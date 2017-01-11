@@ -52,8 +52,8 @@ const componentFactory = (props = {}) => {
   return {component: component.childNodes[0], wrapper: wrapperDiv};
 };
 
-const inputTestkitFactory = ({wrapper, id}) => {
-  const component = $(wrapper).find(`#${id}`)[0];
+const inputTestkitFactory = ({wrapper, dataHook}) => {
+  const component = $(wrapper).find(`[data-hook='${dataHook}']`);
   return inputDriverFactory({component, wrapper});
 };
 

@@ -38,7 +38,8 @@ class Input extends React.Component {
       onKeyUp,
       onBlur,
       readOnly,
-      size
+      size,
+      dataHook
     } = this.props;
 
     let {theme} = this.props; // When deprecation ends. theme should move to const.
@@ -77,13 +78,16 @@ class Input extends React.Component {
       [styles.inputWithArrow]: !!menuArrow
     });
 
+    let myAttr = {'data-hook': dataHook};
+
     return (
-      <div className={classes} onDoubleClick={this._onDoubleClickMargin} id={id} >
+      <div className={classes} onDoubleClick={this._onDoubleClickMargin} {...myAttr} >
         {this.props.iconLeft}
         {unitDom}
         <input
           ref={input => this.input = input}
           className={inputClasses}
+          id={id}
           defaultValue={defaultValue}
           value={value}
           onChange={onChange}
@@ -174,6 +178,7 @@ Input.propTypes = {
   onKeyUp: React.PropTypes.func,
   iconLeft: React.PropTypes.object,
   readOnly: React.PropTypes.bool,
+  dataHook: React.PropTypes.string,
   size: React.PropTypes.oneOf(['small', 'normal', 'large'])
 };
 
