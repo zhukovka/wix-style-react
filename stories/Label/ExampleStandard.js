@@ -9,7 +9,7 @@ class ExampleStandard extends Component {
   render() {
     return (
       <div>
-        <Label id="label" for="input-id" appearance={'T1_1'}>Label text</Label>
+        <Label id="label" for="input-id" appearance="T1.1">Label text</Label>
         <input id="input-id" type="text" />
       </div>
     );

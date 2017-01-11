@@ -1,5 +1,6 @@
 jest.mock('./Typography.scss', () => {
-  return {T1: 't1', T1_1: 't1_1', T2: 'T2', T2_2: 't2_2'};
+  // eslint-disable-next-line camelcase
+  return {t1: 't1', t1_1: 't1_1', t2: 't2', t2_2: 't2_2', h1: 'h1', h1_1: 'h1_1'};
 });
 
 import _ from 'lodash/fp';
@@ -41,10 +42,10 @@ describe('Label', () => {
   });
 
   it('should apply class by appearance', () => {
-    const appearance = 'T1_1';
+    const appearance = 'T1.1';
     const driver = createDriver({appearance});
 
-    expect(driver.getClassList()).toContain(appearance.toLowerCase());
+    expect(driver.getClassList()).toContain('t1_1');
   });
 });
 

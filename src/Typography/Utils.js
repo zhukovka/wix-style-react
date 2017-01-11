@@ -1,9 +1,7 @@
-export function toUXlang(cssMap = {}) {
-  const transformed = {};
+export function convertFromUxLangToCss(ux = '') {
+  return ux.toLowerCase().replace('.', '_');
+}
 
-  Object.keys(cssMap).forEach(key => {
-    transformed[key.toUpperCase()] = cssMap[key];
-  });
-
-  return transformed;
+export function convertFromCssToUxLang(css = '') {
+  return css.toUpperCase().replace('_', '.');
 }
