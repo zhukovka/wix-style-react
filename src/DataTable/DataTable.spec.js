@@ -91,4 +91,17 @@ describe('Table', () => {
     driver.clickRow(0); // should do nothing
     expect(driver.isRowClickable(0)).toBe(false);
   });
+
+  it('should not trigger click handler if default was prevented', () => {
+    const props = {
+      ...defaultProps,
+      onRowClick: jest.fn()
+    };
+
+    const driver = createDriver(props);
+    driver.clickRow(0, {isDefaultPrevented: () => true});
+
+    expect(driver.isRowClickable(0)).toBe(true);
+    expect(props.onRowClick).not.toBeCalled();
+  });
 });

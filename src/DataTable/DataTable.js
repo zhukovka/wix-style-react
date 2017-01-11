@@ -82,7 +82,13 @@ class DataTable extends React.Component {
     const optionalRowProps = {};
 
     if (this.props.onRowClick) {
-      optionalRowProps.onClick = () => this.props.onRowClick(rowData, rowNum);
+      optionalRowProps.onClick = event => {
+        if (event.isDefaultPrevented()) {
+          return;
+        }
+
+        this.props.onRowClick(rowData, rowNum);
+      };
       rowClasses.push(s.clickableDataRow);
     }
 

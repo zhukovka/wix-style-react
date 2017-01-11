@@ -16,6 +16,7 @@ const tableDriverFactory = ({component, wrapper}) => {
 
   const getRows = () => $component.find('tbody tr');
   const getRowsCount = () => getRows().length;
+  const getRow = rowIndex => getRows().get(rowIndex);
 
   return {
     getRowsCount,
@@ -26,7 +27,7 @@ const tableDriverFactory = ({component, wrapper}) => {
     isDisplayingNothing: () => $component.find(rootElement).length === 0,
     isDisplayingHeaderOnly: () => hasHeader() && getRowsCount() === 0,
     hasChildWithId: id => $component.find(`#${id}`).length > 0,
-    clickRow: index => ReactTestUtils.Simulate.click(getRows().get(index)),
+    clickRow: (index, eventData) => ReactTestUtils.Simulate.click(getRow(index), eventData),
     setProps: props => {
       ReactDOM.render(<div ref={r => component = r}><DataTable {...props}/></div>, wrapper);
     }
