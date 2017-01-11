@@ -78,7 +78,7 @@ class Input extends React.Component {
       [styles.inputWithArrow]: !!menuArrow
     });
 
-    let myAttr = {'data-hook': dataHook};
+    const myAttr = {'data-hook': dataHook};
 
     return (
       <div className={classes} onDoubleClick={this._onDoubleClickMargin} {...myAttr} >
