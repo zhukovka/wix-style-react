@@ -1,4 +1,3 @@
-import WixComponent from '../WixComponent';
 import React from 'react';
 import Input from '../Input';
 import InputWithOptions from '../InputWithOptions';
@@ -9,7 +8,7 @@ import filter from 'lodash.filter';
 import includes from 'lodash.includes';
 import each from 'lodash.foreach';
 
-class GoogleAddressInput extends WixComponent {
+class GoogleAddressInput extends React.Component {
   constructor(params) {
     super(params);
 

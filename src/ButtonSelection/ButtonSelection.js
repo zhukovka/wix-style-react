@@ -1,8 +1,7 @@
 import React, {PropTypes} from 'react';
-import WixComponent from '../WixComponent';
 import s from './ButtonSelection.scss';
 
-class ButtonSelection extends WixComponent {
+class ButtonSelection extends React.Component {
   componentWillMount() {
     const {value, buttonsNames} = this.props;
     if (value && (buttonsNames.every(b => b !== value))) {

@@ -1,10 +1,9 @@
-import React from 'react';
+import React, {Component} from 'react';
 import Input from '../Input';
 import styles from './DatePickerInput.scss';
 import omit from 'lodash.omit';
-import WixComponent from '../WixComponent';
 
-export default class DatePickerInput extends WixComponent {
+export default class DatePickerInput extends Component {
   static propTypes = {
     onClick: React.PropTypes.func,
     value: React.PropTypes.string,

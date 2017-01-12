@@ -1,10 +1,9 @@
-import WixComponent from '../WixComponent';
 import React, {PropTypes} from 'react';
 import uniqueId from 'lodash.uniqueid';
 import RadioButton from './RadioButton';
 import styles from './RadioGroup.scss';
 
-class RadioGroup extends WixComponent {
+class RadioGroup extends React.Component {
   constructor(props) {
     super(props);
     this.name = uniqueId('RadioGroup_');

@@ -3,7 +3,7 @@ import Autosuggest from 'react-autosuggest';
 import style from './multiSelect.scss';
 import ButtonsBar from './ButtonsBar';
 import TagsComponent from './TagsComponent';
-import WixComponent from '../WixComponent';
+
 
 const noop = () => {
 };
@@ -11,7 +11,7 @@ const noop = () => {
 const DELETE_KEY_CODE = 46;
 const BACKSPACE_KEY_CODE = 8;
 
-class MultiSelect extends WixComponent {
+class MultiSelect extends React.Component {
   static propTypes = {
     onAddTag: React.PropTypes.func.isRequired,
     onRemoveTag: React.PropTypes.func.isRequired,
@@ -27,8 +27,7 @@ class MultiSelect extends WixComponent {
     theme: React.PropTypes.object,
     multiSection: React.PropTypes.bool,
     renderSectionTitle: React.PropTypes.func,
-    getSectionSuggestions: React.PropTypes.func,
-    children: React.PropTypes.any
+    getSectionSuggestions: React.PropTypes.func
   };
 
   static defaultProps = {
@@ -49,7 +48,6 @@ class MultiSelect extends WixComponent {
     this.autosuggestRef.input.focus();
   }
 
-  /*eslint-disable */
   renderSuggestionsContainer = ({children, ...rest}) => {
     const {theme} = this.props;
     if (children) {
@@ -65,7 +63,6 @@ class MultiSelect extends WixComponent {
       return (<div data-hook="no-suggestions-message" className={theme.noSuggestions}>No search results</div>);
     }
   };
-  /*eslint-enable */
 
   renderTagInputComponent = inputProps => {
     const {renderTag, inputPlaceholder, theme, displayNameProp, tags} = this.props;

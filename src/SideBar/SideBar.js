@@ -2,9 +2,8 @@ import css from './SideBar.scss';
 import React from 'react';
 import BottomBar from './BottomBar';
 import Menu from './Menu';
-import WixComponent from '../WixComponent';
 
-class SideBar extends WixComponent {
+class SideBar extends React.Component {
 
   static displayName: 'SideBar'
 

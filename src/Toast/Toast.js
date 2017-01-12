@@ -1,11 +1,10 @@
 import React, {PropTypes} from 'react';
 import classnames from 'classnames';
 import SvgX from '../svg/X.js';
-import WixComponent from '../WixComponent';
 
 import styles from './Toast.scss';
 
-class Toast extends WixComponent {
+class Toast extends React.Component {
 
   constructor(params) {
     super(params);

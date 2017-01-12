@@ -1,24 +1,21 @@
 import React from 'react';
 import _ from 'lodash/fp';
 import ReactTestUtils from 'react-addons-test-utils';
-import inputDriver from './Input.driver';
-import {createDriverWrapper} from '../test-common';
-import {inputTestkitFactory} from '../../testkit';
-import Input from './Input';
+import {componentFactory, inputDriverFactory, inputTestkitFactory} from './testkit/Input';
+import Input from '../Input';
 import sinon from 'sinon';
 
 describe('Input', () => {
-  const createDriver = createDriverWrapper(inputDriver);
+
+  const createDriver = _.compose(inputDriverFactory, componentFactory);
 
   describe('value attribute', () => {
     it('should pass down to the wrapped input', () => {
-      const props = {
-        value: 'hello',
-        onChange: () => {}
-      };
+      const value = 'hello';
+      const onChange = () => {};
+      const driver = createDriver({value, onChange});
 
-      const driver = createDriver(<Input {...props}/>);
-      expect(driver.getValue()).toEqual(props.value);
+      expect(driver.getValue()).toEqual(value);
     });
   });
 
@@ -26,38 +23,49 @@ describe('Input', () => {
     it('should pass down to the wrapped input', () => {
       const defaultValue = 'hello';
 
-      const driver = createDriver(<Input defaultValue={defaultValue}/>);
+      const driver = createDriver({defaultValue});
+
       expect(driver.getDefaultValue()).toEqual(defaultValue);
     });
   });
 
   describe('tabIndex attribute', () => {
     it('should pass down to the wrapped input', () => {
+
       const tabIndex = 1;
 
-      const driver = createDriver(<Input tabIndex={tabIndex}/>);
+      const driver = createDriver({tabIndex});
+
       expect(driver.getTabIndex()).toEqual(tabIndex);
     });
   });
 
   describe('readOnly attribute', () => {
     it('should pass down to the wrapped input', () => {
-      const driver = createDriver(<Input readOnly/>);
-      expect(driver.getReadOnly()).toBeTruthy();
+
+      const readOnly = true;
+
+      const driver = createDriver({readOnly});
+
+      expect(driver.getReadOnly()).toEqual(readOnly);
     });
 
     it('should pass down to the wrapped input with default false value', () => {
-      const driver = createDriver(<Input/>);
-      expect(driver.getReadOnly()).toBeFalsy();
+
+      const driver = createDriver();
+
+      expect(driver.getReadOnly()).toEqual(false);
     });
   });
 
   describe('error attribute', () => {
     it('should display an error icon if error is true', () => {
-      const driver = createDriver(<Input error/>);
+      const error = true;
+
+      const driver = createDriver({error});
 
       expect(driver.hasExclamation()).toEqual(true);
-      expect(driver.hasError()).toBeTruthy();
+      expect(driver.hasError()).toBe(true);
     });
   });
 
@@ -65,93 +73,132 @@ describe('Input', () => {
     it('should the unit text if passed', () => {
       const unit = '$';
 
-      const driver = createDriver(<Input unit={unit}/>);
+      const driver = createDriver({unit});
+
       expect(driver.getUnit()).toEqual(unit);
     });
   });
 
   describe('magnifyingGlass attribute', () => {
     it('should display a magnifying glass icon if magnifyingGlass is true', () => {
-      const driver = createDriver(<Input magnifyingGlass/>);
-      expect(driver.hasMagnifyingGlass()).toBeTruthy();
+      const magnifyingGlass = true;
+
+      const driver = createDriver({magnifyingGlass});
+
+      expect(driver.hasMagnifyingGlass()).toEqual(true);
     });
 
     it('should not display a magnifying glass icon if magnifyingGlass is false', () => {
-      const driver = createDriver(<Input magnifyingGlass={false}/>);
-      expect(driver.hasMagnifyingGlass()).toBeFalsy();
+      const magnifyingGlass = false;
+
+      const driver = createDriver({magnifyingGlass});
+
+      expect(driver.hasMagnifyingGlass()).toEqual(false);
     });
 
     it('should not display a magnifying glass icon if error is true', () => {
-      const driver = createDriver(<Input magnifyingGlass error/>);
-      expect(driver.hasMagnifyingGlass()).toBeFalsy();
+      const magnifyingGlass = true;
+      const error = true;
+
+      const driver = createDriver({magnifyingGlass, error});
+
+      expect(driver.hasMagnifyingGlass()).toEqual(false);
     });
   });
 
   describe('menuArrow attribute', () => {
     it('should display a menu arrow icon if menuArrow is true', () => {
-      const driver = createDriver(<Input menuArrow/>);
-      expect(driver.hasMenuArrow()).toBeTruthy();
+      const menuArrow = true;
+
+      const driver = createDriver({menuArrow});
+
+      expect(driver.hasMenuArrow()).toEqual(true);
     });
 
     it('should not display a menu arrow icon if menuArrow is false', () => {
-      const driver = createDriver(<Input menuArrow={false}/>);
-      expect(driver.hasMenuArrow()).toBeFalsy();
+      const menuArrow = false;
+
+      const driver = createDriver({menuArrow});
+
+      expect(driver.hasMenuArrow()).toEqual(false);
     });
 
     it('should not display a menu arrow icon if error is true', () => {
-      const driver = createDriver(<Input menuArrow error/>);
-      expect(driver.hasMenuArrow()).toBeFalsy();
+      const menuArrow = true;
+      const error = true;
+
+      const driver = createDriver({menuArrow, error});
+
+      expect(driver.hasMenuArrow()).toEqual(false);
     });
 
     it('should not display a menu arrow icon if magnifyingGlass is true', () => {
-      const driver = createDriver(<Input menuArrow magnifyingGlass/>);
-      expect(driver.hasMenuArrow()).toBeFalsy();
+      const menuArrow = true;
+      const magnifyingGlass = true;
+
+      const driver = createDriver({menuArrow, magnifyingGlass});
+
+      expect(driver.hasMenuArrow()).toEqual(false);
     });
   });
 
   describe('rtl attribute', () => {
     it('should have rtl if rtl prop is true', () => {
-      const driver = createDriver(<Input rtl/>);
-      expect(driver.isRTL()).toBeTruthy();
+      const rtl = true;
+
+      const driver = createDriver({rtl});
+
+      expect(driver.isRTL()).toBe(true);
     });
 
     it('should not have rtl if rtl prop is false', () => {
-      const driver = createDriver(<Input rtl={false}/>);
-      expect(driver.isRTL()).toBeFalsy();
+      const rtl = false;
+
+      const driver = createDriver({rtl});
+
+      expect(driver.isRTL()).toBe(false);
     });
   });
 
   describe('onChange attribute', () => {
     it('should be called when text is entered to the input', () => {
+      let receivedEvent;
+      const onChange = e => {
+        receivedEvent = e;
+      };
 
-      const onChange = jest.fn();
       const event = {target: {value: 'world'}};
 
-      const driver = createDriver(<Input onChange={onChange}/>);
+      const driver = createDriver({onChange});
 
       driver.trigger('change', event);
 
-      expect(onChange).toBeCalled();
+      expect(receivedEvent.target).toBe(event.target);
     });
   });
 
   describe('onKeyUp attribute', () => {
     it('should be called after keybord key got pressed and then released', () => {
-      const onKeyUp = jest.fn();
+      let receivedEvent;
+      const onKeyUp = e => {
+        receivedEvent = e;
+      };
+
       const event = {target: {value: 'world'}};
 
-      const driver = createDriver(<Input onKeyUp={onKeyUp}/>);
+      const driver = createDriver({onKeyUp});
 
       driver.trigger('keyUp', event);
 
-      expect(onKeyUp).toBeCalled();
+      expect(receivedEvent.target).toBe(event.target);
     });
   });
 
   describe('onFocus attribute', () => {
     it('should be called when the input gets focused', () => {
       const onFocus = jest.fn();
-      const driver = createDriver(<Input onFocus={onFocus}/>);
+
+      const driver = createDriver({onFocus});
 
       driver.trigger('focus');
 
@@ -161,126 +208,148 @@ describe('Input', () => {
 
   describe('onBlur attribute', () => {
     it('should be called when the input gets blured', () => {
-      const onBlur = jest.fn();
-      const driver = createDriver(<Input onBlur={onBlur}/>);
 
-      driver.trigger('blur');
+      let receivedEvent;
+      const onBlur = e => {
+        receivedEvent = e;
+      };
 
-      expect(onBlur).toBeCalled();
+      const event = {target: {value: 'my value'}};
+
+      const driver = createDriver({onBlur});
+
+      driver.trigger('blur', event);
+
+      expect(receivedEvent.target.value).toBe(event.target.value);
     });
   });
 
   describe('onKeyDown attribute', () => {
     it('should be called when text is entered to the wrapped input', () => {
-      const onKeyDown = jest.fn();
+
+      let receivedEvent;
+      const onKeyDown = e => {
+        receivedEvent = e;
+      };
+
       const event = {keyCode: 40};
 
-      const driver = createDriver(<Input onKeyDown={onKeyDown}/>);
+      const driver = createDriver({onKeyDown});
 
       driver.trigger('keyDown', event);
 
-      expect(onKeyDown).toBeCalled();
+      expect(receivedEvent.keyCode).toBe(event.keyCode);
     });
   });
 
   describe('forceFocus attribute', () => {
     it('should have focus class on input if forceFocus is true', () => {
-      const driver = createDriver(<Input forceFocus/>);
-      expect(driver.isFocusedStyle()).toBeTruthy();
+      const forceFocus = true;
+
+      const driver = createDriver({forceFocus});
+
+      expect(driver.isFocusedStyle()).toBe(true);
     });
   });
 
   describe('forceHover attribute', () => {
     it('should have hover class on input if forceHover is true', () => {
-      const driver = createDriver(<Input forceHover/>);
-      expect(driver.isHoveredStyle()).toBeTruthy();
+      const forceHover = true;
+
+      const driver = createDriver({forceHover});
+
+      expect(driver.isHoveredStyle()).toBe(true);
     });
 
     it('should be hovered if forceFocus is false and forceHover is true', () => {
-      const driver = createDriver(<Input forceHover forceFocus={false}/>);
-      expect(driver.isHoveredStyle()).toBeTruthy();
+      const forceFocus = false;
+      const forceHover = true;
+
+      const driver = createDriver({forceHover, forceFocus});
+
+      expect(driver.isHoveredStyle()).toBe(true);
     });
   });
 
   describe('autoFocus attribute', () => {
     it('Mounting an input element with autoFocus=false, should give it the focus', () => {
       let autoFocus = false;
-      const driver = createDriver(<Input autoFocus={false}/>);
-      expect(driver.isFocus()).toBeFalsy();
+      const driver = createDriver({autoFocus});
+      expect(driver.isFocus()).toBe(false);
       autoFocus = true;
       driver.setProps({autoFocus});
-      expect(driver.isFocus()).toBeFalsy();
+      expect(driver.isFocus()).toBe(false);
     });
 
     it('Mounting an input element with autoFocus=true, gives it the focus', () => {
-      const driver = createDriver(<Input autoFocus/>);
-      expect(driver.isFocus()).toBeTruthy();
+      const driver = createDriver({autoFocus: true});
+      expect(driver.isFocus()).toBe(true);
     });
   });
 
   describe('focus function', () => {
     it('calling focus should give focus to the input', () => {
-      const driver = createDriver(<Input autoFocus={false}/>);
-      expect(driver.isFocus()).toBeFalsy();
+      const driver = createDriver({autoFocus: false});
+      expect(driver.isFocus()).toBe(false);
       driver.focus();
-      expect(driver.isFocus()).toBeTruthy();
+      expect(driver.isFocus()).toBe(true);
     });
   });
 
   describe('theme attribute', () => {
     it('should set the theme by default to "normal"', () => {
-      const driver = createDriver(<Input/>);
-      expect(driver.isOfStyle('normal')).toBeTruthy();
+      const driver = createDriver({});
+      expect(driver.isOfStyle('normal')).toBe(true);
     });
 
     it('should allowing setting the theme to "paneltitle"', () => {
-      const driver = createDriver(<Input theme="paneltitle"/>);
-      expect(driver.isOfStyle('paneltitle')).toBeTruthy();
+      const driver = createDriver({theme: 'paneltitle'});
+      expect(driver.isOfStyle('paneltitle')).toBe(true);
     });
 
     it('should allow setting the theme to "material"', () => {
-      const driver = createDriver(<Input theme="material"/>);
-      expect(driver.isOfStyle('material')).toBeTruthy();
+      const driver = createDriver({theme: 'material'});
+      expect(driver.isOfStyle('material')).toBe(true);
     });
   });
 
   describe('onClear attribute', () => {
     it('should not be displayed when text is empty', () => {
-      const onClear = () => {};
+      const onClear = sinon.spy();
       const onChange = () => {};
-      const driver = createDriver(<Input onClear={onClear} value="" onChange={onChange}/>);
-      expect(driver.hasClearButton()).toBeFalsy();
+      const driver = createDriver({onClear, value: '', onChange});
+      expect(driver.hasClearButton()).toBe(false);
     });
 
     it('should display a X when text is not null, and be clickable', () => {
       const onClear = sinon.spy();
       const onChange = () => {};
-      const driver = createDriver(<Input onClear={onClear} value={'some value'} onChange={onChange}/>);
-      expect(driver.hasClearButton()).toBeTruthy();
+      const driver = createDriver({onClear, value: 'some value', onChange});
+      expect(driver.hasClearButton()).toBe(true);
       driver.clickClear();
-      expect(onClear.calledOnce).toBeTruthy();
+      expect(onClear.calledOnce).toBe(true);
     });
 
     it('should display a left icon when one is passed', () => {
-      const driver = createDriver(<Input iconLeft={<div/>}/>);
-      expect(driver.hasIconLeft()).toBeTruthy();
+      const driver = createDriver({iconLeft: <div/>});
+      expect(driver.hasIconLeft()).toBe(true);
     });
   });
 
   describe('size attribute', () => {
 
     it('should use "normal" size by default', () => {
-      const driver = createDriver(<Input/>);
+      const driver = createDriver({});
       expect(driver.isOfSize('normal')).toEqual(true);
     });
 
     it('should use "small" size', () => {
-      const driver = createDriver(<Input size="small"/>);
+      const driver = createDriver({size: 'small'});
       expect(driver.isOfSize('small')).toEqual(true);
     });
 
     it('should use "large" size', () => {
-      const driver = createDriver(<Input size="large"/>);
+      const driver = createDriver({size: 'large'});
       expect(driver.isOfSize('large')).toEqual(true);
     });
 
@@ -289,13 +358,13 @@ describe('Input', () => {
   describe('prefix attribute', () => {
 
     it('should allow adding a custom prefix component', () => {
-      const driver = createDriver(<Input prefix={<div className="my-button"/>}/>);
+      const driver = createDriver({prefix: <div className="my-button"/>});
       expect(driver.hasPrefix()).toEqual(true);
       expect(driver.prefixComponentExists('.my-button')).toEqual(true);
     });
 
     it('should allow adding a custom suffix component', () => {
-      const driver = createDriver(<Input suffix={<div className="my-button"/>}/>);
+      const driver = createDriver({suffix: <div className="my-button"/>});
       expect(driver.hasSuffix()).toEqual(true);
       expect(driver.suffixComponentExists('.my-button')).toEqual(true);
     });
@@ -312,7 +381,7 @@ describe('testkit', () => {
     const id = 'myID';
     const dataHook = 'myDataHook';
     const wrapper = div.appendChild(ReactTestUtils.renderIntoDocument(<div><Input id={id} value={value} onChange={onChange} dataHook={dataHook}/></div>));
-    const inputTestkit = inputTestkitFactory({wrapper, dataHook});
-    expect(inputTestkit.exists()).toEqual(true);
+    const driver = inputTestkitFactory({wrapper, dataHook});
+    expect(driver.exists()).toEqual(true);
   });
 });

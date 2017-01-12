@@ -1,10 +1,10 @@
-import React, {PropTypes, cloneElement} from 'react';
+import React, {PropTypes, Component, cloneElement} from 'react';
 import ReactDOM from 'react-dom';
-import WixComponent from '../WixComponent';
+
 import TooltipContent from './TooltipContent';
 import position from './TooltipPosition';
 
-class Tooltip extends WixComponent {
+class Tooltip extends Component {
 
   static propTypes = {
     children: PropTypes.element.isRequired,

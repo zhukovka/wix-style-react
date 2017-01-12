@@ -1,5 +1,5 @@
 # TestKit (work in progress)
-This package comes with test-kits for the different components. Each component has a `<componentName>Testkit` method which exposes an api for the specific component. It will receive a wrapper (for now we only support Enzyme wrapper) and component data-hook as an input , and returns an object which contains all API methods.
+This package comes with test-kits for the different components. Each component has a `<componentName>TestkitFactory` method which exposes an api for the specific component. It will receive a wrapper (for now we only support Enzyme wrapper) and component ID as an input , and returns an object which contains all API methods.
 
 For example:
 
@@ -8,7 +8,7 @@ Using wix style Button in your production code:
 ```js
 <myForm>
   ...
-  <Button data-hook="my-button" />
+  <Button id="my-button" />
   ...
 ```
 
@@ -21,10 +21,10 @@ import {buttonTestkitFactory} from 'wix-style-react/dist/testkit';
 const myFormWrapper = ReactTestUtils.renderIntoDocument(<myForm...>);
 
 //Initial the testkit driver:
-const buttonTestkit = buttonTestkitFactory({wrapper: myFormWrapper, dataHook: 'my-button'});//testkit factory should receive a DOM element wrapper and a data-hook and expose an api for it
+const buttonDriver = buttonTestkitFactory({wrapper: myFormWrapper, id: 'my-button'});//driver factory should receive a DOM element wrapper and an id and expose an api for it
 
-//Use the testkit
-buttonTestkit.click();
+//Use the driver
+buttonDriver.click();
 
 ```
 
@@ -37,9 +37,9 @@ import {buttonTestkitFactory} from 'wix-style-react/dist/testkit/enzyme';
 const myFormWrapper = mount(<myForm...>);
 
 //Initial the testkit driver:
-const buttonTestkit = buttonTestkitFactory({wrapper: myFormWrapper, dataHook: 'my-button'});//testkit should receive an Enzyme wrapper and a data-hook and expose an api for it
+const buttonDriver = buttonTestkitFactory({wrapper: myFormWrapper, id: 'my-button'});//driver factory should receive an Enzyme wrapper and an id and expose an api for it
 
 //Use the driver
-buttonTestkit.click();
+buttonDriver.click();
 
 ```

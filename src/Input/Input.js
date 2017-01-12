@@ -1,6 +1,4 @@
-import React from 'react';
-import WixComponent from '../WixComponent';
-import styles from './Input.scss';
+import React, {PropTypes, Component} from 'react';
 import classNames from 'classnames';
 
 import Ticker from './Ticker';
@@ -8,7 +6,9 @@ import Unit from './Unit';
 import InputPrefix from './InputPrefix';
 import InputSuffix from './InputSuffix';
 
-class Input extends WixComponent {
+import styles from './Input.scss';
+
+class Input extends Component {
 
   static Ticker = Ticker;
   static Unit = Unit;
@@ -25,7 +25,7 @@ class Input extends WixComponent {
 
   state = {
     focus: false
-  };
+  }
 
   render() {
     const {
@@ -48,6 +48,7 @@ class Input extends WixComponent {
       onKeyUp,
       readOnly,
       size,
+      dataHook,
       iconLeft,
       prefix,
       suffix
@@ -74,8 +75,10 @@ class Input extends WixComponent {
       [styles.hasFocus]: forceFocus || this.state.focus
     });
 
+    const myAttr = {'data-hook': dataHook};
+
     return (
-      <div className={classes} >
+      <div className={classes} {...myAttr}>
         <InputPrefix>{iconLeft}{prefix}</InputPrefix>
         <input
           ref={input => this.input = input}
@@ -159,35 +162,36 @@ Input.defaultProps = {
 };
 
 Input.propTypes = {
-  id: React.PropTypes.string,
-  value: React.PropTypes.string,
-  style: React.PropTypes.oneOf(['normal', 'paneltitle', 'material']),
-  theme: React.PropTypes.oneOf(['normal', 'paneltitle', 'material']),
-  forceHover: React.PropTypes.bool,
-  forceFocus: React.PropTypes.bool,
-  placeholder: React.PropTypes.string,
-  error: React.PropTypes.bool,
-  unit: React.PropTypes.string,
-  defaultValue: React.PropTypes.string,
-  tabIndex: React.PropTypes.number,
-  magnifyingGlass: React.PropTypes.bool,
-  menuArrow: React.PropTypes.bool,
-  rtl: React.PropTypes.bool,
-  autoFocus: React.PropTypes.bool,
-  autoSelect: React.PropTypes.bool,
-  onChange: React.PropTypes.func,
-  onClear: React.PropTypes.func,
-  onBlur: React.PropTypes.func,
-  onFocus: React.PropTypes.func,
-  onEscapePressed: React.PropTypes.func,
-  onEnterPressed: React.PropTypes.func,
-  onKeyDown: React.PropTypes.func,
-  onKeyUp: React.PropTypes.func,
-  iconLeft: React.PropTypes.object,
-  readOnly: React.PropTypes.bool,
-  size: React.PropTypes.oneOf(['small', 'normal', 'large']),
-  prefix: React.PropTypes.node,
-  suffix: React.PropTypes.node
+  id: PropTypes.string,
+  value: PropTypes.string,
+  style: PropTypes.oneOf(['normal', 'paneltitle', 'material']),
+  theme: PropTypes.oneOf(['normal', 'paneltitle', 'material']),
+  forceHover: PropTypes.bool,
+  forceFocus: PropTypes.bool,
+  placeholder: PropTypes.string,
+  error: PropTypes.bool,
+  unit: PropTypes.string,
+  defaultValue: PropTypes.string,
+  tabIndex: PropTypes.number,
+  magnifyingGlass: PropTypes.bool,
+  menuArrow: PropTypes.bool,
+  rtl: PropTypes.bool,
+  autoFocus: PropTypes.bool,
+  autoSelect: PropTypes.bool,
+  onChange: PropTypes.func,
+  onClear: PropTypes.func,
+  onBlur: PropTypes.func,
+  onFocus: PropTypes.func,
+  onEscapePressed: PropTypes.func,
+  onEnterPressed: PropTypes.func,
+  onKeyDown: PropTypes.func,
+  onKeyUp: PropTypes.func,
+  iconLeft: PropTypes.object,
+  readOnly: PropTypes.bool,
+  dataHook: PropTypes.string,
+  size: PropTypes.oneOf(['small', 'normal', 'large']),
+  prefix: PropTypes.node,
+  suffix: PropTypes.node
 };
 
 function deprecated(when, oldProp, newProp) {

@@ -1,21 +1,16 @@
-import WixComponent from '../WixComponent';
 import React, {PropTypes} from 'react';
 import classnames from 'classnames';
 
 import styles from './Loader.scss';
 
-class Loader extends WixComponent {
-
-  render() {
-    const {size, text} = this.props;
-    const className = classnames(styles.loader, styles[size]);
-    return (
-      <div className={className}>
-        <div className={styles.wheel}/>
-        { text && <div className={styles.text}>{text}</div> }
-      </div>
-    );
-  }
+function Loader({size, text}) {
+  const className = classnames(styles.loader, styles[size]);
+  return (
+    <div className={className}>
+      <div className={styles.wheel}/>
+      { text && <div className={styles.text}>{text}</div> }
+    </div>
+  );
 }
 
 Loader.defaultProps = {

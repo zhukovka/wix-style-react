@@ -2,9 +2,8 @@ import css from './Menu.scss';
 import React from 'react';
 import classnames from 'classnames';
 import findIndex from 'lodash.findindex';
-import WixComponent from '../WixComponent';
 
-class Menu extends WixComponent {
+class Menu extends React.Component {
   render() {
     const {items, selectedId, onSelect = () => {}} = this.props;
 

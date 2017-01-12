@@ -1,38 +1,33 @@
-import WixComponent from '../WixComponent';
 import React from 'react';
 import Button from '../Button';
 import * as styles from './FooterLayout.scss';
 
-class FooterLayout1 extends WixComponent {
-
-  render() {
-    const {children, style, theme, cancelText, onCancel, onOk, confirmText} = this.props;
-    //TODO When deprecation ends, _theme won't be needed.
-    let _theme;
-    if (style) {
-      console.warn('[wix-style-react>FooterLayout1] Warning. Property \'style\' has been deprecated, and will be removed Jan 1st 2017. Please use \'theme\' instead.');
-      _theme = style;
-    } else {
-      _theme = theme;
-    }
-
-    return (
-      <div className={styles.footer}>
-        {children}
-        <div className={styles.footerbuttons}>
-          {cancelText ?
-            <Button theme={'empty' + _theme} onClick={onCancel}>
-              {cancelText}
-            </Button> : null
-          }
-          <Button theme={'full' + _theme} onClick={onOk}>
-            {confirmText}
-          </Button>
-        </div>
-      </div>
-    );
+const FooterLayout1 = ({children, style, theme, cancelText, onCancel, onOk, confirmText}) => {
+  //TODO When deprecation ends, _theme won't be needed.
+  let _theme;
+  if (style) {
+    console.warn('[wix-style-react>FooterLayout1] Warning. Property \'style\' has been deprecated, and will be removed Jan 1st 2017. Please use \'theme\' instead.');
+    _theme = style;
+  } else {
+    _theme = theme;
   }
-}
+
+  return (
+    <div className={styles.footer} >
+      {children}
+      <div className={styles.footerbuttons}>
+        {cancelText ?
+          <Button theme={'empty' + _theme} onClick={onCancel} >
+            {cancelText}
+          </Button> : null
+        }
+        <Button theme={'full' + _theme} onClick={onOk} >
+          {confirmText}
+        </Button>
+      </div>
+    </div>
+  );
+};
 
 FooterLayout1.propTypes = {
   confirmText: React.PropTypes.string,
