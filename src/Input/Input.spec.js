@@ -208,13 +208,19 @@ describe('Input', () => {
 
   describe('onBlur attribute', () => {
     it('should be called when the input gets blured', () => {
-      const onBlur = jest.fn();
+
+      let receivedEvent;
+      const onBlur = e => {
+        receivedEvent = e;
+      };
+
+      const event = {target: {value: 'my value'}};
 
       const driver = createDriver({onBlur});
 
-      driver.trigger('blur');
+      driver.trigger('blur', event);
 
-      expect(onBlur).toBeCalled();
+      expect(receivedEvent.target.value).toBe(event.target.value);
     });
   });
 

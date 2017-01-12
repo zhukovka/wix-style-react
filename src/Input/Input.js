@@ -125,9 +125,9 @@ class Input extends Component {
     }
   }
 
-  _onBlur() {
+  _onBlur(e) {
     this.setState({focus: false});
-    this.props.onBlur && this.props.onBlur();
+    this.props.onBlur && this.props.onBlur(e);
   }
 
   _onKeyDown(e) {
