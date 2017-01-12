@@ -1,11 +1,12 @@
-import React, {Component, PropTypes} from 'react';
+import React, {PropTypes} from 'react';
 import Rcslider from 'rc-slider';
 import uniqueId from 'lodash.uniqueid';
 import SliderHandle from './SliderHandle';
 import classNames from 'classnames';
 import './Slider.scss';
+import WixComponent from '../WixComponent';
 
-export default class Slider extends Component {
+export default class Slider extends WixComponent {
   getRange() {
     const {min, max, step} = this.props;
     const range = [];

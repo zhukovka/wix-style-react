@@ -1,10 +1,11 @@
+import WixComponent from '../WixComponent';
 import React from 'react';
 import classnames from 'classnames';
 import uniqueId from 'lodash.uniqueid';
 
 import styles from './ToggleSwitch.scss';
 
-class ToggleSwitch extends React.Component {
+class ToggleSwitch extends WixComponent {
 
   constructor(params) {
     super(params);

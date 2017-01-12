@@ -1,10 +1,11 @@
-import React, {Component} from 'react';
+import WixComponent from '../WixComponent';
+import React from 'react';
 import ReactDatepicker from 'react-datepicker';
 import DatePickerInput from './DatePickerInput';
 import moment from 'moment';
 import css from './DatePicker.scss';
 
-export default class DatePicker extends Component {
+export default class DatePicker extends WixComponent {
   static propTypes = {
     style: React.PropTypes.object,
     value: React.PropTypes.object,

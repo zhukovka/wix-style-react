@@ -1,9 +1,9 @@
-import React, {PropTypes, Component} from 'react';
+import React, {PropTypes} from 'react';
 import classnames from 'classnames';
-
+import WixComponent from '../WixComponent';
 import styles from './TooltipContent.scss';
 
-class TooltipContent extends Component {
+class TooltipContent extends WixComponent {
 
   static propTypes = {
 

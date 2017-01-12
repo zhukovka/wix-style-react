@@ -1,3 +1,4 @@
+import WixComponent from '../WixComponent';
 import styles from './DropdownLayout.scss';
 import React from 'react';
 import classNames from 'classnames';
@@ -14,7 +15,7 @@ const modulu = (n, m) => {
 
 const NOT_HOVERED_INDEX = -1;
 
-class DropdownLayout extends React.Component {
+class DropdownLayout extends WixComponent {
 
   constructor(props) {
     super(props);

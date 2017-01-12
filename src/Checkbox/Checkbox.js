@@ -1,10 +1,11 @@
 import styles from './Checkbox.scss';
 import uniqueId from 'lodash.uniqueid';
 import React from 'react';
+import WixComponent from '../WixComponent';
 import classNames from 'classnames';
 import SvgV from '../svg/V';
 
-class Checkbox extends React.Component {
+class Checkbox extends WixComponent {
   render() {
     const {id = uniqueId(), checked, indeterminate, disabled, hover, active, onChange} = this.props;
 

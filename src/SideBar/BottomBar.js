@@ -1,8 +1,9 @@
 import css from './BottomBar.scss';
 import React from 'react';
 import Tooltip from '../Tooltip';
+import WixComponent from '../WixComponent';
 
-class BottomBar extends React.Component {
+class BottomBar extends WixComponent {
 
   render() {
 

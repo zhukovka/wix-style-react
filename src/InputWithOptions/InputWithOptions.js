@@ -1,9 +1,10 @@
+import WixComponent from '../WixComponent';
 import React from 'react';
 import Input from '../Input/Input.js';
 import omit from 'lodash.omit';
 import DropdownLayout from '../DropdownLayout/DropdownLayout';
 
-class InputWithOptions extends React.Component {
+class InputWithOptions extends WixComponent {
 
   // Abstraction
   inputClasses() {}

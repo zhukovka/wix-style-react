@@ -1,28 +1,40 @@
+import WixComponent from '../WixComponent';
 import React from 'react';
 import * as styles from './MessageBoxLayout2.scss';
 import {HeaderLayout1, FooterLayout1} from './';
 
-const MessageBoxLayout2 = ({title, onCancel, onOk, confirmText, children, hideFooter, cancelText, style, theme}) => {
-  //TODO When deprecation ends, _theme won't be needed.
-  const _theme = theme || style;
+class MessageBoxLayout2 extends WixComponent {
 
-  if (style) {
-    console.warn('[wix-style-react>MessageBoxLayout2] Warning. Property \'style\' has been deprecated, and will be removed Jan 1st 2017. Please use \'theme\' instead.');
-  }
+  render() {
+    const {title, onCancel, onOk, confirmText, children, hideFooter, cancelText, style, theme} = this.props;
+    //TODO When deprecation ends, _theme won't be needed.
+    const _theme = theme || style;
 
-  return (
-    <div className={styles.content}>
-      <HeaderLayout1 title={title} onCancel={onCancel} theme={_theme}/>
-      <div className={styles.body} >
-        {children}
+    if (style) {
+      console.warn('[wix-style-react>MessageBoxLayout2] Warning. Property \'style\' has been deprecated, and will be removed Jan 1st 2017. Please use \'theme\' instead.');
+    }
+
+    return (
+      <div className={styles.content}>
+        <HeaderLayout1 title={title} onCancel={onCancel} theme={_theme}/>
+        <div className={styles.body}>
+          {children}
+        </div>
+        {
+          !hideFooter ?
+            <FooterLayout1
+              confirmText={confirmText}
+              cancelText={cancelText}
+              onCancel={onCancel}
+              onOk={onOk}
+              theme={_theme}
+              /> :
+            null
+        }
       </div>
-      {
-        !hideFooter ?
-          <FooterLayout1 confirmText={confirmText} cancelText={cancelText} onCancel={onCancel} onOk={onOk} theme={_theme}/> : null
-      }
-    </div>
-  );
-};
+    );
+  }
+}
 
 MessageBoxLayout2.propTypes = {
   hideFooter: React.PropTypes.bool,

@@ -1,37 +1,40 @@
 import React from 'react';
+import WixComponent from '../WixComponent';
 import styles from './Button.scss';
 import classNames from 'classnames';
 
-export default function Button(props) {
+class Button extends WixComponent {
 
-  const {id, style, hover, active, disabled, height, onClick} = props;
-  let {theme} = props; // When deprecation ends. theme should move to const.
+  render() {
+    const {id, style, hover, active, disabled, height, onClick} = this.props;
+    let {theme} = this.props; // When deprecation ends. theme should move to const.
 
-  if (style) {
-    console.warn('[wix-style-react>Button] Warning. Property \'style\' has been deprecated, and will be removed Jan 1st 2017. Please use \'theme\' instead.');
-    theme = style;
+    if (style) {
+      console.warn('[wix-style-react>Button] Warning. Property \'style\' has been deprecated, and will be removed Jan 1st 2017. Please use \'theme\' instead.');
+      theme = style;
+    }
+
+    const className = classNames({
+      [styles.button]: true,
+      [styles[theme]]: true,
+      [styles.hover]: hover,
+      [styles.active]: active,
+      [styles.disabled]: disabled,
+      [styles[`height${height}`]]: height !== 'medium'
+    });
+
+    const _style = {
+      height
+    };
+
+    return (
+      <button className={className} onClick={onClick} style={_style} id={id} >
+        <div className={styles.inner}>
+          {this.props.children}
+        </div>
+      </button>
+    );
   }
-
-  const className = classNames({
-    [styles.button]: true,
-    [styles[theme]]: true,
-    [styles.hover]: hover,
-    [styles.active]: active,
-    [styles.disabled]: disabled,
-    [styles[`height${height}`]]: height !== 'medium'
-  });
-
-  const _style = {
-    height
-  };
-
-  return (
-    <button className={className} onClick={onClick} style={_style} id={id} >
-      <div className={styles.inner}>
-        {props.children}
-      </div>
-    </button>
-  );
 }
 
 Button.displayName = 'Button';
@@ -51,3 +54,5 @@ Button.propTypes = {
   onClick: React.PropTypes.func,
   children: React.PropTypes.any
 };
+
+export default Button;
