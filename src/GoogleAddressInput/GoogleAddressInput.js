@@ -53,7 +53,8 @@ class GoogleAddressInput extends React.Component {
           onKeyDown={this.onKeyDown}
           onBlur={this.onBlur}
           onFocus={this.onFocus}
-          onSelect={this.onSet}
+          onSelect={option => this.onSet(option.value)}
+          onManuallyInput={value => this.onChange({target: {value}})}
           value={value}
           options={reduce(suggestions, (result, value) => {
             result.push({id: result.length, value: value.description});
@@ -75,7 +76,6 @@ class GoogleAddressInput extends React.Component {
 
   onChange(e) {
     const value = e.target.value;
-
     this.props.onChange && this.props.onChange(e);
     this.props.onSet && this.props.onSet(null);
 
@@ -120,7 +120,6 @@ class GoogleAddressInput extends React.Component {
     };
 
     const requestId = ++this.geocodeRequestId;
-
     (new Client()).geocode({request}).then(results => {
 
       if (requestId !== this.geocodeRequestId) {
