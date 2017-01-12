@@ -1,0 +1,24 @@
+@import '../common.scss';
+
+.root {
+  box-sizing: border-box;
+}
+
+.up,
+.down {
+  box-sizing: border-box;
+  padding: 5px;
+  cursor: pointer;
+  user-select: none;
+  svg { display: block; margin: 0 auto; }
+}
+
+.up.disabled,
+.down.disabled {
+  cursor: not-allowed;
+  path { stroke: $GR10}
+}
+
+.down svg {
+  transform: rotate(-180deg);
+}
