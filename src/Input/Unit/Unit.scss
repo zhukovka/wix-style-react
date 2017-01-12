@@ -1,0 +1,9 @@
+@import '../../common.scss';
+
+.root {
+  padding: 0 12px;
+  font-size: 13px;
+  line-height: 18px;
+  color: $paletteD3;
+  @include FontLight();
+}

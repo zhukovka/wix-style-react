@@ -3,10 +3,15 @@ import WixComponent from '../WixComponent';
 import styles from './Input.scss';
 import classNames from 'classnames';
 
+import Ticker from './Ticker';
+import Unit from './Unit';
 import InputPrefix from './InputPrefix';
 import InputSuffix from './InputSuffix';
 
 class Input extends WixComponent {
+
+  static Ticker = Ticker;
+  static Unit = Unit;
 
   constructor(params) {
     super(params);

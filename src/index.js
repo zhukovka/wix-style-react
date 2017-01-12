@@ -21,4 +21,3 @@ export {default as SideBar} from './SideBar';
 export {default as DropdownLayout} from './DropdownLayout';
 export {default as Dropdown} from './Dropdown';
 export {default as Autocomplete} from './AutoComplete';
-export {default as Ticker} from './Ticker';
