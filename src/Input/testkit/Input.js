@@ -8,8 +8,7 @@ import $ from 'jquery';
 const inputDriverFactory = ({component, wrapper}) => {
   const $component = $(component);
   const input = $component.find('input')[0];
-  const innerDiv = $component.find('div')[0];
-  const clearButton = $(component).find(`.${styles.clear_button}`);
+  const clearButton = $(component).find(`.${styles.clearButton}`);
 
   return {
     trigger: (trigger, event) => ReactTestUtils.Simulate[trigger](input, event),
@@ -23,21 +22,20 @@ const inputDriverFactory = ({component, wrapper}) => {
     getDefaultValue: () => input.defaultValue,
     getTabIndex: () => input.tabIndex,
     getReadOnly: () => input.readOnly,
-    hasExclamation: () => !!innerDiv && innerDiv.className.indexOf(styles.exclamation) >= 0,
-    hasError: () => component.className.indexOf(styles.error) >= 0,
+    hasExclamation: () => $component.find(`.${styles.exclamation}`).length === 1,
+    hasError: () => component.classList.contains(styles.hasError),
     getUnit: () => $component.find(`.${styles.unit}`)[0].textContent,
-    hasMagnifyingGlass: () => !!innerDiv && innerDiv.className.indexOf(styles.magnifying_glass) >= 0,
-    hasMenuArrow: () => !!innerDiv && innerDiv.className.indexOf(styles.menu_arrow) >= 0,
+    hasMagnifyingGlass: () => $component.find(`.${styles.magnifyingGlass}`).length === 1,
+    hasMenuArrow: () => $component.find(`.${styles.menuArrow}`).length === 1,
     hasClearButton: () => clearButton.length > 0,
     isRTL: () => component.className.indexOf(styles.rtl) >= 0,
-    hasEndWrapping: () => component.className.indexOf(styles.endpadding) >= 0,
-    isFocusedStyle: () => input.className.indexOf(styles.focus) >= 0,
-    isHoveredStyle: () => input.className.indexOf(styles.hover) >= 0,
+    isFocusedStyle: () => component.classList.contains(styles.hasFocus),
+    isHoveredStyle: () => component.classList.contains(styles.hasHover),
     isOfStyle: style => component.className.indexOf(styles[style]) >= 0,
     isOfSize: size => component.classList.contains(styles[`size-${size}`]),
     isFocus: () => document.activeElement === input,
     exists: () => $component.find('input').length > 0,
-    hasIconLeft: () => component.className.indexOf(styles.iconLeft) >= 0,
+    hasIconLeft: () => !$component.find(`.${styles.prefix}`).is(':empty'),
     setProps: props => {
       ReactDOM.render(<div ref={r => component = r}><Input {...props}/></div>, wrapper);
     }

@@ -236,24 +236,6 @@ describe('Input', () => {
     });
   });
 
-  describe('endpadding class', () => {
-    it('should have endpadding when error is true', () => {
-      const error = true;
-
-      const driver = createDriver({error});
-
-      expect(driver.hasEndWrapping()).toBe(true);
-    });
-
-    it('should have endpadding when magnifyingGlass is true', () => {
-      const magnifyingGlass = true;
-
-      const driver = createDriver({magnifyingGlass});
-
-      expect(driver.hasEndWrapping()).toBe(true);
-    });
-  });
-
   describe('forceFocus attribute', () => {
     it('should have focus class on input if forceFocus is true', () => {
       const forceFocus = true;

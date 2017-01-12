@@ -1,20 +1,25 @@
-import React from 'react';
-import styles from './Input.scss';
+import React, {Component} from 'react';
 import classNames from 'classnames';
-import SvgExclamation from '../svg/Exclamation.js';
-import MagnifyingGlass from '../svg/MagnifyingGlass.js';
-import SvgX from '../svg/X.js';
-import MenuArrow from '../svg/MenuArrow';
 
-class Input extends React.Component {
+import InputPrefix from './InputPrefix';
+import InputSuffix from './InputSuffix';
+
+import styles from './Input.scss';
+
+class Input extends Component {
 
   constructor(params) {
     super(params);
     this._onKeyDown = this._onKeyDown.bind(this);
     this._onFocus = this._onFocus.bind(this);
+    this._onBlur = this._onBlur.bind(this);
     this.focus = this.focus.bind(this);
     this.blur = this.blur.bind(this);
     this.select = this.select.bind(this);
+  }
+
+  state = {
+    focus: false
   }
 
   render() {
@@ -36,63 +41,43 @@ class Input extends React.Component {
       rtl,
       autoFocus,
       onKeyUp,
-      onBlur,
       readOnly,
       size,
-      dataHook
+      dataHook,
+      iconLeft
     } = this.props;
 
     let {theme} = this.props; // When deprecation ends. theme should move to const.
-
-    const inputClasses = forceFocus ? styles.focus : (forceHover ? styles.hover : '');
-
-    const exclamation = error ? (
-      <div className={styles.exclamation}>
-        <SvgExclamation width={2} height={11}/>
-      </div>) : null;
-
-    const unitDom = unit ? <div className={styles.unit} onClick={this.focus}>{unit}</div> : null;
-
-    const clearButtonDom = !!onClear && !error && !!value ?
-      <div onClick={onClear} className={classNames([styles.clear_button, styles.end_pos])}><SvgX width={6} height={6} thickness={1}/></div> : null;
-
-    const magnifyingGlassDom = magnifyingGlass && !clearButtonDom && !error ?
-      <div className={classNames([styles.magnifying_glass, styles.end_pos])} onClick={this.focus}><MagnifyingGlass alignLeft={!rtl}/></div> : null;
-
-    const menuArrowDom = menuArrow && !clearButtonDom && !error && !magnifyingGlass ?
-      <div className={classNames([styles.menu_arrow, styles.end_pos])}><MenuArrow/></div> : null;
 
     if (style) {
       console.warn('[wix-style-react>Input] Warning. Property \'style\' has been deprecated, and will be removed Jan 1st 2017. Please use \'theme\' instead.');
       theme = style;
     }
 
-    const classes = classNames(styles[`size-${size}`], {
-      [styles.iconLeft]: !!this.props.iconLeft,
-      [styles.input]: true,
-      [styles[theme]]: true,
+    const classes = classNames({
+      [styles.root]: true,
+      [styles[`theme-${theme}`]]: true,
+      [styles[`size-${size}`]]: true,
       [styles.rtl]: !!rtl,
-      [styles.error]: !!error,
-      [styles.endpadding]: !!magnifyingGlass || !!error,
-      [styles.inputWithUnit]: !!unit,
-      [styles.inputWithArrow]: !!menuArrow
+      [styles.hasError]: !!error,
+      [styles.hasHover]: forceHover,
+      [styles.hasFocus]: forceFocus || this.state.focus
     });
 
     const myAttr = {'data-hook': dataHook};
 
     return (
-      <div className={classes} onDoubleClick={this._onDoubleClickMargin} {...myAttr} >
-        {this.props.iconLeft}
-        {unitDom}
+      <div className={classes} {...myAttr}>
+        <InputPrefix>{iconLeft}</InputPrefix>
         <input
           ref={input => this.input = input}
-          className={inputClasses}
+          className={styles.input}
           id={id}
           defaultValue={defaultValue}
           value={value}
           onChange={onChange}
           onFocus={this._onFocus}
-          onBlur={onBlur}
+          onBlur={this._onBlur}
           onKeyDown={this._onKeyDown}
           onDoubleClick={this._onDoubleClick}
           placeholder={placeholder}
@@ -101,28 +86,35 @@ class Input extends React.Component {
           onKeyUp={onKeyUp}
           readOnly={readOnly}
           />
+        <InputSuffix
+          value={value}
+          error={error}
+          unit={unit}
+          magnifyingGlass={magnifyingGlass}
+          menuArrow={menuArrow}
+          rtl={rtl}
+          onClear={onClear}
+          onFocus={this.focus}
+          />
         {theme === 'material' && <div className={styles.bar}/>}
-        {exclamation}
-        {magnifyingGlassDom}
-        {clearButtonDom}
-        {menuArrowDom}
       </div>
     );
   }
 
   focus() {
-    this.input.focus();
+    this.input && this.input.focus();
   }
 
   blur() {
-    this.input.blur();
+    this.input && this.input.blur();
   }
 
   select() {
-    this.input.select();
+    this.input && this.input.select();
   }
 
   _onFocus() {
+    this.setState({focus: true});
     this.props.onFocus && this.props.onFocus();
 
     if (this.props.autoSelect) {
@@ -131,6 +123,11 @@ class Input extends React.Component {
       // is on. So setTimeout ensures we have the ref.input needed in select)
       setTimeout(() => this.select(), 0);
     }
+  }
+
+  _onBlur() {
+    this.setState({focus: false});
+    this.props.onBlur && this.props.onBlur();
   }
 
   _onKeyDown(e) {
