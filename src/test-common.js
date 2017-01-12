@@ -18,7 +18,7 @@ export const testkitFactoryCreator = driver => ({wrapper, dataHook}) => {
 };
 
 // enzyme
-export const enzymeTestkitFactoryCreator = driver => ({wrapper, dataHook}) => {
+export const enzymeTestKitFactoryCreator = driver => ({wrapper, dataHook}) => {
   const component = wrapper.findWhere(n => n.props()['data-hook'] === dataHook);
   return driver({component: component.node, wrapper});
 };
