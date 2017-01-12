@@ -79,7 +79,11 @@ class InputWithOptions extends React.Component {
   }
 
   hideOptions() {
-    this.setState({showOptions: false});
+    if (this.state.showOptions) {
+      setTimeout(() => {
+        this.setState({showOptions: false});
+      }, 100);
+    }
   }
 
   showOptions() {
@@ -98,7 +102,7 @@ class InputWithOptions extends React.Component {
     const {onSelect, closeOnSelect} = this.props;
 
     if (closeOnSelect) {
-      this._onBlur();
+      this.hideOptions();
     }
 
     if (onSelect) {
