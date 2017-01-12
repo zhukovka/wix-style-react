@@ -103,4 +103,38 @@ code {
 			background: rgba(255, 255, 255, .8);
 		}
 	}
+
+	.interactive-playground {
+		padding: 0 1rem;
+		display: block;
+
+		h2 {
+			margin: 0;
+		}
+
+		.playground-controls {
+			border: 1px solid #eee;
+			border-radius: 4px;
+			margin-bottom: 1.5rem;
+			padding: 0;
+
+			legend {
+				padding: 0 .5rem;
+			}
+
+			> ul {
+				list-style: none;
+				padding: 1rem ;
+				margin: 0;
+
+				li + li {
+					margin-top: .8rem;
+				}
+
+				label {
+					padding: 0 5px;
+				}
+			}
+		}
+	}
 }

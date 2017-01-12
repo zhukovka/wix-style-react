@@ -31,6 +31,7 @@ function loadStories() {
   require('../stories/Common');
   require('../stories/Composite');
   require('../stories/Label');
+  require('../stories/TextField');
 }
 
 configure(loadStories, module);

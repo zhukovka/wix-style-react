@@ -1,14 +1,8 @@
-jest.mock('./Typography.scss', () => {
-  // eslint-disable-next-line camelcase
-  return {t1: 't1', t1_1: 't1_1', t2: 't2', t2_2: 't2_2', h1: 'h1', h1_1: 'h1_1'};
-});
-
 import _ from 'lodash/fp';
 import React from 'react';
 import ReactTestUtils from 'react-addons-test-utils';
 import {labelTestkitFactory, componentFactory, labelDriverFactory} from './testkit/Label';
 import Label from './Label';
-jest.resetModules();
 
 describe('Label', () => {
 

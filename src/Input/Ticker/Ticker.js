@@ -19,6 +19,8 @@ const Ticker = ({onUp, onDown, upDisabled, downDisabled}) => {
   );
 };
 
+Ticker.displayName = 'Input.Ticker';
+
 Ticker.propTypes = {
   onUp: PropTypes.func,
   onDown: PropTypes.func,
