@@ -7,7 +7,17 @@ import MenuArrow from '../svg/MenuArrow';
 
 import styles from './Input.scss';
 
-const InputSuffix = ({value, error, unit, magnifyingGlass, menuArrow, onClear, onFocus, rtl}) => {
+const InputSuffix = ({
+  value,
+  error,
+  unit,
+  magnifyingGlass,
+  menuArrow,
+  onClear,
+  onFocus,
+  rtl,
+  children
+}) => {
 
   const exclamation = error ? (
     <div className={styles.exclamation}>
@@ -32,6 +42,7 @@ const InputSuffix = ({value, error, unit, magnifyingGlass, menuArrow, onClear, o
       {clearButtonDom}
       {menuArrowDom}
       {unitDom}
+      {children}
     </div>
   );
 };
@@ -44,7 +55,8 @@ InputSuffix.propTypes = {
   menuArrow: PropTypes.bool,
   rtl: PropTypes.bool,
   onClear: PropTypes.func,
-  onFocus: PropTypes.func
+  onFocus: PropTypes.func,
+  children: PropTypes.node
 };
 
 export default InputSuffix;

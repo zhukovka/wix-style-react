@@ -355,6 +355,22 @@ describe('Input', () => {
 
   });
 
+  describe('prefix attribute', () => {
+
+    it('should allow adding a custom prefix component', () => {
+      const driver = createDriver({prefix: <div className="my-button"/>});
+      expect(driver.hasPrefix()).toEqual(true);
+      expect(driver.prefixComponentExists('.my-button')).toEqual(true);
+    });
+
+    it('should allow adding a custom suffix component', () => {
+      const driver = createDriver({suffix: <div className="my-button"/>});
+      expect(driver.hasSuffix()).toEqual(true);
+      expect(driver.suffixComponentExists('.my-button')).toEqual(true);
+    });
+
+  });
+
 });
 
 describe('testkit', () => {
