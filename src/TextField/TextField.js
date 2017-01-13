@@ -1,7 +1,7 @@
 import React, {Children} from 'react';
 import {first, last} from 'lodash/fp';
 
-import {children, optional, once} from '../Composite/CompositeValidation';
+import {children, optional, once} from '../Composite';
 import Label from '../Label';
 import Input from '../Input';
 

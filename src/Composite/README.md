@@ -1,16 +1,19 @@
-Using composite component validators, you can specify the `children` requirements.
-If some component is required, optional, ...
+Using composite component validators, you can specify `children` requirements.
+Or any other property of `node` type.
 
 ```js
-class InputWithOptionalLabel extends Component {
-  static propTypes {
-    children: children(optional(Label), once(Input))
-  }
+const InputWithOptionalLabel = () => null;
+InputWithOptionalLabel.propTypes = {
+  children: children(optional(Label), once(Input))
+};
+
+const InputWithRequiredLabel = () => null;
+InputWithRequiredLabel.propTypes = {
+  children: children(once(Label), once(Input))
 }
 
-class InputWithRequiredLabel extends Component {
-  static propTypes: {
-    children: children(once(Label), once(Input))
-  }
+const Hero = () => null;
+Hero.propTypes = {
+  title: children(multiple(Label))
 }
 ```

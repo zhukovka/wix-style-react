@@ -25,6 +25,7 @@ const InputSuffix = ({
     </div>) : null;
 
   const unitDom = unit ? <div className={styles.unit} onClick={onFocus}>{unit}</div> : null;
+  const unitSeparatorDom = unitDom ? <div className={styles.unitSeparator}/> : null;
 
   const clearButtonDom = !!onClear && !error && !!value ?
     <div onClick={onClear} className={styles.clearButton}><SvgX width={6} height={6} thickness={1}/></div> : null;
@@ -41,6 +42,7 @@ const InputSuffix = ({
       {magnifyingGlassDom}
       {clearButtonDom}
       {menuArrowDom}
+      {unitSeparatorDom}
       {unitDom}
       {children}
     </div>

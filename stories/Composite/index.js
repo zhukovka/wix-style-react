@@ -14,8 +14,11 @@ storiesOf('6. Common', module)
     <div>
       <h1>Composites</h1>
       <Markdown source={Readme}/>
-      <CodeExample title="Example" code={ExampleCompositeRaw}>
-        <p>Require both Label and Input and change the order when rendering</p>
+      <CodeExample title="Example usage of composition" code={ExampleCompositeRaw}>
+        <p>
+          Example below requires Label and Input as the only allowed children.
+          And when rendering just changes their location.
+        </p>
         <ExampleComposite/>
       </CodeExample>
     </div>

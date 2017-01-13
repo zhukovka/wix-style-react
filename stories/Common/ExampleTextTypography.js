@@ -45,8 +45,8 @@ export default () =>
     <li>
       <h3>Text on labels</h3>
       <ul className="ltr style-list">
-        <li className={typography.t5}>T5 - HELVETICA_65 /10px</li>
-        <li className={classNames(typography.t5_1, 'inverted')}>T5.1 - HELVETICA_65 /10px</li>
+        <li className={typography.t5}>T5 - Helvetica_65 /10px</li>
+        <li className={classNames(typography.t5_1, 'inverted')}>T5.1 - Helvetica_65 /10px</li>
       </ul>
     </li>
   </ul>;

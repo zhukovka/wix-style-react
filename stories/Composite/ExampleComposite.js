@@ -1,11 +1,10 @@
-import React, {Component, Children} from 'react';
+import React, {Children} from 'react';
 
-import {children, optional, once} from '../../src/Composite/CompositeValidation';
+import Label from '../../src/Label';
+import Input from '../../src/Input';
+import {children, once} from '../../src/Composite';
 
-const Label = () => (<div>Label</div>);
-const Input = () => (<div>Input</div>);
-
-const TextField = ({ children }) => {
+const CompositeExample = ({children}) => {
   const [label, input] = Children.toArray(children);
   return (
     <div>
@@ -15,14 +14,14 @@ const TextField = ({ children }) => {
   );
 };
 
-TextField.propTypes = {
+CompositeExample.propTypes = {
   children: children(once(Label), once(Input))
 };
 
 export default () =>
   <div>
-    <TextField>
-      <Label/>
+    <CompositeExample>
+      <Label>Computers do not solve problems, they execute solutions</Label>
       <Input/>
-    </TextField>
+    </CompositeExample>
   </div>;

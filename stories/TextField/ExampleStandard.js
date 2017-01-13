@@ -40,29 +40,27 @@ class ExampleStandard extends Component {
     });
   }
 
-  updatePrefix(state) {
+  updateAddons(name, state) {
     this.setState(state, () => {
-      const items = [];
-      if (this.state.prefixUnit) {
-        items.push(<Input.Unit key={1}>{this.state.prefixUnit}</Input.Unit>);
+      const unit = this.state[`${name}Unit`];
+      const ticker = this.state[`${name}Ticker`];
+      if (unit && ticker) {
+        this.setComponentState('input', {
+          [name]: (
+            <Input.Group>
+              <Input.Unit value={unit}/>
+              <Input.Ticker onUp={() => {}} onDown={() => {}}/>
+            </Input.Group>
+          )});
+      } else if (unit) {
+        this.setComponentState('input', {
+          [name]: <Input.Unit value={unit}/>
+        });
+      } else if (ticker) {
+        this.setComponentState('input', {
+          [name]: <Input.Ticker onUp={() => {}} onDown={() => {}}/>
+        });
       }
-      if (this.state.prefixTicker) {
-        items.push(<Input.Ticker key={2} onUp={() => {}} onDown={() => {}}/>);
-      }
-      this.setComponentState('input', {prefix: items.length ? items : null});
-    });
-  }
-
-  updateSuffix(state) {
-    this.setState(state, () => {
-      const items = [];
-      if (this.state.suffixUnit) {
-        items.push(<Input.Unit key={1}>{this.state.suffixUnit}</Input.Unit>);
-      }
-      if (this.state.suffixTicker) {
-        items.push(<Input.Ticker key={2} onUp={() => {}} onDown={() => {}}/>);
-      }
-      this.setComponentState('input', {suffix: items.length ? items : null});
     });
   }
 
@@ -129,14 +127,14 @@ class ExampleStandard extends Component {
                 <Input
                   size="small"
                   value={this.state.prefixUnit}
-                  onChange={e => this.updatePrefix({prefixUnit: e.target.value})}
+                  onChange={e => this.updateAddons('prefix', {prefixUnit: e.target.value})}
                   />
               </div>
               &nbsp;Unit&nbsp;
               <ToggleSwitch
                 size="small"
                 checked={this.state.prefixTicker}
-                onChange={() => this.updatePrefix({prefixTicker: !this.state.prefixTicker})}
+                onChange={() => this.updateAddons('prefix', {prefixTicker: !this.state.prefixTicker})}
                 />&nbsp;with ticker
             </div>
           </div>
@@ -147,14 +145,14 @@ class ExampleStandard extends Component {
                 <Input
                   size="small"
                   value={this.state.suffixUnit}
-                  onChange={e => this.updateSuffix({suffixUnit: e.target.value})}
+                  onChange={e => this.updateAddons('suffix', {suffixUnit: e.target.value})}
                   />
               </div>
               &nbsp;Unit&nbsp;
               <ToggleSwitch
                 size="small"
                 checked={this.state.suffixTicker}
-                onChange={() => this.updateSuffix({suffixTicker: !this.state.suffixTicker})}
+                onChange={() => this.updateAddons('suffix', {suffixTicker: !this.state.suffixTicker})}
                 />&nbsp;with ticker
             </div>
           </div>

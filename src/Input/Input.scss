@@ -31,7 +31,8 @@
     align-items: center;
     flex-shrink: 0;
     flex-grow: 0;
-    min-width: 12px;
+    min-width: 0;
+    padding: 0 6px;
     user-select: none;
 }
 
@@ -98,28 +99,30 @@
 }
 
 .magnifying-glass {
-    padding: 0 7px;
+    margin: 0 6px;
     line-height: 18px;
     height: 18px;
+    &:last-child { margin: 0; }
     path { fill: $B10; }
     line { stroke: $B10; }
 }
 
 .exclamation {
+    margin: 0 6px;
     background-color: $paletteR1;
     width: 20px;
     height: 20px;
-    margin: 0 8px;
     border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
+    &:last-child { margin: 0; }
     path { stroke: #fff; }
 }
 
 .clear-button {
     cursor: pointer;
-    padding: 0 12px;
+    padding: 0 6px;
     height: 6px;
     line-height: 6px;
     font-size: 6px;
@@ -127,27 +130,26 @@
 }
 
 .unit {
-    padding: 0 12px;
+    padding: 0 6px;
     font-size: 13px;
     line-height: 18px;
-    border-left: solid 1px $paletteB4;
-    margin-left: 7px;
     color: $paletteD3;
     @include FontLight();
+}
+
+.unit-separator {
+    width: 1px;
+    background-color: $paletteB4;
+    height: 18px;
+    margin: 0 6px;
     @at-root {
-        :global(.rtl) .unit, .rtl .unit {
-            border-left: 0;
-            border-right: solid 1px $paletteB4;
-            margin-right: 7px;
-            margin-left: 0;
-        }
-        .hasError .unit {
-            border-color: $paletteR1;
+        .hasError .unit-separator {
+            background-color: $paletteR1;
         }
     }
 }
 
 .menu-arrow {
-    padding: 0 12px;
+    padding: 0 6px;
     path { fill: $B10; }
 }

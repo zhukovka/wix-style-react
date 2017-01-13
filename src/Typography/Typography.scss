@@ -26,7 +26,6 @@
 	}
 }
 
-
 $headers: (
 	"h0": ($FontUltraThin, 48px, 54px, $D10),
 	"h1": ($FontThin, 36px, 48px, $D10),
@@ -45,3 +44,8 @@ $bodies: (
 
 @include generateVariations($headers);
 @include generateVariations($bodies);
+
+.h3, .h4, .t5, .t5_1 { text-transform: uppercase; }
+.h3 { letter-spacing: 2px; }
+.h4 { letter-spacing: 1.2px; }
+.t5, .t5_1 { letter-spacing: 1px;  }
