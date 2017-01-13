@@ -47,7 +47,7 @@ class ExampleStandard extends Component {
         items.push(<Input.Unit key={1}>{this.state.prefixUnit}</Input.Unit>);
       }
       if (this.state.prefixTicker) {
-        items.push(<Input.Ticker key={2}/>);
+        items.push(<Input.Ticker key={2} onUp={() => {}} onDown={() => {}}/>);
       }
       this.setComponentState('input', {prefix: items.length ? items : null});
     });
@@ -60,7 +60,7 @@ class ExampleStandard extends Component {
         items.push(<Input.Unit key={1}>{this.state.suffixUnit}</Input.Unit>);
       }
       if (this.state.suffixTicker) {
-        items.push(<Input.Ticker key={2}/>);
+        items.push(<Input.Ticker key={2} onUp={() => {}} onDown={() => {}}/>);
       }
       this.setComponentState('input', {suffix: items.length ? items : null});
     });
