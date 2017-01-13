@@ -1,7 +1,9 @@
-import React, {Component, PropTypes} from 'react';
+import React, {cloneElement, Component, PropTypes, Children} from 'react';
+
 import CodeExample from '../CodeExample';
 
 export default class InteractiveCodeExample extends Component {
+
   static propTypes = {
     children: PropTypes.node,
     title: PropTypes.string
@@ -9,6 +11,7 @@ export default class InteractiveCodeExample extends Component {
 
   constructor(props) {
     super(props);
+
     this.state = {
       code: '',
     };
@@ -23,14 +26,12 @@ export default class InteractiveCodeExample extends Component {
   }
 
   render() {
-    const childrenWithOnChange = React.Children.map(this.props.children,
-      (child) => React.cloneElement(child, {
-        onChange: this.onCodeChange
-      })
+    const childrenWithOnChange = Children.map(this.props.children,
+      child => cloneElement(child, {onChange: this.onCodeChange})
     );
 
     return (
-      <CodeExample title={this.props.title} code={this.state.code + '\n'}>
+      <CodeExample title={this.props.title} code={this.state.code + '\n'} autoExpand>
         {childrenWithOnChange}
       </CodeExample>
     );

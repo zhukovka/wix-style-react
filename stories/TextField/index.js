@@ -14,7 +14,7 @@ storiesOf('6. Common', module)
         <h1>Usage examples</h1>
 
         <InteractiveCodeExample title="Standard">
-          <ExampleStandard />
+          <ExampleStandard/>
         </InteractiveCodeExample>
       </div>
     );
