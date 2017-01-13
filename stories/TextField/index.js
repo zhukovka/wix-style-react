@@ -11,9 +11,7 @@ storiesOf('6. Common', module)
     return (
       <div>
         <Markdown source={Readme}/>
-        <h1>Usage examples</h1>
-
-        <InteractiveCodeExample title="Standard">
+        <InteractiveCodeExample title="Customize a <TextField/>">
           <ExampleStandard/>
         </InteractiveCodeExample>
       </div>

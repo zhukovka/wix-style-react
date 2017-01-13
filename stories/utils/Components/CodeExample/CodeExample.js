@@ -8,10 +8,15 @@ export default class CodeExample extends Component {
 
   static propTypes = {
     code: PropTypes.string,
+    codeType: CodeBlock.propTypes.type,
     children: PropTypes.node,
     title: PropTypes.string,
     autoExpand: PropTypes.bool
   };
+
+  static defaultProps = {
+    codeType: CodeBlock.defaultProps.type
+  }
 
   constructor(props) {
     super(props);
@@ -41,7 +46,7 @@ export default class CodeExample extends Component {
           </div>
         </div>
         <Collapse isOpened={this.state.isOpened}>
-          <CodeBlock source={this.props.code}/>
+          <CodeBlock source={this.props.code} type={this.props.codeType}/>
         </Collapse>
         <div>
           {this.props.children}

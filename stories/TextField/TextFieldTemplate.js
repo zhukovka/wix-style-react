@@ -25,8 +25,8 @@ export default class Form extends Component {
   getComponent() {
     return (
       <TextField>
-        {this.props.withLabel ? <Label {...this.props.label}>Input Label</Label> : null}
-        <Input {...this.props.input}/>
+        {this.props.withLabel ? <Label for="firstName" {...this.props.label}/> : null}
+        <Input id="firstName" {...this.props.input}/>
       </TextField>
     );
   }

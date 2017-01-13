@@ -31,7 +31,12 @@ export default class InteractiveCodeExample extends Component {
     );
 
     return (
-      <CodeExample title={this.props.title} code={this.state.code + '\n'} autoExpand>
+      <CodeExample
+        title={this.props.title}
+        code={this.state.code}
+        codeType="django"
+        autoExpand
+        >
         {childrenWithOnChange}
       </CodeExample>
     );
