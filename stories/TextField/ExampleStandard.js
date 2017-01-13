@@ -60,6 +60,8 @@ class ExampleStandard extends Component {
         this.setComponentState('input', {
           [name]: <Input.Ticker onUp={() => {}} onDown={() => {}}/>
         });
+      } else {
+        this.setComponentState('input', {[name]: null});
       }
     });
   }
