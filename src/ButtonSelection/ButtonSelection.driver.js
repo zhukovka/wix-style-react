@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import ButtonSelection from '../ButtonSelection';
+import ButtonSelection from './ButtonSelection';
 import ReactTestUtils from 'react-addons-test-utils';
 import _ from 'lodash';
 import $ from 'jquery';
@@ -16,6 +16,7 @@ const buttonSelectionDriverFactory = ({component, wrapper}) => {
     $component.find('span').map((index, b) => $(b).attr('class')).toArray();
 
   return {
+    exists: () => !!component,
     getButtonsNames,
     getButtonsClasses,
     getSelectedButton: () => getButtonsNames()[getButtonsClasses().indexOf('selected')],
@@ -33,16 +34,4 @@ const buttonSelectionDriverFactory = ({component, wrapper}) => {
   };
 };
 
-const componentFactory = (props = {}) => {
-  let component;
-  const wrapperDiv = document.createElement('div');
-  ReactDOM.render(<div ref={r => component = r}><ButtonSelection {...props}/></div>, wrapperDiv);
-  return {component: component.childNodes[0], wrapper: wrapperDiv};
-};
-
-const buttonSelectionTestkitFactory = ({wrapper, id}) => {
-  const component = $(wrapper).find(`#${id}`)[0];
-  return buttonSelectionDriverFactory({component, wrapper});
-};
-
-export {buttonSelectionTestkitFactory, componentFactory, buttonSelectionDriverFactory};
+export default buttonSelectionDriverFactory;
