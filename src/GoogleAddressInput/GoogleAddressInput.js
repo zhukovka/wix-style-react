@@ -21,10 +21,10 @@ class GoogleAddressInput extends React.Component {
     this.geocodeRequestId = 0;
 
     this.onChange = this.onChange.bind(this);
-    this.onKeyDown = this.onKeyDown.bind(this);
     this.onBlur = this.onBlur.bind(this);
     this.onFocus = this.onFocus.bind(this);
     this.onSet = this.onSet.bind(this);
+    this.onManuallyInput = this.onManuallyInput.bind(this);
   }
 
   componentWillReceiveProps(nextProps) {
@@ -50,11 +50,10 @@ class GoogleAddressInput extends React.Component {
           ref={autocomplete => this.autocomplete = autocomplete}
           {...this.props}
           onChange={this.onChange}
-          onKeyDown={this.onKeyDown}
           onBlur={this.onBlur}
           onFocus={this.onFocus}
           onSelect={option => this.onSet(option.value)}
-          onManuallyInput={value => this.onChange({target: {value}})}
+          onManuallyInput={this.onManuallyInput}
           value={value}
           options={reduce(suggestions, (result, value) => {
             result.push({id: result.length, value: value.description});
@@ -147,25 +146,17 @@ class GoogleAddressInput extends React.Component {
     });
   }
 
-  onKeyDown(e) {
+  onManuallyInput(value) {
+    this._getSuggestions(value, !isundefined(this.props.value)).then(suggestions => {
 
-    this.props.onKeyDown && this.props.onKeyDown(e);
+      if (suggestions.length === 0) {
+        // No suggestion to the text entered
+        this.props.onSet && this.props.onSet(null);
+        return;
+      }
 
-    if (e.keyCode === 13 /* enter */) {
-
-      const value = e.target.value;
-
-      this._getSuggestions(value, !isundefined(this.props.value)).then(suggestions => {
-
-        if (suggestions.length === 0) {
-          // No suggestion to the text entered
-          this.props.onSet && this.props.onSet(null);
-          return;
-        }
-
-        this.onSet(suggestions[0].description);
-      });
-    }
+      this.onSet(suggestions[0].description);
+    });
   }
 
   componentWillUnmount() {

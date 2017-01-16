@@ -142,7 +142,7 @@ describe('GoogleAddressInput', () => {
 
       const component = createShallow({Client: GmapsTestClient, countryCode: 'XX', onSet});
       component.setState({suggestions: [JSON.parse('{"description": "my address", "place_id": 123}')]});
-      component.find('InputWithOptions').props().onKeyDown({keyCode: 13, target: {value: 'my addr'}});
+      component.find('InputWithOptions').props().onManuallyInput('my addr');
 
       // Defer to make sure all promises run
       _.defer(() => {
@@ -171,7 +171,7 @@ describe('GoogleAddressInput', () => {
       const onSet = sinon.spy();
       const component = createShallow({Client: GmapsTestClient, countryCode: 'YY', onSet});
       component.setState({suggestions: [JSON.parse('{"description": "my address", "place_id": 123}')]});
-      component.find('InputWithOptions').props().onKeyDown({keyCode: 13, target: {value: 'dontfind'}});
+      component.find('InputWithOptions').props().onManuallyInput('dontfind');
 
       // Defer to make sure all promises run
       _.defer(() => {
