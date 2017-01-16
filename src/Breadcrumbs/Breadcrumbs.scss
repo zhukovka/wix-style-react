@@ -1,21 +1,51 @@
 @import '../common.scss';
 
-.large {
-
+@mixin breadcrumbs($hoverTextColor, $hoverBackgroundColor) {
+  .item:hover:not(.active) {
+    border-radius: 100px;
+    color: $hoverTextColor;
+    background-color: $hoverBackgroundColor;
+  }
 }
 
-.normal {
+.item {
+  @include FontLight();
+  font-weight: 300;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: 1.5;
+}
 
+.large {
+  height: 24px;
+  font-size: 16px;
+}
+
+.medium {
+  height: 18px;
+  font-size: 14px;
 }
 
 .onWhiteBackground {
-
+  @include breadcrumbs($D30, $B40);
 }
 
 .onGrayBackground {
-
+  @include breadcrumbs($D30, $D80);
 }
 
 .onDarkBackground {
+  @include breadcrumbs($D60, rgba(255, 255, 255, .1));
+}
 
+.item:not(.active) {
+  cursor: pointer;
+}
+
+.item {
+	display: inline-block;
+	& + .item:before {
+		//change to arrow icon
+		content: 'arrow';
+	}
 }

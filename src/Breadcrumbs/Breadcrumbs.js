@@ -1,23 +1,34 @@
 import React from 'react';
 import styles from './Breadcrumbs.scss';
 import classNames from 'classnames';
+import {Label} from 'wix-style-react';
 
 class Breadcrumbs extends React.Component {
   render() {
-    const {items, onClick, size, theme} = this.props;
+    const {items, onClick, size, theme, activeId} = this.props;
 
     const className = classNames({
       [styles[size]]: true,
       [styles[theme]]: true
     });
 
+    const appearance = theme === 'onDarkBackground' ? 'T3.2' : 'T3';
+
     return (
       <div className={className}>
-        <div data-hook="breadcrumbs-items">
+        <ul data-hook="breadcrumbs-items">
           {items.map(item => {
-            return (<div key={item.id} onClick={() => onClick(item.id)}>{item.value}</div>);
+            const itemClassName = classNames({
+              [styles.active]: activeId === item.id,
+              [styles.item]: true
+            });
+            return (
+              <li key={item.id} onClick={() => onClick(item.id)} className={itemClassName}>
+                <Label appearance={appearance}>{item.value}</Label>
+              </li>
+            );
           })}
-        </div>
+        </ul>
       </div>
     );
   }
@@ -35,12 +46,16 @@ Breadcrumbs.propTypes = {
     ]).isRequired
   })).isRequired,
   onClick: React.PropTypes.func,
-  size: React.PropTypes.oneOf(['normal', 'large']),
+  activeId: React.PropTypes.oneOfType([
+    React.PropTypes.string,
+    React.PropTypes.number
+  ]),
+  size: React.PropTypes.oneOf(['medium', 'large']),
   theme: React.PropTypes.oneOf(['onWhiteBackground', 'onGrayBackground', 'onDarkBackground']),
 };
 
 Breadcrumbs.defaultProps = {
-  size: 'normal',
+  size: 'medium',
   theme: 'onGrayBackground'
 };
 

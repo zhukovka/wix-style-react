@@ -32,6 +32,7 @@ function loadStories() {
   require('../stories/Composite');
   require('../stories/Label');
   require('../stories/TextField');
+	require('../stories/Breadcrubms');
   require('../stories/EndorseContentLayout');
 }
 

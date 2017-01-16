@@ -33,9 +33,9 @@ describe('Breadcrumbs', () => {
     expect(driver.isLarge()).toBe(true);
   });
 
-  it('should use regular size as default', () => {
+  it('should use medium size as default', () => {
     const driver = createDriver({onClick, items});
-    expect(driver.isLarge()).toBe(false);
+    expect(driver.isMedium()).toBe(true);
   });
 
   it('should get theme from props', () => {
@@ -48,4 +48,34 @@ describe('Breadcrumbs', () => {
     const driver = createDriver({onClick, items});
     expect(driver.isOnGrayBackground()).toBe(true);
   });
+
+  it('should get active id from props and have correct class', () => {
+    const itemIndex = 1;
+    const driver = createDriver({onClick, items, activeId: items[itemIndex].id});
+    expect(driver.getActiveItemId()).toBe(itemIndex);
+  });
+
+  describe('label appearance', () => {
+    it('should have t3 appearance when onWhiteBackground style', () => {
+      const theme = 'onWhiteBackground';
+      const itemIndex = 1;
+      const driver = createDriver({onClick, items, theme});
+      expect(driver.getLabelClassList(itemIndex)).toContain('t3');
+    });
+
+    it('should have t3 appearance when onGrayBackground style', () => {
+      const theme = 'onGrayBackground';
+      const itemIndex = 1;
+      const driver = createDriver({onClick, items, theme});
+      expect(driver.getLabelClassList(itemIndex)).toContain('t3');
+    });
+
+    it('should have t3.2 appearance when onDarkBackground style', () => {
+      const theme = 'onDarkBackground';
+      const itemIndex = 1;
+      const driver = createDriver({onClick, items, theme});
+      expect(driver.getLabelClassList(itemIndex)).toContain('t3_2');
+    });
+  });
+
 });
