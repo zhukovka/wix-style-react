@@ -1,8 +1,8 @@
 import React from 'react';
 import ReactTestUtils from 'react-addons-test-utils';
 import ReactDOM from 'react-dom';
-import Input from '../Input';
-import styles from '../Input.scss';
+import Input from './Input';
+import styles from './Input.scss';
 import $ from 'jquery';
 
 const inputDriverFactory = ({component, wrapper}) => {
