@@ -59,6 +59,16 @@ describe('GoogleAddressInput', () => {
 
   describe('User Interactions', () => {
 
+    it('should specify autoSelect as default option', () => {
+      const component = createMount({Client: GmapsTestClient, countryCode: 'XX'});
+      expect(component.find('InputWithOptions').props().autoSelect).toEqual(true);
+    });
+
+    it('should allow to override autoSelect option', () => {
+      const component = createMount({Client: GmapsTestClient, countryCode: 'XX', autoSelect: false});
+      expect(component.find('InputWithOptions').props().autoSelect).toEqual(false);
+    });
+
     it('should allow focusing input', () => {
       const component = createMount({Client: GmapsTestClient, countryCode: 'XX'});
       const input = component.find('input').get(0);

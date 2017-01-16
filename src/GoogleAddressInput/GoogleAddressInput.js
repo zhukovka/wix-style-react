@@ -60,7 +60,6 @@ class GoogleAddressInput extends React.Component {
             result.push({id: result.length, value: value.description});
             return result;
           }, [])}
-          autoSelect
           />
       </div>
     );
@@ -263,7 +262,8 @@ function google2address(google) {
 
 GoogleAddressInput.defaultProps = {
   magnifyingGlass: true,
-  theme: Input.defaultProps.theme
+  theme: Input.defaultProps.theme,
+  autoSelect: true
 };
 
 GoogleAddressInput.propTypes = {
@@ -283,7 +283,8 @@ GoogleAddressInput.propTypes = {
   Client: React.PropTypes.func.isRequired,
   magnifyingGlass: React.PropTypes.bool,
   theme: Input.propTypes.theme,
-  readOnly: React.PropTypes.bool
+  readOnly: React.PropTypes.bool,
+  autoSelect: React.PropTypes.bool
 };
 
 export default GoogleAddressInput;
