@@ -22,3 +22,5 @@ export {default as DropdownLayout} from './DropdownLayout';
 export {default as Dropdown} from './Dropdown';
 export {default as Autocomplete} from './AutoComplete';
 export {default as Label} from './Label';
+export {default as EndorseContentLayout} from './EndorseContentLayout';
+
