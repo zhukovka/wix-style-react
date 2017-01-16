@@ -2,17 +2,24 @@ import React from 'react';
 import styles from './Breadcrumbs.scss';
 import classNames from 'classnames';
 import {Label} from 'wix-style-react';
+import WixComponent from '../WixComponent';
 
-class Breadcrumbs extends React.Component {
+class Breadcrumbs extends WixComponent {
   render() {
     const {items, onClick, size, theme, activeId} = this.props;
 
     const className = classNames({
       [styles[size]]: true,
-      [styles[theme]]: true
+      [styles[theme]]: true,
+      [styles.breadcrumbs]: true
     });
 
-    const appearance = theme === 'onDarkBackground' ? 'T3.2' : 'T3';
+    let appearance;
+    if (size === 'medium') {
+      appearance = theme === 'onDarkBackground' ? 'T3.2' : 'T3';
+    } else {
+      appearance = theme === 'onDarkBackground' ? 'T1.2' : 'T1';
+    }
 
     return (
       <div className={className}>
@@ -24,7 +31,9 @@ class Breadcrumbs extends React.Component {
             });
             return (
               <li key={item.id} onClick={() => onClick(item.id)} className={itemClassName}>
-                <Label appearance={appearance}>{item.value}</Label>
+                <div className={styles.label}>
+                  <Label appearance={appearance}>{item.value}</Label>
+                </div>
               </li>
             );
           })}

@@ -34,6 +34,7 @@ function loadStories() {
   require('../stories/TextField');
 	require('../stories/Breadcrubms');
   require('../stories/EndorseContentLayout');
+  require('../stories/Icons');
 }
 
 configure(loadStories, module);

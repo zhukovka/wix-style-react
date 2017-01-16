@@ -14,17 +14,9 @@ class ExampleStandard extends Component {
 	
 	state = {
 		size: 'medium',
-		theme: 'onGrayBackground'
+		theme: 'onGrayBackground',
+		direction: 'ltr'
 	};
-	
-	setComponentState(componentName, obj) {
-		this.setState(prevState => {
-			prevState[componentName] = {...this.state[componentName], ...obj};
-			Object.keys(prevState[componentName])
-					.forEach(k => !prevState[componentName][k] && delete prevState[componentName][k]);
-			return prevState;
-		});
-	}
 	
 	render() {
 		return (
@@ -57,9 +49,22 @@ class ExampleStandard extends Component {
 								</RadioGroup>
 							</div>
 						</div>
+						<div className={styles.option}>
+							<Label>Direction</Label>
+							<div className={styles.flex}>
+								<RadioGroup
+										display="horizontal"
+										value={this.state.direction}
+										onChange={direction => this.setState({direction})}
+								>
+									<RadioGroup.Radio value="ltr">Left to right</RadioGroup.Radio>
+									<RadioGroup.Radio value="rtl">Right to left</RadioGroup.Radio>
+								</RadioGroup>
+							</div>
+						</div>
 					</div>
 					<div className={styles.output}>
-						<div className={`${styles[this.state.theme]} ${styles.exampleWrapper}`}>
+						<div className={`${styles[this.state.theme]} ${styles.exampleWrapper} ${this.state.direction}`}>
 							<BreadcrumbsTemplate {...this.state} onChange={this.props.onChange}/>
 						</div>
 					</div>
