@@ -56,13 +56,18 @@
         @include ThemeError($borderColor: $paletteR1, $boxShadow: inset 0px 0px 5px 0px fade($R10, 60%));
     }
     &-material {
+        border-radius: 0;
+        .prefix, .suffix {
+            padding: 0 4px;
+        }
+        &.size-normal { @include Size($height: 34px, $fontSize: 16px); }
         @include ThemeDefault($color: $D10, $borderColor: transparent, $backgroundColor: $D80);
         @at-root {
             .bar {
                 position: absolute;
                 bottom: 0;
-                left: 0;
-                right: 0;
+                left: -1px;
+                right: -1px;
                 height: 1px;
                 background: $D60;
                 &:before, &:after {
