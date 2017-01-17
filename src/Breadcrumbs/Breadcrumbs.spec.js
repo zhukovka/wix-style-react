@@ -67,26 +67,30 @@ describe('Breadcrumbs', () => {
   });
 
   describe('label appearance', () => {
-    const itemIndex = 1;
+    const itemIndex = 0;
+    const activeItemIndex = 1;
+    const activeId = items[activeItemIndex].id;
 
     describe('medium size', () => {
       const size = 'medium';
 
-      it('should have t3 appearance when onWhiteBackground style', () => {
+      it('should have t3.1 appearance when onWhiteBackground style and t3 for active', () => {
         const theme = 'onWhiteBackground';
-        createComopnent({onClick, items, theme, size});
-        expect(driver.getLabelClassList(itemIndex)).toContain('t3');
+        createComopnent({onClick, items, theme, size, activeId});
+        expect(driver.getLabelClassList(itemIndex)).toContain('t3_1');
+        expect(driver.getLabelClassList(activeItemIndex)).toContain('t3');
       });
 
-      it('should have t3 appearance when onGrayBackground style', () => {
+      it('should have t3.1 appearance when onGrayBackground style and t3 for active', () => {
         const theme = 'onGrayBackground';
-        createComopnent({onClick, items, theme, size});
-        expect(driver.getLabelClassList(itemIndex)).toContain('t3');
+        createComopnent({onClick, items, theme, size, activeId});
+        expect(driver.getLabelClassList(itemIndex)).toContain('t3_1');
+        expect(driver.getLabelClassList(activeItemIndex)).toContain('t3');
       });
 
       it('should have t3.2 appearance when onDarkBackground style', () => {
         const theme = 'onDarkBackground';
-        createComopnent({onClick, items, theme, size});
+        createComopnent({onClick, items, theme, size, activeId});
         expect(driver.getLabelClassList(itemIndex)).toContain('t3_2');
       });
     });
@@ -94,21 +98,23 @@ describe('Breadcrumbs', () => {
     describe('large size', () => {
       const size = 'large';
 
-      it('should have t1 appearance when onWhiteBackground style', () => {
+      it('should have t1.1 appearance when onWhiteBackground style and t1 for active', () => {
         const theme = 'onWhiteBackground';
-        createComopnent({onClick, items, theme, size});
-        expect(driver.getLabelClassList(itemIndex)).toContain('t1');
+        createComopnent({onClick, items, theme, size, activeId});
+        expect(driver.getLabelClassList(itemIndex)).toContain('t1_1');
+        expect(driver.getLabelClassList(activeItemIndex)).toContain('t1');
       });
 
-      it('should have t1 appearance when onWhiteBackground style', () => {
+      it('should have t1.1 appearance when onWhiteBackground style and t1 for active', () => {
         const theme = 'onGrayBackground';
-        createComopnent({onClick, items, theme, size});
-        expect(driver.getLabelClassList(itemIndex)).toContain('t1');
+        createComopnent({onClick, items, theme, size, activeId});
+        expect(driver.getLabelClassList(itemIndex)).toContain('t1_1');
+        expect(driver.getLabelClassList(activeItemIndex)).toContain('t1');
       });
 
       it('should have t1.2 appearance when onDarkBackground style', () => {
         const theme = 'onDarkBackground';
-        createComopnent({onClick, items, theme, size});
+        createComopnent({onClick, items, theme, size, activeId});
         expect(driver.getLabelClassList(itemIndex)).toContain('t1_2');
       });
     });

@@ -34,7 +34,7 @@
 }
 
 .onDarkBackground {
-  @include breadcrumbsHover($D60, rgba(255, 255, 255, .1));
+  @include breadcrumbsHover($D60, transparentize($D80, .9));
 }
 
 .item:not(.active) {

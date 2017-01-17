@@ -14,25 +14,33 @@ class Breadcrumbs extends WixComponent {
       [styles.breadcrumbs]: true
     });
 
-    let appearance;
-    if (size === 'medium') {
-      appearance = theme === 'onDarkBackground' ? 'T3.2' : 'T3';
-    } else {
-      appearance = theme === 'onDarkBackground' ? 'T1.2' : 'T1';
-    }
+    let labelAppearance;
+    const getLabelAppearance = (size, theme, isActive) => {
+      const isDarkBackground = theme === 'onDarkBackground';
+      if (isActive && !isDarkBackground) {
+        return size === 'medium' ? 'T3' : 'T1';
+      }
+      if (size === 'medium') {
+        return isDarkBackground ? 'T3.2' : 'T3.1';
+      } else {
+        return isDarkBackground ? 'T1.2' : 'T1.1';
+      }
+    };
 
     return (
       <div className={className}>
         <ul data-hook="breadcrumbs-items">
           {items.map(item => {
+            const isActive = activeId === item.id;
             const itemClassName = classNames({
-              [styles.active]: activeId === item.id,
+              [styles.active]: isActive,
               [styles.item]: true
             });
+            labelAppearance = getLabelAppearance(size, theme, isActive);
             return (
               <li key={item.id} onClick={() => onClick(item.id)} className={itemClassName}>
                 <div className={styles.label}>
-                  <Label appearance={appearance}>{item.value}</Label>
+                  <Label appearance={labelAppearance}>{item.value}</Label>
                 </div>
               </li>
             );
