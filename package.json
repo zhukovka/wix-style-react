@@ -10,7 +10,7 @@
     "testkit"
   ],
   "scripts": {
-    "test": "npm run test:unit && npm run test:e2e",
+    "test": "npm run test:unit",
     "test:unit": "wix-node-build test --jest",
     "test:e2e": "wix-node-build test --protractor",
     "build": "wix-node-build lint && wix-node-build build && build-storybook",
