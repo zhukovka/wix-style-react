@@ -1,9 +1,10 @@
 import React from 'react';
+import WixComponent from '../WixComponent';
 import Input from '../Input/Input.js';
 import omit from 'lodash.omit';
 import DropdownLayout from '../DropdownLayout/DropdownLayout';
 
-class InputWithOptions extends React.Component {
+class InputWithOptions extends WixComponent {
 
   // Abstraction
   inputClasses() {}
@@ -13,15 +14,14 @@ class InputWithOptions extends React.Component {
 
   constructor(props) {
     super(props);
-
     this.state = {
-      showOptions: false,
-      inputValue: ''
+      inputValue: '',
+      showOptions: false
     };
 
     this._onSelect = this._onSelect.bind(this);
     this._onFocus = this._onFocus.bind(this);
-    this._onBlur = this._onBlur.bind(this);
+    this._onChange = this._onChange.bind(this);
     this._onKeyDown = this._onKeyDown.bind(this);
     this.focus = this.focus.bind(this);
     this.blur = this.blur.bind(this);
@@ -29,31 +29,24 @@ class InputWithOptions extends React.Component {
     this.hideOptions = this.hideOptions.bind(this);
     this.showOptions = this.showOptions.bind(this);
     this._onManuallyInput = this._onManuallyInput.bind(this);
+    this._renderDropdownLayout = this._renderDropdownLayout.bind(this);
+    this.closeOnSelect = this.closeOnSelect.bind(this);
+  }
+
+  onClickOutside() {
+    this.hideOptions();
   }
 
   renderInput() {
-    const {customInput} = this.props;
     const inputProps = Object.assign(omit(this.props, Object.keys(DropdownLayout.propTypes).concat(['onChange'])), this.inputAdditionalProps());
-    if (customInput) {
-      return React.cloneElement(customInput, {
-        ref: input => this.input = input,
-        ...inputProps
-      });
-    } else {
-      return (
-        <Input
-          menuArrow
-          ref={input => this.input = input}
-          {...inputProps}
-          onChange={event => {
-            this.setState({inputValue: event.target.value});
-            if (this.props.onChange) {
-              this.props.onChange(event);
-            }
-          }}
-          />
-      );
-    }
+    const {inputElement} = inputProps;
+    return React.cloneElement(inputElement, {
+      menuArrow: true,
+      ref: input => this.input = input,
+      ...inputProps,
+      onChange: this._onChange,
+      onFocus: this.showOptions
+    });
   }
 
   _renderDropdownLayout() {
@@ -72,9 +65,9 @@ class InputWithOptions extends React.Component {
   }
 
   render() {
-    const {id, dropDirectionUp} = this.props;
+    const {dropDirectionUp} = this.props;
     return (
-      <div id={id} onBlur={this._onBlur}>
+      <div>
         {dropDirectionUp ? this._renderDropdownLayout() : null}
         <div onKeyDown={this._onKeyDown} onFocus={this._onFocus} className={this.inputClasses()}>
           {this.renderInput()}
@@ -86,25 +79,33 @@ class InputWithOptions extends React.Component {
 
   hideOptions() {
     this.setState({showOptions: false});
+    this.input.blur();
   }
 
   showOptions() {
     this.setState({showOptions: true});
   }
 
-  _onManuallyInput() {
-    this.hideOptions();
+  closeOnSelect() {
+    return this.props.closeOnSelect;
+  }
+
+  _onManuallyInput(inputValue) {
+    if (this.closeOnSelect()) {
+      this.hideOptions();
+    }
 
     if (this.props.onManuallyInput) {
-      this.props.onManuallyInput(this.state.inputValue);
+      this.props.onManuallyInput(inputValue);
     }
   }
 
   _onSelect(option) {
-    const {onSelect, closeOnSelect} = this.props;
+    this.showOptions();
+    const {onSelect} = this.props;
 
-    if (closeOnSelect) {
-      this._onBlur();
+    if (this.closeOnSelect()) {
+      this.hideOptions();
     }
 
     if (onSelect) {
@@ -112,12 +113,19 @@ class InputWithOptions extends React.Component {
     }
   }
 
-  _onBlur() {
-    this.hideOptions();
+  _onChange(event) {
+    this.setState({inputValue: event.target.value});
+
+    if (this.props.onChange) {
+      this.props.onChange(event);
+    }
   }
 
   _onFocus() {
     this.showOptions();
+    if (this.props.onFocus) {
+      this.props.onFocus();
+    }
   }
 
   _onKeyDown(event) {
@@ -125,7 +133,7 @@ class InputWithOptions extends React.Component {
       switch (event.key) {
         case 'Enter':
         case 'Tab': {
-          this._onManuallyInput();
+          this._onManuallyInput(this.state.inputValue);
           break;
         }
         default:
@@ -152,13 +160,14 @@ InputWithOptions.defaultProps = {
   ...DropdownLayout.defaultProps,
   onSelect: () => {},
   options: [],
-  closeOnSelect: true
+  closeOnSelect: true,
+  inputElement: <Input/>
 };
 
 InputWithOptions.propTypes = {
   ...Input.propTypes,
   ...DropdownLayout.propTypes,
-  customInput: React.PropTypes.element,
+  inputElement: React.PropTypes.element,
   closeOnSelect: React.PropTypes.bool,
   onManuallyInput: React.PropTypes.func
 };

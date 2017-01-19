@@ -12,6 +12,24 @@ export const labelTestkitFactory = enzymeTestkitFactoryCreator(labelDriverFactor
 import breadcrumbsDriverFactory from '../src/Breadcrumbs/Breadcrumbs.driver';
 export const breadcrumbsTestkitFactory = enzymeTestkitFactoryCreator(breadcrumbsDriverFactory);
 
+import dropdownLayoutDriverFactory from '../src/DropdownLayout/DropdownLayout.driver';
+export const dropdownLayoutTestkitFactory = enzymeTestkitFactoryCreator(dropdownLayoutDriverFactory);
+
+import inputWithOptionsDriverFactory from '../src/InputWithOptions/InputWithOptions.driver';
+export const inputWithOptionsTestkitFactory = enzymeTestkitFactoryCreator(inputWithOptionsDriverFactory);
+
+import autoCompleteDriverFactory from '../src/AutoComplete/AutoComplete.driver';
+export const autoCompleteTestkitFactory = enzymeTestkitFactoryCreator(autoCompleteDriverFactory);
+
+import dropdownDriverFactory from '../src/Dropdown/Dropdown.driver';
+export const dropdownTestkitFactory = enzymeTestkitFactoryCreator(dropdownDriverFactory);
+
+import multiSelectDriverFactory from '../src/MultiSelect/MultiSelect.driver';
+export const multiSelectTestkitFactory = enzymeTestkitFactoryCreator(multiSelectDriverFactory);
+
+import tagDriverFactory from '../src/Tag/Tag.driver';
+export const tagTestkitFactory = enzymeTestkitFactoryCreator(tagDriverFactory);
+
+
 export {buttonTestkitFactory} from '../src/Button/testkit/Button.enzyme';
 export {toastTestkitFactory} from '../src/Toast/testkit/Toast.enzyme';
-export {dropdownTestkitFactory} from '../src/Dropdown/testKit/Dropdown.enzyme';
