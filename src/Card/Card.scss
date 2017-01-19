@@ -4,22 +4,34 @@
 
 .card {
 
-	$border-radius: 8px;
-	$content-padding: 30px;
-	$header-padding: 20px 30px;
+  $border-radius: 8px;
+  $content-padding: 30px;
+  $header-padding: 28px 30px;
 
-	background: $D80;
-	border-radius: $border-radius;
+  background: $D80;
+  border-radius: $border-radius;
 
-	.header {
-		@extend .h2;
-		padding: $header-padding;
-		border-bottom: 1px solid $D70;
-	}
+  .header {
+
+    padding: $header-padding;
+
+    &.with-divider {
+      border-bottom: 1px solid $D70;
+    }
+
+    .title {
+      @extend .h2;
+	    line-height: 1.2;
+    }
+
+    .subtitle {
+      @extend .t1_1;
+    }
+  }
 
 	.content {
-		padding: $content-padding;
+    @extend .container;
 
-		@extend .container;
-	}
+    padding: $content-padding;
+  }
 }

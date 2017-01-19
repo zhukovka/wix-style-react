@@ -15,7 +15,7 @@
 | propName | propType | defaultValue | isRequired | description |
 |----------|----------|--------------|------------|-------------|
 | id | string or number| - | + | Specifies the item id |
-| value | string or node | - | + | Callback on item click |
+| value | string or node | - | + | Value to be shown on breadcrumb |
 | link | string | - | - | Optional link to be called on click |
 
 ## Breadcrumbs Path Factory
