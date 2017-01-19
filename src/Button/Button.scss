@@ -6,20 +6,16 @@
     height: $height;
     border-radius: $height / 2;
     font-size: 16px;
-    padding: 0px 24px;
+    padding: 0 24px;
 
     box-sizing:border-box;
     -webkit-font-smoothing: antialiased;
-    transition: 
-      color 0.3s ease,
-      border-color 0.3s ease,
-      background-color 0.3s ease;
     text-align: center;
     border: 1px solid;
     cursor: pointer;
     outline: none;
 
-    transition: background-color 300ms linear;
+    transition: background-color 100ms linear;
 }
 
 .button>.inner {
@@ -39,7 +35,7 @@
 .button.fullblue.disabled,
 .button.fullred.disabled,
 .button.fullgreen.disabled,
-.button.fullpurple.disabled,
+.button.fullpurple.disabled
 {
     pointer-events:none;
     background-color: $D50 !important;
@@ -51,7 +47,7 @@
 .button.emptygreen.disabled,
 .button.emptybluesecondary.disabled,
 .button.emptyblue.disabled,
-.button.emptypurple.disabled,
+.button.emptypurple.disabled
 {
     pointer-events:none;
     background-color: transparent;
