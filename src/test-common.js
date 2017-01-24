@@ -1,7 +1,5 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import jquery from 'jquery';
-import _ from 'lodash/fp';
 
 const componentFactory = Element => {
   let component;
@@ -10,16 +8,16 @@ const componentFactory = Element => {
   return {component: component.childNodes[0], wrapper: wrapperDiv};
 };
 
-export const createDriverFactory = driverFactory => _.compose(driverFactory, componentFactory);
+export const createDriverFactory = driverFactory => driver => driverFactory(componentFactory(driver));
 
 export const testkitFactoryCreator = driverFactory => ({wrapper, dataHook}) => {
-  const component = jquery(wrapper).find(`[data-hook='${dataHook}']`)[0];
+  const component = wrapper.querySelector(`[data-hook='${dataHook}']`);
   return driverFactory({component, wrapper});
 };
 
 // enzyme
 export const enzymeTestkitFactoryCreator = driverFactory => ({wrapper, dataHook}) => {
-  const component = wrapper.findWhere(n => !n.props().dataHook && n.html() && jquery(n.html()).attr('data-hook') === dataHook);
+  const component = wrapper.findWhere(n => !n.props().dataHook && n.html() && n.html().indexOf(`data-hook="${dataHook}"`) >= 0);
   return driverFactory({component: component.node, wrapper});
 };
 
