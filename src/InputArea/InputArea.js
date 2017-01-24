@@ -1,19 +1,10 @@
 import React, {PropTypes, Component} from 'react';
 import classNames from 'classnames';
+import InputAreaSuffix from './InputAreaSuffix';
 
-import Ticker from './Ticker';
-import Unit from './Unit';
-import Group from './Group';
-import InputPrefix from './InputPrefix';
-import InputSuffix from './InputSuffix';
+import styles from './InputArea.scss';
 
-import styles from './Input.scss';
-
-class Input extends Component {
-
-  static Ticker = Ticker;
-  static Unit = Unit;
-  static Group = Group;
+class InputArea extends Component {
 
   constructor(params) {
     super(params);
@@ -35,30 +26,23 @@ class Input extends Component {
 
   render() {
     const {
-      id,
-      style,
-      value,
-      forceHover,
-      forceFocus,
-      placeholder,
-      error,
-      unit,
-      magnifyingGlass,
-      menuArrow,
+      autoFocus,
+      dataHook,
       defaultValue,
-      tabIndex,
+      error,
+      forceFocus,
+      forceHover,
+      id,
       onChange,
       onClear,
-      rtl,
-      autoFocus,
       onKeyUp,
+      placeholder,
       readOnly,
-      size,
-      dataHook,
-      iconLeft,
-      prefix,
-      suffix,
-      type
+      rtl,
+      style,
+      tabIndex,
+      rows,
+      value
     } = this.props;
 
     let {theme} = this.props; // When deprecation ends. theme should move to const.
@@ -68,28 +52,24 @@ class Input extends Component {
       theme = style;
     }
 
-    if (iconLeft) {
-      console.warn(deprecated('Jan 19th 2017', 'iconLeft', 'prefix'));
-    }
-
     const classes = classNames({
       [styles.root]: true,
       [styles[`theme-${theme}`]]: true,
-      [styles[`size-${size}`]]: true,
       [styles.rtl]: !!rtl,
       [styles.hasError]: !!error,
       [styles.hasHover]: forceHover,
       [styles.hasFocus]: forceFocus || this.state.focus
     });
 
+
     const myAttr = {'data-hook': dataHook};
 
     return (
       <div className={classes} {...myAttr}>
-        <InputPrefix>{iconLeft}{prefix}</InputPrefix>
-        <input
+        <textarea
+          rows={rows}
           ref={input => this.input = input}
-          className={styles.input}
+          className={styles.inputArea}
           id={id}
           defaultValue={defaultValue}
           value={value}
@@ -103,20 +83,13 @@ class Input extends Component {
           autoFocus={autoFocus}
           onKeyUp={onKeyUp}
           readOnly={readOnly}
-          type={type}
           />
-        <InputSuffix
-          value={value}
+        <InputAreaSuffix
           error={error}
-          unit={unit}
-          magnifyingGlass={magnifyingGlass}
-          menuArrow={menuArrow}
           rtl={rtl}
           onClear={onClear}
           onFocus={this._onFocus}
-          >
-          {suffix}
-        </InputSuffix>
+          />
         {theme === 'material' && <div className={styles.bar}/>}
       </div>
     );
@@ -162,16 +135,16 @@ class Input extends Component {
   }
 }
 
-Input.displayName = 'Input';
+InputArea.displayName = 'InputArea';
 
-Input.defaultProps = {
+InputArea.defaultProps = {
   theme: 'normal',
   size: 'normal'
 };
 
-Input.propTypes = {
+InputArea.propTypes = {
   id: PropTypes.string,
-  value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+  value: PropTypes.string,
   style: PropTypes.oneOf(['normal', 'paneltitle', 'material']),
   theme: PropTypes.oneOf(['normal', 'paneltitle', 'material']),
   forceHover: PropTypes.bool,
@@ -200,7 +173,7 @@ Input.propTypes = {
   size: PropTypes.oneOf(['small', 'normal', 'large']),
   prefix: PropTypes.node,
   suffix: PropTypes.node,
-  type: PropTypes.node
+  rows: PropTypes.number
 };
 
 function deprecated(when, oldProp, newProp) {
@@ -211,4 +184,4 @@ function deprecated(when, oldProp, newProp) {
   ].join(' ');
 }
 
-export default Input;
+export default InputArea;

@@ -1,5 +1,9 @@
 @import '../common.scss';
-@import './InputMixins.scss';
+@import './InputAreaMixins.scss';
+
+$input-area-padding-icon: 28px;
+$suffix-gutter-horizontal: 8px;
+$suffix-gutter-top: 4px;
 
 .root {
     position: relative;
@@ -7,11 +11,12 @@
     align-items: stretch;
     border: solid 1px;
     border-radius: 6px;
+    padding: 2px;
     @include BoxSizing();
     @include FontRoman();
 }
 
-.input {
+.inputArea {
     flex-grow: 1;
     flex-shrink: 1;
     min-width: 20px;
@@ -35,22 +40,33 @@
     }
 }
 
-.prefix,
+.hasError > .inputArea {
+    padding-right: $input-area-padding-icon;
+}
+
+.rtl.hasError > .inputArea {
+    padding-left: $input-area-padding-icon;
+    padding-right: 0;
+}
+
 .suffix {
+    position: absolute;
     display: flex;
     align-items: center;
     flex-shrink: 0;
     flex-grow: 0;
     min-width: 0;
-    padding: 0 6px;
     user-select: none;
+
+    top: $suffix-gutter-top;
+    right: $suffix-gutter-horizontal;
+
+    :global(.rtl) & {
+        left: $suffix-gutter-horizontal;
+        right: initial;
+    }
 }
 
-.size {
-    &-small  { @include Size($height: 30px, $fontSize: 14px); }
-    &-normal { @include Size($height: 36px, $fontSize: 16px); }
-    &-large  { @include Size($height: 54px, $fontSize: 16px); }
-}
 
 .theme {
     &-normal {
@@ -73,7 +89,7 @@
         &.size-normal {
             @include Size($height: 34px, $fontSize: 18px);
         }
-        .input {
+        .inputArea {
             @include FontLight();
         }
         @include ThemeDefault($color: $D10, $borderColor: transparent, $backgroundColor: $D80);
@@ -108,14 +124,18 @@
 // RTL layout based on global style set on document body or parent element.
 :global(.rtl) {
     .root, .prefix, .suffix { flex-direction: row-reverse; }
-    .input { direction: rtl; }
+    .inputArea {
+        direction: rtl;
+    }
 }
 
 // RTL layout based on a property passed directly to the component.
 .rtl.root {
     flex-direction: row-reverse;
     .prefix, .suffix { flex-direction: row-reverse; }
-    .input { direction: rtl; }
+    .inputArea {
+        direction: rtl;
+    }
 }
 
 .magnifying-glass {
