@@ -28,16 +28,6 @@ $suffix-gutter-top: 4px;
     @include FontRoman();
     @include Placeholder($paletteE6);
     @include Selection($paletteB4);
-
-    &[type=number] {
-        -moz-appearance:textfield;
-
-        &::-webkit-outer-spin-button,
-        &::-webkit-inner-spin-button {
-            -webkit-appearance: none;
-            margin: 0;
-        }
-    }
 }
 
 .hasError > .inputArea {
@@ -47,6 +37,10 @@ $suffix-gutter-top: 4px;
 .rtl.hasError > .inputArea {
     padding-left: $input-area-padding-icon;
     padding-right: 0;
+}
+
+.fixedSize > textarea{
+    resize: none;
 }
 
 .suffix {
@@ -85,9 +79,6 @@ $suffix-gutter-top: 4px;
         border-radius: 0;
         .prefix, .suffix {
             padding: 0 4px;
-        }
-        &.size-normal {
-            @include Size($height: 34px, $fontSize: 18px);
         }
         .inputArea {
             @include FontLight();
@@ -138,15 +129,6 @@ $suffix-gutter-top: 4px;
     }
 }
 
-.magnifying-glass {
-    margin: 0 6px;
-    line-height: 18px;
-    height: 18px;
-    &:last-child { margin: 0; }
-    path { fill: $B10; }
-    line { stroke: $B10; }
-}
-
 .exclamation {
     margin: 0 6px;
     background-color: $paletteR1;
@@ -158,38 +140,4 @@ $suffix-gutter-top: 4px;
     justify-content: center;
     &:last-child { margin: 0; }
     path { stroke: #fff; }
-}
-
-.clear-button {
-    cursor: pointer;
-    padding: 0 6px;
-    height: 6px;
-    line-height: 6px;
-    font-size: 6px;
-    path { stroke: $B10; }
-}
-
-.unit {
-    padding: 0 6px;
-    font-size: 13px;
-    line-height: 18px;
-    color: $paletteD3;
-    @include FontLight();
-}
-
-.unit-separator {
-    width: 1px;
-    background-color: $paletteB4;
-    height: 18px;
-    margin: 0 6px;
-    @at-root {
-        .hasError .unit-separator {
-            background-color: $paletteR1;
-        }
-    }
-}
-
-.menu-arrow {
-    padding: 0 6px;
-    path { fill: $B10; }
 }

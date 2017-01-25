@@ -1,10 +1,12 @@
-import React, {PropTypes, Component} from 'react';
+
+import React, {PropTypes} from 'react';
 import classNames from 'classnames';
 import InputAreaSuffix from './InputAreaSuffix';
+import WixComponent from '../WixComponent';
 
 import styles from './InputArea.scss';
 
-class InputArea extends Component {
+class InputArea extends WixComponent {
 
   constructor(params) {
     super(params);
@@ -27,29 +29,33 @@ class InputArea extends Component {
   render() {
     const {
       autoFocus,
-      dataHook,
       defaultValue,
       error,
       forceFocus,
       forceHover,
       id,
       onChange,
-      onClear,
       onKeyUp,
       placeholder,
       readOnly,
       rtl,
-      style,
       tabIndex,
       rows,
-      value
+      value,
+      minHeight,
+      maxHeight,
+      fixedSize,
+      theme
     } = this.props;
 
-    let {theme} = this.props; // When deprecation ends. theme should move to const.
+    const inlineStyle = {};
 
-    if (style) {
-      console.warn(deprecated('Jan 1st 2017', 'style', 'theme'));
-      theme = style;
+    if (minHeight) {
+      inlineStyle.minHeight = minHeight;
+    }
+
+    if (maxHeight) {
+      inlineStyle.maxHeight = maxHeight;
     }
 
     const classes = classNames({
@@ -58,19 +64,18 @@ class InputArea extends Component {
       [styles.rtl]: !!rtl,
       [styles.hasError]: !!error,
       [styles.hasHover]: forceHover,
-      [styles.hasFocus]: forceFocus || this.state.focus
+      [styles.hasFocus]: forceFocus || this.state.focus,
+      [styles.fixedSize]: !!fixedSize
     });
 
-
-    const myAttr = {'data-hook': dataHook};
-
     return (
-      <div className={classes} {...myAttr}>
+      <div className={classes}>
         <textarea
           rows={rows}
-          ref={input => this.input = input}
+          ref={ref => this.textArea = ref}
           className={styles.inputArea}
           id={id}
+          style={inlineStyle}
           defaultValue={defaultValue}
           value={value}
           onChange={onChange}
@@ -87,7 +92,6 @@ class InputArea extends Component {
         <InputAreaSuffix
           error={error}
           rtl={rtl}
-          onClear={onClear}
           onFocus={this._onFocus}
           />
         {theme === 'material' && <div className={styles.bar}/>}
@@ -96,15 +100,15 @@ class InputArea extends Component {
   }
 
   focus() {
-    this.input && this.input.focus();
+    this.textArea && this.textArea.focus();
   }
 
   blur() {
-    this.input && this.input.blur();
+    this.textArea && this.textArea.blur();
   }
 
   select() {
-    this.input && this.input.select();
+    this.textArea && this.textArea.select();
   }
 
   _onFocus() {
@@ -127,9 +131,9 @@ class InputArea extends Component {
   _onKeyDown(e) {
     this.props.onKeyDown && this.props.onKeyDown(e);
 
-    if (e.keyCode === 13 /* enter */) {
+    if (e.key === 'Enter') {
       this.props.onEnterPressed && this.props.onEnterPressed();
-    } else if (e.keyCode === 27 /* esc */) {
+    } else if (e.key === 'Escape') {
       this.props.onEscapePressed && this.props.onEscapePressed();
     }
   }
@@ -151,10 +155,8 @@ InputArea.propTypes = {
   forceFocus: PropTypes.bool,
   placeholder: PropTypes.string,
   error: PropTypes.bool,
-  unit: PropTypes.string,
   defaultValue: PropTypes.string,
   tabIndex: PropTypes.number,
-  magnifyingGlass: PropTypes.bool,
   menuArrow: PropTypes.bool,
   rtl: PropTypes.bool,
   autoFocus: PropTypes.bool,
@@ -169,19 +171,13 @@ InputArea.propTypes = {
   onKeyUp: PropTypes.func,
   iconLeft: PropTypes.object,
   readOnly: PropTypes.bool,
-  dataHook: PropTypes.string,
   size: PropTypes.oneOf(['small', 'normal', 'large']),
   prefix: PropTypes.node,
   suffix: PropTypes.node,
-  rows: PropTypes.number
+  rows: PropTypes.number,
+  minHeight: PropTypes.string,
+  maxHeight: PropTypes.string,
+  fixedSize: PropTypes.bool
 };
-
-function deprecated(when, oldProp, newProp) {
-  return [
-    '[wix-style-react>Input] Warning.',
-    `Property '${oldProp}' has been deprecated, and will be removed ${when}.`,
-    `Please use '${newProp}' instead.`
-  ].join(' ');
-}
 
 export default InputArea;
