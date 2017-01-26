@@ -163,6 +163,7 @@ class Tooltip extends WixComponent {
   hide() {
     if (this._showTimeout) {
       clearTimeout(this._showTimeout);
+      this._showTimeout = null;
     }
     if (this._hideTimeout) {
       return;
@@ -181,10 +182,9 @@ class Tooltip extends WixComponent {
   }
 
   _hideOrShow(event) {
-    if (this.state.visible && this.props.hideTrigger === event) {
+    if (this.props.hideTrigger === event) {
       this.hide();
-    }
-    if (!this.state.visible && this.props.showTrigger === event) {
+    } else if (this.props.showTrigger === event) {
       this.show();
     }
   }

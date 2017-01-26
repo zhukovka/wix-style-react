@@ -112,6 +112,16 @@ describe('Tooltip', () => {
     });
   });
 
+  it('should cancel mouse leave, when followed by mouse enter immediately', () => {
+    const driver = createDriver(<Tooltip {..._props}>{children}</Tooltip>);
+    driver.mouseEnter();
+    driver.mouseLeave();
+    driver.mouseEnter();
+    return resolveIn(25).then(() => {
+      expect(driver.isShown()).toBe(true);
+    });
+  });
+
   describe('testkit', () => {
     it('should exist', () => {
       const div = document.createElement('div');
