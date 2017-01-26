@@ -61,8 +61,7 @@ class Tooltip extends WixComponent {
   state = {
     visible: false,
     style: {},
-    arrowStyle: {},
-    bounceEnabled: true
+    arrowStyle: {}
   }
 
   componentDidUpdate() {
@@ -74,7 +73,7 @@ class Tooltip extends WixComponent {
           onMouseLeave={() => this._onTooltipContentLeave()}
           ref={ref => this._tooltipNode = ReactDOM.findDOMNode(ref)}
           theme={this.props.theme}
-          bounce={this.state.bounceEnabled && this.props.bounce}
+          bounce={this.props.bounce}
           arrowPlacement={arrowPlacement[this.props.placement]}
           style={this.state.style}
           arrowStyle={this.state.arrowStyle}
@@ -250,12 +249,10 @@ class Tooltip extends WixComponent {
 
   _onTooltipContentEnter() {
     this.show();
-    this.setState({bounceEnabled: false});
   }
 
   _onTooltipContentLeave() {
     this._onMouseLeave();
-    this.setState({bounceEnabled: true});
   }
 
   isShown() {
