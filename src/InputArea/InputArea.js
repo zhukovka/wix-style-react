@@ -1,4 +1,3 @@
-
 import React, {PropTypes} from 'react';
 import classNames from 'classnames';
 import Exclamation from './Exclamation';
@@ -8,8 +7,8 @@ import styles from './InputArea.scss';
 
 class InputArea extends WixComponent {
 
-  constructor(params) {
-    super(params);
+  constructor(props) {
+    super(props);
     this._onKeyDown = this._onKeyDown.bind(this);
     this._onFocus = this._onFocus.bind(this);
     this._onBlur = this._onBlur.bind(this);
@@ -23,6 +22,7 @@ class InputArea extends WixComponent {
   };
 
   componentDidMount() {
+    super.componentDidMount();
     this.props.autoFocus && this._onFocus();
   }
 
@@ -38,7 +38,6 @@ class InputArea extends WixComponent {
       onKeyUp,
       placeholder,
       readOnly,
-      rtl,
       tabIndex,
       rows,
       value,
@@ -61,7 +60,6 @@ class InputArea extends WixComponent {
     const classes = classNames({
       [styles.root]: true,
       [styles[`theme-${theme}`]]: true,
-      [styles.rtl]: !!rtl,
       [styles.hasError]: !!error,
       [styles.hasHover]: forceHover,
       [styles.hasFocus]: forceFocus || this.state.focus,
@@ -138,8 +136,7 @@ class InputArea extends WixComponent {
 InputArea.displayName = 'InputArea';
 
 InputArea.defaultProps = {
-  theme: 'normal',
-  size: 'normal'
+  theme: 'normal'
 };
 
 InputArea.propTypes = {
@@ -154,7 +151,6 @@ InputArea.propTypes = {
   defaultValue: PropTypes.string,
   tabIndex: PropTypes.number,
   menuArrow: PropTypes.bool,
-  rtl: PropTypes.bool,
   autoFocus: PropTypes.bool,
   autoSelect: PropTypes.bool,
   onChange: PropTypes.func,
@@ -167,9 +163,6 @@ InputArea.propTypes = {
   onKeyUp: PropTypes.func,
   iconLeft: PropTypes.object,
   readOnly: PropTypes.bool,
-  size: PropTypes.oneOf(['small', 'normal', 'large']),
-  prefix: PropTypes.node,
-  suffix: PropTypes.node,
   rows: PropTypes.number,
   minHeight: PropTypes.string,
   maxHeight: PropTypes.string,
