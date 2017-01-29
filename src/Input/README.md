@@ -28,6 +28,7 @@
 | onClear | func | - | - | Displays a X button on a non-empty input, and calls this callback when pressed. This callback should normally erase the value of the controlled object, and call focus |
 | size | string | normal | - | Specifies the size of the input (small, normal, large) |
 | dataHook | string | normal | - | Specifies a data-hook for tests |
+| disabled | bool | false | - |  when set to true this component is disabled
 | prefix | node | - | - | Component you want to show as the prefix of the input |
 | suffix | node | - | - | Component you want to show as the suffix of the input |
 

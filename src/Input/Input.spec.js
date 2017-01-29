@@ -210,6 +210,13 @@ describe('Input', () => {
     });
   });
 
+  describe('disable attribute', () => {
+    it('should have disabled class on input if disabled is true', () => {
+      const driver = createDriver(<Input disabled/>);
+      expect(driver.isDisabled()).toBeTruthy();
+    });
+  });
+
   describe('autoFocus attribute', () => {
     it('Mounting an input element with autoFocus=false, should give it the focus', () => {
       let autoFocus = false;

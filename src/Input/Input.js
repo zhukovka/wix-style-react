@@ -58,6 +58,7 @@ class Input extends Component {
       iconLeft,
       prefix,
       suffix,
+      disabled,
       type
     } = this.props;
 
@@ -77,6 +78,7 @@ class Input extends Component {
       [styles[`theme-${theme}`]]: true,
       [styles[`size-${size}`]]: true,
       [styles.rtl]: !!rtl,
+      [styles.disabled]: disabled,
       [styles.hasError]: !!error,
       [styles.hasHover]: forceHover,
       [styles.hasFocus]: forceFocus || this.state.focus
@@ -86,11 +88,17 @@ class Input extends Component {
 
     return (
       <div className={classes} {...myAttr}>
-        <InputPrefix>{iconLeft}{prefix}</InputPrefix>
+        <InputPrefix
+          disabled={disabled}
+          >
+          {iconLeft}
+          {prefix}
+        </InputPrefix>
         <input
           ref={input => this.input = input}
           className={styles.input}
           id={id}
+          disabled={disabled}
           defaultValue={defaultValue}
           value={value}
           onChange={onChange}
@@ -106,6 +114,7 @@ class Input extends Component {
           type={type}
           />
         <InputSuffix
+          disabled={disabled}
           value={value}
           error={error}
           unit={unit}
@@ -194,6 +203,7 @@ Input.propTypes = {
   onEnterPressed: PropTypes.func,
   onKeyDown: PropTypes.func,
   onKeyUp: PropTypes.func,
+  disabled: PropTypes.bool,
   iconLeft: PropTypes.object,
   readOnly: PropTypes.bool,
   dataHook: PropTypes.string,
