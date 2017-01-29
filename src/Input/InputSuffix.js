@@ -2,7 +2,7 @@ import React, {PropTypes} from 'react';
 
 import SvgExclamation from '../svg/Exclamation.js';
 import {CloseThin, ArrowDownThin, Search4} from '../Icons';
-
+import Tooltip from '../Tooltip';
 import styles from './Input.scss';
 
 const InputSuffix = ({
@@ -14,7 +14,8 @@ const InputSuffix = ({
   onClear,
   onFocus,
   children,
-  disabled
+  disabled,
+  errorMessage
 }) => {
 
   const onIconClicked = () => {
@@ -25,7 +26,9 @@ const InputSuffix = ({
 
   const exclamation = error && !disabled ? (
     <div className={styles.exclamation}>
-      <SvgExclamation width={2} height={11}/>
+      <Tooltip disabled={errorMessage.length === 0} placement="top" moveBy={{x: 2, y: 0}} alignment="center" content={errorMessage} overlay="" theme="dark">
+        <div className={styles.exclamation}><SvgExclamation width={2} height={11}/></div>
+      </Tooltip>
     </div>) : null;
 
   const unitDom = unit ? <div className={styles.unit} onClick={onIconClicked}>{unit}</div> : null;
@@ -64,7 +67,8 @@ InputSuffix.propTypes = {
   onClear: PropTypes.func,
   onFocus: PropTypes.func,
   children: PropTypes.node,
-  disabled: PropTypes.bool
+  disabled: PropTypes.bool,
+  errorMessage: PropTypes.string
 };
 
 export default InputSuffix;

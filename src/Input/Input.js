@@ -59,7 +59,8 @@ class Input extends Component {
       prefix,
       suffix,
       disabled,
-      type
+      type,
+      errorMessage
     } = this.props;
 
     let {theme} = this.props; // When deprecation ends. theme should move to const.
@@ -123,6 +124,7 @@ class Input extends Component {
           rtl={rtl}
           onClear={onClear}
           onFocus={this._onFocus}
+          errorMessage={errorMessage}
           >
           {suffix}
         </InputSuffix>
@@ -175,7 +177,8 @@ Input.displayName = 'Input';
 
 Input.defaultProps = {
   theme: 'normal',
-  size: 'normal'
+  size: 'normal',
+  errorMessage: ''
 };
 
 Input.propTypes = {
@@ -210,7 +213,8 @@ Input.propTypes = {
   size: PropTypes.oneOf(['small', 'normal', 'large']),
   prefix: PropTypes.node,
   suffix: PropTypes.node,
-  type: PropTypes.node
+  type: PropTypes.node,
+  errorMessage: PropTypes.string
 };
 
 function deprecated(when, oldProp, newProp) {

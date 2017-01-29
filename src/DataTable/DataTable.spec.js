@@ -1,4 +1,3 @@
-import _ from 'lodash/fp';
 import dataTableDriverFactory from './DataTable.driver';
 import React from 'react';
 import DataTable from './DataTable';
