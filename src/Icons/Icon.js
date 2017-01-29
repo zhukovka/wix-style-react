@@ -8,7 +8,7 @@ const Icon = ({children, viewBox, size}) => {
       className={s.iconDefault}
       width={size}
       height={size}
-      viewBox={viewBox}npm
+      viewBox={viewBox}
       >
       {children}
     </svg>
