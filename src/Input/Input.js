@@ -20,6 +20,7 @@ class Input extends Component {
     this._onKeyDown = this._onKeyDown.bind(this);
     this._onFocus = this._onFocus.bind(this);
     this._onBlur = this._onBlur.bind(this);
+    this._onChange = this._onChange.bind(this);
     this.focus = this.focus.bind(this);
     this.blur = this.blur.bind(this);
     this.select = this.select.bind(this);
@@ -47,7 +48,6 @@ class Input extends Component {
       menuArrow,
       defaultValue,
       tabIndex,
-      onChange,
       onClear,
       rtl,
       autoFocus,
@@ -102,7 +102,7 @@ class Input extends Component {
           disabled={disabled}
           defaultValue={defaultValue}
           value={value}
-          onChange={onChange}
+          onChange={this._onChange}
           onFocus={this._onFocus}
           onBlur={this._onBlur}
           onKeyDown={this._onKeyDown}
@@ -170,6 +170,14 @@ class Input extends Component {
     } else if (e.keyCode === 27 /* esc */) {
       this.props.onEscapePressed && this.props.onEscapePressed();
     }
+  }
+
+  _onChange(e) {
+    if (this.props.type === 'number' && !(/^\d*$/.test(e.target.value))) {
+      return;
+    }
+
+    this.props.onChange && this.props.onChange(e);
   }
 }
 
