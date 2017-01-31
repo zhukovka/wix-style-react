@@ -16,6 +16,7 @@
 | tabIndex| number | 1 | - | Specifies the tab order of the component |
 | fixedHeader | node | - | - | A fixed header to the list |
 | fixedFooter | node | - | - | A fixed footer to the list |
+| theme | string | - | - | The theme of the dropdown. currently only 'b2b' theme is supported |
 
 ## Option
 

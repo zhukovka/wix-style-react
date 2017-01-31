@@ -148,10 +148,10 @@ class DropdownLayout extends WixComponent {
       [styles.shown]: visible,
       [styles.up]: dropDirectionUp,
       [styles.down]: !dropDirectionUp
-    }, styles[this.props.theme]);
+    });
 
     return (
-      <div tabIndex={tabIndex} className={styles.wrapper} onKeyDown={this._onKeyDown}>
+      <div tabIndex={tabIndex} className={classNames(styles.wrapper, styles[`theme-${this.props.theme}`])} onKeyDown={this._onKeyDown}>
         <div className={contentContainerClassName}>
           {this.renderNode(fixedHeader)}
           <div className={styles.options} ref={options => this.options = options} data-hook="dropdown-layout-options">

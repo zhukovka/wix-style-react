@@ -16,6 +16,9 @@ import ExampleReactElementRaw from '!raw!./ExampleReactElements';
 import ExampleControlled from './ExampleControlled';
 import ExampleControlledRaw from '!raw!./ExampleControlled';
 
+import ExampleTheme from './ExampleTheme';
+import ExampleThemeRaw from '!raw!./ExampleTheme';
+
 storiesOf('4. Layouts', module)
   .add('4.2 DropdownLayout', () => (
     <div>
@@ -33,16 +36,22 @@ storiesOf('4. Layouts', module)
         <ExampleManyOptions/>
       </CodeExample>
 
-      <div style={{paddingTop: '230px'}}/>
+      <div style={{paddingTop: '261px'}}/>
 
       <CodeExample title="React elements" code={ExampleReactElementRaw}>
         <ExampleReactElement/>
       </CodeExample>
 
-      <div style={{paddingTop: '110px'}}/>
+      <div style={{paddingTop: '173px'}}/>
 
       <CodeExample title="Controlled" code={ExampleControlledRaw}>
         <ExampleControlled/>
+      </CodeExample>
+
+      <div style={{paddingTop: '10px'}}/>
+
+      <CodeExample title="With theme" code={ExampleThemeRaw}>
+        <ExampleTheme/>
       </CodeExample>
     </div>
   ));

@@ -16,7 +16,7 @@ const dropdownLayoutDriverFactory = ({component, wrapper}) => {
     isShown: () => isClassExists(contentContainer, 'shown'),
     isDown: () => isClassExists(contentContainer, 'down'),
     isUp: () => isClassExists(contentContainer, 'up'),
-    hasTheme: theme => isClassExists(contentContainer, theme),
+    hasTheme: theme => isClassExists(component, `theme-${theme}`),
     tabIndex: () => component.tabIndex,
     optionsLength: () => options.childNodes.length,
     mouseEnterAtOption: position => ReactTestUtils.Simulate.mouseEnter(optionAt(position)),
