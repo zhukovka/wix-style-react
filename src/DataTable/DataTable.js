@@ -14,9 +14,20 @@ class DataTable extends WixCopmonent {
   }
 
   componentWillReceiveProps(nextProps) {
-    if (this.props.infiniteScroll &&
-      nextProps.data !== this.props.data) {
-      this.setState(this.createInitialScrollingState(nextProps));
+    let isLoadingMore = false;
+    if (this.props.infiniteScroll && nextProps.data !== this.props.data) {
+      if (nextProps.data instanceof Array && this.props.data instanceof Array) {
+        if (this.props.data.every((elem, index) => {
+          return nextProps.data.length > index && nextProps.data[index] === elem;
+        })) {
+          isLoadingMore = true;
+          this.setState({lastPage: this.calcLastPage(nextProps)});
+        }
+      }
+
+      if (!isLoadingMore) {
+        this.setState(this.createInitialScrollingState(nextProps));
+      }
     }
   }
 
@@ -49,7 +60,7 @@ class DataTable extends WixCopmonent {
       <InfiniteScroll
         pageStart={0}
         loadMore={this.loadMore}
-        hasMore={this.state.currentPage < this.state.lastPage}
+        hasMore={this.state.currentPage < this.state.lastPage || (this.props.hasMore)}
         loader={<div className="loader">Loading ...</div>}
         >
         {table}
@@ -122,7 +133,11 @@ class DataTable extends WixCopmonent {
   calcLastPage = ({data, itemsPerPage}) => Math.ceil(data.length / itemsPerPage) - 1;
 
   loadMore = () => {
-    this.setState({currentPage: this.state.currentPage + 1});
+    if (this.state.currentPage < this.state.lastPage) {
+      this.setState({currentPage: this.state.currentPage + 1});
+    } else {
+      this.props.loadMore && this.props.loadMore();
+    }
   }
 }
 
@@ -132,7 +147,9 @@ DataTable.defaultProps = {
   showHeaderWhenEmpty: false,
   infiniteScroll: false,
   itemsPerPage: 20,
-  width: '100%'
+  width: '100%',
+  loadMore: null,
+  hasMore: false
 };
 
 DataTable.propTypes = {
@@ -148,7 +165,9 @@ DataTable.propTypes = {
   onRowClick: PropTypes.func,
   infiniteScroll: PropTypes.bool,
   itemsPerPage: PropTypes.number,
-  width: PropTypes.string
+  width: PropTypes.string,
+  loadMore: PropTypes.func,
+  hasMore: PropTypes.bool
 };
 
 DataTable.displayName = 'DataTable';

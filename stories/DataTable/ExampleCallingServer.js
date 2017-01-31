@@ -12,20 +12,38 @@ const baseData = [
     {firstName: 'Walter', lastName: 'Jenning'}
 ];
 
-const generateData = () => {
+const generateData = count => {
   let data = [];
-  for (let i = 0; i < 10; i++) {
+  for (let i = 0; i < count; i++) {
     data = data.concat(baseData);
   }
   return data;
 };
 
 class DataTableExample extends React.Component {
+
+  constructor(props) {
+    super(props);
+    this.state = {hasMore: true, count: 5};
+    this.loadMore = this.loadMore.bind(this);
+
+  }
+
+  loadMore() {
+    const loadMoreData = () => {
+      this.setState({count: this.state.count + 5});
+      if (this.state.count > 20) {
+        this.setState({hasMore: false});
+      }
+    };
+    setTimeout(loadMoreData, 3000);
+  }
+
   render() {
     return (
       <div style={style}>
         <DataTable
-          data={generateData()}
+          data={generateData(this.state.count)}
           onRowClick={(row, rowNum) => {
             /*eslint-disable no-alert*/
             window.alert(`You clicked "${row.firstName} ${row.lastName}", row number ${rowNum + 1}`);
@@ -38,6 +56,8 @@ class DataTableExample extends React.Component {
               {title: 'First Name', render: row => <span>{row.firstName}</span>, width: '40%', minWidth: '100px',},
               {title: 'Last Name', render: row => <span>{row.lastName}</span>, width: '40%', minWidth: '100px',}
           ]}
+          hasMore={this.state.hasMore}
+          loadMore={this.loadMore}
           />
       </div>
     );
