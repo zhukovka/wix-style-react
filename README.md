@@ -16,6 +16,9 @@ Storybook will allow you to see all the different components implemented, and th
 ```javascript
     npm install --save wix-style-react
 ```
+#### Install watchman
+This library depends on watchman, please install it from [here](https://facebook.github.io/watchman/docs/install.html)
+
 #### Update webpack
 The files are brought 'uncompiled' and 'unpacked'. You will need to make sure webpack standard loaders run on this project by adding 'node_modules/wix-style-react/src' to your loaders' include array, for example:
 ```javascript
