@@ -90,22 +90,27 @@ class DataTable extends WixCopmonent {
   );
 
   renderRow = (rowData, rowNum) => {
+    const {onRowClick, rowDataHook, dynamicRowClass} = this.props;
     const rowClasses = [this.props.rowClass];
     const optionalRowProps = {};
 
-    if (this.props.onRowClick) {
+    if (onRowClick) {
       optionalRowProps.onClick = event => {
         if (event.isDefaultPrevented()) {
           return;
         }
 
-        this.props.onRowClick(rowData, rowNum);
+        onRowClick(rowData, rowNum);
       };
       rowClasses.push(s.clickableDataRow);
     }
 
-    if (this.props.rowDataHook) {
-      optionalRowProps['data-hook'] = this.props.rowDataHook;
+    if (rowDataHook) {
+      optionalRowProps['data-hook'] = rowDataHook;
+    }
+
+    if (dynamicRowClass) {
+      rowClasses.push(dynamicRowClass(rowData, rowNum));
     }
 
     optionalRowProps.className = classNames(rowClasses);
@@ -162,6 +167,7 @@ DataTable.propTypes = {
   showHeaderWhenEmpty: PropTypes.bool,
   rowDataHook: PropTypes.string,
   rowClass: PropTypes.string,
+  dynamicRowClass: PropTypes.func,
   onRowClick: PropTypes.func,
   infiniteScroll: PropTypes.bool,
   itemsPerPage: PropTypes.number,

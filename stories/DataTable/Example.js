@@ -1,5 +1,6 @@
 import React from 'react';
 import DataTable from 'wix-style-react/DataTable';
+import s from './Example.scss'
 
 const style = {
   width: '50%',
@@ -31,6 +32,7 @@ class DataTableExample extends React.Component {
             window.alert(`You clicked "${row.firstName} ${row.lastName}", row number ${rowNum + 1}`);
             /*eslint-enable no-alert*/
           }}
+          dynamicRowClass={(row) => row.firstName === baseData[1].firstName ? s.highlightRow : null}
           infiniteScroll
           itemsPerPage={20}
           columns={[

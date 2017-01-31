@@ -68,6 +68,14 @@ describe('Table', () => {
     expect(driver.getRowsWithClassCount(defaultProps.rowClass)).toBe(defaultProps.data.length);
   });
 
+  it('should assign a dynamic class to rows', () => {
+    const getClass = rowData => rowData.a.replace(/[\s]+/g, '-');
+    const driver = createDriver(<DataTable {...defaultProps} dynamicRowClass={getClass}/>);
+    expect(driver.getRowsWithClassCount('value-1')).toBe(1);
+    expect(driver.getRowsWithClassCount('value-3')).toBe(1);
+    expect(driver.getRowsWithClassCount(defaultProps.rowClass)).toBe(defaultProps.data.length);
+  });
+
   it('should call on row click with row data and index', () => {
     const props = {
       ...defaultProps,
