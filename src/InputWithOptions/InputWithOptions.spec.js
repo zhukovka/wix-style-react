@@ -104,7 +104,7 @@ const runInputWithOptionsTest = driverFactory => {
       const {driver, dropdownLayoutDriver} = createDriver(<InputWithOptions options={options} onSelect={onSelect}/>);
       driver.focus();
       dropdownLayoutDriver.clickAtOption(0);
-      expect(onSelect).toBeCalledWith({id: 0, value: 'Option 1'});
+      expect(onSelect).toBeCalledWith(options[0].value);
     });
 
     it('should call onFocus', () => {

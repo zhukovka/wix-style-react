@@ -10,6 +10,9 @@ import ExampleStandardRaw from '!raw!./ExampleStandard';
 import ExampleControlled from './ExampleControlled';
 import ExampleControlledRaw from '!raw!./ExampleControlled';
 
+import ExampleWithCustomValue from './ExampleWithCustomValue';
+import ExampleWithCustomValueRaw from '!raw!./ExampleWithCustomValue';
+
 storiesOf('1. Inputs', module)
   .add('1.8 Dropdown', () => (
     <div>
@@ -23,6 +26,10 @@ storiesOf('1. Inputs', module)
 
       <CodeExample title="Controlled Dropdown" code={ExampleControlledRaw}>
         <ExampleControlled/>
+      </CodeExample>
+
+      <CodeExample title="Custom Values in Dropdown" code={ExampleWithCustomValueRaw}>
+        <ExampleWithCustomValue/>
       </CodeExample>
     </div>
   ));

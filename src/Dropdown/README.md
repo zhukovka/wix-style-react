@@ -10,7 +10,8 @@
 | onSelect | func | - | - | Callback function called whenever the user selects a different option in the list |
 | selectedId | string/number | - | - | The id of the selected option in the list |
 | placeholder | string | '' | - | Shown when no option is selected |
-| disabled | bool | false | - |  when set to true this component is disabled
+| disabled | bool | false | - |  when set to true this component is disabled |
+| valueParser | func | option => option.value | - | function that extracts the value from an option |
 | fixedHeader | node | - | - | A fixed header to the list |
 | fixedFooter | node | - | - | A fixed footer to the list |
 | ***All of the InputWithOptions Props are also available for this component*** | | | | |

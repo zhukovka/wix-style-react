@@ -46,7 +46,7 @@ class Dropdown extends InputWithOptions {
   }
 
   _onSelect(option) {
-    this.setState({value: option.value, selectedId: option.id});
+    this.setState({value: this.props.valueParser(option), selectedId: option.id});
     super._onSelect(option);
   }
 }

@@ -12,7 +12,8 @@
 | selectedId | string/number | - | - | The id of the selected option in the list |
 | closeOnSelect | bool | true | - | Should the options container close on selection |
 | inputElement | element | - | - | Set the component input element |
-| disabled | bool | false | - |  when set to true this component is disabled
+| disabled | bool | false | - |  when set to true this component is disabled |
+| valueParser | func | option => option.value | - | function that extracts the value from an option |
 | fixedHeader | node | - | - | A fixed header to the list |
 | fixedFooter | node | - | - | A fixed footer to the list |
 | ***All of the Input's and DropdownLayout Props are also available for this component*** | | | | |

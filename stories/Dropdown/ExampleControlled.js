@@ -1,13 +1,12 @@
 import React from 'react';
 import Dropdown from 'wix-style-react/Dropdown';
-import InputWithOptions from 'wix-style-react/InputWithOptions';
 
 const style = {
   display: 'inline-block',
   padding: '0 5px 0',
   width: '200px',
   lineHeight: '22px',
-  marginBottom: '350px'
+  marginBottom: '160px'
 };
 
 const options = [
