@@ -107,6 +107,14 @@ const runInputWithOptionsTest = driverFactory => {
       expect(onSelect).toBeCalledWith(options[0].value);
     });
 
+    it('should call valueParser when an option is pressed', () => {
+      const valueParser = jest.fn();
+      const {driver, dropdownLayoutDriver} = createDriver(<InputWithOptions options={options} valueParser={valueParser}/>);
+      driver.focus();
+      dropdownLayoutDriver.clickAtOption(0);
+      expect(valueParser).toBeCalledWith(options[0]);
+    });
+
     it('should call onFocus', () => {
       const onFocus = jest.fn();
       const {driver} = createDriver(<InputWithOptions options={options} onFocus={onFocus}/>);
