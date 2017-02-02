@@ -108,14 +108,14 @@ class InputWithOptions extends WixComponent {
 
   _onSelect(option) {
     this.showOptions();
-    const {onSelect, valueParser} = this.props;
+    const {onSelect} = this.props;
 
     if (this.closeOnSelect()) {
       this.hideOptions();
     }
 
     if (onSelect) {
-      onSelect(valueParser(option));
+      onSelect(option);
     }
   }
 

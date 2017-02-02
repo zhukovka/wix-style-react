@@ -28,15 +28,13 @@ const options = [
   {id: 6, value: customValue}
 ];
 
-class CustomValuesInDropdown extends React.Component {
-  onSelect(value) {
-    console.log(`Selected ${value}`);
-  }
+const valueParser = option => (typeof option.value === 'string') ?
+  option.value :
+  option.value.props.children[0].props.children;
 
-  valueParser(option) {
-    return (typeof option.value === 'string') ?
-      option.value :
-      option.value.props.children[0].props.children;
+class CustomValuesInDropdown extends React.Component {
+  onSelect(option) {
+    console.log('Selected ', valueParser(option));
   }
 
   render() {
@@ -44,7 +42,7 @@ class CustomValuesInDropdown extends React.Component {
       <Dropdown
         options={options}
         placeholder={'Choose an option'}
-        valueParser={this.valueParser}
+        valueParser={valueParser}
         onSelect={this.onSelect}
         />
     );
