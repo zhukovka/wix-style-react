@@ -106,7 +106,7 @@ class InputWithOptions extends WixComponent {
     }
   }
 
-  _onSelect(option) {
+  _onSelect(option, isSelectedOption) {
     this.showOptions();
     const {onSelect} = this.props;
 
@@ -114,7 +114,9 @@ class InputWithOptions extends WixComponent {
       this.hideOptions();
     }
 
-    if (onSelect) {
+    if (isSelectedOption) {
+      this.setState({showOptions: false});
+    } else if (onSelect) {
       onSelect(option);
     }
   }

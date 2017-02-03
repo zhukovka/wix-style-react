@@ -108,20 +108,20 @@ describe('DropdownLayout', () => {
     expect(onClose).toBeCalled();
   });
 
-  it('should call select when clicking on an option', () => {
+  it('should call onSelect with false boolean when clicking on an unselected option', () => {
     const onSelect = jest.fn();
     const driver = createDriver(<DropdownLayout visible options={options} onSelect={onSelect}/>);
     driver.clickAtOption(0);
-    expect(onSelect).toBeCalledWith(options[0]);
+    expect(onSelect).toBeCalledWith(options[0], false);
     driver.clickAtOption(5);
-    expect(onSelect).toBeCalledWith(options[5]);
+    expect(onSelect).toBeCalledWith(options[5], false);
   });
 
-  it('should not call select when clicking on a selected option', () => {
+  it('should call onSelect with true value when clicking on a selected option', () => {
     const onSelect = jest.fn();
     const driver = createDriver(<DropdownLayout visible options={options} onSelect={onSelect} selectedId={0}/>);
     driver.clickAtOption(0);
-    expect(onSelect.mock.calls.length).toBe(0);
+    expect(onSelect).toBeCalledWith(options[0], true);
   });
 
   it('should call select when enter key is pressed', () => {

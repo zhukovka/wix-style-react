@@ -46,14 +46,8 @@ class DropdownLayout extends WixComponent {
 
   _onSelect(index) {
     const {options, onSelect, selectedId} = this.props;
-    if (index >= 0 && index < options.length) {
-      const newSelectedId = options[index].id;
-      if (newSelectedId !== selectedId && onSelect) {
-        onSelect(options[index]);
-        return true;
-      }
-    }
-    return false;
+    options[index] && onSelect && onSelect(options[index], options[index].id === selectedId);
+    return !!onSelect && options[index];
   }
 
   _onMouseEnter(index) {

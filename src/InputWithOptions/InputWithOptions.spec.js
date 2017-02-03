@@ -107,6 +107,14 @@ const runInputWithOptionsTest = driverFactory => {
       expect(onSelect).toBeCalledWith(options[0]);
     });
 
+    it('should not call onSelect when a selected option is pressed', () => {
+      const onSelect = jest.fn();
+      const {driver, dropdownLayoutDriver} = createDriver(<InputWithOptions options={options} onSelect={onSelect} selectedId={options[0].id}/>);
+      driver.focus();
+      dropdownLayoutDriver.clickAtOption(0);
+      expect(onSelect).not.toBeCalled();
+    });
+
     it('should call onFocus', () => {
       const onFocus = jest.fn();
       const {driver} = createDriver(<InputWithOptions options={options} onFocus={onFocus}/>);
