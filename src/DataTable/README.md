@@ -19,6 +19,7 @@
 | width | string | '100%' | - | The width of the fixed table. Can be in percentages or pixels. |
 | hasMore | boolean | false | - | Whether there are more items to be loaded. Event listeners are removed if false.
 | loadMore | func | null | - | A callback when more items are requested by the user.
+| loader | node | Loading ...| - | The loader to show when loading more items.
 
 ### Column object props
 

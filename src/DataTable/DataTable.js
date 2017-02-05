@@ -61,7 +61,7 @@ class DataTable extends WixCopmonent {
         pageStart={0}
         loadMore={this.loadMore}
         hasMore={this.state.currentPage < this.state.lastPage || (this.props.hasMore)}
-        loader={<div className="loader">Loading ...</div>}
+        loader={this.props.loader}
         >
         {table}
       </InfiniteScroll>
@@ -154,7 +154,8 @@ DataTable.defaultProps = {
   itemsPerPage: 20,
   width: '100%',
   loadMore: null,
-  hasMore: false
+  hasMore: false,
+  loader: <div className="loader">Loading ...</div>
 };
 
 DataTable.propTypes = {
@@ -173,7 +174,8 @@ DataTable.propTypes = {
   itemsPerPage: PropTypes.number,
   width: PropTypes.string,
   loadMore: PropTypes.func,
-  hasMore: PropTypes.bool
+  hasMore: PropTypes.bool,
+  loader: PropTypes.node
 };
 
 DataTable.displayName = 'DataTable';
