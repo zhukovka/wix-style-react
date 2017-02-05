@@ -1,21 +1,23 @@
 import React from 'react';
-import {shallow, mount} from 'enzyme';
+import ReactDOM from 'react-dom';
+import Loader from '../Loader';
 
-import Loader from './Loader';
-import styles from './Loader.scss';
+const loaderDriverFactory = ({component, wrapper}) => {
+  const isClassExists = (component, className) => !!component && component.className.indexOf(className) !== -1;
+  const text = component.childNodes[1];
 
-const loaderDriverFactory = component => ({
-  isSmall: () => component.hasClass(styles.small),
-  isMedium: () => component.hasClass(styles.medium),
-  isLarge: () => component.hasClass(styles.large),
-  hasText: () => component.find(`.${styles.text}`).length === 1,
-  getText: () => component.find(`.${styles.text}`).text()
-});
-
-const componentFactory = () => {
-  const createShallow = (props = {}) => shallow(<Loader {...props}/>);
-  const createMount = (props = {}) => mount(<Loader {...props}/>);
-  return {createShallow, createMount};
+  return {
+    exists: () => !!component,
+    isSmall: () => isClassExists(component, 'small'),
+    isMedium: () => isClassExists(component, 'medium'),
+    isLarge: () => isClassExists(component, 'large'),
+    hasText: () => isClassExists(text, 'text'),
+    getText: () => text.textContent,
+    setProps: props => {
+      ReactDOM.render(<div ref={r => component = r}><Loader {...props}/></div>, wrapper);
+    },
+    component: () => component
+  };
 };
 
-export {componentFactory, loaderDriverFactory};
+export default loaderDriverFactory;

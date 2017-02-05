@@ -34,9 +34,10 @@ function loadStories() {
   require('../stories/Label');
   require('../stories/TextField');
   require('../stories/TextArea');
+  require('../stories/AutoCompleteComposite');
   require('../stories/EndorseContentLayout');
   require('../stories/Icons');
-	require('../stories/Breadcrubms');
+  require('../stories/Breadcrubms');
   require('../stories/GridWithCardLayout');
 }
 

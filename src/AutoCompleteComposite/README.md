@@ -1,4 +1,4 @@
-# TextField component
+# AutoCompleteComposite component
 
 
 ## Properties

@@ -19,7 +19,7 @@ describe('Label', () => {
   it('should render children', () => {
     const children = 'inner text';
 
-    const driver = createDriver(<Label appearance="T1" children={children}/>);
+    const driver = createDriver(<Label appearance="T1">{children}</Label>);
     expect(driver.getLabelTextContent()).toBe(children);
   });
 

@@ -45,4 +45,22 @@ export const buttonTestkitFactory = enzymeTestkitFactoryCreator(buttonDriverFact
 import dataTableDriverFactory from '../src/DataTable/DataTable.driver';
 export const dataTableTestkitFactory = enzymeTestkitFactoryCreator(dataTableDriverFactory);
 
+import textAreaDriverFactory from '../src/TextArea/TextArea.driver';
+export const textAreaTestkitFactory = enzymeTestkitFactoryCreator(textAreaDriverFactory);
+
+import textFieldDriverFactory from '../src/TextField/TextField.driver';
+export const textFieldTestkitFactory = enzymeTestkitFactoryCreator(textFieldDriverFactory);
+
+import autoCompleteCompositeDriverFactory from '../src/AutoCompleteComposite/AutoCompleteComposite.driver';
+export const autoCompleteCompositeTestkitFactory = enzymeTestkitFactoryCreator(autoCompleteCompositeDriverFactory);
+
+import loaderDriverFactory from '../src/Loader/Loader.driver';
+export const loaderTestkitFactory = enzymeTestkitFactoryCreator(loaderDriverFactory);
+
+import radioGroupDriverFactory from '../src/RadioGroup/RadioGroup.driver';
+export const radioGroupTestkitFactory = enzymeTestkitFactoryCreator(radioGroupDriverFactory);
+
+import radioButtonDriverFactory from '../src/RadioGroup/RadioButton/RadioButton.driver';
+export const radioButtonTestkitFactory = enzymeTestkitFactoryCreator(radioButtonDriverFactory);
+
 export {toastTestkitFactory} from '../src/Toast/testkit/Toast.enzyme';

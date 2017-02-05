@@ -1,14 +1,14 @@
 import React, {PropTypes} from 'react';
 import uniqueId from 'lodash.uniqueid';
-import RadioButton from './RadioButton';
+import RadioButton from './RadioButton/RadioButton';
 import styles from './RadioGroup.scss';
+import WixComponent from '../WixComponent';
 
-class RadioGroup extends React.Component {
+class RadioGroup extends WixComponent {
   constructor(props) {
     super(props);
     this.name = uniqueId('RadioGroup_');
-
-    if (props.children.some(child => child.type.name !== 'RadioButton')) {
+    if (!!props.children && props.children.some(child => child.type.name !== 'RadioButton')) {
       throw new Error(
         'RadioGroup: Invalid RadioButtons provided. Hint: RadioButton is not allowed to be encapsulated by div'
       );
@@ -16,10 +16,10 @@ class RadioGroup extends React.Component {
   }
 
   render() {
-    const {onChange, disabledRadios, value, vAlign, display, id} = this.props;
+    const {onChange, disabledRadios, value, vAlign, display} = this.props;
 
     return (
-      <div className={styles[display]} id={id}>
+      <div className={styles[display]}>
         {React.Children.map(this.props.children, radio => (
           <RadioGroup.Radio
             value={radio.props.value}
@@ -43,7 +43,6 @@ RadioGroup.propTypes = {
   disabledRadios: PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.string, PropTypes.number])),
   vAlign: PropTypes.oneOf(['center', 'top']),
   display: PropTypes.oneOf(['vertical', 'horizontal']),
-  id: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
   children: PropTypes.arrayOf((propValue, key) => {
     if (propValue[key].type.name !== 'RadioButton') {
       return new Error(`InputWithOptions: Invalid Prop children was given. Validation failed on child number ${key}`);

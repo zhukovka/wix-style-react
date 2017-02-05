@@ -1,124 +1,104 @@
-import {componentFactory, radioGroupDriverFactory} from './RadioGroup.driver';
+import React from 'react';
+import RadioGroup from './RadioGroup';
+import radioGroupDriverFactory from './RadioGroup.driver';
+import {createDriverFactory} from '../test-common';
+import {radioGroupTestkitFactory} from '../../testkit';
+import {isTestkitExists, isEnzymeTestkitExists} from '../../testkit/test-common';
+import {radioGroupTestkitFactory as enzymeRadioGroupTestkitFactory} from '../../testkit/enzyme';
 
 describe('RadioGroup', () => {
-  const options = [{value: 0}, {value: 1}, {value: 2}];
-  const {createShallow, createMount} = componentFactory(options);
+  const createDriver = createDriverFactory(radioGroupDriverFactory);
 
-  const createDriver = args => radioGroupDriverFactory(createShallow(args));
-  const createMountDriver = args => radioGroupDriverFactory(createMount(args));
-  const noop = () => {};
+  const elementToRender = props => (
+    <RadioGroup {...props}>
+      <RadioGroup.Radio value={1}>Option 1</RadioGroup.Radio>
+      <RadioGroup.Radio value={2}>Option 2</RadioGroup.Radio>
+      <RadioGroup.Radio value={3}>Option 3</RadioGroup.Radio>
+      <RadioGroup.Radio value={4}>Option 4</RadioGroup.Radio>
+    </RadioGroup>
+  );
 
   it('should check the option that matches the initial value', () => {
     const value = 2;
-    const driver = createMountDriver({value, onChange: noop});
-
-    expect(driver.getSelectedValue()).toEqual(value);
-    expect(driver.radioAt(2).node.checked).toEqual(true);
+    const driver = createDriver(elementToRender({value}));
+    expect(driver.getSelectedValue()).toBe(value);
   });
 
   it('should not check any options if value was not matched', () => {
     const value = 10;
-    const driver = createDriver({value, onChange: noop});
+    const driver = createDriver(elementToRender({value}));
+    expect(driver.getSelectedValue()).toBe(null);
+  });
 
-    driver.allRadios().forEach(node =>
-      expect(node.props().checked).toEqual(false)
+  describe('onChange attribute', () => {
+    it('should be called with the correct option value', () => {
+      const onChange = jest.fn();
+      const driver = createDriver(elementToRender({onChange}));
+      driver.selectByValue(1);
+      expect(onChange).toBeCalledWith(1);
+    });
+
+    it('should not be called upon checked option', () => {
+      const value = 1;
+      const onChange = jest.fn();
+      const driver = createDriver(elementToRender({onChange, value}));
+
+      driver.selectByValue(1);
+      expect(onChange.mock.calls.length).toBe(0);
+    });
+
+    it('should not be called upon disabled option', () => {
+      const disabledRadios = [1];
+      const onChange = jest.fn();
+      const driver = createDriver(elementToRender({onChange, disabledRadios}));
+
+      driver.selectByValue(1);
+      expect(onChange.mock.calls.length).toBe(0);
+    });
+  });
+
+  describe('vAlign attribute', () => {
+    const elementToRender = props => (
+      <RadioGroup {...props}>
+        <RadioGroup.Radio value={1}>Option 1</RadioGroup.Radio>
+        <RadioGroup.Radio value={2}>Option 2</RadioGroup.Radio>
+      </RadioGroup>
     );
-  });
 
-  it('should call onChange with the correct option value', () => {
-    const value = 10;
-    const onChange = jest.fn();
-    const driver = createMountDriver({value, onChange});
-
-    driver.selectByValue(1);
-    expect(onChange).toBeCalledWith(1);
-  });
-
-  it('should not call onChange when called upon checked option', () => {
-    const value = 1, onChange = jest.fn();
-    const component = createMount({
-      value,
-      onChange
+    it('should have a default vcenter class', () => {
+      const driver = createDriver(elementToRender());
+      expect(driver.getClassOfLabelAt(0)).toBe('vcenter');
+      expect(driver.getClassOfLabelAt(1)).toBe('vcenter');
     });
 
-    const driver = radioGroupDriverFactory(component);
-
-    driver.selectByValue(1);
-    expect(onChange.mock.calls.length).toBe(0);
+    it('should have a vtop class', () => {
+      const driver = createDriver(elementToRender({vAlign: 'top'}));
+      expect(driver.getClassOfLabelAt(0)).toBe('vtop');
+      expect(driver.getClassOfLabelAt(1)).toBe('vtop');
+    });
   });
 
-  it('should not call onChange when called upon disabled option', () => {
-    const onChange = jest.fn();
-    const component = createMount({
-      onChange,
-      disabledRadios: [1]
+  describe('display attribute', () => {
+    it('should be vertical by default', () => {
+      const driver = createDriver(elementToRender());
+      expect(driver.isVerticalDisplay()).toBe(true);
     });
 
-    const driver = radioGroupDriverFactory(component);
-
-    driver.selectByValue(1);
-    expect(onChange.mock.calls.length).toBe(0);
-  });
-
-  it('should change the matched options as the value changes', () => {
-    const value = 10;
-    const component = createMount({
-      value,
-      onChange: value => component.setProps({value})
+    it('should be horizontal', () => {
+      const driver = createDriver(elementToRender({display: 'horizontal'}));
+      expect(driver.isHorizontalDisplay()).toBe(true);
     });
-
-    const driver = radioGroupDriverFactory(component);
-
-    driver.selectByValue(1);
-    expect(driver.radioAt(1).props().checked).toEqual(true);
   });
 
-  it('should have a default vcenter class based on the vAlign attribute', () => {
-    const options = [{value: 0}, {value: 1}];
-    const {createMount} = componentFactory(options);
-
-    const component = createMount({
-      onChange: value => component.setProps({value})
+  describe('testkit', () => {
+    it('should exist', () => {
+      expect(isTestkitExists(<RadioGroup/>, radioGroupTestkitFactory)).toBe(true);
     });
-
-    const driver = radioGroupDriverFactory(component);
-
-    expect(driver.getClassOfLabelAt(0)).toEqual('vcenter');
-    expect(driver.getClassOfLabelAt(1)).toEqual('vcenter');
   });
 
-  it('should have a vtop class based on the vAlign attribute', () => {
-    const options = [{value: 0}, {value: 1}];
-    const {createMount} = componentFactory(options);
-
-    const component = createMount({
-      onChange: noop,
-      vAlign: 'top'
+  describe('enzyme testkit', () => {
+    it('should exist', () => {
+      expect(isEnzymeTestkitExists(<RadioGroup/>, enzymeRadioGroupTestkitFactory)).toBe(true);
     });
-
-    const driver = radioGroupDriverFactory(component);
-
-    expect(driver.getClassOfLabelAt(0)).toEqual('vtop');
-    expect(driver.getClassOfLabelAt(1)).toEqual('vtop');
-  });
-
-  it('should have a vertical class by default', () => {
-    const options = [{value: 0}, {value: 1}];
-    const {createMount} = componentFactory(options);
-
-    const component = createMount({});
-    const driver = radioGroupDriverFactory(component);
-
-    expect(driver.isVerticalDisplay()).toBeTruthy();
-  });
-
-  it('should have a horizontal class', () => {
-    const options = [{value: 0}, {value: 1}];
-    const {createMount} = componentFactory(options);
-
-    const component = createMount({display: 'horizontal'});
-    const driver = radioGroupDriverFactory(component);
-
-    expect(driver.isHorizontalDisplay()).toBeTruthy();
   });
 });

@@ -8,7 +8,7 @@ const componentFactory = Element => {
   return {component: component.childNodes[0], wrapper: wrapperDiv};
 };
 
-export const createDriverFactory = driverFactory => driver => driverFactory(componentFactory(driver));
+export const createDriverFactory = driverFactory => element => driverFactory(componentFactory(element));
 
 export const testkitFactoryCreator = driverFactory => ({wrapper, dataHook}) => {
   const component = wrapper.querySelector(`[data-hook='${dataHook}']`);

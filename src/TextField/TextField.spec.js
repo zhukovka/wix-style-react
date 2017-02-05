@@ -1,40 +1,28 @@
 import React from 'react';
 import ReactTestUtils from 'react-addons-test-utils';
-import {textFieldTestkitFactory, componentFactory, textFieldDriverFactory} from './testkit/TextField';
+import TextField from './TextField';
 import Input from '../Input';
-import _ from 'lodash/fp';
-import Label from '../Label';
-import TextField from '../TextField';
+import {textFieldTestkitFactory} from '../../testkit';
+import {textFieldTestkitFactory as enzymeTextFieldTestkitFactory} from '../../testkit/enzyme';
+import {mount} from 'enzyme';
 
 describe('TextField', () => {
+  describe('testkit', () => {
+    it('should exist', () => {
+      const div = document.createElement('div');
+      const dataHook = 'compHook';
+      const wrapper = div.appendChild(ReactTestUtils.renderIntoDocument(<div><TextField dataHook={dataHook}><Input/></TextField></div>));
+      const textFieldTestkit = textFieldTestkitFactory({wrapper, dataHook});
+      expect(textFieldTestkit.exists()).toBeTruthy();
+    });
 
-  const createDriver = _.compose(textFieldDriverFactory, componentFactory);
-
-  it('should remove label wrapping when label not given', () => {
-    const driver = createDriver({appearance: 'T1', children: <div><Input/></div>});
-    expect(driver.getNumberOfChildren()).toBe(1);
-  });
-
-  it('should render children', () => {
-    const driver = createDriver({appearance: 'T1', children: (<div><Label appearance="T1"/><Input/></div>)});
-
-    expect(driver.getLabel().tagName.toLowerCase()).toBe('label');
-    expect(driver.getInput().tagName.toLowerCase()).toBe('input');
-  });
-});
-
-describe('testkit', () => {
-  it('should create new driver', () => {
-    const div = document.createElement('div');
-    const dataHook = 'compHook';
-
-    const wrapper = div.appendChild(ReactTestUtils.renderIntoDocument(<div>
-      <TextField dataHook={dataHook} appearance="T1">
-        <Input/>
-      </TextField>
-    </div>));
-
-    const driver = textFieldTestkitFactory({wrapper, dataHook});
-    expect(driver.getAttr('data-hook')).toBe(dataHook);
+    describe('enzyme testkit', () => {
+      it('should exist', () => {
+        const dataHook = 'myDataHook';
+        const wrapper = mount(<TextField dataHook={dataHook}><Input/></TextField>);
+        const textFieldTestkit = enzymeTextFieldTestkitFactory({wrapper, dataHook});
+        expect(textFieldTestkit.exists()).toBeTruthy();
+      });
+    });
   });
 });

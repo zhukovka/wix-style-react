@@ -1,19 +1,19 @@
 import React from 'react';
 import {children, optional, once} from '../Composite';
 import Label from '../Label';
-import Input from '../Input';
+import AutoComplete from '../AutoComplete';
 import InputAreaWithLabelComposite from '../Composite/InputAreaWithLabelComposite/InputAreaWithLabelComposite';
 
-const TextField = ({...props, children}) => (
+const AutoCompleteComposite = ({...props, children}) => (
   <InputAreaWithLabelComposite {...props}>
     {children}
   </InputAreaWithLabelComposite>
 );
 
-TextField.propTypes = {
-  children: children(optional(Label), once(Input))
+AutoCompleteComposite.propTypes = {
+  children: children(optional(Label), once(AutoComplete))
 };
 
-TextField.displayName = 'TextField';
+AutoCompleteComposite.displayName = 'AutoCompleteComposite';
 
-export default TextField;
+export default AutoCompleteComposite;

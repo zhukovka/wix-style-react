@@ -1,26 +1,12 @@
-import React, {Children} from 'react';
-import TextArea from './TextArea';
-import ReactTestUtils from 'react-addons-test-utils';
-import $ from 'jquery';
+import inputAreaWithLabelCompositeDriverFactory from '../Composite/InputAreaWithLabelComposite/InputAreaWithLabelComposite.driver';
 
-const textAreaDriverFactory = component => ({
-  getLabel: () => $('label', component).get(0),
-  getInputArea: () => $('textarea', component).get(0),
-  getAttr: attrName => component.getAttribute(attrName),
-  getNumberOfChildren: () => component.childElementCount
-});
-
-const componentFactory = (props = {}) => {
-  let {children, ...otherProps} = props;
-  children = Children.toArray(children.props.children);
-
-  const component = ReactTestUtils.renderIntoDocument(<div><TextArea {...otherProps}>{children}</TextArea></div>);
-  return component.childNodes[0];
+const textAreaDriverFactory = ({component, wrapper}) => {
+  const inputArea = component.childNodes[1];
+  return {
+    ...inputAreaWithLabelCompositeDriverFactory({component, wrapper}),
+    getInputArea: () => inputArea,
+    hasInputArea: () => inputArea.childNodes[0].tagName.toLowerCase() === 'textarea'
+  };
 };
 
-const textAreaTestkitFactory = ({wrapper, dataHook}) => {
-  const textArea = $(wrapper).find(`[data-hook="${dataHook}"]`)[0];
-  return textAreaDriverFactory(textArea);
-};
-
-export {textAreaTestkitFactory, componentFactory, textAreaDriverFactory};
+export default textAreaDriverFactory;

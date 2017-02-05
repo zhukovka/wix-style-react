@@ -1,9 +1,10 @@
 import React, {PropTypes} from 'react';
 import uniqueId from 'lodash.uniqueid';
-import styles from './RadioGroup.scss';
+import styles from '../RadioGroup.scss';
 import classNames from 'classnames';
+import WixComponent from '../../WixComponent';
 
-class RadioButton extends React.Component {
+class RadioButton extends WixComponent {
   constructor(props) {
     super(props);
     this.id = uniqueId();

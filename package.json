@@ -108,6 +108,7 @@
     "lodash.omit": "^4.5.0",
     "lodash.reduce": "^4.6.0",
     "lodash.remove": "^4.7.0",
+    "lodash.toarray": "^4.4.0",
     "lodash.trim": "^4.5.1",
     "lodash.uniqueid": "^4.0.1",
     "rc-slider": "^5.3.4",

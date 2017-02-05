@@ -1,29 +1,19 @@
-import React, {Children} from 'react';
-import {first, last} from 'lodash/fp';
-
+import React from 'react';
 import {children, optional, once} from '../Composite';
 import Label from '../Label';
-import Input from '../InputArea';
+import InputArea from '../InputArea';
+import InputAreaWithLabelComposite from '../Composite/InputAreaWithLabelComposite/InputAreaWithLabelComposite';
 
-import styles from './TextArea.scss';
+const TextArea = ({...props, children}) => (
+  <InputAreaWithLabelComposite {...props}>
+    {children}
+  </InputAreaWithLabelComposite>
+);
 
-export default function TextArea(props) {
-  const children = Children.toArray(props.children);
-  return (
-    <div data-hook={props.dataHook}>
-      { children.length === 2 ?
-        <div className={styles.textAreaLabel}>
-          {first(children)}
-        </div> : null
-      }
-      { last(children) }
-    </div>
-  );
-}
+TextArea.propTypes = {
+  children: children(optional(Label), once(InputArea))
+};
 
 TextArea.displayName = 'TextArea';
 
-TextArea.propTypes = {
-  dataHook: React.PropTypes.string,
-  children: children(optional(Label), once(Input))
-};
+export default TextArea;
