@@ -3,11 +3,6 @@
 $option_height: 35px;
 $content_container_height: 260px;
 
-:export {
-  option_height: $option_height;
-  content_container_height: $content_container_height;
-}
-
 .wrapper {
   box-sizing: border-box;
   position: relative;
