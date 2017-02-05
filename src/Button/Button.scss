@@ -1,27 +1,46 @@
 @import '../common.scss';
 
 .button {
-    @include FontRoman();
+    @include FontLight();
     $height: 36px;
     height: $height;
     border-radius: $height / 2;
     font-size: 16px;
-    padding: 0 24px;
+    padding: 0 23px;
 
-    box-sizing:border-box;
+    &.transparent {
+        padding: 0px 24px;
+    }
+
+    &.close-standard, &.close-dark, &.close-transparent {
+        $closeHeight: 18px;
+        height: $closeHeight;
+        width: $closeHeight;
+        border-radius: $closeHeight / 2;
+        padding: 0;
+    }
+
+    &.icon-greybackground, &.icon-standard, &.icon-standardsecondary, &.icon-white, &.icon-whitesecondary {
+        width: $height;
+        height: $height;
+        border-radius: $height / 2;
+        padding: 0;
+    }
+
+    box-sizing: border-box;
     -webkit-font-smoothing: antialiased;
     text-align: center;
     border: 1px solid;
     cursor: pointer;
     outline: none;
 
-    transition: background-color 100ms linear;
+    transition: background-color 100ms linear, border-color 100ms linear, color 100ms linear;
 }
 
 .button>.inner {
     display: flex;
-    width:100%;
-    height:100%;
+    width: 100%;
+    height: 100%;
     justify-content: center;
     align-items: center;
     font-size: inherit;
@@ -32,254 +51,292 @@
     color: inherit;
 }
 
-.button.fullblue.disabled,
+
+.heightsmall {
+    $height: 30px;
+    height: $height;
+    border-radius: $height / 2;
+    font-size: 14px;
+    padding: 0px 17px;
+
+    &.transparent {
+        padding: 0px 18px;
+    }
+
+    &.icon-greybackground, &.icon-standard, &.icon-standardsecondary, &.icon-white, &.icon-whitesecondary {
+        width: $height;
+        height: $height;
+        border-radius: $height / 2;
+        padding: 0;
+    }
+}
+
+.heightlarge {
+    $height: 42px;
+    height: $height;
+    border-radius: $height / 2;
+    padding: 0px 29px;
+
+    &.transparent {
+        padding: 0px 30px;
+    }
+
+    &.close-standard, &.close-dark, &.close-transparent {
+        $closeHeight: 24px;
+        height: $closeHeight;
+        width: $closeHeight;
+        border-radius: $closeHeight / 2;
+        padding: 0;
+    }
+}
+
+.fullblue,
+.icon-standard {
+    background-color: $B10;
+    border-color: $B10;
+    color: $D80;
+}
+
+.fullpurple {
+    background-color: $P10;
+    border-color: $P10;
+    color: $D80;
+}
+
+.fullgreen {
+    background-color: $G10;
+    border-color: $G10;
+    color: $D80;
+}
+
+.fullred {
+    background-color: $R10;
+    border-color: $R10;
+    color: $D80;
+}
+
+.emptygreen {
+    background-color: $D80;
+    border-color: $G10;
+    color: $G10;
+}
+
+.emptyred {
+    background-color: transparent;
+    border-color: $R10;
+    color: $R00;
+}
+
+.emptyblue {
+    background-color: $D80;
+    border-color: #5babef;
+    color: $B10;
+}
+
+.emptypurple {
+    background-color: transparent;
+    border-color: $P10;
+    color: $P00;
+}
+
+.close-transparent,
+.transparent {
+    background-color: rgba($D10, 0.12);
+    border: 0;
+    color: $D80;
+}
+
+.transparentblue,
+.icon-standardsecondary {
+    background-color: transparent;
+    border-color: $B10;
+    color: $B10;
+}
+
+.emptybluesecondary,
+.icon-greybackground,
+.whiteblueprimary,
+.icon-white,
+.whiteblue {
+    background-color: $D80;
+    border-color: $D80;
+    color: $B10;
+}
+
+.whitebluesecondary,
+.icon-whitesecondary {
+    background-color: transparent;
+    border-color: $D80;
+    color: $D80;
+}
+
+.close-standard {
+    background-color: transparent;
+    border-color: transparent;
+    color: $B10;
+}
+
+.close-dark {
+    background-color: transparent;
+    border-color: transparent;
+    color: $B00;
+}
+
+.fullgreen:hover, .fullgreen.hover,
+.emptygreen:hover, .emptygreen.hover {
+    background-color: $G20;
+    border-color: $G20;
+    color: $D80;
+}
+
+.fullred:hover, .fullred.hover,
+.emptyred:hover, .emptyred.hover {
+    background-color: $R20;
+    border-color: $R20;
+    color: $D80;
+}
+
+.icon-greybackground:hover, .icon-greybackground.hover,
+.icon-standard:hover, .icon-standard.hover,
+.fullblue:hover, .fullblue.hover,
+.emptyblue:hover, .emptyblue.hover,
+.icon-standardsecondary:hover, .icon-standardsecondary.hover,
+.transparentblue:hover, .transparentblue.hover,
+.whiteblue:hover, .whiteblue.hover {
+    background-color: $B20;
+    border-color: $B20;
+    color: $D80;
+}
+
+.icon-whitesecondary:hover, .icon-whitesecondary.hover,
+.whitebluesecondary:hover, .whitebluesecondary.hover,
+.icon-white:hover, .icon-white.hover,
+.whiteblueprimary:hover, .whiteblueprimary.hover,
+.emptybluesecondary:hover, .emptybluesecondary.hover {
+    background-color: $B50;
+    border-color: $B50;
+    color: $B10;
+}
+
+.transparent:hover, .transparent.hover,
+.close-transparent:hover, .close-transparent.hover {
+    background-color: rgba($D10, 0.18);
+
+    color: $D80;
+}
+
+.emptypurple:hover, .emptypurple.hover,
+.fullpurple:hover, .fullpurple.hover {
+    background-color: $P20;
+    border-color: $P20;
+    color: $D80;
+}
+
+.close-standard:hover, .close-standard.hover,
+.close-dark:hover, .close-dark.hover {
+    background-color: transparent;
+    border-color: transparent;
+    color: $B20;
+}
+
+.icon-greybackground:active, .icon-greybackground.active,
+.icon-standard:active, .icon-standard.active,
+.fullblue:active, .fullblue.active,
+.icon-standardsecondary:active, .icon-standardsecondary.active,
+.transparentblue:active, .transparentblue.active,
+.whiteblue:active, .whiteblue.active,
+.emptyblue:active, .emptyblue.active {
+    background-color: $B10;
+    border-color: $B10;
+    color: $D80;
+}
+
+.icon-white:active, .icon-white.active,
+.whiteblueprimary:active, .whiteblueprimary.active,
+.icon-whitesecondary:active, .icon-whitesecondary.active,
+.whitebluesecondary:active, .whitebluesecondary.active {
+    background-color: $B40;
+    border-color: $B40;
+    color: $B10;
+}
+
+.emptybluesecondary:active, .emptybluesecondary.active {
+    background-color: $D80;
+    border-color: $D80;
+    color: $B10;
+}
+
+.emptypurple:active, .emptypurple.active,
+.fullpurple:active, .fullpurple.active {
+    background-color: $P10;
+    border-color: $P10;
+    color: $D80;
+}
+
+.fullgreen:active, .fullgreen.active,
+.emptygreen:active, .emptygreen.active {
+    background-color: $G00;
+    border-color: $G00;
+    color: $D80;
+}
+
+.fullred:active, .fullred.active,
+.emptyred:active, .emptyred.active {
+    background-color: $R10;
+    border-color: $R10;
+    color: $D80;
+}
+
+.transparent:active, .transparent.active,
+.close-transparent:active, .close-transparent.active {
+    background-color: rgba($D10, 0.12);
+
+    color: $D80;
+}
+
+.close-standard:active, .close-standard.active,
+.close-dark:active, .close-dark.active {
+    background-color: transparent;
+    border-color: transparent;
+    color: $B10;
+}
+
+.button.transparent.disabled,
 .button.fullred.disabled,
 .button.fullgreen.disabled,
-.button.fullpurple.disabled
-{
-    pointer-events:none;
-    background-color: $GR40 !important;
-    border-color: $GR40 !important;
-    color: #fff !important;
+.button.fullpurple.disabled,
+.button.icon-greybackground.disabled,
+.button.icon-standard.disabled,
+.button.fullblue.disabled,
+.button.icon-white.disabled,
+.button.whiteblueprimary.disabled,
+.button.close-transparent.disabled {
+    pointer-events: none;
+    background-color: $D55;
+    border-color: $D55;
+    color: $D80;
 }
 
 .button.emptyred.disabled,
 .button.emptygreen.disabled,
 .button.emptybluesecondary.disabled,
 .button.emptyblue.disabled,
-.button.emptypurple.disabled
-{
-    pointer-events:none;
-    background-color: transparent;
-    border-color: $GR40;
-    color: $GR40;
-}
-
-.button.transparent.disabled {
+.button.emptypurple.disabled,
+.button.icon-standardsecondary.disabled,
+.button.transparentblue.disabled,
+.button.whiteblue.disabled,
+.button.icon-whitesecondary.disabled,
+.button.whitebluesecondary.disabled {
     pointer-events: none;
-    background-color: #cbd3dc;
-    border: none;
-    color: $D80;
+    background-color: transparent;
+    border-color: $D55;
+    color: $D55;
 }
 
-.fullblue
-{
-    background-color: $B10;
-    border-color: $B10;
-    color: #fff;
-}
-
-.fullblue:hover, .fullblue.hover
-{
-    background-color: $paletteB2;
-    border-color: $paletteB2;
-}
-
-.fullblue:active, .fullblue.active
-{
-    background-color: $B00;
-    border-color: $B00;
-    color: #fff;
-}
-
-.emptybluesecondary
-{
-    background-color: #fff;
-    border-color: #fff;
-    color: #3899ec;
-}
-
-.emptybluesecondary:hover, .emptybluesecondary.hover
-{
-    background-color: $paletteB5;
-    border-color: $paletteB5;
-    color: #3899ec;
-}
-
-.emptybluesecondary:active, .emptybluesecondary.active
-{
-    background-color: #fff;
-    border-color: #fff;
-    color: #3899ec;
-}
-
-.emptyblue
-{
-    background-color: #fff;
-    border-color: #5babef;
-    color: #3899ec;
-}
-
-.emptyblue:hover, .emptyblue.hover
-{
-    background-color: $paletteB2;
-    border-color: $paletteB2;
-    color: #fff;
-}
-
-.emptyblue:active, .emptyblue.active
-{
-    background-color: $B10;
-    border-color: $B10;
-    color: #fff;
-}
-
-.fullpurple
-{
-    background-color: $P10;
-    border-color: $P10;
-    color: #fff;
-}
-
-.fullpurple:hover, .fullpurple.hover
-{
-    background-color: $P20;
-    border-color: $P20;
-}
-
-.fullpurple:active, .fullpurple.active
-{
-    background-color: $P00;
-    border-color: $P00;
-    color: #fff;
-}
-
-.emptypurple
-{
-    background-color: #fff;
-    border-color: $P10;
-    color: $P10;
-}
-
-.emptypurple:hover, .emptypurple.hover
-{
-    background-color: $P20;
-    border-color: $P20;
-    color: #fff;
-}
-
-.emptypurple:active, .emptypurple.active
-{
-    background-color: $P00;
-    border-color: $P00;
-    color: #fff;
-}
-
-.fullgreen
-{
-    background-color: $G10;
-    border-color: $G10;
-    color: #fff;
-}
-
-.fullgreen:hover, .fullgreen.hover
-{
-    background-color: $G20;
-    border-color: $G20;
-}
-
-.fullgreen:active, .fullgreen.active
-{
-    background-color: $G00;
-    border-color: $G00;
-    color: #fff;
-}
-
-.emptygreen
-{
-    background-color: #fff;
-    border-color: $G10;
-    color: $G10;
-}
-
-.emptygreen:hover, .emptygreen.hover
-{
-    background-color: $G20;
-    border-color: $G20;
-    color: #fff;
-}
-
-.emptygreen:active, .emptygreen.active
-{
-    background-color: $G00;
-    border-color: $G00;
-    color: #fff;
-}
-
-.fullred
-{
-    background-color: $R10;
-    border-color: $R10;
-    color: #fff;
-}
-
-.fullred:hover, .fullred.hover
-{
-    background-color: $R20;
-    border-color: $R20;
-}
-
-.fullred:active, .fullred.active
-{
-    background-color: $R00;
-    border-color: $R00;
-    color: #fff;
-}
-
-.emptyred
-{
-    background-color: #fff;
-    border-color: $R10;
-    color: $R10;
-}
-
-.emptyred:hover, .emptyred.hover
-{
-    background-color: $R20;
-    border-color: $R20;
-    color: #fff;
-}
-
-.emptyred:active, .emptyred.active
-{
-    background-color: $R00;
-    border-color: $R00;
-    color: #fff;
-}
-
-.transparent
-{
-    background-color: rgba(22, 45, 60, 0.12);
-    border: none;
-    color: $D80;
-}
-
-.transparent:hover, .transparent.hover
-{
-    background-color: rgba(22, 45, 59, 0.18);
-    border: none;
-    color: $D80;
-}
-
-.transparent:active, .transparent.active
-{
-    background-color: rgba(21, 45, 59, 0.12);
-    border: none;
-    color: $D80;
-}
-
-.heightsmall
-{
-    $height: 30px;
-    height: $height;
-    border-radius: $height / 2;
-    font-size: 14px;
-    padding: 0px 20px;
-}
-
-.heightlarge
-{
-    $height: 42px;
-    height: $height;
-    border-radius: $height / 2;
+.button.close-standard.disabled,
+.button.close-dark.disabled {
+    pointer-events: none;
+    background-color: transparent;
+    border-color: transparent;
+    color: $D55;
 }
