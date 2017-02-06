@@ -147,6 +147,17 @@ class DataTable extends WixCopmonent {
   }
 }
 
+function validateData(props, propName) {
+  if (props[propName]) {
+    if (props[propName].constructor && props[propName].constructor.name && props[propName].constructor.name.toLowerCase().indexOf('array') > -1) {
+      return null;
+    } else {
+      return Error('Data element must be an array type');
+    }
+  }
+  return null;
+}
+
 DataTable.defaultProps = {
   data: [],
   columns: [],
@@ -162,7 +173,7 @@ DataTable.defaultProps = {
 
 DataTable.propTypes = {
   id: PropTypes.string,
-  data: PropTypes.array,
+  data: validateData,
   columns: PropTypes.arrayOf(PropTypes.shape({
     title: PropTypes.string.isRequired,
     render: PropTypes.func.isRequired
