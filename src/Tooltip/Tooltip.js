@@ -1,8 +1,11 @@
 import React, {PropTypes, cloneElement} from 'react';
 import ReactDOM from 'react-dom';
+
 import WixComponent from '../WixComponent';
 import TooltipContent from './TooltipContent';
 import position from './TooltipPosition';
+
+import styles from './TooltipContent.scss';
 
 class Tooltip extends WixComponent {
 
@@ -52,16 +55,13 @@ class Tooltip extends WixComponent {
   };
 
   _childNode = null;
-  _tooltipNode = null;
   _mountNode = null;
   _showTimeout = null;
   _hideTimeout = null;
   _unmounted = false;
 
   state = {
-    visible: false,
-    style: {},
-    arrowStyle: {}
+    visible: false
   }
 
   componentDidUpdate() {
@@ -71,7 +71,7 @@ class Tooltip extends WixComponent {
         <TooltipContent
           onMouseEnter={() => this._onTooltipContentEnter()}
           onMouseLeave={() => this._onTooltipContentLeave()}
-          ref={ref => this._tooltipNode = ReactDOM.findDOMNode(ref)}
+          ref={ref => this._updatePosition(ref)}
           theme={this.props.theme}
           bounce={this.props.bounce}
           arrowPlacement={arrowPlacement[this.props.placement]}
@@ -81,7 +81,6 @@ class Tooltip extends WixComponent {
       );
       ReactDOM.render(tooltip, this._mountNode);
     }
-    this._updatePosition();
   }
 
   componentWillUnmount() {
@@ -171,7 +170,7 @@ class Tooltip extends WixComponent {
       if (this._mountNode) {
         ReactDOM.unmountComponentAtNode(this._mountNode);
         document.body.removeChild(this._mountNode);
-        this._mountNode = this._tooltipNode = null;
+        this._mountNode = null;
       }
       this._hideTimeout = null;
       if (!this._unmounted) {
@@ -207,23 +206,28 @@ class Tooltip extends WixComponent {
     this._hideOrShow('mouseleave');
   }
 
-  _updatePosition() {
-    if (this._tooltipNode && this._childNode) {
+  _updatePosition(ref) {
+    if (ref && this._childNode) {
+      const tooltipNode = ReactDOM.findDOMNode(ref);
+
       const style = this._adjustPosition(position(
         this._childNode.getBoundingClientRect(),
-        this._tooltipNode.getBoundingClientRect(), {
+        tooltipNode.getBoundingClientRect(), {
           placement: this.props.placement,
           alignment: this.props.alignment,
           margin: 10
         }
       ));
-      this.setState({
-        style: {
-          top: `${style.top}px`,
-          left: `${style.left}px`
-        },
-        arrowStyle: this._adjustArrowPosition(this.props.placement, this.props.moveArrowTo)
-      });
+      tooltipNode.style.top = `${style.top}px`;
+      tooltipNode.style.left = `${style.left}px`;
+
+      const arrowStyles = this._adjustArrowPosition(this.props.placement, this.props.moveArrowTo);
+      if (Object.keys(arrowStyles).length) {
+        const arrow = tooltipNode.querySelector(`.${styles.arrow}`);
+        arrow && Object.keys(arrowStyles).forEach(key => {
+          arrow.style[key] = arrowStyles[key];
+        });
+      }
     }
   }
 
