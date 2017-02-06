@@ -46,6 +46,10 @@ class RadioButton extends WixComponent {
   }
 }
 
+RadioButton.defaultProps = {
+  vAlign: 'center'
+};
+
 RadioButton.propTypes = {
   value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
   vAlign: PropTypes.oneOf(['center', 'top']),
