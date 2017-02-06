@@ -117,6 +117,13 @@ describe('DropdownLayout', () => {
     expect(onSelect).toBeCalledWith(options[5], false);
   });
 
+  it('should click an option by value', () => {
+    const onSelect = jest.fn();
+    const driver = createDriver(<DropdownLayout visible options={options} onSelect={onSelect}/>);
+    driver.clickAtOptionWithValue('Option 4');
+    expect(onSelect).toBeCalledWith(options[3], false);
+  });
+
   it('should call onSelect with true value when clicking on a selected option', () => {
     const onSelect = jest.fn();
     const driver = createDriver(<DropdownLayout visible options={options} onSelect={onSelect} selectedId={0}/>);
