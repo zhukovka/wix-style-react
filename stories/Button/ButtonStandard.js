@@ -5,6 +5,8 @@ import RadioGroup from '../../src/RadioGroup';
 import Label from '../../src/Label';
 import Input from '../../src/Input';
 import ToggleSwitch from '../../src/ToggleSwitch';
+import IconChooser from './IconChooser';
+import * as Icons from '../../src/Icons';
 
 import styles from './ExampleButton.scss';
 
@@ -48,6 +50,24 @@ class ButtonStandard extends Component {
                 size="small"
                 checked={this.state.disabled}
                 onChange={() => this.setState({disabled: !this.state.disabled})}
+              />
+            </div>
+          </div>
+
+          <div className={styles.option}>
+            <Label>Prefix Icon</Label>
+            <div className={styles.flex}>
+              <IconChooser
+                onSelect={option => this.setState({prefixIcon: React.createElement(Icons[option.id])})}
+              />
+            </div>
+          </div>
+
+          <div className={styles.option}>
+            <Label>Suffix Icon</Label>
+            <div className={styles.flex}>
+              <IconChooser
+                onSelect={option => this.setState({suffixIcon: React.createElement(Icons[option.id])})}
               />
             </div>
           </div>

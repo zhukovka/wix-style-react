@@ -7,7 +7,7 @@ import {createDriverFactory} from '../test-common';
 import {buttonTestkitFactory} from '../../testkit';
 import {buttonTestkitFactory as enzymeButtonTestkitFactory} from '../../testkit/enzyme';
 import {mount} from 'enzyme';
-
+import {Close} from '../Icons';
 
 describe('Button', () => {
 
@@ -26,6 +26,26 @@ describe('Button', () => {
     const driver = createDriver(<Button>{children}</Button>);
 
     expect(driver.getButtonTextContent()).toBe(children);
+  });
+
+  it('should get disabled class', () => {
+    const driver = createDriver(<Button disabled={true}/>);
+
+    expect(driver.isButtonDisabled()).toBe(true);
+  });
+
+  it('should have a prefixIcon', () => {
+    const driver = createDriver(<Button prefixIcon={<Close/>}/>);
+
+    expect(driver.isSuffixIconExists()).toBeFalsy();
+    expect(driver.isPrefixIconExists()).toBeTruthy();
+  });
+
+  it('should have a suffixIcon', () => {
+    const driver = createDriver(<Button suffixIcon={<Close/>}/>);
+
+    expect(driver.isPrefixIconExists()).toBeFalsy();
+    expect(driver.isSuffixIconExists()).toBeTruthy();
   });
 
   it('should get disabled class', () => {

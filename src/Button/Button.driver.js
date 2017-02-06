@@ -11,6 +11,8 @@ const buttonDriverFactory = ({component, wrapper}) => {
     click: () => ReactTestUtils.Simulate.click(component),
     getButtonTextContent: () => component.textContent,
     isButtonDisabled: () => isClassExists(component, 'disabled'),
+    isPrefixIconExists: () => component.innerHTML.indexOf('prefix') !== -1,
+    isSuffixIconExists: () => component.innerHTML.indexOf('suffix') !== -1,
     doesComponentHasClass: className => component.className.indexOf(className) > 0,
     isComponentHovered: () => isClassExists(component, 'hover'),
     setProps: props => {

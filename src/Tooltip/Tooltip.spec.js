@@ -147,6 +147,7 @@ describe('Tooltip', () => {
         expect(driver.isShown()).toBeTruthy();
       });
     });
+
     it('should remove a tooltip immediately once the component is destroyed', () => {
       const dataHook = 'myDataHook';
       const wrapper = mount(<Tooltip dataHook={dataHook} {..._props} hideDelay={1000}>{children}</Tooltip>);
