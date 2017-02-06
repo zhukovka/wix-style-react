@@ -37,10 +37,10 @@ class DropdownLayout extends WixComponent {
         has(option, 'value') && (React.isValidElement(option.value) || (isstring(option.value) && trim(option.value).length > 0));
   }
 
-  onClickOutside() {
+  onClickOutside(event) {
     const {visible, onClickOutside} = this.props;
     if (visible && onClickOutside) {
-      onClickOutside();
+      onClickOutside(event);
     }
   }
 
