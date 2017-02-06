@@ -26,7 +26,8 @@ $calendarMargin: 15px;
     background-color: #fff;
     padding-top: 20px;
 }
-:global(.react-datepicker__navigation) {
+:global(.react-datepicker__navigation--previous),
+:global(.react-datepicker__navigation--next) {
     background-position-x: 15px;
     background-position-y: 11px;
     background-repeat: no-repeat;
@@ -36,7 +37,8 @@ $calendarMargin: 15px;
     height: 36px;
     top: 11px;
 }
-:global(.react-datepicker__navigation:hover) {
+:global(.react-datepicker__navigation--previous:hover),
+:global(.react-datepicker__navigation--next:hover) {
     background-color: #2b81cb;
 }
 :global(.react-datepicker__navigation--previous) {
