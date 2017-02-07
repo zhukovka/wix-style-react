@@ -14,7 +14,7 @@ class GoogleAddressInput extends React.Component {
 
     this.state = {
       suggestions: [],
-      value: params.defaultValue || params.value || ''
+      value: params.value || ''
     };
 
     this.autoCompleteRequestId = 0;
@@ -261,7 +261,6 @@ GoogleAddressInput.propTypes = {
   placeholder: React.PropTypes.string,
   valuePrefix: React.PropTypes.string,
   countryCode: React.PropTypes.string,
-  defaultValue: React.PropTypes.string,
   value: React.PropTypes.string,
   types: React.PropTypes.array,
   filterTypes: React.PropTypes.array,
