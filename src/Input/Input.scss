@@ -46,6 +46,18 @@
     user-select: none;
 }
 
+.roundInput {
+    &.size-normal {
+        border-radius: 18px;
+    }
+    &.size-small {
+        border-radius: 15px;
+    }
+    &.size-large {
+        border-radius: 27px;
+    }
+}
+
 .size {
     &-small  { @include Size($height: 30px, $fontSize: 14px); }
     &-normal { @include Size($height: 36px, $fontSize: 16px); }

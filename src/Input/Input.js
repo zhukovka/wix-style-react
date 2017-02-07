@@ -59,7 +59,8 @@ class Input extends Component {
       suffix,
       disabled,
       type,
-      errorMessage
+      errorMessage,
+      roundInput
     } = this.props;
 
     const classes = classNames({
@@ -70,7 +71,8 @@ class Input extends Component {
       [styles.disabled]: disabled,
       [styles.hasError]: !!error,
       [styles.hasHover]: forceHover,
-      [styles.hasFocus]: forceFocus || this.state.focus
+      [styles.hasFocus]: forceFocus || this.state.focus,
+      [styles.roundInput]: roundInput
     });
 
     const myAttr = {'data-hook': dataHook};
@@ -173,7 +175,8 @@ Input.displayName = 'Input';
 Input.defaultProps = {
   theme: 'normal',
   size: 'normal',
-  errorMessage: ''
+  errorMessage: '',
+  roundInput: false
 };
 
 Input.propTypes = {
@@ -207,7 +210,8 @@ Input.propTypes = {
   prefix: PropTypes.node,
   suffix: PropTypes.node,
   type: PropTypes.node,
-  errorMessage: PropTypes.string
+  errorMessage: PropTypes.string,
+  roundInput: PropTypes.bool
 };
 
 export default Input;

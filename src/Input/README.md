@@ -32,6 +32,7 @@
 | disabled | bool | false | - |  when set to true this component is disabled
 | prefix | node | - | - | Component you want to show as the prefix of the input |
 | suffix | node | - | - | Component you want to show as the suffix of the input |
+| roundInput | bool | false | - | When set to true, this input will be rounded |
 
 ## Functions
 
