@@ -8,11 +8,6 @@ class RadioGroup extends WixComponent {
   constructor(props) {
     super(props);
     this.name = uniqueId('RadioGroup_');
-    if (!!props.children && props.children.some(child => child.type.name !== 'RadioButton')) {
-      throw new Error(
-        'RadioGroup: Invalid RadioButtons provided. Hint: RadioButton is not allowed to be encapsulated by div'
-      );
-    }
   }
 
   render() {
@@ -45,7 +40,7 @@ RadioGroup.propTypes = {
   display: PropTypes.oneOf(['vertical', 'horizontal']),
   children: PropTypes.arrayOf((propValue, key) => {
     if (propValue[key].type.name !== 'RadioButton') {
-      return new Error(`InputWithOptions: Invalid Prop children was given. Validation failed on child number ${key}`);
+      return new Error(`RadioGroup: Invalid Prop children was given. Validation failed on child number ${key}`);
     }
   })
 };
