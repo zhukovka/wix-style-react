@@ -7,8 +7,8 @@ import Readme from '../../src/SideBar/README.md';
 import ExampleStandard from './ExampleStandard';
 import ExampleStandardRaw from '!raw!./ExampleStandard';
 
-storiesOf('5. Others', module)
-  .add('5.6 SideBar - Under Development', () => (
+storiesOf('Core', module)
+  .add('SideBar', () => (
     <div>
       <Markdown source={Readme}/>
 

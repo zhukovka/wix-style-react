@@ -13,8 +13,8 @@ import CustomeIconRaw from '!raw!./CustomIcon';
 import RTLIcon from './RTLIcon';
 import RTLIconRaw from '!raw!./RTLIcon';
 
-storiesOf('6. Common', module)
-  .add('6.5 Icons', () => (
+storiesOf('Common', module)
+  .add('Icons', () => (
     <div>
       <Markdown source={Readme}/>
 

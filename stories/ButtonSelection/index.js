@@ -6,8 +6,8 @@ import Readme from '../../src/ButtonSelection/README.md';
 import ExampleControlled from './ExampleControlled';
 import ExampleControlledRaw from '!raw!./ExampleControlled';
 
-storiesOf('2. Switches', module)
-  .add('2.4 ButtonSelection', () => (
+storiesOf('Core', module)
+  .add('ButtonSelection', () => (
     <div>
       <Markdown source={Readme}/>
       <h1>Usage examples</h1>

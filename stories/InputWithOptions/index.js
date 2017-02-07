@@ -10,8 +10,8 @@ import ExampleStandardRaw from '!raw!./ExampleStandard';
 import ExampleControlled from './ExampleControlled';
 import ExampleControlledRaw from '!raw!./ExampleControlled';
 
-storiesOf('4. Layouts', module)
-  .add('4.3 InputWithOptions', () => (
+storiesOf('Core', module)
+  .add('InputWithOptions', () => (
     <div>
       <Markdown source={Readme}/>
 

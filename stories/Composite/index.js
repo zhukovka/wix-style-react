@@ -9,8 +9,8 @@ import Readme from '../../src/Composite/README.md';
 import ExampleComposite from './ExampleComposite';
 import ExampleCompositeRaw from '!raw!./ExampleComposite';
 
-storiesOf('6. Common', module)
-  .add('6.2 Composites', () => (
+storiesOf('Common', module)
+  .add('Composites', () => (
     <div>
       <h1>Composites</h1>
       <Markdown source={Readme}/>

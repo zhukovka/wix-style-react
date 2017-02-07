@@ -7,8 +7,8 @@ import ExampleGrid from './ExampleGrid';
 import ExampleGridRaw from '!raw!./ExampleGrid';
 import Readme from '../../src/Grid/README.md';
 
-storiesOf('4. Layouts', module)
-  .add('4.5 Grid with card layout', () => (
+storiesOf('Common', module)
+  .add('Grid with card layout', () => (
     <div>
       <Markdown source={Readme}/>
       <CodeExample title="Grid with card layout" code={ExampleGridRaw}>

@@ -16,8 +16,8 @@ import ExampleRtlRaw from '!raw!./ExampleRtl';
 import ExampleControlled from './ExampleControlled';
 import ExampleControlledRaw from '!raw!./ExampleControlled';
 
-storiesOf('2. Switches', module)
-  .add('2.2 Checkbox', () => (
+storiesOf('Core', module)
+  .add('Checkbox', () => (
     <div>
       <Markdown source={Readme}/>
 

@@ -7,8 +7,8 @@ import Readme from '../../src/MultiSelect/README.md';
 import ExampleStandard from './ExampleStandard';
 import ExampleStandardRaw from '!raw!./ExampleStandard';
 
-storiesOf('1. Inputs', module)
-  .add('1.7 MultiSelect', () => (
+storiesOf('Core', module)
+  .add('MultiSelect', () => (
     <div>
       <Markdown source={Readme}/>
 

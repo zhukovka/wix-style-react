@@ -10,8 +10,8 @@ import ExampleUncontrolled24h from './ExampleUncontrolled24h';
 import ExampleUncontrolledRaw24h from '!raw!./ExampleUncontrolled24h';
 import moment from 'moment';
 
-storiesOf('1. Inputs', module)
-  .add('1.6 TimeInput', () => (
+storiesOf('Core', module)
+  .add('TimeInput', () => (
     <div>
       <Markdown source={Readme}/>
 

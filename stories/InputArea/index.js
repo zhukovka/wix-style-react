@@ -22,8 +22,8 @@ import ExampleRefsRaw from '!raw!./ExampleRefs';
 import ExampleSizes from './ExampleSizes';
 import ExampleSizesRaw from '!raw!./ExampleSizes';
 
-storiesOf('1. Inputs', module)
-  .add('1.3 MultiLine', () => (
+storiesOf('Core', module)
+  .add('MultiLine', () => (
     <div>
       <Markdown source={Readme}/>
 

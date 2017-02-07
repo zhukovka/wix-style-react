@@ -7,8 +7,8 @@ import Readme from '../../src/Toast/README.md';
 import ExampleTopbar from './ExampleTopbar';
 import ExampleTopbarRaw from '!raw!./ExampleTopbar';
 
-storiesOf('5. Others', module)
-  .add('5.3 Toast', () => (
+storiesOf('Core', module)
+  .add('Toast', () => (
     <div>
       <Markdown source={Readme}/>
 

@@ -13,8 +13,8 @@ import ExampleControlledRaw from '!raw!./ExampleControlled';
 import ExampleComplex from './ExampleComplex';
 import ExampleComplexRaw from '!raw!./ExampleComplex';
 
-storiesOf('1. Inputs', module)
-  .add('1.2 AutoComplete', () => (
+storiesOf('Core', module)
+  .add('AutoComplete', () => (
     <div>
       <Markdown source={Readme}/>
 

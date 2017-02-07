@@ -13,8 +13,8 @@ import ExampleControlledRaw from '!raw!./ExampleControlled';
 import ExampleWithCustomValue from './ExampleWithCustomValue';
 import ExampleWithCustomValueRaw from '!raw!./ExampleWithCustomValue';
 
-storiesOf('1. Inputs', module)
-  .add('1.8 Dropdown', () => (
+storiesOf('Core', module)
+  .add('Dropdown', () => (
     <div>
       <Markdown source={Readme}/>
 

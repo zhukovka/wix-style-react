@@ -7,8 +7,8 @@ import Readme from '../../src/GoogleAddressInput/README.md';
 import ExampleControlled from './ExampleControlled';
 import ExampleControlledRaw from '!raw!./ExampleControlled';
 
-storiesOf('1. Inputs', module)
-  .add('1.4 GoogleAddressInput', () => (
+storiesOf('Core', module)
+  .add('GoogleAddressInput', () => (
     <div>
       <Markdown source={Readme}/>
 

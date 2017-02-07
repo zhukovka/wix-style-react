@@ -7,8 +7,8 @@ import ExampleTextTypography from './ExampleTextTypography';
 import ExampleHeaderTypographyRaw from '!raw!./ExampleHeadersTypography';
 import ExampleTextTypographyRaw from '!raw!./ExampleTextTypography';
 
-storiesOf('6. Common', module)
-  .add('6.1 Typography', () => (
+storiesOf('Common', module)
+  .add('Typography', () => (
     <div>
       <h1>Typography</h1>
       <CodeExample title="Headers" code={ExampleHeaderTypographyRaw}>

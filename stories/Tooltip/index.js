@@ -16,8 +16,8 @@ import ExampleCustomContentRaw from '!raw!./ExampleCustomContent';
 import ExampleMove from './ExampleMove';
 import ExampleMoveRaw from '!raw!./ExampleMove';
 
-storiesOf('5. Others', module)
-  .add('5.5 Tooltip', () => (
+storiesOf('Core', module)
+  .add('Tooltip', () => (
     <div>
       <Markdown source={Readme}/>
       <CodeExample title="Tooltip Placement" code={ExamplePlacementRaw}>

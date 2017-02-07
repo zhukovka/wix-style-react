@@ -29,19 +29,19 @@ import ExampleWithChosenActiveElement from '../Breadcrubms/ExampleWithChosenActi
 import ExampleUsingURLRaw from '!raw!../Breadcrubms/ExampleUsingURL';
 import ExampleUsingURL from '../Breadcrubms/ExampleUsingURL';
 
-storiesOf('6. Common', module)
-  .add('6.6 Breadcrumbs', () => (
+storiesOf('6. Navigation', module)
+  .add('6.2 Breadcrumbs', () => (
     <div>
       <Markdown source={Readme}/>
-      <a href="?selectedKind=2.%20Switches&selectedStory=2.5%20Breadcrumbs&full=0&down=0&left=1&panelRight=0">Please see Breadcrumbs examples for items and path manipulation</a>
+      <a href="?selectedKind=Core&selectedStory=Breadcrumbs&full=0&down=0&left=1&panelRight=0">Please see Breadcrumbs examples for items and path manipulation</a>
       <InteractiveCodeExample title="Customize a <Breadcrumbs/>">
         <ExampleBreadcrumbs/>
       </InteractiveCodeExample>
     </div>
   ));
 
-storiesOf('2. Switches', module)
-  .add('2.5 Breadcrumbs', () => (
+storiesOf('Core', module)
+  .add('Breadcrumbs', () => (
     <div>
       <Markdown source={Readme}/>
       <h1>Breadcrumbs component</h1>

@@ -12,8 +12,8 @@ import ExampleControlledRaw from '!raw!./ExampleControlled';
 import ExampleRtl from './ExampleRtl';
 import ExampleRtlRaw from '!raw!./ExampleRtl';
 
-storiesOf('1. Inputs', module)
-  .add('1.9 Slider', () => (
+storiesOf('Core', module)
+  .add('Slider', () => (
     <div>
       <Markdown source={Readme}/>
 

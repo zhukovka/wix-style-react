@@ -7,8 +7,8 @@ import Readme from '../../src/MessageBox/README.md';
 import ExampleStandard from './ExampleStandard';
 import ExampleStandardRaw from '!raw!./ExampleStandard';
 
-storiesOf('4. Layouts', module)
-  .add('4.1 MessageBox', () => (
+storiesOf('Core', module)
+  .add('MessageBox', () => (
     <div>
       <Markdown source={Readme}/>
 

@@ -6,8 +6,8 @@ import Markdown from '../utils/Components/Markdown';
 import Readme from '../../src/TextArea/README.md';
 import ExampleStandard from './ExampleStandard';
 
-storiesOf('6. Common', module)
-  .add('6.4 TextArea', () => {
+storiesOf('3. Inputs', module)
+  .add('3.2 Text Area', () => {
     return (
       <div>
         <Markdown source={Readme}/>

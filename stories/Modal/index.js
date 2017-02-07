@@ -7,8 +7,8 @@ import Readme from '../../src/Modal/README.md';
 import ExampleControlled from './ExampleControlled';
 import ExampleControlledRaw from '!raw!./ExampleControlled';
 
-storiesOf('5. Others', module)
-  .add('5.1 Modal', () => (
+storiesOf('Core', module)
+  .add('Modal', () => (
     <div>
       <Markdown source={Readme}/>
 

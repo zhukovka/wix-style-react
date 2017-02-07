@@ -10,8 +10,8 @@ import ExampleRaw from '!raw!./Example';
 import ExampleCallingServer from './ExampleCallingServer';
 import ExampleCallingServerRaw from '!raw!./ExampleCallingServer';
 
-storiesOf('5. Others', module)
-  .add('5.7 DataTable', () => (
+storiesOf('Core', module)
+  .add('DataTable', () => (
     <div>
       <Markdown source={Readme}/>
       <h1>Usage examples</h1>

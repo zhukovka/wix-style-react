@@ -10,8 +10,8 @@ import ExampleControlledRawRtl from '!raw!./ExampleControlledRtl';
 import ExampleControlledExcludePast from './ExampleControlledExcludePast';
 import ExampleControlledRawExcludePast from '!raw!./ExampleControlledExcludePast';
 
-storiesOf('1. Inputs', module)
-  .add('1.5 DatePicker', () => (
+storiesOf('Core', module)
+  .add('DatePicker', () => (
     <div>
       <Markdown source={Readme}/>
 

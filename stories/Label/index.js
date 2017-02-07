@@ -7,8 +7,8 @@ import Readme from '../../src/Label/README.md';
 import ExampleStandard from './ExampleStandard';
 import ExampleStandardRaw from '!raw!./ExampleStandard';
 
-storiesOf('7. Labels', module)
-  .add('7.1 Standard', () => (
+storiesOf('Core', module)
+  .add('Label', () => (
     <div>
       <Markdown source={Readme}/>
 

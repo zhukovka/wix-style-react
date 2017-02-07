@@ -7,8 +7,8 @@ import Readme from '../../src/Tag/README.md';
 import ExampleStandard from './ExampleStandard';
 import ExampleStandardRaw from '!raw!./ExampleStandard';
 
-storiesOf('5. Others', module)
-  .add('5.8 Tag', () => (
+storiesOf('Core', module)
+  .add('Tag', () => (
     <div>
       <Markdown source={Readme}/>
 

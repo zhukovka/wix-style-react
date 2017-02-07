@@ -16,8 +16,8 @@ import ExampleHorizontalRaw from '!raw!./ExampleHorizontal';
 import ExampleControlled from './ExampleControlled';
 import ExampleControlledRaw from '!raw!./ExampleControlled';
 
-storiesOf('2. Switches', module)
-  .add('2.3 RadioGroup', () => (
+storiesOf('Core', module)
+  .add('RadioGroup', () => (
     <div>
       <Markdown source={Readme}/>
 

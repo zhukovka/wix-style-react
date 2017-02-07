@@ -10,8 +10,8 @@ import ErrorRaw from '!raw!./examples/error';
 import Generic from './examples/generic';
 import GenericRaw from '!raw!./examples/generic';
 
-storiesOf('4. Layouts', module)
-  .add('4.4 EndorseContentLayout', () => (
+storiesOf('Core', module)
+  .add('EndorseContentLayout', () => (
     <div>
       <Markdown source={Readme}/>
 

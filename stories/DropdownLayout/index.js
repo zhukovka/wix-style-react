@@ -22,8 +22,8 @@ import ExampleControlledRawWithButtons from '!raw!./ExampleControlledWithButtons
 import ExampleTheme from './ExampleTheme';
 import ExampleThemeRaw from '!raw!./ExampleTheme';
 
-storiesOf('4. Layouts', module)
-  .add('4.2 DropdownLayout', () => (
+storiesOf('Core', module)
+  .add('DropdownLayout', () => (
     <div>
       <Markdown source={Readme}/>
 

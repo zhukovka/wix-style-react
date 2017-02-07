@@ -6,6 +6,11 @@ function loadStories() {
 
   require('../stories/Introduction');
   require('../stories/Input');
+  require('../stories/Composite');
+  require('../stories/TextField');
+  require('../stories/AutoCompleteComposite');
+  require('../stories/Button');
+  require('../stories/Breadcrubms');
   require('../stories/InputWithOptions');
   require('../stories/AutoComplete');
   require('../stories/InputArea');
@@ -13,7 +18,6 @@ function loadStories() {
   require('../stories/ToggleSwitch');
   require('../stories/Checkbox');
   require('../stories/RadioGroup');
-  require('../stories/Button');
   require('../stories/ButtonSelection');
   require('../stories/MessageBox');
   require('../stories/Modal');
@@ -30,14 +34,10 @@ function loadStories() {
   require('../stories/Dropdown');
   require('../stories/Slider');
   require('../stories/Common');
-  require('../stories/Composite');
   require('../stories/Label');
-  require('../stories/TextField');
   require('../stories/TextArea');
-  require('../stories/AutoCompleteComposite');
   require('../stories/EndorseContentLayout');
   require('../stories/Icons');
-  require('../stories/Breadcrubms');
   require('../stories/GridWithCardLayout');
 }
 

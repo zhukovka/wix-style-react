@@ -31,8 +31,8 @@ import ExampleSizesRaw from '!raw!./ExampleSizes';
 import ExampleRoundInput from './ExampleRoundInput';
 import ExampleRoundInputRaw from '!raw!./ExampleRoundInput';
 
-storiesOf('1. Inputs', module)
-  .add('1.1 Standard', () => (
+storiesOf('Core', module)
+  .add('Inputs', () => (
     <div>
       <Markdown source={Readme}/>
 

@@ -17,8 +17,8 @@ import ButtonTextLink from './ButtonTextLink';
 import ExampleControlled from './ExampleControlled';
 import ExampleControlledRaw from '!raw!./ExampleControlled';
 
-storiesOf('3. Buttons', module)
-  .add('3.0', () => (
+storiesOf('Core', module)
+  .add('Button', () => (
     <div>
       <Markdown source={Readme}/>
 
@@ -29,66 +29,68 @@ storiesOf('3. Buttons', module)
       </CodeExample>
 
     </div>
-  ))
-  .add('3.1 Standard', () => (
+  ));
+
+storiesOf('5. Buttons', module)
+  .add('5.1 Standard', () => (
     <div>
-      <h1>3.1 Standard</h1>
+      <h1>Standard</h1>
       <InteractiveCodeExample title="Customize a <Button/>">
         <ButtonStandard/>
       </InteractiveCodeExample>
     </div>
   ))
-  .add('3.2 White', () => (
+  .add('5.2 White', () => (
     <div>
-      <h1>3.1 White</h1>
+      <h1>White</h1>
       <InteractiveCodeExample title="Customize a <Button/>">
         <ButtonWhite/>
       </InteractiveCodeExample>
     </div>
   ))
-  .add('3.3 Icon Only', () => (
+  .add('5.3 Icon', () => (
     <div>
-      <h1>3.3 Icon Only</h1>
+      <h1>Icon</h1>
       <InteractiveCodeExample title="Customize a <Button/>">
         <ButtonIcon/>
       </InteractiveCodeExample>
     </div>
   ))
-  .add('3.4 Error', () => (
+  .add('5.4 Error', () => (
     <div>
-      <h1>3.4 Error</h1>
+      <h1>Error</h1>
       <InteractiveCodeExample title="Customize a <Button/>">
         <ButtonError/>
       </InteractiveCodeExample>
     </div>
   ))
-  .add('3.5 Premium', () => (
+  .add('5.5 Premium', () => (
     <div>
-      <h1>3.5 Premium</h1>
+      <h1>Premium</h1>
       <InteractiveCodeExample title="Customize a <Button/>">
         <ButtonPremium/>
       </InteractiveCodeExample>
     </div>
   ))
-  .add('3.6 Transparent', () => (
+  .add('5.6 Transparent', () => (
     <div>
-      <h1>3.6 Transparent</h1>
+      <h1>Transparent</h1>
       <InteractiveCodeExample title="Customize a <Button/>">
         <ButtonTransparent/>
       </InteractiveCodeExample>
     </div>
   ))
-  .add('3.7 Close', () => (
+  .add('5.7 Close', () => (
     <div>
-      <h1>3.7 Close</h1>
+      <h1>Close</h1>
       <InteractiveCodeExample title="Customize a <Button/>">
         <ButtonClose/>
       </InteractiveCodeExample>
     </div>
   ))
-  .add('3.8 Text Link', () => (
+  .add('5.8 Text Link', () => (
     <div>
-      <h1>3.8 Text Link</h1>
+      <h1>Text Link</h1>
       <InteractiveCodeExample title="Customize a <Button/>">
         <ButtonTextLink/>
       </InteractiveCodeExample>

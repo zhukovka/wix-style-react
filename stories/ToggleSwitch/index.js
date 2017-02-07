@@ -13,8 +13,8 @@ import ExampleSizesRaw from '!raw!./ExampleSizes';
 import ExampleControlled from './ExampleControlled';
 import ExampleControlledRaw from '!raw!./ExampleControlled';
 
-storiesOf('2. Switches', module)
-  .add('2.1 ToggleSwitch', () => (
+storiesOf('Core', module)
+  .add('ToggleSwitch', () => (
     <div>
       <Markdown source={Readme}/>
 

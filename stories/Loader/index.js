@@ -10,8 +10,8 @@ import ExampleSizesRaw from '!raw!./ExampleSizes';
 import ExampleWithText from './ExampleWithText';
 import ExampleWithTextRaw from '!raw!./ExampleWithText';
 
-storiesOf('5. Others', module)
-  .add('5.2 Loader', () => (
+storiesOf('Core', module)
+  .add('Loader', () => (
     <div>
       <Markdown source={Readme}/>
 
