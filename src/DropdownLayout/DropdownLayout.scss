@@ -13,7 +13,6 @@ $content_container_height: 260px;
 
 .options {
   position: relative;
-  max-height: $content_container_height - $option_height;
   overflow: auto;
 }
 
@@ -23,7 +22,6 @@ $content_container_height: 260px;
   border-radius: 8px;
   box-shadow: 0 0 16px 0 fade-out(black, 0.86);
   display: block;
-  max-height: 260px;
   opacity: 0;
   overflow: auto;
   padding: 0;

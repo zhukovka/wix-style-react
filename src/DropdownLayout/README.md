@@ -17,6 +17,7 @@
 | fixedHeader | node | - | - | A fixed header to the list |
 | fixedFooter | node | - | - | A fixed footer to the list |
 | theme | string | - | - | The theme of the dropdown. currently only 'b2b' theme is supported |
+| maxHeightPixels | number | 260 | - | Set the max height of the dropdownLayout in pixels |
 
 ## Option
 

@@ -147,9 +147,9 @@ class DropdownLayout extends WixComponent {
 
     return (
       <div tabIndex={tabIndex} className={classNames(styles.wrapper, styles[`theme-${this.props.theme}`])} onKeyDown={this._onKeyDown}>
-        <div className={contentContainerClassName}>
+        <div className={contentContainerClassName} style={{maxHeight: this.props.maxHeightPixels + 'px'}}>
           {this.renderNode(fixedHeader)}
-          <div className={styles.options} ref={options => this.options = options} data-hook="dropdown-layout-options">
+          <div className={styles.options} style={{maxHeight: this.props.maxHeightPixels - 35 + 'px'}} ref={options => this.options = options} data-hook="dropdown-layout-options">
             {options.map((option, idx) => (
               option.value === '-' ?
                 (this.renderDivider(idx)) :
@@ -243,13 +243,15 @@ DropdownLayout.propTypes = {
   theme: React.PropTypes.string,
   onClickOutside: React.PropTypes.func,
   fixedHeader: React.PropTypes.node,
-  fixedFooter: React.PropTypes.node
+  fixedFooter: React.PropTypes.node,
+  maxHeightPixels: React.PropTypes.number
 };
 
 DropdownLayout.defaultProps = {
   options: [],
   tabIndex: 1,
-  selectedId: NOT_HOVERED_INDEX
+  selectedId: NOT_HOVERED_INDEX,
+  maxHeightPixels: 260
 };
 
 DropdownLayout.NONE_SELECTED_ID = NOT_HOVERED_INDEX;

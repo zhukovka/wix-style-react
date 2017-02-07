@@ -16,6 +16,9 @@ import ExampleReactElementRaw from '!raw!./ExampleReactElements';
 import ExampleControlled from './ExampleControlled';
 import ExampleControlledRaw from '!raw!./ExampleControlled';
 
+import ExampleControlledWithButtons from './ExampleControlledWithButtons';
+import ExampleControlledRawWithButtons from '!raw!./ExampleControlledWithButtons';
+
 import ExampleTheme from './ExampleTheme';
 import ExampleThemeRaw from '!raw!./ExampleTheme';
 
@@ -30,28 +33,34 @@ storiesOf('4. Layouts', module)
         <ExampleStandard/>
       </CodeExample>
 
-      <div style={{paddingTop: '250px'}}/>
+      <div style={{paddingTop: '230px'}}/>
 
       <CodeExample title="Many options" code={ExampleManyOptionsRaw}>
         <ExampleManyOptions/>
       </CodeExample>
 
-      <div style={{paddingTop: '261px'}}/>
+      <div style={{paddingTop: '251px'}}/>
 
       <CodeExample title="React elements" code={ExampleReactElementRaw}>
         <ExampleReactElement/>
       </CodeExample>
 
-      <div style={{paddingTop: '173px'}}/>
+      <div style={{paddingTop: '143px'}}/>
+
+      <CodeExample title="With theme" code={ExampleThemeRaw}>
+        <ExampleTheme/>
+      </CodeExample>
+
+      <div style={{paddingTop: '230px'}}/>
 
       <CodeExample title="Controlled" code={ExampleControlledRaw}>
         <ExampleControlled/>
       </CodeExample>
 
-      <div style={{paddingTop: '10px'}}/>
-
-      <CodeExample title="With theme" code={ExampleThemeRaw}>
-        <ExampleTheme/>
+      <CodeExample title="Controlled with buttons" code={ExampleControlledRawWithButtons}>
+        <ExampleControlledWithButtons/>
       </CodeExample>
+
+      <div style={{paddingTop: '230px'}}/>
     </div>
   ));

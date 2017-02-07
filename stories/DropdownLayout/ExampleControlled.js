@@ -32,7 +32,7 @@ class ControlledExample extends Component {
     return (
       <div className="ltr" style={style}> Left to right
         <DropdownLayout visible options={options} onSelect={onSelect} selectedId={this.state.selectedId} onClose={onClose}/>
-        <div style={{padding: '160px 0 16px'}}>{selectedOption ? selectedOption.value : 'Nothing'} is selected</div>
+        <div style={{padding: '185px 0 16px'}}>{selectedOption ? selectedOption.value : 'Nothing'} is selected</div>
       </div>
     );
   }
