@@ -11,7 +11,7 @@ describe('Toast', () => {
       id: 'some-id',
       show: true,
       type: 'largebar',
-      position: 'topfixed',
+      location: 'topfixed',
       theme: 'blue',
       onClose: jest.fn(),
       children: <div>text</div>
@@ -53,4 +53,15 @@ describe('Toast', () => {
     expect(driver.getTopProperty()).toEqual(props.top);
   });
 
+  it('should default topfixed location', () => {
+    const props = Object.assign({}, defaultProps);
+    const driver = createDriver(props);
+    expect(driver.hasLocation('topfixed')).toEqual(true);
+  });
+
+  it('should override default location', () => {
+    const props = Object.assign({}, defaultProps, {location: 'inplace'});
+    const driver = createDriver(props);
+    expect(driver.hasLocation('inplace')).toEqual(true);
+  });
 });

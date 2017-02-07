@@ -26,7 +26,8 @@ const toastDriverFactory = ({component}) => {
     clickOnClose: () => ReactTestUtils.Simulate.click($component.find(byDataHook('toast-close'))[0]),
     hasTheme: theme => $component.hasClass(theme),
     toastExists: () => $component.parent().find(byDataHook('toast')).length > 0,
-    getTopProperty: () => styleStringToObj($component.attr('style')).top
+    getTopProperty: () => styleStringToObj($component.attr('style')).top,
+    hasLocation: location => $component.get(0).classList.contains(location)
   };
 };
 

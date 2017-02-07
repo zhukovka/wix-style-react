@@ -17,7 +17,7 @@ class Toast extends React.Component {
     const {
       show,
       type,
-      position,
+      location,
       theme,
       onClose
     } = this.props;
@@ -29,7 +29,7 @@ class Toast extends React.Component {
     const className = classnames({
       [styles.toast]: true,
       [styles[type]]: true,
-      [styles[position]]: true,
+      [styles[location]]: true,
       [styles[theme]]: true,
       [styles.enter]: !this.state.leaving,
       [styles.leave]: this.state.leaving
@@ -97,7 +97,7 @@ class Toast extends React.Component {
 Toast.defaultProps = {
   show: false,
   type: 'bar',
-  position: 'topfixed',
+  location: 'topfixed',
   theme: 'red'
 };
 
@@ -105,7 +105,7 @@ Toast.propTypes = {
   id: React.PropTypes.string,
   show: PropTypes.bool,
   type: PropTypes.oneOf(['bar', 'largebar']).isRequired,
-  position: PropTypes.oneOf(['topfixed']).isRequired,
+  location: PropTypes.oneOf(['topfixed', 'inplace']).isRequired,
   theme: PropTypes.oneOf(['red', 'blue', 'purple', 'green', 'yellow']).isRequired,
   top: React.PropTypes.string,
   timeout: PropTypes.number,

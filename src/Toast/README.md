@@ -8,7 +8,7 @@
 |----------|----------|--------------|------------|-------------|
 |id|string|""|no|The id of the toast|
 |type|string|bar|yes|Style of the toast (bar, largebar)|
-|location|string|topfixed|yes|Location to place the toast (currently just topfixed)|
+|location|string|topfixed|yes|Location to place the toast (topfixed, inplace)|
 |theme|string|red|yes|Theme of the toast (red, blue, purple, green, yellow)|
 |show|boolean|false|yes|Should the toast be shown or not|
 |timeout|number|null|no|Time to hide the toast after (ms)|

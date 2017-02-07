@@ -47,6 +47,14 @@ $easeInOutSine: cubic-bezier(0.445, 0.05, 0.55, 0.95);
     display:flex; align-items:center; justify-content: center;
 }
 
+.toast.inplace {
+    width: 100%;
+    z-index: 100000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
 /***************** TYPES ****************/
 .toast.largebar {
     padding: 18px 0px;
