@@ -1,7 +1,7 @@
 import React from 'react';
 import styles from './Breadcrumbs.scss';
 import classNames from 'classnames';
-import {Label} from 'wix-style-react';
+import Label from '../Label';
 import WixComponent from '../WixComponent';
 import BreadcrumbsPathFactory from './BreadcrumbsPathFactory';
 
