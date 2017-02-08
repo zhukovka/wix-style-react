@@ -1,4 +1,5 @@
 @import '../common.scss';
+@import '../Typography/Typography.scss';
 
 .suffix {
     padding: 0 0 0 10px;
@@ -9,11 +10,9 @@
 }
 
 .button {
-    @include FontLight();
     $height: 36px;
     height: $height;
     border-radius: $height / 2;
-    font-size: 16px;
     padding: 0 23px;
 
     &.transparent {
@@ -51,12 +50,13 @@
     height: 100%;
     justify-content: center;
     align-items: center;
-    font-size: inherit;
-    font-family: inherit;
 }
 
-.button>div, .button>.inner>div {
+.button>.inner, .button>div, .button>.inner>div {
+    font-family: inherit;
+    font-size: inherit;
     color: inherit;
+    line-height: inherit;
 }
 
 
@@ -64,7 +64,6 @@
     $height: 30px;
     height: $height;
     border-radius: $height / 2;
-    font-size: 14px;
     padding: 0px 17px;
 
     &.transparent {
@@ -100,65 +99,108 @@
 
 .fullblue,
 .icon-standard {
+    @extend .t1_2;
+    &.heightsmall {
+      @extend .t3_2;
+    }
+
     background-color: $B10;
     border-color: $B10;
-    color: $D80;
 }
 
 .fullpurple {
+    @extend .t1_2;
+    &.heightsmall {
+      @extend .t3_2;
+    }
+
     background-color: $P10;
     border-color: $P10;
-    color: $D80;
 }
 
 .fullgreen {
+    @extend .t1_2;
+    &.heightsmall {
+      @extend .t3_2;
+    }
+
     background-color: $G10;
     border-color: $G10;
-    color: $D80;
 }
 
 .fullred {
+    @extend .t1_2;
+    &.heightsmall {
+      @extend .t3_2;
+    }
+
     background-color: $R10;
     border-color: $R10;
-    color: $D80;
 }
 
 .emptygreen {
+    @extend .t1_3;
+    &.heightsmall {
+      @extend .t3_3;
+    }
+    color: $G10;
+
     background-color: $D80;
     border-color: $G10;
-    color: $G10;
 }
 
 .emptyred {
+    @extend .t1_3;
+    &.heightsmall {
+      @extend .t3_3;
+    }
+    color: $R00;
+
     background-color: transparent;
     border-color: $R10;
-    color: $R00;
 }
 
 .emptyblue {
+    @extend .t1_3;
+    &.heightsmall {
+      @extend .t3_3;
+    }
+
     background-color: $D80;
     border-color: #5babef;
-    color: $B10;
 }
 
 .emptypurple {
+    @extend .t1_3;
+    &.heightsmall {
+      @extend .t3_3;
+    }
+    color: $P00;
+
     background-color: transparent;
     border-color: $P10;
-    color: $P00;
 }
 
 .close-transparent,
 .transparent {
+    @extend .t1_2;
+    &.heightsmall {
+      @extend .t3_2;
+    }
+
     background-color: rgba($D10, 0.12);
     border: 0;
-    color: $D80;
 }
 
 .transparentblue,
 .icon-standardsecondary {
+    @extend .t1_3;
+    &.heightsmall {
+      @extend .t3_3;
+    }
+
     background-color: transparent;
     border-color: $B10;
-    color: $B10;
 }
 
 .emptybluesecondary,
@@ -166,16 +208,24 @@
 .whiteblueprimary,
 .icon-white,
 .whiteblue {
+    @extend .t1_3;
+    &.heightsmall {
+      @extend .t3_3;
+    }
+
     background-color: $D80;
     border-color: $D80;
-    color: $B10;
 }
 
 .whitebluesecondary,
 .icon-whitesecondary {
+    @extend .t1_2;
+    &.heightsmall {
+      @extend .t3_2;
+    }
+
     background-color: transparent;
     border-color: $D80;
-    color: $D80;
 }
 
 .close-standard {
@@ -192,16 +242,24 @@
 
 .fullgreen:hover, .fullgreen.hover,
 .emptygreen:hover, .emptygreen.hover {
+    @extend .t1_2;
+    &.heightsmall {
+      @extend .t3_2;
+    }
+
     background-color: $G20;
     border-color: $G20;
-    color: $D80;
 }
 
 .fullred:hover, .fullred.hover,
 .emptyred:hover, .emptyred.hover {
+    @extend .t1_2;
+    &.heightsmall {
+      @extend .t3_2;
+    }
+
     background-color: $R20;
     border-color: $R20;
-    color: $D80;
 }
 
 .icon-greybackground:hover, .icon-greybackground.hover,
@@ -211,9 +269,13 @@
 .icon-standardsecondary:hover, .icon-standardsecondary.hover,
 .transparentblue:hover, .transparentblue.hover,
 .whiteblue:hover, .whiteblue.hover {
+    @extend .t1_2;
+    &.heightsmall {
+      @extend .t3_2;
+    }
+
     background-color: $B20;
     border-color: $B20;
-    color: $D80;
 }
 
 .icon-whitesecondary:hover, .icon-whitesecondary.hover,
@@ -221,23 +283,34 @@
 .icon-white:hover, .icon-white.hover,
 .whiteblueprimary:hover, .whiteblueprimary.hover,
 .emptybluesecondary:hover, .emptybluesecondary.hover {
+    @extend .t1_3;
+    &.heightsmall {
+      @extend .t3_3;
+    }
+
     background-color: $B50;
     border-color: $B50;
-    color: $B10;
 }
 
 .transparent:hover, .transparent.hover,
 .close-transparent:hover, .close-transparent.hover {
-    background-color: rgba($D10, 0.18);
+    @extend .t1_2;
+    &.heightsmall {
+      @extend .t3_2;
+    }
 
-    color: $D80;
+    background-color: rgba($D10, 0.18);
 }
 
 .emptypurple:hover, .emptypurple.hover,
 .fullpurple:hover, .fullpurple.hover {
+    @extend .t1_2;
+    &.heightsmall {
+      @extend .t3_2;
+    }
+
     background-color: $P20;
     border-color: $P20;
-    color: $D80;
 }
 
 .close-standard:hover, .close-standard.hover,
@@ -254,52 +327,79 @@
 .transparentblue:active, .transparentblue.active,
 .whiteblue:active, .whiteblue.active,
 .emptyblue:active, .emptyblue.active {
+    @extend .t1_2;
+    &.heightsmall {
+      @extend .t3_2;
+    }
+
     background-color: $B10;
     border-color: $B10;
-    color: $D80;
 }
 
 .icon-white:active, .icon-white.active,
 .whiteblueprimary:active, .whiteblueprimary.active,
 .icon-whitesecondary:active, .icon-whitesecondary.active,
 .whitebluesecondary:active, .whitebluesecondary.active {
+    @extend .t1_3;
+    &.heightsmall {
+      @extend .t3_3;
+    }
+
     background-color: $B40;
     border-color: $B40;
-    color: $B10;
 }
 
 .emptybluesecondary:active, .emptybluesecondary.active {
+    @extend .t1_3;
+    &.heightsmall {
+      @extend .t3_3;
+    }
+
     background-color: $D80;
     border-color: $D80;
-    color: $B10;
 }
 
 .emptypurple:active, .emptypurple.active,
 .fullpurple:active, .fullpurple.active {
+    @extend .t1_2;
+    &.heightsmall {
+      @extend .t3_2;
+    }
+
     background-color: $P10;
     border-color: $P10;
-    color: $D80;
 }
 
 .fullgreen:active, .fullgreen.active,
 .emptygreen:active, .emptygreen.active {
+    @extend .t1_2;
+    &.heightsmall {
+      @extend .t3_2;
+    }
+
     background-color: $G00;
     border-color: $G00;
-    color: $D80;
 }
 
 .fullred:active, .fullred.active,
 .emptyred:active, .emptyred.active {
+    @extend .t1_2;
+    &.heightsmall {
+      @extend .t3_2;
+    }
+
     background-color: $R10;
     border-color: $R10;
-    color: $D80;
 }
 
 .transparent:active, .transparent.active,
 .close-transparent:active, .close-transparent.active {
-    background-color: rgba($D10, 0.12);
+    @extend .t1_2;
+    &.heightsmall {
+      @extend .t3_2;
+    }
 
-    color: $D80;
+    background-color: rgba($D10, 0.12);
 }
 
 .close-standard:active, .close-standard.active,
@@ -319,10 +419,14 @@
 .button.icon-white.disabled,
 .button.whiteblueprimary.disabled,
 .button.close-transparent.disabled {
+    @extend .t1_2;
+    &.heightsmall {
+      @extend .t3_2;
+    }
+
     pointer-events: none;
     background-color: $D55;
     border-color: $D55;
-    color: $D80;
 }
 
 .button.emptyred.disabled,
@@ -335,10 +439,14 @@
 .button.whiteblue.disabled,
 .button.icon-whitesecondary.disabled,
 .button.whitebluesecondary.disabled {
+    @extend .t1_4;
+    &.heightsmall {
+      @extend .t3_4;
+    }
+
     pointer-events: none;
     background-color: transparent;
     border-color: $D55;
-    color: $D55;
 }
 
 .button.close-standard.disabled,

@@ -35,9 +35,9 @@ $headers: (
 );
 
 $bodies: (
-	"t1": ($FontLight, 16px, 24px, ($D10, $D30, $D80, $B10, $GR10)),
+	"t1": ($FontLight, 16px, 24px, ($D10, $D30, $D80, $B10, $GR10, $R10, $P10)),
 	"t2": ($FontRoman, 16px, 24px, ($D10, $D50, $D80, $B10)),
-	"t3": ($FontLight, 14px, 18px, ($D10, $D30, $D80, $B10, $GR10)),
+	"t3": ($FontLight, 14px, 18px, ($D10, $D30, $D80, $B10, $GR10, $R10, $P10)),
 	"t4": ($FontRoman, 14px, 18px, ($D10, $D30, $D80, $B10)),
 	"t5": ($FontMedium, 10px, 12px, ($D30, $D80))
 );
