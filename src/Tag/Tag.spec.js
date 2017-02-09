@@ -54,6 +54,15 @@ describe('Tag', () => {
     expect(driver.isThumbExists()).toBeTruthy();
   });
 
+  it('should wrap label text', () => {
+    const longLabel = 'Very very very very very very very very long label';
+    const driver = createDriver(<Tag id={id} wrap>{longLabel}</Tag>);
+
+    expect(driver.getTitle()).toBe(longLabel);
+    expect(driver.getLabel()).toBe(longLabel);
+    expect(driver.isWrapped()).toBe(true);
+  });
+
   describe('testkit', () => {
     it('should exist', () => {
       const div = document.createElement('div');

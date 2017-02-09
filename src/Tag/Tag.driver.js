@@ -9,6 +9,7 @@ const tagDriverFactory = ({component, wrapper}) => {
   const isClassExists = (component, className) => (component && component.className.indexOf(className) !== -1);
   const removeButton = $(component).find('a')[0];
   const thumb = $(component).find('span')[0];
+  const contentWithoutThumb = $(component).find('span')[0];
 
   return {
     exists: () => !!component,
@@ -16,7 +17,9 @@ const tagDriverFactory = ({component, wrapper}) => {
     isRemovable: () => isClassExists(removeButton, 'tagRemoveButton'),
     removeTag: () => ReactTestUtils.Simulate.click(removeButton),
     isThumbExists: () => isClassExists(thumb, 'thumb'),
+    isWrapped: () => isClassExists(component, 'tagWrap') && isClassExists(contentWithoutThumb, 'innerTagWrap'),
     getLabel: () => component.textContent,
+    getTitle: () => component.title,
     setProps: props => {
       ReactDOM.render(<div ref={r => component = r}><Tag {...props}/></div>, wrapper);
     }

@@ -33,3 +33,14 @@
 .large {
   height: 36px;
 }
+
+.tagWrap {
+  overflow: hidden;
+}
+
+.innerTagWrap {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+

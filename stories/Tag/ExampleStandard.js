@@ -14,6 +14,9 @@ const ExampleStandard = () => (
       <Tag id="myId5" size="large">Large removable</Tag>
       <Tag id="myId3" size="large" thumb={<div className={styles.thumb2}/>}>Large with Thumb</Tag>
     </div>
+    <div className={styles.thinRow}>
+      <Tag id="myId7" wrap>This is a very very very very very long tag that should wrap</Tag>
+    </div>
   </div>
 );
 
