@@ -1,10 +1,9 @@
-/* eslint-disable react/style-prop-object */
-//TODO remove the above lint-disable after style is finaly deprecated
-
 import React from 'react';
+
 import Button from '../Button';
-import * as styles from './MessageBoxLayout1.scss';
 import SvgX from '../svg/X.js';
+
+import * as styles from './MessageBoxLayout1.scss';
 
 const MessageBoxLayout1 = ({title, content, primaryButtonLabel, secondaryButtonLabel, onPrimaryButtonClick, onSecondaryButtonClick, imageUrl, onClose}) => {
   return (

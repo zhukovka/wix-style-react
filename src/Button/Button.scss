@@ -142,6 +142,7 @@
     @extend .t1_3;
     &.heightsmall {
       @extend .t3_3;
+      color: $G10;
     }
     color: $G10;
 
@@ -153,6 +154,7 @@
     @extend .t1_3;
     &.heightsmall {
       @extend .t3_3;
+      color: $R00;
     }
     color: $R00;
 
@@ -174,6 +176,7 @@
     @extend .t1_3;
     &.heightsmall {
       @extend .t3_3;
+      color: $P00;
     }
     color: $P00;
 
