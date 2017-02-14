@@ -175,7 +175,10 @@ DataTable.propTypes = {
   id: PropTypes.string,
   data: validateData,
   columns: PropTypes.arrayOf(PropTypes.shape({
-    title: PropTypes.string.isRequired,
+    title: React.PropTypes.oneOfType([
+      React.PropTypes.node,
+      React.PropTypes.string
+    ]).isRequired,
     render: PropTypes.func.isRequired
   })),
   showHeaderWhenEmpty: PropTypes.bool,

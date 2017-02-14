@@ -26,7 +26,7 @@
 
 | propName | propType | defaultValue | isRequired | description |
 |----------|----------|--------------|------------|-------------|
-| title | string | - | true | A string, the column's header title  |
+| title | string or node | - | true | A string or any element, the column's header title  |
 | render | func | - | true | A function to render column cells. The function will be called with each row's data and should return a jsx element. Signature: `render(rowData, rowNum)` |
 | width | string | - | - | The width to apply to the column. No value means column will try to contain its children, if possible |
 | important | bool | false | - | Whether font color should be stronger, more dominant |
