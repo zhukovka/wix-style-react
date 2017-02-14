@@ -32,7 +32,7 @@ import ExampleRoundInput from './ExampleRoundInput';
 import ExampleRoundInputRaw from '!raw!./ExampleRoundInput';
 
 storiesOf('Core', module)
-  .add('Inputs', () => (
+  .add('Input', () => (
     <div>
       <Markdown source={Readme}/>
 

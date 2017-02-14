@@ -4,41 +4,47 @@ import {setOptions} from '@kadira/storybook-addon-options';
 function loadStories() {
   require('../stories/stories.scss');
 
+  // Introduction
   require('../stories/Introduction');
-  require('../stories/Input');
-  require('../stories/Composite');
-  require('../stories/TextField');
-  require('../stories/AutoCompleteComposite');
-  require('../stories/Button');
-  require('../stories/Breadcrubms');
-  require('../stories/InputWithOptions');
+  // Core
   require('../stories/AutoComplete');
-  require('../stories/InputArea');
-  require('../stories/GoogleAddressInput');
-  require('../stories/ToggleSwitch');
-  require('../stories/Checkbox');
-  require('../stories/RadioGroup');
+  require('../stories/Breadcrubms');
+  require('../stories/Button');
   require('../stories/ButtonSelection');
+  require('../stories/Checkbox');
+  require('../stories/DataTable');
+  require('../stories/DatePicker');
+  require('../stories/Dropdown');
+  require('../stories/DropdownLayout');
+  require('../stories/EndorseContentLayout');
+  require('../stories/GoogleAddressInput');
+  require('../stories/Input');
+  require('../stories/InputWithOptions');
+  require('../stories/Label');
+  require('../stories/Loader');
   require('../stories/MessageBox');
   require('../stories/Modal');
-  require('../stories/Loader');
-  require('../stories/Toast');
-  require('../stories/DatePicker');
-  require('../stories/TimeInput');
-  require('../stories/Tooltip');
+  require('../stories/InputArea');
   require('../stories/MultiSelect');
-  require('../stories/Tag');
+  require('../stories/RadioGroup');
   require('../stories/SideBar');
-  require('../stories/DataTable');
-  require('../stories/DropdownLayout');
-  require('../stories/Dropdown');
   require('../stories/Slider');
-  require('../stories/Common');
-  require('../stories/Label');
-  require('../stories/TextArea');
-  require('../stories/EndorseContentLayout');
-  require('../stories/Icons');
+  require('../stories/Tag');
+  require('../stories/TimeInput');
+  require('../stories/Toast');
+  require('../stories/ToggleSwitch');
+  require('../stories/Tooltip');
+  // Common
+  require('../stories/Composite');
   require('../stories/GridWithCardLayout');
+  require('../stories/Icons');
+  require('../stories/Common');
+  // Composites
+  require('../stories/TextField');
+  require('../stories/TextArea');
+  require('../stories/AutoCompleteComposite');
+  require('../stories/Button/CompositeStory');
+  require('../stories/Breadcrubms/CompositeStory');
 }
 
 configure(loadStories, module);
