@@ -16,7 +16,7 @@ export default class CodeExample extends Component {
 
   static defaultProps = {
     codeType: CodeBlock.defaultProps.type
-  }
+  };
 
   constructor(props) {
     super(props);
