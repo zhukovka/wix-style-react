@@ -27,4 +27,5 @@ export {default as DataTable} from './DataTable';
 export {default as TextArea} from './TextArea';
 export {default as TextField} from './TextField';
 export {default as EndorseContentLayout} from './EndorseContentLayout';
+export {default as Notification} from './Notification';
 

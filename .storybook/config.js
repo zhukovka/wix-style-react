@@ -45,6 +45,7 @@ function loadStories() {
   require('../stories/AutoCompleteComposite');
   require('../stories/Button/CompositeStory');
   require('../stories/Breadcrubms/CompositeStory');
+  require('../stories/Notification');
 }
 
 configure(loadStories, module);

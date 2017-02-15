@@ -63,4 +63,7 @@ export const radioGroupTestkitFactory = enzymeTestkitFactoryCreator(radioGroupDr
 import radioButtonDriverFactory from '../src/RadioGroup/RadioButton/RadioButton.driver';
 export const radioButtonTestkitFactory = enzymeTestkitFactoryCreator(radioButtonDriverFactory);
 
+import notificationDriverFactory from '../src/Notification/Notification.driver';
+export const notificationTestkitFactory = enzymeTestkitFactoryCreator(notificationDriverFactory);
+
 export {toastTestkitFactory} from '../src/Toast/testkit/Toast.enzyme';

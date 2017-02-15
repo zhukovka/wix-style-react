@@ -112,6 +112,7 @@
     "lodash.trim": "^4.5.1",
     "lodash.uniqueid": "^4.0.1",
     "rc-slider": "^5.3.4",
+    "react-addons-css-transition-group": "^15.4.2",
     "react-autosuggest": "^7.0.1",
     "react-datepicker": "^0.39.0",
     "react-modal": "^1.5.2",
