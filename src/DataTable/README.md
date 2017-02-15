@@ -21,6 +21,7 @@
 | loadMore | func | null | - | A callback when more items are requested by the user. |
 | loader | node | Loading ...| - | The loader to show when loading more items. |
 | useWindow | boolean | true | - | Add scroll listeners to the window, or else, the component's parentNode. |
+| scrollElement | DOM Object | - | - | Add scroll listeners to specified DOM Object. |
 
 ### Column object props
 
