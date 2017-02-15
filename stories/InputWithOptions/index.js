@@ -7,6 +7,9 @@ import Readme from '../../src/InputWithOptions/README.md';
 import ExampleStandard from './ExampleStandard';
 import ExampleStandardRaw from '!raw!./ExampleStandard';
 
+import ExampleDropdownSize from './ExampleDropdownSize';
+import ExampleDropdownSizeRaw from '!raw!./ExampleDropdownSize';
+
 import ExampleControlled from './ExampleControlled';
 import ExampleControlledRaw from '!raw!./ExampleControlled';
 
@@ -19,6 +22,10 @@ storiesOf('Core', module)
 
       <CodeExample title="Standard" code={ExampleStandardRaw}>
         <ExampleStandard/>
+      </CodeExample>
+
+      <CodeExample title="Dropdown size" code={ExampleDropdownSizeRaw}>
+        <ExampleDropdownSize/>
       </CodeExample>
 
       <CodeExample title="Controlled input" code={ExampleControlledRaw}>

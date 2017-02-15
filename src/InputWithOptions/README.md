@@ -16,6 +16,8 @@
 | valueParser | func | option => option.value | - | function that extracts the value from an option |
 | fixedHeader | node | - | - | A fixed header to the list |
 | fixedFooter | node | - | - | A fixed footer to the list |
+| dropdownWidth | string | - | - | An optional custom width for the dropdown |
+| dropdownOffsetLeft | string | 0 | - | Am optional horizontal offset to the dropdown | 
 | ***All of the Input's and DropdownLayout Props are also available for this component*** | | | | |
 
 

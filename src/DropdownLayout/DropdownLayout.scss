@@ -39,8 +39,15 @@ $content_container_height: 260px;
 }
 
 .content-container {
-  &.up { bottom: 0; }
-  &.down { top: 0; }
+  &.up {
+    bottom: 0;
+    margin-top: 15px;
+  }
+
+  &.down {
+    top: 0;
+    margin-bottom: 15px;
+  }
 }
 
 .content-container.shown {
