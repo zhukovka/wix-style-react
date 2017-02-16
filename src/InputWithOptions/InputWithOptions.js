@@ -177,7 +177,7 @@ InputWithOptions.defaultProps = {
   inputElement: <Input/>,
   valueParser: option => option.value,
   dropdownWidth: null,
-  dropdownOffsetLeft: 0
+  dropdownOffsetLeft: '0'
 };
 
 InputWithOptions.propTypes = {
