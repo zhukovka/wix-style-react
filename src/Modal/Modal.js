@@ -57,7 +57,7 @@ const Modal = props => {
       style={modalStyles}
       className={modalClasses}
       contentLabel={props.contentLabel}
-      closeTimeoutMS={500}
+      closeTimeoutMS={props.closeTimeoutMS}
       >
       {props.children}
     </ReactModal>
@@ -76,7 +76,8 @@ Modal.propTypes = {
   onRequestClose: React.PropTypes.func,
   onAfterOpen: React.PropTypes.func,
   horizontalPosition: React.PropTypes.oneOf(Object.keys(positions)),
-  verticalPosition: React.PropTypes.oneOf(Object.keys(positions))
+  verticalPosition: React.PropTypes.oneOf(Object.keys(positions)),
+  closeTimeoutMS: React.PropTypes.number
 };
 
 Modal.defaultProps = {
@@ -85,6 +86,7 @@ Modal.defaultProps = {
   shouldCloseOnOverlayClick: false,
   horizontalPosition: 'center',
   verticalPosition: 'center',
+  closeTimeoutMS: 500
 };
 
 export default Modal;
