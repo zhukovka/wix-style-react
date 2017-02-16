@@ -18,7 +18,7 @@ export const testkitFactoryCreator = driverFactory => ({wrapper, dataHook}) => {
 // enzyme
 export const enzymeTestkitFactoryCreator = driverFactory => ({wrapper, dataHook}) => {
   const regexp = new RegExp(`^<[^>]+data-hook="${dataHook}"`);
-  const component = wrapper.findWhere(n => (regexp).test(n.html()) && n.html().includes(n.name()));
+  const component = wrapper.findWhere(n => regexp.test(n.html()) && n.html().includes(n.name()));
   return driverFactory({component: component.node, wrapper});
 };
 
