@@ -40,7 +40,6 @@ Tag.defaultProps = {
   onRemove: () => {},
   size: 'small',
   removable: true,
-  wrap: false
 };
 
 export default Tag;

@@ -75,7 +75,6 @@ class DropdownLayout extends WixComponent {
     } while (!this.isSelectableOption(options[newHovered]));
 
     this.setState({hovered: newHovered});
-    console.log((newHovered - 2) * 35);
     this.options.scrollTop = (newHovered - 2) * 35;
   }
 

@@ -17,15 +17,8 @@ export const testkitFactoryCreator = driverFactory => ({wrapper, dataHook}) => {
 
 // enzyme
 export const enzymeTestkitFactoryCreator = driverFactory => ({wrapper, dataHook}) => {
-  const component = wrapper.findWhere(n => {
-    if (n.props().dataHook) {
-      return false;
-    } else {
-      const tmp = document.implementation.createHTMLDocument();
-      tmp.body.innerHTML = n.html();
-      return tmp.body.children && tmp.body.children[0] && tmp.body.children[0].getAttribute('data-hook') === dataHook;
-    }
-  });
+  const regexp = new RegExp(`^<[^>]+data-hook="${dataHook}"`);
+  const component = wrapper.findWhere(n => !n.props().dataHook && (regexp).test(n.html()));
   return driverFactory({component: component.node, wrapper});
 };
 
