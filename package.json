@@ -14,7 +14,7 @@
     "test:unit": "wix-node-build test --jest",
     "test:e2e": "wix-node-build test --protractor",
     "build": "wix-node-build lint && node ./src/Icons/build && wix-node-build build && build-storybook",
-    "start": "wix-node-build start & npm run storybook",
+    "start": "node ./src/Icons/build/build-once && wix-node-build start & npm run storybook",
     "release": "wix-node-build release && gh-pages-auto-release --dist=storybook-static",
     "storybook": "start-storybook -p 6006",
     "lint": "wix-node-build lint"

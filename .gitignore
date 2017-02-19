@@ -13,3 +13,4 @@ storybook-static
 .vscode
 test/e2e/screenshots
 src/Icons/components/*.js
+src/Icons/index.js
