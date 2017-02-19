@@ -169,7 +169,7 @@ DataTable.defaultProps = {
   loadMore: null,
   hasMore: false,
   loader: <div className="loader">Loading ...</div>,
-  scrollElement: PropTypes.object,
+  scrollElement: null,
   useWindow: true
 };
 
@@ -195,7 +195,7 @@ DataTable.propTypes = {
   hasMore: PropTypes.bool,
   loader: PropTypes.node,
   useWindow: PropTypes.bool,
-  scrollElement: null
+  scrollElement: PropTypes.object
 };
 
 DataTable.displayName = 'DataTable';
