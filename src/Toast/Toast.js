@@ -10,6 +10,7 @@ class Toast extends React.Component {
     super(params);
 
     this.state = {leaving: false};
+    console.warn("Toast is deprecated, please use Notification Bars instead")
   }
 
   render() {

@@ -32,7 +32,7 @@ function loadStories() {
   require('../stories/Tag');
   require('../stories/TextLink');
   require('../stories/TimeInput');
-  require('../stories/Toast');
+  // require('../stories/Toast'); DEPRECATED
   require('../stories/ToggleSwitch');
   require('../stories/Tooltip');
   // Common
