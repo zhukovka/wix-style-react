@@ -21,6 +21,14 @@ describe('Button', () => {
     expect(onClick).toBeCalled();
   });
 
+  it('should not call onClick when disabled', () => {
+    const onClick = jest.fn();
+    const driver = createDriver(<Button onClick={onClick} disabled={true}/>);
+
+    driver.click();
+    expect(onClick).toHaveBeenCalledTimes(0);
+  });
+
   it('should render children', () => {
     const children = '<div>123</div>';
     const driver = createDriver(<Button>{children}</Button>);

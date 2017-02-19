@@ -50,7 +50,7 @@ class Button extends WixComponent {
     };
 
     return (
-      <button className={className} onClick={onClick} style={_style}>
+      <button className={className} onClick={onClick} style={_style} disabled={disabled}>
         <div className={styles.inner}>
           {this.addPrefix()}
           {children}
