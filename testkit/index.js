@@ -42,6 +42,9 @@ export const checkboxTestkitFactory = testkitFactoryCreator(checkboxDriverFactor
 import buttonDriverFactory from '../src/Button/Button.driver';
 export const buttonTestkitFactory = testkitFactoryCreator(buttonDriverFactory);
 
+import textLinkDriverFactory from '../src/TextLink/TextLink.driver';
+export const textLinkTestkitFactory = testkitFactoryCreator(textLinkDriverFactory);
+
 import dataTableDriverFactory from '../src/DataTable/DataTable.driver';
 export const dataTableTestkitFactory = testkitFactoryCreator(dataTableDriverFactory);
 

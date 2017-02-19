@@ -11,7 +11,8 @@ import Input from '../../src/Input';
 class ExampleStandard extends Component {
 
   static propTypes = {
-    onChange: PropTypes.func
+    onChange: PropTypes.func,
+    theme: PropTypes.string
   };
 
   state = {
@@ -19,15 +20,15 @@ class ExampleStandard extends Component {
       show: true,
       type: GLOBAL_NOTIFICATION,
       size: 'big',
-      theme: 'standard',
       timeout: DEFAULT_TIMEOUT,
-      zIndex: 10000
+      zIndex: 10000,
     },
+    link: 'https://www.wix.com',
+    linkText: 'Thanks',
     label: {
       appearance: 'T1.2'
     },
     actionButton: {
-      show: true,
       type: 'button'
     }
   };
@@ -41,16 +42,19 @@ class ExampleStandard extends Component {
     });
   }
 
-  setNotificationSize(actionButtonIsShown, actionButtonType) {
+  setNotificationSize(actionButtonType) {
+    const actionButtonIsShown = actionButtonType !== 'none';
     const size = actionButtonIsShown && actionButtonType === 'button' ? 'big' : 'small';
     this.setComponentState('notification', {size});
   }
 
   render() {
+    const params = {...this.state};
+    params.notification.theme = this.props.theme;
     return (
       <form className={styles.form}>
         <div className={styles.output}>
-          <Notification {...this.state} onChange={this.props.onChange}/>
+          <Notification {...params} onChange={this.props.onChange}/>
         </div>
         <div className={styles.input}>
           <div className={styles.option}>
@@ -96,49 +100,41 @@ class ExampleStandard extends Component {
               null
           }
           <div className={styles.option}>
-            <Label>Theme</Label>
-            <div className={styles.flex}>
-              <RadioGroup
-                display="horizontal"
-                value={this.state.notification.theme}
-                onChange={theme => this.setComponentState('notification', {theme})}
-              >
-                <RadioGroup.Radio value="standard">Standard</RadioGroup.Radio>
-                <RadioGroup.Radio value="error">Error</RadioGroup.Radio>
-                <RadioGroup.Radio value="success">Success</RadioGroup.Radio>
-                <RadioGroup.Radio value="warning">Warning</RadioGroup.Radio>
-              </RadioGroup>
-            </div>
-          </div>
-          <div className={styles.option}>
-            <Label>Action Button</Label>
-            <div className={styles.flex}>
-              <ToggleSwitch
-                size="small"
-                checked={this.state.actionButton.show}
-                onChange={show => {
-                  this.setComponentState('actionButton', {show: !this.state.actionButton.show});
-                  this.setNotificationSize(!this.state.actionButton.show, this.state.actionButton.type);
-                }}
-              />
-            </div>
-          </div>
-          <div className={styles.option}>
             <Label>Button Type</Label>
             <div className={styles.flex}>
               <RadioGroup
                 display="horizontal"
                 value={this.state.actionButton.type}
                 onChange={type => {
-                  this.setComponentState('actionButton', {type});
-                  this.setNotificationSize(this.state.actionButton.show, type);
+                  this.setState({actionButton: {type: type}});
+                  this.setNotificationSize(type);
                 }}
               >
                 <RadioGroup.Radio value="button">Button</RadioGroup.Radio>
                 <RadioGroup.Radio value="textLink">TextLink</RadioGroup.Radio>
+                <RadioGroup.Radio value="none">None</RadioGroup.Radio>
               </RadioGroup>
             </div>
           </div>
+          {
+            (this.state.actionButton.type !== 'textLink') ? null :
+              <div>
+                <div className={styles.option}>
+                  <Label>Link</Label>
+                  <div className={styles.flex}>
+                    <Input value={this.state.link} onChange={event => this.setState({link: event.target.value})}/>
+                  </div>
+                </div>
+
+                <div className={styles.option}>
+                  <Label>Text</Label>
+                  <div className={styles.flex}>
+                    <Input value={this.state.linkText} onChange={event => this.setState({linkText: event.target.value})}/>
+                  </div>
+                </div>
+              </div>
+          }
+
         </div>
         <div className={styles.option}>
           <Label>z-index (optional)</Label>

@@ -6,6 +6,7 @@ import {GLOBAL_NOTIFICATION} from '../../src/Notification';
 import Button from '../../src/Button';
 import Label from '../../src/Label';
 import {Close} from '../../src/Icons';
+import TextLink from '../../src/TextLink'
 
 export default class Form extends Component {
 
@@ -14,7 +15,9 @@ export default class Form extends Component {
     notification: PropTypes.object,
     label: PropTypes.object,
     withActionButton: PropTypes.bool,
-    actionButton: PropTypes.object
+    actionButton: PropTypes.object,
+    link: PropTypes.string,
+    linkText: PropTypes.string,
   };
 
   componentDidUpdate(props) {
@@ -26,12 +29,11 @@ export default class Form extends Component {
   }
 
   getCtaButton() {
-    //TODO - should support textLink when possible
     return this.props.actionButton.type === 'button' ?
       <Button height="small" theme="transparent">
         Thanks
       </Button> :
-      <div>Thanks</div>;
+      <TextLink link={this.props.link} forceUnderline darkBackground>{this.props.linkText}</TextLink>;
   }
 
   getComponent() {
@@ -46,7 +48,7 @@ export default class Form extends Component {
           Boo! I scared you with this very scary error message!
         </Label>
         {
-          this.props.actionButton.show ?
+          this.props.actionButton.type !== 'none' ?
             this.getCtaButton() :
             null
         }
