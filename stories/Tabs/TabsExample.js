@@ -26,14 +26,14 @@ class TabsExample extends Component {
           </RadioGroup>
         </div>
         <div className={styles.preview}>
-          <TabsTemplate onChange={this.props.onChange} type={this.state.type} activeId={1}/>
+          <TabsTemplate onChange={this.props.onChange} type={this.state.type}/>
         </div>
       </div>
     );
   }
 }
 
-TabsTemplate.propTypes = {
+TabsExample.propTypes = {
   onChange: PropTypes.func,
 };
 

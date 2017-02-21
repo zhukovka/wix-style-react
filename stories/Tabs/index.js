@@ -4,14 +4,14 @@ import InteractiveCodeExample from '../utils/Components/InteractiveCodeExample';
 import Markdown from '../utils/Components/Markdown';
 
 import ReadMe from '../../src/Tabs/README.md';
-import ExampleDefault from './TabsExample';
+import TabsExample from './TabsExample';
 
 storiesOf('6. Navigation', module)
   .add('6.3 Tabs', () => (
     <div>
       <Markdown source={ReadMe}/>
       <InteractiveCodeExample title="Customize a <Tabs/>">
-        <ExampleDefault />
+        <TabsExample />
       </InteractiveCodeExample>
     </div>
   ));

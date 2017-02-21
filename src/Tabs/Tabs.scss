@@ -25,16 +25,13 @@
   text-align: center;
   overflow: hidden;
   text-overflow: ellipsis;
+  cursor: pointer;
 
   .compact & {
     padding-right: 0;
     padding-left: 0;
     margin-right: 30px;
     margin-left: 30px;
-  }
-
-  .uniformSide & {
-    flex-basis: max-content;
   }
 
   .uniformFull & {
