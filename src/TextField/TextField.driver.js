@@ -6,7 +6,7 @@ const textFieldDriverFactory = ({component, wrapper}) => {
   return {
     ...inputAreaWithLabelCompositeDriverFactory({component, wrapper}),
     getInput: () => input,
-    hasInput: () => input.childNodes[1].tagName.toLowerCase() === 'input'
+    hasInput: () => input.childNodes[0].tagName.toLowerCase() === 'input'
   };
 };
 

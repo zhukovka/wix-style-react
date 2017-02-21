@@ -1,6 +1,9 @@
 @import '../common.scss';
 @import './InputMixins.scss';
 
+$gap: 6px;
+$double-gap: 12px;
+
 .root {
     position: relative;
     display: flex;
@@ -15,7 +18,7 @@
     flex-grow: 1;
     flex-shrink: 1;
     min-width: 20px;
-    padding: 0;
+    padding: 0 $double-gap;
     margin: 0;
     border: 0;
     outline: 0;
@@ -33,17 +36,31 @@
             margin: 0;
         }
     }
+
+    &.withPrefix { padding-left: 0; }
+    &.withSuffix { padding-right: 0; }
+    &.withSuffixes { padding-right: $gap; }
 }
 
-.prefix,
-.suffix {
+.prefixes,
+.suffixes {
     display: flex;
     align-items: center;
     flex-shrink: 0;
     flex-grow: 0;
     min-width: 0;
-    padding: 0 6px;
     user-select: none;
+}
+
+.prefix,
+.suffix {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+
+    &:first-child .unit-separator { margin-left: $double-gap; }
+    &:last-child .unit { padding-right: $double-gap; }
 }
 
 .roundInput {
@@ -81,7 +98,8 @@
     }
     &-material {
         border-radius: 0;
-        .prefix, .suffix {
+        .prefixes,
+        .suffixes {
             padding: 0 4px;
         }
         &.size-normal {
@@ -121,24 +139,37 @@
 
 // RTL layout based on global style set on document body or parent element.
 :global(.rtl) {
-    .root, .prefix, .suffix { flex-direction: row-reverse; }
-    .input { direction: rtl; }
+    .root,
+    .prefixes,
+    .suffixes { flex-direction: row-reverse; }
+    .input {
+      direction: rtl;
+
+      &.withPrefix { padding-right: 0; padding-left: $double-gap; }
+      &.withSuffix { padding-left: 0; padding-right: $double-gap; }
+    }
+
+    .prefix,
+    .suffix {
+      &:first-child .unit-separator { margin-right: $double-gap; margin-left: $gap; }
+      &:last-child .unit { padding-left: $double-gap; padding-right: $gap; }
+    }
 }
 
 // RTL layout based on a property passed directly to the component.
 .rtl.root {
     flex-direction: row-reverse;
-    .prefix, .suffix { flex-direction: row-reverse; }
+    .prefixes,
+    .suffixes { flex-direction: row-reverse; }
     .input { direction: rtl; }
 }
 
 .magnifying-glass {
-    margin: 0 6px;
-    height: 100%;
+    margin: 0 $gap;
     display: flex;
     flex-direction: column;
     justify-content: center;
-    &:last-child { margin: 0; }
+
     path { fill: $B10; }
     line { stroke: $B10; }
 
@@ -149,7 +180,7 @@
 }
 
 .exclamation {
-    margin: 0 6px;
+    margin: 0 $gap;
     background-color: $paletteR1;
     width: 20px;
     height: 20px;
@@ -157,21 +188,22 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    &:last-child { margin: 0; }
+
     path { stroke: #fff; }
 }
 
 .clear-button {
     cursor: pointer;
-    padding: 0 6px;
+    padding: 0 $double-gap;
     height: 6px;
     line-height: 6px;
     font-size: 6px;
+
     path { stroke: $B10; }
 }
 
 .unit {
-    padding: 0 6px;
+    padding: 0 $gap;
     font-size: 13px;
     line-height: 18px;
     color: $paletteD3;
@@ -180,9 +212,10 @@
 
 .unit-separator {
     width: 1px;
+    margin: 0 $gap;
     background-color: $paletteB4;
     height: 18px;
-    margin: 0 6px;
+
     @at-root {
         .hasError .unit-separator {
             background-color: $paletteR1;
@@ -191,10 +224,11 @@
 }
 
 .menu-arrow {
-    padding: 0 6px;
     path { fill: $B10; }
+
     &[disabled] {
         path { fill: $GR40; }
         line { stroke: $GR40; }
     }
 }
+

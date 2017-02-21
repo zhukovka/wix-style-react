@@ -307,10 +307,27 @@ describe('Input', () => {
       expect(driver.prefixComponentExists('.my-button')).toBeTruthy();
     });
 
+    it('should add `withPrefix` classname to input', () => {
+      const driver = createDriver(<Input prefix="hello"/>);
+      expect(driver.hasPrefixClass()).toBeTruthy();
+    });
+  });
+
+  describe('suffix attribute', () => {
     it('should allow adding a custom suffix component', () => {
       const driver = createDriver(<Input suffix={<div className="my-button"/>}/>);
       expect(driver.hasSuffix()).toBeTruthy();
       expect(driver.suffixComponentExists('.my-button')).toBeTruthy();
+    });
+
+    it('should add `withSuffix` classname to input', () => {
+      const driver = createDriver(<Input suffix="hello"/>);
+      expect(driver.hasSuffixClass()).toBeTruthy();
+    });
+
+    it('should add `withSuffixes` classname to input when more than 1 suffix applied', () => {
+      const driver = createDriver(<Input suffix="hello" magnifyingGlass/>);
+      expect(driver.hasSuffixesClass()).toBeTruthy();
     });
   });
 });
