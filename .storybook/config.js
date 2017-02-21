@@ -43,6 +43,7 @@ function loadStories() {
   // Composites
   require('../stories/TextField');
   require('../stories/TextArea');
+  require('../stories/RichTextArea');
   require('../stories/AutoCompleteComposite');
   require('../stories/Button/CompositeStory');
   require('../stories/Breadcrubms/CompositeStory');
