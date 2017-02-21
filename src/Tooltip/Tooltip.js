@@ -9,6 +9,18 @@ import styles from './TooltipContent.scss';
 
 class Tooltip extends WixComponent {
 
+  componentElements() {
+    const elemArr = super.componentElements();
+    if (this._mountNode) {
+      elemArr.push(this._mountNode);
+    }
+    return elemArr;
+  }
+
+  onClickOutside(e) {
+    this.props.onClickOutside && this.props.onClickOutside(e);
+  }
+
   static propTypes = {
     children: PropTypes.element.isRequired,
     content: PropTypes.node.isRequired,
@@ -24,6 +36,7 @@ class Tooltip extends WixComponent {
     bounce: PropTypes.bool,
     disabled: PropTypes.bool,
 
+    onClickOutside: PropTypes.func,
     /**
      * Allows to shift the tooltip position by x and y pixels.
      * Both positive and negative values are accepted.
@@ -48,6 +61,7 @@ class Tooltip extends WixComponent {
     hideTrigger: 'mouseleave',
     showDelay: 200,
     hideDelay: 500,
+    onClickOutside: null,
     active: false,
     onActiveChange: () => {},
     theme: 'light',
@@ -62,7 +76,7 @@ class Tooltip extends WixComponent {
 
   state = {
     visible: false
-  }
+  };
 
   componentDidUpdate() {
     if (this._mountNode && this.state.visible) {

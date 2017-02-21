@@ -20,3 +20,4 @@
 | moveBy          | object ({x: Number, y: Number})                             |              |            |             |
 | disabled        | bool                                                        | false        |            |             |
 | moveArrowTo     | Number                                                      |              |            | Allows to position the arrow relative to tooltip. Positive value calculates position from left/top. Negative one calculates position from right/bottom. |
+| onClickOutside  | func                                                        | null         | false      | Callback when cliking outside |

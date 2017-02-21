@@ -12,21 +12,26 @@ class WixComponent extends React.Component {
     this._onMouseEventsHandler = this._onMouseEventsHandler.bind(this);
   }
 
-  _onMouseEventsHandler(e) {
+  checkIfEventOnElements(e, elem) {
     let current = e.target;
-    const componentNode = ReactDOM.findDOMNode(this);
     while (current.parentNode) {
-      if (current === componentNode) {
-        return;
+      if (elem.indexOf(current) > -1) {
+        return true;
       }
       current = current.parentNode;
     }
 
-    if (current !== document) {
-      return;
-    }
+    return current !== document;
+  }
 
-    this.onClickOutside(e);
+  componentElements() {
+    return [ReactDOM.findDOMNode(this)];
+  }
+
+  _onMouseEventsHandler(e) {
+    if (!this.checkIfEventOnElements(e, this.componentElements())) {
+      this.onClickOutside(e);
+    }
   }
 
   _addDataHook(dataHook) {
