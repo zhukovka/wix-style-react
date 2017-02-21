@@ -7,7 +7,7 @@ class Tabs extends WixComponent {
   render() {
     const {items, onClick, activeId, type} = this.props;
     const tabs = items.map(item => {
-      const className = classNames({
+      const className = classNames(styles.tab, {
         [styles.active]: item.id === activeId
       });
       return (
@@ -17,10 +17,15 @@ class Tabs extends WixComponent {
       );
     });
 
-    return <ul className={type}>{tabs}</ul>;
+    return (
+      <div className={styles[type]}>
+        <ul className={styles.container}>{tabs}</ul>
+      </div>
+    );
   }
 }
-export const tabTypes = ['compact', 'uniformSide', 'uniformFull'];
+
+Tabs.tabTypes = ['compact', 'uniformSide', 'uniformFull'];
 
 Tabs.propTypes = {
   items: PropTypes.arrayOf(React.PropTypes.shape({
@@ -35,7 +40,7 @@ Tabs.propTypes = {
     React.PropTypes.string,
     React.PropTypes.number
   ]),
-  type: PropTypes.oneOf(tabTypes)
+  type: PropTypes.oneOf(Tabs.tabTypes)
 };
 
 export default Tabs;
