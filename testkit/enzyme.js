@@ -18,6 +18,9 @@ export const labelTestkitFactory = enzymeTestkitFactoryCreator(labelDriverFactor
 import breadcrumbsDriverFactory from '../src/Breadcrumbs/Breadcrumbs.driver';
 export const breadcrumbsTestkitFactory = enzymeTestkitFactoryCreator(breadcrumbsDriverFactory);
 
+import tabsDriverFactory from '../src/Tabs/Tabs.driver';
+export const tabsTestkitFactory = enzymeTestkitFactoryCreator(tabsDriverFactory);
+
 import dropdownLayoutDriverFactory from '../src/DropdownLayout/DropdownLayout.driver';
 export const dropdownLayoutTestkitFactory = enzymeTestkitFactoryCreator(dropdownLayoutDriverFactory);
 

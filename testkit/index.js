@@ -18,6 +18,9 @@ export const labelTestkitFactory = testkitFactoryCreator(labelDriverFactory);
 import breadcrumbsDriverFactory from '../src/Breadcrumbs/Breadcrumbs.driver';
 export const breadcrumbsTestkitFactory = testkitFactoryCreator(breadcrumbsDriverFactory);
 
+import tabsDriverFactory from '../src/Tabs/Tabs.driver';
+export const tabsTestkitFactory = testkitFactoryCreator(tabsDriverFactory);
+
 import dropdownLayoutDriverFactory from '../src/DropdownLayout/DropdownLayout.driver';
 export const dropdownLayoutTestkitFactory = testkitFactoryCreator(dropdownLayoutDriverFactory);
 
