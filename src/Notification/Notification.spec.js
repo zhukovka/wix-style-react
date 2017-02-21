@@ -1,4 +1,5 @@
 import React from 'react';
+import {mount} from 'enzyme';
 import {isTestkitExists, isEnzymeTestkitExists} from '../../testkit/test-common';
 import notificationDriverFactory from './Notification.driver';
 import {createDriverFactory} from '../test-common';
@@ -6,15 +7,6 @@ import {notificationTestkitFactory} from '../../testkit';
 import {notificationTestkitFactory as enzymeNotificationTestkitFactory} from '../../testkit/enzyme';
 
 import Notification from './Notification';
-import Label from '../Label';
-import Button from '../Button';
-import {Close} from '../Icons';
-
-const CloseButton = () => (
-  <Button height="medium" theme="close-transparent">
-    <Close size="6px"/>
-  </Button>
-);
 
 describe('Notification', () => {
   const createDriver = createDriverFactory(notificationDriverFactory);
@@ -86,9 +78,9 @@ describe('Notification', () => {
         const labelText = 'Label Text';
         const driver = createDriver(
           <Notification show>
-            <Label appearance="T1.4">
+            <Notification.TextLabel>
               {labelText}
-            </Label>
+            </Notification.TextLabel>
           </Notification>
         );
         expect(driver.getLabelText()).toEqual(labelText);
@@ -100,11 +92,13 @@ describe('Notification', () => {
         const actionButtonText = 'Action Button Text';
         const driver = createDriver(
           <Notification show>
-            <div>label</div>
-            <Button height="small" theme="transparent">
+            <Notification.TextLabel>
+              label
+            </Notification.TextLabel>
+            <Notification.ActionButton>
               {actionButtonText}
-            </Button>
-            <CloseButton/>
+            </Notification.ActionButton>
+            <Notification.CloseButton/>
           </Notification>
         );
         expect(driver.getActionButtonText()).toEqual(actionButtonText);
@@ -120,9 +114,13 @@ describe('Notification', () => {
       it('should have a close button (with action button)', () => {
         const driver = createDriver(
           <Notification show>
-            <div>label</div>
-            <div>action</div>
-            <CloseButton/>
+            <Notification.TextLabel>
+              label
+            </Notification.TextLabel>
+            <Notification.ActionButton>
+              action
+            </Notification.ActionButton>
+            <Notification.CloseButton/>
           </Notification>
         );
         expect(driver.hasCloseButton()).toBeTruthy();
@@ -131,8 +129,10 @@ describe('Notification', () => {
       it('should have a close button (without action button)', () => {
         const driver = createDriver(
           <Notification show>
-            <div>label</div>
-            <CloseButton/>
+            <Notification.TextLabel>
+              label
+            </Notification.TextLabel>
+            <Notification.CloseButton/>
           </Notification>
         );
         expect(driver.hasActionButton()).toBeFalsy();
@@ -170,8 +170,10 @@ describe('Notification', () => {
       beforeEach(() => {
         driver = createDriver(
           <Notification show>
-            <div>label</div>
-            <CloseButton/>
+            <Notification.TextLabel>
+              label
+            </Notification.TextLabel>
+            <Notification.CloseButton/>
           </Notification>
         );
         driver.clickOnCloseButton();
@@ -181,13 +183,9 @@ describe('Notification', () => {
         jest.runAllTimers();
       });
 
-/*
       it('should close the notification', () => {
-        return resolveIn(500).then(() => {
-          expect(driver.visible()).toBeFalsy();
-        });
+        expect(driver.visible()).toBeFalsy();
       });
-*/
 
       it('should allow reopening the notification after closed by close button', () => {
         driver.setProps({show: true});
@@ -201,8 +199,10 @@ describe('Notification', () => {
       it('should close after default timeout (6s)', () => {
         driver = createDriver(
           <Notification show type="local">
-            <div>label</div>
-            <CloseButton/>
+            <Notification.TextLabel>
+              label
+            </Notification.TextLabel>
+            <Notification.CloseButton/>
           </Notification>
         );
 
@@ -217,8 +217,10 @@ describe('Notification', () => {
 
         driver = createDriver(
           <Notification show type="local" timeout={timeout}>
-            <div>label</div>
-            <CloseButton/>
+            <Notification.TextLabel>
+              label
+            </Notification.TextLabel>
+            <Notification.CloseButton/>
           </Notification>
         );
 
@@ -231,8 +233,10 @@ describe('Notification', () => {
       it('should be able to show notification again after timeout', () => {
         driver = createDriver(
           <Notification show type="local">
-            <div>label</div>
-            <CloseButton/>
+            <Notification.TextLabel>
+              label
+            </Notification.TextLabel>
+            <Notification.CloseButton/>
           </Notification>
         );
 
@@ -248,8 +252,10 @@ describe('Notification', () => {
       it('should close after starting from a closed status', () => {
         driver = createDriver(
           <Notification show={false} type="local">
-            <div>label</div>
-            <CloseButton/>
+            <Notification.TextLabel>
+              label
+            </Notification.TextLabel>
+            <Notification.CloseButton/>
           </Notification>
         );
 
@@ -286,6 +292,52 @@ describe('Notification', () => {
   describe('enzyme testkit', () => {
     it('should exist', () => {
       expect(isEnzymeTestkitExists(<Notification/>, enzymeNotificationTestkitFactory)).toBeTruthy();
+    });
+  });
+
+  describe('Notification.ActionButton', () => {
+    it('should display a Button when passing by default', () => {
+      const component = mount(
+        <Notification.ActionButton>
+          Action Button
+        </Notification.ActionButton>
+      );
+
+      expect(component.find('Button').length).toEqual(1);
+    });
+
+    it('should display a Button when explicitly required', () => {
+      const component = mount(
+        <Notification.ActionButton type="button">
+          Action Button
+        </Notification.ActionButton>
+      );
+
+      expect(component.find('Button').length).toEqual(1);
+    });
+
+    it('should display a TextLink explicitly required', () => {
+      const component = mount(
+        <Notification.ActionButton type="textLink">
+          Action Button
+        </Notification.ActionButton>
+      );
+
+      expect(component.find('TextLink').length).toEqual(1);
+    });
+
+    it('should allow attaching action button onClick handler', () => {
+      const onClickMock = jest.fn();
+
+      const component = mount(
+        <Notification.ActionButton onClick={onClickMock}>
+          Action Button
+        </Notification.ActionButton>
+      );
+
+      component.simulate('click');
+
+      expect(onClickMock).toBeCalled();
     });
   });
 });

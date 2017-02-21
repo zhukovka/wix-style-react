@@ -23,13 +23,10 @@ class ExampleStandard extends Component {
       timeout: DEFAULT_TIMEOUT,
       zIndex: 10000,
     },
-    link: 'https://www.wix.com',
-    linkText: 'Thanks',
-    label: {
-      appearance: 'T1.2'
-    },
     actionButton: {
-      type: 'button'
+      type: 'button',
+      text: 'Thanks',
+      link: 'https://www.wix.com'
     }
   };
 
@@ -106,7 +103,7 @@ class ExampleStandard extends Component {
                 display="horizontal"
                 value={this.state.actionButton.type}
                 onChange={type => {
-                  this.setState({actionButton: {type: type}});
+                  this.setComponentState('actionButton', {type: type});
                   this.setNotificationSize(type);
                 }}
               >
@@ -117,19 +114,23 @@ class ExampleStandard extends Component {
             </div>
           </div>
           {
-            (this.state.actionButton.type !== 'textLink') ? null :
+            (this.state.actionButton.type === 'none') ? null :
               <div>
-                <div className={styles.option}>
-                  <Label>Link</Label>
-                  <div className={styles.flex}>
-                    <Input value={this.state.link} onChange={event => this.setState({link: event.target.value})}/>
-                  </div>
-                </div>
-
+                {
+                  this.state.actionButton.type !== 'textLink' ? null :
+                    <div className={styles.option}>
+                      <Label>Link</Label>
+                      <div className={styles.flex}>
+                        <Input value={this.state.actionButton.link} size="small"
+                               onChange={event => this.setComponentState('actionButton', {link: event.target.value})}/>
+                      </div>
+                    </div>
+                }
                 <div className={styles.option}>
                   <Label>Text</Label>
                   <div className={styles.flex}>
-                    <Input value={this.state.linkText} onChange={event => this.setState({linkText: event.target.value})}/>
+                    <Input value={this.state.actionButton.text} size="small"
+                           onChange={event => this.setComponentState('actionButton', {text: event.target.value})}/>
                   </div>
                 </div>
               </div>

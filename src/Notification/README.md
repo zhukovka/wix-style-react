@@ -1,6 +1,6 @@
 # Notification component
 
-> composition of a set of label and buttons wrapped by a dropping notification.
+> A dropping down notification.
 
 ## Properties
 
@@ -12,3 +12,28 @@
 | type | string (global, local) | global | - | global pushes the content while local is above it and fades after timeout |
 | timeout | number | 6000 | - | time in msec for local notification to disappear (will be ignored in global notification) |
 | zIndex | number | - | - | z-index property | 
+
+
+## Notification.TextLabel (required)
+> Use this component to display the notification message
+
+| propName | propType | defaultValue | isRequired | description |
+|----------|----------|--------------|------------|-------------|
+| children | string | - | - | The text to display |
+
+## Notification.ActionButton (optional)
+> Use this component to supply an action button for the notification
+
+| propName | propType | defaultValue | isRequired | description |
+|----------|----------|--------------|------------|-------------|
+| children | string | - | - | The text to display |
+| type | string (button, textLink) | - | button | A Button component or TextLink component |
+| onClick | function | - | e => e.preventDefault() | - |
+| link | string | - | - | A url to navigate to on click |
+
+## Notification.CloseButton (required)
+> Use this component to display the close button
+
+| propName | propType | defaultValue | isRequired | description |
+|----------|----------|--------------|------------|-------------|
+| none | - | - | - | - |

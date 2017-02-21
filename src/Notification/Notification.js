@@ -3,9 +3,10 @@ import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 import classNames from 'classnames';
 import css from './Notification.scss';
 import WixComponent from '../WixComponent';
-import {children, once, optional} from '../../src/Composite';
-import Label from '../Label/Label';
-import Button from '../Button/Button';
+import {children, once, optional, any} from '../../src/Composite';
+import CloseButton from './CloseButton';
+import TextLabel from './TextLabel';
+import ActionButton from './ActionButton';
 
 export const LOCAL_NOTIFICATION = 'local';
 export const GLOBAL_NOTIFICATION = 'global';
@@ -192,7 +193,7 @@ Notification.propTypes = {
   type: PropTypes.oneOf([GLOBAL_NOTIFICATION, LOCAL_NOTIFICATION]),
   timeout: PropTypes.number,
   zIndex: PropTypes.number,
-  children: children(once(Label), once(Button), optional(Button))
+  children: children(once(TextLabel), any(/*ActionButton or CloseButton*/), optional(CloseButton))
 };
 
 Notification.defaultProps = {
@@ -200,5 +201,9 @@ Notification.defaultProps = {
   size: 'small',
   type: GLOBAL_NOTIFICATION
 };
+
+Notification.CloseButton = CloseButton;
+Notification.TextLabel = TextLabel;
+Notification.ActionButton = ActionButton;
 
 export default Notification;
