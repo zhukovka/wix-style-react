@@ -28,4 +28,4 @@ export {default as TextArea} from './TextArea';
 export {default as TextField} from './TextField';
 export {default as EndorseContentLayout} from './EndorseContentLayout';
 export {default as Notification} from './Notification';
-
+export {default as Breadcrumbs} from './Breadcrumbs';
