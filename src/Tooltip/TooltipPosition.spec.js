@@ -16,6 +16,12 @@ describe('Tooltip position calculation helper', () => {
       .size(50, 50);
   });
 
+  it('should not include window scroll X and Y props', () => {
+    window.scrollX = window.scrollY = 100;
+    expect(position(anchor, element, params('top', 'left')))
+      .toEqual({left: 500, top: 440});
+  });
+
   it('should position top-left ', () => {
     expect(position(anchor, element, params('top', 'left')))
       .toEqual({left: 500, top: 440});

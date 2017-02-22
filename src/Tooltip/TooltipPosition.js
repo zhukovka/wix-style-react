@@ -54,9 +54,5 @@ const RULES = {
 
 export default function position(anchor, element, params) {
   const {placement = 'top', alignment = 'center', margin = 20} = params;
-  const result = (RULES[`${placement}-${alignment}`] || DEFAULT_RULE)(anchor, element, margin);
-  return {
-    top: result.top + (window.scrollY || 0),
-    left: result.left + (window.scrollX || 0)
-  };
+  return (RULES[`${placement}-${alignment}`] || DEFAULT_RULE)(anchor, element, margin);
 }

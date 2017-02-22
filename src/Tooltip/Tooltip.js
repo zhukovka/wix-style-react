@@ -36,6 +36,13 @@ class Tooltip extends WixComponent {
     onClickOutside: PropTypes.func,
 
     /**
+     * By default tooltip is appended to a body, to avoid CSS collisions.
+     * But if you want your tooltip to scroll with a content, append tooltip to a parent.
+     * Just make sure the CSS are not leaked.
+     */
+    appendToParent: PropTypes.bool,
+
+    /**
      * Allows to shift the tooltip position by x and y pixels.
      * Both positive and negative values are accepted.
      */
@@ -147,6 +154,10 @@ class Tooltip extends WixComponent {
     };
   }
 
+  _getContainer() {
+    return this.props.appendToParent ? this._childNode.parentElement : document.body;
+  }
+
   show() {
     if (this.props.disabled) {
       return;
@@ -165,7 +176,7 @@ class Tooltip extends WixComponent {
       this.setState({visible: true}, () => {
         if (!this._mountNode) {
           this._mountNode = document.createElement('div');
-          document.body.appendChild(this._mountNode);
+          this._getContainer().appendChild(this._mountNode);
         }
         this._showTimeout = null;
         this.componentDidUpdate();
@@ -184,7 +195,7 @@ class Tooltip extends WixComponent {
     this._hideTimeout = setTimeout(() => {
       if (this._mountNode) {
         ReactDOM.unmountComponentAtNode(this._mountNode);
-        document.body.removeChild(this._mountNode);
+        this._getContainer().removeChild(this._mountNode);
         this._mountNode = null;
       }
       this._hideTimeout = null;
@@ -226,13 +237,15 @@ class Tooltip extends WixComponent {
       const tooltipNode = ReactDOM.findDOMNode(ref);
 
       const style = this._adjustPosition(position(
-        this._childNode.getBoundingClientRect(),
-        tooltipNode.getBoundingClientRect(), {
+        this._getRect(this._childNode),
+        this._getRect(tooltipNode),
+        {
           placement: this.props.placement,
           alignment: this.props.alignment,
           margin: 10
         }
       ));
+
       tooltipNode.style.top = `${style.top}px`;
       tooltipNode.style.left = `${style.left}px`;
 
@@ -258,8 +271,26 @@ class Tooltip extends WixComponent {
     return {};
   }
 
+  _getRect(el) {
+    if (this.props.appendToParent) {
+      // TODO: Once thoroughly tested, we could use the same approach in both cases.
+      return {
+        left: el.offsetLeft,
+        top: el.offsetTop,
+        width: el.offsetWidth,
+        height: el.offsetHeight
+      };
+    }
+    return el.getBoundingClientRect();
+  }
+
   _adjustPosition(originalPosition) {
-    const {x = 0, y = 0} = this.props.moveBy || {};
+    let {x = 0, y = 0} = this.props.moveBy || {};
+    // TODO: Once thoroughly tested, and converted to using offsetX props, we could remove this one.
+    if (!this.props.appendToParent) {
+      x += (window.scrollX || 0);
+      y += (window.scrollY || 0);
+    }
     return {
       left: originalPosition.left + x,
       top: originalPosition.top + y
