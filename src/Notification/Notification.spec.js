@@ -8,66 +8,76 @@ import {notificationTestkitFactory as enzymeNotificationTestkitFactory} from '..
 
 import Notification from './Notification';
 
+const renderNotificationWithProps = (props = {}) => (
+  <Notification {...props}>
+    <Notification.TextLabel>
+      label
+    </Notification.TextLabel>
+    <Notification.CloseButton/>
+  </Notification>
+);
+
 describe('Notification', () => {
   const createDriver = createDriverFactory(notificationDriverFactory);
 
   describe('Visibility', () => {
     it('should verify component exists', () => {
-      const driver = createDriver(<Notification/>);
+      const driver = createDriver(renderNotificationWithProps());
       expect(driver.exists()).toBeTruthy();
     });
 
     it('should be visible', () => {
-      const driver = createDriver(<Notification show/>);
+      const driver = createDriver(renderNotificationWithProps({show: true}));
       expect(driver.visible()).toBeTruthy();
     });
 
     it('should not be visible', () => {
-      const driver = createDriver(<Notification show={false}/>);
+      const driver = createDriver(renderNotificationWithProps({show: false}));
       expect(driver.visible()).toBeFalsy();
     });
   });
 
   describe('Themes', () => {
     it('should support default theme', () => {
-      const driver = createDriver(<Notification show/>);
+      const driver = createDriver(renderNotificationWithProps({show: true}));
       expect(driver.isStandardNotification()).toBeTruthy();
+      expect(driver.hasTheme('standard')).toBeTruthy();
     });
 
     it('should support standard theme', () => {
-      const driver = createDriver(<Notification show theme="standard"/>);
+      const driver = createDriver(renderNotificationWithProps({show: true, theme: 'standard'}));
       expect(driver.isStandardNotification()).toBeTruthy();
     });
 
     it('should support error theme', () => {
-      const driver = createDriver(<Notification show theme="error"/>);
+      const driver = createDriver(renderNotificationWithProps({show: true, theme: 'error'}));
       expect(driver.isErrorNotification()).toBeTruthy();
     });
 
     it('should support success theme', () => {
-      const driver = createDriver(<Notification show theme="success"/>);
+      const driver = createDriver(renderNotificationWithProps({show: true, theme: 'success'}));
       expect(driver.isSuccessNotification()).toBeTruthy();
     });
 
     it('should support warning theme', () => {
-      const driver = createDriver(<Notification show theme="warning"/>);
+      const driver = createDriver(renderNotificationWithProps({show: true, theme: 'warning'}));
       expect(driver.isWarningNotification()).toBeTruthy();
     });
   });
 
   describe('Sizes', () => {
     it('should have a default size', () => {
-      const driver = createDriver(<Notification show/>);
+      const driver = createDriver(renderNotificationWithProps({show: true}));
       expect(driver.isSmallSize()).toBeTruthy();
     });
 
     it('should support standard height', () => {
-      const driver = createDriver(<Notification show size="small"/>);
+      const driver = createDriver(renderNotificationWithProps({show: true, size: 'small'}));
       expect(driver.isSmallSize()).toBeTruthy();
     });
 
     it('should support a big height', () => {
-      const driver = createDriver(<Notification show size="big"/>);
+      const driver = createDriver(renderNotificationWithProps({show: true, size: 'big'}));
       expect(driver.isBigSize()).toBeTruthy();
     });
   });
@@ -81,6 +91,7 @@ describe('Notification', () => {
             <Notification.TextLabel>
               {labelText}
             </Notification.TextLabel>
+            <Notification.CloseButton/>
           </Notification>
         );
         expect(driver.getLabelText()).toEqual(labelText);
@@ -105,36 +116,39 @@ describe('Notification', () => {
       });
 
       it('should not have an action button', () => {
-        const driver = createDriver(<Notification show/>);
+        const driver = createDriver(renderNotificationWithProps({show: true}));
         expect(driver.hasActionButton()).toBeFalsy();
       });
-    });
 
-    describe('Close Button', () => {
-      it('should have a close button (with action button)', () => {
+      it('should call the supplied onClick handler when clicked', () => {
+        const onClickMock = jest.fn();
+
         const driver = createDriver(
           <Notification show>
             <Notification.TextLabel>
               label
             </Notification.TextLabel>
-            <Notification.ActionButton>
+            <Notification.ActionButton onClick={onClickMock}>
               action
             </Notification.ActionButton>
             <Notification.CloseButton/>
           </Notification>
         );
+
+        driver.clickOnActionButton();
+
+        expect(onClickMock).toBeCalled();
+      });
+    });
+
+    describe('Close Button', () => {
+      it('should have a close button (with action button)', () => {
+        const driver = createDriver(renderNotificationWithProps({show: true}));
         expect(driver.hasCloseButton()).toBeTruthy();
       });
 
       it('should have a close button (without action button)', () => {
-        const driver = createDriver(
-          <Notification show>
-            <Notification.TextLabel>
-              label
-            </Notification.TextLabel>
-            <Notification.CloseButton/>
-          </Notification>
-        );
+        const driver = createDriver(renderNotificationWithProps({show: true}));
         expect(driver.hasActionButton()).toBeFalsy();
         expect(driver.hasCloseButton()).toBeTruthy();
       });
@@ -143,17 +157,17 @@ describe('Notification', () => {
 
   describe('Type', () => {
     it('should set default type to global and position relative', () => {
-      const driver = createDriver(<Notification show/>);
+      const driver = createDriver(renderNotificationWithProps({show: true}));
       expect(driver.isRelativelyPositioned()).toBeTruthy();
     });
 
     it('should set the type to global and position relative', () => {
-      const driver = createDriver(<Notification show type="global"/>);
+      const driver = createDriver(renderNotificationWithProps({show: true, type: 'global'}));
       expect(driver.isRelativelyPositioned()).toBeTruthy();
     });
 
     it('should set the type to relative and position absolute', () => {
-      const driver = createDriver(<Notification show type="local"/>);
+      const driver = createDriver(renderNotificationWithProps({show: true, type: 'local'}));
       expect(driver.isAbsolutePositioned()).toBeTruthy();
     });
   });
@@ -168,14 +182,7 @@ describe('Notification', () => {
     describe('Closing when clicking on close button', () => {
 
       beforeEach(() => {
-        driver = createDriver(
-          <Notification show>
-            <Notification.TextLabel>
-              label
-            </Notification.TextLabel>
-            <Notification.CloseButton/>
-          </Notification>
-        );
+        driver = createDriver(renderNotificationWithProps({show: true}));
         driver.clickOnCloseButton();
       });
 
@@ -197,15 +204,7 @@ describe('Notification', () => {
       const defaultTimeout = 6000;
 
       it('should close after default timeout (6s)', () => {
-        driver = createDriver(
-          <Notification show type="local">
-            <Notification.TextLabel>
-              label
-            </Notification.TextLabel>
-            <Notification.CloseButton/>
-          </Notification>
-        );
-
+        driver = createDriver(renderNotificationWithProps({show: true, type: 'local'}));
         jest.runAllTimers();
 
         expect(driver.visible()).toBeFalsy();
@@ -215,14 +214,7 @@ describe('Notification', () => {
       it('should close after a given timeout', () => {
         const timeout = 132;
 
-        driver = createDriver(
-          <Notification show type="local" timeout={timeout}>
-            <Notification.TextLabel>
-              label
-            </Notification.TextLabel>
-            <Notification.CloseButton/>
-          </Notification>
-        );
+        driver = createDriver(renderNotificationWithProps({show: true, type: 'local', timeout}));
 
         jest.runAllTimers();
 
@@ -231,14 +223,7 @@ describe('Notification', () => {
       });
 
       it('should be able to show notification again after timeout', () => {
-        driver = createDriver(
-          <Notification show type="local">
-            <Notification.TextLabel>
-              label
-            </Notification.TextLabel>
-            <Notification.CloseButton/>
-          </Notification>
-        );
+        driver = createDriver(renderNotificationWithProps({show: true, type: 'local'}));
 
         jest.runAllTimers();
         expect(driver.visible()).toBeFalsy();
@@ -250,14 +235,7 @@ describe('Notification', () => {
       });
 
       it('should close after starting from a closed status', () => {
-        driver = createDriver(
-          <Notification show={false} type="local">
-            <Notification.TextLabel>
-              label
-            </Notification.TextLabel>
-            <Notification.CloseButton/>
-          </Notification>
-        );
+        driver = createDriver(renderNotificationWithProps({show: false, type: 'local'}));
 
         jest.runAllTimers();
         expect(driver.visible()).toBeFalsy();
@@ -278,20 +256,22 @@ describe('Notification', () => {
   describe('Style', () => {
     it('should accept a z-index', () => {
       const zIndex = 999;
-      const driver = createDriver(<Notification show zIndex={zIndex}/>);
+      const driver = createDriver(renderNotificationWithProps({show: true, zIndex}));
       expect(driver.getZIndex()).toEqual(zIndex);
     });
   });
 
   describe('testkit', () => {
     it('should exist', () => {
-      expect(isTestkitExists(<Notification/>, notificationTestkitFactory)).toBeTruthy();
+      const component = renderNotificationWithProps({show: true});
+      expect(isTestkitExists(component, notificationTestkitFactory)).toBeTruthy();
     });
   });
 
   describe('enzyme testkit', () => {
     it('should exist', () => {
-      expect(isEnzymeTestkitExists(<Notification/>, enzymeNotificationTestkitFactory)).toBeTruthy();
+      const component = renderNotificationWithProps({show: true});
+      expect(isEnzymeTestkitExists(component, enzymeNotificationTestkitFactory)).toBeTruthy();
     });
   });
 
@@ -318,26 +298,12 @@ describe('Notification', () => {
 
     it('should display a TextLink explicitly required', () => {
       const component = mount(
-        <Notification.ActionButton type="textLink">
+        <Notification.ActionButton type="textLink" link="some link">
           Action Button
         </Notification.ActionButton>
       );
 
       expect(component.find('TextLink').length).toEqual(1);
-    });
-
-    it('should allow attaching action button onClick handler', () => {
-      const onClickMock = jest.fn();
-
-      const component = mount(
-        <Notification.ActionButton onClick={onClickMock}>
-          Action Button
-        </Notification.ActionButton>
-      );
-
-      component.simulate('click');
-
-      expect(onClickMock).toBeCalled();
     });
   });
 });

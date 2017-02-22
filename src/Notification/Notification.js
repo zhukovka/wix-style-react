@@ -113,7 +113,7 @@ class Notification extends WixComponent {
 
   renderLabel(component) {
     return (
-      <div data-hook="notification-label" key="label" className={css.labelWrapper}>
+      <div key="label" className={css.labelWrapper}>
         {component}
       </div>
     );
@@ -122,7 +122,7 @@ class Notification extends WixComponent {
   renderActionButton(component) {
     return (
       component ?
-        <div data-hook="notification-cta-button" key="cta" className={css.ctaButtonWrapper}>
+        <div key="cta" className={css.ctaButtonWrapper}>
           {component}
         </div> :
         null

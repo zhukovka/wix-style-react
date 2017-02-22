@@ -3,15 +3,20 @@ import Button from '../../Button';
 import TextLink from '../../TextLink';
 
 const ActionButton = ({children, onClick, type, link}) => {
+  const commonProps = {
+    dataHook: 'notification-cta-button',
+    onClick: e => onClick(e)
+  };
+
   if (type === 'textLink') {
     return (
-      <TextLink forceUnderline darkBackground link={link} onClick={e => onClick(e)}>
+      <TextLink forceUnderline darkBackground link={link} {...commonProps} >
         {children}
       </TextLink>
     );
   } else {
     return (
-      <Button height="small" theme="transparent" onClick={e => onClick(e)}>
+      <Button height="small" theme="transparent" {...commonProps}>
         {children}
       </Button>
     );
@@ -19,7 +24,7 @@ const ActionButton = ({children, onClick, type, link}) => {
 };
 
 ActionButton.propTypes = {
-  children: PropTypes.string,
+  children: PropTypes.any,
   onClick: PropTypes.func,
   link: PropTypes.string,
   type: PropTypes.string
