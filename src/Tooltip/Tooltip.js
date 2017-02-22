@@ -10,11 +10,8 @@ import styles from './TooltipContent.scss';
 class Tooltip extends WixComponent {
 
   componentElements() {
-    const elemArr = super.componentElements();
-    if (this._mountNode) {
-      elemArr.push(this._mountNode);
-    }
-    return elemArr;
+    const elements = super.componentElements();
+    return this._mountNode ? elements.concat(this._mountNode) : elements;
   }
 
   onClickOutside(e) {
@@ -37,6 +34,7 @@ class Tooltip extends WixComponent {
     disabled: PropTypes.bool,
 
     onClickOutside: PropTypes.func,
+
     /**
      * Allows to shift the tooltip position by x and y pixels.
      * Both positive and negative values are accepted.
@@ -98,17 +96,20 @@ class Tooltip extends WixComponent {
   }
 
   componentWillUnmount() {
+    super.componentWillUnmount && super.componentWillUnmount();
     this._unmounted = true;
     this.hide();
   }
 
   componentWillMount() {
+    super.componentWillMount && super.componentWillMount();
     if (this.props.active) {
       this.show();
     }
   }
 
   componentWillReceiveProps(nextProps) {
+    super.componentWillReceiveProps && super.componentWillReceiveProps(nextProps);
     if (nextProps.active !== this.props.active) {
       if (this.state.visible && this.props.hideTrigger === 'custom') {
         if (!nextProps.active) {
