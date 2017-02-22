@@ -224,6 +224,7 @@ $double-gap: 12px;
 }
 
 .menu-arrow {
+    padding: 0 $gap;
     path { fill: $B10; }
 
     &[disabled] {
