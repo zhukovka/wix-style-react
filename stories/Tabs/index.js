@@ -11,7 +11,7 @@ storiesOf('6. Navigation', module)
     <div>
       <Markdown source={ReadMe}/>
       <InteractiveCodeExample title="Customize a <Tabs/>">
-        <TabsExample />
+        <TabsExample/>
       </InteractiveCodeExample>
     </div>
   ));

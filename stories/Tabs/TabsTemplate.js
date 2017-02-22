@@ -19,14 +19,14 @@ class TabsTemplate extends Component {
 
   getComponent() {
     const {activeId} = this.state;
-    const {type} = this.props;
-    const props = {items, activeId};
+    const {type, hasDivider} = this.props;
+    const props = {items, activeId, hasDivider};
 
     if (type) {
       props.type = type;
     }
 
-    return <Tabs onClick={({ id }) => this.setState({ activeId: id })} {...props}/>;
+    return <Tabs onClick={({id}) => this.setState({activeId: id})} {...props}/>;
   }
 
   render() {
@@ -36,12 +36,14 @@ class TabsTemplate extends Component {
 
 TabsTemplate.propTypes = {
   onChange: PropTypes.func.isRequired,
-  type: PropTypes.oneOf(Tabs.tabTypes)
+  type: PropTypes.oneOf(Tabs.tabTypes),
+  hasDivider: PropTypes.bool,
 };
 
 function getExampleCode(element) {
   return reactElementToJSXString(element, {
     filterProps: ['onClick'],
+    showDefaultProps: false,
   });
 }
 

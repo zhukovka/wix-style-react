@@ -4,6 +4,10 @@
   margin-top: 10px;
 }
 
+.controlGroup + .controlGroup {
+  margin-top: 15px;
+}
+
 .preview {
   margin-top: 12px;
   border: 10px solid $D50;

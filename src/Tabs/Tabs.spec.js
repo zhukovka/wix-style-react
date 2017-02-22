@@ -50,6 +50,16 @@ describe('Tabs component', () => {
     expect(driver.isOfType('compact')).toBeTruthy();
   });
 
+  it('should have divider by default', () => {
+    const driver = createComponent({items});
+    expect(driver.hasDivider()).toBeTruthy();
+  });
+
+  it('should not have divider if props.divider is falsy', () => {
+    const driver = createComponent({items, hasDivider: false});
+    expect(driver.hasDivider()).toBeFalsy();
+  });
+
   const createDriver = createDriverFactory(tabsDriverFactory);
   function createComponent(props) {
     return createDriver(<Tabs {...props}/>);
