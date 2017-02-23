@@ -16,7 +16,7 @@ class RichTextAreaTemplate extends Component {
   };
 
   getComponent() {
-    return <RichTextArea onChange={this.handleChange}/>;
+    return <RichTextArea onChange={this.handleChange} value={this.props.value}/>;
   }
 
   render() {

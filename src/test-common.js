@@ -3,9 +3,11 @@ import ReactDOM from 'react-dom';
 
 const componentFactory = Element => {
   let component;
+  let componentInstance;
   const wrapperDiv = document.createElement('div');
-  ReactDOM.render(<div ref={r => component = r}>{Element}</div>, wrapperDiv);
-  return {component: component.childNodes[0], wrapper: wrapperDiv};
+  const ClonedElement = React.cloneElement(Element, {ref: r => componentInstance = r});
+  ReactDOM.render(<div ref={r => component = r}>{ClonedElement}</div>, wrapperDiv);
+  return {component: component.childNodes[0], wrapper: wrapperDiv, componentInstance};
 };
 
 export const createDriverFactory = driverFactory => element => driverFactory(componentFactory(element));

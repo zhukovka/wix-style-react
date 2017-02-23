@@ -24,7 +24,7 @@ class RichTextAreaExample extends Component {
           </RadioGroup>
         </div>
         <div className={styles.preview}>
-          <RichTextAreaTemplate onChange={this.props.onChange}/>
+          <RichTextAreaTemplate onChange={this.props.onChange} value={'<p>$$$ Rich text area</p><strong>bold text here</strong>'}/>
         </div>
       </div>
     );
