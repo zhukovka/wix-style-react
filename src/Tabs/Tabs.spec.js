@@ -60,6 +60,13 @@ describe('Tabs component', () => {
     expect(driver.hasDivider()).toBeFalsy();
   });
 
+  it('should set tab widt, when selected type is Uniform Side', () => {
+    const width = '100px';
+    const driver = createComponent({items, width, type: 'uniformSide'});
+    expect(driver.getTabsWidth().size).toBe(1);
+    expect(driver.getTabsWidth().has(width)).toBeTruthy();
+  });
+
   const createDriver = createDriverFactory(tabsDriverFactory);
   function createComponent(props) {
     return createDriver(<Tabs {...props}/>);

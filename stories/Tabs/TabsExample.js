@@ -1,6 +1,7 @@
 import React, {Component, PropTypes} from 'react';
 import RadioGroup from '../../src/RadioGroup';
 import Label from '../../src/Label';
+import Input from '../../src/Input';
 import TabsTemplate from './TabsTemplate';
 import styles from './TabsExample.scss';
 
@@ -8,6 +9,7 @@ class TabsExample extends Component {
   state = {
     type: '',
     hasDivider: true,
+    width: ''
   };
 
   render() {
@@ -28,6 +30,19 @@ class TabsExample extends Component {
             </RadioGroup>
           </div>
         </div>
+        {
+          this.state.type === 'uniformSide' ?
+            <div className={styles.option}>
+              <Label>Tab width</Label>
+              <div className={styles.column}>
+                <Input placeholder="Set tab width in px (optional)" size="small" type="text"
+                       value={this.state.width}
+                       onChange={e => this.setState({width: e.target.value})}
+                />
+              </div>
+            </div> :
+            null
+        }
         <div className={styles.controlGroup}>
           <Label>Divider</Label>
           <div className={styles.radioGroup}>
@@ -46,6 +61,7 @@ class TabsExample extends Component {
             onChange={this.props.onChange}
             type={this.state.type}
             hasDivider={this.state.hasDivider}
+            width={this.state.width}
             />
         </div>
       </div>

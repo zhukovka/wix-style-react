@@ -5,13 +5,19 @@ import styles from './Tabs.scss';
 
 class Tabs extends WixComponent {
   render() {
-    const {items, onClick, activeId, type, hasDivider} = this.props;
+    const {items, onClick, activeId, type, hasDivider, width} = this.props;
+    const style = {};
     const tabs = items.map(item => {
       const className = classNames(styles.tab, {
         [styles.active]: item.id === activeId
       });
+
+      if (type === 'uniformSide') {
+        style.width = width;
+      }
+
       return (
-        <li key={item.id} onClick={() => onClick(item)} className={className}>
+        <li key={item.id} onClick={() => onClick(item)} className={className} style={style}>
           {item.title}
         </li>
       );
@@ -28,19 +34,20 @@ Tabs.tabTypes = ['compact', 'uniformSide', 'uniformFull'];
 
 Tabs.propTypes = {
   items: PropTypes.arrayOf(React.PropTypes.shape({
-    id: React.PropTypes.oneOfType([
-      React.PropTypes.string,
-      React.PropTypes.number
+    id: PropTypes.oneOfType([
+      PropTypes.string,
+      PropTypes.number
     ]),
-    title: React.PropTypes.string.isRequired,
+    title: PropTypes.string.isRequired,
   })).isRequired,
   onClick: PropTypes.func,
-  activeId: React.PropTypes.oneOfType([
-    React.PropTypes.string,
-    React.PropTypes.number
+  activeId: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.number
   ]),
   type: PropTypes.oneOf(Tabs.tabTypes),
   hasDivider: PropTypes.bool,
+  width: PropTypes.oneOfType([PropTypes.string, PropTypes.number])
 };
 
 Tabs.defaultProps = {

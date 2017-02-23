@@ -15,6 +15,9 @@ const tabsDriverFactory = ({component, wrapper}) => {
     isOfType: type => component.classList.contains(styles[type]),
     hasDivider: () => component.classList.contains(styles.hasDivider),
     setProps: props => render(<div ref={r => component = r.childNodes[0]}><Tabs {...props}/></div>, wrapper),
+    getTabsWidth: () => {
+      return new Set(getTabs().map(item => item.style.width));
+    }
   };
 };
 

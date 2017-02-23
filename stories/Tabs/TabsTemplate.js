@@ -19,11 +19,15 @@ class TabsTemplate extends Component {
 
   getComponent() {
     const {activeId} = this.state;
-    const {type, hasDivider} = this.props;
+    const {type, hasDivider, width} = this.props;
     const props = {items, activeId, hasDivider};
 
     if (type) {
       props.type = type;
+    }
+
+    if (type === 'uniformSide' && width) {
+      props.width = width;
     }
 
     return <Tabs onClick={({id}) => this.setState({activeId: id})} {...props}/>;
@@ -38,6 +42,7 @@ TabsTemplate.propTypes = {
   onChange: PropTypes.func.isRequired,
   type: PropTypes.oneOf(Tabs.tabTypes),
   hasDivider: PropTypes.bool,
+  width: PropTypes.string
 };
 
 function getExampleCode(element) {
