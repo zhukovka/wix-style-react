@@ -4,12 +4,13 @@ import Label from '../../src/Label';
 import Input from '../../src/Input';
 import TabsTemplate from './TabsTemplate';
 import styles from './TabsExample.scss';
+import TextField from '../../src/TextField';
 
 class TabsExample extends Component {
   state = {
     type: '',
     hasDivider: true,
-    width: ''
+    width: 30
   };
 
   render() {
@@ -33,12 +34,39 @@ class TabsExample extends Component {
         {
           this.state.type === 'uniformSide' ?
             <div className={styles.option}>
-              <Label>Tab width</Label>
-              <div className={styles.column}>
-                <Input placeholder="Set tab width in px (optional)" size="small" type="text"
-                       value={this.state.width}
-                       onChange={e => this.setState({width: e.target.value})}
-                />
+              <div className={styles.column} style={{width: '100px'}}>
+                <br/>
+                <TextField>
+                  <Label
+                    appearance="T1.1"
+                    for="firstName"
+                  >
+                    Tab Width
+                  </Label>
+                  <Input
+                    errorMessage=""
+                    id="firstName"
+                    placeholder="e.g. 100"
+                    size="normal"
+                    onChange={e => this.setState({width: e.target.value})}
+                    value={this.state.width}
+                    suffix={
+                      <Input.Group>
+                        <Input.Unit value="px" />
+                        <Input.Ticker
+                          onDown={() => {
+                            this.setState({width: (this.state.width - 1)})
+                          }}
+                          onUp={() => {
+                            this.setState({width: (this.state.width + 1)})
+                          }}
+                          />
+                      </Input.Group>}
+                    theme="normal"
+                    type="number"
+                  />
+                </TextField>
+                <br/>
               </div>
             </div> :
             null
