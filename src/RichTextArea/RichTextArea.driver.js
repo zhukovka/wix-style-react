@@ -2,6 +2,7 @@ import React from 'react';
 import {render} from 'react-dom';
 import ReactTestUtils from 'react-addons-test-utils';
 import RichTextArea from './RichTextArea';
+import styles from './RichTextArea.scss';
 
 const richTextAreaDriverFactory = ({component, componentInstance, wrapper}) => {
   const getButtons = () => [...component.querySelectorAll('[data-hook*="rich-text-area-button"]')];
@@ -34,6 +35,7 @@ const richTextAreaDriverFactory = ({component, componentInstance, wrapper}) => {
 
       componentInstance.setEditorState(newEditorState);
     },
+    isErrorIndicatorVisible: () => Boolean(component.classList.contains(styles.withError)),
     setProps: props => render(
       <div ref={r => component = r.childNodes[0]}>
         <RichTextArea ref={r => componentInstance = r} {...props}/>

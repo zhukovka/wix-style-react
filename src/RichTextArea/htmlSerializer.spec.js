@@ -83,39 +83,39 @@ describe('HTML serializer', () => {
   });
 
   it('should correctly serialize slate object to HTML string', () => {
-    const text = `<p><ul><li>one</li><li>two</li></ul><span>Text here</span><strong>bold text</strong><em>italic</em><em><u>and underlined</u></em></p>`;
-    const expected = {
+    const expected = `<ul><li>one</li><li>two</li></ul><p>Text here<strong>bold text</strong><em>italic</em><em><u>and underlined</u></em></p>`;
+    const state = {
       nodes: [
+        {
+          kind: 'block',
+          type: 'unordered-list',
+          nodes: [
+            {
+              kind: 'block',
+              type: 'list-item',
+              nodes: [
+                {
+                  kind: 'text',
+                  text: 'one'
+                }
+              ]
+            },
+            {
+              kind: 'block',
+              type: 'list-item',
+              nodes: [
+                {
+                  kind: 'text',
+                  text: 'two'
+                }
+              ]
+            }
+          ]
+        },
         {
           kind: 'block',
           type: 'paragraph',
           nodes: [
-            {
-              kind: 'block',
-              type: 'unordered-list',
-              nodes: [
-                {
-                  kind: 'block',
-                  type: 'list-item',
-                  nodes: [
-                    {
-                      kind: 'text',
-                      text: 'one'
-                    }
-                  ]
-                },
-                {
-                  kind: 'block',
-                  type: 'list-item',
-                  nodes: [
-                    {
-                      kind: 'text',
-                      text: 'two'
-                    }
-                  ]
-                }
-              ]
-            },
             {
               kind: 'text',
               ranges: [
@@ -147,8 +147,7 @@ describe('HTML serializer', () => {
         }
       ]
     };
-
-    const deserialized = htmlSerializer.deserialize(text);
-    expect(Raw.serialize(deserialized, {terse: true})).toEqual(expected);
+    const serialized = Raw.deserialize(state, {terse: true});
+    expect(htmlSerializer.serialize(serialized)).toEqual(expected);
   });
 });

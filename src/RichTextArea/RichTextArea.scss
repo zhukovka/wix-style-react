@@ -1,0 +1,77 @@
+@import '../common';
+@import '../Typography/Typography';
+
+$minWidth: 319px;
+$minHeight: 132px;
+$borderColorNormal: $B30;
+$borderColorFocused: $B20;
+$borderColorError: $R10;
+$border: 1px solid $B30;
+$borderRadius: 6px;
+
+.container {
+  display: flex;
+  flex-direction: column;
+  width: 500px; //TODO: remove
+  min-width: $minWidth;
+  min-height: $minHeight;
+  background: $D80;
+}
+
+.toolbar {
+  border: $border;
+  border-bottom: 0;
+  border-top-left-radius: $borderRadius;
+  border-top-right-radius: $borderRadius;
+
+  .withError & {
+    border-color: $borderColorError;
+  }
+}
+
+.editorWrapper {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  border: $border;
+  border-bottom-left-radius: $borderRadius;
+  border-bottom-right-radius: $borderRadius;
+
+  .withError & {
+    border-color: $borderColorError;
+    border-top-color: $borderColorNormal;
+  }
+
+  .isFocused:not(.withError) & {
+    border-color: $borderColorFocused;
+  }
+
+  &:hover {
+    background: $B50;
+  }
+}
+
+.editor {
+  @extend .t1;
+  flex: 1;
+  padding: 6px 12px;
+}
+
+.exclamation {
+  $size: 20px;
+  width: $size;
+  height: $size;
+  border-radius: 50%;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  background-color: $R10;
+
+  .withError  & {
+    display: flex;
+    position: absolute;
+    top: 6px;
+    right: 6px;
+  }
+}

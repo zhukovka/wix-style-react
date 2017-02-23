@@ -1,21 +1,18 @@
 import React, {PropTypes} from 'react';
 import WixComponent from '../WixComponent';
+import RichTextAreaButton from './RichTextAreaButton';
+import styles from './RichTextAreaToolbar.scss';
 
 class RichTextAreaToolbar extends WixComponent {
-  getMouseDownHandler(type) {
-    return event => {
-      const {onClick} = this.props;
-      event.preventDefault();
-      onClick && onClick(type);
-    };
-  }
-
   render() {
+    const {onClick} = this.props;
     return (
-      <div>
-        <button data-hook="rich-text-area-button-bold" onMouseDown={this.getMouseDownHandler('bold')}>B</button>
-        <button data-hook="rich-text-area-button-italic" onMouseDown={this.getMouseDownHandler('italic')}>I</button>
-        <button data-hook="rich-text-area-button-underline" onMouseDown={this.getMouseDownHandler('underline')}>U</button>
+      <div className={styles.container}>
+        <RichTextAreaButton onClick={() => onClick('mark', 'bold')} type="bold"/>
+        <RichTextAreaButton onClick={() => onClick('mark', 'italic')} type="italic"/>
+        <RichTextAreaButton onClick={() => onClick('mark', 'underline')} type="underline"/>
+        <RichTextAreaButton onClick={() => onClick('block', 'unordered-list')} type="unordered-list"/>
+        <RichTextAreaButton onClick={() => onClick('block', 'ordered-list')} type="ordered-list"/>
       </div>
     );
   }
