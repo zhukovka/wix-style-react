@@ -22,15 +22,26 @@ class RichTextAreaLinkButton extends Component {
     this.setState({isFormVisible: false});
   };
 
-  getTooltipContent = () => <RichTextAreaLinkForm onCancel={this.hideForm}/>;
+  handleFormSubmit = linkData => {
+    this.props.onClick(linkData);
+    this.hideForm();
+  };
+
+  getTooltipContent = isSelectionExpanded => (
+    <RichTextAreaLinkForm
+      onSubmit={this.handleFormSubmit}
+      onCancel={this.hideForm}
+      isTextInputVisible={isSelectionExpanded}
+      />
+  );
 
   render() {
     const {isFormVisible} = this.state;
-    const {isActive, onClick} = this.props;
+    const {isActive, onClick, isSelectionExpanded} = this.props;
 
     return (
       <Tooltip
-        content={this.getTooltipContent()}
+        content={this.getTooltipContent(isSelectionExpanded)}
         overlay=""
         alignment="center"
         placement="bottom"
@@ -57,6 +68,7 @@ RichTextAreaLinkButton.propTypes = {
   onClick: PropTypes.func.isRequired,
   isActive: PropTypes.bool,
   disabled: PropTypes.bool,
+  isSelectionExpanded: PropTypes.bool,
 };
 
 export default RichTextAreaLinkButton;
