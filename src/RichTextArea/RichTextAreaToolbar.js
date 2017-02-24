@@ -1,18 +1,51 @@
 import React, {PropTypes} from 'react';
+import classNames from 'classnames';
 import WixComponent from '../WixComponent';
 import RichTextAreaButton from './RichTextAreaButton';
+import RichTextAreaLinkButton from './RichTextAreaLinkButton';
 import styles from './RichTextAreaToolbar.scss';
 
 class RichTextAreaToolbar extends WixComponent {
   render() {
-    const {onClick} = this.props;
     return (
       <div className={styles.container}>
-        <RichTextAreaButton onClick={() => onClick('mark', 'bold')} type="bold"/>
-        <RichTextAreaButton onClick={() => onClick('mark', 'italic')} type="italic"/>
-        <RichTextAreaButton onClick={() => onClick('mark', 'underline')} type="underline"/>
-        <RichTextAreaButton onClick={() => onClick('block', 'unordered-list')} type="unordered-list"/>
-        <RichTextAreaButton onClick={() => onClick('block', 'ordered-list')} type="ordered-list"/>
+        {this.renderButton('mark', 'bold')}
+        {this.renderButton('mark', 'italic')}
+        {this.renderButton('mark', 'underline')}
+        {this.renderLinkButton()}
+        {this.renderButton('block', 'unordered-list')}
+        {this.renderButton('block', 'ordered-list')}
+      </div>
+    );
+  }
+
+  renderButton(action, type) {
+    const {onClick, hasMark, hasListBlock, disabled} = this.props;
+    const isActive = (action === 'mark') ? hasMark : hasListBlock;
+
+    return (
+      <div className={classNames(styles.button, {[styles.disabled]: disabled})}>
+        <RichTextAreaButton
+          disabled={disabled}
+          onClick={() => onClick(action, type)}
+          type={type}
+          isActive={isActive(type)}
+          />
+      </div>
+    );
+  }
+
+  renderLinkButton() {
+    const {onLinkButtonClick, hasLink, disabled} = this.props;
+
+    return (
+      <div className={classNames(styles.button, {[styles.disabled]: disabled})}>
+        <RichTextAreaLinkButton
+          disabled={disabled}
+          onClick={onLinkButtonClick}
+          type="link"
+          isActive={hasLink()}
+          />
       </div>
     );
   }
@@ -20,6 +53,11 @@ class RichTextAreaToolbar extends WixComponent {
 
 RichTextAreaToolbar.propTypes = {
   onClick: PropTypes.func,
+  onLinkButtonClick: PropTypes.func,
+  hasMark: PropTypes.func.isRequired,
+  hasListBlock: PropTypes.func.isRequired,
+  hasLink: PropTypes.func.isRequired,
+  disabled: PropTypes.bool,
 };
 
 export default RichTextAreaToolbar;

@@ -34,7 +34,7 @@ class Button extends WixComponent {
   }
 
   render() {
-    const {theme, hover, active, disabled, height, onClick, children} = this.props;
+    const {theme, hover, active, disabled, height, onClick, children, type} = this.props;
 
     const className = classNames({
       [styles.button]: true,
@@ -50,7 +50,7 @@ class Button extends WixComponent {
     };
 
     return (
-      <button className={className} onClick={onClick} style={_style} disabled={disabled}>
+      <button className={className} onClick={onClick} style={_style} disabled={disabled} type={type}>
         <div className={styles.inner}>
           {this.addPrefix()}
           {children}
@@ -99,7 +99,8 @@ Button.propTypes = {
   onClick: React.PropTypes.func,
   children: React.PropTypes.any,
   prefixIcon: React.PropTypes.node,
-  suffixIcon: React.PropTypes.node
+  suffixIcon: React.PropTypes.node,
+  type: React.PropTypes.string,
 };
 
 Button.displayName = 'Button';

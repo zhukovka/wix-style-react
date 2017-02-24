@@ -14,6 +14,10 @@ const MARK_TAGS = {
   u: 'underline',
 };
 
+const INLINE_TAGS = {
+  a: 'link',
+};
+
 const rules = [
   {
     deserialize(el, next) {
@@ -64,6 +68,33 @@ const rules = [
         case 'bold': return <strong>{children}</strong>;
         case 'italic': return <em>{children}</em>;
         case 'underline': return <u>{children}</u>;
+        default: return {children};
+      }
+    }
+  },
+  {
+    deserialize(el, next) {
+      const type = INLINE_TAGS[el.tagName];
+      if (!type) {
+        return;
+      }
+
+      return {
+        kind: 'inline',
+        type,
+        data: {
+          href: el.attribs.href
+        },
+        nodes: next(el.children)
+      };
+    },
+    serialize(object, children) {
+      if (object.kind !== 'inline') {
+        return;
+      }
+
+      switch (object.type) {
+        case 'link': return <a href={object.data.get('href')}>{children}</a>;
         default: return {children};
       }
     }

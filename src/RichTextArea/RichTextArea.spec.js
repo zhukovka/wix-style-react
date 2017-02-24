@@ -26,6 +26,7 @@ describe('RichTextArea', () => {
       'bold',
       'italic',
       'underline',
+      'link',
       'unordered-list',
       'ordered-list',
     ];
@@ -57,10 +58,35 @@ describe('RichTextArea', () => {
     expect(currentValue).toEqual('<p><u>test</u></p>');
   });
 
+  it('should handle unordered-list button click', () => {
+    const driver = createComponent({buttons: ['unordered-list']});
+    driver.clickUnorderedListButton();
+    driver.enterText('test');
+
+    expect(currentValue).toEqual('<ul><li>test</li></ul>');
+  });
+
+  it('should handle ordered-list button click', () => {
+    const driver = createComponent({buttons: ['ordered-list']});
+    driver.clickOrderedListButton();
+    driver.enterText('test');
+
+    expect(currentValue).toEqual('<ol><li>test</li></ol>');
+  });
+
   it('should show error indicator', () => {
     const driver = createComponent({error: true});
-
     expect(driver.isErrorIndicatorVisible()).toBeTruthy();
+  });
+
+  it('should render placeholder', () => {
+    const driver = createComponent({placeholder: 'HELLO'});
+    expect(driver.getContent()).toBe('HELLO');
+  });
+
+  it('should be disabled', () => {
+    const driver = createComponent({disabled: true});
+    expect(driver.isDisabled()).toBeTruthy();
   });
 
   const createDriver = createDriverFactory(richTextAreaDriverFactory);

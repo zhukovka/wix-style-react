@@ -16,6 +16,8 @@ const richTextAreaDriverFactory = ({component, componentInstance, wrapper}) => {
     clickBoldButton: clickButtonByType('bold'),
     clickItalicButton: clickButtonByType('italic'),
     clickUnderlineButton: clickButtonByType('underline'),
+    clickUnorderedListButton: clickButtonByType('unordered-list'),
+    clickOrderedListButton: clickButtonByType('ordered-list'),
     getContent: () => component.childNodes[1].textContent,
     focus: () => {
       const editorState = componentInstance.state.editorState;
@@ -36,6 +38,7 @@ const richTextAreaDriverFactory = ({component, componentInstance, wrapper}) => {
       componentInstance.setEditorState(newEditorState);
     },
     isErrorIndicatorVisible: () => Boolean(component.classList.contains(styles.withError)),
+    isDisabled: () => component.childNodes[0].classList.contains(styles.disabled),
     setProps: props => render(
       <div ref={r => component = r.childNodes[0]}>
         <RichTextArea ref={r => componentInstance = r} {...props}/>

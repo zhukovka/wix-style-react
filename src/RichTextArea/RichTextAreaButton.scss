@@ -1,23 +1,38 @@
 @import '../common';
+@import '../Typography/Typography';
 
 .button {
-  display: inline-flex;
-  justify-content: center;
-  align-items: center;
-  height: 42px;
-  width: 54px;
   padding: 0;
   border: 0;
-  border-right: 1px solid $B30;
   background: transparent;
   color: $D30;
 
-  &:hover,
-  &.isActive {
-    color: $B10;
+  &:not(.disabled) {
+    &:hover,
+    &.isActive {
+      color: $B10;
+    }
+
+    &:focus {
+      outline: 0;
+    }
   }
 
-  &:focus {
-    outline: 0;
+  &.disabled {
+    @extend .t2_1;
   }
+}
+
+.wrapper {
+  height: 42px;
+  width: 54px;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.tooltipContent {
+  margin: 0;
+  padding: 0;
+  text-align: center;
 }

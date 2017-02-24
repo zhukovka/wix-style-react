@@ -3,23 +3,9 @@ import htmlSerializer from './htmlSerializer';
 
 describe('HTML serializer', () => {
   it('should correctly deserialize HTML string', () => {
-    const text = `<h1>noop</h1><p>Hello</p><strong>bold text</strong><em>italic<u>and underlined</u></em><ol><li>one</li><li>two</li></ol>`;
+    const text = `<p>Hello<strong>bold text</strong><em>italic<u>and underlined</u></em></p><ol><li>one</li><li>two</li></ol><p><a href="http://localhost">Link to localhost</a></p>`;
     const expected = {
       nodes: [
-        {
-          kind: 'block',
-          type: 'paragraph',
-          nodes: [
-            {kind: 'text', text: 'noop'}
-          ]
-        },
-        {
-          kind: 'block',
-          type: 'paragraph',
-          nodes: [
-            {kind: 'text', text: 'Hello'}
-          ]
-        },
         {
           kind: 'block',
           type: 'paragraph',
@@ -27,6 +13,9 @@ describe('HTML serializer', () => {
             {
               kind: 'text',
               ranges: [
+                {
+                  text: 'Hello'
+                },
                 {
                   text: 'bold text',
                   marks: [
@@ -75,7 +64,29 @@ describe('HTML serializer', () => {
               ]
             }
           ]
-        }]
+        },
+        {
+          kind: 'block',
+          type: 'paragraph',
+          nodes: [
+            {kind: 'text', text: ''},
+            {
+              kind: 'inline',
+              type: 'link',
+              data: {
+                href: 'http://localhost'
+              },
+              nodes: [
+                {
+                  kind: 'text',
+                  text: 'Link to localhost'
+                },
+              ]
+            },
+            {kind: 'text', text: ''},
+          ]
+        },
+      ],
     };
 
     const deserialized = htmlSerializer.deserialize(text);
@@ -83,7 +94,7 @@ describe('HTML serializer', () => {
   });
 
   it('should correctly serialize slate object to HTML string', () => {
-    const expected = `<ul><li>one</li><li>two</li></ul><p>Text here<strong>bold text</strong><em>italic</em><em><u>and underlined</u></em></p>`;
+    const expected = `<ul><li>one</li><li>two</li></ul><p>Text here<strong>bold text</strong><em>italic</em><em><u>and underlined</u></em><a href="http://localhost">Link</a></p>`;
     const state = {
       nodes: [
         {
@@ -140,7 +151,20 @@ describe('HTML serializer', () => {
                     {type: 'underline'},
                     {type: 'italic'}
                   ]
-                }
+                },
+              ]
+            },
+            {
+              kind: 'inline',
+              type: 'link',
+              data: {
+                href: 'http://localhost'
+              },
+              nodes: [
+                {
+                  kind: 'text',
+                  text: 'Link'
+                },
               ]
             }
           ]

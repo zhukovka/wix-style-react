@@ -17,6 +17,11 @@ class RichTextArea extends WixComponent {
       'unordered-list': props => <ul {...props.attributes}>{props.children}</ul>,
       'list-item': props => <li {...props.attributes}>{props.children}</li>,
       'ordered-list': props => <ol {...props.attributes}>{props.children}</ol>,
+      link: props => {
+        const {data} = props.node;
+        const href = data.get('href');
+        return <a className={styles.link} {...props.attributes} href={href}>{props.children}</a>;
+      }
     },
     marks: {
       bold: {
@@ -34,9 +39,12 @@ class RichTextArea extends WixComponent {
 
   constructor(props) {
     super(props);
+
+    const editorState = htmlSerializer.deserialize(props.value);
     this.state = {
-      editorState: htmlSerializer.deserialize(props.value),
+      editorState,
     };
+    this.lastValue = htmlSerializer.serialize(editorState);
   }
 
   setEditorState = editorState => {
@@ -45,13 +53,27 @@ class RichTextArea extends WixComponent {
 
   triggerChange() {
     const {onChange} = this.props;
-    onChange && onChange(htmlSerializer.serialize(this.state.editorState));
+    const serialized = htmlSerializer.serialize(this.state.editorState);
+
+    if (this.lastValue !== serialized) {
+      this.lastValue = serialized;
+      onChange && onChange(serialized);
+    }
   }
 
-  hasBlock = type => {
-    const { editorState } = this.state;
-    return editorState.blocks.some(node => node.type == type);
+  hasBlock = type => this.state.editorState.blocks.some(node => node.type == type);
+
+  hasListBlock = type => {
+    const {editorState} = this.state;
+    return editorState.blocks.some(node => {
+      const parent = editorState.document.getParent(node.key);
+      return parent && parent.type === type;
+    });
   };
+
+  hasMark = type => this.state.editorState.marks.some(mark => mark.type == type);
+
+  hasLink = () => this.state.editorState.inlines.some(inline => inline.type === 'link');
 
   handleButtonClick = (action, type) => {
     switch (action) {
@@ -60,8 +82,7 @@ class RichTextArea extends WixComponent {
       case 'block':
         return this.handleBlockButtonClick(type);
       case 'link':
-        // @TODO: implement
-        return;
+        return this.handleLinkButtonClick(type);
     }
   };
 
@@ -124,9 +145,29 @@ class RichTextArea extends WixComponent {
     this.setState({editorState});
   };
 
+  handleLinkButtonClick = ({href, text} = {}) => {
+    const {editorState} = this.state;
+    const transform = editorState.transform();
+    if (this.hasLink()) {
+      transform
+        .unwrapInline('link');
+    } else {
+      transform
+        .insertText(text)
+        .extendBackward(text.length)
+        .wrapInline({
+          type: 'link',
+          data: {href}
+        })
+        .collapseToEnd();
+    }
+
+    this.setState({editorState: transform.apply()});
+  };
+
   render = () => {
     const {editorState} = this.state;
-    const {error} = this.props;
+    const {error, placeholder, disabled} = this.props;
     const className = classNames(styles.container, {
       [styles.withError]: error,
       [styles.isFocused]: editorState.isFocused,
@@ -134,16 +175,25 @@ class RichTextArea extends WixComponent {
 
     return (
       <div className={className}>
-        <div className={styles.toolbar}>
-          <RichTextEditorToolbar onClick={this.handleButtonClick}/>
+        <div className={classNames(styles.toolbar, {[styles.disabled]: disabled})}>
+          <RichTextEditorToolbar
+            disabled={disabled}
+            onClick={this.handleButtonClick}
+            onLinkButtonClick={this.handleLinkButtonClick}
+            hasMark={this.hasMark}
+            hasListBlock={this.hasListBlock}
+            hasLink={this.hasLink}
+            />
         </div>
-        <div className={styles.editorWrapper}>
+        <div className={classNames(styles.editorWrapper, {[styles.disabled]: disabled})}>
           <Editor
-            className={styles.editor}
+            readOnly={disabled}
+            placeholder={placeholder}
+            placeholderClassName={styles.placeholder}
+            className={classNames(styles.editor, {[styles.disabled]: disabled})}
             schema={this.schema}
             state={editorState}
-            onChange={this.setEditorState}
-            />
+            onChange={this.setEditorState}/>
           {this.renderError()}
         </div>
       </div>
@@ -174,6 +224,8 @@ RichTextArea.propTypes = {
   buttons: PropTypes.arrayOf(PropTypes.string), // TODO: use PropTypes.oneOf(),
   error: PropTypes.bool,
   errorMessage: PropTypes.string,
+  placeholder: PropTypes.string,
+  disabled: PropTypes.bool,
 };
 
 RichTextArea.defaultProps = {

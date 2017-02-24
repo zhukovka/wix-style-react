@@ -1,3 +1,15 @@
+@import '../common';
+@import '../Typography/Typography';
+
 .container {
   display: flex;
+}
+
+.button {
+  flex: 0 0 auto;
+  border-right: 1px solid $B30;
+
+  &.disabled {
+    border-right: 1px solid $D60;
+  }
 }

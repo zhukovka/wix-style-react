@@ -1,7 +1,20 @@
+.container {
+  display: flex;
+}
+
+.form {
+  width: 350px;
+  margin-right: 50px;
+}
+
 .controlGroup {
   margin-bottom: 15px;
 }
 
 .radioGroup {
   margin-top: 10px;
+}
+
+.output {
+  margin-top: 15px;
 }

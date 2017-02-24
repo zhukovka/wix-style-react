@@ -4,22 +4,18 @@ import RichTextArea from '../../src/RichTextArea';
 
 class RichTextAreaTemplate extends Component {
   componentDidUpdate(props) {
-    props.onChange(reactElementToJSXString(this.getComponent()));
+    props.onTemplateChange(getExampleCode(this.getComponent()));
   }
 
   componentDidMount() {
-    this.props.onChange(reactElementToJSXString(this.getComponent()));
+    this.props.onTemplateChange(getExampleCode(this.getComponent()));
   }
-
-  handleChange = value => {
-    console.log(value);
-  };
 
   getComponent() {
     const props = {...this.props};
-    delete props.onChange;
+    delete props.onTemplateChange;
 
-    return <RichTextArea onChange={this.handleChange} {...props}/>;
+    return <RichTextArea disabled={props.disabled} {...props}/>;
   }
 
   render() {
@@ -28,7 +24,15 @@ class RichTextAreaTemplate extends Component {
 }
 
 RichTextAreaTemplate.propTypes = {
+  onTemplateChange: PropTypes.func.isRequired,
   onChange: PropTypes.func.isRequired,
 };
+
+function getExampleCode(element) {
+  return reactElementToJSXString(element, {
+    filterProps: ['onChange'],
+    showDefaultProps: false,
+  });
+}
 
 export default RichTextAreaTemplate;
