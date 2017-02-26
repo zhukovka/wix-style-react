@@ -14,6 +14,7 @@ const tooltipDriverFactory = ({component, wrapper}) => {
     hasErrorTheme: () => !!document.body.querySelector('.error'),
     hasDarkTheme: () => !!document.body.querySelector('.dark'),
     hasLightTheme: () => !!document.body.querySelector('.light'),
+    getTooltipWrapper: () => document.body.querySelector('.tooltip'),
     getChildren: () => component.innerHTML,
     getContent: () => {
       let content = document.body.querySelector('.tooltip');

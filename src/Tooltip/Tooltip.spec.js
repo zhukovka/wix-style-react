@@ -4,9 +4,10 @@ import tooltipDriverFactory from './Tooltip.driver';
 import Tooltip from './Tooltip';
 import TooltipContent from './TooltipContent';
 import {createDriverFactory} from '../test-common';
-import {tooltipTestkitFactory} from '../../testkit';
+import {buttonTestkitFactory, tooltipTestkitFactory} from '../../testkit';
 import {tooltipTestkitFactory as enzymeTooltipTestkitFactory} from '../../testkit/enzyme';
 import {mount} from 'enzyme';
+import Button from '../../src/Button';
 
 describe('Tooltip', () => {
 
@@ -29,6 +30,24 @@ describe('Tooltip', () => {
     expect(driver.isShown()).toBeFalsy();
     return resolveIn(30).then(() => {
       expect(driver.isShown()).toBeTruthy();
+    });
+  });
+
+  it('should test inner component', () => {
+    const dataHook = 'button_data_hook';
+    const buttonContent = (
+      <div>
+        Custom Content...&nbsp;
+        <Button dataHook={dataHook} id="inner-button" height="small">Button content</Button>
+      </div>
+    );
+    const driver = createDriver(<Tooltip showDelay={5} hideDelay={5} content={buttonContent}>{children}</Tooltip>);
+    driver.mouseEnter();
+    expect(driver.isShown()).toBeFalsy();
+    return resolveIn(30).then(() => {
+      expect(driver.isShown()).toBeTruthy();
+      const buttonTestkit = buttonTestkitFactory({wrapper: driver.getTooltipWrapper(), dataHook});
+      expect(buttonTestkit.getButtonTextContent()).toBe('Button content');
     });
   });
 
