@@ -22,6 +22,7 @@
 | autoSelect | bool | false | - | Standard React Input autoSelect (select the entire text of the element on focus) |
 | onChange  | func | - | - | Standard input onChange callback |
 | onBlur | func | - | -  | Standard input onBlur callback |
+| onInputClicked | func | - | -  | Standard input onClick callback |
 | onFocus | func | - | - | Standard input onFocus callback |
 | onEnterPressed | func | - | - | Called when user presses -enter- |
 | onEscapePressed | func | - | - | Called when user presses -escape- |

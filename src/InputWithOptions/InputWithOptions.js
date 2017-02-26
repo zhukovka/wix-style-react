@@ -16,7 +16,8 @@ class InputWithOptions extends WixComponent {
     super(props);
     this.state = {
       inputValue: '',
-      showOptions: false
+      showOptions: false,
+      lastOptionsShow: 0
     };
 
     this._onSelect = this._onSelect.bind(this);
@@ -30,6 +31,7 @@ class InputWithOptions extends WixComponent {
     this.showOptions = this.showOptions.bind(this);
     this._onManuallyInput = this._onManuallyInput.bind(this);
     this._renderDropdownLayout = this._renderDropdownLayout.bind(this);
+    this._onInputClicked = this._onInputClicked.bind(this);
     this.closeOnSelect = this.closeOnSelect.bind(this);
   }
 
@@ -46,6 +48,7 @@ class InputWithOptions extends WixComponent {
       ...inputProps,
       theme: this.props.theme,
       onChange: this._onChange,
+      onInputClicked: this._onInputClicked,
       onFocus: this.showOptions
     });
   }
@@ -90,7 +93,7 @@ class InputWithOptions extends WixComponent {
   }
 
   showOptions() {
-    this.setState({showOptions: true});
+    this.setState({showOptions: true, lastOptionsShow: Date.now()});
   }
 
   closeOnSelect() {
@@ -131,6 +134,16 @@ class InputWithOptions extends WixComponent {
 
     if (this.props.onChange) {
       this.props.onChange(event);
+    }
+  }
+
+  _onInputClicked(event) {
+    if (this.state.showOptions && (Date.now() - this.state.lastOptionsShow > 200)) {
+      this.hideOptions();
+    }
+
+    if (this.props.onInputClicked) {
+      this.props.onInputClicked(event);
     }
   }
 

@@ -148,6 +148,7 @@ class Input extends Component {
           placeholder={placeholder}
           tabIndex={tabIndex}
           autoFocus={autoFocus}
+          onClick={this._onClick}
           onKeyUp={onKeyUp}
           readOnly={readOnly}
           type={type}
@@ -162,15 +163,15 @@ class Input extends Component {
 
   focus = () => {
     this.input && this.input.focus();
-  }
+  };
 
   blur = () => {
     this.input && this.input.blur();
-  }
+  };
 
   select = () => {
     this.input && this.input.select();
-  }
+  };
 
   _onFocus = () => {
     this.setState({focus: true});
@@ -182,12 +183,16 @@ class Input extends Component {
       // is on. So setTimeout ensures we have the ref.input needed in select)
       setTimeout(() => this.select(), 0);
     }
-  }
+  };
 
   _onBlur = e => {
     this.setState({focus: false});
     this.props.onBlur && this.props.onBlur(e);
-  }
+  };
+
+  _onClick = e => {
+    this.props.onInputClicked && this.props.onInputClicked(e);
+  };
 
   _onKeyDown = e => {
     this.props.onKeyDown && this.props.onKeyDown(e);
@@ -197,7 +202,7 @@ class Input extends Component {
     } else if (e.keyCode === 27 /* esc */) {
       this.props.onEscapePressed && this.props.onEscapePressed();
     }
-  }
+  };
 
   _onChange = e => {
     if (this.props.type === 'number' && !(/^\d*$/.test(e.target.value))) {
@@ -237,6 +242,7 @@ Input.propTypes = {
   onClear: PropTypes.func,
   onBlur: PropTypes.func,
   onFocus: PropTypes.func,
+  onInputClicked: PropTypes.func,
   onEscapePressed: PropTypes.func,
   onEnterPressed: PropTypes.func,
   onKeyDown: PropTypes.func,
