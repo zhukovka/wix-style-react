@@ -11,6 +11,7 @@
 | disabledRadios | arrayOf(number, string) | [] | - | the values of the disabled radio buttons |
 | vAlign | top, center | top | - | Positioning of the radio bottom compared to the label |
 | direction | vertical or horizontal | vertical | - | Display direction of the radios |
+| spacing | string | 12px | - | Vertical spacing between radio buttons |
 
 
 ## RadioGroup.Radio Properties

@@ -11,7 +11,8 @@ class RadioGroup extends WixComponent {
   }
 
   render() {
-    const {onChange, disabledRadios, value, vAlign, display} = this.props;
+    const {onChange, disabledRadios, value, vAlign, display, spacing} = this.props;
+    const style = {marginBottom: display === 'vertical' && spacing};
 
     return (
       <div className={styles[display]}>
@@ -23,6 +24,7 @@ class RadioGroup extends WixComponent {
             vAlign={vAlign}
             disabled={disabledRadios.indexOf(radio.props.value) !== -1}
             checked={radio.props.value === value}
+            style={style}
             >
             {radio.props.children}
           </RadioGroup.Radio>
@@ -50,7 +52,8 @@ RadioGroup.defaultProps = {
   onChange: () => {},
   value: '',
   vAlign: 'center',
-  display: 'vertical'
+  display: 'vertical',
+  spacing: '12px'
 };
 
 RadioGroup.Radio = RadioButton;

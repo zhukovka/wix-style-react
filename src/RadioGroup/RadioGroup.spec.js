@@ -90,6 +90,18 @@ describe('RadioGroup', () => {
     });
   });
 
+  describe('spacing attribute', () => {
+    it('should be 12px by default', () => {
+      const driver = createDriver(elementToRender());
+      expect(driver.spacing()).toBe('12px');
+    });
+
+    it('should be spaced', () => {
+      const driver = createDriver(elementToRender({spacing: '30px'}));
+      expect(driver.spacing()).toBe('30px');
+    });
+  });
+
   describe('testkit', () => {
     it('should exist', () => {
       expect(isTestkitExists(<RadioGroup/>, radioGroupTestkitFactory)).toBe(true);

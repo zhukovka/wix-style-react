@@ -20,6 +20,7 @@ const radioGroupDriverFactory = ({component, wrapper}) => {
     getClassOfLabelAt: index => labels[index].className,
     isVerticalDisplay: () => isClassExists(component, 'vertical'),
     isHorizontalDisplay: () => isClassExists(component, 'horizontal'),
+    spacing: () => radios[0].style._values['margin-bottom'],
     setProps: props => {
       ReactDOM.render(<div ref={r => component = r}><RadioGroup {...props}/></div>, wrapper);
     },
