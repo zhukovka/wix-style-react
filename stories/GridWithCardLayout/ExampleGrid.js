@@ -1,7 +1,5 @@
 import React from 'react';
-import classNames from 'classnames';
-import grid from '../../src/Grid'
-import card from '../../src/Card'
+import {Container, Row, Col, Card} from '../../src/Grid'
 import styles from './ExampleGrid.scss'
 
 import TextField from '../../src/TextField';
@@ -26,224 +24,165 @@ function renderStandardInput() {
 
 export default () =>
   <div data-hook="card-example" className={styles.exampleContainer}>
-    <div className={`${grid.wixContainer}`}>
-      <div className={grid.row}>
-        <div className={grid.colXs8}>
-          <div className={card.card}>
-            <div className={`${card.header} ${card.withDivider}`}>
-              <div className={card.title}>
-                Header with Divider
-              </div>
-            </div>
-            <div className={card.content}>
-              <div className={grid.row}>
-                <div className={grid.colXs4}>
-                  {renderStandardInput()}
-                </div>
-                <div className={grid.colXs4}>
-                  {renderStandardInput()}
-                </div>
-                <div className={grid.colXs4}>
-                  {renderStandardInput()}
-                </div>
-              </div>
-              <div className={grid.row}>
-                <div className={grid.colXs6}>
-                  {renderStandardInput()}
-                </div>
-              </div>
-              <div className={grid.row}>
-                <div className={grid.colXs6}>
-                  {renderStandardInput()}
-                </div>
-                <div className={grid.colXs3}>
-                  {renderStandardInput()}
-                </div>
-                <div className={grid.colXs3}>
-                  {renderStandardInput()}
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div className={grid.colXs4}>
-          <div className={card.card}>
-            <div className={card.header}>
-              <div className={card.title}>
-                Side Card
-              </div>
-            </div>
-            <div className={card.content}>
-              <div className={grid.row}>
-                <div className={grid.colXs12}>
-                  {renderStandardInput()}
-                </div>
-              </div>
-              <div className={grid.row}>
-                <div className={grid.colXs6}>
-                  {renderStandardInput()}
-                </div>
-                <div className={grid.colXs6}>
-                  {renderStandardInput()}
-                </div>
-              </div>
-              <div className={grid.row}>
-                <div className={grid.colXs12}>
-                  {renderStandardInput()}
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
+    <Container>
+      <Row>
+        <Col span={8}>
+          <Card subtitle="subtitle" title="Header with Divider">
+            <Row>
+              <Col span={4}>
+                {renderStandardInput()}
+              </Col>
+              <Col span={4}>
+                {renderStandardInput()}
+              </Col>
+              <Col span={4}>
+                {renderStandardInput()}
+              </Col>
+            </Row>
+            <Row>
+              <Col span={6}>
+                {renderStandardInput()}
+              </Col>
+            </Row>
+            <Row>
+              <Col span={6}>
+                {renderStandardInput()}
+              </Col>
+              <Col span={3}>
+                {renderStandardInput()}
+              </Col>
+              <Col span={3}>
+                {renderStandardInput()}
+              </Col>
+            </Row>
+          </Card>
+        </Col>
+        <Col span={4}>
+          <Card title="Side Card">
+            <Row>
+              <Col span={12}>
+                {renderStandardInput()}
+              </Col>
+            </Row>
+            <Row>
+              <Col span={6}>
+                {renderStandardInput()}
+              </Col>
+              <Col span={6}>
+                {renderStandardInput()}
+              </Col>
+            </Row>
+            <Row>
+              <Col span={12}>
+                {renderStandardInput()}
+              </Col>
+            </Row>
+          </Card>
+        </Col>
+      </Row>
 
-      <div className={grid.row}>
-        <div className={grid.colXs12}>
-          <div className={card.card}>
-            <div className={card.header}>
-              <div className={card.title}>
-                Main card
-              </div>
-              <div className={card.subtitle}>
-                Subtitle
-              </div>
-            </div>
-            <div className={card.content}>
-              <div className={grid.row}>
-                <div className={grid.colXs4}>
-                  {renderStandardInput()}
-                </div>
-                <div className={grid.colXs4}>
-                  {renderStandardInput()}
-                </div>
-                <div className={grid.colXs4}>
-                  {renderStandardInput()}
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
+      <Row>
+        <Col span={12}>
+          <Card title="Main card" subtitle="Subtitle">
+            <Row>
+              <Col span={4}>
+                {renderStandardInput()}
+              </Col>
+              <Col span={4}>
+                {renderStandardInput()}
+              </Col>
+              <Col span={4}>
+                {renderStandardInput()}
+              </Col>
+            </Row>
+          </Card>
+        </Col>
+      </Row>
 
-      <div className={grid.row}>
-        <div className={grid.colXs6}>
-          <div className={card.card}>
-            <div className={card.header}>
-              <div className={card.title}>
-                Card Header
-              </div>
-            </div>
-            <div className={card.content}>
-              <div className={grid.row}>
-                <div className={grid.colXs4}>
-                  {renderStandardInput()}
-                </div>
-              </div>
-              <div className={grid.row}>
-                <div className={grid.colXs6}>
-                  {renderStandardInput()}
-                </div>
-                <div className={grid.colXs6}>
-                  {renderStandardInput()}
-                </div>
-              </div>
-              <div className={grid.row}>
-                <div className={grid.colXs12}>
-                  {renderStandardInput()}
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div className={grid.colXs6}>
-          <div className={card.card}>
-            <div className={card.header}>
-              <div className={card.title}>
-                Card header
-              </div>
-            </div>
-            <div className={card.content}>
-              <div className={grid.row}>
-                <div className={grid.colXs4}>
-                  {renderStandardInput()}
-                </div>
-                <div className={grid.colXs4}>
-                  {renderStandardInput()}
-                </div>
-                <div className={grid.colXs4}>
-                  {renderStandardInput()}
-                </div>
-              </div>
-              <div className={grid.row}>
-                <div className={grid.colXs6}>
-                  {renderStandardInput()}
-                </div>
-                <div className={grid.colXs6}>
-                  {renderStandardInput()}
-                </div>
-              </div>
-              <div className={grid.row}>
-                <div className={grid.colXs12}>
-                  {renderStandardInput()}
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
+      <Row>
+        <Col span={6}>
+          <Card title="Card Header">
+            <Row>
+              <Col span={4}>
+                {renderStandardInput()}
+              </Col>
+            </Row>
+            <Row>
+              <Col span={6}>
+                {renderStandardInput()}
+              </Col>
+              <Col span={6}>
+                {renderStandardInput()}
+              </Col>
+            </Row>
+            <Row>
+              <Col span={12}>
+                {renderStandardInput()}
+              </Col>
+            </Row>
+          </Card>
+        </Col>
+        <Col span={6}>
+          <Card title="Card header">
+            <Row>
+              <Col span={4}>
+                {renderStandardInput()}
+              </Col>
+              <Col span={4}>
+                {renderStandardInput()}
+              </Col>
+              <Col span={4}>
+                {renderStandardInput()}
+              </Col>
+            </Row>
+            <Row>
+              <Col span={6}>
+                {renderStandardInput()}
+              </Col>
+              <Col span={6}>
+                {renderStandardInput()}
+              </Col>
+            </Row>
+            <Row>
+              <Col span={12}>
+                {renderStandardInput()}
+              </Col>
+            </Row>
+          </Card>
+        </Col>
+      </Row>
 
-      <div className={grid.row}>
-        <div className={grid.colXs4}>
-          <div className={card.card}>
-            <div className={card.header}>
-              <div className={card.title}>
-                Card header
-              </div>
-            </div>
-            <div className={card.content}>
-              <div className={grid.row}>
-                <div className={grid.colXs12}>
-                  {renderStandardInput()}
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div className={grid.colXs4}>
-          <div className={card.card}>
-            <div className={card.header}>
-              <div className={card.title}>
-                Card header
-              </div>
-            </div>
-            <div className={card.content}>
-              <div className={grid.row}>
-                <div className={grid.colXs6}>
-                  {renderStandardInput()}
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div className={grid.colXs4}>
-          <div className={card.card}>
-            <div className={card.header}>
-              <div className={card.title}>
-                Card header
-              </div>
-            </div>
-            <div className={card.content}>
-              <div className={grid.row}>
-                <div className={grid.colXs6}>
-                  {renderStandardInput()}
-                </div>
-                <div className={grid.colXs6}>
-                  {renderStandardInput()}
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
+      <Row>
+        <Col span={4}>
+          <Card title="Card header">
+            <Row>
+              <Col span={12}>
+                {renderStandardInput()}
+              </Col>
+            </Row>
+          </Card>
+        </Col>
+        <Col span={4}>
+          <Card title="Card header">
+            <Row>
+              <Col span={6}>
+                {renderStandardInput()}
+              </Col>
+            </Row>
+          </Card>
+        </Col>
+        <Col span={4}>
+          <Card title="Card header">
+            <Row>
+              <Col span={6}>
+                {renderStandardInput()}
+              </Col>
+              <Col span={6}>
+                {renderStandardInput()}
+              </Col>
+            </Row>
+          </Card>
+        </Col>
+      </Row>
+    </Container>
   </div>;

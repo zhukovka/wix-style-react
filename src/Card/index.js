@@ -1,3 +1,3 @@
-import card from './Card.scss';
+import card from './Card';
 
 export default card;

@@ -1,3 +1,3 @@
-import grid from './Grid.scss';
+import {Container, Row, Col, Card} from './Grid';
 
-export default grid;
+export {Container, Row, Col, Card};
