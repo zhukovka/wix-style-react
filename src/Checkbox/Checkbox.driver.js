@@ -1,23 +1,23 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import Checkbox from './Checkbox';
 import ReactTestUtils from 'react-addons-test-utils';
 import $ from 'jquery';
 
-const checkboxDriverFactory = ({component, wrapper}) => {
+const checkboxDriverFactory = ({element, wrapper, component}) => {
 
-  const checkbox = $(component).find('input')[0];
-  const isClassExists = (component, className) => !!(component.className.match(new RegExp('\\b' + className + '\\b')));
+  const checkbox = $(element).find('input')[0];
+  const isClassExists = (element, className) => !!(element.className.match(new RegExp('\\b' + className + '\\b')));
 
   return {
-    exists: () => !!component,
+    exists: () => !!element,
     click: () => ReactTestUtils.Simulate.change(checkbox),
-    isChecked: () => isClassExists(component, 'checked'),
-    isDisabled: () => isClassExists(component, 'disabled'),
-    isIndeterminate: () => $(component).find('.indeterminate').length === 1,
-    getLabel: () => component.textContent,
+    isChecked: () => isClassExists(element, 'checked'),
+    isDisabled: () => isClassExists(element, 'disabled'),
+    isIndeterminate: () => $(element).find('.indeterminate').length === 1,
+    getLabel: () => element.textContent,
     setProps: props => {
-      ReactDOM.render(<div ref={r => component = r}><Checkbox {...props}/></div>, wrapper);
+      const ClonedWithProps = React.cloneElement(component, Object.assign({}, component.props, props), ...(component.props.children || []));
+      ReactDOM.render(<div ref={r => element = r}>{ClonedWithProps}</div>, wrapper);
     }
   };
 };

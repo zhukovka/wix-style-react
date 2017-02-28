@@ -1,23 +1,22 @@
 import React from 'react';
-import DropdownLayout from '../DropdownLayout';
 import ReactTestUtils from 'react-addons-test-utils';
 import ReactDOM from 'react-dom';
 import find from 'lodash.find';
 
-const dropdownLayoutDriverFactory = ({component, wrapper}) => {
+const dropdownLayoutDriverFactory = ({element, wrapper, component}) => {
 
-  const isClassExists = (component, className) => !!(component.className.match(new RegExp('\\b' + className + '\\b')));
-  const contentContainer = component.childNodes[0];
-  const options = component.querySelector('[data-hook=dropdown-layout-options]');
+  const isClassExists = (element, className) => !!(element.className.match(new RegExp('\\b' + className + '\\b')));
+  const contentContainer = element.childNodes[0];
+  const options = element.querySelector('[data-hook=dropdown-layout-options]');
   const optionAt = position => (options.childNodes[position]);
 
   return {
-    exists: () => !!component,
+    exists: () => !!element,
     isShown: () => isClassExists(contentContainer, 'shown'),
     isDown: () => isClassExists(contentContainer, 'down'),
     isUp: () => isClassExists(contentContainer, 'up'),
-    hasTheme: theme => isClassExists(component, `theme-${theme}`),
-    tabIndex: () => component.tabIndex,
+    hasTheme: theme => isClassExists(element, `theme-${theme}`),
+    tabIndex: () => element.tabIndex,
     optionsLength: () => options.childNodes.length,
     mouseEnterAtOption: position => ReactTestUtils.Simulate.mouseEnter(optionAt(position)),
     mouseLeaveAtOption: position => ReactTestUtils.Simulate.mouseLeave(optionAt(position)),
@@ -28,11 +27,11 @@ const dropdownLayoutDriverFactory = ({component, wrapper}) => {
     isOptionHoveredWithGlobalClassName: position => isClassExists(optionAt(position), 'wixstylereactHovered'),
     isOptionSelectedWithGlobalClassName: position => isClassExists(optionAt(position), 'wixstylereactSelected'),
     classes: () => options.className,
-    pressDownKey: () => ReactTestUtils.Simulate.keyDown(component, {key: 'ArrowDown'}),
-    pressUpKey: () => ReactTestUtils.Simulate.keyDown(component, {key: 'ArrowUp'}),
-    pressEnterKey: () => ReactTestUtils.Simulate.keyDown(component, {key: 'Enter'}),
-    pressTabKey: () => ReactTestUtils.Simulate.keyDown(component, {key: 'Tab'}),
-    pressEscKey: () => ReactTestUtils.Simulate.keyDown(component, {key: 'Escape'}),
+    pressDownKey: () => ReactTestUtils.Simulate.keyDown(element, {key: 'ArrowDown'}),
+    pressUpKey: () => ReactTestUtils.Simulate.keyDown(element, {key: 'ArrowUp'}),
+    pressEnterKey: () => ReactTestUtils.Simulate.keyDown(element, {key: 'Enter'}),
+    pressTabKey: () => ReactTestUtils.Simulate.keyDown(element, {key: 'Tab'}),
+    pressEscKey: () => ReactTestUtils.Simulate.keyDown(element, {key: 'Escape'}),
     optionContentAt: position => optionAt(position).textContent,
     clickAtOption: position => ReactTestUtils.Simulate.click(optionAt(position)),
     clickAtOptionWithValue: value => {
@@ -41,7 +40,8 @@ const dropdownLayoutDriverFactory = ({component, wrapper}) => {
     },
     isOptionADivider: position => isClassExists(optionAt(position), 'divider'),
     setProps: props => {
-      ReactDOM.render(<div ref={r => component = r}><DropdownLayout {...props}/></div>, wrapper);
+      const ClonedWithProps = React.cloneElement(component, Object.assign({}, component.props, props), ...(component.props.children || []));
+      ReactDOM.render(<div ref={r => element = r}>{ClonedWithProps}</div>, wrapper);
     }
   };
 };

@@ -1,16 +1,16 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import Label from './Label';
 
-const labelDriverFactory = ({component, wrapper}) => {
+const labelDriverFactory = ({element, wrapper, component}) => {
   return {
-    exists: () => !!component,
-    getTagName: () => component.tagName.toLowerCase(),
-    getLabelTextContent: () => component.textContent,
-    getClassList: () => component.className,
-    getAttr: attrName => component.getAttribute(attrName),
+    exists: () => !!element,
+    getTagName: () => element.tagName.toLowerCase(),
+    getLabelTextContent: () => element.textContent,
+    getClassList: () => element.className,
+    getAttr: attrName => element.getAttribute(attrName),
     setProps: props => {
-      ReactDOM.render(<div ref={r => component = r}><Label {...props}/></div>, wrapper);
+      const ClonedWithProps = React.cloneElement(component, Object.assign({}, component.props, props), ...(component.props.children || []));
+      ReactDOM.render(<div ref={r => element = r}>{ClonedWithProps}</div>, wrapper);
     }
   };
 };

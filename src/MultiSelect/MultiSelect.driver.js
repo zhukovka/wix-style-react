@@ -1,13 +1,12 @@
 import React from 'react';
 import ReactTestUtils from 'react-addons-test-utils';
-import MultiSelect from './MultiSelect';
 import inputWithOptionsDriverFactory from '../InputWithOptions/InputWithOptions.driver';
 import ReactDOM from 'react-dom';
 import initial from 'lodash.initial';
 
-const multiSelectDriverFactory = ({component, wrapper}) => {
+const multiSelectDriverFactory = ({element, wrapper, component}) => {
 
-  const {driver, inputDriver, dropdownLayoutDriver} = inputWithOptionsDriverFactory({component, wrapper});
+  const {driver, inputDriver, dropdownLayoutDriver} = inputWithOptionsDriverFactory({element, wrapper});
 
   const inputWrapper = driver.inputWrapper().childNodes[0];
   const tags = initial(inputWrapper.childNodes);
@@ -17,7 +16,8 @@ const multiSelectDriverFactory = ({component, wrapper}) => {
     numberOfTags: () => tags.length,
     getTagLabelAt: index => tags[index].textContent,
     setProps: props => {
-      ReactDOM.render(<div ref={r => component = r}><MultiSelect {...props}/></div>, wrapper);
+      const ClonedWithProps = React.cloneElement(component, Object.assign({}, component.props, props), ...(component.props.children || []));
+      ReactDOM.render(<div ref={r => element = r}>{ClonedWithProps}</div>, wrapper);
     }
   });
 

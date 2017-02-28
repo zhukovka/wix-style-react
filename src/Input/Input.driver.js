@@ -1,12 +1,11 @@
 import React from 'react';
 import ReactTestUtils from 'react-addons-test-utils';
 import ReactDOM from 'react-dom';
-import Input from './Input';
 import styles from './Input.scss';
 
-const inputDriverFactory = ({component, wrapper}) => {
-  const input = component.querySelector('input');
-  const clearButton = component.querySelector(`.${styles.clearButton}`);
+const inputDriverFactory = ({element, wrapper, component}) => {
+  const input = element.querySelector('input');
+  const clearButton = element.querySelector(`.${styles.clearButton}`);
 
   return {
     trigger: (trigger, event) => ReactTestUtils.Simulate[trigger](input, event),
@@ -19,30 +18,31 @@ const inputDriverFactory = ({component, wrapper}) => {
     getTabIndex: () => input.tabIndex,
     getReadOnly: () => input.readOnly,
     getType: () => input.type,
-    hasPrefix: () => component.querySelectorAll(`.${styles.prefix}`).length === 1,
-    hasPrefixClass: () => component.querySelectorAll(`.${styles.input}.${styles.withPrefix}`).length === 1,
-    hasSuffix: () => component.querySelectorAll(`.${styles.suffix}`).length === 1,
-    hasSuffixClass: () => component.querySelectorAll(`.${styles.input}.${styles.withSuffix}`).length === 1,
-    hasSuffixesClass: () => component.querySelectorAll(`.${styles.input}.${styles.withSuffixes}`).length === 1,
-    prefixComponentExists: style => !!component.querySelector(`.${styles.prefix} ${style}`),
-    suffixComponentExists: style => !!component.querySelector(`.${styles.suffix} ${style}`),
-    hasExclamation: () => !!component.querySelector(`.${styles.exclamation}`),
-    hasError: () => component.classList.contains(styles.hasError),
-    getUnit: () => component.querySelector(`.${styles.unit}`).textContent,
-    hasMagnifyingGlass: () => !!component.querySelector(`.${styles.magnifyingGlass}`),
-    hasMenuArrow: () => !!component.querySelector(`.${styles.menuArrow}`),
+    hasPrefix: () => element.querySelectorAll(`.${styles.prefix}`).length === 1,
+    hasPrefixClass: () => element.querySelectorAll(`.${styles.input}.${styles.withPrefix}`).length === 1,
+    hasSuffix: () => element.querySelectorAll(`.${styles.suffix}`).length === 1,
+    hasSuffixClass: () => element.querySelectorAll(`.${styles.input}.${styles.withSuffix}`).length === 1,
+    hasSuffixesClass: () => element.querySelectorAll(`.${styles.input}.${styles.withSuffixes}`).length === 1,
+    prefixComponentExists: style => !!element.querySelector(`.${styles.prefix} ${style}`),
+    suffixComponentExists: style => !!element.querySelector(`.${styles.suffix} ${style}`),
+    hasExclamation: () => !!element.querySelector(`.${styles.exclamation}`),
+    hasError: () => element.classList.contains(styles.hasError),
+    getUnit: () => element.querySelector(`.${styles.unit}`).textContent,
+    hasMagnifyingGlass: () => !!element.querySelector(`.${styles.magnifyingGlass}`),
+    hasMenuArrow: () => !!element.querySelector(`.${styles.menuArrow}`),
     hasClearButton: () => !!clearButton,
-    isRTL: () => component.className.indexOf(styles.rtl) >= 0,
-    isFocusedStyle: () => component.classList.contains(styles.hasFocus),
-    isHoveredStyle: () => component.classList.contains(styles.hasHover),
-    isDisabled: () => component.classList.contains(styles.disabled),
-    isOfStyle: style => component.classList.contains(styles[`theme-${style}`]),
-    isOfSize: size => component.classList.contains(styles[`size-${size}`]),
+    isRTL: () => element.className.indexOf(styles.rtl) >= 0,
+    isFocusedStyle: () => element.classList.contains(styles.hasFocus),
+    isHoveredStyle: () => element.classList.contains(styles.hasHover),
+    isDisabled: () => element.classList.contains(styles.disabled),
+    isOfStyle: style => element.classList.contains(styles[`theme-${style}`]),
+    isOfSize: size => element.classList.contains(styles[`size-${size}`]),
     isFocus: () => document.activeElement === input,
-    exists: () => !!component.querySelector('input'),
-    hasIconLeft: () => !!component.querySelectorAll(`.${styles.prefix}`),
+    exists: () => !!element.querySelector('input'),
+    hasIconLeft: () => !!element.querySelectorAll(`.${styles.prefix}`),
     setProps: props => {
-      ReactDOM.render(<div ref={r => component = r}><Input {...props}/></div>, wrapper);
+      const ClonedWithProps = React.cloneElement(component, Object.assign({}, component.props, props), ...(component.props.children || []));
+      ReactDOM.render(<div ref={r => element = r}>{ClonedWithProps}</div>, wrapper);
     }
   };
 };

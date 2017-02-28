@@ -1,14 +1,13 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import DataTable from './DataTable';
 import ReactTestUtils from 'react-addons-test-utils';
 
-const dataTableDriverFactory = ({component, wrapper}) => {
+const dataTableDriverFactory = ({element, wrapper, component}) => {
 
-  const getHeader = () => component.querySelector('thead');
+  const getHeader = () => element.querySelector('thead');
   const hasHeader = () => !!getHeader();
 
-  const getRows = () => component.querySelectorAll('tbody tr');
+  const getRows = () => element.querySelectorAll('tbody tr');
   const getRowsCount = () => getRows().length;
   const getRow = rowIndex => getRows()[rowIndex];
 
@@ -19,12 +18,13 @@ const dataTableDriverFactory = ({component, wrapper}) => {
     getRowText: index => Object.values(getRows()[index].querySelectorAll('td')).map(td => td.textContent),
     isRowClickable: index => getRows()[index].classList.contains('clickableDataRow'),
     getTitles: () => Object.values(getHeader().querySelectorAll('th')).map(th => th.textContent),
-    isDisplayingNothing: () => !!component,
+    isDisplayingNothing: () => !!element,
     isDisplayingHeaderOnly: () => hasHeader() && getRowsCount() === 0,
-    hasChildWithId: id => !!component.querySelector(`#${id}`),
+    hasChildWithId: id => !!element.querySelector(`#${id}`),
     clickRow: (index, eventData) => ReactTestUtils.Simulate.click(getRow(index), eventData),
     setProps: props => {
-      ReactDOM.render(<div ref={r => component = r}><DataTable {...props}/></div>, wrapper);
+      const ClonedWithProps = React.cloneElement(component, Object.assign({}, component.props, props), ...(component.props.children || []));
+      ReactDOM.render(<div ref={r => element = r}>{ClonedWithProps}</div>, wrapper);
     }
   };
 };

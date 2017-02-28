@@ -1,20 +1,20 @@
 import React from 'react';
-import RadioButton from './RadioButton';
 import ReactDOM from 'react-dom';
 import ReactTestUtils from 'react-addons-test-utils';
 
-const radioButtonDriverFactory = ({component, wrapper}) => {
-  const radioButton = component.childNodes[0];
-  const label = component.childNodes[1];
+const radioButtonDriverFactory = ({element, wrapper, component}) => {
+  const radioButton = element.childNodes[0];
+  const label = element.childNodes[1];
 
   return {
-    exists: () => !!component,
+    exists: () => !!element,
     check: () => ReactTestUtils.Simulate.change(radioButton),
     isChecked: () => radioButton.checked,
     isDisabled: () => radioButton.disabled,
     getLabel: () => label.textContent,
     setProps: props => {
-      ReactDOM.render(<div ref={r => component = r}><RadioButton {...props}/></div>, wrapper);
+      const ClonedWithProps = React.cloneElement(component, Object.assign({}, component.props, props), ...(component.props.children || []));
+      ReactDOM.render(<div ref={r => element = r}>{ClonedWithProps}</div>, wrapper);
     }
   };
 };

@@ -4,24 +4,24 @@ import $ from 'jquery';
 
 import Unit from '../Unit';
 
-const unitDriverFactory = ({component}) => {
+const unitDriverFactory = ({element}) => {
   return {
-    isEmpty: () => component.children.length === 0,
-    hasChild: style => !!component.querySelector(style)
+    isEmpty: () => element.children.length === 0,
+    hasChild: style => !!element.querySelector(style)
   };
 };
 
 
 const componentFactory = (props = {}) => {
-  let component;
+  let element;
   const wrapperDiv = document.createElement('div');
-  ReactDOM.render(<div ref={r => component = r}><Unit {...props}/></div>, wrapperDiv);
-  return {component: component.childNodes[0], wrapper: wrapperDiv};
+  ReactDOM.render(<div ref={r => element = r}><Unit {...props}/></div>, wrapperDiv);
+  return {element: element.childNodes[0], wrapper: wrapperDiv};
 };
 
 const unitTestkitFactory = ({wrapper, dataHook}) => {
-  const component = $(wrapper).find(`[data-hook='${dataHook}']`);
-  return unitDriverFactory({component, wrapper});
+  const element = $(wrapper).find(`[data-hook='${dataHook}']`);
+  return unitDriverFactory({element, wrapper});
 };
 
 export {unitTestkitFactory, componentFactory, unitDriverFactory};

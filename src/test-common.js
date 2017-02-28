@@ -1,27 +1,28 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
-const componentFactory = Element => {
-  let component;
+const componentFactory = Component => {
+  let element;
   let componentInstance;
+
   const wrapperDiv = document.createElement('div');
-  const ClonedElement = React.cloneElement(Element, {ref: r => componentInstance = r});
-  ReactDOM.render(<div ref={r => component = r}>{ClonedElement}</div>, wrapperDiv);
-  return {component: component.childNodes[0], wrapper: wrapperDiv, componentInstance};
+  const ClonedComponent = React.cloneElement(Component, {ref: r => componentInstance = r});
+  ReactDOM.render(<div ref={r => element = r}>{ClonedComponent}</div>, wrapperDiv);
+  return {element: element.childNodes[0], wrapper: wrapperDiv, component: ClonedComponent, componentInstance};
 };
 
 export const createDriverFactory = driverFactory => element => driverFactory(componentFactory(element));
 
 export const testkitFactoryCreator = driverFactory => ({wrapper, dataHook}) => {
-  const component = wrapper.querySelector(`[data-hook='${dataHook}']`);
-  return driverFactory({component, wrapper});
+  const element = wrapper.querySelector(`[data-hook='${dataHook}']`);
+  return driverFactory({element, wrapper});
 };
 
 // enzyme
 export const enzymeTestkitFactoryCreator = driverFactory => ({wrapper, dataHook}) => {
   const regexp = new RegExp(`^<[^>]+data-hook="${dataHook}"`);
   const component = wrapper.findWhere(n => !n.props().dataHook && (regexp).test(n.html()));
-  return driverFactory({component: component.node, wrapper});
+  return driverFactory({element: component.node, wrapper});
 };
 
 // protractor

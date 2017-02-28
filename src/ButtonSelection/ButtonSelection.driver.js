@@ -1,13 +1,10 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import ButtonSelection from './ButtonSelection';
 import ReactTestUtils from 'react-addons-test-utils';
-import _ from 'lodash';
 import $ from 'jquery';
 
-
-const buttonSelectionDriverFactory = ({component, wrapper}) => {
-  const $component = $(component);
+const buttonSelectionDriverFactory = ({element, wrapper, component}) => {
+  const $component = $(element);
 
   const getButtonsNames = () =>
     $component.find('span').map((index, b) => $(b).text()).toArray();
@@ -16,7 +13,7 @@ const buttonSelectionDriverFactory = ({component, wrapper}) => {
     $component.find('span').map((index, b) => $(b).attr('class')).toArray();
 
   return {
-    exists: () => !!component,
+    exists: () => !!element,
     getButtonsNames,
     getButtonsClasses,
     getSelectedButton: () => getButtonsNames()[getButtonsClasses().indexOf('selected')],
@@ -29,7 +26,8 @@ const buttonSelectionDriverFactory = ({component, wrapper}) => {
       });
     },
     setProps: props => {
-      ReactDOM.render(<div ref={r => component = r}><ButtonSelection {...props}/></div>, wrapper);
+      const ClonedWithProps = React.cloneElement(component, Object.assign({}, component.props, props), ...(component.props.children || []));
+      ReactDOM.render(<div ref={r => element = r}>{ClonedWithProps}</div>, wrapper);
     }
   };
 };

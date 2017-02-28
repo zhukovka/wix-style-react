@@ -11,11 +11,11 @@
   ],
   "scripts": {
     "test": "npm run test:unit",
-    "test:unit": "wix-node-build test --jest",
-    "test:e2e": "wix-node-build test --protractor",
-    "build": "wix-node-build lint && svg2react-icon && wix-node-build build && build-storybook",
-    "start": "svg2react-icon-once && wix-node-build start & npm run storybook",
-    "release": "wix-node-build release && gh-pages-auto-release --dist=storybook-static",
+    "test:unit": "yoshi test --jest",
+    "test:e2e": "yoshi test --protractor",
+    "build": "yoshi lint && svg2react-icon && yoshi build && build-storybook",
+    "start": "svg2react-icon-once && yoshi start & npm run storybook",
+    "release": "yoshi release && gh-pages-auto-release --dist=storybook-static",
     "storybook": "start-storybook -p 6006",
     "lint": "yoshi lint"
   },
@@ -68,7 +68,7 @@
     "react-test-utils": "0.0.1",
     "sinon": "^1.17.6",
     "svg2react-icon": "^1.0.0",
-    "wix-node-build": "latest"
+    "yoshi": "latest"
   },
   "peerDependencies": {
     "react": "^15.0.0",

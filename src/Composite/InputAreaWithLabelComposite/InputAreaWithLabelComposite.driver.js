@@ -1,18 +1,18 @@
 import React from 'react';
-import InputAreaWithLabelComposite from './InputAreaWithLabelComposite';
 import ReactDOM from 'react-dom';
 
-const inputAreaWithLabelCompositeDriverFactory = ({component, wrapper}) => {
-  const label = component.childNodes[0].childNodes[0];
+const inputAreaWithLabelCompositeDriverFactory = ({element, wrapper, component}) => {
+  const label = element.childNodes[0].childNodes[0];
 
   return {
-    exists: () => !!component,
+    exists: () => !!element,
     getLabel: () => label.textContent,
     hasLabel: () => label.tagName.toLowerCase() === 'label',
-    getAttr: attrName => component.getAttribute(attrName),
-    getNumberOfChildren: () => component.childElementCount,
+    getAttr: attrName => element.getAttribute(attrName),
+    getNumberOfChildren: () => element.childElementCount,
     setProps: props => {
-      ReactDOM.render(<div ref={r => component = r}><InputAreaWithLabelComposite {...props}/></div>, wrapper);
+      const ClonedWithProps = React.cloneElement(component, Object.assign({}, component.props, props), ...(component.props.children || []));
+      ReactDOM.render(<div ref={r => element = r}>{ClonedWithProps}</div>, wrapper);
     }
   };
 };

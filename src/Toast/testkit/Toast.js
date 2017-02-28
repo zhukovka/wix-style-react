@@ -6,8 +6,8 @@ import $ from 'jquery';
 
 const byDataHook = hook => `[data-hook|="${hook}"]`;
 
-const toastDriverFactory = ({component}) => {
-  const $component = $(component);
+const toastDriverFactory = ({element}) => {
+  const $component = $(element);
 
   const styleStringToObj = input =>
     input //"key1: value1;key2: value2;"
@@ -32,18 +32,18 @@ const toastDriverFactory = ({component}) => {
 };
 
 const componentFactory = (props = {}) => {
-  let component;
+  let element;
   const {children, ...otherProps} = props;
   const wrapperDiv = document.createElement('div');
 
-  ReactDOM.render(<div ref={r => component = r}><Toast {...otherProps}>{children}</Toast></div>, wrapperDiv);
+  ReactDOM.render(<div ref={r => element = r}><Toast {...otherProps}>{children}</Toast></div>, wrapperDiv);
 
-  return {component: component.childNodes[0], wrapper: wrapperDiv};
+  return {element: element.childNodes[0], wrapper: wrapperDiv};
 };
 
 const toastTestkitFactory = ({wrapper, id}) => {
-  const component = $(wrapper).find(`#${id}`)[0];
-  return toastDriverFactory({component, wrapper});
+  const element = $(wrapper).find(`#${id}`)[0];
+  return toastDriverFactory({element, wrapper});
 };
 
 export {toastTestkitFactory, componentFactory, toastDriverFactory};

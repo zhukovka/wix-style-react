@@ -1,10 +1,10 @@
 import inputAreaWithLabelCompositeDriverFactory from '../Composite/InputAreaWithLabelComposite/InputAreaWithLabelComposite.driver';
 
-const autoCompleteDriverFactory = ({component, wrapper}) => {
-  const input = component.querySelector('input');
+const autoCompleteDriverFactory = ({element, wrapper}) => {
+  const input = element.querySelector('input');
 
   return {
-    ...inputAreaWithLabelCompositeDriverFactory({component, wrapper}),
+    ...inputAreaWithLabelCompositeDriverFactory({element, wrapper}),
     hasAutoComplete: () => !!input
   };
 };

@@ -1,22 +1,22 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import ReactTestUtils from 'react-addons-test-utils';
-import TextLink from '../TextLink';
 
-const buttonDriverFactory = ({component, wrapper}) => {
+const buttonDriverFactory = ({element, wrapper, component}) => {
 
   return {
-    exists: () => !!component,
-    getContent: () => component.textContent,
-    doesComponentHasClass: className => component.className.indexOf(className) > 0,
-    isDarkBackground: () => component.style._values.color === 'rgb(255, 255, 255)',
-    hover: () => ReactTestUtils.Simulate.mouseEnter(component),
-    getLink: () => component.href,
-    isUnderline: () => component.style._values['text-decoration'] === 'underline',
-    isLightBackground: () => component.style._values.color === 'rgb(56, 153, 236)',
-    getSize: () => component.classList.contains('t1_3') ? 'medium' : component.classList.contains('t3_3') ? 'small' : 'unknown',
+    exists: () => !!element,
+    getContent: () => element.textContent,
+    doesComponentHasClass: className => element.className.indexOf(className) > 0,
+    isDarkBackground: () => element.style._values.color === 'rgb(255, 255, 255)',
+    hover: () => ReactTestUtils.Simulate.mouseEnter(element),
+    getLink: () => element.href,
+    isUnderline: () => element.style._values['text-decoration'] === 'underline',
+    isLightBackground: () => element.style._values.color === 'rgb(56, 153, 236)',
+    getSize: () => element.classList.contains('t1_3') ? 'medium' : element.classList.contains('t3_3') ? 'small' : 'unknown',
     setProps: props => {
-      ReactDOM.render(<div ref={r => component = r}><TextLink {...props}/></div>, wrapper);
+      const ClonedWithProps = React.cloneElement(component, Object.assign({}, component.props, props), ...(component.props.children || []));
+      ReactDOM.render(<div ref={r => element = r}>{ClonedWithProps}</div>, wrapper);
     }
   };
 };

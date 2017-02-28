@@ -1,18 +1,17 @@
 import React from 'react';
-import InputWithOptions from './InputWithOptions';
 import ReactTestUtils from 'react-addons-test-utils';
 import inputDriverFactory from '../Input/Input.driver';
 import dropdownLayoutDriverFactory from '../DropdownLayout/DropdownLayout.driver';
 import ReactDOM from 'react-dom';
 
-const inputWithOptionsDriverFactory = ({component, wrapper}) => {
+const inputWithOptionsDriverFactory = ({element, wrapper, component}) => {
 
-  const inputWrapper = component.childNodes[0];
-  const inputDriver = inputDriverFactory({component: inputWrapper.childNodes[0], wrapper: inputWrapper});
-  const dropdownLayoutDriver = dropdownLayoutDriverFactory({component: component.childNodes[1].childNodes[0], wrapper});
+  const inputWrapper = element.childNodes[0];
+  const inputDriver = inputDriverFactory({element: inputWrapper.childNodes[0], wrapper: inputWrapper});
+  const dropdownLayoutDriver = dropdownLayoutDriverFactory({element: element.childNodes[1].childNodes[0], wrapper});
 
   const driver = {
-    exists: () => !!component,
+    exists: () => !!element,
     inputWrapper: () => inputWrapper,
     focus: () => ReactTestUtils.Simulate.focus(inputWrapper),
     blur: () => dropdownLayoutDriver.mouseClickOutside(),
@@ -22,7 +21,8 @@ const inputWithOptionsDriverFactory = ({component, wrapper}) => {
     pressEnterKey: () => ReactTestUtils.Simulate.keyDown(inputWrapper, {key: 'Enter'}),
     pressEscKey: () => ReactTestUtils.Simulate.keyDown(inputWrapper, {key: 'Escape'}),
     setProps: props => {
-      ReactDOM.render(<div ref={r => component = r}><InputWithOptions {...props}/></div>, wrapper);
+      const ClonedWithProps = React.cloneElement(component, Object.assign({}, component.props, props), ...(component.props.children || []));
+      ReactDOM.render(<div ref={r => element = r}>{ClonedWithProps}</div>, wrapper);
     }
   };
   return {driver, inputDriver, dropdownLayoutDriver};

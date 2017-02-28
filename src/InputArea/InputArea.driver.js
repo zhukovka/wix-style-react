@@ -1,12 +1,11 @@
 import React from 'react';
 import ReactTestUtils from 'react-addons-test-utils';
 import ReactDOM from 'react-dom';
-import InputArea from './InputArea';
 import styles from './InputArea.scss';
 import $ from 'jquery';
 
-const inputAreaDriverFactory = ({component, wrapper}) => {
-  const $component = $(component);
+const inputAreaDriverFactory = ({element, wrapper, component}) => {
+  const $component = $(element);
   const textArea = $component.find('textarea')[0];
 
   return {
@@ -19,18 +18,19 @@ const inputAreaDriverFactory = ({component, wrapper}) => {
     getRowsCount: () => textArea.rows,
     getTabIndex: () => textArea.tabIndex,
     getReadOnly: () => textArea.readOnly,
-    getResizable: () => component.classList.contains(styles.resizable),
+    getResizable: () => element.classList.contains(styles.resizable),
     hasExclamation: () => $component.find(`.${styles.exclamation}`).length === 1,
-    hasError: () => component.classList.contains(styles.hasError),
-    isFocusedStyle: () => component.classList.contains(styles.hasFocus),
-    isHoveredStyle: () => component.classList.contains(styles.hasHover),
-    isOfStyle: style => component.classList.contains(styles[`theme-${style}`]),
+    hasError: () => element.classList.contains(styles.hasError),
+    isFocusedStyle: () => element.classList.contains(styles.hasFocus),
+    isHoveredStyle: () => element.classList.contains(styles.hasHover),
+    isOfStyle: style => element.classList.contains(styles[`theme-${style}`]),
     isFocus: () => document.activeElement === textArea,
     exists: () => !!textArea,
     hasIconLeft: () => !$component.find(`.${styles.prefix}`).is(':empty'),
     getStyle: () => textArea.style,
     setProps: props => {
-      ReactDOM.render(<div ref={r => component = r}><InputArea {...props}/></div>, wrapper);
+      const ClonedWithProps = React.cloneElement(component, Object.assign({}, component.props, props), ...(component.props.children || []));
+      ReactDOM.render(<div ref={r => element = r}>{ClonedWithProps}</div>, wrapper);
     }
   };
 };

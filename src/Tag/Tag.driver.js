@@ -1,27 +1,27 @@
 import React from 'react';
-import Tag from '../Tag';
 import ReactTestUtils from 'react-addons-test-utils';
 import ReactDOM from 'react-dom';
 import $ from 'jquery';
 
-const tagDriverFactory = ({component, wrapper}) => {
+const tagDriverFactory = ({element, wrapper, component}) => {
 
-  const isClassExists = (component, className) => (component && component.className.indexOf(className) !== -1);
-  const removeButton = $(component).find('a')[0];
-  const thumb = $(component).find('span')[0];
-  const contentWithoutThumb = $(component).find('span')[0];
+  const isClassExists = (element, className) => (element && element.className.indexOf(className) !== -1);
+  const removeButton = $(element).find('a')[0];
+  const thumb = $(element).find('span')[0];
+  const contentWithoutThumb = $(element).find('span')[0];
 
   return {
-    exists: () => !!component,
-    isLarge: () => isClassExists(component, 'large'),
+    exists: () => !!element,
+    isLarge: () => isClassExists(element, 'large'),
     isRemovable: () => isClassExists(removeButton, 'tagRemoveButton'),
     removeTag: () => ReactTestUtils.Simulate.click(removeButton),
     isThumbExists: () => isClassExists(thumb, 'thumb'),
-    isWrapped: () => isClassExists(component, 'tagWrap') && isClassExists(contentWithoutThumb, 'innerTagWrap'),
-    getLabel: () => component.textContent,
-    getTitle: () => component.title,
+    isWrapped: () => isClassExists(element, 'tagWrap') && isClassExists(contentWithoutThumb, 'innerTagWrap'),
+    getLabel: () => element.textContent,
+    getTitle: () => element.title,
     setProps: props => {
-      ReactDOM.render(<div ref={r => component = r}><Tag {...props}/></div>, wrapper);
+      const ClonedWithProps = React.cloneElement(component, Object.assign({}, component.props, props), ...(component.props.children || []));
+      ReactDOM.render(<div ref={r => element = r}>{ClonedWithProps}</div>, wrapper);
     }
   };
 };
