@@ -17,6 +17,7 @@ function loadStories() {
   require('../stories/Dropdown');
   require('../stories/DropdownLayout');
   require('../stories/EndorseContentLayout');
+  require('../stories/FilePicker');
   require('../stories/GoogleAddressInput');
   require('../stories/Input');
   require('../stories/InputWithOptions');

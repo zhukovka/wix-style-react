@@ -17,9 +17,9 @@
     "start": "svg2react-icon-once && wix-node-build start & npm run storybook",
     "release": "wix-node-build release && gh-pages-auto-release --dist=storybook-static",
     "storybook": "start-storybook -p 6006",
-    "lint": "wix-node-build lint"
+    "lint": "yoshi lint"
   },
-  "wix": {
+  "yoshi": {
     "entry": {
       "app": "index.js"
     },

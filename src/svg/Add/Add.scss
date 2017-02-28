@@ -1,0 +1,13 @@
+@import '../../common.scss';
+
+.icon {
+  width: 24px;
+  height: 24px;
+  background-color: $B10;
+  border-radius: 50%;
+  color: #ffffff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-right: 13px;
+}
