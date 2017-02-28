@@ -48,4 +48,18 @@ export default () =>
         <ControlledToggleSwitch checked size="large"/>
       </div>
     </div>
+
+    <div className="rtl" style={styles.header}>
+      <div style={styles.text}>Small rtl
+        <div style={styles.switch}>
+          <ControlledToggleSwitch size="small"/>
+        </div>
+      </div>
+
+      <div style={styles.text}>Large rtl
+        <div style={styles.switch}>
+          <ControlledToggleSwitch checked size="large"/>
+        </div>
+      </div>
+    </div>
   </div>;

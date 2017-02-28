@@ -56,6 +56,24 @@ $transition-speed:.3s;
     box-shadow: 1.5px 1.5px 1px rgba(0,0,0,0.2);
 }
 
+:global(.rtl) {
+    .innerLabel {
+        left: 23px;
+    }
+
+    .toggleSwitchSmall {
+        .innerLabel {
+            left: 17px;
+        }
+    }
+
+    .toggleSwitch input[type=checkbox]:checked + .outerLabel {
+        .innerLabel {
+            left:   1px;
+        }
+    }
+}
+
 .toggleActive {
     display:none;
     width: 8px;
