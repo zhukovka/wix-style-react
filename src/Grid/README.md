@@ -6,7 +6,7 @@ For full documentation read [Bootstrap docs](https://v4-alpha.getbootstrap.com/l
 
 ## wix-style-react additions to bootstrap
 
-#### Wix-container
+#### Container
 
 Use for main content area.
 
@@ -14,9 +14,22 @@ Use ".wix-container" instead of bootstrap's ".container".
 
 .wix-container adds to main content area: min width of 894px and max width of 1254px.
 
-
 #### Card
 
-* A card can have a header with title and subtitle.
-* Card ".content" is a ".container".
+| propName | propType | defaultValue | isRequired | description |
+|----------|----------|--------------|------------|-------------|
+| title | string | - | - | The title of the card |
+| subtitle | string | - | - | The subtitle of the card |
+| withoutDivider | bool | - | - | Whether to draw divider between the titles and the content or not |
 
+#### Row
+
+A simple row according to the bootstrap docs
+
+#### Col
+
+A simple column according to the bootstrap docs
+
+| propName | propType | defaultValue | isRequired | description |
+|----------|----------|--------------|------------|-------------|
+| span | number | - | + | The columns span of this column |

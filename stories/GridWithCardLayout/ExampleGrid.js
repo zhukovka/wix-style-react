@@ -27,7 +27,7 @@ export default () =>
     <Container>
       <Row>
         <Col span={8}>
-          <Card subtitle="subtitle" title="Header with Divider">
+          <Card withoutDivider subtitle="subtitle" title="Header without Divider">
             <Row>
               <Col span={4}>
                 {renderStandardInput()}
