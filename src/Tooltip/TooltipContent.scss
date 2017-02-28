@@ -1,7 +1,6 @@
 @import '../common.scss';
 
 $zIndex: 2000;
-$min-width: 72px;
 $max-width: 264px;
 $font-size: 14px;
 $line-height: 1.29;
@@ -20,7 +19,6 @@ $shadow: 0 0 11px 0 $shadow-color;
   @include FontRoman;
   position: relative;
   display: inline-block;
-  min-width: $min-width;
   max-width: $max-width;
   border-radius: $border-radius;
   padding: $padding;
