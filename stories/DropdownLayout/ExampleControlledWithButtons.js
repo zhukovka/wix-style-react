@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import DropdownLayout from 'wix-style-react/DropdownLayout';
-import {ArrowDownThin} from '../../src/Icons';
+import {ArrowDownThin} from '../../src/Icons/dist';
 import Button from '../../src/Button';
 import styles from './ExampleControlledWithButtons.scss';
 

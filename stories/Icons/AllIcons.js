@@ -1,5 +1,5 @@
 import React from 'react';
-import * as Icons from '../../src/Icons';
+import * as Icons from '../../src/Icons/dist';
 import s from './style.scss';
 
 const renderIcon = name => {

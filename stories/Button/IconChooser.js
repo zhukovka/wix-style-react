@@ -1,7 +1,7 @@
 import React, {Component, PropTypes} from 'react';
 
 import Dropdown from '../../src/Dropdown';
-import * as Icons from '../../src/Icons';
+import * as Icons from '../../src/Icons/dist';
 
 class IconChooser extends Component {
   render() {

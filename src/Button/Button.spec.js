@@ -7,7 +7,7 @@ import {createDriverFactory} from '../test-common';
 import {buttonTestkitFactory} from '../../testkit';
 import {buttonTestkitFactory as enzymeButtonTestkitFactory} from '../../testkit/enzyme';
 import {mount} from 'enzyme';
-import {Close} from '../Icons';
+import {Close} from '../Icons/dist';
 
 describe('Button', () => {
 

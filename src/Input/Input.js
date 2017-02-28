@@ -6,7 +6,7 @@ import Unit from './Unit';
 import Group from './Group';
 import InputPrefix from './InputPrefix';
 import InputSuffix from './InputSuffix';
-import {CloseThin, ArrowDownThin, Search4} from '../Icons';
+import {CloseThin, ArrowDownThin, Search4} from '../Icons/dist';
 import Tooltip from '../Tooltip';
 import SvgExclamation from '../svg/Exclamation.js';
 

@@ -1,7 +1,7 @@
 import React, {PropTypes, Component} from 'react';
 import reactElementToJSXString from 'react-element-to-jsx-string';
 import Button from 'wix-style-react/Button';
-import {Close} from '../../src/Icons';
+import {Close} from '../../src/Icons/dist';
 
 export class Form extends Component {
 

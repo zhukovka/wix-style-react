@@ -13,6 +13,6 @@
 
 * Add the new SVG file to the src/Icons/raw folder. Use a descriptive name since it'll be used as the React component name.
 * Run `npm run build`
-* You can now import your icon by name from the `wix-style-react/src/Icons` folder!
+* You can now import your icon by name from the `wix-style-react/src/Icons/dist` folder!
 
 **Notice that during `npm run build` the SVG files go through various optimizations hence it is recommended to validate the outcome of the icons in storybook (`npm start` and navigate to Icons)!** 

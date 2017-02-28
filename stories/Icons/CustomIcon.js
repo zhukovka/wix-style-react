@@ -1,5 +1,5 @@
 import React from 'react';
-import {Duplicate2} from '../../src/Icons';
+import {Duplicate2} from '../../src/Icons/dist';
 import s from './style.scss';
 
 export default () => {

@@ -1,7 +1,7 @@
 import React, {Component, PropTypes} from 'react';
 import classNames from 'classnames';
 import Tooltip from '../Tooltip';
-import {Bold, Italic, Underline, UnorderedList, OrderedList, Link} from '../Icons';
+import {Bold, Italic, Underline, UnorderedList, OrderedList, Link} from '../Icons/dist';
 import styles from './RichTextAreaButton.scss';
 
 const buttons = {

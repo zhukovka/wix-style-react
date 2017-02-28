@@ -5,7 +5,7 @@ import Label from '../../src/Label';
 import Input from '../../src/Input';
 import ToggleSwitch from '../../src/ToggleSwitch';
 import IconChooser from './IconChooser';
-import * as Icons from '../../src/Icons';
+import * as Icons from '../../src/Icons/dist';
 
 import styles from './ExampleButton.scss';
 
