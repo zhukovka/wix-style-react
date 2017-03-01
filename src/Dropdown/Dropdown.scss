@@ -3,3 +3,16 @@
 .readonly, .readonly input {
   cursor: pointer;
 }
+
+.noBorder {
+  border:none;
+}
+
+.no-border>div {
+  border:none;
+}
+
+.no-right-border-radius>div {
+  border-bottom-left-radius: 0;
+  border-top-left-radius: 0;
+}

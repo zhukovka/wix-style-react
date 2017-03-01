@@ -1,5 +1,6 @@
 import styles from './Dropdown.scss';
 import InputWithOptions from '../InputWithOptions/InputWithOptions';
+import classNames from 'classnames';
 
 class Dropdown extends InputWithOptions {
 
@@ -34,7 +35,10 @@ class Dropdown extends InputWithOptions {
   }
 
   inputClasses() {
-    return styles.readonly;
+    const classes = {[styles.readOnly]: true};
+    classes[styles.noRightBorderRadius] = this.props.noRightBorderRadius;
+    classes[styles.noBorder] = this.props.noBorder;
+    return classNames(classes);
   }
 
   dropdownAdditionalProps() {

@@ -34,6 +34,8 @@
 | prefix | node | - | - | Component you want to show as the prefix of the input |
 | suffix | node | - | - | Component you want to show as the suffix of the input |
 | roundInput | bool | false | - | When set to true, this input will be rounded |
+| noLeftBorderRadius | bool | false | - | When set to true, this input will have no rounded corners on its left |
+| noRightBorderRadius | bool | false | - | When set to true, this input will have no rounded corners on its right |
 
 ## Functions
 

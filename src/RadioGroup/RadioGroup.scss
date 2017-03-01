@@ -114,3 +114,42 @@
    border-color: $GR20;
    background-color: $GR30;
 }
+
+button {
+  border:none;
+  background: transparent;
+  outline: 0;
+  height: 24px;
+  border-radius: 4px;
+  color: $B10;
+  margin-right:7px;
+
+  &:disabled {
+    cursor: initial;
+    color: $D50;
+
+    &.checked {
+      background: $D50;
+      color: $D80;
+
+      &:hover {
+        background: $D50;
+        color: $D80;
+      }
+    }
+
+    &:hover {
+      background: initial;
+      color: $D50;
+    }
+  }
+  &.checked {
+    background: $B10;
+    color: $D80;
+  }
+
+  &:hover {
+    background: $B20;
+    color: $D80;
+  }
+}

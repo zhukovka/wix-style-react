@@ -11,7 +11,7 @@ class RadioButton extends WixComponent {
   }
 
   render() {
-    const {value, vAlign, checked, disabled, name, onChange, style} = this.props;
+    const {value, vAlign, checked, disabled, name, type, onChange, style} = this.props;
 
     const radioClasses = classNames({
       [styles.radio]: true,
@@ -24,24 +24,42 @@ class RadioButton extends WixComponent {
       [styles.vtop]: vAlign === 'top'
     });
 
+    const buttonClasses = classNames({
+      [styles.checked]: checked,
+    });
+
     return (
-      <div className={styles.radioWrapper} style={style}>
-        <input
-          type="radio"
-          name={name}
-          value={value}
-          id={this.id}
-          checked={checked}
-          disabled={disabled}
-          onChange={() => (!checked && !disabled) ? onChange(value) : null}
-          />
-        <label htmlFor={this.id} className={labelClasses} >
-          <div className={radioClasses}/>
-          <div className={styles.children}>
-            {this.props.children}
+        type === 'button' ? (
+          <div className={styles.radioWrapper}>
+            <button
+              className={buttonClasses}
+              checked={checked}
+              disabled={disabled}
+              id={this.id}
+              onClick={() => (!checked && !disabled) ? onChange(value) : null}
+              >
+              {this.props.children}
+            </button>
           </div>
-        </label>
-      </div>
+        ) : (
+          <div className={styles.radioWrapper} style={style}>
+            <input
+              type="radio"
+              name={name}
+              value={value}
+              id={this.id}
+              checked={checked}
+              disabled={disabled}
+              onChange={() => (!checked && !disabled) ? onChange(value) : null}
+              />
+            <label htmlFor={this.id} className={labelClasses}>
+              <div className={radioClasses}/>
+              <div className={styles.children}>
+                {this.props.children}
+              </div>
+            </label>
+          </div>
+      )
     );
   }
 }
@@ -58,7 +76,8 @@ RadioButton.propTypes = {
   checked: PropTypes.bool,
   disabled: PropTypes.bool,
   children: PropTypes.any,
-  style: PropTypes.object
+  style: PropTypes.object,
+  type: PropTypes.string,
 };
 
 RadioButton.displayName = 'RadioGroup.Button';

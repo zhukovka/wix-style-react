@@ -25,6 +25,7 @@ export {default as Autocomplete} from './AutoComplete';
 export {default as Label} from './Label';
 export {default as DataTable} from './DataTable';
 export {default as TextArea} from './TextArea';
+export {default as Range} from './Range';
 export {default as TextField} from './TextField';
 export {default as EndorseContentLayout} from './EndorseContentLayout';
 export {default as Notification} from './Notification';

@@ -72,4 +72,11 @@ export const radioButtonTestkitFactory = testkitFactoryCreator(radioButtonDriver
 import notificationDriverFactory from '../src/Notification/Notification.driver';
 export const notificationTestkitFactory = testkitFactoryCreator(notificationDriverFactory);
 
+import rangeDriverFactory from '../src/Range/Range.driver';
+export const rangeTestkitFactory = testkitFactoryCreator(rangeDriverFactory);
+
+import fieldWithSelectionCompositeDriverFactory from '../src/Composite/FieldWithSelectionComposite/FieldWithSelectionComposite.driver';
+export const fieldWithSelectionCompositeTestkitFactory = testkitFactoryCreator(fieldWithSelectionCompositeDriverFactory);
+
+
 export {toastTestkitFactory} from '../src/Toast/testkit/Toast';
