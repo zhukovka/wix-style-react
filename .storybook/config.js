@@ -10,6 +10,7 @@ function loadStories() {
   require('../stories/AutoComplete');
   require('../stories/Breadcrubms');
   require('../stories/Button');
+  require('../stories/ButtonLayout');
   require('../stories/ButtonSelection');
   require('../stories/Checkbox');
   require('../stories/DataTable');

@@ -1,7 +1,7 @@
 import {MessageBoxLayout1, MessageBoxLayout2, HeaderLayout1, FooterLayout1} from './MessageBox';
 
 export {default as Button} from './Button';
-export {default as ButtonLayout} from './Button/ButtonLayout';
+export {default as ButtonLayout} from './ButtonLayout';
 export {default as Input} from './Input';
 export {default as InputArea} from './InputArea';
 export {default as InputWithOptions} from './InputWithOptions';

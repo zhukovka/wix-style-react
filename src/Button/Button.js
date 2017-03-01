@@ -1,7 +1,7 @@
 import React from 'react';
 import styles from './Button.scss';
 import WixComponent from '../WixComponent';
-import ButtonLayout from './ButtonLayout';
+import ButtonLayout from '../ButtonLayout/ButtonLayout';
 import omit from 'lodash.omit';
 
 class Button extends WixComponent {
@@ -48,10 +48,7 @@ class Button extends WixComponent {
   }
 }
 
-Button.defaultProps = {
-  theme: 'fullblue',
-  height: 'medium'
-};
+Button.defaultProps = ButtonLayout.defaultProps;
 
 Button.propTypes = Object.assign({},
   ButtonLayout.propTypes,

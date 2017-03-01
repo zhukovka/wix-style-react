@@ -1,6 +1,5 @@
 import React from 'react';
 import ReactTestUtils from 'react-addons-test-utils';
-import styles from './Button.scss';
 import buttonDriverFactory from './Button.driver';
 import Button from './Button';
 import {createDriverFactory} from '../test-common';
@@ -36,12 +35,6 @@ describe('Button', () => {
     expect(driver.getButtonTextContent()).toBe(children);
   });
 
-  it('should get disabled class', () => {
-    const driver = createDriver(<Button disabled={true}/>);
-
-    expect(driver.isButtonDisabled()).toBe(true);
-  });
-
   it('should have a prefixIcon', () => {
     const driver = createDriver(<Button prefixIcon={<Close/>}/>);
 
@@ -54,45 +47,6 @@ describe('Button', () => {
 
     expect(driver.isPrefixIconExists()).toBeFalsy();
     expect(driver.isSuffixIconExists()).toBeTruthy();
-  });
-
-  it('should get disabled class', () => {
-    const driver = createDriver(<Button disabled={true}/>);
-
-    expect(driver.isButtonDisabled()).toBe(true);
-  });
-
-  it('should have default "fullblue" style', () => {
-    const driver = createDriver(<Button/>);
-
-    expect(driver.doesComponentHasClass(styles.fullblue)).toBeTruthy();
-  });
-
-  it('should get "small" height class', () => {
-    const height = `${styles.small}`;
-    const driver = createDriver(<Button height={height}/>);
-
-    expect(driver.doesComponentHasClass(`height${styles.small}`)).toBeTruthy();
-  });
-
-  it('should get "large" height class', () => {
-    const height = `${styles.large}`;
-    const driver = createDriver(<Button height={height}/>);
-
-    expect(driver.doesComponentHasClass(`height${styles.large}`)).toBe(true);
-  });
-
-  it('should get custom style', () => {
-    const theme = 'emptyblue';
-    const driver = createDriver(<Button theme={theme}/>);
-
-    expect(driver.doesComponentHasClass(styles[theme])).toBeTruthy();
-  });
-
-  it('should get "hover" class', () => {
-    const driver = createDriver(<Button hover={true}/>);
-
-    expect(driver.isComponentHovered()).toBeTruthy();
   });
 });
 

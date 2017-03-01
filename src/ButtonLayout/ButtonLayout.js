@@ -1,5 +1,5 @@
 import React from 'react';
-import styles from './Button.scss';
+import styles from './ButtonLayout.scss';
 import classNames from 'classnames';
 
 const ButtonLayout = props => {
@@ -12,19 +12,30 @@ const ButtonLayout = props => {
     [styles.active]: active,
     [styles.disabled]: disabled,
     [styles[`height${height}`]]: height !== 'medium'
-  });
+  }, children.props.className);
 
-  const _style = {
-    height
-  };
+  const _style = Object.assign({},
+    children.props.style,
+    {
+      height,
+      display: 'inline-block'
+    }
+  );
 
-  return React.cloneElement(
-    children,
-    {className, style: _style},
-    <div className={styles.inner}>
-      {children.props.children}
-    </div>
+  if (React.Children.count(children) === 1) {
+    return React.cloneElement(
+      children,
+      {className, style: _style},
+      <div className={styles.inner}>
+        {children.props.children}
+      </div>
     );
+  }
+};
+
+ButtonLayout.defaultProps = {
+  theme: 'fullblue',
+  height: 'medium'
 };
 
 ButtonLayout.propTypes = {

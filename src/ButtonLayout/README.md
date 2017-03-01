@@ -1,4 +1,4 @@
-# Button component
+# ButtonLayout component
 
 > General Buttons
 
@@ -10,6 +10,3 @@
 | height | string | medium | - | The size of the button, can be small, medium or large |
 | active | bool | - | - | - |
 | disabled | bool | - | - | - |
-| prefixIcon | Icon | - | - | The icon to show at the begging of the button |
-| suffixIcon | Icon | - | - | The icon to show at the end of the button |
-| onClick | func | - | - | - |
