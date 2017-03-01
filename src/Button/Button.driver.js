@@ -7,6 +7,7 @@ const buttonDriverFactory = ({element, wrapper, component}) => {
     exists: () => !!element,
     click: () => ReactTestUtils.Simulate.click(element),
     getButtonTextContent: () => element.textContent,
+    isButtonDisabled: () => wrapper.querySelector('button').getAttribute('disabled') === '',
     isPrefixIconExists: () => element.innerHTML.indexOf('prefix') !== -1,
     isSuffixIconExists: () => element.innerHTML.indexOf('suffix') !== -1,
     setProps: props => {

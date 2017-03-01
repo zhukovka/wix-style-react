@@ -28,6 +28,12 @@ describe('Button', () => {
     expect(onClick).toHaveBeenCalledTimes(0);
   });
 
+  it('should get disabled class', () => {
+    const driver = createDriver(<Button disabled={true}/>);
+
+    expect(driver.isButtonDisabled()).toBe(true);
+  });
+
   it('should render children', () => {
     const children = '<div>123</div>';
     const driver = createDriver(<Button>{children}</Button>);
