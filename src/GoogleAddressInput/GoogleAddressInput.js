@@ -44,6 +44,19 @@ class GoogleAddressInput extends React.Component {
       value
     } = this.state;
 
+    let options = reduce(suggestions, (result, value) => {
+      result.push({id: result.length, value: value.description});
+      return result;
+    }, []);
+
+    if (this.props.footer) {
+      options = options.concat({
+        id: options.length,
+        value: this.props.footer,
+        overrideStyle: true
+      });
+    }
+
     return (
       <div>
         <InputWithOptions
@@ -55,10 +68,7 @@ class GoogleAddressInput extends React.Component {
           onSelect={option => this.onSet(option.value)}
           onManuallyInput={this.onManuallyInput}
           value={value}
-          options={reduce(suggestions, (result, value) => {
-            result.push({id: result.length, value: value.description});
-            return result;
-          }, [])}
+          options={options}
           />
       </div>
     );
@@ -274,7 +284,8 @@ GoogleAddressInput.propTypes = {
   magnifyingGlass: React.PropTypes.bool,
   theme: Input.propTypes.theme,
   readOnly: React.PropTypes.bool,
-  autoSelect: React.PropTypes.bool
+  autoSelect: React.PropTypes.bool,
+  footer: React.PropTypes.any
 };
 
 export default GoogleAddressInput;

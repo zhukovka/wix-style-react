@@ -55,6 +55,14 @@ describe('GoogleAddressInput', () => {
       const component = createShallow({Client: GmapsTestClient, readOnly: true});
       expect(component.find('InputWithOptions').props().readOnly).toEqual(true);
     });
+    it('should show a footer', () => {
+      const component = createShallow({Client: GmapsTestClient, readOnly: true, footer: 'foo bar'});
+      expect(component.find('InputWithOptions').props().options).toEqual([{
+        id: 0,
+        value: 'foo bar',
+        overrideStyle: true
+      }]);
+    });
   });
 
   describe('User Interactions', () => {
