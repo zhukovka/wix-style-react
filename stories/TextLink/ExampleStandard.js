@@ -19,7 +19,9 @@ class ControlledExample extends Component {
       <div style={style}>
         <TextLink link="http://www.wix.com">Wix link</TextLink>
         <br/>
-        <TextLink forceUnderline link="http://www.wix.com">Wix link underline</TextLink>
+        <TextLink underlineStyle="always" link="http://www.wix.com">Wix link underline</TextLink>
+        <br/>
+        <TextLink underlineStyle="never" link="http://www.wix.com">Wix link without underline</TextLink>
         <br/>
         <TextLink size='small' link="http://www.wix.com">Wix link small</TextLink>
       </div>

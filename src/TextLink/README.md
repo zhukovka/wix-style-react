@@ -8,7 +8,7 @@
 |----------|----------|--------------|------------|-------------|
 | link | string | - | + | The link itself e.g. 'https://www.wix.com' |
 | children | node | - | - | The node to render, <TextLink>I am a children</TextLink> |
-| forceUnderline | bool | false | - | When true the button will be with underline in non-focused and non-hovered state as well |
+| underlineStyle | 'always'/'hover'/'never' | hover | - | Hover - show the underline only on hover, Always - always show underline, Never - never show underline |
 | darkBackground | bool | - | - | Whether to use dark background |
 | size | 'small'/'medium' | 'medium' | - | The size of the button |
 

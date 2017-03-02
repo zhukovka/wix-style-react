@@ -44,8 +44,14 @@ describe('TextLink', () => {
   });
 
   it('should be with underline', () => {
-    const driver = createDriver(<TextLink forceUnderline/>);
+    const driver = createDriver(<TextLink underlineStyle="always"/>);
     expect(driver.isUnderline()).toBeTruthy();
+  });
+
+  it('should not be with underline', () => {
+    const driver = createDriver(<TextLink underlineStyle="never"/>);
+    driver.hover();
+    expect(driver.isUnderline()).toBeFalsy();
   });
 
   it('should not be with underline by defualt', () => {

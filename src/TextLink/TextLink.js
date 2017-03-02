@@ -7,13 +7,13 @@ export default class TextLink extends WixComponent {
   static propTypes = {
     link: PropTypes.string.isRequired,
     children: PropTypes.node,
-    forceUnderline: PropTypes.bool,
+    underlineStyle: PropTypes.oneOf(['always', 'hover', 'never']),
     darkBackground: PropTypes.bool,
     size: PropTypes.oneOf(['small', 'medium'])
   };
 
   static defaultProps = {
-    forceUnderline: false,
+    underlineStyle: 'hover',
     darkBackground: false,
     size: 'medium'
   };
@@ -42,7 +42,7 @@ export default class TextLink extends WixComponent {
       border: 'none',
       background: 'none',
       cursor: 'pointer',
-      textDecoration: this.props.forceUnderline || this.state.isHover ? 'underline' : 'none'
+      textDecoration: ((this.props.underlineStyle === 'hover' && this.state.isHover) || this.props.underlineStyle === 'always') ? 'underline' : 'none'
     };
 
     const className = this.props.size === 'medium' ? typography.t1_3 : typography.t3_3;
