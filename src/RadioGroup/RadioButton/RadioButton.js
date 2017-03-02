@@ -30,7 +30,7 @@ class RadioButton extends WixComponent {
 
     return (
         type === 'button' ? (
-          <div className={styles.radioWrapper}>
+          <div className={styles.buttonWrapper}>
             <button
               className={buttonClasses}
               checked={checked}
