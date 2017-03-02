@@ -15,10 +15,10 @@ export const textFieldTestkitFactory = protractorTestkitFactoryCreator(textField
 import autoCompleteCompositeDriverFactory from '../src/AutoCompleteComposite/AutoCompleteComposite.protractor.driver';
 export const autoCompleteCompositeTestkitFactory = protractorTestkitFactoryCreator(autoCompleteCompositeDriverFactory);
 
-import rangeDriverFactory from '../src/Range/Range.driver';
+import rangeDriverFactory from '../src/Range/Range.protractor.driver';
 export const rangeTestkitFactory = protractorTestkitFactoryCreator(rangeDriverFactory);
 
-import fieldWithSelectionCompositeDriverFactory from '../src/Composite/FieldWithSelectionComposite/FieldWithSelectionComposite.driver';
+import fieldWithSelectionCompositeDriverFactory from '../src/Composite/FieldWithSelectionComposite/FieldWithSelectionComposite.protractor.driver';
 export const fieldWithSelectionCompositeTestkitFactory = protractorTestkitFactoryCreator(fieldWithSelectionCompositeDriverFactory);
 
 export {protractorToastTestkitFactory} from '../src/Toast/testkit/Toast.protractor';
