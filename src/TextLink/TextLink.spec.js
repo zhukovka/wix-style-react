@@ -11,56 +11,56 @@ describe('TextLink', () => {
   const createDriver = createDriverFactory(textLinkDriverFactory);
 
   it('should have a textLink', () => {
-    const driver = createDriver(<TextLink/>);
+    const driver = createDriver(<TextLink link=""/>);
 
     expect(driver.exists()).toBeTruthy();
   });
 
   it('should render children', () => {
     const children = '<div>123</div>';
-    const driver = createDriver(<TextLink>{children}</TextLink>);
+    const driver = createDriver(<TextLink link="">{children}</TextLink>);
 
     expect(driver.getContent()).toBe(children);
   });
 
   it('should be with medium size by defualt', () => {
-    const driver = createDriver(<TextLink/>);
+    const driver = createDriver(<TextLink link=""/>);
     expect(driver.getSize()).toBe('medium');
   });
 
   it('should be with small size', () => {
-    const driver = createDriver(<TextLink size="small"/>);
+    const driver = createDriver(<TextLink link="" size="small"/>);
     expect(driver.getSize()).toBe('small');
   });
 
   it('should be with dark background', () => {
-    const driver = createDriver(<TextLink darkBackground size="small"/>);
+    const driver = createDriver(<TextLink link="" darkBackground size="small"/>);
     expect(driver.isDarkBackground()).toBeTruthy();
   });
 
   it('should be with light background', () => {
-    const driver = createDriver(<TextLink size="small"/>);
+    const driver = createDriver(<TextLink link="" size="small"/>);
     expect(driver.isLightBackground()).toBeTruthy();
   });
 
   it('should be with underline', () => {
-    const driver = createDriver(<TextLink underlineStyle="always"/>);
+    const driver = createDriver(<TextLink link="" underlineStyle="always"/>);
     expect(driver.isUnderline()).toBeTruthy();
   });
 
   it('should not be with underline', () => {
-    const driver = createDriver(<TextLink underlineStyle="never"/>);
+    const driver = createDriver(<TextLink link="" underlineStyle="never"/>);
     driver.hover();
     expect(driver.isUnderline()).toBeFalsy();
   });
 
   it('should not be with underline by defualt', () => {
-    const driver = createDriver(<TextLink/>);
+    const driver = createDriver(<TextLink link=""/>);
     expect(driver.isUnderline()).toBeFalsy();
   });
 
   it('should have underline on hover', () => {
-    const driver = createDriver(<TextLink/>);
+    const driver = createDriver(<TextLink link=""/>);
     driver.hover();
     expect(driver.isUnderline()).toBeTruthy();
   });
@@ -73,12 +73,12 @@ describe('TextLink', () => {
 
 describe('testkit', () => {
   it('should exist', () => {
-    expect(isTestkitExists(<TextLink/>, textLinkTestkitFactory)).toBe(true);
+    expect(isTestkitExists(<TextLink link=""/>, textLinkTestkitFactory)).toBe(true);
   });
 });
 
 describe('enzyme testkit', () => {
   it('should exist', () => {
-    expect(isEnzymeTestkitExists(<TextLink/>, enzymeTextLinkTestkitFactory)).toBe(true);
+    expect(isEnzymeTestkitExists(<TextLink link=""/>, enzymeTextLinkTestkitFactory)).toBe(true);
   });
 });

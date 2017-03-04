@@ -10,12 +10,7 @@ const style = {
 };
 
 class ControlledExample extends Component {
-  constructor() {
-    super();
-  }
-
   render() {
-
     return (
       <div style={style}>
         <TextLink darkBackground link="http://www.wix.com">Wix link</TextLink>
@@ -24,7 +19,7 @@ class ControlledExample extends Component {
         <br/>
         <TextLink darkBackground underlineStyle="never" link="http://www.wix.com">Wix link without underline</TextLink>
         <br/>
-        <TextLink darkBackground size='small' link="http://www.wix.com">Wix link small</TextLink>
+        <TextLink darkBackground size="small" link="http://www.wix.com">Wix link small</TextLink>
       </div>
 
 
