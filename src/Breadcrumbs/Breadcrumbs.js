@@ -61,6 +61,7 @@ class Breadcrumbs extends WixComponent {
     const {items, size, theme, activeId} = this.props;
 
     const className = classNames({
+      [styles.container]: true,
       [styles[size]]: true,
       [styles[theme]]: true,
     });
