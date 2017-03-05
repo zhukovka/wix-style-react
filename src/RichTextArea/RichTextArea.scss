@@ -16,7 +16,6 @@ $marginLeft: $paddingLeft;
 .container {
   display: flex;
   flex-direction: column;
-  width: 500px; //TODO: remove
   min-width: $minWidth;
   min-height: $minHeight;
   background: $D80;

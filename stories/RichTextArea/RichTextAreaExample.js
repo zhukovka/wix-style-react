@@ -12,7 +12,7 @@ class RichTextAreaExample extends Component {
   state = {
     error: false,
     errorMessage: '',
-    placeholder: 'You can add some $$ rich $$ text here',
+    placeholder: 'Rich placeholder',
     value: '<p>$$$ Rich text area</p><strong>bold text here</strong><ul><li>The amazing fox lives in <a href="wix.com">Lithuania</a></li></ul>'
   };
 
@@ -22,21 +22,23 @@ class RichTextAreaExample extends Component {
 
   render() {
     return (
-      <div className={styles.container}>
-        <div className={styles.form}>
-          <div className={styles.controlGroup}>
+      <div className={styles.form}>
+        <div className={styles.input}>
+          <div className={styles.option}>
             <TextField>
               <Label for="placeholderInput">Placeholder</Label>
-              <Input
-                id="placeholderInput"
-                size="normal"
-                theme="normal"
-                value={this.state.placeholder}
-                onChange={event => this.setState({placeholder: event.target.value})}
-                />
+              <div className={styles.flex}>
+                <Input
+                  id="placeholderInput"
+                  size="normal"
+                  theme="normal"
+                  value={this.state.placeholder}
+                  onChange={event => this.setState({placeholder: event.target.value})}
+                  />
+              </div>
             </TextField>
           </div>
-          <div className={styles.controlGroup}>
+          <div className={styles.option}>
             <Label>Error</Label>
             <div className={styles.radioGroup}>
               <RadioGroup
@@ -50,7 +52,7 @@ class RichTextAreaExample extends Component {
             </div>
           </div>
           {this.renderErrorMessageInput()}
-          <div className={styles.controlGroup}>
+          <div className={styles.option}>
             <Label>Disabled</Label>
             <div className={styles.radioGroup}>
               <RadioGroup
@@ -64,7 +66,7 @@ class RichTextAreaExample extends Component {
             </div>
           </div>
         </div>
-        <div className={styles.preview}>
+        <div className={styles.output}>
           <RichTextAreaTemplate
             onTemplateChange={this.props.onChange}
             onChange={this.handleRichTextAreaChange}
@@ -97,7 +99,7 @@ class RichTextAreaExample extends Component {
     }
 
     return (
-      <div className={styles.controlGroup}>
+      <div className={styles.output}>
         <TextField>
           <Label for="errorMessageInput">Error message</Label>
           <Input
