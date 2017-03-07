@@ -69,10 +69,12 @@ class Notification extends WixComponent {
 
   hideNotificationOnCloseClick() {
     this.setState({hideByCloseClick: true});
+    this.props.onClose && this.props.onClose('hide-by-close-click');
   }
 
   hideNotificationOnTimeout() {
     this.setState({hideByTimer: true});
+    this.props.onClose && this.props.onClose('hide-by-timer');
   }
 
   bypassCloseFlags() {
@@ -193,13 +195,15 @@ Notification.propTypes = {
   type: PropTypes.oneOf([GLOBAL_NOTIFICATION, LOCAL_NOTIFICATION]),
   timeout: PropTypes.number,
   zIndex: PropTypes.number,
+  onClose: PropTypes.func,
   children: children(once(TextLabel), any(/*ActionButton or CloseButton*/), optional(CloseButton))
 };
 
 Notification.defaultProps = {
   theme: 'standard',
   size: 'small',
-  type: GLOBAL_NOTIFICATION
+  type: GLOBAL_NOTIFICATION,
+  onClose: null
 };
 
 Notification.CloseButton = CloseButton;
