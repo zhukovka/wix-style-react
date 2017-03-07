@@ -78,4 +78,7 @@ export const rangeTestkitFactory = enzymeTestkitFactoryCreator(rangeDriverFactor
 import fieldWithSelectionCompositeDriverFactory from '../src/Composite/FieldWithSelectionComposite/FieldWithSelectionComposite.driver';
 export const fieldWithSelectionCompositeTestkitFactory = enzymeTestkitFactoryCreator(fieldWithSelectionCompositeDriverFactory);
 
+import googleAddressWithInputDriverFactory from '../src/GoogleAddressInputWithLabel/GoogleAddressInputWithLabel.driver';
+export const googleAddressWithInputTestkitFactory = enzymeTestkitFactoryCreator(googleAddressWithInputDriverFactory);
+
 export {toastTestkitFactory} from '../src/Toast/testkit/Toast.enzyme';
