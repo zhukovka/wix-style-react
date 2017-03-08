@@ -69,12 +69,16 @@ class Notification extends WixComponent {
 
   hideNotificationOnCloseClick() {
     this.setState({hideByCloseClick: true});
-    this.props.onClose && this.props.onClose('hide-by-close-click');
+    setTimeout(() => {
+      this.props.onClose && this.props.onClose('hide-by-close-click');
+    }, animationsTimeouts.leave + 100);
   }
 
   hideNotificationOnTimeout() {
     this.setState({hideByTimer: true});
-    this.props.onClose && this.props.onClose('hide-by-timer');
+    setTimeout(() => {
+      this.props.onClose && this.props.onClose('hide-by-timer');
+    }, animationsTimeouts.leave + 100);
   }
 
   bypassCloseFlags() {
