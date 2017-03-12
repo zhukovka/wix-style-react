@@ -1,7 +1,7 @@
 import React, {PropTypes} from 'react';
 import styles from './FilePicker.scss';
 import WixComponent from '../WixComponent';
-import Add from '../svg/Add/Add';
+import {Add} from '../Icons/dist';
 
 class FilePicker extends WixComponent {
   constructor(props) {
@@ -31,7 +31,7 @@ class FilePicker extends WixComponent {
       <div>
         {header && (<span className={styles.header}>{header}</span>)}
         <label className={styles.label}>
-          <Add/>
+          <div className={styles.icon}><Add width={42} height={42}/></div>
           <div>
             <span className={styles.cta}>{mainLabel}</span>
             <span className={styles.info}>{this.state.selectedFileName}</span>
