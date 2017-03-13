@@ -15,6 +15,7 @@ class RichTextAreaToolbar extends WixComponent {
         {this.renderLinkButton()}
         {this.renderButton('block', 'unordered-list')}
         {this.renderButton('block', 'ordered-list')}
+        {this.props.onImageButtonClick ? this.renderImageButton() : null }
       </div>
     );
   }
@@ -50,16 +51,32 @@ class RichTextAreaToolbar extends WixComponent {
       </div>
     );
   }
+
+  renderImageButton() {
+    const {onImageButtonClick, disabled} = this.props;
+
+    return (
+      <div className={classNames(styles.button, {[styles.disabled]: disabled})}>
+        <RichTextAreaButton
+          disabled={disabled}
+          onClick={onImageButtonClick}
+          type="image"
+          isActive={true}
+          />
+      </div>
+    );
+  }
 }
 
 RichTextAreaToolbar.propTypes = {
   onClick: PropTypes.func,
   onLinkButtonClick: PropTypes.func,
+  onImageButtonClick: PropTypes.func,
   hasMark: PropTypes.func.isRequired,
   hasListBlock: PropTypes.func.isRequired,
   hasLink: PropTypes.func.isRequired,
   disabled: PropTypes.bool,
-  isSelectionExpanded: PropTypes.bool,
+  isSelectionExpanded: PropTypes.bool
 };
 
 export default RichTextAreaToolbar;

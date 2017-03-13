@@ -80,5 +80,8 @@ export const fieldWithSelectionCompositeTestkitFactory = testkitFactoryCreator(f
 
 import googleAddressWithInputDriverFactory from '../src/GoogleAddressInputWithLabel/GoogleAddressInputWithLabel.driver';
 export const googleAddressWithInputTestkitFactory = testkitFactoryCreator(googleAddressWithInputDriverFactory);
+import richTextAreaCompositeDriverFactory from '../src/RichTextAreaComposite/RichTextAreaComposite.driver';
+export const richTextAreaCompositeTestkitFactory = testkitFactoryCreator(richTextAreaCompositeDriverFactory);
+
 
 export {toastTestkitFactory} from '../src/Toast/testkit/Toast';

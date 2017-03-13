@@ -89,6 +89,41 @@ describe('RichTextArea', () => {
     expect(driver.isDisabled()).toBeTruthy();
   });
 
+  describe('resizable attribute', () => {
+    it('should pass down to the wrapped input', () => {
+      const driver = createComponent({resizable: true});
+      expect(driver.isResizable()).toBeTruthy();
+    });
+
+    it('should pass down to the wrapped input with default false value', () => {
+      const driver = createComponent();
+      expect(driver.isResizable()).toBeFalsy();
+    });
+  });
+
+  describe('insert image', () => {
+    const onImageRequest = callback => {
+      callback('https://some-dom.com/ddec1e4d26f94cae963c8c54e9838749/600x600.jpg');
+    };
+
+    it('should not show insert image icon only when props does not contain \'onImageRequest\' callback', () => {
+      const driver = createComponent();
+      expect(driver.isAddImageButtonExist()).toBeFalsy();
+    });
+
+    it('should show insert image icon only when props does contain \'onImageRequest\' callback', () => {
+      const driver = createComponent({onImageRequest});
+      expect(driver.isAddImageButtonExist()).toBeTruthy();
+    });
+
+    it('should insert image to the editor', () => {
+      const driver = createComponent({onImageRequest});
+      expect(driver.isImageExist()).toBeFalsy();
+      driver.clickImageButton();
+      expect(driver.isImageExist()).toBeTruthy();
+    });
+  });
+
   const createDriver = createDriverFactory(richTextAreaDriverFactory);
   function createComponent(props) {
     const mergedProps = Object.assign({

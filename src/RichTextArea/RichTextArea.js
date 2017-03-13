@@ -7,6 +7,8 @@ import SvgExclamation from '../svg/Exclamation.js';
 import RichTextEditorToolbar from './RichTextAreaToolbar';
 import htmlSerializer from './htmlSerializer';
 import styles from './RichTextArea.scss';
+import isImage from 'is-image';
+import isUrl from 'is-url';
 
 const DEFAULT_NODE = 'paragraph';
 
@@ -21,6 +23,12 @@ class RichTextArea extends WixComponent {
         const {data} = props.node;
         const href = data.get('href');
         return <a className={styles.link} {...props.attributes} href={href}>{props.children}</a>;
+      },
+      image: props => {
+        const {node, state} = props;
+        const isFocused = state.selection.hasEdgeIn(node);
+        const src = node.data.get('src');
+        return (<img data-hook="editor-image" src={src} className={classNames(styles.editorImage, {[styles.activeEditorImage]: isFocused})}/>);
       }
     },
     marks: {
@@ -83,6 +91,8 @@ class RichTextArea extends WixComponent {
         return this.handleBlockButtonClick(type);
       case 'link':
         return this.handleLinkButtonClick(type);
+      case 'image':
+        return this.handleImageButtonClick(type);
     }
   };
 
@@ -94,6 +104,43 @@ class RichTextArea extends WixComponent {
 
     this.setEditorState(editorState);
   };
+
+  handleImageButtonClick = type => {
+    this.props.onImageRequest(this.handleImageInput.bind(this));
+  }
+
+  handleImageInput = text => {
+    if (this.isValidImage(text)) {
+      const editorState = this.insertImage(this.state.editorState, text);
+      this.setEditorState(editorState);
+    }
+  }
+
+  onPaste = (e, data, state, editor) => {
+    switch (data.type) {
+      case 'text': return this.onPasteText(data.text, state)
+    }
+  }
+
+  onPasteText = (text, state) => {
+    if (this.isValidImage(text)) {
+      return this.insertImage(state, text);
+    }
+    return;
+  }
+
+  isValidImage = (text) => isUrl(text) && isImage(text);
+
+  insertImage = (state, src) => {
+    return state
+      .transform()
+      .insertBlock({
+        type: 'image',
+        isVoid: true,
+        data: { src }
+      })
+      .apply();
+  }
 
   handleBlockButtonClick = type => {
     let {editorState} = this.state;
@@ -177,12 +224,12 @@ class RichTextArea extends WixComponent {
 
   render = () => {
     const {editorState} = this.state;
-    const {error, placeholder, disabled} = this.props;
+    const {error, placeholder, disabled, resizable, onImageRequest} = this.props;
     const className = classNames(styles.container, {
       [styles.withError]: error,
       [styles.isFocused]: editorState.isFocused,
     });
-
+    
     return (
       <div className={className}>
         <div className={classNames(styles.toolbar, {[styles.disabled]: disabled})}>
@@ -190,13 +237,14 @@ class RichTextArea extends WixComponent {
             disabled={disabled}
             onClick={this.handleButtonClick}
             onLinkButtonClick={this.handleLinkButtonClick}
+            onImageButtonClick={onImageRequest ? this.handleImageButtonClick : null }
             hasMark={this.hasMark}
             hasListBlock={this.hasListBlock}
             hasLink={this.hasLink}
             isSelectionExpanded={editorState.isExpanded}
             />
         </div>
-        <div className={classNames(styles.editorWrapper, {[styles.disabled]: disabled})}>
+        <div className={classNames(styles.editorWrapper, {[styles.resizable]: resizable, [styles.disabled]: disabled})} data-hook="editor-wrapper">
           <Editor
             readOnly={disabled}
             placeholder={placeholder}
@@ -204,6 +252,7 @@ class RichTextArea extends WixComponent {
             className={classNames(styles.editor, {[styles.disabled]: disabled})}
             schema={this.schema}
             state={editorState}
+            onPaste={this.onPaste}
             onChange={this.setEditorState}/>
           {this.renderError()}
         </div>
@@ -232,11 +281,13 @@ class RichTextArea extends WixComponent {
 RichTextArea.propTypes = {
   value: PropTypes.string,
   onChange: PropTypes.func,
+  onImageRequest: PropTypes.func,
   buttons: PropTypes.arrayOf(PropTypes.string), // TODO: use PropTypes.oneOf(),
   error: PropTypes.bool,
   errorMessage: PropTypes.string,
   placeholder: PropTypes.string,
   disabled: PropTypes.bool,
+  resizable: PropTypes.bool
 };
 
 RichTextArea.defaultProps = {
