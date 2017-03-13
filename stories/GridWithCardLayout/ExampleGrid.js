@@ -217,7 +217,7 @@ export default () =>
             </Col>
             <Col span={6}>
               <Card>
-                <Card.ButtonHeader title="Card header" buttonOnClick={() => {alert('Clicked!')}} buttonSuffix={<ArrowDownThin/>} buttonTitle='Click Me!'/>
+                <Card.ButtonHeader title="Card header" buttonOnClick={() => {alert('Clicked!')}} theme="fullblue" buttonSuffix={<ArrowDownThin/>} buttonTitle='Click Me!'/>
                 <Card.Content>
                   <Row>
                     <Col span={6}>
@@ -247,7 +247,7 @@ export default () =>
           </Row>
           <Row>
             <Card>
-              <Card.ButtonHeader withoutDivider title="Header" subtitle="No divider" buttonOnClick={() => {alert('Clicked!')}} buttonPrefix={<ArrowDownThin/>} buttonTitle='Click Me!'/>
+              <Card.ButtonHeader withoutDivider title="Header" subtitle="No divider" buttonOnClick={() => {alert('Clicked!')}} theme="fullblue" buttonPrefix={<ArrowDownThin/>} buttonTitle='Click Me!'/>
               <Card.Content>
                 <Row>
                   <Col span={6}>

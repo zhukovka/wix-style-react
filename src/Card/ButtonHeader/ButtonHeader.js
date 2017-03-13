@@ -14,7 +14,11 @@ class ButtonHeader extends WixComponent {
     buttonSuffix: React.PropTypes.node,
     subtitle: React.PropTypes.string,
     tooltip: React.PropTypes.node,
-    withoutDivider: React.PropTypes.bool
+    theme: React.PropTypes.oneOf([
+      'standard',
+      'fullblue',
+    ]),
+    withoutDivider: React.PropTypes.bool,
   };
 
   static defaultProps = {
@@ -22,11 +26,12 @@ class ButtonHeader extends WixComponent {
     withoutDivider: false,
     buttonPrefix: null,
     tooltip: null,
-    buttonSuffix: null
+    theme: 'standard',
+    buttonSuffix: null,
   };
 
   render() {
-    const {title, subtitle, buttonOnClick, buttonTitle, buttonPrefix, buttonSuffix, withoutDivider, tooltip} = this.props;
+    const {title, subtitle, buttonOnClick, buttonTitle, buttonPrefix, buttonSuffix, withoutDivider, tooltip, theme} = this.props;
 
     const headerClasses = classNames({
       [styles.headerOnlyTitle]: !subtitle,
@@ -34,15 +39,23 @@ class ButtonHeader extends WixComponent {
       [styles.withDivider]: !withoutDivider,
     });
 
+    const buttonClass = classNames({
+      [styles.button]: theme === 'standard',
+      [styles.buttonSmall]: theme === 'fullblue'
+    });
+
+    const height = theme === 'standard' ? 'medium' : 'small';
+    const buttonTheme = theme === 'standard' ? 'whiteblueprimary' : 'fullblue';
+
     const buttonElement = (
-      <div className={styles.button}>
+      <div className={buttonClass}>
         <Button
           dataHook="button"
-          height="medium"
+          height={height}
           suffixIcon={buttonSuffix}
           prefixIcon={buttonPrefix}
           onClick={buttonOnClick}
-          theme="whiteblueprimary"
+          theme={buttonTheme}
           >
           {buttonTitle}
         </Button>

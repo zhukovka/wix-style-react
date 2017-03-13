@@ -13,6 +13,12 @@
     margin-bottom: -12px;
     top: -4px;
   }
+
+  .buttonSmall {
+    @extend .button;
+    right: 0;
+    top: -2px;
+  }
 }
 
 .headerTitleSubtitle {
@@ -20,5 +26,10 @@
 
   .button {
     top: 7px;
+  }
+
+  .buttonSmall {
+    right: 0;
+    top: 9px;
   }
 }
