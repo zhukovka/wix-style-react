@@ -30,6 +30,7 @@ function loadStories() {
   require('../stories/MultiSelect');
   require('../stories/RadioGroup');
   require('../stories/SideBar');
+  require('../stories/SideMenu');
   require('../stories/Slider');
   require('../stories/Tag');
   require('../stories/TextLink');
