@@ -7,10 +7,11 @@
   justify-content: space-between;
 
   .button {
-    position: absolute;
+    position: relative;
     text-align: right;
-    right: 22px;
-    top: 23px;
+    right: -23px;
+    margin-bottom: -12px;
+    top: -4px;
   }
 }
 
@@ -18,6 +19,6 @@
   @extend .headerOnlyTitle;
 
   .button {
-    top: 33px;
+    top: 7px;
   }
 }

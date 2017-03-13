@@ -170,90 +170,96 @@ export default () =>
       </Row>
 
       <Row>
-        <Col span={4}>
-          <Card>
-            <Card.LinkHeader linkTo= 'http://www.wix.com/' linkTitle= 'Link to Wix' title= 'Card with link'/>
-            <Card.Content>
-              <Row>
-                <Col span={12}>
-                  {renderStandardInput()}
-                </Col>
-              </Row>
-            </Card.Content>
-          </Card>
+        <Col span={8}>
+          <Row>
+            <Col span={6}>
+              <Card>
+                <Card.LinkHeader linkTo= 'http://www.wix.com/' linkTitle= 'Link to Wix' title= 'Card with link'/>
+                <Card.Content>
+                  <Row>
+                    <Col span={12}>
+                      {renderStandardInput()}
+                    </Col>
+                  </Row>
+                </Card.Content>
+              </Card>
+            </Col>
+            <Col span={6}>
+              <Card>
+                <Card.LinkHeader
+                  tooltip={<Tooltip placement="top" alignment="center" content="Hi there!"/>}
+                  title='Card header'
+                  linkTo='http://www.wix.com/'
+                  linkTitle= 'Tooltip link!'
+                  subtitle='Subtitle'/>
+                <Card.Content>
+                  <Row>
+                    <Col span={6}>
+                      {renderStandardInput()}
+                    </Col>
+                  </Row>
+                </Card.Content>
+              </Card>
+            </Col>
+          </Row>
+          <Row>
+            <Col span={6}>
+              <Card>
+                <Card.ButtonHeader title="Card header" buttonOnClick={() => {alert('Clicked!')}} buttonPrefix={<Plus/>} buttonTitle='Click Me!'/>
+                <Card.Content>
+                  <Row>
+                    <Col span={12}>
+                      {renderStandardInput()}
+                    </Col>
+                  </Row>
+                </Card.Content>
+              </Card>
+            </Col>
+            <Col span={6}>
+              <Card>
+                <Card.ButtonHeader title="Card header" buttonOnClick={() => {alert('Clicked!')}} buttonSuffix={<ArrowDownThin/>} buttonTitle='Click Me!'/>
+                <Card.Content>
+                  <Row>
+                    <Col span={6}>
+                      {renderStandardInput()}
+                    </Col>
+                  </Row>
+                </Card.Content>
+              </Card>
+            </Col>
+          </Row>
         </Col>
         <Col span={4}>
-          <Card>
-            <Card.LinkHeader
-              tooltip={<Tooltip placement="top" alignment="center" content="Hi there!"/>}
-              title='Card header'
-              linkTo='http://www.wix.com/'
-              linkTitle= 'Tooltip link!'
-              subtitle='Subtitle'/>
-            <Card.Content>
-              <Row>
-                <Col span={6}>
-                  {renderStandardInput()}
-                </Col>
-              </Row>
-            </Card.Content>
-          </Card>
-        </Col>
-        <Col span={4}>
-          <Card>
-            <Card.ButtonHeader title="Card header" subtitle="Card subtitle" buttonOnClick={() => {alert('Clicked!')}} buttonTitle='Click Me!'/>
-            <Card.Content>
-              <Row>
-                <Col span={6}>
-                  {renderStandardInput()}
-                </Col>
-                <Col span={6}>
-                  {renderStandardInput()}
-                </Col>
-              </Row>
-            </Card.Content>
-          </Card>
-        </Col>
-      </Row>
-      <Row>
-        <Col span={4}>
-          <Card>
-            <Card.ButtonHeader title="Card header" buttonOnClick={() => {alert('Clicked!')}} buttonPrefix={<Plus/>} buttonTitle='Click Me!'/>
-            <Card.Content>
-              <Row>
-                <Col span={12}>
-                  {renderStandardInput()}
-                </Col>
-              </Row>
-            </Card.Content>
-          </Card>
-        </Col>
-        <Col span={4}>
-          <Card>
-            <Card.ButtonHeader title="Card header" buttonOnClick={() => {alert('Clicked!')}} buttonSuffix={<ArrowDownThin/>} buttonTitle='Click Me!'/>
-            <Card.Content>
-              <Row>
-                <Col span={6}>
-                  {renderStandardInput()}
-                </Col>
-              </Row>
-            </Card.Content>
-          </Card>
-        </Col>
-        <Col span={4}>
-          <Card>
-            <Card.ButtonHeader withoutDivider title="Card header" subtitle="No divider" buttonOnClick={() => {alert('Clicked!')}} buttonPrefix={<ArrowDownThin/>} buttonTitle='Click Me!'/>
-            <Card.Content>
-              <Row>
-                <Col span={6}>
-                  {renderStandardInput()}
-                </Col>
-                <Col span={6}>
-                  {renderStandardInput()}
-                </Col>
-              </Row>
-            </Card.Content>
-          </Card>
+          <Row>
+            <Card>
+              <Card.ButtonHeader title="Card header" subtitle="Card subtitle" buttonOnClick={() => {alert('Clicked!')}} buttonTitle='Click Me!'/>
+              <Card.Content>
+                <Row>
+                  <Col span={6}>
+                    {renderStandardInput()}
+                  </Col>
+                  <Col span={6}>
+                    {renderStandardInput()}
+                  </Col>
+                </Row>
+              </Card.Content>
+            </Card>
+          </Row>
+          <Row>
+            <Card>
+              <Card.ButtonHeader withoutDivider title="Header" subtitle="No divider" buttonOnClick={() => {alert('Clicked!')}} buttonPrefix={<ArrowDownThin/>} buttonTitle='Click Me!'/>
+              <Card.Content>
+                <Row>
+                  <Col span={6}>
+                    {renderStandardInput()}
+                  </Col>
+                  <Col span={6}>
+                    {renderStandardInput()}
+                  </Col>
+                </Row>
+              </Card.Content>
+            </Card>
+          </Row>
         </Col>
       </Row>
       <Row>
