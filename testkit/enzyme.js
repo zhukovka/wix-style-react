@@ -48,6 +48,9 @@ export const buttonTestkitFactory = enzymeTestkitFactoryCreator(buttonDriverFact
 import textLinkDriverFactory from '../src/TextLink/TextLink.driver';
 export const textLinkTestkitFactory = enzymeTestkitFactoryCreator(textLinkDriverFactory);
 
+import textLinkLayoutDriverFactory from '../src/TextLinkLayout/TextLinkLayout.driver';
+export const textLinkLayoutTestkitFactory = enzymeTestkitFactoryCreator(textLinkLayoutDriverFactory);
+
 import dataTableDriverFactory from '../src/DataTable/DataTable.driver';
 export const dataTableTestkitFactory = enzymeTestkitFactoryCreator(dataTableDriverFactory);
 

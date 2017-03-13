@@ -2,7 +2,7 @@
 
 A grid container is based on rows with a 12 column layout.
 
-For full documentation read [Bootstrap docs](https://v4-alpha.getbootstrap.com/layout/grid)
+For full documentation read [Bootstrap docs](http://getbootstrap.com/css/#grid)
 
 ## wix-style-react additions to bootstrap
 
