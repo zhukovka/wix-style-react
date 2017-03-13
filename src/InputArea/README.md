@@ -10,8 +10,8 @@
 | theme | string | normal | - | The theme of the input, can be one of `normal`, `paneltitle` |
 | defaultValue | string | - | - | Default value for those who wants to use this component un-controlled |
 | rows | number | - | - | Sets initial height according to the number of rows (chrome uses the rows for minHeight as well) |
-| minHeight | number | - | - | - |
-| maxHeight | number | - | - | - |
+| minHeight | string | - | - | i.e. '12px' |
+| maxHeight | string | - | - | i.e. '12px' |
 | resizable | bool | false | - | - |
 | tabIndex  | number | - | - | - |
 | placeholder  | string | - | - | Placeholder to display |

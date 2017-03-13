@@ -1,0 +1,23 @@
+@import '../../Typography/Typography.scss';
+@import '../Header/Header.scss';
+
+.headerOnlyTitle {
+  @extend .header;
+  display: flex;
+  justify-content: space-between;
+
+  .button {
+    position: absolute;
+    text-align: right;
+    right: 22px;
+    top: 23px;
+  }
+}
+
+.headerTitleSubtitle {
+  @extend .headerOnlyTitle;
+
+  .button {
+    top: 33px;
+  }
+}

@@ -84,4 +84,13 @@ import richTextAreaCompositeDriverFactory from '../src/RichTextAreaComposite/Ric
 export const richTextAreaCompositeTestkitFactory = testkitFactoryCreator(richTextAreaCompositeDriverFactory);
 
 
+import buttonHeaderDriverFactory from '../src/Card/ButtonHeader/ButtonHeader.driver';
+export const buttonHeaderTestkitFactory = testkitFactoryCreator(buttonHeaderDriverFactory);
+
+import linkHeaderDriverFactory from '../src/Card/LinkHeader/LinkHeader.driver';
+export const linkHeaderTestkitFactory = testkitFactoryCreator(linkHeaderDriverFactory);
+
+import headerDriverFactory from '../src/Card/Header/Header.driver';
+export const headerTestkitFactory = testkitFactoryCreator(headerDriverFactory);
+
 export {toastTestkitFactory} from '../src/Toast/testkit/Toast';

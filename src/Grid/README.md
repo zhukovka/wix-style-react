@@ -16,19 +16,39 @@ Use ".wix-container" instead of bootstrap's ".container".
 
 #### Card
 
+The card is a container component of a rounded corner layout
+
+#### Card.Header
+
 | propName | propType | defaultValue | isRequired | description |
 |----------|----------|--------------|------------|-------------|
-| title | string | - | - | The title of the card |
+| title | string | - | + | The title of the card |
 | subtitle | string | - | - | The subtitle of the card |
-| withoutDivider | bool | - | - | Whether to draw divider between the titles and the content or not |
-| link | Object of Card Link | - | - | show a link in the header, will be shown only if a title is set |
+| withoutDivider | bool | false | - | Whether to show divider or not |
 
-#### Card Link
+#### Card.ButtonHeader
 
 | propName | propType | defaultValue | isRequired | description |
 |----------|----------|--------------|------------|-------------|
-| link | string | - | - | The link itself |
-| title | string | - | - | the title to this link |
+| title | string | - | + | The title of the card |
+| subtitle | string | - | - | The subtitle of the card |
+| buttonTitle | string | - | + | The text to write on the button |
+| buttonOnClick | func | - | + | The onClick function |
+| buttonPrefix | node | - | - | An optional Icon to put before the button |
+| buttonSuffix | node | - | - | An optional Icon to put after the button |
+| tooltip | node | - | - | If set, this tooltip will wrap the button |
+| withoutDivider | bool | false | - | Whether to show divider or not |
+
+#### Card.LinkHeader
+
+| propName | propType | defaultValue | isRequired | description |
+|----------|----------|--------------|------------|-------------|
+| title | string | - | + | The title of the card |
+| subtitle | string | - | - | The subtitle of the card |
+| linkTo | string | - | + | The link to send the user to |
+| linkTitle | string | - | + | The link text |
+| tooltip | node | - | - | If set, this tooltip will wrap the link |
+| withoutDivider | bool | false | - | Whether to show divider or not |
 
 #### Row
 

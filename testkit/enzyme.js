@@ -81,6 +81,15 @@ export const fieldWithSelectionCompositeTestkitFactory = enzymeTestkitFactoryCre
 import googleAddressWithInputDriverFactory from '../src/GoogleAddressInputWithLabel/GoogleAddressInputWithLabel.driver';
 export const googleAddressWithInputTestkitFactory = enzymeTestkitFactoryCreator(googleAddressWithInputDriverFactory);
 
+import buttonHeaderDriverFactory from '../src/Card/ButtonHeader/ButtonHeader.driver';
+export const buttonHeaderTestkitFactory = enzymeTestkitFactoryCreator(buttonHeaderDriverFactory);
+
+import linkHeaderDriverFactory from '../src/Card/LinkHeader/LinkHeader.driver';
+export const linkHeaderTestkitFactory = enzymeTestkitFactoryCreator(linkHeaderDriverFactory);
+
+import headerDriverFactory from '../src/Card/Header/Header.driver';
+export const headerTestkitFactory = enzymeTestkitFactoryCreator(headerDriverFactory);
+
 import richTextAreaCompositeDriverFactory from '../src/RichTextAreaComposite/RichTextAreaComposite.driver';
 export const richTextAreaCompositeTestkitFactory = enzymeTestkitFactoryCreator(richTextAreaCompositeDriverFactory);
 

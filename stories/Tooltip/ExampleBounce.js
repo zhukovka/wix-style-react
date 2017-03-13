@@ -7,7 +7,7 @@ class ExampleBounce extends Component {
 
   state = {
     bounce: true
-  }
+  };
 
   clearPendingTimeout() {
     if (this._timeoutId) {

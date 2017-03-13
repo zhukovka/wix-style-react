@@ -19,7 +19,7 @@ class Tooltip extends WixComponent {
   }
 
   static propTypes = {
-    children: PropTypes.element.isRequired,
+    children: PropTypes.node,
     content: PropTypes.node.isRequired,
     placement: PropTypes.oneOf(['top', 'right', 'bottom', 'left']),
     alignment: PropTypes.oneOf(['top', 'right', 'bottom', 'left', 'center']),
@@ -70,7 +70,8 @@ class Tooltip extends WixComponent {
     active: false,
     onActiveChange: () => {},
     theme: 'light',
-    disabled: false
+    disabled: false,
+    children: null
   };
 
   _childNode = null;
@@ -133,14 +134,18 @@ class Tooltip extends WixComponent {
 
   render() {
     const child = this.props.children;
-    return cloneElement(child, {
-      ref: ref => this._childNode = ReactDOM.findDOMNode(ref),
-      onClick: this._chainCallbacks(child.props ? child.props.onClick : null, this._onClick),
-      onMouseEnter: this._chainCallbacks(child.props ? child.props.onMouseEnter : null, this._onMouseEnter),
-      onMouseLeave: this._chainCallbacks(child.props ? child.props.onMouseLeave : null, this._onMouseLeave),
-      onFocus: this._chainCallbacks(child.props ? child.props.onFocus : null, this._onFocus),
-      onBlur: this._chainCallbacks(child.props ? child.props.onBlur : null, this._onBlur)
-    });
+    if (child) {
+      return cloneElement(child, {
+        ref: ref => this._childNode = ReactDOM.findDOMNode(ref),
+        onClick: this._chainCallbacks(child.props ? child.props.onClick : null, this._onClick),
+        onMouseEnter: this._chainCallbacks(child.props ? child.props.onMouseEnter : null, this._onMouseEnter),
+        onMouseLeave: this._chainCallbacks(child.props ? child.props.onMouseLeave : null, this._onMouseLeave),
+        onFocus: this._chainCallbacks(child.props ? child.props.onFocus : null, this._onFocus),
+        onBlur: this._chainCallbacks(child.props ? child.props.onBlur : null, this._onBlur)
+      });
+    } else {
+      return (<div/>);
+    }
   }
 
   _chainCallbacks = (first, second) => {
@@ -152,7 +157,7 @@ class Tooltip extends WixComponent {
         second.apply(this, args);
       }
     };
-  }
+  };
 
   _getContainer() {
     return this.props.appendToParent ? this._childNode.parentElement : document.body;
@@ -216,6 +221,7 @@ class Tooltip extends WixComponent {
   _onBlur() {
     this._hideOrShow('blur');
   }
+
   _onFocus() {
     this._hideOrShow('focus');
   }
