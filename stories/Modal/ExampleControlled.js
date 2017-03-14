@@ -1,7 +1,7 @@
 import React, {PropTypes, Component} from 'react';
 import Modal from 'wix-style-react/Modal';
 import Button from 'wix-style-react/Button';
-import MessageBoxLayout2 from 'wix-style-react/MessageBox/MessageBoxLayout2';
+import MessageBoxFunctionalLayout from 'wix-style-react/MessageBox/MessageBoxFunctionalLayout';
 
 class ControlledModal extends Component {
   static propTypes = {
@@ -23,9 +23,9 @@ class ControlledModal extends Component {
       <div>
         <Button onClick={open} >Open Blue Modal</Button>
         <Modal isOpen={this.state.isOpen} onRequestClose={close} contentLabel="Modal Example">
-          <MessageBoxLayout2 theme="blue" title="title" confirmText="OK" cancelText="Cancel" onOk={close} onCancel={close}>
+          <MessageBoxFunctionalLayout theme="blue" title="title" confirmText="OK" cancelText="Cancel" onOk={close} onCancel={close}>
               Hello blue world!
-          </MessageBoxLayout2>
+          </MessageBoxFunctionalLayout>
         </Modal>
       </div>
     );
