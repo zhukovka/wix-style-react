@@ -117,7 +117,7 @@ class Input extends Component {
       {
         component: () =>
           <div className={styles.menuArrow} disabled={disabled} onClick={onIconClicked}>
-            <ArrowDownThin size={'0.5em'}/>
+            <ArrowDownThin size={'0.6em'}/>
           </div>,
         isVisible: menuArrow && !isClearButtonVisible && !error && !magnifyingGlass
       },
