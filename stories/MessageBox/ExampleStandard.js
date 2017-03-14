@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
-import MessageBoxMarketerialLayout from 'wix-style-react/MessageBox/MessageBoxMarketerialLayout';
-import MessageBoxFunctionalLayout from 'wix-style-react/MessageBox/MessageBoxFunctionalLayout';
+import MessageBoxLayout1 from 'wix-style-react/MessageBox/MessageBoxLayout1';
+import MessageBoxLayout2 from 'wix-style-react/MessageBox/MessageBoxLayout2';
 import Button from 'wix-style-react/Button';
 
 const NgIf = ({show, children}) => show ? children : null;
@@ -22,15 +22,15 @@ class ControlledMessageBoxes extends Component {
       <div>
         <div style={{padding: '0 5px 16px'}}>
           <div style={{display: 'inline-block', padding: '0 5px'}}>
-            <Button onClick={openLayout1} >Show MessageBoxMarketerialLayout</Button>
+            <Button onClick={openLayout1} >Show MessageBoxLayout1</Button>
           </div>
           <div style={{display: 'inline-block', padding: '0 5px'}}>
-            <Button onClick={openLayout2} >Show MessageBoxFunctionalLayout</Button>
+            <Button onClick={openLayout2} >Show MessageBoxLayout2</Button>
           </div>
         </div>
 
         <NgIf show={this.state.opened === 'layout1'}>
-          <MessageBoxMarketerialLayout
+          <MessageBoxLayout1
             title={<span>Looking Good! <br/> Your Site Is On Google</span>}
             content="All of your pages are indexed and now come up as separate search results on Google. This is great for your visbility!"
             primaryButtonLabel="Got It"
@@ -44,7 +44,7 @@ class ControlledMessageBoxes extends Component {
         </NgIf>
 
         <NgIf show={this.state.opened === 'layout2'}>
-          <MessageBoxFunctionalLayout
+          <MessageBoxLayout2
             title={<span>This is title</span>}
             primaryButtonLabel="Got It"
             confirmText="Confirm"
@@ -56,7 +56,7 @@ class ControlledMessageBoxes extends Component {
             <div>
               All of your pages are indexed and now come up as separate search results on Google. This is great for your visbility!
             </div>
-          </MessageBoxFunctionalLayout>
+          </MessageBoxLayout2>
         </NgIf>
       </div>
     );

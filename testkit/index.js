@@ -96,10 +96,4 @@ export const linkHeaderTestkitFactory = testkitFactoryCreator(linkHeaderDriverFa
 import headerDriverFactory from '../src/Card/Header/Header.driver';
 export const headerTestkitFactory = testkitFactoryCreator(headerDriverFactory);
 
-import messageBoxFunctionalLayoutDriverFactory from '../src/MessageBox/MessageBoxFunctionalLayout.driver';
-export const messageBoxFunctionalLayoutTestkitFactory = testkitFactoryCreator(messageBoxFunctionalLayoutDriverFactory);
-
-import messageBoxMarketerialLayoutDriverFactory from '../src/MessageBox/MessageBoxMarketerialLayout.driver';
-export const messageBoxMarketerialLayoutTestkitFactory = testkitFactoryCreator(messageBoxMarketerialLayoutDriverFactory);
-
 export {toastTestkitFactory} from '../src/Toast/testkit/Toast';

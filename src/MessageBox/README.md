@@ -2,7 +2,7 @@
 
 > Message box Layouts
 
-## MessageBoxMarketerialLayout Properties
+## MessageBoxLayout1 Properties
 
 | propName | propType | defaultValue | isRequired | description |
 |----------|----------|--------------|------------|-------------|
@@ -15,7 +15,7 @@
 | imageUrl | string | - | - | Header image url |
 | onClose | func | - | + | Close callback |
 
-## MessageBoxFunctionalLayout Properties
+## MessageBoxLayout2 Properties
 
 | propName | propType | defaultValue | isRequired | description |
 |----------|----------|--------------|------------|-------------|
