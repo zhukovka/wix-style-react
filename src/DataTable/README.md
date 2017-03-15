@@ -22,6 +22,9 @@
 | loader | node | Loading ...| - | The loader to show when loading more items. |
 | useWindow | boolean | true | - | Add scroll listeners to the window, or else, the component's parentNode. |
 | scrollElement | DOM Object | - | - | Add scroll listeners to specified DOM Object. |
+| thPadding | string | '5px' | - | Table headers padding |
+| thHeight | string | '36px' | - | Table headers height |
+| thFontSize | string | '12px' | - | Table headers font size |
 
 ### Column object props
 

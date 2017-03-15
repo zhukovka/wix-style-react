@@ -133,7 +133,12 @@ class DataTable extends WixCopmonent {
   };
 
   renderHeaderCell = (column, colNum) => {
-    const style = {width: column.width};
+    const style = {
+      width: column.width,
+      padding: this.props.thPadding,
+      height: this.props.thHeight,
+      'font-size': this.props.thFontSize
+    };
     return <th style={style} key={colNum}>{column.title}</th>;
   };
 
@@ -170,7 +175,10 @@ DataTable.defaultProps = {
   hasMore: false,
   loader: <div className="loader">Loading ...</div>,
   scrollElement: null,
-  useWindow: true
+  useWindow: true,
+  thPadding: '5px',
+  thHeight: '36px',
+  thFontSize: '12px'
 };
 
 DataTable.propTypes = {
@@ -195,7 +203,10 @@ DataTable.propTypes = {
   hasMore: PropTypes.bool,
   loader: PropTypes.node,
   useWindow: PropTypes.bool,
-  scrollElement: PropTypes.object
+  scrollElement: PropTypes.object,
+  thPadding: PropTypes.string,
+  thHeight: PropTypes.string,
+  thFontSize: PropTypes.string
 };
 
 DataTable.displayName = 'DataTable';
