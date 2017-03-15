@@ -1,8 +1,12 @@
 import React from 'react';
-import SideMenu from 'wix-style-react/SideMenu';
+import {
+  SideMenu,
+  Button
+} from 'wix-style-react';
 
 import HelpIcon from '../../src/Icons/dist/components/Help';
 import TrashIcon from '../../src/Icons/dist/components/Trash3';
+import ChatIcon from '../../src/Icons/dist/components/Chat';
 
 export default () =>
   <div style={{width: 220, height: 700}}>
@@ -35,6 +39,15 @@ export default () =>
         </SideMenu.NavigationLink>
       </SideMenu.Navigation>
 
+      <SideMenu.Promotion>
+        <Button
+          theme="fullpurple"
+          onClick={() => console.log('Promotion button clicked!')}
+          >
+          Buy 1 for price of 2!
+        </Button>
+      </SideMenu.Promotion>
+
       <SideMenu.Footer>
         <SideMenu.FooterLink
           href="https://support.wix.com/"
@@ -43,6 +56,14 @@ export default () =>
           >
           Help Me!
         </SideMenu.FooterLink>
+
+        <SideMenu.FooterTinyLink
+          href="https://support.wix.com/en/article/wix-seo-wiz-suggestions-and-feedback"
+          target="_blank"
+          icon={<div style={{marginTop: 2}}><ChatIcon size="1em"/></div>}
+          tooltip="Hey, come talk to me!"
+          onClick={() => console.lo('clicked on tiny link yay!')}
+          />
       </SideMenu.Footer>
     </SideMenu>
   </div>;

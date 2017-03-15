@@ -48,6 +48,15 @@ thin line to separate nav items
 | children | node     | -            | -          | -           |
 
 
+### Promotion `<SideMenu.Promotion />`
+
+dump container for promotion button. Tries to stick to the bottom
+
+| propName | propType | defaultValue | isRequired | description |
+| -        | -        | -            | -          | -           |
+| children | node     | -            | -          | -           |
+
+
 ### Footer `<SideMenu.Footer />`
 
 container for `FooterLink`s (or any other node)
@@ -70,8 +79,8 @@ stylized link
 
 ## Important remarks
 
-* `<SideMenu/>` doesn't care how and where you render it. This means you take care of its `width` and/or
-`height`, whether it's `position: fixed` or something else.
+* `<SideMenu/>` doesn't care how and where you render it. It takes full
+width & height so it's up to you to set parent styling appropriately
 
 * `<SideMenu/>` has no padding or margin. So, if you want e.g. logo to not stick
 to the top, adjust padding or margin to the children of `<SideMenu.Logo/>`

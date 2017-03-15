@@ -11,15 +11,17 @@
 .logo {
   display: block;
   padding: 0;
-  margin: auto;
+  margin: 0 auto;
   border: 0;
   background: transparent;
   outline: 0;
   cursor: pointer;
+  color: $D80;
 }
 
 .promotion {
   padding: 1em 0;
+  margin-top: auto;
   text-align: center;
 }
 
