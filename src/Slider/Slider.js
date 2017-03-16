@@ -44,8 +44,9 @@ export default class Slider extends Component {
 
   render() {
     const marks = this.props.displayMarks ? this.getMarks() : {};
+    const {dataHook} = this.props;
     return (
-      <div className={classNames('wix-slider', {rtl: this.props.rtl})} id={this.props.id}>
+      <div className={classNames('wix-slider', {rtl: this.props.rtl})} id={this.props.id} dataHook={dataHook}>
         <Rcslider
           handle={<SliderHandle/>}
           min={this.props.min}
@@ -73,7 +74,8 @@ Slider.propTypes = {
   onAfterChange: PropTypes.func,
   allowCross: PropTypes.bool,
   displayMarks: PropTypes.bool,
-  rtl: PropTypes.bool
+  rtl: PropTypes.bool,
+  dataHook: PropTypes.string
 };
 
 Slider.defaultProps = {

@@ -1,5 +1,9 @@
+import React from 'react';
 import _ from 'lodash/fp';
+import {mount} from 'enzyme';
+import Slider from './Slider';
 import {componentFactory, sliderDriverFactory} from './testkit/Slider';
+import {sliderTestkitFactory as enzymeSliderTestkitFactory} from '../../testkit/enzyme';
 
 describe('Slider', () => {
   let driver;
@@ -50,5 +54,18 @@ describe('Slider', () => {
     driver.hoverHandle({handleIndex: 1});
 
     expect(driver.getToolTipValue()).toBe(`${selectedValues[1]}`);
+  });
+});
+
+
+describe('enzyme testkit', () => {
+  it('should exist', () => {
+    const onChange = jest.fn(value => this.setState({value}));
+    const value = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+    const dataHook = 'slider-enzyme';
+    const wrapper = mount(<div><Slider onChange={onChange} data-hook={dataHook} value={value} min={1} max={10} step={1}/></div>);
+    const sliderTestkit = enzymeSliderTestkitFactory({wrapper, dataHook});
+
+    expect(sliderTestkit.exists()).toBe(true);
   });
 });

@@ -97,3 +97,6 @@ import richTextAreaCompositeDriverFactory from '../src/RichTextAreaComposite/Ric
 export const richTextAreaCompositeTestkitFactory = enzymeTestkitFactoryCreator(richTextAreaCompositeDriverFactory);
 
 export {toastTestkitFactory} from '../src/Toast/testkit/Toast.enzyme';
+
+import {sliderDriverFactory} from '../src/Slider/testkit/Slider';
+export const sliderTestkitFactory = enzymeTestkitFactoryCreator(sliderDriverFactory);

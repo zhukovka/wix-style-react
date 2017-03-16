@@ -12,6 +12,7 @@ const sliderDriverFactory = component => {
   const $sliderDots = $(component).find('.rc-slider-dot');
 
   return {
+    exists: () => !!component,
     isDotSelected: index => $sliderDots.filter(`:nth-child(${index})`).hasClass('rc-slider-dot-active'),
     numOfSliderDots: () => $sliderDots.length,
     numOfSLiderHandles: () => $sliderHandles.length,
@@ -35,8 +36,7 @@ const componentFactory = (props = {}) => {
   return component.childNodes[0];
 };
 
-const sliderTestkitFactory = ({wrapper, id}) => {
-  const component = $(wrapper).find(`#${id}`)[0];
+const sliderTestkitFactory = ({component}) => {
   return sliderDriverFactory(component);
 };
 
