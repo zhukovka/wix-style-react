@@ -44,7 +44,8 @@ class InputArea extends WixComponent {
       minHeight,
       maxHeight,
       resizable,
-      theme
+      theme,
+      errorMessage
     } = this.props;
 
     const inlineStyle = {};
@@ -88,7 +89,7 @@ class InputArea extends WixComponent {
           onKeyUp={onKeyUp}
           readOnly={readOnly}
           />
-        {error && <Exclamation/>}
+        {error && <Exclamation errorMessage={errorMessage}/>}
         {theme === 'material' && <div className={styles.bar}/>}
       </div>
     );
@@ -167,7 +168,8 @@ InputArea.propTypes = {
   rows: PropTypes.number,
   minHeight: PropTypes.string,
   maxHeight: PropTypes.string,
-  resizable: PropTypes.bool
+  resizable: PropTypes.bool,
+  errorMessage: PropTypes.string
 };
 
 export default InputArea;

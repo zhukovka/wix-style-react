@@ -17,6 +17,7 @@
 | placeholder  | string | - | - | Placeholder to display |
 | readOnly  | bool | false | - | Sets the input to readOnly |
 | error  | bool | false | - | Sets UI to erroneous |
+| errorMessage  | string | '' | - | The error message to display when hovering the error icon, if not given or empty there will be no tooltip |
 | autoFocus | bool | false  | - | Standard React Input autoFocus (focus the element on mount) |
 | autoSelect | bool | false | - | Standard React Input autoSelect (select the entire text of the element on focus) |
 | onChange  | func | - | - | onChange callback |
@@ -25,7 +26,6 @@
 | onEnterPressed | func | - | - | - |
 | onEscapePressed | func | - | - | - |
 | onKeyDown | func | - | - | - |
-| dataHook | string | normal | - | Specifies a data-hook for tests |
 
 ## Functions
 
