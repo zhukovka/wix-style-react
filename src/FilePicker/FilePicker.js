@@ -7,20 +7,18 @@ class FilePicker extends WixComponent {
   constructor(props) {
     super(props);
     this.state = {
-      hasFile: false,
       selectedFileName: props.subLabel
     };
   }
 
   onChooseFile(file) {
-    if (file) {
-      const {onChange} = this.props;
-      onChange(file);
+    const {maxSize, supportedFormats, onChange} = this.props;
 
-      this.setState({
-        hasFile: true,
-        selectedFileName: file.name
-      });
+    if (file) {
+      onChange(file);
+      if ((!supportedFormats.length || supportedFormats.includes(file.type)) && file.size <= maxSize) {
+        this.setState({selectedFileName: file.name});
+      }
     }
   }
 
@@ -46,14 +44,18 @@ class FilePicker extends WixComponent {
 FilePicker.defaultProps = {
   mainLabel: 'Choose File',
   subLabel: 'No file chosen (Max size 5 MB)',
-  onChange: () => {}
+  onChange: () => {},
+  supportedFormats: [],
+  maxSize: 5000000  //5MB
 };
 
 FilePicker.propTypes = {
   header: PropTypes.string,
   onChange: PropTypes.func,
   mainLabel: PropTypes.string,
-  subLabel: PropTypes.string
+  subLabel: PropTypes.string,
+  supportedFormats: PropTypes.array,
+  maxSize: PropTypes.number
 };
 
 export default FilePicker;
