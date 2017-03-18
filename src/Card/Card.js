@@ -1,11 +1,12 @@
-import React, {Component} from 'react';
+import React from 'react';
+import WixComponent from '../WixComponent';
 import styles from './Card.scss';
 import Content from './Content';
 import Header from './Header';
 import LinkHeader from './LinkHeader';
 import ButtonHeader from './ButtonHeader';
 
-class Card extends Component {
+class Card extends WixComponent {
 
   static propTypes = {
     children: React.PropTypes.node
