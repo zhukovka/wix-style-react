@@ -12,18 +12,18 @@ class FilePicker extends WixComponent {
   }
 
   onChooseFile(file) {
-    const {maxSize, supportedFormats, onChange} = this.props;
+    const {maxSize, onChange} = this.props;
 
     if (file) {
       onChange(file);
-      if ((!supportedFormats.length || supportedFormats.includes(file.type)) && file.size <= maxSize) {
+      if (file.size <= maxSize) {
         this.setState({selectedFileName: file.name});
       }
     }
   }
 
   render() {
-    const {header, mainLabel} = this.props;
+    const {header, mainLabel, supportedFormats} = this.props;
 
     return (
       <div>
@@ -34,7 +34,7 @@ class FilePicker extends WixComponent {
             <span className={styles.cta}>{mainLabel}</span>
             <span className={styles.info}>{this.state.selectedFileName}</span>
           </div>
-          <input className={styles.input} type="file" onChange={e => this.onChooseFile(e.target.files[0])}/>
+          <input className={styles.input} type="file" accept={supportedFormats} onChange={e => this.onChooseFile(e.target.files[0])}/>
         </label>
       </div>
     );
@@ -45,7 +45,7 @@ FilePicker.defaultProps = {
   mainLabel: 'Choose File',
   subLabel: 'No file chosen (Max size 5 MB)',
   onChange: () => {},
-  supportedFormats: [],
+  supportedFormats: '*',
   maxSize: 5000000  //5MB
 };
 
@@ -54,7 +54,7 @@ FilePicker.propTypes = {
   onChange: PropTypes.func,
   mainLabel: PropTypes.string,
   subLabel: PropTypes.string,
-  supportedFormats: PropTypes.array,
+  supportedFormats: PropTypes.string,
   maxSize: PropTypes.number
 };
 
