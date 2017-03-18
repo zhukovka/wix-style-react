@@ -192,6 +192,12 @@ $double-gap: 12px;
     path { stroke: #fff; }
 }
 
+.help {
+    margin: 0 $gap;
+    color: $B20;
+    padding-top: 4px;
+}
+
 .clear-button {
     cursor: pointer;
     padding: 0 $double-gap;
@@ -232,4 +238,3 @@ $double-gap: 12px;
         line { stroke: $GR40; }
     }
 }
-

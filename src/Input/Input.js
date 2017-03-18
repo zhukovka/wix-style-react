@@ -6,7 +6,7 @@ import Unit from './Unit';
 import Group from './Group';
 import InputPrefix from './InputPrefix';
 import InputSuffix from './InputSuffix';
-import {CloseThin, ArrowDownThin, Search4} from '../Icons/dist';
+import {CloseThin, ArrowDownThin, Search4, Help} from '../Icons/dist';
 import Tooltip from '../Tooltip';
 import SvgExclamation from '../svg/Exclamation.js';
 
@@ -36,6 +36,8 @@ class Input extends Component {
       forceFocus,
       placeholder,
       error,
+      help,
+      helpMessage,
       unit,
       magnifyingGlass,
       menuArrow,
@@ -99,6 +101,13 @@ class Input extends Component {
             <div className={styles.exclamation}><SvgExclamation width={2} height={11}/></div>
           </Tooltip>,
         isVisible: error && !disabled
+      },
+      {
+        component: () =>
+          <Tooltip disabled={helpMessage.length === 0} placement="top" moveBy={{x: 2, y: 0}} alignment="center" hideDelay={100} content={helpMessage} overlay="">
+            <div className={styles.help}><Help height="20" width="20"/></div>
+          </Tooltip>,
+        isVisible: help && !disabled
       },
       {
         component: () =>
@@ -231,6 +240,7 @@ Input.defaultProps = {
   theme: 'normal',
   size: 'normal',
   errorMessage: '',
+  helpMessage: '',
   roundInput: false
 };
 
@@ -269,8 +279,9 @@ Input.propTypes = {
   errorMessage: PropTypes.string,
   roundInput: PropTypes.bool,
   noLeftBorderRadius: PropTypes.string,
-  noRightBorderRadius: PropTypes.string
+  noRightBorderRadius: PropTypes.string,
+  help: PropTypes.bool,
+  helpMessage: PropTypes.string
 };
 
 export default Input;
-

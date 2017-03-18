@@ -69,6 +69,14 @@ describe('Input', () => {
     });
   });
 
+  describe('help attribute', () => {
+    it('should display an help icon if help is true', () => {
+      const driver = createDriver(<Input help/>);
+
+      expect(driver.hasHelp()).toBeTruthy();
+    });
+  });
+
   describe('unit attribute', () => {
     it('should the unit text if passed', () => {
       const unit = '$';

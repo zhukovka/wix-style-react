@@ -14,6 +14,8 @@
 | readOnly  | bool | false | - | Sets the input to readOnly |
 | error  | bool | false | - | Is input value erroneous |
 | errorMessage | string | - | - | The error message to display when hovering the error icon, if not given or empty there will be no tooltip |
+| help  | bool | false | - | Adding a suffix help icon |
+| helpMessage | string | - | - | The help message to display when hovering the help icon, if not given or empty there will be no tooltip |
 | unit  | string | - | - | Unit to display in input box |
 | magnifyingGlass | bool | false | - | Should the component include a magnifyingGlass |
 | menuArrow | bool | false | - | Should the component include a menu arrow |

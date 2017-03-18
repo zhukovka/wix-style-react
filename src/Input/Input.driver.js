@@ -26,6 +26,7 @@ const inputDriverFactory = ({element, wrapper, component}) => {
     prefixComponentExists: style => !!element.querySelector(`.${styles.prefix} ${style}`),
     suffixComponentExists: style => !!element.querySelector(`.${styles.suffix} ${style}`),
     hasExclamation: () => !!element.querySelector(`.${styles.exclamation}`),
+    hasHelp: () => !!element.querySelector(`.${styles.help}`),
     hasError: () => element.classList.contains(styles.hasError),
     getUnit: () => element.querySelector(`.${styles.unit}`).textContent,
     hasMagnifyingGlass: () => !!element.querySelector(`.${styles.magnifyingGlass}`),
