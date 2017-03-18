@@ -1,6 +1,4 @@
-# Button component
-
-> General Buttons
+# TextLink component
 
 ## Properties
 
