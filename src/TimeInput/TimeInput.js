@@ -13,7 +13,8 @@ export default React.createClass({
     onChange: React.PropTypes.func,
     rtl: React.PropTypes.bool,
     style: React.PropTypes.object,
-    disableAmPm: React.PropTypes.bool
+    disableAmPm: React.PropTypes.bool,
+    dataHook: React.PropTypes.string
   },
 
   getDefaultProps() {
@@ -221,6 +222,7 @@ export default React.createClass({
               <Input.Ticker onUp={this.handlePlus} onDown={this.handleMinus}/>
             </Input.Group>
           }
+          dataHook="time-input"
           />
       </div>
     );
@@ -236,7 +238,7 @@ export default React.createClass({
     }
 
     return (
-      <span className={styles.ampm} onClick={this.toggleAmPm}>
+      <span className={styles.ampm} onClick={this.toggleAmPm} data-hook="am-pm-indicator">
         {this.state.am ? getAmText() : getPmText()}
       </span>
     );
@@ -260,7 +262,7 @@ export default React.createClass({
 
   render() {
     return (
-      <div className={styles.wrapper} style={this.props.style}>
+      <div className={styles.wrapper} style={this.props.style} data-hook={this.props.dataHook}>
         {this.renderTime()}
       </div>
     );

@@ -10,6 +10,7 @@ const inputDriverFactory = ({element, wrapper, component}) => {
   return {
     trigger: (trigger, event) => ReactTestUtils.Simulate[trigger](input, event),
     focus: () => input.focus(),
+    blur: () => ReactTestUtils.Simulate.blur(input),
     clickClear: () => ReactTestUtils.Simulate.click(clearButton),
     enterText: text => ReactTestUtils.Simulate.change(input, {target: {value: text}}),
     getValue: () => input.value,

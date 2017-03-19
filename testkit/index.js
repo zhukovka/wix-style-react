@@ -83,9 +83,9 @@ export const fieldWithSelectionCompositeTestkitFactory = testkitFactoryCreator(f
 
 import googleAddressWithInputDriverFactory from '../src/GoogleAddressInputWithLabel/GoogleAddressInputWithLabel.driver';
 export const googleAddressWithInputTestkitFactory = testkitFactoryCreator(googleAddressWithInputDriverFactory);
+
 import richTextAreaCompositeDriverFactory from '../src/RichTextAreaComposite/RichTextAreaComposite.driver';
 export const richTextAreaCompositeTestkitFactory = testkitFactoryCreator(richTextAreaCompositeDriverFactory);
-
 
 import buttonHeaderDriverFactory from '../src/Card/ButtonHeader/ButtonHeader.driver';
 export const buttonHeaderTestkitFactory = testkitFactoryCreator(buttonHeaderDriverFactory);
@@ -95,5 +95,17 @@ export const linkHeaderTestkitFactory = testkitFactoryCreator(linkHeaderDriverFa
 
 import headerDriverFactory from '../src/Card/Header/Header.driver';
 export const headerTestkitFactory = testkitFactoryCreator(headerDriverFactory);
+
+import messageBoxFunctionalLayoutDriverFactory from '../src/MessageBox/MessageBoxFunctionalLayout.driver';
+export const messageBoxFunctionalLayoutTestkitFactory = testkitFactoryCreator(messageBoxFunctionalLayoutDriverFactory);
+
+import messageBoxMarketerialLayoutDriverFactory from '../src/MessageBox/MessageBoxMarketerialLayout.driver';
+export const messageBoxMarketerialLayoutTestkitFactory = testkitFactoryCreator(messageBoxMarketerialLayoutDriverFactory);
+
+import modalDriverFactory from '../src/Modal/Modal.driver';
+export const modalTestkitFactory = testkitFactoryCreator(modalDriverFactory);
+
+import timeInputDriverFactory from '../src/TimeInput/TimeInput.driver';
+export const timeInputTestkitFactory = testkitFactoryCreator(timeInputDriverFactory);
 
 export {toastTestkitFactory} from '../src/Toast/testkit/Toast';

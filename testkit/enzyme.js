@@ -84,6 +84,12 @@ export const fieldWithSelectionCompositeTestkitFactory = enzymeTestkitFactoryCre
 import googleAddressWithInputDriverFactory from '../src/GoogleAddressInputWithLabel/GoogleAddressInputWithLabel.driver';
 export const googleAddressWithInputTestkitFactory = enzymeTestkitFactoryCreator(googleAddressWithInputDriverFactory);
 
+import messageBoxFunctionalLayoutDriverFactory from '../src/MessageBox/MessageBoxFunctionalLayout.driver';
+export const messageBoxFunctionalLayoutTestkitFactory = enzymeTestkitFactoryCreator(messageBoxFunctionalLayoutDriverFactory);
+
+import messageBoxMarketerialLayoutDriverFactory from '../src/MessageBox/MessageBoxMarketerialLayout.driver';
+export const messageBoxMarketerialLayoutTestkitFactory = enzymeTestkitFactoryCreator(messageBoxMarketerialLayoutDriverFactory);
+
 import buttonHeaderDriverFactory from '../src/Card/ButtonHeader/ButtonHeader.driver';
 export const buttonHeaderTestkitFactory = enzymeTestkitFactoryCreator(buttonHeaderDriverFactory);
 
@@ -95,6 +101,12 @@ export const headerTestkitFactory = enzymeTestkitFactoryCreator(headerDriverFact
 
 import richTextAreaCompositeDriverFactory from '../src/RichTextAreaComposite/RichTextAreaComposite.driver';
 export const richTextAreaCompositeTestkitFactory = enzymeTestkitFactoryCreator(richTextAreaCompositeDriverFactory);
+
+import modalDriverFactory from '../src/Modal/Modal.driver';
+export const modalTestkitFactory = enzymeTestkitFactoryCreator(modalDriverFactory);
+
+import timeInputDriverFactory from '../src/TimeInput/TimeInput.driver';
+export const timeInputTestkitFactory = enzymeTestkitFactoryCreator(timeInputDriverFactory);
 
 export {toastTestkitFactory} from '../src/Toast/testkit/Toast.enzyme';
 
