@@ -106,7 +106,7 @@ class Input extends Component {
       },
       {
         component: () =>
-          <Tooltip disabled={helpMessage.length === 0} placement="right" moveBy={{x: 2, y: 0}} alignment="center" hideDelay={100} content={helpMessage} overlay="">
+          <Tooltip disabled={helpMessage.length === 0} maxWidth="250px" placement="right" moveBy={{x: 2, y: 0}} alignment="center" hideDelay={100} content={helpMessage} overlay="">
             <div className={styles.help}><Help height="20" width="20"/></div>
           </Tooltip>,
         isVisible: help && !disabled
