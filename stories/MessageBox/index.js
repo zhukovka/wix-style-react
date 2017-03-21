@@ -1,6 +1,6 @@
 import React from 'react';
 import {storiesOf} from '@kadira/storybook';
-import TabbedView from './TabbedView';
+import TabbedView from '../utils/Components/TabbedView';
 import Markdown from '../utils/Components/Markdown';
 import CodeExample from '../utils/Components/CodeExample';
 import Readme from '../../src/MessageBox/README.md';
