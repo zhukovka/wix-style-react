@@ -53,6 +53,18 @@ describe('Input', () => {
     });
   });
 
+  describe('textOverflow attribute', () => {
+    it('should pass down to the wrapped input', () => {
+      const driver = createDriver(<Input textOverflow="ellipsis"/>);
+      expect(driver.getTextOverflow()).toBe('ellipsis');
+    });
+
+    it('should pass down to the wrapped input with default clip value', () => {
+      const driver = createDriver(<Input/>);
+      expect(driver.getTextOverflow()).toBe('clip');
+    });
+  });
+
   describe('type attribute', () => {
     it('should set the type attribute', () => {
       const driver = createDriver(<Input type="number"/>);

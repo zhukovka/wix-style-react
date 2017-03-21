@@ -18,6 +18,7 @@ const inputDriverFactory = ({element, wrapper, component}) => {
     getDefaultValue: () => input.defaultValue,
     getTabIndex: () => input.tabIndex,
     getReadOnly: () => input.readOnly,
+    getTextOverflow: () => input.style['text-overflow'],
     getType: () => input.type,
     hasPrefix: () => element.querySelectorAll(`.${styles.prefix}`).length === 1,
     hasPrefixClass: () => element.querySelectorAll(`.${styles.input}.${styles.withPrefix}`).length === 1,
