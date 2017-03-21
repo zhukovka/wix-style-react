@@ -32,6 +32,25 @@ class Row extends Component {
   }
 }
 
+class AutoAdjustedRow extends Component {
+
+  DEFAULT_MAX_SPAN = 12;
+  static propTypes = {
+    children: React.PropTypes.node
+  };
+
+  render() {
+    const children = this.props.children;
+    const cols = Array.isArray(children) ? children : [children];
+    const spanSize = Math.floor(this.DEFAULT_MAX_SPAN / cols.length);
+    return (
+      <Row>
+        {cols.map((child, index) => <Col span={spanSize} key={index}>{child}</Col>)}
+      </Row>
+    );
+  }
+}
+
 class Col extends Component {
 
   static propTypes = {
@@ -50,4 +69,4 @@ class Col extends Component {
   }
 }
 
-export {Container, Row, Col, Card};
+export {Container, Row, AutoAdjustedRow, Col, Card};

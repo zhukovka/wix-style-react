@@ -1,5 +1,5 @@
 import React from 'react';
-import {Container, Row, Col, Card} from '../../src/Grid'
+import {Container, Row, AutoAdjustedRow, Col, Card} from '../../src/Grid'
 import styles from './ExampleGrid.scss'
 
 import TextField from '../../src/TextField';
@@ -27,6 +27,65 @@ function renderStandardInput() {
 export default () =>
   <div data-hook="card-example" className={styles.exampleContainer}>
     <Container>
+      <AutoAdjustedRow>
+        <Card>
+          <Card.ButtonHeader
+            tooltip={<Tooltip placement="top" alignment="center" content="Hi there!"/>}
+            title="AutoAdjustedRow Card 1"
+            buttonOnClick={() => {alert('Clicked!')}}
+            buttonPrefix={<Plus/>}
+            buttonTitle='Tooltip button!'
+          />
+        </Card>
+        <Card>
+          <Card.ButtonHeader
+            tooltip={<Tooltip placement="top" alignment="center" content="Hi there!"/>}
+            title="AutoAdjustedRow Card 2"
+            buttonOnClick={() => {alert('Clicked!')}}
+            buttonPrefix={<Plus/>}
+            buttonTitle='Tooltip button!'
+          />
+        </Card>
+      </AutoAdjustedRow>
+      <AutoAdjustedRow>
+        <Card>
+          <Card.ButtonHeader
+            tooltip={<Tooltip placement="top" alignment="center" content="Hi there!"/>}
+            title="AutoAdjustedRow Card 1"
+            buttonOnClick={() => {alert('Clicked!')}}
+            buttonPrefix={<Plus/>}
+            buttonTitle='Tooltip button!'
+          />
+        </Card>
+        <Card>
+          <Card.ButtonHeader
+            tooltip={<Tooltip placement="top" alignment="center" content="Hi there!"/>}
+            title="GridRow Card 2"
+            AutoAdjustedRow={() => {alert('Clicked!')}}
+            buttonPrefix={<Plus/>}
+            buttonTitle='Tooltip button!'
+          />
+        </Card>
+        <Card>
+          <Card.ButtonHeader
+            tooltip={<Tooltip placement="top" alignment="center" content="Hi there!"/>}
+            title="AutoAdjustedRow Card 3"
+            buttonOnClick={() => {alert('Clicked!')}}
+            buttonPrefix={<Plus/>}
+            buttonTitle='Tooltip button!'
+          />
+        </Card>
+        <Card>
+          <Card.ButtonHeader
+            tooltip={<Tooltip placement="top" alignment="center" content="Hi there!"/>}
+            title="AutoAdjustedRow Card 4"
+            buttonOnClick={() => {alert('Clicked!')}}
+            buttonPrefix={<Plus/>}
+            buttonTitle='Tooltip button!'
+          />
+        </Card>
+
+      </AutoAdjustedRow>
       <Row>
         <Col span={8}>
           <Card>

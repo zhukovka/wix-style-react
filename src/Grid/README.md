@@ -55,6 +55,12 @@ The card is a container component of a rounded corner layout
 
 A simple row according to the bootstrap docs
 
+#### AutoAdjustedRow
+
+A row with as much columns as children with the same width.
+Can be used for multiple (not more than 12) equal cards on the same row.
+##### Notice that the span of each element will be 12 % {the number of children}, so in case of result greater than 0, you'll get incomplete line
+
 #### Col
 
 A simple column according to the bootstrap docs
