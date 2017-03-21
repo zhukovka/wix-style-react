@@ -4,11 +4,7 @@
 
 ## Properties
 
-  animateAppear: true,
-  animateEnter: true,
-  animateLeave: true,
-  children: null
-
+# FadeAnimation & ScaleAnimation
 | propName | propType | defaultValue | isRequired | description |
 |----------|----------|--------------|------------|-------------|
 | animateAppear | boolean | true | - | Whether to animate on appear or not |
