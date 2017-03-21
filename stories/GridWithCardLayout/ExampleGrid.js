@@ -49,39 +49,23 @@ export default () =>
       </AutoAdjustedRow>
       <AutoAdjustedRow>
         <Card>
-          <Card.ButtonHeader
-            tooltip={<Tooltip placement="top" alignment="center" content="Hi there!"/>}
+          <Card.Header
             title="AutoAdjustedRow Card 1"
-            buttonOnClick={() => {alert('Clicked!')}}
-            buttonPrefix={<Plus/>}
-            buttonTitle='Tooltip button!'
           />
         </Card>
         <Card>
-          <Card.ButtonHeader
-            tooltip={<Tooltip placement="top" alignment="center" content="Hi there!"/>}
+          <Card.Header
             title="GridRow Card 2"
-            AutoAdjustedRow={() => {alert('Clicked!')}}
-            buttonPrefix={<Plus/>}
-            buttonTitle='Tooltip button!'
           />
         </Card>
         <Card>
-          <Card.ButtonHeader
-            tooltip={<Tooltip placement="top" alignment="center" content="Hi there!"/>}
+          <Card.Header
             title="AutoAdjustedRow Card 3"
-            buttonOnClick={() => {alert('Clicked!')}}
-            buttonPrefix={<Plus/>}
-            buttonTitle='Tooltip button!'
           />
         </Card>
         <Card>
-          <Card.ButtonHeader
-            tooltip={<Tooltip placement="top" alignment="center" content="Hi there!"/>}
+          <Card.Header
             title="AutoAdjustedRow Card 4"
-            buttonOnClick={() => {alert('Clicked!')}}
-            buttonPrefix={<Plus/>}
-            buttonTitle='Tooltip button!'
           />
         </Card>
 
