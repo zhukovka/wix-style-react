@@ -57,6 +57,7 @@ class Input extends Component {
       errorMessage,
       roundInput,
       noLeftBorderRadius,
+      maxLength,
       noRightBorderRadius
     } = this.props;
 
@@ -162,6 +163,7 @@ class Input extends Component {
           defaultValue={defaultValue}
           value={value}
           onChange={this._onChange}
+          maxLength={maxLength}
           onFocus={this._onFocus}
           onBlur={this._onBlur}
           onKeyDown={this._onKeyDown}
@@ -241,7 +243,8 @@ Input.defaultProps = {
   size: 'normal',
   errorMessage: '',
   helpMessage: '',
-  roundInput: false
+  roundInput: false,
+  maxLength: 524288
 };
 
 Input.propTypes = {
@@ -276,6 +279,7 @@ Input.propTypes = {
   prefix: PropTypes.node,
   suffix: PropTypes.node,
   type: PropTypes.node,
+  maxLength: PropTypes.number,
   errorMessage: PropTypes.string,
   roundInput: PropTypes.bool,
   noLeftBorderRadius: PropTypes.string,

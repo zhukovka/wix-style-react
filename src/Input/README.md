@@ -21,6 +21,7 @@
 | menuArrow | bool | false | - | Should the component include a menu arrow |
 | rtl  | bool | false | - | Flip the magnify glass image so it be more suitable to rtl |
 | autoFocus | bool | false  | - | Standard React Input autoFocus (focus the element on mount) |
+| maxLength | number | 524288 | - | Input max length |
 | autoSelect | bool | false | - | Standard React Input autoSelect (select the entire text of the element on focus) |
 | onChange  | func | - | - | Standard input onChange callback |
 | onBlur | func | - | -  | Standard input onBlur callback |
