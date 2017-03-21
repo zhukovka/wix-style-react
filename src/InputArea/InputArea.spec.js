@@ -166,7 +166,7 @@ describe('InputArea', () => {
   describe('onEnter attribute', () => {
     it('should be called when text is entered to the wrapped input', () => {
       const onEnterPressed = jest.fn();
-      const event = {key: "Enter", keyCode: 13, which: 13};
+      const event = {key: 'Enter', keyCode: 13, which: 13};
 
       const driver = createDriver(<InputArea onEnterPressed={onEnterPressed}/>);
 
