@@ -37,6 +37,11 @@ describe('Tag', () => {
     expect(driver.isRemovable()).toBeFalsy();
   });
 
+  it('should have disabled class if disabled is true', () => {
+    const driver = createDriver(<Tag disabled={true}>{label}</Tag>);
+    expect(driver.isDisabled()).toBeTruthy();
+  });
+
   it('should call onRemove function on remove', () => {
     const driver = createDriver(<Tag id={id} onRemove={onRemove}>{label}</Tag>);
 

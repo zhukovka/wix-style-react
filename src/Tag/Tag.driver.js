@@ -17,6 +17,7 @@ const tagDriverFactory = ({element, wrapper, component}) => {
     removeTag: () => ReactTestUtils.Simulate.click(removeButton),
     isThumbExists: () => isClassExists(thumb, 'thumb'),
     isWrapped: () => isClassExists(element, 'tagWrap') && isClassExists(contentWithoutThumb, 'innerTagWrap'),
+    isDisabled: () => isClassExists(element, 'disabled'),
     getLabel: () => element.textContent,
     getTitle: () => element.title,
     setProps: props => {

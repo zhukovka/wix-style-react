@@ -20,13 +20,17 @@
     cursor: pointer;
     padding-left: 10px;
     padding-bottom: 2px;
-    cursor: pointer;
     color: $B10;
     font-size: 14px;
 
     &:before {
       content: 'x';
     }
+  }
+
+  &.disabled {
+    background-color: $B50;
+    color: $D30;
   }
 }
 

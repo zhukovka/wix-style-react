@@ -5,19 +5,20 @@ import WixComponent from '../WixComponent';
 
 class Tag extends WixComponent {
   render() {
-    const {id, children, thumb, removable, onRemove, size, wrap} = this.props;
+    const {id, children, thumb, removable, onRemove, size, wrap, disabled} = this.props;
 
     const className = classNames({
       [styles.tag]: true,
       [styles.large]: size === 'large',
-      [styles.tagWrap]: wrap
+      [styles.tagWrap]: wrap,
+      [styles.disabled]: disabled
     });
 
     const innerClassName = wrap ? styles.innerTagWrap : '';
     const title = wrap ? children : '';
 
     return (
-      <span className={className} id={id} title={title}>
+      <span className={className} disabled={disabled} id={id} title={title}>
         {thumb && <span className={styles.thumb}>{thumb}</span>}
         <span className={innerClassName}>{children}</span>
         {removable && <a className={styles.tagRemoveButton} onClick={() => onRemove(id)}/>}
@@ -33,7 +34,8 @@ Tag.propTypes = {
   onRemove: PropTypes.func,
   removable: PropTypes.bool,
   size: PropTypes.oneOf(['small', 'large']),
-  wrap: PropTypes.boolean
+  wrap: PropTypes.boolean,
+  disabled: PropTypes.boolean
 };
 
 Tag.defaultProps = {
