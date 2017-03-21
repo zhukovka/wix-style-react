@@ -56,6 +56,9 @@ function loadStories() {
   require('../stories/Breadcrubms/CompositeStory');
   require('../stories/Tabs');
   require('../stories/Notification');
+
+  // Animations
+  require('../stories/Animations');
 }
 
 configure(loadStories, module);
