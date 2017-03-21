@@ -15,6 +15,7 @@
 | hideDelay       | number                                                        | 500          |            |             |
 | showTrigger     | string (custom, mouseenter, mouseleave, click, focus, blur)   | mouseenter   |            |             |
 | hideTrigger     | string (custom, mouseenter, mouseleave, click, focus, blur)   | mouseleave   |            |             |
+| maxWidth        | string (i.e. '1000px')                                        | 1200px       | false      | The tooltip max width |
 | active          | bool                                                          | false        |            |             |
 | bounce          | bool                                                          | false        |            |             |
 | moveBy          | object ({x: Number, y: Number})                               |              |            |             |

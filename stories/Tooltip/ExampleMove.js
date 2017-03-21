@@ -13,6 +13,7 @@ export default () =>
     hideTrigger="custom"
     theme="dark"
     moveBy={{ x: -40, y: 40 }}
+    maxWidth="400px"
     moveArrowTo={20}>
     <div className={styles.box}>
       <p>

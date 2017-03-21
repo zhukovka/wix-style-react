@@ -32,7 +32,7 @@ class Tooltip extends WixComponent {
     onActiveChange: PropTypes.func,
     bounce: PropTypes.bool,
     disabled: PropTypes.bool,
-
+    maxWidth: PropTypes.string,
     onClickOutside: PropTypes.func,
 
     /**
@@ -66,6 +66,7 @@ class Tooltip extends WixComponent {
     hideTrigger: 'mouseleave',
     showDelay: 200,
     hideDelay: 500,
+    maxWidth: '1200px',
     onClickOutside: null,
     active: false,
     onActiveChange: () => {},
@@ -97,6 +98,7 @@ class Tooltip extends WixComponent {
           arrowPlacement={arrowPlacement[this.props.placement]}
           style={this.state.style}
           arrowStyle={this.state.arrowStyle}
+          maxWidth={this.props.maxWidth}
           >{this.props.content}</TooltipContent>
       );
       ReactDOM.render(tooltip, this._mountNode);
