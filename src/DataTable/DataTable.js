@@ -2,9 +2,9 @@ import React, {PropTypes} from 'react';
 import s from './DataTable.scss';
 import classNames from 'classnames';
 import InfiniteScroll from './InfiniteScroll';
-import WixCopmonent from '../WixComponent';
+import WixComponent from '../WixComponent';
 
-class DataTable extends WixCopmonent {
+class DataTable extends WixComponent {
   constructor(props) {
     super(props);
 
@@ -137,7 +137,7 @@ class DataTable extends WixCopmonent {
       width: column.width,
       padding: this.props.thPadding,
       height: this.props.thHeight,
-      'font-size': this.props.thFontSize
+      fontSize: this.props.thFontSize
     };
     return <th style={style} key={colNum}>{column.title}</th>;
   };
