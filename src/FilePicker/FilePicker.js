@@ -30,7 +30,7 @@ class FilePicker extends WixComponent {
         {header && (<span className={styles.header}>{header}</span>)}
         <label className={styles.label}>
           <div className={styles.icon}><Add width="42" height="42"/></div>
-          <div className={styles.flex}>
+          <div>
             <span className={styles.cta}>{mainLabel}</span>
             <span className={styles.info}>{this.state.selectedFileName}</span>
             {error && <span className={styles.error}>{errorMessage}</span>}
