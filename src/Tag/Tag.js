@@ -34,8 +34,8 @@ Tag.propTypes = {
   onRemove: PropTypes.func,
   removable: PropTypes.bool,
   size: PropTypes.oneOf(['small', 'large']),
-  wrap: PropTypes.boolean,
-  disabled: PropTypes.boolean
+  wrap: PropTypes.bool,
+  disabled: PropTypes.bool
 };
 
 Tag.defaultProps = {
