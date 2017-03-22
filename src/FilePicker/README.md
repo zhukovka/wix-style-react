@@ -12,3 +12,5 @@
 | onChange | func | - | - | Callback function for when a file is uploaded |
 | supportedFormats | string | Unlimited group of formats | - | supported formats seperated by comma (.png, .pdf) |
 | maxSize | number | 5MB | - | Max size of file allowed |
+| error | bool | false | - | should present error |
+| errorMessage | string | '' | - | error message to present |

@@ -23,16 +23,17 @@ class FilePicker extends WixComponent {
   }
 
   render() {
-    const {header, mainLabel, supportedFormats} = this.props;
+    const {header, mainLabel, supportedFormats, error, errorMessage} = this.props;
 
     return (
       <div>
         {header && (<span className={styles.header}>{header}</span>)}
         <label className={styles.label}>
           <div className={styles.icon}><Add width="42" height="42"/></div>
-          <div>
+          <div className={styles.flex}>
             <span className={styles.cta}>{mainLabel}</span>
             <span className={styles.info}>{this.state.selectedFileName}</span>
+            {error && <span className={styles.error}>{errorMessage}</span>}
           </div>
           <input className={styles.input} type="file" accept={supportedFormats} onChange={e => this.onChooseFile(e.target.files[0])}/>
         </label>
@@ -46,6 +47,7 @@ FilePicker.defaultProps = {
   subLabel: 'No file chosen (Max size 5 MB)',
   onChange: () => {},
   supportedFormats: '*',
+  errorMessage: '',
   maxSize: 5000000  //5MB
 };
 
@@ -55,7 +57,9 @@ FilePicker.propTypes = {
   mainLabel: PropTypes.string,
   subLabel: PropTypes.string,
   supportedFormats: PropTypes.string,
-  maxSize: PropTypes.number
+  maxSize: PropTypes.number,
+  error: PropTypes.bool,
+  errorMessage: PropTypes.string
 };
 
 export default FilePicker;
