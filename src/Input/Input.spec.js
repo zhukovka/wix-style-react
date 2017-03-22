@@ -4,12 +4,33 @@ import inputDriverFactory from './Input.driver';
 import Input from './Input';
 import sinon from 'sinon';
 import {createDriverFactory} from '../test-common';
-import {inputTestkitFactory} from '../../testkit';
+import {inputTestkitFactory, tooltipTestkitFactory} from '../../testkit';
 import {inputTestkitFactory as enzymeInputTestkitFactory} from '../../testkit/enzyme';
 import {mount} from 'enzyme';
 
 describe('Input', () => {
   const createDriver = createDriverFactory(inputDriverFactory);
+
+  describe('test tooltip', () => {
+    it('should get the tooltip for further tests', () => {
+      const driver = createDriver(<Input error errorMessage="I'm the error message"/>);
+      const dataHook = driver.getTooltipDataHook();
+      const wrapper = driver.getTooltipElement();
+      const tooltipDriver = tooltipTestkitFactory({wrapper, dataHook});
+      tooltipDriver.mouseEnter();
+
+      const resolveIn = timeout =>
+        new Promise(resolve => {
+          setTimeout(() => {
+            resolve({});
+          }, timeout);
+        });
+
+      return resolveIn(500).then(() => {
+        expect(tooltipDriver.getContent()).toBe('I\'m the error message');
+      });
+    });
+  });
 
   describe('value attribute', () => {
     it('should pass down to the wrapped input', () => {

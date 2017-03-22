@@ -30,6 +30,8 @@ const inputDriverFactory = ({element, wrapper, component}) => {
     hasExclamation: () => !!element.querySelector(`.${styles.exclamation}`),
     hasHelp: () => !!element.querySelector(`.${styles.help}`),
     hasError: () => element.classList.contains(styles.hasError),
+    getTooltipElement: () => element,
+    getTooltipDataHook: () => 'input-tooltip',
     getUnit: () => element.querySelector(`.${styles.unit}`).textContent,
     hasMagnifyingGlass: () => !!element.querySelector(`.${styles.magnifyingGlass}`),
     hasMenuArrow: () => !!element.querySelector(`.${styles.menuArrow}`),
