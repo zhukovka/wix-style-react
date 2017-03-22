@@ -1,6 +1,7 @@
 import React, {PropTypes, Component} from 'react';
 import classNames from 'classnames';
 
+import Label from '../Label';
 import Ticker from './Ticker';
 import Unit from './Unit';
 import Group from './Group';
@@ -156,6 +157,8 @@ class Input extends Component {
       <div className={classes} data-hook={dataHook}>
         { prefixes.length > 0 && <InputPrefix prefixes={prefixes}/> }
 
+        {(theme === 'amaterial') && <Label for={id}>{placeholder}</Label>}
+
         <input
           style={{textOverflow}}
           ref={input => this.input = input}
@@ -170,7 +173,7 @@ class Input extends Component {
           onBlur={this._onBlur}
           onKeyDown={this._onKeyDown}
           onDoubleClick={this._onDoubleClick}
-          placeholder={placeholder}
+          placeholder={(theme !== 'amaterial') ? placeholder : ''}
           tabIndex={tabIndex}
           autoFocus={autoFocus}
           onClick={this._onClick}
@@ -181,7 +184,7 @@ class Input extends Component {
 
         { suffixes.length > 0 && <InputSuffix suffixes={suffixes}/> }
 
-        {theme === 'material' && <div className={styles.bar}/>}
+        {(theme === 'material' || theme === 'amaterial') && <div className={styles.bar}/>}
       </div>
     );
   }
@@ -253,7 +256,7 @@ Input.defaultProps = {
 Input.propTypes = {
   id: PropTypes.string,
   value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
-  theme: PropTypes.oneOf(['normal', 'paneltitle', 'material']),
+  theme: PropTypes.oneOf(['normal', 'paneltitle', 'material', 'amaterial']),
   forceHover: PropTypes.bool,
   forceFocus: PropTypes.bool,
   placeholder: PropTypes.string,
