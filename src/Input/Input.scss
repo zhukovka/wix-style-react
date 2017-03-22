@@ -129,7 +129,8 @@ $double-gap: 12px;
             box-sizing: border-box;
         }
 
-        &.hasFocus {
+        &.hasFocus,
+        &.hasValue {
             input {
                 border-bottom: 0;
             }

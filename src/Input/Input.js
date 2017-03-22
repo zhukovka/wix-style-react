@@ -72,7 +72,8 @@ class Input extends Component {
       [styles.hasError]: !!error,
       [styles.hasHover]: forceHover,
       [styles.hasFocus]: forceFocus || this.state.focus,
-      [styles.roundInput]: roundInput
+      [styles.roundInput]: roundInput,
+      [styles.hasValue]: this.input && !!this.input.value
     };
 
     if (noRightBorderRadius) {
