@@ -114,12 +114,10 @@ $double-gap: 12px;
         input {
             transition: border-bottom .3s, border-color .3s, border-width .3s, border .3s ease-in-out;
             line-height: 1;
-            order: 2;
             display: block;
             margin-top: 0;
 
             background: none;
-            border-width: 0 0 1px;
             -ms-flex-preferred-size: 26px; //IE fix
             border-radius: 0;
             border-style: solid; // Firefox fix
