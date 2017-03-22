@@ -35,7 +35,10 @@ class WixComponent extends React.Component {
   }
 
   _addDataHook(dataHook) {
-    ReactDOM.findDOMNode(this).setAttribute('data-hook', dataHook);
+    const domNode = ReactDOM.findDOMNode(this);
+    if (domNode) {
+      domNode.setAttribute('data-hook', dataHook);
+    }
   }
 
   _supportOnClickOutside() {
