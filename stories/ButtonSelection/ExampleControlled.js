@@ -25,7 +25,7 @@ class ControlledButtonSelection extends React.Component {
 
   render() {
     return (
-      <div style={style}>
+      <div style={style} data-hook="story-button-selection">
         <ButtonSelection
           buttonsNames={this.state.buttonsNames}
           value={this.state.value}

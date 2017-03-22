@@ -1,10 +1,33 @@
 import {protractorTestkitFactoryCreator} from '../src/test-common';
+/*eslint no-duplicate-imports: 0*/
+export {getStoryUrl, waitForVisibilityOf, scrollToElement} from '../src/test-common';
 
 import labelDriverFactory from '../src/Label/Label.protractor.driver';
 export const labelTestkitFactory = protractorTestkitFactoryCreator(labelDriverFactory);
 
 import buttonDriverFactory from '../src/Button/Button.protractor.driver';
 export const buttonTestkitFactory = protractorTestkitFactoryCreator(buttonDriverFactory);
+
+import buttonSelectionDriverFactory from '../src/ButtonSelection/ButtonSelection.protractor.driver';
+export const buttonSelectionTestkitFactory = protractorTestkitFactoryCreator(buttonSelectionDriverFactory);
+
+import dataTableDriverFactory from '../src/DataTable/DataTable.protractor.driver';
+export const dataTableTestkitFactory = protractorTestkitFactoryCreator(dataTableDriverFactory);
+
+import breadcrumbsDriverFactory from '../src/Breadcrumbs/Breadcrumbs.protractor.driver';
+export const breadcrumbsTestkitFactory = protractorTestkitFactoryCreator(breadcrumbsDriverFactory);
+
+import autoCompleteDriverFactory from '../src/AutoComplete/AutoComplete.protractor.driver';
+export const autoCompleteTestkitFactory = protractorTestkitFactoryCreator(autoCompleteDriverFactory);
+
+import checkboxDriverFactory from '../src/Checkbox/Checkbox.protractor.driver';
+export const checkboxTestkitFactory = protractorTestkitFactoryCreator(checkboxDriverFactory);
+
+import dropdownDriverFactory from '../src/Dropdown/Dropdown.protractor.driver';
+export const dropdownTestkitFactory = protractorTestkitFactoryCreator(dropdownDriverFactory);
+
+import filePickerDriverFactory from '../src/FilePicker/FilePicker.protractor.driver';
+export const filePickerTestkitFactory = protractorTestkitFactoryCreator(filePickerDriverFactory);
 
 import textAreaDriverFactory from '../src/TextArea/TextArea.protractor.driver';
 export const textAreaTestkitFactory = protractorTestkitFactoryCreator(textAreaDriverFactory);

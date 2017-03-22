@@ -20,7 +20,7 @@ import {buttonTestkitFactory} from 'wix-style-react/dist/testkit';
 
 const myFormWrapper = ReactTestUtils.renderIntoDocument(<myForm...>);
 
-//Initial the testkit:
+//Initialize the testkit:
 const buttonTestkit = buttonTestkitFactory({wrapper: myFormWrapper, dataHook: 'my-button'});//testkit factory should receive a DOM element wrapper and an dataHook and expose an api for it
 
 //Use the testkit
@@ -36,10 +36,36 @@ import {buttonTestkitFactory} from 'wix-style-react/dist/testkit/enzyme';
 
 const myFormWrapper = mount(<myForm...>);
 
-//Initial the testkit:
+//Initialize the testkit:
 const buttonTestkit = buttonTestkitFactory({wrapper: myFormWrapper, dataHook: 'my-button'});//testkit factory should receive an Enzyme wrapper and an dataHook and expose an api for it
 
 //Use the testkit
 buttonTestkit.click();
 
+```
+
+
+If you are using Protractor:
+
+```javascript
+import {buttonTestkitFactory, waitForVisibilityOf} from 'wix-style-react/dist/testkit/protractor';
+
+const dataHook = 'story-button';
+
+//Pass the data hook and expose the driver API
+const driver = buttonTestkitFactory({dataHook}); 
+
+//Go to your app URL which has the component in it
+browser.get(appUrl);
+
+//waitForVisibilityOf() waits untill the element appears, and starts the tests. 
+//Otherwise it will timeout and print the 2nd arg as error message.
+waitForVisibilityOf(driver.element(), 'Cant find Button')
+  .then(() => {
+
+    //Do actual tests here
+    expect(driver.getButtonText()).toBe('Click Me!');
+    driver.click();
+    expect(driver.getButtonText()).toBe('Clicked!');
+  });
 ```

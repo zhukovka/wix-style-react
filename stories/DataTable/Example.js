@@ -26,6 +26,7 @@ class DataTableExample extends React.Component {
     return (
       <div style={style}>
         <DataTable
+          dataHook='story-data-table'
           data={generateData()}
           onRowClick={(row, rowNum) => {
             /*eslint-disable no-alert*/

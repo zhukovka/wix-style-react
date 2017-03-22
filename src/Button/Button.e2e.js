@@ -1,17 +1,21 @@
 import eyes from 'eyes.it';
-// import {protractorButtonTestkitFactory} from './testkit/Button.protractor';
+import {buttonTestkitFactory, getStoryUrl, scrollToElement, waitForVisibilityOf} from '../../testkit/protractor';
 
 describe('Button', () => {
+  const storyUrl = getStoryUrl('Core', 'Button');
+  const dataHook = 'story-button';
+
   eyes.it('should click a button', () => {
+    const driver = buttonTestkitFactory({dataHook});
 
-    // const driver = protractorButtonTestkitFactory({id: 'button'});
-
-    browser.get('iframe.html?selectedKind=3.%20Buttons&selectedStory=3.1%20Standard');
-
-    // const EC = protractor.ExpectedConditions;
-    // browser.wait(EC.visibilityOf(driver.element()), 15000);
-
-    // driver.click();
-    // expect(driver.getButtonText()).toBe('Clicked!');
+    browser.get(storyUrl);
+    waitForVisibilityOf(driver.element(), 'Cannot find Button')
+      .then(() => {
+        scrollToElement(driver.element());
+        expect(driver.element().isDisplayed()).toBeTruthy();
+        expect(driver.getButtonTextContent()).toBe('Click Me!');
+        driver.click();
+        expect(driver.getButtonTextContent()).toBe('Clicked!');
+      });
   });
 });

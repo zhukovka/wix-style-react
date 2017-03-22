@@ -44,7 +44,7 @@ class ControlledCheckbox extends Component {
 
 export default () =>
   <div className="ltr" style={style}>
-    <ControlledCheckbox>Make my profile visible</ControlledCheckbox>
-    <ControlledCheckbox indeterminate>I work only with indeterminate mode</ControlledCheckbox>
-    <ControlledCheckbox supportThreeStates>I have three states</ControlledCheckbox>
+    <ControlledCheckbox dataHook="story-checkbox-1">Make my profile visible</ControlledCheckbox>
+    <ControlledCheckbox dataHook="story-checkbox-2" indeterminate>I work only with indeterminate mode</ControlledCheckbox>
+    <ControlledCheckbox dataHook="story-checkbox-3" supportThreeStates>I have three states</ControlledCheckbox>
   </div>;

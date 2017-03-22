@@ -3,6 +3,8 @@ import Remarkable from 'react-remarkable';
 import hljs from 'highlight.js';
 import './Markdown.scss';
 
+const isUsingEyes = process.env.EYES_API_KEY;
+
 export default class Markdown extends Component {
   static propTypes = {
     source: PropTypes.string
@@ -16,10 +18,8 @@ export default class Markdown extends Component {
       }
     };
 
-    return (
-      <div className="markdown-body">
-        <Remarkable source={this.props.source} options={options}/>
-      </div>
-    );
+    return !isUsingEyes ? (<div className="markdown-body">
+      <Remarkable source={this.props.source} options={options}/>
+    </div>) : null;
   }
 }

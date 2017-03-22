@@ -11,6 +11,6 @@ storybook-static
 /.idea/
 *.iml
 .vscode
-test/e2e/screenshots
+test/e2e
 src/Icons/components/*.js
 src/Icons/index.js

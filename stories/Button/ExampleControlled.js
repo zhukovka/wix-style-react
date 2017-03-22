@@ -18,7 +18,7 @@ class ControlledExample extends Component {
     const onClick = () => this.setState({clicked: !this.state.clicked});
 
     return (
-      <div style={style}>
+      <div data-hook="story-button" style={style}>
         <Button id="button" onClick={onClick}>{this.state.clicked ? 'Clicked!' : 'Click Me!'}</Button>
       </div>
     );
