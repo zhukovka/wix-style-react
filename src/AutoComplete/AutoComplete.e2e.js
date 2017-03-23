@@ -1,5 +1,5 @@
 import eyes from 'eyes.it';
-import {autoCompleteTestkitFactory, getStoryUrl, scrollToElement, waitForVisibilityOf} from '../../testkit/protractor';
+import {autoCompleteTestkitFactory, getStoryUrl, waitForVisibilityOf} from '../../testkit/protractor';
 
 describe('AutoComplete', () => {
   const storyUrl = getStoryUrl('Core', 'AutoComplete');
@@ -12,7 +12,6 @@ describe('AutoComplete', () => {
 
     waitForVisibilityOf(driver.element(), 'Cannot find AutoComplete')
     .then(() => {
-      scrollToElement(driver.element());
       expect(driver.getDropdown().isDisplayed()).toBe(false);
 
       driver.click();
@@ -35,7 +34,6 @@ describe('AutoComplete', () => {
 
     waitForVisibilityOf(driver.element(), 'Cannot find AutoComplete')
     .then(() => {
-      scrollToElement(driver.element());
       driver.click();
       driver.getDropdownItem(2).click();
 

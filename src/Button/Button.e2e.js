@@ -1,5 +1,5 @@
 import eyes from 'eyes.it';
-import {buttonTestkitFactory, getStoryUrl, scrollToElement, waitForVisibilityOf} from '../../testkit/protractor';
+import {buttonTestkitFactory, getStoryUrl, waitForVisibilityOf} from '../../testkit/protractor';
 
 describe('Button', () => {
   const storyUrl = getStoryUrl('Core', 'Button');
@@ -11,7 +11,6 @@ describe('Button', () => {
     browser.get(storyUrl);
     waitForVisibilityOf(driver.element(), 'Cannot find Button')
       .then(() => {
-        scrollToElement(driver.element());
         expect(driver.element().isDisplayed()).toBeTruthy();
         expect(driver.getButtonTextContent()).toBe('Click Me!');
         driver.click();

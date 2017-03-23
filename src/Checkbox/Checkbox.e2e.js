@@ -1,5 +1,5 @@
 import eyes from 'eyes.it';
-import {checkboxTestkitFactory, getStoryUrl, scrollToElement, waitForVisibilityOf} from '../../testkit/protractor';
+import {checkboxTestkitFactory, getStoryUrl, waitForVisibilityOf} from '../../testkit/protractor';
 
 describe('Checkbox', () => {
   const storyUrl = getStoryUrl('Core', 'Checkbox');
@@ -11,14 +11,11 @@ describe('Checkbox', () => {
 
     waitForVisibilityOf(driver.element(), 'Cannot find Checkbox')
       .then(() => {
-        scrollToElement(driver.element());
         driver.getLabel().click();
-        browser.sleep(200);
-        expect(driver.getInput().isSelected()).toBe(true);
+        expect(driver.isChecked()).toBe(true);
 
         driver.getLabel().click();
-        browser.sleep(200);
-        expect(driver.getInput().isSelected()).toBe(false);
+        expect(driver.isChecked()).toBe(false);
       });
   });
 
@@ -29,14 +26,11 @@ describe('Checkbox', () => {
 
     waitForVisibilityOf(driver.element(), 'Cannot find Checkbox')
       .then(() => {
-        scrollToElement(driver.element());
         driver.getLabel().click();
-        browser.sleep(200);
-        expect(driver.getInput().isSelected()).toBe(true);
+        expect(driver.isChecked()).toBe(true);
 
         driver.getLabel().click();
-        browser.sleep(200);
-        expect(driver.getInput().isSelected()).toBe(false);
+        expect(driver.isChecked()).toBe(false);
       });
   });
 
@@ -47,18 +41,14 @@ describe('Checkbox', () => {
 
     waitForVisibilityOf(driver.element(), 'Cannot find Checkbox')
       .then(() => {
-        scrollToElement(driver.element());
         driver.getLabel().click();
-        browser.sleep(200);
-        expect(driver.getInput().isSelected()).toBe(true);
+        expect(driver.isChecked()).toBe(true);
 
         driver.getLabel().click();
-        browser.sleep(200);
-        expect(driver.getInput().isSelected()).toBe(true);
+        expect(driver.isChecked()).toBe(true);
 
         driver.getLabel().click();
-        browser.sleep(200);
-        expect(driver.getInput().isSelected()).toBe(false);
+        expect(driver.isChecked()).toBe(false);
       });
   });
 });

@@ -1,5 +1,5 @@
 import eyes from 'eyes.it';
-import {dropdownTestkitFactory, getStoryUrl, scrollToElement, waitForVisibilityOf} from '../../testkit/protractor';
+import {dropdownTestkitFactory, getStoryUrl, waitForVisibilityOf} from '../../testkit/protractor';
 
 describe('Dropdown', () => {
   const storyUrl = getStoryUrl('Core', 'Dropdown');
@@ -12,7 +12,6 @@ describe('Dropdown', () => {
 
     waitForVisibilityOf(driver.element(), 'Cannot find Dropdown')
       .then(() => {
-        scrollToElement(driver.element());
         expect(driver.getInput().getAttribute('value')).toBe('');
 
         driver.click();

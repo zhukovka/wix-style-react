@@ -1,7 +1,8 @@
 const filePickerDriverFactory = component => ({
   click: () => component.click(),
   getInput: () => component.$(`input`),
-  getImagePlaceholder: () => component.$(`.src-FilePicker-FilePicker__info__2Alfr`).getText(),
+  getSubLabel: () => component.$(`[data-hook="sub-label"]`).getText(),
+  getMainLabel: () => component.$(`[data-hook="main-label"]`).getText(),
   element: () => component
 });
 

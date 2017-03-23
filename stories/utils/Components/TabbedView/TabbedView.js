@@ -30,9 +30,11 @@ class TabbedView extends Component {
   };
 
   render() {
+    const shouldHideForE2E = process.env.STORYBOOK_E2E;
+
     return (
       <div>
-        <Tabs activeId={this.state.activeTabId} {...this.tabsProps}/>
+        {!shouldHideForE2E ? <Tabs activeId={this.state.activeTabId} {...this.tabsProps}/> : null}
         {this.props.children.map((child, index) => this.state.activeTabId === this.props.tabs[index] ? child : null)}
       </div>
     );

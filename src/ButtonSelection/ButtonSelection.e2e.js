@@ -1,5 +1,5 @@
 import eyes from 'eyes.it';
-import {buttonSelectionTestkitFactory, getStoryUrl, scrollToElement, waitForVisibilityOf} from '../../testkit/protractor';
+import {buttonSelectionTestkitFactory, getStoryUrl, waitForVisibilityOf} from '../../testkit/protractor';
 
 describe('Button Selection', () => {
   const storyUrl = getStoryUrl('Core', 'ButtonSelection');
@@ -12,8 +12,6 @@ describe('Button Selection', () => {
 
     waitForVisibilityOf(driver.element(), 'Cant find Button Selection Component')
       .then(() => {
-        scrollToElement(driver.element());
-
         expect(driver.getSelectedButtonText()).toBe('Button 3');
         driver.clickButtonByIndex(0);
         expect(driver.getSelectedButtonText()).toBe('Button 1');

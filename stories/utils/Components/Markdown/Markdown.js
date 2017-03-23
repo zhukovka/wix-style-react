@@ -3,14 +3,14 @@ import Remarkable from 'react-remarkable';
 import hljs from 'highlight.js';
 import './Markdown.scss';
 
-const isUsingEyes = process.env.EYES_API_KEY;
-
 export default class Markdown extends Component {
   static propTypes = {
     source: PropTypes.string
   };
 
   render() {
+    const shouldHideForE2E = process.env.STORYBOOK_E2E;
+
     const options = {
       linkTarget: '_parent',
       highlight(code, lang) {
@@ -18,7 +18,7 @@ export default class Markdown extends Component {
       }
     };
 
-    return !isUsingEyes ? (<div className="markdown-body">
+    return !shouldHideForE2E ? (<div className="markdown-body">
       <Remarkable source={this.props.source} options={options}/>
     </div>) : null;
   }

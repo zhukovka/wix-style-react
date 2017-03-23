@@ -21,9 +21,12 @@
 
   /*******************
    protractor example
-  ***************/
+  *******************/
+  //Element should be rendered with a data-hook into the DOM
+  <Button dataHook='myBtn'/>
 
-  const driver = buttonTestkitFactory({dataHook: 'story-button'});
+  //Create an element driver via the data-hook attribute
+  const driver = buttonTestkitFactory({dataHook: 'myBtn'});
 
   browser.get(appUrl);  //application url
 
