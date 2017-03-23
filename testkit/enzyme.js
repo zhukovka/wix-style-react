@@ -105,6 +105,9 @@ export const richTextAreaCompositeTestkitFactory = enzymeTestkitFactoryCreator(r
 import modalDriverFactory from '../src/Modal/Modal.driver';
 export const modalTestkitFactory = enzymeTestkitFactoryCreator(modalDriverFactory);
 
+import filePickerDriverFactory from '../src/FilePicker/FilePicker.driver';
+export const filePickerTestkitFactory = enzymeTestkitFactoryCreator(filePickerDriverFactory);
+
 import timeInputDriverFactory from '../src/TimeInput/TimeInput.driver';
 export const timeInputTestkitFactory = enzymeTestkitFactoryCreator(timeInputDriverFactory);
 

@@ -108,4 +108,7 @@ export const modalTestkitFactory = testkitFactoryCreator(modalDriverFactory);
 import timeInputDriverFactory from '../src/TimeInput/TimeInput.driver';
 export const timeInputTestkitFactory = testkitFactoryCreator(timeInputDriverFactory);
 
+import filePickerDriverFactory from '../src/FilePicker/FilePicker.driver';
+export const filePickerTestkitFactory = testkitFactoryCreator(filePickerDriverFactory);
+
 export {toastTestkitFactory} from '../src/Toast/testkit/Toast';

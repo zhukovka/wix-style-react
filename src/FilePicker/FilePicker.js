@@ -33,7 +33,7 @@ class FilePicker extends WixComponent {
           <div>
             <span className={styles.cta}>{mainLabel}</span>
             <span className={styles.info}>{this.state.selectedFileName}</span>
-            {error && <span className={styles.error}>{errorMessage}</span>}
+            {error && <span data-hook="filePicker-error" className={styles.error}>{errorMessage}</span>}
           </div>
           <input className={styles.input} type="file" accept={supportedFormats} onChange={e => this.onChooseFile(e.target.files[0])}/>
         </label>
