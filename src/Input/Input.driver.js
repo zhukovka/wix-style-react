@@ -43,7 +43,7 @@ const inputDriverFactory = ({element, wrapper, component}) => {
     isOfStyle: style => element.classList.contains(styles[`theme-${style}`]),
     isOfSize: size => element.classList.contains(styles[`size-${size}`]),
     isFocus: () => document.activeElement === input,
-    exists: () => !!element.querySelector('input'),
+    exists: () => !!(element && element.querySelector('input')),
     hasIconLeft: () => !!element.querySelectorAll(`.${styles.prefix}`),
     setProps: props => {
       const ClonedWithProps = React.cloneElement(component, Object.assign({}, component.props, props), ...(component.props.children || []));
