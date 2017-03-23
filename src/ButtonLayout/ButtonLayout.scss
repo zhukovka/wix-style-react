@@ -100,6 +100,15 @@
     border-color: $B10;
 }
 
+.login {
+  border-radius: 24px;
+  height: 48px;
+  font-size: 20px;
+  background-color: $B10;
+  border-color: $B10;
+  color: white;
+}
+
 .fullpurple {
     @extend .t1_2;
     &.heightsmall {
@@ -273,6 +282,11 @@
     border-color: $B20;
 }
 
+.login:hover, .login.hover {
+  background-color: $B20;
+  border-color: $B20;
+}
+
 .icon-whitesecondary:hover, .icon-whitesecondary.hover,
 .whitebluesecondary:hover, .whitebluesecondary.hover,
 .icon-white:hover, .icon-white.hover,
@@ -329,6 +343,11 @@
 
     background-color: $B10;
     border-color: $B10;
+}
+
+.login:active, .login.active {
+  background-color: $B10;
+  border-color: $B10;
 }
 
 .icon-white:active, .icon-white.active,
@@ -411,6 +430,7 @@
 .button.icon-greybackground.disabled,
 .button.icon-standard.disabled,
 .button.fullblue.disabled,
+.button.login.disabled,
 .button.icon-white.disabled,
 .button.whiteblueprimary.disabled,
 .button.close-transparent.disabled {
