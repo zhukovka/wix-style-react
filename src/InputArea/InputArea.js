@@ -144,8 +144,8 @@ InputArea.defaultProps = {
 InputArea.propTypes = {
   id: PropTypes.string,
   value: PropTypes.string,
-  style: PropTypes.oneOf(['normal', 'paneltitle', 'material']),
-  theme: PropTypes.oneOf(['normal', 'paneltitle', 'material']),
+  style: PropTypes.oneOf(['normal', 'paneltitle', 'material', 'amaterial']),
+  theme: PropTypes.oneOf(['normal', 'paneltitle', 'material', 'amaterial']),
   forceHover: PropTypes.bool,
   forceFocus: PropTypes.bool,
   placeholder: PropTypes.string,
