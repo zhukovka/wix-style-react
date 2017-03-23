@@ -85,6 +85,12 @@ $exclamation-top: 4px;
         @include ThemeFocus($borderColor: #4eb7f5, $boxShadow: inset 0 0 5px 0 rgba(56,153,236,0.6));
         @include ThemeError($borderColor: $paletteR1, $boxShadow: inset 0px 0px 5px 0px fade($R10, 60%));
     }
+    &-amaterial {
+        .inputArea {
+            @include FontLight();
+        }
+        @include ThemeDefault($color: $D10, $borderColor: #dfe5eb, $backgroundColor: $D80);
+    }
     &-material {
         border-radius: 0;
         .inputArea {
