@@ -142,12 +142,20 @@ $double-gap: 12px;
 
             .bar {
                 &:before, &:after {
+                    height: 2px;
                     background-color: #3899ec;
                 }
             }
             label {
                 top: -22px;
                 font-size: 14px;
+            }
+        }
+
+        &.hasError {
+            .bar {
+                height: 2px;
+                background-color: #f2564d;
             }
         }
     }
