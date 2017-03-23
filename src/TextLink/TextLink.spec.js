@@ -69,6 +69,16 @@ describe('TextLink', () => {
     const driver = createDriver(<TextLink link="https://www.wix.com"/>);
     expect(driver.getLink()).toBe('https://www.wix.com/');
   });
+
+  it('should have a rel', () => {
+    const driver = createDriver(<TextLink rel="bookmark" target="_blank" link="https://www.wix.com"/>);
+    expect(driver.getRel()).toBe('bookmark');
+  });
+
+  it('should have a target', () => {
+    const driver = createDriver(<TextLink target="_blank" link="https://www.wix.com"/>);
+    expect(driver.getTarget()).toBe('_blank');
+  });
 });
 
 describe('testkit', () => {
