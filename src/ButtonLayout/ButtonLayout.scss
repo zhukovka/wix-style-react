@@ -106,7 +106,8 @@
   font-size: 20px;
   background-color: $B10;
   border-color: $B10;
-  color: white;
+  color: #fff;
+  min-width: 116px;
 }
 
 .fullpurple {
@@ -171,6 +172,16 @@
 
     background-color: $D80;
     border-color: #5babef;
+}
+
+.emptylogin {
+  border-radius: 24px;
+  height: 48px;
+  font-size: 20px;
+  background-color: $D80;
+  border-color: #5babef;
+  color: $B10;
+  min-width: 116px;
 }
 
 .emptypurple {
@@ -287,6 +298,12 @@
   border-color: $B20;
 }
 
+.emptylogin:hover, .emptylogin.hover {
+  background-color: $B20;
+  border-color: $B20;
+  color: #fff;
+}
+
 .icon-whitesecondary:hover, .icon-whitesecondary.hover,
 .whitebluesecondary:hover, .whitebluesecondary.hover,
 .icon-white:hover, .icon-white.hover,
@@ -346,6 +363,12 @@
 }
 
 .login:active, .login.active {
+  background-color: $B10;
+  border-color: $B10;
+}
+
+.emptylogin:active, .emptylogin.active {
+  color: #fff;
   background-color: $B10;
   border-color: $B10;
 }
@@ -431,6 +454,7 @@
 .button.icon-standard.disabled,
 .button.fullblue.disabled,
 .button.login.disabled,
+.button.emptylogin.disabled,
 .button.icon-white.disabled,
 .button.whiteblueprimary.disabled,
 .button.close-transparent.disabled {
