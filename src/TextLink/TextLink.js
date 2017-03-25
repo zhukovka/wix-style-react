@@ -11,7 +11,7 @@ export default class TextLink extends WixComponent {
       disabled: PropTypes.bool,
       download: PropTypes.bool,
       rel: PropTypes.string,
-      target: PropTypes.oneOf('_blank', '_parent', '_self', '_top', 'framename')
+      target: PropTypes.oneOf(['_blank', '_parent', '_self', '_top', 'framename'])
     }
   );
 
