@@ -89,7 +89,8 @@ $exclamation-top: 4px;
         .inputArea {
             @include FontLight();
         }
-        @include ThemeDefault($color: $D10, $borderColor: #dfe5eb, $backgroundColor: $D80);
+        border-radius: 0;
+        @include ThemeDefault($color: $D10, $borderColor: #e0e3e5, $backgroundColor: $D80);
     }
     &-material {
         border-radius: 0;
