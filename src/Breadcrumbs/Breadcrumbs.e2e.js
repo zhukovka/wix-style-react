@@ -4,7 +4,7 @@ import {breadcrumbsTestkitFactory, getStoryUrl, waitForVisibilityOf} from '../..
 describe('Breadcrumbs', () => {
   const storyUrl = getStoryUrl('Core', 'Breadcrumbs');
 
-  eyes.it('should display breadcrumbs, and redirect on link click', () => {
+  eyes.it('should display breadcrumbs', () => {
     const driverNoLinks = breadcrumbsTestkitFactory({dataHook: 'story-breadcrumbs-no-links'});
     const driverWithLinks = breadcrumbsTestkitFactory({dataHook: 'story-breadcrumbs-with-links'});
 
@@ -22,11 +22,6 @@ describe('Breadcrumbs', () => {
       breadcrumbsLinkItems.map((item, idx) =>
         expect(driverWithLinks.breadcrumbContentAt(idx)).toBe(item)
       );
-
-      driverWithLinks.clickBreadcrumbAt(0)
-        .then(() => {
-          expect(browser.getCurrentUrl()).toContain('www.wix.com');
-        });
     });
   });
 

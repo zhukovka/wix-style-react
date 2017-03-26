@@ -31,7 +31,7 @@ class Breadcrumbs extends WixComponent {
     if (!item.link) {
       return item.value;
     } else {
-      return <a href={`${item.link}`} target="_parent" style={{color: 'inherit', textDecoration: 'inherit'}}>{item.value}</a>;
+      return <a href={`${item.link}`} style={{color: 'inherit', textDecoration: 'inherit'}}>{item.value}</a>;
     }
   }
 
