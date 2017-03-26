@@ -4,8 +4,8 @@ import ReactDOM from 'react-dom';
 import styles from './Input.scss';
 
 const inputDriverFactory = ({element, wrapper, component}) => {
-  const input = element.querySelector('input');
-  const clearButton = element.querySelector(`.${styles.clearButton}`);
+  const input = element && element.querySelector('input');
+  const clearButton = element && element.querySelector(`.${styles.clearButton}`);
 
   return {
     trigger: (trigger, event) => ReactTestUtils.Simulate[trigger](input, event),
