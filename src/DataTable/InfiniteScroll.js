@@ -3,7 +3,6 @@ import React, {Component, PropTypes} from 'react';
 // This is a copy of https://github.com/CassetteRocks/react-infinite-scroller with https://github.com/CassetteRocks/react-infinite-scroller/pull/38/files merged
 export default class InfiniteScroll extends Component {
   static propTypes = {
-    element: PropTypes.string,
     hasMore: PropTypes.bool,
     initialLoad: PropTypes.bool,
     loadMore: PropTypes.func.isRequired,
@@ -17,7 +16,6 @@ export default class InfiniteScroll extends Component {
   };
 
   static defaultProps = {
-    element: 'div',
     hasMore: false,
     initialLoad: true,
     pageStart: 0,
@@ -45,20 +43,19 @@ export default class InfiniteScroll extends Component {
   render() {
     const {
       children,
-      element,
       hasMore,
       loader,
-      scrollElement,
-      ...props
+      scrollElement
     } = this.props;
+    let ref;
 
     if (scrollElement) {
-      props.ref = () => this.scrollComponent = scrollElement;
+      ref = () => this.scrollComponent = scrollElement;
     } else {
-      props.ref = node => this.scrollComponent = node;
+      ref = node => this.scrollComponent = node;
     }
 
-    return React.createElement(element, props, children, hasMore && (loader || this._defaultLoader));
+    return React.createElement('div', {ref}, children, hasMore && (loader || this._defaultLoader));
   }
 
   calculateTopPosition(el) {
