@@ -97,6 +97,12 @@ $double-gap: 12px;
         @include ThemeDisable($color: white, $borderColor: $GR40, $backgroundColor: rgba(22,45,61,0.6));
     }
     &-amaterial {
+
+        .errorIcon {
+            padding: 0 7px 16px;
+            color: #f2564d;
+        }
+
         border: 0;
         &.size-normal {
             padding-bottom: 4px;
@@ -118,6 +124,7 @@ $double-gap: 12px;
 
         .input {
             @include FontLight();
+            @include Placeholder(rgba(0, 0, 0, 0));
             z-index: 100;
             transition: border-bottom .3s, border-color .3s, border-width .3s, border .3s ease-in-out;
             line-height: 1;
@@ -135,6 +142,9 @@ $double-gap: 12px;
 
         &.hasFocus,
         &.hasValue {
+            .input {
+                @include Placeholder($paletteE6);
+            }
             input {
                 border-bottom: 0;
             }
@@ -151,10 +161,40 @@ $double-gap: 12px;
             }
         }
 
+        .bar {
+            position: absolute;
+            bottom: 0;
+            left: -1px;
+            right: -1px;
+            height: 1px;
+            background: $D60;
+            &:before, &:after {
+                content: '';
+                height: 1px;
+                width: 0;
+                bottom: 0;
+                position: absolute;
+                background: #000;
+                transition: 0.3s all;
+            }
+            transition: 0.3s ease all;
+        }
+        @at-root {
+            .hasFocus .barBlue:before,
+            .hasFocus .barBlue:after {
+                width:100%;
+            }
+        }
+
+        .input:hover ~ .barBlue, .input.hasHover ~ .barBlue {
+            background-color: #000;
+            transition: 0.3s ease all;
+        }
+
         &.hasError {
-            .bar {
-                height: 2px;
+            .bar, .input:hover ~ .barBlue, .input.hasHover ~ .barBlue {
                 background-color: #f2564d;
+                height: 2px;
             }
         }
     }
@@ -171,27 +211,27 @@ $double-gap: 12px;
             @include FontLight();
         }
         @include ThemeDefault($color: $D10, $borderColor: transparent, $backgroundColor: $D80);
-        @at-root {
-            .bar {
-                position: absolute;
-                bottom: 0;
-                left: -1px;
-                right: -1px;
+        .bar {
+            position: absolute;
+            bottom: 0;
+            left: -1px;
+            right: -1px;
+            height: 1px;
+            background: $D60;
+            &:before, &:after {
+                content: '';
                 height: 1px;
-                background: $D60;
-                &:before, &:after {
-                    content: '';
-                    height: 1px;
-                    width: 0;
-                    bottom: 0;
-                    position: absolute;
-                    background: $D50;
-                    transition: 0.2s ease all;
-                }
-                &:before { left: 50%; }
-                &:after { right: 50%; }
+                width: 0;
+                bottom: 0;
+                position: absolute;
+                background: $D50;
+                transition: 0.2s ease all;
             }
-            .hasFocus .bar:before,
+            &:before { left: 50%; }
+            &:after { right: 50%; }
+        }
+        @at-root {
+            .hasFocus .barBlack:before,
             .hasFocus .bar:after {
                 width:50%;
             }
@@ -258,6 +298,12 @@ $double-gap: 12px;
     margin: 0 $gap;
     color: $B20;
     padding-top: 4px;
+}
+
+.amaterial-help {
+    margin: 0 $gap;
+    color: $B20;
+    padding-bottom: 14px;
 }
 
 .clear-button {
