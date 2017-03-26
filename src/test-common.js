@@ -37,6 +37,12 @@ export const scrollToElement = el => {
   }, el.getWebElement());
 };
 
-export const waitForVisibilityOf = (element, errorMsg, timeout = 10000) => {
-  return browser.wait(protractor.ExpectedConditions.visibilityOf(element), timeout, errorMsg);
+export const waitForVisibilityOf = (elements, errorMsg, timeout = 10000) => {
+  const arrayOfElements = Array.isArray(elements) ? [...elements] : [elements];
+
+  arrayOfElements.map(elem =>
+    browser.wait(protractor.ExpectedConditions.visibilityOf(elem), timeout, errorMsg)
+  );
+
+  return protractor.promise.all(arrayOfElements);
 };

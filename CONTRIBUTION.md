@@ -6,7 +6,8 @@ Please see [Button](https://github.com/wix/wix-style-react/tree/master/src/Butto
 ### Components design (in progress)
 * This library is using es6 + jsx - please follow it
 * All assets are in src/assets folder
-* Each component must have e2e, unit testing and testkit provided
+* Each component must have e2e, unit testing and testkit provided. (It is recommened to make your testkits API the same across all testkit types
+)
 * One React component per js file
 * Most of the components needs be a [controlled components](https://goshakkk.name/controlled-vs-uncontrolled-inputs-react/), if you still think that a component should be uncontrolled after you read the article you are welcome to push a pr for it.
 * Components needs to support rtl and ltr props
@@ -16,7 +17,7 @@ Please see [Button](https://github.com/wix/wix-style-react/tree/master/src/Butto
 * If no one is working on it and no issue exists, create a new issue for your component, add it to [Adding new components](https://github.com/wix/wix-style-react/projects/1) -> “In Progress” and assign it to yourself.
 * Add the component docs to [stories](https://github.com/wix/wix-style-react/tree/master/stories)
     * A story consists of properties, usage examples and code examples, please refer to [Button docs](https://github.com/wix/wix-style-react/tree/master/stories/Button) for example.
-    * Make sure to add your component to [Storybook config](https://github.com/wix/wix-style-react/blob/master/.storybook/config.js)      
+    * Make sure to add your component to [Storybook config](https://github.com/wix/wix-style-react/blob/master/.storybook/config.js)
 * Add component test, e2e and drivers to the component's folder.
 * Add index.js file to the component's folder and export your component.
 * Export your testkitFactory from the following files:

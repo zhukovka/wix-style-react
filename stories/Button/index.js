@@ -8,6 +8,8 @@ import ReadmeTestKit from '../../src/Button/README.TESTKIT.md';
 
 import ExampleControlled from './ExampleControlled';
 import ExampleControlledRaw from '!raw!./ExampleControlled';
+import IconsExample from './ExampleWithIcons';
+import IconsExampleRaw from '!raw!./ExampleWithIcons';
 
 storiesOf('Core', module)
   .add('Button', () => (
@@ -15,6 +17,9 @@ storiesOf('Core', module)
       <div>
         <Markdown source={Readme}/>
         <h1>Example</h1>
+        <CodeExample title="With icons" code={IconsExampleRaw}>
+          <IconsExample/>
+        </CodeExample>
         <CodeExample title="Controlled" code={ExampleControlledRaw}>
           <ExampleControlled/>
         </CodeExample>

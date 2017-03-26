@@ -5,7 +5,7 @@ describe('Label', () => {
   const storyUrl = getStoryUrl('Core', 'Label');
   const dataHook = 'story-label';
 
-  eyes.it('should show the label correctly', () => {
+  eyes.it('should show text and focus on the input when clicked', () => {
     const driver = labelTestkitFactory({dataHook});
 
     browser.get(storyUrl);
@@ -13,17 +13,9 @@ describe('Label', () => {
     waitForVisibilityOf(driver.element(), 'Cant find Label')
       .then(() => {
         expect(driver.getLabelText()).toBe('Label text');
-      });
-  });
 
-  eyes.it('should focus on the input when clicked', () => {
-    const driver = labelTestkitFactory({dataHook});
-
-    browser.get(storyUrl);
-
-    waitForVisibilityOf(driver.element(), 'Cant find Label')
-      .then(() => {
         driver.click();
+
         expect(browser.driver.switchTo().activeElement().getAttribute('id'))
           .toEqual(driver.getAssociatedInput()
             .then(input => input.getAttribute('id')));

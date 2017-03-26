@@ -1,16 +1,28 @@
 import _ from 'lodash/fp';
 
-const buttonSelectionDriverFactory = component => ({
-  getSelectedButtonText: () => {
-    return component.$$('span').getAttribute('class')
-        .then(classes => {
-          const selectedBtnClass = classes.filter(i => /__selected__/.test(i))[0];
-          return component.$(`.${selectedBtnClass}`).getText();
+const buttonSelectionDriverFactory = component => {
+  const getButtons = () => component.$$('span');
+
+  return {
+    getButtonsNames: () => getButtons().getText(),
+    getButtonsClasses: () => getButtons().getAttribute('class'),
+    getSelectedButton: () => {
+      return component.$$('span').getAttribute('class')
+          .then(classes => {
+            const selectedBtnClass = classes.filter(i => /__selected__/.test(i))[0];
+            return component.$(`.${selectedBtnClass}`).getText();
+          });
+    },
+    selectByValue: value => {
+      return getButtons().getText()
+        .then(names => {
+          const btnIdx = names.indexOf(value);
+          getButtons().get(btnIdx).click();
         });
-  },
-  clickButtonByIndex: index => component.$$('span').get(index).click(),
-  getButtonTextByIndex: index => component.$$('span').get(index).getText(),
-  element: () => component
-});
+    },
+    element: () => component
+  };
+};
 
 export default buttonSelectionDriverFactory;
+

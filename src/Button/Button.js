@@ -15,9 +15,10 @@ class Button extends WixComponent {
 
   addIcon(className, icon, height) {
     const iconSize = height === 'small' ? '8px' : height === 'medium' ? '12px' : '16px';
+    const dataHook = className === styles.prefix ? 'btn-prefix' : 'btn-suffix';
     return (
       icon ?
-        <div className={className}>
+        <div className={className} data-hook={dataHook}>
           {React.cloneElement(icon, {size: iconSize})}
         </div> :
         null

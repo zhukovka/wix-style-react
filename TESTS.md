@@ -50,16 +50,17 @@ If you are using Protractor:
 ```javascript
 import {buttonTestkitFactory, waitForVisibilityOf} from 'wix-style-react/dist/testkit/protractor';
 
-const dataHook = 'story-button';
+const dataHook = 'my-button';
 
 //Pass the data hook and expose the driver API
-const driver = buttonTestkitFactory({dataHook}); 
+const driver = buttonTestkitFactory({dataHook});
 
 //Go to your app URL which has the component in it
 browser.get(appUrl);
 
-//waitForVisibilityOf() waits untill the element appears, and starts the tests. 
+//waitForVisibilityOf(..) waits untill the element/elements appears, and starts the tests.
 //Otherwise it will timeout and print the 2nd arg as error message.
+//This function accepts an element or an array of elements
 waitForVisibilityOf(driver.element(), 'Cant find Button')
   .then(() => {
 

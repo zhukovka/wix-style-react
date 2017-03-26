@@ -1,17 +1,74 @@
 import eyes from 'eyes.it';
 import {breadcrumbsTestkitFactory, getStoryUrl, waitForVisibilityOf} from '../../testkit/protractor';
 
-xdescribe('Breadcrumbs', () => {
+describe('Breadcrumbs', () => {
   const storyUrl = getStoryUrl('Core', 'Breadcrumbs');
 
-  eyes.it('should display breadcrumbs', () => {
-    const driver = breadcrumbsTestkitFactory({dataHook: 'story-breadcrumbs-row'});
+  eyes.it('should display breadcrumbs, and redirect on link click', () => {
+    const driverNoLinks = breadcrumbsTestkitFactory({dataHook: 'story-breadcrumbs-no-links'});
+    const driverWithLinks = breadcrumbsTestkitFactory({dataHook: 'story-breadcrumbs-with-links'});
+
+    const breadcrumbsItems = ['first item', 'second item', 'third item'];
+    const breadcrumbsLinkItems = ['Wix', 'Google', 'Yahoo'];
+
+    browser.get(storyUrl);
+
+    waitForVisibilityOf([driverNoLinks.element(), driverWithLinks.element()], 'Cannot find Breadcrumbs')
+    .then(() => {
+      breadcrumbsItems.map((item, idx) =>
+        expect(driverNoLinks.breadcrumbContentAt(idx)).toBe(item)
+      );
+
+      breadcrumbsLinkItems.map((item, idx) =>
+        expect(driverWithLinks.breadcrumbContentAt(idx)).toBe(item)
+      );
+
+      driverWithLinks.clickBreadcrumbAt(0)
+        .then(() => {
+          expect(browser.getCurrentUrl()).toContain('www.wix.com');
+        });
+    });
+  });
+
+  eyes.it('should show active item once clicked upon', () => {
+    const driver = breadcrumbsTestkitFactory({dataHook: 'story-breadcrumbs-active'});
+    const breadcrumbsItems = ['first item', 'second item', 'third item'];
+    const itemToSelect = 2;
 
     browser.get(storyUrl);
 
     waitForVisibilityOf(driver.element(), 'Cannot find Breadcrumbs')
     .then(() => {
-      expect(driver.element().isDisplayed()).toBeTruthy();
+      breadcrumbsItems.map((item, idx) =>
+        expect(driver.breadcrumbContentAt(idx)).toBe(item)
+      );
+
+      expect(driver.getActiveItemId()).toBe(-1);
+      driver.clickBreadcrumbAt(itemToSelect);
+      expect(driver.getActiveItemId()).toBe(itemToSelect);
+    });
+  });
+
+  it('should call func on item click', () => {
+    const driver = breadcrumbsTestkitFactory({dataHook: 'story-breadcrumbs-onclick'});
+    const breadcrumbsItems = ['first item', 'second item', 'third item'];
+    const idxToClick = 1;
+
+    browser.get(storyUrl);
+
+    waitForVisibilityOf(driver.element(), 'Cannot find Breadcrumbs')
+    .then(() => {
+      breadcrumbsItems.map((item, idx) =>
+        expect(driver.breadcrumbContentAt(idx)).toBe(item)
+      );
+
+      driver.clickBreadcrumbAt(idxToClick);
+      const EC = protractor.ExpectedConditions;
+      browser.wait(EC.alertIsPresent(), 10000, 'Alert is not getting present :(')
+        .then(() => {
+          expect(browser.switchTo().alert().getText()).toBe(`clicked element is: {"id":"${idxToClick + 1}","value":"${breadcrumbsItems[idxToClick]}"}`);
+          browser.switchTo().alert().accept();
+        });
     });
   });
 });

@@ -3,7 +3,7 @@ const checkboxDriverFactory = component => ({
   getLabel: () => component.$(`label`),
   getInput: () => component.$(`input`),
   isChecked: () => component.$(`input`).isSelected(),
-  isDisabled: () => !component.$(`input`).isEnabled(),
+  isDisabled: () => !!component.$(`input`).getAttribute('disabled'),
   element: () => component
 });
 

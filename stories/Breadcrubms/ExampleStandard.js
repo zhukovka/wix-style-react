@@ -8,11 +8,13 @@ const itemsWithLinks = [{id: '1', value: 'Wix', link: 'http://www.wix.com'}, {id
 export default () =>
   <div>
     <div className={`${styles.onGrayBackground} ${styles.exampleWrapper}`}>Without links
-      <Breadcrumbs dataHook="story-breadcrumbs-row"
+      <Breadcrumbs
+        dataHook="story-breadcrumbs-no-links"
         items={items}/>
     </div>
     <div className={`${styles.onGrayBackground} ${styles.exampleWrapper}`}>With links
       <Breadcrumbs
+        dataHook="story-breadcrumbs-with-links"
         items={itemsWithLinks}/>
     </div>
     <div className={`${styles.onGrayBackground} ${styles.exampleWrapper} rtl`}>RTL

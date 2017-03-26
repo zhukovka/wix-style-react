@@ -1,4 +1,4 @@
-# Checkbox testkits
+# Checkbox Testkits
 
 > Checkbox
 
@@ -11,16 +11,18 @@
 | isChecked | - | bool | fulfilled if element has class '.checked' |
 | isDisabled | - | bool | fulfilled if element has class '.disabled' |
 | isIndeterminate | - | bool | fulfilled if element has class '.indeterminate' |
-| exists | - | bool | fulfilled if element in the DOM |
-| element | - | element | returns the driver element |
-| click | - | - | clicks on the button |
+| click | - | - | clicks on the checkbox |
+| exists (Only in Unit Test) | - | bool | fulfilled if element in the DOM |
+| element (Only in E2E) | - | element | returns the driver element |
 
 ## Usage Example
 
+> Unit testing example
+
 ```javascript
   import React from 'react';
-  import {checkboxTestkitFactory} from 'wix-style-react/dist/testkit/protractor';
-  import {checkboxTestkitFactory as enzymeCheckboxTestkitFactory} from 'wix-style-react/dist/testkit/protractor';
+  import {checkboxTestkitFactory} from 'wix-style-react/dist/testkit';
+  import {checkboxTestkitFactory as enzymeCheckboxTestkitFactory} from 'wix-style-react/dist/testkit/enzyme';
 
   /***************
    enzyme example
@@ -30,6 +32,7 @@
   const wrapper = mount(<div/><Checkbox dataHook={dataHook}/></div>);
   const testkit = enzymeCheckboxTestkitFactory({wrapper, dataHook});
 
+  //Do tests
   expect(testkit.exists()).toBeTruthy();
 
   /**********************
@@ -43,7 +46,14 @@
   );
   const testkit = checkboxTestkitFactory({wrapper, dataHook});
 
+  //Do tests
   expect(testkit.exists()).toBeTruthy();
+```
+> E2E example
+
+```javascript
+  //Element should be rendered with a data-hook into the DOM
+  <Checkbox dataHook='myDataHook'/>
 
   /*******************
    protractor example
@@ -51,16 +61,14 @@
 
   import {checkboxTestkitFactory, waitForVisibilityOf} from 'wix-style-react/dist/testkit/protractor';
 
-  //The checkbox element for the following test should look like:
-  //<Checkbox dataHook='myDataHook'/>
+  //Create an element testkit via the data-hook attribute
+  const testkit = checkboxTestkitFactory({dataHook: 'myDataHook'});
 
-  const driver = checkboxTestkitFactory({dataHook: 'myDataHook'});
+  browser.get(appUrl); //Your application url
 
-  browser.get(appUrl); //application url
-
-  waitForVisibilityOf(driver.element(), 'Cannot find Checkbox')
+  waitForVisibilityOf(testkit.element(), 'Cannot find Checkbox')
      .then(() => {
-        driver.getLabel().click();
-        expect(driver.getInput().isSelected()).toBeTruthy();
+        //Do tests
+        expect(testkit.element().isDisplayed()).toBeTruthy();
      });
 ```

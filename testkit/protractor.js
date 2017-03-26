@@ -29,6 +29,9 @@ export const dropdownTestkitFactory = protractorTestkitFactoryCreator(dropdownDr
 import filePickerDriverFactory from '../src/FilePicker/FilePicker.protractor.driver';
 export const filePickerTestkitFactory = protractorTestkitFactoryCreator(filePickerDriverFactory);
 
+import radioGroupDriverFactory from '../src/RadioGroup/RadioGroup.protractor.driver';
+export const radioGroupTestkitFactory = protractorTestkitFactoryCreator(radioGroupDriverFactory);
+
 import textAreaDriverFactory from '../src/TextArea/TextArea.protractor.driver';
 export const textAreaTestkitFactory = protractorTestkitFactoryCreator(textAreaDriverFactory);
 

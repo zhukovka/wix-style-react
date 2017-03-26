@@ -1,4 +1,4 @@
-# Checkbox component
+# FilePicker component
 
 > FilePicker
 

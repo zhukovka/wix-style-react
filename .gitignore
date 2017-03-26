@@ -8,6 +8,7 @@ target
 coverage
 .history
 storybook-static
+storybook-e2e
 /.idea/
 *.iml
 .vscode

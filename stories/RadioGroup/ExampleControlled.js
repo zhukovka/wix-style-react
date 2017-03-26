@@ -23,7 +23,7 @@ class ControlledRadioGroup extends Component {
     const onChange = value => this.setState({value});
 
     return (
-      <RadioGroup {...this.props} value={this.state.value} onChange={onChange} disabledRadios={[4]}>
+      <RadioGroup {...this.props} value={this.state.value} onChange={onChange} dataHook="story-radio-group" disabledRadios={[4]}>
         <RadioGroup.Radio value={1}>Option 1</RadioGroup.Radio>
         <RadioGroup.Radio value={2}>Option 2</RadioGroup.Radio>
         <RadioGroup.Radio value={3}>Option 3</RadioGroup.Radio>

@@ -20,7 +20,7 @@ describe('Label', () => {
     const children = 'inner text';
 
     const driver = createDriver(<Label appearance="T1">{children}</Label>);
-    expect(driver.getLabelTextContent()).toBe(children);
+    expect(driver.getLabelText()).toBe(children);
   });
 
   it('should support `for` attribute', () => {
@@ -45,7 +45,7 @@ describe('testkit', () => {
     const wrapper = div.appendChild(ReactTestUtils.renderIntoDocument(<div><Label dataHook={dataHook} appearance="T1">label</Label></div>));
     const labelTestkit = labelTestkitFactory({wrapper, dataHook});
     expect(labelTestkit.exists()).toBeTruthy();
-    expect(labelTestkit.getLabelTextContent()).toBe('label');
+    expect(labelTestkit.getLabelText()).toBe('label');
   });
 });
 
@@ -55,6 +55,6 @@ describe('enzyme testkit', () => {
     const wrapper = mount(<Label dataHook={dataHook} appearance="T1">label2</Label>);
     const labelTestkit = enzymeLabelTestkitFactory({wrapper, dataHook});
     expect(labelTestkit.exists()).toBeTruthy();
-    expect(labelTestkit.getLabelTextContent()).toBe('label2');
+    expect(labelTestkit.getLabelText()).toBe('label2');
   });
 });

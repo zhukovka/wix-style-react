@@ -5,7 +5,7 @@ const labelDriverFactory = ({element, wrapper, component}) => {
   return {
     exists: () => !!element,
     getTagName: () => element.tagName.toLowerCase(),
-    getLabelTextContent: () => element.textContent,
+    getLabelText: () => element.textContent,
     getClassList: () => element.className,
     getAttr: attrName => element.getAttribute(attrName),
     setProps: props => {

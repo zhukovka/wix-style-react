@@ -8,6 +8,6 @@ export default () =>
   <div className={`${styles.onGrayBackground} ${styles.exampleWrapper}`}>
     <Breadcrumbs items={items}
                  size={'medium'}/>
-    <Breadcrumbs items={items}
+    <Breadcrumbs dataHook={'story-breadcrumbs-large'}items={items}
                  size={'large'}/>
   </div>;
