@@ -138,7 +138,7 @@ class InputArea extends WixComponent {
 InputArea.displayName = 'InputArea';
 
 InputArea.defaultProps = {
-  theme: 'amaterial',
+  theme: 'normal',
 };
 
 InputArea.propTypes = {
