@@ -96,7 +96,6 @@ describe('InputArea', () => {
     it('should display an error icon if error is true', () => {
       const driver = createDriver(<InputArea error/>);
 
-      expect(driver.hasExclamation()).toBeTruthy();
       expect(driver.hasError()).toBeTruthy();
     });
   });
