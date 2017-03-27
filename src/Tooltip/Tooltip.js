@@ -162,7 +162,7 @@ class Tooltip extends WixComponent {
   };
 
   _getContainer() {
-    return this.props.appendToParent ? this._childNode.parentElement : document.body;
+    return this.props.appendToParent ? this._childNode.parentElement : document ? document.body : null;
   }
 
   show() {
@@ -183,7 +183,7 @@ class Tooltip extends WixComponent {
       this.setState({visible: true}, () => {
         if (!this._mountNode) {
           this._mountNode = document.createElement('div');
-          this._getContainer().appendChild(this._mountNode);
+          this._getContainer() && this._getContainer().appendChild(this._mountNode);
         }
         this._showTimeout = null;
         this.componentDidUpdate();
@@ -202,7 +202,7 @@ class Tooltip extends WixComponent {
     this._hideTimeout = setTimeout(() => {
       if (this._mountNode) {
         ReactDOM.unmountComponentAtNode(this._mountNode);
-        this._getContainer().removeChild(this._mountNode);
+        this._getContainer() && this._getContainer().removeChild(this._mountNode);
         this._mountNode = null;
       }
       this._hideTimeout = null;
