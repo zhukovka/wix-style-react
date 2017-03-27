@@ -162,6 +162,10 @@ class Tooltip extends WixComponent {
   };
 
   _getContainer() {
+    if (typeof document === 'undefined') {
+      return null;
+    }
+
     return this.props.appendToParent ? this._childNode.parentElement : document ? document.body : null;
   }
 
