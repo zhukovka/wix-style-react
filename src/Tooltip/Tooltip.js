@@ -108,7 +108,7 @@ class Tooltip extends WixComponent {
   componentWillUnmount() {
     super.componentWillUnmount && super.componentWillUnmount();
     this._unmounted = true;
-    this.hide();
+    this._getContainer() && this.hide();
   }
 
   componentWillMount() {
