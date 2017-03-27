@@ -1,12 +1,12 @@
 import React from 'react';
 import Tooltip from '../Tooltip';
-import SvgExclamation from '../svg/Exclamation.js';
 import styles from './InputArea.scss';
+import {Error} from '../Icons/dist';
 
 const Exclamation = ({errorMessage}) =>
   <div className={styles.suffix}>
-    <Tooltip disabled={errorMessage.length === 0} placement="top" alignment="center" hideDelay={100} content={errorMessage} overlay="" theme="dark">
-      <div className={styles.exclamation}><SvgExclamation width={2} height={11}/></div>
+    <Tooltip disabled={errorMessage.length === 0} placement="right" alignment="center" hideDelay={100} content={errorMessage} moveBy={{x: 0, y: -10}} overlay="">
+      <div className={styles.errorIcon}><Error size="1.5em"/></div>
     </Tooltip>
   </div>;
 
