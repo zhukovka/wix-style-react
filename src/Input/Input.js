@@ -101,7 +101,7 @@ class Input extends Component {
 
     const errElement = theme === 'amaterial' ?
       this.state.focus ? null :
-      <Tooltip dataHook="input-tooltip" placement="right" hideDelay={5} showDelay={5} active={!this.state.focus && error && !!errorMessage && theme === 'amaterial'} moveBy={{x: 6, y: -10}} alignment="center" content={errorMessage} overlay="">
+      <Tooltip dataHook="input-tooltip" placement="right" hideDelay={5} showDelay={5} disabled={this.state.focus || !error || !errorMessage || theme !== 'amaterial'} moveBy={{x: 6, y: -10}} alignment="center" content={errorMessage} overlay="">
         <div className={styles.errorIcon}><Error size="1.5em"/></div>
       </Tooltip> :
       (
