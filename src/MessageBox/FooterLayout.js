@@ -2,18 +2,18 @@ import React from 'react';
 import Button from '../Button';
 import * as styles from './FooterLayout.scss';
 
-const FooterLayout = ({children, theme, cancelText, onCancel, onOk, confirmText}) => {
+const FooterLayout = ({children, theme, cancelText, onCancel, onOk, confirmText, buttonsHeight}) => {
 
   return (
     <div className={styles.footer} data-hook="message-box-footer">
       {children}
       <div className={styles.footerbuttons}>
         {cancelText ?
-          <Button height="small" theme={'empty' + theme} onClick={onCancel} dataHook="cancellation-button" >
+          <Button height={buttonsHeight} theme={'empty' + theme} onClick={onCancel} dataHook="cancellation-button" >
             {cancelText}
           </Button> : null
         }
-        <Button height="small" theme={'full' + theme} onClick={onOk} dataHook="confirmation-button">
+        <Button height={buttonsHeight} theme={'full' + theme} onClick={onOk} dataHook="confirmation-button">
           {confirmText}
         </Button>
       </div>
@@ -27,11 +27,13 @@ FooterLayout.propTypes = {
   onCancel: React.PropTypes.func,
   onOk: React.PropTypes.func,
   theme: React.PropTypes.string,
+  buttonsHeight: React.PropTypes.string,
   children: React.PropTypes.any
 };
 
 FooterLayout.defaultProps = {
-  theme: 'blue'
+  theme: 'blue',
+  buttonsHeight: 'small'
 };
 
 export default FooterLayout;

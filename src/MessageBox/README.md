@@ -27,6 +27,7 @@
 | onCancel | func | - | - | Cancel callback |
 | title | Node | - | - | title of the Message Box |
 | children | array | - | - | Message box content |
+| buttonsHeight | string | small | - | The size of the button, can be small, medium or large |
 
 ## MessageBoxFunctionalLayout TestKit API
 
