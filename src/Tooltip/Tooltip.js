@@ -92,7 +92,7 @@ class Tooltip extends WixComponent {
         <TooltipContent
           onMouseEnter={() => this._onTooltipContentEnter()}
           onMouseLeave={() => this._onTooltipContentLeave()}
-          ref={ref => this._updatePosition(ref)}
+          ref={ref => this.tooltipContent = ref}
           theme={this.props.theme}
           bounce={this.props.bounce}
           arrowPlacement={arrowPlacement[this.props.placement]}
@@ -101,6 +101,7 @@ class Tooltip extends WixComponent {
           maxWidth={this.props.maxWidth}
           >{this.props.content}</TooltipContent>
       );
+
       ReactDOM.render(tooltip, this._mountNode);
     }
   }
@@ -190,7 +191,17 @@ class Tooltip extends WixComponent {
           this._getContainer() && this._getContainer().appendChild(this._mountNode);
         }
         this._showTimeout = null;
-        this.componentDidUpdate();
+
+        let fw = 0;
+        let sw = 0;
+        do {
+          this.componentDidUpdate();
+          const tooltipNode = ReactDOM.findDOMNode(this.tooltipContent);
+          fw = this._getRect(tooltipNode).width;
+          this._updatePosition(this.tooltipContent);
+          sw = this._getRect(tooltipNode).width;
+        } while (fw !== sw);
+
       });
     }, this.props.showDelay);
   }
@@ -244,19 +255,29 @@ class Tooltip extends WixComponent {
     this._hideOrShow('mouseleave');
   }
 
+  _calculatePosition(ref, tooltipNode) {
+    if (!ref || !tooltipNode) {
+      return {
+        top: -1,
+        left: -1
+      };
+    }
+    return this._adjustPosition(position(
+      this._getRect(this._childNode),
+      this._getRect(tooltipNode),
+      {
+        placement: this.props.placement,
+        alignment: this.props.alignment,
+        margin: 10
+      }
+    ));
+  }
+
   _updatePosition(ref) {
     if (ref && this._childNode) {
       const tooltipNode = ReactDOM.findDOMNode(ref);
 
-      const style = this._adjustPosition(position(
-        this._getRect(this._childNode),
-        this._getRect(tooltipNode),
-        {
-          placement: this.props.placement,
-          alignment: this.props.alignment,
-          margin: 10
-        }
-      ));
+      const style = this._calculatePosition(ref, tooltipNode);
 
       tooltipNode.style.top = `${style.top}px`;
       tooltipNode.style.left = `${style.left}px`;
