@@ -112,7 +112,7 @@ class Input extends Component {
 
     const helpElement = theme === 'amaterial' ?
       (
-        <Tooltip dataHook="input-tooltip" disabled={!help || helpMessage.length === 0} maxWidth="250px" placement="right" moveBy={{x: 8, y: -10}} alignment="center" hideDelay={100} content={helpMessage} overlay="">
+        <Tooltip dataHook="input-tooltip" disabled={!help || helpMessage.length === 0} maxWidth="250px" placement="right" moveBy={{x: 10, y: -10}} alignment="center" hideDelay={100} content={helpMessage} overlay="">
           <div className={styles.amaterialHelp}><InfoMaterial size="1.5em"/></div>
         </Tooltip>
       ) :
