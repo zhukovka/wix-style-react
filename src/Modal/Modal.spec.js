@@ -96,6 +96,17 @@ describe('Modal', () => {
     });
   });
 
+  describe('scrollable', () => {
+    it('should be set to true by default', () => {
+      const driver = createDriver(<Modal {...props}/>);
+      expect(driver.isScrollable()).toBe(true);
+    });
+    it('should allow disabling the scrolling', () => {
+      const driver = createDriver(<Modal {...props} scrollable={false}/>);
+      expect(driver.isScrollable()).toBe(false);
+    });
+  });
+
   describe('testkit', () => {
     it('should exist', () => {
       expect(isTestkitExists(<Modal {...props}/>, modalTestkitFactory)).toBe(true);

@@ -13,6 +13,7 @@ const modalDriverFactory = ({element, wrapper, component}) => {
     isOpen: () => !!(getContent()),
     isThemeExist: theme => !!getPortal().querySelector(`.${theme}`),
     getChildBySelector: selector => getPortal().querySelector(selector),
+    isScrollable: () => !getPortal().classList.contains('portalNonScrollable'),
     clickOnOverlay: () => {
       const overlay = getOverlay();
       ReactTestUtils.Simulate.mouseDown(overlay);
