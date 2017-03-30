@@ -115,3 +115,6 @@ export {toastTestkitFactory} from '../src/Toast/testkit/Toast.enzyme';
 
 import {sliderDriverFactory} from '../src/Slider/testkit/Slider';
 export const sliderTestkitFactory = enzymeTestkitFactoryCreator(sliderDriverFactory);
+
+import toggleSwitchDriverFactory from '../src/ToggleSwitch/ToggleSwitch.driver';
+export const toggleSwitchTestkitFactory = enzymeTestkitFactoryCreator(toggleSwitchDriverFactory);

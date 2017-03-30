@@ -39,13 +39,20 @@ export default () =>
   <div style={styles.header}>
     <div style={styles.text}>Small
       <div style={styles.switch}>
-        <ControlledToggleSwitch size="small"/>
+        <ControlledToggleSwitch
+          dataHook="controlled-switch-small"
+          size="small"
+          />
       </div>
     </div>
 
     <div style={styles.text}>Large
       <div style={styles.switch}>
-        <ControlledToggleSwitch checked size="large"/>
+        <ControlledToggleSwitch
+          dataHook="controlled-switch-large"
+          checked
+          size="large"
+          />
       </div>
     </div>
 

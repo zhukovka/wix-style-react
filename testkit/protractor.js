@@ -50,4 +50,7 @@ export const fieldWithSelectionCompositeTestkitFactory = protractorTestkitFactor
 import googleAddressWithInputDriverFactory from '../src/GoogleAddressInputWithLabel/GoogleAddressInputWithLabel.protractor.driver';
 export const googleAddressWithInputTestkitFactory = protractorTestkitFactoryCreator(googleAddressWithInputDriverFactory);
 
+import toggleSwitchDriverFactory from '../src/ToggleSwitch/ToggleSwitch.protractor.driver';
+export const toggleSwitchTestkitFactory = protractorTestkitFactoryCreator(toggleSwitchDriverFactory);
+
 export {protractorToastTestkitFactory} from '../src/Toast/testkit/Toast.protractor';

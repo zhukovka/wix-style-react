@@ -111,4 +111,7 @@ export const timeInputTestkitFactory = testkitFactoryCreator(timeInputDriverFact
 import filePickerDriverFactory from '../src/FilePicker/FilePicker.driver';
 export const filePickerTestkitFactory = testkitFactoryCreator(filePickerDriverFactory);
 
+import toggleSwitchDriverFactory from '../src/ToggleSwitch/ToggleSwitch.driver';
+export const toggleSwitchTestkitFactory = testkitFactoryCreator(toggleSwitchDriverFactory);
+
 export {toastTestkitFactory} from '../src/Toast/testkit/Toast';
