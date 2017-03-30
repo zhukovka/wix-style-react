@@ -34,6 +34,7 @@ class Tooltip extends WixComponent {
     disabled: PropTypes.bool,
     maxWidth: PropTypes.string,
     onClickOutside: PropTypes.func,
+    zIndex: React.PropTypes.number,
 
     /**
      * By default tooltip is appended to a body, to avoid CSS collisions.
@@ -66,6 +67,7 @@ class Tooltip extends WixComponent {
     hideTrigger: 'mouseleave',
     showDelay: 200,
     hideDelay: 500,
+    zIndex: 2000,
     maxWidth: '1200px',
     onClickOutside: null,
     active: false,
@@ -96,7 +98,7 @@ class Tooltip extends WixComponent {
           theme={this.props.theme}
           bounce={this.props.bounce}
           arrowPlacement={arrowPlacement[this.props.placement]}
-          style={this.state.style}
+          style={{zIndex: this.props.zIndex}}
           arrowStyle={this.state.arrowStyle}
           maxWidth={this.props.maxWidth}
           >{this.props.content}</TooltipContent>
