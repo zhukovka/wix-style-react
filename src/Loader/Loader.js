@@ -6,8 +6,8 @@ import styles from './Loader.scss';
 
 class Loader extends WixComponent {
   render() {
-    const {size, text} = this.props;
-    const className = classnames(styles.loader, styles[size]);
+    const {size, color, text} = this.props;
+    const className = classnames(styles.loader, styles[size], styles[color]);
     return (
       <div className={className}>
         <div className={styles.wheel}/>
@@ -18,11 +18,13 @@ class Loader extends WixComponent {
 }
 
 Loader.defaultProps = {
-  size: 'medium'
+  size: 'medium',
+  color: 'blue',
 };
 
 Loader.propTypes = {
   size: PropTypes.oneOf(['small', 'medium', 'large']).isRequired,
+  color: PropTypes.oneOf(['blue', 'white']).isRequired,
   text: PropTypes.string
 };
 

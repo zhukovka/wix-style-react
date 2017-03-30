@@ -48,6 +48,18 @@ describe('Loader', () => {
 
   });
 
+  describe('color property', () => {
+    it('should be blue by default', () => {
+      const driver = createDriver(<Loader/>);
+      expect(driver.getColor()).toEqual('blue');
+    });
+
+    it('should get the given color', () => {
+      const driver = createDriver(<Loader color="white"/>);
+      expect(driver.getColor()).toEqual('white');
+    });
+  });
+
   describe('testkit', () => {
     it('should exist', () => {
       expect(isTestkitExists(<Loader/>, loaderTestkitFactory)).toBe(true);

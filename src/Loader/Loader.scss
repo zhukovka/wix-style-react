@@ -14,13 +14,15 @@
 .loader.large { min-width: 136px; }
 .loader.large .wheel { width: 68px; height: 136px; margin-left: -68px; }
 
+.loader.blue {color: #3899ec;}
+.loader.white {color: #fff;}
+
 .wheel {
   display: inline-block;
   position: relative;
   animation: wheel-rotate-semi 1s linear infinite;
   overflow: hidden;
   transform-origin: 100% 50%;
-  color: #3899ec;
 
   &::before,
   &::after {
