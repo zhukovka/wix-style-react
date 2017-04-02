@@ -3,6 +3,7 @@ import React, {PropTypes} from 'react';
 import {CloseThin, ArrowDownThin, Search4} from '../Icons/dist';
 import ThemedInputErrorSuffix from './ThemedInputErrorSuffix';
 import ThemedInputHelpSuffix from './ThemedInputHelpSuffix';
+import values from 'lodash.values';
 
 import styles from './Input.scss';
 
@@ -20,7 +21,7 @@ const suffixRules = {
 };
 
 const getVisibleSuffixCount = args =>
-  Object.values(suffixRules)
+   values(suffixRules)
     .map(fn => fn(args))
     .filter(x => x)
     .length;
