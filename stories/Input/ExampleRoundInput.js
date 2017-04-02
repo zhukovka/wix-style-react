@@ -16,18 +16,24 @@ const defaultProps = {
   unit: '$'
 };
 
-export default () =>
+const Example = ({theme}) =>
   <div className="ltr">
     <div style={style}>
       Small
-      <Input {...defaultProps} size="small" roundInput/>
+      <Input theme={theme} {...defaultProps} size="small" roundInput/>
     </div>
     <div style={style}>
       Normal<br/>
-      <Input {...defaultProps} size="normal" roundInput/>
+      <Input theme={theme} {...defaultProps} size="normal" roundInput/>
     </div>
     <div style={style}>
       Large<br/>
-      <Input {...defaultProps} size="large" roundInput/>
+      <Input theme={theme} {...defaultProps} size="large" roundInput/>
     </div>
   </div>;
+
+Example.propTypes = {
+  theme: React.PropTypes.string
+};
+
+export default Example;

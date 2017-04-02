@@ -19,7 +19,7 @@ class CommandsExample extends React.Component {
     return (
       <div className="ltr">
         <div style={{width: '400px'}}>
-          <Input ref="inputtest"/>
+          <Input theme={this.props.theme} ref="inputtest"/>
         </div>
         <TextButton onClick={handleClick1}>Focus</TextButton>
         <TextButton onClick={handleClick2}>Focus &amp; blur 1 second later</TextButton>
@@ -29,7 +29,17 @@ class CommandsExample extends React.Component {
   }
 }
 
-export default () =>
+CommandsExample.propTypes = {
+  theme: React.PropTypes.string
+};
+
+const Example = ({theme}) =>
   <div>
-    <CommandsExample/>
+    <CommandsExample theme={theme}/>
   </div>;
+
+Example.propTypes = {
+  theme: React.PropTypes.string
+};
+
+export default Example;

@@ -31,8 +31,14 @@ class ControlledInput extends Component {
   }
 }
 
-export default () =>
+const Example = ({theme}) =>
   <div className="ltr" style={style}>
     <span>This shows an error for &quot;Starwars&quot;</span>
-    <ControlledInput/>
+    <ControlledInput theme={theme}/>
   </div>;
+
+Example.propTypes = {
+  theme: React.PropTypes.string
+};
+
+export default Example;

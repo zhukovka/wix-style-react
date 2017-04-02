@@ -8,12 +8,18 @@ const style = {
   lineHeight: '22px'
 };
 
-export default () =>
+const Example = ({theme}) =>
   <div>
-    <div className="ltr" style={style}>Input<br/><Input/></div>
-    <div className="ltr" style={style}>Focus<Input forceFocus/></div>
-    <div className="ltr" style={style}>Hover<Input forceHover/></div>
-    <div className="ltr" style={style}>With placeholder<Input placeholder="Search..."/></div>
-    <div className="ltr" style={style}>Disabled<br/><Input disabled placeholder="disabled"/></div>
-    <div className="ltr" style={style}>Disabled with search<br/><Input magnifyingGlass disabled placeholder="disabled with search"/></div>
+    <div className="ltr" style={style}>Input<br/><Input theme={theme}/></div>
+    <div className="ltr" style={style}>Focus<Input theme={theme} forceFocus/></div>
+    <div className="ltr" style={style}>Hover<Input theme={theme} forceHover/></div>
+    <div className="ltr" style={style}>With placeholder<Input theme={theme} placeholder="Search..."/></div>
+    <div className="ltr" style={style}>Disabled<br/><Input theme={theme} disabled placeholder="disabled"/></div>
+    <div className="ltr" style={style}>Disabled with search<br/><Input theme={theme} magnifyingGlass disabled placeholder="disabled with search"/></div>
   </div>;
+
+Example.propTypes = {
+  theme: React.PropTypes.string
+};
+
+export default Example;
