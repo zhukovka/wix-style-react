@@ -1,19 +1,12 @@
 import React, {PropTypes, Component} from 'react';
 import classNames from 'classnames';
 
-import Label from '../Label';
 import Ticker from './Ticker';
 import Unit from './Unit';
 import Group from './Group';
-import InputPrefix from './InputPrefix';
-import InputSuffix from './InputSuffix';
-import {CloseThin, ArrowDownThin, Search4, Help, Error, InfoMaterial} from '../Icons/dist';
-import Tooltip from '../Tooltip';
-import SvgExclamation from '../svg/Exclamation.js';
+import InputSuffix, {getVisibleSuffixCount} from './InputSuffix';
 
 import styles from './Input.scss';
-
-const isFixVisible = fix => fix.isVisible;
 
 class Input extends Component {
   static Ticker = Ticker;
@@ -31,12 +24,8 @@ class Input extends Component {
   render() {
     const {
       id,
-      theme,
       value,
-      forceHover,
-      forceFocus,
       placeholder,
-      error,
       help,
       helpMessage,
       unit,
@@ -45,47 +34,19 @@ class Input extends Component {
       defaultValue,
       tabIndex,
       onClear,
-      rtl,
       autoFocus,
       onKeyUp,
       readOnly,
-      size,
-      dataHook,
       prefix,
       suffix,
-      disabled,
       type,
       errorMessage,
-      roundInput,
-      noLeftBorderRadius,
       maxLength,
-      noRightBorderRadius,
       textOverflow,
-      title
+      theme,
+      disabled,
+      error,
     } = this.props;
-
-    let classes = {
-      [styles.root]: true,
-      [styles[`theme-${theme}`]]: true,
-      [styles[`size-${size}`]]: true,
-      [styles.rtl]: !!rtl,
-      [styles.disabled]: disabled,
-      [styles.hasError]: !!error,
-      [styles.hasHover]: forceHover,
-      [styles.hasFocus]: forceFocus || this.state.focus,
-      [styles.roundInput]: roundInput,
-      [styles.hasValue]: this.input && !!this.input.value
-    };
-
-    if (noRightBorderRadius) {
-      classes[noRightBorderRadius] = true;
-    }
-
-    if (noLeftBorderRadius) {
-      classes[noLeftBorderRadius] = true;
-    }
-
-    classes = classNames(classes);
 
     const onIconClicked = () => {
       if (!disabled) {
@@ -93,122 +54,64 @@ class Input extends Component {
       }
     };
 
-    const prefixes = [
-      {component: () => prefix, isVisible: !!prefix}
-    ].filter(isFixVisible);
-
     const isClearButtonVisible = onClear && !error && !disabled && !!value;
 
-    const errElement = theme === 'amaterial' ?
-      this.state.focus ? null :
-      <Tooltip dataHook="input-tooltip" placement="right" hideDelay={5} showDelay={5} disabled={this.state.focus || !error || !errorMessage || theme !== 'amaterial'} moveBy={{x: 6, y: -10}} alignment="center" content={errorMessage} overlay="">
-        <div className={styles.errorIcon}><Error size="1.5em"/></div>
-      </Tooltip> :
-      (
-        <Tooltip dataHook="input-tooltip" disabled={errorMessage.length === 0} placement="top" moveBy={{x: 2, y: 0}} alignment="center" content={errorMessage} overlay="" theme="dark">
-          <div className={styles.exclamation}><SvgExclamation width={2} height={11}/></div>
-        </Tooltip>
-      );
-
-    const helpElement = theme === 'amaterial' ?
-      (
-        <Tooltip dataHook="input-tooltip" disabled={!help || helpMessage.length === 0} maxWidth="250px" placement="right" moveBy={{x: 10, y: -10}} alignment="center" hideDelay={100} content={helpMessage} overlay="">
-          <div className={styles.amaterialHelp}><InfoMaterial size="1.5em"/></div>
-        </Tooltip>
-      ) :
-      (
-        <Tooltip dataHook="input-tooltip" disabled={helpMessage.length === 0} maxWidth="250px" placement="right" moveBy={{x: 2, y: 0}} alignment="center" hideDelay={100} content={helpMessage} overlay="">
-          <div className={styles.help}><Help height="20" width="20"/></div>
-        </Tooltip>
-      );
-
-    const suffixes = [
-      {
-        component: () =>
-          errElement,
-        isVisible: error && !disabled
-      },
-      {
-        component: () =>
-          helpElement,
-        isVisible: help && !disabled
-      },
-      {
-        component: () =>
-          <div className={styles.magnifyingGlass} disabled={disabled} onClick={onIconClicked}>
-            <Search4 size={'18px'}/>
-          </div>,
-        isVisible: magnifyingGlass && !isClearButtonVisible && !error
-      },
-      {
-        component: () =>
-          <div onClick={onClear} className={styles.clearButton}>
-            <CloseThin size={'6px'}/>
-          </div>,
-        isVisible: isClearButtonVisible
-      },
-      {
-        component: () =>
-          <div className={styles.menuArrow} disabled={disabled} onClick={onIconClicked}>
-            <ArrowDownThin size={'0.6em'}/>
-          </div>,
-        isVisible: menuArrow && !isClearButtonVisible && !error && !magnifyingGlass
-      },
-      {
-        component: () => <div className={styles.unitSeparator}/>,
-        isVisible: !!unit
-      },
-      {
-        component: () => <div className={styles.unit} onClick={onIconClicked}>{unit}</div>,
-        isVisible: !!unit
-      },
-      {
-        component: () => suffix,
-        isVisible: !!suffix
-      }
-    ].filter(isFixVisible);
-
-    const inputClassNames = classNames(styles.input, {
-      [styles.withPrefix]: prefixes.length,
-      [styles.withSuffix]: suffixes.length,
-      [styles.withSuffixes]: suffixes.length > 1
+    const visibleSuffixCount = getVisibleSuffixCount({
+      error, disabled, help, magnifyingGlass, isClearButtonVisible, menuArrow, unit, suffix
     });
 
-    return (
-      <div className={classes} data-hook={dataHook}>
-        { prefixes.length > 0 && <InputPrefix prefixes={prefixes}/> }
+    const inputClassNames = classNames(styles.input, {
+      [styles.withPrefix]: !!prefix,
+      [styles.withSuffix]: visibleSuffixCount,
+      [styles.withSuffixes]: visibleSuffixCount > 1
+    });
 
-        {(theme === 'amaterial') && <Label for={id}>{title}</Label>}
-
-        <input
-          style={{textOverflow}}
-          ref={input => this.input = input}
-          className={inputClassNames}
-          id={id}
-          disabled={disabled}
-          defaultValue={defaultValue}
-          value={value}
-          onChange={this._onChange}
-          maxLength={maxLength}
-          onFocus={this._onFocus}
-          onBlur={this._onBlur}
-          onKeyDown={this._onKeyDown}
-          onDoubleClick={this._onDoubleClick}
-          placeholder={placeholder}
-          tabIndex={tabIndex}
-          autoFocus={autoFocus}
-          onClick={this._onClick}
-          onKeyUp={onKeyUp}
-          readOnly={readOnly}
-          type={type}
-          />
-
-        { suffixes.length > 0 && <InputSuffix suffixes={suffixes}/> }
-
-        {(theme === 'material') && <div className={`${styles.bar} ${styles.barBlack}`}/>}
-        {(theme === 'amaterial') && <div className={`${styles.bar} ${styles.barBlue}`}/>}
-      </div>
+    const inputElement = (
+      <input
+        style={{textOverflow}}
+        ref={input => this.input = input}
+        className={inputClassNames}
+        id={id}
+        disabled={disabled}
+        defaultValue={defaultValue}
+        value={value}
+        onChange={this._onChange}
+        maxLength={maxLength}
+        onFocus={this._onFocus}
+        onBlur={this._onBlur}
+        onKeyDown={this._onKeyDown}
+        onDoubleClick={this._onDoubleClick}
+        placeholder={placeholder}
+        tabIndex={tabIndex}
+        autoFocus={autoFocus}
+        onClick={this._onClick}
+        onKeyUp={onKeyUp}
+        readOnly={readOnly}
+        type={type}
+        />
     );
+
+    return (<div className={styles.inputWrapper}>
+      {prefix && <div className={styles.prefix}>{prefix}</div>}
+
+      { inputElement }
+      { visibleSuffixCount > 0 && <InputSuffix
+        error={error}
+        errorMessage={errorMessage}
+        theme={theme}
+        disabled={disabled}
+        help={help}
+        helpMessage={helpMessage}
+        onIconClicked={onIconClicked}
+        magnifyingGlass={magnifyingGlass}
+        isClearButtonVisible={isClearButtonVisible}
+        onClear={onClear}
+        menuArrow={menuArrow}
+        unit={unit}
+        focused={this.state.focus}
+        suffix={suffix}
+        /> }
+    </div>);
   }
 
   focus = () => {
@@ -266,8 +169,8 @@ class Input extends Component {
 Input.displayName = 'Input';
 
 Input.defaultProps = {
-  theme: 'normal',
   size: 'normal',
+  theme: 'normal',
   errorMessage: '',
   helpMessage: '',
   roundInput: false,

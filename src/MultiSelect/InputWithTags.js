@@ -1,6 +1,6 @@
 import React, {PropTypes} from 'react';
 import Tag from '../Tag/Tag';
-import Input from '../Input/Input';
+import Input from '../Input';
 import styles from './InputWithTags.scss';
 import omit from 'lodash.omit';
 import classNames from 'classnames';

@@ -14,6 +14,11 @@ $double-gap: 12px;
     @include FontRoman();
 }
 
+.input-wrapper {
+  display: flex;
+  width: 100%;
+}
+
 .input {
     flex-grow: 1;
     flex-shrink: 1;
@@ -242,6 +247,7 @@ $double-gap: 12px;
 // RTL layout based on global style set on document body or parent element.
 :global(.rtl) {
     .root,
+    .input-wrapper,
     .prefixes,
     .suffixes { flex-direction: row-reverse; }
     .input {

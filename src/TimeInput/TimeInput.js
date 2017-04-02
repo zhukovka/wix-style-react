@@ -1,6 +1,6 @@
 import React from 'react';
 import isUndefined from 'lodash.isundefined';
-import Input from '../Input/Input';
+import Input from '../Input';
 import classNames from 'classnames';
 import moment from 'moment';
 import styles from './TimeInput.scss';

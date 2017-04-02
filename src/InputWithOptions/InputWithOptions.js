@@ -1,6 +1,6 @@
 import React from 'react';
 import WixComponent from '../WixComponent';
-import Input from '../Input/Input.js';
+import Input from '../Input';
 import omit from 'lodash.omit';
 import DropdownLayout from '../DropdownLayout/DropdownLayout';
 

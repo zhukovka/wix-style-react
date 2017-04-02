@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactTestUtils from 'react-addons-test-utils';
 import inputDriverFactory from './Input.driver';
-import Input from './Input';
+import Input from '.';
 import sinon from 'sinon';
 import {createDriverFactory} from '../test-common';
 import {inputTestkitFactory, tooltipTestkitFactory} from '../../testkit';
