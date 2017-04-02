@@ -53,7 +53,11 @@ The card is a container component of a rounded corner layout
 
 #### Row
 
-A simple row according to the bootstrap docs
+A simple row according to the bootstrap docs.
+
+| propName | propType | defaultValue | isRequired | description |
+|----------|----------|--------------|------------|-------------|
+| rtl | bool | - | - | Reverses the columns ordering |
 
 #### AutoAdjustedRow
 
@@ -68,3 +72,4 @@ A simple column according to the bootstrap docs
 | propName | propType | defaultValue | isRequired | description |
 |----------|----------|--------------|------------|-------------|
 | span | number | - | + | The columns span of this column |
+| rtl | bool | - | - | Causing the column to float right |

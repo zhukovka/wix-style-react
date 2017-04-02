@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import styles from './Grid.scss';
 import Card from '../Card';
+import classNames from 'classnames';
 
 class Container extends Component {
 
@@ -20,12 +21,17 @@ class Container extends Component {
 class Row extends Component {
 
   static propTypes = {
-    children: React.PropTypes.node
+    children: React.PropTypes.node,
+    rtl: React.PropTypes.bool
   };
 
   render() {
+    const rowClasses = classNames(styles.row, {
+      [styles.rtl]: this.props.rtl
+    });
+
     return (
-      <div className={styles.row}>
+      <div className={rowClasses}>
         {this.props.children}
       </div>
     );
@@ -55,14 +61,19 @@ class Col extends Component {
 
   static propTypes = {
     children: React.PropTypes.node,
-    span: React.PropTypes.number.isRequired
+    span: React.PropTypes.number.isRequired,
+    rtl: React.PropTypes.bool
   };
 
   render() {
-    const className = styles[`colXs${this.props.span}`];
+    const columnClasses = classNames(
+      styles.column,
+      styles[`colXs${this.props.span}`], {
+        [styles.rtl]: this.props.rtl
+      });
 
     return (
-      <div className={className}>
+      <div className={columnClasses}>
         {this.props.children}
       </div>
     );
