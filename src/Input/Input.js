@@ -29,6 +29,7 @@ class Input extends Component {
       help,
       helpMessage,
       unit,
+      dataHook,
       magnifyingGlass,
       menuArrow,
       defaultValue,
@@ -72,6 +73,7 @@ class Input extends Component {
         ref={input => this.input = input}
         className={inputClassNames}
         id={id}
+        data-hook={dataHook}
         disabled={disabled}
         defaultValue={defaultValue}
         value={value}
