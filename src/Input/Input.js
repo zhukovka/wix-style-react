@@ -21,7 +21,7 @@ class Input extends Component {
     this.props.autoFocus && this._onFocus();
   }
 
-  render() {
+  render(props = {}) {
     const {
       id,
       value,
@@ -88,6 +88,8 @@ class Input extends Component {
         onKeyUp={onKeyUp}
         readOnly={readOnly}
         type={type}
+
+        {...props}
         />
     );
 
