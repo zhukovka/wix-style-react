@@ -1,7 +1,7 @@
 import React from 'react';
 import classNames from 'classnames';
 import Input from './Input';
-import Label from '../Label';
+import Typography from '../Typography';
 
 import styles from './Input.scss';
 
@@ -41,7 +41,7 @@ class ThemedInput extends Input {
         className={classNames(classes, styles.root, styles[`theme-${theme}`], styles[`size-${size}`])}
         data-hook={dataHook}
         >
-        {(theme === 'amaterial') && <Label for={id}>{title}</Label>}
+        {(theme === 'amaterial') && <label className={classNames(styles.materialTitle, Typography.t1_1)} htmlFor={id}>{title}</label>}
         {super.render()}
         {(theme === 'material') && <div className={`${styles.bar} ${styles.barBlack}`}/>}
         {(theme === 'amaterial') && <div className={`${styles.bar} ${styles.barBlue}`}/>}

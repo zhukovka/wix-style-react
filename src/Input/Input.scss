@@ -352,3 +352,10 @@ $double-gap: 12px;
         line { stroke: $GR40; }
     }
 }
+
+.materialTitle {
+    width: 100%;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+}
