@@ -6,7 +6,7 @@ import reduce from 'lodash.reduce';
 import isundefined from 'lodash.isundefined';
 import filter from 'lodash.filter';
 import includes from 'lodash.includes';
-import each from 'lodash.foreach';
+import {google2address} from './google2address';
 
 class GoogleAddressInput extends React.Component {
   constructor(params) {
@@ -222,45 +222,6 @@ class GoogleAddressInput extends React.Component {
       return Promise.resolve(results);
     });
   }
-}
-
-function google2address(google) {
-  const result = {
-    formatted: google.formatted_address,
-    latLng: {
-      lat: google.geometry.location.lat(),
-      lng: google.geometry.location.lng()
-    },
-    approximate: (!includes(google.types, 'street_address') && (!includes(google.types, 'premise')))
-  };
-
-  each(google.address_components, component => {
-    each(component.types, type => {
-      switch (type) {
-        case 'country':
-          result.country = component.long_name || null;
-          result.countryCode = component.short_name || null;
-          break;
-        case 'locality':
-          result.city = component.long_name || null;
-          break;
-        case 'route':
-          result.street = component.long_name || null;
-          break;
-        case 'street_number':
-          result.number = component.long_name || null;
-          break;
-        case 'postal_code':
-          result.postalCode = component.long_name || null;
-          break;
-        default:
-          // Do nothing
-          break;
-      }
-    });
-  });
-
-  return result;
 }
 
 GoogleAddressInput.defaultProps = {
