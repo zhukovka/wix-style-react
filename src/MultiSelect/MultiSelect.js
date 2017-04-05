@@ -46,7 +46,10 @@ class MultiSelect extends InputWithOptions {
 
   _onManuallyInput(inputValue) {
     if (inputValue.trim()) {
-      super._onManuallyInput(inputValue);
+      if (this.closeOnSelect()) {
+        this.hideOptions();
+      }
+
       this.onManuallyInput(inputValue);
     } else {
       super.hideOptions();
