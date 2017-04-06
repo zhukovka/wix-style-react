@@ -1,4 +1,6 @@
-@import '../../../src/common.scss';
+.root {
+  padding: 0 200px;
+}
 
 .box {
   box-sizing: border-box;
@@ -9,4 +11,3 @@
   padding: 10px;
   border: solid 1px #efefef;
 }
-

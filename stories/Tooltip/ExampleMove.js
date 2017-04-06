@@ -5,7 +5,7 @@ import styles from './Example.scss';
 
 export default () =>
   <Tooltip
-    debug
+    active
     placement="right"
     alignment="top"
     content="Lorem ipsum dolor sit amet, consectetur adipiscing elit. In vel erat eu sem rutrum tristique. Sed id odio non magna sodales egestas."

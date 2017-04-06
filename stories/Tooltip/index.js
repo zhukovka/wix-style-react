@@ -1,9 +1,9 @@
 import React from 'react';
 import {storiesOf} from '@kadira/storybook';
 
-import Markdown from '../../utils/Components/Markdown';
-import CodeExample from '../../utils/Components/CodeExample';
-import Readme from '../../../src/Tooltip/README.md';
+import Markdown from '../utils/Components/Markdown';
+import CodeExample from '../utils/Components/CodeExample';
+import Readme from '../../src/Tooltip/README.md';
 
 import ExamplePlacement from './ExamplePlacement';
 import ExamplePlacementRaw from '!raw!./ExamplePlacement';

@@ -32,7 +32,7 @@ class ExampleBounce extends Component {
   render() {
     return (
       <div>
-        <Tooltip debug bounce={this.state.bounce} placement="right" alignment="center" content="Bounce" showTrigger="custom" hideTrigger="custom">
+        <Tooltip active bounce={this.state.bounce} placement="right" alignment="center" content="Bounce" showTrigger="custom" hideTrigger="custom">
           <div className={styles.box}>Bounce</div>
         </Tooltip>
         <div style={{paddingTop: '20px'}}>
