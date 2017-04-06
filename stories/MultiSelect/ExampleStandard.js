@@ -48,7 +48,7 @@ class ExampleStandard extends React.Component {
           onSelect={this.handleOnSelect}
           onRemoveTag={this.handleOnRemoveTag}
           onChange={this.handleOnChange}
-          onManuallyInput={this.handleOnSelect}
+          onManuallyInput={() => console.log("NOW")}
           options={this.state.options}
           value={this.state.inputValue}
           predicate={this.predicate}

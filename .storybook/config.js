@@ -20,6 +20,7 @@ function loadStories() {
   require('../stories/EndorseContentLayout');
   require('../stories/FilePicker');
   require('../stories/GoogleAddressInput');
+  require('../stories/ImageViewer');
   require('../stories/Input');
   require('../stories/InputWithOptions');
   require('../stories/Label');

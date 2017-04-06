@@ -53,4 +53,7 @@ export const googleAddressWithInputTestkitFactory = protractorTestkitFactoryCrea
 import toggleSwitchDriverFactory from '../src/ToggleSwitch/ToggleSwitch.protractor.driver';
 export const toggleSwitchTestkitFactory = protractorTestkitFactoryCreator(toggleSwitchDriverFactory);
 
+import imageViewerDriverFactory from '../src/ImageViewer/ImageViewer.protractor.driver';
+export const imageViewerTestkitFactory = protractorTestkitFactoryCreator(imageViewerDriverFactory);
+
 export {protractorToastTestkitFactory} from '../src/Toast/testkit/Toast.protractor';

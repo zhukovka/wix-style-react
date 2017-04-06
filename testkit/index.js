@@ -114,4 +114,7 @@ export const filePickerTestkitFactory = testkitFactoryCreator(filePickerDriverFa
 import toggleSwitchDriverFactory from '../src/ToggleSwitch/ToggleSwitch.driver';
 export const toggleSwitchTestkitFactory = testkitFactoryCreator(toggleSwitchDriverFactory);
 
+import imageViewerDriverFactory from '../src/ImageViewer/ImageViewer.driver';
+export const imageViewerTestkitFactory = testkitFactoryCreator(imageViewerDriverFactory);
+
 export {toastTestkitFactory} from '../src/Toast/testkit/Toast';

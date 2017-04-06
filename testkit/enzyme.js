@@ -118,3 +118,6 @@ export const sliderTestkitFactory = enzymeTestkitFactoryCreator(sliderDriverFact
 
 import toggleSwitchDriverFactory from '../src/ToggleSwitch/ToggleSwitch.driver';
 export const toggleSwitchTestkitFactory = enzymeTestkitFactoryCreator(toggleSwitchDriverFactory);
+
+import imageViewerDriverFactory from '../src/ImageViewer/ImageViewer.driver';
+export const imageViewerTestkitFactory = enzymeTestkitFactoryCreator(imageViewerDriverFactory);
