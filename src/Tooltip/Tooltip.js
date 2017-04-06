@@ -15,7 +15,11 @@ class Tooltip extends WixComponent {
   }
 
   onClickOutside(e) {
-    this.props.onClickOutside && this.props.onClickOutside(e);
+    if (this.props.shouldCloseOnClickOutside) {
+      this.hide();
+    } else if (this.props.onClickOutside) {
+      this.props.onClickOutside && this.props.onClickOutside(e);
+    }
   }
 
   static propTypes = {
@@ -29,7 +33,6 @@ class Tooltip extends WixComponent {
     showTrigger: PropTypes.oneOf(['custom', 'mouseenter', 'mouseleave', 'click', 'focus', 'blur']),
     hideTrigger: PropTypes.oneOf(['custom', 'mouseenter', 'mouseleave', 'click', 'focus', 'blur']),
     active: PropTypes.bool,
-    onActiveChange: PropTypes.func,
     bounce: PropTypes.bool,
     disabled: PropTypes.bool,
     maxWidth: PropTypes.string,
@@ -57,7 +60,10 @@ class Tooltip extends WixComponent {
      * Positive value calculates position from left/top.
      * Negative one calculates position from right/bottom.
      */
-    moveArrowTo: PropTypes.number
+    moveArrowTo: PropTypes.number,
+    size: PropTypes.oneOf(['normal', 'large']),
+    shouldCloseOnClickOutside: PropTypes.bool,
+    debug: PropTypes.bool
   };
 
   static defaultProps = {
@@ -71,10 +77,12 @@ class Tooltip extends WixComponent {
     maxWidth: '1200px',
     onClickOutside: null,
     active: false,
-    onActiveChange: () => {},
     theme: 'light',
     disabled: false,
-    children: null
+    children: null,
+    size: 'normal',
+    shouldCloseOnClickOutside: false,
+    debug: false
   };
 
   _childNode = null;
@@ -101,8 +109,10 @@ class Tooltip extends WixComponent {
           style={{zIndex: this.props.zIndex}}
           arrowStyle={this.state.arrowStyle}
           maxWidth={this.props.maxWidth}
-          >{this.props.content}</TooltipContent>
-      );
+          size={this.props.size}
+          >
+          {this.props.content}
+        </TooltipContent>);
 
       ReactDOM.render(tooltip, this._mountNode);
     }
@@ -116,26 +126,20 @@ class Tooltip extends WixComponent {
 
   componentWillMount() {
     super.componentWillMount && super.componentWillMount();
-    if (this.props.active) {
+    if (this.props.debug || this.state.visible) {
       this.show();
     }
   }
 
-  componentWillReceiveProps(nextProps) {
-    super.componentWillReceiveProps && super.componentWillReceiveProps(nextProps);
-    if (nextProps.active !== this.props.active) {
-      if (this.state.visible && this.props.hideTrigger === 'custom') {
-        if (!nextProps.active) {
-          this.hide();
-        }
-      }
-      if (!this.state.visible && this.props.showTrigger === 'custom') {
-        if (nextProps.active) {
-          this.show();
-        }
-      }
-    }
-  }
+  // componentWillReceiveProps(nextProps) {
+  //   super.componentWillReceiveProps && super.componentWillReceiveProps(nextProps);
+  //   if (this.state.visible && this.props.hideTrigger === 'custom') {
+  //     this.hide();
+  //   }
+  //   if (!this.state.visible && this.props.showTrigger === 'custom') {
+  //     this.show();
+  //   }
+  // }
 
   render() {
     const child = this.props.children;
@@ -209,6 +213,10 @@ class Tooltip extends WixComponent {
   }
 
   hide() {
+    if (this.props.debug) {
+      return;
+    }
+
     if (this._showTimeout) {
       clearTimeout(this._showTimeout);
       this._showTimeout = null;
@@ -230,9 +238,9 @@ class Tooltip extends WixComponent {
   }
 
   _hideOrShow(event) {
-    if (this.props.hideTrigger === event) {
+    if (this.props.hideTrigger === event && this.state.visible) {
       this.hide();
-    } else if (this.props.showTrigger === event) {
+    } else if (this.props.showTrigger === event && !this.state.visible) {
       this.show();
     }
   }

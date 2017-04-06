@@ -11,6 +11,6 @@ const content = (
 );
 
 export default () =>
-  <Tooltip active placement="right" alignment="center" content={content} showTrigger="custom" hideTrigger="custom">
+  <Tooltip debug placement="right" alignment="center" content={content} showTrigger="custom" hideTrigger="custom">
     <div className={styles.box}>Custom Content</div>
   </Tooltip>;

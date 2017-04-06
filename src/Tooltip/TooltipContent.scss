@@ -37,6 +37,16 @@ $shadow: 0 0 11px 0 $shadow-color;
     color: white;
     background: $R00;
   }
+  &.normal {
+    font-size: 14px;
+    line-height: 18px;
+    text-align: center;
+  }
+  &.large {
+    font-size: 16px;
+    line-height: 24px;
+    text-align: center;
+  }
 }
 
 .arrow {
