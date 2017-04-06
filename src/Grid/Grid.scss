@@ -20,7 +20,9 @@ $grid-row-margin-bottom: 30px;
 		margin-bottom: $grid-row-margin-bottom;
 	}
 }
-
+.flex-container {
+	display: flex;
+}
 .wixContainer {
 	@extend .container;
 

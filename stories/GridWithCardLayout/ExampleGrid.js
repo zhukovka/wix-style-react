@@ -28,19 +28,21 @@ export default () =>
   <div data-hook="card-example" className={styles.exampleContainer}>
     <Container>
       <AutoAdjustedRow>
-        <Card>
+        <Card stretchVertically={true}>
           <Card.ButtonHeader
             tooltip={<Tooltip placement="top" alignment="center" content="Hi there!"/>}
-            title="AutoAdjustedRow Card 1"
+            title="AutoAdjustedRow Stretched Card 1"
             buttonOnClick={() => {alert('Clicked!')}}
             buttonPrefix={<Plus/>}
             buttonTitle='Tooltip button!'
           />
+          <Card.Content>Here comes some AMAZING content that will blow your mind.
+            Or just show you that the card next to me got my height.</Card.Content>
         </Card>
-        <Card>
+        <Card stretchVertically={true}>
           <Card.ButtonHeader
             tooltip={<Tooltip placement="top" alignment="center" content="Hi there!"/>}
-            title="AutoAdjustedRow Card 2"
+            title="AutoAdjustedRow Stretched Card 2"
             buttonOnClick={() => {alert('Clicked!')}}
             buttonPrefix={<Plus/>}
             buttonTitle='Tooltip button!'

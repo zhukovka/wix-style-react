@@ -16,7 +16,11 @@ Use ".wix-container" instead of bootstrap's ".container".
 
 #### Card
 
-The card is a container component of a rounded corner layout
+The card is a container component of a rounded corner layout.
+
+| propName | propType | defaultValue | isRequired | description |
+|----------|----------|--------------|------------|-------------|
+| stretchVertically | bool | false | false | Should this Card stretch vertically inside the container |
 
 #### Card.Header
 
@@ -63,6 +67,9 @@ A simple row according to the bootstrap docs.
 
 A row with as much columns as children with the same width.
 Can be used for multiple (not more than 12) equal cards on the same row.
+If you want that the children will be the at the same height, 
+just add height: 100%; to them (if there isn't already).
+if its a card just add the stretchVertically prop.
 ##### Notice that the span of each element will be 12 % {the number of children}, so in case of result greater than 0, you'll get incomplete line
 
 #### Col

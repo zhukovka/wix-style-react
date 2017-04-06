@@ -46,13 +46,14 @@ class AutoAdjustedRow extends Component {
   };
 
   render() {
+    const cssClasses = classNames(styles.row, styles.flexContainer);
     const children = this.props.children;
     const cols = Array.isArray(children) ? children : [children];
     const spanSize = Math.floor(this.DEFAULT_MAX_SPAN / cols.length);
     return (
-      <Row>
+      <div className={cssClasses}>
         {cols.map((child, index) => <Col span={spanSize} key={index}>{child}</Col>)}
-      </Row>
+      </div>
     );
   }
 }
