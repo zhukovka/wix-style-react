@@ -13,3 +13,4 @@
 | darkBackground | bool | - | - | Whether to use dark background |
 | size | 'small'/'medium' | 'medium' | - | The size of the button |
 | disabled | bool | false | - | disables the link |
+| ariaLabel | string | - | - | The aria label for accessibility, by default it will be the link text |

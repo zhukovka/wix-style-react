@@ -40,8 +40,6 @@ export default class TextLinkLayout extends WixComponent {
 
     const style = {
       color,
-      outline: 'none',
-      border: 'none',
       background: 'none',
       cursor: 'pointer',
       textDecoration: ((underlineStyle === 'hover' && isHover) || underlineStyle === 'always') ? 'underline' : 'none'
@@ -51,6 +49,7 @@ export default class TextLinkLayout extends WixComponent {
 
     return (
       <div
+        role="link"
         className={className}
         style={style}
         onMouseLeave={this.toggleHover}

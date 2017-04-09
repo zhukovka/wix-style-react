@@ -11,13 +11,13 @@ export default class TextLink extends WixComponent {
       disabled: PropTypes.bool,
       download: PropTypes.bool,
       rel: PropTypes.string,
-      target: PropTypes.oneOf(['_blank', '_parent', '_self', '_top', 'framename'])
+      target: PropTypes.oneOf(['_blank', '_parent', '_self', '_top', 'framename']),
+      ariaLabel: PropTypes.string
     }
   );
 
   static defaultProps = Object.assign({},
-    TextLinkLayout.defaultProps,
-    {
+    TextLinkLayout.defaultProps, {
       disabled: false,
       download: false,
       rel: null,
@@ -26,16 +26,23 @@ export default class TextLink extends WixComponent {
   );
 
   render() {
-    const {disabled, link, children, download, rel, target} = this.props;
+    const {ariaLabel, disabled, link, children, download, rel, target} = this.props;
 
     const props = {
-      download, href: `${link}`, onClick: event => disabled && event.preventDefault(), style: {
+      download,
+      href: `${link}`,
+      onClick: event => disabled && event.preventDefault(),
+      role: 'link',
+      style: {
         textDecoration: 'inherit',
         color: 'inherit',
-        outline: 'inherit',
-        border: 'inherit',
+        tabIndex: 0
       }
     };
+
+    if (ariaLabel) {
+      props['aria-label'] = ariaLabel;
+    }
 
     if (rel) {
       props.rel = rel;

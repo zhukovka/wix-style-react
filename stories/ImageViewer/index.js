@@ -11,7 +11,7 @@ import ExampleStandardRaw from '!raw!./ExampleStandard';
 
 storiesOf('Core', module)
   .add('ImageViewer', () => (
-    <TabbedView tabs={['API Documentation', 'Testkit documentation']}>
+    <TabbedView tabs={['API', 'Testkit']}>
       <div>
         <Markdown source={Readme}/>
         <h1>Usage examples</h1>
