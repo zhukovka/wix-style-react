@@ -14,27 +14,32 @@ import ExampleStandardRaw from '!raw!./ExampleStandard';
 import ExampleDark from './ExampleDark';
 import ExampleDarkRaw from '!raw!./ExampleDark';
 
+const example =
+  <div>
+    <h1>Example</h1>
+
+    <CodeExample title="Standard" code={ExampleStandardRaw}>
+      <ExampleStandard/>
+    </CodeExample>
+
+    <CodeExample title="Dark" code={ExampleDarkRaw}>
+      <ExampleDark/>
+    </CodeExample>
+  </div>;
+
 storiesOf('Core', module)
   .add('TextLink', () => (
     <TabbedView tabs={['API', 'Testkit', 'Accessibility']}>
       <div>
         <Markdown source={Readme}/>
-
-        <h1>Example</h1>
-
-        <CodeExample title="Standard" code={ExampleStandardRaw}>
-          <ExampleStandard/>
-        </CodeExample>
-
-        <CodeExample title="Dark" code={ExampleDarkRaw}>
-          <ExampleDark/>
-        </CodeExample>
+        {example}
       </div>
       <div>
         <Markdown source={ReadmeTestkit}/>
       </div>
       <div>
         <Markdown source={ReadmeAccessibility}/>
+        {example}
       </div>
     </TabbedView>
   ));

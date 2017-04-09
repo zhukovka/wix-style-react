@@ -4,8 +4,8 @@
 
 | Requirements                 | Status         | Tested browsers |
 |------------------------------|----------------|-----------------|
-| Get focus with TAB           | +              | Chrome          |
-| Enter Must activate the link | +              | Chrome          |
+| Get focus with TAB           | ✓              | Chrome          |
+| Enter Must activate the link | ✓              | Chrome          |
 | Visual focus                 | Visual Boarder | Chrome          |
 
 > Screen Reader
