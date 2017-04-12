@@ -210,8 +210,7 @@ class Tooltip extends WixComponent {
           fw = this._getRect(tooltipNode).width;
           this._updatePosition(this.tooltipContent);
           sw = this._getRect(tooltipNode).width;
-        } while (fw !== sw);
-
+        } while (!this.props.appendToParent && fw !== sw);
       });
     }, this.props.showDelay);
   }
