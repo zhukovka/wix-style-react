@@ -26,5 +26,5 @@
 |----------|----------|--------------|------------|-------------|
 | id | string or number | - | + | The id of the option, should be unique |
 | value | string or node | - | + | Can be a text or a react elements, if text is '-', a divider will render at that position. |
-| disabled | bool | false | - | Is this option is disabled or not |
+| disabled | bool | false | - | Whether this option is disabled or not |
 | tag | object | - | - | When selecting an option, it will be added as a Tag to the input container. This Tag property defines the Tag that will be displayed. A Tag object can have label, size, thumb and removable properties. In case no Tag object was provided, The value property will become the Label property of the rendered Tag.

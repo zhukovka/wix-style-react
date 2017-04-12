@@ -38,7 +38,7 @@ function loadStories() {
   require('../stories/TimeInput');
   // require('../stories/Toast'); DEPRECATED
   require('../stories/ToggleSwitch');
-  require('../stories/Tooltip');
+  require('../stories/Tooltip/Core');
   // Common
   require('../stories/Composite');
   require('../stories/GridWithCardLayout');
@@ -56,6 +56,7 @@ function loadStories() {
   require('../stories/Button/CompositeStory');
   require('../stories/Breadcrubms/CompositeStory');
   require('../stories/Tabs');
+  require('../stories/Tooltip/Composite/CompositeStory');
   require('../stories/Notification');
 
   // Animations

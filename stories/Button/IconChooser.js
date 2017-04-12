@@ -6,10 +6,11 @@ import * as Icons from '../../src/Icons/dist';
 class IconChooser extends Component {
   render() {
     const options = Object.keys(Icons).map(name => {
-      return {id: name, value: <div style={{paddingLeft: "10px"}}>{React.createElement(Icons[name])} - {name}</div>};
+      return {id: name, value: <div style={{paddingLeft: '10px'}}>{React.createElement(Icons[name])} - {name}</div>};
     });
     return (
       <Dropdown
+        selectedId={this.props.selectedId}
         options={options}
         onSelect={this.props.onSelect}
         placeholder={'Choose an icon'}
@@ -20,7 +21,11 @@ class IconChooser extends Component {
 }
 
 IconChooser.propTypes = {
-  onSelect: PropTypes.func.isRequired
+  onSelect: PropTypes.func.isRequired,
+  selectedId: React.PropTypes.oneOfType([
+    React.PropTypes.string,
+    React.PropTypes.number
+  ])
 };
 
 export default IconChooser;
