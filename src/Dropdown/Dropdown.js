@@ -3,28 +3,34 @@ import InputWithOptions from '../InputWithOptions/InputWithOptions';
 import classNames from 'classnames';
 
 class Dropdown extends InputWithOptions {
-  state = {value: '', selectedId: -1};
 
-  update(props) {
-    if (props.selectedId) {
-      const selectedOption = props.options.find(option => option.id === props.selectedId);
-
-      if (selectedOption) {
-        this.setState({
-          value: this.props.valueParser(selectedOption),
-          selectedId: selectedOption.id
-        });
-      }
-    }
+  constructor(props) {
+    super(props);
+    this.update(props, {isFirstTime: true});
   }
 
-  componentWillMount() {
-    this.update(this.props);
+  update(props, {isFirstTime}) {
+    let value = '', selectedId = -1;
+    if (props.selectedId) {
+      const option = props.options.find(option => {
+        return option.id === props.selectedId;
+      });
+
+      if (option) {
+        value = option.value;
+        selectedId = option.id;
+      }
+    }
+    if (isFirstTime) {
+      this.state = {value, selectedId};
+    } else {
+      this.setState({value, selectedId});
+    }
   }
 
   componentWillReceiveProps(nextProps) {
     if (this.props.selectedId !== nextProps.selectedId) {
-      this.update(nextProps);
+      this.update(nextProps, {isFirstTime: false});
     }
   }
 
