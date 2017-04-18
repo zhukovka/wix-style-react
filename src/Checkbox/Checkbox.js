@@ -1,4 +1,5 @@
 import styles from './Checkbox.scss';
+import {any, bool, func, string} from 'prop-types';
 import uniqueId from 'lodash.uniqueid';
 import React from 'react';
 import classNames from 'classnames';
@@ -7,6 +8,21 @@ import WixComponent from '../WixComponent';
 import Label from '../Label/Label';
 
 class Checkbox extends WixComponent {
+  static propTypes = {
+    active: bool,       // FOR AUTOMATIC TESTING
+    checked: bool,
+    children: any,
+    disabled: bool,
+    id: string,
+    indeterminate: bool,
+    hover: bool,        // FOR AUTOMATIC TESTING
+    onChange: func,
+  }
+
+  static defaultProps = {
+    onChange: () => { }
+  }
+
   render() {
     const {id = uniqueId(), checked, indeterminate, disabled, hover, active, onChange} = this.props;
 
@@ -36,20 +52,5 @@ class Checkbox extends WixComponent {
     );
   }
 }
-
-Checkbox.propTypes = {
-  checked: React.PropTypes.bool,
-  disabled: React.PropTypes.bool,
-  onChange: React.PropTypes.func,
-  hover: React.PropTypes.bool,        // FOR AUTOMATIC TESTING
-  active: React.PropTypes.bool,       // FOR AUTOMATIC TESTING
-  children: React.PropTypes.any,
-  id: React.PropTypes.string,
-  indeterminate: React.PropTypes.bool
-};
-
-Checkbox.defaultProps = {
-  onChange: () => { }
-};
 
 export default Checkbox;

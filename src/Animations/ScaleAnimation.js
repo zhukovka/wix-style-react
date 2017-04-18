@@ -1,6 +1,7 @@
-import React, {Component, PropTypes} from 'react';
-import scale from './ScaleAnimation.scss';
+import React, {Component} from 'react';
+import {bool, node} from 'prop-types';
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
+import scale from './ScaleAnimation.scss';
 
 class ScaleAnimation extends Component {
 
@@ -23,10 +24,10 @@ class ScaleAnimation extends Component {
 }
 
 ScaleAnimation.propTypes = {
-  animateAppear: PropTypes.bool,
-  animateEnter: PropTypes.bool,
-  animateLeave: PropTypes.bool,
-  children: PropTypes.node
+  animateAppear: bool,
+  animateEnter: bool,
+  animateLeave: bool,
+  children: node
 };
 
 ScaleAnimation.defaultProps = {

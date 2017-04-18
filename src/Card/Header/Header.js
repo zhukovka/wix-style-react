@@ -1,14 +1,15 @@
 import React from 'react';
-import styles from './Header.scss';
+import {bool, string} from 'prop-types';
 import classNames from 'classnames';
+import styles from './Header.scss';
 import WixComponent from '../../WixComponent';
 
 class Header extends WixComponent {
 
   static propTypes = {
-    title: React.PropTypes.string.isRequired,
-    subtitle: React.PropTypes.string,
-    withoutDivider: React.PropTypes.bool
+    title: string.isRequired,
+    subtitle: string,
+    withoutDivider: bool
   };
 
   static defaultProps = {

@@ -1,18 +1,19 @@
 import React from 'react';
-import styles from './LinkHeader.scss';
+import {bool, node, string} from 'prop-types';
 import classNames from 'classnames';
+import styles from './LinkHeader.scss';
 import TextLink from '../../../src/TextLink';
 import WixComponent from '../../WixComponent';
 
 class LinkHeader extends WixComponent {
 
   static propTypes = {
-    title: React.PropTypes.string.isRequired,
-    linkTitle: React.PropTypes.string.isRequired,
-    linkTo: React.PropTypes.string.isRequired,
-    subtitle: React.PropTypes.string,
-    tooltip: React.PropTypes.node,
-    withoutDivider: React.PropTypes.bool
+    title: string.isRequired,
+    linkTitle: string.isRequired,
+    linkTo: string.isRequired,
+    subtitle: string,
+    tooltip: node,
+    withoutDivider: bool
   };
 
   static defaultProps = {

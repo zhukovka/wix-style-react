@@ -1,22 +1,21 @@
-import {PropTypes} from 'react';
+import {func} from 'prop-types';
 import InputWithOptions from '../InputWithOptions/InputWithOptions';
 
 class AutoComplete extends InputWithOptions {
+  static propTypes = {
+    ...InputWithOptions.propTypes,
+    predicate: func
+  }
+
+  static defaultProps = {
+    ...InputWithOptions.defaultProps,
+    predicate: () => true
+  }
 
   dropdownAdditionalProps() {
     const {options, predicate} = this.props;
     return {options: options.filter(predicate)};
   }
 }
-
-AutoComplete.propTypes = {
-  ...InputWithOptions.propTypes,
-  predicate: PropTypes.func
-};
-
-AutoComplete.defaultProps = {
-  ...InputWithOptions.defaultProps,
-  predicate: () => true
-};
 
 export default AutoComplete;

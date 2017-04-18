@@ -5,18 +5,18 @@
 
 | propName | propType | defaultValue | isRequired | description |
 |----------|----------|--------------|------------|-------------|
-| items | array of objects (see item)| - | + | Specifies items for breadcrumbs |
-| onClick | func | - | - | callback on item click |
 | activeId | string, int | - | - | id of current active item |
+| items | array of objects (see item)| - | + | Specifies items for breadcrumbs |
 | size | string ('medium', 'large') | 'medium' | - | size of items |
 | theme | string ('onWhiteBackground', 'onGrayBackground', 'onDarkBackground') | 'onGrayBackground' | - | Specifies breadcrubms background and font colors |
+| onClick | func | - | - | callback on item click |
 
 ## Item
 | propName | propType | defaultValue | isRequired | description |
 |----------|----------|--------------|------------|-------------|
 | id | string or number| - | + | Specifies the item id |
-| value | string or node | - | + | Value to be shown on breadcrumb |
 | link | string | - | - | Optional link to be called on click |
+| value | string or node | - | + | Value to be shown on breadcrumb |
 
 ## Breadcrumbs Path Factory
 ```javascript
@@ -28,5 +28,3 @@
   */
   breadcrumbsPathFactory(path, baseUrlLink = '', baseUrlValue = null, pathSeparator = '/')
 ```
-
-

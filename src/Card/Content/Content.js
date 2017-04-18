@@ -1,10 +1,11 @@
 import React, {Component} from 'react';
+import {node} from 'prop-types';
 import styles from './Content.scss';
 
 class Content extends Component {
 
   static propTypes = {
-    children: React.PropTypes.node
+    children: node
   };
 
   render() {

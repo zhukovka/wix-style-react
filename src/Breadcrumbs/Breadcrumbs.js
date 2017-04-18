@@ -1,4 +1,5 @@
 import React from 'react';
+import {arrayOf, func, oneOf, oneOfType, node, number, shape, string} from 'prop-types';
 import styles from './Breadcrumbs.scss';
 import classNames from 'classnames';
 import Label from '../Label';
@@ -6,6 +7,31 @@ import WixComponent from '../WixComponent';
 import BreadcrumbsPathFactory from './BreadcrumbsPathFactory';
 
 class Breadcrumbs extends WixComponent {
+  static propTypes = {
+    items: arrayOf(shape({
+      id: oneOfType([
+        string,
+        number
+      ]).isRequired,
+      value: oneOfType([
+        node,
+        string
+      ]).isRequired,
+      link: string
+    })).isRequired,
+    onClick: func,
+    activeId: oneOfType([
+      string,
+      number
+    ]),
+    size: oneOf(['medium', 'large']),
+    theme: oneOf(['onWhiteBackground', 'onGrayBackground', 'onDarkBackground']),
+  }
+
+  static defaultProps = {
+    size: 'medium',
+    theme: 'onGrayBackground',
+  }
 
   constructor(props) {
     super(props);
@@ -78,32 +104,5 @@ class Breadcrumbs extends WixComponent {
   }
 }
 
-Breadcrumbs.propTypes = {
-  items: React.PropTypes.arrayOf(React.PropTypes.shape({
-    id: React.PropTypes.oneOfType([
-      React.PropTypes.string,
-      React.PropTypes.number
-    ]).isRequired,
-    value: React.PropTypes.oneOfType([
-      React.PropTypes.node,
-      React.PropTypes.string
-    ]).isRequired,
-    link: React.PropTypes.string
-  })).isRequired,
-  onClick: React.PropTypes.func,
-  activeId: React.PropTypes.oneOfType([
-    React.PropTypes.string,
-    React.PropTypes.number
-  ]),
-  size: React.PropTypes.oneOf(['medium', 'large']),
-  theme: React.PropTypes.oneOf(['onWhiteBackground', 'onGrayBackground', 'onDarkBackground']),
-};
-
-Breadcrumbs.defaultProps = {
-  size: 'medium',
-  theme: 'onGrayBackground',
-};
-
 export const breadcrumbsPathFactory = BreadcrumbsPathFactory;
 export default Breadcrumbs;
-

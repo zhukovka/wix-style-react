@@ -1,9 +1,9 @@
-import React, {Component, PropTypes} from 'react';
-import fade from './FadeAnimation.scss';
+import React, {Component} from 'react';
+import {bool, node} from 'prop-types';
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
+import fade from './FadeAnimation.scss';
 
 class FadeAnimation extends Component {
-
   render() {
     const {animateAppear, animateEnter, animateLeave, children} = this.props;
     const animationDuration = 600; // Synced with FadeAnimation.scss file
@@ -23,10 +23,10 @@ class FadeAnimation extends Component {
 }
 
 FadeAnimation.propTypes = {
-  animateAppear: PropTypes.bool,
-  animateEnter: PropTypes.bool,
-  animateLeave: PropTypes.bool,
-  children: PropTypes.node
+  animateAppear: bool,
+  animateEnter: bool,
+  animateLeave: bool,
+  children: node
 };
 
 FadeAnimation.defaultProps = {

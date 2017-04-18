@@ -1,4 +1,5 @@
 import React from 'react';
+import {bool, func, node, oneOf, string} from 'prop-types';
 import styles from './ButtonHeader.scss';
 import classNames from 'classnames';
 import Button from '../../../src/Button';
@@ -7,18 +8,18 @@ import WixComponent from '../../WixComponent';
 class ButtonHeader extends WixComponent {
 
   static propTypes = {
-    title: React.PropTypes.string.isRequired,
-    buttonTitle: React.PropTypes.string.isRequired,
-    buttonOnClick: React.PropTypes.func.isRequired,
-    buttonPrefix: React.PropTypes.node,
-    buttonSuffix: React.PropTypes.node,
-    subtitle: React.PropTypes.string,
-    tooltip: React.PropTypes.node,
-    theme: React.PropTypes.oneOf([
+    title: string.isRequired,
+    buttonTitle: string.isRequired,
+    buttonOnClick: func.isRequired,
+    buttonPrefix: node,
+    buttonSuffix: node,
+    subtitle: string,
+    tooltip: node,
+    theme: oneOf([
       'standard',
       'fullblue',
     ]),
-    withoutDivider: React.PropTypes.bool,
+    withoutDivider: bool,
   };
 
   static defaultProps = {
