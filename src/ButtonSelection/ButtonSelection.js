@@ -1,8 +1,14 @@
-import React, {PropTypes} from 'react';
-import s from './ButtonSelection.scss';
+import React from 'react';
+import {arrayOf, func, string} from 'prop-types';
 import WixComponent from '../WixComponent';
+import s from './ButtonSelection.scss';
 
 class ButtonSelection extends WixComponent {
+  static propTypes = {
+    buttonsNames: arrayOf(string.isRequired).isRequired,
+    value: string,
+    onChange: func.isRequired,
+  }
 
   componentWillMount() {
     const {value, buttonsNames} = this.props;
@@ -34,12 +40,6 @@ class ButtonSelection extends WixComponent {
     );
   }
 }
-
-ButtonSelection.propTypes = {
-  buttonsNames: PropTypes.arrayOf(PropTypes.string.isRequired).isRequired,
-  onChange: PropTypes.func.isRequired,
-  value: PropTypes.string
-};
 
 ButtonSelection.displayName = 'ButtonSelection';
 

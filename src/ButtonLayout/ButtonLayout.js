@@ -1,6 +1,7 @@
 import React from 'react';
-import styles from './ButtonLayout.scss';
+import {any, bool, oneOf} from 'prop-types';
 import classNames from 'classnames';
+import styles from './ButtonLayout.scss';
 
 const ButtonLayout = props => {
   const {theme, hover, active, disabled, height, children} = props;
@@ -34,12 +35,17 @@ const ButtonLayout = props => {
 };
 
 ButtonLayout.defaultProps = {
-  theme: 'fullblue',
-  height: 'medium'
+  height: 'medium',
+  theme: 'fullblue'
 };
 
 ButtonLayout.propTypes = {
-  theme: React.PropTypes.oneOf([
+  active: bool,
+  children: any,
+  disabled: bool,
+  height: oneOf(['small', 'medium', 'large']),
+  hover: bool,
+  theme: oneOf([
     'transparent',
     'fullred',
     'fullgreen',
@@ -64,12 +70,7 @@ ButtonLayout.propTypes = {
     'icon-standardsecondary',
     'icon-white',
     'icon-whitesecondary'
-  ]),
-  height: React.PropTypes.oneOf(['small', 'medium', 'large']),
-  hover: React.PropTypes.bool,
-  active: React.PropTypes.bool,
-  disabled: React.PropTypes.bool,
-  children: React.PropTypes.any,
+  ])
 };
 
 ButtonLayout.displayName = 'ButtonLayout';
