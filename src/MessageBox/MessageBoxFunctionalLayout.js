@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {PropTypes} from 'react';
 import * as styles from './MessageBoxFunctionalLayout.scss';
 import {HeaderLayout, FooterLayout} from './';
 import WixComponent from '../WixComponent';
@@ -6,11 +6,11 @@ import WixComponent from '../WixComponent';
 class MessageBoxFunctionalLayout extends WixComponent {
 
   render() {
-    const {title, onCancel, onOk, confirmText, children, buttonsHeight, hideFooter, cancelText, theme} = this.props;
+    const {title, onCancel, onOk, confirmText, children, buttonsHeight, hideFooter, cancelText, theme, closeButton} = this.props;
 
     return (
       <div className={styles.content}>
-        <HeaderLayout title={title} onCancel={onCancel} theme={theme}/>
+        <HeaderLayout title={title} onCancel={onCancel} theme={theme} closeButton={closeButton}/>
         <div className={styles.body} >
           {children}
         </div>
@@ -24,15 +24,17 @@ class MessageBoxFunctionalLayout extends WixComponent {
 }
 
 MessageBoxFunctionalLayout.propTypes = {
-  hideFooter: React.PropTypes.bool,
-  confirmText: React.PropTypes.string,
-  cancelText: React.PropTypes.string,
-  theme: React.PropTypes.string,
-  onOk: React.PropTypes.func,
-  onCancel: React.PropTypes.func,
-  title: React.PropTypes.node,
-  children: React.PropTypes.any,
-  buttonsHeight: React.PropTypes.string
+  hideFooter: PropTypes.bool,
+  confirmText: PropTypes.string,
+  cancelText: PropTypes.string,
+  theme: PropTypes.string,
+  onOk: PropTypes.func,
+  onCancel: PropTypes.func,
+  title: PropTypes.node,
+  children: PropTypes.any,
+  buttonsHeight: PropTypes.string,
+  closeButton: PropTypes.bool
+
 };
 
 MessageBoxFunctionalLayout.defaultProps = {

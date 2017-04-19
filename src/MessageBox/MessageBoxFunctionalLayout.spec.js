@@ -54,6 +54,34 @@ describe('MessageBox', () => {
     });
   });
 
+  describe('closeButton attribute', () => {
+    it('should appear by default', () => {
+      const props = {
+        onCancel: sinon.spy(),
+      };
+      const driver = createDriver(<MessageBoxFunctionalLayout {...props}/>);
+      expect(driver.getHeaderCloseButton()).toBeTruthy();
+    });
+
+    it('should not appear', () => {
+      const props = {
+        onCancel: sinon.spy(),
+        closeButton: false
+      };
+      const driver = createDriver(<MessageBoxFunctionalLayout {...props}/>);
+      expect(driver.getHeaderCloseButton()).toBeFalsy();
+    });
+
+    it(`should trigger the 'onCancel' action upon clicking the header close button`, () => {
+      const props = {
+        onCancel: sinon.spy(),
+      };
+      const driver = createDriver(<MessageBoxFunctionalLayout {...props}/>);
+      driver.clickOnHeaderCloseButton();
+      expect(props.onCancel.calledOnce).toBeTruthy();
+    });
+  });
+
   describe('theme attribute', () => {
     it('should set the theme by default to "blue"', () => {
       const props = {
@@ -118,6 +146,4 @@ describe('MessageBox', () => {
       expect(isEnzymeTestkitExists(<MessageBoxFunctionalLayout/>, enzymeMessageBoxTestkitFactory)).toBe(true);
     });
   });
-
-
 });
