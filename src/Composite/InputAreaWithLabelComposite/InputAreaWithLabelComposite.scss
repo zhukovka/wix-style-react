@@ -1,3 +1,18 @@
+@import '../../common.scss';
+
 .label {
 	margin-bottom: 6px;
+}
+
+.required {
+	position: relative;
+
+	&:before {
+		position: absolute;
+		top: -1px;
+		left: -17px;
+		content: '*';
+		font-size: 32px;
+		color: $R10;
+	}
 }

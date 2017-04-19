@@ -11,7 +11,8 @@ export default class Form extends Component {
     onChange: PropTypes.func.isRequired,
     withLabel: PropTypes.bool,
     label: PropTypes.object,
-    inputArea: PropTypes.object
+    inputArea: PropTypes.object,
+    required: PropTypes.bool
   };
 
   componentDidUpdate(props) {
@@ -24,7 +25,7 @@ export default class Form extends Component {
 
   getComponent() {
     return (
-      <TextArea>
+      <TextArea required={this.props.required}>
         {this.props.withLabel ? <Label for="firstName" {...this.props.label}/> : null}
         <InputArea id="firstName" {...this.props.inputArea}/>
       </TextArea>

@@ -38,4 +38,16 @@ describe('InputAreaWithLabelComposite', () => {
     expect(driver.hasLabel()).toBe(true);
     expect(driver.hasAutoComplete()).toBe(true);
   });
+
+  describe('required attribute', () => {
+    it('should not exist by default', () => {
+      const driver = createAutoCompleteDriver(<InputAreaWithLabelComposite><Label/><InputArea/></InputAreaWithLabelComposite>);
+      expect(driver.hasRequiredSign()).toBe(false);
+    });
+
+    it('should exist', () => {
+      const driver = createAutoCompleteDriver(<InputAreaWithLabelComposite required><Label/><InputArea/></InputAreaWithLabelComposite>);
+      expect(driver.hasRequiredSign()).toBe(true);
+    });
+  });
 });

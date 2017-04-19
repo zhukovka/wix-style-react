@@ -8,7 +8,7 @@ class InputAreaWithLabelComposite extends WixComponent {
   render() {
     const children = Children.toArray(this.props.children);
     return (
-      <div>
+      <div className={this.props.required ? styles.required : ''}>
         { children.length === 2 ?
           <div className={styles.label}>
             {head(children)}
@@ -21,7 +21,8 @@ class InputAreaWithLabelComposite extends WixComponent {
 }
 
 InputAreaWithLabelComposite.propTypes = {
-  children: React.PropTypes.any
+  children: React.PropTypes.any,
+  required: React.PropTypes.bool
 };
 
 InputAreaWithLabelComposite.displayName = 'InputAreaWithLabelComposite';

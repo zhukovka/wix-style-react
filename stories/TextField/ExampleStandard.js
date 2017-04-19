@@ -28,7 +28,8 @@ class ExampleStandard extends Component {
     input: {
       size: 'normal',
       placeholder: 'Please type in your first name...'
-    }
+    },
+    required: false
   }
 
   setComponentState(componentName, obj) {
@@ -95,6 +96,18 @@ class ExampleStandard extends Component {
                 />
             </div>
           </div>
+
+          <div className={styles.option}>
+            <div className={styles.flex}>
+              <div className={styles.paddRight}><Label>Required Field: </Label></div>
+              <ToggleSwitch
+                size="small"
+                checked={this.state.required}
+                onChange={() => this.setState({required: !this.state.required})}
+                />
+            </div>
+          </div>
+
           <div className={styles.option}>
             <Label>Size</Label>
             <div className={styles.flex}>

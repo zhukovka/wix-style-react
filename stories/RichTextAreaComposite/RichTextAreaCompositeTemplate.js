@@ -6,30 +6,32 @@ import reactElementToJSXString from 'react-element-to-jsx-string';
 
 export default class Form extends Component {
 
-    static propTypes = {
-      withLabel: PropTypes.bool,
-      label: PropTypes.object,
-      richTextArea: PropTypes.object
-    };
+  static propTypes = {
+    withLabel: PropTypes.bool,
+    label: PropTypes.object,
+    richTextArea: PropTypes.object,
+    onChange: PropTypes.func,
+    required: PropTypes.bool
+  };
 
-    componentDidUpdate(props) {
-      props.onChange(reactElementToJSXString(this.getComponent()));
-    }
+  componentDidUpdate(props) {
+    props.onChange(reactElementToJSXString(this.getComponent()));
+  }
 
-    componentDidMount() {
-      this.props.onChange(reactElementToJSXString(this.getComponent()));
-    }
+  componentDidMount() {
+    this.props.onChange(reactElementToJSXString(this.getComponent()));
+  }
 
-    getComponent() {
-      return (
-        <RichTextAreaComposite>
-          {this.props.withLabel ? <Label {...this.props.label}/> : null}
-          <RichTextArea {...this.props.richTextArea}/>
-        </RichTextAreaComposite>
-      );
-    }
+  getComponent() {
+    return (
+      <RichTextAreaComposite required={this.props.required}>
+        {this.props.withLabel ? <Label {...this.props.label}/> : null}
+        <RichTextArea {...this.props.richTextArea}/>
+      </RichTextAreaComposite>
+    );
+  }
 
-    render() {
-      return this.getComponent();
-    }
+  render() {
+    return this.getComponent();
+  }
 }
