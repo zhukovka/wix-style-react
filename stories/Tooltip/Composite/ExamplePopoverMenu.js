@@ -5,8 +5,8 @@ import RadioGroup from '../../../src/RadioGroup';
 import Label from '../../../src/Label';
 import * as Icons from '../../../src/Icons/dist';
 import PopoverMenuBuilder from './PopoverMenuBuilder';
-import PopoverMenu from '../../../src/PopoverMenu/PopoverMenu';
-import PopoverMenuItem from '../../../src/PopoverMenuItem/PopoverMenuItem';
+import PopoverMenu from '../../../src/PopoverMenu';
+import PopoverMenuItem from '../../../src/PopoverMenuItem';
 
 import styles from './Example.scss';
 
