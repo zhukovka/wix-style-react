@@ -117,4 +117,7 @@ export const toggleSwitchTestkitFactory = testkitFactoryCreator(toggleSwitchDriv
 import imageViewerDriverFactory from '../src/ImageViewer/ImageViewer.driver';
 export const imageViewerTestkitFactory = testkitFactoryCreator(imageViewerDriverFactory);
 
+import textDriverFactory from '../src/Text/Text.driver';
+export const textTestkitFactory = testkitFactoryCreator(textDriverFactory);
+
 export {toastTestkitFactory} from '../src/Toast/testkit/Toast';

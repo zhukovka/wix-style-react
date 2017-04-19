@@ -56,4 +56,7 @@ export const toggleSwitchTestkitFactory = protractorTestkitFactoryCreator(toggle
 import imageViewerDriverFactory from '../src/ImageViewer/ImageViewer.protractor.driver';
 export const imageViewerTestkitFactory = protractorTestkitFactoryCreator(imageViewerDriverFactory);
 
+import textDriverFactory from '../src/Text/Text.protractor.driver';
+export const textTestkitFactory = protractorTestkitFactoryCreator(textDriverFactory);
+
 export {protractorToastTestkitFactory} from '../src/Toast/testkit/Toast.protractor';

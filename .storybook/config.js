@@ -47,6 +47,7 @@ function loadStories() {
   // Composites
   require('../stories/TextField');
   require('../stories/TextArea');
+  require('../stories/Text');
   require('../stories/RichTextArea');
   require('../stories/RichTextAreaComposite');
   require('../stories/FieldWithSelectionComposite');
