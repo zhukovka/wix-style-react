@@ -1,15 +1,16 @@
 import React from 'react';
-import classNames from 'classnames';
 
-import typography from '../../src/Typography';
+import {Text} from 'wix-style-react';
 
 export default () =>
-  <ul className="ltr style-list">
-    <li className={typography.h0}>H0 - Helvetica_25 /48px</li>
-    <li className={typography.h1}>H1 - Helvetica_35 /36px</li>
-    <li className={typography.h2}>H2 - Helvetica_45 /20px</li>
-    <li className={classNames(typography.h2_1, 'inverted')}>H2.1 - Helvetica_45 /20px</li>
-    <li className={typography.h3}>H3 - Helvetica_45 /13px</li>
-    <li className={typography.h4}>H4 - Helvetica_55 /10px</li>
-  </ul>
-;
+  <div>
+    <Text appearance="H0">H0 - Helvetica_25 / 48 px</Text>
+    <Text appearance="H1">H1 - Helvetica_35 / 36px</Text>
+    <Text appearance="H2">H2 - Helvetica_45 / 20px</Text>
+    <div className="inverted">
+      <Text appearance="H2.1">H2.1 - Helvetica_45 / 20px</Text>
+    </div>
+    <Text appearance="H3">H3 - Helvetica_45 / 13px</Text>
+    <Text appearance="H4">H4 - Helvetica_55 / 10px</Text>
+  </div>;
+
