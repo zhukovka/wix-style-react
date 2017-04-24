@@ -23,6 +23,7 @@ class Tooltip extends WixComponent {
   }
 
   static propTypes = {
+    textAlign: PropTypes.string,
     children: PropTypes.node,
     content: PropTypes.node.isRequired,
     placement: PropTypes.oneOf(['top', 'right', 'bottom', 'left']),
@@ -80,7 +81,8 @@ class Tooltip extends WixComponent {
     disabled: false,
     children: null,
     size: 'normal',
-    shouldCloseOnClickOutside: false
+    shouldCloseOnClickOutside: false,
+    textAlign: 'center'
   };
 
   _childNode = null;
@@ -108,6 +110,7 @@ class Tooltip extends WixComponent {
           arrowStyle={this.state.arrowStyle}
           maxWidth={this.props.maxWidth}
           size={this.props.size}
+          textAlign={this.props.textAlign}
           >
           {this.props.content}
         </TooltipContent>);

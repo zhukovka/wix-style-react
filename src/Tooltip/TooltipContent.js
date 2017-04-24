@@ -6,6 +6,7 @@ import styles from './TooltipContent.scss';
 class TooltipContent extends Component {
 
   static propTypes = {
+    textAlign: PropTypes.string,
 
     maxWidth: PropTypes.string,
     /**
@@ -56,7 +57,8 @@ class TooltipContent extends Component {
     theme: 'light',
     arrowPlacement: 'bottom',
     maxWidth: '1200px',
-    size: 'normal'
+    size: 'normal',
+    textAlign: 'center'
   };
 
   render() {
@@ -70,14 +72,15 @@ class TooltipContent extends Component {
       onMouseEnter,
       onMouseLeave,
       bounce,
-      size
+      size,
+      textAlign
     } = this.props;
 
     return (
       <div className={styles.root} style={style} onMouseEnter={onMouseEnter} onMouseLeave={onMouseLeave}>
         <div className={styles.fadeIn}>
           <div className={classnames({[styles[`bounce-on-${arrowPlacement}`]]: bounce})}>
-            <div className={classnames(styles.tooltip, styles[theme], styles[size])} style={{maxWidth: this.props.maxWidth}}>
+            <div className={classnames(styles.tooltip, styles[theme], styles[size])} style={{maxWidth: this.props.maxWidth, textAlign}}>
               <div>{children}</div>
               <div className={classnames(styles.arrow, styles[arrowPlacement])} style={arrowStyle}/>
             </div>
