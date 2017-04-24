@@ -49,14 +49,14 @@ class Notification extends WixComponent {
       hideByTimer: false
     };
 
-    this.startCloseTimer();
+    this.startCloseTimer(props);
   }
 
-  startCloseTimer() {
-    if (this.props.type === LOCAL_NOTIFICATION) {
+  startCloseTimer({type, timeout}) {
+    if (type === LOCAL_NOTIFICATION) {
       this.closeTimeout = setTimeout(() => {
         this.hideNotificationOnTimeout();
-      }, this.props.timeout || DEFAULT_TIMEOUT);
+      }, timeout || DEFAULT_TIMEOUT);
     }
   }
 
@@ -92,7 +92,7 @@ class Notification extends WixComponent {
     if (nextProps.show) {
       this.bypassCloseFlags();
       this.clearCloseTimeout();
-      this.startCloseTimer();
+      this.startCloseTimer(nextProps);
     }
   }
 
