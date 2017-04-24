@@ -12,7 +12,9 @@ class ExampleTooltip extends Component {
   state = {
     type: 'default',
     text: 'Tooltip appears on hover',
-    size: 'normal'
+    size: 'normal',
+    onShow:() => console.log('text printed'),
+    onShowText: 'onShow console print'
   };
 
   render() {
@@ -58,6 +60,17 @@ class ExampleTooltip extends Component {
               />
             </div>
           </div>
+
+          <div className={styles.option}>
+            <Label>onShow print to console</Label>
+            <div className={styles.flex}>
+              <Input
+                size="small"
+                value={this.state.onShowText}
+                onChange={e => this.setState({onShowText: e.target.value})}
+              />
+            </div>
+          </div>
         </div>
 
         <div className={styles[this.state.theme === 'whiteblue' ? 'output-lightblue' : 'output']}>
@@ -68,6 +81,7 @@ class ExampleTooltip extends Component {
     					type="tooltip"
               onChange={this.props.onChange}
               size={this.state.size}
+              onShow={() => console.log(this.state.onShowText)}
                 />
           </div>
         </div>

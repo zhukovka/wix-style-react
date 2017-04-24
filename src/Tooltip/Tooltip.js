@@ -38,6 +38,11 @@ class Tooltip extends WixComponent {
     disabled: PropTypes.bool,
     maxWidth: PropTypes.string,
     onClickOutside: PropTypes.func,
+
+    /**
+     * Callback to be called when the tooltip has been shown
+     */
+    onShow: PropTypes.func,
     zIndex: PropTypes.number,
 
     /**
@@ -76,6 +81,7 @@ class Tooltip extends WixComponent {
     zIndex: 2000,
     maxWidth: '1200px',
     onClickOutside: null,
+    onShow: null,
     active: false,
     theme: 'light',
     disabled: false,
@@ -198,6 +204,10 @@ class Tooltip extends WixComponent {
       return;
     }
     this._showTimeout = setTimeout(() => {
+      if (this.props.onShow) {
+        this.props.onShow();
+      }
+
       this.setState({visible: true}, () => {
         if (!this._mountNode) {
           this._mountNode = document.createElement('div');

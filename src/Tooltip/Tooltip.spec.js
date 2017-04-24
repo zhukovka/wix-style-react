@@ -141,6 +141,19 @@ describe('Tooltip', () => {
     });
   });
 
+  it('should call onShow when tooltip is shown', () => {
+    const onShow = jest.fn();
+    const driver = createDriver(<Tooltip {...{..._props, onShow}}>{children}</Tooltip>);
+
+    driver.mouseEnter();
+
+    expect(onShow).not.toHaveBeenCalled();
+    return resolveIn(30).then(() => {
+      expect(onShow).toHaveBeenCalled();
+    });
+  });
+
+
   describe('testkit', () => {
     it('should exist', () => {
       const div = document.createElement('div');
