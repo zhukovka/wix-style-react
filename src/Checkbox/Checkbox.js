@@ -40,7 +40,7 @@ class Checkbox extends WixComponent {
     return (
       <div className={classname} >
         <input type="checkbox" id={id} checked={checked} disabled={disabled} onChange={disabled ? null : onChange}/>
-        <Label for={id} appearance="T3.1">
+        <Label for={id} appearance="T1.1">
           <div className={styles.checkbox}>
             <div className={styles.inner}>
               {checkedSymbol}
