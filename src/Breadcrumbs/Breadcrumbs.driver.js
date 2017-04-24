@@ -9,6 +9,7 @@ const breadcrumbsDriverFactory = ({element, wrapper, component}) => {
 
   return {
     exists: () => !!element,
+    breadcrumbsLength: () => items.childNodes.length,
     breadcrumbContentAt: position => optionAt(position).textContent,
     clickBreadcrumbAt: position => ReactTestUtils.Simulate.click(optionAt(position)),
     getActiveItemId: () => {
@@ -28,4 +29,3 @@ const breadcrumbsDriverFactory = ({element, wrapper, component}) => {
 };
 
 export default breadcrumbsDriverFactory;
-

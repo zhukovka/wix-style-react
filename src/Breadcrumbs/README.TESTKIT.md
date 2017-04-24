@@ -5,6 +5,7 @@
 | method | arguments | returned value | description |
 |--------|-----------|----------------|-------------|
 | breadcrumbContentAt | position | string | return the breadcrumb item content at position |
+| breadcrumbLength | - | number | return the number of the items in the breadcrumbs |
 | clickBreadcrumbAt | position | string | click on breadcrumb item at position |
 | getActiveItemId | position | string | return the active breadcrumb item position |
 | getLabelClassList | - | arrayOf(string) | returns breadcrumbs component classes |

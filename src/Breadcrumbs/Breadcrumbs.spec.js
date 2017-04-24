@@ -26,6 +26,7 @@ describe('Breadcrumbs', () => {
 
   it('should have correct text on each breadcrumb', () => {
     createComopnent({onClick, items});
+    expect(driver.breadcrumbsLength()).toBe(items.length);
     expect(driver.breadcrumbContentAt(0)).toBe(items[0].value);
     expect(driver.breadcrumbContentAt(1)).toBe(items[1].value);
   });
