@@ -76,7 +76,6 @@ describe('MessageBoxMarketerialLayout', () => {
         title: 'title'
       };
       const driver = createDriver(<MessageBoxMarketerialLayout {...props}/>);
-      console.log(driver.getTitle.toString());
       expect(driver.getTitle()).toBe(props.title);
     });
 
@@ -95,6 +94,32 @@ describe('MessageBoxMarketerialLayout', () => {
       const driver = createDriver(<MessageBoxMarketerialLayout {...props}/>);
       expect(driver.getImageSrc()).toBe(props.imageUrl);
     });
+
+    it(`should render image from given component`, () => {
+      const props = {
+        imageComponent: <div data-hook="image-component-test"/>
+      };
+      const driver = createDriver(<MessageBoxMarketerialLayout {...props}/>);
+      expect(driver.getContentBySelector('[data-hook="image-component-test"]')).not.toBeNull();
+    });
+
+    it(`should use default color theme (blue) if none was passed`, () => {
+      const props = {
+        primaryButtonLabel: 'primaryButtonLabel'
+      };
+      const driver = createDriver(<MessageBoxMarketerialLayout {...props}/>);
+      expect(driver.getPrimaryButton().className).toContain('fullblue');
+    });
+
+    it(`should use color theme`, () => {
+      const props = {
+        primaryButtonLabel: 'primaryButtonLabel',
+        theme: 'purple'
+      };
+      const driver = createDriver(<MessageBoxMarketerialLayout {...props}/>);
+      expect(driver.getPrimaryButton().className).toContain('fullpurple');
+    });
+
   });
 
   describe('testkit', () => {

@@ -8,10 +8,16 @@ $headerHeight: 120px;
 $headerImageHeight: 185px;
 .header {
   border-radius: 8px 8px 0 0;
-  background-color: #3899ec;
   height: $headerHeight;
   margin-bottom: $headerImageHeight - $headerHeight;
   position: relative;
+}
+
+.header-purple {
+  background-color: $P10;
+}
+.header-blue {
+  background-color: $B10;
 }
 
 .header-image {
@@ -28,21 +34,28 @@ $headerImageHeight: 185px;
   }
 }
 
-.close
-{
-    position: absolute;
-    right: 18px;
-    top: 18px;
-    z-index: 10;
-    width            : 25px;
-    height           : 25px;
-    border-radius    : 50%;
-    border           : none;
-    display          : flex;
-    justify-content  : center;
-    align-items      : center;
-    background-color : rgba(red($D10), green($D10), blue($D10), 0.2);
-    cursor           : pointer;
+.header-image-component {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.close {
+  position: absolute;
+  right: 18px;
+  top: 18px;
+  z-index: 10;
+  width            : 25px;
+  height           : 25px;
+  border-radius    : 50%;
+  border           : none;
+  display          : flex;
+  justify-content  : center;
+  align-items      : center;
+  background-color : rgba(red($D10), green($D10), blue($D10), 0.2);
+  cursor           : pointer;
 }
 
 .close:hover, .close:focus {
