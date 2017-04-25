@@ -38,6 +38,9 @@ $exclamation-top: 4px;
     @include Placeholder($paletteE6);
     @include Selection($paletteB4);
 }
+.hasCounter{
+  margin-bottom: 30px;
+}
 .counter{
     position: absolute;
     bottom: -30px;
