@@ -50,6 +50,28 @@ describe('InputArea', () => {
     });
   });
 
+  describe('maxLength attribute', () => {
+    it('should pass down to the wrapped input - with max length', () => {
+      const maxLength = 5;
+
+      const driver = createDriver(<InputArea maxLength={maxLength}/>);
+      expect(driver.getMaxLength()).toEqual(maxLength);
+    });
+  });
+
+
+  describe('hasCounter attribute', () => {
+    it('should pass down to the wrapped input', () => {
+      const driver = createDriver(<InputArea hasCounter/>);
+      expect(driver.getHasCounter()).toBeTruthy();
+    });
+
+    it('should pass down to the wrapped input with default false value', () => {
+      const driver = createDriver(<InputArea/>);
+      expect(driver.getHasCounter()).toBeFalsy();
+    });
+  });
+
   describe('resizable attribute', () => {
     it('should pass down to the wrapped input', () => {
       const driver = createDriver(<InputArea resizable/>);

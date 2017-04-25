@@ -38,7 +38,15 @@ $exclamation-top: 4px;
     @include Placeholder($paletteE6);
     @include Selection($paletteB4);
 }
-
+.counter{
+    position: absolute;
+    bottom: -30px;
+    right: 0;
+    font-size: 16px;
+    line-height: 1.5;
+    @include Placeholder($GR60);
+    color: #b6c1cd;
+}
 .hasError > .inputArea {
     padding-right: $input-area-padding-exclamation;
 }
@@ -139,7 +147,9 @@ $exclamation-top: 4px;
     .inputArea {
         direction: rtl;
     }
-
+    .counter{
+        right: auto;
+    }
     .hasError > .inputArea {
         padding-left: $input-area-padding-exclamation;
         padding-right: $input-area-padding-horizontal;

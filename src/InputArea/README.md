@@ -26,6 +26,8 @@
 | onEnterPressed | func | - | - | - |
 | onEscapePressed | func | - | - | - |
 | onKeyDown | func | - | - | - |
+| hasCounter | bool | false | - | When true a letters counter will appear |
+| maxLength | number | - | - | Define max length allowed in the inputArea |
 
 ## Functions
 
