@@ -43,6 +43,6 @@
 }
 
 .active {
-  opacity: 0.9;
+  @extend .t1_3;
   border-color: $B10;
 }
