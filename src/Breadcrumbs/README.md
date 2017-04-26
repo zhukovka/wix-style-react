@@ -18,6 +18,7 @@
 | id | string or number| - | + | Specifies the item id |
 | link | string | - | - | Optional link to be called on click |
 | value | string or node | - | + | Value to be shown on breadcrumb |
+| customElement | element | - | - | A custom item which will be rendered |
 
 ## Breadcrumbs Path Factory
 ```javascript

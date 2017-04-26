@@ -1,5 +1,5 @@
 import React from 'react';
-import {arrayOf, func, oneOf, oneOfType, node, number, shape, string} from 'prop-types';
+import {arrayOf, func, oneOf, oneOfType, node, number, shape, string, any} from 'prop-types';
 import styles from './Breadcrumbs.scss';
 import classNames from 'classnames';
 import Label from '../Label';
@@ -26,6 +26,7 @@ class Breadcrumbs extends WixComponent {
     ]),
     size: oneOf(['medium', 'large']),
     theme: oneOf(['onWhiteBackground', 'onGrayBackground', 'onDarkBackground']),
+    customElement: any
   }
 
   static defaultProps = {
@@ -53,12 +54,18 @@ class Breadcrumbs extends WixComponent {
     }
   }
 
-  getValue(item) {
-    if (!item.link) {
+  getValue(item, isActive) {
+    if (isActive) {
       return item.value;
-    } else {
+    }
+
+    if (item.customElement) {
+      return item.customElement;
+    } else if (item.link) {
       return <a href={`${item.link}`} style={{color: 'inherit', textDecoration: 'inherit'}}>{item.value}</a>;
     }
+
+    return item.value;
   }
 
   renderItem(item) {
@@ -73,7 +80,7 @@ class Breadcrumbs extends WixComponent {
     return (
       <li key={item.id} onClick={() => this._onClick(item)} className={itemClassName}>
         <div className={styles.label}>
-          <Label appearance={labelAppearance}>{this.getValue(item)}</Label>
+          <Label appearance={labelAppearance}>{this.getValue(item, isActive)}</Label>
         </div>
       </li>
     );

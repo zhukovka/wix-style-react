@@ -121,6 +121,64 @@ describe('Breadcrumbs', () => {
     });
   });
 
+  describe('item with link attribute', () => {
+    const linkItems = [
+      {id: 0, value: 'Option 1', link: '//www.wix.com'},
+      {id: 1, value: 'Option 2', link: '//www.facebook.com'}
+    ];
+
+    it('should not have links if link attribute is not given', () => {
+      createComopnent({items});
+      expect(driver.isActiveLinkAt(0)).toBe(false);
+      expect(driver.isActiveLinkAt(1)).toBe(false);
+    });
+
+    it('should be a link if no activeId is given', () => {
+      createComopnent({items: linkItems});
+      expect(driver.isActiveLinkAt(0)).toBe(true);
+      expect(driver.isActiveLinkAt(1)).toBe(true);
+    });
+
+    it('should not be a link if it is the item with activeId', () => {
+      createComopnent({items: linkItems, activeId: 0});
+      expect(driver.isActiveLinkAt(0)).toBe(false);
+      expect(driver.isActiveLinkAt(1)).toBe(true);
+    });
+  });
+
+  describe('customElement attribute', () => {
+    const customItems = [
+      {id: 0, value: 'Option 1', customElement: <a href="//www.wix.com">Option 1</a>},
+      {id: 1, value: 'Option 2', customElement: <a href="//www.facebook.com">Option 2</a>}
+    ];
+
+    const customItemsWithLinks = [
+      {id: 0, value: 'value', customElement: <a href="//www.wix.com">Custom value</a>, link: 'www.bla.com'},
+    ];
+
+    it('should render the customElement when given', () => {
+      createComopnent({items: customItems});
+
+      expect(driver.breadcrumbsLength()).toBe(customItems.length);
+      expect(driver.breadcrumbContentAt(0)).toBe(customItems[0].value);
+      expect(driver.breadcrumbContentAt(1)).toBe(customItems[1].value);
+    });
+
+    it('should render the customElement even if link attribute is given', () => {
+
+      createComopnent({items: customItemsWithLinks});
+
+      expect(driver.breadcrumbsLength()).toBe(customItemsWithLinks.length);
+      expect(driver.breadcrumbContentAt(0)).toBe('Custom value');
+    });
+
+    it('should render the value attribute of the item when this is the activeId', () => {
+      createComopnent({items: customItemsWithLinks, activeId: 0});
+
+      expect(driver.breadcrumbContentAt(0)).toBe(customItemsWithLinks[0].value);
+    });
+  });
+
   describe('testkit', () => {
     it('should exist', () => {
       const div = document.createElement('div');

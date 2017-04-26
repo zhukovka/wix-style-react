@@ -21,6 +21,7 @@ const breadcrumbsDriverFactory = ({element, wrapper, component}) => {
     isOnWhiteBackground: () => isClassExists(element, 'onWhiteBackground'),
     isOnGrayBackground: () => isClassExists(element, 'onGrayBackground'),
     getLabelClassList: position => optionAt(position).querySelector('label').className,
+    isActiveLinkAt: index => !!optionAt(index).querySelector('a'),
     setProps: props => {
       const ClonedWithProps = React.cloneElement(component, Object.assign({}, component.props, props), ...(component.props.children || []));
       ReactDOM.render(<div ref={r => element = r}>{ClonedWithProps}</div>, wrapper);

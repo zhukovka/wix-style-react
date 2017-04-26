@@ -15,6 +15,7 @@
 | isOnGrayBackground | - | bool | fulfilled if breadcrumbs component is on gray background |
 | exists (Only in Unit Test) | - | bool | fulfilled if element in the DOM |
 | element (Only in E2E) | - | element | returns the driver element |
+| isActiveLinkAt | position | bool | returns true if the item is a link |
 
 ## Usage Example
 
