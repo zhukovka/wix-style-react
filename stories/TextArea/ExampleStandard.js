@@ -132,15 +132,15 @@ class ExampleStandard extends Component {
           </div>
         </div>
         <div className={styles.output}>
-          <TextAreaExample {...this.state} onChange={() => this._onChange}/>
+          <TextAreaExample {...this.state} onChange={(e) => this._onChange(e)}/>
         </div>
       </from>
     );
   }
 
-  _onChange() {
-    this.setComponentState('inputArea', {value: this.state.inputArea.value });
-    this.props.onChange();
+  _onChange(e) {
+    // this.setComponentState('inputArea', {value: this.state.inputArea.value });
+    this.props.onChange(e);
   }
 
 }
