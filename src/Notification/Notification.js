@@ -10,7 +10,14 @@ import ActionButton from './ActionButton';
 
 export const LOCAL_NOTIFICATION = 'local';
 export const GLOBAL_NOTIFICATION = 'global';
+export const STICKY_NOTIFICATION = 'sticky';
 export const DEFAULT_TIMEOUT = 6000;
+
+export const notificationTypeToPosition = {
+  [LOCAL_NOTIFICATION]: 'absolute',
+  [GLOBAL_NOTIFICATION]: 'relative',
+  [STICKY_NOTIFICATION]: 'fixed'
+};
 
 const animationsTimeouts = {
   enter: 500,
@@ -107,7 +114,7 @@ class Notification extends WixComponent {
       size,
     } = this.props;
 
-    const position = type === GLOBAL_NOTIFICATION ? 'relative' : 'absolute';
+    const position = notificationTypeToPosition[type];
 
     return classNames({
       [css.notificationWrapper]: true,
@@ -196,7 +203,7 @@ Notification.propTypes = {
   show: PropTypes.bool,
   theme: PropTypes.oneOf(['standard', 'error', 'success', 'warning']),
   size: PropTypes.oneOf(['small', 'big']),
-  type: PropTypes.oneOf([GLOBAL_NOTIFICATION, LOCAL_NOTIFICATION]),
+  type: PropTypes.oneOf([GLOBAL_NOTIFICATION, LOCAL_NOTIFICATION, STICKY_NOTIFICATION]),
   timeout: PropTypes.number,
   zIndex: PropTypes.number,
   onClose: PropTypes.func,

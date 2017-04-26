@@ -166,9 +166,14 @@ describe('Notification', () => {
       expect(driver.isRelativelyPositioned()).toBeTruthy();
     });
 
-    it('should set the type to relative and position absolute', () => {
+    it('should set the type to local and position absolute', () => {
       const driver = createDriver(renderNotificationWithProps({show: true, type: 'local'}));
       expect(driver.isAbsolutePositioned()).toBeTruthy();
+    });
+
+    it('should set the type to sticky and position fixed', () => {
+      const driver = createDriver(renderNotificationWithProps({show: true, type: 'sticky'}));
+      expect(driver.isFixedPositioned()).toBeTruthy();
     });
   });
 

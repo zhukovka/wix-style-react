@@ -41,6 +41,12 @@
   left: 0;
 }
 
+.fixed-position {
+  position: fixed;
+  width: 100%;
+  top: 0;
+}
+
 /*Theme*/
 .standard-theme {
   background-color: $B20;

@@ -2,7 +2,7 @@ import React, {Component, PropTypes} from 'react';
 
 import styles from './ExampleStandard.scss';
 import Notification from './Notification';
-import {LOCAL_NOTIFICATION, GLOBAL_NOTIFICATION, DEFAULT_TIMEOUT} from '../../src/Notification';
+import {LOCAL_NOTIFICATION, GLOBAL_NOTIFICATION, STICKY_NOTIFICATION, DEFAULT_TIMEOUT} from '../../src/Notification';
 import Label from '../../src/Label';
 import ToggleSwitch from '../../src/ToggleSwitch';
 import RadioGroup from '../../src/RadioGroup';
@@ -67,7 +67,7 @@ class ExampleStandard extends Component {
                 size="small"
                 checked={this.state.notification.show}
                 onChange={() => this.setComponentState('notification', {show: !this.state.notification.show})}
-              />
+                />
             </div>
           </div>
           <div className={styles.option}>
@@ -77,9 +77,10 @@ class ExampleStandard extends Component {
                 display="horizontal"
                 value={this.state.notification.type}
                 onChange={type => this.setComponentState('notification', {type})}
-              >
+                >
                 <RadioGroup.Radio value={GLOBAL_NOTIFICATION}>Global (push the content)</RadioGroup.Radio>
                 <RadioGroup.Radio value={LOCAL_NOTIFICATION}>Local (on top of the content)</RadioGroup.Radio>
+                <RadioGroup.Radio value={STICKY_NOTIFICATION}>Sticky (at screen top)</RadioGroup.Radio>
               </RadioGroup>
             </div>
           </div>
@@ -88,10 +89,11 @@ class ExampleStandard extends Component {
               <div className={styles.option}>
                 <Label>Timeout in ms (for local notifications)</Label>
                 <div className={styles.column}>
-                  <Input placeholder="Set the timeout" size="small" type="number"
-                         value={this.state.notification.timeout}
-                         onChange={e => this.setComponentState('notification', {timeout: Number(e.target.value)})}
-                  />
+                  <Input
+                    placeholder="Set the timeout" size="small" type="number"
+                    value={this.state.notification.timeout}
+                    onChange={e => this.setComponentState('notification', {timeout: Number(e.target.value)})}
+                    />
                 </div>
               </div> :
               null
@@ -103,10 +105,10 @@ class ExampleStandard extends Component {
                 display="horizontal"
                 value={this.state.actionButton.type}
                 onChange={type => {
-                  this.setComponentState('actionButton', {type: type});
+                  this.setComponentState('actionButton', {type});
                   this.setNotificationSize(type);
                 }}
-              >
+                >
                 <RadioGroup.Radio value="button">Button</RadioGroup.Radio>
                 <RadioGroup.Radio value="textLink">TextLink</RadioGroup.Radio>
                 <RadioGroup.Radio value="none">None</RadioGroup.Radio>
@@ -115,35 +117,40 @@ class ExampleStandard extends Component {
           </div>
           {
             (this.state.actionButton.type === 'none') ? null :
-              <div>
-                {
-                  this.state.actionButton.type !== 'textLink' ? null :
-                    <div className={styles.option}>
-                      <Label>Link</Label>
-                      <div className={styles.flex}>
-                        <Input value={this.state.actionButton.link} size="small"
-                               onChange={event => this.setComponentState('actionButton', {link: event.target.value})}/>
-                      </div>
-                    </div>
-                }
+            <div>
+              {
+                this.state.actionButton.type !== 'textLink' ? null :
                 <div className={styles.option}>
-                  <Label>Text</Label>
+                  <Label>Link</Label>
                   <div className={styles.flex}>
-                    <Input value={this.state.actionButton.text} size="small"
-                           onChange={event => this.setComponentState('actionButton', {text: event.target.value})}/>
+                    <Input
+                      value={this.state.actionButton.link} size="small"
+                      onChange={event => this.setComponentState('actionButton', {link: event.target.value})}
+                      />
                   </div>
                 </div>
+              }
+              <div className={styles.option}>
+                <Label>Text</Label>
+                <div className={styles.flex}>
+                  <Input
+                    value={this.state.actionButton.text} size="small"
+                    onChange={event => this.setComponentState('actionButton', {text: event.target.value})}
+                    />
+                </div>
               </div>
+            </div>
           }
 
         </div>
         <div className={styles.option}>
           <Label>z-index (optional)</Label>
           <div className={styles.column}>
-            <Input placeholder="optional z-index" size="small" type="number"
-                   value={this.state.notification.zIndex}
-                   onChange={e => this.setComponentState('notification', {zIndex: Number(e.target.value)})}
-            />
+            <Input
+              placeholder="optional z-index" size="small" type="number"
+              value={this.state.notification.zIndex}
+              onChange={e => this.setComponentState('notification', {zIndex: Number(e.target.value)})}
+              />
           </div>
         </div>
       </form>

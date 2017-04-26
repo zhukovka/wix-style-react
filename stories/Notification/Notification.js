@@ -1,8 +1,6 @@
 import React, {PropTypes, Component} from 'react';
 import reactElementToJSXString from 'react-element-to-jsx-string';
-
-import Notification from '../../src/Notification';
-import {GLOBAL_NOTIFICATION} from '../../src/Notification';
+import Notification, {GLOBAL_NOTIFICATION} from '../../src/Notification';
 
 export default class Form extends Component {
 
@@ -23,7 +21,7 @@ export default class Form extends Component {
 
   getCtaButton() {
     const props = {};
-    if(this.props.actionButton.type === 'textLink' ) {
+    if (this.props.actionButton.type === 'textLink') {
       props.link = this.props.actionButton.link;
     }
     return (
@@ -36,7 +34,7 @@ export default class Form extends Component {
   getComponent() {
     const notificationProps = Object.assign({}, this.props.notification);
     if (notificationProps.type === GLOBAL_NOTIFICATION) {
-      delete notificationProps.timeout
+      delete notificationProps.timeout;
     }
 
     return (

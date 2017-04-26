@@ -25,6 +25,7 @@ const notificationDriverFactory = ({element, wrapper, component}) => {
     getActionButtonText: () => element.querySelector(actionButtonSelector).textContent,
     hasCloseButton: () => !!element.querySelector('[data-hook="notification-close-button"]'),
     isRelativelyPositioned: () => classExists('relativePosition'),
+    isFixedPositioned: () => classExists('fixedPosition'),
     isAbsolutePositioned: () => classExists('absolutePosition'),
     clickOnCloseButton: () => ReactTestUtils.Simulate.click(element.querySelector(closeButtonSelector)),
     clickOnActionButton: () => ReactTestUtils.Simulate.click(element.querySelector(actionButtonSelector)),
