@@ -33,3 +33,16 @@ $grid-row-margin-bottom: 30px;
 .rtl .column, .column.rtl {
     float: right;
 }
+
+.stretch_vertically_row {
+	display: -webkit-box;
+	display: -webkit-flex;
+	display: -ms-flexbox;
+	display:         flex;
+	flex-wrap: wrap;
+}
+
+.stretch_vertically_row > [class*='col-'] {
+	display: flex;
+	flex-direction: column;
+}

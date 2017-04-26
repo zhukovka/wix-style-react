@@ -62,6 +62,7 @@ A simple row according to the bootstrap docs.
 | propName | propType | defaultValue | isRequired | description |
 |----------|----------|--------------|------------|-------------|
 | rtl | bool | - | - | Reverses the columns ordering |
+| stretchViewsVertically | bool | - | - | Make all the views in that raw the same height |
 
 #### AutoAdjustedRow
 

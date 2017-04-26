@@ -6,6 +6,9 @@ import Markdown from '../utils/Components/Markdown';
 import ExampleGridStandard from './ExampleGridStandard';
 import ExampleGridStandardRaw from '!raw!./ExampleGridStandard';
 
+import ExampleRowWithEqualHeight from './ExampleRowWithEqualHeight';
+import ExampleRowWithEqualHeightRaw from '!raw!./ExampleRowWithEqualHeight';
+
 import ExampleGridRTL from './ExampleGridRTL';
 import ExampleGridRTLRaw from '!raw!./ExampleGridRTL';
 
@@ -28,6 +31,10 @@ storiesOf('Common', module)
 
       <CodeExample title="Cards with action headers" code={ExampleGridActionHeadersRaw}>
         <ExampleGridActionHeaders/>
+      </CodeExample>
+
+      <CodeExample title="Grid with equal height row" code={ExampleRowWithEqualHeightRaw}>
+        <ExampleRowWithEqualHeight/>
       </CodeExample>
 
       <CodeExample title="Grid with auto adjusted row" code={ExampleAutoAdjustedRowRaw}>

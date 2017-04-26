@@ -22,12 +22,18 @@ class Row extends Component {
 
   static propTypes = {
     children: React.PropTypes.node,
-    rtl: React.PropTypes.bool
+    rtl: React.PropTypes.bool,
+    stretchViewsVertically: React.PropTypes.bool
+  };
+
+  static defaultProps = {
+    stretchViewsVertically: false
   };
 
   render() {
     const rowClasses = classNames(styles.row, {
-      [styles.rtl]: this.props.rtl
+      [styles.rtl]: this.props.rtl,
+      [styles.stretch_vertically_row]: this.props.stretchViewsVertically
     });
 
     return (
