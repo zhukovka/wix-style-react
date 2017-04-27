@@ -47,6 +47,11 @@ $double-gap: 12px;
     &.withSuffixes { padding-right: $gap; }
 }
 
+// Remove IE10+ automatically x button
+.input::-ms-clear {
+    display: none;
+}
+
 .prefixes,
 .suffixes {
     display: flex;
