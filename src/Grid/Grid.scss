@@ -35,10 +35,7 @@ $grid-row-margin-bottom: 30px;
 }
 
 .stretch_vertically_row {
-	display: -webkit-box;
-	display: -webkit-flex;
-	display: -ms-flexbox;
-	display:         flex;
+	display: flex;
 	flex-wrap: wrap;
 }
 
