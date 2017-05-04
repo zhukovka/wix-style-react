@@ -18,6 +18,11 @@ describe('RadioGroup', () => {
     </RadioGroup>
   );
 
+  it('should have the correct amount of radio buttons', () => {
+    const driver = createDriver(elementToRender());
+    expect(driver.getNumberOfRadios()).toBe(4);
+  });
+
   it('should check the option that matches the initial value', () => {
     const value = 2;
     const driver = createDriver(elementToRender({value}));

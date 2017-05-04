@@ -14,6 +14,7 @@
 | isHorizontalDisplay | - | bool | fulfilled if element has class ".horizontal" |
 | isRadioChecked | index | bool | fulfilled if RadioButton in group has attribute checked |
 | isRadioDisabled | index | bool | fulfilled if RadioButton in group has attribute disabled |
+| getNumberOfRadios | - | number | get the amount of radio buttons |
 | exists (Only in Unit Test) | - | bool | fulfilled if element in the DOM |
 | element (Only in E2E) | - | element | returns the driver element |
 
