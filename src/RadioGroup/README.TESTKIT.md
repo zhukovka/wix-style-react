@@ -9,6 +9,7 @@
 | selectByIndex | index | - | click on RadioButton in a group by it's index |
 | selectByValue | index | - | click on RadioButton in a group by it's value |
 | getClassOfLabelAt | index | string | returns RadioButton class by it's index |
+| getRadioValueAt | index | number | returns the value of the RadioButton at the given index |
 | getSelectedValue | - | number | returns the value of selected RadioButton |
 | isVerticalDisplay | - | bool | fulfilled if element has class ".vertical" |
 | isHorizontalDisplay | - | bool | fulfilled if element has class ".horizontal" |

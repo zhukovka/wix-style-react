@@ -15,6 +15,7 @@ const radioGroupDriverFactory = ({element, wrapper, component}) => {
     exists: () => !!element,
     selectByValue: value => ReactTestUtils.Simulate.change(getRadioByValue(value)),
     selectByIndex: index => ReactTestUtils.Simulate.change(radioButtons[index]),
+    getRadioValueAt: index => radioButtons[index].value,
     getSelectedValue: () => selectedRadio ? Number(selectedRadio.childNodes[0].value) : null,
     getClassOfLabelAt: index => labels[index].className,
     isVerticalDisplay: () => isClassExists(element, 'vertical'),
