@@ -101,6 +101,7 @@ class InputWithOptions extends WixComponent {
   }
 
   _onManuallyInput(inputValue) {
+    inputValue = inputValue.trim();
     if (this.closeOnSelect()) {
       this.hideOptions();
     }
