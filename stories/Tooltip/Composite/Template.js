@@ -2,7 +2,6 @@ import React, {PropTypes, Component} from 'react';
 import reactElementToJSXString from 'react-element-to-jsx-string';
 import Tooltip from 'wix-style-react/Tooltip';
 import Button from 'wix-style-react/Button';
-import {Dots} from '../../../src/Icons/dist';
 
 export class Template extends Component {
 
@@ -13,17 +12,23 @@ export class Template extends Component {
     tooltipContent: Tooltip.propTypes.content,
     showTrigger: Tooltip.propTypes.showTrigger,
     hideTrigger: Tooltip.propTypes.hideTrigger,
-    type: PropTypes.oneOf(['tooltip', 'popover', 'popoverMenu']),
+    type: PropTypes.oneOf(['tooltip', 'popover']),
     size: Tooltip.propTypes.size,
     onShow: Tooltip.propTypes.onShow
   };
 
   componentDidUpdate(props) {
-    props.onChange(getExampleCode(this.getComponent()));
+    props.onChange(this.getExampleCode());
   }
 
   componentDidMount() {
-    this.props.onChange(getExampleCode(this.getComponent()));
+    this.props.onChange(this.getExampleCode());
+  }
+
+  getExampleCode() {
+    return reactElementToJSXString(this.getComponent(), {
+      showDefaultProps: false
+    });
   }
 
   getComponent() {
@@ -54,16 +59,6 @@ export class Template extends Component {
         return (
           <Button type="button">Click Me</Button>
         );
-      case 'popoverMenu':
-        return (
-          <Button
-            type="button"
-            height="medium"
-            theme="icon-greybackground"
-            >
-            <Dots size="12px"/>
-          </Button>
-        );
       default:
     }
   }
@@ -71,13 +66,6 @@ export class Template extends Component {
   render() {
     return this.getComponent();
   }
-}
-
-function getExampleCode(element) {
-  return reactElementToJSXString(element, {
-    filterProps: ['onChange'],
-    showDefaultProps: false,
-  });
 }
 
 export default Template;

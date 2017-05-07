@@ -98,7 +98,8 @@ class Tooltip extends WixComponent {
   _unmounted = false;
 
   state = {
-    visible: false
+    visible: false,
+    hidden: true
   };
 
   componentDidUpdate() {
@@ -196,6 +197,7 @@ class Tooltip extends WixComponent {
     if (this._unmounted) {
       return;
     }
+    this.setState({hidden: false});
     if (this._hideTimeout) {
       clearTimeout(this._hideTimeout);
       this._hideTimeout = null;
@@ -231,6 +233,7 @@ class Tooltip extends WixComponent {
   }
 
   hide() {
+    this.setState({hidden: true});
     if (this._showTimeout) {
       clearTimeout(this._showTimeout);
       this._showTimeout = null;
@@ -256,7 +259,7 @@ class Tooltip extends WixComponent {
   }
 
   _hideOrShow(event) {
-    if (this.props.hideTrigger === event) {
+    if (this.props.hideTrigger === event && !this.state.hidden) {
       this.hide();
     } else if (this.props.showTrigger === event) {
       this.show();

@@ -1,16 +1,17 @@
-import React, {Component} from 'react';
+import React, {PropTypes, Component} from 'react';
 
-import Template from './Template';
 import RadioGroup from '../../../src/RadioGroup';
 import Label from '../../../src/Label';
-import * as Icons from '../../../src/Icons/dist';
 import PopoverMenuBuilder from './PopoverMenuBuilder';
-import PopoverMenu from '../../../src/PopoverMenu';
-import PopoverMenuItem from '../../../src/PopoverMenuItem';
 
 import styles from './Example.scss';
+import PopoverMenuTemplate from './PopoverMenuTemplate';
 
 class ExamplePopoverMenu extends Component {
+
+  static propTypes = {
+    onChange: PropTypes.func
+  };
 
   state = {
     size: 'normal',
@@ -47,21 +48,6 @@ class ExamplePopoverMenu extends Component {
   };
 
   render() {
-    const tooltipContent = (
-      <PopoverMenu>
-        {
-          this.state.menuItems.filter(menuItem => menuItem.iconName).map((menuItem, i) => (
-            <PopoverMenuItem
-              key={i}
-              icon={React.createElement(Icons[menuItem.iconName])}
-              text={menuItem.text}
-              onClick={() => console.log(`menu item ${i} clicked`)}
-              />
-          ))
-        }
-      </PopoverMenu>
-    );
-
     return (
       <form className={styles.form}>
         <div className={styles.input}>
@@ -111,16 +97,12 @@ class ExamplePopoverMenu extends Component {
 
         <div className={styles.output}>
           <div className={styles.exampleWrapper}>
-            <Template
-              theme="light"
-              placement={this.state.placement}
-              tooltipContent={tooltipContent}
-              showTrigger="click"
-              hideTrigger="click"
-              type="popoverMenu"
+            <PopoverMenuTemplate
+              menuItems={this.state.menuItems}
               size={this.state.size}
+              placement={this.state.placement}
               onChange={this.props.onChange}
-              />
+            />
           </div>
         </div>
       </form>
