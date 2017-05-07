@@ -36,7 +36,93 @@ The files are brought 'uncompiled' and 'unpacked'. You will need to make sure we
         ]
     }
 ```
-#### Use in your code
+
+#### For server side rendering
+```javascript
+require('css-modules-require-hook')({
+    generateScopedName: '[path][name]__[local]__[hash:base64:5]',
+    extensions: ['.scss', '.css'],
+    camelCase: true
+});
+```
+The scope name pattern has to be the same as in the webpack.config file
+
+## If not using Yoshi to build the project
+### In .babel.rc
+```javascript
+  "plugins": ["transform-decorators-legacy"],
+  "only": [
+    "src",
+    "node_modules/wix-style-react"
+  ]
+```
+### in webpack - 
+#### add support for loading jsx from wix-style-react (Button for example)
+```javascript
+loaders: [
+     {
+        test: /\.jsx?$/,
+        loader: ['babel-loader'],
+        include: [
+          path.join(__dirname, 'node_modules/wix-style-react/src/Button')
+        ]
+      }
+```
+#### add support for scss
+```javascript
+      {
+        test: /\.scss$/,
+        loaders: [
+          'style-loader',
+          'css-loader?modules&importLoaders=1&localIdentName=[name]__[local]___[hash:base64:5]',
+          'postcss-loader',
+          'sass-loader'
+        ],
+        include: [
+          path.join(__dirname, 'node_modules/wix-style-react')
+        ]
+      }
+```
+
+#### support for grid layout
+```javascript
+      {
+        test: /\.scss$/,
+        loaders: [
+          'style-loader',
+          'css-loader?modules&importLoaders=1&camelCase&localIdentName=[name]__[local]__[hash:base64:5]',
+          'postcss-loader',
+          'sass-loader'
+        ],
+        include: [
+          path.join(__dirname, 'node_modules/wix-style-react'),
+          path.join(__dirname, 'node_modules/bootstrap-sass'),
+          path.join(__dirname, 'src')
+        ]
+      }
+```
+#### support for svg
+```javascript
+      {
+        test: /\.(png|jpg|jpeg|gif|svg)$/,
+        loader: 'file-loader',
+      },
+```
+package json - dependency 
+"images-require-hook": "^1.0.3",
+
+#### to make css work
+add postcss.config
+
+```javascript
+module.exports = {
+    plugins: [
+        require('autoprefixer')
+    ]
+};
+```
+
+## Use in your code
 Please refer to the specific elements for code-based examples of how to use this library, e.g., [Button](https://wix.github.io/wix-style-react/?selectedKind=3.%20Buttons&selectedStory=3.1%20Standard&full=0&down=0&left=1&panelRight=0)  
 For wix-js stack projects no config needed just use ```import Button from 'wix-style-react/src/Button';```
 
