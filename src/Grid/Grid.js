@@ -100,7 +100,6 @@ class Col extends Component {
   }
 
   capitilizeFirstLetter(str) {
-    console.log(str);
     return str ? str.toLowerCase().replace(/(^| )(\w)/g, s => s.toUpperCase()) : str;
   }
 
