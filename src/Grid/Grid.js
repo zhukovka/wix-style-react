@@ -23,6 +23,7 @@ class Row extends Component {
 
   static propTypes = {
     children: PropTypes.node,
+    className: PropTypes.string,
     rtl: PropTypes.bool,
     stretchViewsVertically: PropTypes.bool
   };
@@ -32,10 +33,13 @@ class Row extends Component {
   };
 
   render() {
-    const rowClasses = classNames(styles.row, {
-      [styles.rtl]: this.props.rtl,
-      [styles.stretch_vertically_row]: this.props.stretchViewsVertically
-    });
+    const rowClasses = classNames(
+      styles.row,
+      this.props.className,
+      {
+        [styles.rtl]: this.props.rtl,
+        [styles.stretch_vertically_row]: this.props.stretchViewsVertically
+      });
 
     return (
       <div className={rowClasses}>
@@ -69,6 +73,7 @@ class Col extends Component {
 
   static propTypes = {
     children: PropTypes.node,
+    className: PropTypes.string,
     span: PropTypes.number,
     rtl: PropTypes.bool,
     xs: PropTypes.number,
@@ -105,6 +110,7 @@ class Col extends Component {
 
   render() {
     const columnClasses = classNames(
+      this.props.className,
       styles.column,
       {[styles.rtl]: this.props.rtl},
       {[styles[`colXs${this.props.span}`]]: this.isLegalCol(this.props.span)},

@@ -3,7 +3,8 @@
  */
 import React from 'react';
 import {mount} from 'enzyme';
-import {Col} from './Grid';
+import {Col, Row} from './Grid';
+import classNames from 'classnames';
 
 describe('Grid', () => {
 
@@ -67,6 +68,32 @@ describe('Grid', () => {
       const element = mount(<Col hiddenXl="up"/>);
       expect(element.hasClass('hiddenXlUp')).toEqual(true);
     });
+  });
+
+  describe('pass className', () => {
+
+    it('should pass className to col element', () => {
+      const element = mount(<Col className="test"/>);
+      expect(element.hasClass('test')).toEqual(true);
+    });
+
+    it('should pass className to row element', () => {
+      const element = mount(<Row className="test"/>);
+      expect(element.hasClass('test')).toEqual(true);
+    });
+
+    it('should pass multiple className to col element', () => {
+      const element = mount(<Col className={classNames('test1', 'test2')}/>);
+      expect(element.hasClass('test1')).toEqual(true);
+      expect(element.hasClass('test2')).toEqual(true);
+    });
+
+    it('should pass className to row element', () => {
+      const element = mount(<Row className={classNames('test1', 'test2')}/>);
+      expect(element.hasClass('test1')).toEqual(true);
+      expect(element.hasClass('test2')).toEqual(true);
+    });
+
   });
 });
 
