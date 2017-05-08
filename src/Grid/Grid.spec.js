@@ -34,6 +34,11 @@ describe('Grid', () => {
       expect(element.hasClass('colXl5')).toEqual(true);
     });
 
+    it('should accept numeric values', () => {
+      const element = mount(<Col md={12}/>);
+      expect(element.hasClass('colMd12')).toEqual(true);
+    });
+
     it('should add col xl class when using xl attribute ', () => {
       const element = mount(<Col sm="3" md="12" lg="1" xl="5"/>);
       expect(element.hasClass('colXl5')).toEqual(true);

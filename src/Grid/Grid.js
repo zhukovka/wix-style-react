@@ -77,28 +77,24 @@ class Col extends Component {
     className: PropTypes.string,
     span: PropTypes.number,
     rtl: PropTypes.bool,
-    xs: PropTypes.string,
-    sm: PropTypes.string,
-    md: PropTypes.string,
-    lg: PropTypes.string,
-    xl: PropTypes.string,
+    xs: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+    sm: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+    md: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+    lg: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+    xl: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
     dataHook: PropTypes.string
   };
 
   isVisibleHidden(str) {
-    if (!str) {
-      return false;
-    }
-    str = str.toLowerCase();
-    return str.toLowerCase() === 'hidden' || str === 'visible';
+    return str === 'hidden' || str === 'visible';
   }
 
   isLegalCol(numStr) {
-    if (!numStr) {
-      return false;
+    if (numStr && !this.isVisibleHidden(numStr)) {
+      const num = Number(numStr);
+      return Number.isInteger(num) && num > 0 && num <= 12;
     }
-    const num = Number(numStr);
-    return Number.isInteger(num) && num > 0 && num <= 12;
+    return false;
   }
 
   render() {
