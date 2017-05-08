@@ -14,6 +14,8 @@ class Button extends WixComponent {
     suffixIcon: node,
     type: string,
     onClick: func,
+    onMouseEnter: func,
+    onMouseLeave: func
   }
 
   static defaultProps = ButtonLayout.defaultProps
@@ -46,12 +48,12 @@ class Button extends WixComponent {
   }
 
   render() {
-    const {disabled, onClick, children, type} = this.props;
+    const {disabled, onClick, children, type, onMouseEnter, onMouseLeave} = this.props;
     const buttonLayoutProps = omit(this.props, ['id', 'onClick', 'prefixIcon', 'suffixIcon', 'type']);
 
     return (
       <ButtonLayout {...buttonLayoutProps}>
-        <button onClick={onClick} disabled={disabled} type={type}>
+        <button onClick={onClick} disabled={disabled} type={type} onMouseEnter={onMouseEnter} onMouseLeave={onMouseLeave}>
           {this.addPrefix()}
           {children}
           {this.addSuffix()}
