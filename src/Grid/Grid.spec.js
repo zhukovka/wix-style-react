@@ -45,29 +45,48 @@ describe('Grid', () => {
 
   describe('breakpoints hide options', () => {
     it('should add hidden xs class when using hiddenxs attribute ', () => {
-      const element = mount(<Col hiddenXs="up"/>);
-      expect(element.hasClass('hiddenXsUp')).toEqual(true);
+      const element = mount(<Col xs="hidden"/>);
+      expect(element.hasClass('hiddenXs')).toEqual(true);
     });
 
     it('should add hidden sm class when using hiddensm attribute ', () => {
-      const element = mount(<Col hiddenSm="down"/>);
-      expect(element.hasClass('hiddenSmDown')).toEqual(true);
+      const element = mount(<Col sm="hidden"/>);
+      expect(element.hasClass('hiddenSm')).toEqual(true);
     });
 
     it('should add hidden md class when using hiddenmd attribute ', () => {
-      const element = mount(<Col hiddenMd="up"/>);
-      expect(element.hasClass('hiddenMdUp')).toEqual(true);
+      const element = mount(<Col md="hidden"/>);
+      expect(element.hasClass('hiddenMd')).toEqual(true);
     });
 
     it('should add hidden lg class when using hiddenlg attribute ', () => {
-      const element = mount(<Col hiddenLg="Down"/>);
-      expect(element.hasClass('hiddenLgDown')).toEqual(true);
+      const element = mount(<Col lg="hidden"/>);
+      expect(element.hasClass('hiddenLg')).toEqual(true);
     });
 
-    it('should add hidden xl class when using hiddenxl attribute ', () => {
-      const element = mount(<Col hiddenXl="up"/>);
-      expect(element.hasClass('hiddenXlUp')).toEqual(true);
+  });
+
+  describe('breakpoints show options', () => {
+    it('should add visible xs class when using xs attribute ', () => {
+      const element = mount(<Col xs="visible"/>);
+      expect(element.hasClass('visibleXs')).toEqual(true);
     });
+
+    it('should add visible sm class when using sm attribute ', () => {
+      const element = mount(<Col sm="visible"/>);
+      expect(element.hasClass('visibleSm')).toEqual(true);
+    });
+
+    it('should add visible md class when using md attribute ', () => {
+      const element = mount(<Col md="visible"/>);
+      expect(element.hasClass('visibleMd')).toEqual(true);
+    });
+
+    it('should add visible lg class when using lg attribute ', () => {
+      const element = mount(<Col lg="visible"/>);
+      expect(element.hasClass('visibleLg')).toEqual(true);
+    });
+
   });
 
   describe('pass className', () => {
@@ -93,7 +112,17 @@ describe('Grid', () => {
       expect(element.hasClass('test1')).toEqual(true);
       expect(element.hasClass('test2')).toEqual(true);
     });
+  });
 
+  describe('support dataHook', () => {
+    it('for Row', () => {
+      const element = mount(<Col dataHook="test"/>);
+      expect(element.find('[data-hook="test"]').length).toEqual(1);
+    });
+
+    it('for Col', () => {
+      const element = mount(<Row dataHook="test"/>);
+      expect(element.find('[data-hook="test"]').length).toEqual(1);
+    });
   });
 });
-
