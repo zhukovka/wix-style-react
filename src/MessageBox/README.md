@@ -31,6 +31,7 @@
 | closeButton | bool | true | - | Should the x button appear or not |
 | disableCancel | bool | false | - | Disable cancel button |
 | disableConfirmation | bool| false | - | Disable confirmation button |
+| width| string | '600px' | - | Set the message box width |
 
 ## MessageBoxFunctionalLayout TestKit API
 
