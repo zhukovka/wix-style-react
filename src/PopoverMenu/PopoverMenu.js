@@ -19,7 +19,7 @@ class PopoverMenu extends WixComponent {
   };
 
   render() {
-    const menuItems = this.props.children.map((child, i) => {
+    const menuItems = React.Children.map(this.props.children, (child, i) => {
       const {onClick, ...passThroughProps} = child.props;
       const onClickWithHide = () => {
         this.tooltip.hide();
