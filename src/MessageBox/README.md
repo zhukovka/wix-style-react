@@ -29,6 +29,8 @@
 | children | array | - | - | Message box content |
 | buttonsHeight | string | small | - | The size of the button, can be small, medium or large |
 | closeButton | bool | true | - | Should the x button appear or not |
+| disableCancel | bool | false | - | Disable cancel button |
+| disableConfirmation | bool| false | - | Disable confirmation button |
 
 ## MessageBoxFunctionalLayout TestKit API
 

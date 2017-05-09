@@ -27,6 +27,24 @@ describe('MessageBox', () => {
       expect(driver.getCancellationButtonText()).toBe(props.cancelText);
     });
 
+    it('should disable cancel button if disabled', () => {
+      const props = {
+        cancelText: 'cancelText',
+        disableCancel: true
+      };
+      const driver = createDriver(<MessageBoxFunctionalLayout {...props}/>);
+      expect(driver.isCancelEnable()).toBeFalsy();
+    });
+
+    it('should disable confirmation button if disabled', () => {
+      const props = {
+        confirmText: 'ok',
+        disableConfirmation: true
+      };
+      const driver = createDriver(<MessageBoxFunctionalLayout {...props}/>);
+      expect(driver.isConfirmationEnable()).toBeFalsy();
+    });
+
     it('should not display the cancellation button if cancellationText is empty', () => {
       const props = {
       };

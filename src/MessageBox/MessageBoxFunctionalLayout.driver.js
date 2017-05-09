@@ -20,6 +20,8 @@ const messageBoxFunctionalLayoutDriverFactory = ({element, wrapper, component}) 
     getFooter: () => element.querySelector('[data-hook="message-box-footer"]'),
     getTitle: () => element.querySelector('[data-hook="header-layout-title"]').textContent,
     getChildBySelector: selector => element.querySelector(selector),
+    isCancelEnable: () => cancellationButton().className.indexOf('disabled') === -1,
+    isConfirmationEnable: () => confirmationButton().className.indexOf('disabled') === -1,
     setProps: props => {
       const ClonedWithProps = React.cloneElement(component, Object.assign({}, component.props, props), ...(component.props.children || []));
       ReactDOM.render(<div ref={r => element = r}>{ClonedWithProps}</div>, wrapper);
