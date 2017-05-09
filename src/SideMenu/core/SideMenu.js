@@ -1,14 +1,14 @@
-import React, {PropTypes} from 'react';
-
+import React from 'react';
+import {node} from 'prop-types';
 import styles from './styles.scss';
 
 const SideMenu = ({children}) =>
-  <div className={styles.root}>
+  <div className={styles.root} data-hook="side-menu">
     {children}
   </div>;
 
 SideMenu.propTypes = {
-  children: PropTypes.node
+  children: node
 };
 
 export default SideMenu;

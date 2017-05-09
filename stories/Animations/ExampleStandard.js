@@ -2,7 +2,8 @@ import React from 'react';
 import Button from '../../src/Button';
 import Input from '../../src/Input';
 import {Container, Row, Col, Card} from '../../src/Grid';
-import {FadeAnimation, ScaleAnimation} from '../../src/Animations';
+import {FadeAnimation, ScaleAnimation, SlideAnimation} from '../../src/Animations';
+import {SlideDirection} from '../../src/Animations/SlideAnimation';
 
 class AnimatedExample extends React.Component {
   constructor(props) {
@@ -61,6 +62,50 @@ class AnimatedExample extends React.Component {
                       )
                     }
                   </FadeAnimation>
+                </Card.Content>
+              </Card>
+            </Col>
+          </Row>
+          <Row>
+            <Col span="3">
+              <Card>
+                <Card.Content>
+                  <SlideAnimation>
+                    {
+                      this.state.showComponents &&
+                      (
+                        <Row>
+                          <Row>
+                            <Button disabled>Slide left animated input</Button>
+                          </Row>
+                          <Row>
+                            <Input disabled placeholder="Slide left animated input"/>
+                          </Row>
+                        </Row>
+                      )
+                    }
+                  </SlideAnimation>
+                </Card.Content>
+              </Card>
+            </Col>
+            <Col span="3">
+              <Card>
+                <Card.Content>
+                  <SlideAnimation direction={SlideDirection.right}>
+                    {
+                      this.state.showComponents &&
+                      (
+                        <Row>
+                          <Row>
+                            <Button disabled>Slide right animated input</Button>
+                          </Row>
+                          <Row>
+                            <Input disabled placeholder="Slide right animated input"/>
+                          </Row>
+                        </Row>
+                      )
+                    }
+                  </SlideAnimation>
                 </Card.Content>
               </Card>
             </Col>
