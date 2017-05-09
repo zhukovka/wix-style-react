@@ -13,5 +13,3 @@ storybook-e2e
 *.iml
 .vscode
 test/e2e
-src/Icons/components/*.js
-src/Icons/index.js
