@@ -11,16 +11,16 @@ import ChatIcon from '../../src/Icons/dist/components/Chat';
 export default () =>
   <div style={{width: 220, height: 700}}>
     <SideMenu>
-      <SideMenu.Logo onClick={() => console.log('Logo clicked')}>
+      <SideMenu.Header onClick={() => console.log('Header clicked')}>
         <TrashIcon size="5em"/>
         <h2 style={{color: '#fff'}}>My Application</h2>
-      </SideMenu.Logo>
+      </SideMenu.Header>
 
       <SideMenu.Navigation>
         <SideMenu.NavigationLink onClick={() => console.log('#1 clicked')}>
           Link #1
         </SideMenu.NavigationLink>
-        <SideMenu.NavigationLink onClick={() => console.log('#2 clicked')}>
+        <SideMenu.NavigationLink withArrow onClick={() => console.log('#2 clicked')}>
           Link #2
         </SideMenu.NavigationLink>
 
