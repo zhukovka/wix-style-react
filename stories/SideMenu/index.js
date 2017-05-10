@@ -32,8 +32,8 @@ storiesOf('Core', module)
   ));
 
 
-storiesOf('6. Navigation', module)
-  .add('6.4 SideMenu Drill', () => (
+storiesOf('Core', module)
+  .add('SideMenu Drill', () => (
     <div>
       <Markdown source={SideMenuDrillReadme}/>
 
