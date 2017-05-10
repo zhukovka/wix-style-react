@@ -9,6 +9,7 @@ function loadStories() {
   // Core
   require('../stories/AutoComplete');
   require('../stories/Breadcrubms');
+  require('../stories/Badge');
   require('../stories/Button');
   require('../stories/ButtonLayout');
   require('../stories/ButtonSelection');
