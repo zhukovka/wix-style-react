@@ -1,11 +1,11 @@
 import React from 'react';
 import classnames from 'classnames';
-import {node, oneOf} from 'prop-types';
+import {node, oneOf, string} from 'prop-types';
 
 import typography, {convertFromUxLangToCss} from '../Typography';
 import styles from './Badge.scss';
 
-const Badge = ({children, type, appearance, alignment}) => {
+const Badge = ({children, type, appearance, alignment, dataHook}) => {
   const className = classnames(
     styles.badge,
     styles[type],
@@ -13,7 +13,7 @@ const Badge = ({children, type, appearance, alignment}) => {
     typography[convertFromUxLangToCss(appearance)
   ]);
   return (
-    <span className={className}>
+    <span className={className} data-hook={dataHook}>
       {children}
     </span>
   );
@@ -30,7 +30,8 @@ Badge.propTypes = {
     'T3', 'T3.1', 'T3.2', 'T3.3', 'T3.4',
     'T4', 'T4.1', 'T4.2', 'T4.3',
     'T5', 'T5.1'
-  ]).isRequired
+  ]).isRequired,
+  dataHook: string
 };
 
 Badge.defaultProps = {

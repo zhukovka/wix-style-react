@@ -5,6 +5,9 @@ export {getStoryUrl, waitForVisibilityOf, scrollToElement} from '../src/test-com
 import labelDriverFactory from '../src/Label/Label.protractor.driver';
 export const labelTestkitFactory = protractorTestkitFactoryCreator(labelDriverFactory);
 
+import badgeDriverFactory from '../src/Badge/Badge.protractor.driver';
+export const badgeTestkitFactory = protractorTestkitFactoryCreator(badgeDriverFactory);
+
 import buttonDriverFactory from '../src/Button/Button.protractor.driver';
 export const buttonTestkitFactory = protractorTestkitFactoryCreator(buttonDriverFactory);
 
