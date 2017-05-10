@@ -16,7 +16,7 @@ const AmaterialErrorSuffix = ({focused, error, errorMessage}) => focused ?
     placement="right"
     hideDelay={5}
     showDelay={5}
-    active={!focused}
+    active={focused}
     moveBy={{x: 2, y: -10}}
     alignment="center"
     content={errorMessage}
