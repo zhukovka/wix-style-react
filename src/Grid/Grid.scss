@@ -33,7 +33,7 @@ $grid-row-margin-bottom: 30px;
 	max-width: $main-container-max-width;
 }
 
-.rtl .column, .column.rtl {
+:global(.rtl) .column, .rtl .column, .column.rtl {
     float: right;
 }
 
