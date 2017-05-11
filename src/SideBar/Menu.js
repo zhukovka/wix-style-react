@@ -1,9 +1,19 @@
-import css from './Menu.scss';
+import redStyle from './MenuRed.scss';
+import blueStyle from './MenuBlue.scss';
 import React from 'react';
 import classnames from 'classnames';
 import findIndex from 'lodash.findindex';
 
 class Menu extends React.Component {
+
+  getCss() {
+    if (this.props.selectedColor && this.props.selectedColor === 'blue') {
+      return blueStyle;
+    } else {
+      return redStyle;
+    }
+  }
+
   render() {
     const {items, selectedId, onSelect = () => {}} = this.props;
 
@@ -33,12 +43,12 @@ class Menu extends React.Component {
     const top = !selected ? 0 : (selectedChild * 42) || 0;
 
     const cn = classnames({
-      [css.group]: selected,
+      [this.getCss().group]: selected,
     });
 
     const titleCn = classnames({
-      [css.grouptitle]: selected,
-      [css.title]: !selected
+      [this.getCss().grouptitle]: selected,
+      [this.getCss().title]: !selected
     });
 
     return (
@@ -46,8 +56,8 @@ class Menu extends React.Component {
         <div className={titleCn} onClick={() => onSelect(id)} >
           {title}
         </div>
-        <div className={css.groupitems} style={{height}} >
-          <div className={css.groupmask} style={{top}}/>
+        <div className={this.getCss().groupitems} style={{height}} >
+          <div className={this.getCss().groupmask} style={{top}}/>
           {children.map(item => {
             return this._renderSelection({item, selectedId, onSelect});
           })}
@@ -61,8 +71,8 @@ class Menu extends React.Component {
     const {title, id} = item;
 
     const cn = classnames({
-      [css.title]: true,
-      [css.selected]: id === selectedId
+      [this.getCss().title]: true,
+      [this.getCss().selected]: id === selectedId
     });
 
     return (
@@ -75,7 +85,8 @@ class Menu extends React.Component {
   static propTypes = {
     items: React.PropTypes.array.isRequired,
     onSelect: React.PropTypes.func.isRequired,
-    selectedId: React.PropTypes.any
+    selectedId: React.PropTypes.any,
+    selectedColor: React.PropTypes.string
   }
 
   static displayName = 'SideBar.Menu'
