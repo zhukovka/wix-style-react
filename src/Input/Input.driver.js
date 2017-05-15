@@ -19,6 +19,8 @@ const inputDriverFactory = ({element, wrapper, component}) => {
     getTabIndex: () => input.tabIndex,
     getReadOnly: () => input.readOnly,
     getTextOverflow: () => input.style['text-overflow'],
+    getAriaLabel: () => input.getAttribute('aria-label'),
+    getAriaControls: () => input.getAttribute('aria-controls'),
     getType: () => input.type,
     hasPrefix: () => element.querySelectorAll(`.${styles.prefix}`).length === 1,
     hasPrefixClass: () => element.querySelectorAll(`.${styles.input}.${styles.withPrefix}`).length === 1,
