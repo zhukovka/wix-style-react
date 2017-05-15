@@ -23,6 +23,13 @@ describe('Dropdown', () => {
     {id: 'element1', value: <span style={{color: 'brown'}}>Option 4</span>}
   ];
 
+  it('should select item with selectedId on init state', () => {
+    const {inputDriver, dropdownLayoutDriver} = createDriver(<Dropdown options={options} selectedId={0}/>);
+
+    expect(dropdownLayoutDriver.isOptionSelected(0)).toBeTruthy();
+    expect(inputDriver.getValue()).toBe('Option 1');
+  });
+
   it('should select an item when clicked', () => {
     const {driver, dropdownLayoutDriver} = createDriver(<Dropdown options={options}/>);
     driver.focus();
