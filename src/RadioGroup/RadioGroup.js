@@ -18,6 +18,7 @@ class RadioGroup extends WixComponent {
       <div className={styles[display]}>
         {React.Children.map(this.props.children, radio => (
           <RadioGroup.Radio
+            dataHook={radio.props.dataHook}
             value={radio.props.value}
             name={this.name}
             onChange={onChange}
