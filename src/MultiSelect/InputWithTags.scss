@@ -1,7 +1,15 @@
 @import '../common';
 
 .input {
-  width: 100px;
+  min-width: 100px;
+}
+
+.hiddenDiv {
+  @include FontRoman();
+  visibility: hidden;
+  padding: 0 12px;
+  white-space: pre;
+  height: 0;
 }
 
 .tagsContainer {

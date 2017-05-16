@@ -46,6 +46,7 @@ class Input extends Component {
       theme,
       disabled,
       error,
+      width,
       ariaLabel,
       ariaControls
     } = this.props;
@@ -72,7 +73,7 @@ class Input extends Component {
 
     const inputElement = (
       <input
-        style={{textOverflow}}
+        style={{textOverflow, width}}
         ref={input => this.input = input}
         className={inputClassNames}
         id={id}
@@ -180,7 +181,8 @@ Input.defaultProps = {
   helpMessage: '',
   roundInput: false,
   textOverflow: 'clip',
-  maxLength: 524288
+  maxLength: 524288,
+  width: 'initial'
 };
 
 Input.propTypes = {
@@ -224,8 +226,9 @@ Input.propTypes = {
   textOverflow: PropTypes.string,
   helpMessage: PropTypes.string,
   title: PropTypes.string,
+  width: PropTypes.string,
   ariaLabel: PropTypes.string,
-  ariaControls: PropTypes.string,
+  ariaControls: PropTypes.string
 };
 
 export default Input;
