@@ -4,7 +4,7 @@ import Loader from '../Loader';
 
 const loaderDriverFactory = ({element, wrapper}) => {
   const isClassExists = (element, className) => !!element && element.className.indexOf(className) !== -1;
-  const text = element.childNodes[1];
+  const text = () => element.childNodes[1];
   const getColor = () => {
     if (!element) {
       return null;
@@ -18,8 +18,8 @@ const loaderDriverFactory = ({element, wrapper}) => {
     isMedium: () => isClassExists(element, 'medium'),
     isLarge: () => isClassExists(element, 'large'),
     getColor: () => getColor(),
-    hasText: () => isClassExists(text, 'text'),
-    getText: () => text.textContent,
+    hasText: () => isClassExists(text(), 'text'),
+    getText: () => text().textContent,
     setProps: props => {
       ReactDOM.render(<div ref={r => element = r}><Loader {...props}/></div>, wrapper);
     },
