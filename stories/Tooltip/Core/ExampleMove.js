@@ -8,6 +8,7 @@ export default () =>
     active
     placement="right"
     alignment="top"
+    textAlign="left"
     content="Lorem ipsum dolor sit amet, consectetur adipiscing elit. In vel erat eu sem rutrum tristique. Sed id odio non magna sodales egestas."
     showTrigger="custom"
     hideTrigger="custom"
