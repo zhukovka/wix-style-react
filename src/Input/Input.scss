@@ -243,15 +243,7 @@ $double-gap: 12px;
         @at-root {
             .hasFocus .barBlack:before,
             .hasFocus .bar:after {
-                width: 50%;
-            }
-        }
-        &.has-error {
-            .bar {
-                background: $R05;
-                &:before, &:after {
-                    background: $R05;
-                }
+                width:50%;
             }
         }
     }
