@@ -16,6 +16,7 @@ const AmaterialHelpSuffix = ({help, helpMessage}) =>
     alignment="center"
     hideDelay={100}
     content={helpMessage}
+    textAlign="left"
     overlay=""
     >
     <div className={styles.amaterialHelp}><InfoMaterial height="30" width="30"/></div>
@@ -36,4 +37,3 @@ class ThemedInputHelpSuffix extends InputHelpSuffix {
 }
 
 export default ThemedInputHelpSuffix;
-
