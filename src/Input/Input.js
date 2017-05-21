@@ -47,8 +47,6 @@ class Input extends Component {
       disabled,
       error,
       width,
-      ariaLabel,
-      ariaControls
     } = this.props;
 
     const onIconClicked = () => {
@@ -69,7 +67,8 @@ class Input extends Component {
       [styles.withSuffixes]: visibleSuffixCount > 1
     });
 
-    const ariaAttribute = Object.assign({}, (ariaLabel && {'aria-label': ariaLabel}), (ariaControls && {'aria-controls': ariaControls}));
+    const ariaAttribute = {};
+    Object.keys(this.props).filter(key => key.startsWith('aria')).map(key => ariaAttribute['aria-' + key.substr(4).toLowerCase()] = this.props[key]);
 
     const inputElement = (
       <input
@@ -228,6 +227,7 @@ Input.propTypes = {
   title: PropTypes.string,
   width: PropTypes.string,
   ariaLabel: PropTypes.string,
+  ariaDescribedby: PropTypes.string,
   ariaControls: PropTypes.string
 };
 

@@ -393,6 +393,16 @@ describe('Input', () => {
       expect(driver.getAriaControls()).toBeNull;
     });
 
+    it('should allow adding aria-controls', () => {
+      const driver = createDriver(<Input ariaDescribedby="blabla"/>);
+      expect(driver.getAriaDescribedby()).toBe('blabla');
+    });
+
+    it('should not have any aria controls buy default', () => {
+      const driver = createDriver(<Input/>);
+      expect(driver.getAriaDescribedby()).toBeNull;
+    });
+
   });
 
 });
