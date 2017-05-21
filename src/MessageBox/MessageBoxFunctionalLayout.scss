@@ -9,7 +9,7 @@
 
 .body
 {
-    @include FontRoman();
+    @include FontLight();
     padding   : 36px 30px 42px 30px;
     color     : $paletteD2;
     font-size : 16px;

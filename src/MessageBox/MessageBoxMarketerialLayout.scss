@@ -69,19 +69,17 @@ $headerImageHeight: 185px;
 
 .title {
   @include FontThin();
-  width: 443px;
+  width: 384px;
+  margin: 0 auto 19px auto;
   font-size: 36px;
   line-height: 1.33;
   text-align: center;
-  margin-left: auto;
-  margin-right: auto;
-  margin-bottom: 19px;
   color: #162d3d;
 }
 
 .content {
   @include FontLight();
-  width: 385px;
+  width: 384px;
   margin-left: auto;
   margin-right: auto;
   font-size: 16px;
