@@ -122,7 +122,7 @@
     "react-addons-css-transition-group": "^15.4.2",
     "react-addons-test-utils": "^15.5.1",
     "react-autosuggest": "^7.0.1",
-    "react-datepicker": "^0.39.0",
+    "react-datepicker": "^0.46.0",
     "react-modal": "1.6.5",
     "react-onclickoutside": "^5.7.1",
     "react-remarkable": "^1.1.1",

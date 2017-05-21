@@ -19,6 +19,9 @@ $calendarMargin: 15px;
     border-bottom: 0;
     padding: 0;
 }
+:global(.react-datepicker__input-container) {
+    width: 100%;
+}
 :global(.react-datepicker__triangle) {
     border-bottom-color: #3899ec !important;
 }
