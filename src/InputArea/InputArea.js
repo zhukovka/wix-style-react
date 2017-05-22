@@ -73,6 +73,9 @@ class InputArea extends WixComponent {
       [styles.nonResizable]: !resizable
     });
 
+    const ariaAttribute = {};
+    Object.keys(this.props).filter(key => key.startsWith('aria')).map(key => ariaAttribute['aria-' + key.substr(4).toLowerCase()] = this.props[key]);
+
     return (
       <div className={classes}>
         <textarea
@@ -93,6 +96,7 @@ class InputArea extends WixComponent {
           tabIndex={tabIndex}
           autoFocus={autoFocus}
           onKeyUp={onKeyUp}
+          {...ariaAttribute}
           readOnly={readOnly}
           />
         {error && <Exclamation errorMessage={errorMessage}/>}
@@ -183,7 +187,10 @@ InputArea.propTypes = {
   maxLength: PropTypes.number,
   resizable: PropTypes.bool,
   hasCounter: PropTypes.bool,
-  errorMessage: PropTypes.string
+  errorMessage: PropTypes.string,
+  ariaLabel: PropTypes.string,
+  ariaDescribedby: PropTypes.string,
+  ariaControls: PropTypes.string
 };
 
 export default InputArea;

@@ -280,4 +280,39 @@ describe('enzyme testkit', () => {
     const inputAreaTestkit = enzymeInputAreaTestkitFactory({wrapper, dataHook});
     expect(inputAreaTestkit.exists()).toBeTruthy();
   });
+
+  describe('aria attributes', () => {
+    const createDriver = createDriverFactory(inputAreaDriverFactory);
+
+    it('should allow adding a custom aria-label', () => {
+      const driver = createDriver(<InputArea ariaLabel="hello"/>);
+      expect(driver.getAriaLabel()).toBe('hello');
+    });
+
+    it('should not have any aria label buy default', () => {
+      const driver = createDriver(<InputArea/>);
+      expect(driver.getAriaLabel()).toBeNull;
+    });
+
+    it('should allow adding aria-controls', () => {
+      const driver = createDriver(<InputArea ariaControls="id"/>);
+      expect(driver.getAriaControls()).toBe('id');
+    });
+
+    it('should not have any aria controls buy default', () => {
+      const driver = createDriver(<InputArea/>);
+      expect(driver.getAriaControls()).toBeNull;
+    });
+
+    it('should allow adding aria-controls', () => {
+      const driver = createDriver(<InputArea ariaDescribedby="blabla"/>);
+      expect(driver.getAriaDescribedby()).toBe('blabla');
+    });
+
+    it('should not have any aria controls buy default', () => {
+      const driver = createDriver(<InputArea/>);
+      expect(driver.getAriaDescribedby()).toBeNull;
+    });
+
+  });
 });

@@ -30,6 +30,9 @@ const inputAreaDriverFactory = ({element, wrapper, component}) => {
     exists: () => !!textArea,
     hasIconLeft: () => !$component.find(`.${styles.prefix}`).is(':empty'),
     getStyle: () => textArea.style,
+    getAriaLabel: () => textArea.getAttribute('aria-label'),
+    getAriaControls: () => textArea.getAttribute('aria-controls'),
+    getAriaDescribedby: () => textArea.getAttribute('aria-describedby'),
     setProps: props => {
       const ClonedWithProps = React.cloneElement(component, Object.assign({}, component.props, props), ...(component.props.children || []));
       ReactDOM.render(<div ref={r => element = r}>{ClonedWithProps}</div>, wrapper);
