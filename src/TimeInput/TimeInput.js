@@ -1,48 +1,51 @@
-import React from 'react';
+import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import isUndefined from 'lodash.isundefined';
-import Input from '../Input';
 import classNames from 'classnames';
 import moment from 'moment';
+
+import Input from '../Input';
 import styles from './TimeInput.scss';
 
-export default React.createClass({
-  displayName: 'TimePicker',
+export default class extends Component {
+  static displayName = 'TimePicker'
 
-  propTypes: {
+  static propTypes = {
     defaultValue: PropTypes.object,
     onChange: PropTypes.func,
     rtl: PropTypes.bool,
     style: PropTypes.object,
     disableAmPm: PropTypes.bool,
     dataHook: PropTypes.string
-  },
+  }
 
-  getDefaultProps() {
-    return {
-      defaultValue: moment(),
-      onChange: () => {},
-      style: {},
-      disableAmPm: false
-    };
-  },
+  static defaultProps = {
+    defaultValue: moment(),
+    onChange: () => {},
+    style: {},
+    disableAmPm: false
+  }
 
-  getInitialState() {
-    const focus = false,
-      lastCaretIdx = 0,
-      hover = false;
+  constructor(props) {
+    super(props);
 
-    return {
-      focus,
-      lastCaretIdx,
-      hover,
+    this.state = {
+      focus: false,
+      lastCaretIdx: 0,
+      hover: false,
       ...this.getInitTime(this.props.defaultValue)
     };
-  },
+  }
+
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.defaultValue !== this.props.defaultValue) {
+      this.setState(this.getInitTime(nextProps.defaultValue));
+    }
+  }
 
   isAmPmMode() {
     return !this.props.disableAmPm && moment('2016-04-03 13:14:00').format('LT').indexOf('PM') !== -1;
-  },
+  }
 
   getInitTime(value) {
     let time = value || moment(),
@@ -54,13 +57,7 @@ export default React.createClass({
     const text = this.formatTime(time, ampmMode);
 
     return {time, am, text, ampmMode};
-  },
-
-  componentWillReceiveProps(nextProps) {
-    if (nextProps.defaultValue !== this.props.defaultValue) {
-      this.setState(this.getInitTime(nextProps.defaultValue));
-    }
-  },
+  }
 
   momentizeState(timeSet) {
     let time, am;
@@ -87,12 +84,12 @@ export default React.createClass({
     momentized.minutes(time.minutes());
     momentized.seconds(0);
     return momentized;
-  },
+  }
 
   bubbleOnChange(timeSet) {
     const time = this.momentizeState(timeSet);
     this.props.onChange(time);
-  },
+  }
 
   timeStep(direction) {
     const time = this.momentizeState();
@@ -101,64 +98,17 @@ export default React.createClass({
     time.add(direction * amount, timeUnit);
     const am = time.hours() < 12;
     this.updateDate({am, time});
-  },
+  }
 
   formatTime(time, ampmMode = this.state.ampmMode) {
     return ampmMode ? time.format('hh:mm') : time.format('HH:mm');
-  },
-
-  restoreFocus() {
-    // function setCursorPosition(el, pos) {
-    //   $(el).each(function(index, elem) {
-    //     if (elem.setSelectionRange) {
-    //       elem.setSelectionRange(pos, pos);
-    //     } else if (elem.createTextRange) {
-    //       var range = elem.createTextRange();
-    //       range.collapse(true);
-    //       range.moveEnd('character', pos);
-    //       range.moveStart('character', pos);
-    //       range.select();
-    //     }
-    //   });
-    // }
-    //
-    // let {lastCaretIdx} = this.state;
-    //
-    // if (lastCaretIdx >= 0) {
-    //   this.setState({focus: true});
-    //   // this.refs.input.setSelectionRange(lastCaretIdx, lastCaretIdx);
-    //   // this.refs.input.focus();
-    //   // setCursorPosition(this.refs.input.refs.input, lastCaretIdx);
-    // }
-  },
-
-  handleMinus() {
-    this.timeStep(-1);
-    this.restoreFocus();
-  },
-
-  handlePlus() {
-    this.timeStep(1);
-    this.restoreFocus();
-  },
+  }
 
   getFocusedTimeUnit(caretIdx, currentValue) {
     let colonIdx = currentValue.indexOf(':');
     colonIdx = Math.max(0, colonIdx);
     return caretIdx <= colonIdx ? 'hours' : 'minutes';
-  },
-
-  handleInputBlur({target}) {
-    const caretIdx = target.selectionEnd || 0;
-    let lastFocusedTimeUnit;
-
-    if (caretIdx >= 0) {
-      lastFocusedTimeUnit = this.getFocusedTimeUnit(caretIdx, target.value);
-    }
-
-    this.setState({lastCaretIdx: caretIdx, lastFocusedTimeUnit});
-    this.updateDate({time: target.value});
-  },
+  }
 
   normalizeTime(am, time, ampmMode = this.state.ampmMode) {
     const hours = time.hours();
@@ -174,28 +124,7 @@ export default React.createClass({
     }
 
     return {time: time.clone().hours(hours), am};
-  },
-
-  toggleAmPm() {
-    this.updateDate({am: !this.state.am});
-  },
-
-  handleFocus(input) {
-    this.setState({focus: true, lastFocus: input});
-  },
-
-  handleBlur() {
-    this.setState({focus: false});
-    this.updateDate({time: this.state.text});
-  },
-
-  handleInputChange({target}) {
-    this.setState({text: target.value});
-  },
-
-  handleHover(hover) {
-    this.setState({hover});
-  },
+  }
 
   updateDate({time, am}) {
     am = isUndefined(am) ? this.state.am : am;
@@ -206,66 +135,96 @@ export default React.createClass({
     const text = this.formatTime(time);
     this.setState({time, am, text});
     this.bubbleOnChange({time, am});
-  },
+  }
+
+  handleAmPmClick = () =>
+    this.updateDate({am: !this.state.am})
+
+  handleFocus = input =>
+    this.setState({focus: true, lastFocus: input})
+
+  handleBlur = () => {
+    this.setState({focus: false});
+    this.updateDate({time: this.state.text});
+  }
+
+  handleInputChange = ({target}) =>
+    this.setState({text: target.value})
+
+  handleHover = hover =>
+    this.setState({hover})
+
+  handleMinus = () =>
+    this.timeStep(-1)
+
+  handlePlus = () =>
+    this.timeStep(1)
+
+  handleInputBlur = ({target}) => {
+    const caretIdx = target.selectionEnd || 0;
+    let lastFocusedTimeUnit;
+
+    if (caretIdx >= 0) {
+      lastFocusedTimeUnit = this.getFocusedTimeUnit(caretIdx, target.value);
+    }
+
+    this.setState({lastCaretIdx: caretIdx, lastFocusedTimeUnit});
+    this.updateDate({time: target.value});
+  }
 
   renderTimeTextbox() {
+    const suffix = (
+      <Input.Group>
+        {this.state.ampmMode &&
+          <span
+            className={styles.ampm}
+            onClick={this.handleAmPmClick}
+            data-hook="am-pm-indicator"
+            >
+            {this.state.am ? 'am' : 'pm'}
+          </span>
+        }
+        <Input.Ticker onUp={this.handlePlus} onDown={this.handleMinus}/>
+      </Input.Group>
+    );
+
     return (
       <div className={styles.input}>
         <Input
-          ref={'input'}
+          ref="input"
           value={this.state.text}
           onFocus={this.handleFocus}
           onChange={this.handleInputChange}
           onBlur={this.handleInputBlur}
-          suffix={
-            <Input.Group>
-              {this.state.ampmMode && this.renderAmPm()}
-              <Input.Ticker onUp={this.handlePlus} onDown={this.handleMinus}/>
-            </Input.Group>
-          }
+          suffix={suffix}
           dataHook="time-input"
           />
       </div>
     );
-  },
-
-  renderAmPm() {
-    function getAmText() {
-      return moment('2016-04-03 10:00').format('a');
-    }
-
-    function getPmText() {
-      return moment('2016-04-03 14:00').format('a');
-    }
-
-    return (
-      <span className={styles.ampm} onClick={this.toggleAmPm} data-hook="am-pm-indicator">
-        {this.state.am ? getAmText() : getPmText()}
-      </span>
-    );
-  },
-
-  renderTime() {
-    return (
-      <div
-        onMouseOver={() => this.handleHover(true)}
-        onMouseOut={() => this.handleHover(false)}
-        className={classNames(styles.time, {
-          focus: this.state.focus,
-          hover: this.state.hover && !this.state.focus,
-          rtl: this.props.rtl
-        })}
-        >
-        {this.renderTimeTextbox()}
-      </div>
-    );
-  },
+  }
 
   render() {
+    const {style, dataHook, rtl} = this.props;
+    const {focus, hover} = this.state;
+
     return (
-      <div className={styles.wrapper} style={this.props.style} data-hook={this.props.dataHook}>
-        {this.renderTime()}
+      <div
+        className={styles.wrapper}
+        style={style}
+        data-hook={dataHook}
+        >
+        <div
+          onMouseOver={() => this.handleHover(true)}
+          onMouseOut={() => this.handleHover(false)}
+          className={classNames(styles.time, {
+            focus,
+            hover: hover && !focus,
+            rtl
+          })}
+          >
+          {this.renderTimeTextbox()}
+        </div>
       </div>
     );
   }
-});
+}
