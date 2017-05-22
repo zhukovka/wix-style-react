@@ -1,5 +1,6 @@
 import css from './BottomBar.scss';
 import React from 'react';
+import PropTypes from 'prop-types';
 import Tooltip from '../Tooltip';
 
 class BottomBar extends React.Component {
@@ -36,8 +37,8 @@ class BottomBar extends React.Component {
   }
 
   static propTypes = {
-    commands: React.PropTypes.array.isRequired,
-    onClick: React.PropTypes.func.isRequired
+    commands: PropTypes.array.isRequired,
+    onClick: PropTypes.func.isRequired
   }
 }
 

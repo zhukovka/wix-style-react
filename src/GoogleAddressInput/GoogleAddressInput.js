@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import Input from '../Input';
 import InputWithOptions from '../InputWithOptions';
 import find from 'lodash.find';
@@ -233,26 +234,26 @@ GoogleAddressInput.defaultProps = {
 };
 
 GoogleAddressInput.propTypes = {
-  placeholder: React.PropTypes.string,
-  valuePrefix: React.PropTypes.string,
-  countryCode: React.PropTypes.string,
-  value: React.PropTypes.string,
-  types: React.PropTypes.array,
-  filterTypes: React.PropTypes.array,
-  error: React.PropTypes.bool,
-  onChange: React.PropTypes.func,
-  onBlur: React.PropTypes.func,
-  onFocus: React.PropTypes.func,
-  onKeyDown: React.PropTypes.func,
-  onSet: React.PropTypes.func,
-  Client: React.PropTypes.func.isRequired,
-  magnifyingGlass: React.PropTypes.bool,
+  placeholder: PropTypes.string,
+  valuePrefix: PropTypes.string,
+  countryCode: PropTypes.string,
+  value: PropTypes.string,
+  types: PropTypes.array,
+  filterTypes: PropTypes.array,
+  error: PropTypes.bool,
+  onChange: PropTypes.func,
+  onBlur: PropTypes.func,
+  onFocus: PropTypes.func,
+  onKeyDown: PropTypes.func,
+  onSet: PropTypes.func,
+  Client: PropTypes.func.isRequired,
+  magnifyingGlass: PropTypes.bool,
   theme: Input.propTypes.theme,
-  readOnly: React.PropTypes.bool,
-  autoSelect: React.PropTypes.bool,
-  footer: React.PropTypes.any,
-  footerOptions: React.PropTypes.object,
-  clearSuggestionsOnBlur: React.PropTypes.bool
+  readOnly: PropTypes.bool,
+  autoSelect: PropTypes.bool,
+  footer: PropTypes.any,
+  footerOptions: PropTypes.object,
+  clearSuggestionsOnBlur: PropTypes.bool
 };
 
 export default GoogleAddressInput;

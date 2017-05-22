@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import WixComponent from '../WixComponent';
 import classNames from 'classnames';
 
@@ -56,16 +57,16 @@ class MessageBoxMarketerialLayout extends WixComponent {
 }
 
 MessageBoxMarketerialLayout.propTypes = {
-  title: React.PropTypes.node.isRequired,
-  content: React.PropTypes.node.isRequired,
-  primaryButtonLabel: React.PropTypes.string.isRequired,
-  secondaryButtonLabel: React.PropTypes.string,
-  onPrimaryButtonClick: React.PropTypes.func,
-  onSecondaryButtonClick: React.PropTypes.func,
-  imageUrl: React.PropTypes.string,
-  onClose: React.PropTypes.func.isRequired,
-  imageComponent: React.PropTypes.node,
-  theme: React.PropTypes.oneOf([
+  title: PropTypes.node.isRequired,
+  content: PropTypes.node.isRequired,
+  primaryButtonLabel: PropTypes.string.isRequired,
+  secondaryButtonLabel: PropTypes.string,
+  onPrimaryButtonClick: PropTypes.func,
+  onSecondaryButtonClick: PropTypes.func,
+  imageUrl: PropTypes.string,
+  onClose: PropTypes.func.isRequired,
+  imageComponent: PropTypes.node,
+  theme: PropTypes.oneOf([
     'blue',
     'purple'
   ])

@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import Input from 'wix-style-react/Input';
 
 const style = {
@@ -19,7 +20,7 @@ const Example = ({theme}) =>
   </div>;
 
 Example.propTypes = {
-  theme: React.PropTypes.string
+  theme: PropTypes.string
 };
 
 export default Example;

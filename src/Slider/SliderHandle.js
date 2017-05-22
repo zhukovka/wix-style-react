@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import PropTypes from 'prop-types';
 import './SliderHandle.scss';
 
 export default class SliderHandle extends Component {
@@ -67,8 +68,6 @@ export default class SliderHandle extends Component {
     );
   }
 }
-
-const {PropTypes} = React;
 
 SliderHandle.propTypes = {
   offset: PropTypes.number,

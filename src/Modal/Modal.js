@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import ReactModal from 'react-modal';
 import classnames from 'classnames';
 import styles from './Modal.scss';
@@ -67,18 +68,18 @@ class Modal extends WixComponent {
   }
 }
 Modal.propTypes = {
-  isOpen: React.PropTypes.bool.isRequired,
-  contentLabel: React.PropTypes.string.isRequired,
-  theme: React.PropTypes.oneOf(Object.keys(colors)),
-  children: React.PropTypes.any,
-  zIndex: React.PropTypes.number,
-  shouldCloseOnOverlayClick: React.PropTypes.bool,
-  onRequestClose: React.PropTypes.func,
-  onAfterOpen: React.PropTypes.func,
-  horizontalPosition: React.PropTypes.oneOf(Object.keys(positions)),
-  verticalPosition: React.PropTypes.oneOf(Object.keys(positions)),
-  closeTimeoutMS: React.PropTypes.number,
-  scrollable: React.PropTypes.bool
+  isOpen: PropTypes.bool.isRequired,
+  contentLabel: PropTypes.string.isRequired,
+  theme: PropTypes.oneOf(Object.keys(colors)),
+  children: PropTypes.any,
+  zIndex: PropTypes.number,
+  shouldCloseOnOverlayClick: PropTypes.bool,
+  onRequestClose: PropTypes.func,
+  onAfterOpen: PropTypes.func,
+  horizontalPosition: PropTypes.oneOf(Object.keys(positions)),
+  verticalPosition: PropTypes.oneOf(Object.keys(positions)),
+  closeTimeoutMS: PropTypes.number,
+  scrollable: PropTypes.bool
 };
 
 Modal.defaultProps = {

@@ -1,4 +1,5 @@
-import React, {PropTypes, Children} from 'react';
+import React, {Children} from 'react';
+import PropTypes from 'prop-types';
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 import classNames from 'classnames';
 import css from './Notification.scss';

@@ -1,5 +1,6 @@
 import css from './SideBar.scss';
 import React from 'react';
+import PropTypes from 'prop-types';
 import BottomBar from './BottomBar';
 import Menu from './Menu';
 
@@ -16,7 +17,7 @@ class SideBar extends React.Component {
   }
 
   static propTypes = {
-    children: React.PropTypes.any
+    children: PropTypes.any
   }
 }
 

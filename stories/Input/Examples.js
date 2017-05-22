@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 import CodeExample from '../utils/Components/CodeExample';
 
@@ -62,7 +63,7 @@ const Examples = ({theme}) =>
   </div>;
 
 Examples.propTypes = {
-  theme: React.PropTypes.string
+  theme: PropTypes.string
 };
 
 export default Examples;

@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import Button from '../Button';
 import * as styles from './FooterLayout.scss';
 
@@ -22,15 +23,15 @@ const FooterLayout = ({children, theme, cancelText, onCancel, onOk, confirmText,
 };
 
 FooterLayout.propTypes = {
-  confirmText: React.PropTypes.string,
-  cancelText: React.PropTypes.string,
-  onCancel: React.PropTypes.func,
-  onOk: React.PropTypes.func,
-  enableOk: React.PropTypes.bool,
-  enableCancel: React.PropTypes.bool,
-  theme: React.PropTypes.string,
-  buttonsHeight: React.PropTypes.string,
-  children: React.PropTypes.any
+  confirmText: PropTypes.string,
+  cancelText: PropTypes.string,
+  onCancel: PropTypes.func,
+  onOk: PropTypes.func,
+  enableOk: PropTypes.bool,
+  enableCancel: PropTypes.bool,
+  theme: PropTypes.string,
+  buttonsHeight: PropTypes.string,
+  children: PropTypes.any
 };
 
 FooterLayout.defaultProps = {

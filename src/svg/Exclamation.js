@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 export default function Exclamation(props) {
   const {width, height, color} = props;
@@ -21,9 +22,9 @@ export default function Exclamation(props) {
 
 Exclamation.displayName = 'Exclamation';
 Exclamation.propTypes = {
-  width: React.PropTypes.number.isRequired,
-  height: React.PropTypes.number.isRequired,
-  color: React.PropTypes.string.isRequired
+  width: PropTypes.number.isRequired,
+  height: PropTypes.number.isRequired,
+  color: PropTypes.string.isRequired
 };
 Exclamation.defaultProps = {
   color: 'white'

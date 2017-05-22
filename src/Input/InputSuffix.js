@@ -1,4 +1,5 @@
-import React, {PropTypes} from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
 
 import {CloseThin, ArrowDownThin, Search4} from '../Icons/dist';
 import ThemedInputErrorSuffix from './ThemedInputErrorSuffix';

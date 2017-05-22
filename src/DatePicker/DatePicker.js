@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import PropTypes from 'prop-types';
 import ReactDatepicker from 'react-datepicker';
 import DatePickerInput from './DatePickerInput';
 import moment from 'moment';
@@ -6,18 +7,18 @@ import css from './DatePicker.scss';
 
 export default class DatePicker extends Component {
   static propTypes = {
-    style: React.PropTypes.object,
-    value: React.PropTypes.object,
-    onChange: React.PropTypes.func.isRequired,
-    filterDate: React.PropTypes.func,
-    excludePastDates: React.PropTypes.bool,
-    readOnly: React.PropTypes.bool,
-    showYearDropdown: React.PropTypes.bool,
-    rtl: React.PropTypes.bool,
-    placeholderText: React.PropTypes.string,
-    theme: React.PropTypes.string,
-    prefix: React.PropTypes.node,
-    inputDataHook: React.PropTypes.string
+    style: PropTypes.object,
+    value: PropTypes.object,
+    onChange: PropTypes.func.isRequired,
+    filterDate: PropTypes.func,
+    excludePastDates: PropTypes.bool,
+    readOnly: PropTypes.bool,
+    showYearDropdown: PropTypes.bool,
+    rtl: PropTypes.bool,
+    placeholderText: PropTypes.string,
+    theme: PropTypes.string,
+    prefix: PropTypes.node,
+    inputDataHook: PropTypes.string
   };
 
   static defaultProps = {

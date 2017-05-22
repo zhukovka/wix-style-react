@@ -1,4 +1,5 @@
-import React, {PropTypes} from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
 import styles from './FilePicker.scss';
 import WixComponent from '../WixComponent';
 import {Add} from '../Icons/dist';

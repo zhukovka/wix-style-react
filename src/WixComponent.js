@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import ReactDOM from 'react-dom';
 
 const MOUSE_EVENTS_SUPPORTED = ['click'];
@@ -70,7 +71,7 @@ class WixComponent extends React.Component {
 }
 
 WixComponent.propTypes = {
-  dataHook: React.PropTypes.string
+  dataHook: PropTypes.string
 };
 
 export default WixComponent;

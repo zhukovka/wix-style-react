@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 export default function X(props) {
 
@@ -29,11 +30,11 @@ export default function X(props) {
 X.displayName = 'X';
 
 X.propTypes = {
-  width: React.PropTypes.number.isRequired,
-  height: React.PropTypes.number.isRequired,
-  thickness: React.PropTypes.number.isRequired,
-  color: React.PropTypes.string,
-  shapeRendering: React.PropTypes.string.isRequired
+  width: PropTypes.number.isRequired,
+  height: PropTypes.number.isRequired,
+  thickness: PropTypes.number.isRequired,
+  color: PropTypes.string,
+  shapeRendering: PropTypes.string.isRequired
 };
 
 X.defaultProps = {

@@ -1,4 +1,5 @@
 import React, {Children} from 'react';
+import {any} from 'prop-types';
 import head from 'lodash.head';
 import WixComponent from '../../WixComponent';
 import styles from './FieldWithSelectionComposite.scss';
@@ -55,7 +56,7 @@ class FieldWithSelectionComposite extends WixComponent {
 }
 
 FieldWithSelectionComposite.propTypes = {
-  children: React.PropTypes.any
+  children: any
 };
 
 FieldWithSelectionComposite.displayName = 'FieldWithSelectionComposite';

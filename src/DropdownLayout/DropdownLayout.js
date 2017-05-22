@@ -1,5 +1,6 @@
 import styles from './DropdownLayout.scss';
 import React from 'react';
+import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import WixComponent from '../WixComponent';
 import isEqual from 'lodash.isequal';
@@ -218,32 +219,32 @@ class DropdownLayout extends WixComponent {
 }
 
 DropdownLayout.propTypes = {
-  dropDirectionUp: React.PropTypes.bool,
-  onClose: React.PropTypes.func,
-  onSelect: React.PropTypes.func,
-  visible: React.PropTypes.bool,
-  options: React.PropTypes.arrayOf(React.PropTypes.shape({
-    id: React.PropTypes.oneOfType([
-      React.PropTypes.string,
-      React.PropTypes.number
+  dropDirectionUp: PropTypes.bool,
+  onClose: PropTypes.func,
+  onSelect: PropTypes.func,
+  visible: PropTypes.bool,
+  options: PropTypes.arrayOf(PropTypes.shape({
+    id: PropTypes.oneOfType([
+      PropTypes.string,
+      PropTypes.number
     ]).isRequired,
-    value: React.PropTypes.oneOfType([
-      React.PropTypes.node,
-      React.PropTypes.string
+    value: PropTypes.oneOfType([
+      PropTypes.node,
+      PropTypes.string
     ]).isRequired,
-    disabled: React.PropTypes.bool,
-    overrideStyle: React.PropTypes.bool
+    disabled: PropTypes.bool,
+    overrideStyle: PropTypes.bool
   })),
-  selectedId: React.PropTypes.oneOfType([
-    React.PropTypes.string,
-    React.PropTypes.number,
+  selectedId: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.number,
   ]),
-  tabIndex: React.PropTypes.number,
-  theme: React.PropTypes.string,
-  onClickOutside: React.PropTypes.func,
-  fixedHeader: React.PropTypes.node,
-  fixedFooter: React.PropTypes.node,
-  maxHeightPixels: React.PropTypes.number
+  tabIndex: PropTypes.number,
+  theme: PropTypes.string,
+  onClickOutside: PropTypes.func,
+  fixedHeader: PropTypes.node,
+  fixedFooter: PropTypes.node,
+  maxHeightPixels: PropTypes.number
 };
 
 DropdownLayout.defaultProps = {

@@ -1,6 +1,7 @@
 import redStyle from './MenuRed.scss';
 import blueStyle from './MenuBlue.scss';
 import React from 'react';
+import PropTypes from 'prop-types';
 import classnames from 'classnames';
 import findIndex from 'lodash.findindex';
 
@@ -83,10 +84,10 @@ class Menu extends React.Component {
   }
 
   static propTypes = {
-    items: React.PropTypes.array.isRequired,
-    onSelect: React.PropTypes.func.isRequired,
-    selectedId: React.PropTypes.any,
-    selectedColor: React.PropTypes.string
+    items: PropTypes.array.isRequired,
+    onSelect: PropTypes.func.isRequired,
+    selectedId: PropTypes.any,
+    selectedColor: PropTypes.string
   }
 
   static displayName = 'SideBar.Menu'

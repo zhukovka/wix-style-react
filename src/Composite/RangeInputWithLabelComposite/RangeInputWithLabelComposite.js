@@ -1,4 +1,5 @@
 import React, {Children} from 'react';
+import {any} from 'prop-types';
 import WixComponent from '../../WixComponent';
 import styles from './RangeInputWithLabelComposite.scss';
 
@@ -46,7 +47,7 @@ class RangeInputWithLabelComposite extends WixComponent {
 }
 
 RangeInputWithLabelComposite.propTypes = {
-  children: React.PropTypes.any
+  children: any
 };
 
 RangeInputWithLabelComposite.displayName = 'RangeInputWithLabelComposite';

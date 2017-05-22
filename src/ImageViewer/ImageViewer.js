@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import style from './ImageViewer.scss';
 import Tooltip from '../Tooltip';
 import {Trash3, Replace, Plus2} from '../Icons/dist';
@@ -55,10 +56,10 @@ class ImageViewer extends WixComponent {
 }
 
 ImageViewer.propTypes = {
-  imageUrl: React.PropTypes.string,
-  onAddImage: React.PropTypes.func,
-  onUpdateImage: React.PropTypes.func,
-  onRemoveImage: React.PropTypes.func
+  imageUrl: PropTypes.string,
+  onAddImage: PropTypes.func,
+  onUpdateImage: PropTypes.func,
+  onRemoveImage: PropTypes.func
 };
 
 export default ImageViewer;

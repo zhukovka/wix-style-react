@@ -1,10 +1,11 @@
-import React, {Component, PropTypes} from 'react';
+import React, {Component} from 'react';
+import PropTypes from 'prop-types';
 import Tabs from '../../../../src/Tabs/Tabs';
 
 class TabbedView extends Component {
   static propTypes = {
     tabs: PropTypes.arrayOf(PropTypes.string),
-    children: PropTypes.arrayOf(React.PropTypes.node)
+    children: PropTypes.arrayOf(PropTypes.node)
   };
 
   constructor(props) {

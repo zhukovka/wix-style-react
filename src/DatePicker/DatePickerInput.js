@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import PropTypes from 'prop-types';
 import omit from 'lodash.omit';
 
 import Input from '../Input';
@@ -8,12 +9,12 @@ import styles from './DatePickerInput.scss';
 export default class DatePickerInput extends Component {
 
   static propTypes = {
-    onClick: React.PropTypes.func,
-    value: React.PropTypes.string,
-    dateFormat: React.PropTypes.func,
-    style: React.PropTypes.object,
-    onChange: React.PropTypes.func,
-    prefix: React.PropTypes.node,
+    onClick: PropTypes.func,
+    value: PropTypes.string,
+    dateFormat: PropTypes.func,
+    style: PropTypes.object,
+    onChange: PropTypes.func,
+    prefix: PropTypes.node
   };
 
   static defaultProps = {

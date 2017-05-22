@@ -1,4 +1,5 @@
-import React, {PropTypes} from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
 import classnames from 'classnames';
 import SvgX from '../svg/X.js';
 
@@ -103,12 +104,12 @@ Toast.defaultProps = {
 };
 
 Toast.propTypes = {
-  id: React.PropTypes.string,
+  id: PropTypes.string,
   show: PropTypes.bool,
   type: PropTypes.oneOf(['bar', 'largebar']).isRequired,
   location: PropTypes.oneOf(['topfixed', 'inplace']).isRequired,
   theme: PropTypes.oneOf(['red', 'blue', 'purple', 'green', 'yellow']).isRequired,
-  top: React.PropTypes.string,
+  top: PropTypes.string,
   timeout: PropTypes.number,
   children: PropTypes.any,
   onClose: PropTypes.func

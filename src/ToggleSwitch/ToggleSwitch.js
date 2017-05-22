@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import classnames from 'classnames';
 import uniqueId from 'lodash.uniqueid';
 import WixComponent from '../WixComponent';
@@ -39,9 +40,9 @@ class ToggleSwitch extends WixComponent {
 
 ToggleSwitch.displayName = 'ToggleSwitch';
 ToggleSwitch.propTypes = {
-  checked: React.PropTypes.bool.isRequired,
-  onChange: React.PropTypes.func.isRequired,
-  size: React.PropTypes.oneOf(['small', 'large'])
+  checked: PropTypes.bool.isRequired,
+  onChange: PropTypes.func.isRequired,
+  size: PropTypes.oneOf(['small', 'large'])
 };
 
 ToggleSwitch.defaultProps = {

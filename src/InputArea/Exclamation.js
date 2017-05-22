@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import Tooltip from '../Tooltip';
 import styles from './InputArea.scss';
 import {Error} from '../Icons/dist';
@@ -15,7 +16,7 @@ Exclamation.defaultProps = {
 };
 
 Exclamation.propTypes = {
-  errorMessage: React.PropTypes.string
+  errorMessage: PropTypes.string
 };
 
 export default Exclamation;

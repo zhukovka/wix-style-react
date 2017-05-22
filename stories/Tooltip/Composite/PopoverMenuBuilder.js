@@ -1,4 +1,5 @@
-import React, {PropTypes} from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
 import IconChooser from '../../Button/IconChooser';
 import Input from 'wix-style-react/Input';
 import Button from 'wix-style-react/Button';

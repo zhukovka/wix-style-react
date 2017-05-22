@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 export default function MagnifyingGlass(props) {
   let directionStyle = {};
@@ -25,5 +26,5 @@ export default function MagnifyingGlass(props) {
 MagnifyingGlass.displayName = 'MagnifyingGlass';
 
 MagnifyingGlass.propTypes = {
-  alignLeft: React.PropTypes.bool
+  alignLeft: PropTypes.bool
 };

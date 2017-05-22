@@ -1,4 +1,5 @@
-import React, {Component, PropTypes} from 'react';
+import React, {Component} from 'react';
+import PropTypes from 'prop-types';
 
 import Dropdown from '../../src/Dropdown';
 import * as Icons from '../../src/Icons/dist';
@@ -22,9 +23,9 @@ class IconChooser extends Component {
 
 IconChooser.propTypes = {
   onSelect: PropTypes.func.isRequired,
-  selectedId: React.PropTypes.oneOfType([
-    React.PropTypes.string,
-    React.PropTypes.number
+  selectedId: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.number
   ])
 };
 

@@ -1,4 +1,5 @@
-import React, {PropTypes, Component} from 'react';
+import React, {Component} from 'react';
+import PropTypes from 'prop-types';
 import reactElementToJSXString from 'react-element-to-jsx-string';
 
 import Breadcrumbs from '../../src/Breadcrumbs/Breadcrumbs';
@@ -7,11 +8,11 @@ export default class Form extends Component {
 
   static propTypes = {
     onChange: PropTypes.func.isRequired,
-    size: React.PropTypes.oneOf(['medium', 'large']),
-    theme: React.PropTypes.oneOf(['onWhiteBackground', 'onGrayBackground', 'onDarkBackground']),
-    activeId: React.PropTypes.oneOfType([
-      React.PropTypes.string,
-      React.PropTypes.number
+    size: PropTypes.oneOf(['medium', 'large']),
+    theme: PropTypes.oneOf(['onWhiteBackground', 'onGrayBackground', 'onDarkBackground']),
+    activeId: PropTypes.oneOfType([
+      PropTypes.string,
+      PropTypes.number
     ])
   };
 

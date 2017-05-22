@@ -1,4 +1,5 @@
-import React, { Component, PropTypes } from 'react';
+import React, {Component} from 'react';
+import PropTypes from 'prop-types';
 import reactElementToJSXString from 'react-element-to-jsx-string';
 import RichTextArea from '../../src/RichTextArea';
 

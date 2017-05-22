@@ -1,4 +1,5 @@
-import React, {PropTypes} from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
 import s from './DataTable.scss';
 import classNames from 'classnames';
 import InfiniteScroll from './InfiniteScroll';
@@ -185,9 +186,9 @@ DataTable.propTypes = {
   id: PropTypes.string,
   data: validateData,
   columns: PropTypes.arrayOf(PropTypes.shape({
-    title: React.PropTypes.oneOfType([
-      React.PropTypes.node,
-      React.PropTypes.string
+    title: PropTypes.oneOfType([
+      PropTypes.node,
+      PropTypes.string
     ]).isRequired,
     render: PropTypes.func.isRequired
   })),

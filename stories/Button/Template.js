@@ -1,4 +1,5 @@
-import React, {PropTypes, Component} from 'react';
+import React, {Component} from 'react';
+import PropTypes from 'prop-types';
 import reactElementToJSXString from 'react-element-to-jsx-string';
 import Button from 'wix-style-react/Button';
 import {Close} from '../../src/Icons/dist';
@@ -49,13 +50,13 @@ export class Form extends Component {
 
 Form.propTypes = {
   onChange: PropTypes.func.isRequired,
-  theme: React.PropTypes.string.isRequired,
-  disabled: React.PropTypes.bool.isRequired,
-  iconOnly: React.PropTypes.bool,
-  text: React.PropTypes.string,
-  height: React.PropTypes.string,
-  prefixIcon: React.PropTypes.node,
-  suffixIcon: React.PropTypes.node
+  theme: PropTypes.string.isRequired,
+  disabled: PropTypes.bool.isRequired,
+  iconOnly: PropTypes.bool,
+  text: PropTypes.string,
+  height: PropTypes.string,
+  prefixIcon: PropTypes.node,
+  suffixIcon: PropTypes.node
 };
 
 export default Form;

@@ -1,4 +1,5 @@
-import React, {Component, PropTypes} from 'react';
+import React, {Component} from 'react';
+import PropTypes from 'prop-types';
 import Remarkable from 'react-remarkable';
 import hljs from 'highlight.js';
 import './Markdown.scss';

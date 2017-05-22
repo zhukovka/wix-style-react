@@ -1,4 +1,5 @@
-import React, {Component, PropTypes} from 'react';
+import React, {Component} from 'react';
+import PropTypes from 'prop-types';
 import Rcslider from 'rc-slider';
 import uniqueId from 'lodash.uniqueid';
 import SliderHandle from './SliderHandle';
@@ -65,7 +66,7 @@ export default class Slider extends Component {
 }
 
 Slider.propTypes = {
-  id: React.PropTypes.string,
+  id: PropTypes.string,
   value: PropTypes.arrayOf(PropTypes.number),
   min: PropTypes.number,
   max: PropTypes.number,

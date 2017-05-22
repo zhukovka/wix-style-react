@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import isUndefined from 'lodash.isundefined';
 import Input from '../Input';
 import classNames from 'classnames';
@@ -9,12 +10,12 @@ export default React.createClass({
   displayName: 'TimePicker',
 
   propTypes: {
-    defaultValue: React.PropTypes.object,
-    onChange: React.PropTypes.func,
-    rtl: React.PropTypes.bool,
-    style: React.PropTypes.object,
-    disableAmPm: React.PropTypes.bool,
-    dataHook: React.PropTypes.string
+    defaultValue: PropTypes.object,
+    onChange: PropTypes.func,
+    rtl: PropTypes.bool,
+    style: PropTypes.object,
+    disableAmPm: PropTypes.bool,
+    dataHook: PropTypes.string
   },
 
   getDefaultProps() {

@@ -1,4 +1,5 @@
-import React, {PropTypes} from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import WixComponent from '../WixComponent';
 import styles from './Tabs.scss';
@@ -33,7 +34,7 @@ class Tabs extends WixComponent {
 Tabs.tabTypes = ['compact', 'uniformSide', 'uniformFull'];
 
 Tabs.propTypes = {
-  items: PropTypes.arrayOf(React.PropTypes.shape({
+  items: PropTypes.arrayOf(PropTypes.shape({
     id: PropTypes.oneOfType([
       PropTypes.string,
       PropTypes.number

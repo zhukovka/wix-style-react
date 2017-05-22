@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import WixComponent from '../WixComponent';
 import Input from '../Input';
 import omit from 'lodash.omit';
@@ -197,12 +198,12 @@ InputWithOptions.defaultProps = {
 InputWithOptions.propTypes = {
   ...Input.propTypes,
   ...DropdownLayout.propTypes,
-  inputElement: React.PropTypes.element,
-  closeOnSelect: React.PropTypes.bool,
-  onManuallyInput: React.PropTypes.func,
-  valueParser: React.PropTypes.func,
-  dropdownWidth: React.PropTypes.string,
-  dropdownOffsetLeft: React.PropTypes.string
+  inputElement: PropTypes.element,
+  closeOnSelect: PropTypes.bool,
+  onManuallyInput: PropTypes.func,
+  valueParser: PropTypes.func,
+  dropdownWidth: PropTypes.string,
+  dropdownOffsetLeft: PropTypes.string
 };
 
 InputWithOptions.displayName = 'InputWithOptions';

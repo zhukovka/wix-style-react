@@ -1,4 +1,5 @@
-import React, {PropTypes} from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
 import styles from './Tag.scss';
 import classNames from 'classnames';
 import WixComponent from '../WixComponent';

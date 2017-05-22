@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import InputWithOptions from '../InputWithOptions/InputWithOptions';
 import InputWithTags from './InputWithTags';
 import last from 'lodash.last';
@@ -114,8 +115,8 @@ class MultiSelect extends InputWithOptions {
 
 MultiSelect.propTypes = {
   ...InputWithOptions.propTypes,
-  predicate: React.PropTypes.func,
-  tags: React.PropTypes.array
+  predicate: PropTypes.func,
+  tags: PropTypes.array
 };
 
 MultiSelect.defaultProps = {
