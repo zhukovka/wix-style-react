@@ -5,7 +5,7 @@ import styles from './ExampleGrid.scss'
 import TextField from '../../src/TextField';
 import Input from '../../src/Input';
 import Label from '../../src/Label';
-import {Plus, ArrowDownThin} from '../../src/Icons/dist';
+import {Plus, ArrowDownThin} from 'wix-style-react/Icons';
 import Tooltip from '../../src/Tooltip';
 
 function renderStandardInput() {

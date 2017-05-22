@@ -2,7 +2,7 @@ import React from 'react';
 import {Container, AutoAdjustedRow, Card} from '../../src/Grid'
 import styles from './ExampleGrid.scss'
 
-import {Plus} from '../../src/Icons/dist';
+import {Plus} from 'wix-style-react/Icons';
 import Tooltip from '../../src/Tooltip';
 
 export default () =>

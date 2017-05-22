@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 
 import Dropdown from '../../src/Dropdown';
-import * as Icons from '../../src/Icons/dist';
+import * as Icons from 'wix-style-react/Icons';
 
 class IconChooser extends Component {
   render() {

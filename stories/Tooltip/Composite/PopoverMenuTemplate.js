@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import reactElementToJSXString from 'react-element-to-jsx-string';
 import PopoverMenu from '../../../src/PopoverMenu';
 import PopoverMenuItem from '../../../src/PopoverMenuItem';
-import * as Icons from '../../../src/Icons/dist';
+import * as Icons from 'wix-style-react/Icons';
 
 class PopoverMenuTemplate extends Component {
 
