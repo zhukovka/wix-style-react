@@ -3,17 +3,11 @@ import {
   SideMenu,
   Button
 } from 'wix-style-react';
-import HelpIcon from '../../src/Icons/dist/components/Help';
-import ChatIcon from '../../src/Icons/dist/components/Chat';
-import TrashIcon from '../../src/Icons/dist/components/Trash3';
+import { Help, Chat } from 'wix-style-react/Icons';
 
 export default () =>
   <div style={{width: 220, height: 700}}>
     <SideMenu>
-      <SideMenu.Header>
-        <TrashIcon size="5em"/>
-        <h2>My Application</h2>
-      </SideMenu.Header>
       <SideMenu.NavigationBackLink>
         Back
       </SideMenu.NavigationBackLink>
@@ -29,7 +23,7 @@ export default () =>
         <SideMenu.FooterLink
           href="https://support.wix.com/"
           target="_blank"
-          icon={<HelpIcon size="1em"/>}
+          icon={<Help size="1em"/>}
         >
           Help Me!
         </SideMenu.FooterLink>
@@ -37,7 +31,7 @@ export default () =>
         <SideMenu.FooterTinyLink
           href="https://support.wix.com/en/article/wix-seo-wiz-suggestions-and-feedback"
           target="_blank"
-          icon={<div style={{marginTop: 2}}><ChatIcon size="1em"/></div>}
+          icon={<div style={{marginTop: 2}}><Chat size="1em"/></div>}
           tooltip="Hey, come talk to me!"
           onClick={() => console.log('clicked on tiny link yay!')}
         />

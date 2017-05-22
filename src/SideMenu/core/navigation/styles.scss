@@ -1,7 +1,7 @@
 @import '../../../common.scss';
 
 $padding-horizontal: 30px;
-$padding-vertical: 11px;
+$padding-vertical: 14px;
 
 .navigation {
   margin-bottom: auto;
@@ -17,13 +17,13 @@ $padding-vertical: 11px;
   cursor: pointer;
   font-size: 14px;
   text-decoration: none;
-  line-height: 1.5;
+  line-height: 14px;
   position: relative;
 }
 
 .link {
   @extend .link-base;
-  font-family: $FontLight;
+  font-family: $FontRoman;
 
   &:hover:not(.linkActive),
   &:focus:not(.linkActive) {
@@ -65,8 +65,7 @@ $padding-vertical: 11px;
 }
 
 .separator {
-  width: 81%;
-  margin: 13px auto;
+  margin: 20px $padding-horizontal;
   border-bottom: 1px solid $D30;
 }
 
@@ -74,19 +73,8 @@ $padding-vertical: 11px;
   @extend .link-base;
   font-family: $FontMedium;
   position: relative;
-  margin-bottom: 40px;
-  margin-top: 15px;
-
-  &::after {
-    content: " ";
-    width: calc(100% - 2 * #{$padding-horizontal});
-    height: 1px;
-    background: rgba(255,255,255,0.2);
-    position: absolute;
-    bottom: 0;
-    left: $padding-horizontal;
-    right: $padding-horizontal;
-  }
+  margin-bottom: 36px;
+  margin-top: 21px;
 
   &:hover {
     .backArrow {
@@ -107,5 +95,6 @@ $padding-vertical: 11px;
   color: rgba(255,255,255,0.6);
   text-transform: uppercase;
   font-family: $FontMedium;
-  padding: 10px $padding-horizontal;
+  line-height: 14px;
+  padding: $padding-vertical $padding-horizontal;
 }

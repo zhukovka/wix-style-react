@@ -4,10 +4,11 @@ import {
   SideMenu,
   Button
 } from 'wix-style-react';
-
-import HelpIcon from '../../src/Icons/dist/components/Help';
-import TrashIcon from '../../src/Icons/dist/components/Trash3';
-import ChatIcon from '../../src/Icons/dist/components/Chat';
+import {
+  Help as HelpIcon,
+  Chat as ChatIcon,
+  Trash3 as TrashIcon
+} from 'wix-style-react/Icons';
 
 let counter = 3;
 
