@@ -27,7 +27,7 @@ The files are brought 'uncompiled' and 'unpacked'. You will need to make sure we
 ```javascript
     {
         test: /\.scss$/,
-        include:['node_modules/wix-style-react/src')],
+        include:['node_modules/wix-style-react/src'],
         loaders: [
             'style-loader',
             'css-loader?modules&importLoaders=1&localIdentName=[name]__[local]___[hash:base64:5]',
@@ -112,7 +112,7 @@ package json - dependency
 "images-require-hook": "^1.0.3",
 
 #### to make css work
-add postcss.config
+add postcss.config.js
 
 ```javascript
 module.exports = {
