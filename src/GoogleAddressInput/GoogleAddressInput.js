@@ -2,10 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Input from '../Input';
 import InputWithOptions from '../InputWithOptions';
-import find from 'lodash.find';
-import reduce from 'lodash.reduce';
 import isundefined from 'lodash.isundefined';
-import filter from 'lodash.filter';
 import includes from 'lodash.includes';
 import {google2address} from './google2address';
 
@@ -45,7 +42,7 @@ class GoogleAddressInput extends React.Component {
       value
     } = this.state;
 
-    let options = reduce(suggestions, (result, value) => {
+    let options = suggestions.reduce((result, value) => {
       result.push({id: result.length, value: value.description});
       return result;
     }, []);
@@ -121,7 +118,7 @@ class GoogleAddressInput extends React.Component {
       countryCode
     } = this.props;
 
-    const suggestion = find(this.state.suggestions, s => s.description === value);
+    const suggestion = this.state.suggestions.find(s => s.description === value);
 
     this.setState({suggestions: [], value: this.props.value || value});
 
@@ -217,7 +214,7 @@ class GoogleAddressInput extends React.Component {
       }
 
       if (filterTypes) {
-        results = filter(results, pred => includes(pred.types, filterTypes));
+        results = results.filter(result => includes(result.types, filterTypes));
       }
 
       return Promise.resolve(results);

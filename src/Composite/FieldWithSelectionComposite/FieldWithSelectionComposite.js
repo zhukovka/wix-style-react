@@ -1,6 +1,5 @@
 import React, {Children} from 'react';
 import {any} from 'prop-types';
-import head from 'lodash.head';
 import WixComponent from '../../WixComponent';
 import styles from './FieldWithSelectionComposite.scss';
 import classNames from 'classnames';
@@ -28,7 +27,7 @@ class FieldWithSelectionComposite extends WixComponent {
     const children = Children.toArray(this.props.children);
     const label = children.length === 3 ? (
       <div className={styles.label}>
-        {head(children)}
+        {children[0]}
       </div>) : null;
 
     const textInput = label ? children[1] : children[0];
