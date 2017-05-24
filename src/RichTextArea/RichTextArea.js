@@ -57,10 +57,9 @@ class RichTextArea extends WixComponent {
   }
 
   componentWillReceiveProps(props) {
-    if (props.value) {
+    if (props.value && props.value !== this.props.value && props.value !== this.lastValue) {
       const editorState = htmlSerializer.deserialize(props.value);
       this.setState({editorState});
-      this.lastValue = htmlSerializer.serialize(editorState);
     }
   }
 
@@ -69,13 +68,10 @@ class RichTextArea extends WixComponent {
   };
 
   triggerChange() {
-    const {onChange} = this.props;
     const serialized = htmlSerializer.serialize(this.state.editorState);
-
-    if (this.lastValue !== serialized) {
-      this.lastValue = serialized;
-      onChange && onChange(serialized);
-    }
+    const {onChange} = this.props;
+    this.lastValue = serialized;
+    onChange && onChange(serialized);
   }
 
   hasBlock = type => this.state.editorState.blocks.some(node => node.type == type);
@@ -124,7 +120,6 @@ class RichTextArea extends WixComponent {
       this.setEditorState(editorState);
     }
   }
-
   onPaste = (e, data, state, editor) => {
     switch (data.type) {
       case 'text': return this.onPasteText(data.text, state)
@@ -262,7 +257,13 @@ class RichTextArea extends WixComponent {
             schema={this.schema}
             state={editorState}
             onPaste={this.onPaste}
-            onChange={this.setEditorState}/>
+            onChange={e =>
+              {
+                const serialized = htmlSerializer.serialize(e);
+                this.lastValue = serialized;
+                this.setEditorState(e)
+              }
+            }/>
           {this.renderError()}
         </div>
       </div>
