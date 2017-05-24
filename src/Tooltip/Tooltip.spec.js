@@ -33,6 +33,19 @@ describe('Tooltip', () => {
     });
   });
 
+  it('should hide when mouse leaving', () => {
+    const driver = createDriver(<Tooltip {..._props}>{children}</Tooltip>);
+    driver.mouseEnter();
+    expect(driver.isShown()).toBeFalsy();
+    return resolveIn(30).then(() => {
+      expect(driver.isShown()).toBeTruthy();
+      driver.mouseLeave();
+      return resolveIn(30).then(() => {
+        expect(driver.isShown()).toBeFalsy();
+      });
+    });
+  });
+
   it('should test inner component', () => {
     const dataHook = 'button_data_hook';
     const buttonContent = (
