@@ -13,6 +13,11 @@ export default class DatePickerInput extends Component {
     value: PropTypes.string,
     dateFormat: PropTypes.func,
     style: PropTypes.object,
+    onEnterPressed: PropTypes.func
+  };
+
+  static defaultProps = {
+    onEnterPressed: () => {}
   };
 
   static defaultProps = {
@@ -21,12 +26,13 @@ export default class DatePickerInput extends Component {
 
   render() {
     const desiredProps = omit(this.props, 'style');
+    const {style, onClick, onEnterPressed} = this.props;
 
     return (
-      <div style={this.props.style} onClick={this.props.onClick}>
+      <div style={style} onClick={onClick}>
         <Input
           ref={Input => this.input = Input}
-          onEnterPressed={() => this.blur()}
+          onEnterPressed={() => onEnterPressed() && this.blur()}
           onEscapePressed={() => this.blur()}
           {...desiredProps}
           />
