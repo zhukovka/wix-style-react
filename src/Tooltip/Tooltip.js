@@ -8,6 +8,8 @@ import position from './TooltipPosition';
 
 import styles from './TooltipContent.scss';
 
+const renderSubtreeIntoContainer = ReactDOM.unstable_renderSubtreeIntoContainer;
+
 class Tooltip extends WixComponent {
 
   componentElements() {
@@ -123,7 +125,7 @@ class Tooltip extends WixComponent {
           {this.props.content}
         </TooltipContent>);
 
-      ReactDOM.render(tooltip, this._mountNode);
+      renderSubtreeIntoContainer(this, tooltip, this._mountNode);
     }
   }
 
