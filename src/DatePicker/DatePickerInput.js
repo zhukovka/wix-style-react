@@ -13,8 +13,6 @@ export default class DatePickerInput extends Component {
     value: PropTypes.string,
     dateFormat: PropTypes.func,
     style: PropTypes.object,
-    onChange: PropTypes.func,
-    prefix: PropTypes.node
   };
 
   static defaultProps = {
