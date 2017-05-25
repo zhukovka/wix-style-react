@@ -113,6 +113,9 @@ $calendarMargin: 15px;
     background-color: transparent;
     border: 1px solid #3899ec;
 }
+:global(.react-datepicker__day--keyboard-selected:hover) {
+    color: black;
+}
 :global(.react-datepicker__day--outside-month) {
     pointer-events: none;
     color: #dfe5eb;
