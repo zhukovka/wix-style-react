@@ -47,7 +47,7 @@ export default class Slider extends Component {
     const marks = this.props.displayMarks ? this.getMarks() : {};
     const {dataHook} = this.props;
     return (
-      <div className={classNames('wix-slider', {rtl: this.props.rtl})} id={this.props.id} dataHook={dataHook}>
+      <div className={classNames('wix-slider', {rtl: this.props.rtl})} id={this.props.id} data-hook={dataHook}>
         <Rcslider
           handle={<SliderHandle/>}
           min={this.props.min}
