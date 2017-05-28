@@ -314,7 +314,7 @@ class Tooltip extends WixComponent {
       const style = this._calculatePosition(ref, tooltipNode);
 
       tooltipNode.style.top = `${style.top}px`;
-      tooltipNode.style.left = `${style.left}px`;
+      tooltipNode.style.left = `${Math.max(style.left, 0)}px`;
 
       const arrowStyles = this._adjustArrowPosition(this.props.placement, this.props.moveArrowTo);
       if (Object.keys(arrowStyles).length) {
