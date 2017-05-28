@@ -53,7 +53,7 @@ class RichTextArea extends WixComponent {
     this.state = {
       editorState,
     };
-    this.lastValue = htmlSerializer.serialize(editorState);
+    this.lastValue = props.value;
   }
 
   componentWillReceiveProps(props) {
