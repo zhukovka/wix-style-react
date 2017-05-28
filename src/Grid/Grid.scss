@@ -33,10 +33,6 @@ $grid-row-margin-bottom: 30px;
 	max-width: $main-container-max-width;
 }
 
-:global(.rtl) .column, .rtl .column, .column.rtl {
-    float: right;
-}
-
 .stretch_vertically_row {
 	display: flex;
 	flex-wrap: wrap;
@@ -45,4 +41,27 @@ $grid-row-margin-bottom: 30px;
 .stretch_vertically_row > [class*='col-'] {
 	display: flex;
 	flex-direction: column;
+}
+
+@mixin rtl-float-grid-columns($class, $i: 1, $list: ".col-#{$class}-#{$i}") {
+	@for $i from (1 + 1) through $grid-columns {
+		$list: "#{$list}, :global(.rtl) .col-#{$class}-#{$i}, .rtl.col-#{$class}-#{$i}, .rtl .col-#{$class}-#{$i}";
+	}
+	#{$list} {
+		float: right;
+	}
+}
+
+@include rtl-float-grid-columns(xs);
+
+@media (min-width: $screen-sm-min) {
+	@include rtl-float-grid-columns(sm);
+}
+
+@media (min-width: $screen-md-min) {
+	@include rtl-float-grid-columns(md);
+}
+
+@media (min-width: $screen-lg-min) {
+	@include rtl-float-grid-columns(lg);
 }
