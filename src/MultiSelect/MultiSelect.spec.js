@@ -1,5 +1,5 @@
 import React from 'react';
-import ReactTestUtils from 'react-addons-test-utils';
+import ReactTestUtils from 'react-dom/test-utils';
 import multiSelectDriverFactory from './MultiSelect.driver';
 import MultiSelect from './MultiSelect';
 import {createDriverFactory} from '../test-common';

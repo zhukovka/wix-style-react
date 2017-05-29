@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import ReactTestUtils from 'react-addons-test-utils';
+import ReactTestUtils from 'react-dom/test-utils';
 
 const radioButtonDriverFactory = ({element, wrapper, component}) => {
   const radioButton = element.childNodes[0];

@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import Toast from '../Toast';
-import ReactTestUtils from 'react-addons-test-utils';
+import ReactTestUtils from 'react-dom/test-utils';
 import $ from 'jquery';
 
 const byDataHook = hook => `[data-hook|="${hook}"]`;

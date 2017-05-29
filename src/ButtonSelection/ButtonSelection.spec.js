@@ -4,7 +4,7 @@ import {createDriverFactory} from '../test-common';
 import {buttonSelectionTestkitFactory} from '../../testkit';
 import {buttonSelectionTestkitFactory as enzymeButtonSelectionTestkitFactory} from '../../testkit/enzyme';
 import ButtonSelection from './ButtonSelection';
-import ReactTestUtils from 'react-addons-test-utils';
+import ReactTestUtils from 'react-dom/test-utils';
 import {mount} from 'enzyme';
 
 describe('ButtonSelection', () => {

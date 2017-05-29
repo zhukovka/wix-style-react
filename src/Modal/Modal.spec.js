@@ -115,7 +115,7 @@ describe('Modal', () => {
 
   describe('enzyme testkit', () => {
     it('should exist', () => {
-      expect(isEnzymeTestkitExists(<Modal/>, enzymeMessageBoxTestkitFactory)).toBe(true);
+      expect(isEnzymeTestkitExists(<Modal {...props}/>, enzymeMessageBoxTestkitFactory)).toBe(true);
     });
   });
 

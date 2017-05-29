@@ -1,5 +1,5 @@
 import React from 'react';
-import ReactTestUtils from 'react-addons-test-utils';
+import ReactTestUtils from 'react-dom/test-utils';
 import inputWithOptionsDriverFactory from './InputWithOptions.driver';
 import InputWithOptions from './InputWithOptions';
 import {createDriverFactory} from '../test-common';

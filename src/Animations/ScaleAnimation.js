@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {bool, node} from 'prop-types';
-import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
+import ReactCSSTransitionGroup from 'react-transition-group/CSSTransitionGroup';
 import scale from './ScaleAnimation.scss';
 
 class ScaleAnimation extends Component {

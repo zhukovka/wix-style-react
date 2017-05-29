@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import ReactTestUtils from 'react-addons-test-utils';
+import ReactTestUtils from 'react-dom/test-utils';
 
 const modalDriverFactory = ({element, wrapper, component}) => {
 
@@ -16,8 +16,7 @@ const modalDriverFactory = ({element, wrapper, component}) => {
     isScrollable: () => !getPortal().classList.contains('portalNonScrollable'),
     clickOnOverlay: () => {
       const overlay = getOverlay();
-      ReactTestUtils.Simulate.mouseDown(overlay);
-      ReactTestUtils.Simulate.mouseUp(overlay);
+      ReactTestUtils.Simulate.click(overlay);
     },
     setProps: props => {
       const ClonedWithProps = React.cloneElement(component, Object.assign({}, component.props, props), ...(component.props.children || []));

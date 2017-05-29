@@ -1,5 +1,5 @@
 import React from 'react';
-import ReactTestUtils from 'react-addons-test-utils';
+import ReactTestUtils from 'react-dom/test-utils';
 import inputDriverFactory from '../Input/Input.driver';
 import dropdownLayoutDriverFactory from '../DropdownLayout/DropdownLayout.driver';
 import ReactDOM from 'react-dom';

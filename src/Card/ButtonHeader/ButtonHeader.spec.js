@@ -1,5 +1,5 @@
 import React from 'react';
-import ReactTestUtils from 'react-addons-test-utils';
+import ReactTestUtils from 'react-dom/test-utils';
 import buttonHeaderDriverFactory from './ButtonHeader.driver';
 import {createDriverFactory} from '../../test-common';
 import ButtonHeader from './ButtonHeader';

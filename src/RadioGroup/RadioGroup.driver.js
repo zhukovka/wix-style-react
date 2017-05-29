@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import ReactTestUtils from 'react-addons-test-utils';
+import ReactTestUtils from 'react-dom/test-utils';
 import toArray from 'lodash.toarray';
 
 const radioGroupDriverFactory = ({element, wrapper, component}) => {

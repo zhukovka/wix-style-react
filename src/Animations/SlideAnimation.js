@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {node, bool, oneOf} from 'prop-types';
-import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
+import ReactCSSTransitionGroup from 'react-transition-group/CSSTransitionGroup';
 import slideLeft from './SlideLeftAnimation.scss';
 import slideRight from './SlideRightAnimation.scss';
 

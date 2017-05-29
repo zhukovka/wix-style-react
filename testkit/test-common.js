@@ -1,5 +1,5 @@
 import React from 'react';
-import ReactTestUtils from 'react-addons-test-utils';
+import ReactTestUtils from 'react-dom/test-utils';
 import {mount} from 'enzyme';
 
 export const isTestkitExists = (Element, testkitFactory) => {

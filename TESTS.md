@@ -15,7 +15,7 @@ Using wix style Button in your production code:
 Inside your test:
 
 ```javascript
-import ReactTestUtils from 'react-addons-test-utils';
+import ReactTestUtils from 'react-dom/test-utils';
 import {buttonTestkitFactory} from 'wix-style-react/dist/testkit';
 
 const myFormWrapper = ReactTestUtils.renderIntoDocument(<myForm...>);

@@ -5,7 +5,7 @@ import {createDriverFactory} from '../test-common';
 import {imageViewerTestkitFactory} from '../../testkit';
 import {imageViewerTestkitFactory as enzymeImageViewerTestkitFactory} from '../../testkit/enzyme';
 import {mount} from 'enzyme';
-import ReactTestUtils from 'react-addons-test-utils';
+import ReactTestUtils from 'react-dom/test-utils';
 
 describe('ImageViewer', () => {
 

@@ -1,5 +1,5 @@
 import React from 'react';
-import ReactTestUtils from 'react-addons-test-utils';
+import ReactTestUtils from 'react-dom/test-utils';
 import autoCompleteDriverFactory from './AutoComplete.driver';
 import AutoComplete from './AutoComplete';
 import {createDriverFactory} from '../test-common';

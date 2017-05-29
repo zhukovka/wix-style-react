@@ -1,5 +1,5 @@
 import React from 'react';
-import ReactTestUtils from 'react-addons-test-utils';
+import ReactTestUtils from 'react-dom/test-utils';
 import TextArea from './TextArea';
 import InputArea from '../InputArea';
 import {textAreaTestkitFactory} from '../../testkit';

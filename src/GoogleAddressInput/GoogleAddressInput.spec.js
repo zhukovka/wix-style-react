@@ -12,7 +12,7 @@ GEOCODE_RESULT.geometry = {
   }
 };
 
-class GmapsTestClient {
+export class GmapsTestClient {
   autocomplete({request}) {
 
     if (request.input === 'dontfind') {

@@ -1,4 +1,4 @@
-import ReactTestUtils from 'react-addons-test-utils';
+import ReactTestUtils from 'react-dom/test-utils';
 import navigationStyles from './navigation/styles.scss';
 
 const sideMenuDriverFactory = ({element}) => {

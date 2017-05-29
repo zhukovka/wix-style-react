@@ -75,7 +75,7 @@ class Col extends Component {
   static propTypes = {
     children: PropTypes.node,
     className: PropTypes.string,
-    span: PropTypes.number,
+    span: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
     rtl: PropTypes.bool,
     xs: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
     sm: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),

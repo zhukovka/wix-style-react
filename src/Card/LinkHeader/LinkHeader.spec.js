@@ -1,5 +1,5 @@
 import React from 'react';
-import ReactTestUtils from 'react-addons-test-utils';
+import ReactTestUtils from 'react-dom/test-utils';
 import linkHeaderDriverFactory from './LinkHeader.driver';
 import {createDriverFactory} from '../../test-common';
 import LinkHeader from './LinkHeader';
