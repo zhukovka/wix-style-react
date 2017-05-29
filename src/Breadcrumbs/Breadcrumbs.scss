@@ -1,7 +1,7 @@
 @import '../common.scss';
 
 @mixin breadcrumbsHover($hoverTextColor, $hoverBackgroundColor) {
-  .item:not(.active) .label:hover {
+  .item:not(.active):hover {
     border-radius: 100px;
     color: $hoverTextColor;
     background-color: $hoverBackgroundColor;
@@ -9,7 +9,7 @@
 }
 
 @mixin breadcrumbs($height, $sidePadding) {
-  .item .label {
+  .item {
     display: inline-block;
     height: $height;
     line-height: $height;
@@ -38,30 +38,32 @@
 }
 
 .item:not(.active) {
-  .label, label {
-    cursor: pointer;
-  }
+  cursor: pointer;
 }
 
-.container {
-  ul{
-    margin: 0 0;
-    padding: 0;
-    list-style-type: none;
-  }
+.itemContainer {
+  display: inline-flex;
+  align-items: center;
 }
 
-.item {
+.divider {
   display: inline-block;
-  & + .item:before {
-    content: '';
-    background: url('../assets/arrow-right-icon.svg') no-repeat;
-    width: 6px;
-    height: 14px;
-    display: inline-block;
-    margin: 0 8px 2px;
-    vertical-align: middle;
-  }
+  width: 6px;
+  min-height: 30px;
+  margin: 0 8px;
+  background: url('../assets/arrow-right-icon.svg') no-repeat 50% 50%;
+}
+
+.button {
+  background: transparent;
+  border: 0;
+  padding: 0;
+  cursor: pointer;
+}
+
+.link {
+  color: inherit;
+  text-decoration: inherit;
 }
 
 :global(.rtl) {
@@ -69,9 +71,7 @@
     direction: rtl;
   }
 
-  .item {
-    & + .item:before {
-      transform: rotate(180deg);
-    }
+  .divider {
+    transform: rotate(180deg);
   }
 }

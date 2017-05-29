@@ -1,10 +1,11 @@
 import React from 'react';
 import {arrayOf, func, oneOf, oneOfType, node, number, shape, string, any} from 'prop-types';
-import styles from './Breadcrumbs.scss';
-import classNames from 'classnames';
-import Label from '../Label';
+import classnames from 'classnames';
+
+import Text from '../Text';
 import WixComponent from '../WixComponent';
 import BreadcrumbsPathFactory from './BreadcrumbsPathFactory';
+import styles from './Breadcrumbs.scss';
 
 class Breadcrumbs extends WixComponent {
   static propTypes = {
@@ -34,19 +35,19 @@ class Breadcrumbs extends WixComponent {
     theme: 'onGrayBackground',
   }
 
-  constructor(props) {
-    super(props);
-    this._onClick = this._onClick.bind(this);
-  }
+  handleBreadcrumbClick = item =>
+    this.props.onClick && this.props.onClick(item)
 
-  getLabelAppearance(isActive) {
+  getValueAppearance(isActive) {
     const {theme, size} = this.props;
 
     const isDarkBackground = theme === 'onDarkBackground';
     const isMediumSize = size === 'medium';
+
     if (isActive && !isDarkBackground) {
       return isMediumSize ? 'T3' : 'T1';
     }
+
     if (isMediumSize) {
       return isDarkBackground ? 'T3.2' : 'T3.1';
     } else {
@@ -54,58 +55,73 @@ class Breadcrumbs extends WixComponent {
     }
   }
 
-  getValue(item, isActive) {
+  createItem({item, isActive, onClick}) {
+    const breadcrumbValue = value =>
+      <Text
+        dataHook="breadcrumbs-item"
+        appearance={this.getValueAppearance(isActive)}
+        children={value}
+        />;
+
+    const defaultBreadcrumb = () =>
+      <button
+        type="button"
+        data-hook="breadcrumb-clickable"
+        className={classnames(styles.item, styles.button)}
+        onClick={onClick}
+        children={breadcrumbValue(item.value)}
+        />;
+
+    const linkBreadcrumb = () =>
+      <a
+        href={item.link}
+        data-hook="breadcrumb-clickable"
+        className={classnames(styles.item, styles.link)}
+        onClick={onClick}
+        children={breadcrumbValue(item.value)}
+        />;
+
+    const customBreadcrumb = () =>
+      <span
+        data-hook="breadcrumb-clickable"
+        className={styles.item}
+        onClick={onClick}
+        children={breadcrumbValue(item.customElement)}
+        />;
+
     if (isActive) {
-      return item.value;
-    }
-
-    if (item.customElement) {
-      return item.customElement;
+      return defaultBreadcrumb();
+    } else if (item.customElement) {
+      return customBreadcrumb();
     } else if (item.link) {
-      return <a href={`${item.link}`} style={{color: 'inherit', textDecoration: 'inherit'}}>{item.value}</a>;
+      return linkBreadcrumb();
+    } else {
+      return defaultBreadcrumb();
     }
-
-    return item.value;
   }
 
-  renderItem(item) {
-    const {activeId} = this.props;
-
+  renderItem(item, activeId, isDividerVisible) {
     const isActive = activeId === item.id;
-    const itemClassName = classNames({
-      [styles.active]: isActive,
-      [styles.item]: true
-    });
-    const labelAppearance = this.getLabelAppearance(isActive);
-    return (
-      <li key={item.id} onClick={() => this._onClick(item)} className={itemClassName}>
-        <div className={styles.label}>
-          <Label appearance={labelAppearance}>{this.getValue(item, isActive)}</Label>
-        </div>
-      </li>
-    );
-  }
 
-  _onClick(item) {
-    this.props.onClick && this.props.onClick(item);
+    return (
+      <div
+        key={item.id}
+        className={classnames(styles.itemContainer, {[styles.active]: isActive})}
+        >
+        { this.createItem({item, isActive, onClick: () => this.handleBreadcrumbClick(item)}) }
+        { isDividerVisible && <div className={styles.divider}/> }
+      </div>
+    );
   }
 
   render() {
     const {items, size, theme, activeId} = this.props;
 
-    const className = classNames({
-      [styles.container]: true,
-      [styles[size]]: true,
-      [styles[theme]]: true,
-    });
-
     return (
-      <div className={className}>
-        <ul data-hook="breadcrumbs-items">
-          {
-            items.map(item => this.renderItem(item, activeId))
-          }
-        </ul>
+      <div className={classnames(styles[size], styles[theme])}>
+        { items.map((item, i, allItems) =>
+          this.renderItem(item, activeId, allItems[i + 1]))
+        }
       </div>
     );
   }

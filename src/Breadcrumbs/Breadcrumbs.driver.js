@@ -3,15 +3,14 @@ import ReactDOM from 'react-dom';
 import ReactTestUtils from 'react-addons-test-utils';
 
 const breadcrumbsDriverFactory = ({element, wrapper, component}) => {
-  const items = element.querySelector(`[data-hook=breadcrumbs-items]`);
-  const optionAt = position => (items.childNodes[position]);
+  const optionAt = position => element.childNodes[position];
   const isClassExists = (element, className) => !!(element.className.match(new RegExp('\\b' + className + '\\b')));
 
   return {
     exists: () => !!element,
-    breadcrumbsLength: () => items.childNodes.length,
+    breadcrumbsLength: () => element.childNodes.length,
     breadcrumbContentAt: position => optionAt(position).textContent,
-    clickBreadcrumbAt: position => ReactTestUtils.Simulate.click(optionAt(position)),
+    clickBreadcrumbAt: position => ReactTestUtils.Simulate.click(optionAt(position).querySelector('[data-hook="breadcrumb-clickable"]')),
     getActiveItemId: () => {
       const activeItem = element.querySelector('.active');
       return Array.from(activeItem.parentNode.children).indexOf(activeItem);
@@ -20,7 +19,7 @@ const breadcrumbsDriverFactory = ({element, wrapper, component}) => {
     isMedium: () => isClassExists(element, 'medium'),
     isOnWhiteBackground: () => isClassExists(element, 'onWhiteBackground'),
     isOnGrayBackground: () => isClassExists(element, 'onGrayBackground'),
-    getLabelClassList: position => optionAt(position).querySelector('label').className,
+    getLabelClassList: position => optionAt(position).querySelector('[data-hook="breadcrumbs-item"]').className,
     isActiveLinkAt: index => !!optionAt(index).querySelector('a'),
     setProps: props => {
       const ClonedWithProps = React.cloneElement(component, Object.assign({}, component.props, props), ...(component.props.children || []));

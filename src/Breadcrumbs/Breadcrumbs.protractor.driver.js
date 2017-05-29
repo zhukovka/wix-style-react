@@ -3,9 +3,9 @@ const breadcrumbsDriverFactory = component => {
     .then(classes => classes.split('__').indexOf(className) !== -1);
 
   return {
-    breadcrumbContentAt: position => component.$$('label').get(position).getText(),
-    clickBreadcrumbAt: position => component.$$('label').get(position).click(),
-    getActiveItemId: () => component.$$('li').getAttribute('class')
+    breadcrumbContentAt: position => component.all(by.xpath('./div')).get(position).getText(),
+    clickBreadcrumbAt: position => component.$$('[data-hook="breadcrumb-clickable"]').get(position).click(),
+    getActiveItemId: () => component.all(by.xpath('./div')).getAttribute('class')
       .then(classes => {
         const activeItems = classes.map(i =>
           i.split('__').indexOf('active') !== -1
@@ -17,7 +17,7 @@ const breadcrumbsDriverFactory = component => {
     isMedium: () => hasClass('medium'),
     isOnWhiteBackground: () => hasClass('onWhiteBackground'),
     isOnGrayBackground: () => hasClass('onGrayBackground'),
-    getLabelClassList: position => component.$$('label').get(position).getAttribute('class'),
+    getLabelClassList: position => component.all(by.xpath('./div')).get(position).getAttribute('class'),
     click: () => component.click(),
     element: () => component
   };
