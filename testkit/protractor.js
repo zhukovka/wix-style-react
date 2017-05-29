@@ -2,6 +2,9 @@ import {protractorTestkitFactoryCreator} from '../src/test-common';
 /*eslint no-duplicate-imports: 0*/
 export {getStoryUrl, waitForVisibilityOf, scrollToElement} from '../src/test-common';
 
+import inputDriverFactory from '../src/Input/Input.protractor.driver';
+export const inputTestkitFactory = protractorTestkitFactoryCreator(inputDriverFactory);
+
 import labelDriverFactory from '../src/Label/Label.protractor.driver';
 export const labelTestkitFactory = protractorTestkitFactoryCreator(labelDriverFactory);
 
