@@ -5,6 +5,7 @@ const sideMenuDriverFactory = ({element}) => {
   const getHeader = () => element.querySelector('[data-hook=menu-header]');
   const getNavigation = () => element.querySelector('[data-hook=menu-navigation]');
   const getNavigationLinks = () => element.querySelectorAll('[data-hook=menu-navigation-link]');
+  const getNavigationLinkWrappers = () => element.querySelectorAll('[data-hook=menu-navigation-link-wrapper]');
   const getNavigationSeparators = () => element.querySelectorAll('[data-hook=menu-navigation-separator]');
   const getNavigationCategories = () => element.querySelectorAll('[data-hook=menu-navigation-category]');
   const getNavigationBackLink = () => element.querySelector('[data-hook=menu-navigation-back-link]');
@@ -20,11 +21,16 @@ const sideMenuDriverFactory = ({element}) => {
     hasBackLink: () => !!getNavigationBackLink(),
     headerContent: () => getHeader().textContent,
     navigationLinks: () => getNavigationLinks(),
-    isLinkActiveByIndex: index => getNavigationLinks()[index].classList.contains(navigationStyles.linkActive),
+    navigationInnerLinks: () => getNavigationLinkWrappers(),
+    isLinkActiveByIndex: index => getNavigationLinkWrappers()[index].classList.contains(navigationStyles.linkActive),
     navigationSeparators: () => getNavigationSeparators(),
     navigationCategories: () => getNavigationCategories(),
     navigationCategoryContent: index => getNavigationCategories()[index].textContent,
     clickLinkByIndex: index => ReactTestUtils.Simulate.click(getNavigationLinks()[index]),
+    clickInnerLinkByIndex: index => {
+      const innerLink = getNavigationLinkWrappers()[index].querySelector('a');
+      ReactTestUtils.Simulate.click(innerLink);
+    },
     clickBackLink: () => ReactTestUtils.Simulate.click(getNavigationBackLink()),
     promotionContent: () => getPromotion().textContent,
     footerContent: () => getFooter().textContent

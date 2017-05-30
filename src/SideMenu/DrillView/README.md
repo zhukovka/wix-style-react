@@ -10,25 +10,25 @@ The menus are rendered using the SideMenu design.
   <SideMenu.Header>
     <h2>My Application</h2>
   </SideMenu.Header>
-  <SideMenuDrill.Link to="https://www.wix.com">Link #1</SideMenuDrill.Link>
-  <SideMenuDrill.Link to="https://www.wix.com">Link #2</SideMenuDrill.Link>
+  <SideMenuDrill.Link><a onClick={doSomething()}>Link #1</a></SideMenuDrill.Link>
+  <SideMenuDrill.Link><a href="//wix.com">Link #2</a></SideMenuDrill.Link>
   <SideMenuDrill.SubMenu menuKey="SUB_MENU_1" title="Sub Menu #1">
     <SideMenu.Header>
       <h2>My Internal Application</h2>
     </SideMenu.Header>
     <SideMenuDrill.Navigation>
-      <SideMenuDrill.Link to="https://www.wix.com">Link #3</SideMenuDrill.Link>
-      <SideMenuDrill.Link to="https://www.wix.com">Link #4</SideMenuDrill.Link>
+      <SideMenuDrill.Link><a onClick={doSomething()}>Link #3</a></SideMenuDrill.Link>
+      <SideMenuDrill.Link><a href="//wix.com">Link #4</a></SideMenuDrill.Link>
     </SideMenuDrill.Navigation>
   </SideMenuDrill.SubMenu>
   <SideMenuDrill.SubMenu menuKey="SUB_MENU_2" title="Sub Menu #2">
     <SideMenuDrill.Navigation>
-      <SideMenuDrill.Link to="https://www.wix.com">Link #5</SideMenuDrill.Link>
-      <SideMenuDrill.Link to="https://www.wix.com">Link #6</SideMenuDrill.Link>
+      <SideMenuDrill.Link><a onClick={doSomething()}>Link #5</a></SideMenuDrill.Link>
+      <SideMenuDrill.Link><a href="//wix.com">Link #6</a></SideMenuDrill.Link>
       <SideMenuDrill.SubMenu menuKey="SUB_MENU_3" title="Sub Menu #3">
         <SideMenuDrill.Navigation>
-          <SideMenuDrill.Link to="https://www.wix.com">Link #7</SideMenuDrill.Link>
-          <SideMenuDrill.Link to="https://www.wix.com">Link #8</SideMenuDrill.Link>
+          <SideMenuDrill.Link><a onClick={doSomething()}>Link #7</a></SideMenuDrill.Link>
+          <SideMenuDrill.Link><a href="//wix.com">Link #8</a></SideMenuDrill.Link>
         </SideMenuDrill.Navigation>
       </SideMenuDrill.SubMenu>
     </SideMenuDrill.Navigation>
@@ -56,17 +56,18 @@ Make sure you wrap the internal `Link`s and `SubMenu`s with a `Navigation` compo
 ### Link `<SideMenuDrill.Link/>`
 
 Main navigation item. Make sure you have zero or one Link active at all times.
+The children can be any node, but must contain an `anchor` element for the correct style to kick in.
 
 | propName          | propType | defaultValue | isRequired | description                                                                        |
 | -                 | -        | -            | -          | -                                                                                  |
-| to                | bool     | false        | -          | slightly different styling to indicate active link                                 |
 | isActive          | bool     | false        | -          | slightly different styling for hover (e.g. no background transition)               |
 | children          | node     | -            | -          | -                                                                                  |
 | ...rest           | *        | -            | -          | any other prop will be added to root element (e.g. `onClick`, `onMouseEnter` etc.) |
 
 ### SubMenu `<SideMenuDrill.SubMenu/>`
 
-A container of sub navigation items
+A container of sub navigation items.
+The first `Link` in a `Submenu` must have an `onClick` property (since clicking the submenu passes the click to the first child)
 
 | propName          | propType | defaultValue | isRequired | description                                                                                             |
 | -                 | -        | -            | -          | -                                                                                                       |

@@ -21,7 +21,11 @@ describe('DrillView', () => {
     const isLevelActive = activeLevel === level;
 
     return [...new Array(linksPerLevel)].map((_, i) => {
-      return <SideMenuDrill.Link key={`${level}_${i}`} isActive={isLevelActive && activeIndex === i} to="//wix.com" onClick={onClickSpy}>Link {i}</SideMenuDrill.Link>;
+      return (
+        <SideMenuDrill.Link key={`${level}_${i}`} isActive={isLevelActive && activeIndex === i}>
+          <a href="//wix.com" onClick={onClickSpy}>Link {i}</a>
+        </SideMenuDrill.Link>
+      );
     });
   }
 
@@ -73,7 +77,7 @@ describe('DrillView', () => {
 
     expect(driver.getMenuDriver().headerContent()).toBe(getHeader(0));
     expect(driver.getMenuDriver().footerContent()).toBe(getFooter(0));
-    expect(driver.getMenuDriver().navigationLinks().length).toBe(linksPerLevel);
+    expect(driver.getMenuDriver().navigationInnerLinks().length).toBe(linksPerLevel);
   });
 
   it('should render a one level drill view with an active item', () => {
@@ -116,9 +120,12 @@ describe('DrillView', () => {
     expect(driver.getMenuDriver().footerContent()).toBe(getFooter(0));
     expect(driver.getMenuDriver().hasBackLink()).toBe(false);
 
-    driver.getMenuDriver().clickLinkByIndex(3);
+    // click the first sub menu
+    expect(onClickSpy.mock.calls.length).toBe(0);
+    driver.getMenuDriver().clickInnerLinkByIndex(3);
 
     expect(onClickSpy).toHaveBeenCalled();
+    expect(onClickSpy.mock.calls.length).toBe(1);
   });
 
   it('should navigate to a parent menu and sub menu link should be active', done => {

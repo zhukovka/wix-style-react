@@ -60,8 +60,8 @@ class ExampleSideMenuDrill extends React.Component {
 
   renderLink(link) {
     return (
-      <SideMenuDrill.Link key={link.title} to={link.to} onClick={e => this.onMenuSelected(e, link)} isActive={link.isActive}>
-        {link.title}
+      <SideMenuDrill.Link key={link.title} isActive={link.isActive}>
+        <a href={link.to} onClick={e => this.onMenuSelected(e, link)}>{link.title}</a>
       </SideMenuDrill.Link>
     );
   }

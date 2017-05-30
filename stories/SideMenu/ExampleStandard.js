@@ -19,7 +19,7 @@ export default () =>
       </SideMenu.Header>
 
       <SideMenu.Navigation>
-        <SideMenu.NavigationLink onClick={() => console.log('#1 clicked')}>
+        <SideMenu.NavigationLink onClick={() => console.log('#1 clicked')} href="//wix.com">
           Link #1
         </SideMenu.NavigationLink>
         <SideMenu.NavigationLink withArrow onClick={() => console.log('#2 clicked')}>

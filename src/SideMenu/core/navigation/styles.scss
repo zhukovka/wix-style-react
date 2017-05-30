@@ -18,26 +18,11 @@ $padding-vertical: 14px;
   font-size: 14px;
   text-decoration: none;
   line-height: 14px;
-  position: relative;
 }
 
-.link {
-  @extend .link-base;
-  font-family: $FontRoman;
-
-  &:hover:not(.linkActive),
-  &:focus:not(.linkActive) {
-    background: #33566f;
-    color: #9fd8fc;
-    transition: 0.3s;
-  }
-
-  &.linkDiminishedHover:hover {
-    background: transparent;
-    color: $B20;
-  }
-
-  &.linkDiminishedHover:focus { background: transparent; }
+.link-layout {
+  position: relative;
+  display: block;
 
   &:hover,
   &:focus {
@@ -47,9 +32,38 @@ $padding-vertical: 14px;
       opacity: 100;
     }
   }
+
+  &:hover:not(.linkActive),
+  &:focus:not(.linkActive),
+  &:hover:not(.linkActive) a,
+  &:focus:not(.linkActive) a {
+    background: #33566f;
+    color: #9fd8fc;
+    transition: 0.3s;
+  }
+
+  &.linkDiminishedHover:hover,
+  &.linkDiminishedHover:hover a {
+    background: transparent;
+    color: $B20;
+  }
+
+  &.linkDiminishedHover:focus,
+  &.linkDiminishedHover:focus a {
+    background: transparent;
+  }
 }
 
-.linkActive {
+.link-layout, .link-layout a {
+  font-family: $FontRoman;
+  color: $D80;
+}
+
+.link-layout a {
+  @extend .link-base;
+}
+
+.linkActive a {
   color: #9fd8fc;
   background: #2A4F68;
   transition: 0.3s;

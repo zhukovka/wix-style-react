@@ -3,6 +3,7 @@ import SideMenu from './core/SideMenu';
 import Header from './core/Header';
 import Navigation from './core/navigation';
 import NavigationLink from './core/navigation/Link';
+import NavigationLinkLayout from './core/navigation/LinkLayout';
 import NavigationBackLink from './core/navigation/BackLink';
 import NavigationSeparator from './core/navigation/Separator';
 import NavigationCategory from './core/navigation/Category';
@@ -15,6 +16,7 @@ SideMenu.Logo = Header;
 SideMenu.Header = Header;
 SideMenu.Navigation = Navigation;
 SideMenu.NavigationLink = NavigationLink;
+SideMenu.NavigationLinkLayout = NavigationLinkLayout;
 SideMenu.NavigationBackLink = NavigationBackLink;
 SideMenu.NavigationSeparator = NavigationSeparator;
 SideMenu.NavigationCategory = NavigationCategory;
@@ -24,4 +26,3 @@ SideMenu.FooterLink = FooterLink;
 SideMenu.FooterTinyLink = FooterTinyLink;
 
 export default SideMenu;
-

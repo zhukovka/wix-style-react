@@ -1,22 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import classnames from 'classnames';
-import styles from './styles.scss';
-import {DataPickerArrow} from '../../../Icons/dist';
+import LinkLayout from './LinkLayout';
 
 const Link = ({children, isDiminishedHover, isActive, withArrow, ...rest}) =>
-  <a
-    className={classnames({
-      [styles.link]: true,
-      [styles.linkActive]: isActive,
-      [styles.linkDiminishedHover]: isDiminishedHover
-    })}
-    data-hook="menu-navigation-link"
-    {...rest}
-    >
-    {children}
-    {withArrow && <span className={styles.linkArrow}><DataPickerArrow/></span>}
-  </a>;
+  <LinkLayout isDiminishedHover={isDiminishedHover} isActive={isActive} withArrow={withArrow}>
+    <a data-hook="menu-navigation-link" {...rest}>
+      {children}
+    </a>
+  </LinkLayout>;
 
 Link.propTypes = {
   children: PropTypes.node,
