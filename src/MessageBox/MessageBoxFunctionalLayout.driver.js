@@ -11,6 +11,7 @@ const messageBoxFunctionalLayoutDriverFactory = ({element, wrapper, component}) 
     exists: () => !!(element),
     getConfirmationButtonText: () => confirmationButton().textContent,
     clickOnConfirmationButton: () => ReactTestUtils.Simulate.click(confirmationButton()),
+    getConfirmationButton: confirmationButton,
     getCancellationButton: cancellationButton,
     getHeaderCloseButton: headerCloseButton,
     getCancellationButtonText: () => cancellationButton().textContent,
