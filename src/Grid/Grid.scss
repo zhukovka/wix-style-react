@@ -43,10 +43,13 @@ $grid-row-margin-bottom: 30px;
 	flex-direction: column;
 }
 
-@mixin rtl-float-grid-columns($class, $i: 1, $list: ".col-#{$class}-#{$i}") {
-	@for $i from (1 + 1) through $grid-columns {
-		$list: "#{$list}, :global(.rtl) .col-#{$class}-#{$i}, .rtl.col-#{$class}-#{$i}, .rtl .col-#{$class}-#{$i}";
+@mixin rtl-float-grid-columns($class) {
+	$list: "";
+
+	@for $i from (1) through $grid-columns {
+		$list: "#{$list}:global(.rtl) .col-#{$class}-#{$i}, .rtl.col-#{$class}-#{$i}, .rtl .col-#{$class}-#{$i}, ";
 	}
+
 	#{$list} {
 		float: right;
 	}
