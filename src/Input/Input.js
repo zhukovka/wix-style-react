@@ -48,6 +48,7 @@ class Input extends Component {
       disabled,
       error,
       width,
+      tooltipPlacement
     } = this.props;
 
     const onIconClicked = () => {
@@ -116,6 +117,7 @@ class Input extends Component {
         unit={unit}
         focused={this.state.focus}
         suffix={suffix}
+        tooltipPlacement={tooltipPlacement}
         /> }
     </div>);
   }
@@ -229,7 +231,8 @@ Input.propTypes = {
   width: PropTypes.string,
   ariaLabel: PropTypes.string,
   ariaDescribedby: PropTypes.string,
-  ariaControls: PropTypes.string
+  ariaControls: PropTypes.string,
+  tooltipPlacement: PropTypes.string
 };
 
 export default Input;

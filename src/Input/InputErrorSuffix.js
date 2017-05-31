@@ -27,7 +27,7 @@ class InputErrorSuffix extends React.Component {
 InputErrorSuffix.propTypes = {
   theme: PropTypes.oneOf(['normal', 'paneltitle', 'material', 'amaterial']),
   errorMessage: PropTypes.string.isRequired,
-  focused: PropTypes.bool,
+  focused: PropTypes.bool
 };
 
 export default InputErrorSuffix;

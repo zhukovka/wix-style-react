@@ -28,16 +28,16 @@ const getVisibleSuffixCount = args =>
     .length;
 
 const InputSuffix = ({theme, errorMessage, error, disabled, help, helpMessage, onIconClicked,
-      magnifyingGlass, isClearButtonVisible, onClear, menuArrow, unit, suffix, focused
+      magnifyingGlass, isClearButtonVisible, onClear, menuArrow, unit, suffix, focused, tooltipPlacement
 }) => {
 
   const suffixes = [
     {
-      component: () => <ThemedInputErrorSuffix theme={theme} focused={focused} errorMessage={errorMessage}/>,
+      component: () => <ThemedInputErrorSuffix theme={theme} focused={focused} errorMessage={errorMessage} placement={tooltipPlacement}/>,
       isVisible: suffixRules.inputErrorSuffix({error, disabled})
     },
     {
-      component: () => <ThemedInputHelpSuffix theme={theme} help={help} helpMessage={helpMessage}/>,
+      component: () => <ThemedInputHelpSuffix theme={theme} help={help} helpMessage={helpMessage} placement={tooltipPlacement}/>,
       isVisible: suffixRules.inputHelpSuffix({help, disabled})
     },
     {
@@ -104,6 +104,7 @@ InputSuffix.propTypes = {
   unit: PropTypes.string,
   suffix: PropTypes.node,
   focused: PropTypes.bool,
+  tooltipPlacement: PropTypes.string
 };
 
 export default InputSuffix;
