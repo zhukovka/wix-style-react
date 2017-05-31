@@ -40,7 +40,6 @@
 | roundInput | bool | false | - | When set to true, this input will be rounded |
 | noLeftBorderRadius | bool | false | - | When set to true, this input will have no rounded corners on its left |
 | noRightBorderRadius | bool | false | - | When set to true, this input will have no rounded corners on its right |
-| customTooltip | node | - | - | A custom Tooltip to display the errorMessage or the helpMessage. For now it is supported only in the amaterial theme|
 
 ## Functions
 
