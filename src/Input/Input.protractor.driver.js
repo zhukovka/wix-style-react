@@ -1,6 +1,6 @@
 const inputDriverFactory = component => ({
   enterText: text => component.$('input').clear().sendKeys(text),
-  getText: () => component.$('input').getText(),
+  getText: () => component.$('input').getAttribute('value'),
   element: () => component
 });
 
