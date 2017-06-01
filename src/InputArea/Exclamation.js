@@ -7,7 +7,7 @@ import {Error} from '../Icons/dist';
 const Exclamation = ({errorMessage, tooltipPlacement}) =>
   <div className={styles.suffix}>
     <Tooltip
-      disabled={errorMessage.length === 0}
+      dataHook="exclamationErrorTooltip" disabled={errorMessage.length === 0}
       placement={tooltipPlacement} alignment="center" hideDelay={100} content={errorMessage}
       moveBy={{x: 0, y: -10}} overlay="" maxWidth="250px"
       textAlign="left"
@@ -18,7 +18,7 @@ const Exclamation = ({errorMessage, tooltipPlacement}) =>
 
 Exclamation.defaultProps = {
   errorMessage: '',
-  placement: 'right'
+  tooltipPlacement: 'right'
 };
 
 Exclamation.propTypes = {
