@@ -1,12 +1,11 @@
 import React from 'react';
-import ReactTestUtils from 'react-dom/test-utils';
 import inputDriverFactory from './Input.driver';
 import Input from '.';
 import sinon from 'sinon';
 import {createDriverFactory} from '../test-common';
 import {inputTestkitFactory, tooltipTestkitFactory} from '../../testkit';
 import {inputTestkitFactory as enzymeInputTestkitFactory} from '../../testkit/enzyme';
-import {mount} from 'enzyme';
+import {isTestkitExists, isEnzymeTestkitExists} from '../../testkit/test-common';
 
 describe('Input', () => {
   const createDriver = createDriverFactory(inputDriverFactory);
@@ -439,13 +438,9 @@ describe('Input', () => {
 
 describe('testkit', () => {
   it('should exist', () => {
-    const div = document.createElement('div');
     const value = 'hello';
     const onChange = () => {};
-    const dataHook = 'myDataHook';
-    const wrapper = div.appendChild(ReactTestUtils.renderIntoDocument(<div><Input value={value} onChange={onChange} dataHook={dataHook}/></div>));
-    const inputTestkit = inputTestkitFactory({wrapper, dataHook});
-    expect(inputTestkit.exists()).toBeTruthy();
+    expect(isTestkitExists(<Input value={value} onChange={onChange}/>, inputTestkitFactory)).toBe(true);
   });
 });
 
@@ -453,9 +448,6 @@ describe('enzyme testkit', () => {
   it('should exist', () => {
     const value = 'hello';
     const onChange = () => {};
-    const dataHook = 'myDataHook';
-    const wrapper = mount(<Input value={value} onChange={onChange} dataHook={dataHook}/>);
-    const inputTestkit = enzymeInputTestkitFactory({wrapper, dataHook});
-    expect(inputTestkit.exists()).toBeTruthy();
+    expect(isEnzymeTestkitExists(<Input value={value} onChange={onChange}/>, enzymeInputTestkitFactory)).toBe(true);
   });
 });
