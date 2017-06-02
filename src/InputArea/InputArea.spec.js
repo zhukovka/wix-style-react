@@ -1,12 +1,11 @@
 import React from 'react';
-import ReactTestUtils from 'react-dom/test-utils';
 import inputAreaDriverFactory from './InputArea.driver';
 import InputArea from './InputArea';
 import {createDriverFactory} from '../test-common';
-import {inputAreaTestkitFactory} from '../../testkit';
+import {inputAreaTestkitFactory, tooltipTestkitFactory} from '../../testkit';
 import {inputAreaTestkitFactory as enzymeInputAreaTestkitFactory} from '../../testkit/enzyme';
-import {mount} from 'enzyme';
-
+import sinon from 'sinon';
+import {isTestkitExists, isEnzymeTestkitExists} from '../../testkit/test-common';
 
 describe('InputArea', () => {
   const createDriver = createDriverFactory(inputAreaDriverFactory);
@@ -257,29 +256,6 @@ describe('InputArea', () => {
       expect(driver.isOfStyle('material')).toBeTruthy();
     });
   });
-});
-
-describe('testkit', () => {
-  it('should exist', () => {
-    const div = document.createElement('div');
-    const value = 'hello';
-    const onChange = () => {};
-    const dataHook = 'myDataHook';
-    const wrapper = div.appendChild(ReactTestUtils.renderIntoDocument(<div><InputArea value={value} onChange={onChange} dataHook={dataHook}/></div>));
-    const inputAreaTestkit = inputAreaTestkitFactory({wrapper, dataHook});
-    expect(inputAreaTestkit.exists()).toBeTruthy();
-  });
-});
-
-describe('enzyme testkit', () => {
-  it('should exist', () => {
-    const value = 'hello';
-    const onChange = () => {};
-    const dataHook = 'myDataHook';
-    const wrapper = mount(<InputArea value={value} onChange={onChange} dataHook={dataHook}/>);
-    const inputAreaTestkit = enzymeInputAreaTestkitFactory({wrapper, dataHook});
-    expect(inputAreaTestkit.exists()).toBeTruthy();
-  });
 
   describe('aria attributes', () => {
     const createDriver = createDriverFactory(inputAreaDriverFactory);
@@ -314,5 +290,70 @@ describe('enzyme testkit', () => {
       expect(driver.getAriaDescribedby()).toBeNull;
     });
 
+  });
+
+
+  describe('test tooltip', () => {
+
+    const resolveIn = timeout =>
+      new Promise(resolve => {
+        setTimeout(() => {
+          resolve({});
+        }, timeout);
+      });
+
+    describe('onTooltipShow attribute', () => {
+      it('should not display the tooltip by default', () => {
+        const driver = createDriver(<InputArea error errorMessage="I'm the error message"/>);
+        const dataHook = driver.getTooltipDataHook();
+        const wrapper = driver.getTooltipElement();
+        const tooltipDriver = tooltipTestkitFactory({wrapper, dataHook});
+
+        return resolveIn(500).then(() => {
+          expect(tooltipDriver.isShown()).toBe(false);
+        });
+      });
+
+      it('should display the tooltip on mouse hover', () => {
+        const driver = createDriver(<InputArea error errorMessage="I'm the error message"/>);
+        const dataHook = driver.getTooltipDataHook();
+        const wrapper = driver.getTooltipElement();
+        const tooltipDriver = tooltipTestkitFactory({wrapper, dataHook});
+        tooltipDriver.mouseEnter();
+
+        return resolveIn(500).then(() => {
+          expect(tooltipDriver.getContent()).toBe('I\'m the error message');
+        });
+      });
+
+      it('should call onTooltipShow callback when error tooltip become active', () => {
+        const onTooltipShow = sinon.spy();
+        const driver = createDriver(<InputArea error errorMessage="I'm the error message" onTooltipShow={onTooltipShow}/>);
+        const dataHook = driver.getTooltipDataHook();
+        const wrapper = driver.getTooltipElement();
+        const tooltipDriver = tooltipTestkitFactory({wrapper, dataHook});
+        tooltipDriver.mouseEnter();
+
+        return resolveIn(500).then(() => {
+          expect(onTooltipShow.calledOnce).toBeTruthy();
+        });
+      });
+    });
+  });
+});
+
+describe('testkit', () => {
+  it('should exist', () => {
+    const value = 'hello';
+    const onChange = () => {};
+    expect(isTestkitExists(<InputArea value={value} onChange={onChange}/>, inputAreaTestkitFactory)).toBe(true);
+  });
+});
+
+describe('enzyme testkit', () => {
+  it('should exist', () => {
+    const value = 'hello';
+    const onChange = () => {};
+    expect(isEnzymeTestkitExists(<InputArea value={value} onChange={onChange}/>, enzymeInputAreaTestkitFactory)).toBe(true);
   });
 });

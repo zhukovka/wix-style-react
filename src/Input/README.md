@@ -40,8 +40,8 @@
 | roundInput | bool | false | - | When set to true, this input will be rounded |
 | noLeftBorderRadius | bool | false | - | When set to true, this input will have no rounded corners on its left |
 | noRightBorderRadius | bool | false | - | When set to true, this input will have no rounded corners on its right |
-| tooltipPlacement | [top, bottom, right, left] | - | - | Placement of the error and help tooltips |
-| onTooltipShow | func | - | - | onShow prop for the he error and help tooltips |
+| tooltipPlacement | [top, bottom, right, left] | - | - | Placement of the error and help tooltips (supported only for amaterial them for now) |
+| onTooltipShow | func | - | - | onShow prop for the error and help tooltips (supported only for amaterial them for now)|
 
 ## Functions
 

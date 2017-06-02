@@ -50,7 +50,8 @@ class InputArea extends WixComponent {
       hasCounter,
       theme,
       errorMessage,
-      tooltipPlacement
+      tooltipPlacement,
+      onTooltipShow
     } = this.props;
 
     const inlineStyle = {};
@@ -100,7 +101,7 @@ class InputArea extends WixComponent {
           {...ariaAttribute}
           readOnly={readOnly}
           />
-        {error && <Exclamation errorMessage={errorMessage} tooltipPlacement={tooltipPlacement}/>}
+        {error && <Exclamation errorMessage={errorMessage} tooltipPlacement={tooltipPlacement} onTooltipShow={onTooltipShow}/>}
         {theme === 'material' && <div className={styles.bar}/>}
         {hasCounter && maxLength && <span className={styles.counter}>{this.state.counter}/{maxLength}</span>}
       </div>
@@ -192,7 +193,8 @@ InputArea.propTypes = {
   ariaLabel: PropTypes.string,
   ariaDescribedby: PropTypes.string,
   ariaControls: PropTypes.string,
-  tooltipPlacement: PropTypes.string
+  tooltipPlacement: PropTypes.string,
+  onTooltipShow: PropTypes.func
 };
 
 export default InputArea;

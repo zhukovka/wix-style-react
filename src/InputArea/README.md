@@ -28,6 +28,8 @@
 | onKeyDown | func | - | - | - |
 | hasCounter | bool | false | - | When true a letters counter will appear |
 | maxLength | number | - | - | Define max length allowed in the inputArea |
+| tooltipPlacement | [top, bottom, right, left] | - | - | Placement of the error tooltip |
+| onTooltipShow | func | - | - | onShow prop for the error tooltip |
 
 ## Functions
 

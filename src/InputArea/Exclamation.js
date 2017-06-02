@@ -4,12 +4,12 @@ import Tooltip from '../Tooltip';
 import styles from './InputArea.scss';
 import {Error} from '../Icons/dist';
 
-const Exclamation = ({errorMessage, tooltipPlacement}) =>
+const Exclamation = ({errorMessage, tooltipPlacement, onTooltipShow}) =>
   <div className={styles.suffix}>
     <Tooltip
-      dataHook="exclamationErrorTooltip" disabled={errorMessage.length === 0}
-      placement={tooltipPlacement} alignment="center" hideDelay={100} content={errorMessage}
-      moveBy={{x: 0, y: -10}} overlay="" maxWidth="250px"
+      dataHook="inputArea-tooltip" disabled={errorMessage.length === 0}
+      placement={tooltipPlacement} onShow={onTooltipShow} alignment="center"
+      hideDelay={100} content={errorMessage} moveBy={{x: 0, y: -10}} overlay="" maxWidth="250px"
       textAlign="left"
       >
       <div className={styles.errorIcon}><Error size="1.5em"/></div>
@@ -23,7 +23,8 @@ Exclamation.defaultProps = {
 
 Exclamation.propTypes = {
   errorMessage: PropTypes.string,
-  tooltipPlacement: PropTypes.oneOf(['right', 'left', 'top', 'bottom'])
+  tooltipPlacement: PropTypes.oneOf(['right', 'left', 'top', 'bottom']),
+  onTooltipShow: PropTypes.func
 };
 
 export default Exclamation;

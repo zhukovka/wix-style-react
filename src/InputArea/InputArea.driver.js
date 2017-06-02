@@ -33,6 +33,8 @@ const inputAreaDriverFactory = ({element, wrapper, component}) => {
     getAriaLabel: () => textArea.getAttribute('aria-label'),
     getAriaControls: () => textArea.getAttribute('aria-controls'),
     getAriaDescribedby: () => textArea.getAttribute('aria-describedby'),
+    getTooltipDataHook: () => 'inputArea-tooltip',
+    getTooltipElement: () => element,
     setProps: props => {
       const ClonedWithProps = React.cloneElement(component, Object.assign({}, component.props, props), ...(component.props.children || []));
       ReactDOM.render(<div ref={r => element = r}>{ClonedWithProps}</div>, wrapper);
