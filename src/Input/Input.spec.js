@@ -12,22 +12,52 @@ describe('Input', () => {
   const createDriver = createDriverFactory(inputDriverFactory);
 
   describe('test tooltip', () => {
-    it('should get the tooltip for further tests', () => {
+    const resolveIn = timeout =>
+      new Promise(resolve => {
+        setTimeout(() => {
+          resolve({});
+        }, timeout);
+      });
+
+    it('should dispaly the error tooltip on hover', () => {
       const driver = createDriver(<Input error errorMessage="I'm the error message"/>);
       const dataHook = driver.getTooltipDataHook();
       const wrapper = driver.getTooltipElement();
       const tooltipDriver = tooltipTestkitFactory({wrapper, dataHook});
       tooltipDriver.mouseEnter();
 
-      const resolveIn = timeout =>
-        new Promise(resolve => {
-          setTimeout(() => {
-            resolve({});
-          }, timeout);
-        });
-
       return resolveIn(500).then(() => {
         expect(tooltipDriver.getContent()).toBe('I\'m the error message');
+      });
+    });
+
+    describe('onTooltipShow attribute (only for amaterial theme for now)', () => {
+      it('should be called when error tooltip is active', () => {
+        const onTooltipShow = sinon.spy();
+
+        const driver = createDriver(<Input theme="amaterial" error errorMessage="I'm the error message" onTooltipShow={onTooltipShow}/>);
+        const dataHook = driver.getTooltipDataHook();
+        const wrapper = driver.getTooltipElement();
+        const tooltipDriver = tooltipTestkitFactory({wrapper, dataHook});
+        tooltipDriver.mouseEnter();
+
+        return resolveIn(500).then(() => {
+          expect(onTooltipShow.calledOnce).toBeTruthy();
+        });
+      });
+
+      it('should be called when help tooltip is active (only for amaterial theme for now)', () => {
+        const onTooltipShow = sinon.spy();
+
+        const driver = createDriver(<Input theme="amaterial" help helpMessage="I'm the help message" onTooltipShow={onTooltipShow}/>);
+        const dataHook = driver.getTooltipDataHook();
+        const wrapper = driver.getTooltipElement();
+        const tooltipDriver = tooltipTestkitFactory({wrapper, dataHook});
+        tooltipDriver.mouseEnter();
+
+        return resolveIn(500).then(() => {
+          expect(onTooltipShow.calledOnce).toBeTruthy();
+        });
       });
     });
   });
