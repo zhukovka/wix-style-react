@@ -106,7 +106,7 @@ const rules = [
       }
 
       switch (object.type) {
-        case 'link': return <a href={object.data.get('href')}>{children}</a>;
+        case 'link': return <a rel="noopener noreferrer" target="_blank" href={object.data.get('href')}>{children}</a>;
         default: return {children};
       }
     }

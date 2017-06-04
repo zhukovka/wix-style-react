@@ -63,15 +63,17 @@ class RichTextArea extends WixComponent {
     }
   }
 
-  setEditorState = editorState => {
-    this.setState({editorState}, this.triggerChange);
+  setEditorState = (editorState, isTextChanged = true) => {
+    this.setState({editorState}, () => this.triggerChange(isTextChanged));
   };
 
-  triggerChange() {
+  triggerChange(isTextChanged = true) {
     const serialized = htmlSerializer.serialize(this.state.editorState);
-    const {onChange} = this.props;
     this.lastValue = serialized;
-    onChange && onChange(serialized);
+    if (isTextChanged) {
+      const {onChange} = this.props;
+      onChange && onChange(serialized);
+    }
   }
 
   hasBlock = type => this.state.editorState.blocks.some(node => node.type == type);
@@ -260,8 +262,9 @@ class RichTextArea extends WixComponent {
             onChange={e =>
               {
                 const serialized = htmlSerializer.serialize(e);
+                const isValueChanged = serialized !== this.lastValue;
                 this.lastValue = serialized;
-                this.setEditorState(e)
+                this.setEditorState(e, isValueChanged)
               }
             }/>
           {this.renderError()}

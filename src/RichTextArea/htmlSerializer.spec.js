@@ -94,7 +94,7 @@ describe('HTML serializer', () => {
   });
 
   it('should correctly serialize slate object to HTML string', () => {
-    const expected = `<ul><li>one</li><li>two</li></ul><p>Text here<strong>bold text</strong><em>italic</em><em><u>and underlined</u></em><a href="http://localhost">Link</a></p>`;
+    const expected = `<ul><li>one</li><li>two</li></ul><p>Text here<strong>bold text</strong><em>italic</em><em><u>and underlined</u></em><a rel="noopener noreferrer" target="_blank" href="http://localhost">Link</a></p>`;
     const state = {
       nodes: [
         {
