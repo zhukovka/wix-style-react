@@ -13,7 +13,8 @@ export default class DatePickerInput extends Component {
     value: PropTypes.string,
     dateFormat: PropTypes.func,
     style: PropTypes.object,
-    onEnterPressed: PropTypes.func
+    onEnterPressed: PropTypes.func,
+    customInput: PropTypes.node
   };
 
   static defaultProps = {
@@ -25,17 +26,21 @@ export default class DatePickerInput extends Component {
   }
 
   render() {
-    const desiredProps = omit(this.props, 'style');
+    const desiredProps = omit(this.props, ['style', 'customInput']);
     const {style, onClick, onEnterPressed} = this.props;
+    const customInput = this.props.customInput || <Input/>;
 
     return (
       <div style={style} onClick={onClick}>
-        <Input
-          ref={Input => this.input = Input}
-          onEnterPressed={() => onEnterPressed() && this.blur()}
-          onEscapePressed={() => this.blur()}
-          {...desiredProps}
-          />
+        {
+          React.cloneElement(customInput, {
+            ref: Input => this.input = Input,
+            onEnterPressed: () => onEnterPressed() && this.blur(),
+            onEscapePressed: () => this.blur(),
+            ...desiredProps,
+            ...customInput.props
+          })
+        }
       </div>
     );
   }

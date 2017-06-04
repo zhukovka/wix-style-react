@@ -21,7 +21,8 @@ export default class DatePicker extends Component {
     inputDataHook: PropTypes.string,
     onEnterPressed: PropTypes.func,
     error: PropTypes.bool,
-    errorMessage: PropTypes.string
+    errorMessage: PropTypes.string,
+    customInput: PropTypes.node
   };
 
   static defaultProps = {
@@ -48,12 +49,13 @@ export default class DatePicker extends Component {
   }
 
   renderInput() {
-    const {rtl, style, theme, prefix, inputDataHook, onEnterPressed, error, errorMessage} = this.props;
+    const {rtl, style, theme, prefix, inputDataHook, onEnterPressed,
+      error, errorMessage, customInput} = this.props;
     return (
       <DatePickerInput
-        rtl={rtl} style={style} theme={theme} prefix={prefix}
-        dataHook={inputDataHook} onEnterPressed={onEnterPressed} error={error}
-        errorMessage={errorMessage}
+        rtl={rtl} style={style} theme={theme} prefix={prefix} dataHook={inputDataHook}
+        onEnterPressed={onEnterPressed} error={error} errorMessage={errorMessage}
+        customInput={customInput}
         />
     );
   }
