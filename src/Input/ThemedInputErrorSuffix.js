@@ -37,7 +37,7 @@ const AmaterialErrorSuffix = ({focused, error, errorMessage, placement, onShow})
   </Tooltip>;
 
 AmaterialErrorSuffix.propTypes = {
-  errorMessage: PropTypes.string.isRequired,
+  errorMessage: PropTypes.node.isRequired,
   error: PropTypes.bool,
   focused: PropTypes.bool,
   placement: PropTypes.oneOf(['left', 'right', 'top', 'bottom']),

@@ -92,11 +92,11 @@ InputSuffix.propTypes = {
     isVisible: PropTypes.bool.isRequired
   })),
   theme: PropTypes.oneOf(['normal', 'paneltitle', 'material', 'amaterial']),
-  errorMessage: PropTypes.string.isRequired,
+  errorMessage: PropTypes.node.isRequired,
   error: PropTypes.bool,
   disabled: PropTypes.bool,
   help: PropTypes.bool,
-  helpMessage: PropTypes.string,
+  helpMessage: PropTypes.node,
   onIconClicked: PropTypes.func,
   magnifyingGlass: PropTypes.bool,
   isClearButtonVisible: PropTypes.bool,

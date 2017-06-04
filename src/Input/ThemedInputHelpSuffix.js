@@ -33,7 +33,7 @@ const AmaterialHelpSuffix = ({help, helpMessage, placement, onShow}) =>
 
 AmaterialHelpSuffix.propTypes = {
   help: PropTypes.bool,
-  helpMessage: PropTypes.string,
+  helpMessage: PropTypes.node,
   placement: PropTypes.oneOf(['left', 'right', 'top', 'bottom']),
   onShow: PropTypes.func
 };
