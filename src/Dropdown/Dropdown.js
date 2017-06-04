@@ -18,10 +18,11 @@ class Dropdown extends InputWithOptions {
       });
 
       if (option) {
-        value = option.value;
+        value = props.valueParser(option);
         selectedId = option.id;
       }
     }
+
     if (isFirstTime) {
       this.state = {value, selectedId};
     } else {

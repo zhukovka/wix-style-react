@@ -42,12 +42,14 @@ class CustomValuesInDropdown extends React.Component {
       {id: 3, value: 'Option 3'},
       {id: 4, value: 'Option 4', disabled: true},
       {id: 5, value: 'Option 5'},
-      {id: 6, value: customValue}
+      {id: 6, value: customValue},
+      {id: 7, value: customValue}
     ];
 
     return (
       <Dropdown
         options={options}
+        selectedId={6}
         placeholder={'Choose an option'}
         valueParser={valueParser}
         onSelect={this.onSelect}
