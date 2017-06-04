@@ -52,7 +52,7 @@ class CustomValuesInDropdown extends React.Component {
         selectedId={6}
         placeholder={'Choose an option'}
         valueParser={valueParser}
-        onSelect={this.onSelect}
+        onSelect={onSelect}
         />
     );
   }
