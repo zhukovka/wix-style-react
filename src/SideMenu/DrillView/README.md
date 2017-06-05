@@ -78,4 +78,5 @@ The first `Link` in a `Submenu` must have an `onClick` property (since clicking 
 | onSelectHandler   | func     | noop         | -          | A callback to call when the sub menu anchor is clicked                                                  |
 | onBackHandler     | func     | noop         | -          | A callback to call when the sub menu back button is clicked                                             |
 | backLabel         | string   | Back         | -          | The text that will be displayed on the back link                                                        |
+| showCategory      | bool     | true         | -          | Show a category title in the submenu view                                                               |
 | children          | node     | -            | true       | A list of child nodes including `SideMenu.Navigation` containing more links & sub menus                 |

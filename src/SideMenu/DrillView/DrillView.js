@@ -41,7 +41,7 @@ class SideMenuDrill extends WixComponent {
     }
 
     // returning to an already selected menu item (force nav)
-    if (event && event.target.dataset.menuKey === selectedItemMenuId) { //eslint-disable-line no-restricted-globals
+    if (event && event.target && event.target.dataset && event.target.dataset.menuKey === selectedItemMenuId) { //eslint-disable-line no-restricted-globals
       this.navigateToMenu(selectedItemMenuId, SlideDirection.left);
     }
 

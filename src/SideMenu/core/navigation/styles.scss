@@ -33,12 +33,16 @@ $padding-vertical: 14px;
     }
   }
 
+  &:hover,
+  &:hover a {
+    color: #9fd8fc;
+  }
+
   &:hover:not(.linkActive),
   &:focus:not(.linkActive),
   &:hover:not(.linkActive) a,
   &:focus:not(.linkActive) a {
     background: #33566f;
-    color: #9fd8fc;
     transition: 0.3s;
   }
 
@@ -91,6 +95,8 @@ $padding-vertical: 14px;
   margin-top: 21px;
 
   &:hover {
+    color: $D80;
+
     .backArrow {
       margin-right: 15px;
       margin-left: -5px;

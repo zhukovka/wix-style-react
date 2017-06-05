@@ -67,8 +67,10 @@ class ExampleSideMenuDrill extends React.Component {
   }
 
   renderMenu(menu) {
+    const showCategory = menu.title !== 'Sub Menu #3';
+
     return (
-      <SideMenuDrill.SubMenu key={menu.title} menuKey={menu.title} title={menu.title}>
+      <SideMenuDrill.SubMenu key={menu.title} menuKey={menu.title} title={menu.title} showCategory={showCategory}>
         <SideMenu.Header>
           <div onClick={() => console.log('Header clicked')}>
             <TrashIcon size="5em"/>

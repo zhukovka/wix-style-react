@@ -3,7 +3,7 @@ import {node, string, bool, func} from 'prop-types';
 import SideMenu from '../index';
 import SideMenuDrill from './index';
 
-const SubMenu = ({children, title, isOpen, isActive, onSelectHandler, onBackHandler, backLabel}) => {
+const SubMenu = ({children, title, isOpen, isActive, onSelectHandler, onBackHandler, backLabel, showCategory}) => {
   if (!isOpen) {
     return (
       <SideMenu.NavigationLink isActive={isActive} onClick={onSelectHandler} withArrow>
@@ -17,7 +17,7 @@ const SubMenu = ({children, title, isOpen, isActive, onSelectHandler, onBackHand
       return (
         <div>
           <SideMenu.NavigationBackLink onBackHandler={onBackHandler}>{backLabel}</SideMenu.NavigationBackLink>
-          <SideMenu.NavigationCategory>{title}</SideMenu.NavigationCategory>
+          {showCategory && <SideMenu.NavigationCategory>{title}</SideMenu.NavigationCategory>}
           <SideMenu.Navigation>
             {child.props.children}
           </SideMenu.Navigation>
@@ -40,7 +40,8 @@ SubMenu.defaultProps = {
   isOpen: false,
   onSelectHandler: () => {},
   onBackHandler: () => {},
-  backLabel: 'Back'
+  backLabel: 'Back',
+  showCategory: true
 };
 
 SubMenu.propTypes = {
@@ -51,6 +52,7 @@ SubMenu.propTypes = {
   onSelectHandler: func,
   onBackHandler: func,
   backLabel: string,
+  showCategory: bool,
   children: node.isRequired
 };
 
