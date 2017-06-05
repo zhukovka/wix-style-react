@@ -112,7 +112,7 @@
     "lodash.uniqueid": "^4.0.1",
     "lodash.values": "^4.3.0",
     "prop-types": "^15.5.8",
-    "rc-slider": "^5.3.4",
+    "rc-slider": "^8.0.2",
     "react-autosuggest": "^7.0.1",
     "react-datepicker": "^0.46.0",
     "react-modal": "^1.6.5",
