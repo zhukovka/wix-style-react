@@ -5,6 +5,11 @@ import RadioButton from './RadioButton/RadioButton';
 import styles from './RadioGroup.scss';
 import WixComponent from '../WixComponent';
 
+/**
+ * component for easy radio group creation.
+ *
+ * similar to HTML `<input type="radio"/>` except you don't need to handle `name` or click handlers
+ */
 class RadioGroup extends WixComponent {
   constructor(props) {
     super(props);
@@ -38,18 +43,34 @@ class RadioGroup extends WixComponent {
 }
 
 RadioGroup.propTypes = {
+  /** Callback function when user selects a different value */
   onChange: PropTypes.func,
+
+  /** Selected radio button value */
   value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+
+  /** the values of the disabled radio buttons */
   disabledRadios: PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.string, PropTypes.number])),
+
+  /** Positioning of the radio bottom compared to the label */
   vAlign: PropTypes.oneOf(['center', 'top']),
+
+  /** Make the entire control disabled */
   disabled: PropTypes.string,
+
+  /** Decided which type of child controls to render */
   type: PropTypes.string,
+
+  /** Display direction of the radios */
   display: PropTypes.oneOf(['vertical', 'horizontal']),
   children: PropTypes.arrayOf((propValue, key) => {
     if (propValue[key].type.name !== 'RadioButton') {
       return new Error(`RadioGroup: Invalid Prop children was given. Validation failed on child number ${key}`);
     }
-  })
+  }),
+
+  /** Vertical spacing between radio buttons */
+  spacing: PropTypes.string
 };
 
 RadioGroup.defaultProps = {

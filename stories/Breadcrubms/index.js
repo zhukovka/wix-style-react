@@ -2,9 +2,11 @@ import React from 'react';
 import {storiesOf} from '@kadira/storybook';
 import CodeExample from '../utils/Components/CodeExample';
 import Markdown from '../utils/Components/Markdown';
+import AutoDocs from '../utils/Components/AutoDocs';
 import TabbedView from '../utils/Components/TabbedView';
 
 import Readme from '../../src/Breadcrumbs/README.md';
+import BreadcrumbsSource from '!raw!../../src/Breadcrumbs/Breadcrumbs';
 import ReadmeTestKit from '../../src/Breadcrumbs/README.TESTKIT.md';
 
 import ExampleStandardRow from '!raw!../Breadcrubms/ExampleStandard';
@@ -32,8 +34,10 @@ storiesOf('Core', module)
   .add('Breadcrumbs', () => (
     <TabbedView tabs={['API Documentation', 'TestKits Documentation']}>
       <div>
+        <AutoDocs source={BreadcrumbsSource}/>
+
         <Markdown source={Readme}/>
-        <h1>Breadcrumbs component</h1>
+
         <CodeExample title="Standard" code={ExampleStandardRow}>
           <ExampleStandard/>
         </CodeExample>

@@ -1,18 +1,6 @@
 # Breadcrumbs component
 
-
-## Properties
-
-| propName | propType | defaultValue | isRequired | description |
-|----------|----------|--------------|------------|-------------|
-| activeId | string, int | - | - | id of current active item |
-| items | array of objects (see item)| - | + | Specifies items for breadcrumbs |
-| size | string ('medium', 'large') | 'medium' | - | size of items |
-| theme | string ('onWhiteBackground', 'onGrayBackground', 'onDarkBackground') | 'onGrayBackground' | - | Specifies breadcrubms background and font colors |
-| textAlign | string | 'center' | - | text-align property |
-| onClick | func | - | - | callback on item click |
-
-## Item
+## Item Properties
 | propName | propType | defaultValue | isRequired | description |
 |----------|----------|--------------|------------|-------------|
 | id | string or number| - | + | Specifies the item id |
