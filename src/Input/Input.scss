@@ -366,6 +366,12 @@ $double-gap: 12px;
     }
 }
 
+.roundInput {
+    .menu-arrow {
+        padding: 0 $double-gap;
+    }
+}
+
 .materialTitle {
     text-overflow: ellipsis;
     overflow: hidden;
