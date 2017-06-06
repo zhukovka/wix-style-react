@@ -42,17 +42,19 @@ class ExampleStandard extends React.Component {
 
   render() {
     return (
-      <div className={styles.main}>
-        <MultiSelect
-          tags={this.state.tags}
-          onSelect={this.handleOnSelect}
-          onRemoveTag={this.handleOnRemoveTag}
-          onChange={this.handleOnChange}
-          onManuallyInput={() => console.log("NOW")}
-          options={this.state.options}
-          value={this.state.inputValue}
-          predicate={this.predicate}
-          />
+      <div className="ltr">
+        <div className={styles.main}>
+          <MultiSelect
+            tags={this.state.tags}
+            onSelect={this.handleOnSelect}
+            onRemoveTag={this.handleOnRemoveTag}
+            onChange={this.handleOnChange}
+            onManuallyInput={() => console.log("NOW")}
+            options={this.state.options}
+            value={this.state.inputValue}
+            predicate={this.predicate}
+            />
+        </div>
       </div>
     );
   }
