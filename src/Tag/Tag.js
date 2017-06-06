@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import styles from './Tag.scss';
 import classNames from 'classnames';
 import WixComponent from '../WixComponent';
+import Typography from '../Typography';
 
 class Tag extends WixComponent {
   render() {
@@ -15,7 +16,11 @@ class Tag extends WixComponent {
       [styles.disabled]: disabled
     });
 
-    const innerClassName = wrap ? styles.innerTagWrap : '';
+    const innerClassName = classNames({
+      [styles.innerTagWrap]: wrap,
+      [Typography.t4]: true
+    });
+
     const title = wrap ? children : '';
 
     return (
