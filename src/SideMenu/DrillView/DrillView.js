@@ -41,8 +41,9 @@ class SideMenuDrill extends WixComponent {
     }
 
     // returning to an already selected menu item (force nav)
-    if (event && event.target && event.target.dataset && event.target.dataset.menuKey === selectedItemMenuId) { //eslint-disable-line no-restricted-globals
+    if (this.lastClickedMenuKey === selectedItemMenuId) {
       this.navigateToMenu(selectedItemMenuId, SlideDirection.left);
+      this.lastClickedMenuKey = null;
     }
 
     if (this.state.selectedItemMenuId === selectedItemMenuId) {
@@ -94,10 +95,7 @@ class SideMenuDrill extends WixComponent {
     const defaultSubMenProps = {
       isOpen: false,
       onSelectHandler: event => {
-        if (event && event.target && event.target.dataset) {
-          event.target.dataset.menuKey = menu.props.menuKey;
-        }
-
+        this.lastClickedMenuKey = menu.props.menuKey;
         this.selectFirstLinkChild(menu, event);
       },
       onBackHandler: () => {
