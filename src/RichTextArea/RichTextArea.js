@@ -23,7 +23,7 @@ class RichTextArea extends WixComponent {
       link: props => {
         const {data} = props.node;
         const href = data.get('href');
-        return <a className={styles.link} {...props.attributes} href={href}>{props.children}</a>;
+        return <a className={styles.link} {...props.attributes} rel="noopener noreferrer" target="_blank" href={href}>{props.children}</a>;
       },
       image: props => {
         const {node, state} = props;
