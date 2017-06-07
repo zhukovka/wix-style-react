@@ -3,6 +3,7 @@
 
 $gap: 6px;
 $double-gap: 12px;
+$material-gap: 8px;
 
 .root {
     position: relative;
@@ -219,6 +220,7 @@ $double-gap: 12px;
         }
         .input {
             @include FontLight();
+            padding: 0 $material-gap;
         }
         @include ThemeDefault($color: $D10, $borderColor: transparent, $backgroundColor: $D80);
         .bar {
