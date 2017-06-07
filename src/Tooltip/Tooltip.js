@@ -380,10 +380,16 @@ class Tooltip extends WixComponent {
   }
 
   _onTooltipContentEnter() {
+    if (this.props.showTrigger === 'custom') {
+      return;
+    }
     this.show();
   }
 
   _onTooltipContentLeave() {
+    if (this.props.hideTrigger === 'custom') {
+      return;
+    }
     this._onMouseLeave();
   }
 

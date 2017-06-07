@@ -46,6 +46,26 @@ describe('Tooltip', () => {
     });
   });
 
+  it('should hide tooltip when using custom triggers', () => {
+    const props = {..._props, hideTrigger: 'custom', showTrigger: 'custom'};
+    const driver = createDriver(<Tooltip {...props}>{children}</Tooltip>);
+    driver.mouseEnter();
+    return resolveIn(30)
+      .then(() => {
+        expect(driver.isShown()).toBeFalsy();
+        driver.setProps({...props, active: true});
+        return resolveIn(30);
+      })
+      .then(() => {
+        expect(driver.isShown()).toBeTruthy();
+        driver.setProps({...props, active: false});
+        return resolveIn(30);
+      })
+      .then(() => {
+        expect(driver.isShown()).toBeFalsy();
+      });
+  });
+
   it('should test inner component', () => {
     const dataHook = 'button_data_hook';
     const buttonContent = (
