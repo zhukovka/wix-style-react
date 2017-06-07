@@ -43,7 +43,7 @@ ButtonLayout.propTypes = {
   active: bool,
   children: any,
   disabled: bool,
-  height: oneOf(['small', 'medium', 'large']),
+  height: oneOf(['small', 'medium', 'large', 'x-large']),
   hover: bool,
   theme: oneOf([
     'transparent',

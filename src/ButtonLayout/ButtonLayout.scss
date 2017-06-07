@@ -51,7 +51,6 @@
     line-height: inherit;
 }
 
-
 .heightsmall {
     $height: 30px;
     height: $height;
@@ -89,9 +88,32 @@
     }
 }
 
+.heightx-large {
+    $height: 54px;
+    height: $height;
+    border-radius: $height / 2;
+    padding: 0px 29px;
+    font-size: 20px;
+
+    &.transparent {
+        padding: 0px 30px;
+    }
+
+    &.close-standard, &.close-dark, &.close-transparent {
+        $closeHeight: 26px;
+        height: $closeHeight;
+        width: $closeHeight;
+        border-radius: $closeHeight / 2;
+        padding: 0;
+    }
+}
+
 .fullblue,
 .icon-standard {
     @extend .t1_2;
+    &.heightx-large {
+        font-size: 20px;
+    }
     &.heightsmall {
       @extend .t3_2;
     }
@@ -112,6 +134,9 @@
 
 .fullpurple {
     @extend .t1_2;
+    &.heightx-large {
+        font-size: 20px;
+    }
     &.heightsmall {
       @extend .t3_2;
     }
@@ -122,6 +147,9 @@
 
 .fullgreen {
     @extend .t1_2;
+    &.heightx-large {
+        font-size: 20px;
+    }
     &.heightsmall {
       @extend .t3_2;
     }
@@ -132,6 +160,9 @@
 
 .fullred {
     @extend .t1_2;
+    &.heightx-large {
+        font-size: 20px;
+    }
     &.heightsmall {
       @extend .t3_2;
     }
@@ -142,6 +173,9 @@
 
 .emptygreen {
     @extend .t1_3;
+    &.heightx-large {
+        font-size: 20px;
+    }
     &.heightsmall {
       @extend .t3_3;
       color: $G10;
@@ -154,6 +188,9 @@
 
 .emptyred {
     @extend .t1_3;
+    &.heightx-large {
+        font-size: 20px;
+    }
     &.heightsmall {
       @extend .t3_3;
       color: $R00;
@@ -166,6 +203,9 @@
 
 .emptyblue {
     @extend .t1_3;
+    &.heightx-large {
+        font-size: 20px;
+    }
     &.heightsmall {
       @extend .t3_3;
     }
@@ -186,6 +226,9 @@
 
 .emptypurple {
     @extend .t1_3;
+    &.heightx-large {
+        font-size: 20px;
+    }
     &.heightsmall {
       @extend .t3_3;
       color: $P00;
@@ -199,6 +242,9 @@
 .close-transparent,
 .transparent {
     @extend .t1_2;
+    &.heightx-large {
+        font-size: 20px;
+    }
     &.heightsmall {
       @extend .t3_2;
     }
@@ -210,6 +256,9 @@
 .transparentblue,
 .icon-standardsecondary {
     @extend .t1_3;
+    &.heightx-large {
+        font-size: 20px;
+    }
     &.heightsmall {
       @extend .t3_3;
     }
@@ -224,6 +273,9 @@
 .icon-white,
 .whiteblue {
     @extend .t1_3;
+    &.heightx-large {
+        font-size: 20px;
+    }
     &.heightsmall {
       @extend .t3_3;
     }
@@ -235,6 +287,9 @@
 .whitebluesecondary,
 .icon-whitesecondary {
     @extend .t1_2;
+    &.heightx-large {
+        font-size: 20px;
+    }
     &.heightsmall {
       @extend .t3_2;
     }
@@ -258,6 +313,9 @@
 .fullgreen:hover, .fullgreen.hover,
 .emptygreen:hover, .emptygreen.hover {
     @extend .t1_2;
+    &.heightx-large {
+        font-size: 20px;
+    }
     &.heightsmall {
       @extend .t3_2;
     }
@@ -269,6 +327,9 @@
 .fullred:hover, .fullred.hover,
 .emptyred:hover, .emptyred.hover {
     @extend .t1_2;
+    &.heightx-large {
+        font-size: 20px;
+    }
     &.heightsmall {
       @extend .t3_2;
     }
@@ -285,6 +346,9 @@
 .transparentblue:hover, .transparentblue.hover,
 .whiteblue:hover, .whiteblue.hover {
     @extend .t1_2;
+    &.heightx-large {
+        font-size: 20px;
+    }
     &.heightsmall {
       @extend .t3_2;
     }
@@ -309,6 +373,9 @@
 .whiteblueprimary:hover, .whiteblueprimary.hover,
 .emptybluesecondary:hover, .emptybluesecondary.hover {
     @extend .t1_3;
+    &.heightx-large {
+        font-size: 20px;
+    }
     &.heightsmall {
       @extend .t3_3;
     }
@@ -320,6 +387,9 @@
 .transparent:hover, .transparent.hover,
 .close-transparent:hover, .close-transparent.hover {
     @extend .t1_2;
+    &.heightx-large {
+        font-size: 20px;
+    }
     &.heightsmall {
       @extend .t3_2;
     }
@@ -330,6 +400,9 @@
 .emptypurple:hover, .emptypurple.hover,
 .fullpurple:hover, .fullpurple.hover {
     @extend .t1_2;
+    &.heightx-large {
+        font-size: 20px;
+    }
     &.heightsmall {
       @extend .t3_2;
     }
@@ -353,6 +426,9 @@
 .whiteblue:active, .whiteblue.active,
 .emptyblue:active, .emptyblue.active {
     @extend .t1_2;
+    &.heightx-large {
+        font-size: 20px;
+    }
     &.heightsmall {
       @extend .t3_2;
     }
@@ -376,6 +452,9 @@
 .icon-whitesecondary:active, .icon-whitesecondary.active,
 .whitebluesecondary:active, .whitebluesecondary.active {
     @extend .t1_3;
+    &.heightx-large {
+        font-size: 20px;
+    }
     &.heightsmall {
       @extend .t3_3;
     }
@@ -386,6 +465,9 @@
 
 .emptybluesecondary:active, .emptybluesecondary.active {
     @extend .t1_3;
+    &.heightx-large {
+        font-size: 20px;
+    }
     &.heightsmall {
       @extend .t3_3;
     }
@@ -397,6 +479,9 @@
 .emptypurple:active, .emptypurple.active,
 .fullpurple:active, .fullpurple.active {
     @extend .t1_2;
+    &.heightx-large {
+        font-size: 20px;
+    }
     &.heightsmall {
       @extend .t3_2;
     }
@@ -408,6 +493,9 @@
 .fullgreen:active, .fullgreen.active,
 .emptygreen:active, .emptygreen.active {
     @extend .t1_2;
+    &.heightx-large {
+        font-size: 20px;
+    }
     &.heightsmall {
       @extend .t3_2;
     }
@@ -419,6 +507,9 @@
 .fullred:active, .fullred.active,
 .emptyred:active, .emptyred.active {
     @extend .t1_2;
+    &.heightx-large {
+        font-size: 20px;
+    }
     &.heightsmall {
       @extend .t3_2;
     }
@@ -430,6 +521,9 @@
 .transparent:active, .transparent.active,
 .close-transparent:active, .close-transparent.active {
     @extend .t1_2;
+    &.heightx-large {
+        font-size: 20px;
+    }
     &.heightsmall {
       @extend .t3_2;
     }
@@ -457,6 +551,9 @@
 .button.whiteblueprimary.disabled,
 .button.close-transparent.disabled {
     @extend .t1_2;
+    &.heightx-large {
+        font-size: 20px;
+    }
     &.heightsmall {
       @extend .t3_2;
     }
@@ -477,6 +574,9 @@
 .button.icon-whitesecondary.disabled,
 .button.whitebluesecondary.disabled {
     @extend .t1_4;
+    &.heightx-large {
+        font-size: 20px;
+    }
     &.heightsmall {
       @extend .t3_4;
     }

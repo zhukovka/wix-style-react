@@ -95,6 +95,7 @@ class ButtonStandard extends Component {
                 <RadioGroup.Radio value="small">Small</RadioGroup.Radio>
                 <RadioGroup.Radio value="medium">Regular</RadioGroup.Radio>
                 <RadioGroup.Radio value="large">Large</RadioGroup.Radio>
+                <RadioGroup.Radio value="x-large">x-large</RadioGroup.Radio>
               </RadioGroup>
             </div>
           </div>
