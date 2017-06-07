@@ -2,6 +2,7 @@ import React from 'react';
 import ReactTestUtils from 'react-dom/test-utils';
 import ReactDOM from 'react-dom';
 import Tooltip from './Tooltip';
+import last from 'lodash.last';
 
 const arrowDirectionToPlacement = {
   top: 'bottom',
@@ -24,7 +25,7 @@ const tooltipDriverFactory = ({element, wrapper}) => {
     getTooltipWrapper: () => document.body.querySelector('.tooltip'),
     getChildren: () => element.innerHTML,
     getPlacement: () => {
-      const arrowDirection = document.querySelectorAll('.arrow')[1].className.split(' ')[1];
+      const arrowDirection = last(document.querySelectorAll('.arrow')).className.split(' ')[1];
       return arrowDirectionToPlacement[arrowDirection];
     },
     getContent: () => {

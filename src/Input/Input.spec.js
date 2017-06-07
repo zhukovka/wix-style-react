@@ -30,6 +30,22 @@ describe('Input', () => {
       });
     });
 
+    describe('tooltipPlacement attribute', () => {
+      ['top', 'bottom', 'left', 'right'].forEach(placement => {
+        it(`should have a tooltip positioned to the ${placement}`, () => {
+          const driver = createDriver(<Input error errorMessage="I'm the error message" theme="amaterial" tooltipPlacement={placement}/>);
+          const dataHook = driver.getTooltipDataHook();
+          const wrapper = driver.getTooltipElement();
+          const tooltipDriver = tooltipTestkitFactory({wrapper, dataHook});
+          tooltipDriver.mouseEnter();
+
+          return resolveIn(500).then(() => {
+            expect(tooltipDriver.getPlacement()).toBe(placement);
+          });
+        });
+      });
+    });
+
     describe('onTooltipShow attribute (only for amaterial theme for now)', () => {
       it('should be called when error tooltip is active', () => {
         const onTooltipShow = sinon.spy();
