@@ -186,6 +186,27 @@ describe('Tooltip', () => {
     });
   });
 
+  describe('placement attribute', () => {
+    it('should be top by default', () => {
+      const driver = createDriver(<Tooltip {...{..._props}}>{children}</Tooltip>);
+      driver.mouseEnter();
+
+      return resolveIn(30).then(() => {
+        expect(driver.getPlacement()).toBe('top');
+      });
+    });
+
+    ['top', 'bottom', 'left', 'right'].forEach(placement => {
+      it(`should be ${placement}`, () => {
+        const driver = createDriver(<Tooltip {...{..._props}} placement={placement}>{children}</Tooltip>);
+        driver.mouseEnter();
+
+        return resolveIn(30).then(() => {
+          expect(driver.getPlacement()).toBe(placement);
+        });
+      });
+    });
+  });
 
   describe('testkit', () => {
     it('should exist', () => {

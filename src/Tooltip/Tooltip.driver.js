@@ -3,6 +3,13 @@ import ReactTestUtils from 'react-dom/test-utils';
 import ReactDOM from 'react-dom';
 import Tooltip from './Tooltip';
 
+const arrowDirectionToPlacement = {
+  top: 'bottom',
+  bottom: 'top',
+  left: 'right',
+  right: 'left'
+};
+
 const tooltipDriverFactory = ({element, wrapper}) => {
   return {
     isShown: () => !!document.body.querySelector('.tooltip'),
@@ -16,6 +23,10 @@ const tooltipDriverFactory = ({element, wrapper}) => {
     hasLightTheme: () => !!document.body.querySelector('.light'),
     getTooltipWrapper: () => document.body.querySelector('.tooltip'),
     getChildren: () => element.innerHTML,
+    getPlacement: () => {
+      const arrowDirection = document.querySelectorAll('.arrow')[1].className.split(' ')[1];
+      return arrowDirectionToPlacement[arrowDirection];
+    },
     getContent: () => {
       let content = document.body.querySelector('.tooltip');
       while (content.children.length > 0) {
