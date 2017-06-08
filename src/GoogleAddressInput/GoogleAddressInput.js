@@ -60,7 +60,7 @@ class GoogleAddressInput extends React.Component {
         <InputWithOptions
           ref={autocomplete => this.autocomplete = autocomplete}
           {...this.props}
-          onChange={this.onChange}
+          onInput={this.onChange}
           onBlur={this.onBlur}
           onFocus={this.onFocus}
           onSelect={option => this.onSet(option.value)}
