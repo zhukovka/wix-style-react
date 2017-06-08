@@ -35,7 +35,6 @@ $grid-row-margin-bottom: 30px;
 
 .stretch_vertically_row {
 	display: flex;
-	flex-wrap: wrap;
 }
 
 .stretch_vertically_row > [class*='col-'] {
