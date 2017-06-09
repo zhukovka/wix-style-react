@@ -18,6 +18,12 @@ const styles = {
 
 export default () =>
   <div style={styles.header}>
+    <div style={styles.text}>X-Small
+      <div style={styles.switch}>
+        <ToggleSwitch size="x-small"/>
+      </div>
+    </div>
+
     <div style={styles.text}>Small
       <div style={styles.switch}>
         <ToggleSwitch size="small"/>

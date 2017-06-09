@@ -4,13 +4,14 @@
 
 | method | arguments | returned value | description |
 |--------|-----------|----------------|-------------|
-| given.size | oneOf['small', 'large'] | driver | Sets the size of the ToggleSwitch |
+| given.size | oneOf['x-small', 'small', 'large'] | driver | Sets the size of the ToggleSwitch |
 | given.checked | bool | driver | Sets the 'checked' property of the ToggleSwitch |
 | given.onChange | func | driver | Sets the change listener of the ToggleSwitch |
 | when.created | - | driver | Renders ToggleSwitch and returns its driver |
 | when.changed | - | driver | Triggers 'change' event of the ToggleSwitch |
 | get.element | - | node | Returns DOM node of the ToggleSwitch |
 | get.checked | - | bool | Returns 'checked' value of the ToggleSwitch |
+| get.isXSmall | - | bool | Returns true if the ToggleSwitch is x-small |
 | get.isSmall | - | bool | Returns true if the ToggleSwitch is small |
 | get.isLarge | - | bool | Returns true if the ToggleSwitch is large |
 
@@ -54,6 +55,7 @@
 | element | - | element | Returns the ToggleSwitch element |
 | click | - | - | Toggles the switch |
 | checked | - | bool | Returns true if ToggleSwitch is checked |
+| isXSmall | - | bool | Returns true if ToggleSwitch is x-small |
 | isSmall | - | bool | Returns true if ToggleSwitch is small |
 | isLarge | - | bool | Returns true if ToggleSwitch is large |
 

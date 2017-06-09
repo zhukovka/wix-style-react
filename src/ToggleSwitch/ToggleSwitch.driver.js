@@ -38,7 +38,8 @@ export default class ToggleSwitchDriver {
   get = {
     element: () => this.wrapper,
     checked: () => this.wrapper.find('input').props().checked,
+    isXSmall: () => this.wrapper.hasClass('toggleSwitchXSmall'),
     isSmall: () => this.wrapper.hasClass('toggleSwitchSmall'),
-    isLarge: () => !this.get.isSmall()
+    isLarge: () => !this.get.isSmall() && !this.get.isXSmall()
   }
 }

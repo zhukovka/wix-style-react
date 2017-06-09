@@ -8,4 +8,4 @@
 |----------|----------|--------------|------------|-------------|
 | checked | bool | false | - | |
 | onChange | func | - | - | Callback function when user changes the value of the component |
-| size | small, large | large | - | Specifies toggle size |
+| size | x-small, small, large | large | - | Specifies toggle size |

@@ -67,6 +67,12 @@ $transition-speed:.3s;
         }
     }
 
+    .toggleSwitchXSmall {
+        .innerLabel {
+            left: 14px;
+        }
+    }
+
     .toggleSwitch input[type=checkbox]:checked + .outerLabel {
         .innerLabel {
             left:   1px;
@@ -107,4 +113,21 @@ $transition-speed:.3s;
     input[type=checkbox]:checked + .outerLabel .innerLabel {
         left: 17px;
     }
+}
+
+.toggleSwitchXSmall {
+  .outerLabel {
+    width: 28px;
+    height: 15px;
+  }
+  .innerLabel {
+    width: 13px;
+    height: 13px;
+  }
+  .toggleActive, .toggleInactive {
+    display: none !important;
+  }
+  input[type=checkbox]:checked + .outerLabel .innerLabel {
+    left: 14px;
+  }
 }

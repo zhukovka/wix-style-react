@@ -4,8 +4,19 @@ import eyes from 'eyes.it';
 describe('toggle switch page', () => {
   const storyUrl = getStoryUrl('Core', 'ToggleSwitch');
 
+  const xSmallSwitchDataHook = 'controlled-switch-x-small';
   const smallSwitchDataHook = 'controlled-switch-small';
   const largeSwitchDataHook = 'controlled-switch-large';
+
+  eyes.it('should render x-small toggle switch', () => {
+    const driver = toggleSwitchTestkitFactory({dataHook: xSmallSwitchDataHook});
+    browser.get(storyUrl);
+
+    waitForVisibilityOf(driver.element(), 'Cant find ToggleSwitch')
+      .then(() => {
+        expect(driver.isXSmall()).toBe(true);
+      });
+  });
 
   eyes.it('should render small toggle switch', () => {
     const driver = toggleSwitchTestkitFactory({dataHook: smallSwitchDataHook});

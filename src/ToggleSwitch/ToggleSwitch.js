@@ -17,7 +17,8 @@ class ToggleSwitch extends WixComponent {
     const {checked, onChange, size} = this.props;
     const id = this.id;
     const rootClassName = classnames(styles.toggleSwitch, {
-      [styles.toggleSwitchSmall]: size === 'small'
+      [styles.toggleSwitchSmall]: size === 'small',
+      [styles.toggleSwitchXSmall]: size === 'x-small'
     });
 
     return (
@@ -42,7 +43,7 @@ ToggleSwitch.displayName = 'ToggleSwitch';
 ToggleSwitch.propTypes = {
   checked: PropTypes.bool.isRequired,
   onChange: PropTypes.func.isRequired,
-  size: PropTypes.oneOf(['small', 'large'])
+  size: PropTypes.oneOf(['x-small', 'small', 'large'])
 };
 
 ToggleSwitch.defaultProps = {

@@ -38,6 +38,15 @@ class ControlledToggleSwitch extends Component {
 
 export default () =>
   <div style={styles.header}>
+    <div style={styles.text}>X-Small
+      <div style={styles.switch}>
+        <ControlledToggleSwitch
+          dataHook="controlled-switch-x-small"
+          size="x-small"
+        />
+      </div>
+    </div>
+
     <div style={styles.text}>Small
       <div style={styles.switch}>
         <ControlledToggleSwitch
@@ -58,6 +67,12 @@ export default () =>
     </div>
 
     <div className="rtl" style={styles.header}>
+      <div style={styles.text}>X-Small rtl
+        <div style={styles.switch}>
+          <ControlledToggleSwitch size="x-small"/>
+        </div>
+      </div>
+
       <div style={styles.text}>Small rtl
         <div style={styles.switch}>
           <ControlledToggleSwitch size="small"/>
