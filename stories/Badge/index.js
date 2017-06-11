@@ -1,9 +1,9 @@
 import React from 'react';
 import {storiesOf} from '@kadira/storybook';
-import Markdown from '../utils/Components/Markdown';
+import AutoDocs from '../utils/Components/AutoDocs';
 import TabbedView from '../utils/Components/TabbedView';
 import CodeExample from '../utils/Components/CodeExample';
-import Readme from '../../src/Badge/README.md';
+import BadgeSource from '!raw!../../src/Badge/Badge';
 
 import DefaultBadgeExample from './DefaultBadge';
 import DefaultBadgeExampleRaw from '!raw!./DefaultBadge';
@@ -18,17 +18,21 @@ storiesOf('Core', module)
   .add('Badge', () => (
     <TabbedView tabs={['API Documentation', 'TestKits Documentation']}>
       <div>
-        <Markdown source={Readme}/>
+        <AutoDocs source={BadgeSource}/>
+
         <CodeExample title="Default" code={DefaultBadgeExampleRaw}>
           <DefaultBadgeExample/>
         </CodeExample>
+
         <CodeExample title="Appearance" code={AppearanceBadgeExampleRaw}>
           <AppearanceBadgeExample/>
         </CodeExample>
+
         <CodeExample title="Alignment" code={AlignmentBadgeExampleRaw}>
           <AlignmentBadgeExample/>
         </CodeExample>
       </div>
+
       <div>TODO: please implemnet me</div>
     </TabbedView>
   ));

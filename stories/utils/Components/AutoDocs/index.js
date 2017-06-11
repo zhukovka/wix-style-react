@@ -33,7 +33,7 @@ const renderPropType = (type = {}) => {
     custom: () => wrap('custom')(),
 
     enum: value => wrap('oneOf')(value.map((v, i, allValues) =>
-      <span key={i}>{v.value}{allValues[i + 1] && ', '}</span>)),
+      <span key={i}><code>{v.value}</code>{allValues[i + 1] && ', '}</span>)),
 
     union: value => wrap('oneOfType')(value.map((v, i, allValues) =>
       <span key={i}>
@@ -73,9 +73,9 @@ const AutoDocs = ({source = ''}) => {
     <tr key={index}>
       <td>{prop.name || '-'}</td>
       <td>{renderPropType(prop.type)}</td>
-      <td><Markdown source={`\`${prop.defaultValue && prop.defaultValue.value}\``}/></td>
-      <td>{prop.required ? 'Required' : '-'}</td>
-      <td><Markdown source={prop.description}/></td>
+      <td>{prop.defaultValue && prop.defaultValue.value && <Markdown source={`\`${prop.defaultValue.value}\``}/>}</td>
+      <td>{prop.required && 'Required' }</td>
+      <td>{prop.description && <Markdown source={prop.description}/>}</td>
     </tr>;
 
   return !shouldHideForE2E && (

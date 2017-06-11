@@ -5,6 +5,9 @@ import {node, oneOf, string} from 'prop-types';
 import typography, {convertFromUxLangToCss} from '../Typography';
 import styles from './Badge.scss';
 
+/**
+  * General purpose badge component to indicate important (or not so) things
+  */
 const Badge = ({children, type, appearance, alignment, dataHook}) => {
   const className = classnames(
     styles.badge,
@@ -12,6 +15,7 @@ const Badge = ({children, type, appearance, alignment, dataHook}) => {
     styles[alignment],
     typography[convertFromUxLangToCss(appearance)
   ]);
+
   return (
     <span className={className} data-hook={dataHook}>
       {children}
@@ -20,9 +24,16 @@ const Badge = ({children, type, appearance, alignment, dataHook}) => {
 };
 
 Badge.propTypes = {
+  /** node to render into badge */
   children: node.isRequired,
+
+  /** define purpose of a badge, different color for each type */
   type: oneOf(['default', 'primary', 'success', 'info', 'warning', 'danger']).isRequired,
+
+  /** set `vertical-align` */
   alignment: oneOf(['top', 'bottom', 'middle']).isRequired,
+
+  /** choose appearance of typography. For Typography examples see storybook **Common** -> **Typography** */
   appearance: oneOf([
     'H0', 'H1', 'H2', 'H2.1', 'H3', 'H4',
     'T1', 'T1.1', 'T1.2', 'T1.3', 'T1.4',
@@ -31,6 +42,8 @@ Badge.propTypes = {
     'T4', 'T4.1', 'T4.2', 'T4.3',
     'T5', 'T5.1'
   ]).isRequired,
+
+  /** set one to find component in testing environment */
   dataHook: string
 };
 
