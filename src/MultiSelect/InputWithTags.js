@@ -21,10 +21,11 @@ class InputWithTags extends React.Component {
   }
 
   render() {
-    const {tags, onRemoveTag, placeholder, error, ...inputProps} = this.props;
+    const {tags, onRemoveTag, placeholder, error, disabled, ...inputProps} = this.props;
 
     const className = classNames({
       [styles.tagsContainer]: true,
+      [styles.disabled]: disabled,
       [styles.error]: error,
     });
 
@@ -73,6 +74,7 @@ InputWithTags.propTypes = {
   placeholder: PropTypes.string,
   onFocus: PropTypes.func,
   autoFocus: PropTypes.bool,
+  disabled: PropTypes.bool,
   error: PropTypes.bool
 };
 
