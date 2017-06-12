@@ -15,7 +15,7 @@ let counter = 3;
 const items = [
   { type: 'link', to: '//wix.com', title: 'link #0_1' },
   { type: 'link', to: '//wix.com', title: 'link #0_2', badge: true },
-  { type: 'menu', title: 'Sub Menu #1', items: [
+  { type: 'menu', title: 'Sub Menu #1', badge: true, items: [
     { type: 'link', to: '//wix.com', title: 'link #1_1' },
     { type: 'link', to: '//wix.com', title: 'link #1_2' },
     { type: 'link', to: '//wix.com', title: 'link #1_3' }
@@ -73,7 +73,7 @@ class ExampleSideMenuDrill extends React.Component {
     const showCategory = menu.title !== 'Sub Menu #3';
 
     return (
-      <SideMenuDrill.SubMenu key={menu.title} menuKey={menu.title} title={menu.title} showCategory={showCategory}>
+      <SideMenuDrill.SubMenu key={menu.title} menuKey={menu.title} title={menu.title} showCategory={showCategory} withBadge={menu.badge}>
         <SideMenu.Header>
           <div onClick={() => console.log('Header clicked')}>
             <TrashIcon size="5em"/>

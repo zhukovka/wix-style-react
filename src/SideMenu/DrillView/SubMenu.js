@@ -6,10 +6,10 @@ import NavigationBackLink from '../core/navigation/BackLink';
 import NavigationCategory from '../core/navigation/Category';
 import SideMenuDrill from './index';
 
-const SubMenu = ({children, title, isOpen, isActive, onSelectHandler, onBackHandler, backLabel, showCategory}) => {
+const SubMenu = ({children, title, isOpen, isActive, onSelectHandler, onBackHandler, backLabel, showCategory, withBadge}) => {
   if (!isOpen) {
     return (
-      <NavigationLink isActive={isActive} onClick={onSelectHandler} withArrow>
+      <NavigationLink isActive={isActive} onClick={onSelectHandler} withBadge={withBadge} withArrow>
         {title}
       </NavigationLink>
     );
@@ -44,7 +44,8 @@ SubMenu.defaultProps = {
   onSelectHandler: () => {},
   onBackHandler: () => {},
   backLabel: 'Back',
-  showCategory: true
+  showCategory: true,
+  withBadge: false
 };
 
 SubMenu.propTypes = {
@@ -56,6 +57,7 @@ SubMenu.propTypes = {
   onBackHandler: func,
   backLabel: string,
   showCategory: bool,
+  withBadge: bool,
   children: node.isRequired
 };
 
