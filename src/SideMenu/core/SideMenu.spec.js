@@ -98,4 +98,21 @@ describe('SideMenu', () => {
 
     expect(spy).toHaveBeenCalled();
   });
+
+
+
+  it('should allow to have a badge', () => {
+    const menu = {
+      navigation: [
+        <SideMenu.NavigationLink key="0"/>,
+        <SideMenu.NavigationLink key="1" withBadge/>,
+        <SideMenu.NavigationLink key="2"/>
+      ]
+    };
+
+    const driver = createComponent(menu);
+    expect(driver.isLinkBadgeVisibleByIndex(0)).toBe(false);
+    expect(driver.isLinkBadgeVisibleByIndex(1)).toBe(true);
+    expect(driver.isLinkBadgeVisibleByIndex(2)).toBe(false);
+  });
 });

@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
 import styles from './styles.scss';
-import {DataPickerArrow} from '../../../Icons/dist';
+import DataPickerArrow from '../../../Icons/dist/components/DataPickerArrow';
 
 const LinkLayout = ({children, isDiminishedHover, isActive, withArrow, ...rest}) =>
   <span
@@ -17,6 +17,10 @@ const LinkLayout = ({children, isDiminishedHover, isActive, withArrow, ...rest})
     {children}
     {withArrow && <span className={styles.linkArrow}><DataPickerArrow/></span>}
   </span>;
+
+LinkLayout.defaultProps = {
+  withArrow: false
+};
 
 LinkLayout.propTypes = {
   children: PropTypes.node,

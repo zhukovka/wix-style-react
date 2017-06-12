@@ -8,6 +8,11 @@
   background: #375b74;
 }
 
+.in-flex {
+  height: auto;
+  flex-grow: 1;
+}
+
 .logo {
   display: block;
   padding: 0;

@@ -12,4 +12,3 @@ Navigation.propTypes = {
 };
 
 export default Navigation;
-

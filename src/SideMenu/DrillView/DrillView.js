@@ -1,9 +1,8 @@
 import React, {Children} from 'react';
-import {string, node} from 'prop-types';
+import {string, node, bool} from 'prop-types';
 import WixComponent from '../../WixComponent';
-import SideMenu from '../index';
-import {SlideAnimation} from '../../Animations';
-import {SlideDirection} from '../../Animations/SlideAnimation';
+import SideMenu from '../core/SideMenu';
+import SlideAnimation, {SlideDirection} from '../../Animations/SlideAnimation';
 import styles from './DrillView.scss';
 
 class SideMenuDrill extends WixComponent {
@@ -133,7 +132,7 @@ class SideMenuDrill extends WixComponent {
 
   processChildren(menu, state, parentMenuKey) {
     const childrenClone = Children.map(menu.props.children, child => {
-      if (child.props && child.props.children) {
+      if (child && child.props && child.props.children) {
         const menuKey = menu.props.menuKey || parentMenuKey;
         return this.processChildren(child, state, menuKey);
       }
@@ -171,7 +170,7 @@ class SideMenuDrill extends WixComponent {
     const menuB = menuBId && menus[menuBId];
 
     return (
-      <SideMenu dataHook="drill-view">
+      <SideMenu dataHook="drill-view" inFlex={this.props.inFlex}>
         <div className={styles.drillViewContainer}>
           <SlideAnimation direction={this.state.slideDirection} animateAppear={false}>
             { showMenuA ? this.renderMenu(menuA) : null }
@@ -186,10 +185,12 @@ class SideMenuDrill extends WixComponent {
 }
 
 SideMenuDrill.defaultProps = {
+  inFlex: false,
   menuKey: 'root'
 };
 
 SideMenuDrill.propTypes = {
+  inFlex: bool,
   menuKey: string,
   children: node
 };

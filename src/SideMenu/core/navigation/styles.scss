@@ -118,3 +118,18 @@ $padding-vertical: 14px;
   line-height: 14px;
   padding: $padding-vertical $padding-horizontal;
 }
+
+.linkBadge {
+  &::before {
+    content: '';
+    vertical-align: top;
+    display: inline-block;
+    position: relative;
+    height: 0.5em;
+    left: 0.3em;
+    top: 0.3em;
+    width: 0.5em;
+    background: red;
+    border-radius: 50%;
+  }
+}

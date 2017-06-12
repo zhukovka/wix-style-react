@@ -1,14 +1,17 @@
 import React, {Children} from 'react';
 import {node, string, bool, func} from 'prop-types';
-import SideMenu from '../index';
+import Navigation from '../core/navigation';
+import NavigationLink from '../core/navigation/Link';
+import NavigationBackLink from '../core/navigation/BackLink';
+import NavigationCategory from '../core/navigation/Category';
 import SideMenuDrill from './index';
 
 const SubMenu = ({children, title, isOpen, isActive, onSelectHandler, onBackHandler, backLabel, showCategory}) => {
   if (!isOpen) {
     return (
-      <SideMenu.NavigationLink isActive={isActive} onClick={onSelectHandler} withArrow>
+      <NavigationLink isActive={isActive} onClick={onSelectHandler} withArrow>
         {title}
-      </SideMenu.NavigationLink>
+      </NavigationLink>
     );
   }
 
@@ -16,11 +19,11 @@ const SubMenu = ({children, title, isOpen, isActive, onSelectHandler, onBackHand
     if (child.type === SideMenuDrill.Navigation) {
       return (
         <div>
-          <SideMenu.NavigationBackLink onBackHandler={onBackHandler}>{backLabel}</SideMenu.NavigationBackLink>
-          {showCategory && <SideMenu.NavigationCategory>{title}</SideMenu.NavigationCategory>}
-          <SideMenu.Navigation>
+          <NavigationBackLink onBackHandler={onBackHandler}>{backLabel}</NavigationBackLink>
+          {showCategory && <NavigationCategory>{title}</NavigationCategory>}
+          <Navigation>
             {child.props.children}
-          </SideMenu.Navigation>
+          </Navigation>
         </div>
       );
     }

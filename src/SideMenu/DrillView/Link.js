@@ -1,11 +1,11 @@
 import React from 'react';
 import {node, bool} from 'prop-types';
-import SideMenu from '../index';
+import NavigationLinkLayout from '../core/navigation/LinkLayout';
 
 const Link = ({children, isActive, ...rest}) => (
-  <SideMenu.NavigationLinkLayout isActive={isActive} {...rest}>
+  <NavigationLinkLayout isActive={isActive} {...rest}>
     {children}
-  </SideMenu.NavigationLinkLayout>
+  </NavigationLinkLayout>
 );
 
 Link.defaultProps = {

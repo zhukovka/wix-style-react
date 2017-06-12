@@ -11,6 +11,7 @@ const sideMenuDriverFactory = ({element}) => {
   const getNavigationBackLink = () => element.querySelector('[data-hook=menu-navigation-back-link]');
   const getPromotion = () => element.querySelector('[data-hook=menu-promotion]');
   const getFooter = () => element.querySelector('[data-hook=menu-footer]');
+  const getBadge = link => link.querySelector('[data-hook=menu-navigation-badge]');
 
   return {
     exists: () => !!element,
@@ -23,6 +24,7 @@ const sideMenuDriverFactory = ({element}) => {
     navigationLinks: () => getNavigationLinks(),
     navigationInnerLinks: () => getNavigationLinkWrappers(),
     isLinkActiveByIndex: index => getNavigationLinkWrappers()[index].classList.contains(navigationStyles.linkActive),
+    isLinkBadgeVisibleByIndex: index => !!getBadge(getNavigationLinkWrappers()[index]),
     navigationSeparators: () => getNavigationSeparators(),
     navigationCategories: () => getNavigationCategories(),
     navigationCategoryContent: index => getNavigationCategories()[index].textContent,

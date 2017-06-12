@@ -49,6 +49,7 @@ Make sure you wrap the internal `Link`s and `SubMenu`s with a `Navigation` compo
 | propName          | propType | defaultValue | isRequired | description                                                                        |
 | -                 | -        | -            | -          | -                                                                                  |
 | menuKey           | string   | root         | -          | A unique key for the menu                                                          |
+| inFlex            | bool     | false        | -          | Is in flex container (different styling to handle a Safari bug)                    |
 | children          | node     | -            | -          | A list of navigation items of types `SideMenuDrill.Link`, `SideMenuDrill.SubMenu`  |
 
 ## Components
