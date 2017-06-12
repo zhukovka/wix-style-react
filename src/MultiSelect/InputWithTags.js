@@ -43,7 +43,7 @@ class InputWithTags extends React.Component {
             ref={input => this.input = input}
             placeholder={tags.length === 0 ? placeholder : ''}
             {...desiredProps}
-            width="100px"
+            disabled={disabled}
             onChange={e => {
               this.setState({inputValue: e.target.value});
               desiredProps.onChange && desiredProps.onChange(e);

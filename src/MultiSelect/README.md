@@ -15,6 +15,7 @@
 | tags | array of objects | - | + | The tags. tags are just set of selected suggestions|
 | placeholder | string | - | - | the placeholder for the input|
 | id | string or number | '' | - | An identifier of the component |
+| disabled | bool | false | - | When set to true this component is disabled |
 | predicate | func | () => true | - | Callback predicate for the filtering options function |
 | fixedHeader | node | - | - | A fixed header to the list |
 | fixedFooter | node | - | - | A fixed footer to the list |
