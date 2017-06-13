@@ -3,8 +3,23 @@ import {createDriverFactory} from '../test-common';
 import richTextAreaDriverFactory from './RichTextArea.driver';
 import RichTextArea from './RichTextArea';
 
+const mockGetSelection = () => {
+  const original = window.getSelection;
+  const fn = () => ({});
+  fn.restore = () => window.getSelection = original;
+  window.getSelection = fn;
+};
+
 describe('RichTextArea', () => {
   let currentValue;
+
+  beforeEach(() => {
+    mockGetSelection();
+  });
+
+  afterEach(() => {
+    window.getSelection.restore();
+  });
 
   it('should render value as text', () => {
     const text = 'text content';

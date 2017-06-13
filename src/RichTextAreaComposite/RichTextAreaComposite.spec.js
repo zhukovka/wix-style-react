@@ -7,7 +7,24 @@ import {richTextAreaCompositeTestkitFactory} from '../../testkit';
 import {richTextAreaCompositeTestkitFactory as enzymeRichTextAreaCompositeTestkitFactory} from '../../testkit/enzyme';
 import {mount} from 'enzyme';
 
+const mockGetSelection = () => {
+  const original = window.getSelection;
+  const fn = () => ({});
+  fn.restore = () => window.getSelection = original;
+  window.getSelection = fn;
+};
+
+
 describe('RichTextAreaComposite', () => {
+
+  beforeEach(() => {
+    mockGetSelection();
+  });
+
+  afterEach(() => {
+    window.getSelection.restore();
+  });
+
   describe('testkit', () => {
     it('should exist', () => {
       const div = document.createElement('div');

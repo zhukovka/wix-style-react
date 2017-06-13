@@ -119,7 +119,7 @@
     "react-onclickoutside": "^5.7.1",
     "react-remarkable": "^1.1.1",
     "react-transition-group": "^1.1.3",
-    "slate": "^0.16.25"
+    "slate": "^0.20.3"
   },
   "jest": {
     "moduleNameMapper": {
