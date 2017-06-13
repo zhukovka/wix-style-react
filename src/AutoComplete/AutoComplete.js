@@ -14,7 +14,8 @@ class AutoComplete extends InputWithOptions {
 
   dropdownAdditionalProps() {
     const {options, predicate} = this.props;
-    return {options: options.filter(predicate)};
+    const filterFunc = this.state.isEditing ? predicate : () => true;
+    return {options: options.filter(filterFunc)};
   }
 }
 

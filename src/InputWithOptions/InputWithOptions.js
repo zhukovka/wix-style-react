@@ -18,7 +18,8 @@ class InputWithOptions extends WixComponent {
     this.state = {
       inputValue: '',
       showOptions: false,
-      lastOptionsShow: 0
+      lastOptionsShow: 0,
+      isEditing: false
     };
 
     this._onSelect = this._onSelect.bind(this);
@@ -150,6 +151,7 @@ class InputWithOptions extends WixComponent {
   }
 
   _onFocus() {
+    this.setState({isEditing: false});
     this.showOptions();
     if (this.props.onFocus) {
       this.props.onFocus();
@@ -157,6 +159,7 @@ class InputWithOptions extends WixComponent {
   }
 
   _onKeyDown(event) {
+    this.setState({isEditing: true});
     if (!this.dropdownLayout._onKeyDown(event)) {
       switch (event.key) {
         case 'Enter':
