@@ -21,7 +21,8 @@ class ExamplePopoverMenu extends Component {
       {iconName: 'PenOutline', text: 'Edit'},
       {iconName: 'VisibilityHidden', text: 'Hide'},
       {iconName: 'Trash3', text: 'Delete'}
-    ]
+    ],
+    buttonTheme: 'icon-greybackground',
   };
 
   addRow = () => {
@@ -84,6 +85,21 @@ class ExamplePopoverMenu extends Component {
           </div>
 
           <div className={styles.option}>
+            <Label>Button Theme</Label>
+            <div className={styles.flex}>
+              <RadioGroup
+                display="horizontal"
+                value={this.state.buttonTheme}
+                onChange={buttonTheme => this.setState({buttonTheme})}
+                >
+                <RadioGroup.Radio value="icon-greybackground">Icon Grey Background</RadioGroup.Radio>
+                <RadioGroup.Radio value="icon-white">Icon White</RadioGroup.Radio>
+                <RadioGroup.Radio value="icon-whitesecondary">Icon White Secondary</RadioGroup.Radio>
+              </RadioGroup>
+            </div>
+          </div>
+
+          <div className={styles.option}>
             <Label>Text</Label>
             <div className={styles.flex}>
               <PopoverMenuBuilder
@@ -103,6 +119,7 @@ class ExamplePopoverMenu extends Component {
               size={this.state.size}
               placement={this.state.placement}
               onChange={this.props.onChange}
+              buttonTheme={this.state.buttonTheme}
             />
           </div>
         </div>

@@ -10,12 +10,14 @@ class PopoverMenu extends WixComponent {
 
   static propTypes = {
     size: Tooltip.propTypes.size,
-    placement: Tooltip.propTypes.placement
+    placement: Tooltip.propTypes.placement,
+    buttonTheme: Button.propTypes.theme,
   };
 
   static defaultProps = {
     size: 'normal',
-    placement: 'top'
+    placement: 'top',
+    buttonTheme: 'icon-greybackground',
   };
 
   render() {
@@ -52,7 +54,7 @@ class PopoverMenu extends WixComponent {
         <Button
           type="button"
           height="medium"
-          theme="icon-greybackground"
+          theme={this.props.buttonTheme}
           >
           <Dots size="12px"/>
         </Button>

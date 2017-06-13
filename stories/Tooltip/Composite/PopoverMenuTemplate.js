@@ -31,7 +31,7 @@ class PopoverMenuTemplate extends Component {
 
   getComponent() {
     return (
-      <PopoverMenu size={this.props.size} placement={this.props.placement}>
+      <PopoverMenu size={this.props.size} placement={this.props.placement} buttonTheme={this.props.buttonTheme}>
         {
           this.props.menuItems.filter(menuItem => menuItem.iconName).map((menuItem, i) => (
             <PopoverMenuItem
