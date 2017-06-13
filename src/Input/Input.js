@@ -168,7 +168,7 @@ class Input extends Component {
   };
 
   _onChange = e => {
-    if (this.props.type === 'number' && !(/^\d*$/.test(e.target.value))) {
+    if (this.props.type === 'number' && !(/^[\d.,\-+]*$/.test(e.target.value))) {
       return;
     }
 
