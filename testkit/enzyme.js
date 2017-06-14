@@ -125,3 +125,8 @@ export const imageViewerTestkitFactory = enzymeTestkitFactoryCreator(imageViewer
 import textDriverFactory from '../src/Text/Text.driver';
 export const textTestkitFactory = enzymeTestkitFactoryCreator(textDriverFactory);
 
+import sideMenuDriverFactory from '../src/SideMenu/core/SideMenu.driver';
+export const sideMenuTestkitFactory = enzymeTestkitFactoryCreator(sideMenuDriverFactory);
+
+import sideMenuDrillDriverFactory from '../src/SideMenu/DrillView/DrillView.driver';
+export const sideMenuDrillTestkitFactory = enzymeTestkitFactoryCreator(sideMenuDrillDriverFactory);

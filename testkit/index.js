@@ -120,4 +120,10 @@ export const imageViewerTestkitFactory = testkitFactoryCreator(imageViewerDriver
 import textDriverFactory from '../src/Text/Text.driver';
 export const textTestkitFactory = testkitFactoryCreator(textDriverFactory);
 
+import sideMenuDriverFactory from '../src/SideMenu/core/SideMenu.driver';
+export const sideMenuTestkitFactory = testkitFactoryCreator(sideMenuDriverFactory);
+
+import sideMenuDrillDriverFactory from '../src/SideMenu/DrillView/DrillView.driver';
+export const sideMenuDrillTestkitFactory = testkitFactoryCreator(sideMenuDrillDriverFactory);
+
 export {toastTestkitFactory} from '../src/Toast/testkit/Toast';
