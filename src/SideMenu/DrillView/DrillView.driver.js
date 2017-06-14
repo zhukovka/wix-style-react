@@ -1,5 +1,5 @@
 import sideMenuDriverFactory from '../core/SideMenu.driver';
-import styles from 'DrillView.scss';
+import styles from './DrillView.scss';
 
 const drillViewDriverFactory = ({element}) => {
   const createMenuDriver = menuElement => sideMenuDriverFactory({element: menuElement});
