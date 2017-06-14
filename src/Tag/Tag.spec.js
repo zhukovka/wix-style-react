@@ -37,6 +37,11 @@ describe('Tag', () => {
     expect(driver.isRemovable()).toBeFalsy();
   });
 
+  it('should have not remove button if disabled is true', () => {
+    const driver = createDriver(<Tag id={id} disabled>{label}</Tag>);
+    expect(driver.isRemovable()).toBeFalsy();
+  });
+
   it('should have disabled class if disabled is true', () => {
     const driver = createDriver(<Tag id={id} disabled>{label}</Tag>);
     expect(driver.isDisabled()).toBeTruthy();
@@ -47,17 +52,6 @@ describe('Tag', () => {
 
     driver.removeTag();
     expect(onRemove).toBeCalledWith(id);
-  });
-
-  it('should not call onRemove function on remove when Tag is disabled', () => {
-    const onRemove = jest.fn();
-
-    const driver = createDriver(<Tag id={id} disabled onRemove={onRemove}>{label}</Tag>);
-
-    driver.removeTag();
-
-    expect(driver.isDisabled()).toBeTruthy();
-    expect(onRemove).toHaveBeenCalledTimes(0);
   });
 
   it('should not display thumb by default', () => {

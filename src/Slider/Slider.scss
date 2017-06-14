@@ -1,3 +1,4 @@
+@import '../common';
 
 :global {
   @import 'rc-slider/assets/index';
@@ -8,14 +9,14 @@
     $borderRadius: 10px;
 
     :global(.rc-slider-rail) {
-        background-color: #DAEFFE;
+        background-color: $B40;
         border-radius: 5px;
         height: $height;
         border-radius: $borderRadius;
     }
 
     :global(.rc-slider-track) {
-        background-color: #3899EC;
+        background-color: $B10;
         height: $height;
         border-radius: $borderRadius;
     }

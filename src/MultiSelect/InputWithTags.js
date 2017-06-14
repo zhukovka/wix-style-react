@@ -34,11 +34,12 @@ class InputWithTags extends React.Component {
     return (
       <div className={className} onClick={() => this.input.focus()}>
 
-        {tags.map(({label, ...rest}) => <Tag key={rest.id} onRemove={onRemoveTag} {...rest}>{label}</Tag>)}
+        {tags.map(({label, ...rest}) => <Tag key={rest.id} disabled={disabled} onRemove={onRemoveTag} {...rest}>{label}</Tag>)}
         <span className={styles.input} data-hook="inner-input-with-tags">
           <div className={styles.hiddenDiv} style={{fontSize}}>
             {this.state.inputValue}
           </div>
+
           <Input
             ref={input => this.input = input}
             placeholder={tags.length === 0 ? placeholder : ''}

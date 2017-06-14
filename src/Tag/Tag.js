@@ -27,7 +27,7 @@ class Tag extends WixComponent {
       <span className={className} disabled={disabled} id={id} title={title}>
         {thumb && <span className={styles.thumb}>{thumb}</span>}
         <span className={innerClassName}>{children}</span>
-        {removable && <a className={styles.tagRemoveButton} onClick={() => disabled ? null : onRemove(id)}/>}
+        {removable && !disabled && <a className={styles.tagRemoveButton} onClick={() => onRemove(id)}/>}
       </span>
     );
   }
