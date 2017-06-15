@@ -7,11 +7,26 @@ import WixComponent from '../WixComponent';
 class MessageBoxFunctionalLayout extends WixComponent {
 
   render() {
-    const {title, onCancel, onOk, confirmText, children, buttonsHeight, hideFooter, cancelText, theme, closeButton, disableConfirmation, disableCancel, width} = this.props;
+    const {
+      title,
+      onCancel,
+      onOk,
+      onClose,
+      confirmText,
+      cancelText,
+      children,
+      buttonsHeight,
+      hideFooter,
+      theme,
+      closeButton,
+      disableConfirmation,
+      disableCancel,
+      width
+    } = this.props;
 
     return (
       <div className={styles.content} style={{width}}>
-        <HeaderLayout title={title} onCancel={onCancel} theme={theme} closeButton={closeButton}/>
+        <HeaderLayout title={title} onCancel={onClose ? onClose : onCancel} theme={theme} closeButton={closeButton}/>
         <div className={styles.body} >
           {children}
         </div>
@@ -30,8 +45,9 @@ MessageBoxFunctionalLayout.propTypes = {
   cancelText: PropTypes.string,
   theme: PropTypes.string,
   onOk: PropTypes.func,
-  width: PropTypes.string,
   onCancel: PropTypes.func,
+  onClose: PropTypes.func,
+  width: PropTypes.string,
   title: PropTypes.node,
   children: PropTypes.any,
   buttonsHeight: PropTypes.string,
@@ -43,8 +59,8 @@ MessageBoxFunctionalLayout.propTypes = {
 MessageBoxFunctionalLayout.defaultProps = {
   buttonsHeight: 'small',
   disableCancel: false,
-  width: '600px',
-  disableConfirmation: false
+  disableConfirmation: false,
+  width: '600px'
 };
 
 export default MessageBoxFunctionalLayout;

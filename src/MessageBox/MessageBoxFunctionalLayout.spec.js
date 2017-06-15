@@ -98,6 +98,21 @@ describe('MessageBox', () => {
       driver.clickOnHeaderCloseButton();
       expect(props.onCancel.calledOnce).toBeTruthy();
     });
+
+    it(`should trigger the 'onClose' action upon clicking the close button if 'onClose' prop exists`, () => {
+      const onCancelFunction = sinon.spy();
+      const onCloseFunction = sinon.spy();
+
+      const props = {
+        onCancel: onCancelFunction,
+        onClose: onCloseFunction
+      };
+
+      const driver = createDriver(<MessageBoxFunctionalLayout {...props}/>);
+      driver.clickOnHeaderCloseButton();
+      expect(props.onCancel.calledOnce).toBeFalsy();
+      expect(props.onClose.calledOnce).toBeTruthy();
+    });
   });
 
   describe('theme attribute', () => {
