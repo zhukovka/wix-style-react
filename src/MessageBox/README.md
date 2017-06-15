@@ -25,6 +25,7 @@
 | theme | string | - | - | theme of the message box, (green, blue , red) |
 | onOk | func | - | - | Ok callback |
 | onCancel | func | - | - | Cancel callback |
+| onClose | func | onCancel | - | Close button callback, the default is onCancel callback |
 | title | Node | - | - | title of the Message Box |
 | children | array | - | - | Message box content |
 | buttonsHeight | string | small | - | The size of the button, can be small, medium or large |
@@ -42,8 +43,10 @@
 | getConfirmationButtonText | - | string | returns the confirmation button text |
 | getCancellationButton | - | element | returns the cancellation button element |
 | getCancellationButtonText | - | string | returns the cancellation button text |
+| getHeaderCloseButton | - | element | returns the close button element |
 | clickOnCancellationButton | - | - | clicks on the cancellation button |
 | clickOnConfirmationButton | - | - | clicks on the confirmation button |
+| clickOnHeaderCloseButton | - | - | clicks on the close button |
 | isThemeExist | (green, blue , red) | bool | fulfilled if theme applied |
 | getFooter | - | element | returns the footer element |
 | getTitle | - | string | returns the  title of the Message Box |

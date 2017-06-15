@@ -11,10 +11,12 @@
 | getConfirmationButtonText | - | string | returns the confirmation button text |
 | getCancellationButton | - | element | returns the cancellation button element |
 | getCancellationButtonText | - | string | returns the cancellation button text |
-| isCancelButtonEnabled     | - | boolean | Whether cancel button is enabled    |
-| isConfirmationButtonEnabled | - | boolean | Whether confirmation button is enabled |
+| getHeaderCloseButton | - | element | returns the close button element |
+| isCancelEnable | - | boolean | Whether cancel button is enabled    |
+| isConfirmationEnable | - | boolean | Whether confirmation button is enabled |
 | clickOnCancellationButton | - | - | clicks on the cancellation button |
 | clickOnConfirmationButton | - | - | clicks on the confirmation button |
+| clickOnHeaderCloseButton | - | - | clicks on the close button |
 | isThemeExist | (green, blue , red) | bool | fulfilled if theme applied |
 | getFooter | - | element | returns the footer element |
 | getTitle | - | string | returns the  title of the Message Box |
