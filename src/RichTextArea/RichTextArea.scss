@@ -17,7 +17,6 @@ $marginLeft: $paddingLeft;
   display: flex;
   flex-direction: column;
   min-width: $minWidth;
-  min-height: $minHeight;
   background: $D80;
 
   ul,
@@ -64,6 +63,7 @@ $marginLeft: $paddingLeft;
 }
 
 .editorWrapper {
+  min-height: $minHeight;
   flex: 1;
   display: flex;
   flex-direction: column;
