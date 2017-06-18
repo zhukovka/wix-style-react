@@ -10,6 +10,7 @@ const richTextAreaDriverFactory = ({element, wrapper, component, componentInstan
   const getImage = () => element.querySelector('[data-hook=editor-image]');
   const getButtonByType = type => getButtons().find(button => getButtonType(button) === type);
   const clickButtonByType = type => () => ReactTestUtils.Simulate.mouseDown(getButtonByType(type));
+  const getDefaultBlock = () => element.querySelector('[data-key=\'defaultBlock\']');
 
   return {
     exists: () => !!element,
@@ -38,6 +39,7 @@ const richTextAreaDriverFactory = ({element, wrapper, component, componentInstan
     isImageExist: () => !!getImage(),
     isAddImageButtonExist: () => !!getButtonByType('image'),
     isResizable: () => (getEditorWrapper().classList.contains(styles.resizable)),
+    isDefaultBlockExist: () => getDefaultBlock(),
     setProps: props => {
       const ClonedWithProps = React.cloneElement(component, Object.assign({}, component.props, props), ...(component.props.children || []));
       ReactDOM.render(<div ref={r => element = r}>{ClonedWithProps}</div>, wrapper);

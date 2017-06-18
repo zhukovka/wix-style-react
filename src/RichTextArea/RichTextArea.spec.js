@@ -137,6 +137,12 @@ describe('RichTextArea', () => {
       driver.clickImageButton();
       expect(driver.isImageExist()).toBeTruthy();
     });
+
+    it('insert a default block after inserting an image, given an empty document', () => {
+      const driver = createComponent({onImageRequest});
+      driver.clickImageButton();
+      expect(driver.isDefaultBlockExist()).toBeTruthy();
+    });
   });
 
   const createDriver = createDriverFactory(richTextAreaDriverFactory);

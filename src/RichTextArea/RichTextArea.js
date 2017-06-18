@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import {Editor} from 'slate';
+import {Editor, Block} from 'slate';
 import WixComponent from '../WixComponent';
 import Tooltip from '../Tooltip';
 import SvgExclamation from '../svg/Exclamation.js';
@@ -12,6 +12,13 @@ import isImage from 'is-image';
 import isUrl from 'is-url';
 
 const DEFAULT_NODE = 'paragraph';
+
+const defaultBlock = {
+  type: 'paragraph',
+  isVoid: false,
+  data: {},
+  key: 'defaultBlock'
+};
 
 class RichTextArea extends WixComponent {
   /* eslint-disable react/prop-types */
@@ -42,7 +49,37 @@ class RichTextArea extends WixComponent {
       underline: {
         textDecoration: 'underline'
       }
-    }
+    },
+    rules: [
+      // Rule to insert a paragraph block if the document is empty.
+      {
+        match: node => {
+          return node.kind === 'document';
+        },
+        validate: document => {
+          return document.nodes.size ? null : true;
+        },
+        normalize: (transform, document) => {
+          const block = Block.create(defaultBlock);
+          transform.insertNodeByKey(document.key, 0, block);
+        }
+      },
+      // Rule to insert a paragraph below a void node (the image) if that node is
+      // the last one in the document.
+      {
+        match: node => {
+          return node.kind === 'document';
+        },
+        validate: document => {
+          const lastNode = document.nodes.last();
+          return lastNode && lastNode.isVoid ? true : null;
+        },
+        normalize: (transform, document) => {
+          const block = Block.create(defaultBlock);
+          transform.insertNodeByKey(document.key, document.nodes.size, block);
+        }
+      }
+    ]
   };
   /* eslint-disable */
 
