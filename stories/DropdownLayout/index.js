@@ -3,6 +3,8 @@ import {storiesOf} from '@kadira/storybook';
 import Markdown from '../utils/Components/Markdown';
 import CodeExample from '../utils/Components/CodeExample';
 import Readme from '../../src/DropdownLayout/README.md';
+import ReadmeTestkit from '../../src/DropdownLayout/README.TESTKIT.md';
+import TabbedView from '../utils/Components/TabbedView';
 
 import ExampleStandard from './ExampleStandard';
 import ExampleStandardRaw from '!raw!./ExampleStandard';
@@ -24,43 +26,48 @@ import ExampleThemeRaw from '!raw!./ExampleTheme';
 
 storiesOf('Core', module)
   .add('DropdownLayout', () => (
-    <div>
-      <Markdown source={Readme}/>
+    <TabbedView tabs={['API', 'Testkit']}>
+      <div>
+        <Markdown source={Readme}/>
 
-      <h1>Usage examples</h1>
+        <h1>Usage examples</h1>
 
-      <CodeExample title="Standard" code={ExampleStandardRaw}>
-        <ExampleStandard/>
-      </CodeExample>
+        <CodeExample title="Standard" code={ExampleStandardRaw}>
+          <ExampleStandard/>
+        </CodeExample>
 
-      <div style={{paddingTop: '230px'}}/>
+        <div style={{paddingTop: '230px'}}/>
 
-      <CodeExample title="Many options" code={ExampleManyOptionsRaw}>
-        <ExampleManyOptions/>
-      </CodeExample>
+        <CodeExample title="Many options" code={ExampleManyOptionsRaw}>
+          <ExampleManyOptions/>
+        </CodeExample>
 
-      <div style={{paddingTop: '251px'}}/>
+        <div style={{paddingTop: '251px'}}/>
 
-      <CodeExample title="React elements" code={ExampleReactElementRaw}>
-        <ExampleReactElement/>
-      </CodeExample>
+        <CodeExample title="React elements" code={ExampleReactElementRaw}>
+          <ExampleReactElement/>
+        </CodeExample>
 
-      <div style={{paddingTop: '143px'}}/>
+        <div style={{paddingTop: '143px'}}/>
 
-      <CodeExample title="With theme" code={ExampleThemeRaw}>
-        <ExampleTheme/>
-      </CodeExample>
+        <CodeExample title="With theme" code={ExampleThemeRaw}>
+          <ExampleTheme/>
+        </CodeExample>
 
-      <div style={{paddingTop: '230px'}}/>
+        <div style={{paddingTop: '230px'}}/>
 
-      <CodeExample title="Controlled" code={ExampleControlledRaw}>
-        <ExampleControlled/>
-      </CodeExample>
+        <CodeExample title="Controlled" code={ExampleControlledRaw}>
+          <ExampleControlled/>
+        </CodeExample>
 
-      <CodeExample title="Controlled with buttons" code={ExampleControlledRawWithButtons}>
-        <ExampleControlledWithButtons/>
-      </CodeExample>
+        <CodeExample title="Controlled with buttons" code={ExampleControlledRawWithButtons}>
+          <ExampleControlledWithButtons/>
+        </CodeExample>
 
-      <div style={{paddingTop: '230px'}}/>
-    </div>
+        <div style={{paddingTop: '230px'}}/>
+      </div>
+      <div>
+        <Markdown source={ReadmeTestkit}/>
+      </div>
+    </TabbedView>
   ));

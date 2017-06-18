@@ -3,6 +3,7 @@ import {storiesOf} from '@kadira/storybook';
 import Markdown from '../utils/Components/Markdown';
 import CodeExample from '../utils/Components/CodeExample';
 import Readme from '../../src/Input/README.md';
+import ReadmeTestkit from '../../src/Input/README.TESTKIT.md';
 
 import TabbedView from '../utils/Components/TabbedView';
 import Examples from './Examples';
@@ -12,7 +13,7 @@ import ExamplePaneltitleStyleRaw from '!raw!./ExamplePaneltitleStyle';
 
 storiesOf('Core', module)
   .add('Input', () => (
-    <TabbedView tabs={['API Documentation', 'Themes']}>
+    <TabbedView tabs={['API', 'Themes', 'Testkit']}>
       <div>
         <Markdown source={Readme}/>
         <h1>Usage examples</h1>
@@ -32,6 +33,9 @@ storiesOf('Core', module)
           </CodeExample>
 
         </TabbedView>
+      </div>
+      <div>
+        <Markdown source={ReadmeTestkit}/>
       </div>
     </TabbedView>
   ));
