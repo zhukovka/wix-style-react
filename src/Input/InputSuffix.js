@@ -91,7 +91,7 @@ InputSuffix.propTypes = {
     component: PropTypes.func.isRequired,
     isVisible: PropTypes.bool.isRequired
   })),
-  theme: PropTypes.oneOf(['normal', 'paneltitle', 'material', 'amaterial']),
+  theme: PropTypes.oneOf(['normal', 'paneltitle', 'material', 'amaterial', 'flat', 'flatdark']),
   errorMessage: PropTypes.node.isRequired,
   error: PropTypes.bool,
   disabled: PropTypes.bool,

@@ -257,6 +257,32 @@ $material-gap: 8px;
             }
         }
     }
+
+    &-flat {
+        border: none;
+        border-radius: 0;
+
+        &.size-large { @include Size($height: 54px, $fontSize: 20px); }
+       
+        &:hover, &.hasFocus { @include ThemeFlat($B20); }
+        &:active            { @include ThemeFlat($B10); }
+        &.disabled          { @include ThemeFlat($D50); }
+
+        @include ThemeFlat($D20);
+    }
+
+    &-flatdark {
+        border: none;
+        border-radius: 0;
+
+        &.size-large { @include Size($height: 54px, $fontSize: 20px); }
+        
+        &:hover, &.hasFocus { @include ThemeFlat($B20); }
+        &:active            { @include ThemeFlat($B10); }
+        &.disabled          { @include ThemeFlat($D50); }
+
+        @include ThemeFlat($D80);
+    }
 }
 
 // RTL layout based on global style set on document body or parent element.

@@ -176,6 +176,16 @@ describe('DropdownLayout', () => {
     expect(driver.isOptionSelectedWithGlobalClassName(0)).toBeTruthy();
   });
 
+  it('should not contain pointer arrow without the withArrow property', () => {
+    const driver = createDriver(<DropdownLayout visible options={options}/>);
+    expect(driver.hasTopArrow()).toBeFalsy();
+  });
+
+  it('should contain pointer arrow when withArrow property is true', () => {
+    const driver = createDriver(<DropdownLayout visible withArrow options={options}/>);
+    expect(driver.hasTopArrow()).toBeTruthy();
+  });
+
   describe('testkit', () => {
     it('should exist', () => {
       const div = document.createElement('div');

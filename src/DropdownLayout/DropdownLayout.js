@@ -136,13 +136,14 @@ class DropdownLayout extends WixComponent {
   }
 
   render() {
-    const {options, visible, dropDirectionUp, selectedId, tabIndex, fixedHeader, fixedFooter} = this.props;
+    const {options, visible, dropDirectionUp, selectedId, tabIndex, fixedHeader, fixedFooter, withArrow} = this.props;
 
     const contentContainerClassName = classNames({
       [styles.contentContainer]: true,
       [styles.shown]: visible,
       [styles.up]: dropDirectionUp,
-      [styles.down]: !dropDirectionUp
+      [styles.down]: !dropDirectionUp,
+      [styles.withArrow]: withArrow
     });
 
     return (
@@ -165,6 +166,7 @@ class DropdownLayout extends WixComponent {
           </div>
           {this.renderNode(fixedFooter)}
         </div>
+        {this.renderTopArrow()}
       </div>
     );
   }
@@ -193,6 +195,16 @@ class DropdownLayout extends WixComponent {
         {option.value}
       </div>
     );
+  }
+
+  renderTopArrow() {
+    const {withArrow, visible, dropDirectionUp} = this.props;
+    const arrowClassName = classNames({
+      [styles.arrow]: true,
+      [styles.up]: dropDirectionUp,
+      [styles.down]: !dropDirectionUp
+    });
+    return withArrow && visible ? <div className={arrowClassName}/> : null;
   }
 
   componentWillReceiveProps(nextProps) {
@@ -244,7 +256,8 @@ DropdownLayout.propTypes = {
   onClickOutside: PropTypes.func,
   fixedHeader: PropTypes.node,
   fixedFooter: PropTypes.node,
-  maxHeightPixels: PropTypes.number
+  maxHeightPixels: PropTypes.number,
+  withArrow: PropTypes.bool
 };
 
 DropdownLayout.defaultProps = {

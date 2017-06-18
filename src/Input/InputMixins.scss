@@ -40,6 +40,14 @@
     }
 }
 
+@mixin ThemeFlat($color) {
+    .input {
+        @include Placeholder($color: $color);
+        color: $color;
+    }
+    .menu-arrow path { fill: $color; }
+}
+
 @mixin ThemeFocus($borderColor, $boxShadow: none) {
     &.hasFocus {
         border-color: $borderColor;

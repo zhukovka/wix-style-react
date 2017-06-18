@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactTestUtils from 'react-dom/test-utils';
 import ReactDOM from 'react-dom';
+import styles from './DropdownLayout.scss';
 
 const dropdownLayoutDriverFactory = ({element, wrapper, component}) => {
 
@@ -41,7 +42,8 @@ const dropdownLayoutDriverFactory = ({element, wrapper, component}) => {
     setProps: props => {
       const ClonedWithProps = React.cloneElement(component, Object.assign({}, component.props, props), ...(component.props.children || []));
       ReactDOM.render(<div ref={r => element = r}>{ClonedWithProps}</div>, wrapper);
-    }
+    },
+    hasTopArrow: () => !!element.querySelector(`.${styles.arrow}`)
   };
 };
 

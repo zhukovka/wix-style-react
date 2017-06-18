@@ -343,6 +343,16 @@ describe('Input', () => {
       const driver = createDriver(<Input theme="material"/>);
       expect(driver.isOfStyle('material')).toBeTruthy();
     });
+
+    it('should allow setting the theme to "flat"', () => {
+      const driver = createDriver(<Input theme="flat"/>);
+      expect(driver.isOfStyle('flat')).toBeTruthy();
+    });
+
+    it('should allow setting the theme to "flatdark"', () => {
+      const driver = createDriver(<Input theme="flatdark"/>);
+      expect(driver.isOfStyle('flatdark')).toBeTruthy();
+    });
   });
 
   describe('onClear attribute', () => {

@@ -2,6 +2,7 @@
 
 $option_height: 35px;
 $content_container_height: 260px;
+$top-arrow-size: 8px;
 
 .wrapper {
   box-sizing: border-box;
@@ -39,14 +40,26 @@ $content_container_height: 260px;
 }
 
 .content-container {
+  &.with-arrow {
+    padding: 10px 0;
+  }
+
   &.up {
     bottom: 0;
     margin-top: 15px;
+
+    &.with-arrow {
+      margin-bottom: $top-arrow-size;
+    }
   }
 
   &.down {
     top: 0;
     margin-bottom: 15px;
+
+    &.with-arrow {
+      margin-top: $top-arrow-size;
+    }
   }
 }
 
@@ -143,6 +156,26 @@ $content_container_height: 260px;
 
 .wrapper * {
   box-sizing:border-box;
+}
+
+.arrow {
+  position: absolute;
+  left: 50%;
+  z-index: 10;
+  transform: translateX(-50%)rotateZ(45deg);
+  height: $top-arrow-size;
+  width: $top-arrow-size;
+  background: $D80;
+
+  &.up {
+    bottom: $top-arrow-size / 2;
+    box-shadow: 3px 3px 8px rgba(0, 0, 0, .1);
+  }
+
+  &.down {
+    top: $top-arrow-size / 2;
+    box-shadow: -3px -3px 8px rgba(0, 0, 0, .1);
+  }
 }
 
 .theme {
