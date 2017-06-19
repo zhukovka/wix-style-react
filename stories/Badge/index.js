@@ -4,6 +4,8 @@ import AutoDocs from '../utils/Components/AutoDocs';
 import TabbedView from '../utils/Components/TabbedView';
 import CodeExample from '../utils/Components/CodeExample';
 import BadgeSource from '!raw!../../src/Badge/Badge';
+import TestKitReadme from '../../src/Badge/README.TESTKIT.md';
+import Markdown from '../utils/Components/Markdown'
 
 import DefaultBadgeExample from './DefaultBadge';
 import DefaultBadgeExampleRaw from '!raw!./DefaultBadge';
@@ -16,7 +18,7 @@ import AlignmentBadgeExampleRaw from '!raw!./AlignmentBadge';
 
 storiesOf('Core', module)
   .add('Badge', () => (
-    <TabbedView tabs={['API Documentation', 'TestKits Documentation']}>
+    <TabbedView tabs={['API', 'TestKits']}>
       <div>
         <AutoDocs source={BadgeSource}/>
 
@@ -33,6 +35,8 @@ storiesOf('Core', module)
         </CodeExample>
       </div>
 
-      <div>TODO: please implemnet me</div>
+      <div>
+        <Markdown source={TestKitReadme}/>
+      </div>
     </TabbedView>
   ));

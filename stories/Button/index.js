@@ -13,7 +13,7 @@ import IconsExampleRaw from '!raw!./ExampleWithIcons';
 
 storiesOf('Core', module)
   .add('Button', () => (
-    <TabbedView tabs={['API Documentation', 'TestKits Documentation']}>
+    <TabbedView tabs={['API', 'TestKits']}>
       <div>
         <Markdown source={Readme}/>
         <h1>Example</h1>

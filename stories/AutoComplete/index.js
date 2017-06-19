@@ -17,7 +17,7 @@ import ExampleComplexRaw from '!raw!./ExampleComplex';
 
 storiesOf('Core', module)
   .add('AutoComplete', () => (
-    <TabbedView tabs={['API Documentation', 'TestKits Documentation']}>
+    <TabbedView tabs={['API', 'TestKits']}>
       <div>
         <Markdown source={Readme}/>
         <h1>Usage examples</h1>

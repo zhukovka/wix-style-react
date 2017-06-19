@@ -32,7 +32,7 @@ import ExampleUsingURL from '../Breadcrubms/ExampleUsingURL';
 
 storiesOf('Core', module)
   .add('Breadcrumbs', () => (
-    <TabbedView tabs={['API Documentation', 'TestKits Documentation']}>
+    <TabbedView tabs={['API', 'TestKits']}>
       <div>
         <AutoDocs source={BreadcrumbsSource}/>
 

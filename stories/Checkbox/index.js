@@ -1,9 +1,9 @@
 import React from 'react';
 import {storiesOf} from '@kadira/storybook';
 import Markdown from '../utils/Components/Markdown';
-import TabbedView from '../utils/Components/TabbedView';
 import CodeExample from '../utils/Components/CodeExample';
 import Readme from '../../src/Checkbox/README.md';
+import TabbedView from '../utils/Components/TabbedView';
 import ReadmeTestKit from '../../src/Checkbox/README.TESTKIT.md';
 
 import ExampleStandard from './ExampleStandard';
@@ -20,7 +20,7 @@ import ExampleControlledRaw from '!raw!./ExampleControlled';
 
 storiesOf('Core', module)
   .add('Checkbox', () => (
-    <TabbedView tabs={['API Documentation', 'TestKits Documentation']}>
+    <TabbedView tabs={['API', 'TestKits']}>
       <div>
         <Markdown source={Readme}/>
         <h1>Usage examples</h1>
