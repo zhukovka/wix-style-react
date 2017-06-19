@@ -161,9 +161,9 @@ class Input extends Component {
     this.props.onKeyDown && this.props.onKeyDown(e);
 
     if (e.keyCode === 13 /* enter */) {
-      this.props.onEnterPressed && this.props.onEnterPressed();
+      this.props.onEnterPressed && this.props.onEnterPressed(e);
     } else if (e.keyCode === 27 /* esc */) {
-      this.props.onEscapePressed && this.props.onEscapePressed();
+      this.props.onEscapePressed && this.props.onEscapePressed(e);
     }
   };
 
