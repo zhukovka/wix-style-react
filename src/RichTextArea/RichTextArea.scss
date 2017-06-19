@@ -64,7 +64,7 @@ $marginLeft: $paddingLeft;
 
 .editorWrapper {
   min-height: $minHeight;
-  flex: 1;
+  flex: 1 1 auto;
   display: flex;
   flex-direction: column;
   position: relative;
@@ -96,7 +96,7 @@ $marginLeft: $paddingLeft;
 
 .editor {
   @extend .t1;
-  flex: 1;
+  flex: 1 1 auto;
   padding: $paddingTop $paddingLeft;
   border-bottom-left-radius: $borderRadius;
   border-bottom-right-radius: $borderRadius;
