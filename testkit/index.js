@@ -87,6 +87,9 @@ export const googleAddressWithInputTestkitFactory = testkitFactoryCreator(google
 import richTextAreaCompositeDriverFactory from '../src/RichTextAreaComposite/RichTextAreaComposite.driver';
 export const richTextAreaCompositeTestkitFactory = testkitFactoryCreator(richTextAreaCompositeDriverFactory);
 
+import richTextAreaDriverFactory from '../src/RichTextArea/RichTextArea.driver';
+export const richTextAreaTestkitFactory = testkitFactoryCreator(richTextAreaDriverFactory);
+
 import buttonHeaderDriverFactory from '../src/Card/ButtonHeader/ButtonHeader.driver';
 export const buttonHeaderTestkitFactory = testkitFactoryCreator(buttonHeaderDriverFactory);
 

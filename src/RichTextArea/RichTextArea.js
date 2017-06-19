@@ -267,14 +267,14 @@ class RichTextArea extends WixComponent {
 
   render = () => {
     const {editorState} = this.state;
-    const {error, placeholder, disabled, resizable, onImageRequest} = this.props;
+    const {error, placeholder, disabled, resizable, onImageRequest, dataHook} = this.props;
     const className = classNames(styles.container, {
       [styles.withError]: error,
       [styles.isFocused]: editorState.isFocused,
     });
     
     return (
-      <div className={className}>
+      <div className={className} data-hook={dataHook}>
         <div className={classNames(styles.toolbar, {[styles.disabled]: disabled})}>
           <RichTextEditorToolbar
             disabled={disabled}
@@ -337,12 +337,13 @@ RichTextArea.propTypes = {
   errorMessage: PropTypes.string,
   placeholder: PropTypes.string,
   disabled: PropTypes.bool,
-  resizable: PropTypes.bool
+  resizable: PropTypes.bool,
+  dataHook: PropTypes.string
 };
 
 RichTextArea.defaultProps = {
   value: '<p></p>',
-  errorMessage: '',
+  errorMessage: ''
 };
 
 export default RichTextArea;
