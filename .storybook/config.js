@@ -23,12 +23,12 @@ function loadStories() {
   require('../stories/GoogleAddressInput');
   require('../stories/ImageViewer');
   require('../stories/Input');
+  require('../stories/InputArea');
   require('../stories/InputWithOptions');
   require('../stories/Label');
   require('../stories/Loader');
   require('../stories/MessageBox');
   require('../stories/Modal');
-  require('../stories/InputArea');
   require('../stories/MultiSelect');
   require('../stories/RadioGroup');
   require('../stories/SideBar');
