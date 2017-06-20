@@ -11,7 +11,7 @@ import ExampleStandardRaw from '!raw!./ExampleStandard';
 
 storiesOf('Core', module)
   .add('MessageBox', () => (
-    <TabbedView tabs={['API Documentation', 'TestKits Documentation']}>
+    <TabbedView tabs={['API', 'TestKits']}>
       <div>
         <Markdown source={Readme}/>
         <h1>Usage examples</h1>

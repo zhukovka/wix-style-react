@@ -11,7 +11,7 @@ import ExampleRaw from '!raw!./Example';
 
 storiesOf('Core', module)
   .add('FilePicker', () => (
-    <TabbedView tabs={['API Documentation', 'TestKits Documentation']}>
+    <TabbedView tabs={['API', 'TestKits']}>
       <div>
         <Markdown source={Readme}/>
         <h1>Usage examples</h1>
