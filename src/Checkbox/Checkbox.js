@@ -1,5 +1,5 @@
 import styles from './Checkbox.scss';
-import {any, bool, func, string} from 'prop-types';
+import {any, bool, func, oneOf, string} from 'prop-types';
 import uniqueId from 'lodash.uniqueid';
 import React from 'react';
 import classNames from 'classnames';
@@ -16,15 +16,17 @@ class Checkbox extends WixComponent {
     id: string,
     indeterminate: bool,
     hover: bool,        // FOR AUTOMATIC TESTING
+    size: oneOf(['medium', 'large']),
     onChange: func,
   }
 
   static defaultProps = {
-    onChange: () => { }
+    size: 'medium',
+    onChange: () => { },
   }
 
   render() {
-    const {id = uniqueId(), checked, indeterminate, disabled, hover, active, onChange} = this.props;
+    const {id = uniqueId(), checked, indeterminate, disabled, hover, active, size, onChange} = this.props;
 
     const classname = classNames({
       [styles.wrapper]: true,
@@ -32,7 +34,7 @@ class Checkbox extends WixComponent {
       [styles.unchecked]: !checked,
       [styles.hover]: hover,
       [styles.active]: active,
-      [styles.disabled]: disabled
+      [styles.disabled]: disabled,
     });
 
     const checkedSymbol = indeterminate ? <div className={styles.indeterminate}/> : <SvgV/>;
@@ -41,7 +43,7 @@ class Checkbox extends WixComponent {
       <div className={classname} >
         <input type="checkbox" id={id} checked={checked} disabled={disabled} onChange={disabled ? null : onChange}/>
         <Label for={id} appearance="T1.1">
-          <div className={styles.checkbox}>
+          <div className={classNames(styles.checkbox, styles[size])}>
             <div className={styles.inner}>
               {checkedSymbol}
             </div>

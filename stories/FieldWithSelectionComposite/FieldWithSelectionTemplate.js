@@ -19,7 +19,8 @@ export default class Form extends Component {
     super(props);
     this.state = {
       buttonValue: 0,
-    }
+      checkboxValue: false,
+    };
   }
 
   static propTypes = {
@@ -43,7 +44,15 @@ export default class Form extends Component {
     let selectionInput = '';
     switch (this.props.selectionInput) {
       case 'checkbox':
-        selectionInput = <Checkbox>Test</Checkbox>;
+        selectionInput = (
+          <Checkbox
+            size="large"
+            checked={this.state.checkboxValue}
+            onChange={e => this.setState({checkboxValue: e.target.checked})}
+            >
+            Test
+          </Checkbox>
+        );
         break;
       case 'dropdown':
         selectionInput = <Dropdown options={options} dropDirectionUp size="normal" selectedId={1}/>;
@@ -54,7 +63,8 @@ export default class Form extends Component {
             display="horizontal"
             type="button"
             value={this.state.buttonValue}
-            onChange={value => this.setState({buttonValue: value})}>
+            onChange={value => this.setState({buttonValue: value})}
+            >
             <RadioGroup.Radio value={1} disabled={this.props.disabled}>On</RadioGroup.Radio>
             <RadioGroup.Radio value={0} disabled={this.props.disabled}>Off</RadioGroup.Radio>
           </RadioGroup>
