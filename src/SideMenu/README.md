@@ -33,14 +33,15 @@ Container for `NavigationLink` & `NavigationSeparator` (or any other node)
 
 Main navigation item
 
-| propName          | propType | defaultValue | isRequired | description                                                                        |
-| -                 | -        | -            | -          | -                                                                                  |
-| isActive          | bool     | false        | -          | slightly different styling to indicate active link                                 |
-| withArrow         | bool     | false        | -          | displays an arrow on hover                                                         |
-| withBadge         | bool     | false        | -          | displays a badge next to the link                                                  |
-| isDiminishedHover | bool     | false        | -          | slightly different styling for hover (e.g. no background transition)               |
-| children          | node     | -            | -          | -                                                                                  |
-| ...rest           | *        | -            | -          | any other prop will be added to root element (e.g. `onClick`, `onMouseEnter` etc.) |
+| propName          | propType | defaultValue         | isRequired | description                                                                        |
+| -                 | -        | -                    | -          | -                                                                                  |
+| isActive          | bool     | false                | -          | slightly different styling to indicate active link                                 |
+| withArrow         | bool     | false                | -          | displays an arrow on hover                                                         |
+| badge             | node     | -                    | -          | displays the provided badge next to the link                                       |
+| isDiminishedHover | bool     | false                | -          | slightly different styling for hover (e.g. no background transition)               |
+| dataHook          | string   | menu-navigation-link | -          | set the data-hook value for the link                                               |
+| children          | node     | -                    | -          | -                                                                                  |
+| ...rest           | *        | -                    | -          | any other prop will be added to root element (e.g. `onClick`, `onMouseEnter` etc.) |
 
 ### NavigationBackLink `<SideMenu.NavigationBackLink />`
 
@@ -68,7 +69,11 @@ The category of a group of links
 
 ### NavigationBadge `<SideMenu.NavigationBadge />`
 
-Shows a badge (pimple) next to the link title (no extra props)
+Shows a badge (pimple) next to the link title
+
+| propName          | propType | defaultValue | isRequired | description                                                      |
+| -                 | -        | -            | -          | -                                                                |
+| inline            | bool     | false        | -          | whether the badge should be inline or fixed |
 
 ### Promotion `<SideMenu.Promotion />`
 

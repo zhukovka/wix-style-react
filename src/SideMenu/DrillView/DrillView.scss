@@ -13,3 +13,13 @@
   height: 100%;
   width: 100%;
 }
+
+.subMenu {
+  display: flex;
+  flex-direction: column;
+}
+
+.openSubMenu {
+  display: flex;
+  flex-direction: column;
+}

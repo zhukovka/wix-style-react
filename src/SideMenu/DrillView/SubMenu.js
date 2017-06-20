@@ -1,15 +1,19 @@
+import SideMenuDrill from './index';
 import React, {Children} from 'react';
-import {node, string, bool, func} from 'prop-types';
+import styles from './DrillView.scss';
 import Navigation from '../core/navigation';
+import {node, string, bool, func} from 'prop-types';
 import NavigationLink from '../core/navigation/Link';
+import NavigationBadge from '../core/navigation/Badge';
 import NavigationBackLink from '../core/navigation/BackLink';
 import NavigationCategory from '../core/navigation/Category';
-import SideMenuDrill from './index';
 
-const SubMenu = ({children, title, isOpen, isActive, onSelectHandler, onBackHandler, backLabel, showCategory, withBadge}) => {
+const SubMenu = ({children, title, isOpen, isActive, onSelectHandler, onBackHandler, backLabel, showCategory, withBadge, linkDataHook}) => {
   if (!isOpen) {
+    const badge = withBadge && <NavigationBadge inline/>;
+
     return (
-      <NavigationLink isActive={isActive} onClick={onSelectHandler} withBadge={withBadge} withArrow>
+      <NavigationLink isActive={isActive} onClick={onSelectHandler} badge={badge} withArrow data-hook={linkDataHook}>
         {title}
       </NavigationLink>
     );
@@ -18,7 +22,7 @@ const SubMenu = ({children, title, isOpen, isActive, onSelectHandler, onBackHand
   const wrappedNavigation = Children.map(children, child => {
     if (child.type === SideMenuDrill.Navigation) {
       return (
-        <div>
+        <div className={styles.openSubMenu}>
           <NavigationBackLink onBackHandler={onBackHandler}>{backLabel}</NavigationBackLink>
           {showCategory && <NavigationCategory>{title}</NavigationCategory>}
           <Navigation>
@@ -32,7 +36,7 @@ const SubMenu = ({children, title, isOpen, isActive, onSelectHandler, onBackHand
   });
 
   return (
-    <div data-hook="menu-drill-sub-menu">
+    <div className={styles.subMenu} data-hook="menu-drill-sub-menu">
       {wrappedNavigation}
     </div>
   );
@@ -45,7 +49,8 @@ SubMenu.defaultProps = {
   onBackHandler: () => {},
   backLabel: 'Back',
   showCategory: true,
-  withBadge: false
+  withBadge: false,
+  linkDataHook: 'menu-drill-sub-menu-link'
 };
 
 SubMenu.propTypes = {
@@ -58,6 +63,7 @@ SubMenu.propTypes = {
   backLabel: string,
   showCategory: bool,
   withBadge: bool,
+  linkDataHook: string,
   children: node.isRequired
 };
 

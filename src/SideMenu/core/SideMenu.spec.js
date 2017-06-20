@@ -102,10 +102,11 @@ describe('SideMenu', () => {
 
 
   it('should allow to have a badge', () => {
+    const badge = <SideMenu.NavigationBadge/>;
     const menu = {
       navigation: [
         <SideMenu.NavigationLink key="0"/>,
-        <SideMenu.NavigationLink key="1" withBadge/>,
+        <SideMenu.NavigationLink key="1" badge={badge}/>,
         <SideMenu.NavigationLink key="2"/>
       ]
     };

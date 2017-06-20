@@ -1,26 +1,26 @@
 import React from 'react';
-import Badge from './Badge';
-import PropTypes from 'prop-types';
+import {bool, node, string} from 'prop-types';
 import LinkLayout from './LinkLayout';
 
-const Link = ({children, isDiminishedHover, isActive, withArrow, withBadge, ...rest}) =>
+const Link = ({children, isDiminishedHover, isActive, withArrow, badge, dataHook, ...rest}) =>
   <LinkLayout isDiminishedHover={isDiminishedHover} isActive={isActive} withArrow={withArrow}>
-    <a data-hook="menu-navigation-link" {...rest}>
+    <a data-hook={dataHook} {...rest}>
       {children}
-      {withBadge && <Badge/>}
+      {badge}
     </a>
   </LinkLayout>;
 
 Link.defaultProps = {
-  withBadge: false
+  dataHook: 'menu-navigation-link'
 };
 
 Link.propTypes = {
-  children: PropTypes.node,
-  isActive: PropTypes.bool,
-  withArrow: PropTypes.bool,
-  withBadge: PropTypes.bool,
-  isDiminishedHover: PropTypes.bool
+  children: node,
+  isActive: bool,
+  withArrow: bool,
+  badge: node,
+  isDiminishedHover: bool,
+  dataHook: string
 };
 
 export default Link;

@@ -28,7 +28,7 @@ export default () =>
 
         <SideMenu.NavigationSeparator/>
 
-        <SideMenu.NavigationLink withBadge isActive onClick={() => console.log('#3 clicked')}>
+        <SideMenu.NavigationLink badge={<SideMenu.NavigationBadge/>} isActive onClick={() => console.log('#3 clicked')}>
           Link #3
         </SideMenu.NavigationLink>
 
