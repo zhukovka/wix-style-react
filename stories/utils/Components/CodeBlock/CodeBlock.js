@@ -44,7 +44,7 @@ export default class CodeBlock extends Component {
           <Notification.TextLabel>
             Copied!
           </Notification.TextLabel>
-          <Notification.CloseButton />
+          <Notification.CloseButton/>
         </Notification>
 
         <TextButton onClick={copyToClipboardClicked}>Copy to clipboard</TextButton>
