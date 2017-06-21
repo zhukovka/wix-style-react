@@ -125,6 +125,7 @@ class Input extends Component {
   }
 
   focus = () => {
+    this._onFocus();
     this.input && this.input.focus();
   };
 
