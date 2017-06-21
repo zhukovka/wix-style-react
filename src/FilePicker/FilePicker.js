@@ -29,15 +29,15 @@ class FilePicker extends WixComponent {
     return (
       <div>
         {header && (<span className={styles.header}>{header}</span>)}
-        <label className={styles.label}>
+        <label className={styles.label} htmlFor="file_input_id">
           <div className={styles.icon}><Add width="42" height="42"/></div>
           <div>
             <span className={styles.cta} data-hook="main-label">{mainLabel}</span>
             <span className={styles.info} data-hook="sub-label">{this.state.selectedFileName}</span>
             {error && <span data-hook="filePicker-error" className={styles.error}>{errorMessage}</span>}
           </div>
-          <input className={styles.input} type="file" accept={supportedFormats} onChange={e => this.onChooseFile(e.target.files[0])}/>
         </label>
+        <input id="file_input_id" className={styles.input} type="file" accept={supportedFormats} onChange={e => this.onChooseFile(e.target.files[0])}/>
       </div>
     );
   }
