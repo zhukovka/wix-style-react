@@ -5,9 +5,9 @@ import styles from './InputArea.scss';
 import $ from 'jquery';
 
 const inputAreaDriverFactory = ({element, wrapper, component}) => {
-  const $component = $(element);
+  const $component = $(element);//.find('[data-hook="textarea-div"]');
+  const textAreaElement = element.querySelector('div[data-hook=textarea-div]');
   const textArea = $component.find('textarea')[0];
-
   return {
     trigger: (trigger, event) => ReactTestUtils.Simulate[trigger](textArea, event),
     focus: () => textArea.focus(),
@@ -19,13 +19,13 @@ const inputAreaDriverFactory = ({element, wrapper, component}) => {
     getMaxLength: () => textArea.maxLength,
     getTabIndex: () => textArea.tabIndex,
     getReadOnly: () => textArea.readOnly,
-    getResizable: () => element.classList.contains(styles.resizable),
-    getHasCounter: () => element.classList.contains(styles.hasCounter),
+    getResizable: () => textAreaElement.classList.contains(styles.resizable),
+    getHasCounter: () => textAreaElement.classList.contains(styles.hasCounter),
     hasExclamation: () => $component.find(`.${styles.exclamation}`).length === 1,
-    hasError: () => element.classList.contains(styles.hasError),
-    isFocusedStyle: () => element.classList.contains(styles.hasFocus),
-    isHoveredStyle: () => element.classList.contains(styles.hasHover),
-    isOfStyle: style => element.classList.contains(styles[`theme-${style}`]),
+    hasError: () => textAreaElement.classList.contains(styles.hasError),
+    isFocusedStyle: () => textAreaElement.classList.contains(styles.hasFocus),
+    isHoveredStyle: () => textAreaElement.classList.contains(styles.hasHover),
+    isOfStyle: style => textAreaElement.classList.contains(styles[`theme-${style}`]),
     isFocus: () => document.activeElement === textArea,
     exists: () => !!textArea,
     hasIconLeft: () => !$component.find(`.${styles.prefix}`).is(':empty'),

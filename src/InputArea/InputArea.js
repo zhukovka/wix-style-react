@@ -79,31 +79,35 @@ class InputArea extends WixComponent {
     Object.keys(this.props).filter(key => key.startsWith('aria')).map(key => ariaAttribute['aria-' + key.substr(4).toLowerCase()] = this.props[key]);
 
     return (
-      <div className={classes}>
-        <textarea
-          rows={rows}
-          maxLength={maxLength}
-          ref={ref => this.textArea = ref}
-          className={styles.inputArea}
-          id={id}
-          style={inlineStyle}
-          defaultValue={defaultValue}
-          value={value}
-          onFocus={this._onFocus}
-          onBlur={this._onBlur}
-          onKeyDown={this._onKeyDown}
-          onChange={this._onChange}
-          onDoubleClick={this._onDoubleClick}
-          placeholder={placeholder}
-          tabIndex={tabIndex}
-          autoFocus={autoFocus}
-          onKeyUp={onKeyUp}
-          {...ariaAttribute}
-          readOnly={readOnly}
-          />
-        {error && <Exclamation errorMessage={errorMessage} tooltipPlacement={tooltipPlacement} onTooltipShow={onTooltipShow}/>}
-        {theme === 'material' && <div className={styles.bar}/>}
-        {hasCounter && maxLength && <span className={styles.counter}>{this.state.counter}/{maxLength}</span>}
+      <div className={styles.wrapper}>
+        <div data-hook="textarea-div" className={classes}>
+          <textarea
+            rows={rows}
+            maxLength={maxLength}
+            ref={ref => this.textArea = ref}
+            className={styles.inputArea}
+            id={id}
+            style={inlineStyle}
+            defaultValue={defaultValue}
+            value={value}
+            onFocus={this._onFocus}
+            onBlur={this._onBlur}
+            onKeyDown={this._onKeyDown}
+            onChange={this._onChange}
+            onDoubleClick={this._onDoubleClick}
+            placeholder={placeholder}
+            tabIndex={tabIndex}
+            autoFocus={autoFocus}
+            onKeyUp={onKeyUp}
+            {...ariaAttribute}
+            readOnly={readOnly}
+            />
+          {theme === 'material' && <div className={styles.bar}/>}
+          {hasCounter && maxLength && <span className={styles.counter}>{this.state.counter}/{maxLength}</span>}
+        </div>
+        <div className={styles.error}>
+          {error && <Exclamation errorMessage={errorMessage} tooltipPlacement={tooltipPlacement} onTooltipShow={onTooltipShow}/>}
+        </div>
       </div>
     );
   }

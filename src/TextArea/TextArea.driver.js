@@ -5,7 +5,7 @@ const textAreaDriverFactory = ({element, wrapper}) => {
   return {
     ...inputAreaWithLabelCompositeDriverFactory({element, wrapper}),
     getInputArea: () => inputArea,
-    hasInputArea: () => inputArea.childNodes[0].tagName.toLowerCase() === 'textarea'
+    hasInputArea: () => inputArea.childNodes[0].childNodes[0].tagName.toLowerCase() === 'textarea'
   };
 };
 
