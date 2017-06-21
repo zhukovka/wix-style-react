@@ -130,6 +130,7 @@ class Input extends Component {
   };
 
   blur = () => {
+    this._onBlur();
     this.input && this.input.blur();
   };
 
