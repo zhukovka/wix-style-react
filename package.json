@@ -76,7 +76,7 @@
     "svg2react-icon": "^1.0.0",
     "wait-for-cond": "^1.0.3",
     "webpack": "^2.3.2",
-    "yoshi": "latest"
+    "yoshi": "1.1.112"
   },
   "peerDependencies": {
     "react": "^15.0.0",
