@@ -32,7 +32,7 @@ const inputDriverFactory = ({element, wrapper, component}) => {
     suffixComponentExists: style => !!element.querySelector(`.${styles.suffix} ${style}`),
     hasExclamation: () => !!element.querySelector(`.${styles.exclamation}`),
     hasHelp: () => !!element.querySelector(`.${styles.help}`),
-    hasError: () => element.classList.contains(styles.hasError),
+    hasError: () => element.classList.contains(styles.hasError) && document.activeElement !== input,
     getTooltipElement: () => element,
     getTooltipDataHook: () => 'input-tooltip',
     getUnit: () => element.querySelector(`.${styles.unit}`).textContent,
