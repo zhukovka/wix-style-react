@@ -11,7 +11,6 @@ class SideMenuDrill extends WixComponent {
 
     const state = {
       menus: {},
-      activeMenus: {},
       currentMenuId: this.props.menuKey,
       previousMenuId: null,
       showMenuA: true,
@@ -24,8 +23,7 @@ class SideMenuDrill extends WixComponent {
 
   componentWillReceiveProps(nextProps) {
     const state = {
-      menus: {},
-      activeMenus: {}
+      menus: {}
     };
 
     this.processChildren({props: nextProps}, state);
@@ -51,8 +49,13 @@ class SideMenuDrill extends WixComponent {
 
     this.setState({selectedItemMenuId});
     if (this.state.currentMenuId !== selectedItemMenuId) {
-      this.navigateToMenu(selectedItemMenuId, SlideDirection.left); // TODO: calculate if needs to slide left or right
+      this.navigateToMenu(selectedItemMenuId, this.getSlideDirectionTo(selectedItemMenuId));
     }
+  }
+
+  getSlideDirectionTo(selectedItemMenuId) {
+    const {currentMenuId, menus} = this.state;
+    return menus[currentMenuId].level < menus[selectedItemMenuId].level ? SlideDirection.left : SlideDirection.right;
   }
 
   navigateToMenu(nextMenuId, slideDirection) {
@@ -96,9 +99,17 @@ class SideMenuDrill extends WixComponent {
       onSelectHandler: event => {
         this.lastClickedMenuKey = menu.props.menuKey;
         this.selectFirstLinkChild(menu, event);
+
+        if (menu.props.onSelectHandler) {
+          menu.props.onSelectHandler.apply(menu, [event]);
+        }
       },
-      onBackHandler: () => {
+      onBackHandler: event => {
         this.navigateToMenu(parentMenuKey, SlideDirection.right);
+
+        if (menu.props.onBackHandler) {
+          menu.props.onBackHandler.apply(menu, [event]);
+        }
       },
       isActive
     };
@@ -107,20 +118,20 @@ class SideMenuDrill extends WixComponent {
   }
 
   cloneSubMenu(menu, state, parentMenuKey, childrenClone) {
-    const isMenuActive = state.activeMenus[menu.props.menuKey];
-    if (isMenuActive) {
-      state.activeMenus[parentMenuKey] = true;
+    const isMenuActive = state.menus[menu.props.menuKey].isActive;
+    if (isMenuActive && state.menus[parentMenuKey]) {
+      state.menus[parentMenuKey].isActive = true;
     }
 
     const menuClone = this.alterMenu(menu, childrenClone, parentMenuKey, isMenuActive);
-    state.menus[menuClone.props.menuKey] = menuClone;
+    state.menus[menuClone.props.menuKey].component = menuClone;
     return menuClone;
   }
 
   cloneChild(menu, state, parentMenuKey, childrenClone) {
     if (menu.type === SideMenuDrill.Link && menu.props.isActive) {
       this.setSelectedItemMenu(parentMenuKey, state);
-      state.activeMenus[parentMenuKey] = true;
+      state.menus[parentMenuKey].isActive = true;
     }
 
     if (menu.props.menuKey) {
@@ -130,17 +141,22 @@ class SideMenuDrill extends WixComponent {
     return React.cloneElement(menu, {}, childrenClone);
   }
 
-  processChildren(menu, state, parentMenuKey) {
+  processChildren(menu, state, parentMenuKey, level = 0) {
     const childrenClone = Children.map(menu.props.children, child => {
       if (child && child.props && child.props.children) {
         const menuKey = menu.props.menuKey || parentMenuKey;
-        return this.processChildren(child, state, menuKey);
+
+        if (!state.menus[menuKey]) {
+          state.menus[menuKey] = {isActive: false, component: null, level};
+        }
+
+        return this.processChildren(child, state, menuKey, level + 1);
       }
 
       return child;
     });
 
-    return this.cloneChild(menu, state, parentMenuKey, childrenClone);
+    return this.cloneChild(menu, state, parentMenuKey, childrenClone, level);
   }
 
   renderNavigation(menu) {
@@ -166,8 +182,8 @@ class SideMenuDrill extends WixComponent {
     const menuAId = showMenuA ? currentMenuId : previousMenuId;
     const menuBId = showMenuA ? previousMenuId : currentMenuId;
 
-    const menuA = menuAId && menus[menuAId];
-    const menuB = menuBId && menus[menuBId];
+    const menuA = menuAId && menus[menuAId].component;
+    const menuB = menuBId && menus[menuBId].component;
 
     return (
       <SideMenu dataHook="drill-view" inFlex={this.props.inFlex}>

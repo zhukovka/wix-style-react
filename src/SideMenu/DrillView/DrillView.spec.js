@@ -1,8 +1,8 @@
 import React from 'react';
+import SideMenu from '../index';
+import SideMenuDrill from './index';
 import {createDriverFactory} from '../../test-common';
 import drillViewDriverFactory from './DrillView.driver';
-import SideMenuDrill from './index';
-import SideMenu from '../index';
 
 describe('DrillView', () => {
   const linksPerLevel = 3;
@@ -10,10 +10,12 @@ describe('DrillView', () => {
   const createDriver = createDriverFactory(drillViewDriverFactory);
   const getHeader = level => `Level ${level} - Start`;
   const getFooter = level => `Level ${level} - End`;
-  let onClickSpy;
+  let onClickSpy, onSubMenuClickSpy, onSubMenuBackSpy;
 
   beforeEach(() => {
     onClickSpy = jest.fn();
+    onSubMenuClickSpy = jest.fn();
+    onSubMenuBackSpy = jest.fn();
   });
 
   function createLinksForLevel(level, activeLink) {
@@ -32,7 +34,13 @@ describe('DrillView', () => {
   function createSubMenu(key, level, maxLevel, activeLink) {
     const menuKey = `${key}_${level}`;
     return (
-      <SideMenuDrill.SubMenu key={menuKey} menuKey={menuKey} title={menuKey}>
+      <SideMenuDrill.SubMenu
+        key={menuKey}
+        menuKey={menuKey}
+        title={menuKey}
+        onSelectHandler={onSubMenuClickSpy}
+        onBackHandler={onSubMenuBackSpy}
+        >
         <SideMenu.Header>
           {getHeader(level)}
         </SideMenu.Header>
@@ -125,7 +133,9 @@ describe('DrillView', () => {
     driver.getMenuDriver().clickInnerLinkByIndex(3);
 
     expect(onClickSpy).toHaveBeenCalled();
+    expect(onSubMenuClickSpy).toHaveBeenCalled();
     expect(onClickSpy.mock.calls.length).toBe(1);
+    expect(onSubMenuClickSpy.mock.calls.length).toBe(1);
   });
 
   it('should navigate to a parent menu and sub menu link should be active', done => {
@@ -144,6 +154,8 @@ describe('DrillView', () => {
       expect(driver.getMenuDriver().headerContent()).toBe(getHeader(0));
       expect(driver.getMenuDriver().footerContent()).toBe(getFooter(0));
       expect(driver.getMenuDriver().isLinkActiveByIndex(3)).toBe(true);
+      expect(onSubMenuBackSpy).toHaveBeenCalled();
+      expect(onSubMenuBackSpy.mock.calls.length).toBe(1);
       done();
     }, 600);
   });
