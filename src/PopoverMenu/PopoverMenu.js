@@ -49,8 +49,6 @@ class PopoverMenu extends WixComponent {
         hideTrigger="click"
         theme="light"
         size={this.props.size}
-        showDelay={0}
-        hideDelay={0}
         shouldCloseOnClickOutside
         >
         <Button
