@@ -28,7 +28,6 @@ export default class Tooltip extends WixComponent {
     zIndex: PropTypes.number,
     textAlign: PropTypes.string,
     moveArrowTo: PropTypes.number,
-    targetStyle: PropTypes.any,
     bounce: PropTypes.bool,
     shouldCloseOnClickOutside: PropTypes.bool,
     onClickOutside: PropTypes.func,
@@ -278,7 +277,7 @@ export default class Tooltip extends WixComponent {
   }
 
   render() {
-    const {theme, bounce, disabled, maxWidth, zIndex, textAlign, size, targetStyle} = this.props;
+    const {theme, bounce, disabled, maxWidth, zIndex, textAlign, size} = this.props;
     const placement = this.placementWithoutAlignment(this.state.placement);
     const arrowPlacement = this.getArrowPlacement(placement);
 
@@ -299,7 +298,7 @@ export default class Tooltip extends WixComponent {
 
     return (
       <div className={styles.root}>
-        <div ref="target" data-hook="target" style={targetStyle}>
+        <div ref="target" data-hook="target">
           {clonedTarget}
         </div>
         <div ref="content">
