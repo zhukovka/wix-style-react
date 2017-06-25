@@ -46,7 +46,8 @@ export default class SliderHandle extends Component {
   }
 
   toggleTooltip(showTooltip) {
-    this.setState({showTooltip});
+    const {displayTooltip} = this.props;
+    this.setState({showTooltip: displayTooltip && showTooltip});
   }
 
   render() {
@@ -70,6 +71,11 @@ export default class SliderHandle extends Component {
 }
 
 SliderHandle.propTypes = {
+  displayTooltip: PropTypes.bool,
   offset: PropTypes.number,
   value: PropTypes.number
+};
+
+SliderHandle.defaultProps = {
+  displayTooltip: true
 };

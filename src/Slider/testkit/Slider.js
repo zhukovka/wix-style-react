@@ -16,7 +16,10 @@ const sliderDriverFactory = component => {
     isDotSelected: index => $sliderDots.filter(`:nth-child(${index})`).hasClass('rc-slider-dot-active'),
     numOfSliderDots: () => $sliderDots.length,
     numOfSLiderHandles: () => $sliderHandles.length,
-    getToolTipValue: () => $component.find('.slider-tooltip')[0].innerHTML,
+    getToolTipValue: () => {
+      const tooltip = $component.find('.slider-tooltip')[0];
+      return tooltip && tooltip.innerHTML;
+    },
     hoverHandle: ({handleIndex}) => {
       const handle = $sliderHandles[handleIndex];
       ReactTestUtils.Simulate.mouseEnter(handle);

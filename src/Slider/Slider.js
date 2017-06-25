@@ -49,7 +49,7 @@ export default class Slider extends Component {
     return (
       <div className={classNames('wix-slider', {rtl: this.props.rtl})} id={this.props.id} data-hook={dataHook}>
         <Range
-          handle={props => (<SliderHandle key={props.index} {...props}/>)}
+          handle={props => (<SliderHandle key={props.index} displayTooltip={this.props.displayTooltip} {...props}/>)}
           min={this.props.min}
           max={this.props.max}
           value={this.props.value}
@@ -73,6 +73,7 @@ Slider.propTypes = {
   onChange: PropTypes.func.isRequired,
   onAfterChange: PropTypes.func,
   allowCross: PropTypes.bool,
+  displayTooltip: PropTypes.bool,
   displayMarks: PropTypes.bool,
   rtl: PropTypes.bool,
   dataHook: PropTypes.string
@@ -85,6 +86,7 @@ Slider.defaultProps = {
   value: [2, 7],
   allowCross: true,
   id: uniqueId(),
+  displayTooltip: true,
   displayMarks: true,
   rtl: false
 };

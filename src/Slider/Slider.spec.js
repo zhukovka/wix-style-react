@@ -55,6 +55,16 @@ describe('Slider', () => {
 
     expect(driver.getToolTipValue()).toBe(`${selectedValues[1]}`);
   });
+
+  it('should not display tooltip if `displayTooltip` is set to false', () => {
+    driver = createDriver({value: [4], displayTooltip: false});
+
+    driver.hoverHandle({handleIndex: 0});
+
+    expect(driver.getToolTipValue()).toBeFalsy();
+
+    driver.unHoverHandle({handleIndex: 0});
+  });
 });
 
 
