@@ -116,6 +116,7 @@ $exclamation-top: 4px;
         .inputArea {
             @include FontLight();
             @include Placeholder($GR60);
+            padding-right: 37px;
         }
         border-radius: 0;
         @include ThemeDefault($color: $D10, $borderColor: #e0e3e5, $backgroundColor: $D80);
