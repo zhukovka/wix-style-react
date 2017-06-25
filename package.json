@@ -10,7 +10,7 @@
     "testkit"
   ],
   "scripts": {
-    "test": "npm run test:unit",
+    "test": "npm run test:unit && npm run test:e2e",
     "test:unit": "yoshi test --jest",
     "test:e2e": "npm run build-e2e-storybook && npm run start-e2e-tests && npm run clean-e2e-files",
     "e2e-only": "yoshi test --protractor",
