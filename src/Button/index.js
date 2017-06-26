@@ -1,1 +1,1 @@
-export {Button} from '../Backoffice';
+export {default} from '../Backoffice/Button';
