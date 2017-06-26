@@ -21,6 +21,25 @@ const defaultBlock = {
 };
 
 class RichTextArea extends WixComponent {
+  static propTypes = {
+    buttons: PropTypes.arrayOf(PropTypes.string), // TODO: use PropTypes.oneOf(),
+    dataHook: PropTypes.string,
+    disabled: PropTypes.bool,
+    error: PropTypes.bool,
+    errorMessage: PropTypes.string,
+    placeholder: PropTypes.string,
+    maxHeight: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+    resizable: PropTypes.bool,
+    value: PropTypes.string,
+    onChange: PropTypes.func,
+    onImageRequest: PropTypes.func,
+  }
+
+  static defaultProps = {
+    errorMessage: '',
+    value: '<p></p>',
+  }
+
   /* eslint-disable react/prop-types */
   schema = {
     nodes: {
@@ -272,7 +291,8 @@ class RichTextArea extends WixComponent {
       [styles.withError]: error,
       [styles.isFocused]: editorState.isFocused,
     });
-    
+    const isScrollable = resizable || this.props.maxHeight;
+
     return (
       <div className={className} data-hook={dataHook}>
         <div className={classNames(styles.toolbar, {[styles.disabled]: disabled})}>
@@ -287,7 +307,17 @@ class RichTextArea extends WixComponent {
             isSelectionExpanded={editorState.isExpanded}
             />
         </div>
-        <div className={classNames(styles.editorWrapper, {[styles.resizable]: resizable, [styles.disabled]: disabled})} data-hook="editor-wrapper">
+        <div
+          className={classNames(
+            styles.editorWrapper, {
+              [styles.resizable]: resizable,
+              [styles.scrollable]: isScrollable,
+              [styles.disabled]: disabled
+            })
+          }
+          data-hook="editor-wrapper"
+          style={{maxHeight: this.props.maxHeight}}
+        >
           <Editor
             readOnly={disabled}
             placeholder={placeholder}
@@ -327,23 +357,5 @@ class RichTextArea extends WixComponent {
     );
   };
 }
-
-RichTextArea.propTypes = {
-  value: PropTypes.string,
-  onChange: PropTypes.func,
-  onImageRequest: PropTypes.func,
-  buttons: PropTypes.arrayOf(PropTypes.string), // TODO: use PropTypes.oneOf(),
-  error: PropTypes.bool,
-  errorMessage: PropTypes.string,
-  placeholder: PropTypes.string,
-  disabled: PropTypes.bool,
-  resizable: PropTypes.bool,
-  dataHook: PropTypes.string
-};
-
-RichTextArea.defaultProps = {
-  value: '<p></p>',
-  errorMessage: ''
-};
 
 export default RichTextArea;

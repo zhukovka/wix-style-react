@@ -17,11 +17,13 @@ class RichTextAreaExample extends Component {
     resizable: false,
     onImageRequest: callback => {
       const src = window.prompt('Enter the URL of the image:');
-      if (!src) return;
+      if (!src) {
+        return;
+      }
       callback(src);
     },
     placeholder: 'Rich placeholder',
-     value: '<p>$$$ Rich text area</p><strong>bold text here</strong><ul><li>The amazing fox lives in <a href="wix.com">Lithuania</a></li></ul>'
+    value: '<p>$$$ Rich text area</p><strong>bold text here</strong><ul><li>The amazing fox lives in <a href="wix.com">Lithuania</a></li></ul>'
   };
 
   handleRichTextAreaChange = value => {
@@ -33,16 +35,16 @@ class RichTextAreaExample extends Component {
       <div className={styles.form}>
         <div className={styles.input}>
           <div className={styles.option}>
-             <Label for="placeholderInput">Placeholder</Label>
-              <div className={styles.flex}>
-                <Input
-                  id="placeholderInput"
-                  size="normal"
-                  theme="normal"
-                  value={this.state.placeholder}
-                  onChange={event => this.setState({placeholder: event.target.value})}
-                  />
-              </div>
+            <Label for="placeholderInput">Placeholder</Label>
+            <div className={styles.flex}>
+              <Input
+                id="placeholderInput"
+                size="normal"
+                theme="normal"
+                value={this.state.placeholder}
+                onChange={event => this.setState({placeholder: event.target.value})}
+                />
+            </div>
           </div>
           <div className={styles.option}>
             <Label>Error: </Label>
@@ -50,7 +52,7 @@ class RichTextAreaExample extends Component {
               size="small"
               checked={this.state.error}
               onChange={() => this.setState({error: !this.state.error})}
-            />
+              />
           </div>
           {this.renderErrorMessageInput()}
           <div className={styles.option}>
@@ -59,7 +61,7 @@ class RichTextAreaExample extends Component {
               size="small"
               checked={this.state.disabled}
               onChange={() => this.setState({disabled: !this.state.disabled})}
-            />
+              />
           </div>
           <div className={styles.option}>
             <Label>Resizable: </Label>
@@ -67,7 +69,7 @@ class RichTextAreaExample extends Component {
               size="small"
               checked={this.state.resizable}
               onChange={() => this.setState({resizable: !this.state.resizable})}
-            />
+              />
           </div>
         </div>
         <div className={styles.output}>

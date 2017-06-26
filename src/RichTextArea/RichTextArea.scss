@@ -142,6 +142,9 @@ $marginLeft: $paddingLeft;
 
 .resizable {
   resize: vertical;
+}
+
+.scrollable {
   overflow: auto;
 }
 

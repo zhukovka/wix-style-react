@@ -77,6 +77,18 @@ class RichTextAreaCompositeExample extends Component {
             </div>
           </div>
           <div className={styles.option}>
+            <Label for="maxHeightInput">Max height</Label>
+            <div className={styles.flex}>
+              <Input
+                id="maxHeightInput"
+                size="normal"
+                theme="normal"
+                value={this.state.richTextArea.maxHeight}
+                onChange={event => this.setComponentState('richTextArea', {maxHeight: Number(event.target.value)})}
+                />
+            </div>
+          </div>
+          <div className={styles.option}>
             <Label>Required: </Label>
             <ToggleSwitch
               size="small"
