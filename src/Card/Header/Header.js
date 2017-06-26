@@ -2,7 +2,7 @@ import React from 'react';
 import {bool, string} from 'prop-types';
 import classNames from 'classnames';
 import styles from './Header.scss';
-import WixComponent from '../../WixComponent';
+import WixComponent from '../../BaseComponents/WixComponent';
 
 class Header extends WixComponent {
 

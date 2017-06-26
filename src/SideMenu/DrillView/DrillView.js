@@ -1,6 +1,6 @@
 import React, {Children} from 'react';
+import WixComponent from '../../BaseComponents/WixComponent';
 import {string, node, bool} from 'prop-types';
-import WixComponent from '../../WixComponent';
 import SideMenu from '../core/SideMenu';
 import SlideAnimation, {SlideDirection} from '../../Animations/SlideAnimation';
 import styles from './DrillView.scss';

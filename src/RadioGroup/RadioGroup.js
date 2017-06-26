@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import uniqueId from 'lodash.uniqueid';
 import RadioButton from './RadioButton/RadioButton';
 import styles from './RadioGroup.scss';
-import WixComponent from '../WixComponent';
+import WixComponent from '../BaseComponents/WixComponent';
 
 /**
  * component for easy radio group creation.

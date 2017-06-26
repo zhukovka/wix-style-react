@@ -42,13 +42,16 @@ export const tagTestkitFactory = enzymeTestkitFactoryCreator(tagDriverFactory);
 import checkboxDriverFactory from '../src/Checkbox/Checkbox.driver';
 export const checkboxTestkitFactory = enzymeTestkitFactoryCreator(checkboxDriverFactory);
 
-import buttonDriverFactory from '../src/Button/Button.driver';
+import buttonDriverFactory from '../src/Backoffice/Button/Button.driver';
 export const buttonTestkitFactory = enzymeTestkitFactoryCreator(buttonDriverFactory);
 
-import textLinkDriverFactory from '../src/TextLink/TextLink.driver';
+import viewerButtonDriverFactory from '../src/Viewer/Button/Button.driver';
+export const viewerButtonTestkitFactory = enzymeTestkitFactoryCreator(viewerButtonDriverFactory);
+
+import textLinkDriverFactory from '../src/BaseComponents/TextLink/TextLink.driver';
 export const textLinkTestkitFactory = enzymeTestkitFactoryCreator(textLinkDriverFactory);
 
-import textLinkLayoutDriverFactory from '../src/TextLinkLayout/TextLinkLayout.driver';
+import textLinkLayoutDriverFactory from '../src/BaseComponents/TextLinkLayout/TextLinkLayout.driver';
 export const textLinkLayoutTestkitFactory = enzymeTestkitFactoryCreator(textLinkLayoutDriverFactory);
 
 import dataTableDriverFactory from '../src/DataTable/DataTable.driver';
@@ -127,6 +130,9 @@ export const imageViewerTestkitFactory = enzymeTestkitFactoryCreator(imageViewer
 
 import textDriverFactory from '../src/Text/Text.driver';
 export const textTestkitFactory = enzymeTestkitFactoryCreator(textDriverFactory);
+
+import dividerDriverFactory from '../src/Viewer/Divider/Divider.driver';
+export const dividerTestkitFactory = enzymeTestkitFactoryCreator(dividerDriverFactory);
 
 import sideMenuDriverFactory from '../src/SideMenu/core/SideMenu.driver';
 export const sideMenuTestkitFactory = enzymeTestkitFactoryCreator(sideMenuDriverFactory);

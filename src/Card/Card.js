@@ -1,7 +1,7 @@
 import React from 'react';
 import {bool, node} from 'prop-types';
 import classNames from 'classnames';
-import WixComponent from '../WixComponent';
+import WixComponent from '../BaseComponents/WixComponent';
 import styles from './Card.scss';
 import Content from './Content';
 import Header from './Header';

@@ -4,7 +4,7 @@ import ReactModal from 'react-modal';
 import classnames from 'classnames';
 import styles from './Modal.scss';
 import {colors, positions} from './ModalConstants';
-import WixComponent from '../WixComponent';
+import WixComponent from '../BaseComponents/WixComponent';
 
 class Modal extends WixComponent {
 

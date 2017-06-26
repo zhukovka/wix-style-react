@@ -1,6 +1,6 @@
 import React, {Children} from 'react';
 import {any} from 'prop-types';
-import WixComponent from '../../WixComponent';
+import WixComponent from '../../../src/BaseComponents/WixComponent';
 import styles from './FieldWithSelectionComposite.scss';
 import classNames from 'classnames';
 

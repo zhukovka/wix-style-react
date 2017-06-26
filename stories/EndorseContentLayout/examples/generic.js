@@ -1,7 +1,7 @@
 import React from 'react';
 
 import EndorseContentLayout from 'wix-style-react/EndorseContentLayout';
-import Button from 'wix-style-react/Button';
+import {Button} from 'wix-style-react/Backoffice';
 
 export default () =>
   <EndorseContentLayout

@@ -1,6 +1,6 @@
 import React from 'react';
 import {arrayOf, func, string} from 'prop-types';
-import WixComponent from '../WixComponent';
+import WixComponent from '../BaseComponents/WixComponent';
 import s from './ButtonSelection.scss';
 
 class ButtonSelection extends WixComponent {

@@ -42,13 +42,16 @@ export const tagTestkitFactory = testkitFactoryCreator(tagDriverFactory);
 import checkboxDriverFactory from '../src/Checkbox/Checkbox.driver';
 export const checkboxTestkitFactory = testkitFactoryCreator(checkboxDriverFactory);
 
-import buttonDriverFactory from '../src/Button/Button.driver';
+import buttonDriverFactory from '../src/Backoffice/Button/Button.driver';
 export const buttonTestkitFactory = testkitFactoryCreator(buttonDriverFactory);
 
-import textLinkDriverFactory from '../src/TextLink/TextLink.driver';
+import viewerButtonDriverFactory from '../src/Viewer/Button/Button.driver';
+export const viewerButtonTestkitFactory = testkitFactoryCreator(viewerButtonDriverFactory);
+
+import textLinkDriverFactory from '../src/BaseComponents/TextLink/TextLink.driver';
 export const textLinkTestkitFactory = testkitFactoryCreator(textLinkDriverFactory);
 
-import textLinkLayoutDriverFactory from '../src/TextLinkLayout/TextLinkLayout.driver';
+import textLinkLayoutDriverFactory from '../src/BaseComponents/TextLinkLayout/TextLinkLayout.driver';
 export const textLinkLayoutTestkitFactory = testkitFactoryCreator(textLinkLayoutDriverFactory);
 
 import dataTableDriverFactory from '../src/DataTable/DataTable.driver';
@@ -130,3 +133,6 @@ import sideMenuDrillDriverFactory from '../src/SideMenu/DrillView/DrillView.driv
 export const sideMenuDrillTestkitFactory = testkitFactoryCreator(sideMenuDrillDriverFactory);
 
 export {toastTestkitFactory} from '../src/Toast/testkit/Toast';
+
+import dividerDriverFactory from '../src/Viewer/Divider/Divider.driver';
+export const dividerTestkitFactory = testkitFactoryCreator(dividerDriverFactory);

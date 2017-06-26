@@ -4,7 +4,7 @@ import uniqueId from 'lodash.uniqueid';
 import React from 'react';
 import classNames from 'classnames';
 import SvgV from '../svg/V';
-import WixComponent from '../WixComponent';
+import WixComponent from '../BaseComponents/WixComponent';
 import Label from '../Label/Label';
 
 class Checkbox extends WixComponent {

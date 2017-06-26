@@ -1,8 +1,8 @@
 import React from 'react';
-import WixComponent from '../WixComponent';
+import WixComponent from '../BaseComponents/WixComponent';
 import styles from './PopoverMenu.scss';
 import Tooltip from '../Tooltip';
-import Button from '../Button';
+import Button from '../Backoffice/Button';
 import {Dots} from '../Icons/dist';
 import PopoverMenuItem from '../PopoverMenuItem';
 

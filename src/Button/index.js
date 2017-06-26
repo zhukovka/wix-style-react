@@ -1,1 +1,1 @@
-export {default} from './Button.js';
+export {Button} from '../Backoffice';

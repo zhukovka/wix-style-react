@@ -2,7 +2,7 @@ import styles from './DropdownLayout.scss';
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import WixComponent from '../WixComponent';
+import WixComponent from '../BaseComponents/WixComponent';
 import isEqual from 'lodash.isequal';
 import isobject from 'lodash.isobject';
 import trim from 'lodash.trim';

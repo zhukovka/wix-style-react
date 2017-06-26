@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import {CloseThin, ArrowDownThin, Search4} from '../Icons/dist';
+import {CloseThin, ArrowDownThin, Search4} from '../Icons';
 import ThemedInputErrorSuffix from './ThemedInputErrorSuffix';
 import ThemedInputHelpSuffix from './ThemedInputHelpSuffix';
 import values from 'lodash.values';

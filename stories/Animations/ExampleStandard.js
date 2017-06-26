@@ -1,5 +1,5 @@
 import React from 'react';
-import Button from '../../src/Button';
+import {Button} from 'wix-style-react/Backoffice';
 import Input from '../../src/Input';
 import {Container, Row, Col, Card} from '../../src/Grid';
 import {FadeAnimation, ScaleAnimation, SlideAnimation} from '../../src/Animations';

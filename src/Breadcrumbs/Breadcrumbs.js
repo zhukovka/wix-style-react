@@ -1,11 +1,10 @@
 import React from 'react';
 import {arrayOf, func, oneOf, oneOfType, node, number, shape, string, any} from 'prop-types';
-import classnames from 'classnames';
-
-import Text from '../Text';
-import WixComponent from '../WixComponent';
-import BreadcrumbsPathFactory from './BreadcrumbsPathFactory';
 import styles from './Breadcrumbs.scss';
+import classnames from 'classnames';
+import WixComponent from '../BaseComponents/WixComponent';
+import Text from '../Text';
+import BreadcrumbsPathFactory from './BreadcrumbsPathFactory';
 
 class Breadcrumbs extends WixComponent {
   static propTypes = {
@@ -28,12 +27,12 @@ class Breadcrumbs extends WixComponent {
     size: oneOf(['medium', 'large']),
     theme: oneOf(['onWhiteBackground', 'onGrayBackground', 'onDarkBackground']),
     customElement: any
-  }
+  };
 
   static defaultProps = {
     size: 'medium',
     theme: 'onGrayBackground',
-  }
+  };
 
   handleBreadcrumbClick = item =>
     this.props.onClick && this.props.onClick(item)

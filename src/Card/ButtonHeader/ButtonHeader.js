@@ -2,8 +2,8 @@ import React from 'react';
 import {bool, func, node, oneOf, string} from 'prop-types';
 import styles from './ButtonHeader.scss';
 import classNames from 'classnames';
-import Button from '../../../src/Button';
-import WixComponent from '../../WixComponent';
+import {Button} from '../../../src/Backoffice/';
+import WixComponent from '../../BaseComponents/WixComponent';
 
 class ButtonHeader extends WixComponent {
 
