@@ -18,6 +18,7 @@ const notificationDriverFactory = ({element, wrapper, component}) => {
     isErrorNotification: () => classExists('errorTheme'),
     isSuccessNotification: () => classExists('successTheme'),
     isWarningNotification: () => classExists('warningTheme'),
+    isPremiumNotification: () => classExists('premiumTheme'),
     isSmallSize: () => classExists('smallSize'),
     isBigSize: () => classExists('bigSize'),
     getLabelText: () => element.querySelector(labelTextSelector).textContent,

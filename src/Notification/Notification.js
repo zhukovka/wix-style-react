@@ -206,7 +206,7 @@ class Notification extends WixComponent {
 
 Notification.propTypes = {
   show: PropTypes.bool,
-  theme: PropTypes.oneOf(['standard', 'error', 'success', 'warning']),
+  theme: PropTypes.oneOf(['standard', 'error', 'success', 'warning', 'premium']),
   size: PropTypes.oneOf(['small', 'big']),
   type: PropTypes.oneOf([GLOBAL_NOTIFICATION, LOCAL_NOTIFICATION, STICKY_NOTIFICATION]),
   timeout: PropTypes.number,

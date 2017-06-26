@@ -63,6 +63,11 @@ describe('Notification', () => {
       const driver = createDriver(renderNotificationWithProps({show: true, theme: 'warning'}));
       expect(driver.isWarningNotification()).toBeTruthy();
     });
+
+    it('should support premium theme', () => {
+      const driver = createDriver(renderNotificationWithProps({show: true, theme: 'premium'}));
+      expect(driver.isPremiumNotification()).toBeTruthy();
+    });
   });
 
   describe('Sizes', () => {
