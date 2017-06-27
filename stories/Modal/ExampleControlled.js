@@ -23,7 +23,12 @@ class ControlledModal extends Component {
     return (
       <div>
         <Button onClick={open} >Open Blue Modal</Button>
-        <Modal isOpen={this.state.isOpen} onRequestClose={close} contentLabel="Modal Example">
+        <Modal
+          isOpen={this.state.isOpen}
+          onRequestClose={close}
+          contentLabel="Modal Example"
+          scrollableContent={false}
+          >
           <MessageBoxFunctionalLayout theme="blue" title="title" confirmText="OK" cancelText="Cancel" onOk={close} onCancel={close}>
               Hello blue world!
           </MessageBoxFunctionalLayout>

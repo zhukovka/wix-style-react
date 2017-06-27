@@ -7,6 +7,32 @@ import {colors, positions} from './ModalConstants';
 import WixComponent from '../BaseComponents/WixComponent';
 
 class Modal extends WixComponent {
+  static propTypes = {
+    isOpen: PropTypes.bool.isRequired,
+    contentLabel: PropTypes.string.isRequired,
+    theme: PropTypes.oneOf(Object.keys(colors)),
+    children: PropTypes.any,
+    zIndex: PropTypes.number,
+    shouldCloseOnOverlayClick: PropTypes.bool,
+    onRequestClose: PropTypes.func,
+    onAfterOpen: PropTypes.func,
+    horizontalPosition: PropTypes.oneOf(Object.keys(positions)),
+    verticalPosition: PropTypes.oneOf(Object.keys(positions)),
+    closeTimeoutMS: PropTypes.number,
+    scrollable: PropTypes.bool,
+    scrollableContent: PropTypes.bool
+  }
+
+  static defaultProps = {
+    onOk: () => { },
+    theme: colors.blue,
+    shouldCloseOnOverlayClick: false,
+    horizontalPosition: 'center',
+    verticalPosition: 'center',
+    closeTimeoutMS: 500,
+    scrollable: true,
+    scrollableContent: false
+  }
 
   render() {
     const props = this.props;
@@ -33,7 +59,8 @@ class Modal extends WixComponent {
       content: {
         // Overriding defaults
         border: 'none',
-        overflow: 'initial',
+        overflow: props.scrollableContent ? 'auto' : 'initial',
+        maxHeight: props.scrollableContent ? '100vh' : 'auto',
         WebkitOverflowScrolling: 'touch',
         outline: 'none',
         borderRadius: '0px',
@@ -67,29 +94,5 @@ class Modal extends WixComponent {
     );
   }
 }
-Modal.propTypes = {
-  isOpen: PropTypes.bool.isRequired,
-  contentLabel: PropTypes.string.isRequired,
-  theme: PropTypes.oneOf(Object.keys(colors)),
-  children: PropTypes.any,
-  zIndex: PropTypes.number,
-  shouldCloseOnOverlayClick: PropTypes.bool,
-  onRequestClose: PropTypes.func,
-  onAfterOpen: PropTypes.func,
-  horizontalPosition: PropTypes.oneOf(Object.keys(positions)),
-  verticalPosition: PropTypes.oneOf(Object.keys(positions)),
-  closeTimeoutMS: PropTypes.number,
-  scrollable: PropTypes.bool
-};
-
-Modal.defaultProps = {
-  onOk: () => { },
-  theme: colors.blue,
-  shouldCloseOnOverlayClick: false,
-  horizontalPosition: 'center',
-  verticalPosition: 'center',
-  closeTimeoutMS: 500,
-  scrollable: true
-};
 
 export default Modal;
