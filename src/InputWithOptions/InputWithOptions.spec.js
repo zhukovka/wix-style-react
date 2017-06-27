@@ -108,6 +108,12 @@ const runInputWithOptionsTest = driverFactory => {
       expect(dropdownLayoutDriver.isShown()).toBeFalsy();
     });
 
+    it('should hide options on outside click', () => {
+      const {driver, dropdownLayoutDriver} = createDriver(<InputWithOptions options={options}/>);
+      driver.outsideClick();
+      expect(dropdownLayoutDriver.isShown()).toBeFalsy();
+    });
+
     it('should not hide options on selection', () => {
       const {driver, dropdownLayoutDriver} = createDriver(<InputWithOptions options={options} closeOnSelect={false}/>);
       driver.focus();
