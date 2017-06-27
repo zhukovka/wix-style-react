@@ -39,7 +39,10 @@ Tabs.propTypes = {
       PropTypes.string,
       PropTypes.number
     ]),
-    title: PropTypes.string.isRequired,
+    title: PropTypes.oneOfType([
+      PropTypes.string,
+      PropTypes.element
+    ]).isRequired
   })).isRequired,
   onClick: PropTypes.func,
   activeId: PropTypes.oneOfType([
