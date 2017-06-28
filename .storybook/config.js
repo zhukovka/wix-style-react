@@ -25,6 +25,7 @@ function loadStories() {
   require('../stories/Input');
   require('../stories/InputArea');
   require('../stories/InputWithOptions');
+  require('../stories/ButtonWithOptions');
   require('../stories/Label');
   require('../stories/Loader');
   require('../stories/MessageBox');
