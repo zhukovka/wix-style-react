@@ -142,3 +142,6 @@ export const sideMenuTestkitFactory = enzymeTestkitFactoryCreator(sideMenuDriver
 
 import sideMenuDrillDriverFactory from '../src/SideMenu/DrillView/DrillView.driver';
 export const sideMenuDrillTestkitFactory = enzymeTestkitFactoryCreator(sideMenuDrillDriverFactory);
+
+import tpaButtonDriverFactory from '../src/TPA/Button/Button.driver';
+export const tpaButtonTestkitFactory = enzymeTestkitFactoryCreator(tpaButtonDriverFactory, true);

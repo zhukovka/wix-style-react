@@ -1,5 +1,6 @@
 import {configure} from '@kadira/storybook';
 import {setOptions} from '@kadira/storybook-addon-options';
+import throttle from 'lodash/throttle';
 
 function loadStories() {
   require('../stories/stories.scss');
@@ -51,6 +52,9 @@ function loadStories() {
   require('../stories/ViewerSnippet/TextLink/CompositeStory');
   require('../stories/Viewer/Divider');
   require('../stories/ViewerSnippet/Divider/CompositeStory');
+
+  //TPA
+  require('../stories/TPA/Button');
 
   // Common
   require('../stories/Composite');
