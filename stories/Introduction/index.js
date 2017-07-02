@@ -4,11 +4,12 @@ import Markdown from '../utils/Components/Markdown';
 import Readme from '../../README.md';
 import TestsReadme from '../../TESTS.md';
 import Contribution from '../../CONTRIBUTION.md';
+import TPA from '../../src/TPA/README.md';
 
 storiesOf('Introduction', {})
   .add('Getting started', () => (
     <div>
-       <Markdown source={Readme}/>
+      <Markdown source={Readme}/>
     </div>
   )).add('Testing', () => (
     <div>
@@ -17,5 +18,9 @@ storiesOf('Introduction', {})
   )).add('Contribution', () => (
     <div>
       <Markdown source={Contribution}/>
+    </div>
+  )).add('TPA', () => (
+    <div>
+      <Markdown source={TPA}/>
     </div>
   ));

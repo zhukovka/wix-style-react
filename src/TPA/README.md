@@ -12,3 +12,23 @@ Each component comes with a style sheet that is injected into the DOM with a wix
 
 [Live](https://gilada.wixsite.com/mysite-32)
 
+## Building a TPA Component
+ 
+1. Give your component a displayName
+ 
+2. Import the component styles using inline loader that runs only during build
+
+``` javascript
+let styles = {locals: {}};
+try {
+    styles = require('!css-loader?modules&camelCase&localIdentName="[path][name]__[local]__[hash:base64:5]"!sass-loader!./{your-component}.scss');
+} catch (e) {}
+```
+3. Inject these styles at runtime by wrapping your component with the tpaStyleInjector, like this:
+export default tpaStyleInjector({your-component}, styles);
+ 
+4. See this example for some more details:
+ 
+https://github.com/wix/wix-style-react/blob/wix-style-react-tpa/src/TPA/Button/
+ 
+ 
