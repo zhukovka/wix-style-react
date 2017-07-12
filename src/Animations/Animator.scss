@@ -8,31 +8,39 @@ $easeOutQuint: cubic-bezier(0.23, 1, 0.32, 1);
 $easeOutCubic: cubic-bezier(0.215, 0.61, 0.355, 1);
 $easeInOutQuint: cubic-bezier(0.86, 0, 0.07, 1);
 
+
 // Duration
 ///////////
 
+$timing-micro: .12s;
+$timing-small: .15s;
+$timing-medium: .2s;
+$timing-large: .3s;
+$timing-debug: 100s;
+$timing-translate: $timing-large;
+
 .timing-micro {
-  transition-duration: .12s
+  transition-duration: $timing-micro
 }
 
 ;
 .timing-small {
-  transition-duration: .15s
+  transition-duration: $timing-small
 }
 
 ;
 .timing-medium {
-  transition-duration: .2s
+  transition-duration: $timing-medium
 }
 
 ;
 .timing-large {
-  transition-duration: .3s
+  transition-duration: $timing-large
 }
 
 ;
 .timing-debug {
-  transition-duration: 10s
+  transition-duration: $timing-debug
 }
 
 ;
@@ -60,8 +68,11 @@ $sequence-delay-max-child: 100;
 @mixin delayEnter() {
   @for $i from 1 through $sequence-delay-max-child {
     &.childSequenceDelay-#{$i} {
-      $delay: $i * $sequence-delay-duration;
-      transition: opacity 0s linear $delay;
+      $delay: ($i - 1) * $sequence-delay-duration;
+      transition-property: opacity;
+      transition-duration: 0s;
+      transition-timing-function: linear;
+      transition-delay: $delay;
       opacity: 0;
 
       .child {
@@ -85,12 +96,53 @@ $sequence-delay-max-child: 100;
   }
 }
 
+@keyframes hide-animation-hack {
+  0% { opacity: 1 }
+  99% { opacity: 1 }
+  100% { opacity: 0 }
+}
+
+@mixin loopOnTiming() {
+  .timing-micro {
+    transition-duration: $timing-micro
+  }
+
+  .timing-small {
+    transition-duration: $timing-small
+  }
+
+  .timing-medium {
+    transition-duration: $timing-medium
+  }
+
+  .timing-large {
+    transition-duration: $timing-large
+  }
+
+  .timing-debug {
+    transition-duration: $timing-debug
+  }
+}
+
 @mixin delayLeave() {
   @for $i from 1 through $sequence-delay-max-child {
-    $delay: $i * $sequence-delay-duration;
+    $delay: ($i - 1) * $sequence-delay-duration;
     &.childSequenceDelay-#{$i} {
 
+      &.translate-wrapper {
+        animation: hide-animation-hack ($delay + $timing-translate) forwards;
+      }
+
+      &:not(.translate-wrapper) {
+        animation: hide-animation-hack ($delay + $timing-large) forwards;
+
+        &.timing-micro { animation-duration: $delay + $timing-micro}
+        &.timing-small { animation-duration: $delay + $timing-small}
+        &.timing-medium { animation-duration: $delay + $timing-medium}
+      }
+
       .child {
+        //background: red;
         transition-delay: $delay;
       }
 
@@ -209,16 +261,10 @@ $sequence-delay-max-child: 100;
 // Translate
 ////////////
 
-@mixin translateShow() {
-  &:not(.enter):not(.leave) {
-    transform: translate(0, 0);
-  }
-}
-
-@mixin translateHide() {
+@mixin createTranslateAnimations($prefix: '') {
   @for $i from 1 through 10 {
     $size: $i * 10%;
-    &.translate-#{$i * 10} {
+    &.translate#{$prefix}-#{$i * 10} {
       &.translate-top {
         transform: translate(0, $size);
       }
@@ -236,6 +282,20 @@ $sequence-delay-max-child: 100;
       }
     }
   }
+}
+
+@mixin translateShow() {
+  &:not(.enter):not(.leave) {
+    transform: translate(0, 0);
+  }
+}
+
+@mixin translateHide() {
+  @include createTranslateAnimations();
+}
+
+@mixin translateHideOut() {
+  @include createTranslateAnimations('-out');
 }
 
 @mixin translateEnter() {
@@ -275,6 +335,18 @@ $sequence-delay-max-child: 100;
     @include translateHide();
   }
 }
+
+@mixin translateOutEnter() {
+  .translate {
+    @include translateHideOut();
+  }
+};
+
+@mixin translateOutLeaveActive() {
+  .translate {
+    @include translateHideOut();
+  }
+};
 
 
 // Minimum Maximum Summary
@@ -325,5 +397,20 @@ $sequence-delay-max-child: 100;
   @include opacityLeaveActive();
   @include translateLeaveActive();
   @include minimum();
+}
 
+.animate-out .enter {
+  @include translateOutEnter();
+}
+
+.animate-out .enter-active {
+
+}
+
+.animate-out .leave {
+
+}
+
+.animate-out .leave-active {
+  @include translateOutLeaveActive();
 }
