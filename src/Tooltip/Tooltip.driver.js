@@ -12,7 +12,6 @@ const arrowDirectionToPlacement = {
 };
 
 const tooltipDriverFactory = ({element, wrapper}) => {
-  
   return {
     isShown: () => !!document.body.querySelector('.tooltip'),
     focus: () => ReactTestUtils.Simulate.focus(element),
