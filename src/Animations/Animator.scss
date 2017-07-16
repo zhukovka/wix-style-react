@@ -80,7 +80,7 @@ $timing-translate: $timing-large;
 /////////////////
 
 $sequence-delay-duration: .08s;
-$sequence-delay-max-child: 100;
+$sequence-delay-max-child: 20;
 
 @keyframes hide-animation-hack {
   0% {
