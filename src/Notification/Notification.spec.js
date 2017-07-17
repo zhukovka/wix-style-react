@@ -247,17 +247,17 @@ describe('Notification', () => {
         });
 
         it('should close after starting from a closed status', () => {
-            driver = createDriver(renderNotificationWithProps({show: false, type}));
+          driver = createDriver(renderNotificationWithProps({show: false, type}));
 
-            jest.runAllTimers();
-            expect(driver.visible()).toBeFalsy();
-            driver.setProps({show: true});
-            expect(driver.visible()).toBeTruthy();
-            jest.runAllTimers();
-            expect(driver.visible()).toBeFalsy();
+          jest.runAllTimers();
+          expect(driver.visible()).toBeFalsy();
+          driver.setProps({show: true});
+          expect(driver.visible()).toBeTruthy();
+          jest.runAllTimers();
+          expect(driver.visible()).toBeFalsy();
 
-            expect(setTimeout.mock.calls.find(call => call[1] === defaultTimeout)).toBeTruthy();
-          });
+          expect(setTimeout.mock.calls.find(call => call[1] === defaultTimeout)).toBeTruthy();
+        });
       });
     });
 
