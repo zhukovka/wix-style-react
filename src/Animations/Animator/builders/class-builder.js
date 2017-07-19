@@ -1,5 +1,4 @@
-import css from '../../Animator.scss';
-import getTranslate from '../props/prop-translate';
+import css from '../Animator.scss';
 
 const flattenArray = arr => [].concat.apply([], arr);
 
@@ -20,18 +19,12 @@ const classMap = {
   scale: scale => scale && 'scale',
   height: height => height && 'height',
   timing: timing => timing && `timing-${timing}`,
-  translateWrapper: translate => translate && `translate-wrapper`,
   sequence: sequence => sequence && 'child-sequence',
-  sequenceWrapper: sequence => sequence && `sequence-${sequence}`,
-  translate: translate => translate && getTranslate(translate),
+  translate: translate => translate && 'translate',
+  translateWrapper: translate => translate && 'translate-wrapper',
   className: className => className && className,
   debug: mode => mode && debugMap[mode]
 
-};
-
-const removeWrapperString = str => {
-  const index = str.search('Wrapper');
-  return index > -1 ? str.slice(0, index) : str;
 };
 
 class ClassBuilder {
@@ -50,10 +43,8 @@ class ClassBuilder {
       .forEach(name => this.names.push(name));
     return this;
   }
-
-  getFromMap(name, ...args) {
-    const prop = this.data[removeWrapperString(name)];
-    return this.withName(classMap[name](prop, ...args));
+  getValue(name, value) {
+    return this.withName(classMap[name](value));
   }
 
   withClassName(className) {
@@ -63,49 +54,40 @@ class ClassBuilder {
     return this;
   }
 
-  withAppearanceState(appears) {
-    this.names.push(appears ? 'animate-in' : 'animate-out');
-    return this;
-  }
-
   withChildLayer(number) {
-    return this.getFromMap(`child${number}`);
+    return this.getValue(`child${number}`, number);
   }
 
-  withDebug() {
-    return this.getFromMap('debug');
+  withDebug(debug) {
+    return this.getValue('debug', debug);
   }
 
-  withOpacity() {
-    return this.getFromMap('opacity');
+  withOpacity(opacity) {
+    return this.getValue('opacity', opacity);
   }
 
-  withScale() {
-    return this.getFromMap('scale');
+  withScale(scale) {
+    return this.getValue('scale', scale);
   }
 
-  withHeight() {
-    return this.getFromMap('height');
+  withHeight(height) {
+    return this.getValue('height', height);
   }
 
-  withTiming() {
-    return this.getFromMap('timing');
+  withTiming(timing) {
+    return this.getValue('timing', timing);
   }
 
-  withTranslateWrapper() {
-    return this.getFromMap('translateWrapper');
+  withSequence(sequence) {
+    return this.getValue('sequence', sequence);
   }
 
-  withSequence() {
-    return this.getFromMap('sequence');
+  withTranslate(translate) {
+    return this.getValue('translate', translate);
   }
 
-  withSequenceWrapper() {
-    return this.getFromMap('sequenceWrapper');
-  }
-
-  withTranslate() {
-    return this.getFromMap('translate');
+  withTranslateWrapper(translate) {
+    return this.getValue('translateWrapper', translate);
   }
 
   build() {
