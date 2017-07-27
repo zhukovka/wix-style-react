@@ -35,9 +35,14 @@ const tooltipDriverFactory = ({element, wrapper}) => {
       }
       return content.innerHTML;
     },
+    getMaxWidth: () => {
+      const content = document.body.querySelector('.tooltip');
+      const values = content.style._values;
+      return values['max-width'];
+    },
     setProps: props => {
       ReactDOM.render(<div ref={r => element = r}><Tooltip {...props}/></div>, wrapper);
-    }
+    },
   };
 };
 
