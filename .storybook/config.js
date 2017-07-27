@@ -28,10 +28,7 @@ function loadStories() {
   require('../stories/LanguagePicker');
   require('../stories/Label');
   require('../stories/Loader');
-  require('../stories/MessageBox');
-  require('../stories/Modal');
   require('../stories/MultiSelect');
-  require('../stories/RadioGroup');
   require('../stories/SideBar');
   require('../stories/SideMenu');
   require('../stories/Slider');
@@ -70,6 +67,7 @@ function loadStories() {
   require('../stories/AutoCompleteComposite');
   require('../stories/ButtonWithOptions');
   require('../stories/Checkbox/CheckboxStory');
+  require('../stories/RadioGroup');
   require('../stories/GoogleAddressInputWithLabel');
   require('../stories/Backoffice/Button/CompositeStory');
   require('../stories/Breadcrubms/CompositeStory');
@@ -77,6 +75,9 @@ function loadStories() {
   // require('../stories/Tooltip/Composite/CompositeStory');
   require('../stories/Tooltip_New/Composite/CompositeStory');
   require('../stories/Notification');
+
+  require('../stories/MessageBox');
+  require('../stories/Modal');
 
   // Animations
   require('../stories/Animations');
