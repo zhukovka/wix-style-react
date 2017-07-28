@@ -4,16 +4,6 @@ $width: 300px;
 $content-width: $width - 50px;
 
 .container {
-  max-width: $width;
-
-  span {
-    display: block;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-    max-width: $content-width;
-  }
-
   &:hover {
     svg {
       border-radius: 50%;
@@ -22,8 +12,16 @@ $content-width: $width - 50px;
   }
 }
 
+.content > span {
+    display: block;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    max-width: $content-width;
+}
+
 .header {
-  max-width: $width;
+  display: block;
   margin-bottom: 13px;
   font-family: $FontMedium;
   font-size: 16px;

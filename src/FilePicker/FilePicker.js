@@ -33,7 +33,7 @@ class FilePicker extends WixComponent {
         {header && (<span className={styles.header}>{header}</span>)}
         <label className={styles.label} htmlFor={this.id}>
           <div className={styles.icon}><Add width="42" height="42"/></div>
-          <div>
+          <div className={styles.content}>
             <span className={styles.cta} data-hook="main-label">{mainLabel}</span>
             <span className={styles.info} data-hook="sub-label">{this.state.selectedFileName}</span>
             {error && <span className={styles.error} data-hook="filePicker-error">{errorMessage}</span>}
