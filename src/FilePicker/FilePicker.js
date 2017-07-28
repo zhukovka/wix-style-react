@@ -29,7 +29,7 @@ class FilePicker extends WixComponent {
     const {header, mainLabel, supportedFormats, error, errorMessage} = this.props;
 
     return (
-      <div className={styles.container}>
+      <div>
         {header && (<span className={styles.header}>{header}</span>)}
         <label className={styles.label} htmlFor={this.id}>
           <div className={styles.icon}><Add width="42" height="42"/></div>
