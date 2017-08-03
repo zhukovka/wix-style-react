@@ -48,8 +48,8 @@
     flex-direction: row;
 }
 
-:global(.rtl) .radio-wrapper > label {
-    flex-direction: row-reverse;
+:global(.rtl) .radio-wrapper {
+    direction: rtl;
 }
 
 .radio-wrapper > label.vcenter
