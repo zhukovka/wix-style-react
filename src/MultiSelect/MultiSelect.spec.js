@@ -97,6 +97,18 @@ describe('multiSelect', () => {
     expect(driver.getTagLabelAt(1)).toBe('Alaska');
   });
 
+  it('should support custom delimiters', () => {
+    const onSelect = jest.fn();
+    const onChange = jest.fn();
+    const {driver, inputDriver} = createDriver(
+      <MultiSelect value={options[0].value} options={options} delimiters={[',']} onSelect={onSelect} onChange={onChange}/>
+    );
+    driver.focus();
+    inputDriver.trigger('keyDown', {key: ','});
+    expect(onSelect).toBeCalledWith({id: options[0].id, label: options[0].value});
+    expect(onChange).toBeCalledWith({target: {value: ''}});
+  });
+
   describe('testkit', () => {
     it('should exist', () => {
       const div = document.createElement('div');

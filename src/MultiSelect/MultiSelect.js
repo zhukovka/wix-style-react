@@ -14,6 +14,7 @@ class MultiSelect extends InputWithOptions {
     this.onKeyDown = this.onKeyDown.bind(this);
     this.onSelect = this.onSelect.bind(this);
     this.onManuallyInput = this.onManuallyInput.bind(this);
+    this.onEnterPressed = this.onEnterPressed.bind(this);
   }
 
   getUnselectedOptions() {
@@ -24,9 +25,8 @@ class MultiSelect extends InputWithOptions {
   }
 
   dropdownAdditionalProps() {
-    const unselectedOptions = this.getUnselectedOptions();
     return {
-      options: unselectedOptions.filter(this.props.predicate)
+      options: this.getUnselectedOptions().filter(this.props.predicate)
     };
   }
 
@@ -37,7 +37,9 @@ class MultiSelect extends InputWithOptions {
   inputAdditionalProps() {
     return {
       inputElement: <InputWithTags/>,
-      onKeyDown: this.onKeyDown
+      onKeyDown: this.onKeyDown,
+      onEnterPressed: this.onEnterPressed,
+      delimiters: this.props.delimiters
     };
   }
 
@@ -58,8 +60,22 @@ class MultiSelect extends InputWithOptions {
     this.clearInput();
   }
 
+  onEnterPressed() {
+    if (this.props.value.trim()) {
+      const unselectedOptions = this.getUnselectedOptions();
+      const visibleOptions = unselectedOptions.filter(this.props.predicate);
+      const maybeNearestOption = visibleOptions[0];
+
+      if (maybeNearestOption) {
+        this.onSelect(maybeNearestOption);
+      }
+
+      this.clearInput();
+    }
+  }
+
   onKeyDown(event) {
-    const {tags, value, onRemoveTag} = this.props;
+    const {tags, value, onRemoveTag, delimiters} = this.props;
 
     if (tags.length > 0 && (event.key === 'Delete' || event.key === 'Backspace') && value.length === 0) {
       onRemoveTag(last(tags).id);
@@ -70,14 +86,8 @@ class MultiSelect extends InputWithOptions {
       super.hideOptions();
     }
 
-    if (event.key === 'Enter' && value.length > 0) {
-      const unselectedOptions = this.getUnselectedOptions();
-      const visibleOptions = unselectedOptions.filter(this.props.predicate);
-      const maybeNearestOption = visibleOptions[0];
-
-      if (maybeNearestOption) {
-        this.onSelect(maybeNearestOption);
-      }
+    if (delimiters.includes(event.key)) {
+      this.onEnterPressed();
     }
 
     if (this.props.onKeyDown) {
@@ -98,7 +108,6 @@ class MultiSelect extends InputWithOptions {
 
     const updeatedOptions = this.getUnselectedOptions();
     remove(updeatedOptions, option);
-    this.setState({unSelectedOptions: updeatedOptions});
 
     this.input.focus();
   }
@@ -120,20 +129,21 @@ class MultiSelect extends InputWithOptions {
     if (this.props.onChange) {
       this.props.onChange({target: {value: ''}});
     }
-    this.setState({inputValue: ''});
   }
 }
 
 MultiSelect.propTypes = {
   ...InputWithOptions.propTypes,
   predicate: PropTypes.func,
-  tags: PropTypes.array
+  tags: PropTypes.array,
+  delimiters: PropTypes.array
 };
 
 MultiSelect.defaultProps = {
   ...InputWithOptions.defaultProps,
   predicate: () => true,
-  tags: []
+  tags: [],
+  delimiters: []
 };
 
 export default MultiSelect;

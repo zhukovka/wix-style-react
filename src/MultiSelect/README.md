@@ -19,6 +19,7 @@
 | predicate | func | () => true | - | Callback predicate for the filtering options function |
 | fixedHeader | node | - | - | A fixed header to the list |
 | fixedFooter | node | - | - | A fixed footer to the list |
+| delimiters | array | [] | - | delimiters that will be treated like enter press |
 | ***All of the InputWithOptions Props are also available for this component*** | | | | |
 
 ## Option

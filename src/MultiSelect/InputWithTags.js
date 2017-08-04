@@ -30,7 +30,7 @@ class InputWithTags extends React.Component {
   }
 
   render() {
-    const {tags, onRemoveTag, placeholder, error, disabled, ...inputProps} = this.props;
+    const {tags, onRemoveTag, placeholder, error, disabled, delimiters, ...inputProps} = this.props;
     const hasFocus = this.state.inputHasFocus;
 
     const className = classNames({
@@ -59,8 +59,10 @@ class InputWithTags extends React.Component {
             {...desiredProps}
             disabled={disabled}
             onChange={e => {
-              this.setState({inputValue: e.target.value});
-              desiredProps.onChange && desiredProps.onChange(e);
+              if (!delimiters.includes(e.target.value)) {
+                this.setState({inputValue: e.target.value});
+                desiredProps.onChange && desiredProps.onChange(e);
+              }
             }}
             />
         </span>
@@ -89,13 +91,15 @@ InputWithTags.propTypes = {
   onFocus: PropTypes.func,
   autoFocus: PropTypes.bool,
   disabled: PropTypes.bool,
-  error: PropTypes.bool
+  error: PropTypes.bool,
+  delimiters: PropTypes.array
 };
 
 InputWithTags.defaultProps = {
   onRemoveTag: () => {},
   tags: [],
-  placeholder: ''
+  placeholder: '',
+  delimiters: []
 };
 
 export default InputWithTags;
