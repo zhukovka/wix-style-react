@@ -32,6 +32,7 @@
 | onEscapePressed | func | - | - | Called when user presses -escape- |
 | onKeyDown | func | - | - | Standard input onKeyDown callback |
 | onClear | func | - | - | Displays a X button on a non-empty input, and calls this callback when pressed. This callback should normally erase the value of the controlled object, and call focus |
+| onPaste | func | - | - | called when user pastes text from clipboard (using mouse or keyboard shortcut) |
 | size | string | normal | - | Specifies the size of the input (small, normal, large) |
 | dataHook | string | normal | - | Specifies a data-hook for tests |
 | disabled | bool | false | - |  when set to true this component is disabled

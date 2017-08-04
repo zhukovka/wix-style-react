@@ -277,6 +277,18 @@ describe('Input', () => {
     });
   });
 
+  describe('onPaste attribute', () => {
+    it('should be called when pasting text to the input', () => {
+      const onPaste = jest.fn();
+
+      const driver = createDriver(<Input onPaste={onPaste}/>);
+
+      driver.trigger('paste');
+
+      expect(onPaste).toBeCalled();
+    });
+  });
+
   describe('forceFocus attribute', () => {
     it('should have focus class on input if forceFocus is true', () => {
       const driver = createDriver(<Input forceFocus/>);

@@ -37,6 +37,7 @@ class Input extends Component {
       onClear,
       autoFocus,
       onKeyUp,
+      onPaste,
       readOnly,
       prefix,
       suffix,
@@ -88,6 +89,7 @@ class Input extends Component {
         onBlur={this._onBlur}
         onKeyDown={this._onKeyDown}
         onDoubleClick={this._onDoubleClick}
+        onPaste={onPaste}
         placeholder={placeholder}
         tabIndex={tabIndex}
         autoFocus={autoFocus}
@@ -217,6 +219,7 @@ Input.propTypes = {
   onEnterPressed: PropTypes.func,
   onKeyDown: PropTypes.func,
   onKeyUp: PropTypes.func,
+  onPaste: PropTypes.func,
   disabled: PropTypes.bool,
   readOnly: PropTypes.bool,
   dataHook: PropTypes.string,
