@@ -3,13 +3,12 @@ import ReactDOM from 'react-dom';
 import ReactTestUtils from 'react-dom/test-utils';
 
 const modalDriverFactory = ({element, wrapper, component}) => {
-
   const getPortal = () => document.body.querySelector('.portal');
   const getOverlay = () => document.body.querySelector('.ReactModal__Overlay');
   const getContent = () => document.body.querySelector('.ReactModal__Content');
 
   return {
-    exists: () => !!(getPortal()) && !!element,
+    exists: () => !!(getPortal()),
     isOpen: () => !!(getContent()),
     isThemeExist: theme => !!getPortal().querySelector(`.${theme}`),
     getChildBySelector: selector => getPortal().querySelector(selector),
