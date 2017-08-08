@@ -151,6 +151,9 @@ class InputWithOptions extends WixComponent {
   }
 
   _onFocus() {
+    if (this.props.disabled) {
+      return;
+    }
     this.setState({isEditing: false});
     this.showOptions();
     if (this.props.onFocus) {
@@ -159,6 +162,9 @@ class InputWithOptions extends WixComponent {
   }
 
   _onKeyDown(event) {
+    if (this.props.disabled) {
+      return;
+    }
     if (event.key !== 'ArrowDown' && event.key !== 'ArrowUp') {
       this.setState({isEditing: true});
     }
