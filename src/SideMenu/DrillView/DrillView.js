@@ -189,13 +189,14 @@ class SideMenuDrill extends WixComponent {
 
     const menuA = menuAId && menus[menuAId].component;
     const menuB = menuBId && menus[menuBId].component;
+
     return (
       <SideMenu dataHook="drill-view" inFlex={this.props.inFlex}>
         <div className={styles.drillViewContainer}>
-          <SlideAnimation direction={this.state.slideDirection}>
+          <SlideAnimation direction={this.state.slideDirection} animateAppear={false}>
             { showMenuA ? this.renderMenu(menuA) : null }
           </SlideAnimation>
-          <SlideAnimation direction={this.state.slideDirection}>
+          <SlideAnimation direction={this.state.slideDirection} animateAppear={false}>
             { !showMenuA ? this.renderMenu(menuB) : null }
           </SlideAnimation>
         </div>
