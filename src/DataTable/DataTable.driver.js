@@ -22,6 +22,8 @@ const dataTableDriverFactory = ({element, wrapper, component}) => {
     isDisplayingHeaderOnly: () => hasHeader() && getRowsCount() === 0,
     hasChildWithId: id => !!element.querySelector(`#${id}`),
     clickRow: (index, eventData) => ReactTestUtils.Simulate.click(getRow(index), eventData),
+    mouseEnterRow: (index, eventData) => ReactTestUtils.Simulate.mouseEnter(getRow(index), eventData),
+    mouseLeaveRow: (index, eventData) => ReactTestUtils.Simulate.mouseLeave(getRow(index), eventData),
     setProps: props => {
       const ClonedWithProps = React.cloneElement(component, Object.assign({}, component.props, props), ...(component.props.children || []));
       ReactDOM.render(<div ref={r => element = r}>{ClonedWithProps}</div>, wrapper);

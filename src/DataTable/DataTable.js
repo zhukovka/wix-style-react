@@ -93,18 +93,28 @@ class DataTable extends WixComponent {
   );
 
   renderRow = (rowData, rowNum) => {
-    const {onRowClick, rowDataHook, dynamicRowClass} = this.props;
+    const {onRowClick, onMouseEnterRow, onMouseLeaveRow, rowDataHook, dynamicRowClass} = this.props;
     const rowClasses = [this.props.rowClass];
     const optionalRowProps = {};
 
-    if (onRowClick) {
-      optionalRowProps.onClick = event => {
-        if (event.isDefaultPrevented()) {
-          return;
-        }
+    const handlers = [
+      {rowEventHandler: onRowClick, eventHandler: 'onClick'},
+      {rowEventHandler: onMouseEnterRow, eventHandler: 'onMouseEnter'},
+      {rowEventHandler: onMouseLeaveRow, eventHandler: 'onMouseLeave'}
+    ];
 
-        onRowClick(rowData, rowNum);
-      };
+    handlers.forEach(({rowEventHandler, eventHandler}) => {
+      if (rowEventHandler) {
+        optionalRowProps[eventHandler] = event => {
+          if (event.isDefaultPrevented()) {
+            return;
+          }
+          rowEventHandler(rowData, rowNum);
+        };
+      }
+    });
+
+    if (onRowClick) {
       rowClasses.push(s.clickableDataRow);
     }
 
@@ -197,6 +207,8 @@ DataTable.propTypes = {
   rowClass: PropTypes.string,
   dynamicRowClass: PropTypes.func,
   onRowClick: PropTypes.func,
+  onMouseEnterRow: PropTypes.func,
+  onMouseLeaveRow: PropTypes.func,
   infiniteScroll: PropTypes.bool,
   itemsPerPage: PropTypes.number,
   width: PropTypes.string,
