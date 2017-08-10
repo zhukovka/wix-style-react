@@ -161,3 +161,6 @@ export const tpaLabelTestkitFactory = testkitFactoryCreator(tpaLabelDriverFactor
 
 import fieldLabelAttributesDriverFactory from '../src/FieldLabelAttributes/FieldLabelAttributes.driver';
 export const fieldLabelAttributesTestkitFactory = testkitFactoryCreator(fieldLabelAttributesDriverFactory);
+
+import popoverMenuDriverFactory from '../src/PopoverMenu/PopoverMenu.driver';
+export const popoverMenuTestkitFactory = testkitFactoryCreator(popoverMenuDriverFactory);
