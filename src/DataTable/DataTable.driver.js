@@ -11,7 +11,7 @@ const dataTableDriverFactory = ({element, wrapper, component}) => {
   const getRows = () => element.querySelectorAll('tbody tr');
   const getRowsCount = () => getRows().length;
   const getRow = rowIndex => getRows()[rowIndex];
-
+  const getHeaderTitleByIndex = index => getHeader().querySelectorAll('th')[index];
 
   return {
     getRowsCount,
@@ -28,7 +28,9 @@ const dataTableDriverFactory = ({element, wrapper, component}) => {
     setProps: props => {
       const ClonedWithProps = React.cloneElement(component, Object.assign({}, component.props, props), ...(component.props.children || []));
       ReactDOM.render(<div ref={r => element = r}>{ClonedWithProps}</div>, wrapper);
-    }
+    },
+    hasSortableTitle: index => !!element.querySelector(`th [data-hook="${index}_title"]`),
+    clickSort: (index, eventData) => ReactTestUtils.Simulate.click(getHeaderTitleByIndex(index), eventData)
   };
 };
 

@@ -14,9 +14,9 @@ describe('Table', () => {
     id: 'id',
     data: [{a: 'value 1', b: 'value 2'}, {a: 'value 3', b: 'value 4'}],
     columns: [
-        {title: 'Row Num', render: (row, rowNum) => rowNum},
-        {title: 'A', render: row => row.a},
-        {title: 'B', render: row => row.b}
+      {title: 'Row Num', render: (row, rowNum) => rowNum},
+      {title: 'A', render: row => row.a},
+      {title: 'B', render: row => row.b}
     ],
     rowClass: 'class-name'
   };
@@ -118,6 +118,38 @@ describe('Table', () => {
         driver[driverMethod](1);
         expect(props[handler]).toHaveBeenLastCalledWith(props.data[1], 1);
       });
+    });
+  });
+
+
+  describe('Sortable column titles', () => {
+    const props = {
+      ...defaultProps,
+      columns: [
+        {title: 'Row Num', render: (row, rowNum) => rowNum},
+        {title: 'A', sortable: true, sortDescending: false, render: row => row.a},
+        {title: 'B', render: row => row.b}
+      ]
+    };
+    it('should display sortable title', () => {
+      const _props = Object.assign({}, props, {onSortClick: jest.fn()});
+      const driver = createDriver(<DataTable {..._props}/>);
+      expect(driver.hasSortableTitle(0)).toBe(false);
+      expect(driver.hasSortableTitle(1)).toBe(true);
+    });
+
+    it('should call on sort callback', () => {
+      const _props = Object.assign({}, props, {onSortClick: jest.fn()});
+      const driver = createDriver(<DataTable {..._props}/>);
+      driver.clickSort(1);
+      expect(_props.onSortClick).toBeCalledWith(props.columns[1], 1);
+    });
+
+    it('should call on sort callback', () => {
+      const _props = Object.assign({}, props, {onSortClick: jest.fn()});
+      const driver = createDriver(<DataTable {..._props}/>);
+      driver.clickSort(2);
+      expect(_props.onSortClick).not.toHaveBeenCalled();
     });
   });
 
