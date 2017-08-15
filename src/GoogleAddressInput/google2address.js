@@ -11,7 +11,7 @@ export function google2address(google) {
     });
   });
 
-  const locality = components.locality || components.sublocality;
+  const locality = components.locality || components.sublocality || components.postal_town;
 
   return omitBy({
     formatted: google.formatted_address,
