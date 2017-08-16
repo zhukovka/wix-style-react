@@ -119,8 +119,24 @@ describe('Table', () => {
         expect(props[handler]).toHaveBeenLastCalledWith(props.data[1], 1);
       });
     });
-  });
 
+    it('should expand with correct content and collapse', () => {
+      const props = {
+        ...defaultProps,
+        rowDetails: row => <span>{row.a}</span>,
+        onRowClick: jest.fn()
+      };
+      const driver = createDriver(<DataTable {...props}/>);
+      expect(driver.hasRowDetails(0)).toBe(true);
+      expect(driver.getRowDetailsText(0)).toBe('');
+      driver.clickRow(0);
+      expect(driver.getRowDetailsText(0)).toBe(defaultProps.data[0].a);
+      driver.clickRow(0);
+      expect(driver.hasRowDetails(0)).toBe(true);
+      expect(driver.getRowDetailsText(0)).toBe('');
+    });
+
+  });
 
   describe('Sortable column titles', () => {
     const props = {
@@ -152,7 +168,6 @@ describe('Table', () => {
       expect(_props.onSortClick).not.toHaveBeenCalled();
     });
   });
-
   describe('testkit', () => {
     it('should exist', () => {
       const div = document.createElement('div');

@@ -27,6 +27,8 @@
 | thPadding | string | '5px' | - | Table headers padding |
 | thHeight | string | '36px' | - | Table headers height |
 | thFontSize | string | '12px' | - | Table headers font size |
+| rowDetails | func | - | - | Function that returns React component that will be rendered in row details section. Example: `rowDetails={(row, rowNum) => <MyRowDetailsComponent {...row} />}` |
+| allowMultiDetailsExpansion | boolean | false | - | Allows to open multiple row details |
 | onSortClick | func | - | - | A callback function called on each column title click. Signature `onSortClick(colData, colNum)` |
 
 ### Column object props

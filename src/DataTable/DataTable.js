@@ -9,10 +9,11 @@ import ArrowVertical from '../Icons/dist/components/ArrowVertical';
 class DataTable extends WixComponent {
   constructor(props) {
     super(props);
-
+    let state = {selectedRows: {}};
     if (props.infiniteScroll) {
-      this.state = this.createInitialScrollingState(props);
+      state = {...state, ...this.createInitialScrollingState(props)};
     }
+    this.state = state;
   }
 
   componentWillReceiveProps(nextProps) {
@@ -94,7 +95,7 @@ class DataTable extends WixComponent {
   );
 
   renderRow = (rowData, rowNum) => {
-    const {onRowClick, onMouseEnterRow, onMouseLeaveRow, rowDataHook, dynamicRowClass} = this.props;
+    const {onRowClick, onMouseEnterRow, onMouseLeaveRow, rowDataHook, dynamicRowClass, rowDetails} = this.props;
     const rowClasses = [this.props.rowClass];
     const optionalRowProps = {};
 
@@ -111,6 +112,7 @@ class DataTable extends WixComponent {
             return;
           }
           rowEventHandler(rowData, rowNum);
+          this.tryToggleRowDetails(eventHandler, rowNum);
         };
       }
     });
@@ -129,14 +131,22 @@ class DataTable extends WixComponent {
 
     optionalRowProps.className = classNames(rowClasses);
 
-    return (
-      <tr
-        key={rowNum}
-        {...optionalRowProps}
-        >
+    const rowsToRender = [(
+      <tr key={rowNum} {...optionalRowProps}>
         {this.props.columns.map((column, colNum) => this.renderCell(rowData, column, rowNum, colNum))}
       </tr>
-    );
+    )];
+
+    if (rowDetails) {
+      const showDetails = !!this.state.selectedRows[rowNum];
+      rowsToRender.push(
+        <tr key={`${rowNum}_details`}>
+          <td data-hook={`${rowNum}_details`} className={classNames(s.details, showDetails ? s.active : '')} colSpan={this.props.columns.length}>{showDetails && rowDetails(rowData, rowNum)}</td>
+        </tr>
+      );
+    }
+
+    return rowsToRender;
   };
 
   renderCell = (rowData, column, rowNum, colNum) => {
@@ -176,6 +186,17 @@ class DataTable extends WixComponent {
     } else {
       this.props.loadMore && this.props.loadMore();
     }
+  }
+
+  tryToggleRowDetails = (eventHandler, selectedRow) => {
+    if (eventHandler !== 'onClick') {
+      return;
+    }
+    let selectedRows = {[selectedRow]: !this.state.selectedRows[selectedRow]};
+    if (this.props.allowMultiDetailsExpansion) {
+      selectedRows = Object.assign({}, this.state.selectedRows, {[selectedRow]: !this.state.selectedRows[selectedRow]});
+    }
+    this.setState({selectedRows});
   }
 }
 
@@ -237,6 +258,8 @@ DataTable.propTypes = {
   thPadding: PropTypes.string,
   thHeight: PropTypes.string,
   thFontSize: PropTypes.string,
+  rowDetails: PropTypes.func,
+  allowMultiDetailsExpansion: PropTypes.bool,
   onSortClick: PropTypes.func
 };
 

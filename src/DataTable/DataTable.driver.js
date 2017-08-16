@@ -11,8 +11,8 @@ const dataTableDriverFactory = ({element, wrapper, component}) => {
   const getRows = () => element.querySelectorAll('tbody tr');
   const getRowsCount = () => getRows().length;
   const getRow = rowIndex => getRows()[rowIndex];
+  const getRowDetails = index => element.querySelector(`tbody tr td[data-hook="${index}_details"]`);
   const getHeaderTitleByIndex = index => getHeader().querySelectorAll('th')[index];
-
   return {
     getRowsCount,
     getRowsWithClassCount: className => values(getRows()).filter(elem => elem.classList.contains(className)).length,
@@ -29,8 +29,11 @@ const dataTableDriverFactory = ({element, wrapper, component}) => {
       const ClonedWithProps = React.cloneElement(component, Object.assign({}, component.props, props), ...(component.props.children || []));
       ReactDOM.render(<div ref={r => element = r}>{ClonedWithProps}</div>, wrapper);
     },
+    hasRowDetails: index => !!getRowDetails(index),
+    getRowDetailsText: index => getRowDetails(index).textContent,
     hasSortableTitle: index => !!element.querySelector(`th [data-hook="${index}_title"]`),
-    clickSort: (index, eventData) => ReactTestUtils.Simulate.click(getHeaderTitleByIndex(index), eventData)
+    clickSort: (index, eventData) => ReactTestUtils.Simulate.click(getHeaderTitleByIndex(index), eventData),
+    getRowDetails: index => getRowDetails(index)
   };
 };
 
