@@ -3,8 +3,11 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import WixComponent from '../BaseComponents/WixComponent';
-import isEqual from 'deep-eql';
+import isEqual from 'lodash/isEqual';
+import isobject from 'lodash/isObject';
 import trim from 'lodash/trim';
+import isstring from 'lodash/isString';
+import has from 'lodash/has';
 
 const modulu = (n, m) => {
   const remain = n % m;
@@ -32,8 +35,8 @@ class DropdownLayout extends WixComponent {
   }
 
   isLegalOption(option) {
-    return typeof option === 'object' && typeof option.id !== 'undefined' && trim(option.id).length > 0 &&
-        (typeof option.value !== 'undefined') && (React.isValidElement(option.value) || (typeof option.value === 'string' && trim(option.value).length > 0));
+    return isobject(option) && has(option, 'id') && trim(option.id).length > 0 &&
+        has(option, 'value') && (React.isValidElement(option.value) || (isstring(option.value) && trim(option.value).length > 0));
   }
 
   onClickOutside(event) {

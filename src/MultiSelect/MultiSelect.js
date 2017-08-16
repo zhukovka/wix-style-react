@@ -3,8 +3,9 @@ import PropTypes from 'prop-types';
 import InputWithOptions from '../InputWithOptions/InputWithOptions';
 import InputWithTags from './InputWithTags';
 import last from 'lodash/last';
-import difference from 'difference';
+import difference from 'lodash/difference';
 import uniqueId from 'lodash/uniqueId';
+import remove from 'lodash/remove';
 
 class MultiSelect extends InputWithOptions {
 
@@ -104,6 +105,9 @@ class MultiSelect extends InputWithOptions {
     if (this.props.onSelect) {
       this.props.onSelect(this.optionToTag(option));
     }
+
+    const updeatedOptions = this.getUnselectedOptions();
+    remove(updeatedOptions, option);
 
     this.input.focus();
   }
