@@ -4,7 +4,6 @@ import PropTypes from 'prop-types';
 import {CloseThin, ArrowDownThin, Search4} from '../Icons';
 import ThemedInputErrorSuffix from './ThemedInputErrorSuffix';
 import ThemedInputHelpSuffix from './ThemedInputHelpSuffix';
-import values from 'lodash/values';
 
 import styles from './Input.scss';
 
@@ -22,7 +21,7 @@ const suffixRules = {
 };
 
 const getVisibleSuffixCount = args =>
-   values(suffixRules)
+   Object.keys(suffixRules).map(key => suffixRules[key])
     .map(fn => fn(args))
     .filter(x => x)
     .length;
