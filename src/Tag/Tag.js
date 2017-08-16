@@ -8,13 +8,14 @@ import {SmallX} from '../Icons/dist';
 
 class Tag extends WixComponent {
   render() {
-    const {id, children, thumb, removable, onRemove, size, wrap, disabled} = this.props;
+    const {id, children, thumb, removable, onRemove, size, wrap, disabled, theme} = this.props;
 
     const className = classNames({
       [styles.tag]: true,
       [styles.large]: size === 'large',
       [styles.tagWrap]: wrap,
-      [styles.disabled]: disabled
+      [styles.disabled]: disabled,
+      [styles[`${theme}Theme`]]: true
     });
 
     const innerClassName = classNames({
@@ -42,13 +43,15 @@ Tag.propTypes = {
   removable: PropTypes.bool,
   size: PropTypes.oneOf(['small', 'large']),
   wrap: PropTypes.bool,
-  disabled: PropTypes.bool
+  disabled: PropTypes.bool,
+  theme: PropTypes.oneOf(['standard', 'error', 'warning'])
 };
 
 Tag.defaultProps = {
   onRemove: () => {},
   size: 'small',
   removable: true,
+  theme: 'standard'
 };
 
 export default Tag;
