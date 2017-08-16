@@ -1,7 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import {CloseThin, ArrowDownThin, Search4} from '../Icons';
+import CloseThin from './../Icons/dist/components/CloseThin';
+import ArrowDownThin from './../Icons/dist/components/ArrowDownThin';
+import Search4 from './../Icons/dist/components/Search4';
 import ThemedInputErrorSuffix from './ThemedInputErrorSuffix';
 import ThemedInputHelpSuffix from './ThemedInputHelpSuffix';
 
