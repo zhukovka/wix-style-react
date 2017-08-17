@@ -105,7 +105,15 @@ class DropdownLayout extends WixComponent {
       }
 
       case 'Tab': {
-        return this._onSelect(this.state.hovered);
+        if (this.props.closeOnSelect) {
+          return this._onSelect(this.state.hovered);
+        } else {
+          event.preventDefault();
+          if (!this._onSelect(this.state.hovered)) {
+            return false;
+          }
+        }
+        break;
       }
 
       case 'Escape': {
@@ -269,14 +277,16 @@ DropdownLayout.propTypes = {
   fixedHeader: PropTypes.node,
   fixedFooter: PropTypes.node,
   maxHeightPixels: PropTypes.number,
-  withArrow: PropTypes.bool
+  withArrow: PropTypes.bool,
+  closeOnSelect: PropTypes.bool
 };
 
 DropdownLayout.defaultProps = {
   options: [],
   tabIndex: 1,
   selectedId: NOT_HOVERED_INDEX,
-  maxHeightPixels: 260
+  maxHeightPixels: 260,
+  closeOnSelect: true
 };
 
 DropdownLayout.NONE_SELECTED_ID = NOT_HOVERED_INDEX;
