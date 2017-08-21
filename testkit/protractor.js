@@ -20,6 +20,9 @@ export const buttonSelectionTestkitFactory = protractorTestkitFactoryCreator(but
 import tpaButtonDriverFactory from '../src/TPA/Button/Button.protractor.driver';
 export const tpaButtonTestkitFactory = protractorTestkitFactoryCreator(tpaButtonDriverFactory);
 
+import tpaInputDriverFactory from '../src/TPA/Input/Input.protractor.driver';
+export const tpaInputTestkitFactory = protractorTestkitFactoryCreator(tpaInputDriverFactory);
+
 import dataTableDriverFactory from '../src/DataTable/DataTable.protractor.driver';
 export const dataTableTestkitFactory = protractorTestkitFactoryCreator(dataTableDriverFactory);
 

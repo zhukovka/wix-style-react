@@ -147,6 +147,9 @@ export const sideMenuDrillTestkitFactory = enzymeTestkitFactoryCreator(sideMenuD
 import tpaButtonDriverFactory from '../src/TPA/Button/Button.driver';
 export const tpaButtonTestkitFactory = nativeEnzymeTestkitFactoryCreator(tpaButtonDriverFactory);
 
+import tpaInputDriverFactory from '../src/TPA/Input/Input.driver';
+export const tpaInputTestkitFactory = nativeEnzymeTestkitFactoryCreator(tpaInputDriverFactory);
+
 import tpaTextLinkDriverFactory from '../src/TPA/TextLink/TextLink.driver';
 export const tpaTextLinkTestkitFactory = nativeEnzymeTestkitFactoryCreator(tpaTextLinkDriverFactory);
 
