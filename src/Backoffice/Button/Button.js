@@ -1,5 +1,5 @@
 import React from 'react';
-import {any, func, node, string, bool} from 'prop-types';
+import {any, func, node, string} from 'prop-types';
 import styles from './Button.scss';
 import WixComponent from '../../BaseComponents/WixComponent';
 import ButtonLayout from '../../ButtonLayout/ButtonLayout';
