@@ -148,7 +148,7 @@ import tpaButtonDriverFactory from '../src/TPA/Button/Button.driver';
 export const tpaButtonTestkitFactory = enzymeTestkitFactoryCreator(tpaButtonDriverFactory);
 
 import tpaInputDriverFactory from '../src/TPA/Input/Input.driver';
-export const tpaInputTestkitFactory = nativeEnzymeTestkitFactoryCreator(tpaInputDriverFactory);
+export const tpaInputTestkitFactory = enzymeTestkitFactoryCreator(tpaInputDriverFactory);
 
 import tpaTextLinkDriverFactory from '../src/TPA/TextLink/TextLink.driver';
 export const tpaTextLinkTestkitFactory = enzymeTestkitFactoryCreator(tpaTextLinkDriverFactory);
