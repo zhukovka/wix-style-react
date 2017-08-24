@@ -138,7 +138,7 @@ $material-gap: 8px;
         .input {
             @include FontLight();
             @include Placeholder(rgba(0, 0, 0, 0));
-            z-index: 100;
+            z-index: 1;
             transition: border-bottom .3s, border-color .3s, border-width .3s, border .3s ease-in-out;
             line-height: 1;
             display: block;
