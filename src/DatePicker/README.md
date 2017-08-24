@@ -4,12 +4,12 @@
 
 ## Testkit
 When testing DatePicker you might see some errors with unknown functions, to fix it - 
-```
+```javascript
 import datePickerPolyfills from 'wix-style-react/dist/src/DatePicker/Polyfills';
 ```
 
 Before the tests and after each jsdom cleanup -
-```
+```javascript
 datePickerPolyfills(window, global);
 ```
  
