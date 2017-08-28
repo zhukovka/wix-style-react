@@ -26,6 +26,9 @@
     "lint": "yoshi lint"
   },
   "yoshi": {
+    "features": {
+      "addStoriesToBaseGlob": true
+    },
     "entry": {
       "app": "index.js"
     },
