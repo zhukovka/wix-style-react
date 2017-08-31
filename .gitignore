@@ -13,3 +13,6 @@ storybook-e2e
 *.iml
 .vscode
 test/e2e
+/*.js
+!wallaby.js
+!protractor.conf.js
