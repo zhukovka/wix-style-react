@@ -75,7 +75,7 @@ describe('DatePicker', () => {
     });
 
     eyes.it('should not change date', () => {
-      const today = moment('03/09/2017', 'DD/MM/YYYY');
+      const today = moment('03/09/2017', 'DD/MM/YYYY').format('DD/MM/YYYY');
       const {inputDriver} = testkit;
 
       inputDriver.click();
