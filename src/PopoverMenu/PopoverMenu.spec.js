@@ -82,12 +82,10 @@ describe('Testkits', () => {
   );
 
   it('Using ReactTestUtils testkit', () => {
-    expect(isTestkitExists(<span/>, popoverMenuTestkitFactory)).toBe(false);
     expect(isTestkitExists(genPopoverMenuElement(), popoverMenuTestkitFactory)).toBe(true);
   });
 
   it('Using Enzyme testkit', () => {
-    expect(isEnzymeTestkitExists(<span/>, enzymePopoverMenuTestkitFactory)).toBe(false);
     expect(isEnzymeTestkitExists(genPopoverMenuElement(), enzymePopoverMenuTestkitFactory)).toBe(true);
   });
 });
