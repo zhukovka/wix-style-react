@@ -74,12 +74,12 @@ describe('PopoverMenu', () => {
         <PopoverMenuItem
           dataHook={menuItemDataHook}
           text="Menu Item #1"
-        />
+          />
         {false && (
           <PopoverMenuItem
             dataHook={menuItemDataHook}
             text="Menu Item #2"
-          />
+            />
         )}
       </PopoverMenu>
     ).init.menuItemDataHook(menuItemDataHook);
