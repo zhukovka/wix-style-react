@@ -147,7 +147,7 @@ class DataTable extends WixComponent {
     optionalRowProps.className = classNames(rowClasses);
 
     const rowsToRender = [(
-      <tr data-hook="dataTableRow" key={rowNum} {...optionalRowProps}>
+      <tr key={rowNum} {...optionalRowProps}>
         {this.props.columns.map((column, colNum) => this.renderCell(rowData, column, rowNum, colNum))}
       </tr>
     )];
