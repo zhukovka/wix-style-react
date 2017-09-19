@@ -293,6 +293,44 @@ describe('DatePicker', () => {
       expect(newDate.month()).toEqual(10);
     });
 
+    it('should show header by default', () => {
+      const date = moment(new Date(2015, 9, 2));
+      const {calendarDriver, inputDriver} = createDriver(
+        <DatePicker onChange={onChange} value={date}/>
+      );
+
+      inputDriver.trigger('click');
+      expect(calendarDriver.isHeaderVisible()).toEqual(true);
+    });
+
+    it('should hide header if year dropdown is visible', () => {
+      const date = moment(new Date(2015, 9, 2));
+      const {calendarDriver, inputDriver} = createDriver(
+        <DatePicker
+          onChange={onChange}
+          showYearDropdown
+          value={date}
+          />
+      );
+
+      inputDriver.trigger('click');
+      expect(calendarDriver.isHeaderVisible()).toEqual(false);
+    });
+
+    it('should hide header if month dropdown is visible', () => {
+      const date = moment(new Date(2015, 9, 2));
+      const {calendarDriver, inputDriver} = createDriver(
+        <DatePicker
+          onChange={onChange}
+          showMonthDropdown
+          value={date}
+          />
+      );
+
+      inputDriver.trigger('click');
+      expect(calendarDriver.isHeaderVisible()).toEqual(false);
+    });
+
     describe('with year dropdown', () => {
       it('should give a possibility to choose date from another year', () => {
         const date = moment(new Date(2015, 9, 2));
