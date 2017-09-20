@@ -118,7 +118,7 @@ describe('DatePicker', () => {
       calendarDriver.clickOnNthMonth(2);
       calendarDriver.clickOnNthAvailableDay();
 
-      expect(inputDriver.getValue()).toBe('01/02/2016');
+      expect(inputDriver.getValue()).toBe('01/02/2017');
     });
 
     eyes.it('should select January and 2027 year', () => {
