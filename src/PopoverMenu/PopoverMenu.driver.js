@@ -11,7 +11,7 @@ const popoverMenuDriverFactory = ({element}) => {
     return fn(...args);
   };
 
-  const itemsArray = () => [...document.body.querySelectorAll(`[data-hook="${menuItemDataHook}"]`)];
+  const itemsArray = () => [...document.body.querySelectorAll(`[data-hook~="${menuItemDataHook}"]`)];
 
   const driver = {
     exists: () => !!element,
