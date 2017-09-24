@@ -24,6 +24,7 @@ class InputWithOptions extends WixComponent {
 
     this._onSelect = this._onSelect.bind(this);
     this._onFocus = this._onFocus.bind(this);
+    this._onBlur = this._onBlur.bind(this);
     this._onChange = this._onChange.bind(this);
     this._onKeyDown = this._onKeyDown.bind(this);
     this.focus = this.focus.bind(this);
@@ -56,7 +57,8 @@ class InputWithOptions extends WixComponent {
       theme: this.props.theme,
       onChange: this._onChange,
       onInputClicked: this._onInputClicked,
-      onFocus: this.showOptions,
+      onFocus: this._onFocus,
+      onBlur: this._onBlur,
       onCompositionChange: this.onCompositionChange,
     });
   }
@@ -88,7 +90,7 @@ class InputWithOptions extends WixComponent {
     return (
       <div>
         {dropDirectionUp ? this._renderDropdownLayout() : null}
-        <div onKeyDown={this._onKeyDown} onFocus={this._onFocus} className={this.inputClasses()}>
+        <div onKeyDown={this._onKeyDown} className={this.inputClasses()}>
           {this.renderInput()}
         </div>
         {!dropDirectionUp ? this._renderDropdownLayout() : null}
@@ -97,8 +99,12 @@ class InputWithOptions extends WixComponent {
   }
 
   hideOptions() {
-    this.setState({showOptions: false});
-    this.input.blur();
+    if (this.state.showOptions) {
+      this.setState({showOptions: false});
+      if (this._focused) {
+        this.input.blur();
+      }
+    }
   }
 
   showOptions() {
@@ -165,10 +171,18 @@ class InputWithOptions extends WixComponent {
     if (this.props.disabled) {
       return;
     }
+    this._focused = true;
     this.setState({isEditing: false});
     this.showOptions();
     if (this.props.onFocus) {
       this.props.onFocus();
+    }
+  }
+
+  _onBlur(e) {
+    this._focused = false;
+    if (this.props.onBlur) {
+      this.props.onBlur(e);
     }
   }
 
