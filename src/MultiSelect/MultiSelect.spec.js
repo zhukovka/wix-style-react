@@ -76,7 +76,7 @@ describe('multiSelect', () => {
     driver.focus();
     driver.pressDownKey();
     driver.pressTabKey();
-    expect(onSelect).toBeCalledWith({id: options[0].id, label: options[0].value});
+    expect(onSelect).toBeCalledWith([{id: options[0].id, label: options[0].value}]);
     expect(dropdownLayoutDriver.isShown()).toBeTruthy();
     expect(inputDriver.isFocus()).toBeTruthy();
   });
@@ -89,7 +89,7 @@ describe('multiSelect', () => {
     );
     driver.focus();
     inputDriver.trigger('keyDown', {key: ','});
-    expect(onSelect).toBeCalledWith({id: options[0].id, label: options[0].value});
+    expect(onSelect).toBeCalledWith([{id: options[0].id, label: options[0].value}]);
     expect(onChange).toBeCalledWith({target: {value: ''}});
     expect(dropdownLayoutDriver.isShown()).toBeTruthy();
     expect(inputDriver.isFocus()).toBeTruthy();
@@ -103,7 +103,7 @@ describe('multiSelect', () => {
     );
     driver.focus();
     inputDriver.trigger('keyDown', {key: ';'});
-    expect(onSelect).toBeCalledWith({id: options[0].id, label: options[0].value});
+    expect(onSelect).toBeCalledWith([{id: options[0].id, label: options[0].value}]);
     expect(onChange).toBeCalledWith({target: {value: ''}});
     expect(dropdownLayoutDriver.isShown()).toBeTruthy();
     expect(inputDriver.isFocus()).toBeTruthy();

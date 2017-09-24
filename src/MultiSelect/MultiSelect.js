@@ -12,8 +12,6 @@ class MultiSelect extends InputWithOptions {
     this.onKeyDown = this.onKeyDown.bind(this);
     this.onPaste = this.onPaste.bind(this);
     this.state = {pasteDetected: false};
-
-    console.warn('MultiSelect: onSelect signature should get an array of tags instead of single tag as parameter. Old signature will not be supported starting from 16/09/2017');
   }
 
   getUnselectedOptions() {
@@ -71,7 +69,7 @@ class MultiSelect extends InputWithOptions {
 
 
   _onSelect(option) {
-    this.onSelect(option);
+    this.onSelect([option]);
   }
 
   _onManuallyInput(inputValue) {
@@ -108,7 +106,7 @@ class MultiSelect extends InputWithOptions {
         const maybeNearestOption = visibleOptions[0];
 
         if (maybeNearestOption) {
-          this.onSelect(maybeNearestOption);
+          this.onSelect([maybeNearestOption]);
         }
 
         this.clearInput();
@@ -125,19 +123,11 @@ class MultiSelect extends InputWithOptions {
   }
 
   onSelect(options) {
-    if (!Array.isArray(options)) {
-      options = [options];
-    }
-
     this.clearInput();
 
     if (this.props.onSelect) {
       options = options.map(this.optionToTag);
-      if (options.length === 1) {
-        this.props.onSelect(options[0]);
-      } else {
-        this.props.onSelect(options);
-      }
+      this.props.onSelect(options);
     }
 
     this.input.focus();
