@@ -4,7 +4,7 @@ import ReactTestUtils from 'react-dom/test-utils';
 
 const textLinkDriverFactory = ({element, wrapper, component}) => {
 
-  const textLinkLayout = element.children[0];
+  const textLinkLayout = element ? element.children[0] : {};
 
   return {
     exists: () => !!element,

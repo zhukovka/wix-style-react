@@ -91,4 +91,8 @@ describe('enzyme testkit', () => {
   it('should exist', () => {
     expect(isEnzymeTestkitExists(<TextLink link=""/>, enzymeTextLinkTestkitFactory)).toBe(true);
   });
+
+  it('should not exist', () => {
+    expect(isEnzymeTestkitExists(<TextLink link=""/>, enzymeTextLinkTestkitFactory, {withoutDataHook: true})).toBe(false);
+  });
 });
