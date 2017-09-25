@@ -1,12 +1,27 @@
 # Contributing
 
-You are more than welcome to contribute by creating pull-requests.
-
-See [Badge](https://github.com/wix/wix-style-react/blob/master/src/Badge/Badge.js) component for reference
+You are more than welcome to contribute by creating pull requests.
 
 ### UX
 
 For any questions regarding product design/UX please contact [Ben Benhorin](https://wix.slack.com/messages/@benb).
+
+## Setup
+
+> __Note:__ This library depends on watchman, install it by following [this guide](https://facebook.github.io/watchman/docs/install.html).
+
+```sh
+npm install
+npm start
+open localhost:6006
+```
+
+After you do `npm start` a local server will start at `localhost:6006` with [storybook](https://storybook.js.org/) available.
+storybook is your reference/sandbox for developing components.
+
+
+See [Badge](https://github.com/wix/wix-style-react/blob/master/src/Badge/Badge.js) component for reference
+
 
 ### Components design (in progress)
 
@@ -36,4 +51,3 @@ For any questions regarding product design/UX please contact [Ben Benhorin](http
     * `wix-style-react/testkit/protractor.js`
 
 * Each component in the library extends WixComponent, so please do it with you component as well.
-
