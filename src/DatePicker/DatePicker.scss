@@ -57,13 +57,6 @@ $calendarMargin: 15px;
     text-align: center;
     background-color: #FFF;
 }
-:global(.react-datepicker__day:hover) {
-    @include hover-circle($B10);
-    background-color: #FFF;    
-    $padding: 4px;
-    border-radius: 50%;
-    color: #000; 
-}
 :global(.react-datepicker__day-names) {
     background-color: #fff;
     padding-top: 20px;
@@ -209,13 +202,16 @@ $calendarMargin: 15px;
 :global(.react-datepicker__day--keyboard-selected) {
     @include hover-circle($B10);
     background-color: $B00;
-    box-shadow: 0 0 0 5px $B00 !important;   
-    &:hover {
-        color: #FFF; 
-        background-color: $B00;
-    }
+    box-shadow: 0 0 0 5px $B00;
 }
-
+:global(.react-datepicker__day:hover) {
+    @include hover-circle($B10);
+    background-color: transparent;
+    box-shadow: none;
+    $padding: 4px;
+    border-radius: 50%;
+    color: #000;
+}
 :global(.react-datepicker__day--outside-month) {
     pointer-events: none;
     color: $D60;
