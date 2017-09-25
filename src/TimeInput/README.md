@@ -11,3 +11,4 @@
 | rtl | bool | - | - | Display in RTL |
 | disableAmPm | bool | - | - | 24h mode |
 | disabled | bool | false | false | Is disabled |
+| dashesWhenDisabled | bool | false | false | Should time be shown as "--:--" when disabled  |

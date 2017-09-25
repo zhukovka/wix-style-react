@@ -18,6 +18,7 @@ export default class extends Component {
     disableAmPm: PropTypes.bool,
     dataHook: PropTypes.string,
     disabled: PropTypes.bool,
+    dashesWhenDisabled: PropTypes.bool,
   }
 
   static defaultProps = {
@@ -26,6 +27,7 @@ export default class extends Component {
     style: {},
     disableAmPm: false,
     disabled: false,
+    dashesWhenDisabled: false,
   }
 
   constructor(props) {
@@ -150,8 +152,12 @@ export default class extends Component {
     this.updateDate({time: this.state.text});
   }
 
-  handleInputChange = ({target}) =>
-    this.setState({text: target.value})
+  handleInputChange = ({target}) => {
+    if (this.props.disabled && this.props.dashesWhenDisabled) {
+      return;
+    }
+    return this.setState({text: target.value});
+  }
 
   handleHover = hover =>
     this.setState({hover})
@@ -163,6 +169,10 @@ export default class extends Component {
     this.timeStep(1)
 
   handleInputBlur = ({target}) => {
+    if (this.props.disabled && this.props.dashesWhenDisabled) {
+      return;
+    }
+
     const caretIdx = target.selectionEnd || 0;
     let lastFocusedTimeUnit;
 
@@ -175,6 +185,8 @@ export default class extends Component {
   }
 
   renderTimeTextbox() {
+    const text = this.props.disabled && this.props.dashesWhenDisabled ? '-- : --' : this.state.text;
+
     const suffix = (
       <Input.Group>
         {this.state.ampmMode &&
@@ -199,7 +211,7 @@ export default class extends Component {
       <div className={styles.input}>
         <Input
           ref="input"
-          value={this.state.text}
+          value={text}
           onFocus={this.handleFocus}
           onChange={this.handleInputChange}
           onBlur={this.handleInputBlur}
