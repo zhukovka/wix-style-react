@@ -6,8 +6,20 @@ import WixComponent from '../BaseComponents/WixComponent';
 import Text from '../Text';
 import BreadcrumbsPathFactory from './BreadcrumbsPathFactory';
 
+/**
+  * a way to visualise current navigation path
+  */
 class Breadcrumbs extends WixComponent {
+  static displayName = 'Breadcrumbs';
+
   static propTypes = {
+    /**
+      * * __id__ - Specifies the item id
+      * * __link__ - Optional link to be called on click
+      * * __value__ - Value to be shown on breadcrumb
+      * * __disabled__ - if this value is disabled
+      * * __customElement__ - A custom item which will be rendered
+      */
     items: arrayOf(shape({
       id: oneOfType([
         string,
