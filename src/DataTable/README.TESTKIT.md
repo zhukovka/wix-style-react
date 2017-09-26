@@ -10,6 +10,8 @@
 | getRowsWithClassCount | string | number | num of rows with <arg> class name |
 | getRowText | number | string | get row index <arg> text |
 | getRowClasses | number | string | get row index <arg> classes |
+| getHeaderCellStyle | number | string | get header cell index <arg> inline style |
+| getCellStyle | (rowIndex, colIndex) | string | get cell index <args> inline style |
 | isRowClickable | number | bool | true if row index <arg> is clickable |
 | getTitles | - | map | get map of all titles |
 | isDisplayingNothing | - | bool | true if displaying nothing |

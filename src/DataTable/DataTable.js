@@ -173,7 +173,7 @@ class DataTable extends WixComponent {
 
   renderCell = (rowData, column, rowNum, colNum) => {
     const classes = classNames({[s.important]: column.important});
-    return <td className={classes} key={colNum}>{column.render && column.render(rowData, rowNum)}</td>;
+    return <td style={column.style} className={classes} key={colNum}>{column.render && column.render(rowData, rowNum)}</td>;
   };
 
   calcLastPage = ({data, itemsPerPage}) => Math.ceil(data.length / itemsPerPage) - 1;
@@ -201,6 +201,8 @@ class TableHeader extends Component {
     thPadding: PropTypes.string,
     thHeight: PropTypes.string,
     thFontSize: PropTypes.string,
+    thBorder: PropTypes.string,
+    thColor: PropTypes.string,
     columns: PropTypes.array
   };
 
@@ -218,6 +220,8 @@ class TableHeader extends Component {
       padding: this.props.thPadding,
       height: this.props.thHeight,
       fontSize: this.props.thFontSize,
+      border: this.props.thBorder,
+      color: this.props.thColor,
       cursor: column.sortable === undefined ? 'arrow' : 'pointer'
     };
 
@@ -303,6 +307,8 @@ DataTable.propTypes = {
   thPadding: PropTypes.string,
   thHeight: PropTypes.string,
   thFontSize: PropTypes.string,
+  thBorder: PropTypes.string,
+  thColor: PropTypes.string,
   rowDetails: PropTypes.func,
   allowMultiDetailsExpansion: PropTypes.bool,
   hideHeader: PropTypes.bool,

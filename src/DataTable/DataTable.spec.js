@@ -87,6 +87,41 @@ describe('Table', () => {
     expect(driver.isDisplayingHeader()).toBe(false);
   });
 
+  it('should override default table header styles', () => {
+    const inlineThStyle = {
+      thPadding: '1px',
+      thHeight: '2px',
+      thFontSize: '3px',
+      thBorder: '4px',
+      thColor: 'rgb(18, 52, 86)'
+    };
+    const driver = createDriver(<DataTable {...defaultProps} {...inlineThStyle}/>);
+    expect(driver.getHeaderCellStyle(0)).toEqual(jasmine.objectContaining({
+      padding: '1px',
+      height: '2px',
+      'font-size': '3px',
+      border: '4px',
+      color: 'rgb(18, 52, 86)'
+    }));
+  });
+
+  it('should override default cell styles', () => {
+    const clonedProps = Object.assign({}, defaultProps);
+    clonedProps.columns.push({
+      title: 'c',
+      render: () => 'c',
+      style: {
+        padding: '1px',
+        height: '2px'
+      }
+    });
+    const driver = createDriver(<DataTable {...clonedProps}/>);
+    expect(driver.getCellStyle(0, 3)).toEqual(jasmine.objectContaining({
+      padding: '1px',
+      height: '2px'
+    }));
+  });
+
   describe('clickableDataRow class', () => {
     it('should not assign the class to rows by default', () => {
       const props = {...defaultProps};
