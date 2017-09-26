@@ -2,10 +2,11 @@ import React from 'react';
 import {storiesOf} from '@storybook/react';
 
 import Markdown from '../../utils/Components/Markdown';
+import AutoDocs from '../../utils/Components/AutoDocs';
 import CodeExample from '../../utils/Components/CodeExample';
 import TabbedView from '../../utils/Components/TabbedView';
 import ReadmeTestKit from '../../../src/Tooltip/README.TESTKIT.md';
-import Readme from '../../../src/Tooltip/README.md';
+import TooltipSource from '!raw-loader!wix-style-react/Tooltip/Tooltip';
 
 import ExamplePlacement from './ExamplePlacement';
 import ExamplePlacementRaw from '!raw-loader!./ExamplePlacement';
@@ -22,25 +23,29 @@ storiesOf('Core', module)
   .add('Tooltip', () => (
     <TabbedView tabs={['API', 'TestKits']}>
       <div>
-        <Markdown source={Readme}/>
+        <AutoDocs source={TooltipSource}/>
+
         <CodeExample title="Tooltip Placement" code={ExamplePlacementRaw}>
           <ExamplePlacement/>
         </CodeExample>
+
         <CodeExample title="Tooltip Bounce" code={ExampleBounceRaw}>
           <ExampleBounce/>
         </CodeExample>
+
         <CodeExample title="Tooltip Theme" code={ExampleThemeRaw}>
           <ExampleTheme/>
         </CodeExample>
+
         <CodeExample title="Tooltip Custom Content" code={ExampleCustomContentRaw}>
           <ExampleCustomContent/>
         </CodeExample>
+
         <CodeExample title="Custom tooltip adjustment" code={ExampleMoveRaw}>
           <ExampleMove/>
         </CodeExample>
       </div>
-      <div>
-        <Markdown source={ReadmeTestKit}/>
-      </div>
+
+      <Markdown source={ReadmeTestKit}/>
     </TabbedView>
   ));

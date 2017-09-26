@@ -31,7 +31,7 @@ const MyComponent = () =>
   </Button>;
 ```
 
-> __Note__: `wix-style-react` works best when [Yoshi](https://github.com/wix/yoshi) is used as build tool. If you do not use it, read [here](https://wix.github.io/wix-style-react/?selectedKind=Introduction&selectedStory=Usage%20without%20yoshi&full=0&down=0&left=1&panelRight=0) for webpack setup instructions.
+> __Note__: `wix-style-react` works best when [Yoshi](https://github.com/wix/yoshi) is used as build tool. If you do not use it, read [here](https://wix.github.io/wix-style-react/?selectedKind=Introduction&selectedStory=Usage%20Without%20Yoshi&full=0&down=0&left=1&panelRight=0) for webpack setup instructions.
 
 [demo page](https://wix.github.io/wix-style-react) includes all available components with their usage examples.
 
