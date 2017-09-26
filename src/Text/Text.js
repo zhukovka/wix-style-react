@@ -6,8 +6,21 @@ import typography, {convertFromUxLangToCss} from '../Typography';
 
 import styles from './styles.scss';
 
+
+/**
+  * General all purpose text component with Wix styling.
+  *
+  * Adds correct styling so you don't have to.
+  *
+  * Renders correct element (currently either `span` or `h1` - `h5`) depending on `appearance` (defaults to `span`)
+  *
+  * for examples of available `appearance`s see **Common** -> **Typography**
+  */
 export default class extends WixComponent {
+  static displayName = 'Text';
+
   static propTypes = {
+    /** a type of appearance to apply */
     appearance: PropTypes.oneOf([
       'H0', 'H1', 'H2', 'H2.1', 'H3', 'H4',
       'T1', 'T1.1', 'T1.2', 'T1.3', 'T1.4',
@@ -15,6 +28,8 @@ export default class extends WixComponent {
       'T3', 'T3.1', 'T3.2', 'T3.3', 'T3.4',
       'T4', 'T4.1', 'T4.2', 'T4.3',
       'T5', 'T5.1']),
+
+    /** any nodes to be rendered (usually text nodes) */
     children: PropTypes.node
   }
 
@@ -53,4 +68,3 @@ export default class extends WixComponent {
     );
   }
 }
-

@@ -1,8 +1,8 @@
 import React from 'react';
 import {storiesOf} from '@storybook/react';
-import Markdown from '../utils/Components/Markdown';
+import AutoDocs from '../utils/Components/AutoDocs';
 import CodeExample from '../utils/Components/CodeExample';
-import Readme from '../../src/Tag/README.md';
+import TagSource from '!raw-loader!wix-style-react/Tag/Tag';
 
 import ExampleStandard from './ExampleStandard';
 import ExampleStandardRaw from '!raw-loader!./ExampleStandard';
@@ -10,7 +10,7 @@ import ExampleStandardRaw from '!raw-loader!./ExampleStandard';
 storiesOf('Core', module)
   .add('Tag', () => (
     <div>
-      <Markdown source={Readme}/>
+      <AutoDocs source={TagSource}/>
 
       <h1>Usage examples</h1>
 
