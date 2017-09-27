@@ -14,6 +14,7 @@ function loadStories() {
   require('../stories/ButtonLayout');
   require('../stories/ButtonSelection');
   require('../stories/Checkbox');
+  require('../stories/ColorPicker');
   require('../stories/DataTable');
   require('../stories/DatePicker');
   require('../stories/Dropdown');
@@ -35,7 +36,6 @@ function loadStories() {
   require('../stories/Tag');
   require('../stories/TimeInput');
   require('../stories/ToggleSwitch');
-  require('../stories/ColorPicker');
   // require('../stories/Tooltip/Core');
   require('../stories/Tooltip_New/Core');
 
