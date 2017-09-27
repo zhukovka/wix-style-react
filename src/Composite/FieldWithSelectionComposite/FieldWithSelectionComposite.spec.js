@@ -33,6 +33,15 @@ describe('FieldWithSelectionComposite', () => {
     expect(driver.hasSelectionInput()).toBe(true);
   });
 
+  describe('input properties', () => {
+    it('should verify that onBlur callback was called', () => {
+      const onBlur = jest.fn();
+      const driver = createCompositeDriverFactory(<FieldWithSelectionComposite><Label/><Input onBlur={onBlur}/><Checkbox/></FieldWithSelectionComposite>);
+      driver.triggerInputBlur();
+      expect(onBlur).toHaveBeenCalled();
+    });
+  });
+
   describe('label attributes', () => {
     it('should FieldLabelAttributes not exists if all attributes empty or false', () => {
       const driver = createCompositeDriverFactory(<FieldWithSelectionComposite><Label/><InputArea/><Checkbox/></FieldWithSelectionComposite>);
