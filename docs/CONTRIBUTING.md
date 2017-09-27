@@ -11,6 +11,7 @@ For any questions regarding product design/UX please contact [Ben Benhorin](http
 > __Note:__ This library depends on watchman, install it by following [this guide](https://facebook.github.io/watchman/docs/install.html).
 
 ```sh
+nvm use
 npm install
 npm start
 open localhost:6006
