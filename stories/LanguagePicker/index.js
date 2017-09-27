@@ -1,9 +1,10 @@
 import React from 'react';
 import {storiesOf} from '@storybook/react';
 import Markdown from '../utils/Components/Markdown';
+import AutoDocs from '../utils/Components/AutoDocs';
 import CodeExample from '../utils/Components/CodeExample';
-import Readme from '../../src/LanguagePicker/README.md';
 import ReadmeTestkit from '../../src/LanguagePicker/README.TESTKIT.md';
+import LanguagePickerSource from '!raw-loader!wix-style-react/LanguagePicker/LanguagePicker';
 
 import TabbedView from '../utils/Components/TabbedView';
 
@@ -14,17 +15,15 @@ storiesOf('Core', module)
   .add('LanguagePicker', () => (
     <TabbedView tabs={['API', 'Testkit']}>
       <div>
-        <Markdown source={Readme}/>
+        <AutoDocs source={LanguagePickerSource}/>
 
         <h1>Usage examples</h1>
 
         <CodeExample title="Example" code={ExampleRaw}>
           <Example/>
         </CodeExample>
+      </div>
 
-      </div>
-      <div>
-        <Markdown source={ReadmeTestkit}/>
-      </div>
+      <Markdown source={ReadmeTestkit}/>
     </TabbedView>
   ));

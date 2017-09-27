@@ -1,8 +1,8 @@
 import React from 'react';
 import {storiesOf} from '@storybook/react';
-import Markdown from '../utils/Components/Markdown';
+import AutoDocs from '../utils/Components/AutoDocs';
 import CodeExample from '../utils/Components/CodeExample';
-import Readme from '../../src/Slider/README.md';
+import SliderSource from '!raw-loader!wix-style-react/Slider/Slider';
 
 import ExampleStandard from './ExampleStandard';
 import ExampleStandardRaw from '!raw-loader!./ExampleStandard';
@@ -15,7 +15,7 @@ import ExampleRtlRaw from '!raw-loader!./ExampleRtl';
 storiesOf('Core', module)
   .add('Slider', () => (
     <div>
-      <Markdown source={Readme}/>
+      <AutoDocs source={SliderSource}/>
 
       <h1>Usage examples</h1>
 

@@ -7,18 +7,33 @@ import moment from 'moment';
 import Input from '../Input';
 import styles from './TimeInput.scss';
 
+/**
+  * An uncontrolled time input component with a stepper and am/pm support
+  */
 export default class extends Component {
   static displayName = 'TimePicker'
 
   static propTypes = {
-    defaultValue: PropTypes.object,
-    onChange: PropTypes.func,
-    rtl: PropTypes.bool,
-    style: PropTypes.object,
-    disableAmPm: PropTypes.bool,
-    dataHook: PropTypes.string,
-    disabled: PropTypes.bool,
+    /** Should time be shown as "--:--" when disabled */
     dashesWhenDisabled: PropTypes.bool,
+    dataHook: PropTypes.string,
+
+    /** The control's starting time */
+    defaultValue: PropTypes.object,
+
+    /** 24h mode  */
+    disableAmPm: PropTypes.bool,
+
+    /** Is disabled  */
+    disabled: PropTypes.bool,
+
+    /** Called upon blur */
+    onChange: PropTypes.func,
+
+    /** Display in RTL  */
+    rtl: PropTypes.bool,
+
+    style: PropTypes.object,
   }
 
   static defaultProps = {

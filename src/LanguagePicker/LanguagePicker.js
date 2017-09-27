@@ -52,6 +52,8 @@ export default class LanguagePicker extends WixComponent {
   }
 }
 
+LanguagePicker.displayName = 'LanguagePicker';
+
 LanguagePicker.defaultProps = {
   theme: 'icon-greybackground',
   onSelect: () => {},
@@ -60,16 +62,33 @@ LanguagePicker.defaultProps = {
 };
 
 LanguagePicker.propTypes = {
+  /** Specifies a data-hook for tests */
   dataHook: PropTypes.string,
+
+  /** Callback to call on language selection */
   onSelect: PropTypes.func,
+
+  /** Theme of the icon's background */
   theme: PropTypes.string,
+
+  /**
+    * Specify the languages list to render
+    *
+    * children __must__ be `<LanguagePicker.Option/>` component with:
+    *   * `languageKey` - string, required
+    *   * `children` - string
+    */
   children: PropTypes.arrayOf((propValue, key) => {
     if (propValue[key].type !== LanguagePicker.Option) {
       return new Error(`LanguagePicker: Invalid Prop children was given. Validation failed on child number ${key}`);
     }
   }),
+
+  /** An optional custom width for the dropdown */
   dropdownWidth: PropTypes.string,
-  dropdownOffsetLeft: PropTypes.string,
+
+  /** Am optional horizontal offset to the dropdown */
+  dropdownOffsetLeft: PropTypes.string
 };
 
 LanguagePicker.Option = () => null;

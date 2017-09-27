@@ -1,8 +1,8 @@
 import React from 'react';
 import {storiesOf} from '@storybook/react';
-import Markdown from '../utils/Components/Markdown';
+import AutoDocs from '../utils/Components/AutoDocs';
 import CodeExample from '../utils/Components/CodeExample';
-import Readme from '../../src/TimeInput/README.md';
+import TimeInputSource from '!raw-loader!wix-style-react/TimeInput/TimeInput';
 
 import ExampleUncontrolled from './ExampleUncontrolled';
 import ExampleUncontrolledRaw from '!raw-loader!./ExampleUncontrolled';
@@ -15,7 +15,7 @@ import moment from 'moment';
 storiesOf('Core', module)
   .add('TimeInput', () => (
     <div>
-      <Markdown source={Readme}/>
+      <AutoDocs source={TimeInputSource}/>
 
       <h1>Usage examples</h1>
 
