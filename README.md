@@ -1,5 +1,5 @@
 <h1 style="text-align: center;">
-    <img src="https://raw.githubusercontent.com/wix/wix-style-react/master/.storybook/logo.svg" alt="Wix Style React" width="300">
+    <img src="https://raw.githubusercontent.com/wix/wix-style-react/master/.storybook/logo.svg?sanitize=true" alt="Wix Style React" width="300">
 </h1>
 
 `wix-style-react` is a collection of [React](https://facebook.github.io/react/) components that conform to Wix Style created by Wix UX guild.
