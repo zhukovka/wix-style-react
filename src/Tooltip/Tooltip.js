@@ -384,13 +384,23 @@ class Tooltip extends WixComponent {
   }
 
   _getRect(el) {
-    if (this.props.appendTo || this.props.appendToParent) {
+    if (this.props.appendToParent) {
       // TODO: Once thoroughly tested, we could use the same approach in both cases.
       return {
         left: el.offsetLeft,
         top: el.offsetTop,
         width: el.offsetWidth,
         height: el.offsetHeight
+      };
+    }
+    if (this.props.appendTo) {
+      const containerRect = this.props.appendTo.getBoundingClientRect();
+      const selfRect = el.getBoundingClientRect();
+      return {
+        left: selfRect.left - containerRect.left + this.props.appendTo.scrollLeft,
+        top: selfRect.top - containerRect.top + this.props.appendTo.scrollTop,
+        width: selfRect.width,
+        height: selfRect.height
       };
     }
     return el.getBoundingClientRect();
