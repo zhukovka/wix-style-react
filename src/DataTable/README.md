@@ -30,6 +30,8 @@
 | thFontSize | string | '12px' | - | Table headers font size |
 | thBorder | string | '1px' | - | Table headers border |
 | thColor | string | '#123456' | - | Table headers color |
+| thOpacity | string | '0.8' | - | Table headers opacity |
+| thLetterSpacing | string | '1.5px' | - | Table headers letter spacing |
 | rowDetails | func | - | - | Function that returns React component that will be rendered in row details section. Example: `rowDetails={(row, rowNum) => <MyRowDetailsComponent {...row} />}` |
 | allowMultiDetailsExpansion | boolean | false | - | Allows to open multiple row details |
 | onSortClick | func | - | - | A callback function called on each column title click. Signature `onSortClick(colData, colNum)` |

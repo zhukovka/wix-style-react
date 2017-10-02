@@ -93,7 +93,9 @@ describe('Table', () => {
       thHeight: '2px',
       thFontSize: '3px',
       thBorder: '4px',
-      thColor: 'rgb(18, 52, 86)'
+      thColor: 'rgb(18, 52, 86)',
+      thOpacity: '0.8',
+      thLetterSpacing: '1.5px'
     };
     const driver = createDriver(<DataTable {...defaultProps} {...inlineThStyle}/>);
     expect(driver.getHeaderCellStyle(0)).toEqual(jasmine.objectContaining({
@@ -101,7 +103,9 @@ describe('Table', () => {
       height: '2px',
       'font-size': '3px',
       border: '4px',
-      color: 'rgb(18, 52, 86)'
+      color: 'rgb(18, 52, 86)',
+      opacity: '0.8',
+      'letter-spacing': '1.5px'
     }));
   });
 
