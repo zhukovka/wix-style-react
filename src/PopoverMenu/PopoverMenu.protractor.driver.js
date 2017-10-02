@@ -1,6 +1,8 @@
 const popoverMenuDriverFactory = component => {
   let menuItemDataHook;
-  const itemsArray = () => $$(`[data-hook~="${menuItemDataHook}"]`);
+  const itemsArray = () => $$(
+    menuItemDataHook.split(' ').reduce((q, hook) => q + `[data-hook~="${hook}"]`, '')
+  );
   const itemAt = index => itemsArray().get(index);
   // before accessing menu methods one need to init driver with menu-item data hook
   const protect = fn => (...args) => {
