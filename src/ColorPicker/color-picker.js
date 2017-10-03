@@ -33,7 +33,7 @@ export default class ColorPicker extends WixComponent {
     showConverter: bool,
     /** Should color input (in `HEX` mode) be displayed */
     showInput: bool,
-    /** Handle color change event */
+    /** Handle color change event. This is relevant only if `showConverter` is `true` */
     onChange: func.isRequired,
     /** Handle cancel button click */
     onCancel: func.isRequired,
