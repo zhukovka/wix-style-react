@@ -93,6 +93,13 @@ $padding-vertical: 14px;
   transition: 0.5s;
 }
 
+:global(.rtl) {
+  .linkArrow {
+    right: inherit;
+    left: 25px;
+  }
+}
+
 .separator {
   margin: 20px $padding-horizontal;
   border-bottom: 1px solid $D30;
