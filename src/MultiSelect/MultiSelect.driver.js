@@ -14,6 +14,7 @@ const multiSelectDriverFactory = ({element, wrapper, component}) => {
   const tags = initial(inputWrapper.childNodes);
 
   const multiSelectDriver = Object.assign(driver, {
+    getMaxHeight: () => inputWrapper.style.maxHeight,
     clickOnInputWrapper: () => ReactTestUtils.Simulate.click(inputWrapper),
     inputWrapperHasFocus: () => inputWrapper.classList.contains('hasFocus'),
     numberOfTags: () => tags.length,

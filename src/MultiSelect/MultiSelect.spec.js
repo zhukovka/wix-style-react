@@ -201,6 +201,28 @@ describe('multiSelect', () => {
     expect(onRemoveTag).toHaveBeenCalledWith(tagId);
   });
 
+  it('should set maxHeight to initial when no height limit introduced', () => {
+    const {driver} = createDriver(<MultiSelect options={options}/>);
+
+    expect(driver.getMaxHeight()).toBe('initial');
+  });
+
+  it('should set maxHeight when maxNumRows defined', () => {
+    const {driver} = createDriver(<MultiSelect maxNumRows={2} options={options}/>);
+
+    expect(driver.getMaxHeight()).toBe('72px');
+  });
+
+  it('should set maxHeight when maxNumRows defined (large tags)', () => {
+    const options = [
+      {value: 'Alaska', id: 'Alaska', label: 'Alaska', size: 'large'}
+    ];
+
+    const {driver} = createDriver(<MultiSelect maxNumRows={2} tags={options} options={options}/>);
+
+    expect(driver.getMaxHeight()).toBe('96px');
+  });
+
   describe('testkit', () => {
     it('should exist', () => {
       const div = document.createElement('div');

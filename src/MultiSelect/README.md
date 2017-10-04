@@ -20,6 +20,7 @@
 | fixedHeader | node | - | - | A fixed header to the list |
 | fixedFooter | node | - | - | A fixed footer to the list |
 | delimiters | array | [','] (also Enter and Tab) | - | delimiters that will be treated like enter press |
+| maxNumRows | number | - | - | Max number of visible lines |
 | ***All of the InputWithOptions Props are also available for this component*** | | | | |
 
 ## Option

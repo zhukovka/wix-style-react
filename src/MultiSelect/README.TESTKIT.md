@@ -22,6 +22,7 @@ The `<MultiSelect/>` TestKit is exposing the following drivers:
 | pressCommaKey | - | - | press the comma key in the input field |
 | getTagDriverByTagId | tagId | object | returns the `tagDriver` for the specified tag id |
 | setProps | json | element | returns a clone of this element with the new props from the json |
+| getMaxHeight | - | string | returns the max height of the component |
 
 ## Usage Example
 
