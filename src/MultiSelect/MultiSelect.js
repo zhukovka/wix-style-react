@@ -151,6 +151,7 @@ class MultiSelect extends InputWithOptions {
   }
 
   clearInput() {
+    this.input.clear();
     if (this.props.onChange) {
       this.props.onChange({target: {value: ''}});
     }

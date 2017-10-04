@@ -70,16 +70,22 @@
 }
 
 .warning-theme {
-  background-color: $Y10;
+  background-color: $Y40;
   .tagRemoveButton {
     color: white;
   }
 }
+.warning-theme:hover {
+  background-color: $Y30;
+}
 
 .error-theme {
-  background-color: $R20;
+  background-color: $R40;
   .tagRemoveButton {
     color: black;
   }
 }
 
+.error-theme:hover {
+  background-color: $R30;
+}

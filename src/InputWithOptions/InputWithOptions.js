@@ -60,6 +60,7 @@ class InputWithOptions extends WixComponent {
       onFocus: this._onFocus,
       onBlur: this._onBlur,
       onCompositionChange: this.onCompositionChange,
+      width: inputElement.props.width,
     });
   }
 
