@@ -1,21 +1,21 @@
 import React from 'react';
 import {storiesOf} from '@storybook/react';
 
-import InteractiveCodeExample from '../utils/Components/InteractiveCodeExample';
 import AutoDocs from '../utils/Components/AutoDocs';
+import AutoExample from '../utils/Components/AutoExample';
 import TabbedView from '../utils/Components/TabbedView';
-import ColorPicker from '!raw-loader!../../src/ColorPicker/color-picker';
 
-import ExampleDefault from './ExampleDefault';
+import ColorPicker from 'wix-style-react/ColorPicker';
+import ColorPickerSource from '!raw-loader!wix-style-react/ColorPicker/color-picker';
 
 storiesOf('Core', module)
-  .add('Color Picker', () => (
-    <TabbedView tabs={['Example', 'API']}>
-      <div>
-        <InteractiveCodeExample title="Customize <ColorPicker/>" autoExpand={false}>
-          <ExampleDefault/>
-        </InteractiveCodeExample>
-      </div>
-      <AutoDocs source={ColorPicker}/>
+  .add('ColorPicker', () => (
+    <TabbedView tabs={['Usage', 'API']}>
+      <AutoExample
+        component={ColorPicker}
+        source={ColorPickerSource}
+        />
+
+      <AutoDocs source={ColorPickerSource}/>
     </TabbedView>
   ));

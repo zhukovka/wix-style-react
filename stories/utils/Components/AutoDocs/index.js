@@ -1,9 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import {parse} from 'react-docgen';
 
 import Markdown from '../Markdown';
-import ComponentResolver from './component-resolver';
+import parser from './parser';
 
 const shouldHideForE2E = process.env.STORYBOOK_E2E;
 
@@ -68,7 +67,7 @@ const renderPropType = (type = {}) => {
 };
 
 const AutoDocs = ({source = ''}) => {
-  const {description, displayName, props} = parse(source, ComponentResolver);
+  const {description, displayName, props} = parser(source);
 
   const propRow = (prop, index) =>
     <tr key={index}>
