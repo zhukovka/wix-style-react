@@ -17,14 +17,14 @@ import {
 export default class extends Component {
   static propTypes = {
     source: PropTypes.string.isRequired,
-    component: PropTypes.node.isRequired,
-    defaultProps: PropTypes.object
+    component: PropTypes.func.isRequired,
+    componentProps: PropTypes.oneOfType([PropTypes.func, PropTypes.object])
   }
 
   static defaultProps = {
     source: '',
     component: () => null,
-    defaultProps: {}
+    componentProps: {}
   }
 
   constructor(props) {
@@ -35,10 +35,26 @@ export default class extends Component {
     this.state = {
       propsState: {
         ...(this.props.component.defaultProps || {}),
-        ...(this.props.defaultProps)
+        ...(this.prepareComponentProps(this.props.componentProps))
       }
     };
   }
+
+  componentWillReceiveProps(nextProps) {
+    this.setState({
+      propsState: {...this.state.propsState, ...this.prepareComponentProps(nextProps.componentProps)}
+    });
+  }
+
+  prepareComponentProps = props =>
+    typeof props === 'function' ?
+      props(componentProps =>
+        this.setState({
+          propsState: {...this.state.propsState, ...componentProps}
+        })
+      ) :
+      props;
+
 
   mapControllableProps = fn =>
     Object
@@ -73,7 +89,7 @@ export default class extends Component {
     const componentPropsState = this.state.propsState;
 
     return (
-      <Wrapper>
+      <Wrapper dataHook="auto-example">
         <Options>
           { this.mapControllableProps((prop, key) =>
             <Option

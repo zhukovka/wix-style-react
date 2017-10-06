@@ -11,15 +11,16 @@ import Text from 'wix-style-react/Text';
 
 import styles from './styles.scss';
 
-const Wrapper = ({children}) =>
+const Wrapper = ({children, dataHook}) =>
   <Container>
-    <Row className={styles.wrapper}>
+    <Row className={styles.wrapper} dataHook={dataHook}>
       {children}
     </Row>
   </Container>;
 
 Wrapper.propTypes = {
-  children: PropTypes.node
+  children: PropTypes.node,
+  dataHook: PropTypes.string
 };
 
 
