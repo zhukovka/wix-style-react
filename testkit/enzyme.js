@@ -167,3 +167,6 @@ export const badgeTestkitFactory = enzymeTestkitFactoryCreator(badgeDriverFactor
 
 import datePickerFactory from '../src/DatePicker/DatePicker.driver';
 export const datePickerTestkitFactory = enzymeTestkitFactoryCreator(datePickerFactory);
+
+import selectorDriverFactory from '../src/Selector/Selector.driver';
+export const selectorTestkitFactory = enzymeTestkitFactoryCreator(selectorDriverFactory);
