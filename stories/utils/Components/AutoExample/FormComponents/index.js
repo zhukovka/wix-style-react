@@ -7,6 +7,7 @@ import CodeBlock from '../../CodeBlock';
 import {Container, Row, Col} from 'wix-style-react/Grid';
 import {default as WixInput} from 'wix-style-react/Input';
 import ToggleSwitch from 'wix-style-react/ToggleSwitch';
+import {default as WixRadioGroup} from 'wix-style-react/RadioGroup';
 import Text from 'wix-style-react/Text';
 
 import styles from './styles.scss';
@@ -75,10 +76,10 @@ Preview.propTypes = {
 
 const Toggle = ({value, onChange, ...props}) =>
   <ToggleSwitch
-    {...props}
     size="small"
     checked={value}
     onChange={({target: {checked}}) => onChange(checked)}
+    {...props}
     />;
 
 Toggle.propTypes = {
@@ -87,11 +88,34 @@ Toggle.propTypes = {
 };
 
 
+const RadioGroup = ({value, options, onChange, ...props}) =>
+  <WixRadioGroup
+    value={value}
+    onChange={onChange}
+    {...props}
+    >
+    {options.map((option, i) =>
+      <WixRadioGroup.Radio
+        key={i}
+        value={option}
+        >
+        <Markdown source={`\`${option}\``}/>
+      </WixRadioGroup.Radio>
+    )}
+  </WixRadioGroup>;
+
+RadioGroup.propTypes = {
+  value: PropTypes.string,
+  options: PropTypes.arrayOf(PropTypes.string),
+  onChange: PropTypes.func
+};
+
+
 const Input = ({value, onChange, ...props}) =>
   <WixInput
-    {...props}
     value={value}
     onChange={({target: {value}}) => onChange(value)}
+    {...props}
     />;
 
 Input.propTypes = {
@@ -119,5 +143,6 @@ export {
   Preview,
   Toggle,
   Input,
+  RadioGroup,
   Code
 };
