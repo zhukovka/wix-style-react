@@ -20,9 +20,9 @@ describe('LanguagePicker', () => {
 
   it('should call onSelect prop when language is selected', () => {
     const onSelect = jest.fn();
-    const {driver, dropdownLayoutDriver} = createDriver(languagePicker({onSelect}));
+    const {buttonDriver, dropdownLayoutDriver} = createDriver(languagePicker({onSelect}));
 
-    driver.click();
+    buttonDriver.click();
     dropdownLayoutDriver.clickAtOption(0);
 
     expect(onSelect).toBeCalledWith('en');
