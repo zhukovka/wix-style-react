@@ -5,6 +5,7 @@ import {createDriverFactory} from '../test-common';
 import {textLinkTestkitFactory} from '../../../testkit';
 import {textLinkTestkitFactory as enzymeTextLinkTestkitFactory} from '../../../testkit/enzyme';
 import {isTestkitExists, isEnzymeTestkitExists} from '../../../testkit/test-common';
+import {spy} from 'sinon';
 
 describe('TextLink', () => {
 
@@ -78,6 +79,24 @@ describe('TextLink', () => {
   it('should have a target', () => {
     const driver = createDriver(<TextLink target="_blank" link="https://www.wix.com"/>);
     expect(driver.getTarget()).toBe('_blank');
+  });
+
+  it('should call the onClick func when clicked', () => {
+    const onClickFunc = spy();
+    const driver = createDriver(<TextLink link="" onClick={onClickFunc}/>);
+
+    driver.click();
+
+    expect(onClickFunc.calledOnce).toEqual(true);
+  });
+
+  it('should not call the onClick func if clicked when disabled', () => {
+    const onClickFunc = spy();
+    const driver = createDriver(<TextLink disabled link="" onClick={onClickFunc}/>);
+
+    driver.click();
+
+    expect(onClickFunc.called).toEqual(false);
   });
 });
 

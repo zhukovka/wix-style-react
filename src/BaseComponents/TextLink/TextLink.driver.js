@@ -8,6 +8,7 @@ const textLinkDriverFactory = ({element, wrapper, component}) => {
 
   return {
     exists: () => !!element,
+    click: () => ReactTestUtils.Simulate.click(element),
     getContent: () => textLinkLayout.textContent,
     doesComponentHasClass: className => textLinkLayout.className.indexOf(className) > 0,
     isDarkBackground: () => textLinkLayout.style._values.color === 'rgb(255, 255, 255)',

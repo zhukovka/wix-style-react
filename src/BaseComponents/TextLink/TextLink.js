@@ -16,7 +16,8 @@ export default class BaseTextLink extends WixComponent {
       ariaLabel: PropTypes.string,
       color: PropTypes.string,
       onMouseEnter: PropTypes.func,
-      onMouseLeave: PropTypes.func
+      onMouseLeave: PropTypes.func,
+      onClick: PropTypes.func
     }
   );
 
@@ -25,16 +26,17 @@ export default class BaseTextLink extends WixComponent {
       disabled: false,
       download: false,
       rel: null,
-      target: null
+      target: null,
+      onClick: () => {}
     }
   );
 
   render() {
-    const {ariaLabel, disabled, link, children, download, rel, target, onMouseEnter, onMouseLeave} = this.props;
+    const {ariaLabel, disabled, link, children, download, rel, target, onMouseEnter, onMouseLeave, onClick} = this.props;
     const props = {
       download,
       href: `${link}`,
-      onClick: event => disabled && event.preventDefault(),
+      onClick: event => disabled ? event.preventDefault() : onClick(event),
       role: 'link',
       style: {
         textDecoration: 'inherit',

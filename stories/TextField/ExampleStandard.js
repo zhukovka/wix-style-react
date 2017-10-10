@@ -13,7 +13,7 @@ class ExampleStandard extends Component {
 
   static propTypes = {
     onChange: PropTypes.func
-  }
+  };
 
   state = {
     withLabel: true,
@@ -33,7 +33,7 @@ class ExampleStandard extends Component {
     },
     required: false,
     info: ''
-  }
+  };
 
   setComponentState(componentName, obj) {
     this.setState(prevState => {

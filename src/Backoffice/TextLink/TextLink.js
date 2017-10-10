@@ -26,7 +26,6 @@ export default class TextLink extends WixComponent {
   });
 
   render() {
-
     return (
       <BaseTextLink {...this.props}/>
     );
