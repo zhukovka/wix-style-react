@@ -153,7 +153,13 @@ export default class extends Component {
   }
 
   getPropControlComponent = (propKey, type) => {
-    const dataHook = `storybook-${this.parsedComponent.displayName}-${propKey}-${type.name || 'input'}`;
+    const types = {
+      bool: 'toggle',
+      string: 'input',
+      enum: 'radioGroup'
+    };
+
+    const dataHook = `storybook-${this.parsedComponent.displayName}-${propKey}-${types[type.name] || 'input'}`;
     return (this.controllableComponentGetters[type.name] || (() => null))({propKey, type, dataHook});
   }
 
