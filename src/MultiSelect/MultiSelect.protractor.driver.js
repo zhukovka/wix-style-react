@@ -1,4 +1,4 @@
-const checkboxDriverFactory = component => ({
+const multiSelectDriverFactory = component => ({
   addTag: () => {
     component.click();
     component.$('[data-hook^="dropdown-item"]:first-of-type').click();
@@ -16,4 +16,4 @@ const checkboxDriverFactory = component => ({
   }
 });
 
-export default checkboxDriverFactory;
+export default multiSelectDriverFactory;
