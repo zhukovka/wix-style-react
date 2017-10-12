@@ -7,6 +7,7 @@ import Markdown from '../utils/Components/Markdown';
 import Readme from '../../README.md';
 import TestsReadme from '../../docs/TESTS.md';
 import Contribution from '../../docs/CONTRIBUTING.md';
+import AddingStory from '../../docs/adding-story.md';
 import TPA from '../../src/TPA/README.md';
 import AutoDocsReadme from '../../docs/AutoDocs.md';
 import UsageWithoutYoshiReadme from '../../docs/usage-without-yoshi.md';
@@ -20,4 +21,5 @@ storiesOf('Introduction', {})
   .add('TPA', () => <Markdown source={TPA}/>)
   .add('AutoDocs', () => <Markdown source={AutoDocsReadme}/>)
   .add('AutoExample', () => <AutoDocs source={AutoExampleSource}/>)
+  .add('Adding Story', () => <Markdown source={AddingStory}/>)
   .add('Usage Without Yoshi', () => <Markdown source={UsageWithoutYoshiReadme}/>);

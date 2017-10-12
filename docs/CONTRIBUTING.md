@@ -1,10 +1,18 @@
 # Contributing
 
-You are more than welcome to contribute by creating pull requests.
+We're thrilled to receive contributions, even on a rainy day :)
 
-### UX
+### Checklist
 
-For any questions regarding product design/UX please contact [Ben Benhorin](https://wix.slack.com/messages/@benb).
+We want your input but we also want good quality. Hence contributors are required to:
+
+* submit concise and clear issues with reproducible examples
+* submit focused pull requests that tackle one thing only
+
+### Contacts
+
+* product/UI/UX [Ben Benhorin](https://wix.slack.com/messages/@benb)
+* code/issues/PRs [Lior Belinksy (@lbelinsk)](https://github.com/lbelinsk) [Arijus Šukys (@argshook)](https://github.com/argshook)
 
 ## Setup
 
@@ -17,38 +25,30 @@ npm start
 open localhost:6006
 ```
 
-After you do `npm start` a local server will start at `localhost:6006` with [storybook](https://storybook.js.org/) available.
+After `npm start` a local server will go live at `localhost:6006` with [storybook](https://storybook.js.org/) available.
 storybook is your reference/sandbox for developing components.
 
 
 See [Badge](https://github.com/wix/wix-style-react/blob/master/src/Badge/Badge.js) component for reference
 
 
-### Components design (in progress)
+### Components guidelines 
 
-* This library is using es6 + jsx
-* All assets are in `src/assets` folder
-* Each component must have e2e & unit test as well as testkit provided. (It is recommened to make your testkits API the same across all testkit types)
-* One React component per file
-* Most of the components needs be a [controlled components](https://goshakkk.name/controlled-vs-uncontrolled-inputs-react/), if you still think that a component should be uncontrolled after you read the article you are welcome to push a pr for it.
-* Components needs to support rtl and ltr props
+* One component per file
+* All assets in `src/assets` folder
+* e2e & unit test as well as enzyme & protractor testkits
+* Prefer [controlled components](https://goshakkk.name/controlled-vs-uncontrolled-inputs-react/)
+* support `rtl` boolean prop to support right-to-left languages
 
 ### Adding new component
 
-* If no one is working on the new component and no issue exists, create a new issue for your component and assign it to yourself;
-* Stick to the UX design that is specified in the [Zeplin](https://app.zeplin.io/project/5864e02695b5754a69f56150).
-* Add the component docs to [stories](https://github.com/wix/wix-style-react/tree/master/stories)
-
-    > refer to [Badge docs](https://github.com/wix/wix-style-react/blob/master/stories/Badge/index.js) for example.
-
-    * A story consists of properties, usage examples and code examples, 
-    * use [`AutoDocs`](https://wix.github.io/wix-style-react/?selectedKind=Introduction&selectedStory=AutoDocs&full=0&down=0&left=1&panelRight=0) to automatically generate table of props,
-    * Make sure to add your component to [Storybook config](https://github.com/wix/wix-style-react/blob/master/.storybook/config.js)
-* Add component test, e2e and drivers to the component's folder.
-* Add index.js file to the component's folder and export your component.
-* Export your testkitFactory from the following files:
+* Check github issues to see if no one else is working on the same component
+* Each component in the library extends WixComponent, so please do it with you component as well.
+* Use `WixComponent` as super class for your component, e.g.: `class MyComponent extends WixComponent`
+* Design according to [Zeplin](https://app.zeplin.io/project/5864e02695b5754a69f56150) design created by UX guild.
+* Configure storybook to generate documentation for you, follow [Adding Story](https://wix.github.io/wix-style-react/?selectedKind=Introduction&selectedStory=Adding%20Story&full=0&down=0&left=1&panelRight=0) guide.
+* Add unit and e2e tests as well as testkits for enzyme and protractor.
+* Export your `testkitFactory` from the following files:
     * `wix-style-react/testkit/index.js`
     * `wix-style-react/testkit/enzyme.js`
     * `wix-style-react/testkit/protractor.js`
-
-* Each component in the library extends WixComponent, so please do it with you component as well.
