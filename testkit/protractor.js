@@ -92,3 +92,6 @@ export const datePickerTestkitFactory = protractorTestkitFactoryCreator(datePick
 
 import editableSelectorDriverFactory from '../src/EditableSelector/EditableSelector.protractor.driver';
 export const editableSelectorTestkitFactory = protractorTestkitFactoryCreator(editableSelectorDriverFactory);
+
+import iconWithOptionsDriverFactory from '../src/IconWithOptions/IconWithOptions.protractor.driver';
+export const iconWithOptionsTestkitFactory = protractorTestkitFactoryCreator(iconWithOptionsDriverFactory);

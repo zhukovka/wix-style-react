@@ -62,6 +62,7 @@ import '../stories/Range';
 import '../stories/MultiSelect';
 import '../stories/AutoCompleteComposite';
 import '../stories/ButtonWithOptions';
+import '../stories/IconWithOptions';
 import '../stories/Checkbox/CheckboxStory';
 import '../stories/RadioGroup';
 import '../stories/GoogleAddressInputWithLabel';

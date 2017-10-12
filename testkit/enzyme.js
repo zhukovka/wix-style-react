@@ -179,3 +179,6 @@ export const editableRowTestkitFactory = enzymeTestkitFactoryCreator(editableRow
 
 import modalSelectorDriverFactory from '../src/ModalSelector/ModalSelector.driver';
 export const modalSelectorTestkitFactory = enzymeTestkitFactoryCreator(modalSelectorDriverFactory);
+
+import iconWithOptionsDriverFactory from '../src/IconWithOptions/IconWithOptions.driver';
+export const iconWithOptionsTestkitFactory = enzymeTestkitFactoryCreator(iconWithOptionsDriverFactory);
