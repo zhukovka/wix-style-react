@@ -12,7 +12,7 @@ export default class BaseTextLink extends WixComponent {
       disabled: PropTypes.bool,
       download: PropTypes.bool,
       rel: PropTypes.string,
-      target: PropTypes.oneOf(['_blank', '_parent', '_self', '_top', 'framename']),
+      target: PropTypes.string,
       ariaLabel: PropTypes.string,
       color: PropTypes.string,
       onMouseEnter: PropTypes.func,
