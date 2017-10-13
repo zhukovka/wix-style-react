@@ -67,7 +67,7 @@ const renderPropType = (type = {}) => {
 };
 
 const AutoDocs = ({source = ''}) => {
-  const {description, displayName, props} = parser(source);
+  const {description, displayName, props, composes = []} = parser(source);
 
   const propRow = (prop, index) =>
     <tr key={index}>
@@ -80,18 +80,19 @@ const AutoDocs = ({source = ''}) => {
 
   return !shouldHideForE2E && (
     <div className="markdown-body">
-      <div>
-        <h1>
-          { displayName && <code>{`<${displayName}/>`}</code> }
-          Component
-        </h1>
-      </div>
+      { displayName &&
+        <div>
+          <h1>
+            { displayName && <code>{`<${displayName}/>`}</code> }
+          </h1>
+        </div>
+      }
 
       { !displayName && <blockquote>This component has no <code>displayName</code></blockquote> }
 
       { description && <Markdown source={description}/> }
 
-      <h2>Component <code>props</code></h2>
+      <h2>Available <code>props</code></h2>
 
       <table>
         <thead>
@@ -106,6 +107,22 @@ const AutoDocs = ({source = ''}) => {
 
         <tbody>
           { prepareParsedProps(props).map(propRow) }
+
+          { composes.length > 0 &&
+            <tr>
+              <td colSpan={5}>
+                Also includes props from:
+
+                <ul>
+                  {composes.map((path, i) =>
+                    <li key={i}>
+                      {path}
+                    </li>
+                  )}
+                </ul>
+              </td>
+            </tr>
+          }
         </tbody>
       </table>
     </div>
