@@ -14,6 +14,7 @@ storybook-e2e
 .vscode
 test/e2e
 .happypack
+yarn.lock
 
 # we ignore all *.js in root folder to avoid comitting component export
 # files that appear in root after build
