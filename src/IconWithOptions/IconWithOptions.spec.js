@@ -85,6 +85,16 @@ describe('IconWithOptions', () => {
     expect(dropdownLayoutDriver.hasTopArrow()).toBeTruthy();
   });
 
+  it('should not have dropDirectin up by default', () => {
+    const {dropdownLayoutDriver} = createDriver(iconWithOptions());
+    expect(dropdownLayoutDriver.isDropDirectionUp()).toBe(false);
+  });
+
+  it('should have dropDirectin up', () => {
+    const {dropdownLayoutDriver} = createDriver(iconWithOptions({dropDirectionUp: true}));
+    expect(dropdownLayoutDriver.isDropDirectionUp()).toBe(true);
+  });
+
   describe('testkit', () => {
     it('should exist', () => {
       const div = document.createElement('div');
