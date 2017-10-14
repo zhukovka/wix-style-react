@@ -45,6 +45,7 @@ class ButtonWithOptions extends WixComponent {
     return (
       <DropdownLayout
         {...dropdownProps}
+        dataHook="buttonWithOptions-dropdownLayout"
         options={dropdownLayoutOptions}
         theme={this.props.theme}
         visible={this.state.showOptions}
@@ -111,7 +112,12 @@ ButtonWithOptions.propTypes = {
 ButtonWithOptions.Option = () => null;
 ButtonWithOptions.Option.displayName = 'ButtonWithOptions.Option';
 
-ButtonWithOptions.Button = props => <div className={styles.buttonWrapper}><Button {...props}/></div>;
+ButtonWithOptions.Button = props => (
+  <div className={styles.buttonWrapper} data-hook="buttonWithOptions-button-wrapper">
+    <Button {...props}/>
+  </div>
+);
+
 ButtonWithOptions.Button.displayName = 'ButtonWithOptions.Button';
 
 export default ButtonWithOptions;

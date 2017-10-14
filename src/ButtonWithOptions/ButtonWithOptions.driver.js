@@ -5,9 +5,10 @@ import ReactDOM from 'react-dom';
 
 const ButtonWithOptionsDriverFactory = ({element, wrapper, component}) => {
 
-  const buttonWrapper = element.childNodes[0];
+  const buttonWrapper = element.querySelector('[data-hook=buttonWithOptions-button-wrapper]');
+  const dropdownLayout = element.querySelector('[data-hook=buttonWithOptions-dropdownLayout]');
   const buttonDriver = buttonDriverFactory({element: buttonWrapper.childNodes[0], wrapper: buttonWrapper});
-  const dropdownLayoutDriver = dropdownLayoutDriverFactory({element: element.childNodes[1], wrapper});
+  const dropdownLayoutDriver = dropdownLayoutDriverFactory({element: dropdownLayout, wrapper});
 
   const driver = {
     exists: () => !!element,
