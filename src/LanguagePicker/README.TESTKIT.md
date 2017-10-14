@@ -4,20 +4,7 @@
 
 ## LanguagePicker TestKit API
 
-### The LanguagePicker TestKit is exposing the [buttonDriver](https://wix.github.io/wix-style-react/?selectedKind=Core&selectedStory=Button&full=0&down=0&left=1&panelRight=0) and [dropdownLayoutDriver](https://wix.github.io/wix-style-react/?selectedKind=Core&selectedStory=DropdownLayout&full=0&down=0&left=1&panelRight=0) and adds its own driver, see examples below
-
-#### Driver methods:
-
-| method | arguments | returned value | description |
-|--------|-----------|----------------|-------------|
-| click | - | - | click the button element |
-| pressDownKey | - | - | press down key on the button element |
-| pressUpKey | - | - | press up key on the button element |
-| pressAnyKey | - | - | press any key on the button element |
-| pressEnterKey | - | - | press enter key on the button element |
-| pressTabKey | - | - | press tab key on the button element |
-| pressEscKey | - | - | press esc key on the button element |
-| setProps | json | element | returns a clone of this element with the new props from the json |
+### The LanguagePicker TestKit is exposing the [IconWithOptions](https://wix.github.io/wix-style-react/?selectedKind=4.%20Selection&selectedStory=4.5%20IconWithOptions&full=0&down=0&left=1&panelRight=0&downPanel=kadirahq%2Fstorybook-addon-actions%2Factions-panel)
 
 ## Usage Example
 
@@ -37,7 +24,6 @@
 
   //Do tests
   expect(LanguagePickerTestkit.driver.exists()).toBeTruthy();
-  expect(LanguagePickerTestkit.buttonDriver.exists()).toBeTruthy();
   expect(LanguagePickerTestkit.dropdownLayoutDriver.exists()).toBeTruthy();
 
   /**********************
@@ -51,6 +37,5 @@
 
   //Do tests
   expect(LanguagePickerTestkit.driver.exists()).toBeTruthy();
-  expect(LanguagePickerTestkit.buttonDriver.exists()).toBeTruthy();
   expect(LanguagePickerTestkit.dropdownLayoutDriver.exists()).toBeTruthy();
 ```

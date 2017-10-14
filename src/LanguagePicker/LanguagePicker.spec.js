@@ -18,14 +18,19 @@ describe('LanguagePicker', () => {
     </LanguagePicker>
   );
 
+  it('should have big items height by default', () => {
+    const {dropdownLayoutDriver} = createDriver(languagePicker());
+    expect(dropdownLayoutDriver.isOptionHeightBig(0)).toBe(true);
+  });
+
   it('should call onSelect prop when language is selected', () => {
     const onSelect = jest.fn();
-    const {buttonDriver, dropdownLayoutDriver} = createDriver(languagePicker({onSelect}));
+    const {driver, dropdownLayoutDriver} = createDriver(languagePicker({onSelect}));
 
-    buttonDriver.click();
+    driver.mouseEnter();
     dropdownLayoutDriver.clickAtOption(0);
 
-    expect(onSelect).toBeCalledWith('en');
+    expect(onSelect).toBeCalledWith({id: 'en', value: 'English'});
   });
 
   it('should print console warning for bad children format', () => {
@@ -49,6 +54,12 @@ describe('LanguagePicker', () => {
     expect(dropdownLayoutDriver.isOptionADivider(1)).toBe(true);
   });
 
+  it('should not display the selected language in the dropdown', () => {
+    const {dropdownLayoutDriver} = createDriver(languagePicker({selectedId: 'en'}));
+    expect(dropdownLayoutDriver.optionsLength()).toBe(1);
+    expect(dropdownLayoutDriver.optionContentAt(0)).toBe('French');
+  });
+
   describe('testkit', () => {
     it('should exist', () => {
       const div = document.createElement('div');
@@ -56,7 +67,6 @@ describe('LanguagePicker', () => {
       const wrapper = div.appendChild(ReactTestUtils.renderIntoDocument(<div>{languagePicker({dataHook})}</div>));
       const languagePickerTestkit = languagePickerTestkitFactory({wrapper, dataHook});
       expect(languagePickerTestkit.driver.exists()).toBeTruthy();
-      expect(languagePickerTestkit.buttonDriver.exists()).toBeTruthy();
       expect(languagePickerTestkit.dropdownLayoutDriver.exists()).toBeTruthy();
     });
   });
@@ -67,7 +77,6 @@ describe('LanguagePicker', () => {
       const wrapper = mount(languagePicker({dataHook}));
       const languagePickerTestkit = enzymeLanguagePickerTestkitFactory({wrapper, dataHook});
       expect(languagePickerTestkit.driver.exists()).toBeTruthy();
-      expect(languagePickerTestkit.buttonDriver.exists()).toBeTruthy();
       expect(languagePickerTestkit.dropdownLayoutDriver.exists()).toBeTruthy();
     });
   });
