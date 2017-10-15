@@ -16,16 +16,15 @@
 .icon-wrapper {
   display: flex;
   justify-content: center;
-  margin-bottom: 20px;
 }
 
 .dropdown-layout {
   display: block;
   position: absolute;
   width: 130px;
-  bottom: 0.9em;
+  bottom: 0;
 
   &.drop-direction-up {
-    bottom: 3.6em;
+    bottom: 3.2em;
   }
 }
