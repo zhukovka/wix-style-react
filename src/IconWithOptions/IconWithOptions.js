@@ -53,16 +53,25 @@ class IconWithOptions extends WixComponent {
   render() {
     const {dropDirectionUp, dropdownWidth} = this.props;
     const style = {width: dropdownWidth};
+    const classes = classNames({
+      [styles.wrapper]: true,
+      [styles.hover]: this.state.showOptions
+    });
 
     return (
       <div
-        className={styles.wrapper}
+        className={classes}
         style={style}
-        onMouseEnter={() => this.setState({showOptions: true})}
         onMouseLeave={() => this.setState({showOptions: false})}
         >
         {dropDirectionUp ? this.renderDropdownLayout() : null}
-        {this.iconElement}
+        <div
+          data-hook="icon-wrapper"
+          className={styles.iconWrapper}
+          onMouseEnter={() => this.setState({showOptions: true})}
+          >
+          {this.iconElement}
+        </div>
         {!dropDirectionUp ? this.renderDropdownLayout() : null}
       </div>
     );
@@ -91,7 +100,7 @@ IconWithOptions.propTypes = {
 IconWithOptions.Option = () => null;
 IconWithOptions.Option.displayName = 'IconWithOptions.Option';
 
-IconWithOptions.Icon = props => <div className={styles.iconWrapper} {...props}/>;
+IconWithOptions.Icon = props => <div {...props}/>;
 IconWithOptions.Icon.displayName = 'IconWithOptions.Icon';
 
 export default IconWithOptions;

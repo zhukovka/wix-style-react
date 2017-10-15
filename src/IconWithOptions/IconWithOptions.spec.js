@@ -95,6 +95,49 @@ describe('IconWithOptions', () => {
     expect(dropdownLayoutDriver.isDropDirectionUp()).toBe(true);
   });
 
+  describe('icon', () => {
+    it('should not have blue hovered icon by default', () => {
+      const {driver} = createDriver(iconWithOptions());
+      expect(driver.isIconBlue()).toBe(false);
+    });
+
+    it('should not have blue hovered icon when hovering the outer wrapper', () => {
+      const {driver} = createDriver(iconWithOptions());
+
+      ReactTestUtils.Simulate.mouseEnter(driver.element());
+      expect(driver.isIconBlue()).toBe(false);
+    });
+
+    it('should have blue hovered icon when hovering over the icon', () => {
+      const {driver} = createDriver(iconWithOptions());
+
+      driver.mouseEnter();
+      expect(driver.isIconBlue()).toBe(true);
+    });
+
+    it('should have blue hovered icon when hovering over the icon, then moving the mouse to the outer wrapper', () => {
+      const {driver} = createDriver(iconWithOptions());
+
+      driver.mouseEnter();
+
+      ReactTestUtils.Simulate.mouseLeave(driver.iconWrapper());
+      expect(driver.isIconBlue()).toBe(true);
+
+      ReactTestUtils.Simulate.mouseEnter(driver.element());
+      expect(driver.isIconBlue()).toBe(true);
+    });
+
+    it('should not have blue hovered icon when hovering over the icon, then performing mouseLeave from the outer wrapper', () => {
+      const {driver} = createDriver(iconWithOptions());
+
+      driver.mouseEnter();
+      expect(driver.isIconBlue()).toBe(true);
+
+      driver.mouseLeave();
+      expect(driver.isIconBlue()).toBe(false);
+    });
+  });
+
   describe('testkit', () => {
     it('should exist', () => {
       const div = document.createElement('div');

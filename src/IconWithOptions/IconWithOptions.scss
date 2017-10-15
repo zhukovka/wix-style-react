@@ -4,8 +4,9 @@
   position: relative;
   display: flex;
   justify-content: center;
+  z-index: 0;
 
-  &:hover .icon-wrapper {
+  &.hover .icon-wrapper {
     svg path {
       fill: $B10;
     }
