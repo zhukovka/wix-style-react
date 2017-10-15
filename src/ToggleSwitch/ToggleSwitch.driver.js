@@ -2,11 +2,11 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import ReactTestUtils from 'react-dom/test-utils';
 import $ from 'jquery';
+import {isClassExists} from '../../test/utils';
 
 const toggleSwitchDriverFactory = ({element, wrapper, component}) => {
 
   const toggleSwitch = $(element).find('input')[0];
-  const isClassExists = (element, className) => !!(element.className.match(new RegExp('\\b' + className + '\\b')));
 
   return {
     exists: () => !!element,

@@ -3,10 +3,10 @@ import ReactTestUtils from 'react-dom/test-utils';
 import ReactDOM from 'react-dom';
 import styles from './DropdownLayout.scss';
 import values from 'lodash/values';
+import {isClassExists} from '../../test/utils';
 
 const dropdownLayoutDriverFactory = ({element, wrapper, component}) => {
 
-  const isClassExists = (element, className) => !!(element.className.match(new RegExp('\\b' + className + '\\b')));
   const contentContainer = element.childNodes[0];
   const options = element.querySelector('[data-hook=dropdown-layout-options]');
   const optionAt = position => (options.childNodes[position]);

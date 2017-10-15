@@ -2,9 +2,9 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import ReactTestUtils from 'react-dom/test-utils';
 import toArray from 'lodash/toArray';
+import {isClassExists} from '../../test/utils';
 
 const radioGroupDriverFactory = ({element, wrapper, component}) => {
-  const isClassExists = (element, className) => !!element && element.className.indexOf(className) !== -1;
   const radios = toArray(element.children) || [];
   const radioButtons = radios.map(radio => radio.childNodes[0]);
   const labels = radios.map(radio => radio.childNodes[1]);
