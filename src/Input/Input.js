@@ -341,7 +341,7 @@ Input.propTypes = {
   /** Inputs value */
   value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
   width: PropTypes.string,
-  withSelection: PropTypes.bool,
+  withSelection: PropTypes.bool
 };
 
 export default Input;

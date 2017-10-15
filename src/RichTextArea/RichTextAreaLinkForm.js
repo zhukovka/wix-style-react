@@ -72,7 +72,7 @@ class RichTextAreaLinkForm extends Component {
 RichTextAreaLinkForm.propTypes = {
   onCancel: PropTypes.func,
   onSubmit: PropTypes.func,
-  isTextInputVisible: PropTypes.bool,
+  isTextInputVisible: PropTypes.bool
 };
 
 export default RichTextAreaLinkForm;

@@ -22,7 +22,7 @@ class Modal extends WixComponent {
     scrollable: PropTypes.bool,
     scrollableContent: PropTypes.bool,
     maxHeight: PropTypes.string,
-    height: PropTypes.string,
+    height: PropTypes.string
   }
 
   static defaultProps = {
@@ -36,7 +36,7 @@ class Modal extends WixComponent {
     scrollable: true,
     scrollableContent: false,
     height: 'auto',
-    maxHeight: 'auto',
+    maxHeight: 'auto'
   }
 
   render() {

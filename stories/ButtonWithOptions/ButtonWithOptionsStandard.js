@@ -13,7 +13,7 @@ import styles from './ExampleButton.scss';
 
 const nodeStyle = {
   background: 'azure',
-  paddingLeft: '25px',
+  paddingLeft: '25px'
 };
 
 class ButtonWithOptionsStandard extends Component {

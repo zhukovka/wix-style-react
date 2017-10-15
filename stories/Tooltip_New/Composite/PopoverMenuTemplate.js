@@ -6,7 +6,7 @@ import PopoverMenu from '../../../src/PopoverMenu';
 import PopoverMenuItem from '../../../src/PopoverMenuItem';
 import {
   POPOVER_MENU_DATA_HOOK,
-  POPOVER_MENU_ITEM_DATA_HOOK,
+  POPOVER_MENU_ITEM_DATA_HOOK
 } from './PopoverMenuTemplate.helpers';
 import * as Icons from 'wix-style-react/Icons';
 

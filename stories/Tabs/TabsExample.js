@@ -99,7 +99,7 @@ class TabsExample extends Component {
 }
 
 TabsExample.propTypes = {
-  onChange: PropTypes.func,
+  onChange: PropTypes.func
 };
 
 export default TabsExample;

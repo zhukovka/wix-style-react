@@ -162,7 +162,7 @@ class InputArea extends WixComponent {
 InputArea.displayName = 'InputArea';
 
 InputArea.defaultProps = {
-  theme: 'normal',
+  theme: 'normal'
 };
 
 InputArea.propTypes = {
@@ -239,7 +239,7 @@ InputArea.propTypes = {
   tooltipPlacement: PropTypes.string,
 
   /** Inputs value */
-  value: PropTypes.string,
+  value: PropTypes.string
 };
 
 export default InputArea;

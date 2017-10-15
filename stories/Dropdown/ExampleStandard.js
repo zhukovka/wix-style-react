@@ -21,7 +21,7 @@ const rtlOptions = [
   {id: 0, value: 'אופציה 1'},
   {id: 1, value: 'אופציה 2'},
   {id: 2, value: 'אופציה 3'},
-  {id: 3, value: 'אופציה 4'},
+  {id: 3, value: 'אופציה 4'}
 ];
 
 export default () =>

@@ -14,7 +14,7 @@ const placementToMoveBy = {
   right: {x: 2, y: -10},
   left: {x: -2, y: -10},
   top: {x: 0, y: -10},
-  bottom: {x: 0, y: -8},
+  bottom: {x: 0, y: -8}
 };
 
 const AmaterialErrorSuffix = ({focused, error, errorMessage, placement, onShow}) => focused ?

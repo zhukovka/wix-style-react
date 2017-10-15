@@ -3,7 +3,7 @@ import DataTable from 'wix-style-react/DataTable';
 import s from './Example.scss';
 
 const style = {
-  width: '50%',
+  width: '50%'
 };
 
 const baseData = [

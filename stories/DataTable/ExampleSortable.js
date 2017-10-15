@@ -3,7 +3,7 @@ import DataTable from 'wix-style-react/DataTable';
 import './Example.scss';
 
 const style = {
-  width: '50%',
+  width: '50%'
 };
 
 const baseData = [
@@ -11,7 +11,7 @@ const baseData = [
   {firstName: 'Sara', lastName: 'Porter'},
   {firstName: 'Deborah', lastName: 'Rhodes'},
   {firstName: 'Walter', lastName: 'Jenning'},
-  {firstName: 'Amanda', lastName: 'Woods'},
+  {firstName: 'Amanda', lastName: 'Woods'}
 ];
 
 class DataTableSortableExample extends React.Component {

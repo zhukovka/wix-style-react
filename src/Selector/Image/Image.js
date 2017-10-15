@@ -17,7 +17,7 @@ const types = ['Tiny Square', 'Small Square', 'Portrait', 'Large Square', 'Cinem
 class Image extends WixComponent {
   static propTypes = {
     imageSrc: PropTypes.string.isRequired,
-    imageSize: PropTypes.oneOf(types),
+    imageSize: PropTypes.oneOf(types)
   };
 
   static defaultProps = {

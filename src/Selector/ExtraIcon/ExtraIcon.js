@@ -5,7 +5,7 @@ import * as Icons from '../../Icons';
 
 class ExtraIcon extends WixComponent {
   static propTypes = {
-    name: PropTypes.string.isRequired,
+    name: PropTypes.string.isRequired
   };
 
   render() {

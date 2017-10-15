@@ -193,7 +193,7 @@ describe('DropdownLayout', () => {
 
   it('should hover when mouse enter and unhover when mouse leave when overrideStyle is true', () => {
     const options = [
-      {id: 0, value: 'Option 1', overrideStyle: true},
+      {id: 0, value: 'Option 1', overrideStyle: true}
     ];
 
     const driver = createDriver(<DropdownLayout visible options={options}/>);
@@ -209,7 +209,7 @@ describe('DropdownLayout', () => {
   it('should select the chosen value when overrideStyle is true', () => {
     const selectedId = 0;
     const options = [
-      {id: 0, value: 'Option 1', overrideStyle: true},
+      {id: 0, value: 'Option 1', overrideStyle: true}
     ];
     const driver = createDriver(<DropdownLayout visible options={options} selectedId={selectedId}/>);
 

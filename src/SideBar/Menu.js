@@ -53,7 +53,7 @@ class Menu extends React.Component {
     const top = !selected ? 0 : (selectedChild * 42) || 0;
 
     const cn = classnames({
-      [this.getCss().group]: selected,
+      [this.getCss().group]: selected
     });
 
     const titleCn = classnames({

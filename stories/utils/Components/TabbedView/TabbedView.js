@@ -7,7 +7,7 @@ class TabbedView extends Component {
     tabs: PropTypes.arrayOf(PropTypes.string),
     children: PropTypes.oneOfType([
       PropTypes.node,
-      PropTypes.arrayOf(PropTypes.node),
+      PropTypes.arrayOf(PropTypes.node)
     ])
   };
 

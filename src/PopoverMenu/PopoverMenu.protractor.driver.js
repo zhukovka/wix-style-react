@@ -23,7 +23,7 @@ const popoverMenuDriverFactory = component => {
         menuItemDataHook = dataHook;
 
         return driver;
-      },
+      }
     },
 
     menu: {
@@ -33,8 +33,8 @@ const popoverMenuDriverFactory = component => {
       clickItemAt: protect(index => itemAt(index).click()),
 
       // menu items parent node (not actual menu root)
-      element: protect(() => itemAt(0).element(by.xpath('..'))),
-    },
+      element: protect(() => itemAt(0).element(by.xpath('..')))
+    }
   };
 
   return driver;

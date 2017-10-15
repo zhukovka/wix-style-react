@@ -10,12 +10,12 @@ class Search extends WixComponent {
   static propTypes = {
     onChange: PropTypes.func.isRequired,
     delayTime: PropTypes.number,
-    minimumChars: PropTypes.number,
+    minimumChars: PropTypes.number
   };
 
   static defaultProps = {
     delayTime: 0,
-    minimumChars: 1,
+    minimumChars: 1
   };
 
   fireChange = debounce(value => this.props.onChange(value), this.props.delayTime);

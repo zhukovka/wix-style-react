@@ -84,7 +84,7 @@ class EditableSelector extends WixComponent {
       title,
       newRowLabel,
       editButtonText,
-      toggleType,
+      toggleType
     } = this.props;
     let {options} = this.props;
     options = options || [];

@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import './Example.scss';
 
 const style = {
-  width: '50%',
+  width: '50%'
 };
 
 const baseData = [

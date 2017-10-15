@@ -19,7 +19,7 @@ export default class InteractiveCodeExample extends Component {
     super(props);
 
     this.state = {
-      code: '',
+      code: ''
     };
 
     this.onCodeChange = this.onCodeChange.bind(this);

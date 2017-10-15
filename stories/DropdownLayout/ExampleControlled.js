@@ -15,7 +15,7 @@ const options = [
   {id: 2, value: 'Option 2'},
   {id: 0, value: '-'},
   {id: 'disabled', value: 'Disabled', disabled: true},
-  {id: 4, value: 'Option 4'},
+  {id: 4, value: 'Option 4'}
 ];
 
 class ControlledExample extends Component {

@@ -11,7 +11,7 @@ const placementToMoveBy = {
   right: {x: 10, y: -10},
   left: {x: -10, y: -10},
   top: {x: 0, y: -5},
-  bottom: {x: 0, y: -15},
+  bottom: {x: 0, y: -15}
 };
 
 const AmaterialHelpSuffix = ({help, helpMessage, placement, onShow}) =>

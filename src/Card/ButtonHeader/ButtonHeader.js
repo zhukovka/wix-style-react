@@ -17,9 +17,9 @@ class ButtonHeader extends WixComponent {
     tooltip: node,
     theme: oneOf([
       'standard',
-      'fullblue',
+      'fullblue'
     ]),
-    withoutDivider: bool,
+    withoutDivider: bool
   };
 
   static defaultProps = {
@@ -28,7 +28,7 @@ class ButtonHeader extends WixComponent {
     buttonPrefix: null,
     tooltip: null,
     theme: 'standard',
-    buttonSuffix: null,
+    buttonSuffix: null
   };
 
   render() {
@@ -37,7 +37,7 @@ class ButtonHeader extends WixComponent {
     const headerClasses = classNames({
       [styles.headerOnlyTitle]: !subtitle,
       [styles.headerTitleSubtitle]: subtitle,
-      [styles.withDivider]: !withoutDivider,
+      [styles.withDivider]: !withoutDivider
     });
 
     const buttonClass = classNames({

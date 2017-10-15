@@ -10,7 +10,7 @@ const IconWithOptionsDriverFactory = ({element, wrapper}) => {
   const driver = {
     exists: () => !!element,
     mouseEnter: () => ReactTestUtils.Simulate.mouseEnter(element),
-    mouseLeave: () => ReactTestUtils.Simulate.mouseLeave(element),
+    mouseLeave: () => ReactTestUtils.Simulate.mouseLeave(element)
   };
 
   return {

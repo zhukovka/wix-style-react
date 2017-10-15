@@ -47,7 +47,7 @@ const tooltipDriverFactory = ({element, wrapper}) => {
     },
     setProps: props => {
       ReactDOM.render(<div ref={r => element = r}><Tooltip {...props}/></div>, wrapper);
-    },
+    }
   };
 };
 

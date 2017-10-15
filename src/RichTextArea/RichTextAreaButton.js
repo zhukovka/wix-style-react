@@ -99,7 +99,7 @@ RichTextAreaButton.propTypes = {
   onClick: PropTypes.func.isRequired,
   isActive: PropTypes.bool,
   isTooltipDisabled: PropTypes.bool,
-  disabled: PropTypes.bool,
+  disabled: PropTypes.bool
 };
 
 export default RichTextAreaButton;

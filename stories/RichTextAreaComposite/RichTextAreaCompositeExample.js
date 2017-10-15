@@ -31,7 +31,7 @@ class RichTextAreaCompositeExample extends Component {
         }
         callback(src);
       },
-      disabled: false,
+      disabled: false
     },
     required: false,
     info: ''

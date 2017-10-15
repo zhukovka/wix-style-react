@@ -16,7 +16,7 @@ const datePickerDriverFactory = component => {
       pressEnterKey: () => getInput().sendKeys(protractor.Key.ENTER),
       pressEscKey: () => getInput().sendKeys(protractor.Key.ESCAPE),
       pressTabKey: () => getInput().sendKeys(protractor.Key.TAB),
-      pressArrowRightKey: () => getInput().sendKeys(protractor.Key.ARROW_RIGHT),
+      pressArrowRightKey: () => getInput().sendKeys(protractor.Key.ARROW_RIGHT)
     },
     calendarDriver: {
       exists: () => getCalendar().isPresent(),

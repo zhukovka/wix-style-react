@@ -15,7 +15,7 @@ class MessageBoxMarketerialLayout extends WixComponent {
 
     const headerClasses = classNames({
       [styles.header]: true,
-      [styles[`header-${theme}`]]: true,
+      [styles[`header-${theme}`]]: true
     });
 
     return (

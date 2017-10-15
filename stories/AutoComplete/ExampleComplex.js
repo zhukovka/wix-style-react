@@ -14,7 +14,7 @@ const options = [
   {id: 1, value: <div style={{color: 'red'}}>test</div>, v: 'S'},
   {id: 2, value: 'Third option', v: 'T', disabled: true},
   {id: 3, value: 'Fifth option', v: 'Fi'},
-  {id: 4, value: 'Fourth option', v: 'Fo'},
+  {id: 4, value: 'Fourth option', v: 'Fo'}
 ];
 
 // text -> value

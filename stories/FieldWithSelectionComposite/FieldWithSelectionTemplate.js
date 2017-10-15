@@ -13,7 +13,7 @@ import typography, {convertFromUxLangToCss} from '../../src/Typography';
 
 const options = [
   {id: 1, value: '1'},
-  {id: 2, value: '2'},
+  {id: 2, value: '2'}
 ];
 
 export default class Form extends Component {

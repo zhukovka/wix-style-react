@@ -11,7 +11,7 @@ import ExtraIcon from './ExtraIcon';
 import ProgressBar from './ProgressBar';
 
 const toggleStyle = {
-  display: 'inline-block',
+  display: 'inline-block'
 };
 
 const imageStyle = {

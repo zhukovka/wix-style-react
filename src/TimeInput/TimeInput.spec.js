@@ -85,7 +85,7 @@ describe('TimeInput', () => {
     it(`should not do anything upon clicking input's up/down ticker when disabled`, () => {
       const props = {
         onChange: sinon.spy(),
-        disabled: true,
+        disabled: true
       };
       const driver = createDriver(<TimePicker {...props}/>);
 

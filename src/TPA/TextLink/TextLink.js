@@ -20,7 +20,7 @@ class TextLink extends WixComponent {
   static defaultProps = {
     disabled: false,
     rel: null,
-    target: null,
+    target: null
   };
 
   render() {

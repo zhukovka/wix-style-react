@@ -22,7 +22,7 @@ class ExamplePopoverMenu extends Component {
       {iconName: 'VisibilityHidden', text: 'Hide'},
       {iconName: 'Trash3', text: 'Delete'}
     ],
-    buttonTheme: 'icon-greybackground',
+    buttonTheme: 'icon-greybackground'
   };
 
   addRow = () => {

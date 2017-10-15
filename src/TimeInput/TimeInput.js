@@ -33,7 +33,7 @@ export default class extends Component {
     /** Display in RTL  */
     rtl: PropTypes.bool,
 
-    style: PropTypes.object,
+    style: PropTypes.object
   }
 
   static defaultProps = {
@@ -42,7 +42,7 @@ export default class extends Component {
     style: {},
     disableAmPm: false,
     disabled: false,
-    dashesWhenDisabled: false,
+    dashesWhenDisabled: false
   }
 
   constructor(props) {

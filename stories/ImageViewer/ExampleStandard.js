@@ -4,7 +4,7 @@ import ImageViewer from '../../src/ImageViewer';
 
 const style = {
   display: 'inline-block',
-  padding: '0 25px 25px',
+  padding: '0 25px 25px'
 };
 
 const Example = () =>

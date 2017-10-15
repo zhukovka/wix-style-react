@@ -75,7 +75,7 @@ describe('MessageBox', () => {
   describe('closeButton attribute', () => {
     it('should appear by default', () => {
       const props = {
-        onCancel: sinon.spy(),
+        onCancel: sinon.spy()
       };
       const driver = createDriver(<MessageBoxFunctionalLayout {...props}/>);
       expect(driver.getHeaderCloseButton()).toBeTruthy();
@@ -92,7 +92,7 @@ describe('MessageBox', () => {
 
     it(`should trigger the 'onCancel' action upon clicking the header close button`, () => {
       const props = {
-        onCancel: sinon.spy(),
+        onCancel: sinon.spy()
       };
       const driver = createDriver(<MessageBoxFunctionalLayout {...props}/>);
       driver.clickOnHeaderCloseButton();

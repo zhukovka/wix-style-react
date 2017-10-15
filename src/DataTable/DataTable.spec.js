@@ -192,7 +192,7 @@ describe('Table', () => {
 
       const props = {
         ...defaultProps,
-        rowDetails: row => <span>{row.a}</span>,
+        rowDetails: row => <span>{row.a}</span>
       };
 
       const driver = createDriver(<DataTable {...props}/>);

@@ -12,7 +12,7 @@ class FieldWithSelectionComposite extends WixComponent {
     this._onTextInputBlur = this._onTextInputBlur.bind(this);
 
     this.state = {
-      textInputFocused: false,
+      textInputFocused: false
     };
   }
 

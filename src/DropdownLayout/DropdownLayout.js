@@ -130,7 +130,7 @@ class DropdownLayout extends WixComponent {
 
   _onClose() {
     this.setState({
-      hovered: NOT_HOVERED_INDEX,
+      hovered: NOT_HOVERED_INDEX
     });
 
     if (this.props.onClose) {
@@ -281,7 +281,7 @@ DropdownLayout.propTypes = {
   })),
   selectedId: PropTypes.oneOfType([
     PropTypes.string,
-    PropTypes.number,
+    PropTypes.number
   ]),
   tabIndex: PropTypes.number,
   theme: PropTypes.string,

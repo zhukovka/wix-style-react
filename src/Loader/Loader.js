@@ -25,7 +25,7 @@ Loader.displayName = 'Loader';
 
 Loader.defaultProps = {
   size: 'medium',
-  color: 'blue',
+  color: 'blue'
 };
 
 Loader.propTypes = {

@@ -160,7 +160,7 @@ describe('Breadcrumbs', () => {
     ];
 
     const customItemsWithLinks = [
-      {id: 0, value: 'value', customElement: <a href="//www.wix.com">Custom value</a>, link: 'www.bla.com'},
+      {id: 0, value: 'value', customElement: <a href="//www.wix.com">Custom value</a>, link: 'www.bla.com'}
     ];
 
     it('should render the customElement when given', () => {

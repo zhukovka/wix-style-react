@@ -45,7 +45,7 @@ class Badge extends Component {
       danger: dangerClassName || badgeStyles.locals.danger,
       top: alignmentTopClassName || badgeStyles.locals.top,
       bottom: alignmentBottomClassName || badgeStyles.locals.bottom,
-      middle: alignmentMiddleClassName || badgeStyles.locals.middle,
+      middle: alignmentMiddleClassName || badgeStyles.locals.middle
     });
 
     return Object.keys(_styles).reduce((acc, next) => {

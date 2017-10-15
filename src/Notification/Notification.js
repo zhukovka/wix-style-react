@@ -116,7 +116,7 @@ class Notification extends WixComponent {
     const {
       type,
       theme,
-      size,
+      size
     } = this.props;
 
     const position = notificationTypeToPosition[type];
@@ -174,7 +174,7 @@ class Notification extends WixComponent {
           enter: css.notificationAnimationEnter,
           enterActive: css.notificationAnimationEnterActive,
           exit: css.notificationAnimationExit,
-          exitActive: css.notificationAnimationExitActive,
+          exitActive: css.notificationAnimationExitActive
         }}
         timeout={animationsTimeouts}
         >

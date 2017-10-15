@@ -2,7 +2,7 @@ import React from 'react';
 import DataTable from 'wix-style-react/DataTable';
 
 const style = {
-  width: '50%',
+  width: '50%'
 };
 
 const baseData = [

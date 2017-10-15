@@ -121,7 +121,7 @@ class RichTextAreaExample extends Component {
 }
 
 RichTextAreaExample.propTypes = {
-  onChange: PropTypes.func,
+  onChange: PropTypes.func
 };
 
 export default RichTextAreaExample;

@@ -1,6 +1,6 @@
 import {
   POPOVER_MENU_DATA_HOOK,
-  POPOVER_MENU_ITEM_DATA_HOOK,
+  POPOVER_MENU_ITEM_DATA_HOOK
 } from '../../stories/Tooltip_New/Composite/PopoverMenuTemplate.helpers';
 
 const EC = protractor.ExpectedConditions;
@@ -8,7 +8,7 @@ const EC = protractor.ExpectedConditions;
 import {
     popoverMenuTestkitFactory,
     getStoryUrl,
-    waitForVisibilityOf,
+    waitForVisibilityOf
 } from '../../testkit/protractor';
 
 describe('PopoverMenu', () => {

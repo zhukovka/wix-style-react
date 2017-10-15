@@ -24,7 +24,7 @@ class Header extends WixComponent {
 
     const headerClasses = classNames({
       [styles.header]: true,
-      [styles.withDivider]: !withoutDivider,
+      [styles.withDivider]: !withoutDivider
     });
 
     const titleElement = (

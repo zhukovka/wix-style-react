@@ -22,7 +22,7 @@ const places = [
   'Sulawesi',
   'Luzon',
   'Sri Lanka',
-  'Spitsbergen',
+  'Spitsbergen'
 ];
 
 const generateAllOptions = () => places.map((title, i) =>

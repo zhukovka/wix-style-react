@@ -33,7 +33,7 @@ export default class Tooltip extends WixComponent {
     shouldCloseOnClickOutside: PropTypes.bool,
     onClickOutside: PropTypes.func,
     onShow: PropTypes.func,
-    size: PropTypes.oneOf(['normal', 'large']),
+    size: PropTypes.oneOf(['normal', 'large'])
   };
 
   static defaultProps = {
@@ -84,7 +84,7 @@ export default class Tooltip extends WixComponent {
     this.popper = new Popper(target, content, {
       placement,
       modifiers: {
-        applyStyle: {enabled: false},
+        applyStyle: {enabled: false}
       },
       onUpdate: this.handlePopperUpdate,
       onCreate: this.handlePopperUpdate
@@ -159,7 +159,7 @@ export default class Tooltip extends WixComponent {
 
     if (hasChangedPlacement) {
       this.setState({
-        placement: data.placement,
+        placement: data.placement
       });
     }
 
@@ -291,7 +291,7 @@ export default class Tooltip extends WixComponent {
       onMouseLeave: () => this.handleTrigger(this.props.children.props.onMouseLeave, 'mouseleave'),
       onClick: () => this.handleTrigger(this.props.children.props.onClick, 'click'),
       onFocus: () => this.handleTrigger(this.props.children.props.onFocus, 'focus'),
-      onBlur: () => this.handleTrigger(this.props.children.props.onBlur, 'blur'),
+      onBlur: () => this.handleTrigger(this.props.children.props.onBlur, 'blur')
     });
 
     const popperStyle = this.getPopperStyle();
@@ -305,7 +305,7 @@ export default class Tooltip extends WixComponent {
         <div ref="content">
           <div
             className={classNames(styles.tooltip, {
-              [styles.active]: active,
+              [styles.active]: active
             })}
             style={{zIndex, ...popperStyle}}
             data-hook="tooltip"
@@ -317,7 +317,7 @@ export default class Tooltip extends WixComponent {
               >
               <div
                 className={classNames(styles.tooltipInner, styles[theme], styles[placement], styles[size], {
-                  [styles.active]: active,
+                  [styles.active]: active
                 })}
                 style={{maxWidth}}
                 data-hook="tooltip-inner"

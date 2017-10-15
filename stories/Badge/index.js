@@ -46,5 +46,5 @@ story({
         <AlignmentBadgeExample/>
       </CodeExample>
     </div>
-  ),
+  )
 });

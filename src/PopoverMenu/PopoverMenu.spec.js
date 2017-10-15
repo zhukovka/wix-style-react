@@ -7,7 +7,7 @@ import PopoverMenuItem from '../PopoverMenuItem/PopoverMenuItem';
 import {createDriverFactory} from '../test-common';
 import {
   isTestkitExists,
-  isEnzymeTestkitExists,
+  isEnzymeTestkitExists
 } from '../../testkit/test-common';
 import {popoverMenuTestkitFactory} from '../../testkit';
 import {popoverMenuTestkitFactory as enzymePopoverMenuTestkitFactory} from '../../testkit/enzyme';

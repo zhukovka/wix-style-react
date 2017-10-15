@@ -48,11 +48,11 @@ MessageBoxFixedHeaderFooter.propTypes = {
   header: PropTypes.node,
   children: PropTypes.any,
   prefixContent: PropTypes.node,
-  sufixContent: PropTypes.node,
+  sufixContent: PropTypes.node
 };
 
 MessageBoxFixedHeaderFooter.defaultProps = {
-  width: '600px',
+  width: '600px'
 };
 
 export default MessageBoxFixedHeaderFooter;

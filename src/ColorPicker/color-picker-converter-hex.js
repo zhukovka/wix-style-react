@@ -19,7 +19,7 @@ export default class ColorPickerConverterHex extends WixComponent {
     this.change = this.change.bind(this);
     this.state = {
       hex: props.current.hex(),
-      inFocus: false,
+      inFocus: false
     };
   }
 
@@ -50,14 +50,14 @@ export default class ColorPickerConverterHex extends WixComponent {
 
   handleOnFocus = () => {
     this.setState({
-      inFocus: true,
+      inFocus: true
     });
   }
 
   handleOnBlur = () => {
     this.setState({
       inFocus: false,
-      hex: this.props.current.hex(),
+      hex: this.props.current.hex()
     });
   }
 }

@@ -34,7 +34,7 @@ class ThemedInput extends Input {
       [styles.roundInput]: roundInput,
       [styles.hasValue]: (value && value.length) || (this.input && !!this.input.value),
       [noRightBorderRadius]: noRightBorderRadius,
-      [noLeftBorderRadius]: noLeftBorderRadius,
+      [noLeftBorderRadius]: noLeftBorderRadius
     };
 
     let placeholder = this.props.placeholder;

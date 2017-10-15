@@ -6,7 +6,7 @@ import s from './ProgressBar.scss';
 
 class ProgressBar extends WixComponent {
   static propTypes = {
-    progress: PropTypes.number.isRequired,
+    progress: PropTypes.number.isRequired
   };
 
   render() {

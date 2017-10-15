@@ -88,7 +88,7 @@ class ButtonWithOptions extends WixComponent {
 ButtonWithOptions.defaultProps = {
   ...DropdownLayout.defaultProps,
   onSelect: () => {},
-  restrainDropdownSize: true,
+  restrainDropdownSize: true
 };
 
 ButtonWithOptions.propTypes = {

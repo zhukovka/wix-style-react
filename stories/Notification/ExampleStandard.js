@@ -22,7 +22,7 @@ class ExampleStandard extends Component {
       type: GLOBAL_NOTIFICATION,
       size: 'big',
       timeout: DEFAULT_TIMEOUT,
-      zIndex: 10000,
+      zIndex: 10000
     },
     actionButton: {
       type: 'button',

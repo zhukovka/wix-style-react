@@ -31,7 +31,7 @@ class Breadcrumbs extends WixComponent {
       ]).isRequired,
       link: string,
       customElement: any,
-      disabled: bool,
+      disabled: bool
     })).isRequired,
     onClick: func,
     activeId: oneOfType([
@@ -39,12 +39,12 @@ class Breadcrumbs extends WixComponent {
       number
     ]),
     size: oneOf(['medium', 'large']),
-    theme: oneOf(['onWhiteBackground', 'onGrayBackground', 'onDarkBackground']),
+    theme: oneOf(['onWhiteBackground', 'onGrayBackground', 'onDarkBackground'])
   };
 
   static defaultProps = {
     size: 'medium',
-    theme: 'onGrayBackground',
+    theme: 'onGrayBackground'
   };
 
   handleBreadcrumbClick = item =>
