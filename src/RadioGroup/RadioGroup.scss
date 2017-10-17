@@ -78,7 +78,7 @@
     box-sizing: border-box;
     display: inline-block;
     position:relative;
-    width: 17px;
+    min-width: 17px;
     height: 17px;
     border: 1px solid $B10;
     border-radius: 50%;
