@@ -14,6 +14,7 @@ const dataTableDriverFactory = ({element, wrapper, component}) => {
   const getCell = (rowIndex, cellIndex) => getRow(rowIndex).querySelectorAll('td')[cellIndex];
   const getRowDetails = index => element.querySelector(`tbody tr td[data-hook="${index}_details"]`);
   const getHeaderTitleByIndex = index => getHeader().querySelectorAll('th')[index];
+  const getSortableTitle = index => element.querySelector(`th [data-hook="${index}_title"]`);
   return {
     getRowsCount,
     getRowsWithClassCount: className => values(getRows()).filter(elem => elem.classList.contains(className)).length,
@@ -38,7 +39,11 @@ const dataTableDriverFactory = ({element, wrapper, component}) => {
     },
     hasRowDetails: index => !!getRowDetails(index),
     getRowDetailsText: index => getRowDetails(index).textContent,
-    hasSortableTitle: index => !!element.querySelector(`th [data-hook="${index}_title"]`),
+    hasSortableTitle: index => !!getSortableTitle(index),
+    hasSortDescending: index => {
+      const sortableTitle = getSortableTitle(index);
+      return !!sortableTitle && sortableTitle.classList.contains('sortArrowAsc');
+    },
     clickSort: (index, eventData) => ReactTestUtils.Simulate.click(getHeaderTitleByIndex(index), eventData),
     getRowDetails: index => getRowDetails(index)
   };

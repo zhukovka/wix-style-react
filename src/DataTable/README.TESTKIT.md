@@ -24,7 +24,8 @@
 | setProps | json | element | returns a clone of this element with the new props from the json |
 | hasRowDetails | string | bool | true if row index has details |
 | getRowDetailsText | string | string | returns details text |
-| hasSortableTitle | string | bool | true if column title is sortable |
+| hasSortableTitle | (index) | bool | true if column title is sortable |
+| hasSortDescending | (index) | bool | true if column title has sort descending style |
 | clickSort | (index, eventData) | - | click with <eventData> the column index <number> |
 | getRowDetails | string | element | returns row details by row index |
 

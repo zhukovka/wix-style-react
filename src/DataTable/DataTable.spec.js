@@ -245,7 +245,8 @@ describe('Table', () => {
       columns: [
         {title: 'Row Num', render: (row, rowNum) => rowNum},
         {title: 'A', sortable: true, sortDescending: false, render: row => row.a},
-        {title: 'B', render: row => row.b}
+        {title: 'B', render: row => row.b},
+        {title: 'C', sortable: true, sortDescending: true, render: row => row.a}
       ]
     };
     it('should display sortable title', () => {
@@ -253,6 +254,13 @@ describe('Table', () => {
       const driver = createDriver(<DataTable {..._props}/>);
       expect(driver.hasSortableTitle(0)).toBe(false);
       expect(driver.hasSortableTitle(1)).toBe(true);
+    });
+
+    it('should display sort asc/desc style', () => {
+      const _props = Object.assign({}, props, {onSortClick: jest.fn()});
+      const driver = createDriver(<DataTable {..._props}/>);
+      expect(driver.hasSortDescending(1)).toBe(false);
+      expect(driver.hasSortDescending(3)).toBe(true);
     });
 
     it('should call on sort callback', () => {
