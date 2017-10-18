@@ -8,26 +8,17 @@ import styles from './DrillView.scss';
 class SideMenuDrill extends WixComponent {
   constructor(props) {
     super(props);
-    this.slideInDirection = SlideDirection.left;
-    this.slideOutDirection = SlideDirection.right;
 
     const state = {
       menus: {},
       currentMenuId: this.props.menuKey,
       previousMenuId: null,
       showMenuA: true,
-      slideDirection: this.slideInDirection
+      slideDirection: SlideDirection.in
     };
 
     this.processChildren({props: this.props}, state);
     this.state = state;
-  }
-
-  componentDidMount() {
-    if (document.querySelector('.rtl')) {
-      this.slideInDirection = SlideDirection.right;
-      this.slideOutDirection = SlideDirection.left;
-    }
   }
 
   componentWillReceiveProps(nextProps) {
@@ -48,7 +39,7 @@ class SideMenuDrill extends WixComponent {
 
     // returning to an already selected menu item (force nav)
     if (this.lastClickedMenuKey === selectedItemMenuId) {
-      this.navigateToMenu(selectedItemMenuId, this.slideInDirection);
+      this.navigateToMenu(selectedItemMenuId, SlideDirection.in);
       this.lastClickedMenuKey = null;
     }
 
@@ -64,7 +55,7 @@ class SideMenuDrill extends WixComponent {
 
   getSlideDirectionTo(selectedItemMenuId) {
     const {currentMenuId, menus} = this.state;
-    return menus[currentMenuId].level < menus[selectedItemMenuId].level ? this.slideInDirection : this.slideOutDirection;
+    return menus[currentMenuId].level < menus[selectedItemMenuId].level ? SlideDirection.in : SlideDirection.out;
   }
 
   navigateToMenu(nextMenuId, slideDirection) {
@@ -119,7 +110,7 @@ class SideMenuDrill extends WixComponent {
         }
       },
       onBackHandler: event => {
-        this.navigateToMenu(parentMenuKey, this.slideOutDirection);
+        this.navigateToMenu(parentMenuKey, SlideDirection.out);
 
         if (menu.props.onBackHandler) {
           menu.props.onBackHandler.apply(menu, [event]);

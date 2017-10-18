@@ -16,3 +16,17 @@
   @extend .exitActive-base;
   transform: translate(100%);
 }
+
+:global(.rtl) {
+  .enter, .appear {
+    transform: translate(100%);
+  }
+
+  .enter.enterActive, .appear.appearActive {
+    @extend .enterActive-base;
+  }
+
+  .exit.exitActive {
+    transform: translate(-100%);
+  }
+}
