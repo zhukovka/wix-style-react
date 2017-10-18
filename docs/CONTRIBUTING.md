@@ -31,6 +31,14 @@ storybook is your reference/sandbox for developing components.
 
 See [Badge](https://github.com/wix/wix-style-react/blob/master/src/Badge/Badge.js) component for reference
 
+### Running tests
+`wix-style-react` runs `jest` as a test runner for unit tests and `protractor` for E2E tests.
+ 
+#### Watch mode
+During `npm start`, unit tests will run automatically on each file change.
+You can run specific files or tests using `jest`'s interactive mode. For example, press `p` in your command line and type the name of the test.
+
+![image](./ASSETS/JEST_INTERACTIVE.png)
 
 ### Components guidelines 
 

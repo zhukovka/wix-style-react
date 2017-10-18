@@ -10,4 +10,4 @@ if ! test -d dist; then
 fi
 
 svg2react-icon-once
-yoshi start & npm run storybook
+npm run storybook & yoshi start
