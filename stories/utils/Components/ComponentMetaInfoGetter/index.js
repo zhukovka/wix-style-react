@@ -72,7 +72,7 @@ export default class ComponentMetaInfoGetter extends React.PureComponent {
           newSourcePath = match;
         });
 
-        newSourcePath = newSourcePath.replace(/^\.\//, '');
+        newSourcePath = newSourcePath.replace(/^\.\//, '/');
 
         return this.getComponentSource(`${additionalPath}${newSourcePath}`);
       }
