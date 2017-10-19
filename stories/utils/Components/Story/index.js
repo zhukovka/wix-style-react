@@ -41,7 +41,8 @@ function Story(props) {
     component: customComponent,
     componentSrcFolder,
     componentProps,
-    examples
+    examples,
+    exampleProps
   } = props;
 
   if (typeof componentSrcFolder === 'undefined') {
@@ -113,6 +114,7 @@ function Story(props) {
                   source={actualSource}
                   componentProps={componentProps}
                   parsedSource={parsedSource}
+                  exampleProps={exampleProps}
                   />
                 }
 
@@ -226,7 +228,8 @@ Story.propTypes = {
    * Any react component to be displayed below interactive component example.
    * Usually this holds more examples.
    */
-  examples: PropTypes.element
+  examples: PropTypes.element,
+  exampleProps: PropTypes.object
 };
 
 Story.defaultProps = {
