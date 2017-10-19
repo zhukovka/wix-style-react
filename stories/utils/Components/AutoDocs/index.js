@@ -18,15 +18,16 @@ const prepareParsedProps = props => {
   return required.concat(notRequired);
 };
 
-const renderPropType = (type = {}) => {
-  const wrap = name => children =>
-    <span>{name} [{children}]</span>;
+const wrap = name => children =>
+  <span>{name} [{children}]</span>;
 
-  const failSafe = type => () =>
-    <span>
-      Sorry, unable to parse this propType:
-      <pre>{JSON.stringify(type, null, 2)}</pre>
-    </span>;
+const failSafe = type => () =>
+  <span>
+    Sorry, unable to parse this propType:
+    <pre>{JSON.stringify(type, null, 2)}</pre>
+  </span>;
+
+const renderPropType = (type = {}) => {
 
   const typeHandlers = {
     custom: () => wrap('custom')(),
@@ -66,8 +67,8 @@ const renderPropType = (type = {}) => {
   return <span>{type.name}</span>;
 };
 
-const AutoDocs = ({source = ''}) => {
-  const {description, displayName, props, composes = []} = parser(source);
+const AutoDocs = ({source = '', parsedSource, showTitle}) => {
+  const {description, displayName, props, composes = []} = parsedSource ? parsedSource : parser(source);
 
   const propRow = (prop, index) =>
     <tr key={index}>
@@ -80,7 +81,7 @@ const AutoDocs = ({source = ''}) => {
 
   return !shouldHideForE2E && (
     <div className="markdown-body">
-      { displayName &&
+      { showTitle && displayName &&
         <div>
           <h1>
             { displayName && <code>{`<${displayName}/>`}</code> }
@@ -130,7 +131,13 @@ const AutoDocs = ({source = ''}) => {
 };
 
 AutoDocs.propTypes = {
-  source: PropTypes.string.isRequired
+  source: PropTypes.string.isRequired,
+  parsedSource: PropTypes.object,
+  showTitle: PropTypes.bool
+};
+
+AutoDocs.defaultProps = {
+  showTitle: true
 };
 
 export default AutoDocs;

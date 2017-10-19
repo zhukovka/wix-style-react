@@ -1,7 +1,6 @@
 import React from 'react';
 import {storiesOf} from '@storybook/react';
 import InteractiveCodeExample from '../../utils/Components/InteractiveCodeExample';
-import ButtonStandard from './ButtonStandard';
 import ButtonWhite from './ButtonWhite';
 import ButtonIcon from './ButtonIcon';
 import ButtonError from './ButtonError';
@@ -9,16 +8,23 @@ import ButtonPremium from './ButtonPremium';
 import ButtonTransparent from './ButtonTransparent';
 import ButtonClose from './ButtonClose';
 import ButtonTextLink from './ButtonTextLink';
+import story from '../../utils/Components/Story';
 
-storiesOf('5. Buttons', module)
-  .add('5.1 Standard', () => (
-    <div>
-      <h1>Standard</h1>
-      <InteractiveCodeExample title="Customize a <Button/>">
-        <ButtonStandard/>
-      </InteractiveCodeExample>
-    </div>
-  ))
+const category = '5. Buttons';
+
+story({
+  category,
+  storyName: '5.1 Standard',
+  componentSrcFolder: 'Backoffice/Button',
+  componentProps: {
+    height: 'medium',
+    disabled: false,
+    theme: 'fullblue',
+    children: 'Click On Me'
+  }
+});
+
+storiesOf(category, module)
   .add('5.2 White', () => (
     <div>
       <h1>White</h1>
