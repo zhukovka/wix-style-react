@@ -1,21 +1,16 @@
 import React from 'react';
-import {storiesOf} from '@storybook/react';
 import isPlainObject from 'lodash/isPlainObject';
 
 import * as Icons from 'wix-style-react/Icons';
 
-import InteractiveCodeExample from '../../utils/Components/InteractiveCodeExample';
-import ButtonTextLink from './ButtonTextLink';
 import story from '../../utils/Components/Story';
 
-const icons = Object.keys(Icons).map(name => React.createElement(Icons[name]));
+const icons = Object.values(Icons).map(icon => React.createElement(icon));
 
 const baseButtonPreset = {
   category: '5. Buttons',
-  storyName: '5.1 Standard',
   componentSrcFolder: 'Backoffice/Button',
   componentProps: {
-    height: 'medium',
     disabled: false,
     theme: 'fullblue',
     children: 'Click Me'
@@ -100,12 +95,15 @@ const deepSpread = (base = {}, addon = {}) =>
 
 buttonPresets.map(preset => story(deepSpread(baseButtonPreset, preset)));
 
-storiesOf(baseButtonPreset.category, module)
-  .add('5.8 Text Link', () => (
-    <div>
-      <h1>Text Link</h1>
-      <InteractiveCodeExample title="Customize a <TextLink/>">
-        <ButtonTextLink/>
-      </InteractiveCodeExample>
-    </div>
-  ));
+story({
+  category: baseButtonPreset.category,
+  storyName: '5.8 Text Link',
+  componentSrcFolder: 'Backoffice/TextLink',
+  componentProps: {
+    size: 'medium',
+    darkBackground: false,
+    link: 'https://www.wix.com',
+    underlineStyle: 'hover',
+    children: 'Click me'
+  }
+});

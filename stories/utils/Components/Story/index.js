@@ -34,12 +34,12 @@ function Story(props) {
   const {
     category,
     name: customName,
-    storyName = customName,
     readme: customReadme,
     readmeTestkit: customReadmeTestKit,
     source: customSource,
     component: customComponent,
     componentSrcFolder,
+    storyName = customName || componentSrcFolder,
     componentProps,
     examples,
     exampleProps
@@ -149,7 +149,7 @@ Story.propTypes = {
 
   /**
    * Name of the story in sidebar.
-   * Default value will be used from property `name` (see above).
+   * Default value will be used from property `name` (see above) or, if you didn't provided the name, it will take the value from property `componentSrcFolder`.
    *
    */
   storyName: PropTypes.string,

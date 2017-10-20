@@ -9,14 +9,13 @@ import IconsExampleRaw from '!raw-loader!./ExampleWithIcons';
 import story from '../../utils/Components/Story';
 import * as Icons from 'wix-style-react/Icons';
 
-const icons = Object.keys(Icons).map(name => React.createElement(Icons[name]));
+const icons = Object.values(Icons).map(icon => React.createElement(icon));
 
 story({
   category: 'Backoffice',
   storyName: 'Button',
   componentSrcFolder: 'Backoffice/Button',
   componentProps: {
-    height: 'medium',
     disabled: false,
     theme: 'fullblue',
     children: 'Click Me'

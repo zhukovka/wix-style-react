@@ -49,7 +49,6 @@ import story from '../utils/Components/Story';
 // 2. use `story()` with even-less-configuration 🎉🎉🎉 to create full Storybook page.
 story({
   category: 'Core',
-  storyName: 'ToggleSwitch',
   componentSrcFolder: 'ToggleSwitch',
   // the rest of props in the source is specific to that component, but you see the fully working example!
 });
