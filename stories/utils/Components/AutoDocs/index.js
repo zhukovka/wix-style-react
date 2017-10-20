@@ -68,7 +68,7 @@ const renderPropType = (type = {}) => {
 };
 
 const AutoDocs = ({source = '', parsedSource, showTitle}) => {
-  const {description, displayName, props, composes = []} = parsedSource ? parsedSource : parser(source);
+  const {description, displayName, props, composes = [], methods = []} = parsedSource ? parsedSource : parser(source);
 
   const propRow = (prop, index) =>
     <tr key={index}>
@@ -78,6 +78,14 @@ const AutoDocs = ({source = '', parsedSource, showTitle}) => {
       <td>{prop.required && 'Required' }</td>
       <td>{prop.description && <Markdown source={prop.description}/>}</td>
     </tr>;
+
+  const methodsToMarkdown = methods =>
+    methods
+      .filter(({name}) => !name.startsWith('_'))
+      .map(method =>
+        `* __${method.name}(${method.params.map(({name}) => name).join(', ')})__: ${method.docblock || ''}`
+      )
+      .join('\n');
 
   return !shouldHideForE2E && (
     <div className="markdown-body">
@@ -126,6 +134,9 @@ const AutoDocs = ({source = '', parsedSource, showTitle}) => {
           }
         </tbody>
       </table>
+
+      { methods.length > 0 && <h2>Available <code>methods</code></h2> }
+      { methods.length > 0 && <Markdown source={methodsToMarkdown(methods)}/> }
     </div>
   );
 };
