@@ -165,16 +165,24 @@ export default class extends Component {
   controllableComponentGetters = {
     string: ({dataHook}) => <Input dataHook={dataHook}/>,
     bool: ({dataHook}) => <Toggle dataHook={dataHook}/>,
+
     enum: ({dataHook, type}) =>
       <List
         dataHook={dataHook}
         values={type.value.map(({value}) => stripQuotes(value))}
         />,
+
     node: ({propKey, dataHook}) => {
       if (this.props.exampleProps[propKey]) {
-        return <NodesList dataHook={dataHook} values={this.props.exampleProps[propKey]}/>;
+        return (
+          <NodesList
+            dataHook={dataHook}
+            values={this.props.exampleProps[propKey]}
+            />
+        );
       }
     },
+
     func: ({propKey, dataHook}) => {
       let classNames = styles.example;
       if (this.state.funcAnimate[propKey]) {
