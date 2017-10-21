@@ -21,13 +21,15 @@ class ControlledInput extends Component {
 
   render() {
     const onChange = event => this.setState({value: event.target.value});
-    const onClear = () => {
-      this.setState({value: ''});
-      this.refs.inputtest.focus();
-    };
 
     return (
-      <Input {...this.props} error={this.state.value === 'Starwars'} value={this.state.value} onChange={onChange} onClear={onClear}/>
+      <Input
+        {...this.props}
+        error={this.state.value === 'Starwars'}
+        value={this.state.value}
+        onChange={onChange}
+        clearButton
+        />
     );
   }
 }

@@ -44,6 +44,7 @@ class Input extends Component {
       menuArrow,
       defaultValue,
       tabIndex,
+      clearButton,
       onClear,
       autoFocus,
       onKeyUp,
@@ -71,8 +72,7 @@ class Input extends Component {
       }
     };
 
-
-    const isClearButtonVisible = onClear && !error && !disabled && !!value;
+    const isClearButtonVisible = (!!clearButton || !!onClear) && !!value && !error && !disabled;
 
     const visibleSuffixCount = getVisibleSuffixCount({
       error, disabled, help, magnifyingGlass, isClearButtonVisible, menuArrow, unit, suffix
@@ -132,7 +132,7 @@ class Input extends Component {
         onIconClicked={onIconClicked}
         magnifyingGlass={magnifyingGlass}
         isClearButtonVisible={isClearButtonVisible}
-        onClear={onClear}
+        onClear={this._onClear}
         menuArrow={menuArrow}
         unit={unit}
         focused={this.state.focus}
@@ -200,6 +200,23 @@ class Input extends Component {
 
     this.props.onChange && this.props.onChange(e);
   }
+
+  _onClear = e => {
+    const {
+      onClear
+    } = this.props;
+
+    this.input.value = '';
+
+    e.target = {
+      ...e.target,
+      value: ''
+    };
+    this._onChange(e);
+    this.focus();
+
+    onClear && onClear();
+  }
 }
 
 Input.displayName = 'Input';
@@ -262,6 +279,10 @@ Input.propTypes = {
 
   /** Should the component include a menu arrow */
   menuArrow: PropTypes.bool,
+
+  /** Displays clear button (X) on a non-empty input */
+  clearButton: PropTypes.bool,
+
   name: PropTypes.string,
 
   /** When set to true, this input will have no rounded corners on its left */
@@ -276,7 +297,7 @@ Input.propTypes = {
   /** Standard input onChange callback */
   onChange: PropTypes.func,
 
-  /** Displays a X button on a non-empty input, and calls this callback when pressed. This callback should normally erase the value of the controlled object, and call focus */
+  /** Displays clear button (X) on a non-empty input and calls callback with no arguments */
   onClear: PropTypes.func,
   onCompositionChange: PropTypes.func,
 
