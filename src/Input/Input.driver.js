@@ -6,7 +6,7 @@ import styles from './Input.scss';
 const inputDriverFactory = ({element, wrapper, component}) => {
   const input = element && element.querySelector('input');
   const clearButton = element && element.querySelector(`.${styles.clearButton}`);
-  const suffixNode = element.querySelector(`.${styles.suffix}`);
+  const suffixNode = element && element.querySelector(`.${styles.suffix}`);
 
   const driver = {
     trigger: (trigger, event) => ReactTestUtils.Simulate[trigger](input, event),
