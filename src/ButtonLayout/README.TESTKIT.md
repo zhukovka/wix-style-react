@@ -6,8 +6,7 @@
 
 | method | arguments | returned value | description |
 |--------|-----------|----------------|-------------|
-| doesComponentHasClass | string | boolean | true if the element has a class <arg> |
-| doesComponentHaveTheme | string | boolean | true if the element has a theme <arg> |
+| doesComponentHasClass | string | boolean | true if the element have a class <arg> |
 | isButtonDisabled | - | bool | fulfilled if button disabled |
 | getComponentAttribute | string | attribute | get <arg> attribute |
 | exists | - | bool | fulfilled if element in the DOM |

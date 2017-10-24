@@ -2,9 +2,6 @@ import React from 'react';
 import ButtonLayout from './ButtonLayout';
 import {createDriverFactory} from '../test-common';
 import buttonDriverFactory from './ButtonLayout.driver';
-import {buttonLayoutTestkitFactory as enzymeButtonLayoutTestkitFactory} from '../../testkit/enzyme';
-import {buttonLayoutTestkitFactory} from '../../testkit';
-import {isTestkitExists, isEnzymeTestkitExists} from '../../testkit/test-common';
 
 const someDivWithLayout = (props = {}) => (
   <ButtonLayout {...props}>
@@ -118,25 +115,13 @@ describe('ButtonLayout', () => {
       const theme = 'emptyblue';
       const driver = createDriver(someDivWithLayout({theme}));
 
-      expect(driver.doesComponentHaveTheme(theme)).toBeTruthy();
+      expect(driver.doesComponentHasClass(theme)).toBeTruthy();
     });
 
     it('should get "hover" class', () => {
       const driver = createDriver(someDivWithLayout({hover: true}));
 
       expect(driver.doesComponentHasClass('hover')).toBeTruthy();
-    });
-  });
-
-  describe('testkit', () => {
-    it('should exist', () => {
-      expect(isTestkitExists(<ButtonLayout><div/></ButtonLayout>, buttonLayoutTestkitFactory)).toBe(true);
-    });
-  });
-
-  describe('enzyme testkit', () => {
-    it('should exist', () => {
-      expect(isEnzymeTestkitExists(<ButtonLayout><div/></ButtonLayout>, enzymeButtonLayoutTestkitFactory)).toBe(true);
     });
   });
 });
