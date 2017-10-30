@@ -1,41 +1,27 @@
 import React from 'react';
+
+import {Languages} from 'wix-style-react/Icons';
 import story from '../utils/Components/Story';
-import CodeExample from '../utils/Components/CodeExample';
 
-import ExampleStandard from './ExampleStandard';
-import ExampleStandardRaw from '!raw-loader!./ExampleStandard';
-
-import ExampleIndeterminate from './ExampleIndeterminate';
-import ExampleIndeterminateRaw from '!raw-loader!./ExampleIndeterminate';
-
-import ExampleRtl from './ExampleRtl';
-import ExampleRtlRaw from '!raw-loader!./ExampleRtl';
-
-import ExampleControlled from './ExampleControlled';
-import ExampleControlledRaw from '!raw-loader!./ExampleControlled';
+const labelExamples = [
+  'Hello World!',
+  <span key={0}>Hello <strong>World!</strong></span>,
+  <span key={1}>Hello <Languages/></span>
+];
 
 story({
-  category: 'Core',
+  category: '4. Selection',
+  storyName: '4.2 Checkbox',
   componentSrcFolder: 'Checkbox',
-  componentProps: {
-    children: 'Some text'
-  },
-  examples: (
-    <div>
-      <h1>Usage examples</h1>
-      <CodeExample title="Standard" code={ExampleStandardRaw}>
-        <ExampleStandard/>
-      </CodeExample>
-      <CodeExample title="Indeterminate" code={ExampleIndeterminateRaw}>
-        <ExampleIndeterminate/>
-      </CodeExample>
-      <CodeExample title="Rtl" code={ExampleRtlRaw}>
-        <ExampleRtl/>
-      </CodeExample>
-      <CodeExample title="Controlled input" code={ExampleControlledRaw}>
-        <ExampleControlled/>
-      </CodeExample>
-    </div>
-  )
-});
 
+  componentProps: setState => ({
+    children: labelExamples[0],
+    onChange: ({target: {checked}}) => setState({checked}),
+    dataHook: 'storybook-checkbox'
+  }),
+
+  exampleProps: {
+    children: labelExamples,
+    onChange: ({target: {checked}}) => checked ? 'Checked' : 'Unchecked'
+  }
+});

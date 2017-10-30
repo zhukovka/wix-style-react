@@ -7,8 +7,8 @@ import InteractiveCodeExample from '../utils/Components/InteractiveCodeExample/I
 import TabbedView from '../utils/Components/TabbedView';
 import ReadmeTestkit from '../../src/ButtonWithOptions/README.TESTKIT.md';
 
-storiesOf('4. Selection', module)
-  .add('4.2 ButtonWithOptions', () => {
+storiesOf('Core', module)
+  .add('ButtonWithOptions', () => {
     return (
       <TabbedView tabs={['API', 'Testkit']}>
         <div>

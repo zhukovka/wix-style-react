@@ -7,7 +7,6 @@ import '../stories/Breadcrubms';
 import '../stories/Badge';
 import '../stories/ButtonLayout';
 import '../stories/ButtonSelection';
-import '../stories/Checkbox';
 import '../stories/ColorPicker';
 import '../stories/DataTable';
 import '../stories/DatePicker';
@@ -32,10 +31,7 @@ import '../stories/TimeInput';
 import '../stories/ToggleSwitch';
 // require('../stories/Tooltip/Core');
 import '../stories/Tooltip_New/Core';
-
-//BackOffice
-import '../stories/Backoffice/Button';
-import '../stories/Backoffice/TextLink';
+import '../stories/Selector';
 
 //TPA
 import '../stories/TPA/Button';
@@ -60,12 +56,7 @@ import '../stories/FieldWithSelectionComposite';
 import '../stories/RichTextAreaComposite';
 import '../stories/Range';
 import '../stories/MultiSelect';
-import '../stories/AutoCompleteComposite';
 import '../stories/ButtonWithOptions';
-import '../stories/IconWithOptions';
-import '../stories/Checkbox/CheckboxStory';
-import '../stories/RadioGroup';
-import '../stories/GoogleAddressInputWithLabel';
 import '../stories/Backoffice/Button/CompositeStory';
 import '../stories/Breadcrubms/CompositeStory';
 import '../stories/Tabs';
@@ -76,7 +67,19 @@ import '../stories/Search';
 
 import '../stories/MessageBox';
 import '../stories/Modal';
-import '../stories/EditableSelector';
-import '../stories/ModalSelector';
-import '../stories/Selector';
 import '../stories/Highlighter';
+
+
+// 4. Selection
+import '../stories/AutoCompleteComposite'; // 4.1 Dropdown
+import '../stories/Checkbox'; // 4.2 Checkbox
+import '../stories/RadioGroup'; // 4.3 RadioGroup
+import '../stories/IconWithOptions'; // 4.5 IconWithOptions
+import '../stories/GoogleAddressInputWithLabel'; // 4.8 Google address input
+import '../stories/EditableSelector'; // 4.9 EditableSelector
+import '../stories/ModalSelector'; // 4.10 ModalSelector
+
+
+// 5. Buttons
+import '../stories/Backoffice/Button'; // 5.1 Standard, 5.2 White, 5.3 Icon, 5.4 Error, 5.5 Premium, 5.6 Transparent, 5.7 Close
+import '../stories/Backoffice/TextLink'; // 5.8 Text Link
