@@ -185,3 +185,6 @@ export const iconWithOptionsTestkitFactory = enzymeTestkitFactoryCreator(iconWit
 
 import searchDriverFactory from '../src/Search/Search.driver';
 export const searchTestkitFactory = enzymeTestkitFactoryCreator(searchDriverFactory);
+
+import highlighterDriverFactory from '../src/Highlighter/Highlighter.driver';
+export const highlighterTestkitFactory = enzymeTestkitFactoryCreator(highlighterDriverFactory);

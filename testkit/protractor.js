@@ -98,3 +98,6 @@ export const iconWithOptionsTestkitFactory = protractorTestkitFactoryCreator(ico
 
 import searchDriverFactory from '../src/Search/Search.protractor.driver';
 export const searchTestkitFactory = protractorTestkitFactoryCreator(searchDriverFactory);
+
+import highlighterDriverFactory from '../src/Highlighter/Highlighter.protractor.driver';
+export const highlighterTestkitFactory = protractorTestkitFactoryCreator(highlighterDriverFactory);

@@ -57,12 +57,16 @@ const dropdownLayoutDriverFactory = ({element, wrapper, component}) => {
       ReactDOM.render(<div ref={r => element = r}>{ClonedWithProps}</div>, wrapper);
     },
     hasTopArrow: () => !!element.querySelector(`.${styles.arrow}`),
+    optionById(optionId) {
+      return this.optionByHook(`dropdown-item-${optionId}`);
+    },
     optionByHook: hook => {
       const option = options.querySelector(`[data-hook=${hook}]`);
       if (!option) {
         throw `an option with data-hook ${hook} was not found`;
       }
       return {
+        element: () => option,
         mouseEnter: () => ReactTestUtils.Simulate.mouseEnter(option),
         mouseLeave: () => ReactTestUtils.Simulate.mouseLeave(option),
         isHovered: () => isClassExists(option, 'hovered'),

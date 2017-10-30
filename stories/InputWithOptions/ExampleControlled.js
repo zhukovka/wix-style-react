@@ -62,6 +62,7 @@ class ControlledInputWithOptions extends React.Component {
         onChange={onChange}
         onSelect={onSelect}
         onManuallyInput={onManuallyInput}
+        highlight
         />
     );
   }

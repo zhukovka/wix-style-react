@@ -18,9 +18,9 @@
 | fixedHeader | node | - | - | A fixed header to the list |
 | fixedFooter | node | - | - | A fixed footer to the list |
 | dropdownWidth | string | - | - | An optional custom width for the dropdown |
-| dropdownOffsetLeft | string | 0 | - | Am optional horizontal offset to the dropdown |
+| dropdownOffsetLeft | string | 0 | - | An optional horizontal offset to the dropdown |
+| highlight | bool | false | - | Enables highlighting |
 | ***All of the Input's and DropdownLayout Props are also available for this component*** | | | | |
-
 
 ## Functions
 

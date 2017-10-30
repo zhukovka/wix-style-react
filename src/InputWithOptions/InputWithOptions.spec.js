@@ -330,6 +330,14 @@ const runInputWithOptionsTest = driverFactory => {
       expect(onManualInput).toBeCalled();
     });
 
+    it('should wrap all options to highlighter component if prop highlight true', () => {
+      const {driver} = createDriver(<InputWithOptions options={options} highlight/>);
+      expect(driver.isOptionWrappedToHighlighter(options[0].id)).toBeTruthy();
+
+      driver.setProps({highlight: false});
+      expect(driver.isOptionWrappedToHighlighter(options[0].id)).toBeFalsy();
+    });
+
     // TODO
     it.skip('should change input value when an option is pressed', () => {
       const driver = createDriver(

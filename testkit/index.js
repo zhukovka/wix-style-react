@@ -188,3 +188,6 @@ export const iconWithOptionsTestkitFactory = testkitFactoryCreator(iconWithOptio
 
 import searchDriverFactory from '../src/Search/Search.driver';
 export const searchTestkitFactory = testkitFactoryCreator(searchDriverFactory);
+
+import highlighterDriverFactory from '../src/Highlighter/Highlighter.driver';
+export const highlighterTestkitFactory = testkitFactoryCreator(highlighterDriverFactory);
