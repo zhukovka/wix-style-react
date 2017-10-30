@@ -68,10 +68,11 @@ LanguagePicker.propTypes = {
     if (propValue[key].type !== LanguagePicker.Option) {
       return new Error(`LanguagePicker: Invalid Prop children was given. Validation failed on child number ${key}`);
     }
-  })
+  }).isRequired
 };
 
 LanguagePicker.Option = () => null;
+LanguagePicker.Option.displayName = 'LanguagePicker.Option';
 
 LanguagePicker.Option.propTypes = {
   languageKey: PropTypes.string.isRequired,

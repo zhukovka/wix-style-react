@@ -1,29 +1,52 @@
 import React from 'react';
-import {storiesOf} from '@storybook/react';
-import Markdown from '../utils/Components/Markdown';
-import AutoDocs from '../utils/Components/AutoDocs';
+import story from '../utils/Components/Story';
+
 import CodeExample from '../utils/Components/CodeExample';
-import ReadmeTestkit from '../../src/LanguagePicker/README.TESTKIT.md';
-import LanguagePickerSource from '!raw-loader!wix-style-react/LanguagePicker/LanguagePicker';
 
-import TabbedView from '../utils/Components/TabbedView';
-
+import LanguagePicker from 'wix-style-react/LanguagePicker';
 import Example from './Example';
 import ExampleRaw from '!raw-loader!./Example';
 
-storiesOf('Core', module)
-  .add('LanguagePicker', () => (
-    <TabbedView tabs={['API', 'Testkit']}>
-      <div>
-        <AutoDocs source={LanguagePickerSource}/>
+const LOCALES = {
+  cs: 'Čeština',
+  da: 'Dansk',
+  de: 'Deutsch',
+  en: 'English',
+  es: 'Español',
+  fr: 'Français',
+  hi: 'हिन्दी',
+  it: 'Italiano',
+  ja: '日本語',
+  ko: '한국어',
+  nl: 'Nederlands',
+  no: 'Norsk',
+  pl: 'Polski',
+  pt: 'Português',
+  ru: 'Русский',
+  sv: 'Svenska',
+  th: 'Thai',
+  tr: 'Türkçe',
+  zh: 'Chinese'
+};
 
-        <h1>Usage examples</h1>
+story({
+  category: 'Core',
+  componentSrcFolder: 'LanguagePicker',
+  componentProps: {
+    children: Object.keys(LOCALES).map(lang =>
+      <LanguagePicker.Option key={lang} languageKey={lang}>
+        {LOCALES[lang]}
+      </LanguagePicker.Option>
+    )
+  },
+  exampleProps: {
+    onSelect: ({value}) => value
+  },
 
-        <CodeExample title="Example" code={ExampleRaw}>
-          <Example/>
-        </CodeExample>
-      </div>
-
-      <Markdown source={ReadmeTestkit}/>
-    </TabbedView>
-  ));
+  // TODO: update e2e to use generated example and remove `examples` below
+  examples: (
+    <CodeExample title="Example" code={ExampleRaw}>
+      <Example/>
+    </CodeExample>
+  )
+});
