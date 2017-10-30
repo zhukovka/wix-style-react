@@ -10,10 +10,6 @@ class HighlightedItem extends WixComponent {
     caseSensitive: PropTypes.bool
   };
 
-  static defaultProps = {
-    caseSensitive: true
-  };
-
   renderElement() {
     const {children, match} = this.props;
 

@@ -167,6 +167,17 @@ describe('Search', () => {
       driver.inputDriver.clickSuffix();
       expect(driver.inputDriver.isFocus()).toBe(true);
     });
+
+    it('should highlight the matched options text', () => {
+      const driver = createDriver(
+        <ControlledSearch
+          value="the"
+          options={options}
+          />
+      );
+
+      expect(driver.dropdownLayoutDriver.optionAt(0).querySelector('strong').textContent).toContain('The');
+    });
   });
 
   describe('Uncontrolled', () => {

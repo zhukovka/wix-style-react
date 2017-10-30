@@ -44,6 +44,7 @@ const dropdownLayoutDriverFactory = ({element, wrapper, component}) => {
     pressTabKey: () => ReactTestUtils.Simulate.keyDown(element, {key: 'Tab'}),
     pressEscKey: () => ReactTestUtils.Simulate.keyDown(element, {key: 'Escape'}),
     optionContentAt: position => doIfOptionExists(position, () => optionAt(position).textContent),
+    optionAt,
     clickAtOption: position => doIfOptionExists(position, () => ReactTestUtils.Simulate.click(optionAt(position))),
     clickAtOptionWithValue: value => {
       const option = values(options.childNodes).find(option => option.innerHTML === value);

@@ -22,6 +22,7 @@
 | pressTabKey | - | - | simulate tab key press |
 | pressEscKey | - | - | simulate esc key press |
 | optionContentAt | number | string | get the content of the option at index <number> |
+| optionAt | number | element | get the option at index <number> |
 | clickAtOption | number | - | simulate click on option at index <number> |
 | clickAtOptionWithValue | string | - | press esc key on the input element |
 | isOptionADivider | number | boolean | true if option at index <number> is a divider |

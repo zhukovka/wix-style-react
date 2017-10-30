@@ -91,11 +91,11 @@ describe('Highlighter', () => {
     expect(wrapper.html()).toEqual(expectedResult);
   });
 
-  it('should match caseSensitive by default', () => {
-    const expectedResult = `<aside><span><span>Option</span><strong>P</strong></span></aside>`;
+  it('should not be caseSensitive by default', () => {
+    const expectedResult = `<aside><span><span>O</span><strong>p</strong><span>tion</span><strong>P</strong></span></aside>`;
 
     const wrapper = createDriver(
-      <Highlighter match="P">
+      <Highlighter match="p">
         <aside>OptionP</aside>
       </Highlighter>
     );
