@@ -17,10 +17,11 @@ export default class ComponentMetaInfoGetter extends React.PureComponent {
     this.state = {
       isLoading: true,
       source: undefined,
+      readme: undefined,
       readmeTestKit: undefined,
+      readmeAccessibility: undefined,
       component: undefined,
-      parsedSource: undefined,
-      readme: undefined
+      parsedSource: undefined
     };
   }
 
@@ -39,18 +40,20 @@ export default class ComponentMetaInfoGetter extends React.PureComponent {
     const componentSourcePromise = this.getComponentSource();
     Promise.all([
       componentSourcePromise,
+      this.getComponentReadme(),
       this.getReadmeTestKit(),
+      this.getReadmeAccessibility(),
       this.getComponentInstance(),
-      this.getParsedSource(componentSourcePromise),
-      this.getComponentReadme()
-    ]).then(([source, readmeTestKit, component, parsedSource, readme]) => {
+      this.getParsedSource(componentSourcePromise)
+    ]).then(([source, readme, readmeTestKit, readmeAccessibility, component, parsedSource]) => {
       this.setState({
         isLoading: false,
         source,
+        readme,
         readmeTestKit,
+        readmeAccessibility,
         component,
-        parsedSource,
-        readme
+        parsedSource
       });
     });
   }
@@ -60,31 +63,38 @@ export default class ComponentMetaInfoGetter extends React.PureComponent {
   }
 
   getComponentSource(additionalPath = '') {
-    const {
-      componentSrcFolder
-    } = this.props;
+    const {componentSrcFolder} = this.props;
 
     const resolvedPath = normalize(`${componentSrcFolder}/${additionalPath}`);
-    return import(`!raw-loader!wix-style-react/${resolvedPath}`).then(source => {
-      const sourceContainsOneLine = source.trim().split('\n').length === 1;
-      const onlyDefaultExportPresent = source.startsWith('export {default} from');
-      if (sourceContainsOneLine && onlyDefaultExportPresent) {
-        let newSourcePath = '';
-        source.replace(/(?!['"])([./a-z]+)(?=['"])/gi, match => {
-          newSourcePath = match;
-        });
 
-        newSourcePath = newSourcePath.replace(/^\.\//, '/');
+    // the following import is part of the "black magic". Webpack does not resolve paths correctly if the beginning of
+    // import string is computed. in this case, we reuse `wix-style-react` alias defined in .storybook/webpack.config.js
+    return import(`!raw-loader!wix-style-react/${resolvedPath}`)
+      .then(source => {
+        const sourceContainsOneLine = source.trim().split('\n').length === 1;
+        const onlyDefaultExportPresent = source.startsWith('export {default} from');
 
-        return this.getComponentSource(`${additionalPath}${newSourcePath}`);
-      }
+        if (sourceContainsOneLine && onlyDefaultExportPresent) {
+          let newSourcePath = '';
+          source.replace(/(?!['"])([./a-z]+)(?=['"])/gi, match => {
+            newSourcePath = match;
+          });
 
-      return source;
-    });
+          newSourcePath = newSourcePath.replace(/^\.\//, '/');
+
+          return this.getComponentSource(`${additionalPath}${newSourcePath}`);
+        }
+
+        return source;
+      });
   }
 
   getComponentInstance() {
-    return import(`wix-style-react/${this.props.componentSrcFolder}/`).then(component => component.default).catch(console.warn);
+    // the following import is part of the "black magic". Webpack does not resolve paths correctly if the beginning of
+    // import string is computed. in this case, we reuse `wix-style-react` alias defined in .storybook/webpack.config.js
+    return import(`wix-style-react/${this.props.componentSrcFolder}/`)
+      .then(component => component.default)
+      .catch(console.warn);
   }
 
   getParsedSource(componentSourcePromise) {
@@ -142,8 +152,15 @@ export default class ComponentMetaInfoGetter extends React.PureComponent {
     return this.loadMdFile('README.TESTKIT');
   }
 
+  getReadmeAccessibility() {
+    return this.loadMdFile('README.ACCESSIBILITY');
+  }
+
   loadMdFile(fileName) {
     const baseName = fileName.endsWith('.md') ? fileName.replace(/\.md$/gi, '') : fileName;
+
+    // the following import is part of the "black magic". Webpack does not resolve paths correctly if the beginning of
+    // import string is computed. in this case, we reuse `wix-style-react` alias defined in .storybook/webpack.config.js
     return import(`wix-style-react/${this.props.componentSrcFolder}/${baseName}.md`).catch(() => {});
   }
 }

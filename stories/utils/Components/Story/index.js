@@ -42,6 +42,7 @@ function Story(props) {
     name: customName,
     readme: customReadme,
     readmeTestkit: customReadmeTestKit,
+    readmeAccessibility: customReadmeAccessibility,
     source: customSource,
     component: customComponent,
     componentSrcFolder,
@@ -55,13 +56,13 @@ function Story(props) {
     const allRequiredPropsPresent = customName && customSource && customComponent;
     if (!allRequiredPropsPresent) {
       console.error('Props with error:', props);
-      throw new Error('You are not passed "componentSrcFolder" to story function. Is this case those params are required: "name", "source", "component"!');
+      throw new Error('Error: "componentSrcFolder" is undefined in story function. In such case, you must supply the following params yourself: "name", "source", "component".');
     }
   }
 
   if (typeof storyName === 'undefined') {
     console.error('Props with error:', props);
-    throw new Error('You need to provide either "storyName" or "name" to the story function!');
+    throw new Error('Error: unable to fully parse given component. Please provide either "storyName" or "name" to the story function.');
   }
 
 
@@ -74,6 +75,7 @@ function Story(props) {
             isLoading,
             source,
             readmeTestKit,
+            readmeAccessibility,
             component,
             name = customName || (component && (component.displayName || component.name)),
             readme,
@@ -84,6 +86,7 @@ function Story(props) {
           const actualReadmeTestKit = customReadmeTestKit || readmeTestKit;
           const actualComponent = customComponent || component;
           const actualReadme = customReadme || readme;
+          const actualReadmeAccessibility = customReadmeAccessibility || readmeAccessibility;
 
           if (isLoading) {
             return (
@@ -93,8 +96,15 @@ function Story(props) {
             );
           }
 
+          const tabs = [
+            'Usage',
+            'API',
+            ...(actualReadmeTestKit ? ['Testkit'] : []),
+            ...(actualReadmeAccessibility ? ['Accessibility'] : [])
+          ];
+
           return (
-            <TabbedView tabs={['Usage', 'API', 'TestKit']}>
+            <TabbedView tabs={tabs}>
               <div className={styles.usage}>
                 {actualReadme ?
                   <Markdown source={actualReadme}/> :
@@ -130,6 +140,8 @@ function Story(props) {
               {actualSource && <AutoDocs source={actualSource} parsedSource={parsedSource}/>}
 
               {actualReadmeTestKit && <Markdown source={actualReadmeTestKit}/>}
+
+              {actualReadmeAccessibility && <Markdown source={actualReadmeAccessibility}/>}
             </TabbedView>
           );
         }
@@ -180,6 +192,17 @@ Story.propTypes = {
    * If somehow it doesn't work automatically, you can provide readme yourself.
    */
   readmeTestkit: PropTypes.string,
+
+  /**
+   * the README.ACCESSIBILITY.md file in your component folder.
+   *
+   * A markdown-compatible string to be printed within "Accessibility" tab.
+   * No "Accessibility" tab will displayed if this property is omitted.
+   *
+   * should be resolved automatically.
+   * If somehow it doesn't work automatically, you can provide accessibility readme yourself.
+   */
+  readmeAccessibility: PropTypes.string,
 
    /**
    * Raw source of component as a string.
