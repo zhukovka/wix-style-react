@@ -1,7 +1,6 @@
 import React from 'react';
 import MultiSelect from 'wix-style-react/MultiSelect';
 import styles from './ExampleStandard.scss';
-import isstring from 'lodash/isstring';
 
 const options = [
   {value: 'Alabama', id: 'Alabama', tag: {label: 'Alabama'}},
@@ -31,7 +30,7 @@ class ExampleStandard extends React.Component {
     };
   }
 
-  getValue = option => isstring(option.value) ? option.value : option.value.props.children[0].props.children;
+  getValue = option => typeof option.value === 'string' ? option.value : option.value.props.children[0].props.children;
 
   handleOnSelect = tags => Array.isArray(tags) ?
     this.setState({tags: [...this.state.tags, ...tags]}) :
