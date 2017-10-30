@@ -1,7 +1,7 @@
 import React from 'react';
 import MultiSelect from 'wix-style-react/MultiSelect';
 import styles from './ExampleStandard.scss';
-import isstring from 'lodash.isstring';
+import isstring from 'lodash/isstring';
 
 const options = [
   {value: 'Alabama', id: 'Alabama', tag: {label: 'Alabama'}},
