@@ -32,12 +32,13 @@ Label.propTypes = {
     'T4', 'T4.1', 'T4.2', 'T4.3',
     'T5', 'T5.1']),
 
-  children: PropTypes.any,
+  children: PropTypes.node,
   id: PropTypes.string
 };
 
 Label.defaultProps = {
-  appearance: 'T1.1'
+  appearance: 'T1.1',
+  children: ''
 };
 
 export default Label;
