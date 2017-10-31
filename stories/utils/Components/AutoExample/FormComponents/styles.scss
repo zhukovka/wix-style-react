@@ -4,13 +4,25 @@
 }
 
 .option {
-  margin-bottom: 5px !important;
+  display: flex;
+  align-items: center;
+  padding: 15px 0;
+  margin-bottom: 0 !important;
+
+  &:nth-child(2n + 1) {
+    background-color: #f6f8fa;
+  }
+
+  :global {
+    .markdown-body p {
+      margin: 0;
+    }
+  }
 }
 
 .title {
   margin-bottom: 30px;
   border-bottom: 1px solid #cbccce;
-  padding: 10px;
 }
 
 .preview {

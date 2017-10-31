@@ -191,7 +191,7 @@ export default class extends Component {
       }
 
       if (this.props.exampleProps[propKey]) {
-        return <span data-hook={dataHook} className={classNames}>{this.state.funcValues[propKey] || 'Interaction preview'}</span>;
+        return <div data-hook={dataHook} className={classNames}>{this.state.funcValues[propKey] || 'Interaction preview'}</div>;
       }
     }
   }
@@ -207,8 +207,8 @@ export default class extends Component {
     return (this.controllableComponentGetters[type.name] || (() => null))({propKey, type, dataHook});
   }
 
-  componentToString = (component, filterProps) =>
-    reactElementToJSXString(component, {showDefaultProps: false, showFunctions: true, filterProps})
+  componentToString = component =>
+    reactElementToJSXString(component, {showDefaultProps: false, showFunctions: true})
 
   render() {
     const component = this.props.component;
@@ -245,8 +245,6 @@ export default class extends Component {
           }, {})
       )
     };
-    const filterCodeProps = Object.keys(this.props.exampleProps)
-      .filter(key => this.parsedComponent.props[key].type.name === 'func' && !this.state.funcValues[key]);
 
     return (
       <Wrapper dataHook="auto-example">
@@ -268,7 +266,7 @@ export default class extends Component {
           {React.createElement(component, componentPropsState)}
         </Preview>
 
-        <Code source={this.componentToString(React.createElement(component, codeProps), filterCodeProps)}/>
+        <Code source={this.componentToString(React.createElement(component, codeProps))}/>
       </Wrapper>
     );
   }

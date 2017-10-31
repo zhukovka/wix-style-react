@@ -1,7 +1,10 @@
 .example {
   padding: 6px 8px;
-  transition: background-color .4s;
+  font-size: 14px;
+  transition: all .4s;
+
   &.active {
-    background-color: #eaf7ff;
+    color: #fff;
+    background-color: #3899eb;
   }
 }

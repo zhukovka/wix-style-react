@@ -15,8 +15,8 @@ import ExampleControlledRaw from '!raw-loader!./ExampleControlled';
 story({
   category: 'Core',
   componentSrcFolder: 'ToggleSwitch',
-  componentProps: (setProps, getProps) => ({
-    onChange: () => setProps({checked: !getProps().checked})
+  componentProps: (setState, getState) => ({
+    onChange: () => setState({checked: !getState().checked})
   }),
   examples: (
     <div>
