@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {children, once, any, multiple, optional} from './CompositeValidation';
+import {children, once, any, oneOf, multiple, optional} from './CompositeValidation';
 
 const Label = () => null;
 
@@ -102,6 +102,28 @@ describe('CompositeValidation', () => {
     it('should pass if any() is being used as last option', () => {
       const validator = children(once(Label), any());
       expect(validator({children: [<Label key={1}/>, <Input key={2}/>]}, 'children', 'TextField'))
+        .toEqual(undefined);
+    });
+
+  });
+
+  describe('oneOf()', () => {
+
+    it('should return an error if oneOf() components are missing', () => {
+      const validator = children(oneOf(Input, Label));
+      expect(validator({children: []}, 'children', 'TextField'))
+        .toEqual(new Error('TextField should have children of the following types in this order: ONEOF(Input, Label)'));
+    });
+
+    it('should return an error if more than one of the oneOf() components is present', () => {
+      const validator = children(oneOf(Input, Label));
+      expect(validator({children: [<Label key={1}/>, <Input key={2}/>]}, 'children', 'TextField'))
+        .toEqual(new Error('TextField should have children of the following types in this order: ONEOF(Input, Label)'));
+    });
+
+    it('should pass if one of the oneOf() components exists', () => {
+      const validator = children(oneOf(Input, Label));
+      expect(validator({children: [<Label key={1}/>]}, 'children', 'TextField'))
         .toEqual(undefined);
     });
 
