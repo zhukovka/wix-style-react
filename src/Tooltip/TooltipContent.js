@@ -7,9 +7,15 @@ import styles from './TooltipContent.scss';
 class TooltipContent extends Component {
 
   static propTypes = {
+    /** alignment of the tooltip's text  */
     textAlign: PropTypes.string,
 
+    /** The tooltip max width  */
     maxWidth: PropTypes.string,
+    
+    /** The tooltip min width  */
+    minWidth: PropTypes.string,
+
     /**
      * Tooltip content to be rendered
      */
@@ -87,6 +93,7 @@ class TooltipContent extends Component {
       size,
       textAlign,
       maxWidth,
+      minWidth,
       padding,
       color,
       lineHeight
@@ -96,7 +103,7 @@ class TooltipContent extends Component {
       <div className={styles.root} style={style} onMouseEnter={onMouseEnter} onMouseLeave={onMouseLeave}>
         <div className={styles.fadeIn}>
           <div className={classnames({[styles[`bounce-on-${arrowPlacement}`]]: bounce})}>
-            <div ref={ref => this.tooltip = ref} className={classnames(styles.tooltip, styles[theme], styles[size])} style={{maxWidth, textAlign, padding, lineHeight, color}}>
+            <div ref={ref => this.tooltip = ref} className={classnames(styles.tooltip, styles[theme], styles[size])} style={{maxWidth, minWidth, textAlign, padding, lineHeight, color}}>
               <div>{children}</div>
               <div className={classnames(styles.arrow, styles[arrowPlacement])} style={arrowStyle}/>
             </div>

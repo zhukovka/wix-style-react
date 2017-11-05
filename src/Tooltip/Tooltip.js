@@ -31,6 +31,9 @@ class Tooltip extends WixComponent {
     /** The tooltip max width  */
     maxWidth: PropTypes.string,
 
+    /** The tooltip min width  */
+    minWidth: PropTypes.string,
+
     /** Callback when cliking outside  */
     onClickOutside: PropTypes.func,
 
@@ -159,6 +162,7 @@ class Tooltip extends WixComponent {
           padding={this.props.padding}
           arrowStyle={this.state.arrowStyle}
           maxWidth={this.props.maxWidth}
+          minWidth={this.props.minWidth}
           size={this.props.size}
           textAlign={this.props.textAlign}
           lineHeight={this.props.lineHeight}
