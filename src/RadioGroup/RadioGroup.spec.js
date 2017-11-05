@@ -109,9 +109,9 @@ describe('RadioGroup', () => {
   });
 
   describe('line-height attribute', () => {
-    it('should be 24px', () => {
+    it('should have default value', () => {
       const driver = createDriver(elementToRender());
-      expect(driver.lineHeight()).toBe('24px');
+      expect(driver.lineHeight()).toBe(RadioGroup.defaultProps.lineHeight);
     });
   });
 

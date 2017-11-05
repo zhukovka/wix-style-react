@@ -13,7 +13,7 @@ class RadioButton extends WixComponent {
   }
 
   render() {
-    const {value, vAlign, checked, disabled, name, type, onChange, style} = this.props;
+    const {value, vAlign, checked, disabled, name, type, onChange, style, lineHeight} = this.props;
 
     const radioClasses = classNames({
       [styles.radio]: true,
@@ -56,7 +56,7 @@ class RadioButton extends WixComponent {
               disabled={disabled}
               onChange={() => (!checked && !disabled) ? onChange(value) : null}
               />
-            <label htmlFor={this.id} className={labelClasses} data-hook="radio-label">
+            <label style={{lineHeight}} htmlFor={this.id} className={labelClasses} data-hook="radio-label">
               <div className={radioClasses}/>
               <div className={styles.children}>
                 {this.props.children}
@@ -81,7 +81,8 @@ RadioButton.propTypes = {
   disabled: PropTypes.bool,
   children: PropTypes.any,
   style: PropTypes.object,
-  type: PropTypes.string
+  type: PropTypes.string,
+  lineHeight: PropTypes.string
 };
 
 RadioButton.displayName = 'RadioGroup.Button';

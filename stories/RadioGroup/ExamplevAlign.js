@@ -9,7 +9,7 @@ const style = {
 };
 
 export default () =>
-  <div>
+  <div style={{display: 'flex'}}>
     <div className="ltr" style={style}>vAlign center
       <RadioGroup value={1} vAlign="center" >
         <RadioGroup.Radio value={1}><div>Option 1</div><small>best option</small></RadioGroup.Radio>

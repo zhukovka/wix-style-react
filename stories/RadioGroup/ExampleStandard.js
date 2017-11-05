@@ -28,10 +28,10 @@ export default () =>
 
     <div className="rtl" style={rtlStyle}>Right to left
       <RadioGroup value={1}>
-        <RadioGroup.Radio value={1}>אופציה 1</RadioGroup.Radio>
-        <RadioGroup.Radio value={2}>אופציה 2</RadioGroup.Radio>
-        <RadioGroup.Radio value={3}>אופציה 3</RadioGroup.Radio>
-        <RadioGroup.Radio value={4}>אופציה 4</RadioGroup.Radio>
+        <RadioGroup.Radio value={1}>אופציה1</RadioGroup.Radio>
+        <RadioGroup.Radio value={2}>אופציה2</RadioGroup.Radio>
+        <RadioGroup.Radio value={3}>אופציה3</RadioGroup.Radio>
+        <RadioGroup.Radio value={4}>אופציה4</RadioGroup.Radio>
       </RadioGroup>
     </div>
   </div>;

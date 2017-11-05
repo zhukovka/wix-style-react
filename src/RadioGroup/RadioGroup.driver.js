@@ -22,7 +22,7 @@ const radioGroupDriverFactory = ({element, wrapper, component}) => {
     isHorizontalDisplay: () => isClassExists(element, 'horizontal'),
     isButtonType: () => isClassExists(element, 'buttonType'),
     spacing: () => radios[0].style._values['margin-bottom'],
-    lineHeight: () => radios[0].style._values['line-height'],
+    lineHeight: () => labels[0].style._values['line-height'],
     getNumberOfRadios: () => radios.length,
     setProps: props => {
       const ClonedWithProps = React.cloneElement(component, Object.assign({}, component.props, props), ...(component.props.children || []));
