@@ -255,7 +255,6 @@ describe('Tooltip', () => {
     });
   });
 
-
   describe('minWidth attribute', () => {
     it('should not have any min-width as default', () => {
       const driver = createDriver(<Tooltip {..._props}>{children}</Tooltip>);

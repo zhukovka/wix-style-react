@@ -17,6 +17,7 @@ class FieldLabelAttributes extends WixComponent {
         alignment="center"
         moveBy={{x: 0, y: -1}}
         hideDelay={0}
+        minWidth="150px"
         >
         <span data-hook="info" className={styles.icon}>
           <Info2 size="18px"/>
