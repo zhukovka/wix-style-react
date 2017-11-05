@@ -1,7 +1,7 @@
 import ReactTestUtils from 'react-dom/test-utils';
 import inputDriverFactory from '../Input/Input.driver';
 
-const datePickerDriverFactory = ({element, wrapper}) => {
+const datePickerDriverFactory = ({element, wrapper, componentInstance}) => {
 
   const inputRoot = element && element.children[0].querySelector('.root');
   const inputDriver = inputDriverFactory({element: inputRoot, wrapper});
@@ -27,6 +27,8 @@ const datePickerDriverFactory = ({element, wrapper}) => {
     clickOnNthYear: (n = 1) => ReactTestUtils.Simulate.click(getNthYear(n)),
     clickOnPrevMonthButton: () => ReactTestUtils.Simulate.click(getPrevMonthButton()),
     clickOnNextMonthButton: () => ReactTestUtils.Simulate.click(getNextMonthButton()),
+    open: () => componentInstance.open(),
+    close: () => componentInstance.close(),
     isHeaderVisible: () => !(wrapper.querySelector('.react-datepicker--hide-header'))
   };
 

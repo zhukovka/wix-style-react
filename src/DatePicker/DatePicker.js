@@ -137,6 +137,16 @@ export default class DatePicker extends WixComponent {
     );
   }
 
+  /** open the calendar */
+  open() {
+    this.calendar.setOpen(true);
+  }
+
+  /** close the calendar */
+  close() {
+    this.calendar.setOpen(false);
+  }
+
   render() {
     const cssClasses = [css.wrapper];
     if (this.props.showYearDropdown || this.props.showMonthDropdown) {
@@ -148,6 +158,7 @@ export default class DatePicker extends WixComponent {
       <div className={classnames(cssClasses)}>
         <ReactDatepicker
           {...this.props}
+          ref={calendar => this.calendar = calendar}
           selected={this.props.value}
           onChange={val => {
             if (this.filterDate(val)) {

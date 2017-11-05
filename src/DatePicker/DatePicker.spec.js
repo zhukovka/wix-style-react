@@ -384,6 +384,25 @@ describe('DatePicker', () => {
         expect(newDate.year()).not.toEqual(date.year());
       });
     });
+
+    describe('When trigger open and close', () => {
+      it('should open calendar using ref', () => {
+        const {calendarDriver} = createDriver(<DatePicker onChange={onChange}/>);
+
+        calendarDriver.open();
+
+        expect(calendarDriver.isVisible()).toBe(true);
+      });
+
+      it('should close calendar using ref', () => {
+        const {calendarDriver} = createDriver(<DatePicker onChange={onChange}/>);
+
+        calendarDriver.open();
+        calendarDriver.close();
+
+        expect(calendarDriver.isVisible()).toBe(false);
+      });
+    });
   });
 
   describe('testkit', () => {

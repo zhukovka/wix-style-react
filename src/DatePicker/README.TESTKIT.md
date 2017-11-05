@@ -37,6 +37,8 @@ datePickerPolyfills(window, global);
 | clickOnNextMonthButton | - | - | clicks on next month button |
 | getCurrentMonthWithYear | - | string | returns the month and year |
 | getNthWeekDayName | number | string | returns the n'th day name in the week |
+| open | - | - | open the calendar |
+| close | - | - | close the calendar |
 
 ### Usage Example
 
