@@ -12,7 +12,7 @@ class TooltipContent extends Component {
 
     /** The tooltip max width  */
     maxWidth: PropTypes.string,
-    
+
     /** The tooltip min width  */
     minWidth: PropTypes.string,
 
