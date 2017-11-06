@@ -20,4 +20,5 @@
 | verticalPosition | start, center, end | start | - | vertical position of the modal |
 | closeTimeoutMS | number | 500 | - | Number indicating the milliseconds to wait before closing the modal |
 | scrollable | boolean | true | - | Specifies if modal portal supports scroll |
- scrollableContent | boolean | false | - | Specifies if modal content should become scrollable when modal size will fit the window |
+| scrollableContent | boolean | false | - | Specifies if modal content should become scrollable when modal size will fit the window |
+| appElement | string | - | false | selector spcifying where to apply the aria-hidden attribute  |
