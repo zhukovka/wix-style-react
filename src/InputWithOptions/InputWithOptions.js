@@ -125,12 +125,7 @@ class InputWithOptions extends WixComponent {
     return (
       <div>
         {dropDirectionUp ? this._renderDropdownLayout() : null}
-        <div
-          onKeyDown={this._onKeyDown}
-          className={this.inputClasses()}
-          onClick={this.showOptions}
-          onFocus={this._onFocus}
-          >
+        <div onKeyDown={this._onKeyDown} className={this.inputClasses()}>
           {this.renderInput()}
         </div>
         {!dropDirectionUp ? this._renderDropdownLayout() : null}
@@ -141,15 +136,15 @@ class InputWithOptions extends WixComponent {
   hideOptions() {
     if (this.state.showOptions) {
       this.setState({showOptions: false});
+      if (this._focused) {
+        this.input.blur();
+      }
     }
   }
 
   showOptions() {
     if (this.props.options.length) {
-      this.setState({
-        showOptions: true,
-        lastOptionsShow: Date.now()
-      });
+      this.setState({showOptions: true, lastOptionsShow: Date.now()});
     }
   }
 
@@ -162,7 +157,7 @@ class InputWithOptions extends WixComponent {
       return;
     }
 
-    inputValue = inputValue && inputValue.trim();
+    inputValue = inputValue.trim();
     if (this.closeOnSelect()) {
       this.hideOptions();
     }
@@ -213,19 +208,16 @@ class InputWithOptions extends WixComponent {
     if (this.props.disabled) {
       return;
     }
-
-    if (this.props.openOnFocus) {
-      this.showOptions();
-    }
-
+    this._focused = true;
     this.setState({isEditing: false});
-
+    this.showOptions();
     if (this.props.onFocus) {
       this.props.onFocus();
     }
   }
 
   _onBlur(e) {
+    this._focused = false;
     if (this.props.onBlur) {
       this.props.onBlur(e);
     }
@@ -235,39 +227,18 @@ class InputWithOptions extends WixComponent {
     if (this.props.disabled) {
       return;
     }
-
     if (event.key !== 'ArrowDown' && event.key !== 'ArrowUp') {
       this.setState({isEditing: true});
     }
-
     if (!this.dropdownLayout._onKeyDown(event)) {
       switch (event.key) {
-        case 'Escape': {
-          if (this.input) {
-            this.input.blur();
-          }
-          break;
-        }
-
-        case 'ArrowDown':
-        case 'ArrowUp': {
-          this.showOptions();
-          break;
-        }
-
-        case 'Enter': {
-          this.showOptions();
-          this._onManuallyInput(this.state.inputValue);
-          break;
-        }
-
+        case 'Enter':
         case 'Tab': {
           this._onManuallyInput(this.state.inputValue);
           break;
         }
-
         default:
-          break;
+          this.showOptions();
       }
     }
   }
@@ -295,8 +266,7 @@ InputWithOptions.defaultProps = {
   valueParser: option => option.value,
   dropdownWidth: null,
   dropdownOffsetLeft: '0',
-  showOptionsIfEmptyInput: true,
-  openOnFocus: true
+  showOptionsIfEmptyInput: true
 };
 
 InputWithOptions.propTypes = {
@@ -310,8 +280,7 @@ InputWithOptions.propTypes = {
   dropdownOffsetLeft: PropTypes.string,
   /** Controls whether to show options if input is empty */
   showOptionsIfEmptyInput: PropTypes.bool,
-  highlight: PropTypes.bool,
-  openOnFocus: PropTypes.bool
+  highlight: PropTypes.bool
 };
 
 InputWithOptions.displayName = 'InputWithOptions';
