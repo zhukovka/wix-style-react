@@ -92,6 +92,21 @@ describe('Input', () => {
     });
   });
 
+
+  describe('required attribute', () => {
+    it('should pass down to the wrapped input', () => {
+      const driver = createDriver(<Input required/>);
+      expect(driver.getRequired()).toBeTruthy();
+    });
+  });
+
+  describe('autocomplete attribute', () => {
+    it('should pass down to the wrapped input', () => {
+      const driver = createDriver(<Input autocomplete="off"/>);
+      expect(driver.getAutocomplete()).toBe('off');
+    });
+  });
+
   describe('defaultValue attribute', () => {
     it('should pass down to the wrapped input', () => {
       const defaultValue = 'hello';

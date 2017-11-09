@@ -63,6 +63,7 @@ class InputWithOptions extends WixComponent {
 
   renderInput() {
     const inputProps = Object.assign(omit(Object.keys(DropdownLayout.propTypes).concat(['onChange', 'dataHook']), this.props), this.inputAdditionalProps());
+
     const {inputElement} = inputProps;
     return React.cloneElement(inputElement, {
       menuArrow: true,
@@ -94,7 +95,9 @@ class InputWithOptions extends WixComponent {
   }
 
   _renderDropdownLayout() {
-    const dropdownProps = Object.assign(omit(Object.keys(Input.propTypes).concat(['dataHook']), this.props), this.dropdownAdditionalProps());
+    const inputOnlyProps = omit(['tabIndex'], Input.propTypes);
+    const dropdownProps = Object.assign(omit(Object.keys(inputOnlyProps).concat(['dataHook']), this.props), this.dropdownAdditionalProps());
+
     const customStyle = {marginLeft: this.props.dropdownOffsetLeft};
 
     if (this.props.dropdownWidth) {
@@ -176,7 +179,7 @@ class InputWithOptions extends WixComponent {
     const {onSelect} = this.props;
 
     if (this.closeOnSelect()) {
-      this.hideOptions();
+      this.setState({showOptions: false});
     }
 
     if (isSelectedOption) {
@@ -272,6 +275,7 @@ InputWithOptions.defaultProps = {
 InputWithOptions.propTypes = {
   ...Input.propTypes,
   ...DropdownLayout.propTypes,
+  autocomplete: PropTypes.string,
   inputElement: PropTypes.element,
   closeOnSelect: PropTypes.bool,
   onManuallyInput: PropTypes.func,
