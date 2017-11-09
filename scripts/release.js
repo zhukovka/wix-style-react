@@ -7,26 +7,33 @@ if (!process.env.IS_BUILD_AGENT) {
 
 const path = require('path');
 const semver = require('semver');
-const {exec} = require('child_process');
-const fs = require('fs');
+const exec = promisify(require('child_process').exec);
+const writeFile = promisify(require('fs').writeFile);
 
 const packageJSONPath = path.resolve(__dirname, '..', 'package.json');
 const packageJSON = require(packageJSONPath);
 
-promisify(fs.writeFile)(
+writeFile(
   packageJSONPath,
   JSON.stringify(Object.assign({}, packageJSON, {private: true}), null, 2)
 )
 
-  .then(() => promisify(exec)('npm view wix-style-react version --registry=https://registry.npmjs.org/'))
+  .then(() => exec('npm view wix-style-react version --registry=https://registry.npmjs.org/'))
 
-  .then(publishedVersion => semver.gt(packageJSON.version, publishedVersion))
+  .then(publishedVersion =>
+    [
+      semver.gt(packageJSON.version, publishedVersion),
+      packageJSON.version,
+      publishedVersion
+    ]
+  )
 
-  .then(shouldPublish => shouldPublish ?
-    promisify(fs.writeFile)(packageJSONPath, packageJSON)
-      .then(() => 'Package will be published because of a version bump in package.json') :
+  .then(([shouldPublish, packageJSONVersion, publishedVersion]) =>
+    shouldPublish ?
+      writeFile(packageJSONPath, JSON.stringify(packageJSON, null, 2)).then(() =>
+        `Package will be published because version set in package.json ${packageJSONVersion} is newer than published ${publishedVersion}`) :
 
-    'Package will not be published because this version is already published'
+      `Package will not be published because version ${packageJSONVersion} set in package.json is already published`
   )
 
   .then(console.log)
@@ -38,7 +45,7 @@ promisify(fs.writeFile)(
 
 
 
-// promisify : Function -> List a -> Promise
+// promisify : Function -> List arguments -> Promise
 function promisify(fn) {
   return (...args) =>
     new Promise((resolve, reject) =>
