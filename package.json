@@ -19,7 +19,7 @@
     "e2e-only": "NODE_ENV=production yoshi test --protractor",
     "build": "yoshi lint && svg2react-icon && yoshi build && build-storybook && npm run export-components",
     "start": "./scripts/npm-start.sh",
-    "release": "yoshi release && gh-pages-auto-release --dist=storybook-static",
+    "release": "./scripts/release.js && gh-pages-auto-release --dist=storybook-static",
     "storybook": "start-storybook -p 6006",
     "start-e2e-server": "node testkit/e2e-sandbox.js 6006 ./storybook-e2e",
     "build-e2e-storybook": "svg2react-icon-once && STORYBOOK_E2E=true build-storybook -c .storybook -o ./storybook-e2e",
@@ -79,6 +79,7 @@
     "react-test-renderer": "^15.5.4",
     "react-test-utils": "0.0.1",
     "regenerator-runtime": "^0.11.0",
+    "semver": "^5.4.1",
     "sinon": "^1.17.6",
     "svg2react-icon": "^1.0.0",
     "wait-for-cond": "^1.0.3",
@@ -89,7 +90,8 @@
     "react-dom": "^15.0.0"
   },
   "publishConfig": {
-    "registry": "https://registry.npmjs.org/"
+    "registry": "https://registry.npmjs.org/",
+    "logLevel": "verbose"
   },
   "dependencies": {
     "bootstrap-sass": "^3.3.7",
