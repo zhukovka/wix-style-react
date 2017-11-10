@@ -82,7 +82,10 @@ class Tooltip extends WixComponent {
     relative: PropTypes.bool,
 
     /** Allows changing the padding of the content */
-    padding: PropTypes.oneOfType([PropTypes.string, PropTypes.number])
+    padding: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+
+      /** Allows updating the tooltip position **/
+    shouldUpdatePosition: PropTypes.bool
   };
 
   static defaultProps = {
@@ -104,7 +107,8 @@ class Tooltip extends WixComponent {
     size: 'normal',
     shouldCloseOnClickOutside: false,
     textAlign: 'left',
-    relative: false
+    relative: false,
+    shouldUpdatePosition: false
   };
 
   _childNode = null;
@@ -167,6 +171,9 @@ class Tooltip extends WixComponent {
           {this.props.content}
         </TooltipContent>);
 
+      if (this.props.shouldUpdatePosition) {
+        this._updatePosition(this.tooltipContent);
+      }
       renderSubtreeIntoContainer(this, tooltip, this._mountNode);
     }
   }
