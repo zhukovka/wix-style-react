@@ -5,6 +5,7 @@ import RangeExample from './RangeTemplate';
 import Input from '../../src/Input';
 import Label from '../../src/Label';
 import ToggleSwitch from '../../src/ToggleSwitch';
+import Dropdown from '../../src/Dropdown';
 
 import styles from './ExampleStandard.scss';
 
@@ -14,8 +15,10 @@ class ExampleStandard extends Component {
     onChange: PropTypes.func
   };
 
+  rangeTypes = [{id: 0, value: 'InputRange'}, {id: 1, value: 'DateRange'}];
 
   state = {
+    rangeType: this.rangeTypes[0],
     withLabel: true,
     prefixSuffixValue: '',
     prefixUnit: '',
@@ -36,6 +39,18 @@ class ExampleStandard extends Component {
       placeholder: '0',
       resizable: false
     },
+    firstDate: {
+      disabled: false,
+      placeholderText: 'From',
+      onChange: ev => this.setComponentState('firstDate', {value: ev}),
+      dateFormat: 'YYYY/MM/DD'
+    },
+    lastDate: {
+      disabled: false,
+      placeholderText: 'To.',
+      onChange: ev => this.setComponentState('lastDate', {value: ev}),
+      dateFormat: 'YYYY/MM/DD'
+    },
     required: false,
     info: ''
   };
@@ -52,7 +67,9 @@ class ExampleStandard extends Component {
   toggleInputState(propertyName) {
     this.setState({
       firstInput: {...this.state.firstInput, [propertyName]: !this.state.firstInput[propertyName]},
-      lastInput: {...this.state.firstInput, [propertyName]: !this.state.lastInput[propertyName]}
+      lastInput: {...this.state.firstInput, [propertyName]: !this.state.lastInput[propertyName]},
+      firstDate: {...this.state.firstDate, [propertyName]: !this.state.firstDate[propertyName]},
+      lastDate: {...this.state.lastDate, [propertyName]: !this.state.lastDate[propertyName]}
     });
   }
 
@@ -60,6 +77,17 @@ class ExampleStandard extends Component {
     return (
       <from className={styles.form}>
         <div className={styles.input}>
+          <div className={styles.option}>
+            <Label>Range Type</Label>
+            <div className={styles.flex}>
+              <Dropdown
+                selectedId={this.state.rangeType.id}
+                options={this.rangeTypes}
+                placeholder={'Choose range type'}
+                onSelect={value => this.setState({rangeType: value})}
+                />
+            </div>
+          </div>
           <div className={styles.option}>
             <Label>Show label</Label>
             <div className={styles.flex}>
@@ -85,7 +113,10 @@ class ExampleStandard extends Component {
                 <Input
                   size="small"
                   value={this.state.firstInput.placeholder}
-                  onChange={e => this.setComponentState('firstInput', {placeholder: e.target.value})}
+                  onChange={e => {
+                    this.setComponentState('firstInput', {placeholder: e.target.value});
+                    this.setComponentState('firstDate', {placeholderText: e.target.value});
+                  }}
                   />
               </div>
             </div>
@@ -97,7 +128,10 @@ class ExampleStandard extends Component {
             <Input
               size="small"
               value={this.state.lastInput.placeholder}
-              onChange={e => this.setComponentState('lastInput', {placeholder: e.target.value})}
+              onChange={e => {
+                this.setComponentState('lastInput', {placeholder: e.target.value});
+                this.setComponentState('lastDate', {placeholderText: e.target.value});
+              }}
               />
           </div>
           <div className={styles.flex}>

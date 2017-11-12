@@ -87,7 +87,13 @@ export default class DatePicker extends WixComponent {
     isOpen: PropTypes.bool,
 
     /** called when calendar visibility changes */
-    setOpen: PropTypes.func
+    setOpen: PropTypes.func,
+
+    /** When set to true, this input will have no rounded corners on its left */
+    noLeftBorderRadius: PropTypes.string,
+
+    /** When set to true, this input will have no rounded corners on its right */
+    noRightBorderRadius: PropTypes.string
   };
 
   static defaultProps = {
@@ -117,7 +123,7 @@ export default class DatePicker extends WixComponent {
   renderInput() {
     const {
       rtl, style, theme, prefix, inputDataHook: dataHook, onEnterPressed,
-      error, errorMessage, customInput
+      error, errorMessage, customInput, noLeftBorderRadius, noRightBorderRadius
     } = this.props;
 
     return (
@@ -131,7 +137,9 @@ export default class DatePicker extends WixComponent {
           onEnterPressed,
           error,
           errorMessage,
-          customInput
+          customInput,
+          noLeftBorderRadius,
+          noRightBorderRadius
         }}
         />
     );
@@ -148,7 +156,7 @@ export default class DatePicker extends WixComponent {
   }
 
   render() {
-    const cssClasses = [css.wrapper];
+    const cssClasses = [css.wrapper, this.props.noLeftBorderRadius, this.props.noRightBorderRadius];
     if (this.props.showYearDropdown || this.props.showMonthDropdown) {
       cssClasses.push({'react-datepicker--hide-header': true});
     } else {

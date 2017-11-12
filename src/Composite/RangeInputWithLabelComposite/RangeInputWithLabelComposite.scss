@@ -26,3 +26,15 @@
   border-left: 0;
   width: 50%;
 }
+
+.firstDate {
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+}
+
+.lastDate {
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+  border-left: 0;
+
+}

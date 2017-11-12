@@ -1,7 +1,8 @@
 import React from 'react';
-import {children, optional, once} from '../Composite';
+import {children, optional, oneOf} from '../Composite';
 import Label from '../Label';
 import Input from '../Input';
+import DatePicker from '../DatePicker';
 import RangeInputWithLabelComposite from '../Composite/RangeInputWithLabelComposite/RangeInputWithLabelComposite';
 
 const Range = ({...props, children}) => (
@@ -11,7 +12,7 @@ const Range = ({...props, children}) => (
 );
 
 Range.propTypes = {
-  children: children(optional(Label), once(Input), once(Input))
+  children: children(optional(Label), oneOf(Input, DatePicker), oneOf(Input, DatePicker))
 };
 
 Range.displayName = 'Range';
