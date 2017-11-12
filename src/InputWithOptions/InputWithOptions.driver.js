@@ -6,9 +6,9 @@ import ReactDOM from 'react-dom';
 
 const inputWithOptionsDriverFactory = ({element, wrapper, component}) => {
 
-  const inputWrapper = element.childNodes[0];
-  const inputDriver = inputDriverFactory({element: inputWrapper.childNodes[0], wrapper: inputWrapper});
-  const dropdownLayoutDriver = dropdownLayoutDriverFactory({element: element.childNodes[1].childNodes[0], wrapper});
+  const inputWrapper = element && element.childNodes[0];
+  const inputDriver = element && inputDriverFactory({element: inputWrapper.childNodes[0], wrapper: inputWrapper});
+  const dropdownLayoutDriver = element && dropdownLayoutDriverFactory({element: element.childNodes[1].childNodes[0], wrapper});
 
   const driver = {
     exists: () => !!element,
