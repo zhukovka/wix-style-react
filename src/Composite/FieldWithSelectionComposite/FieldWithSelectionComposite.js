@@ -24,9 +24,9 @@ class FieldWithSelectionComposite extends WixComponent {
     this.setState({textInputFocused: true});
   }
 
-  _onTextInputBlur() {
+  _onTextInputBlur(e) {
     const textInput = this._getTextInput();
-    textInput.props.onBlur && textInput.props.onBlur();
+    textInput.props.onBlur && textInput.props.onBlur(e);
     this.setState({textInputFocused: false});
   }
 
