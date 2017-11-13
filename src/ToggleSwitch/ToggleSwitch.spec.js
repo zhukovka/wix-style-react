@@ -56,30 +56,6 @@ describe('ToggleSwitch', () => {
     });
   });
 
-  describe('colors', () => {
-    it('should work with default colors', () => {
-      const driver = createDriver(<ToggleSwitch checked={false} onChange={() => {}}/>);
-      expect(driver.fillColor()).toBe('');
-
-      const driverChecked = createDriver(<ToggleSwitch checked onChange={() => {}}/>);
-      expect(driverChecked.fillColor()).toBe('');
-
-      const driverDisabled = createDriver(<ToggleSwitch disabled onChange={() => {}}/>);
-      expect(driverDisabled.fillColor()).toBe('');
-    });
-
-    it('should work with given colors', () => {
-      const driver = createDriver(<ToggleSwitch colorUnchecked="color1" colorChecked="color2" colorDisabled="color3" onChange={() => {}}/>);
-      expect(driver.fillColor()).toBe('color1');
-
-      const driverChecked = createDriver(<ToggleSwitch colorUnchecked="color1" colorChecked="color2" colorDisabled="color3" checked onChange={() => {}}/>);
-      expect(driverChecked.fillColor()).toBe('color2');
-
-      const driverDisabled = createDriver(<ToggleSwitch colorUnchecked="color1" colorChecked="color2" colorDisabled="color3" disabled onChange={() => {}}/>);
-      expect(driverDisabled.fillColor()).toBe('color3');
-    });
-  });
-
   describe('testkit', () => {
     it('should exist', () => {
       const div = document.createElement('div');

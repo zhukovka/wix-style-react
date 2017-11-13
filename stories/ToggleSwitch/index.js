@@ -12,9 +12,6 @@ import ExampleSizesRaw from '!raw-loader!./ExampleSizes';
 import ExampleControlled from './ExampleControlled';
 import ExampleControlledRaw from '!raw-loader!./ExampleControlled';
 
-import ExampleColors from './ExampleColors';
-import ExampleColorsRaw from '!raw-loader!./ExampleColors';
-
 story({
   category: 'Core',
   componentSrcFolder: 'ToggleSwitch',
@@ -33,10 +30,6 @@ story({
 
       <CodeExample title="Controlled input" code={ExampleControlledRaw}>
         <ExampleControlled/>
-      </CodeExample>
-
-      <CodeExample title="Colors" code={ExampleColorsRaw}>
-        <ExampleColors/>
       </CodeExample>
     </div>
   )
