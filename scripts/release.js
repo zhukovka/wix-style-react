@@ -13,12 +13,24 @@ const writeFile = promisify(require('fs').writeFile);
 const packageJSONPath = path.resolve(__dirname, '..', 'package.json');
 const packageJSON = require(packageJSONPath);
 
+
+const ghPagesRelease = () =>
+  exec('gh-pages-auto-release --dist=storybook-static')
+    .then(console.log)
+    .catch(e => console.log('ERROR: unable to update gh-pages branch', e));
+
+
+const getPublishedVersion = () =>
+  exec('npm view wix-style-react version --registry=https://registry.npmjs.org/')
+    .catch(e => console.log('ERROR: Unable to get published version from npmjs.org', e));
+
+
 writeFile(
   packageJSONPath,
-  JSON.stringify(Object.assign({}, packageJSON, {private: true}), null, 2)
+  stringify(Object.assign({}, packageJSON, {private: true}))
 )
 
-  .then(() => exec('npm view wix-style-react version --registry=https://registry.npmjs.org/'))
+  .then(getPublishedVersion)
 
   .then(publishedVersion =>
     [
@@ -30,13 +42,13 @@ writeFile(
 
   .then(([shouldPublish, packageJSONVersion, publishedVersion]) =>
     shouldPublish ?
-      writeFile(packageJSONPath, JSON.stringify(packageJSON, null, 2)).then(() =>
-        `Package will be published because version set in package.json ${packageJSONVersion} is newer than published ${publishedVersion}`) :
+      writeFile(packageJSONPath, stringify(packageJSON))
+        .then(() =>
+          console.log(`Package will be published because version set in package.json ${packageJSONVersion} is newer than published ${publishedVersion}`))
+        .then(ghPagesRelease) :
 
-      `Package will not be published because version ${packageJSONVersion} set in package.json is already published`
+      console.log(`Package will not be published because version ${packageJSONVersion} set in package.json is already published`)
   )
-
-  .then(console.log)
 
   .catch(error => {
     console.error('ERROR: Unable to publish', error);
@@ -54,4 +66,8 @@ function promisify(fn) {
         (err, payload) => err ? reject(err) : resolve(payload)
       )
     );
+}
+
+function stringify(data) {
+  return JSON.stringify(data, null, 2);
 }

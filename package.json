@@ -19,7 +19,7 @@
     "e2e-only": "NODE_ENV=production yoshi test --protractor",
     "build": "yoshi lint && svg2react-icon && yoshi build && build-storybook && npm run export-components",
     "start": "./scripts/npm-start.sh",
-    "release": "./scripts/release.js && gh-pages-auto-release --dist=storybook-static",
+    "release": "./scripts/release.js",
     "storybook": "start-storybook -p 6006",
     "start-e2e-server": "node testkit/e2e-sandbox.js 6006 ./storybook-e2e",
     "build-e2e-storybook": "svg2react-icon-once && STORYBOOK_E2E=true build-storybook -c .storybook -o ./storybook-e2e",
