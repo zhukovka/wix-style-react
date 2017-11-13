@@ -86,15 +86,28 @@ describe('GoogleAddressInput', () => {
         disabled: true
       }]);
     });
+  });
 
-    it('should show the powered by google footer', () => {
-      const component = createMount({Client: GmapsTestClient, poweredByGoogle: true});
-      expect(component.find('[data-hook="google-footer"]').exists()).toEqual(true);
+  describe('when `props.poweredByGoogle`', () => {
+    describe('is `true`', () => {
+      it('should show google footer', () => {
+        const component = createMount({Client: GmapsTestClient, poweredByGoogle: true});
+        component.setState({suggestions: ['a', 'b', 'c'].map(s => ({description: s}))});
+        expect(component.find('[data-hook="google-footer"]').exists()).toEqual(true);
+      });
+
+      it('should not show google footer if `state.suggestions.length === 0`', () => {
+        const component = createMount({Client: GmapsTestClient, poweredByGoogle: true});
+        component.setState({suggestions: []});
+        expect(component.find('[data-hook="google-footer"]').exists()).toEqual(false);
+      });
     });
 
-    it('should not show the powered by google footer', () => {
-      const component = createShallow({Client: GmapsTestClient});
-      expect(component.find('[data-hook="google-footer"]').exists()).toEqual(false);
+    describe('is falsy', () => {
+      it('should not show the powered by google footer', () => {
+        const component = createShallow({Client: GmapsTestClient});
+        expect(component.find('[data-hook="google-footer"]').exists()).toEqual(false);
+      });
     });
   });
 
