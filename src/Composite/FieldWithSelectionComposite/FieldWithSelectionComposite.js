@@ -15,6 +15,14 @@ class FieldWithSelectionComposite extends WixComponent {
       textInputFocused: false
     };
   }
+  getPrototypeDisplayName(selectionInput) {
+    const type = Object.getPrototypeOf(selectionInput.type);
+    return type && type.displayName;
+  }
+
+  getDisplayName(selectionInput) {
+    return selectionInput.type.displayName || this.getPrototypeDisplayName(selectionInput);
+  }
 
   _getTextInput() {
     return (this.props.children.length === 3) ? this.props.children[1] : this.props.children[0];
@@ -39,8 +47,9 @@ class FieldWithSelectionComposite extends WixComponent {
           <FieldLabelAttributes required={this.props.required} info={this.props.info} tooltip={this.props.tooltip}/> : null }</div>) : null;
     const textInput = this._getTextInput();
     const selectionInput = label ? children[2] : children[1];
-    const selectionInputType = selectionInput.type.name;
     const inputsWrapperClassNames = {[styles.inputs]: true};
+    const selectionInputType = this.getDisplayName(selectionInput);
+
     if (selectionInputType) {
       inputsWrapperClassNames[styles[selectionInputType.toLowerCase()]] = true;
     }
