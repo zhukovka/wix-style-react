@@ -36,6 +36,7 @@ import '../stories/ToggleSwitch';
 // require('../stories/Tooltip/Core');
 import '../stories/Tooltip_New/Core';
 import '../stories/Selector';
+import '../stories/ThemedButton';
 
 //TPA
 import '../stories/TPA/Button';

@@ -1,33 +1,23 @@
-import React, {Children} from 'react';
-import {any, oneOf, object} from 'prop-types';
-
-const supportedThemes = ['core', 'backoffice', 'deviantArt'];
+import React from 'react';
+import {any, object} from 'prop-types';
+import injectSheet, {ThemeProvider} from 'react-jss';
+import coreTheme from '../../themes/core';
+import defaultsDeep from 'lodash/defaultsDeep';
 
 export default class WixStyleProvider extends React.PureComponent {
   render() {
-    return Children.only(this.props.children);
-  }
-
-  getChildContext() {
-    return {
-      theme: this.props.theme,
-      wixTpaStyles: this.props.wixTpaStyles
-    };
+    const {children, theme} = this.props;
+    return <ThemeProvider theme={defaultsDeep(theme, coreTheme)}>{children}</ThemeProvider>;
   }
 }
 
 WixStyleProvider.propTypes = {
   children: any,
-  theme: oneOf(supportedThemes),
-  wixTpaStyles: object
+  theme: object
 };
 
 WixStyleProvider.defaultProps = {
-  theme: 'core',
-  wixTpaStyles: {}
+  theme: {}
 };
 
-WixStyleProvider.childContextTypes = {
-  theme: oneOf(supportedThemes),
-  wixTpaStyles: object
-};
+export const withStyles = (Component, styles) => injectSheet(styles)(Component);
