@@ -11,6 +11,14 @@ const Content = () => (
   <div>content</div>
 );
 
+const StickyPageRequiredChildrenError = 'Warning: Failed prop type: The prop `children` is marked as required in `StickyPage`, but its value is `undefined`.\n    in StickyPage';
+const StickyPageRequiredChildrenArrayError = 'Warning: Failed prop type: Invalid prop `children` of type `object` supplied to `StickyPage`, expected an array.\n    in StickyPage';
+const StickyPageFirstChildHeaderError = 'Warning: Failed prop type: StickyPage: Invalid Prop children, first child must be StickyPage.Header\n    in StickyPage';
+const StickyPageSecondChildContentError = 'Warning: Failed prop type: StickyPage: Invalid Prop children, second child must be StickyPage.Content\n    in StickyPage';
+const StickyPageFirstAndSecondChildError = 'Warning: Failed prop type: StickyPage: Invalid Prop children, first child must be StickyPage.Header, and second child must be StickyPage.Content\n    in StickyPage';
+const StickyPageHeaderChildrenError = 'Warning: Failed prop type: The prop `children` is marked as required in `StickyPage.Header`, but its value is `undefined`.\n    in StickyPage.Header';
+const StickyPageContentChildrenError = 'Warning: Failed prop type: The prop `children` is marked as required in `StickyPage.Content`, but its value is `undefined`.\n    in StickyPage.Content';
+
 describe('StickyPage', () => {
   const createDriver = createDriverFactory(stickyPageDriverFactory);
   const stickyPage = (
@@ -52,7 +60,7 @@ describe('StickyPage', () => {
         <StickyPage/>
       );
       createDriver(stickyPage);
-      expect(stub).toHaveBeenCalledWith('Warning: Failed prop type: The prop `children` is marked as required in `StickyPage`, but its value is `undefined`.\n    in StickyPage');
+      expect(stub).toHaveBeenCalledWith(StickyPageRequiredChildrenError);
     });
 
     it('should not initialize component with 1 bad child', () => {
@@ -63,7 +71,7 @@ describe('StickyPage', () => {
       );
 
       createDriver(stickyPage);
-      expect(stub).toHaveBeenCalledWith('Warning: Failed prop type: Invalid prop `children` of type `object` supplied to `StickyPage`, expected an array.\n    in StickyPage');
+      expect(stub).toHaveBeenCalledWith(StickyPageRequiredChildrenArrayError);
     });
 
     it('should not initialize component with 2 bad children', () => {
@@ -75,7 +83,7 @@ describe('StickyPage', () => {
       );
 
       createDriver(stickyPage);
-      expect(stub).toHaveBeenCalledWith('Warning: Failed prop type: StickyPage: Invalid Prop children, first child must be StickyPage.Header\n    in StickyPage');
+      expect(stub).toHaveBeenCalledWith(StickyPageFirstChildHeaderError);
     });
 
     it('should not initialize component with 3 bad children', () => {
@@ -88,7 +96,7 @@ describe('StickyPage', () => {
       );
 
       createDriver(stickyPage);
-      expect(stub).toHaveBeenCalledWith('Warning: Failed prop type: StickyPage: Invalid Prop children, first child must be StickyPage.Header, and second child must be StickyPage.Content\n    in StickyPage');
+      expect(stub).toHaveBeenCalledWith(StickyPageFirstAndSecondChildError);
     });
 
     it('should not initialize component with only Header', () => {
@@ -99,8 +107,8 @@ describe('StickyPage', () => {
       );
 
       createDriver(stickyPage);
-      expect(stub).toHaveBeenCalledWith('Warning: Failed prop type: Invalid prop `children` of type `object` supplied to `StickyPage`, expected an array.\n    in StickyPage');
-      expect(stub).toHaveBeenCalledWith('Warning: Failed prop type: The prop `children` is marked as required in `StickyPage.Header`, but its value is `undefined`.\n    in StickyPage.Header');
+      expect(stub).toHaveBeenCalledWith(StickyPageRequiredChildrenArrayError);
+      expect(stub).toHaveBeenCalledWith(StickyPageHeaderChildrenError);
     });
 
     it('should not initialize component with only Content', () => {
@@ -111,8 +119,8 @@ describe('StickyPage', () => {
       );
 
       createDriver(stickyPage);
-      expect(stub).toHaveBeenCalledWith('Warning: Failed prop type: Invalid prop `children` of type `object` supplied to `StickyPage`, expected an array.\n    in StickyPage');
-      expect(stub).toHaveBeenCalledWith('Warning: Failed prop type: The prop `children` is marked as required in `StickyPage.Content`, but its value is `undefined`.\n    in StickyPage.Content');
+      expect(stub).toHaveBeenCalledWith(StickyPageRequiredChildrenArrayError);
+      expect(stub).toHaveBeenCalledWith(StickyPageContentChildrenError);
     });
 
     it('should not initialize component with empty Header and bad Content ', () => {
@@ -124,8 +132,8 @@ describe('StickyPage', () => {
       );
 
       createDriver(stickyPage);
-      expect(stub).toHaveBeenCalledWith('Warning: Failed prop type: The prop `children` is marked as required in `StickyPage.Header`, but its value is `undefined`.\n    in StickyPage.Header');
-      expect(stub).toHaveBeenCalledWith('Warning: Failed prop type: StickyPage: Invalid Prop children, second child must be StickyPage.Content\n    in StickyPage');
+      expect(stub).toHaveBeenCalledWith(StickyPageHeaderChildrenError);
+      expect(stub).toHaveBeenCalledWith(StickyPageSecondChildContentError);
     });
 
     it('should not initialize component with empty Content and bad Header', () => {
@@ -137,8 +145,8 @@ describe('StickyPage', () => {
       );
 
       createDriver(stickyPage);
-      expect(stub).toHaveBeenCalledWith('Warning: Failed prop type: StickyPage: Invalid Prop children, first child must be StickyPage.Header\n    in StickyPage');
-      expect(stub).toHaveBeenCalledWith('Warning: Failed prop type: The prop `children` is marked as required in `StickyPage.Content`, but its value is `undefined`.\n    in StickyPage.Content');
+      expect(stub).toHaveBeenCalledWith(StickyPageFirstChildHeaderError);
+      expect(stub).toHaveBeenCalledWith(StickyPageContentChildrenError);
     });
 
     it('should not initialize component with valid Header but Content has no children', () => {
@@ -152,7 +160,7 @@ describe('StickyPage', () => {
       );
 
       createDriver(stickyPage);
-      expect(stub).toHaveBeenCalledWith('Warning: Failed prop type: The prop `children` is marked as required in `StickyPage.Content`, but its value is `undefined`.\n    in StickyPage.Content');
+      expect(stub).toHaveBeenCalledWith(StickyPageContentChildrenError);
     });
 
     it('should not initialize component with valid Content but Header has no children', () => {
@@ -166,7 +174,7 @@ describe('StickyPage', () => {
       );
 
       createDriver(stickyPage);
-      expect(stub).toHaveBeenCalledWith('Warning: Failed prop type: The prop `children` is marked as required in `StickyPage.Header`, but its value is `undefined`.\n    in StickyPage.Header');
+      expect(stub).toHaveBeenCalledWith(StickyPageHeaderChildrenError);
     });
   });
 });
