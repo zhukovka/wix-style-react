@@ -1,0 +1,17 @@
+@import '../../src/common';
+@import '../../src/Typography/Typography';
+
+.container {
+  height: 1000px;
+}
+
+.title {
+  @include FontThin();
+  color: $D10;
+  line-height: 48px;
+  font-size: 36px;
+  opacity: 1;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;  
+}

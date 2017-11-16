@@ -1,0 +1,34 @@
+@import '../../src/common';
+
+.sticky-page {
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+
+.static-background {
+    position: absolute;
+    width: 100%;
+    height: 84px;
+    background: rgba($D70,.95);
+    z-index: 1;
+}
+
+.sticky-header {
+    position: absolute;
+    width: 100%;
+    z-index: 1;
+    padding-top: 30px;
+    min-height: 30px;
+}
+
+.scrollable-content {
+    overflow: scroll;
+    width: 100%;
+    height: 100%;
+    position: relative;
+}
+
+.content-background {
+    background: rgba($D70,.95);
+}
