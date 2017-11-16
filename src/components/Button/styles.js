@@ -10,6 +10,9 @@ export default ({button}) => ({
     fontFamily: button.fontFamily,
     fontSize: button.fontSize,
     lineHeight: button.lineHeight,
+    fontStyle: button.fontStyle,
+    fontWeight: button.fontWeight,
+    textDecoration: button.textDecoration,
 
     boxSizing: 'border-box',
     '-webkit-font-smoothing': 'antialiased',

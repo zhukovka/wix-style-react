@@ -1,12 +1,8 @@
 import {pxDivide} from './utils';
 
 const pallete = {
-  disabled: '#cbd3dc', //D55
   mainColor: '#3899ec', //B10
-  mainHoverColor: '#4eb7f5', //B20
-  dangerColor: '#ee5951', //R10
-  dangerHoverColor: '#ff6666', //R20
-  white: '#ffffff' //D80
+  dangerColor: '#d8504c'//R05
 };
 
 const heightMap = {
@@ -34,39 +30,27 @@ const lineHeightMap = {
 };
 
 const skinToColorMap = {
-  fullblue: pallete.white,
-  fullred: pallete.white,
-  emptyblue: pallete.mainColor
+  fullblue: '#ffffff'
 };
 
 const skinToBackgroundMap = {
-  fullblue: pallete.mainColor,
-  fullred: pallete.dangerColor,
-  emptyblue: pallete.white
+  fullblue: pallete.mainColor
 };
 
 const skinToBorderColorMap = {
-  fullblue: pallete.mainColor,
-  fullred: pallete.dangerColor,
-  emptyblue: pallete.mainColor
+  fullblue: pallete.mainColor
 };
 
 const skinToHoverColorMap = {
-  fullblue: pallete.white,
-  fullred: pallete.white,
-  emptyblue: pallete.white
+  fullblue: '#ffffff'
 };
 
 const skinToHoverBackgroundMap = {
-  fullblue: pallete.mainHoverColor,
-  fullred: pallete.dangerHoverColor,
-  emptyblue: pallete.mainHoverColor
+  fullblue: pallete.mainHoverColor
 };
 
 const skinToHoverBorderColorMap = {
-  fullblue: pallete.mainHoverColor,
-  fullred: pallete.dangerHoverColor,
-  emptyblue: pallete.mainHoverColor
+  fullblue: pallete.mainHoverColor
 };
 
 export default {

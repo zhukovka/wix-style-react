@@ -14,9 +14,9 @@ class Button extends WixComponent {
     onMouseEnter: func,
     onMouseLeave: func,
     disabled: bool,
-    height: oneOf(['small', 'medium', 'large']),
+    height: oneOf(['small', 'medium', 'large', 'x-large']),
     classes: object,
-    skin: oneOf(['fullblue', 'emptyblue'])
+    skin: oneOf(['fullblue', 'emptyblue', 'fullred'])
   }
 
   static defaultProps = {
