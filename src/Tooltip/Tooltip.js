@@ -279,21 +279,15 @@ class Tooltip extends WixComponent {
           }
           this._showTimeout = null;
 
-          this.componentDidUpdate();
           let fw = 0;
           let sw = 0;
-
-          this._showInterval = setInterval(() => {
-            if (this.tooltipContent !== undefined && this.tooltipContent !== null) {
-              clearInterval(this._showInterval);
-              do {
-                const tooltipNode = ReactDOM.findDOMNode(this.tooltipContent);
-                fw = this._getRect(tooltipNode).width;
-                this._updatePosition(this.tooltipContent);
-                sw = this._getRect(tooltipNode).width;
-              } while (!this.props.appendToParent && fw !== sw);
-            }
-          }, 1);
+          do {
+            this.componentDidUpdate();
+            const tooltipNode = ReactDOM.findDOMNode(this.tooltipContent);
+            fw = this._getRect(tooltipNode).width;
+            this._updatePosition(this.tooltipContent);
+            sw = this._getRect(tooltipNode).width;
+          } while (!this.props.appendToParent && fw !== sw);
         });
       }, this.props.showDelay);
     }
