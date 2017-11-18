@@ -2,6 +2,16 @@
 
 All notable changes to this projet will be documented in this file.
 
+## 1.1.4525 - 2017-11-18
+### Added
+- themes: progressed with themes poc
+
+### Fixed
+- `<GoogleAddressInput>` - pixelated google credit picture in the footer.
+(https://github.com/wix/wix-style-react/pull/1128)
+
+- `<Tooltip>` - Popover jumping problem(https://github.com/wix/wix-style-react/pull/1137)
+
 ## 1.1.4524 - 2017-11-14
 ### Added
 - `<ToogleSwitch/>` - Added support for colors, in order to add component to Wix Viewer (https://github.com/wix/wix-style-react/commit/aa4df9ceb95bd3786f812cb44831f027dbcdb2a4)
