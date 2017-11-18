@@ -1,8 +1,14 @@
 import {pxDivide} from './utils';
 
 const pallete = {
-  mainColor: '#3899ec', //B10
-  dangerColor: '#d8504c'//R05
+  main: '#3899ec', //B10
+  mainHover: '#4eb7f5', //B20
+  dividers: '#eaf7ff', //B50
+  danger: '#d8504c', //R05
+  dangerHover: '#ee5951', //R10
+  white: '#ffffff', //D80
+  attention: '#fb7d33',
+  attentionHover: '#ff9a48'
 };
 
 const heightMap = {
@@ -30,52 +36,60 @@ const lineHeightMap = {
 };
 
 const skinToColorMap = {
-  fullblue: '#ffffff'
+  standard: pallete.white,
+  danger: pallete.white,
+  attention: pallete.white
 };
 
 const skinToBackgroundMap = {
-  fullblue: pallete.mainColor
+  standard: pallete.main,
+  danger: pallete.danger,
+  attention: pallete.attention
 };
 
 const skinToBorderColorMap = {
-  fullblue: pallete.mainColor
+  standard: pallete.main,
+  danger: pallete.danger,
+  attention: pallete.attention
 };
 
 const skinToHoverColorMap = {
-  fullblue: '#ffffff'
+  standard: pallete.white,
+  danger: pallete.white,
+  attention: pallete.white
 };
 
 const skinToHoverBackgroundMap = {
-  fullblue: pallete.mainHoverColor
+  standard: pallete.mainHover,
+  danger: pallete.dangerHover,
+  attention: pallete.attentionHover
 };
 
 const skinToHoverBorderColorMap = {
-  fullblue: pallete.mainHoverColor
+  standard: pallete.mainHover,
+  danger: pallete.dangerHover,
+  attention: pallete.attentionHover
+};
+
+export const button = {
+  fontSize: ({height}) => fontSizeMap[height],
+  lineHeight: ({height}) => lineHeightMap[height],
+
+  height: ({height}) => heightMap[height],
+  padding: ({height}) => paddingMap[height],
+  borderRadius: ({height}) => pxDivide(heightMap[height], 2),
+
+  color: ({skin}) => skinToColorMap[skin],
+  backgroundColor: ({skin}) => skinToBackgroundMap[skin],
+  borderColor: ({skin}) => skinToBorderColorMap[skin],
+
+  hover: {
+    color: ({skin}) => skinToHoverColorMap[skin],
+    backgroundColor: ({skin}) => skinToHoverBackgroundMap[skin],
+    borderColor: ({skin}) => skinToHoverBorderColorMap[skin]
+  }
 };
 
 export default {
-  button: {
-    fontSize: ({height}) => fontSizeMap[height],
-    lineHeight: ({height}) => lineHeightMap[height],
-
-    height: ({height}) => heightMap[height],
-    padding: ({height}) => paddingMap[height],
-    borderRadius: ({height}) => pxDivide(heightMap[height], 2),
-
-    color: ({skin}) => skinToColorMap[skin],
-    backgroundColor: ({skin}) => skinToBackgroundMap[skin],
-    borderColor: ({skin}) => skinToBorderColorMap[skin],
-
-    hover: {
-      color: ({skin}) => skinToHoverColorMap[skin],
-      backgroundColor: ({skin}) => skinToHoverBackgroundMap[skin],
-      borderColor: ({skin}) => skinToHoverBorderColorMap[skin]
-    },
-
-    disabled: {
-      color: 'black',
-      backgroundColor: pallete.disabled,
-      borderColor: pallete.disabled
-    }
-  }
+  button
 };

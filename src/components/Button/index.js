@@ -16,13 +16,17 @@ class Button extends WixComponent {
     disabled: bool,
     height: oneOf(['small', 'medium', 'large', 'x-large']),
     classes: object,
-    skin: oneOf(['fullblue', 'emptyblue', 'fullred'])
+    skin: oneOf(['standard', 'emptyStandard', 'danger', 'attention'])
   }
 
   static defaultProps = {
     height: 'medium',
-    skin: 'fullblue'
+    skin: 'standard'
   }
+
+  static Prefix = Prefix;
+  static Suffix = Suffix;
+  static displayName = 'Button';
 
   render() {
     const {disabled, onClick, children, type, onMouseEnter, onMouseLeave, classes} = this.props;
@@ -41,10 +45,5 @@ class Button extends WixComponent {
     );
   }
 }
-
-Button.displayName = 'Button';
-
-Button.Prefix = Prefix;
-Button.Suffix = Suffix;
 
 export default withStyles(Button, styles);

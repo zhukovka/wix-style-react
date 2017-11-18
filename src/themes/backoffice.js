@@ -1,11 +1,14 @@
 import {pxDivide} from './utils';
 
 const pallete = {
+  main: '#3899ec', //B10
+  mainHover: '#4eb7f5', //B20
+  notifications: '#c1e4fe', //B30
+  dividers: '#eaf7ff', //B50
+  danger: '#ee5951', //R10
+  dangerHover: '#ff6666', //R20
+  mainInputText: '#162d3d',
   disabled: '#cbd3dc', //D55
-  mainColor: '#3899ec', //B10
-  mainHoverColor: '#4eb7f5', //B20
-  dangerColor: '#ee5951', //R10
-  dangerHoverColor: '#ff6666', //R20
   white: '#ffffff' //D80
 };
 
@@ -34,64 +37,86 @@ const lineHeightMap = {
 };
 
 const skinToColorMap = {
-  fullblue: pallete.white,
-  fullred: pallete.white,
-  emptyblue: pallete.mainColor
+  standard: pallete.white,
+  danger: pallete.white,
+  emptyStandard: pallete.main
 };
 
 const skinToBackgroundMap = {
-  fullblue: pallete.mainColor,
-  fullred: pallete.dangerColor,
-  emptyblue: pallete.white
+  standard: pallete.main,
+  danger: pallete.danger,
+  emptyStandard: pallete.white
 };
 
 const skinToBorderColorMap = {
-  fullblue: pallete.mainColor,
-  fullred: pallete.dangerColor,
-  emptyblue: pallete.mainColor
+  standard: pallete.main,
+  danger: pallete.danger,
+  emptyStandard: pallete.main
 };
 
 const skinToHoverColorMap = {
-  fullblue: pallete.white,
-  fullred: pallete.white,
-  emptyblue: pallete.white
+  standard: pallete.white,
+  danger: pallete.white,
+  emptyStandard: pallete.white
 };
 
 const skinToHoverBackgroundMap = {
-  fullblue: pallete.mainHoverColor,
-  fullred: pallete.dangerHoverColor,
-  emptyblue: pallete.mainHoverColor
+  standard: pallete.mainHover,
+  danger: pallete.dangerHover,
+  emptyStandard: pallete.mainHover
 };
 
 const skinToHoverBorderColorMap = {
-  fullblue: pallete.mainHoverColor,
-  fullred: pallete.dangerHoverColor,
-  emptyblue: pallete.mainHoverColor
+  standard: pallete.mainHover,
+  danger: pallete.dangerHover,
+  emptyStandard: pallete.mainHover
+};
+
+export const button = {
+  fontSize: ({height}) => fontSizeMap[height],
+  lineHeight: ({height}) => lineHeightMap[height],
+
+  height: ({height}) => heightMap[height],
+  padding: ({height}) => paddingMap[height],
+  borderRadius: ({height}) => pxDivide(heightMap[height], 2),
+
+  color: ({skin}) => skinToColorMap[skin],
+  backgroundColor: ({skin}) => skinToBackgroundMap[skin],
+  borderColor: ({skin}) => skinToBorderColorMap[skin],
+
+  hover: {
+    color: ({skin}) => skinToHoverColorMap[skin],
+    backgroundColor: ({skin}) => skinToHoverBackgroundMap[skin],
+    borderColor: ({skin}) => skinToHoverBorderColorMap[skin]
+  },
+
+  disabled: {
+    color: 'black',
+    backgroundColor: pallete.disabled,
+    borderColor: pallete.disabled
+  }
+};
+
+export const input = {
+  color: pallete.mainInputText,
+  borderColor: pallete.notifications,
+  backgroundColor: pallete.white,
+  borderRadius: ({roundInput}) => roundInput ? '18px' : '6px',
+  fontSize: '16px',
+  padding: '0 12px',
+  height: '30px',
+
+  hover: {
+    backgroundColor: pallete.dividers
+  },
+
+  focus: {
+    boxShadow: 'none',
+    borderColor: pallete.mainHover
+  }
 };
 
 export default {
-  button: {
-    fontSize: ({height}) => fontSizeMap[height],
-    lineHeight: ({height}) => lineHeightMap[height],
-
-    height: ({height}) => heightMap[height],
-    padding: ({height}) => paddingMap[height],
-    borderRadius: ({height}) => pxDivide(heightMap[height], 2),
-
-    color: ({skin}) => skinToColorMap[skin],
-    backgroundColor: ({skin}) => skinToBackgroundMap[skin],
-    borderColor: ({skin}) => skinToBorderColorMap[skin],
-
-    hover: {
-      color: ({skin}) => skinToHoverColorMap[skin],
-      backgroundColor: ({skin}) => skinToHoverBackgroundMap[skin],
-      borderColor: ({skin}) => skinToHoverBorderColorMap[skin]
-    },
-
-    disabled: {
-      color: 'black',
-      backgroundColor: pallete.disabled,
-      borderColor: pallete.disabled
-    }
-  }
+  button,
+  input
 };
