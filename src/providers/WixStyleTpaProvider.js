@@ -9,7 +9,7 @@ export default class WixStyleTpaProvider extends React.Component {
     this.update = this.update.bind(this);
     this.state = {
       theme: props.themeCreator(),
-      events: props.events.filter(event => Wix.Events.indexOf(event) !== -1)
+      events: props.events.filter(event => Wix.Events[event] !== undefined)
     };
   }
 
