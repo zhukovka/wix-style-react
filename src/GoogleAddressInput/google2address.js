@@ -1,11 +1,28 @@
 /*eslint camelcase: off*/
 import isUndefined from 'lodash/isUndefined';
+
 export const includes = (arr, value) => {
   return Boolean(arr && arr.find(item => item === value)); // we compare only primitives
 };
 
 const locationFuncOrValue = locationProp => {
   return typeof locationProp === 'function' ? locationProp() : locationProp;
+};
+
+const getFormattedStreetAddress = address => {
+  try {
+    if (!address || !document) {
+      return undefined;
+    }
+
+    const wrapperElement = document.createElement('div');
+    wrapperElement.innerHTML = address;
+
+    const addressElement = wrapperElement.querySelector('.street-address');
+    return addressElement ? addressElement.textContent : undefined;
+  } catch (e) {
+    return undefined;
+  }
 };
 
 export function google2address(google) {
@@ -21,6 +38,7 @@ export function google2address(google) {
 
   const result = {
     formatted: google.formatted_address,
+    formattedStreetAddress: getFormattedStreetAddress(google.adr_address),
     latLng: {
       lat: locationFuncOrValue(lat),
       lng: locationFuncOrValue(lng)

@@ -3,6 +3,7 @@ import {componentFactory} from './GoogleAddressInput.driver';
 import _ from 'lodash/fp';
 import sinon from 'sinon';
 import waitFor from 'wait-for-cond';
+import {GoogleAddressInputHandler} from './GoogleAddressInput';
 
 const GEOCODE_RESULT = JSON.parse('{"formatted_address":"_formatted_address_","address_components":[{"types":["street_number"],"long_name":123}]}');
 GEOCODE_RESULT.geometry = {
@@ -49,6 +50,16 @@ export class GmapsTestClient {
       );
     }
     throw new Error('geocode() request params are malformed');
+  }
+
+  placeDetails({request}) {
+    const {placeId} = request;
+    if (placeId) {
+      return Promise.resolve(
+        [_.extend({}, GEOCODE_RESULT, {__called__: JSON.stringify(request)})]
+      );
+    }
+    throw new Error('placeDetails() request params are malformed');
   }
 }
 
@@ -160,11 +171,30 @@ describe('GoogleAddressInput', () => {
       });
     });
 
-    it('If user pressed <enter> with a suggested value, geocode the suggested value, and call the onSet callback', done => {
+    it('If user pressed <enter> with a suggested value, geocode the suggested value, and call the onSet callback  (with geocode handler)', done => {
 
       const onSet = sinon.spy();
 
       const component = createShallow({Client: GmapsTestClient, countryCode: 'XX', onSet});
+      component.setState({suggestions: [JSON.parse('{"description": "my address", "place_id": 123}')]});
+      component.find('InputWithOptions').props().onSelect({id: 0, value: 'my address'});
+
+      // Defer to make sure all promises run
+      _.defer(() => {
+        try {
+          expect(onSet.args[0][0]).toEqual(buildResult('my address'));
+          done();
+        } catch (e) {
+          done.fail(e);
+        }
+      });
+    });
+
+    it('If user pressed <enter> with a suggested value, geocode the suggested value, and call the onSet callback (with places handler)', done => {
+
+      const onSet = sinon.spy();
+
+      const component = createShallow({Client: GmapsTestClient, countryCode: 'XX', onSet, handler: GoogleAddressInputHandler.places});
       component.setState({suggestions: [JSON.parse('{"description": "my address", "place_id": 123}')]});
       component.find('InputWithOptions').props().onSelect({id: 0, value: 'my address'});
 

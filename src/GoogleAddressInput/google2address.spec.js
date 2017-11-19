@@ -13,11 +13,12 @@ describe('google 2 address', () => {
     }
   });
 
-  const aGoogleResponse = ({components, formatted, geometry, types}) => ({
+  const aGoogleResponse = ({components, formatted, geometry, types, adr_address}) => ({
     geometry: geometry || aGeometry(1, 2),
     address_components: components || [],
     formatted_address: formatted || '',
-    types: types || []
+    types: types || [],
+    adr_address
   });
 
   it('should set state according to administrative_area_level_1', () => {
@@ -130,5 +131,10 @@ describe('google 2 address', () => {
       },
       formatted: ''
     });
+  });
+
+  it('should extract the formatted street address if available', () => {
+    const address = '<span class="street-address">Ha-Namal St 40</span>, <span class="locality">Tel Aviv</span>, <span class="country-name">Israel</span>';
+    expect(google2address(aGoogleResponse({adr_address: address})).formattedStreetAddress).toEqual('Ha-Namal St 40');
   });
 });

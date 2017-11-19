@@ -1,25 +1,32 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import castArray from 'lodash/castArray';
 
 import Input from '../Input';
 import InputWithOptions from '../InputWithOptions';
 import {google2address, includes} from './google2address';
 import styles from './GoogleAddressInput.scss';
 
+export const GoogleAddressInputHandler = {
+  geocode: 'geocode',
+  places: 'places'
+};
+
 /**
   * Address input box (using Google Maps)
   */
 class GoogleAddressInput extends React.Component {
-  constructor(params) {
-    super(params);
+  constructor(props) {
+    super(props);
 
     this.state = {
       suggestions: [],
-      value: params.value || ''
+      value: props.value || ''
     };
 
     this.autoCompleteRequestId = 0;
     this.geocodeRequestId = 0;
+    this.client = new props.Client();
 
     this.onChange = this.onChange.bind(this);
     this.onBlur = this.onBlur.bind(this);
@@ -122,27 +129,41 @@ class GoogleAddressInput extends React.Component {
 
   onSet(value) {
     const {
-      Client,
-      countryCode
+      countryCode,
+      handler
     } = this.props;
 
     const suggestion = this.state.suggestions.find(s => s.description === value);
 
     this.setState({suggestions: [], value: this.props.value || value});
 
-    const request = {
-      region: countryCode,
-      [suggestion ? 'placeId' : 'address']: suggestion ? suggestion.place_id : value
-    };
-
     const requestId = ++this.geocodeRequestId;
-    (new Client()).geocode({request}).then(results => {
+    let handlerCall;
+
+    if (handler === GoogleAddressInputHandler.places && suggestion && suggestion.place_id) {
+      handlerCall = this.client.placeDetails({
+        request: {
+          placeId: suggestion.place_id
+        }
+      });
+    } else {
+      handlerCall = this.client.geocode({
+        request: {
+          region: countryCode,
+          [suggestion ? 'placeId' : 'address']: suggestion ? suggestion.place_id : value
+        }
+      });
+    }
+
+    handlerCall.then(results => {
+      results = castArray(results).filter(Boolean);
+
       if (requestId !== this.geocodeRequestId) {
         return;
       }
 
       if (results.length === 0) {
-        console.error('[GoogleAddressInput] Geocode returned no results on', value);
+        console.error(`[GoogleAddressInput] handler (${handler}) returned no results on`, value);
         this.props.onSet && this.props.onSet(null);
         // This shouldn't happen since we're running geocode on exactly the same
         // value returned by suggestions list
@@ -158,7 +179,7 @@ class GoogleAddressInput extends React.Component {
       this.props.onSet && this.props.onSet(result);
 
     }).catch(e => {
-      console.error('[GoogleAddressInput] Geocode failed on', value, e.message);
+      console.error(`[GoogleAddressInput] handler (${handler}) failed on`, value, e.message);
       this.props.onSet && this.props.onSet(null);
     });
   }
@@ -191,8 +212,7 @@ class GoogleAddressInput extends React.Component {
       valuePrefix = '',
       countryCode,
       types,
-      filterTypes,
-      Client
+      filterTypes
     } = this.props;
 
     const requestId = ++this.autoCompleteRequestId;
@@ -214,7 +234,7 @@ class GoogleAddressInput extends React.Component {
 
       const request = {types, components: 'country:' + countryCode, input: valuePrefix + value};
 
-      return (new Client()).autocomplete({request});
+      return this.client.autocomplete({request});
     }).then(results => {
       if (results.length === 0) {
         return Promise.resolve([]);
@@ -242,7 +262,8 @@ GoogleAddressInput.defaultProps = {
   footerOptions: {},
   clearSuggestionsOnBlur: true,
   fallbackToManual: false,
-  poweredByGoogle: false
+  poweredByGoogle: false,
+  handler: GoogleAddressInputHandler.geocode
 };
 
 GoogleAddressInput.propTypes = {
@@ -298,7 +319,13 @@ GoogleAddressInput.propTypes = {
   fallbackToManual: PropTypes.bool,
 
   /** Shows the Powered By Google credit in a fixed footer */
-  poweredByGoogle: PropTypes.bool
+  poweredByGoogle: PropTypes.bool,
+
+  /** Sets how to get more details for a place (e.g. geocode, places, etc) */
+  handler: PropTypes.oneOf([
+    GoogleAddressInputHandler.geocode,
+    GoogleAddressInputHandler.places
+  ])
 };
 
 export default GoogleAddressInput;
