@@ -5,3 +5,11 @@
 .prefix {
     padding: 0 10px 0 0;
 }
+
+:global(.rtl) .prefix {
+    padding: 0 0 0 10px;
+}
+
+:global(.rtl) .suffix {
+    padding: 0 10px 0 0;
+}
