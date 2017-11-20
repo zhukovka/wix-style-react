@@ -6,17 +6,17 @@ All notable changes to this projet will be documented in this file.
 ### Added
 - `<StickyPage>` - additional e2e tests
 
-- `<GoogleAddressInput>` - Allow fetching address data via Places API (https://github.com/wix/wix-style-react/pull/1141)
+- `<GoogleAddressInput>` - Allow fetching address data via Places API [1141](https://github.com/wix/wix-style-react/pull/1141)
 ### Fixed
 - TpaThemeProvider - small bug (https://github.com/wix/wix-style-react/commit/d66bf2107f1376c5034ef835303da20716df7e82)
 
-- `<Button>` - Fixed incorrect padding in RTL (https://github.com/wix/wix-style-react/pull/1142)
+- `<Button>` - Fixed incorrect padding in RTL [1142](https://github.com/wix/wix-style-react/pull/1142)
 
-- `<DropdownLayout>` - Use lodash findIndex instead of native (for IE support)(https://github.com/wix/wix-style-react/pull/1143)
+- `<DropdownLayout>` - Use lodash findIndex instead of native (for IE support)[1143](https://github.com/wix/wix-style-react/pull/1143)
 
-- `<DropdownLayout>`, `<GoogleAddressInput>`, `<MultiSelect>` - Added a selectedHightlight prop to DropdownLayout, meaning after selecting an option if it should highlight it when dropdown is reopened (https://github.com/wix/wix-style-react/pull/1136)
+- `<DropdownLayout>`, `<GoogleAddressInput>`, `<MultiSelect>` - Added a selectedHightlight prop to DropdownLayout, meaning after selecting an option if it should highlight it when dropdown is reopened [1136](https://github.com/wix/wix-style-react/pull/1136)
 
-- `<DropdownLayout>` - mouseClickOutside method was fixed(https://github.com/wix/wix-style-react/pull/1147)
+- `<DropdownLayout>` - mouseClickOutside method was fixed [1147](https://github.com/wix/wix-style-react/pull/1147)
 
 
 ## 1.1.4525 - 2017-11-18
