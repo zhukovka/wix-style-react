@@ -2,6 +2,11 @@
 
 All notable changes to this projet will be documented in this file.
 
+## 1.1.4527 - 2017-11-20
+### Changed
+- Themes implementation without provider 
+[1151](https://github.com/wix/wix-style-react/pull/1151)
+
 ## 1.1.4526 - 2017-11-20
 ### Added
 - `<StickyPage>` - additional e2e tests
