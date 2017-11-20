@@ -4,7 +4,26 @@ All notable changes to this projet will be documented in this file.
 
 ## 1.1.4525 - 2017-11-18
 ### Added
+- `<StickyPage>` - additional e2e tests
+
+- `<GoogleAddressInput>` - Allow fetching address data via Places API (https://github.com/wix/wix-style-react/pull/1141)
+### Fixed
+- TpaThemeProvider - small bug (https://github.com/wix/wix-style-react/commit/d66bf2107f1376c5034ef835303da20716df7e82)
+
+- `<Button>` - Fixed incorrect padding in RTL (https://github.com/wix/wix-style-react/pull/1142)
+
+- `<DropdownLayout>` - Use lodash findIndex instead of native (for IE support)(https://github.com/wix/wix-style-react/pull/1143)
+
+- `<DropdownLayout>`, `<GoogleAddressInput>`, `<MultiSelect>` - Added a selectedHightlight prop to DropdownLayout, meaning after selecting an option if it should highlight it when dropdown is reopened (https://github.com/wix/wix-style-react/pull/1136)
+
+- `<DropdownLayout>` - mouseClickOutside method was fixed(https://github.com/wix/wix-style-react/pull/1147)
+
+
+## 1.1.4525 - 2017-11-18
+### Added
 - themes: progressed with themes poc
+
+- `<StickyPage>` - new component (https://github.com/wix/wix-style-react/pull/1127)
 
 ### Fixed
 - `<GoogleAddressInput>` - pixelated google credit picture in the footer.
