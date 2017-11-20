@@ -22,6 +22,7 @@
 | closeOnSelect | bool | true | - | Will preventDefault of the event when pressing the tab key|
 | onMouseEnter | func | - | - | Callback function called whenever the user entered with the mouse to the dropdown layout|
 | onMouseLeave | func | - | - | Callback function called whenever the user exited with the mouse from the dropdown layout|
+| selectedHighlight | bool | true | - | Whether the selected option will be highlighted when dropdown reopened|
 
 ## Option
 

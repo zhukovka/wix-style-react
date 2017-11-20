@@ -97,6 +97,11 @@ describe('GoogleAddressInput', () => {
         disabled: true
       }]);
     });
+
+    it('should not highlight selected option by default', () => {
+      const component = createShallow({Client: GmapsTestClient});
+      expect(component.find('InputWithOptions').props().selectedHighlight).toEqual(false);
+    });
   });
 
   describe('when `props.poweredByGoogle`', () => {

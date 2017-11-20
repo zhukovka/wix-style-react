@@ -79,6 +79,7 @@ class GoogleAddressInput extends React.Component {
           value={value}
           options={options}
           fixedFooter={(suggestions.length && this.props.poweredByGoogle) ? GoogleAddressInput.getGoogleFooter() : null}
+          selectedHighlight={false}
           />
       </div>
     );

@@ -25,6 +25,7 @@
 | optionAt | number | element | get the option at index <number> |
 | clickAtOption | number | - | simulate click on option at index <number> |
 | clickAtOptionWithValue | string | - | press esc key on the input element |
+| isSelectedHighlight | - | boolean | returns selectedHighlight value |
 | isOptionADivider | number | boolean | true if option at index <number> is a divider |
 | isOptionHeightSmall | number | boolean | true if option at index <number> has small height |
 | isOptionHeightBig | number | boolean | true if option at index <number> has big height |

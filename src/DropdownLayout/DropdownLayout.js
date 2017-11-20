@@ -46,7 +46,10 @@ class DropdownLayout extends WixComponent {
 
   _onSelect(index) {
     const {options, onSelect, selectedId} = this.props;
-    this.setState({selectedId: options[index] ? options[index].id : undefined});
+    this.setState({
+      selectedId: options[index] ? options[index].id : undefined,
+      hovered: NOT_HOVERED_INDEX
+    });
     options[index] && onSelect && onSelect(options[index], options[index].id === selectedId);
     return !!onSelect && options[index];
   }
@@ -194,11 +197,11 @@ class DropdownLayout extends WixComponent {
   }
 
   renderItem({option, idx, selected, hovered, disabled, title, overrideStyle, dataHook}) {
-    const {itemHeight} = this.props;
+    const {itemHeight, selectedHighlight} = this.props;
 
     const optionClassName = classNames({
       [styles.option]: !overrideStyle,
-      [styles.selected]: selected && !overrideStyle,
+      [styles.selected]: selected && !overrideStyle && selectedHighlight,
       wixstylereactSelected: selected && overrideStyle, //global class for items that use the overrideStyle
       [styles.hovered]: hovered && !overrideStyle,
       wixstylereactHovered: hovered && overrideStyle, //global class for items that use the overrideStyle
@@ -294,7 +297,8 @@ DropdownLayout.propTypes = {
   closeOnSelect: PropTypes.bool,
   onMouseEnter: PropTypes.func,
   onMouseLeave: PropTypes.func,
-  itemHeight: PropTypes.oneOf(['small', 'big'])
+  itemHeight: PropTypes.oneOf(['small', 'big']),
+  selectedHighlight: PropTypes.bool
 };
 
 DropdownLayout.defaultProps = {
@@ -303,7 +307,8 @@ DropdownLayout.defaultProps = {
   selectedId: NOT_HOVERED_INDEX,
   maxHeightPixels: 260,
   closeOnSelect: true,
-  itemHeight: 'small'
+  itemHeight: 'small',
+  selectedHighlight: true
 };
 
 DropdownLayout.NONE_SELECTED_ID = NOT_HOVERED_INDEX;

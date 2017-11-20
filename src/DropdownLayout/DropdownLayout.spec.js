@@ -258,6 +258,27 @@ describe('DropdownLayout', () => {
     });
   });
 
+  describe('selectedHighlight prop', () => {
+    const selectedId = 0;
+
+    it('should be true by default', () => {
+      const driver = createDriver(<DropdownLayout visible options={options}/>);
+      expect(driver.isSelectedHighlight()).toBe(true);
+    });
+    describe('when true', () => {
+      it('should give the option a selected classname', () => {
+        const driver = createDriver(<DropdownLayout selectedHighlight visible options={options} selectedId={selectedId}/>);
+        expect(driver.isOptionSelected(0)).toBeTruthy();
+      });
+    });
+    describe('when false', () => {
+      it('should not give the option a selected classname', () => {
+        const driver = createDriver(<DropdownLayout selectedHighlight={false} visible options={options} selectedId={selectedId}/>);
+        expect(driver.isOptionSelected(0)).toBeFalsy();
+      });
+    });
+  });
+
   describe('options that are links', () => {
     it('should not be link by default', () => {
       const driver = createDriver(<DropdownLayout visible options={options}/>);

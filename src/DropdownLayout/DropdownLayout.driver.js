@@ -58,6 +58,7 @@ const dropdownLayoutDriverFactory = ({element, wrapper, component}) => {
       ReactDOM.render(<div ref={r => element = r}>{ClonedWithProps}</div>, wrapper);
     },
     hasTopArrow: () => !!element.querySelector(`.${styles.arrow}`),
+    isSelectedHighlight: () => component.props.selectedHighlight,
     optionById(optionId) {
       return this.optionByHook(`dropdown-item-${optionId}`);
     },
