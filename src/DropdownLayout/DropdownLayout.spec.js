@@ -36,6 +36,22 @@ describe('DropdownLayout', () => {
     expect(driver.isDown()).toBeTruthy();
   });
 
+  it('should hide dropdown on outside click', () => {
+    const driver = createDriver(
+      <DropdownLayout
+        onClickOutside={() => driver.setProps({visible: false})}
+        visible
+        options={options}
+        />
+    );
+
+    expect(driver.isShown()).toBeTruthy();
+
+    driver.mouseClickOutside();
+
+    expect(driver.isShown()).toBeFalsy();
+  });
+
   it('should have a default tab index', () => {
     const driver = createDriver(<DropdownLayout visible options={options}/>);
     expect(driver.tabIndex()).toBe(0);
