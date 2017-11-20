@@ -2,7 +2,7 @@
 
 All notable changes to this projet will be documented in this file.
 
-## 1.1.4525 - 2017-11-18
+## 1.1.4526 - 2017-11-20
 ### Added
 - `<StickyPage>` - additional e2e tests
 
