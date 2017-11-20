@@ -5,6 +5,7 @@ import classNames from 'classnames';
 import WixComponent from '../BaseComponents/WixComponent';
 import isEqual from 'deep-eql';
 import trim from 'lodash/trim';
+import findIndex from 'lodash/findIndex';
 
 const modulu = (n, m) => {
   const remain = n % m;
@@ -233,11 +234,11 @@ class DropdownLayout extends WixComponent {
 
   componentWillReceiveProps(nextProps) {
     if (this.props.visible !== nextProps.visible) {
+      let hoverIndex;
       if (nextProps.visible) {
-        this.setState({hovered: this.props.options.findIndex(item => item.id === this.state.selectedId) || NOT_HOVERED_INDEX});
-      } else {
-        this.setState({hovered: NOT_HOVERED_INDEX});
+        hoverIndex = findIndex(this.props.options, item => item.id === this.state.selectedId);
       }
+      this.setState({hovered: hoverIndex || NOT_HOVERED_INDEX});
     }
 
     if (this.props.selectedId !== nextProps.selectedId) {
@@ -251,7 +252,7 @@ class DropdownLayout extends WixComponent {
 
       if (this.state.hovered !== NOT_HOVERED_INDEX) {
         this.setState({
-          hovered: nextProps.options.findIndex(item => item.id === this.props.options[this.state.hovered].id)
+          hovered: findIndex(nextProps.options, item => item.id === this.props.options[this.state.hovered].id)
         });
       }
     }
