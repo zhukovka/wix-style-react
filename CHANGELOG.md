@@ -1,6 +1,17 @@
 # Changelog
 
-All notable changes to this projet will be documented in this file.
+All notable changes are documented in this file.
+
+## 1.1.4258 - 2017-11-21
+### Added
+- `<StickyPage>` component and friends https://github.com/wix/wix-style-react/pull/1145
+
+### Changed
+- `<AutoExample>` e2e approach https://github.com/wix/wix-style-react/pull/1148
+
+### Fixed
+- `<DataTable>` - missing separators in data table https://github.com/wix/wix-style-react/pull/1153
+- `<GoogleAddressInput>` remove undefined properties from result https://github.com/wix/wix-style-react/pull/1154
 
 ## 1.1.4527 - 2017-11-20
 ### Changed
