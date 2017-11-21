@@ -163,6 +163,26 @@ describe('Table', () => {
     });
   });
 
+  describe('animatedDataRow class', () => {
+    it('should not assign the class to rows by default', () => {
+      const props = {...defaultProps};
+
+      const driver = createDriver(<DataTable {...props}/>);
+
+      expect(driver.isRowAnimated(0)).toBe(false);
+    });
+
+    it('should assign the class to rows when rowDetails prop is provided', () => {
+      const props = {
+        ...defaultProps,
+        rowDetails: row => <span>{row.a}</span>
+      };
+
+      const driver = createDriver(<DataTable {...props}/>);
+      expect(driver.isRowAnimated(0)).toBe(true);
+    });
+  });
+
   describe('Row event handlers', () => {
     const tests = [
       {handler: 'onRowClick', driverMethod: 'clickRow'},
@@ -214,16 +234,6 @@ describe('Table', () => {
         }, animationSpeed);
         resolve();
       });
-    });
-
-    it('should assign the class to rows when rowDetails prop is provided', () => {
-      const props = {
-        ...defaultProps,
-        rowDetails: jest.fn()
-      };
-
-      const driver = createDriver(<DataTable {...props}/>);
-      expect(driver.isRowClickable(0)).toBe(true);
     });
 
     it('should have correct row count when row details enabled', () => {

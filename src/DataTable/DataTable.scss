@@ -40,16 +40,7 @@
 }
 
 .clickableDataRow {
-  td {
-    border-bottom: none medium;
-  }
   cursor: pointer;
-
-  &:nth-last-child(2) {
-    td {
-      border-bottom: 1px solid $D70;
-    }
-  }
 }
 
 .sortArrowAsc,
@@ -68,4 +59,18 @@
     border-top: 1px solid $D70;
   }
 
+}
+
+.animatedDataRow {
+  td {
+    border-bottom: none medium;
+  }
+  
+  cursor: pointer;
+
+  &:nth-last-child(2) {
+    td {
+      border-bottom: 1px solid $D70;
+    }
+  }
 }
