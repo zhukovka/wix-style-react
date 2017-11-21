@@ -56,7 +56,7 @@ export function google2address(google) {
 
   for (const key in result) {
     if (isUndefined(result[key])) {
-      delete result.key;
+      delete result[key];
     }
   }
 
