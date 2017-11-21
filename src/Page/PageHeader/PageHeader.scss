@@ -1,0 +1,33 @@
+@import '../../common';
+@import '../../Typography/Typography';
+
+.breadcrumbs-container {
+    margin-left: -10px;
+    transition: margin .2s cubic-bezier(0.4, 0.0, 0.2, 1);
+
+    &.absolute,
+    &.minimized {
+        margin-top: -3px;
+    }
+   
+    &.absolute {
+        transition: none;
+        position: absolute;
+    }
+}
+
+.back-button {
+    float: left;
+    position: relative;
+    top: 16px;
+}
+
+.titles-container {
+    float: left;
+}
+
+.title {
+    h2 {
+        margin: 0;
+    }
+}

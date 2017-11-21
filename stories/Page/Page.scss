@@ -1,8 +1,10 @@
 @import '../../src/common';
 @import '../../src/Typography/Typography';
 
+[data-hook="story-page"],
 .container {
-  height: 1000px;
+  height: 300px;
+  width: 700px;
 }
 
 .title {

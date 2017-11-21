@@ -33,8 +33,11 @@ export const inputWithOptionsTestkitFactory = testkitFactoryCreator(inputWithOpt
 import buttonWithOptionsDriverFactory from '../src/ButtonWithOptions/ButtonWithOptions.driver';
 export const buttonWithOptionsTestkitFactory = testkitFactoryCreator(buttonWithOptionsDriverFactory);
 
-import stickyPage from '../src/StickyPage/StickyPage.driver';
-export const stickyPageTestkitFactory = testkitFactoryCreator(stickyPage);
+import pageDriverFactory from '../src/Page/Page.driver';
+export const pageTestkitFactory = testkitFactoryCreator(pageDriverFactory);
+
+import pageHeaderDriverFactory from '../src/Page/PageHeader/PageHeader.driver';
+export const pageHeaderTestkitFactory = testkitFactoryCreator(pageHeaderDriverFactory);
 
 import languagePickerDriverFactory from '../src/LanguagePicker/LanguagePicker.driver';
 export const languagePickerTestkitFactory = testkitFactoryCreator(languagePickerDriverFactory);

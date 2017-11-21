@@ -24,8 +24,8 @@ export const tpaButtonTestkitFactory = protractorTestkitFactoryCreator(tpaButton
 import tpaInputDriverFactory from '../src/TPA/Input/Input.protractor.driver';
 export const tpaInputTestkitFactory = protractorTestkitFactoryCreator(tpaInputDriverFactory);
 
-import stickyPageDriverFactory from '../src/StickyPage/StickyPage.protractor.driver';
-export const stickyPageTestkitFactory = protractorTestkitFactoryCreator(stickyPageDriverFactory);
+import pageDriverFactory from '../src/Page/Page.protractor.driver';
+export const pageTestkitFactory = protractorTestkitFactoryCreator(pageDriverFactory);
 
 import dataTableDriverFactory from '../src/DataTable/DataTable.protractor.driver';
 export const dataTableTestkitFactory = protractorTestkitFactoryCreator(dataTableDriverFactory);
