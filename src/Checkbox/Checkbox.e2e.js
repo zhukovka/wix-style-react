@@ -1,10 +1,9 @@
 import eyes from 'eyes.it';
 import {checkboxTestkitFactory, getStoryUrl, waitForVisibilityOf} from '../../testkit/protractor';
-import autoExampleTestkitFactory from '../../stories/utils/Components/AutoExample/protractor.driver';
+import autoExampleDriver from '../../stories/utils/Components/AutoExample/protractor.driver';
 
 describe('Checkbox', () => {
   const storyUrl = getStoryUrl('4. Selection', '4.2 Checkbox');
-  const autoExampleDriver = autoExampleTestkitFactory({dataHook: 'auto-example'});
   const checkboxDriver = checkboxTestkitFactory({dataHook: 'storybook-checkbox'});
 
   beforeEach(() => {
@@ -14,10 +13,10 @@ describe('Checkbox', () => {
   eyes.it('should toggle state when clicked', () => {
     waitForVisibilityOf(checkboxDriver.element(), 'Cannot find Checkbox')
       .then(() => {
-        autoExampleDriver.get.toggle('storybook-Checkbox-checked-toggle').click();
+        autoExampleDriver.setProps({checked: true});
         expect(checkboxDriver.isChecked()).toBe(true);
 
-        autoExampleDriver.get.toggle('storybook-Checkbox-checked-toggle').click();
+        autoExampleDriver.setProps({checked: false});
         expect(checkboxDriver.isChecked()).toBe(false);
       });
   });

@@ -1,52 +1,46 @@
-import {toggleSwitchTestkitFactory, getStoryUrl, waitForVisibilityOf} from '../../testkit/protractor';
 import eyes from 'eyes.it';
+import {toggleSwitchTestkitFactory, getStoryUrl, waitForVisibilityOf} from '../../testkit/protractor';
+import autoExampleDriver from '../../stories/utils/Components/AutoExample/protractor.driver';
 
 describe('toggle switch page', () => {
   const storyUrl = getStoryUrl('Core', 'ToggleSwitch');
+  const toggleSwitchDriver = toggleSwitchTestkitFactory({dataHook: 'storybook-toggleswitch'});
 
-  const xSmallSwitchDataHook = 'controlled-switch-x-small';
-  const smallSwitchDataHook = 'controlled-switch-small';
-  const largeSwitchDataHook = 'controlled-switch-large';
-
-  beforeEach(() => {
+  beforeAll(() => {
     browser.get(storyUrl);
   });
 
-  eyes.it('should render x-small toggle switch', () => {
-    const driver = toggleSwitchTestkitFactory({dataHook: xSmallSwitchDataHook});
+  afterEach(() => {
+    autoExampleDriver.reset();
+  });
 
-    waitForVisibilityOf(driver.element(), 'Cant find ToggleSwitch')
-      .then(() => {
-        expect(driver.isXSmall()).toBe(true);
-      });
+  eyes.it('should render x-small toggle switch', () => {
+    autoExampleDriver.setProps({size: 'x-small'});
+
+    waitForVisibilityOf(toggleSwitchDriver.element(), 'Cant find ToggleSwitch')
+      .then(() => expect(toggleSwitchDriver.isXSmall()).toBe(true));
   });
 
   eyes.it('should render small toggle switch', () => {
-    const driver = toggleSwitchTestkitFactory({dataHook: smallSwitchDataHook});
+    autoExampleDriver.setProps({size: 'small'});
 
-    waitForVisibilityOf(driver.element(), 'Cant find ToggleSwitch')
-      .then(() => {
-        expect(driver.isSmall()).toBe(true);
-      });
+    waitForVisibilityOf(toggleSwitchDriver.element(), 'Cant find ToggleSwitch')
+      .then(() => expect(toggleSwitchDriver.isSmall()).toBe(true));
   });
 
   eyes.it('should render large switch', () => {
-    const driver = toggleSwitchTestkitFactory({dataHook: largeSwitchDataHook});
+    autoExampleDriver.setProps({size: 'large'});
 
-    waitForVisibilityOf(driver.element(), 'Cant find ToggleSwitch')
-      .then(() => {
-        expect(driver.isLarge()).toBe(true);
-      });
+    waitForVisibilityOf(toggleSwitchDriver.element(), 'Cant find ToggleSwitch')
+      .then(() => expect(toggleSwitchDriver.isLarge()).toBe(true));
   });
 
   eyes.it('should change state on click', () => {
-    const driver = toggleSwitchTestkitFactory({dataHook: smallSwitchDataHook});
-
-    waitForVisibilityOf(driver.element(), 'Cant find ToggleSwitch')
+    waitForVisibilityOf(toggleSwitchDriver.element(), 'Cant find ToggleSwitch')
       .then(() => {
-        expect(driver.checked()).toBe(false);
-        driver.click();
-        expect(driver.checked()).toBe(true);
+        expect(toggleSwitchDriver.checked()).toBe(false);
+        toggleSwitchDriver.click();
+        expect(toggleSwitchDriver.checked()).toBe(true);
       });
   });
 

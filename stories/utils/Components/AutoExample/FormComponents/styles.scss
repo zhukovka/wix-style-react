@@ -21,8 +21,16 @@
 }
 
 .title {
+  display: flex;
+  align-items: center;
   margin-bottom: 30px;
   border-bottom: 1px solid #cbccce;
+}
+
+.rtlToggle {
+  display: flex;
+  align-items: center;
+  margin-left: auto;
 }
 
 .preview {

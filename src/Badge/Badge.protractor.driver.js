@@ -3,7 +3,7 @@ import typography from '../Typography';
 
 const hasClass = (element, styles, cls) => {
   const normalized = cls.toLowerCase().replace('.', '_');
-  return element.getAttribute('class').then(classes => classes.split(' ').some(c => styles[normalized] === c));
+  return element.getAttribute('class').then(classes => classes.split(' ').some(c => c.includes(styles[normalized])));
 };
 
 export default component => ({

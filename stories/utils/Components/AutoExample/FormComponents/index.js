@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import isEqual from 'deep-eql';
+import classnames from 'classnames';
 
 import Markdown from '../../Markdown';
 import CodeBlock from '../../CodeBlock';
@@ -14,16 +15,15 @@ import Text from 'wix-style-react/Text';
 
 import styles from './styles.scss';
 
-const Wrapper = ({children, dataHook}) =>
+const Wrapper = ({children}) =>
   <Container>
-    <Row className={styles.wrapper} dataHook={dataHook}>
+    <Row className={styles.wrapper}>
       {children}
     </Row>
   </Container>;
 
 Wrapper.propTypes = {
-  children: PropTypes.node,
-  dataHook: PropTypes.string
+  children: PropTypes.node
 };
 
 
@@ -62,19 +62,31 @@ Option.propTypes = {
 };
 
 
-const Preview = ({children}) =>
+const Preview = ({children, isRtl, onToggleRtl}) =>
   <Col span={6}>
     <div className={styles.title}>
       <Text appearance="H2">Preview</Text>
+
+      <div className={styles.rtlToggle}>
+        Imitate RTL:&nbsp;
+
+        <ToggleSwitch
+          size="x-small"
+          checked={isRtl}
+          onChange={e => onToggleRtl(e.target.checked)}
+          />
+      </div>
     </div>
 
-    <div className={styles.preview}>
+    <div className={classnames(styles.preview, {rtl: isRtl})}>
       {children}
     </div>
   </Col>;
 
 Preview.propTypes = {
-  children: PropTypes.node
+  children: PropTypes.node,
+  isRtl: PropTypes.bool,
+  onToggleRtl: PropTypes.func
 };
 
 
@@ -124,18 +136,16 @@ class NodesList extends React.Component {
   view = e => typeof e === 'function' ? React.createElement(e) : e;
 
   render() {
-    const {value = {}, values = [], onChange, dataHook} = this.props;
+    const {value = {}, values = [], onChange} = this.props;
 
     return values.length > 3 ?
       <Dropdown
-        dataHook={dataHook}
         options={values.map((value, id) => ({id, value: this.view(value)}))}
         selectedId={values.findIndex(({type}) => isEqual(type, value.type)) || 0}
         onSelect={({value}) => onChange(value)}
         valueParser={({value}) => typeof value.type === 'string' ? value.type : value.type.name}
         /> :
         <WixRadioGroup
-          dataHook={dataHook}
           value={this.state && this.state.selected}
           onChange={ev => {
             this.setState({selected: ev});
@@ -152,7 +162,6 @@ class NodesList extends React.Component {
 }
 
 NodesList.propTypes = {
-  dataHook: PropTypes.string,
   value: PropTypes.node,
   values: PropTypes.arrayOf(PropTypes.any),
   onChange: PropTypes.func

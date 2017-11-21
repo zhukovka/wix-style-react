@@ -14,6 +14,8 @@ import ComponentMetaInfoGetter from '../ComponentMetaInfoGetter';
 
 import styles from './styles.scss';
 
+const isE2E = process.env.STORYBOOK_E2E;
+
 /**
  * # `story()`
  *
@@ -102,6 +104,22 @@ function Story(props) {
             ...(actualReadmeTestKit ? ['Testkit'] : []),
             ...(actualReadmeAccessibility ? ['Accessibility'] : [])
           ];
+
+          if (isE2E) {
+            return (
+              <div>
+                <AutoExample
+                  isInteractive={false}
+                  ref={ref => global.autoexample = ref}
+                  component={actualComponent}
+                  source={actualSource}
+                  componentProps={componentProps}
+                  />
+
+                {examples}
+              </div>
+            );
+          }
 
           return (
             <TabbedView tabs={tabs}>
