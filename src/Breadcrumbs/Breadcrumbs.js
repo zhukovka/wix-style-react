@@ -56,8 +56,12 @@ class Breadcrumbs extends WixComponent {
     const isDarkBackground = theme === 'onDarkBackground';
     const isMediumSize = size === 'medium';
 
-    if (isActive && !isDarkBackground) {
-      return isMediumSize ? 'T3' : 'T1';
+    if (isActive) {
+      if (isMediumSize) {
+        return isDarkBackground ? 'T4.2' : 'T4';
+      } else {
+        return isDarkBackground ? 'T2.2' : 'T2';
+      }
     }
 
     if (isMediumSize) {

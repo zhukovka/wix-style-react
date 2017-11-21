@@ -7,3 +7,5 @@ export const input = {
     backgroundColor: 'transparent'
   }
 };
+
+export const core = {};

@@ -42,7 +42,6 @@
 }
 
 .disabled {
-  tab-index: -1;
   cursor: default;
 }
 
@@ -63,6 +62,10 @@
   background: transparent;
   border: 0;
   padding: 0;
+
+  &:focus {
+    outline: 0;
+  }
 
   &:not(.disabled):not(.active) {
     cursor: pointer;
