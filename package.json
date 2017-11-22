@@ -12,20 +12,16 @@
     "*.js"
   ],
   "scripts": {
-    "pretest": "npm run lint",
+    "start": "./scripts/npm-start.sh",
+    "pretest": "yoshi lint && ./scripts/ensure-dist.sh",
     "test": "npm run test:unit && npm run test:e2e",
     "test:unit": "yoshi test --jest",
-    "test:e2e": "npm run build-e2e-storybook && npm run start-e2e-tests && npm run clean-e2e-files",
-    "e2e-only": "NODE_ENV=production yoshi test --protractor",
-    "build": "yoshi lint && svg2react-icon && yoshi build && build-storybook && npm run export-components",
-    "start": "./scripts/npm-start.sh",
-    "release": "./scripts/release.js",
+    "pretest:e2e": "./scripts/ensure-dist.sh",
+    "test:e2e": "concurrently 'npm run test:e2e-only' 'node scripts/e2e-server.js' --names 'protractor,e2e-server' --success first --kill-others",
+    "test:e2e-only": "NODE_ENV=production yoshi test --protractor",
+    "build": "yoshi lint && svg2react-icon && yoshi build && STORYBOOK_E2E=true build-storybook && npm run export-components",
     "storybook": "start-storybook -p 6006",
-    "start-e2e-server": "node testkit/e2e-sandbox.js 6006 ./storybook-e2e",
-    "build-e2e-storybook": "svg2react-icon-once && STORYBOOK_E2E=true build-storybook -c .storybook -o ./storybook-e2e",
-    "start-e2e-tests": "concurrently 'npm run e2e-only' 'npm run start-e2e-server' --kill-others -s first",
-    "clean-e2e-files": "rm -rf ./storybook-e2e",
-    "lint": "yoshi lint",
+    "release": "node scripts/npm-release.js",
     "export-components": "node scripts/export-components.js"
   },
   "yoshi": {

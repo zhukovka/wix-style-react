@@ -1,5 +1,3 @@
-#!/usr/bin/env node
-
 if (!process.env.IS_BUILD_AGENT) {
   console.log('Package will not be published because we\'re not running in a CI build agent');
   return process.exit(0);
