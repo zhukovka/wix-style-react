@@ -1,6 +1,3 @@
-import {
-  browser
-} from 'protractor';
 import eyes from 'eyes.it';
 
 import {
@@ -8,28 +5,28 @@ import {
   getStoryUrl,
   waitForVisibilityOf
 } from '../../testkit/protractor';
-
-import {
-  category,
-  storyName,
-  options,
-  dataHook
-} from '../../stories/Search/SearchStory.helpers';
+import autoExampleDriver from '../../stories/utils/Components/AutoExample/protractor.driver';
 
 describe('Search', () => {
-  const storyUrl = getStoryUrl(category, storyName);
-  let driver;
+  const storyUrl = getStoryUrl('3. Inputs', '3.9 Search');
+  const driver = searchTestkitFactory({dataHook: 'storybook-search'});
+
+  beforeAll(() => {
+    browser.get(storyUrl);
+  });
 
   beforeEach(done => {
-    driver = searchTestkitFactory({dataHook});
-    browser.get(storyUrl);
     waitForVisibilityOf(driver.element(), 'Can not find Search').then(done);
+  });
+
+  afterEach(() => {
+    autoExampleDriver.reset();
   });
 
   eyes.it('should filter search options by input', () => {
     expect(driver.getSearchDropdown().isDisplayed()).toBe(false);
     driver.clickOnInput();
-    driver.enterText(options[2].value);
+    driver.enterText('fox');
     expect(driver.getSearchDropdown().isDisplayed()).toBe(true);
     expect(driver.getSearchOptionsCount()).toBe(1);
     expect(driver.getSearchOptionAt(0)).toBe('fox');
@@ -39,7 +36,7 @@ describe('Search', () => {
     driver.clickOnInput();
     driver.enterText('the');
     driver.clickSearchOptionAt(0);
-    expect(driver.getText()).toBe(options[0].value);
+    expect(driver.getText()).toBe('The quick');
   });
 
   eyes.it('should clear input and show all search options after clear button click', () => {

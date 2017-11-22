@@ -3,4 +3,7 @@ import {parse} from 'react-docgen';
 import ComponentResolver from './component-resolver';
 
 export default (source = '') =>
-  parse(source, ComponentResolver);
+  ({
+    props: {}, // in case no of propTypes or only spreaded
+    ...parse(source, ComponentResolver)
+  });

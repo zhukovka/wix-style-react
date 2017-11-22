@@ -1,5 +1,4 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 
 import InputWithOptions from '../InputWithOptions';
 import Search2 from '../Icons/dist/components/Search2';
@@ -14,10 +13,6 @@ export default class Search extends WixComponent {
   static displayName = 'Search';
 
   static propTypes = {
-    // TODO: without at least one prop AutoExample fails to parse propTypes. thus temporary solution.
-    // get rid of it after fix: https://github.com/wix/wix-style-react/issues/1040
-    /** ignore this */
-    _tmp: PropTypes.bool,
     ...InputWithOptions.propTypes
   };
 
