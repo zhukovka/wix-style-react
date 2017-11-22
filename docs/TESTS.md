@@ -2,33 +2,49 @@
 
 > For component library to be stable, it must be testable and tested.
 
-We use [jest](https://facebook.github.io/jest/) for unit and [protractor](http://www.protractortest.org/#/) for e2e tests.
+We use [jest](https://facebook.github.io/jest/) for unit and [protractor](http://www.protractortest.org/#/) for end-to-end tests.
 
 ## Unit Tests
 
 `npm run test:unit`
 
 During `npm start`, unit tests will run automatically on each file change.
-Make use of `jest`'s interactive mode, for example, press `p` in your command line and type the name of the test.
+Make use of `jest`'s interactive mode, for example, press `p` in your command line and type the name of the test:
 
-![image](./ASSETS/JEST_INTERACTIVE.png)
+<img src="https://raw.githubusercontent.com/wix/wix-style-react/master/docs/assets/jest-interactive.png" alt="Interactive Jest Preview" width="600">
 
-## E2E Tests
+## End To End (E2E) Tests
 
-`npm run test:e2e`
+Run all once:
 
-while developing it's useful to `npm start`, work as usual and then `npm run e2e-only` to start protractor.
+* `npm run test:e2e`
 
-We use [`eyes.it`](https://github.com/wix/eyes.it). TL;DR; use `eyes.it` instead of just `it`. `eyes.fit` to focus a single test.
+Run "on demand":
+* `npm run storybook:e2e` - serve storybook in E2E mode
+* `npm run test:e2e-only` - run just e2e tests in separate terminal instance
 
-Use `browser.pause()` or `browser.explore()` to debug e2e tests. Refer to [protractor docs](http://www.protractortest.org/#/api?view=ProtractorBrowser) for more details.
+We use [`eyes.it`](https://github.com/wix/eyes.it):
 
+```js
+import eyes from 'eyes.it';
+
+eyes.it('should test something with screenshot diff', () => {
+  expect(assert).toEqual(expectation);
+});
+```
+
+Simply use `eyes.it` instead of `it`.
+`eyes.fit` to focus.
+
+Use `browser.pause()` or `browser.explore()` for debugging.
+Relevant details defined in [protractor docs](http://www.protractortest.org/#/api?view=ProtractorBrowser).
 
 # TestKits
 
 > For component library to be testable, it must provide testkits.
 
 `wix-style-react` comes with components testkits.  Each component has a `<componentName>TestkitFactory` method which exposes api relevant to component.
+
 It will receive a wrapper (for now we only support Enzyme wrapper) and component `dataHook` as an input, and returns an object which contains all API methods.
 
 ## Example

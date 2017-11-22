@@ -21,6 +21,7 @@
     "test:e2e-only": "NODE_ENV=production yoshi test --protractor",
     "build": "yoshi lint && svg2react-icon && yoshi build && STORYBOOK_E2E=true build-storybook && npm run export-components",
     "storybook": "start-storybook -p 6006",
+    "storybook:e2e": "STORYBOOK_E2E=true npm run storybook",
     "release": "node scripts/npm-release.js",
     "export-components": "node scripts/export-components.js"
   },
