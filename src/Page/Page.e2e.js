@@ -3,7 +3,7 @@ import {pageTestkitFactory, getStoryUrl, waitForVisibilityOf} from '../../testki
 
 describe('Page', () => {
   const storyUrl = getStoryUrl('Core', 'Page');
-  const dataHook = 'story-page';
+  const dataHook = 'story-page-container';
 
   eyes.it('should display the title and after scroll should hide it', async () => {
     const driver = pageTestkitFactory({dataHook});

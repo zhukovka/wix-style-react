@@ -2,6 +2,7 @@ import React from 'react';
 import {PageHeader, generateDefaultBreadcrumbs} from './PageHeader';
 import pageHeaderDriverFactory from './PageHeader.driver';
 import {createDriverFactory} from '../../test-common';
+import Button from '../../Button';
 
 describe('PageHeader', () => {
   const createDriver = createDriverFactory(pageHeaderDriverFactory);
@@ -86,5 +87,47 @@ describe('PageHeader', () => {
     expect(driver.isTitleExists()).toBeFalsy();
     expect(driver.isSubtitleExists()).toBeFalsy();
     expect(driver.isBreadcrumbsExists()).toBeTruthy();
+  });
+
+  it('should initialize component with title and actionsBar', () => {
+    const title = 'This is a title';
+    const pageHeader = <PageHeader title={title} actionsBar={(<Button>Action</Button>)}/>;
+    const driver = createDriver(pageHeader);
+    expect(driver.isActionBarExists()).toBeTruthy();
+  });
+
+  it('should initialize component with minimized title and actionsBar', () => {
+    const title = 'This is a title';
+    const pageHeader = <PageHeader minimized title={title} actionsBar={(<Button>Action</Button>)}/>;
+    const driver = createDriver(pageHeader);
+    expect(driver.isActionBarExists()).toBeTruthy();
+  });
+
+  it('should initialize component with title and back button without callback', () => {
+    const title = 'This is a title';
+    const pageHeader = <PageHeader title={title} showBackButton/>;
+    const driver = createDriver(pageHeader);
+    expect(driver.isBackButtonExists()).toBeFalsy();
+  });
+
+  it('should initialize component with title and back button callback', () => {
+    const title = 'This is a title';
+    const pageHeader = <PageHeader title={title} onBackClicked={() => {}}/>;
+    const driver = createDriver(pageHeader);
+    expect(driver.isBackButtonExists()).toBeFalsy();
+  });
+
+  it('should initialize component with title and back button callback and back button', () => {
+    const title = 'This is a title';
+    const pageHeader = <PageHeader title={title} showBackButton onBackClicked={() => {}}/>;
+    const driver = createDriver(pageHeader);
+    expect(driver.isBackButtonExists()).toBeTruthy();
+  });
+
+  it('should initialize component with minimized title and back button callback and back button', () => {
+    const title = 'This is a title';
+    const pageHeader = <PageHeader minimized title={title} showBackButton onBackClicked={() => {}}/>;
+    const driver = createDriver(pageHeader);
+    expect(driver.isBackButtonExists()).toBeFalsy();
   });
 });

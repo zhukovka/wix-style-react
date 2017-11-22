@@ -4,7 +4,9 @@
 [data-hook="story-page"],
 .container {
   height: 300px;
-  width: 700px;
+  width: 1000px;
+  padding: 0 30px 30px;
+  background: rgba($D70,.95);
 }
 
 .title {
