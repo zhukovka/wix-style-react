@@ -2,9 +2,16 @@
 
 All notable changes are documented in this file.
 
+## 1.1.4259 - 2017-11-22
+### Changed
+- `<Page>` Added more features https://github.com/wix/wix-style-react/pull/1158
+- `<Breadcrumbs>` style changes https://github.com/wix/wix-style-react/pull/1156
+- Added sorting order icons https://github.com/wix/wix-style-react/pull/1140
+- `<Tag>` Fixed bug with expanding width https://github.com/wix/wix-style-react/pull/1159
+
 ## 1.1.4258 - 2017-11-21
 ### Added
-- `<StickyPage>` component and friends https://github.com/wix/wix-style-react/pull/1145
+- `<Page>` component and friends https://github.com/wix/wix-style-react/pull/1145
 
 ### Changed
 - `<AutoExample>` e2e approach https://github.com/wix/wix-style-react/pull/1148
@@ -20,7 +27,7 @@ All notable changes are documented in this file.
 
 ## 1.1.4526 - 2017-11-20
 ### Added
-- `<StickyPage>` - additional e2e tests
+- `<Page>` - additional e2e tests
 
 - `<GoogleAddressInput>` - Allow fetching address data via Places API [1141](https://github.com/wix/wix-style-react/pull/1141)
 ### Fixed
@@ -39,7 +46,7 @@ All notable changes are documented in this file.
 ### Added
 - themes: progressed with themes poc
 
-- `<StickyPage>` - new component (https://github.com/wix/wix-style-react/pull/1127)
+- `<Page>` - new component (https://github.com/wix/wix-style-react/pull/1127)
 
 ### Fixed
 - `<GoogleAddressInput>` - pixelated google credit picture in the footer.
