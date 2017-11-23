@@ -8,6 +8,7 @@ import {backofficeTooltipTestkitFactory as enzymeTooltipTestkitFactory} from '..
 import {mount} from 'enzyme';
 import {Button} from '../../../src/Backoffice';
 import waitForCond from 'wait-for-cond';
+import './RangePolyfill.js';
 
 describe('Tooltip', () => {
 
