@@ -295,6 +295,7 @@ class Tooltip extends WixComponent {
 
   hide() {
     this.setState({hidden: true});
+
     if (this._showTimeout) {
       clearTimeout(this._showTimeout);
       this._showTimeout = null;
@@ -303,8 +304,9 @@ class Tooltip extends WixComponent {
     if (this._hideTimeout) {
       return;
     }
+
     if (this.state.visible) {
-      this._hideTimeout = setTimeout(() => {
+      const hideLazy = () => {
         if (this._mountNode) {
           ReactDOM.unmountComponentAtNode(this._mountNode);
           this.props.onHide && this.props.onHide();
@@ -315,7 +317,13 @@ class Tooltip extends WixComponent {
         if (!this._unmounted) {
           this.setState({visible: false});
         }
-      }, this._unmounted ? 0 : this.props.hideDelay);
+      };
+
+      if (this._unmounted) {
+        return hideLazy();
+      }
+
+      this._hideTimeout = setTimeout(hideLazy, this.props.hideDelay);
     }
   }
 
