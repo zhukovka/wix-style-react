@@ -56,6 +56,29 @@ describe('ToggleSwitch', () => {
     });
   });
 
+  describe('disabled attribute', () => {
+    it('should not be disabled by default', () => {
+      const driver = createDriver(<ToggleSwitch/>);
+      expect(driver.isDisabled()).toBe(false);
+    });
+
+    it('should not be clickable when disabled and unchecked', () => {
+      const onChange = jest.fn();
+      const driver = createDriver(<ToggleSwitch checked={false} onChange={onChange} disabled/>);
+      driver.click();
+      expect(onChange).toHaveBeenCalledTimes(0);
+      expect(driver.isChecked()).toBe(false);
+    });
+
+    it('should not be clickable when disabled and checked', () => {
+      const onChange = jest.fn();
+      const driver = createDriver(<ToggleSwitch checked onChange={onChange} disabled/>);
+      driver.click();
+      expect(onChange).toHaveBeenCalledTimes(0);
+      expect(driver.isChecked()).toBe(true);
+    });
+  });
+
   describe('colors', () => {
     it('should work with default colors', () => {
       const driver = createDriver(<ToggleSwitch checked={false} onChange={() => {}}/>);

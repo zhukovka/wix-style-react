@@ -52,7 +52,7 @@ class ToggleSwitch extends WixComponent {
 
     return (
       <div className={rootClassName}>
-        <input type="checkbox" id={id} checked={checked} onChange={onChange}/>
+        <input type="checkbox" id={id} checked={checked} onChange={e => !disabled && onChange(e)} disabled={disabled}/>
         <label htmlFor={id} className={outerLabel} style={{background: fillColor}} >
           <label htmlFor={id} className={innerLabel}>
             <svg className={toggleActive} viewBox="0 0 41 32">
