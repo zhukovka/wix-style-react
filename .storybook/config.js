@@ -2,7 +2,7 @@ import {configure, storiesOf} from '@storybook/react';
 import {setOptions} from '@storybook/addon-options';
 
 function loadStories() {
-  if (process.env.STORYBOOK_E2E) {
+  if (global.self === global.top) {
     require('./e2e-styles.scss');
   }
 
