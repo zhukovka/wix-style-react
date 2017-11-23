@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 
 import Template from './Template';
 import RadioGroup from '../../../src/RadioGroup';
+import ToggleSwitch from '../../../src/ToggleSwitch';
 import Label from '../../../src/Label';
 import Input from '../../../src/Input';
 
@@ -14,10 +15,13 @@ class ExampleTooltip extends Component {
     type: 'default',
     text: 'Tooltip appears on hover',
     size: 'normal',
-    onShow: () => console.log('on show text printed'),
-    onHide: () => console.log('on hide text printed'),
-    onShowText: 'onShow console print',
-    onHideText: 'onHide console print'
+    maxWidth: '',
+    onShow: () => console.log('onShow triggered'),
+    onHide: () => console.log('onHide triggered'),
+    onShowText: 'onShow triggered',
+    onHideText: 'onHide triggered',
+    moveBy: {x: 0, y: 0},
+    shouldUpdatePosition: false
   };
 
   render() {
@@ -74,6 +78,60 @@ class ExampleTooltip extends Component {
                 />
             </div>
           </div>
+
+          <div className={styles.option}>
+            <Label>onHide print to console</Label>
+            <div className={styles.flex}>
+              <Input
+                size="small"
+                value={this.state.onHideText}
+                onChange={e => this.setState({onHideText: e.target.value})}
+                />
+            </div>
+          </div>
+
+          <div className={styles.option}>
+            <Label>Max Width</Label>
+            <div className={styles.flex}>
+              <Input
+                size="small"
+                value={this.state.maxWidth}
+                onChange={e => this.setState({maxWidth: e.target.value})}
+                />
+            </div>
+          </div>
+
+          <div className={styles.option}>
+            <Label>Should Update Position</Label>
+            <div className={styles.flex}>
+              <ToggleSwitch
+                checked={this.state.shouldUpdatePosition}
+                onChange={() => this.setState({shouldUpdatePosition: !this.state.shouldUpdatePosition})}
+                />
+            </div>
+          </div>
+
+          <div className={styles.option}>
+            <Label>Move By</Label>
+            <div className={styles.flex}>
+              <Label>x
+              <Input
+                size="small"
+                value={this.state.moveBy.x}
+                type="number"
+                onChange={e => this.setState({moveBy: {...this.state.moveBy, x: Number(e.target.value)}})}
+                />
+              </Label>
+              <Label>y
+              <Input
+                size="small"
+                value={this.state.moveBy.y}
+                type="number"
+                onChange={e => this.setState({moveBy: {...this.state.moveBy, y: Number(e.target.value)}})}
+                />
+              </Label>
+            </div>
+          </div>
         </div>
 
         <div className={styles[this.state.theme === 'whiteblue' ? 'output-lightblue' : 'output']}>
@@ -84,8 +142,11 @@ class ExampleTooltip extends Component {
               type="tooltip"
               onChange={this.props.onChange}
               size={this.state.size}
+              maxWidth={this.state.maxWidth}
               onShow={() => console.log(this.state.onShowText)}
               onHide={() => console.log(this.state.onHideText)}
+              shouldUpdatePosition={this.state.shouldUpdatePosition}
+              moveBy={this.state.moveBy}
               />
           </div>
         </div>

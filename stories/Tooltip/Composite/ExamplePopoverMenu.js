@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import RadioGroup from '../../../src/RadioGroup';
 import Label from '../../../src/Label';
 import PopoverMenuBuilder from './PopoverMenuBuilder';
+import Input from '../../../src/Input';
 
 import styles from './Example.scss';
 import PopoverMenuTemplate from './PopoverMenuTemplate';
@@ -22,7 +23,8 @@ class ExamplePopoverMenu extends Component {
       {iconName: 'VisibilityHidden', text: 'Hide'},
       {iconName: 'Trash3', text: 'Delete'}
     ],
-    buttonTheme: 'icon-greybackground'
+    buttonTheme: 'icon-greybackground',
+    maxWidth: '378px'
   };
 
   addRow = () => {
@@ -88,14 +90,27 @@ class ExamplePopoverMenu extends Component {
             <Label>Button Theme</Label>
             <div className={styles.flex}>
               <RadioGroup
-                display="horizontal"
+                display="vertical"
                 value={this.state.buttonTheme}
                 onChange={buttonTheme => this.setState({buttonTheme})}
                 >
                 <RadioGroup.Radio value="icon-greybackground">Icon Grey Background</RadioGroup.Radio>
+                <RadioGroup.Radio value="icon-standard">Icon Blue</RadioGroup.Radio>
+                <RadioGroup.Radio value="icon-standardsecondary">Icon Blue Secondary</RadioGroup.Radio>
                 <RadioGroup.Radio value="icon-white">Icon White</RadioGroup.Radio>
                 <RadioGroup.Radio value="icon-whitesecondary">Icon White Secondary</RadioGroup.Radio>
               </RadioGroup>
+            </div>
+          </div>
+
+          <div className={styles.option}>
+            <Label>Max Width</Label>
+            <div className={styles.flex}>
+              <Input
+                size="small"
+                value={this.state.maxWidth}
+                onChange={e => this.setState({maxWidth: e.target.value})}
+                />
             </div>
           </div>
 
@@ -110,6 +125,7 @@ class ExamplePopoverMenu extends Component {
                 />
             </div>
           </div>
+
         </div>
 
         <div className={styles.output}>
@@ -120,6 +136,7 @@ class ExamplePopoverMenu extends Component {
               placement={this.state.placement}
               onChange={this.props.onChange}
               buttonTheme={this.state.buttonTheme}
+              maxWidth={this.state.maxWidth}
               />
           </div>
         </div>

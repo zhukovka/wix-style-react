@@ -2,8 +2,11 @@ import React from 'react';
 import {storiesOf} from '@storybook/react';
 
 import Markdown from '../../utils/Components/Markdown';
+import AutoDocs from '../../utils/Components/AutoDocs';
 import CodeExample from '../../utils/Components/CodeExample';
-import Readme from '../../../src/Tooltip/README.md';
+import TabbedView from '../../utils/Components/TabbedView';
+import ReadmeTestKit from '../../../src/Tooltip/README.TESTKIT.md';
+import TooltipSource from '!raw-loader!wix-style-react/Tooltip/Tooltip';
 
 import ExamplePlacement from './ExamplePlacement';
 import ExamplePlacementRaw from '!raw-loader!./ExamplePlacement';
@@ -18,22 +21,31 @@ import ExampleMoveRaw from '!raw-loader!./ExampleMove';
 
 storiesOf('Core', module)
   .add('Tooltip', () => (
-    <div>
-      <Markdown source={Readme}/>
-      <CodeExample title="Tooltip Placement" code={ExamplePlacementRaw}>
-        <ExamplePlacement/>
-      </CodeExample>
-      <CodeExample title="Tooltip Bounce" code={ExampleBounceRaw}>
-        <ExampleBounce/>
-      </CodeExample>
-      <CodeExample title="Tooltip Theme" code={ExampleThemeRaw}>
-        <ExampleTheme/>
-      </CodeExample>
-      <CodeExample title="Tooltip Custom Content" code={ExampleCustomContentRaw}>
-        <ExampleCustomContent/>
-      </CodeExample>
-      <CodeExample title="Custom tooltip adjustment" code={ExampleMoveRaw}>
-        <ExampleMove/>
-      </CodeExample>
-    </div>
+    <TabbedView tabs={['API', 'TestKits']}>
+      <div>
+        <AutoDocs source={TooltipSource}/>
+
+        <CodeExample title="Tooltip Placement" code={ExamplePlacementRaw}>
+          <ExamplePlacement/>
+        </CodeExample>
+
+        <CodeExample title="Tooltip Bounce" code={ExampleBounceRaw}>
+          <ExampleBounce/>
+        </CodeExample>
+
+        <CodeExample title="Tooltip Theme" code={ExampleThemeRaw}>
+          <ExampleTheme/>
+        </CodeExample>
+
+        <CodeExample title="Tooltip Custom Content" code={ExampleCustomContentRaw}>
+          <ExampleCustomContent/>
+        </CodeExample>
+
+        <CodeExample title="Custom tooltip adjustment" code={ExampleMoveRaw}>
+          <ExampleMove/>
+        </CodeExample>
+      </div>
+
+      <Markdown source={ReadmeTestKit}/>
+    </TabbedView>
   ));
