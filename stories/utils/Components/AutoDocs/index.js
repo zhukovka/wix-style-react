@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import Markdown from '../Markdown';
 import parser from './parser';
 
-const shouldHideForE2E = process.env.STORYBOOK_E2E;
+const shouldHideForE2E = global.self === global.top;
 
 const prepareParsedProps = props => {
   const asList = Object

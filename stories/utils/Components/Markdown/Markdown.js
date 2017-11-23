@@ -10,7 +10,7 @@ export default class Markdown extends Component {
   };
 
   render() {
-    const shouldHideForE2E = process.env.STORYBOOK_E2E;
+    const shouldHideForE2E = global.self === global.top;
 
     const options = {
       html: true,

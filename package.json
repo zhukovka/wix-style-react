@@ -19,9 +19,8 @@
     "pretest:e2e": "./scripts/ensure-dist.sh",
     "test:e2e": "concurrently 'npm run test:e2e-only' 'node scripts/e2e-server.js' --names 'protractor,e2e-server' --success first --kill-others",
     "test:e2e-only": "NODE_ENV=production yoshi test --protractor",
-    "build": "yoshi lint && svg2react-icon && yoshi build && STORYBOOK_E2E=true build-storybook && npm run export-components",
+    "build": "yoshi lint && svg2react-icon && yoshi build && build-storybook && npm run export-components",
     "storybook": "start-storybook -p 6006",
-    "storybook:e2e": "STORYBOOK_E2E=true npm run storybook",
     "release": "node scripts/npm-release.js",
     "export-components": "node scripts/export-components.js"
   },
