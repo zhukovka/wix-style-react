@@ -194,3 +194,6 @@ export const searchTestkitFactory = enzymeTestkitFactoryCreator(searchDriverFact
 
 import highlighterDriverFactory from '../src/Highlighter/Highlighter.driver';
 export const highlighterTestkitFactory = enzymeTestkitFactoryCreator(highlighterDriverFactory);
+
+import statsWidgetDriverFactory from '../src/StatsWidget/StatsWidget.driver';
+export const statsWidgetTestkitFactory = enzymeTestkitFactoryCreator(statsWidgetDriverFactory);

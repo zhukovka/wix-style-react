@@ -1,0 +1,49 @@
+@import '../common.scss';
+
+.filters-wrapper > * {
+  display: inline-block;
+  margin-left: 10px;
+}
+
+.stats-column-wrapper {
+  display: flex;
+
+  h1, h2, h3, h4, h5, h6 {
+    margin: 0;
+  }
+
+  .stats-column {
+    flex: 1;
+    width: 0; // Force equal-width columns
+    text-align: center;
+    border-right: 1px solid $D70;
+
+    &:last-child {
+      border-right: none;
+    }
+  }
+
+  .percents {
+    .percent-arrow {
+      display: none;
+      font-size: 11px;
+    }
+
+    &.isNegative {
+      color: $R20;
+
+      .percent-arrow {
+        transform: rotateX(180deg);
+        display: inline-block;
+      }
+    }
+
+    &.isPositive {
+      color: $G20;
+
+      .percent-arrow {
+        display: inline-block;
+      }
+    }
+  }
+}

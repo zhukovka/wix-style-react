@@ -104,3 +104,6 @@ export const searchTestkitFactory = protractorTestkitFactoryCreator(searchDriver
 
 import highlighterDriverFactory from '../src/Highlighter/Highlighter.protractor.driver';
 export const highlighterTestkitFactory = protractorTestkitFactoryCreator(highlighterDriverFactory);
+
+import statsWidgetDriverFactory from '../src/StatsWidget/StatsWidget.protractor.driver';
+export const statsWidgetTestkitFactory = protractorTestkitFactoryCreator(statsWidgetDriverFactory);
