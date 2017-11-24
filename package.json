@@ -66,6 +66,8 @@
     "express": "^4.15.2",
     "eyes.it": "^2.0.0",
     "gh-pages-auto-release": "^1.1.2",
+    "github-markdown-css": "^2.4.1",
+    "highlight.js": "^9.8.0",
     "identity-obj-proxy": "^3.0.0",
     "jquery": "^1.12.4",
     "jsdom": "^9.2.1",
@@ -96,22 +98,18 @@
     "color": "^2.0.0",
     "deep-eql": "^3.0.0",
     "difference": "^1.0.2",
-    "github-markdown-css": "^2.4.1",
-    "glamor": "^2.20.40",
-    "highlight.js": "^9.8.0",
     "is-image": "^1.0.1",
     "is-url": "^1.2.2",
     "jquery": "^1.12.4",
     "lodash": "^4.17.4",
-    "moment": "2.18.1",
+    "moment": "2.19.2",
     "omit": "^1.0.1",
     "popper.js": "^1.10.8",
     "prop-types": "^15.5.8",
     "rc-slider": "^8.0.2",
     "react-autosuggest": "^7.0.1",
-    "react-collapse": "^2.3.3",
+    "react-collapse": "4.0.3",
     "react-datepicker": "^0.53.0",
-    "react-height": "^2.1.1",
     "react-jss": "^8.0.0",
     "react-modal": "^2.2.4",
     "react-motion": "^0.4.7",
@@ -161,8 +159,5 @@
         "never"
       ]
     }
-  },
-  "resolutions": {
-    "moment": "2.18.1"
   }
 }
