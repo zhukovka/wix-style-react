@@ -70,7 +70,6 @@
     "highlight.js": "^9.8.0",
     "identity-obj-proxy": "^3.0.0",
     "jquery": "^1.12.4",
-    "jsdom": "^9.2.1",
     "react": "^15.5.4",
     "react-docgen": "^2.15.0",
     "react-dom": "^15.5.4",
