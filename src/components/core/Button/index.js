@@ -4,11 +4,11 @@ import {styles} from './styles';
 import Button from './Button';
 import {generateClasses} from '../JSS';
 
-const ThemedButon = ({theme, ...coreProps}) =>
+const ThemedButton = ({theme, ...coreProps}) =>
   <Button {...coreProps} classes={generateClasses(styles(theme))}/>;
 
-ThemedButon.propTypes = {
+ThemedButton.propTypes = {
   theme: object
 };
 
-export default ThemedButon;
+export default ThemedButton;
