@@ -18,9 +18,32 @@ It should have a specific structure (TBD).
 Create a new component library inside wix-style-react mono repo, and name it wix-style-react-\<theme\>.
 
 ### Implement your components
-Create a new themed component which renders the core component.
-The styles might be dependant by some additional props.
-Note that we wouldn't want to pass those additional props to the core component, but instead we would like to use them in order to generate the theme object which we will then pass to the Core component.
+We want to create a new themed component which renders the core component with additional styles.
+
+The core component is already implemented in `wix-style-react`, and the styles will be generated from the custom theme you need to write.
+
+The theme is a fucnction that gets some optional additional props as arguments, and returns an object with a very specific structure. Each component has it's own theme structure.
+For example:
+
+```javascript
+const theme = ({height, skin}) => ({
+  fontSize: height === 'small' ? '14px' : '20px',
+  color: skin === 'normal' ? 'white' : 'blue',
+  backgroundColor: skin === 'normal' ? 'blue' : 'white',
+  
+  hover: {		
+    color: 'blue',		
+    backgroundColor: 'green'		
+  }
+});
+```
+
+Note that we usually wouldn't want to pass those additional props to the core component, although it is possible.
+Those props are being used to generate the theme object which we will then pass to the Core component.
+
+All of that is being taken care of with the `ThemedComponent` component which expects to get the core component as a `children` prop, a `theme` function prop, and some optional props which will be used by the theme function in order to generate the theme object.
+
+Here is an example of how to implement a themed Button component:
 
 ```javascript
 import CoreButton from 'wix-style-react/Button';
