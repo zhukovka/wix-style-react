@@ -2,6 +2,28 @@
 
 All notable changes are documented in this file.
 
+## 1.1.4260 - 2017-11-25
+
+### Added
+- `<StatsWidget>` - Added new widget (https://github.com/wix/wix-style-react/commit/3209220357d8b8e1bd320de5f1e9512f50214342)
+- `<Tooltip>` - Add reange polyfill [1178](https://github.com/wix/wix-style-react/pull/1178)
+- Package.lock - [1183](https://github.com/wix/wix-style-react/pull/1183)
+- Themes - huge refactor to boost performance and api. [1186](https://github.com/wix/wix-style-react/pull/1186)
+### Changed
+- `<TimeInput>` + `<Search>` - Update docs [1108](https://github.com/wix/wix-style-react/pull/1108)
+- `<Tooltip>` - Remove deprecated tooltip [1179](https://github.com/wix/wix-style-react/pull/1179)
+### Fixed
+- `<ToggleSwith>` - disable the toggle on disable mode[1174](https://github.com/wix/wix-style-react/pull/1174)
+- storybook e2e
+- `<InputWithOption>` - Solved saffari issue: [387](https://github.com/wix/wix-style-react/issues/387) 
+
+- `<Tooltip>` - Remove setTimeout [1177](https://github.com/wix/wix-style-react/pull/1177)
+- Terminal was cleaned from all warning printouts - [1185](https://github.com/wix/wix-style-react/pull/1185)
+
+
+
+
+
 ## 1.1.4259 - 2017-11-22
 ### Changed
 - `<Page>` Added more features https://github.com/wix/wix-style-react/pull/1158
