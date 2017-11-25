@@ -1,4 +1,4 @@
-import {pallete} from '../meta';
+import {pallete} from '../pallete';
 
 const getBorderRadius = roundInput => roundInput ? '18px' : '6px';
 

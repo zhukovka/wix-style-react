@@ -1,4 +1,5 @@
-import {pallete, pxDivide} from '../meta';
+import {pallete} from '../pallete';
+import {pxDivide} from '../utils';
 
 const heightMap = {
   small: '30px',
@@ -26,37 +27,37 @@ const lineHeightMap = {
 
 const skinToColorMap = {
   standard: pallete.white,
-  danger: pallete.white,
+  error: pallete.white,
   emptyStandard: pallete.main
 };
 
 const skinToBackgroundMap = {
   standard: pallete.main,
-  danger: pallete.danger,
+  error: pallete.danger,
   emptyStandard: pallete.white
 };
 
 const skinToBorderColorMap = {
   standard: pallete.main,
-  danger: pallete.danger,
+  error: pallete.danger,
   emptyStandard: pallete.main
 };
 
 const skinToHoverColorMap = {
   standard: pallete.white,
-  danger: pallete.white,
+  error: pallete.white,
   emptyStandard: pallete.white
 };
 
 const skinToHoverBackgroundMap = {
   standard: pallete.mainHover,
-  danger: pallete.dangerHover,
+  error: pallete.dangerHover,
   emptyStandard: pallete.mainHover
 };
 
 const skinToHoverBorderColorMap = {
   standard: pallete.mainHover,
-  danger: pallete.dangerHover,
+  error: pallete.dangerHover,
   emptyStandard: pallete.mainHover
 };
 

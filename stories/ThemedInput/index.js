@@ -3,7 +3,7 @@ import {storiesOf} from '@storybook/react';
 
 import Example from './Example';
 
-storiesOf('Core', module)
-  .add('ThemedInput', () => (
+storiesOf('themes', module)
+  .add('ThemedInput (WIP)', () => (
     <Example/>
   ));

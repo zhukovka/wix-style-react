@@ -1,7 +1,7 @@
 import defaultsDeep from 'lodash/defaultsDeep';
 import {core} from './theme';
 
-export default theme => {
+export const styles = theme => {
   theme = defaultsDeep(theme, core);
 
   return {

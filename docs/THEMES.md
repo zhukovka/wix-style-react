@@ -24,36 +24,24 @@ Note that we wouldn't want to pass those additional props to the core component,
 
 ```javascript
 import CoreButton from 'wix-style-react/Button';
-import {withTheme} from 'wix-style-react';
+import {ThemedComponent} from 'wix-style-react/theme';
 
-const theme = skin => ({
+const theme = ({height, skin}) => ({
   fontSize: height === 'small' ? '14px' : '20px',
   color: skin === 'normal' ? 'white' : 'blue',
-  backgroundColor: skin === 'normal' ? 'blue' : 'white'
+  backgroundColor: skin === 'normal' ? 'blue' : 'white',
+  
+  hover: {		
+    color: 'blue',		
+    backgroundColor: 'green'		
+  }
 });
 
-const Button = ({skin, ...coreProps}) => (
-  <CoreButton {...coreProps} theme={theme(skin)}/>
-); 
-```
-
-If you don't allow your themed component to receive any additional props that will affect your styling, you can use the `withTheme` function to creates a new HOC to enrich the core component with your custom theme. This is only a nicer API.
-
-```javascript
-import CoreButton from 'wix-style-react/Button';
-import {withTheme} from 'wix-style-react';
-
-const theme = {
-  color: 'green',
-  backgroundColor: 'blue'
-
-  hover: {
-    color: 'blue',
-    backgroundColor: 'green'
-  }
-};
-
-export default withTheme(CoreButton, theme);
+const Button = ({height, skin, ...coreProps}) => (
+  <ThemedComponent theme={theme} height={height} skin={skin}>
+    <CoreButton {...coreProps}/>
+  </ThemedComponent>
+);
 ```
 
 #### Providing classes instead of theme
