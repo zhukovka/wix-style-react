@@ -14,16 +14,14 @@ export default class PageWrapper extends React.Component {
     return (
       <div className={s.container} data-hook="story-page-container">
         <Page>
-          <Page.Header>
-            <PageHeader
-              breadcrumbs={showBreadcrumbs ? <Breadcrumbs/> : null}
-              title={title}
-              subtitle={subtitle}
-              showBackButton={showBackButton}
-              onBackClicked={(() => {})}
-              actionsBar={(<Button>Action</Button>)}
-              />
-          </Page.Header>
+          <Page.Header
+            breadcrumbs={showBreadcrumbs ? <Breadcrumbs/> : null}
+            title={title}
+            subtitle={subtitle}
+            showBackButton={showBackButton}
+            onBackClicked={(() => {})}
+            actionsBar={(<Button>Action</Button>)}
+            />
           <Page.Content>
             <Content/>
           </Page.Content>

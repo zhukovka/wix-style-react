@@ -1,7 +1,7 @@
 import s from './Page.scss';
 import React from 'react';
 import WixComponent from '../BaseComponents/WixComponent';
-import Header from './components/Header';
+import PageHeader from './PageHeader';
 import Content from './components/Content';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
@@ -81,7 +81,7 @@ export default class Page extends WixComponent {
       <div className={s.page}>
         <div className={s.staticBackground}/>
         <div className={pageHeaderClass} ref={r => this.pageHeaderRef = r} style={pageHeaderStyle}>
-          {React.Children.map(this._safeGetChildren(headerElement), child => React.cloneElement(child, {minimized}))}
+          {headerElement && React.cloneElement(headerElement, {minimized})}
         </div>
         <div className={s.scrollableContent} ref={r => this.scrollableContentRef = r}>
           <div className={s.contentBackground} style={{height: `${headerHeight}px`}}/>
@@ -93,7 +93,7 @@ export default class Page extends WixComponent {
 }
 
 Page.displayName = 'Page';
-Page.Header = Header;
+Page.Header = PageHeader;
 Page.Content = Content;
 
 Page.propTypes = {
