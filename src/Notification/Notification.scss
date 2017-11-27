@@ -1,47 +1,43 @@
 @import '../common.scss';
 
-.notification-component {
+.root {
   position: relative;
+}
 
-  .notification-wrapper {
-    overflow: hidden;
+.notification {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
 
-    display: flex;
-    align-items: center;
-    justify-content: center;
+.label {
+  max-width: 70%;
+  margin-right: 12px;
+}
 
-    .content-wrapper {
-      flex: 1 0 auto;
-      position: relative;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-
-      .label-wrapper {
-        margin-right: 12px;
-      }
-    }
-
-    .close-button-wrapper {
-      margin-right: 12px;
-    }
-  }
+.closeButton {
+  position: absolute;
+  right: 12px;
+  display: flex;
+  align-items: center;
+  height: 100%;
 }
 
 /*Position*/
 
-.relative-position {
+.relativePosition {
   position: relative;
   width: 100%;
 }
 
-.absolute-position {
+.absolutePosition {
   position: absolute;
   right: 0;
   left: 0;
 }
 
-.fixed-position {
+.fixedPosition {
   position: fixed;
   right: 0;
   width: 100%;
@@ -49,105 +45,75 @@
 }
 
 /*Theme*/
-.standard-theme {
-  background-color: $B20;
-}
-
-.error-theme {
-  background-color: $R20;
-}
-
-.success-theme {
-  background-color: $G20;
-}
-
-.warning-theme {
-  background-color: $Y10;
-}
-
-.premium-theme {
-  background-color: $P20;
-}
+.standardTheme { background-color: $B20; }
+.errorTheme { background-color: $R20; }
+.successTheme { background-color: $G20; }
+.warningTheme { background-color: $Y10; }
+.premiumTheme { background-color: $P20; }
 
 /*Size*/
 
-.small-size {
-  height: 42px;
-}
-
-.big-size {
-  height: 54px;
-}
+.smallSize { height: 42px; }
+.bigSize { height: 54px; }
 
 /*Animations*/
 $easeOutQuint: cubic-bezier(0.23, 1, 0.32, 1);
 $easeInOutSine: cubic-bezier(0.445, 0.05, 0.55, 0.95);
 
-.notification-animation-enter {
+.notificationAnimationEnter {
   transition: all 0.4s cubic-bezier(0.895, 0.03, 0.685, 0.22);
-  //transition: all 0.4s $easeOutQuint; //TODO - This one doesn't look good
   max-height: 0;
 
-  .label-wrapper {
+  .label {
     transition: all 0.4s $easeOutQuint 0.1s;
     opacity: 0;
-    margin-top: -70px;
+    transform: translateY(-70px);
   }
 
-  .cta-button-wrapper {
+  .button {
     transition: all 0.16s $easeOutQuint 0.2s;
     transform: scale(0.6);
     opacity: 0.5;
   }
 }
 
-.notification-animation-enter-active {
+.notificationAnimationEnterActive {
   max-height: 500px;
 
-  .label-wrapper {
+  .label {
     opacity: 1;
-    margin-top: 0;
+    transform: translateY(0);
   }
 
-  .cta-button-wrapper {
+  .button {
     transform: scale(1);
     opacity: 1;
   }
 }
 
-.notification-animation-exit {
+.notificationAnimationExit {
   max-height: 500px;
 
-  .label-wrapper {
-    opacity: 1;
-    margin-top: 0;
-  }
-
-  .cta-button-wrapper {
-    opacity: 1;
-  }
-
-  .close-button-wrapper {
+  .label,
+  .button,
+  .closeButton {
     opacity: 1;
   }
 }
 
-.notification-animation-exit-active {
+.notificationAnimationExitActive {
   transition: all 0.25s $easeInOutSine 0.1s;
   max-height: 0;
 
-  .label-wrapper {
+  .label {
     transition: all 0.25s $easeInOutSine;
     opacity: 0.5;
-    margin-top: -70px;
+    transform: translateY(-70px);
   }
 
-  .cta-button-wrapper {
+  .button,
+  .closeButton {
     transition: all 0.12s $easeInOutSine;
-    opacity: 0;
-  }
-
-  .close-button-wrapper {
     opacity: 0;
   }
 }

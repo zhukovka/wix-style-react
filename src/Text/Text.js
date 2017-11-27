@@ -11,15 +11,13 @@ import styles from './styles.scss';
   *
   * Adds correct styling so you don't have to.
   *
-  * Renders correct element (currently either `span` or `h1` - `h5`) depending on `appearance` (defaults to `span`)
-  *
-  * for examples of available `appearance`s see **Common** -> **Typography**
+  * Renders correct element (either `span` or `h1` - `h5`) depending on `appearance` (defaults to `span`)
   */
 export default class extends WixComponent {
   static displayName = 'Text';
 
   static propTypes = {
-    /** a type of appearance to apply */
+    /** a name of appearance to apply */
     appearance: PropTypes.oneOf([
       'H0', 'H1', 'H2', 'H2.1', 'H3', 'H4',
       'T1', 'T1.1', 'T1.2', 'T1.3', 'T1.4',
@@ -78,10 +76,10 @@ export default class extends WixComponent {
       this.getType(appearance),
       {
         title: this.getTitle(),
-        className: classNames({
-          [this.getClassNames(appearance)]: true,
-          [styles.ellipsis]: ellipsis
-        })
+        className: classNames(
+          this.getClassNames(appearance),
+          {[styles.ellipsis]: ellipsis}
+        )
       },
       children
     );
