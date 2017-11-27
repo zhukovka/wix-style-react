@@ -7,6 +7,7 @@ $input-area-padding-horizontal: 12px;
 $input-area-padding-top: 6px;
 $exclamation-horizontal: 8px;
 $exclamation-top: 4px;
+$gap: 6px;
 
 .error {
     position: absolute;
@@ -29,9 +30,17 @@ $exclamation-top: 4px;
 }
 
 .errorIcon {
-    padding: 0 7px 16px;
     color: #f2564d;
-    margin-top: 6px;
+    margin: $gap;
+
+    background-color: $paletteR1;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    path { stroke: #fff; }
 }
 
 .inputArea {
