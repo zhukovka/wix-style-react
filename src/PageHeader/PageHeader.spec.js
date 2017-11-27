@@ -1,8 +1,18 @@
 import React from 'react';
-import {PageHeader, generateDefaultBreadcrumbs} from './PageHeader';
+import PageHeader from './PageHeader';
 import pageHeaderDriverFactory from './PageHeader.driver';
-import {createDriverFactory} from '../../test-common';
-import Button from '../../Button';
+import {createDriverFactory} from '../test-common';
+import Button from '../Button';
+import Breadcrumbs from '../Breadcrumbs/Breadcrumbs';
+
+const generateDefaultBreadcrumbs = title =>
+  <Breadcrumbs
+    items={[{id: '1', value: title}]}
+    activeId="1"
+    size="medium"
+    theme="onGrayBackground"
+    onClick={() => {}}
+    />;
 
 describe('PageHeader', () => {
   const createDriver = createDriverFactory(pageHeaderDriverFactory);

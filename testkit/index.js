@@ -36,7 +36,7 @@ export const buttonWithOptionsTestkitFactory = testkitFactoryCreator(buttonWithO
 import pageDriverFactory from '../src/Page/Page.driver';
 export const pageTestkitFactory = testkitFactoryCreator(pageDriverFactory);
 
-import pageHeaderDriverFactory from '../src/Page/PageHeader/PageHeader.driver';
+import pageHeaderDriverFactory from '../src/PageHeader/PageHeader.driver';
 export const pageHeaderTestkitFactory = testkitFactoryCreator(pageHeaderDriverFactory);
 
 import languagePickerDriverFactory from '../src/LanguagePicker/LanguagePicker.driver';

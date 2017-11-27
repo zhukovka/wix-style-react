@@ -26,7 +26,6 @@ import '../stories/InputWithOptions';
 import '../stories/LanguagePicker';
 import '../stories/Label';
 import '../stories/Loader';
-import '../stories/Page';
 import '../stories/PopoverMenu';
 import '../stories/SideBar';
 import '../stories/SideMenu';
@@ -109,6 +108,9 @@ import '../stories/Notification';
 import '../stories/MessageBox';
 import '../stories/Modal';
 
+// 10. Page
+import '../stories/Page';
+import '../stories/PageHeader';
 
 // 11. Pickers and Selectors
 import '../stories/ColorPicker'; // 11.5 Color Picker

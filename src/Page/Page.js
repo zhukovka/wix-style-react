@@ -1,7 +1,7 @@
 import s from './Page.scss';
 import React from 'react';
 import WixComponent from '../BaseComponents/WixComponent';
-import PageHeader from './PageHeader';
+import PageHeader from '../PageHeader';
 import Content from './components/Content';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
@@ -69,9 +69,9 @@ export default class Page extends WixComponent {
   }
 
   render() {
+    const {children} = this.props;
     const {headerHeight, minimized} = this.state;
-    const [headerElement, contentElement] = React.Children.toArray(this.props.children);
-    const pageHeaderClass = classNames(s.pageHeader, {[s.minimized]: minimized});
+    const [headerElement, contentElement] = React.Children.toArray(children);
     const pageHeaderStyle = {};
     if (!minimized) {
       pageHeaderStyle.paddingBottom = `${SCROLL_TOP_THRESHOLD}px`;
@@ -79,13 +79,15 @@ export default class Page extends WixComponent {
 
     return (
       <div className={s.page}>
-        <div className={s.staticBackground}/>
-        <div className={pageHeaderClass} ref={r => this.pageHeaderRef = r} style={pageHeaderStyle}>
+        {minimized && <div className={s.staticBackground}/>}
+        <div className={classNames(s.pageHeader, {[s.minimized]: minimized})} ref={r => this.pageHeaderRef = r} style={pageHeaderStyle}>
           {headerElement && React.cloneElement(headerElement, {minimized})}
         </div>
         <div className={s.scrollableContent} ref={r => this.scrollableContentRef = r}>
           <div className={s.contentBackground} style={{height: `${headerHeight}px`}}/>
-          {this._safeGetChildren(contentElement)}
+          <div className={s.content}>
+            {this._safeGetChildren(contentElement)}
+          </div>
         </div>
       </div>
     );

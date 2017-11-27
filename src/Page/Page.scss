@@ -4,21 +4,23 @@
     position: relative;
     width: 100%;
     height: 100%;
+    background-color: rgba($D70,.95);
+    padding-bottom: 18px;
 }
 
 .static-background {
     position: absolute;
     width: 100%;
     height: 66px;
-    background: rgba($D70,.95);
+    background-color: rgba($D70,.95);
     z-index: 1;
 }
 
 .page-header {
+    padding: 30px 48px 0;
     position: absolute;
     width: 100%;
     z-index: 1;
-    padding-top: 30px;
     min-height: 30px;
     transition: padding .2s cubic-bezier(0.4, 0.0, 0.2, 1);
     
@@ -35,6 +37,6 @@
     position: relative;
 }
 
-.content-background {
-    background: rgba($D70,.95);
+.content {
+    margin: 0 48px;
 }

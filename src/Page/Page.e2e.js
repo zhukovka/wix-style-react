@@ -2,8 +2,8 @@ import eyes from 'eyes.it';
 import {pageTestkitFactory, getStoryUrl, waitForVisibilityOf} from '../../testkit/protractor';
 
 describe('Page', () => {
-  const storyUrl = getStoryUrl('Core', 'Page');
-  const dataHook = 'story-page-container';
+  const storyUrl = getStoryUrl('10. Page', '10.1 Page');
+  const dataHook = 'story-page';
 
   eyes.it('should display the title and after scroll should hide it', async () => {
     const driver = pageTestkitFactory({dataHook});

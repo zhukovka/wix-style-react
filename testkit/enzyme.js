@@ -27,7 +27,7 @@ export const tabsTestkitFactory = enzymeTestkitFactoryCreator(tabsDriverFactory)
 import pageDriverFactory from '../src/Page/Page.driver';
 export const pageTestkitFactory = enzymeTestkitFactoryCreator(pageDriverFactory);
 
-import pageHeaderDriverFactory from '../src/Page/PageHeader/PageHeader.driver';
+import pageHeaderDriverFactory from '../src/PageHeader/PageHeader.driver';
 export const pageHeaderTestkitFactory = enzymeTestkitFactoryCreator(pageHeaderDriverFactory);
 
 import dropdownLayoutDriverFactory from '../src/DropdownLayout/DropdownLayout.driver';
