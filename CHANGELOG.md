@@ -2,12 +2,18 @@
 
 All notable changes are documented in this file.
 
+
+## 1.1.4262 - 2017-11-27
+### Changed
+- `<Page>` refactor & improve docs [1182](https://github.com/wix/wix-style-react/pull/1190)
+
 ## 1.1.4261 - 2017-11-27
 ### Changed
 - `<Page>` refactor [1182](https://github.com/wix/wix-style-react/pull/1182)
 
 ### Fixed
 - `<InputArea>` updated to the correct icon [1181](https://github.com/wix/wix-style-react/pull/1181)
+
 ## 1.1.4260 - 2017-11-25
 
 ### Added
@@ -25,10 +31,6 @@ All notable changes are documented in this file.
 
 - `<Tooltip>` - Remove setTimeout [1177](https://github.com/wix/wix-style-react/pull/1177)
 - Terminal was cleaned from all warning printouts - [1185](https://github.com/wix/wix-style-react/pull/1185)
-
-
-
-
 
 ## 1.1.4259 - 2017-11-22
 ### Changed
