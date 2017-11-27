@@ -2,6 +2,12 @@
 
 All notable changes are documented in this file.
 
+## 1.1.4261 - 2017-11-27
+### Changed
+- `<Page>` refactor [1182](https://github.com/wix/wix-style-react/pull/1182)
+
+### Fixed
+- `<InputArea>` updated to the correct icon [1181](https://github.com/wix/wix-style-react/pull/1181)
 ## 1.1.4260 - 2017-11-25
 
 ### Added
