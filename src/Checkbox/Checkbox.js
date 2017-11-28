@@ -36,14 +36,25 @@ class Checkbox extends WixComponent {
     }
   };
 
+  _id = `${Checkbox.displayName}-${uniqueId()}`;
+
   render() {
-    const {id = uniqueId(), checked, indeterminate, disabled, hasError, hover, active, size, onChange} = this.props;
+    const {
+      id = this._id,
+      checked,
+      indeterminate,
+      disabled,
+      hasError,
+      hover,
+      active,
+      size,
+      onChange
+    } = this.props;
 
     const classname = classNames(
-      styles.wrapper,
+      styles.root,
+      checked ? styles.checked : styles.unchecked,
       {
-        [styles.checked]: checked,
-        [styles.unchecked]: !checked,
         [styles.hover]: hover,
         [styles.active]: active,
         [styles.disabled]: disabled,
@@ -61,6 +72,7 @@ class Checkbox extends WixComponent {
           checked={checked}
           disabled={disabled}
           onChange={disabled ? null : onChange}
+          style={{display: 'none'}}
           />
 
         <Label for={id} appearance="T1.1">

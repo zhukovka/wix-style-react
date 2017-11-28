@@ -1,137 +1,138 @@
-@import '../common.scss';
+@import "../common.scss";
 
-.wrapper {
-    display: inline-block;
-}
+.root {
+  display: inline-block;
 
-.wrapper > label {
+  label {
     display: flex;
     cursor: pointer;
     justify-content: center;
     align-items: center;
+  }
 }
 
-.wrapper > input
-{
-    display:none;
+.children {
+  padding-left: 12px;
 }
 
-:global(.rtl) .wrapper > label {
+:global(.rtl) {
+  .root {
     direction: rtl;
+  }
+
+  .children {
+    padding-right: 12px;
+  }
 }
 
 .checkbox {
-    position: relative;
-    width: 16px;
-    min-width: 16px;
-    height: 16px;
-    min-height: 16px;
-    border: 1px solid $B10;
-    border-radius: 4px;
-    box-sizing:border-box;
+  position: relative;
+  width: 16px;
+  min-width: 16px;
+  height: 16px;
+  min-height: 16px;
+  border: 1px solid $B10;
+  border-radius: 4px;
+  box-sizing: border-box;
 }
 
-.checkbox.large {
-    width: 20px;
-    height: 20px;
-}
+.large {
+  width: 20px;
+  height: 20px;
 
-.checkbox>.inner {
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 14px;
-    height: 14px;
-    color: $D80;
-}
-
-.checkbox.large>.inner {
+  .inner {
     width: 18px;
     height: 18px;
+  }
+
+  .inner > svg {
+    width: 13px;
+    height: 13px;
+  }
+}
+
+.inner {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 14px;
+  height: 14px;
+  color: $D80;
+
+  > svg {
+    width: 9px;
+    height: 9px;
+  }
+
+  > svg > path {
+    fill: #fff;
+  }
 }
 
 .indeterminate {
-    background-color: $D80;
-    width: 8px;
-    height: 2px;
-}
-
-.checkbox>.inner>svg {
-    width:9px;
-    height:9px;
-}
-
-.checkbox.large>.inner>svg {
-    width:13px;
-    height:13px;
-}
-
-.checkbox>.inner>svg>path {
-    fill:#fff;
-}
-
-:global(.ltr) .children, .children {
-    padding-left:12px;
-}
-
-:global(.rtl) .children {
-    padding-right:12px;
+  background-color: $D80;
+  width: 8px;
+  height: 2px;
 }
 
 /* Checked State */
-
-.wrapper.checked .checkbox {
+.checked {
+  .checkbox {
     background-color: $B10;
-}
 
-.wrapper.checked .checkbox >.inner {
-    opacity: 1;
+    .inner {
+      opacity: 1;
+    }
+  }
 }
 
 /* Unchecked State */
 
-.wrapper.unchecked .checkbox {
+.unchecked {
+  &:hover,
+  &.hover {
+    .checkbox {
+      background-color: $B40;
+    }
+  }
+
+  &:active,
+  &.active {
+    .checkbox {
+      background-color: $B20;
+
+      .inner {
+        opacity: 1;
+      }
+    }
+  }
+
+  .checkbox {
     background-color: $D80;
+
+    .inner {
+      opacity: 0;
+    }
+  }
 }
 
-.wrapper.unchecked .checkbox > .inner {
-    opacity: 0;
-}
+.disabled {
+  pointer-events: none;
+  cursor: default;
 
-.wrapper.unchecked:hover .checkbox, .wrapper.unchecked.hover .checkbox {
-    background-color: $B40;
-}
-
-.wrapper.unchecked:active .checkbox, .wrapper.unchecked.active .checkbox {
-    background-color: $B20;
-}
-
-.wrapper.unchecked:active .checkbox>.inner, .wrapper.unchecked.active .checkbox>.inner {
-    opacity: 1;
-}
-
-/* Disabled State */
-
-.wrapper.disabled {
-    pointer-events: none;
-    cursor: default;
-}
-
-.wrapper.disabled .checkbox, .wrapper.disabled:hover .checkbox, .wrapper.disabled.hover .checkbox,
-.wrapper.disabled.active .checkbox, .wrapper.disabled:active .checkbox {
-    border-color: $GR20;
-    background-color: $GR30;
-}
-
-.wrapper.disabled.checked .checkbox, .wrapper.disabled.checked:hover .checkbox, .wrapper.disabled.checked.hover .checkbox,
-.wrapper.disabled.checked.active .checkbox, .wrapper.disabled.checked:active .checkbox {
+  &.checked .checkbox {
     background-color: $GR20;
+  }
+
+  .checkbox {
+    border-color: $GR20;
+    background-color: $D70;
+  }
 }
 
-/* Error State */
-.wrapper.hasError .checkbox {
-    border-color: $R10;
+.hasError .checkbox {
+  border-color: $R10;
 }

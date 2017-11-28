@@ -7,7 +7,7 @@ import ReactTestUtils from 'react-dom/test-utils';
 const fieldWithSelectionCompositeDriverFactory = ({element, wrapper}) => {
   const label = element.querySelector('.label>label');
   const textInput = element.querySelector('input.input') || element.querySelector('textarea');
-  const selectionInput = element.querySelector('.wrapper').childNodes[0];
+  const selectionInput = element.querySelector('input');
 
   return {
     exists: () => !!element,
