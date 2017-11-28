@@ -5,7 +5,7 @@ import Breadcrumbs from '../Page/Breadcrumbs';
 import './PageHeader.scss';
 
 const breadcrumbsOptions = [null];
-breadcrumbsOptions.push(<Breadcrumbs/>);
+breadcrumbsOptions.push(Breadcrumbs);
 
 const actionsBarOptions = [null];
 actionsBarOptions.push(<Button>Action</Button>);

@@ -15,20 +15,27 @@ const PageFirstAndSecondChildError = 'Warning: Failed prop type: Page: Invalid P
 const PageContentChildrenError = 'Warning: Failed prop type: The prop `children` is marked as required in `Page.Content`, but its value is `undefined`.\n    in Page.Content';
 const PageHeaderMustHaveTitle = 'Warning: Failed prop type: The prop `title` is marked as required in `PageHeader`, but its value is `undefined`.\n    in PageHeader';
 
+const renderPageWithProps = (props = {}) => (
+  <Page {...props}>
+    <Page.Header title="title"/>
+    <Page.Content>
+      <Content/>
+    </Page.Content>
+  </Page>
+);
+
 describe('Page', () => {
   const createDriver = createDriverFactory(pageDriverFactory);
-  const page = (
-    <Page>
-      <Page.Header title="title"/>
-      <Page.Content>
-        <Content/>
-      </Page.Content>
-    </Page>
-  );
 
   it('should initialize component', () => {
-    const driver = createDriver(page);
+    const driver = createDriver(renderPageWithProps());
     expect(driver.exists()).toBeTruthy();
+    expect(driver.backgroundImageExists()).toBeFalsy();
+  });
+
+  it('should initialize component with background image', () => {
+    const driver = createDriver(renderPageWithProps({backgroundImageUrl: '/some/image'}));
+    expect(driver.backgroundImageExists()).toBeTruthy();
   });
 
   describe('Bad Formats', () => {

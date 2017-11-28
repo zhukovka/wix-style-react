@@ -19,7 +19,7 @@ export default class extends WixComponent {
   static propTypes = {
     /** a name of appearance to apply */
     appearance: PropTypes.oneOf([
-      'H0', 'H1', 'H2', 'H2.1', 'H3', 'H4',
+      'H0', 'H1', 'H1.1', 'H2', 'H2.1', 'H3', 'H4',
       'T1', 'T1.1', 'T1.2', 'T1.3', 'T1.4',
       'T2', 'T2.1', 'T2.2', 'T2.3',
       'T3', 'T3.1', 'T3.2', 'T3.3', 'T3.4',
@@ -49,19 +49,20 @@ export default class extends WixComponent {
   }
 
   getType = appearance =>
-    [
+     [
       {type: 'h1', candidates: ['H0']},
-      {type: 'h2', candidates: ['H1']},
+      {type: 'h2', candidates: ['H1', 'H1.1']},
       {type: 'h3', candidates: ['H2', 'H2.1']},
       {type: 'h4', candidates: ['H3']},
       {type: 'h5', candidates: ['H4']}
-    ]
+     ]
       .filter(({candidates}) => candidates.indexOf(appearance) !== -1)
       .reduceRight((acc, {type}) => type, 'span');
 
+
   getClassNames = appearance =>
     [
-      {className: styles.headingDefaults, candidates: ['H0', 'H1', 'H2', 'H2.1', 'H3', 'H4']}
+      {className: styles.headingDefaults, candidates: ['H0', 'H1', 'H1.1', 'H2', 'H2.1', 'H3', 'H4']}
     ]
       .filter(({candidates}) => candidates.indexOf(appearance) !== -1)
       .reduce((acc, {className}) =>

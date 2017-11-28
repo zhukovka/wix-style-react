@@ -2,7 +2,7 @@ import s from './Page.scss';
 import React from 'react';
 import WixComponent from '../BaseComponents/WixComponent';
 import PageHeader from '../PageHeader';
-import Content from './components/Content';
+import Content from './Content';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
@@ -69,7 +69,7 @@ export default class Page extends WixComponent {
   }
 
   render() {
-    const {children} = this.props;
+    const {backgroundImageUrl, children} = this.props;
     const {headerHeight, minimized} = this.state;
     const [headerElement, contentElement] = React.Children.toArray(children);
     const pageHeaderStyle = {};
@@ -81,10 +81,19 @@ export default class Page extends WixComponent {
       <div className={s.page}>
         {minimized && <div className={s.staticBackground}/>}
         <div className={classNames(s.pageHeader, {[s.minimized]: minimized})} ref={r => this.pageHeaderRef = r} style={pageHeaderStyle}>
-          {headerElement && React.cloneElement(headerElement, {minimized})}
+          {headerElement && React.cloneElement(headerElement, {minimized, hasBackgroundImage: !!backgroundImageUrl})}
         </div>
         <div className={s.scrollableContent} ref={r => this.scrollableContentRef = r}>
-          <div className={s.contentBackground} style={{height: `${headerHeight}px`}}/>
+          <div className={s.contentPlaceholder} style={{height: `${headerHeight}px`}}/>
+          {backgroundImageUrl &&
+            <div
+              className={s.imageBackground}
+              style={{height: `${headerHeight + 39}px`, backgroundImage: `url(${backgroundImageUrl})`}}
+              data-hook="page-background-image"
+              >
+              <div className={s.imageBackgroundOverlay}/>
+            </div>
+          }
           <div className={s.content}>
             {this._safeGetChildren(contentElement)}
           </div>
@@ -99,6 +108,8 @@ Page.Header = PageHeader;
 Page.Content = Content;
 
 Page.propTypes = {
+  /** Background Url */
+  backgroundImageUrl: PropTypes.string,
   children: PropTypes.arrayOf((propValue, key) => {
     if (!propValue || propValue.length !== 2) {
       return new Error(`Page: Invalid Prop children, first child must be Page.Header, and second child must be Page.Content`);
