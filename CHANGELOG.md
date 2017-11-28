@@ -2,86 +2,86 @@
 
 All notable changes are documented in this file.
 
+## 1.1.4623 - 2017-11-28
+### Added
+- New icons: Code, Facebook, Google & Yandex [1197](https://github.com/wix/wix-style-react/pull/1197)
+
+### Changed
+- `<PageHeader>` - general improvements [1196](https://github.com/wix/wix-style-react/pull/1196)
+
+### Fixed
+- `<Notification.TextLabel/>` - correct style & ellipsed text behaviour [1180](https://github.com/wix/wix-style-react/pull/1180)
+- `<Checkbox/>` - do not require `.ltr` [1199](https://github.com/wix/wix-style-react/pull/1199)
 
 ## 1.1.4262 - 2017-11-27
 ### Changed
-- `<Page>` refactor & improve docs [1182](https://github.com/wix/wix-style-react/pull/1190)
-
-## 1.1.4261 - 2017-11-27
-### Changed
-- `<Page>` refactor [1182](https://github.com/wix/wix-style-react/pull/1182)
+- `<Page>` refactor & improve docs [1182](https://github.com/wix/wix-style-react/pull/1190), [1182](https://github.com/wix/wix-style-react/pull/1182)
 
 ### Fixed
 - `<InputArea>` updated to the correct icon [1181](https://github.com/wix/wix-style-react/pull/1181)
 
 ## 1.1.4260 - 2017-11-25
-
 ### Added
 - `<StatsWidget>` - Added new widget (https://github.com/wix/wix-style-react/commit/3209220357d8b8e1bd320de5f1e9512f50214342)
 - `<Tooltip>` - Add reange polyfill [1178](https://github.com/wix/wix-style-react/pull/1178)
 - Package.lock - [1183](https://github.com/wix/wix-style-react/pull/1183)
 - Themes - huge refactor to boost performance and api. [1186](https://github.com/wix/wix-style-react/pull/1186)
+
 ### Changed
 - `<TimeInput>` + `<Search>` - Update docs [1108](https://github.com/wix/wix-style-react/pull/1108)
 - `<Tooltip>` - Remove deprecated tooltip [1179](https://github.com/wix/wix-style-react/pull/1179)
+
 ### Fixed
 - `<ToggleSwith>` - disable the toggle on disable mode[1174](https://github.com/wix/wix-style-react/pull/1174)
 - storybook e2e
 - `<InputWithOption>` - Solved saffari issue: [387](https://github.com/wix/wix-style-react/issues/387) 
-
 - `<Tooltip>` - Remove setTimeout [1177](https://github.com/wix/wix-style-react/pull/1177)
 - Terminal was cleaned from all warning printouts - [1185](https://github.com/wix/wix-style-react/pull/1185)
 
 ## 1.1.4259 - 2017-11-22
+### Added
+- `<Page>` Added more features [1158](https://github.com/wix/wix-style-react/pull/1158)
+- Added sorting order icons [1140](https://github.com/wix/wix-style-react/pull/1140)
+
 ### Changed
-- `<Page>` Added more features https://github.com/wix/wix-style-react/pull/1158
-- `<Breadcrumbs>` style changes https://github.com/wix/wix-style-react/pull/1156
-- Added sorting order icons https://github.com/wix/wix-style-react/pull/1140
-- `<Tag>` Fixed bug with expanding width https://github.com/wix/wix-style-react/pull/1159
+- `<Breadcrumbs>` style changes [1156](https://github.com/wix/wix-style-react/pull/1156)
+- `<Tag>` Fixed bug with expanding width [1159](https://github.com/wix/wix-style-react/pull/1159)
 
 ## 1.1.4258 - 2017-11-21
 ### Added
-- `<Page>` component and friends https://github.com/wix/wix-style-react/pull/1145
+- `<Page>` component and friends [1145](https://github.com/wix/wix-style-react/pull/1145)
 
 ### Changed
-- `<AutoExample>` e2e approach https://github.com/wix/wix-style-react/pull/1148
+- `<AutoExample>` e2e approach [1148](https://github.com/wix/wix-style-react/pull/1148)
 
 ### Fixed
-- `<DataTable>` - missing separators in data table https://github.com/wix/wix-style-react/pull/1153
-- `<GoogleAddressInput>` remove undefined properties from result https://github.com/wix/wix-style-react/pull/1154
+- `<DataTable>` - missing separators in data table [1153](https://github.com/wix/wix-style-react/pull/1153)
+- `<GoogleAddressInput>` remove undefined properties from result [1154](https://github.com/wix/wix-style-react/pull/1154)
 
 ## 1.1.4527 - 2017-11-20
 ### Changed
-- Themes implementation without provider 
-[1151](https://github.com/wix/wix-style-react/pull/1151)
+- Themes implementation without provider [1151](https://github.com/wix/wix-style-react/pull/1151)
 
-## 1.1.4526 - 2017-11-20
 ### Added
 - `<Page>` - additional e2e tests
 
 - `<GoogleAddressInput>` - Allow fetching address data via Places API [1141](https://github.com/wix/wix-style-react/pull/1141)
 ### Fixed
 - TpaThemeProvider - small bug (https://github.com/wix/wix-style-react/commit/d66bf2107f1376c5034ef835303da20716df7e82)
-
 - `<Button>` - Fixed incorrect padding in RTL [1142](https://github.com/wix/wix-style-react/pull/1142)
-
 - `<DropdownLayout>` - Use lodash findIndex instead of native (for IE support)[1143](https://github.com/wix/wix-style-react/pull/1143)
-
 - `<DropdownLayout>`, `<GoogleAddressInput>`, `<MultiSelect>` - Added a selectedHightlight prop to DropdownLayout, meaning after selecting an option if it should highlight it when dropdown is reopened [1136](https://github.com/wix/wix-style-react/pull/1136)
-
 - `<DropdownLayout>` - mouseClickOutside method was fixed [1147](https://github.com/wix/wix-style-react/pull/1147)
 
 
 ## 1.1.4525 - 2017-11-18
 ### Added
 - themes: progressed with themes poc
-
 - `<Page>` - new component (https://github.com/wix/wix-style-react/pull/1127)
 
 ### Fixed
 - `<GoogleAddressInput>` - pixelated google credit picture in the footer.
 (https://github.com/wix/wix-style-react/pull/1128)
-
 - `<Tooltip>` - Popover jumping problem(https://github.com/wix/wix-style-react/pull/1137)
 
 ## 1.1.4524 - 2017-11-14
@@ -91,7 +91,6 @@ All notable changes are documented in this file.
 - Themes harmless side project as a POC.(https://github.com/wix/wix-style-react/commit/2d50e0a99f04fa8af7eb7566fb5b2930d36baeba)
 ### Fixed
 - `<FieldWithSelectionComposite>` - fix-selection-input-type (https://github.com/wix/wix-style-react/pull/1126)
-
 - release.js: run gh-pages-auto-release only when releasing(https://github.com/wix/wix-style-react/commit/d3d8035e57de0ce97c6b1c0544638a0798ec6760)
 
 ## 1.1.4523 - 2017-11-13
