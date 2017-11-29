@@ -344,17 +344,25 @@ describe('Input', () => {
 
   describe('autoFocus attribute', () => {
     it('Mounting an input element with autoFocus=false, should give it the focus', () => {
-      let autoFocus = false;
       const driver = createDriver(<Input autoFocus={false}/>);
       expect(driver.isFocus()).toBeFalsy();
-      autoFocus = true;
-      driver.setProps({autoFocus});
+
+      driver.setProps({autoFocus: true});
       expect(driver.isFocus()).toBeFalsy();
     });
 
     it('Mounting an input element with autoFocus=true, gives it the focus', () => {
       const driver = createDriver(<Input autoFocus/>);
       expect(driver.isFocus()).toBeTruthy();
+    });
+
+    describe('with value attribute', () => {
+      const value = 'this is a string';
+
+      it('Should focus with cursor located at the end of the value', () => {
+        const driver = createDriver(<Input autoFocus value={value}/>);
+        expect(driver.getCursorLocation()).toEqual(value.length);
+      });
     });
   });
 

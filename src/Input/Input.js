@@ -20,7 +20,17 @@ class Input extends Component {
   };
 
   componentDidMount() {
-    this.props.autoFocus && this._onFocus();
+    const {
+      autoFocus,
+      value
+    } = this.props;
+
+    if (autoFocus) {
+      this._onFocus();
+      // Multiply by 2 to ensure the cursor always ends up at the end;
+      // Opera sometimes sees a carriage return as 2 characters.
+      value && this.input.setSelectionRange(value.length * 2, value.length * 2);
+    }
   }
 
   onCompositionChange = isComposing => {

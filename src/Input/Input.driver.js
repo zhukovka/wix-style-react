@@ -63,6 +63,7 @@ const inputDriverFactory = ({element, wrapper, component}) => {
     exists: () => !!(element && element.querySelector('input')),
     startComposing: () => ReactTestUtils.Simulate.compositionStart(input),
     endComposing: () => ReactTestUtils.Simulate.compositionEnd(input),
+    getCursorLocation: () => input.selectionStart,
     setProps: props => {
       const ClonedWithProps = React.cloneElement(component, Object.assign({}, component.props, props), ...(component.props.children || []));
       ReactDOM.render(<div ref={r => element = r}>{ClonedWithProps}</div>, wrapper);
