@@ -1,4 +1,1 @@
-export {
-  isClassExists,
-  makeControlled
-} from './utils';
+export {isClassExists, makeControlled} from 'wix-ui-test-utils';

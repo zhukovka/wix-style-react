@@ -7,7 +7,7 @@ import {createDriverFactory} from '../test-common';
 import {inputTestkitFactory, tooltipTestkitFactory} from '../../testkit';
 import {inputTestkitFactory as enzymeInputTestkitFactory} from '../../testkit/enzyme';
 import {isTestkitExists, isEnzymeTestkitExists} from '../../testkit/test-common';
-import {makeControlled} from '../../test/utils/utils';
+import {makeControlled} from '../../test/utils';
 
 describe('Input', () => {
   const createDriver = createDriverFactory(inputDriverFactory);

@@ -1,7 +1,7 @@
 import React from 'react';
 import textLinkLayoutDriverFactory from './TextLinkLayout.driver';
 import TextLinkLayout from './TextLinkLayout';
-import {createDriverFactory} from '../test-common';
+import {createDriverFactory} from '../../test-common';
 import {textLinkLayoutTestkitFactory} from '../../../testkit';
 import {textLinkLayoutTestkitFactory as enzymeTextLinkLayoutTestkitFactory} from '../../../testkit/enzyme';
 import {isTestkitExists, isEnzymeTestkitExists} from '../../../testkit/test-common';
