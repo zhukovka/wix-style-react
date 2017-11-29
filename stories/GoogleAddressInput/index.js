@@ -27,6 +27,8 @@ class EnsureGoogleMaps extends React.Component {
       googleScript.src = '//maps.googleapis.com/maps/api/js?client=gme-wixcomltd1&libraries=places&language=iwp';
       googleScript.onload = () => this.setState({isMapsLoaded: true});
       document.head.appendChild(googleScript);
+    } else {
+      this.setState({isMapsLoaded: true});
     }
   }
 
