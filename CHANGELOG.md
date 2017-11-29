@@ -2,6 +2,16 @@
 
 All notable changes are documented in this file.
 
+## 1.1.4624 - 2017-11-29
+### Changed
+- use node 8.9.1
+- remove `module` from package.json, no more `dist/es` folder
+- `<MessageBoxFunctionalLayout>` - confirmText & cancelText proptype now node [1202](https://github.com/wix/wix-style-react/pull/1202)
+
+### Fixed
+- `<Input>` - correct autofocus cursor position [1208](https://github.com/wix/wix-style-react/pull/1208)
+
+
 ## 1.1.4623 - 2017-11-28
 ### Added
 - New icons: Code, Facebook, Google & Yandex [1197](https://github.com/wix/wix-style-react/pull/1197)
@@ -13,12 +23,14 @@ All notable changes are documented in this file.
 - `<Notification.TextLabel/>` - correct style & ellipsed text behaviour [1180](https://github.com/wix/wix-style-react/pull/1180)
 - `<Checkbox/>` - do not require `.ltr` [1199](https://github.com/wix/wix-style-react/pull/1199)
 
+
 ## 1.1.4262 - 2017-11-27
 ### Changed
 - `<Page>` refactor & improve docs [1182](https://github.com/wix/wix-style-react/pull/1190), [1182](https://github.com/wix/wix-style-react/pull/1182)
 
 ### Fixed
 - `<InputArea>` updated to the correct icon [1181](https://github.com/wix/wix-style-react/pull/1181)
+
 
 ## 1.1.4260 - 2017-11-25
 ### Added
@@ -38,6 +50,7 @@ All notable changes are documented in this file.
 - `<Tooltip>` - Remove setTimeout [1177](https://github.com/wix/wix-style-react/pull/1177)
 - Terminal was cleaned from all warning printouts - [1185](https://github.com/wix/wix-style-react/pull/1185)
 
+
 ## 1.1.4259 - 2017-11-22
 ### Added
 - `<Page>` Added more features [1158](https://github.com/wix/wix-style-react/pull/1158)
@@ -46,6 +59,7 @@ All notable changes are documented in this file.
 ### Changed
 - `<Breadcrumbs>` style changes [1156](https://github.com/wix/wix-style-react/pull/1156)
 - `<Tag>` Fixed bug with expanding width [1159](https://github.com/wix/wix-style-react/pull/1159)
+
 
 ## 1.1.4258 - 2017-11-21
 ### Added
@@ -57,6 +71,7 @@ All notable changes are documented in this file.
 ### Fixed
 - `<DataTable>` - missing separators in data table [1153](https://github.com/wix/wix-style-react/pull/1153)
 - `<GoogleAddressInput>` remove undefined properties from result [1154](https://github.com/wix/wix-style-react/pull/1154)
+
 
 ## 1.1.4527 - 2017-11-20
 ### Changed
@@ -84,6 +99,7 @@ All notable changes are documented in this file.
 (https://github.com/wix/wix-style-react/pull/1128)
 - `<Tooltip>` - Popover jumping problem(https://github.com/wix/wix-style-react/pull/1137)
 
+
 ## 1.1.4524 - 2017-11-14
 ### Added
 - `<ToogleSwitch/>` - Added support for colors, in order to add component to Wix Viewer (https://github.com/wix/wix-style-react/commit/aa4df9ceb95bd3786f812cb44831f027dbcdb2a4)
@@ -93,6 +109,7 @@ All notable changes are documented in this file.
 - `<FieldWithSelectionComposite>` - fix-selection-input-type (https://github.com/wix/wix-style-react/pull/1126)
 - release.js: run gh-pages-auto-release only when releasing(https://github.com/wix/wix-style-react/commit/d3d8035e57de0ce97c6b1c0544638a0798ec6760)
 
+
 ## 1.1.4523 - 2017-11-13
 ### Added
 - `<Range/>` - now able to work with `<DatePicker/>`s to create date
@@ -100,6 +117,7 @@ range component (https://github.com/wix/wix-style-react/commit/9b32f2a397eec2680
 
 ### Fixed
 - `<InputWithOptions/>` - do not hide dropdown if `options.length === 0` (https://github.com/wix/wix-style-react/pull/1116)
+
 
 ## 1.1.4252 - 2017-11-10
 ### Added
