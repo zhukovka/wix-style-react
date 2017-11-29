@@ -45,8 +45,8 @@ class MessageBoxFunctionalLayout extends WixComponent {
 
 MessageBoxFunctionalLayout.propTypes = {
   hideFooter: PropTypes.bool,
-  confirmText: PropTypes.string,
-  cancelText: PropTypes.string,
+  confirmText: PropTypes.node,
+  cancelText: PropTypes.node,
   theme: PropTypes.string,
   onOk: PropTypes.func,
   onCancel: PropTypes.func,
