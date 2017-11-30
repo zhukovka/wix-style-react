@@ -299,10 +299,10 @@ Input.propTypes = {
   name: PropTypes.string,
 
   /** When set to true, this input will have no rounded corners on its left */
-  noLeftBorderRadius: PropTypes.string,
+  noLeftBorderRadius: PropTypes.oneOfType([PropTypes.bool, PropTypes.string]),
 
   /** When set to true, this input will have no rounded corners on its right */
-  noRightBorderRadius: PropTypes.string,
+  noRightBorderRadius: PropTypes.oneOfType([PropTypes.bool, PropTypes.string]),
 
   /** Standard input onBlur callback */
   onBlur: PropTypes.func,
