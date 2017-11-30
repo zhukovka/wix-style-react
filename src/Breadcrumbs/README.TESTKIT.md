@@ -22,8 +22,8 @@
 > Unit Testing Example
 ```javascript
   import React from 'react';
-  import {breadcrumbsTestkitFactory} from 'wix-style-react/dist/testkit';
-  import {breadcrumbsTestkitFactory as enzymeBreadcrumbsTestkitFactory} from 'wix-style-react/dist/testkit/enzyme';
+  import {breadcrumbsTestkitFactory} from 'wix-style-react/testkit';
+  import {breadcrumbsTestkitFactory as enzymeBreadcrumbsTestkitFactory} from 'wix-style-react/testkit/enzyme';
 
   /***************
    enzyme example
@@ -61,7 +61,7 @@
    Protractor example
   **********************/
 
-  import {breadcrumbsTestkitFactory, waitForVisibilityOf} from 'wix-style-react/dist/testkit/protractor';
+  import {breadcrumbsTestkitFactory, waitForVisibilityOf} from 'wix-style-react/testkit/protractor';
 
   //Create an element testkit via the data-hook attribute
   const testkit = BreadcrumbsTestkitFactory({dataHook: 'myDataHook'});

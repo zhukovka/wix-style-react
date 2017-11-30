@@ -63,7 +63,7 @@ Inside your test:
 
 ```js
 import ReactTestUtils from 'react-dom/test-utils';
-import {buttonTestkitFactory} from 'wix-style-react/dist/testkit';
+import {buttonTestkitFactory} from 'wix-style-react/testkit';
 
 const myFormWrapper = ReactTestUtils.renderIntoDocument(<myForm...>);
 
@@ -78,7 +78,7 @@ If you are using Enzyme:
 
 ```js
 import {mount} from 'enzyme';
-import {buttonTestkitFactory} from 'wix-style-react/dist/testkit/enzyme';
+import {buttonTestkitFactory} from 'wix-style-react/testkit/enzyme';
 
 const myFormWrapper = mount(<myForm...>);
 
@@ -93,7 +93,7 @@ buttonTestkit.click();
 If you are using Protractor:
 
 ```js
-import {buttonTestkitFactory, waitForVisibilityOf} from 'wix-style-react/dist/testkit/protractor';
+import {buttonTestkitFactory, waitForVisibilityOf} from 'wix-style-react/testkit/protractor';
 
 const dataHook = 'my-button';
 

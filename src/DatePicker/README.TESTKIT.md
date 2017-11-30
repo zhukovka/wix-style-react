@@ -46,8 +46,8 @@ datePickerPolyfills(window, global);
 
 ```javascript
   import React from 'react';
-  import {DatePickerTestkitFactory} from 'wix-style-react/dist/testkit';
-  import {DatePickerTestkitFactory as enzymeDatePickerTestkitFactory} from 'wix-style-react/dist/testkit/enzyme';
+  import {DatePickerTestkitFactory} from 'wix-style-react/testkit';
+  import {DatePickerTestkitFactory as enzymeDatePickerTestkitFactory} from 'wix-style-react/testkit/enzyme';
 
   /***************
    enzyme example
@@ -112,7 +112,7 @@ datePickerPolyfills(window, global);
    protractor example
   *******************/
 
-  import {DatePickerTestkitFactory, waitForVisibilityOf} from 'wix-style-react/dist/testkit/protractor';
+  import {DatePickerTestkitFactory, waitForVisibilityOf} from 'wix-style-react/testkit/protractor';
 
   //Create an element testkit via the data-hook attribute
   const testkit = DatePickerTestkitFactory({dataHook: 'myDataHook'});

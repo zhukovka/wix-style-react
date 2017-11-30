@@ -28,7 +28,7 @@
    Protractor example
   **********************/
 
-  import {dropdownTestkitFactory, waitForVisibilityOf} from 'wix-style-react/dist/testkit/protractor';
+  import {dropdownTestkitFactory, waitForVisibilityOf} from 'wix-style-react/testkit/protractor';
 
   //Create an element testkit via the data-hook attribute
   const testkit = dropdownTestkitFactory({dataHook: 'myDataHook'});

@@ -16,8 +16,8 @@
 
 ```javascript
   import React from 'react';
-  import {modalSelectorTestkitFactory} from 'wix-style-react/dist/testkit';
-  import {modalSelectorTestkitFactory as enzymeModalSelectorTestkitFactory} from 'wix-style-react/dist/testkit/enzyme';
+  import {modalSelectorTestkitFactory} from 'wix-style-react/testkit';
+  import {modalSelectorTestkitFactory as enzymeModalSelectorTestkitFactory} from 'wix-style-react/testkit/enzyme';
 
   /***************
    enzyme example

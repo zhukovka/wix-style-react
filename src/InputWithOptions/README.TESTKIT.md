@@ -25,8 +25,8 @@
 > Unit Testing Example
 ```javascript
   import React from 'react';
-  import {inputWithOptionsTestkitFactory} from 'wix-style-react/dist/testkit';
-  import {inputWithOptionsTestkitFactory as enzymeInputWithOptionsTestkitFactory} from 'wix-style-react/dist/testkit/enzyme';
+  import {inputWithOptionsTestkitFactory} from 'wix-style-react/testkit';
+  import {inputWithOptionsTestkitFactory as enzymeInputWithOptionsTestkitFactory} from 'wix-style-react/testkit/enzyme';
 
   /***************
    enzyme example

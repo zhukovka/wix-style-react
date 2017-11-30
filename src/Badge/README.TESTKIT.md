@@ -31,8 +31,8 @@
 > Unit Testing Example
 ```javascript
   import React from 'react';
-  import {badgeTestkitFactory} from 'wix-style-react/dist/testkit';
-  import {badgeTestkitFactory as enzymeBadgeTestkitFactory} from 'wix-style-react/dist/testkit/enzyme';
+  import {badgeTestkitFactory} from 'wix-style-react/testkit';
+  import {badgeTestkitFactory as enzymeBadgeTestkitFactory} from 'wix-style-react/testkit/enzyme';
 
   /***************
    enzyme example
@@ -70,7 +70,7 @@
    Protractor example
   **********************/
 
-  import {badgeTestkitFactory, waitForVisibilityOf} from 'wix-style-react/dist/testkit/protractor';
+  import {badgeTestkitFactory, waitForVisibilityOf} from 'wix-style-react/testkit/protractor';
 
   //Create an element testkit via the data-hook attribute
   const testkit = badgeTestkitFactory({dataHook: 'myDataHook'});

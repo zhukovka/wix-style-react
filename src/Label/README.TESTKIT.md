@@ -19,8 +19,8 @@
 
 ```javascript
   import React from 'react';
-  import {labelTestkitFactory} from 'wix-style-react/dist/testkit';
-  import {labelTestkitFactory as enzymeLabelTestkitFactory} from 'wix-style-react/dist/testkit/enzyme';
+  import {labelTestkitFactory} from 'wix-style-react/testkit';
+  import {labelTestkitFactory as enzymeLabelTestkitFactory} from 'wix-style-react/testkit/enzyme';
 
   /***************
    enzyme example
@@ -57,7 +57,7 @@
    protractor example
   *******************/
 
-  import {labelTestkitFactory, waitForVisibilityOf} from 'wix-style-react/dist/testkit/protractor';
+  import {labelTestkitFactory, waitForVisibilityOf} from 'wix-style-react/testkit/protractor';
 
   //Create an element testkit via the data-hook attribute
   const testkit = labelTestkitFactory({dataHook: 'myDataHook'});

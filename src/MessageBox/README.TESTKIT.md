@@ -26,8 +26,8 @@
 
 ```javascript
   import React from 'react';
-  import {messageBoxFunctionalLayoutTestkitFactory} from 'wix-style-react/dist/testkit';
-  import {messageBoxFunctionalLayoutTestkitFactory as enzymeMessageBoxFunctionalLayoutTestkitFactory} from 'wix-style-react/dist/testkit/enzyme';
+  import {messageBoxFunctionalLayoutTestkitFactory} from 'wix-style-react/testkit';
+  import {messageBoxFunctionalLayoutTestkitFactory as enzymeMessageBoxFunctionalLayoutTestkitFactory} from 'wix-style-react/testkit/enzyme';
   
   /**************
    enzyme exmaple
@@ -73,8 +73,8 @@
 
 ```javascript
   import React from 'react';
-  import {messageBoxMarketerialLayoutTestkitFactory} from 'wix-style-react/dist/testkit';
-  import {messageBoxMarketerialLayoutTestkitFactory as enzymeMessageBoxMarketerialLayoutTestkitFactory} from 'wix-style-react/dist/testkit/enzyme';
+  import {messageBoxMarketerialLayoutTestkitFactory} from 'wix-style-react/testkit';
+  import {messageBoxMarketerialLayoutTestkitFactory as enzymeMessageBoxMarketerialLayoutTestkitFactory} from 'wix-style-react/testkit/enzyme';
   
   /**************
    enzyme exmaple

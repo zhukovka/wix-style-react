@@ -39,8 +39,8 @@
 > Unit Testing Example
 ```javascript
   import React from 'react';
-  import {dropdownLayoutTestkitFactory} from 'wix-style-react/dist/testkit';
-  import {dropdownLayoutTestkitFactory as enzymeDropdownLayoutTestkitFactory} from 'wix-style-react/dist/testkit/enzyme';
+  import {dropdownLayoutTestkitFactory} from 'wix-style-react/testkit';
+  import {dropdownLayoutTestkitFactory as enzymeDropdownLayoutTestkitFactory} from 'wix-style-react/testkit/enzyme';
 
   /***************
    enzyme example
