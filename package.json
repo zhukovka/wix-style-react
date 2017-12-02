@@ -21,7 +21,7 @@
     "build": "yoshi lint && svg2react-icon && yoshi build && build-storybook && npm run export-components",
     "storybook": "start-storybook -p 6006",
     "release": "node scripts/npm-release.js",
-    "export-components": "node scripts/export-components.js"
+    "export-components": "import-path --path src"
   },
   "yoshi": {
     "features": {
@@ -68,6 +68,7 @@
     "github-markdown-css": "^2.4.1",
     "highlight.js": "^9.8.0",
     "identity-obj-proxy": "^3.0.0",
+    "import-path": "^0.0.10",
     "jquery": "^1.12.4",
     "react": "^15.5.4",
     "react-docgen": "^2.15.0",
