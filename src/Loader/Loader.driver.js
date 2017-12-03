@@ -1,29 +1,27 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import Loader from '../Loader';
 import {isClassExists} from '../../test/utils';
+import Loader from './Loader';
+import {testkitFactoryCreator} from '../test-common';
+import textDriverFactory from '../Text/Text.driver';
+
+const textTestkitFactory = testkitFactoryCreator(textDriverFactory);
 
 const loaderDriverFactory = ({element, wrapper}) => {
-  const text = () => element.childNodes[1];
-  const getColor = () => {
-    if (!element) {
-      return null;
-    }
-    return isClassExists(element, 'blue') ? 'blue' : 'white';
-  };
+  const textDriver = textTestkitFactory({wrapper: element, dataHook: 'loader-text'});
 
   return {
+    component: () => element,
     exists: () => !!element,
-    isSmall: () => isClassExists(element, 'small'),
-    isMedium: () => isClassExists(element, 'medium'),
+    getColor: () => isClassExists(element, 'blue') ? 'blue' : 'white',
+    getText: () => textDriver.getText(),
+    hasText: () => textDriver.exists(),
     isLarge: () => isClassExists(element, 'large'),
-    getColor: () => getColor(),
-    hasText: () => isClassExists(text(), 'text'),
-    getText: () => text().textContent,
+    isMedium: () => isClassExists(element, 'medium'),
+    isSmall: () => isClassExists(element, 'small'),
     setProps: props => {
       ReactDOM.render(<div ref={r => element = r}><Loader {...props}/></div>, wrapper);
-    },
-    component: () => element
+    }
   };
 };
 

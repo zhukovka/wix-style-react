@@ -7,7 +7,7 @@ import {isTestkitExists, isEnzymeTestkitExists} from '../../testkit/test-common'
 import {modalSelectorTestkitFactory} from '../../testkit';
 import {modalSelectorTestkitFactory as enzymeModalSelectorTestkitFactory} from '../../testkit/enzyme';
 
-fdescribe('ModalSelector', () => {
+describe('ModalSelector', () => {
   const createDriver = createDriverFactory(ModalSelectorFactory);
 
   let props = {};

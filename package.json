@@ -158,6 +158,19 @@
       "comma-dangle": [
         "error",
         "never"
+      ],
+      "no-restricted-properties": [
+        "error",
+        {
+          "object": "browser",
+          "property": "pause",
+          "message": "Do not commit browser.pause()."
+        }
+      ],
+      "no-restricted-globals": [
+        "error",
+        "fdescribe",
+        "fit"
       ]
     }
   },

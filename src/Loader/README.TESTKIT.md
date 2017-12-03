@@ -4,16 +4,29 @@
 
 ## Loader TestKit API
 
-| method | arguments | returned value | description |
-|--------|-----------|----------------|-------------|
-| hasText | - | boolean | true if the element has text |
-| getText | - | string | returns the element text |
-| getColor | - | string | returns the loader color ('blue' or 'white') |
-| isSmall | - | boolean | true when using the small loader |
-| isMedium | - | boolean | true when using the medium loader |
-| isLarge | - | boolean | true when using the large loader |
-| exists | - | boolean | fulfilled if element in the DOM |
-| setProps | json | element | returns a clone of this element with the new props from the json | 
+| method   | arguments | returned value | description                              |
+| -------- | --------- | -------------- | ---------------------------------------- |
+| exists   | -         | boolean        | fulfilled if element in the DOM          |
+| getColor | -         | string         | returns the loader color ('blue' or 'white') |
+| getText  | -         | string         | returns the element text                 |
+| hasText  | -         | boolean        | true if the element has text             |
+| isLarge  | -         | boolean        | true when using the large loader         |
+| isMedium | -         | boolean        | true when using the medium loader        |
+| isSmall  | -         | boolean        | true when using the small loader         |
+| setProps | object    | element        | returns a clone of this element with the new props from the json |
+
+## Loader Protractor TestKit API
+
+| method   | arguments | returned value | description                              |
+| -------- | --------- | -------------- | ---------------------------------------- |
+| element  | -         | element        | returns the driver element               |
+| exists   | -         | boolean        | fulfilled if element in the DOM          |
+| getColor | -         | string         | returns the loader color ('blue' or 'white') |
+| getText  | -         | string         | returns the element text (will be in upper case) |
+| hasText  | -         | boolean        | true if the element has text             |
+| isLarge  | -         | boolean        | true when using the large loader         |
+| isMedium | -         | boolean        | true when using the medium loader        |
+| isSmall  | -         | boolean        | true when using the small loader         |
 
 ## Usage Example
 
@@ -21,8 +34,10 @@
 
 ```javascript
   import React from 'react';
+  import {mount} from 'enzyme';
   import {loaderTestkitFactory} from 'wix-style-react/testkit';
   import {loaderTestkitFactory as enzymeLoaderTestkitFactory} from 'wix-style-react/testkit/enzyme';
+  import Loader from 'wix-style-react/Loader';
 
   /***************
    enzyme example

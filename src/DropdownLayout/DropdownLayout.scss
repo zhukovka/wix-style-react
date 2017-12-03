@@ -1,4 +1,4 @@
-@import "../common.scss";
+@import '../common.scss';
 @import '../Typography/Typography.scss';
 
 $option_height: 35px;
@@ -115,7 +115,7 @@ $top-arrow-size: 8px;
 
   width:100%;
   display: flex;
-  align-items: center;  
+  align-items: center;
 
   &.small-height {
     height: $option_height;

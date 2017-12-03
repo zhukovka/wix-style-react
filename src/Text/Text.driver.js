@@ -1,4 +1,5 @@
-export default ({element}) => ({
+const textDriverFactory = ({element}) => ({
+  exists: () => !!element,
   getType: () => element.tagName.toLowerCase(),
   getText: () => element.textContent,
   hasEllipsis: () => element.className.includes('ellipsis'),
@@ -6,3 +7,4 @@ export default ({element}) => ({
   getClassName: () => element.className
 });
 
+export default textDriverFactory;
