@@ -12,13 +12,13 @@
   ],
   "scripts": {
     "start": "./scripts/npm-start.sh",
-    "pretest": "yoshi lint && ./scripts/ensure-dist.sh",
+    "pretest": "haste lint && ./scripts/ensure-dist.sh",
     "test": "npm run test:unit && npm run test:e2e",
-    "test:unit": "yoshi test --jest",
+    "test:unit": "haste test --jest",
     "pretest:e2e": "./scripts/ensure-dist.sh",
     "test:e2e": "concurrently 'npm run test:e2e-only' 'node scripts/e2e-server.js' --names 'protractor,e2e-server' --success first --kill-others",
-    "test:e2e-only": "NODE_ENV=production yoshi test --protractor",
-    "build": "yoshi lint && svg2react-icon && yoshi build && build-storybook && npm run export-components",
+    "test:e2e-only": "NODE_ENV=production haste test --protractor",
+    "build": "haste lint && svg2react-icon && haste build && build-storybook && npm run export-components",
     "storybook": "start-storybook -p 6006",
     "release": "node scripts/npm-release.js",
     "export-components": "import-path --path src"
@@ -82,7 +82,8 @@
     "svg2react-icon": "^1.0.0",
     "wait-for-cond": "^1.0.3",
     "wix-ui-test-utils": "latest",
-    "yoshi": "latest"
+    "haste-preset-yoshi": "latest",
+    "haste-cli": "~0.1.16"
   },
   "peerDependencies": {
     "react": "^15.0.0",
@@ -159,5 +160,8 @@
         "never"
       ]
     }
+  },
+  "haste": {
+    "preset": "yoshi"
   }
 }
