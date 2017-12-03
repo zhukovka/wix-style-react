@@ -3,8 +3,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import WixComponent from '../BaseComponents/WixComponent';
 import classNames from 'classnames';
-import Breadcrumbs from '../Breadcrumbs/Breadcrumbs';
-import Text from '../Text/Text';
+import Breadcrumbs from '../Breadcrumbs';
+import Text from '../Text';
 import {Animator} from 'wix-animations';
 import {ArrowLeft} from '../Icons';
 import Button from '../Button';
@@ -20,6 +20,7 @@ const animateComponent = (show, useEnterDelay, content) => {
 };
 
 const isDarkTheme = (hasBackgroundImage, minimized) => !minimized && hasBackgroundImage;
+
 const getBreadcrumbsTheme = (hasBackgroundImage, minimized) => isDarkTheme(hasBackgroundImage, minimized) ? 'onDarkBackground' : 'onGrayBackground';
 
 const generateDefaultBreadcrumbs = (title, hasBackgroundImage, minimized) =>
@@ -31,32 +32,43 @@ const generateDefaultBreadcrumbs = (title, hasBackgroundImage, minimized) =>
     onClick={() => {}}
     />;
 
+const generateThemedBreadcrumbs = (breadcrumbs, title, hasBackgroundImage, minimized) => {
+  if (breadcrumbs) {
+    return React.cloneElement(breadcrumbs, {theme: getBreadcrumbsTheme(hasBackgroundImage, minimized)});
+  }
+
+  return generateDefaultBreadcrumbs(title, hasBackgroundImage, minimized);
+};
+
 /**
   * A header that sticks at the top of the container which minimizes on scroll
   */
 export default class PageHeader extends WixComponent {
-
   constructor(props) {
     super(props);
 
+    const {breadcrumbs, title, hasBackgroundImage, minimized} = props;
     this.state = {
-      themedBreadcrumbs: this.generateThemedBreadcrumbs(props)
+      themedBreadcrumbs: generateThemedBreadcrumbs(breadcrumbs, title, hasBackgroundImage, minimized)
     };
   }
 
   componentWillReceiveProps(nextProps) {
-    this.setState({
-      themedBreadcrumbs: this.generateThemedBreadcrumbs(nextProps)
-    });
-  }
+    const {breadcrumbs, title, hasBackgroundImage, minimized} = this.props;
+    const newBreadcrumbs = nextProps.breadcrumbs;
+    const newTitle = nextProps.title;
+    const newHasBackgroundImage = nextProps.hasBackgroundImage;
+    const newMinimized = nextProps.minimized;
 
-  generateThemedBreadcrumbs(props) {
-    const {breadcrumbs, title, hasBackgroundImage, minimized} = props;
-    if (breadcrumbs) {
-      return React.cloneElement(breadcrumbs, {theme: getBreadcrumbsTheme(hasBackgroundImage, minimized)});
+    if (
+      breadcrumbs !== newBreadcrumbs ||
+      title !== newTitle ||
+      hasBackgroundImage !== newHasBackgroundImage ||
+      minimized !== newMinimized) {
+
+      const themedBreadcrumbs = generateThemedBreadcrumbs(newBreadcrumbs, newTitle, newHasBackgroundImage, newMinimized);
+      this.setState({themedBreadcrumbs});
     }
-
-    return generateDefaultBreadcrumbs(title, hasBackgroundImage, minimized);
   }
 
   render() {
@@ -75,27 +87,29 @@ export default class PageHeader extends WixComponent {
                 </div>)
             }
           </div>
-          {
-            showBackButton && onBackClicked && animateComponent(!minimized, !breadcrumbsExists,
-              <div className={classNames(s.backButton, {[s.minimized]: minimized, [s.darkTheme]: isDarkTheme(hasBackgroundImage, minimized)})} data-hook="page-header-backbutton">
-                <Button onClick={onBackClicked} theme="icon-white">
-                  <ArrowLeft size="16px"/>
-                </Button>
-              </div>)
-          }
-          <div className={s.titleContainer}>
+          <div className={classNames(s.titleContainer, {[s.minimized]: minimized})}>
             {
-              animateComponent(!minimized, !breadcrumbsExists,
-                <div className={classNames(s.title, {[s.minimized]: minimized})} data-hook="page-header-title">
-                  <Text appearance={isDarkTheme(hasBackgroundImage, minimized) ? 'H1.1' : 'H1'}>{title}</Text>
+              showBackButton && onBackClicked && animateComponent(!minimized, !breadcrumbsExists,
+                <div className={classNames(s.backButton, {[s.minimized]: minimized, [s.darkTheme]: isDarkTheme(hasBackgroundImage, minimized)})} data-hook="page-header-backbutton">
+                  <Button onClick={onBackClicked} theme="icon-white">
+                    <ArrowLeft size="16px"/>
+                  </Button>
                 </div>)
             }
-            {
-              subtitle && animateComponent(!minimized, !breadcrumbsExists,
-                <div className={classNames({[s.minimized]: minimized})} data-hook="page-header-subtitle">
-                  <Text appearance={isDarkTheme(hasBackgroundImage, minimized) ? 'T1.2' : 'T1.1'}>{subtitle}</Text>
-                </div>)
-            }
+            <div>
+              {
+                animateComponent(!minimized, !breadcrumbsExists,
+                  <div className={classNames(s.title, {[s.minimized]: minimized})} data-hook="page-header-title">
+                    <Text appearance={isDarkTheme(hasBackgroundImage, minimized) ? 'H1.1' : 'H1'}>{title}</Text>
+                  </div>)
+              }
+              {
+                subtitle && animateComponent(!minimized, !breadcrumbsExists,
+                  <div className={classNames({[s.minimized]: minimized})} data-hook="page-header-subtitle">
+                    <Text appearance={isDarkTheme(hasBackgroundImage, minimized) ? 'T1.2' : 'T1.1'}>{subtitle}</Text>
+                  </div>)
+              }
+            </div>
           </div>
         </div>
         {
@@ -109,7 +123,7 @@ export default class PageHeader extends WixComponent {
   }
 }
 
-PageHeader.displayName = 'PageHeader';
+PageHeader.displayName = 'Page.Header';
 
 PageHeader.propTypes = {
   /** The minimize state from the header container */

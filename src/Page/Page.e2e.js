@@ -5,7 +5,7 @@ describe('Page', () => {
   const storyUrl = getStoryUrl('10. Page', '10.1 Page');
   const dataHook = 'story-page';
 
-  eyes.it('should display the title and after scroll should hide it', async () => {
+  eyes.it('should display the title and after scroll should hide it ', async () => {
     const driver = pageTestkitFactory({dataHook});
 
     browser.get(storyUrl);

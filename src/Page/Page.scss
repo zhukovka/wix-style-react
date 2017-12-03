@@ -7,14 +7,6 @@
   background-color: rgba($D70,.95);
 }
 
-.static-background {
-  position: absolute;
-  width: 100%;
-  height: 66px;
-  background-color: rgba($D70,.95);
-  z-index: 2;
-}
-
 .page-header {
   padding: 30px 48px 0;
   position: absolute;
@@ -22,15 +14,30 @@
   z-index: 2;
   min-height: 30px;
   transition: padding .2s cubic-bezier(0.4, 0.0, 0.2, 1);
+  box-sizing: border-box;
     
   &.minimized {
     padding-top: 18px;
     padding-bottom: 18px;
   }
+
+  &.with-background-color {
+    background-color: rgba($D70,.95); 
+  }
+}
+
+.tail {
+  background-color: transparent;
+  padding-top: 18px;
+  transition: padding .2s cubic-bezier(0.4, 0.0, 0.2, 1);  
+
+  &.minimized {
+    padding-top: 0;
+  }
 }
 
 .scrollable-content {
-  overflow: scroll;
+  overflow: auto;
   width: 100%;
   height: 100%;
   position: relative;

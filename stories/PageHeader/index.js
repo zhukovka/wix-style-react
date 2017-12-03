@@ -4,11 +4,7 @@ import Button from '../../src/Backoffice/Button';
 import Breadcrumbs from '../Page/Breadcrumbs';
 import './PageHeader.scss';
 
-const breadcrumbsOptions = [null];
-breadcrumbsOptions.push(Breadcrumbs);
-
-const actionsBarOptions = [null];
-actionsBarOptions.push(<Button>Action</Button>);
+const action = <Button>Action</Button>;
 
 story({
   category: '10. Page',
@@ -20,7 +16,7 @@ story({
     dataHook: 'story-page-header'
   },
   exampleProps: {
-    breadcrumbs: breadcrumbsOptions,
-    actionsBar: actionsBarOptions
+    breadcrumbs: [null, Breadcrumbs],
+    actionsBar: [null, action]
   }
 });

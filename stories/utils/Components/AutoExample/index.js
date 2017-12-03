@@ -177,7 +177,13 @@ export default class extends Component {
 
 
   controllableComponentGetters = {
-    string: () => <Input/>,
+    string: ({propKey}) => {
+      if (this.props.exampleProps[propKey]) {
+        return <List values={this.props.exampleProps[propKey]} showDropDown/>;
+      } else {
+        return <Input/>;
+      }
+    },
     bool: () => <Toggle/>,
 
     enum: ({type}) =>

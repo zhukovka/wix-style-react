@@ -1,6 +1,5 @@
-const backgroundImageSelector = '[data-hook="page-background-image"]';
-
 export default ({element}) => ({
   exists: () => !!element,
-  backgroundImageExists: () => !!element.querySelector(backgroundImageSelector)
+  backgroundImageExists: () => !!element.querySelector('[data-hook="page-background-image"]'),
+  tailExists: () => !!element.querySelector('[data-hook="page-tail"]')
 });

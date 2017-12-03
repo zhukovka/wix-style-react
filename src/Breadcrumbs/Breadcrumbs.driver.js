@@ -24,6 +24,7 @@ const breadcrumbsDriverFactory = ({element, wrapper, component}) => {
     isMedium: () => isClassExists(element, 'medium'),
     isOnWhiteBackground: () => isClassExists(element, 'onWhiteBackground'),
     isOnGrayBackground: () => isClassExists(element, 'onGrayBackground'),
+    isOnDarkBackground: () => isClassExists(element, 'onDarkBackground'),
     getLabelClassList: position => optionAt(position).querySelector('[data-hook="breadcrumbs-item"]').className,
     isActiveLinkAt: index => !!optionAt(index).querySelector('a'),
     setProps: props => {
