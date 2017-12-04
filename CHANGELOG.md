@@ -2,6 +2,11 @@
 
 All notable changes are documented in this file.
 
+## 1.2.1 - 2017-12-04
+### Fixed
+- Publish transpiled code (https://github.com/wix/wix-style-react/commit/d165950bfc3b355b1bbc5896797538a52c410ec2)
+
+
 ## 1.2.0 - 2017-12-04
 ### Changed
 - Migrate to wix-ui-test-utils [1204](https://github.com/wix/wix-style-react/pull/1204)
