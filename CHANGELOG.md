@@ -2,11 +2,26 @@
 
 All notable changes are documented in this file.
 
+## 1.2.0 - 2017-12-04
+### Changed
+- Migrate to wix-ui-test-utils [1204](https://github.com/wix/wix-style-react/pull/1204)
+- Removed dist from testkit import path in the examples
+- Deprecate export-components script in facor of import-path package [1217](https://github.com/wix/wix-style-react/pull/1217)
+- Migrate to haste [1218](https://github.com/wix/wix-style-react/pull/1218)
+- `<Loader>`: New loader [1203](https://github.com/wix/wix-style-react/pull/1203)
+### Fixed
+- `<input>` - Correct prop-types for noRitghtBorderRadius [1213](https://github.com/wix/wix-style-react/pull/1213)
+
+### Added
+- `<Page>` - Add Tabs [1211](https://github.com/wix/wix-style-react/pull/1211)
+- `<DropdownLayout>` - Added long options support to dropdown [#1220](https://github.com/wix/wix-style-react/pull/1220)
+
 ## 1.1.4624 - 2017-11-29
 ### Changed
 - use node 8.9.1
 - remove `module` from package.json, no more `dist/es` folder
 - `<MessageBoxFunctionalLayout>` - confirmText & cancelText proptype now node [1202](https://github.com/wix/wix-style-react/pull/1202)
+
 
 ### Fixed
 - `<Input>` - correct autofocus cursor position [1208](https://github.com/wix/wix-style-react/pull/1208)
