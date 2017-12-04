@@ -13,8 +13,8 @@ export const GoogleAddressInputHandler = {
 };
 
 /**
-  * Address input box (using Google Maps)
-  */
+ * Address input box (using Google Maps)
+ */
 class GoogleAddressInput extends React.Component {
   constructor(props) {
     super(props);
@@ -62,7 +62,7 @@ class GoogleAddressInput extends React.Component {
           value: this.props.footer,
           ...this.props.footerOptions
         }] :
-        []
+          []
       )
     ];
 
@@ -187,19 +187,18 @@ class GoogleAddressInput extends React.Component {
 
   onManuallyInput(inputValue) {
     const {value, fallbackToManual, onSet} = this.props;
-
-    this._getSuggestions(inputValue, typeof value !== 'undefined').then(suggestions => {
-      if (suggestions.length === 0) {
-        // No suggestion to the text entered
-        if (inputValue && fallbackToManual) {
-          this.onSet(inputValue);
-        } else {
-          onSet && onSet(null);
+    if (fallbackToManual) {
+      this._getSuggestions(inputValue, typeof value !== 'undefined').then(suggestions => {
+        if (suggestions.length === 0) {
+          // No suggestion to the text entered
+          if (inputValue) {
+            this.onSet(inputValue);
+          } else {
+            onSet && onSet(null);
+          }
         }
-      } else {
-        this.onSet(suggestions[0].description);
-      }
-    });
+      });
+    }
   }
 
   componentWillUnmount() {
