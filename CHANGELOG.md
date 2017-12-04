@@ -2,6 +2,9 @@
 
 All notable changes are documented in this file.
 
+## 1.2.2 - 2017-12-04
+### Fixed
+- wix-ui-test-utils should be a dep instead of dev-dep
 ## 1.2.1 - 2017-12-04
 ### Fixed
 - Publish transpiled code (https://github.com/wix/wix-style-react/commit/d165950bfc3b355b1bbc5896797538a52c410ec2)
