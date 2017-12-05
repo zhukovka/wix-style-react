@@ -2,7 +2,17 @@
 
 All notable changes are documented in this file.
 
+## 1.2.3 - 2017-12-05
+
+### Changed
+- `DropdownLayout` - change option padding to conform to backoffice UX [1127](https://github.com/wix/wix-style-react/pull/1227)
+
+### Fixed
+- `<Loader>` - Fix teskit for the case  the loader doesn't exist [1226](https://github.com/wix/wix-style-react/pull/1226), [1228](https://github.com/wix/wix-style-react/pull/1228)
+- `<InputWithOptions>` - do not force blur when hiding options dropdown [1125](https://github.com/wix/wix-style-react/pull/1225)
+
 ## 1.2.2 - 2017-12-04
+
 ### Fixed
 - wix-ui-test-utils should be a dep instead of dev-dep
 ## 1.2.1 - 2017-12-04
@@ -119,7 +129,7 @@ All notable changes are documented in this file.
 
 ### Fixed
 - `<GoogleAddressInput>` - pixelated google credit picture in the footer.
-(https://github.com/wix/wix-style-react/pull/1128)
+  (https://github.com/wix/wix-style-react/pull/1128)
 - `<Tooltip>` - Popover jumping problem(https://github.com/wix/wix-style-react/pull/1137)
 
 
@@ -136,7 +146,7 @@ All notable changes are documented in this file.
 ## 1.1.4523 - 2017-11-13
 ### Added
 - `<Range/>` - now able to work with `<DatePicker/>`s to create date
-range component (https://github.com/wix/wix-style-react/commit/9b32f2a397eec268052036be5230e5b67ea3eda6)
+  range component (https://github.com/wix/wix-style-react/commit/9b32f2a397eec268052036be5230e5b67ea3eda6)
 
 ### Fixed
 - `<InputWithOptions/>` - do not hide dropdown if `options.length === 0` (https://github.com/wix/wix-style-react/pull/1116)
