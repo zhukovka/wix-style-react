@@ -2,8 +2,13 @@
 
 All notable changes are documented in this file.
 
-## 1.2.3 - 2017-12-05
+## 1.2.4 - 2017-12-06
+### Changed
+- `DropdownLayout`
+    - remove line-height from options in material theme (https://github.com/wix/wix-style-react/commit/7bf3f75e347de4a4920740de92441b5f205f65a1)
+    - fix position in safari [1231](https://github.com/wix/wix-style-react/pull/1231)
 
+## 1.2.3 - 2017-12-05
 ### Changed
 - `DropdownLayout` - change option padding to conform to backoffice UX [1127](https://github.com/wix/wix-style-react/pull/1227)
 
@@ -12,7 +17,6 @@ All notable changes are documented in this file.
 - `<InputWithOptions>` - do not force blur when hiding options dropdown [1125](https://github.com/wix/wix-style-react/pull/1225)
 
 ## 1.2.2 - 2017-12-04
-
 ### Fixed
 - wix-ui-test-utils should be a dep instead of dev-dep
 ## 1.2.1 - 2017-12-04
