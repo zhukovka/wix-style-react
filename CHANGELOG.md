@@ -2,12 +2,13 @@
 
 All notable changes are documented in this file.
 
-## Future release
+## 1.2.5 - 2017-12-10
 ### Added
 - `DropdownComposite` - [1238](https://github.com/wix/wix-style-react/pull/1238)
 
 ### Changed
 - `Page` - Change styles [1234](https://github.com/wix/wix-style-react/pull/1234)
+- `Page` - Added max-width support [1234](https://github.com/wix/wix-style-react/pull/1245)
 
 ### Fixed
 - `Input` - RTL is now implemented with direction:rtl [1232](https://github.com/wix/wix-style-react/pull/1232)
