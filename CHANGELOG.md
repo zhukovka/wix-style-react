@@ -3,6 +3,9 @@
 All notable changes are documented in this file.
 
 ## Future release
+### Added
+- `DropdownComposite` - [1238](https://github.com/wix/wix-style-react/pull/1238)
+
 ### Changed
 - `Page` - Change styles [1234](https://github.com/wix/wix-style-react/pull/1234)
 
