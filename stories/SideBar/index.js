@@ -1,14 +1,14 @@
 import React from 'react';
 import {storiesOf} from '@storybook/react';
-import Markdown from '../utils/Components/Markdown';
+import Markdown from 'wix-storybook-utils/Markdown';
 import CodeExample from '../utils/Components/CodeExample';
-import Readme from '../../src/SideBar/README.md';
 
+import Readme from '../../src/SideBar/README.md';
 import ExampleStandard from './ExampleStandard';
 import ExampleStandardRaw from '!raw-loader!./ExampleStandard';
 
 storiesOf('Core', module)
-  .add('SideBar', () => (
+  .add('SideBar', () =>
     <div>
       <Markdown source={Readme}/>
 
@@ -18,4 +18,4 @@ storiesOf('Core', module)
         <ExampleStandard/>
       </CodeExample>
     </div>
-  ));
+  );

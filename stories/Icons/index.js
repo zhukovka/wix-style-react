@@ -1,7 +1,8 @@
 import React from 'react';
 import {storiesOf} from '@storybook/react';
-import Markdown from '../utils/Components/Markdown';
+import Markdown from 'wix-storybook-utils/Markdown';
 import CodeExample from '../utils/Components/CodeExample';
+
 import Readme from '../../src/Icons/README.md';
 
 import AllIcons from './AllIcons';

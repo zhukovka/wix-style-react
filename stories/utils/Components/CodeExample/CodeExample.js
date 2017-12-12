@@ -2,8 +2,8 @@ import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import Collapse from 'react-collapse';
 
-import CodeBlock from '../CodeBlock';
-import TextButton from '../TextButton';
+import CodeBlock from 'wix-storybook-utils/CodeBlock';
+import TextButton from 'wix-storybook-utils/TextButton';
 
 export default class CodeExample extends Component {
 

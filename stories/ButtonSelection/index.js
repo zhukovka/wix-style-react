@@ -1,8 +1,9 @@
 import React from 'react';
 import {storiesOf} from '@storybook/react';
-import Markdown from '../utils/Components/Markdown';
+import Markdown from 'wix-storybook-utils/Markdown';
+import TabbedView from 'wix-storybook-utils/TabbedView';
 import CodeExample from '../utils/Components/CodeExample';
-import TabbedView from '../utils/Components/TabbedView';
+
 import Readme from '../../src/ButtonSelection/README.md';
 import ReadmeTestKit from '../../src/ButtonSelection/README.TESTKIT.md';
 import ExampleControlled from './ExampleControlled';

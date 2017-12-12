@@ -1,5 +1,5 @@
 import React from 'react';
-import story from '../utils/Components/Story';
+import story from 'story';
 
 import CodeExample from '../utils/Components/CodeExample';
 

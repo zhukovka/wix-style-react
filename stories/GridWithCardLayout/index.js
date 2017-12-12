@@ -1,7 +1,7 @@
 import React from 'react';
 import {storiesOf} from '@storybook/react';
+import Markdown from 'wix-storybook-utils/Markdown';
 import CodeExample from '../utils/Components/CodeExample';
-import Markdown from '../utils/Components/Markdown';
 
 import ExampleGridStandard from './ExampleGridStandard';
 import ExampleGridStandardRaw from '!raw-loader!./ExampleGridStandard';

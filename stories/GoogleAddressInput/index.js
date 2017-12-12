@@ -1,6 +1,6 @@
 import React from 'react';
 import {storiesOf} from '@storybook/react';
-import AutoDocs from '../utils/Components/AutoDocs';
+import AutoDocs from 'wix-storybook-utils/AutoDocs';
 import CodeExample from '../utils/Components/CodeExample';
 import GoogleAPILoader from '../utils/Components/GoogleAPILoader';
 
