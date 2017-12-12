@@ -4,8 +4,8 @@ import {storiesOf} from '@storybook/react';
 import Markdown from 'wix-storybook-utils/Markdown';
 import AutoDocs from 'wix-storybook-utils/AutoDocs';
 import TabbedView from 'wix-storybook-utils/TabbedView';
+import CodeExample from 'wix-storybook-utils/CodeExample';
 
-import CodeExample from '../../utils/Components/CodeExample';
 import ReadmeTestKit from '../../../src/Tooltip/README.TESTKIT.md';
 import TooltipSource from '!raw-loader!wix-style-react/Tooltip/Tooltip';
 

@@ -3,7 +3,7 @@ import {storiesOf} from '@storybook/react';
 import Markdown from 'wix-storybook-utils/Markdown';
 import AutoDocs from 'wix-storybook-utils/AutoDocs';
 import TabbedView from 'wix-storybook-utils/TabbedView';
-import CodeExample from '../utils/Components/CodeExample';
+import CodeExample from 'wix-storybook-utils/CodeExample';
 
 import FilePickerSource from '!raw-loader!wix-style-react/FilePicker/FilePicker';
 import ReadmeTestKit from '../../src/FilePicker/README.TESTKIT.md';

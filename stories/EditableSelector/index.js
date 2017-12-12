@@ -4,7 +4,7 @@ import {storiesOf} from '@storybook/react';
 import AutoDocs from 'wix-storybook-utils/AutoDocs';
 import TabbedView from 'wix-storybook-utils/TabbedView';
 import Markdown from 'wix-storybook-utils/Markdown';
-import CodeExample from '../utils/Components/CodeExample';
+import CodeExample from 'wix-storybook-utils/CodeExample';
 
 import EditableSelectorSource from '!raw-loader!../../src/EditableSelector/EditableSelector';
 import TestKitReadme from '../../src/EditableSelector/README.TESTKIT.md';

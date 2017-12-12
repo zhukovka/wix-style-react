@@ -4,7 +4,7 @@ import {storiesOf} from '@storybook/react';
 import Markdown from 'wix-storybook-utils/Markdown';
 import AutoDocs from 'wix-storybook-utils/AutoDocs';
 import TabbedView from 'wix-storybook-utils/TabbedView';
-import CodeExample from '../utils/Components/CodeExample';
+import CodeExample from 'wix-storybook-utils/CodeExample';
 
 import Readme from '../../src/Breadcrumbs/README.md';
 import BreadcrumbsSource from '!raw-loader!../../src/Breadcrumbs/Breadcrumbs';

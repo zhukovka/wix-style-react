@@ -1,7 +1,7 @@
 import React from 'react';
 import {storiesOf} from '@storybook/react';
 import Markdown from 'wix-storybook-utils/Markdown';
-import InteractiveCodeExample from '../utils/Components/InteractiveCodeExample';
+import InteractiveCodeExample from 'wix-storybook-utils/InteractiveCodeExample';
 import GoogleAPILoader from '../utils/Components/GoogleAPILoader';
 
 import Readme from '../../src/GoogleAddressInputWithLabel/README.md';

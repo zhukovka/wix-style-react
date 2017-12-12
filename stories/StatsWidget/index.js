@@ -4,7 +4,7 @@ import {storiesOf} from '@storybook/react';
 import AutoDocs from 'wix-storybook-utils/AutoDocs';
 import TabbedView from 'wix-storybook-utils/TabbedView';
 import Markdown from 'wix-storybook-utils/Markdown';
-import CodeExample from '../utils/Components/CodeExample';
+import CodeExample from 'wix-storybook-utils/CodeExample';
 
 import StatsWidgetSource from '!raw-loader!../../src/StatsWidget/StatsWidget';
 
