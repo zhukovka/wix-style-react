@@ -2,6 +2,13 @@
 
 All notable changes are documented in this file.
 
+## 1.2.7 - 2017-12-13
+### Fixed
+- Add parentSelector and overlayPosition props to modal [1254](https://github.com/wix/wix-style-react/pull/1254)
+
+### Added
+- HBox and VBox components [1263](https://github.com/wix/wix-style-react/pull/1263)
+
 ## 1.2.6 - 2017-12-13
 ### Fixed
 - Remove unwanted padding from `<FieldWithSelection>` dropdown [1258](https://github.com/wix/wix-style-react/pull/1258)
