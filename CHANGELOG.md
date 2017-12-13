@@ -2,6 +2,14 @@
 
 All notable changes are documented in this file.
 
+## 1.2.6 - 2017-12-13
+### Fixed
+- Remove unwanted padding from `<FieldWithSelection>` dropdown [1258](https://github.com/wix/wix-style-react/pull/1258)
+- support append to parent in tooltip teskit [1252](https://github.com/wix/wix-style-react/pull/1252)
+
+### Changed
+- Migrate storybook utils to `wix-storybook-utils` [1215](https://github.com/wix/wix-style-react/pull/1215)
+
 ## 1.2.5 - 2017-12-10
 ### Added
 - `DropdownComposite` - [1238](https://github.com/wix/wix-style-react/pull/1238)
