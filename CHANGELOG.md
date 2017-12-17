@@ -13,7 +13,7 @@ All notable changes are documented in this file.
 - `Page` - Added docs [1265](https://github.com/wix/wix-style-react/pull/1265)
 
 ### Changed
-- `ToggleSwitch` - use `wix-ui-backoffice/ToggleSwitch` [1242][https://github.com/wix/wix-style-react/pull/1242]
+- `ToggleSwitch` - use `wix-ui-backoffice/ToggleSwitch` [1242]( https://github.com/wix/wix-style-react/pull/1242 )
 
 ## 1.2.7 - 2017-12-13
 ### Fixed
