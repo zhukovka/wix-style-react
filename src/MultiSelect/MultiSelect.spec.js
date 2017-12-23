@@ -223,6 +223,22 @@ describe('multiSelect', () => {
     expect(driver.getMaxHeight()).toBe('96px');
   });
 
+  it('should allow to write any text as tag when options is empty', () => {
+    const onSelect = jest.fn();
+    const {driver} = createDriver(<MultiSelect value="aab" onSelect={onSelect}/>);
+    driver.pressCommaKey();
+    expect(onSelect).toBeCalledWith([{id: 'aab', label: 'aab'}]);
+  });
+
+  it('should allow to write tags only from options', () => {
+    const onSelect = jest.fn();
+    const {driver} = createDriver(
+      <MultiSelect value="aab" options={options} onSelect={onSelect}/>
+    );
+    driver.pressCommaKey();
+    expect(onSelect).toBeCalledWith([{id: options[0].id, label: options[0].value}]);
+  });
+
   describe('testkit', () => {
     it('should exist', () => {
       const div = document.createElement('div');

@@ -11,6 +11,8 @@ import ExampleStandard from './ExampleStandard';
 import ExampleStandardRaw from '!raw-loader!./ExampleStandard';
 import ExampleWithLimitedNumRows from './ExampleWithLimitedNumRows';
 import ExampleWithLimitedNumRowsRaw from '!raw-loader!./ExampleWithLimitedNumRows';
+import ExampleWithoutOptions from './ExampleWithoutOptions';
+import ExampleWithoutOptionsRaw from '!raw-loader!./ExampleWithoutOptions';
 
 storiesOf('3. Inputs', module)
   .add('3.8 Tags', () => (
@@ -24,6 +26,10 @@ storiesOf('3. Inputs', module)
 
         <CodeExample title="Limited num rows" code={ExampleWithLimitedNumRowsRaw}>
           <ExampleWithLimitedNumRows/>
+        </CodeExample>
+
+        <CodeExample title="Without options" code={ExampleWithoutOptionsRaw}>
+          <ExampleWithoutOptions/>
         </CodeExample>
       </div>
 

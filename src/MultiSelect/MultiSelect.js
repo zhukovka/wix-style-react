@@ -18,6 +18,11 @@ class MultiSelect extends InputWithOptions {
     }
   }
 
+  hideOptions() {
+    super.hideOptions();
+    this.clearInput();
+  }
+
   getUnselectedOptions() {
     const optionIds = this.props.options.map(option => option.id);
     const tagIds = this.props.tags.map(tag => tag.id);
@@ -92,7 +97,7 @@ class MultiSelect extends InputWithOptions {
   }
 
   onKeyDown(event) {
-    const {tags, value, onRemoveTag, delimiters} = this.props;
+    const {tags, value, onRemoveTag, delimiters, options} = this.props;
 
     if (tags.length > 0 && (event.key === 'Delete' || event.key === 'Backspace') && value.length === 0) {
       onRemoveTag(last(tags).id);
@@ -103,8 +108,8 @@ class MultiSelect extends InputWithOptions {
       super.hideOptions();
     }
 
-    if (event.key === 'Enter' || event.key === 'Tab' || delimiters.includes(event.key)) {
-      if (this.props.value.trim()) {
+    if ((event.key === 'Enter' || event.key === 'Tab' || delimiters.includes(event.key)) && value.trim()) {
+      if (options.length) {
         this._onManuallyInput(this.state.inputValue);
         const unselectedOptions = this.getUnselectedOptions();
         const visibleOptions = unselectedOptions.filter(this.props.predicate);
@@ -114,8 +119,11 @@ class MultiSelect extends InputWithOptions {
           this.onSelect([maybeNearestOption]);
         }
 
-        this.clearInput();
+      } else {
+        this.props.onSelect([{id: value.trim(), label: value.trim()}]);
       }
+
+      this.clearInput();
     }
 
     if (this.props.onKeyDown) {
