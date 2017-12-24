@@ -11,6 +11,14 @@ Types of changes:
 1. **Fixed** for any bug fixes.
 1. **Security** in case of vulnerabilities.
 
+## 1.2.12 - 2017-12-24
+
+### Added
+- `<MultiSelect/>` - Added Multiselect [1289](https://github.com/wix/wix-style-react/pull/1289) [1292](https://github.com/wix/wix-style-react/pull/1292) 
+
+### Changed
+- `<Page/>` - Added height recalculation when inner height changes [1289](https://github.com/wix/wix-style-react/pull/1289)
+
 
 ## 1.2.11 - 2017-12-21
 ### Added
