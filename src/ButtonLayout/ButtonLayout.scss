@@ -1,6 +1,7 @@
 @import '../common';
 @import '../Typography/Typography';
 
+$base-transition: all 100ms linear;
 .button {
     $height: 36px;
     height: $height;
@@ -33,7 +34,7 @@
     cursor: pointer;
     outline: none;
 
-    transition: all 100ms linear;
+    transition: $base-transition;
 }
 
 .button>.inner {
@@ -538,6 +539,8 @@
     color: $B10;
 }
 
+.button.no-border.disabled,
+.button.dark-no-border.disabled,
 .button.transparent.disabled,
 .button.fullred.disabled,
 .button.fullgreen.disabled,
@@ -592,4 +595,41 @@
     background-color: transparent;
     border-color: transparent;
     color: $D55;
+}
+
+.no-border {
+  background: transparent;
+    color: $D10;
+    border: none;
+    @extend .t1_2;
+
+    &:hover {
+        color: $B10;
+    }
+
+    &.heightx-large {
+        font-size: 20px;
+    }
+
+    &.heightsmall {
+        @extend .t3_2;
+    }
+}
+
+.dark-no-border {
+  background: transparent;
+    border: none;
+    color: #fff;
+    @extend .t1_2;
+
+    &:hover {
+        color: $B10;
+    }
+
+    &.heightx-large {
+        font-size: 20px;
+    }
+    &.heightsmall {
+        @extend .t3_2;
+    }
 }

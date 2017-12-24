@@ -9,7 +9,6 @@ import {mount} from 'enzyme';
 import {Close} from '../../Icons/dist';
 
 describe('Button', () => {
-
   const createDriver = createDriverFactory(buttonDriverFactory);
 
   it('should click a button', () => {

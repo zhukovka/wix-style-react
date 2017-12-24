@@ -1,19 +1,24 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import WixComponent from '../BaseComponents/WixComponent';
 import omit from 'lodash/omit';
+
+import WixComponent from '../BaseComponents/WixComponent';
 import DropdownLayout from '../DropdownLayout/DropdownLayout';
 import Button from '../Button';
-import styles from './ButtonWithOptions.scss';
+import {ArrowDownThin} from '../Icons';
 
+/**
+ * A simple dropdown with button trigger
+ *
+ * Composed of special `children`:
+ * * `<ButtonWithOptions.Button>` - the Button component to be used
+ * * `<ButtonWithOptions.Option>` - an option to be used for the dropdown - must contain an id
+ */
 class ButtonWithOptions extends WixComponent {
   constructor(props) {
     super(props);
-    this.state = {showOptions: false};
 
-    this.onSelect = this.onSelect.bind(this);
-    this.hideOptions = this.hideOptions.bind(this);
-    this.showOptions = this.showOptions.bind(this);
+    this.state = {showOptions: false, selectedId: props.selectedId};
 
     if (props.children) {
       this.sortChildren(props);
@@ -28,9 +33,44 @@ class ButtonWithOptions extends WixComponent {
     [this.buttonElement, ...this.optionsElement] = React.Children.toArray(props.children);
   }
 
+  cleanOptionToSimpleTextForm(children) {
+    const supportedElements = ['string', 'span'];
+    if (typeof children === 'string') {
+      return children;
+    }
+
+    children = Array.isArray(children) ? children : [children];
+
+    const filteredChildren = children.filter(child => supportedElements.includes(child.type || typeof child));
+
+    return filteredChildren;
+  }
+
+  getSelectedOptionValue() {
+    const {children} = this.buttonElement.props;
+    const {selectedId} = this.state;
+    const {theme} = this.props;
+
+    if (theme.indexOf('no-border') === -1 || selectedId < 0) {
+      return children;
+    }
+
+    const childrenArr = React.Children.toArray(this.props.children);
+    const selectedOption = childrenArr.find(({props: {id}}) => id === selectedId);
+
+    return [
+      this.cleanOptionToSimpleTextForm(selectedOption.props.children),
+      <span key={1} style={{marginLeft: '10px'}}>
+        <ArrowDownThin size="10px"/>
+      </span>
+    ];
+  }
+
   renderButton() {
     return React.cloneElement(this.buttonElement, {
-      onClick: this.showOptions
+      onClick: this.showOptions,
+      children: this.getSelectedOptionValue(),
+      theme: this.props.theme
     });
   }
 
@@ -49,7 +89,10 @@ class ButtonWithOptions extends WixComponent {
         options={dropdownLayoutOptions}
         theme={this.props.theme}
         visible={this.state.showOptions}
-        onSelect={this.onSelect}
+        onSelect={(option, isSelectedOption) => {
+          this.setState({selectedId: option.id});
+          this.onSelect(option, isSelectedOption);
+        }}
         onClickOutside={this.hideOptions}
         />
     );
@@ -68,15 +111,11 @@ class ButtonWithOptions extends WixComponent {
     );
   }
 
-  hideOptions() {
-    this.setState({showOptions: false});
-  }
+  hideOptions = () => this.setState({showOptions: false});
 
-  showOptions() {
-    this.setState({showOptions: true});
-  }
+  showOptions = () => this.setState({showOptions: true});
 
-  onSelect(option, isSelectedOption) {
+  onSelect = (option, isSelectedOption) => {
     this.hideOptions();
 
     if (!isSelectedOption) {
@@ -88,15 +127,23 @@ class ButtonWithOptions extends WixComponent {
 ButtonWithOptions.defaultProps = {
   ...DropdownLayout.defaultProps,
   onSelect: () => {},
-  restrainDropdownSize: true
+  restrainDropdownSize: true,
+  theme: Button.defaultProps.theme
 };
 
 ButtonWithOptions.propTypes = {
   ...DropdownLayout.propTypes,
   restrainDropdownSize: PropTypes.bool,
+
+  /**
+   * First children must be `<ButtonWithOptions.Button>` - its children are used as trigger component for dropdown
+   *
+   * all following children must be `<ButtonWithOptions.Option>` with required `id` prop. These will be displayed in
+   * dropdown
+   */
   children: PropTypes.arrayOf((propValue, key) => {
     if (key === 0 && propValue[key].type !== ButtonWithOptions.Button) {
-      return new Error(`ButtonWithOptions: Invalid Prop children, first child must be ButtonWithOptions.Button`);
+      return new Error('ButtonWithOptions: Invalid Prop children, first child must be ButtonWithOptions.Button');
     }
 
     if (key !== 0) {
@@ -112,11 +159,10 @@ ButtonWithOptions.propTypes = {
 ButtonWithOptions.Option = () => null;
 ButtonWithOptions.Option.displayName = 'ButtonWithOptions.Option';
 
-ButtonWithOptions.Button = props => (
-  <div className={styles.buttonWrapper} data-hook="buttonWithOptions-button-wrapper">
+ButtonWithOptions.Button = props =>
+  <div data-hook="buttonWithOptions-button-wrapper">
     <Button {...props}/>
-  </div>
-);
+  </div>;
 
 ButtonWithOptions.Button.displayName = 'ButtonWithOptions.Button';
 

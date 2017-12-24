@@ -83,7 +83,9 @@ ButtonLayout.propTypes = {
     'icon-standard',
     'icon-standardsecondary',
     'icon-white',
-    'icon-whitesecondary'
+    'icon-whitesecondary',
+    'no-border',
+    'dark-no-border'
   ])
 };
 

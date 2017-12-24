@@ -9,7 +9,6 @@ import {mount} from 'enzyme';
 
 const runButtonWithOptionsTest = driverFactory => {
   describe('ButtonWithOptions', () => {
-
     const createDriver = createDriverFactory(driverFactory);
     const options = [
       {id: 0, value: 'Option 1'},
@@ -27,10 +26,10 @@ const runButtonWithOptionsTest = driverFactory => {
 
     const buttonWithOptions = props => (
       <ButtonWithOptions {...props}>
-        <ButtonWithOptions.Button
-          height="medium"
-          theme="icon-standard"
-          />
+        <ButtonWithOptions.Button {...props}>
+          Test
+        </ButtonWithOptions.Button>
+
         {optionsArray}
       </ButtonWithOptions>
     );
@@ -81,7 +80,7 @@ const runButtonWithOptionsTest = driverFactory => {
 
     describe('appearance', () => {
       it('should be possible to specify the theme of underlying elements', () => {
-        const props = {theme: 'material', dataHook: 'myDataHook'};
+        const props = {theme: 'emptybluesecondary', dataHook: 'myDataHook'};
         const wrapper = mount(buttonWithOptions(props));
         const testkit = enzymeButtonWithOptionsTestkitFactory({wrapper, dataHook: props.dataHook});
         expect(testkit.dropdownLayoutDriver.hasTheme(props.theme)).toBe(true);
@@ -108,6 +107,35 @@ const runButtonWithOptionsTest = driverFactory => {
         expect(buttonWithOptionsTestkit.driver.exists()).toBeTruthy();
         expect(buttonWithOptionsTestkit.buttonDriver.exists()).toBeTruthy();
         expect(buttonWithOptionsTestkit.dropdownLayoutDriver.exists()).toBeTruthy();
+      });
+    });
+
+    describe('Dynamic button theme', () => {
+      it('button should display the same value as the "selected" option', () => {
+        const option = options[0];
+        const props = {
+          theme: 'no-border',
+          dataHook: 'myDataHook',
+          selectedId: option.id
+        };
+        const wrapper = mount(buttonWithOptions(props));
+        const testkit = enzymeButtonWithOptionsTestkitFactory({wrapper, dataHook: props.dataHook});
+
+        expect(testkit.buttonDriver.getButtonTextContent()).toEqual(option.value);
+      });
+
+      it('button should display the same value as the "selected" option that has span', () => {
+        const expectedValue = 'Option 4';
+        const option = options[5];
+        const props = {
+          theme: 'no-border',
+          dataHook: 'myDataHook',
+          selectedId: option.id
+        };
+        const wrapper = mount(buttonWithOptions(props));
+        const testkit = enzymeButtonWithOptionsTestkitFactory({wrapper, dataHook: props.dataHook});
+
+        expect(testkit.buttonDriver.getButtonTextContent()).toEqual(expectedValue);
       });
     });
   });

@@ -9,18 +9,16 @@ import ExampleStandardComp from './ButtonWithOptionsStandard';
 import ReadmeTestkit from '../../src/ButtonWithOptions/README.TESTKIT.md';
 
 storiesOf('Core', module)
-  .add('ButtonWithOptions', () => {
-    return (
-      <TabbedView tabs={['API', 'Testkit']}>
-        <div>
-          <Markdown source={Readme}/>
-          <InteractiveCodeExample title="Customize a <ButtonWithOptions/>">
-            <ExampleStandardComp/>
-          </InteractiveCodeExample>
-        </div>
-        <div>
-          <Markdown source={ReadmeTestkit}/>
-        </div>
-      </TabbedView>
-    );
-  });
+  .add('ButtonWithOptions', () =>
+    <TabbedView tabs={['API', 'Testkit']}>
+      <div>
+        <Markdown source={Readme}/>
+
+        <InteractiveCodeExample title="Customize a <ButtonWithOptions/>">
+          <ExampleStandardComp/>
+        </InteractiveCodeExample>
+      </div>
+
+      <Markdown source={ReadmeTestkit}/>
+    </TabbedView>
+  );

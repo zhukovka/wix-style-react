@@ -175,6 +175,17 @@ class ButtonWithOptionsStandard extends Component {
                 />
             </div>
           </div>
+          <div className={styles.flex}>
+            <RadioGroup
+              display="horizontal"
+              value={this.state.theme}
+              onChange={theme => this.setState({theme})}
+              >
+              <RadioGroup.Radio value="">No Theme</RadioGroup.Radio>
+              <RadioGroup.Radio value="no-border">No Border</RadioGroup.Radio>
+              <RadioGroup.Radio value="dark-no-border">Dark No Border</RadioGroup.Radio>
+            </RadioGroup>
+          </div>
         </div>
 
         <div className={styles[this.state.theme === 'whiteblue' ? 'output-lightblue' : 'output']}>
