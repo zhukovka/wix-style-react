@@ -223,7 +223,7 @@ describe('multiSelect', () => {
     expect(driver.getMaxHeight()).toBe('96px');
   });
 
-  it('should allow to write any text as tag when options is empty', () => {
+  it('should allow to write any text as tag when options are empty', () => {
     const onSelect = jest.fn();
     const {driver} = createDriver(<MultiSelect value="aab" onSelect={onSelect}/>);
     driver.pressCommaKey();
