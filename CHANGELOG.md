@@ -12,15 +12,6 @@ Types of changes:
 1. **Security** in case of vulnerabilities.
 1. **Breaking** for breaking changes
 
-## 1.2.12 - 2017-12-24
-
-### Added
-- `<MultiSelect/>` - Added Multiselect [1289](https://github.com/wix/wix-style-react/pull/1289) [1292](https://github.com/wix/wix-style-react/pull/1292) 
-
-### Changed
-- `<Page/>` - Added height recalculation when inner height changes [1289](https://github.com/wix/wix-style-react/pull/1289)
-
-
 ## 2.0.0 - 2017-12-24
 
 ### Breaking
@@ -34,6 +25,14 @@ Types of changes:
 - `Page Header` - Update Header scrol treshold size [1289](https://github.com/wix/wix-style-react/pull/1289)
 - `MultiSelect` - Allow to write any text as tag when options are empty [1292](https://github.com/wix/wix-style-react/pull/1292)
 
+## 1.2.12 - 2017-12-24
+
+### Added
+- `<MultiSelect/>` - Added Multiselect [1289](https://github.com/wix/wix-style-react/pull/1289) [1292](https://github.com/wix/wix-style-react/pull/1292) 
+
+### Changed
+- `<Page/>` - Added height recalculation when inner height changes [1289](https://github.com/wix/wix-style-react/pull/1289)
+
 ## 1.2.11 - 2017-12-21
 ### Added
 - `<MessageBox/>` - Add footerContent props to MessageBox to allow adding footer to the message box [1269](https://github.com/wix/wix-style-react/pull/1269)
@@ -43,7 +42,6 @@ Types of changes:
 - `<Notification/>` - fix close button alignment [f59bec356](https://github.com/wix/wix-style-react/commit/f59bec3560f210e189a792820f600843a445e68d)
 - `<Card/>` - add more clear docs [1284](https://github.com/wix/wix-style-react/pull/1284)
 - `<Page/>` - Added height for title to avoid height calculation errors [1287](https://github.com/wix/wix-style-react/pull/1287)
-
 
 ## 1.2.10 - 2017-12-20
 ### Fixed
