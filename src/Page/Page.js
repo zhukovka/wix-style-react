@@ -8,6 +8,7 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
 const SCROLL_TOP_THRESHOLD = 24;
+const SHORT_SCROLL_TOP_THRESHOLD = 3;
 
 const createStyleObject = (prop, value, predicate) => predicate() ? {[prop]: `${value}px`} : {};
 
@@ -19,6 +20,7 @@ class Page extends WixComponent {
   constructor(props) {
     super(props);
 
+    this._setContainerScrollTopThreshold(false);
     this._handleScroll = this._handleScroll.bind(this);
 
     this.state = {
@@ -35,10 +37,16 @@ class Page extends WixComponent {
   }
 
   _calculateComponentsHeights() {
-    this.setState({
-      headerHeight: this.pageHeaderRef ? this.pageHeaderRef.offsetHeight : this.state.headerHeight,
-      tailHeight: this.pageHeaderTailRef ? this.pageHeaderTailRef.offsetHeight : this.state.tailHeight
-    });
+    const {headerHeight, tailHeight} = this.state;
+    const newHeaderHeight = this.pageHeaderRef ? this.pageHeaderRef.offsetHeight : headerHeight;
+    const newTailHeight = this.pageHeaderTailRef ? this.pageHeaderTailRef.offsetHeight : tailHeight;
+
+    if (headerHeight !== newHeaderHeight || tailHeight !== newTailHeight) {
+      this.setState({
+        headerHeight: newHeaderHeight,
+        tailHeight: newTailHeight
+      });
+    }
   }
 
   componentWillUnmount() {
@@ -47,12 +55,16 @@ class Page extends WixComponent {
     this._getScrollContainer().removeEventListener('scroll', this._handleScroll);
   }
 
+  _setContainerScrollTopThreshold(shortThreshold) {
+    this.containerScrollTopThreshold = shortThreshold ? SHORT_SCROLL_TOP_THRESHOLD : SCROLL_TOP_THRESHOLD;
+  }
+
   _getScrollContainer() {
     return this.scrollableContentRef;
   }
 
   _shouldBeMinimized(containerScrollTop) {
-    return containerScrollTop > SCROLL_TOP_THRESHOLD;
+    return containerScrollTop > this.containerScrollTopThreshold;
   }
 
   _handleScroll() {
@@ -89,13 +101,15 @@ class Page extends WixComponent {
 
     const pageHeaderStyle = createStyleObject('paddingBottom', SCROLL_TOP_THRESHOLD, () => !minimized);
     const maxWidthStyle = createStyleObject('maxWidth', maxWidth, () => !!maxWidth);
+    this._setContainerScrollTopThreshold(PageTail && hasGradientClassName);
 
     return (
       <div className={s.page}>
         <div
           className={classNames(s.pageHeaderContainer, {
             [s.minimized]: minimized,
-            [s.withBackgroundColor]: minimized || (!hasBackgroundImage && !hasGradientClassName)
+            [s.withBackgroundColor]: minimized || (!hasBackgroundImage && !hasGradientClassName),
+            [s.withoutBottomPadding]: PageTail && minimized
           })}
           ref={r => this.pageHeaderRef = r}
           style={pageHeaderStyle}
@@ -103,7 +117,12 @@ class Page extends WixComponent {
           {
             PageHeader &&
               <div className={s.pageHeader} style={maxWidthStyle}>
-                {React.cloneElement(PageHeader, {minimized, hasBackgroundImage})}
+                {React.cloneElement(
+                  PageHeader, {
+                    minimized,
+                    hasBackgroundImage,
+                    onPostRender: () => this._calculateComponentsHeights()
+                  })}
               </div>
           }
           {

@@ -30,6 +30,10 @@ $page-background-color: rgba($D70,.95);
   &.with-background-color {
     background-color: $page-background-color;
   }
+
+  &.without-bottom-padding {
+    padding-bottom: 0;
+  }
 }
 
 .page-header {

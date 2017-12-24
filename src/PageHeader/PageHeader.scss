@@ -5,7 +5,7 @@
   display: flex;
   justify-content: flex-start;
   flex-direction: row;
-  min-height: 33px;
+  min-height: 30px;
 }
 
 .header {
@@ -76,12 +76,13 @@
 }
 
 .actions-bar {
-  margin-top: 5px;
+  height: 30px;
+  margin-top: 6px;
   margin-left: auto;
   transition: margin .2s cubic-bezier(0.4, 0.0, 0.2, 1);
 
   &.with-breadcrumbs {
-    margin-top: 35px;
+    margin-top: 36px;
   }
 
   &.minimized {
