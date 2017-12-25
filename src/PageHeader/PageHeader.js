@@ -71,10 +71,6 @@ export default class PageHeader extends WixComponent {
     }
   }
 
-  componentDidUpdate() {
-    this.props.onPostRender();
-  }
-
   render() {
     const {breadcrumbs, onBackClicked, title, subtitle, minimized, actionsBar, showBackButton, hasBackgroundImage} = this.props;
     const breadcrumbsExists = !!breadcrumbs;
@@ -130,8 +126,6 @@ export default class PageHeader extends WixComponent {
 PageHeader.displayName = 'Page.Header';
 
 PageHeader.propTypes = {
-  /** A callback for when componentDidUpdate is called */
-  onPostRender: PropTypes.func,
   /** The minimize state from the header container */
   minimized: PropTypes.bool,
   /** If the page has background image */

@@ -8,9 +8,9 @@ import Breadcrumbs from './Breadcrumbs';
 import SomeTailComponent from './SomeTailComponent';
 import './Page.scss';
 
-const header = (
+const header = breadcrumbs => (
   <Page.Header
-    breadcrumbs={Breadcrumbs}
+    breadcrumbs={breadcrumbs}
     title="Page Title"
     subtitle="Page subtitle"
     showBackButton
@@ -40,7 +40,7 @@ story({
   name: 'Page',
   componentSrcFolder: 'Page',
   componentProps: {
-    children: [header, tail, content(false)],
+    children: [header(Breadcrumbs), tail, content(false)],
     dataHook: 'story-page',
     gradientClassName: 'background-gradient',
     backgroundImageUrl: 'https://static.wixstatic.com/media/a9ff3b_9928686dcfa740bd802821d0b6f4ac03.jpg/v1/fill/w_1000,h_250,al_c,q_85,usm_0.66_1.00_0.01/a9ff3b_9928686dcfa740bd802821d0b6f4ac03.jpg'
@@ -54,12 +54,20 @@ story({
   }
 });
 
-storiesOf(category, module)
-  .add('10.2 Page example', () => (
-    <div data-hook="story-page-example">
+class FullPageExample extends React.Component {
+  render() {
+    return (<div data-hook="story-page-example">
       <div data-hook="side-bar">Sidebar</div>
       <div data-hook="body-content">
         <div data-hook="top-bar">TopBar</div>
-        <Page>{[header, tail, content(true)]}</Page>
+        <Page>
+          {header(Breadcrumbs)}
+          {tail}
+          {content(true)}
+        </Page>
       </div>
-    </div>));
+    </div>);
+  }
+}
+
+storiesOf(category, module).add('10.2 Page example', () => (<FullPageExample/>));
