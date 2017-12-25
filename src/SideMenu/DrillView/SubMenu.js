@@ -2,7 +2,7 @@ import SideMenuDrill from './index';
 import React, {Children} from 'react';
 import styles from './DrillView.scss';
 import Navigation from '../core/navigation';
-import {node, string, bool, func} from 'prop-types';
+import PropTypes from 'prop-types';
 import NavigationLink from '../core/navigation/Link';
 import NavigationBackLink from '../core/navigation/BackLink';
 import NavigationCategory from '../core/navigation/Category';
@@ -51,17 +51,20 @@ SubMenu.defaultProps = {
 };
 
 SubMenu.propTypes = {
-  menuKey: string.isRequired,
-  title: string.isRequired,
-  isActive: bool,
-  isOpen: bool,
-  onSelectHandler: func,
-  onBackHandler: func,
-  backLabel: string,
-  showCategory: bool,
-  badge: node,
-  linkDataHook: string,
-  children: node.isRequired
+  menuKey: PropTypes.string.isRequired,
+  title: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.node
+  ]).isRequired,
+  isActive: PropTypes.bool,
+  isOpen: PropTypes.bool,
+  onSelectHandler: PropTypes.func,
+  onBackHandler: PropTypes.func,
+  backLabel: PropTypes.string,
+  showCategory: PropTypes.bool,
+  badge: PropTypes.node,
+  linkDataHook: PropTypes.string,
+  children: PropTypes.node.isRequired
 };
 
 export default SubMenu;

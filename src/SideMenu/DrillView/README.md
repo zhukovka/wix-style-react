@@ -74,7 +74,7 @@ The first `Link` in a `Submenu` must have an `onClick` property (since clicking 
 
 | propName          | propType | defaultValue             | isRequired | description                                                                                             |
 | -                 | -        | -                        | -          | -                                                                                                       |
-| menuKey           | string   | -                        | true       | A unique key for the menu                                                                               |
+| menuKey           | `string` or `node`  | -                        | true       | A unique key for the menu                                                                               |
 | title             | string   | -                        | true       | The sub menu's title                                                                                    |
 | isActive          | bool     | false                    | -          | slightly different styling to indicate active link (closed mode only)                                   |
 | isOpen            | bool     | false                    | -          | when set to `false` the sub menu will appear like a `Link`, otherwise it will render the sub navigation |
