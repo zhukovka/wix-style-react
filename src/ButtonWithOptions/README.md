@@ -11,5 +11,8 @@
 | ***All of the Button's and DropdownLayout Props are also available for this component*** | | | | |
 
 > ButtonWithOptions.Button - the Button component to be used
+- Required as first child of ButtonWithOptions
 
-> ButtonWithOptions.Option - an option to be used for the dropdown - must contain an id
+> ButtonWithOptions.Option - an option to be used for the dropdown
+- Must contain ID
+- Must have only one child

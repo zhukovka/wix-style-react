@@ -78,6 +78,29 @@ const runButtonWithOptionsTest = driverFactory => {
       expect(onSelect).not.toBeCalled();
     });
 
+    describe('Option children validation', () => {
+
+      let children;
+      const validator = (ButtonWithOptions.Option).propTypes.children;
+      const componentName = 'ButtonWithOptions.Option';
+      const props = {children};
+      const prop = 'children';
+
+      it('should fail on multipile children', () => {
+        children = ['child1', 'child2'];
+
+        expect(validator(props, prop, componentName) instanceof Error)
+          .toBeTruthy();
+      });
+
+      it('should fail on children required', () => {
+        children = undefined;
+
+        expect(validator(props, prop, componentName) instanceof Error)
+          .toBeTruthy();
+      });
+    });
+
     describe('appearance', () => {
       it('should be possible to specify the theme of underlying elements', () => {
         const props = {theme: 'emptybluesecondary', dataHook: 'myDataHook'};

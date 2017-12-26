@@ -249,8 +249,8 @@ class DropdownLayout extends WixComponent {
     }
 
     if (!isEqual(this.props.options, nextProps.options)) {
-      if (nextProps.options.some(option => (!this.isLegalOption(option)))) {
-        throw new Error('InputWithOptions: Invalid option provided');
+      if (nextProps.options.some(option => !this.isLegalOption(option))) {
+        throw new Error(`DropdownLayout: Invalid options provided: ${nextProps.options}`);
       }
 
       if (this.state.hovered !== NOT_HOVERED_INDEX) {

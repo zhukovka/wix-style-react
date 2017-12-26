@@ -43,8 +43,8 @@ export class Form extends Component {
         <ButtonWithOptions.Option id="1">Option 1</ButtonWithOptions.Option>
         <ButtonWithOptions.Option id="2">Option 2</ButtonWithOptions.Option>
         <ButtonWithOptions.Option id="3" disabled>Option 3</ButtonWithOptions.Option>
-        <ButtonWithOptions.Option id="4"><Close size={iconSize}/> Option 4</ButtonWithOptions.Option>
-        <ButtonWithOptions.Option id="5"><span>Option 5</span><Close size={iconSize}/></ButtonWithOptions.Option>
+        <ButtonWithOptions.Option id="4"><span><Close size={iconSize}/> Option 4</span></ButtonWithOptions.Option>
+        <ButtonWithOptions.Option id="5">Option 5</ButtonWithOptions.Option>
       </ButtonWithOptions>
     );
   }
