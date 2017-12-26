@@ -12,6 +12,19 @@ Types of changes:
 1. **Security** in case of vulnerabilities.
 1. **Breaking** for breaking changes
 
+## 2.0.1 - 2017-12-26
+
+### Added
+- MusicalNote icon added [1280](https://github.com/wix/wix-style-react/pull/1280)
+
+### Changed
+- `SideMenuDrill.SubMenu` - Add `node` as PropType to `title` in `SideMenuDrill.SubMenu` component [1298](https://github.com/wix/wix-style-react/pull/1298)
+
+### Fixed
+- `Page` - Fixed height calculation bug when header  changes [1299](https://github.com/wix/wix-style-react/pull/1299)
+- `ButtonWithOptions` - Assorted bug fixes  [1296](https://github.com/wix/wix-style-react/pull/1296)
+
+
 ## 2.0.0 - 2017-12-24
 
 ### Breaking
