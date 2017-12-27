@@ -12,6 +12,10 @@ Types of changes:
 1. **Security** in case of vulnerabilities.
 1. **Breaking** for breaking changes
 
+## 2.0.2 - 2017-12-26
+### Fixed
+- fix css name collision between tooltip and button [1276](https://github.com/wix/wix-style-react/pull/1276)
+
 ## 2.0.1 - 2017-12-26
 
 ### Added
