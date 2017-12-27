@@ -173,7 +173,7 @@ describe('multiSelect', () => {
     expect(onChange).toBeCalledWith({target: {value: ''}});
     expect(onSelect).toBeCalledWith([
       {id: options[0].id, label: options[0].value},
-      {id: 'customOption_2', label: 'Arkansa', theme: 'error'}
+      {id: 'customOption_1', label: 'Arkansa', theme: 'error'}
     ]);
   });
 

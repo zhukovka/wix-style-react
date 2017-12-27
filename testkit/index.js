@@ -132,6 +132,9 @@ export const modalTestkitFactory = testkitFactoryCreator(modalDriverFactory);
 import timeInputDriverFactory from '../src/TimeInput/TimeInput.driver';
 export const timeInputTestkitFactory = testkitFactoryCreator(timeInputDriverFactory);
 
+import sliderDriverFactory from '../src/Slider/Slider.driver';
+export const sliderTestkitFactory = testkitFactoryCreator(sliderDriverFactory);
+
 import filePickerDriverFactory from '../src/FilePicker/FilePicker.driver';
 export const filePickerTestkitFactory = testkitFactoryCreator(filePickerDriverFactory);
 

@@ -135,7 +135,7 @@ export const filePickerTestkitFactory = enzymeTestkitFactoryCreator(filePickerDr
 import timeInputDriverFactory from '../src/TimeInput/TimeInput.driver';
 export const timeInputTestkitFactory = enzymeTestkitFactoryCreator(timeInputDriverFactory);
 
-import {sliderDriverFactory} from '../src/Slider/testkit/Slider';
+import sliderDriverFactory from '../src/Slider/Slider.driver';
 export const sliderTestkitFactory = enzymeTestkitFactoryCreator(sliderDriverFactory);
 
 import toggleSwitchDriverFactory from '../src/ToggleSwitch/ToggleSwitch.driver';
