@@ -36,6 +36,17 @@ describe('DropdownLayout', () => {
     expect(driver.isDown()).toBeTruthy();
   });
 
+  it('should have all options values in dropdown list', () => {
+    const options = [
+      {id: 0, value: 'Option 1'},
+      {id: 1, value: 'Option 2'},
+      {id: 2, value: 'Option 3'}
+    ];
+    const optionsContent = options.map(option => option.value);
+    const driver = createDriver(<DropdownLayout options={options}/>);
+    expect(driver.optionsContent()).toEqual(optionsContent);
+  });
+
   it('should hide dropdown on outside click', () => {
     const driver = createDriver(
       <DropdownLayout

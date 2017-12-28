@@ -23,6 +23,7 @@
 | pressEscKey | - | - | simulate esc key press |
 | optionContentAt | number | string | get the content of the option at index <number> |
 | optionAt | number | element | get the option at index <number> |
+| optionsContent | - | arrayOf(string) | returns options content |
 | clickAtOption | number | - | simulate click on option at index <number> |
 | clickAtOptionWithValue | string | - | press esc key on the input element |
 | isSelectedHighlight | - | boolean | returns selectedHighlight value |
