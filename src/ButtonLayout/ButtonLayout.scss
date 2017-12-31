@@ -80,6 +80,13 @@ $base-transition: all 100ms linear;
         padding: 0px 30px;
     }
 
+    &.icon-greybackground, &.icon-standard, &.icon-standardsecondary, &.icon-white, &.icon-whitesecondary {
+      width: $height;
+      height: $height;
+      border-radius: $height / 2;
+      padding: 0;
+    }
+
     &.close-standard, &.close-dark, &.close-transparent {
         $closeHeight: 24px;
         height: $closeHeight;
