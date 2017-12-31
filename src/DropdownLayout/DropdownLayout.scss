@@ -141,6 +141,7 @@ a[data-hook=link-item] {
 
 :global(.rtl) .option {
   text-align: right;
+  direction: rtl;
   padding-right: 24px;
   padding-left: 24px;
 }
