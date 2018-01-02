@@ -95,6 +95,27 @@ describe('multiSelect', () => {
     expect(inputDriver.isFocus()).toBeTruthy();
   });
 
+  it('should call onSelect on click-outside if options empty', () => {
+    const onSelect = jest.fn();
+    const {driver} = createDriver(<MultiSelect value={'bob'} onSelect={onSelect}/>);
+    driver.outsideClick();
+    expect(onSelect).toBeCalledWith([{id: 'bob', label: 'bob'}]);
+  });
+
+  it('should not call onSelect on click-outside if options is not empty', () => {
+    const onSelect = jest.fn();
+    const {driver} = createDriver(<MultiSelect value={'bob'} options={options} onSelect={onSelect}/>);
+    driver.outsideClick();
+    expect(onSelect.mock.calls.length).toBe(0);
+  });
+
+  it('should not call onSelect on click-outside if input is empty', () => {
+    const onSelect = jest.fn();
+    const {driver} = createDriver(<MultiSelect value={''} onSelect={onSelect}/>);
+    driver.outsideClick();
+    expect(onSelect.mock.calls.length).toBe(0);
+  });
+
   it('should support custom delimiters', () => {
     const onSelect = jest.fn();
     const onChange = jest.fn();
