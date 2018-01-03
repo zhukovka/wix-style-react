@@ -11,10 +11,10 @@ class TooltipContent extends Component {
     textAlign: PropTypes.string,
 
     /** The tooltip max width  */
-    maxWidth: PropTypes.string,
+    maxWidth: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
 
     /** The tooltip min width  */
-    minWidth: PropTypes.string,
+    minWidth: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
 
     /**
      * Tooltip content to be rendered
