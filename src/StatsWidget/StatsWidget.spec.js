@@ -1,6 +1,7 @@
 import {createDriverFactory} from '../test-common';
 import statsWidgetDriverFactory from './StatsWidget.driver';
 import StatsWidget from './StatsWidget';
+import ButtonWithOptions from '../../src/ButtonWithOptions';
 import {isEnzymeTestkitExists, isTestkitExists} from '../../testkit/test-common';
 import {statsWidgetTestkitFactory} from '../../testkit';
 import {statsWidgetTestkitFactory as enzymeStatsWidgetTestkitFactory} from '../../testkit/enzyme';
@@ -45,10 +46,6 @@ describe('StatsWidget', () => {
     subtitle: 'Transactions',
     percent: 0
   }];
-
-  const dropdownOption = [
-    {id: 0, value: 'This month'},
-    {id: 1, value: 'This week'}];
 
   let driver;
 
@@ -96,12 +93,25 @@ describe('StatsWidget', () => {
     expect(driver.getStatisticPercentClass(2)).not.toContain('isPositive');
   });
 
-  it('should show filters', () => {
+  it('should show filter with ButtonWithOptions inside', () => {
+    const children = (<StatsWidget.Filter selectedId={1} dataHook="stats-widget-filter" onSelect={stub}><ButtonWithOptions.Button/>{[<ButtonWithOptions.Option key={1}>value</ButtonWithOptions.Option>]}</StatsWidget.Filter>);
+    createComponent({title, statistics, children});
+    expect(driver.getFilterDriver('stats-widget-filter').dropdownLayoutDriver.exists()).toBe(true);
+  });
+
+  it('filters should have selectable options', () => {
     const stub = jest.fn();
-    const children = <StatsWidget.Filter selectedId={1} options={dropdownOption} dataHook="stats-widget-filter" onSelect={stub}/>;
+    const children = (<StatsWidget.Filter selectedId={1} dataHook="stats-widget-filter" onSelect={stub}><ButtonWithOptions.Button/>{[<ButtonWithOptions.Option key={1}>value</ButtonWithOptions.Option>]}</StatsWidget.Filter>);
     createComponent({title, statistics, children});
     driver.getFilterDriver('stats-widget-filter').dropdownLayoutDriver.clickAtOption(0);
     expect(stub).toHaveBeenCalled();
+  });
+
+  it('should show filters with option value specified', () => {
+    const value = 'Last Week';
+    const children = (<StatsWidget.Filter selectedId={1} dataHook="stats-widget-filter" onSelect={stub}><ButtonWithOptions.Button/>{[<ButtonWithOptions.Option key={1}>{value}</ButtonWithOptions.Option>]}</StatsWidget.Filter>);
+    createComponent({title, statistics, children});
+    expect(driver.getFilterDriver('stats-widget-filter').dropdownLayoutDriver.optionsContent()).toContain(value);
   });
 
   it('should not initialize component with 1 bad child', () => {

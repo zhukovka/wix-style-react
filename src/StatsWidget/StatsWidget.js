@@ -6,7 +6,7 @@ import styles from './StatsWidget.scss';
 import Text from '../Text';
 import classnames from 'classnames';
 import ArrowVertical from '../Icons/dist/components/ArrowVertical';
-import Dropdown from '../Dropdown';
+import ButtonWithOptions from '../ButtonWithOptions';
 
 /**
  * Component for app widget in Business Manager
@@ -73,7 +73,7 @@ class StatsWidget extends WixComponent {
   }
 }
 
-StatsWidget.Filter = Dropdown;
+StatsWidget.Filter = ButtonWithOptions;
 
 StatsWidget.displayName = 'StatsWidget';
 

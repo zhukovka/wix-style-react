@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import dropdownDriverFactory from '../Dropdown/Dropdown.driver';
+import dropdownLayoutDriver from '../ButtonWithOptions/ButtonWithOptions.driver';
 import headerDriverFactory from '../Card/Header/Header.driver';
 
 const statsWidgetDriverFactory = ({element, wrapper, component}) => {
@@ -24,8 +24,8 @@ const statsWidgetDriverFactory = ({element, wrapper, component}) => {
     getStatisticPercentClass: index => getStatistic(index).querySelector('[data-hook="percent-wrapper"]').className,
 
     getFilterDriver: dataHook => {
-      const dropdownElement = element.querySelector(`[data-hook="${dataHook}"]`);
-      return dropdownDriverFactory({wrapper: element, element: dropdownElement});
+      const optionElement = element.querySelector(`[data-hook="${dataHook}"]`);
+      return dropdownLayoutDriver({wrapper: element, element: optionElement});
     },
 
     setProps: props => {

@@ -3,7 +3,7 @@ import StatsWidget from '../../src/StatsWidget';
 import styles from './ExampleStatsWidget.scss';
 
 const statistics = [{
-  title: '10$',
+  title: '$10',
   subtitle: 'Revenue'
 },
 {
@@ -11,11 +11,11 @@ const statistics = [{
   subtitle: 'Products'
 },
 {
-  title: '1',
+  title: '$1',
   subtitle: 'Transactions'
 }];
 
 export default () =>
   <div data-hook="card-example" className={styles.statsWidgetWrapper}>
-    <StatsWidget title="Let's what going on with your store" statistics={statistics} dataHook="standard-stats-widget"/>
+    <StatsWidget title="Let's see what's going on with your store" statistics={statistics} dataHook="standard-stats-widget"/>
   </div>;
