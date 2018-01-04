@@ -119,3 +119,6 @@ export const modalSelectorLayoutTestkitFactory = protractorTestkitFactoryCreator
 
 import sliderDriverFactory from '../src/Slider/Slider.protractor.driver';
 export const sliderTestkitFactory = protractorTestkitFactoryCreator(sliderDriverFactory);
+
+import tabsDriverFactory from '../src/Tabs/Tabs.protractor.driver';
+export const tabsTestkitFactory = protractorTestkitFactoryCreator(tabsDriverFactory);
