@@ -14,10 +14,17 @@ Types of changes:
 
 ## 2.0.4 - 2018-01-04
 ### Fixed
+- `<SideMenu/>` - Fix sidebar menu items being hidden [1326](https://github.com/wix/wix-style-react/pull/1326)
+- various UI alignments [1300](https://github.com/wix/wix-style-react/pull/1300)
+- `<MultiSelect/>` - Save multiselect input on blur [1316](https://github.com/wix/wix-style-react/pull/1316)
+
+### Changed
+- `<StatsWidget/>` - Switch stats widget to use button with options from dropdown [1320](https://github.com/wix/wix-style-react/pull/1320)
 - `<ModalSelectorLayout/>` - allow `node` in `title` & `subtitle` props
+- `<RadioGroup.Button>` - add `content` prop for additional, non label, nodes [1327](https://github.com/wix/wix-style-react/pull/1327)
 
 ### Added
-- `<Tabs/>` - add new type `compactSide` [1291](https://github.com/wix/wix-style-react/pull/1291)
+- `<Tabs/>` - new type `compactSide` [1291](https://github.com/wix/wix-style-react/pull/1291)
 
 ## 2.0.3 - 2017-12-12
 ### Fixed
