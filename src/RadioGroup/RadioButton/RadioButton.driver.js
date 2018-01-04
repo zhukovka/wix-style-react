@@ -12,6 +12,7 @@ const radioButtonDriverFactory = ({element, wrapper, component}) => {
     isChecked: () => radioButton.checked,
     isDisabled: () => radioButton.disabled,
     getLabel: () => label.textContent,
+    getContent: () => element.querySelector('[data-hook="radio-button-content"]'),
     setProps: props => {
       const ClonedWithProps = React.cloneElement(component, Object.assign({}, component.props, props), ...(component.props.children || []));
       ReactDOM.render(<div ref={r => element = r}>{ClonedWithProps}</div>, wrapper);

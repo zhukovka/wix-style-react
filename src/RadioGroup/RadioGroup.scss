@@ -22,8 +22,6 @@
 }
 
 .radio-wrapper {
-  display: flex;
-
   &:not(.checked) {
     .radio:hover:not(:active) {
       background-color: $B40;
@@ -31,7 +29,8 @@
   }
 }
 
-.radio-wrapper, .radio-wrapper > * {
+.radio-wrapper,
+.radio-wrapper > * {
   cursor: initial;
   box-sizing: border-box;
 }

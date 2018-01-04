@@ -49,6 +49,13 @@ describe('RadioButton', () => {
     expect(onChange).not.toBeCalledWith(value);
   });
 
+  describe('given `content` prop', () => {
+    it('should render node from that prop', () => {
+      const driver = createDriver(<RadioButton content={<span>Hello</span>}/>);
+      expect(driver.getContent().textContent).toBe('Hello');
+    });
+  });
+
   describe('testkit', () => {
     it('should exist', () => {
       expect(isTestkitExists(<RadioButton/>, radioButtonTestkitFactory)).toBe(true);

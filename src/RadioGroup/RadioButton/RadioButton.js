@@ -63,6 +63,12 @@ class RadioButton extends WixComponent {
                 {this.props.children}
               </div>
             </label>
+
+            { this.props.content &&
+              <div data-hook="radio-button-content">
+                {this.props.content}
+              </div>
+            }
           </div>
       )
     );
@@ -71,7 +77,8 @@ class RadioButton extends WixComponent {
 
 RadioButton.defaultProps = {
   vAlign: 'center',
-  type: 'default'
+  type: 'default',
+  content: null
 };
 
 RadioButton.propTypes = {
@@ -84,7 +91,10 @@ RadioButton.propTypes = {
   children: PropTypes.any,
   style: PropTypes.object,
   type: PropTypes.oneOf(['default', 'button']),
-  lineHeight: PropTypes.string
+  lineHeight: PropTypes.string,
+
+  /** optional node to be rendered under label. Clicking it will not trigger `onChange` */
+  content: PropTypes.node
 };
 
 RadioButton.displayName = 'RadioGroup.Button';
