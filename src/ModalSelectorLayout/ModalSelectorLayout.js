@@ -18,15 +18,20 @@ import {dataHooks} from './ModalSelectorLayout.helpers';
 export default class ModalSelectorLayout extends WixComponent {
   static propTypes = {
     /** Title of the modal */
-    title: string,
+    title: node,
+
     /** Fixed text displayed above the list */
-    subtitle: string,
+    subtitle: node,
+
     /** OK button callback, called with the currently selected item  */
     onOk: func,
+
     /** X button callback */
     onClose: func,
+
     /** Cancel button callback */
     onCancel: func,
+
     /**
      * paging function that should have a signature of
      * ```typescript
@@ -48,10 +53,13 @@ export default class ModalSelectorLayout extends WixComponent {
      * `totalCount` - total number of items that suffice the current search query
      * */
     dataSource: func.isRequired,
+
     /** Cancel button's text */
     cancelButtonText: string,
+
     /** OK button's text */
     okButtonText: string,
+
     /** Image icon size */
     imageSize: oneOf([
       'tiny',
@@ -60,6 +68,7 @@ export default class ModalSelectorLayout extends WixComponent {
       'large',
       'cinema'
     ]),
+
     /**
      * Image icon shape, `rectangular` or `circle`.<br>
      * NOTE: `circle` is not compatible with `imageSize` of `portrait` or `cinema`
@@ -69,20 +78,25 @@ export default class ModalSelectorLayout extends WixComponent {
         return new Error(`${componentName}: prop "imageSize" with value of "${props.imageSize}" is incompatible with prop imageShape with value of "circle" — use "rectangular" instead.`);
       }
     },
+
     /** Placeholder text of the search input */
     searchPlaceholder: string,
+
     /**
      * Component/element that will be rendered when there is nothing to display,
      * i.e. empty `{items:[], totalCount: 0}` was returned on the first call to `dataSource`
      * */
     emptyState: node.isRequired,
+
     /**
      * Function that will get the current `searchQuery` and should return the component/element
      * that will be rendered when there no items that suffice the entered search query
      *  */
     noResultsFoundStateFactory: func,
+
     /** Number of items loaded each time the user scrolls down */
     itemsPerPage: number,
+
     /** Whether to display the search input or not */
     withSearch: bool,
     height: string
@@ -98,7 +112,7 @@ export default class ModalSelectorLayout extends WixComponent {
     itemsPerPage: 50,
     withSearch: true,
     height: '100%',
-    emptyState: <div className={css.defaultEmptyStateWrapper}><Text appearance="T1">{`You don't have any items`}</Text></div>,
+    emptyState: <div className={css.defaultEmptyStateWrapper}><Text appearance="T1">{'You don\'t have any items'}</Text></div>,
     noResultsFoundStateFactory: searchValue =>
       <div className={css.defaultNoResultsFoundStateWrapper}><Text appearance="T1">No items matched your search {`"${searchValue}"`}</Text></div>
   };
@@ -254,7 +268,6 @@ export default class ModalSelectorLayout extends WixComponent {
     const {items, searchValue} = this.state;
     dataSource(searchValue, items.length, itemsPerPage).then(({items: itemsFromNextPage, totalCount}) => {
       if (this.state.searchValue === searchValue) { // react only to the resolve of the relevant search
-
         const newItems = [...items, ...itemsFromNextPage];
 
         const shouldShowNoResultsFoundState = (newItems.length === 0) && searchValue;

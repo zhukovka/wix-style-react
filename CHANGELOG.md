@@ -12,22 +12,24 @@ Types of changes:
 1. **Security** in case of vulnerabilities.
 1. **Breaking** for breaking changes
 
+## 2.0.4 - 2018-01-04
+### Fixed
+- `<ModalSelectorLayout/>` - allow `node` in `title` & `subtitle` props
+
+### Added
+- `<Tabs/>` - add new type `compactSide` [1291](https://github.com/wix/wix-style-react/pull/1291)
+
 ## 2.0.3 - 2017-12-12
 ### Fixed
 
 - `SideMenuDrill` - Fix empty menu level [1297](https://github.com/wix/wix-style-react/pull/1297)
-
 - Fix exclamation icon blocking interaction on entire row [1311](https://github.com/wix/wix-style-react/pull/1311)
-
 - `DropdownLayout` - Fix drop down rtl options are left aligned [1310](https://github.com/wix/wix-style-react/pull/1310)
 
 ### Added
 - `Slider` - Add Testkit and e2e [1303](https://github.com/wix/wix-style-react/pull/1303)
-
 - `DropdownLayout` - Added optionsContent to driver [1308](https://github.com/wix/wix-style-react/pull/1308)
-
 - `Icons` - Add new icons and update Google, Facebook, Code and Yandex [1307](https://github.com/wix/wix-style-react/pull/1307)
-
 - `ButtonLayout` - Added icon button styles for `heightlarge` [1313](https://github.com/wix/wix-style-react/pull/1313)
 
 ## 2.0.2 - 2017-12-26
