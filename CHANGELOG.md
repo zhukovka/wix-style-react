@@ -12,6 +12,10 @@ Types of changes:
 1. **Security** in case of vulnerabilities.
 1. **Breaking** for breaking changes
 
+## Upcoming release
+### Changed
+- use enzyme@3 [1330](https://github.com/wix/wix-style-react/pull/1330)
+
 ## 2.0.4 - 2018-01-04
 ### Fixed
 - `<SideMenu/>` - Fix sidebar menu items being hidden [1326](https://github.com/wix/wix-style-react/pull/1326)
