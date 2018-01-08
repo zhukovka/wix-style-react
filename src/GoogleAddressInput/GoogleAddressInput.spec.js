@@ -2,8 +2,9 @@ import 'react';
 import {componentFactory} from './GoogleAddressInput.driver';
 import _ from 'lodash/fp';
 import sinon from 'sinon';
-import waitFor from 'wait-for-cond';
 import {GoogleAddressInputHandler} from './GoogleAddressInput';
+import InputWithOptions from '../InputWithOptions';
+import {sleep} from 'wix-ui-test-utils';
 
 const GEOCODE_RESULT = JSON.parse('{"formatted_address":"_formatted_address_","address_components":[{"types":["street_number"],"long_name":123}]}');
 GEOCODE_RESULT.geometry = {
@@ -146,7 +147,7 @@ describe('GoogleAddressInput', () => {
 
     it('should allow focusing input', () => {
       const component = createMount({Client: GmapsTestClient, countryCode: 'XX'});
-      const input = component.find('input').get(0);
+      const input = component.find('input').instance();
       sinon.spy(input, 'focus');
       component.instance().focus();
       expect(input.focus.calledOnce).toEqual(true);
@@ -154,7 +155,7 @@ describe('GoogleAddressInput', () => {
 
     it('should allow selecting input', () => {
       const component = createMount({Client: GmapsTestClient, countryCode: 'XX'});
-      const input = component.find('input').get(0);
+      const input = component.find('input').instance();
       sinon.spy(input, 'select');
       component.instance().select();
       expect(input.select.calledOnce).toEqual(true);
@@ -276,11 +277,13 @@ describe('GoogleAddressInput', () => {
       });
     });
 
-    it('clear suggestions on blur', () => {
-      const component = createShallow({Client: GmapsTestClient, countryCode: 'XX'});
+    it('clear suggestions on blur', async () => {
+      const component = createMount({Client: GmapsTestClient, countryCode: 'XX', clearSuggestionsOnBlur: true});
       component.setState({suggestions: [JSON.parse('{"description": "my address", "place_id": 123}')]});
-      component.find('InputWithOptions').props().onBlur();
-      return waitFor(() => component.find('InputWithOptions').props().options.length === 0);
+      component.find('input').simulate('blur');
+      await sleep(300);
+      component.update();
+      expect(component.find(InputWithOptions).props().options.length).toEqual(0);
     });
 
     it('don\'t clear suggestions if clearSuggestionsOnBlur === false', done => {
