@@ -35,6 +35,7 @@ class RadioButton extends WixComponent {
     return (
         type === 'button' ? (
           <button
+            type="button"
             className={buttonClasses}
             checked={checked}
             disabled={disabled}

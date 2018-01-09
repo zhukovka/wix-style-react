@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import styles from './styles.scss';
 
 const Logo = ({onClick, children}) =>
-  <button onClick={onClick} className={styles.logo} data-hook="menu-header">
+  <button type="button" onClick={onClick} className={styles.logo} data-hook="menu-header">
     {children}
   </button>;
 

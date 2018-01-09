@@ -76,6 +76,7 @@ class RichTextAreaButton extends Component {
         disabled={isTooltipDisabled}
         >
         <button
+          type="button"
           className={className}
           onMouseDown={this.handleMouseDown}
           data-hook={`rich-text-area-button-${type}`}

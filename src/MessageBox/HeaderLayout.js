@@ -12,7 +12,7 @@ const HeaderLayout = ({title, onCancel, theme, closeButton}) => {
         {title}
       </span>
       {closeButton &&
-        <button className={styles.close} data-hook="header-close-button" onClick={onCancel}>
+        <button type="button" className={styles.close} data-hook="header-close-button" onClick={onCancel}>
           <SvgX width={9} height={9} thickness={1} color={'white'}/>
         </button>
       }

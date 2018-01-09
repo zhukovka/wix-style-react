@@ -21,7 +21,7 @@ class MessageBoxMarketerialLayout extends WixComponent {
     return (
       <div className={styles.root}>
         <div className={headerClasses}>
-          <button className={styles.close} onClick={onClose} data-hook="close-button">
+          <button type="button" className={styles.close} onClick={onClose} data-hook="close-button">
             <SvgX width={9} height={9} thickness={1} color={'white'}/>
           </button>
           { imageComponent ?
