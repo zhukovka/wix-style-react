@@ -19,7 +19,7 @@ yarn wix-style-react
 
 * Use in your project:
 
-> __Note__: ensure `body` has either `ltr` or `rtl` class (depending, of course, on the displayed language).
+> __Note__: Ensure `body` has either the `ltr` or `rtl` class applied to it (depending, of course, on the displayed language).
 
 ```jsx
 import React from 'react';
@@ -31,15 +31,15 @@ const MyComponent = () =>
   </Button>;
 ```
 
-> __Note__: `wix-style-react` works best when [Haste](https://github.com/wix/haste) is used as build tool. If you do not use it, read [here](https://wix.github.io/wix-style-react/?selectedKind=Introduction&selectedStory=Usage%20Without%20Haste&full=0&down=0&left=1&panelRight=0) for webpack setup instructions.
+> __Note__: `wix-style-react` works best when [Haste](https://github.com/wix/haste) is used as build tool. If you do not use it, click [here](https://wix.github.io/wix-style-react/?selectedKind=Introduction&selectedStory=Usage%20Without%20Haste&full=0&down=0&left=1&panelRight=0) for webpack setup instructions.
 
-[demo page](https://wix.github.io/wix-style-react) includes all available components with their usage examples.
+[demo page](https://wix.github.io/wix-style-react) Includes all available components with their usage examples.
 
 ## Tests
-Please refer the [Testing page](https://wix.github.io/wix-style-react/?selectedKind=Introduction&selectedStory=Testing&full=0&down=0&left=1&panelRight=0)
+Please refer to the [Testing page](https://wix.github.io/wix-style-react/?selectedKind=Introduction&selectedStory=Testing&full=0&down=0&left=1&panelRight=0)
 
 ## Contributing
-Please refer the [Contribution page](https://wix.github.io/wix-style-react/?selectedKind=Introduction&selectedStory=Contribution&full=0&down=0&left=1&panelRight=0)
+Please refer to the [Contribution page](https://wix.github.io/wix-style-react/?selectedKind=Introduction&selectedStory=Contribution&full=0&down=0&left=1&panelRight=0)
 
 ## License
 This project is offered under [MIT License](https://github.com/wix/wix-style-react/blob/master/LICENSE).
