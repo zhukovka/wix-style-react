@@ -4,12 +4,16 @@ import ReactTestUtils from 'react-dom/test-utils';
 
 const imageViewerDriverFactory = ({component, wrapper, element}) => {
 
-  const image = () => element.querySelector('[data-hook="image-viewer-image"]');
-  const addImageButton = () => element.querySelector('[data-hook="add-image"]');
-  const updateImageButton = () => element.querySelector('[data-hook="update-image"]');
-  const removeImageButton = () => element.querySelector('[data-hook="remove-image"]');
+  const byHook = dataHook =>
+    element.querySelector(`[data-hook="${dataHook}"]`);
+
+  const image = () => byHook('image-viewer-image');
+  const addImageButton = () => byHook('add-image');
+  const updateImageButton = () => byHook('update-image');
+  const removeImageButton = () => byHook('remove-image');
 
   return {
+    getContainerStyles: () => element.getAttribute('style'),
     getImageUrl: () => image().getAttribute('src'),
     isImageVisible: () => !!image(),
     clickAdd: () => ReactTestUtils.Simulate.click(addImageButton()),

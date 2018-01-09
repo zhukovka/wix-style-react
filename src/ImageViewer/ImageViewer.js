@@ -14,7 +14,9 @@ class ImageViewer extends WixComponent {
       imageUrl,
       onAddImage,
       onUpdateImage,
-      onRemoveImage
+      onRemoveImage,
+      width,
+      height
     } = this.props;
 
     const tooltipCommonProps = {
@@ -26,7 +28,7 @@ class ImageViewer extends WixComponent {
     };
 
     return (
-      <div className={`${style.container} ${imageUrl && style.hasLogo}`}>
+      <div className={`${style.container} ${imageUrl && style.hasLogo}`} style={{width, height}} data-hook="image-container">
         <div data-hook="add-image" className={style.addLogo} onClick={onAddImage}>
           <div className={style.dashedBorder}/>
           <div className={style.plusIcon}><Plus2 size="47px"/></div>
@@ -61,7 +63,9 @@ ImageViewer.propTypes = {
   imageUrl: PropTypes.string,
   onAddImage: PropTypes.func,
   onUpdateImage: PropTypes.func,
-  onRemoveImage: PropTypes.func
+  onRemoveImage: PropTypes.func,
+  width: PropTypes.number,
+  height: PropTypes.number
 };
 
 export default ImageViewer;

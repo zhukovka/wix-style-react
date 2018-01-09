@@ -56,6 +56,36 @@ describe('ImageViewer', () => {
     expect(driver.isImageVisible()).toBeFalsy();
   });
 
+  describe('height and width', () => {
+    it('should be added to style attribute when image is not present', () => {
+      props = {
+        imageUrl: '',
+        width: 300,
+        height: 300
+      };
+      driver = createDriver(<ImageViewer {...props}/>);
+      expect(driver.getContainerStyles()).toEqual('width: 300px; height: 300px;');
+    });
+
+    it('should be added to style attribute when image is present', () => {
+      props = {
+        imageUrl: IMAGE_URL,
+        width: 300,
+        height: 300
+      };
+      driver = createDriver(<ImageViewer {...props}/>);
+      expect(driver.getContainerStyles()).toEqual('width: 300px; height: 300px;');
+    });
+
+    it('should not add style attribute when width and height props are not passed', () => {
+      props = {
+        imageUrl: IMAGE_URL
+      };
+      driver = createDriver(<ImageViewer {...props}/>);
+      expect(driver.getContainerStyles()).toEqual(null);
+    });
+  });
+
   describe('testkit', () => {
     it('should exist', () => {
       const div = document.createElement('div');
