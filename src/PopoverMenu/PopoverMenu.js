@@ -13,6 +13,7 @@ class PopoverMenu extends WixComponent {
     size: Tooltip.propTypes.size,
     placement: Tooltip.propTypes.placement,
     buttonTheme: Button.propTypes.theme,
+    buttonHeight: Button.propTypes.height,
     maxWidth: Tooltip.propTypes.maxWidth
   };
 
@@ -20,6 +21,7 @@ class PopoverMenu extends WixComponent {
     size: 'normal',
     placement: 'top',
     buttonTheme: 'icon-greybackground',
+    buttonHeight: 'medium',
     maxWidth: '378px'
   };
 
@@ -70,7 +72,7 @@ class PopoverMenu extends WixComponent {
         >
         <Button
           type="button"
-          height="medium"
+          height={this.props.buttonHeight}
           theme={this.props.buttonTheme}
           >
           <Dots size="12px"/>
