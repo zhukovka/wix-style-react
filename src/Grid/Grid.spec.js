@@ -36,7 +36,6 @@ describe('Grid', () => {
 
     it('should add col xl class when using xl attribute ', () => {
       const element = mount(<Col xl="5"/>);
-      console.log(element.html());
       expect(element.childAt(0).hasClass('colXl5')).toEqual(true);
     });
 
