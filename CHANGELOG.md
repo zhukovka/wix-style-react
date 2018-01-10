@@ -12,6 +12,16 @@ Types of changes:
 1. **Security** in case of vulnerabilities.
 1. **Breaking** for breaking changes
 
+## 2.0.7 - 2018-01-10
+### Added
+- Add `width` and `height` props to `<imageViewer/>` [1340](https://github.com/wix/wix-style-react/pull/1340)
+- Add `type="button"` for missing places in the project [1339](https://github.com/wix/wix-style-react/pull/1339)
+
+### Fixed
+- fix `<HBox/>` & `<VBox/>` [1345](https://github.com/wix/wix-style-react/pull/1345)
+Fixed tabs styling bug
+
+
 ## 2.0.6 - 2018-01-09
 ### Added
 - `<PopoverMenu/>` - support `buttonHeight` [1335](https://github.com/wix/wix-style-react/pull/1335)
