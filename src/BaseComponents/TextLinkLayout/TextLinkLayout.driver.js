@@ -7,7 +7,7 @@ const textLinkLayoutDriverFactory = ({element, wrapper, component}) => {
   return {
     exists: () => !!element,
     getContent: () => element.textContent,
-    doesComponentHasClass: className => element.className.indexOf(className) > 0,
+    doesComponentHasClass: className => element.className.includes(className),
     isDarkBackground: () => element.style._values.color === 'rgb(255, 255, 255)',
     hover: () => ReactTestUtils.Simulate.mouseEnter(element),
     isUnderline: () => element.style._values['text-decoration'] === 'underline',

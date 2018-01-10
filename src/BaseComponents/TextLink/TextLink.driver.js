@@ -10,7 +10,7 @@ const textLinkDriverFactory = ({element, wrapper, component}) => {
     exists: () => !!element,
     click: () => ReactTestUtils.Simulate.click(element),
     getContent: () => textLinkLayout.textContent,
-    doesComponentHasClass: className => textLinkLayout.className.indexOf(className) > 0,
+    doesComponentHasClass: className => textLinkLayout.className.includes(className),
     isDarkBackground: () => textLinkLayout.style._values.color === 'rgb(255, 255, 255)',
     hover: () => ReactTestUtils.Simulate.mouseEnter(textLinkLayout), //simulate hover on text link layout because events are not propagated
     getLink: () => element.href,
