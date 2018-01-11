@@ -1,6 +1,6 @@
 @import '../../src/common';
 
-$page-margin: 48px;
+$page-side-padding: 48px;
 $page-background-color: rgba($D70,.95);
 
 .page {
@@ -37,13 +37,13 @@ $page-background-color: rgba($D70,.95);
 }
 
 .page-header {
-  padding: 0 $page-margin;
+  padding: 0 $page-side-padding;
   margin: 0 auto;
 }
 
 .tail {
   background-color: transparent;
-  padding: 24px $page-margin 0;
+  padding: 24px $page-side-padding 0;
   transition: padding .2s cubic-bezier(0.4, 0.0, 0.2, 1);  
   margin: 0 auto;
 
@@ -83,5 +83,5 @@ $page-background-color: rgba($D70,.95);
   z-index: 1;
   position: relative;
   margin: 0 auto;
-  padding: 0 $page-margin;
+  padding: 0 $page-side-padding;
 }
