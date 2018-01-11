@@ -30,6 +30,7 @@ export {default as TimeInput} from './TimeInput';
 export {default as Tooltip} from './Tooltip';
 export {default as SideBar} from './SideBar';
 export {default as Page} from './Page';
+export {default as SectionHelper} from './SectionHelper';
 export {default as PageHeader} from './PageHeader';
 export {default as SideMenu} from './SideMenu';
 export {default as SideMenuDrill} from './SideMenu/DrillView';

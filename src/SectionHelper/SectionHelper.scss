@@ -1,0 +1,34 @@
+@import '../common.scss';
+
+.root {
+  position: relative;
+  width: 100%;
+  border-radius: 6px;
+  border: 1px solid;
+}
+
+.content {
+  padding: 30px 18px;
+}
+
+/* Theme*/
+.warning {
+  background-color: $Y50;
+  border-color: $Y20;
+}
+.standard {
+  background-color: $B50;
+  border-color: $B30;
+}
+.danger {
+  background-color: $R50;
+  border-color: $R30;
+}
+.success {
+  background-color: $G50;
+  border-color: $G30;
+}
+.premium {
+  background-color: $P50;
+  border-color: $P30;
+}

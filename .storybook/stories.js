@@ -114,3 +114,6 @@ import '../stories/PageHeader';
 
 // 11. Pickers and Selectors
 import '../stories/ColorPicker'; // 11.5 Color Picker
+
+// 12. SectionHelper
+import '../stories/SectionHelper';
