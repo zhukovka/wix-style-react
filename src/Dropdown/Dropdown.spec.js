@@ -7,6 +7,7 @@ import {dropdownTestkitFactory} from '../../testkit';
 import {dropdownTestkitFactory as enzymeDropdownTestkitFactory} from '../../testkit/enzyme';
 import {mount} from 'enzyme';
 import {runInputWithOptionsTest} from '../InputWithOptions/InputWithOptions.spec';
+import {sleep} from 'wix-ui-test-utils';
 
 runInputWithOptionsTest(dropdownDriverFactory);
 
@@ -53,6 +54,17 @@ describe('Dropdown', () => {
     options[0].value = 'Updated';
     driver.setProps({options, selectedId: 0});
     expect(inputDriver.getValue()).toBe('Updated');
+  });
+
+  it('should close when clicking on input (header)', () => {
+    const {dropdownLayoutDriver, inputDriver} = createDriver(<Dropdown options={getOptions()}/>);
+    inputDriver.click();
+    expect(dropdownLayoutDriver.isShown()).toBeTruthy();
+
+    return sleep(200).then(() => {
+      inputDriver.click();
+      expect(dropdownLayoutDriver.isShown()).toBeFalsy();
+    });
   });
 
   it('should be read only', () => {

@@ -10,6 +10,18 @@ class Dropdown extends InputWithOptions {
     this.update(props, {isFirstTime: true});
   }
 
+  _onInputClicked(event) {
+    if (this.state.showOptions && (Date.now() - this.state.lastOptionsShow > 200)) {
+      this.hideOptions();
+    } else {
+      this.showOptions();
+    }
+
+    if (this.props.onInputClicked) {
+      this.props.onInputClicked(event);
+    }
+  }
+
   update(props, {isFirstTime}) {
     let value = '', selectedId = -1;
     if (!isUndefined(props.selectedId)) {

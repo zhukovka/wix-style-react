@@ -19,6 +19,7 @@ const inputDriverFactory = ({element, wrapper, component}) => {
       ReactTestUtils.Simulate.blur(input);
     },
     keyDown: key => ReactTestUtils.Simulate.keyDown(input, {key}),
+    click: () => ReactTestUtils.Simulate.click(input),
     clickSuffix: () => ReactTestUtils.Simulate.click(suffixNode),
     clickClear: () => ReactTestUtils.Simulate.click(clearButton),
     clearText: () => driver.enterText(''),
