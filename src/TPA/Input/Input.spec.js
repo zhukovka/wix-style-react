@@ -4,6 +4,7 @@ import Input from './Input';
 import {tpaInputTestkitFactory as inputTestkitFactory} from '../../../testkit';
 import {tpaInputTestkitFactory as enzymeInputTestkitFactory} from '../../../testkit/enzyme';
 import {isEnzymeTestkitExists} from '../../../testkit/test-common';
+import {mount} from 'enzyme';
 
 describe('Input', () => {
   let div;
@@ -78,7 +79,7 @@ describe('Input', () => {
 
   describe('enzyme testkit', () => {
     it('should exist', () => {
-      expect(isEnzymeTestkitExists(<Input/>, enzymeInputTestkitFactory)).toBe(true);
+      expect(isEnzymeTestkitExists(<Input/>, enzymeInputTestkitFactory, mount)).toBe(true);
     });
   });
 });

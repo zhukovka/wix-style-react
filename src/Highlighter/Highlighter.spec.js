@@ -5,6 +5,7 @@ import highlighterDriverFactory from './Highlighter.driver';
 import {isTestkitExists, isEnzymeTestkitExists} from '../../testkit/test-common';
 import {highlighterTestkitFactory} from '../../testkit/index';
 import {highlighterTestkitFactory as enzymeHighlighterTestkitFactory} from '../../testkit/enzyme';
+import {mount} from 'enzyme';
 
 describe('Highlighter', () => {
   const createDriver = createDriverFactory(highlighterDriverFactory);
@@ -111,7 +112,7 @@ describe('Highlighter', () => {
 
   describe('enzyme testkit', () => {
     it('should exist', () => {
-      expect(isEnzymeTestkitExists(<Highlighter/>, enzymeHighlighterTestkitFactory)).toBe(true);
+      expect(isEnzymeTestkitExists(<Highlighter/>, enzymeHighlighterTestkitFactory, mount)).toBe(true);
     });
   });
 

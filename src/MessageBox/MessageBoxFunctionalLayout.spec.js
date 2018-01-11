@@ -6,6 +6,7 @@ import sinon from 'sinon';
 import {isTestkitExists, isEnzymeTestkitExists} from '../../testkit/test-common';
 import {messageBoxFunctionalLayoutTestkitFactory} from '../../testkit';
 import {messageBoxFunctionalLayoutTestkitFactory as enzymeMessageBoxTestkitFactory} from '../../testkit/enzyme';
+import {mount} from 'enzyme';
 
 
 describe('MessageBox', () => {
@@ -208,7 +209,7 @@ describe('MessageBox', () => {
 
   describe('enzyme testkit', () => {
     it('should exist', () => {
-      expect(isEnzymeTestkitExists(<MessageBoxFunctionalLayout/>, enzymeMessageBoxTestkitFactory)).toBe(true);
+      expect(isEnzymeTestkitExists(<MessageBoxFunctionalLayout/>, enzymeMessageBoxTestkitFactory, mount)).toBe(true);
     });
   });
 });

@@ -7,6 +7,7 @@ import sinon from 'sinon';
 import {isTestkitExists, isEnzymeTestkitExists} from '../../testkit/test-common';
 import {timeInputTestkitFactory} from '../../testkit';
 import {timeInputTestkitFactory as enzymeTimeInputTestkitFactory} from '../../testkit/enzyme';
+import {mount} from 'enzyme';
 
 const defaultMoment = moment();
 const defaultMomentWithAM = moment('2014-04-25T01:00:00.00Z');
@@ -183,7 +184,7 @@ describe('TimeInput', () => {
 
   describe('enzyme testkit', () => {
     it('should exist', () => {
-      expect(isEnzymeTestkitExists(<TimePicker/>, enzymeTimeInputTestkitFactory)).toBe(true);
+      expect(isEnzymeTestkitExists(<TimePicker/>, enzymeTimeInputTestkitFactory, mount)).toBe(true);
     });
   });
 });

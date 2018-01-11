@@ -5,6 +5,7 @@ import {createDriverFactory} from '../../test-common';
 import {textLinkLayoutTestkitFactory} from '../../../testkit';
 import {textLinkLayoutTestkitFactory as enzymeTextLinkLayoutTestkitFactory} from '../../../testkit/enzyme';
 import {isTestkitExists, isEnzymeTestkitExists} from '../../../testkit/test-common';
+import {mount} from 'enzyme';
 
 describe('TextLinkLayout', () => {
 
@@ -84,6 +85,6 @@ describe('testkit', () => {
 
 describe('enzyme testkit', () => {
   it('should exist', () => {
-    expect(isEnzymeTestkitExists(<TextLinkLayout/>, enzymeTextLinkLayoutTestkitFactory)).toBe(true);
+    expect(isEnzymeTestkitExists(<TextLinkLayout/>, enzymeTextLinkLayoutTestkitFactory, mount)).toBe(true);
   });
 });

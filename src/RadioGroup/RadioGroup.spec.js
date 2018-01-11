@@ -5,6 +5,7 @@ import {createDriverFactory} from '../test-common';
 import {radioGroupTestkitFactory} from '../../testkit';
 import {isTestkitExists, isEnzymeTestkitExists} from '../../testkit/test-common';
 import {radioGroupTestkitFactory as enzymeRadioGroupTestkitFactory} from '../../testkit/enzyme';
+import {mount} from 'enzyme';
 
 describe('RadioGroup', () => {
   const createDriver = createDriverFactory(radioGroupDriverFactory);
@@ -135,7 +136,7 @@ describe('RadioGroup', () => {
 
   describe('enzyme testkit', () => {
     it('should exist', () => {
-      expect(isEnzymeTestkitExists(<RadioGroup/>, enzymeRadioGroupTestkitFactory)).toBe(true);
+      expect(isEnzymeTestkitExists(<RadioGroup/>, enzymeRadioGroupTestkitFactory, mount)).toBe(true);
     });
   });
 });

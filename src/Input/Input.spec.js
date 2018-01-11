@@ -8,6 +8,7 @@ import {inputTestkitFactory, tooltipTestkitFactory} from '../../testkit';
 import {inputTestkitFactory as enzymeInputTestkitFactory} from '../../testkit/enzyme';
 import {isTestkitExists, isEnzymeTestkitExists} from '../../testkit/test-common';
 import {makeControlled} from '../../test/utils';
+import {mount} from 'enzyme';
 
 describe('Input', () => {
   const createDriver = createDriverFactory(inputDriverFactory);
@@ -630,6 +631,6 @@ describe('enzyme testkit', () => {
   it('should exist', () => {
     const value = 'hello';
     const onChange = () => {};
-    expect(isEnzymeTestkitExists(<Input value={value} onChange={onChange}/>, enzymeInputTestkitFactory)).toBe(true);
+    expect(isEnzymeTestkitExists(<Input value={value} onChange={onChange}/>, enzymeInputTestkitFactory, mount)).toBe(true);
   });
 });

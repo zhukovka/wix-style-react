@@ -5,6 +5,7 @@ import {createDriverFactory} from '../test-common';
 import {filePickerTestkitFactory} from '../../testkit';
 import {filePickerTestkitFactory as enzymeFilePickerTestkitFactory} from '../../testkit/enzyme';
 import {isTestkitExists, isEnzymeTestkitExists} from '../../testkit/test-common';
+import {mount} from 'enzyme';
 
 describe('FilePicker', () => {
   const createDriver = createDriverFactory(filePickerDriverFactory);
@@ -31,7 +32,7 @@ describe('FilePicker', () => {
 
   describe('enzyme testkit', () => {
     it('should exist', () => {
-      expect(isEnzymeTestkitExists(<FilePicker/>, enzymeFilePickerTestkitFactory)).toBe(true);
+      expect(isEnzymeTestkitExists(<FilePicker/>, enzymeFilePickerTestkitFactory, mount)).toBe(true);
     });
   });
 });

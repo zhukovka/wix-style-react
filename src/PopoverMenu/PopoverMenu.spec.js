@@ -11,6 +11,7 @@ import {
 } from '../../testkit/test-common';
 import {popoverMenuTestkitFactory} from '../../testkit';
 import {popoverMenuTestkitFactory as enzymePopoverMenuTestkitFactory} from '../../testkit/enzyme';
+import {mount} from 'enzyme';
 
 const waitFor = fn => waitForCond.assert(fn, 5000);
 
@@ -111,6 +112,6 @@ describe('Testkits', () => {
   });
 
   it('Using Enzyme testkit', () => {
-    expect(isEnzymeTestkitExists(genPopoverMenuElement(), enzymePopoverMenuTestkitFactory)).toBe(true);
+    expect(isEnzymeTestkitExists(genPopoverMenuElement(), enzymePopoverMenuTestkitFactory, mount)).toBe(true);
   });
 });

@@ -6,6 +6,7 @@ import {inputAreaTestkitFactory, tooltipTestkitFactory} from '../../testkit';
 import {inputAreaTestkitFactory as enzymeInputAreaTestkitFactory} from '../../testkit/enzyme';
 import sinon from 'sinon';
 import {isTestkitExists, isEnzymeTestkitExists} from '../../testkit/test-common';
+import {mount} from 'enzyme';
 
 describe('InputArea', () => {
   const createDriver = createDriverFactory(inputAreaDriverFactory);
@@ -372,6 +373,6 @@ describe('enzyme testkit', () => {
   it('should exist', () => {
     const value = 'hello';
     const onChange = () => {};
-    expect(isEnzymeTestkitExists(<InputArea dataHook="texarea-div" value={value} onChange={onChange}/>, enzymeInputAreaTestkitFactory)).toBe(true);
+    expect(isEnzymeTestkitExists(<InputArea dataHook="texarea-div" value={value} onChange={onChange}/>, enzymeInputAreaTestkitFactory, mount)).toBe(true);
   });
 });

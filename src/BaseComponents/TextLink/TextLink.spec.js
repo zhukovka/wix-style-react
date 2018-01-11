@@ -6,6 +6,7 @@ import {textLinkTestkitFactory} from '../../../testkit';
 import {textLinkTestkitFactory as enzymeTextLinkTestkitFactory} from '../../../testkit/enzyme';
 import {isTestkitExists, isEnzymeTestkitExists} from '../../../testkit/test-common';
 import {spy} from 'sinon';
+import {mount} from 'enzyme';
 
 describe('TextLink', () => {
 
@@ -108,10 +109,10 @@ describe('testkit', () => {
 
 describe('enzyme testkit', () => {
   it('should exist', () => {
-    expect(isEnzymeTestkitExists(<TextLink link=""/>, enzymeTextLinkTestkitFactory)).toBe(true);
+    expect(isEnzymeTestkitExists(<TextLink link=""/>, enzymeTextLinkTestkitFactory, mount)).toBe(true);
   });
 
   it('should not exist', () => {
-    expect(isEnzymeTestkitExists(<TextLink link=""/>, enzymeTextLinkTestkitFactory, {withoutDataHook: true})).toBe(false);
+    expect(isEnzymeTestkitExists(<TextLink link=""/>, enzymeTextLinkTestkitFactory, mount, {withoutDataHook: true})).toBe(false);
   });
 });

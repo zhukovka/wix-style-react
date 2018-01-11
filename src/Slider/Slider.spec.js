@@ -5,6 +5,7 @@ import sliderDriverFactory from './Slider.driver';
 import {sliderTestkitFactory} from '../../testkit';
 import {sliderTestkitFactory as enzymeSliderTestkitFactory} from '../../testkit/enzyme';
 import {isTestkitExists, isEnzymeTestkitExists} from '../../testkit/test-common';
+import {mount} from 'enzyme';
 
 describe('Slider', () => {
 
@@ -74,6 +75,6 @@ describe('testkit', () => {
 
 describe('enzyme testkit', () => {
   it('should exist', () => {
-    expect(isEnzymeTestkitExists(<Slider onChange={() => {}}/>, enzymeSliderTestkitFactory)).toBe(true);
+    expect(isEnzymeTestkitExists(<Slider onChange={() => {}}/>, enzymeSliderTestkitFactory, mount)).toBe(true);
   });
 });

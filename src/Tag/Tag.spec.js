@@ -5,6 +5,7 @@ import {createDriverFactory} from '../test-common';
 import {tagTestkitFactory} from '../../testkit';
 import {tagTestkitFactory as enzymeTagTestkitFactory} from '../../testkit/enzyme';
 import {isTestkitExists, isEnzymeTestkitExists} from '../../testkit/test-common';
+import {mount} from 'enzyme';
 
 describe('Tag', () => {
 
@@ -99,7 +100,7 @@ describe('Tag', () => {
   describe('enzyme testkit', () => {
     it('should exist', () => {
       const id = 'hello';
-      expect(isEnzymeTestkitExists(<Tag id={id}>a</Tag>, enzymeTagTestkitFactory)).toBe(true);
+      expect(isEnzymeTestkitExists(<Tag id={id}>a</Tag>, enzymeTagTestkitFactory, mount)).toBe(true);
     });
   });
 });

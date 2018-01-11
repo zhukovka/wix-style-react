@@ -5,6 +5,7 @@ import ButtonWithOptions from '../../src/ButtonWithOptions';
 import {isEnzymeTestkitExists, isTestkitExists} from '../../testkit/test-common';
 import {statsWidgetTestkitFactory} from '../../testkit';
 import {statsWidgetTestkitFactory as enzymeStatsWidgetTestkitFactory} from '../../testkit/enzyme';
+import {mount} from 'enzyme';
 
 describe('StatsWidget', () => {
   const createDriver = createDriverFactory(statsWidgetDriverFactory);
@@ -153,7 +154,7 @@ describe('StatsWidget', () => {
 
   describe('enzyme testkit', () => {
     it('should exist', () => {
-      expect(isEnzymeTestkitExists(<StatsWidget title="test title" statistics={statistics}/>, enzymeStatsWidgetTestkitFactory)).toBeTruthy();
+      expect(isEnzymeTestkitExists(<StatsWidget title="test title" statistics={statistics}/>, enzymeStatsWidgetTestkitFactory, mount)).toBeTruthy();
     });
   });
 });

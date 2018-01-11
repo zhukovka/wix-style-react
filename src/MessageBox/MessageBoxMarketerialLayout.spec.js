@@ -6,6 +6,7 @@ import sinon from 'sinon';
 import {isTestkitExists, isEnzymeTestkitExists} from '../../testkit/test-common';
 import {messageBoxMarketerialLayoutTestkitFactory} from '../../testkit';
 import {messageBoxMarketerialLayoutTestkitFactory as enzymeMessageBoxTestkitFactory} from '../../testkit/enzyme';
+import {mount} from 'enzyme';
 
 describe('MessageBoxMarketerialLayout', () => {
   const createDriver = createDriverFactory(MessageBoxMarketerialLayoutFactory);
@@ -136,7 +137,7 @@ describe('MessageBoxMarketerialLayout', () => {
 
   describe('enzyme testkit', () => {
     it('should exist', () => {
-      expect(isEnzymeTestkitExists(<MessageBoxMarketerialLayout {...requiredProps}/>, enzymeMessageBoxTestkitFactory)).toBe(true);
+      expect(isEnzymeTestkitExists(<MessageBoxMarketerialLayout {...requiredProps}/>, enzymeMessageBoxTestkitFactory, mount)).toBe(true);
     });
   });
 });
