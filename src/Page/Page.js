@@ -97,7 +97,7 @@ class Page extends WixComponent {
 
   _calculatePageDimensionsStyle() {
     const {maxWidth, sidePadding} = this.props;
-    if (!maxWidth && !sidePadding) {
+    if (!maxWidth && !sidePadding && sidePadding !== 0) {
       return null;
     }
 
