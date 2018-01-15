@@ -12,6 +12,10 @@ Types of changes:
 1. **Security** in case of vulnerabilities.
 1. **Breaking** for breaking changes
 
+## 2.0.11 - 2018-01-15
+### Fixed
+- `<Page/>` can receive `sidePadding` without `maxWidth`
+
 ## 2.0.9 - 2018-01-11
 ### Added
 - Add `sidePadding` props to `<Page/>` [1354](https://github.com/wix/wix-style-react/pull/1354)
