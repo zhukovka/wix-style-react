@@ -1,67 +1,81 @@
-import React, {Component} from 'react';
-import MessageBoxMarketerialLayout from 'wix-style-react/MessageBox/MessageBoxMarketerialLayout';
-import MessageBoxFunctionalLayout from 'wix-style-react/MessageBox/MessageBoxFunctionalLayout';
-import {Button} from 'wix-style-react/Backoffice';
+/* eslint-disable react/prop-types */
+import React from 'react';
 
-const NgIf = ({show, children}) => show ? children : null;
-const log = text => () => console.log(text);
+import {
+  MessageBoxMarketerialLayout,
+  MessageBoxFunctionalLayout
+} from 'wix-style-react/MessageBox';
+import Button from 'wix-style-react/Button';
 
-class ControlledMessageBoxes extends Component {
-  state = {
-    opened: null
-  };
+
+const MarketerialLayoutExample = props =>
+  <MessageBoxMarketerialLayout
+    title="Looking Good!"
+    content="You're doing great as ever"
+    theme="blue"
+    imageUrl="https://static.wixstatic.com/media/9ab0d1_8f1d1bd00e6c4bcd8764e1cae938f872~mv1.png"
+    primaryButtonLabel="Got It"
+    secondaryButtonLabel="Do something else"
+    onPrimaryButtonClick={props.log('You clicked "Got It"')}
+    onSecondaryButtonClick={props.log('You clicked "Do something else"')}
+    onClose={props.onClose}
+    />;
+
+
+const FunctionalLayoutExample = props =>
+  <MessageBoxFunctionalLayout
+    title="Look at me please!"
+    primaryButtonLabel="Got It"
+    confirmText="Confirm"
+    cancelText="Cancel"
+    theme="green"
+    onCancel={props.log('You clicked "Cancel"')}
+    onOk={props.log('You clicked "Confirm"')}
+    onClose={props.onClose}
+    >
+    I am a confirmation dialog and have red, green or blue themes
+  </MessageBoxFunctionalLayout>;
+
+
+export default class ControlledMessageBoxes extends React.Component {
+  state = {layout: ''};
+
+  layouts = {
+    MessageBoxMarketerialLayout: <MarketerialLayoutExample/>,
+    MessageBoxFunctionalLayout: <FunctionalLayoutExample/>
+  }
+
+  buttonsStyles = {
+    display: 'inline-flex',
+    justifyContent: 'space-between',
+    minWidth: '700px',
+    padding: '30px'
+  }
 
   render() {
-    const open = opened => () => this.setState({opened});
-
-    const close = open(null);
-    const openLayout1 = open('layout1');
-    const openLayout2 = open('layout2');
+    const activeLayout = this.layouts[this.state.layout];
 
     return (
       <div>
-        <div style={{padding: '0 5px 16px'}}>
-          <div style={{display: 'inline-block', padding: '0 5px'}}>
-            <Button onClick={openLayout1} >Show MessageBoxMarketerialLayout</Button>
-          </div>
-          <div style={{display: 'inline-block', padding: '0 5px'}}>
-            <Button onClick={openLayout2} >Show MessageBoxFunctionalLayout</Button>
-          </div>
+        <div style={this.buttonsStyles}>
+          { Object.keys(this.layouts).map(key =>
+              React.createElement(Button, {
+                key,
+                onClick: () => this.setState({layout: key}),
+                children: `Preview <${key}/>`
+              })
+            )
+          }
         </div>
 
-        <NgIf show={this.state.opened === 'layout1'}>
-          <MessageBoxMarketerialLayout
-            title={<span>Looking Good! <br/> Your Site Is On Google</span>}
-            content="All of your pages are indexed and now come up as separate search results on Google. This is great for your visbility!"
-            primaryButtonLabel="Got It"
-            secondaryButtonLabel="Preview on Google"
-            onSecondaryButtonClick={log('secondary button click')}
-            onPrimaryButtonClick={log('primary button click')}
-            onClose={close}
-            theme="blue"
-            imageUrl="http://www.domstechblog.com/wp-content/uploads/2015/09/wix.png"
-            />
-        </NgIf>
-
-        <NgIf show={this.state.opened === 'layout2'}>
-          <MessageBoxFunctionalLayout
-            title={<span>This is title</span>}
-            primaryButtonLabel="Got It"
-            confirmText="Confirm"
-            cancelText="Cancel"
-            theme="red"
-            onCancel={close}
-            onOk={log('all ok')}
-            >
-            <div>
-              All of your pages are indexed and now come up as separate search results on Google. This is great for your visbility!
-            </div>
-          </MessageBoxFunctionalLayout>
-        </NgIf>
+        { activeLayout ?
+            React.cloneElement(activeLayout, {
+              log: text => () => console.log(text),
+              onClose: () => this.setState({layout: ''})
+            }) :
+            null
+        }
       </div>
     );
   }
 }
-
-export default () =>
-  <ControlledMessageBoxes/>;
