@@ -20,6 +20,7 @@ const tabsDriverFactory = ({element, wrapper, component}) => {
     getActiveTabIndex: () => getItems().findIndex(item => item.classList.contains(styles.active)),
     isDefaultType: () => TabTypes.every(tabType => !element.classList.contains(styles[tabType])),
     getItemsContainerClassList: () => getItemsContainer().classList,
+    getDataHook: index => getItems()[index].getAttribute('data-hook'),
     getItemsWidth: () => new Set(getItems().map(item => item.style.width)),
     setProps: props => {
       const ClonedWithProps = React.cloneElement(component, Object.assign({}, component.props, props), ...(component.props.children || []));

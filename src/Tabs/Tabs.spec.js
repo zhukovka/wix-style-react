@@ -16,7 +16,7 @@ describe('Tabs component', () => {
   let items;
 
   beforeEach(() => {
-    items = [{id: 0, title: 'Tab 0'}, {id: 1, title: 'Tab 1'}, {id: 2, title: 'Tab 2'}];
+    items = [{id: 0, title: 'Tab 0'}, {id: 1, title: 'Tab 1', dataHook: 'tab-data-hook'}, {id: 2, title: 'Tab 2'}];
   });
 
   it('should render tabs with correct titles', () => {
@@ -37,6 +37,11 @@ describe('Tabs component', () => {
   it('should mark tab as active', () => {
     const driver = createComponent({items, activeId: 2});
     expect(driver.getActiveTabIndex()).toBe(2);
+  });
+
+  it('should have data-hook', () => {
+    const driver = createComponent({items, activeId: 2});
+    expect(driver.getDataHook(1)).toBe('tab-data-hook');
   });
 
   it('should change active tab', () => {

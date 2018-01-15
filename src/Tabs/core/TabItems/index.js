@@ -15,6 +15,7 @@ class TabItems extends React.Component {
     return (
       <TabItem
         key={item.id}
+        dataHook={item.dataHook}
         item={item}
         itemMaxWidth={itemMaxWidth}
         isActive={activeId === item.id}
