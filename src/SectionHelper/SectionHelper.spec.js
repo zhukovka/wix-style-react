@@ -5,7 +5,7 @@ import {createDriverFactory} from '../test-common';
 import SectionHelper from './SectionHelper';
 
 const renderSectionHelperWithProps = (properties = {}) => (
-  <SectionHelper appearance={properties.appearance}>
+  <SectionHelper appearance={properties.appearance} title={properties.title}>
     {properties.children || <div>Hello, World!</div>}
   </SectionHelper>
 );
@@ -21,6 +21,11 @@ describe('SectionHelper', () => {
   it('renders with provided content', () => {
     const driver = createDriver(renderSectionHelperWithProps({children: 'Muffins are the best!'}));
     expect(driver.textContent()).toEqual('Muffins are the best!');
+  });
+
+  it('renders with provided title', () => {
+    const driver = createDriver(renderSectionHelperWithProps({title: 'Muffins are the best!'}));
+    expect(driver.titleText()).toEqual('Muffins are the best!');
   });
 
   describe('Themes', () => {
