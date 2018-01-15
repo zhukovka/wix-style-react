@@ -16,6 +16,9 @@ Types of changes:
 ### Fixed
 - `<Page/>` can receive `sidePadding` without `maxWidth`
 
+### Changed
+- `<Notification/>` - no longer require `size`, choose it automatically [1356](https://github.com/wix/wix-style-react/pull/1356)
+
 ## 2.0.9 - 2018-01-11
 ### Added
 - Add `sidePadding` props to `<Page/>` [1354](https://github.com/wix/wix-style-react/pull/1354)
