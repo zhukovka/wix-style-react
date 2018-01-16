@@ -19,8 +19,6 @@ yarn wix-style-react
 
 * Use in your project:
 
-> __Note__: Ensure `body` has either the `ltr` or `rtl` class applied to it (depending, of course, on the displayed language).
-
 ```jsx
 import React from 'react';
 import Button from 'wix-style-react/Button';
@@ -31,9 +29,18 @@ const MyComponent = () =>
   </Button>;
 ```
 
-> __Note__: `wix-style-react` works best when [Haste](https://github.com/wix/haste) is used as build tool. If you do not use it, click [here](https://wix.github.io/wix-style-react/?selectedKind=Introduction&selectedStory=Usage%20Without%20Haste&full=0&down=0&left=1&panelRight=0) for webpack setup instructions.
+## Tips & Tricks
 
-[demo page](https://wix.github.io/wix-style-react) Includes all available components with their usage examples.
+* `wix-style-react` works best when [Haste](https://github.com/wix/haste) is used as build tool. If you do not use it, read [webpack setup instructions here](https://wix.github.io/wix-style-react/?selectedKind=Introduction&selectedStory=Usage%20Without%20Haste&full=0&down=0&left=1&panelRight=0);
+* Ensure `<body>` has either `ltr` or `rtl` class applied to it (depending on the displayed language);
+* To enable font smoothing, use browser specific css properties, for example:
+    ```css
+    html {
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+    ```
+* Make use of [storybook demo page](https://wix.github.io/wix-style-react) which includes all available components with interactive examples.
 
 ## Tests
 Please refer to the [Testing page](https://wix.github.io/wix-style-react/?selectedKind=Introduction&selectedStory=Testing&full=0&down=0&left=1&panelRight=0)
