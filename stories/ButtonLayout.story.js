@@ -1,16 +1,12 @@
 import React from 'react';
-import story from 'story';
 
-import component from 'wix-style-react/ButtonLayout';
-import source from '!raw-loader!wix-style-react/ButtonLayout/ButtonLayout';
-import readmeTestkit from '../../src/ButtonLayout/README.TESTKIT.md';
+import ButtonLayout from 'wix-style-react/ButtonLayout';
 
-story({
+export default {
   category: 'Core',
   name: 'ButtonLayout',
-  source,
-  readmeTestkit,
-  component,
+  component: ButtonLayout,
+  componentPath: '../src/ButtonLayout',
   componentProps: {
     children: (
       <a
@@ -23,4 +19,4 @@ story({
       </a>
     )
   }
-});
+};

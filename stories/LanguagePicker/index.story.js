@@ -1,5 +1,4 @@
 import React from 'react';
-import story from 'story';
 
 import CodeExample from 'wix-storybook-utils/CodeExample';
 
@@ -29,9 +28,11 @@ const LOCALES = {
   zh: 'Chinese'
 };
 
-story({
+export default {
   category: 'Core',
-  componentSrcFolder: 'LanguagePicker',
+  component: LanguagePicker,
+  componentPath: '../../src/LanguagePicker',
+
   componentProps: {
     children: Object.keys(LOCALES).map(lang =>
       <LanguagePicker.Option key={lang} languageKey={lang}>
@@ -39,6 +40,7 @@ story({
       </LanguagePicker.Option>
     )
   },
+
   exampleProps: {
     onSelect: ({value}) => value
   },
@@ -49,4 +51,4 @@ story({
       <Example/>
     </CodeExample>
   )
-});
+};

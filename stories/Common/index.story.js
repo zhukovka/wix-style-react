@@ -1,7 +1,7 @@
 import React from 'react';
 import CodeExample from 'wix-storybook-utils/CodeExample';
 
-import story from 'story';
+import Text from 'wix-style-react/Text';
 
 import ExampleHeadersTypography from './ExampleHeadersTypography';
 import ExampleHeaderTypographyRaw from '!raw-loader!./ExampleHeadersTypography';
@@ -15,10 +15,11 @@ const children = [
   'Hello World! '.repeat(5)
 ];
 
-story({
+export default {
   category: 'Common',
   storyName: 'Typography',
-  componentSrcFolder: 'Text',
+  component: Text,
+  componentPath: '../../src/Text',
   componentProps: {
     children: 'Hello, World!'
   },
@@ -36,4 +37,4 @@ story({
       </CodeExample>
     </div>
   )
-});
+};

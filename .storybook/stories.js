@@ -9,11 +9,11 @@ import '../stories/Introduction';
 // Core
 import '../stories/AutoComplete';
 import '../stories/Breadcrubms';
-import '../stories/Badge';
-import '../stories/ButtonLayout';
+import '../stories/Badge.story.js';
+import '../stories/ButtonLayout.story.js';
 import '../stories/ButtonSelection';
 import '../stories/DataTable';
-import '../stories/DatePicker';
+import '../stories/DatePicker.story.js';
 import '../stories/Dropdown';
 import '../stories/DropdownLayout';
 import '../stories/EndorseContentLayout';
@@ -23,23 +23,23 @@ import '../stories/ImageViewer';
 import '../stories/Input';
 import '../stories/InputArea';
 import '../stories/InputWithOptions';
-import '../stories/LanguagePicker';
-import '../stories/Label';
-import '../stories/Loader';
+import '../stories/LanguagePicker/index.story.js';
+import '../stories/Label/index.story.js';
+import '../stories/Loader.story.js';
 import '../stories/PopoverMenu';
 import '../stories/SideBar';
 import '../stories/SideMenu';
 import '../stories/Slider';
 import '../stories/StatsWidget';
-import '../stories/Tag';
-import '../stories/TimeInput';
+import '../stories/Tag.story.js';
+import '../stories/TimeInput.story.js';
 import '../stories/ToggleSwitch';
 import '../stories/Tooltip/Core';
 import '../stories/ThemedButton';
 import '../stories/ThemedInput';
 import '../stories/ThemedToggleSwitch';
 
-//TPA
+// TPA
 import '../stories/TPA/Button';
 import '../stories/TPA/FloatingTabs';
 import '../stories/TPA/TextLink';
@@ -51,18 +51,18 @@ import '../stories/TPA/Label';
 import '../stories/Composite';
 import '../stories/GridWithCardLayout';
 import '../stories/Icons';
-import '../stories/Common';
+import '../stories/Common/index.story.js';
 
 // Backoffice
-import '../stories/Backoffice/Button';
-import '../stories/Backoffice/TextLink';
+import '../stories/Backoffice/Button/index.story.js';
+import '../stories/Backoffice/TextLink/index.story.js';
 
 // Composites
 import '../stories/Text';
 import '../stories/RichTextArea';
 import '../stories/ButtonWithOptions';
 
-import '../stories/Highlighter';
+import '../stories/Highlighter.story.js';
 
 // 3. Inputs
 import '../stories/TextField'; // 3.1 Text Field
@@ -72,16 +72,16 @@ import '../stories/RichTextAreaComposite'; // 3.4 Rich Text Area Composite
 import '../stories/DropdownComposite'; // 3.5 Dropdown Composite
 import '../stories/Range'; // 3.7 Range
 import '../stories/MultiSelect'; // 3.8 Tags
-import '../stories/Search'; // 3.9 Search
+import '../stories/Search.story.js'; // 3.9 Search
 
 // 4. Selection
 import '../stories/AutoCompleteComposite'; // 4.1 Dropdown
-import '../stories/Checkbox'; // 4.2 Checkbox
-import '../stories/RadioGroup'; // 4.3 RadioGroup
+import '../stories/Checkbox.story.js'; // 4.2 Checkbox
+import '../stories/RadioGroup.story.js'; // 4.3 RadioGroup
 import '../stories/IconWithOptions'; // 4.5 IconWithOptions
 import '../stories/GoogleAddressInputWithLabel'; // 4.8 Google address input
 import '../stories/EditableSelector'; // 4.9 EditableSelector
-import '../stories/ModalSelectorLayout'; // 4.10 ModalSelectorLayout
+import '../stories/ModalSelectorLayout.story.js'; // 4.10 ModalSelectorLayout
 
 
 // 5. Buttons
@@ -110,10 +110,10 @@ import '../stories/Modal';
 
 // 10. Page
 import '../stories/Page';
-import '../stories/PageHeader';
+import '../stories/PageHeader/index.story.js';
 
 // 11. Pickers and Selectors
-import '../stories/ColorPicker'; // 11.5 Color Picker
+import '../stories/ColorPicker.story.js'; // 11.5 Color Picker
 
 // 12. SectionHelper
 import '../stories/SectionHelper';

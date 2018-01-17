@@ -1,6 +1,6 @@
 import React from 'react';
 
-import story from 'story';
+import TextLink from 'wix-style-react/TextLink';
 import CodeExample from 'wix-storybook-utils/CodeExample';
 
 import ExampleStandard from './ExampleStandard';
@@ -9,10 +9,11 @@ import ExampleStandardRaw from '!raw-loader!./ExampleStandard';
 import ExampleDark from './ExampleDark';
 import ExampleDarkRaw from '!raw-loader!./ExampleDark';
 
-story({
+export default {
   category: 'Backoffice',
   storyName: 'TextLink',
-  componentSrcFolder: 'Backoffice/TextLink',
+  component: TextLink,
+  componentPath: '../../../src/Backoffice/TextLink',
   componentProps: {
     link: 'https://wix.com',
     children: 'Click to visit wix.com'
@@ -28,4 +29,4 @@ story({
       </CodeExample>
     </div>
   )
-});
+};

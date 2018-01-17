@@ -1,12 +1,13 @@
-import story from 'story';
+import Tag from 'wix-style-react/Tag';
 
-story({
+export default {
+  component: Tag,
   category: 'Core',
-  componentSrcFolder: 'Tag',
+  componentPath: '../src/Tag',
   componentProps: {
     children: 'Hello World'
   },
   exampleProps: {
     onRemove: () => 'Removed!'
   }
-});
+};

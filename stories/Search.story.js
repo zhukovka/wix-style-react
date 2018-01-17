@@ -1,4 +1,4 @@
-import story from 'story';
+import Search from 'wix-style-react/Search';
 
 const settings = {
   category: '3. Inputs',
@@ -20,10 +20,11 @@ const settings = {
   ].map((value, index) => ({id: index, value}))
 };
 
-story({
+export default {
   category: settings.category,
   storyName: settings.storyName,
-  componentSrcFolder: 'Search',
+  component: Search,
+  componentPath: '../src/Search',
 
   componentProps: setState => ({
     dataHook: settings.dataHook,
@@ -40,4 +41,4 @@ story({
   exampleProps: {
     onSelect: option => option.value
   }
-});
+};

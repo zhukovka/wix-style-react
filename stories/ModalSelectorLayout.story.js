@@ -1,5 +1,4 @@
 import React from 'react';
-import story from 'story';
 import times from 'lodash/times';
 
 import ModalSelectorLayout from 'wix-style-react/ModalSelectorLayout';
@@ -14,10 +13,12 @@ const allItems = times(50, i => ({
   image: <img width="100%" height="100%" src="http://via.placeholder.com/100x100"/>
 }));
 
-story({
+export default {
   category: '4. Selection',
   storyName: '4.10 Modal Selector Layout',
-  componentSrcFolder: 'ModalSelectorLayout',
+  component: ModalSelectorLayout,
+  componentPath: '../src/ModalSelectorLayout',
+
   componentProps: setState => ({
     dataHook: 'storybook-modal-selector-layout',
     height: '540px',
@@ -50,4 +51,4 @@ story({
       <span key={0}>Some text and a <Button>button</Button></span>
     ]
   }
-});
+};

@@ -6,15 +6,16 @@ import ExampleControlledRaw from '!raw-loader!./ExampleControlled';
 import IconsExample from './ExampleWithIcons';
 import IconsExampleRaw from '!raw-loader!./ExampleWithIcons';
 
-import story from 'story';
+import Button from 'wix-style-react/Button';
 import * as Icons from 'wix-style-react/Icons';
 
 const icons = Object.values(Icons).map(icon => React.createElement(icon));
 
-story({
+export default {
   category: 'Backoffice',
   storyName: 'Button',
-  componentSrcFolder: 'Backoffice/Button',
+  component: Button,
+  componentPath: '../../../src/Backoffice/Button',
   componentProps: {
     disabled: false,
     theme: 'fullblue',
@@ -37,4 +38,4 @@ story({
       </CodeExample>
     </div>
   )
-});
+};
