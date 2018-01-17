@@ -29,7 +29,7 @@ class Tag extends WixComponent {
     const title = wrap ? children : '';
 
     return (
-      <span className={className} disabled={disabled} id={id} title={title}>
+      <span data-hook="tag" className={className} disabled={disabled} id={id} title={title}>
         {thumb && <span className={styles.thumb}>{thumb}</span>}
         <span className={innerClassName}>{children}</span>
         {removable && !disabled && <a className={styles.tagRemoveButton} onClick={() => onRemove(id)}><SmallX/></a>}

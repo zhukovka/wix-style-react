@@ -104,7 +104,7 @@ class TooltipContent extends Component {
         <div className={styles.fadeIn}>
           <div className={classnames({[styles[`bounce-${arrowPlacement}`]]: bounce})}>
             <div ref={ref => this.tooltip = ref} className={classnames(styles.tooltip, styles[theme], styles[size])} style={{maxWidth, minWidth, textAlign, padding, lineHeight, color}}>
-              <div>{children}</div>
+              <div data-hook="tooltip-content">{children}</div>
               <div className={classnames(styles.arrow, styles[arrowPlacement])} style={arrowStyle}/>
             </div>
           </div>
