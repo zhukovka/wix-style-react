@@ -28,11 +28,23 @@ describe('SectionHelper', () => {
     expect(driver.titleText()).toEqual('Muffins are the best!');
   });
 
+  it('renders with provided action text', () => {
+    const driver = createDriver(renderSectionHelperWithProps({actionText: 'Muffins are the best!', onAction: () => {}}));
+    expect(driver.actionText()).toEqual('Muffins are the best!');
+  });
+
   it('invokes the onClose when close button is clicked', () => {
     const onClose = jest.fn();
     const driver = createDriver(renderSectionHelperWithProps({onClose}));
     driver.clickClose();
     expect(onClose).toBeCalled();
+  });
+
+  it('invokes the onAction when action button is clicked', () => {
+    const onAction = jest.fn();
+    const driver = createDriver(renderSectionHelperWithProps({onAction}));
+    driver.clickAction();
+    expect(onAction).toBeCalled();
   });
 
   describe('Themes', () => {

@@ -11,22 +11,19 @@
   padding: 30px 18px;
 }
 
-.title {
-  font-family: $FontRoman;
-  font-size: 14px;
-  line-height: 1.290;
-  color: $D10;
-}
-
 .close {
   position: absolute;
   top: 10px;
   right: 10px;
+
+  [dir="rtl"] & {
+    right: unset;
+    left: 10px;
+  }
 }
 
-[dir="rtl"] .close {
-  right: unset;
-  left: 10px;
+.action {
+  padding-top: 1em;
 }
 
 /* Theme*/
