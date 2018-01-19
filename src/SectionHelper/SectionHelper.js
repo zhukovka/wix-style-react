@@ -30,17 +30,24 @@ class SectionHelper extends WixComponent {
             <CloseButton onClick={this.props.onClose}/>
           </div>
         }
-        <div className={css.content}>
-          {this.props.title && <Text dataHook="title" appearance="T4">{this.props.title}</Text>}
-          {this.props.children}
-          {this.props.onAction &&
-            <div className={css.action}>
-              <ActionButton onClick={this.props.onAction}>
-                {this.props.actionText}
-              </ActionButton>
-            </div>
-          }
-        </div>
+
+        { this.props.title &&
+          <div>
+            <Text dataHook="title" appearance="T4">
+              {this.props.title}
+            </Text>
+          </div>
+        }
+
+        {this.props.children}
+
+        {this.props.onAction &&
+          <div className={css.action}>
+            <ActionButton onClick={this.props.onAction}>
+              {this.props.actionText}
+            </ActionButton>
+          </div>
+        }
       </div>
     );
   }

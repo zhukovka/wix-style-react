@@ -1,30 +1,28 @@
 import React from 'react';
-import {storiesOf} from '@storybook/react';
-import story from 'story';
-import Page from '../../src/Page';
-import Button from '../../src/Backoffice/Button';
+
+import Page from 'wix-style-react/Page';
+import Button from 'wix-style-react/Button';
+
 import SomeContentComponent from './SomeContentComponent';
 import Breadcrumbs from './Breadcrumbs';
 import SomeTailComponent from './SomeTailComponent';
+
 import './Page.scss';
 
-const header = breadcrumbs => (
+const header = breadcrumbs =>
   <Page.Header
     breadcrumbs={breadcrumbs}
     title="Page Title"
     subtitle="Page subtitle"
     showBackButton
-    onBackClicked={(() => {
-    })}
-    actionsBar={(<Button>Action</Button>)}
-    />
-);
+    onBackClicked={() => {}}
+    actionsBar={<Button>Action</Button>}
+    />;
 
-const content = showScss => (
+const content = showScss =>
   <Page.Content>
     <SomeContentComponent showScss={showScss}/>
-  </Page.Content>
-);
+  </Page.Content>;
 
 const tail = (
   <Page.Tail>
@@ -32,19 +30,20 @@ const tail = (
   </Page.Tail>
 );
 
-const category = '10. Page';
-
-story({
-  category,
+export default {
+  category: '10. Page',
   storyName: '10.1 Page',
   name: 'Page',
-  componentSrcFolder: 'Page',
+  component: Page,
+  componentPath: '../../src/Page',
+
   componentProps: {
     children: [header(Breadcrumbs), tail, content(false)],
     dataHook: 'story-page',
     gradientClassName: 'background-gradient',
     backgroundImageUrl: 'https://static.wixstatic.com/media/a9ff3b_9928686dcfa740bd802821d0b6f4ac03.jpg/v1/fill/w_1000,h_250,al_c,q_85,usm_0.66_1.00_0.01/a9ff3b_9928686dcfa740bd802821d0b6f4ac03.jpg'
   },
+
   exampleProps: {
     backgroundImageUrl: [
       '',
@@ -52,22 +51,4 @@ story({
     ],
     gradientClassName: ['', 'background-gradient']
   }
-});
-
-class FullPageExample extends React.Component {
-  render() {
-    return (<div data-hook="story-page-example">
-      <div data-hook="side-bar">Sidebar</div>
-      <div data-hook="body-content">
-        <div data-hook="top-bar">TopBar</div>
-        <Page>
-          {header(Breadcrumbs)}
-          {tail}
-          {content(true)}
-        </Page>
-      </div>
-    </div>);
-  }
-}
-
-storiesOf(category, module).add('10.2 Page example', () => (<FullPageExample/>));
+};

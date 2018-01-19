@@ -8,6 +8,10 @@ module.exports = (config, env) => {
 
   return merge(newConfig, {
     context: path.resolve(__dirname, '../src'),
+    externals: {
+      react: 'React',
+      'react-dom': 'ReactDOM'
+    },
     resolve: {
       alias: {
         'wix-style-react': path.resolve(__dirname, '../src'),

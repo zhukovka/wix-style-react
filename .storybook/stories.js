@@ -33,7 +33,7 @@ import '../stories/Slider';
 import '../stories/StatsWidget';
 import '../stories/Tag.story.js';
 import '../stories/TimeInput.story.js';
-import '../stories/ToggleSwitch';
+import '../stories/ToggleSwitch.story.js';
 import '../stories/Tooltip/Core';
 import '../stories/ThemedButton';
 import '../stories/ThemedInput';
@@ -52,10 +52,6 @@ import '../stories/Composite';
 import '../stories/GridWithCardLayout';
 import '../stories/Icons';
 import '../stories/Common/index.story.js';
-
-// Backoffice
-import '../stories/Backoffice/Button/index.story.js';
-import '../stories/Backoffice/TextLink/index.story.js';
 
 // Composites
 import '../stories/Text';
@@ -85,13 +81,19 @@ import '../stories/ModalSelectorLayout.story.js'; // 4.10 ModalSelectorLayout
 
 
 // 5. Buttons
-// 5.1 Standard, 5.2 White, 5.3 Icon, 5.4 Error, 5.5 Premium, 5.6 Transparent, 5.7 Close, 5.8 Text Link
-import '../stories/Backoffice/Button/CompositeStory';
+import '../stories/Button/standard.story.js'; // 5.1 Standard
+import '../stories/Button/white.story.js'; // 5.2 White
+import '../stories/Button/icon.story.js'; // 5.3 Icon
+import '../stories/Button/error.story.js'; // 5.4 Error
+import '../stories/Button/premium.story.js'; // 5.5 Premium
+import '../stories/Button/transparent.story.js'; // 5.6 Transparent
+import '../stories/Button/close.story.js'; // 5.7 Close
+import '../stories/TextLink/index.story.js'; // 5.8 Text Link
 
 
 // 6. Navigation
 import '../stories/Breadcrubms/CompositeStory'; // 6.2 Breadcrumbs
-import '../stories/Tabs' // 6.3 Tabs
+import '../stories/Tabs'; // 6.3 Tabs
 
 
 // 7. Tooltips
@@ -109,11 +111,12 @@ import '../stories/MessageBox';
 import '../stories/Modal';
 
 // 10. Page
-import '../stories/Page';
+import '../stories/Page/index.story.js'; // 10.1 Page
+import '../stories/Page/FullPageExample.js'; // 10.2 Page Example
 import '../stories/PageHeader/index.story.js';
 
 // 11. Pickers and Selectors
 import '../stories/ColorPicker.story.js'; // 11.5 Color Picker
 
 // 12. SectionHelper
-import '../stories/SectionHelper';
+import '../stories/SectionHelper.story.js';

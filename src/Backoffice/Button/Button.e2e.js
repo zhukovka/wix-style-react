@@ -1,40 +1,59 @@
 import eyes from 'eyes.it';
 import {buttonTestkitFactory, getStoryUrl, waitForVisibilityOf} from '../../../testkit/protractor';
+import autoExampleDriver from 'wix-storybook-utils/AutoExampleDriver';
+import React from 'react';
 
 describe('Backoffice Button', () => {
-  const storyUrl = getStoryUrl('Backoffice', 'Button');
-  const beforeClickState = 'Click Me!';
-  const clickedState = 'Clicked!';
+  const storyUrl = getStoryUrl('5. Buttons', '5.1 Standard');
+  const driver = buttonTestkitFactory({dataHook: 'storybook-button'});
 
-  beforeEach(() => {
-    browser.get(storyUrl);
-  });
+  const wait = () => waitForVisibilityOf(driver.element(), 'Cannot find Button');
 
-  eyes.it('should click a button', () => {
-    const dataHook = 'story-button-enabled';
-    const driver = buttonTestkitFactory({dataHook});
+  beforeAll(() => browser.get(storyUrl));
+  afterEach(() => autoExampleDriver.reset());
 
-    waitForVisibilityOf(driver.element(), 'Cannot find Button')
+  eyes.it('should alert on click', () =>
+    wait()
       .then(() => {
-        expect(driver.getButtonTextContent()).toBe(beforeClickState);
+        autoExampleDriver.setProps({
+          onClick: () => window.alert('clicked') // eslint-disable-line no-alert
+        });
+
         driver.click();
-        expect(driver.getButtonTextContent()).toBe(clickedState);
-      });
-  });
 
-  eyes.it('should render disabled, suffixIcon, prefixIcon buttons correctly', () => {
-    const dataHookDisabled = 'story-button-disabled';
-    const dataHookPrefix = 'story-button-prefix';
-    const dataHookSuffix = 'story-button-suffix';
-    const driverDisabled = buttonTestkitFactory({dataHook: dataHookDisabled});
-    const driverPrefix = buttonTestkitFactory({dataHook: dataHookPrefix});
-    const driverSuffix = buttonTestkitFactory({dataHook: dataHookSuffix});
+        const alertDialog = browser.switchTo().alert();
 
-    waitForVisibilityOf([driverDisabled.element(), driverPrefix.element(), driverSuffix.element()], 'Cannot find Button')
+        expect(alertDialog.getText()).toBe('clicked');
+        alertDialog.dismiss();
+      })
+  );
+
+  eyes.it('should render disabled', () =>
+    wait()
       .then(() => {
-        expect(driverDisabled.isButtonDisabled()).toBe(true);
-        expect(driverPrefix.isPrefixIconExists()).toBe(true);
-        expect(driverSuffix.isSuffixIconExists()).toBe(true);
-      });
-  });
+        autoExampleDriver.setProps({disabled: true});
+        expect(driver.isButtonDisabled()).toBe(true);
+      })
+  );
+
+  eyes.it('should render disabled', () =>
+    wait()
+      .then(() => {
+        autoExampleDriver.setProps({disabled: true});
+        expect(driver.isButtonDisabled()).toBe(true);
+      })
+  );
+
+  eyes.it('should render prefix & sufix', () =>
+    wait()
+      .then(() => {
+        autoExampleDriver.setProps({
+          prefixIcon: <div>prefix</div>,
+          suffixIcon: <div>suffix</div>
+        });
+
+        expect(driver.isPrefixIconExists()).toBe(true);
+        expect(driver.isSuffixIconExists()).toBe(true);
+      })
+  );
 });

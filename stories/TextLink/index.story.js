@@ -10,15 +10,18 @@ import ExampleDark from './ExampleDark';
 import ExampleDarkRaw from '!raw-loader!./ExampleDark';
 
 export default {
-  category: 'Backoffice',
-  storyName: 'TextLink',
+  category: '5. Buttons',
+  storyName: '5.8 Text Link',
   component: TextLink,
-  componentPath: '../../../src/Backoffice/TextLink',
+  componentPath: '../../src/Backoffice/TextLink',
+
   componentProps: {
     link: 'https://wix.com',
+    underlineStyle: 'hover',
     children: 'Click to visit wix.com'
   },
-  examples: (
+
+  example: (
     <div>
       <CodeExample title="Standard" code={ExampleStandardRaw}>
         <ExampleStandard/>
