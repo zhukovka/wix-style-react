@@ -57,9 +57,7 @@ $gap: 6px;
     @include Placeholder($paletteE6);
     @include Selection($paletteB4);
 }
-.hasCounter{
-  margin-bottom: 30px;
-}
+
 .counter{
     position: absolute;
     top: -30px;
@@ -69,6 +67,7 @@ $gap: 6px;
     @include Placeholder($GR60);
     color: #7a92a5;
 }
+
 .hasError > .inputArea {
     padding-right: $input-area-padding-exclamation;
 }

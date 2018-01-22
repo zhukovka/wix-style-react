@@ -16,6 +16,7 @@
 | getMaxLength | - | number | get max number of characters |
 | getResizable | - | boolean | true if the element is resizable (only height) |
 | getHasCounter | - | boolean | true if the element has a counter (works with maxLength) |
+| getCounterValue | - | string | return counter value |
 | hasExclamation | - | boolean | true if exclamation is present |
 | getPlaceholder | - | string | get the placeholder text |
 | getReadOnly | - | boolean | true if the element is read only |

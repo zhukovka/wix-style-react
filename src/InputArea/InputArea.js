@@ -73,7 +73,6 @@ class InputArea extends WixComponent {
       [styles.hasHover]: forceHover,
       [styles.hasFocus]: forceFocus || this.state.focus,
       [styles.resizable]: !!resizable,
-      [styles.hasCounter]: !!hasCounter,
       [styles.nonResizable]: !resizable
     });
 
@@ -105,7 +104,7 @@ class InputArea extends WixComponent {
             readOnly={readOnly}
             />
           {theme === 'material' && <div className={styles.bar}/>}
-          {hasCounter && maxLength && <span className={styles.counter}>{this.state.counter}/{maxLength}</span>}
+          {hasCounter && maxLength && <span className={styles.counter} data-hook="counter">{this.state.counter}/{maxLength}</span>}
         </div>
         <div className={styles.error}>
           {error && <Exclamation errorMessage={errorMessage} tooltipPlacement={tooltipPlacement} onTooltipShow={onTooltipShow}/>}

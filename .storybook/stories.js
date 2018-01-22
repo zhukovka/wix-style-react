@@ -20,7 +20,7 @@ import '../stories/FilePicker';
 import '../stories/GoogleAddressInput';
 import '../stories/ImageViewer';
 import '../stories/Input';
-import '../stories/InputArea';
+import '../stories/InputArea/index.story.js';
 import '../stories/InputWithOptions';
 import '../stories/LanguagePicker/index.story.js';
 import '../stories/Label/index.story.js';

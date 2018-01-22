@@ -8,6 +8,7 @@ const inputAreaDriverFactory = ({element, wrapper, component}) => {
   const $component = $(element);
   const textAreaElement = element && element.childNodes[0];
   const textArea = $component.find('textarea')[0];
+  const counterSelector = '[data-hook="counter"]';
   return {
     trigger: (trigger, event) => ReactTestUtils.Simulate[trigger](textArea, event),
     focus: () => textArea.focus(),
@@ -20,7 +21,8 @@ const inputAreaDriverFactory = ({element, wrapper, component}) => {
     getTabIndex: () => textArea.tabIndex,
     getReadOnly: () => textArea.readOnly,
     getResizable: () => textAreaElement.classList.contains(styles.resizable),
-    getHasCounter: () => textAreaElement.classList.contains(styles.hasCounter),
+    getHasCounter: () => !!$component.find(counterSelector).length,
+    getCounterValue: () => $component.find(counterSelector).text(),
     hasExclamation: () => $component.find(`.${styles.exclamation}`).length === 1,
     hasError: () => textAreaElement.classList.contains(styles.hasError),
     isFocusedStyle: () => textAreaElement.classList.contains(styles.hasFocus),
