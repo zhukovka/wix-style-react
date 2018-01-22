@@ -1,11 +1,15 @@
+import {mount} from 'enzyme';
 import React from 'react';
 import ReactTestUtils from 'react-dom/test-utils';
-import buttonHeaderDriverFactory from './ButtonHeader.driver';
-import {createDriverFactory} from '../../test-common';
-import ButtonHeader from './ButtonHeader';
-import {buttonTestkitFactory, buttonHeaderTestkitFactory} from '../../../testkit';
+import sinon from 'sinon';
+
+import {buttonHeaderTestkitFactory, buttonTestkitFactory} from '../../../testkit';
 import {buttonHeaderTestkitFactory as enzymeButtonHeaderTestkitFactory} from '../../../testkit/enzyme';
-import {mount} from 'enzyme';
+import {createDriverFactory} from '../../test-common';
+
+import ButtonHeader from './ButtonHeader';
+import buttonHeaderDriverFactory from './ButtonHeader.driver';
+
 
 describe('ButtonHeader', () => {
   const createDriver = createDriverFactory(buttonHeaderDriverFactory);
@@ -24,6 +28,16 @@ describe('ButtonHeader', () => {
     const driver = createDriver(<ButtonHeader buttonOnClick={() => {}} buttonTitle="Click me" subtitle="Header Subtitle" title="Header Title"/>);
     const buttonDriverTestkit = buttonTestkitFactory({wrapper: driver.element(), dataHook: driver.buttonDataHook()});
     expect(buttonDriverTestkit.getButtonTextContent()).toBe('Click me');
+  });
+
+  it('should click on button', () => {
+    const onClick = sinon.spy();
+
+    const driver = createDriver(<ButtonHeader buttonOnClick={onClick} buttonTitle="Click me" subtitle="Header Subtitle" title="Header Title"/>);
+
+    driver.click();
+
+    expect(onClick.calledOnce).toBeTruthy();
   });
 
   describe('testkit', () => {
