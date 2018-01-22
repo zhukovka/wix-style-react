@@ -14,9 +14,8 @@ const SHORT_SCROLL_TOP_THRESHOLD = 3;
  * A page container which contains a header and scrollable content
  */
 class Page extends WixComponent {
-
-  constructor(props) {
-    super(props);
+  constructor() {
+    super();
 
     this._setContainerScrollTopThreshold(false);
     this._handleScroll = this._handleScroll.bind(this);
@@ -37,8 +36,13 @@ class Page extends WixComponent {
   componentDidUpdate() {
     // Do not trigger height calculation if the component is minimized
     if (!this.state.minimized) {
-      this._calculateComponentsHeights();
+      setTimeout(() => this._calculateComponentsHeights());
     }
+  }
+
+  componentWillUnmount() {
+    super.componentWillUnmount();
+    this._getScrollContainer().removeEventListener('scroll', this._handleScroll);
   }
 
   _calculateComponentsHeights() {
@@ -52,12 +56,6 @@ class Page extends WixComponent {
         tailHeight: newTailHeight
       });
     }
-  }
-
-  componentWillUnmount() {
-    super.componentWillUnmount();
-
-    this._getScrollContainer().removeEventListener('scroll', this._handleScroll);
   }
 
   _setContainerScrollTopThreshold(shortThreshold) {
@@ -135,7 +133,6 @@ class Page extends WixComponent {
             [s.withoutBottomPadding]: PageTail && minimized
           })}
           ref={r => this.pageHeaderRef = r}
-          style={minimized ? null : {paddingBottom: `${SCROLL_TOP_THRESHOLD}px`}}
           >
           {
             PageHeader &&
