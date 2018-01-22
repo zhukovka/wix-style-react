@@ -12,9 +12,13 @@ Types of changes:
 1. **Security** in case of vulnerabilities.
 1. **Breaking** for breaking changes
 
-## Upcoming release
+## 2.0.13 - 2018-01-22
+### Changed
+- InputArea remove hasCounter class [1322](https://github.com/wix/wix-style-react/pull/1322)
+- Fix modal height [1378](https://github.com/wix/wix-style-react/pull/1378)
+
 ### Deprecated
-- `<ButtonSelection/>` is no longer available
+- `<ButtonSelection/>` is no longer available [1362](https://github.com/wix/wix-style-react/pull/1362)
 
 ## 2.0.12 - 2018-01-17
 ### Added
