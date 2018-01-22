@@ -39,6 +39,20 @@ describe('Modal', () => {
       expect(driver.getChildBySelector('[data-hook="inner-div"]')).not.toBeNull();
     });
 
+    describe('maxHeight', () => {
+      it('should render maxHeight passed in props', () => {
+        const driver = createDriver(<Modal {...props} scrollableContent maxHeight="calc(100vh - 48px)"/>);
+        const driver2 = createDriver(<Modal {...props} scrollableContent={false} maxHeight="calc(100vh - 48px)"/>);
+        expect(driver.getContentStyle().maxHeight).toBe('calc(100vh - 48px)');
+        expect(driver2.getContentStyle().maxHeight).toBe('calc(100vh - 48px)');
+      });
+
+      it('should render 100vh maxHeight when maxHeight is set to auto and content is scrollable', () => {
+        const driver = createDriver(<Modal {...props} scrollableContent maxHeight="auto"/>);
+        expect(driver.getContentStyle().maxHeight).toBe('100vh');
+      });
+    });
+
   });
 
   describe('callbacks', () => {
