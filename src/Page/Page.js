@@ -34,13 +34,11 @@ class Page extends WixComponent {
     this._calculateComponentsHeights();
   }
 
-  componentDidUpdate(prevProps, prevState) {
-    // Do not trigger height calculation if the component re-rendered from minimize change
-    if (prevState.minimized || this.state.minimized) {
-      return;
+  componentDidUpdate() {
+    // Do not trigger height calculation if the component is minimized
+    if (!this.state.minimized) {
+      this._calculateComponentsHeights();
     }
-
-    this._calculateComponentsHeights();
   }
 
   _calculateComponentsHeights() {
