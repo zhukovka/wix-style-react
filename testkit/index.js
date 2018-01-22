@@ -1,8 +1,5 @@
 import {testkitFactoryCreator} from '../src/test-common';
 
-import buttonSelectionDriverFactory from '../src/ButtonSelection/ButtonSelection.driver';
-export const buttonSelectionTestkitFactory = testkitFactoryCreator(buttonSelectionDriverFactory);
-
 import inputDriverFactory from '../src/Input/Input.driver';
 export const inputTestkitFactory = testkitFactoryCreator(inputDriverFactory);
 

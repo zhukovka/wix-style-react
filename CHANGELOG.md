@@ -12,6 +12,10 @@ Types of changes:
 1. **Security** in case of vulnerabilities.
 1. **Breaking** for breaking changes
 
+## Upcoming release
+### Deprecated
+- `<ButtonSelection/>` is no longer available
+
 ## 2.0.12 - 2018-01-17
 ### Added
 - add generic data-hooks to `Tag` and `TooltipContent` & `<TabsItem/>` components [1371](https://github.com/wix/wix-style-react/pull/1371) [1361](https://github.com/wix/wix-style-react/pull/1361)

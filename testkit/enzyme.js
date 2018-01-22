@@ -1,8 +1,5 @@
 import {enzymeTestkitFactoryCreator} from '../src/test-common';
 
-import buttonSelectionDriverFactory from '../src/ButtonSelection/ButtonSelection.driver';
-export const buttonSelectionTestkitFactory = enzymeTestkitFactoryCreator(buttonSelectionDriverFactory);
-
 import inputDriverFactory from '../src/Input/Input.driver';
 export const inputTestkitFactory = enzymeTestkitFactoryCreator(inputDriverFactory);
 

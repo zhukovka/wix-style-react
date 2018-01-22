@@ -4,7 +4,6 @@ import {MessageBoxMarketerialLayout, MessageBoxFunctionalLayout, HeaderLayout, F
 
 export {default as Button} from './Button';
 export {default as ButtonLayout} from './ButtonLayout';
-export {default as ButtonSelection} from './ButtonSelection';
 export {default as Input} from './Input';
 export {default as InputArea} from './InputArea';
 export {default as InputWithOptions} from './InputWithOptions';

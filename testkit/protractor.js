@@ -15,9 +15,6 @@ export const badgeTestkitFactory = protractorTestkitFactoryCreator(badgeDriverFa
 import buttonDriverFactory from '../src/Backoffice/Button/Button.protractor.driver';
 export const buttonTestkitFactory = protractorTestkitFactoryCreator(buttonDriverFactory);
 
-import buttonSelectionDriverFactory from '../src/ButtonSelection/ButtonSelection.protractor.driver';
-export const buttonSelectionTestkitFactory = protractorTestkitFactoryCreator(buttonSelectionDriverFactory);
-
 import tpaButtonDriverFactory from '../src/TPA/Button/Button.protractor.driver';
 export const tpaButtonTestkitFactory = protractorTestkitFactoryCreator(tpaButtonDriverFactory);
 
