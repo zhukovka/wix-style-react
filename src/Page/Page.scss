@@ -4,7 +4,6 @@ $page-side-padding: 48px;
 $scroll-top-threshold: 24px;
 $page-background-color: rgba($D70, .95);
 $image-container-offset: 30px;
-$padding-transition: padding .2s cubic-bezier(0.4, 0.0, 0.2, 1);
 
 .page {
   flex: 1 1 auto;
@@ -24,7 +23,6 @@ $padding-transition: padding .2s cubic-bezier(0.4, 0.0, 0.2, 1);
   margin: 0 auto;
   left: 0;
   right: 0;
-  // transition: $padding-transition;
 
   &.minimized {
     padding-top: 18px;
@@ -49,7 +47,6 @@ $padding-transition: padding .2s cubic-bezier(0.4, 0.0, 0.2, 1);
   background-color: transparent;
   padding: $scroll-top-threshold $page-side-padding 0;
   margin: 0 auto;
-  // transition: $padding-transition;
 
   &.minimized {
     padding-top: 0;
