@@ -88,7 +88,9 @@ ButtonLayout.propTypes = {
     'no-border',
     'dark-no-border',
     'outlined'
-  ])
+  ]),
+
+  type: oneOf(['button', 'submit', 'reset'])
 };
 
 ButtonLayout.displayName = 'ButtonLayout';
