@@ -12,6 +12,14 @@ Types of changes:
 1. **Security** in case of vulnerabilities.
 1. **Breaking** for breaking changes
 
+## 2.0.14 - 2018-01-23
+### Added
+- Add method `click` to `Card.ButtonHeader` testkit [1385](https://github.com/wix/wix-style-react/pull/1385)
+
+### Fixed
+- `<Page/>` Add calcualtion when leaving minimized state [1381](https://github.com/wix/wix-style-react/pull/1381)
+- Page background image [1387](https://github.com/wix/wix-style-react/pull/1387)
+
 ## 2.0.13 - 2018-01-22
 ### Changed
 - InputArea remove hasCounter class [1322](https://github.com/wix/wix-style-react/pull/1322)
