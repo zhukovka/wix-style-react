@@ -94,6 +94,7 @@ IconWithOptions.defaultProps = {
 
 IconWithOptions.propTypes = {
   ...DropdownLayout.propTypes,
+  dropdownWidth: PropTypes.string,
   children: PropTypes.array.isRequired
 };
 
