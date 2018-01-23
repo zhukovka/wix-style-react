@@ -36,7 +36,7 @@ class Page extends WixComponent {
   componentDidUpdate() {
     // Do not trigger height calculation if the component is minimized
     if (!this.state.minimized) {
-      setTimeout(() => this._calculateComponentsHeights());
+      this._calculateComponentsHeights();
     }
   }
 

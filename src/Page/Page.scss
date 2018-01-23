@@ -4,6 +4,7 @@ $page-side-padding: 48px;
 $scroll-top-threshold: 24px;
 $page-background-color: rgba($D70, .95);
 $image-container-offset: 30px;
+$padding-transition: padding .2s cubic-bezier(0.4, 0.0, 0.2, 1);
 
 .page {
   flex: 1 1 auto;
@@ -19,11 +20,11 @@ $image-container-offset: 30px;
   position: absolute;
   z-index: 2;
   min-height: 30px;
-  transition: padding .2s cubic-bezier(0.4, 0.0, 0.2, 1);
   box-sizing: border-box;
   margin: 0 auto;
   left: 0;
   right: 0;
+  // transition: $padding-transition;
 
   &.minimized {
     padding-top: 18px;
@@ -47,8 +48,8 @@ $image-container-offset: 30px;
 .tail {
   background-color: transparent;
   padding: $scroll-top-threshold $page-side-padding 0;
-  transition: padding .2s cubic-bezier(0.4, 0.0, 0.2, 1);
   margin: 0 auto;
+  // transition: $padding-transition;
 
   &.minimized {
     padding-top: 0;
