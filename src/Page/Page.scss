@@ -2,7 +2,8 @@
 
 $page-side-padding: 48px;
 $scroll-top-threshold: 24px;
-$page-background-color: rgba($D70,.95);
+$page-background-color: rgba($D70, .95);
+$image-container-offset: 30px;
 
 .page {
   flex: 1 1 auto;
@@ -23,7 +24,7 @@ $page-background-color: rgba($D70,.95);
   margin: 0 auto;
   left: 0;
   right: 0;
-    
+
   &.minimized {
     padding-top: 18px;
     padding-bottom: 18px;
@@ -46,7 +47,7 @@ $page-background-color: rgba($D70,.95);
 .tail {
   background-color: transparent;
   padding: $scroll-top-threshold $page-side-padding 0;
-  transition: padding .2s cubic-bezier(0.4, 0.0, 0.2, 1);  
+  transition: padding .2s cubic-bezier(0.4, 0.0, 0.2, 1);
   margin: 0 auto;
 
   &.minimized {
@@ -65,8 +66,19 @@ $page-background-color: rgba($D70,.95);
   background-size: cover;
   background-position: center;
   position: absolute;
+  top: -$image-container-offset;
+  bottom: -$image-container-offset;
+  left: -$image-container-offset;
+  right: -$image-container-offset;
+  filter: blur(12px);
+}
+
+.image-background-container {
+  position: absolute;
+  overflow: hidden;
   top: 0;
   width: 100%;
+  height: 100%;
 }
 
 .gradient-background {
@@ -76,9 +88,11 @@ $page-background-color: rgba($D70,.95);
 }
 
 .image-background-overlay {
+  position: absolute;
+  top: 0;
   width: 100%;
   height: 100%;
-  background-color: rgba($D10, 0.36);
+  background-color: rgba($D10, 0.42);
 }
 
 .content {
