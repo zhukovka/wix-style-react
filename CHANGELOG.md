@@ -12,6 +12,13 @@ Types of changes:
 1. **Security** in case of vulnerabilities.
 1. **Breaking** for breaking changes
 
+## 2.0.15 - 2018-01-23
+### Added
+- `<Page/>` Added `fullScreen` prop to Content [1388](https://github.com/wix/wix-style-react/pull/1388)
+
+### Fixed
+- `<Page/>` Rendering issues [1381](https://github.com/wix/wix-style-react/pull/1381)
+
 ## 2.0.14 - 2018-01-23
 ### Added
 - Add method `click` to `Card.ButtonHeader` testkit [1385](https://github.com/wix/wix-style-react/pull/1385)

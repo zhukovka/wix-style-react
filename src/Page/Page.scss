@@ -59,6 +59,12 @@ $image-container-offset: 30px;
   position: relative;
 }
 
+.scrollable-content-full-screen {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+}
+
 .image-background {
   background-repeat: no-repeat;
   background-size: cover;
@@ -98,4 +104,18 @@ $image-container-offset: 30px;
   position: relative;
   margin: 0 auto;
   padding: 0 $page-side-padding;
+}
+
+.content-placeholder {
+  flex-shrink: 0;
+  width: 100%;
+}
+
+.content-full-screen {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  margin: 0 !important;
+  padding-left: 0 !important;
+  padding-right: 0 !important;
 }

@@ -121,6 +121,7 @@ class Page extends WixComponent {
       PageTail
     } = getChildrenObject(children);
 
+    const contentFullScreen = PageContent && PageContent.props.fullScreen;
     const pageDimensionsStyle = this._calculatePageDimensionsStyle();
     this._setContainerScrollTopThreshold(PageTail && hasGradientClassName);
 
@@ -157,8 +158,9 @@ class Page extends WixComponent {
           }
         </div>
         <div
-          className={s.scrollableContent} ref={r => this.scrollableContentRef = r}
+          className={classNames(s.scrollableContent, {[s.scrollableContentFullScreen]: contentFullScreen})}
           data-hook="page-scrollable-content"
+          ref={r => this.scrollableContentRef = r}
           >
           <div className={s.contentPlaceholder} style={{height: `${headerHeight}px`}}/>
           {
@@ -185,7 +187,7 @@ class Page extends WixComponent {
                 style={{height: `${headerHeight + (PageTail ? -SCROLL_TOP_THRESHOLD : 39)}px`}}
                 />
           }
-          <div className={s.content} style={pageDimensionsStyle}>
+          <div className={classNames(s.content, {[s.contentFullScreen]: contentFullScreen})} style={pageDimensionsStyle}>
             {this._safeGetChildren(PageContent)}
           </div>
         </div>
@@ -200,11 +202,11 @@ Page.Content = Content;
 Page.Tail = Tail;
 
 Page.propTypes = {
-  /** Background Url */
+  /** Background image url of the header beackground */
   backgroundImageUrl: PropTypes.string,
-  /** Max width of the content */
+  /** Sets the max width of the header and the content */
   maxWidth: PropTypes.number,
-  /** Max width of the content */
+  /** Sets padding of the sides of the page */
   sidePadding: PropTypes.number,
   /** Header background color class name, allows to add a gradient to the header */
   gradientClassName: PropTypes.string,
