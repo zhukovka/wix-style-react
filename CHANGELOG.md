@@ -12,6 +12,10 @@ Types of changes:
 1. **Security** in case of vulnerabilities.
 1. **Breaking** for breaking changes
 
+## 2.0.15 - 2018-01-24
+### Changed
+- Made `wix-ui-test-utils` a depenedency
+
 ## 2.0.15 - 2018-01-23
 ### Added
 - `<Page/>` Added `fullScreen` prop to Content [1388](https://github.com/wix/wix-style-react/pull/1388)
