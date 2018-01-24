@@ -2,7 +2,7 @@ import eyes from 'eyes.it';
 import {dropdownTestkitFactory, getStoryUrl, waitForVisibilityOf} from '../../testkit/protractor';
 
 describe('Dropdown', () => {
-  const storyUrl = getStoryUrl('Core', 'Dropdown');
+  const storyUrl = getStoryUrl('4. Selection', '4.1 Dropdown');
   const dataHook = 'story-dropdown';
 
   eyes.it('should choose different dropdown items', () => {

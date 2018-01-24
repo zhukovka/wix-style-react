@@ -3,8 +3,8 @@ import moment from 'moment';
 import DatePicker from 'wix-style-react/DatePicker';
 
 export default {
-  category: 'Core',
-  name: 'DatePicker',
+  category: '3. Inputs',
+  storyName: '3.6 DatePicker',
   component: DatePicker,
   componentPath: '../src/DatePicker',
 

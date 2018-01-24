@@ -2,7 +2,7 @@ import eyes from 'eyes.it';
 import {breadcrumbsTestkitFactory, getStoryUrl, waitForVisibilityOf} from '../../testkit/protractor';
 
 describe('Breadcrumbs', () => {
-  const storyUrl = getStoryUrl('Core', 'Breadcrumbs');
+  const storyUrl = getStoryUrl('6. Navigation', '6.2 + Breadcrumbs');
 
   eyes.it('should display breadcrumbs', () => {
     const driverNoLinks = breadcrumbsTestkitFactory({dataHook: 'story-breadcrumbs-no-links'});

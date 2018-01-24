@@ -28,12 +28,12 @@ const FunctionalLayoutExample = props =>
     primaryButtonLabel="Got It"
     confirmText="Confirm"
     cancelText="Cancel"
-    theme="green"
+    theme="blue"
     onCancel={props.log('You clicked "Cancel"')}
     onOk={props.log('You clicked "Confirm"')}
     onClose={props.onClose}
     >
-    I am a confirmation dialog and have red, green or blue themes
+    I am a confirmation dialog and have red or blue themes
   </MessageBoxFunctionalLayout>;
 
 

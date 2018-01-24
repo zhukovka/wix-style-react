@@ -23,9 +23,8 @@ import ExampleStatsWidgetWithFilterWithNoBorderRaw from '!raw-loader!./ExampleSt
 import ReadmeTestkit from '../../src/StatsWidget/README.TESTKIT.md';
 
 
-
-storiesOf('Core', module)
-  .add('Stats Widget', () => (
+storiesOf('2. Layout', module)
+  .add('2.6 StatsWidget', () => (
     <TabbedView tabs={['Usage', 'Testkit']}>
       <div>
 

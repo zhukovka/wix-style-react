@@ -2,7 +2,7 @@ import eyes from 'eyes.it';
 import {iconWithOptionsTestkitFactory, getStoryUrl, waitForVisibilityOf} from '../../testkit/protractor';
 
 describe('IconWithOptions', () => {
-  const storyUrl = getStoryUrl('4. Selection', '4.5 IconWithOptions');
+  const storyUrl = getStoryUrl('4. Selection', '4.1 + IconWithOptions');
   const dataHook = 'story-iconWithOptions';
 
   eyes.it('should hide dropdown when selecting an option which is not already selected', () => {

@@ -2,8 +2,8 @@ import {textTestkitFactory, getStoryUrl, waitForVisibilityOf} from '../../testki
 import eyes from 'eyes.it';
 
 describe('Text', () => {
-  const storyUrl = getStoryUrl('Core', 'Text');
-  const dataHook = 'story-text';
+  const storyUrl = getStoryUrl('1. Foundation', '1.2 Text');
+  const dataHook = 'storybook-text';
 
   eyes.it('should render text', () => {
     const driver = textTestkitFactory({dataHook});

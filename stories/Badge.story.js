@@ -4,7 +4,8 @@ import Text from 'wix-style-react/Text';
 import Badge from 'wix-style-react/Badge';
 
 export default {
-  category: 'Core',
+  category: '12. Other',
+  storyName: '12.1 Badge',
   componentPath: '../src/Badge',
   component: Badge,
   componentProps: {

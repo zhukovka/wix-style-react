@@ -6,8 +6,8 @@ import Markdown from 'wix-storybook-utils/Markdown';
 import Readme from '../../src/DropdownComposite/README.md';
 import ExampleStandard from './ExampleStandard';
 
-storiesOf('3. Inputs', module)
-  .add('3.5 Dropdown Composite', () =>
+storiesOf('4. Selection', module)
+  .add('4.1 + DropdownComposite', () =>
     <div>
       <Markdown source={Readme}/>
 

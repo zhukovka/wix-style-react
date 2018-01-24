@@ -2,7 +2,7 @@ import eyes from 'eyes.it';
 import {highlighterTestkitFactory, getStoryUrl} from '../../testkit/protractor';
 
 describe('Highlighter', () => {
-  const storyUrl = getStoryUrl('Core', 'Highlighter');
+  const storyUrl = getStoryUrl('12. Other', '12.4 Highlighter');
   const dataHook = 'story-highlighter';
 
   eyes.it('should render', () => {
@@ -12,5 +12,4 @@ describe('Highlighter', () => {
 
     expect(driver.getElement().isDisplayed()).toBe(true);
   });
-
 });

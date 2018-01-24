@@ -2,7 +2,7 @@ import eyes from 'eyes.it';
 import {dataTableTestkitFactory, getStoryUrl, waitForVisibilityOf} from '../../testkit/protractor';
 
 describe('Data Table', () => {
-  const storyUrl = getStoryUrl('Core', 'DataTable');
+  const storyUrl = getStoryUrl('10. Tables', '10.1 DataTable');
   const dataHook = 'story-data-table';
 
   eyes.it('should call func on row click', () => {

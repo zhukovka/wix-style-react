@@ -5,81 +5,56 @@
   */
 
 import '../stories/Introduction';
+import '../stories/Composite'; // TODO: Move to introduction
 
-// Core
-import '../stories/AutoComplete';
-import '../stories/Breadcrubms';
-import '../stories/Badge.story.js';
-import '../stories/ButtonLayout.story.js';
-import '../stories/DataTable';
-import '../stories/DatePicker.story.js';
-import '../stories/Dropdown';
-import '../stories/DropdownLayout';
-import '../stories/EndorseContentLayout';
-import '../stories/FilePicker';
-import '../stories/GoogleAddressInput';
-import '../stories/ImageViewer';
-import '../stories/Input';
-import '../stories/InputArea/index.story.js';
-import '../stories/InputWithOptions';
-import '../stories/LanguagePicker/index.story.js';
-import '../stories/Label/index.story.js';
-import '../stories/Loader.story.js';
-import '../stories/PopoverMenu';
-import '../stories/SideBar';
-import '../stories/SideMenu';
-import '../stories/Slider';
-import '../stories/StatsWidget';
-import '../stories/Tag.story.js';
-import '../stories/TimeInput.story.js';
-import '../stories/ToggleSwitch.story.js';
-import '../stories/Tooltip/Core';
-import '../stories/ThemedButton';
-import '../stories/ThemedInput';
-import '../stories/ThemedToggleSwitch';
+// 1. Foundations
+import '../stories/Typography/index.story.js'; // 1.2 Text
+import '../stories/Label/index.story.js'; // 1.2 + Text
+import '../stories/Icons'; // 1.4 Icons
+import '../stories/Loader.story.js'; // 1.5 Loader
 
-// TPA
-import '../stories/TPA/Button';
-import '../stories/TPA/FloatingTabs';
-import '../stories/TPA/TextLink';
-import '../stories/TPA/Input';
-import '../stories/TPA/Badge';
-import '../stories/TPA/Label';
+// 2. Layout
+import '../stories/Page/index.story.js'; // 2.5 Page
+import '../stories/PageHeader/index.story.js'; // 2.5 + PageHeader
+import '../stories/Page/FullPageExample.js'; // 2.5 + Page Example
+import '../stories/StatsWidget'; // 2.6 StatsWidget
+import '../stories/GridWithCardLayout'; // Grid & Card
 
-// Common
-import '../stories/Composite';
-import '../stories/GridWithCardLayout';
-import '../stories/Icons';
-import '../stories/Common/index.story.js';
-
-// Composites
-import '../stories/Text';
-import '../stories/RichTextArea';
-import '../stories/ButtonWithOptions';
-
-import '../stories/Highlighter.story.js';
 
 // 3. Inputs
 import '../stories/TextField'; // 3.1 Text Field
-import '../stories/TextArea'; // 3.2 Text Area
+import '../stories/Input'; // 3.1 + Input
+import '../stories/TextArea'; // 3.2a Text Area
+import '../stories/InputArea/index.story.js'; // 3.2a + InputArea
+import '../stories/RichTextAreaComposite'; // 3.2b RichTextAreaComposite
+import '../stories/RichTextArea'; // 3.2b + RichTextArea
 import '../stories/FieldWithSelectionComposite'; // 3.3 Field With Selection
-import '../stories/RichTextAreaComposite'; // 3.4 Rich Text Area Composite
-import '../stories/DropdownComposite'; // 3.5 Dropdown Composite
+import '../stories/TimeInput.story.js'; // 3.4 TimeInput
+import '../stories/DatePicker.story.js'; // 3.6 DatePicker
 import '../stories/Range'; // 3.7 Range
 import '../stories/MultiSelect'; // 3.8 Tags
 import '../stories/Search.story.js'; // 3.9 Search
+import '../stories/ImageViewer'; // 3.10 ImageViewer
+import '../stories/FilePicker'; // 3.10 + FilePicker
+import '../stories/GoogleAddressInput'; // 3.11 GoogleAddressInput
 
 // 4. Selection
-import '../stories/AutoCompleteComposite'; // 4.1 Dropdown
+import '../stories/Dropdown'; // 4.1 Dropdown
+import '../stories/AutoComplete'; // 4.1 + AutoComplete
+import '../stories/AutoCompleteComposite'; // 4.1 + AutoCompleteComposite
+import '../stories/InputWithOptions'; // 4.1 + InputWithOptions
+import '../stories/IconWithOptions'; // 4.1 + IconWithOptions
+import '../stories/ButtonWithOptions'; // 4.1 + ButtonWithOptions
+import '../stories/DropdownComposite'; // 4.1 + DropdownComposite
 import '../stories/Checkbox.story.js'; // 4.2 Checkbox
 import '../stories/RadioGroup.story.js'; // 4.3 RadioGroup
-import '../stories/IconWithOptions'; // 4.5 IconWithOptions
+import '../stories/ToggleSwitch.story.js'; // 4.4 ToggleSwitch
+import '../stories/Slider'; // 4.7 Slider
 import '../stories/GoogleAddressInputWithLabel'; // 4.8 Google address input
-import '../stories/EditableSelector'; // 4.9 EditableSelector
-import '../stories/ModalSelectorLayout.story.js'; // 4.10 ModalSelectorLayout
 
 
 // 5. Buttons
+import '../stories/ButtonLayout.story.js'; // 5.0 ButtonLayout
 import '../stories/Button/standard.story.js'; // 5.1 Standard
 import '../stories/Button/white.story.js'; // 5.2 White
 import '../stories/Button/icon.story.js'; // 5.3 Icon
@@ -91,7 +66,9 @@ import '../stories/TextLink/index.story.js'; // 5.8 Text Link
 
 
 // 6. Navigation
+import '../stories/SideMenu'; // 6.1 SideMenu
 import '../stories/Breadcrubms/CompositeStory'; // 6.2 Breadcrumbs
+import '../stories/Breadcrubms'; // 6.2 + Breadcrumbs
 import '../stories/Tabs'; // 6.3 Tabs
 
 
@@ -109,11 +86,35 @@ import '../stories/SectionHelper.story.js'; // 8.7 SectionHelper
 // 9. Modals
 import '../stories/MessageBox';
 import '../stories/Modal';
+import '../stories/EndorseContentLayout';
 
-// 10. Page
-import '../stories/Page/index.story.js'; // 10.1 Page
-import '../stories/Page/FullPageExample.js'; // 10.2 Page Example
-import '../stories/PageHeader/index.story.js';
+// 10. Tables
+import '../stories/DataTable'; // 10.1 DataTable
 
 // 11. Pickers and Selectors
+import '../stories/DropdownLayout'; // 11.1 DropdownLayout
+import '../stories/EditableSelector'; // 11.2 EditableSelector
+import '../stories/ModalSelectorLayout.story.js'; // 11.3 ModalSelectorLayout
 import '../stories/ColorPicker.story.js'; // 11.5 Color Picker
+
+// 12. Other
+import '../stories/Badge.story.js'; // 12.1 Badge
+import '../stories/Highlighter.story.js'; // 12.4 Highlighter
+import '../stories/Tag.story.js'; // 12.5 Tag
+
+// TPA
+import '../stories/TPA/Button';
+import '../stories/TPA/FloatingTabs';
+import '../stories/TPA/TextLink';
+import '../stories/TPA/Input';
+import '../stories/TPA/Badge';
+import '../stories/TPA/Label';
+
+// Themes
+import '../stories/ThemedButton';
+import '../stories/ThemedInput';
+import '../stories/ThemedToggleSwitch';
+
+// DEPRECATED
+import '../stories/LanguagePicker/index.story.js';
+import '../stories/SideBar';

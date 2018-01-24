@@ -3,7 +3,7 @@ import {toggleSwitchTestkitFactory, getStoryUrl, waitForVisibilityOf} from '../.
 import autoExampleDriver from 'wix-storybook-utils/AutoExampleDriver';
 
 describe('toggle switch page', () => {
-  const storyUrl = getStoryUrl('Core', 'ToggleSwitch');
+  const storyUrl = getStoryUrl('4. Selection', '4.4 ToggleSwitch');
   const toggleSwitchDriver = toggleSwitchTestkitFactory({dataHook: 'storybook-toggleswitch'});
 
   beforeAll(() => {
@@ -43,5 +43,4 @@ describe('toggle switch page', () => {
         expect(toggleSwitchDriver.checked()).toBe(true);
       });
   });
-
 });

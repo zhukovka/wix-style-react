@@ -2,7 +2,7 @@ import eyes from 'eyes.it';
 import {autoCompleteTestkitFactory, getStoryUrl, waitForVisibilityOf} from '../../testkit/protractor';
 
 describe('AutoComplete', () => {
-  const storyUrl = getStoryUrl('Core', 'AutoComplete');
+  const storyUrl = getStoryUrl('4. Selection', '4.1 + AutoComplete');
   const dataHook = 'story-autocomplete';
 
   eyes.it('should open autocomplete when it focused', () => {

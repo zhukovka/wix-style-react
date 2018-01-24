@@ -9,7 +9,7 @@ import Readme from '../../src/Composite/README.md';
 import ExampleComposite from './ExampleComposite';
 import ExampleCompositeRaw from '!raw-loader!./ExampleComposite';
 
-storiesOf('Common', module)
+storiesOf('Introduction', module)
   .add('Composites', () => (
     <div>
       <h1>Composites</h1>

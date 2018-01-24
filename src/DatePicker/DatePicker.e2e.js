@@ -3,7 +3,7 @@ import {datePickerTestkitFactory, getStoryUrl} from '../../testkit/protractor';
 import autoExampleDriver from 'wix-storybook-utils/AutoExampleDriver';
 
 describe('DatePicker', () => {
-  const storyUrl = getStoryUrl('Core', 'DatePicker');
+  const storyUrl = getStoryUrl('3. Inputs', '3.6 DatePicker');
   const {inputDriver, calendarDriver} = datePickerTestkitFactory({dataHook: 'storybook-datepicker'});
 
   beforeAll(() => {

@@ -11,7 +11,7 @@ import Example from './Example';
 import ExampleRaw from '!raw-loader!./Example';
 
 storiesOf('4. Selection', module)
-  .add('4.5 IconWithOptions', () => (
+  .add('4.1 + IconWithOptions', () => (
     <TabbedView tabs={['API', 'Testkit']}>
       <div>
         <Markdown source={Readme}/>

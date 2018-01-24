@@ -2,7 +2,7 @@ import {getStoryUrl, modalSelectorLayoutTestkitFactory, waitForVisibilityOf} fro
 import autoExampleDriver from 'wix-storybook-utils/AutoExampleDriver';
 
 describe('ModalSelectorLayout', () => {
-  const storyUrl = getStoryUrl('4. Selection', '4.10 Modal Selector Layout');
+  const storyUrl = getStoryUrl('11. Pickers and Selectors', '11.3 ModalSelectorLayout');
   const modalSelectorLayoutDriver = modalSelectorLayoutTestkitFactory({dataHook: 'storybook-modal-selector-layout'});
 
   beforeAll(() => {

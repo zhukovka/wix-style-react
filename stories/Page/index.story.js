@@ -31,8 +31,8 @@ const tail = (
 );
 
 export default {
-  category: '10. Page',
-  storyName: '10.1 Page',
+  category: '2. Layout',
+  storyName: '2.5 Page',
   name: 'Page',
   component: Page,
   componentPath: '../../src/Page',

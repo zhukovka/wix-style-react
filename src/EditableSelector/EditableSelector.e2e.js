@@ -2,7 +2,7 @@ import eyes from 'eyes.it';
 import {editableSelectorTestkitFactory, getStoryUrl, waitForVisibilityOf} from '../../testkit/protractor';
 
 describe('EditableSelector', () => {
-  const storyUrl = getStoryUrl('4. Selection', '4.9 EditableSelector');
+  const storyUrl = getStoryUrl('11. Pickers and Selectors', '11.2 EditableSelector');
   const dataHook = 'story-editable-selector';
   let driver;
 

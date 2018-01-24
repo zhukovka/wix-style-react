@@ -25,8 +25,8 @@ import ExampleControlledRawWithButtons from '!raw-loader!./ExampleControlledWith
 import ExampleTheme from './ExampleTheme';
 import ExampleThemeRaw from '!raw-loader!./ExampleTheme';
 
-storiesOf('Core', module)
-  .add('DropdownLayout', () => (
+storiesOf('11. Pickers and Selectors', module)
+  .add('11.1 DropdownLayout', () => (
     <TabbedView tabs={['API', 'Testkit']}>
       <div>
         <Markdown source={Readme}/>

@@ -2,7 +2,7 @@ import eyes from 'eyes.it';
 import {languagePickerTestkitFactory, getStoryUrl, waitForVisibilityOf} from '../../testkit/protractor';
 
 describe('LanguagePicker', () => {
-  const storyUrl = getStoryUrl('Core', 'LanguagePicker');
+  const storyUrl = getStoryUrl('Deprecated', 'LanguagePicker');
   const dataHook = 'story-languagePicker';
 
   eyes.it('should change the language', () => {

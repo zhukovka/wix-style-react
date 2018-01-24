@@ -8,8 +8,8 @@ import ReadmeTestkit from '../../src/RichTextArea/README.TESTKIT.md';
 import ReadMe from '../../src/RichTextArea/README.md';
 import RichTextAreaExample from './RichTextAreaExample';
 
-storiesOf('Core', module)
-  .add('RichTextArea', () => (
+storiesOf('3. Inputs', module)
+  .add('3.2b + RichTextArea', () => (
     <TabbedView tabs={['API', 'Testkit']}>
       <div>
         <Markdown source={ReadMe}/>

@@ -2,7 +2,7 @@ import eyes from 'eyes.it';
 import {imageViewerTestkitFactory, getStoryUrl, waitForVisibilityOf} from '../../testkit/protractor';
 
 describe('ImageViewer', () => {
-  const storyUrl = getStoryUrl('Core', 'ImageViewer');
+  const storyUrl = getStoryUrl('3. Inputs', '3.10 ImageViewer');
 
   eyes.it('should click ImageViewer', () => {
     const driver = imageViewerTestkitFactory({dataHook: 'empty-image-viewer'});

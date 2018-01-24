@@ -16,22 +16,27 @@ import ExampleControlledRaw from '!raw-loader!./ExampleControlled';
 import ExampleComplex from './ExampleComplex';
 import ExampleComplexRaw from '!raw-loader!./ExampleComplex';
 
-storiesOf('Core', module)
-  .add('AutoComplete', () => (
+storiesOf('4. Selection', module)
+  .add('4.1 + AutoComplete', () =>
     <TabbedView tabs={['API', 'TestKits']}>
       <div>
         <Markdown source={Readme}/>
+
         <h1>Usage examples</h1>
+
         <CodeExample title="Standard" code={ExampleStandardRaw}>
           <ExampleStandard/>
         </CodeExample>
+
         <CodeExample title="Controlled input" code={ExampleControlledRaw}>
           <ExampleControlled/>
         </CodeExample>
+
         <CodeExample title="Complex input" code={ExampleComplexRaw}>
           <ExampleComplex/>
         </CodeExample>
       </div>
+
       <Markdown source={ReadmeTestKit}/>
     </TabbedView>
-  ));
+  );

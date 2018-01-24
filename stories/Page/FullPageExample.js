@@ -53,7 +53,7 @@ class FullPageExample extends React.Component {
   }
 }
 
-storiesOf('10. Page', module)
-  .add('10.2 Page example', () =>
+storiesOf('2. Layout', module)
+  .add('2.5 + Page Example', () =>
     <FullPageExample/>
   );

@@ -3,7 +3,7 @@ import {badgeTestkitFactory, getStoryUrl, waitForVisibilityOf} from '../../testk
 import autoExampleDriver from 'wix-storybook-utils/AutoExampleDriver';
 
 describe('Badge', () => {
-  const storyUrl = getStoryUrl('Core', 'Badge');
+  const storyUrl = getStoryUrl('12. Other', '12.1 Badge');
   const badgeDriver = badgeTestkitFactory({dataHook: 'storybook-badge'});
 
   beforeAll(() => {

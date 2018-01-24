@@ -9,8 +9,8 @@ import './PageHeader.scss';
 const action = <Button>Action</Button>;
 
 export default {
-  category: '10. Page',
-  storyName: '10.3 Header with Options',
+  category: '2. Layout',
+  storyName: '2.5 + PageHeader',
   component: PageHeader,
   componentPath: '../../src/PageHeader',
 

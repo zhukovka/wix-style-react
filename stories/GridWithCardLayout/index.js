@@ -27,7 +27,7 @@ import ExampleGridAnimationRaw from '!raw-loader!./ExampleGridAnimation';
 import GridReadme from '../../src/Grid/README.md';
 import CardReadme from '../../src/Card/README.md';
 
-storiesOf('Common', module)
+storiesOf('2. Layout', module)
   .add('Grid', () => (
     <div>
       <Markdown source={GridReadme}/>

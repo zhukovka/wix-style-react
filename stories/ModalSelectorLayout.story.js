@@ -14,8 +14,8 @@ const allItems = times(50, i => ({
 }));
 
 export default {
-  category: '4. Selection',
-  storyName: '4.10 Modal Selector Layout',
+  category: '11. Pickers and Selectors',
+  storyName: '11.3 ModalSelectorLayout',
   component: ModalSelectorLayout,
   componentPath: '../src/ModalSelectorLayout',
 

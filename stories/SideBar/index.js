@@ -7,7 +7,7 @@ import Readme from '../../src/SideBar/README.md';
 import ExampleStandard from './ExampleStandard';
 import ExampleStandardRaw from '!raw-loader!./ExampleStandard';
 
-storiesOf('Core', module)
+storiesOf('Deprecated', module)
   .add('SideBar', () =>
     <div>
       <Markdown source={Readme}/>

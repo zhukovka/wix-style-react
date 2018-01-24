@@ -10,8 +10,8 @@ import ReadmeTestkit from '../../src/ImageViewer/README.TESTKIT.md';
 import ExampleStandard from './ExampleStandard';
 import ExampleStandardRaw from '!raw-loader!./ExampleStandard';
 
-storiesOf('Core', module)
-  .add('ImageViewer', () => (
+storiesOf('3. Inputs', module)
+  .add('3.10 ImageViewer', () => (
     <TabbedView tabs={['API', 'Testkit']}>
       <div>
         <Markdown source={Readme}/>

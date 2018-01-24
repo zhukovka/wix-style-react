@@ -2,7 +2,7 @@ import {labelTestkitFactory, getStoryUrl, waitForVisibilityOf} from '../../testk
 import eyes from 'eyes.it';
 
 describe('Label', () => {
-  const storyUrl = getStoryUrl('Core', 'Label');
+  const storyUrl = getStoryUrl('1. Foundation', '1.2 + Label');
   const dataHook = 'story-label';
 
   eyes.it('should show text and focus on the input when clicked', () => {

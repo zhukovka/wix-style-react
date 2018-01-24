@@ -22,8 +22,8 @@ import ExampleSizes from './ExampleSizes';
 import ExampleSizesRaw from '!raw-loader!./ExampleSizes';
 
 export default {
-  category: 'Core',
-  storyName: 'InputArea',
+  category: '3. Inputs',
+  storyName: '3.2 + InputArea',
   component: InputArea,
   componentPath: '../../src/InputArea',
 

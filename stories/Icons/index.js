@@ -14,8 +14,8 @@ import CustomeIconRaw from '!raw-loader!./CustomIcon';
 import RTLIcon from './RTLIcon';
 import RTLIconRaw from '!raw-loader!./RTLIcon';
 
-storiesOf('Common', module)
-  .add('Icons', () => (
+storiesOf('1. Foundation', module)
+  .add('1.4 Icons', () => (
     <div>
       <Markdown source={Readme}/>
 

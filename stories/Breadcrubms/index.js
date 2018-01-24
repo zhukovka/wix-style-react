@@ -31,8 +31,8 @@ import ExampleWithChosenActiveElement from '../Breadcrubms/ExampleWithChosenActi
 import ExampleUsingURLRaw from '!raw-loader!../Breadcrubms/ExampleUsingURL';
 import ExampleUsingURL from '../Breadcrubms/ExampleUsingURL';
 
-storiesOf('Core', module)
-  .add('Breadcrumbs', () => (
+storiesOf('6. Navigation', module)
+  .add('6.2 + Breadcrumbs', () =>
     <TabbedView tabs={['API', 'TestKits']}>
       <div>
         <AutoDocs source={BreadcrumbsSource}/>
@@ -70,4 +70,4 @@ storiesOf('Core', module)
 
       <Markdown source={ReadmeTestKit}/>
     </TabbedView>
-  ));
+  );

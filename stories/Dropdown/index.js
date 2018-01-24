@@ -16,8 +16,8 @@ import ExampleControlledRaw from '!raw-loader!./ExampleControlled';
 import ExampleWithCustomValue from './ExampleWithCustomValue';
 import ExampleWithCustomValueRaw from '!raw-loader!./ExampleWithCustomValue';
 
-storiesOf('Core', module)
-  .add('Dropdown', () => (
+storiesOf('4. Selection', module)
+  .add('4.1 Dropdown', () =>
     <TabbedView tabs={['API', 'Testkit']}>
       <div>
         <Markdown source={Readme}/>
@@ -39,4 +39,4 @@ storiesOf('Core', module)
 
       <Markdown source={ReadmeTestkit}/>
     </TabbedView>
-  ));
+  );

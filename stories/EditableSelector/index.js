@@ -15,8 +15,8 @@ import CardWithEditableSelectorExampleRaw from '!raw-loader!./CardWithEditableSe
 import PopoverWithEditableSelectorExample from './PopoverWithEditableSelector';
 import PopoverhEditableSelectorExampleRaw from '!raw-loader!./PopoverWithEditableSelector';
 
-storiesOf('4. Selection', module)
-  .add('4.9 EditableSelector', () =>
+storiesOf('11. Pickers and Selectors', module)
+  .add('11.2 EditableSelector', () =>
     <TabbedView tabs={['API', 'TestKits']}>
       <div>
         <AutoDocs source={EditableSelectorSource}/>

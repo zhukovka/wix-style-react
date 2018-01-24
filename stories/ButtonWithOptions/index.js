@@ -8,8 +8,8 @@ import Readme from '../../src/ButtonWithOptions/README.md';
 import ExampleStandardComp from './ButtonWithOptionsStandard';
 import ReadmeTestkit from '../../src/ButtonWithOptions/README.TESTKIT.md';
 
-storiesOf('Core', module)
-  .add('ButtonWithOptions', () =>
+storiesOf('4. Selection', module)
+  .add('4.1 + ButtonWithOptions', () =>
     <TabbedView tabs={['API', 'Testkit']}>
       <div>
         <Markdown source={Readme}/>

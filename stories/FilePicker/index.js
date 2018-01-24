@@ -11,8 +11,8 @@ import ReadmeTestKit from '../../src/FilePicker/README.TESTKIT.md';
 import Example from './Example';
 import ExampleRaw from '!raw-loader!./Example';
 
-storiesOf('Core', module)
-  .add('FilePicker', () => (
+storiesOf('3. Inputs', module)
+  .add('3.10 + FilePicker', () => (
     <TabbedView tabs={['API', 'TestKits']}>
       <div>
         <AutoDocs source={FilePickerSource}/>

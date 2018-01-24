@@ -3,7 +3,7 @@ import path from 'path';
 import {filePickerTestkitFactory, getStoryUrl, waitForVisibilityOf} from '../../testkit/protractor';
 
 describe('FilePicker', () => {
-  const storyUrl = getStoryUrl('Core', 'FilePicker');
+  const storyUrl = getStoryUrl('3. Inputs', '3.10 + FilePicker');
   const dataHook = 'story-filepicker';
 
   eyes.it('should display filePicker', () => {
