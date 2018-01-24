@@ -84,8 +84,7 @@
     "sinon": "^1.17.6",
     "svg2react-icon": "^1.0.0",
     "wait-for-cond": "^1.0.3",
-    "wix-storybook-utils": "^1.0.0",
-    "wix-ui-test-utils": "^1.0.30"
+    "wix-storybook-utils": "^1.0.0"
   },
   "peerDependencies": {
     "react": "^15.0.0",
@@ -121,7 +120,8 @@
     "react-transition-group": "^2.2.1",
     "slate": "^0.20.3",
     "wix-animations": "^1.0.141",
-    "wix-ui-backoffice": "^1.0.24"
+    "wix-ui-backoffice": "^1.0.0",
+    "wix-ui-test-utils": "^1.0.0"
   },
   "jest": {
     "setupFiles": [
