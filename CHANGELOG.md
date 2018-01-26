@@ -12,6 +12,10 @@ Types of changes:
 1. **Security** in case of vulnerabilities.
 1. **Breaking** for breaking changes
 
+## Upcoming release
+### Fixed
+- `<Breadcrumbs/>` add 204px `max-width` on breadcrumb items
+
 ## 2.0.15 - 2018-01-24
 ### Changed
 - Made `wix-ui-test-utils` a depenedency

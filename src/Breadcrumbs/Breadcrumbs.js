@@ -25,10 +25,7 @@ class Breadcrumbs extends WixComponent {
         string,
         number
       ]).isRequired,
-      value: oneOfType([
-        node,
-        string
-      ]).isRequired,
+      value: node.isRequired,
       link: string,
       customElement: any,
       disabled: bool
