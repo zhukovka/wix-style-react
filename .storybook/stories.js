@@ -99,6 +99,7 @@ import '../stories/ColorPicker.story.js'; // 11.5 Color Picker
 
 // 12. Other
 import '../stories/Badge.story.js'; // 12.1 Badge
+import '../stories/CounterBadge'; //12.3 CounterBadge
 import '../stories/Highlighter.story.js'; // 12.4 Highlighter
 import '../stories/Tag.story.js'; // 12.5 Tag
 
