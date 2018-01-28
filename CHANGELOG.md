@@ -15,6 +15,7 @@ Types of changes:
 ## Upcoming release
 ### Fixed
 - `<Breadcrumbs/>` add 204px `max-width` on breadcrumb items
+- `<CounterBadge/>` add new component from `wix-ui-backoffice`
 
 ## 2.0.15 - 2018-01-24
 ### Changed
