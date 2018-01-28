@@ -26,14 +26,54 @@ describe('Table', () => {
     expect(driver.hasChildWithId(defaultProps.id)).toBeTruthy();
   });
 
-  it('should display nothing when data is empty', () => {
-    const props = {
-      ...defaultProps,
-      data: []
-    };
+  describe('data is empty', () => {
+    const rowDataHook = 'row-data-hook';
+    const props = Object.assign({}, defaultProps, {
+      data: [],
+      rowDataHook
+    });
 
     const driver = createDriver(<DataTable {...props}/>);
-    expect(driver.isDisplayingNothing()).toBeTruthy();
+
+    it('should display nothing', () => {
+      expect(driver.isDisplayingNothing()).toBeTruthy();
+    });
+
+    it('should count 0 rows', () => {
+      expect(driver.getRowsCount()).toEqual(0);
+    });
+
+    it('should count 0 rows with class name', () => {
+      expect(driver.getRowsWithClassCount(defaultProps.rowClass)).toEqual(0);
+    });
+
+    it('should find 0 rows with data-hook', () => {
+      expect(driver.getRowsWithDataHook(rowDataHook).length).toEqual(0);
+    });
+
+    it('should not find a row with data-hook', () => {
+      expect(driver.getRowWithDataHook(rowDataHook)).toEqual(null);
+    });
+
+    it('should not a header only', () => {
+      expect(driver.isDisplayingHeaderOnly()).toBeFalsy;
+    });
+
+    it('should not a header ', () => {
+      expect(driver.isDisplayingHeader()).toBeFalsy;
+    });
+
+    it('should not find a child with id', () => {
+      expect(driver.hasChildWithId(defaultProps.id)).toBeFalsy;
+    });
+
+    // There rest of the driver's methods would throw some error
+
+  });
+
+  it('should display something when data is non-empty', () => {
+    const driver = createDriver(<DataTable {...defaultProps}/>);
+    expect(driver.isDisplayingNothing()).toBeFalsy();
   });
 
   it('should display header only when data is empty and showHeaderWhenEmpty is true', () => {

@@ -14,7 +14,7 @@
 | getCellStyle | (rowIndex, colIndex) | string | get cell index <args> inline style |
 | isRowClickable | number | bool | true if row index <arg> is clickable |
 | getTitles | - | map | get map of all titles |
-| isDisplayingNothing | - | bool | true if displaying nothing |
+| isDisplayingNothing | - | bool | true if the table has no data and the header is not displayed |
 | isDisplayingHeaderOnly | - | bool | true if displaying only headers |
 | hasChildWithId | string | bool | true if the element has a child with <arg> id |
 | isDisplayingHeader | -| bool | true if the element is displaying it's headers |

@@ -3,7 +3,16 @@ import ReactDOM from 'react-dom';
 import ReactTestUtils from 'react-dom/test-utils';
 import values from 'lodash/values';
 
+const arbitraryEmptyElement = () => document.createElement('div');
+
 const dataTableDriverFactory = ({element, wrapper, component}) => {
+  // When a React component renders null, a Comment-Element is rendered to the DOM.
+  const isDisplayingNothing = element.nodeType === Node.COMMENT_NODE;
+  /* Since a Comment-Element has no methods like querySelector(),
+   * we replace (if needed) it with an arbitrary Element.
+   * This allows simple implementation of methods like getRows().
+   */
+  element = isDisplayingNothing ? arbitraryEmptyElement() : element;
 
   const getHeader = () => element.querySelector('thead');
   const hasHeader = () => !!getHeader();
@@ -17,7 +26,10 @@ const dataTableDriverFactory = ({element, wrapper, component}) => {
   const getSortableTitle = index => element.querySelector(`th [data-hook="${index}_title"]`);
   return {
     getRowsCount,
-    getRowsWithClassCount: className => values(getRows()).filter(elem => elem.classList.contains(className)).length,
+    getRowsWithClassCount: className => {
+      return isDisplayingNothing ? 0 :
+        values(getRows()).filter(elem => elem.classList.contains(className)).length;
+    },
     getRowsWithDataHook: dataHookName => element.querySelectorAll(`[data-hook="${dataHookName}"]`),
     getRowWithDataHook: dataHookName => element.querySelector(`[data-hook="${dataHookName}"]`),
     getRowText: index => values(getRows()[index].querySelectorAll('td')).map(td => td.textContent),
@@ -27,7 +39,7 @@ const dataTableDriverFactory = ({element, wrapper, component}) => {
     isRowClickable: index => getRows()[index].classList.contains('clickableDataRow'),
     isRowAnimated: index => getRows()[index].classList.contains('animatedDataRow'),
     getTitles: () => values(getHeader().querySelectorAll('th')).map(th => th.textContent),
-    isDisplayingNothing: () => !!element,
+    isDisplayingNothing: () => isDisplayingNothing,
     isDisplayingHeaderOnly: () => hasHeader() && getRowsCount() === 0,
     isDisplayingHeader: () => hasHeader(),
     hasChildWithId: id => !!element.querySelector(`#${id}`),
