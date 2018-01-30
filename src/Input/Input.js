@@ -258,8 +258,8 @@ Input.propTypes = {
   /** Standard React Input autoSelect (select the entire text of the element on focus) */
   autoSelect: PropTypes.bool,
 
-  /** Turns on or off autocomplete property, which is responsible for default browser autocomplete suggestion */
-  autocomplete: PropTypes.oneOf(['off', 'on']),
+  /** Sets value of autocomplete attribute (consult the [HTML spec](https://html.spec.whatwg.org/multipage/form-control-infrastructure.html#attr-fe-autocomplete) for possible values  */
+  autocomplete: PropTypes.string,
 
   /** Specifies a data-hook for tests */
   dataHook: PropTypes.string,
