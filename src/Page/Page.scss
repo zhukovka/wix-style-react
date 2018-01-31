@@ -83,20 +83,21 @@ $image-container-offset: 30px;
   top: 0;
   width: 100%;
   height: 100%;
+
+  &::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba($D10, 0.42);
+  }
 }
 
 .gradient-background {
   position: absolute;
   top: 0;
   width: 100%;
-}
-
-.image-background-overlay {
-  position: absolute;
-  top: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba($D10, 0.42);
 }
 
 .content {
