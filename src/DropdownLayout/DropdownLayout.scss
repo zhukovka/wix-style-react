@@ -28,7 +28,8 @@ $top-arrow-size: 8px;
   box-shadow: 0 0 16px 0 fade-out(black, 0.86);
   display: block;
   opacity: 0;
-  overflow: auto;
+  overflow: hidden;
+  height: 0;
   padding: 0;
   transition: opacity 0.2s ease;
   visibility: hidden;
@@ -44,7 +45,12 @@ $top-arrow-size: 8px;
   user-select: none;
 }
 
-.content-container {
+.content-container.shown {
+  visibility: visible;
+  height: auto;
+  overflow: auto;
+  opacity: 1;
+
   &.with-arrow {
     padding: 10px 0;
   }
@@ -68,21 +74,16 @@ $top-arrow-size: 8px;
   }
 }
 
-.content-container.shown {
-  visibility: visible;
-  opacity: 1;
-}
-
 .options::-webkit-scrollbar {
   width: 16px;
   background-color: none;
 }
 
 .options::-webkit-scrollbar-button {
-  height:6px;
+  height: 6px;
 }
 
-.options::-webkit-scrollbar-thumb  {
+.options::-webkit-scrollbar-thumb {
   background-color: rgba(110, 181, 241, 0.45);
   border-radius: 10px;
   background-clip: padding-box;
@@ -90,7 +91,7 @@ $top-arrow-size: 8px;
   height: 58px;
 }
 
-.options::-webkit-scrollbar-thumb:hover  {
+.options::-webkit-scrollbar-thumb:hover {
   background-color: $B30;
 }
 
@@ -110,7 +111,7 @@ $top-arrow-size: 8px;
   color: $D10;
   cursor: pointer;
 
-  width:100%;
+  width: 100%;
   display: flex;
   align-items: center;
 
@@ -173,14 +174,14 @@ a[data-hook=link-item] {
 }
 
 .wrapper * {
-  box-sizing:border-box;
+  box-sizing: border-box;
 }
 
 .arrow {
   position: absolute;
   left: 50%;
   z-index: 10;
-  transform: translateX(-50%)rotateZ(45deg);
+  transform: translateX(-50%) rotateZ(45deg);
   height: $top-arrow-size;
   width: $top-arrow-size;
   background: $D80;
