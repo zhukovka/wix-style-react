@@ -12,6 +12,15 @@ Types of changes:
 1. **Security** in case of vulnerabilities.
 1. **Breaking** for breaking changes
 
+## 2.0.18 - 2018-02-02
+### Fixed
+- Bug fixes in `Page` Component [1422](https://github.com/wix/wix-style-react/pull/1422) [1407](https://github.com/wix/wix-style-react/pull/1407)
+- `DropdownLayout` - Hides the drop down when not shown [1408](https://github.com/wix/wix-style-react/pull/1408)
+- fix divider color `Card.Header`
+
+### Added
+- Automatic Storybook Deployment Upon PR [1418](https://github.com/wix/wix-style-react/pull/1418)
+
 ## 2.0.17 - 2018-01-30
 ### Changed
 - Changed order of storybook components [1390](https://github.com/wix/wix-style-react/pull/1390)
