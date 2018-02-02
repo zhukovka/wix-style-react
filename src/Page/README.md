@@ -16,7 +16,7 @@ The PageHeader component is the header implementation that will be changed when 
 | propName | propType | defaultValue | isRequired | description |
 |----------|----------|--------------|------------|-------------|
 | Page.Header | Page.Header | null | true | The PageHeader object which defines the components within the Header |
-| Page.Tail | Page.Tail | null | false | A placeholder for a component which sticks to the bottom of the header |
+| Page.Tail | Page.Tail | null | false | A placeholder for a component which sticks to the bottom of the header. Page.Tail.children receive `minimized` flag |
 | Page.Content | Page.Content | null | true | A placeholder for the page scrollable body, support `fullScreen` property which spans the content on the available area |
 
 ## Gradient

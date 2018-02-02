@@ -153,7 +153,7 @@ class Page extends WixComponent {
                 style={pageDimensionsStyle}
                 ref={r => this.pageHeaderTailRef = r}
                 >
-                {PageTail}
+                {React.cloneElement(PageTail, {minimized})}
               </div>
           }
         </div>
