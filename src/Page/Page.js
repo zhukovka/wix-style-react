@@ -158,7 +158,7 @@ class Page extends WixComponent {
           }
         </div>
         <div
-          className={classNames(s.scrollableContent, {[s.scrollableContentFullScreen]: contentFullScreen})}
+          className={s.scrollableContent}
           data-hook="page-scrollable-content"
           ref={r => this.scrollableContentRef = r}
           >
@@ -186,7 +186,7 @@ class Page extends WixComponent {
                 style={{height: `${headerHeight + (PageTail ? -SCROLL_TOP_THRESHOLD : 39)}px`}}
                 />
           }
-          <div className={classNames(s.content, {[s.contentFullScreen]: contentFullScreen})} style={pageDimensionsStyle}>
+          <div className={classNames(s.content, {[s.contentFullScreen]: contentFullScreen})} style={contentFullScreen ? null : pageDimensionsStyle}>
             {this._safeGetChildren(PageContent)}
           </div>
         </div>
