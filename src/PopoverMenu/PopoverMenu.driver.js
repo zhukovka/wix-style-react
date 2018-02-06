@@ -32,7 +32,7 @@ const popoverMenuDriverFactory = ({element}) => {
     menu: {
       isShown: protect(() => itemsArray().length > 0),
       itemsLength: protect(() => itemsArray().length),
-      itemContentAt: protect(index => itemsArray()[index].querySelectorAll('button >span')[1].innerHTML),
+      itemContentAt: protect(index => itemsArray()[index].querySelector('[data-hook="menu-item-text"]').innerHTML),
       clickItemAt: protect(index => ReactTestUtils.Simulate.click(itemsArray()[index].querySelector('button')))
     }
   };

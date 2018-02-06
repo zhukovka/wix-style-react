@@ -16,7 +16,8 @@ class PopoverMenuItem extends WixComponent {
     return (
       <li className={classNames(typography.t3, styles.menuItem)}>
         <button type="button" className={styles.button} onClick={this.props.onClick}>
-          <span className={styles.icon}>{this.props.icon}</span><span className={styles.text}>{this.props.text}</span>
+          {this.props.icon && <span className={styles.icon}>{this.props.icon}</span>}
+          <span className={styles.text} data-hook="menu-item-text">{this.props.text}</span>
         </button>
       </li>
     );
