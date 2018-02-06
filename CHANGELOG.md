@@ -12,6 +12,17 @@ Types of changes:
 1. **Security** in case of vulnerabilities.
 1. **Breaking** for breaking changes
 
+## 2.0.19 - 2018-02-06
+### Added
+- `puppeteer` testkit driver for the `Input` component.
+
+### Fixed
+- Don't render `PopoverMenuItem` icon if doesn't exist
+- `Breadcrumbs` dark theme color correction.
+- `Page` UI fixes for restricted content size.
+- `Page` pass the `minimized` property to the content element
+
+
 ## 2.0.18 - 2018-02-02
 ### Fixed
 - Bug fixes in `Page` Component [1422](https://github.com/wix/wix-style-react/pull/1422) [1407](https://github.com/wix/wix-style-react/pull/1407)
