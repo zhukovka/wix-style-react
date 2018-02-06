@@ -1,2 +1,9 @@
-export {testkitFactoryCreator, enzymeTestkitFactoryCreator,
-  protractorTestkitFactoryCreator, getStoryUrl, createDriverFactory, waitForVisibilityOf} from 'wix-ui-test-utils';
+export {
+  testkitFactoryCreator,
+  enzymeTestkitFactoryCreator,
+  protractorTestkitFactoryCreator,
+  puppeteerTestkitFactoryCreator,
+  getStoryUrl,
+  createDriverFactory,
+  waitForVisibilityOf
+} from 'wix-ui-test-utils';
