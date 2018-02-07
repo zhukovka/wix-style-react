@@ -2,12 +2,12 @@ import React from 'react';
 import stylesRaw from '!raw-loader!./PageExample.scss';
 import './PageExample.scss';
 import {bool} from 'prop-types';
- 
+
 export default class SomeContentComponent extends React.Component {
   static propTypes = {
     showScss: bool
   }
- 
+
   render() {
     return (
       <div style={{backgroundColor: 'white'}}>
@@ -16,7 +16,7 @@ export default class SomeContentComponent extends React.Component {
             {stylesRaw}
           </code>
         </pre>}
- 
+
         {[...Array(5)].map((x, i) =>
           <div key={i}>
                   Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam facilisis molestie magna vitae pellentesque. Ut elementum accumsan nibh, ut faucibus velit. Vestibulum at mollis justo. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; In sapien odio, hendrerit a iaculis ut, venenatis in ligula. Vestibulum suscipit egestas augue, nec mattis est mollis et. Curabitur id eleifend leo. Fusce tempor efficitur commodo.
