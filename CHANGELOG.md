@@ -12,8 +12,15 @@ Types of changes:
 1. **Security** in case of vulnerabilities.
 1. **Breaking** for breaking changes
 
-## 2.0.19 - 2018-02-06
+## 2.0.20 - 2018-02-07
 ### Added
+- `puppeteer` testkit driver for the `Button` component.
+
+### Changed
+- Reference to wix-ui-test-utils
+
+## 2.0.19 - 2018-02-06
+### Changed
 - `puppeteer` testkit driver for the `Input` component.
 
 ### Fixed
