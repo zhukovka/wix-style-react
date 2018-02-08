@@ -45,6 +45,14 @@
 | hasClearButton | - | boolean | true if the clear button is visible |
 | clickClear | - | - | when the clear button is visible, this will click it |
 
+### Puppeteer
+
+| method | arguments | returned value | description |
+|--------|-----------|----------------|-------------|
+| element | - | element | returns the element |
+| enterText | string | - | applied text to the input |
+| getText | - | string | get the input text |
+
 ## Usage Example
 
 > Unit testing example
@@ -101,4 +109,23 @@
         //Do tests
         expect(testkit.element().isDisplayed()).toBeTruthy();
      });
+```
+
+```javascript
+/*******************
+   puppeteer example
+  *******************/
+
+  import puppeteer from 'puppeteer';
+  import {inputTestkitFactory} from 'wix-style-react/testkit/puppeteer';
+
+  //puppeteer setup
+  const browser = await puppeteer.launch();
+  const page = await browser.newPage();
+
+  //Create an element testkit via the data-hook attribute
+  const testkit = await inputTestkitFactory({dataHook: 'myDataHook', page});
+  await page.goto(appUrl); //Your application url
+
+  expect(await testkit.getText()).to.equal('my test');
 ```

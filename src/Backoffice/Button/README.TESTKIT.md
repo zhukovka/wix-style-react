@@ -14,6 +14,14 @@
 | exists (Only in Unit Test) | - | bool | fulfilled if element in the DOM |
 | element (Only in E2E) | - | element | returns the driver element |
 
+### Puppeteer
+
+| method | arguments | returned value | description |
+|--------|-----------|----------------|-------------|
+| element | - | element | returns the element |
+| click | - | - | clicks on the button |
+| getButtonTextContent | - | string | returns the button text |
+
 ## Usage Example
 
 > Unit Testing Example
@@ -70,4 +78,24 @@
        //Do tests
         expect(testkit.element().isDisplayed()).toBeTruthy();
      });
+```
+
+```javascript
+/**********************
+   Puppeteer example
+  **********************/
+
+  import puppeteer from 'puppeteer';
+  import {buttonTestkitFactory} from 'wix-style-react/testkit/puppeteer';
+
+  //puppeteer setup
+  const browser = await puppeteer.launch();
+  const page = await browser.newPage();
+
+  //Create an element testkit via the data-hook attribute
+  const testkit = await buttonTestkitFactory({dataHook: 'myDataHook', page});
+
+  await page.goto(appUrl); //Your application url
+
+  expect(await testkit.getButtonTextContent()).to.equal('my button');
 ```
