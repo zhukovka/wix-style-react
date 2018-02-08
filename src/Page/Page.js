@@ -110,6 +110,16 @@ class Page extends WixComponent {
     return styles;
   }
 
+  _pageHeaderContainerStyle() {
+    // Fixes width issues when scrollllbar is present in windows
+    const pageWidth = this.pageHeaderRef && this.pageHeaderRef.parentElement.offsetWidth;
+    const contentWidth = this.contentContainerRef && this.contentContainerRef.offsetWidth;
+    if (contentWidth && pageWidth && contentWidth < pageWidth) {
+      return {width: `calc(100% - ${pageWidth - contentWidth}px`};
+    }
+    return null;
+  }
+
   render() {
     const {backgroundImageUrl, gradientClassName, children} = this.props;
     const {headerHeight, tailHeight, minimized} = this.state;
@@ -128,6 +138,7 @@ class Page extends WixComponent {
     return (
       <div className={s.page}>
         <div
+          style={this._pageHeaderContainerStyle()}
           className={classNames(s.pageHeaderContainer, {
             [s.minimized]: minimized,
             [s.withBackgroundColor]: minimized || (!hasBackgroundImage && !hasGradientClassName),
@@ -186,7 +197,7 @@ class Page extends WixComponent {
                 style={{height: `${headerHeight + (PageTail ? -SCROLL_TOP_THRESHOLD : 39)}px`}}
                 />
           }
-          <div className={s.contentContainer}>
+          <div className={s.contentContainer} ref={r => this.contentContainerRef = r}>
             <div className={classNames(s.content, {[s.contentFullScreen]: contentFullScreen})} style={contentFullScreen ? null : pageDimensionsStyle}>
               {this._safeGetChildren(PageContent)}
             </div>
