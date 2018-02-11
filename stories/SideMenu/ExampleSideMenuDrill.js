@@ -15,7 +15,7 @@ let counter = 3;
 const items = [
   {type: 'link', to: '//wix.com', title: 'link #0_1', disabled: true},
   {type: 'link', to: '//wix.com', title: 'link #0_2', badge: true, badgeTooltip: true},
-  {type: 'menu', title: 'Sub Menu #1', badge: true, badgeTooltip: true, items: [
+  {type: 'menu', title: 'Sub Menu #1', disabled: true, items: [
     {type: 'link', to: '//wix.com', title: 'link #1_1'},
     {type: 'link', to: '//wix.com', title: 'link #1_2'},
     {type: 'link', to: '//wix.com', title: 'link #1_3', badge: true}
@@ -93,8 +93,8 @@ class ExampleSideMenuDrill extends React.Component {
 
     return (
       <SideMenuDrill.SubMenu
-        key={menu.title} menuKey={menu.title} title={menu.title} showCategory={showCategory}
-        badge={element}
+        key={menu.title} menuKey={menu.title} title={menu.title} showCategory={showCategory} badge={element}
+        disabled={menu.disabled}
         >
         <SideMenu.Header>
           <div onClick={() => console.log('Header clicked')}>

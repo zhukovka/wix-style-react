@@ -4,8 +4,8 @@ import LinkLayout from './LinkLayout';
 import styles from './styles.scss';
 import DataPickerArrow from '../../../Icons/dist/components/DataPickerArrow';
 
-const Link = ({children, isDiminishedHover, isActive, withArrow, badge, dataHook, ...rest}) =>
-  <LinkLayout isDiminishedHover={isDiminishedHover} isActive={isActive}>
+const Link = ({children, isDiminishedHover, isActive, withArrow, badge, dataHook, disabled, ...rest}) =>
+  <LinkLayout isDiminishedHover={isDiminishedHover} isActive={isActive} disabled={disabled}>
     <a data-hook={dataHook} {...rest}>
       {children}
       {badge}
@@ -15,7 +15,8 @@ const Link = ({children, isDiminishedHover, isActive, withArrow, badge, dataHook
 
 Link.defaultProps = {
   dataHook: 'menu-navigation-link',
-  withArrow: false
+  withArrow: false,
+  disabled: false
 };
 
 Link.propTypes = {
@@ -24,7 +25,8 @@ Link.propTypes = {
   withArrow: bool,
   badge: node,
   isDiminishedHover: bool,
-  dataHook: string
+  dataHook: string,
+  disabled: bool
 };
 
 export default Link;

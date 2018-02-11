@@ -31,7 +31,7 @@ describe('DrillView', () => {
     });
   }
 
-  function createSubMenu(key, level, maxLevel, activeLink) {
+  function createSubMenu(key, level, maxLevel, activeLink, isDisabled) {
     const menuKey = `${key}_${level}`;
     return (
       <SideMenuDrill.SubMenu
@@ -40,6 +40,7 @@ describe('DrillView', () => {
         title={menuKey}
         onSelectHandler={onSubMenuClickSpy}
         onBackHandler={onSubMenuBackSpy}
+        disabled={isDisabled}
         >
         <SideMenu.Header>
           {getHeader(level)}
@@ -55,24 +56,24 @@ describe('DrillView', () => {
     );
   }
 
-  function createSubMenus(key, level, maxLevel, activeLink) {
+  function createSubMenus(key, level, maxLevel, activeLink, isDisabled) {
     if (level > maxLevel) {
       return <div/>;
     }
 
     return [...new Array(subMenusPerLevel)].map((_, i) => {
-      return createSubMenu(key + i, level, maxLevel, activeLink);
+      return createSubMenu(key + i, level, maxLevel, activeLink, isDisabled);
     });
   }
 
-  function createSideMenu(maxLevel, activeLink = {}) {
+  function createSideMenu(maxLevel, activeLink = {}, isSubMenuDisabled = false) {
     return createDriver(
       <SideMenuDrill>
         <SideMenu.Header>
           {getHeader(0)}
         </SideMenu.Header>
         {createLinksForLevel(0, activeLink)}
-        {createSubMenus('SubMenu', 1, maxLevel, activeLink)}
+        {createSubMenus('SubMenu', 1, maxLevel, activeLink, isSubMenuDisabled)}
         <SideMenu.Footer>
           {getFooter(0)}
         </SideMenu.Footer>
@@ -146,6 +147,38 @@ describe('DrillView', () => {
     expect(onSubMenuClickSpy).toHaveBeenCalled();
     expect(onClickSpy.mock.calls.length).toBe(1);
     expect(onSubMenuClickSpy.mock.calls.length).toBe(1);
+  });
+
+  it('should have a disabled css when disabled prop is passed', () => {
+
+    const driver = createSideMenu(3, {}, true);
+
+    expect(driver.getMenuDriver().headerContent()).toBe(getHeader(0));
+    expect(driver.getMenuDriver().footerContent()).toBe(getFooter(0));
+    expect(driver.getMenuDriver().hasBackLink()).toBe(false);
+
+    // click the first sub menu
+    expect(onClickSpy.mock.calls.length).toBe(0);
+    driver.getMenuDriver().clickInnerLinkByIndex(3);
+
+    expect(driver.getMenuDriver().isLinkDisabledByIndex(3)).toBe(true);
+
+  });
+
+  it('should NOT have a disabled css when disabled prop is passed', () => {
+
+    const driver = createSideMenu(3);
+
+    expect(driver.getMenuDriver().headerContent()).toBe(getHeader(0));
+    expect(driver.getMenuDriver().footerContent()).toBe(getFooter(0));
+    expect(driver.getMenuDriver().hasBackLink()).toBe(false);
+
+    // click the first sub menu
+    expect(onClickSpy.mock.calls.length).toBe(0);
+    driver.getMenuDriver().clickInnerLinkByIndex(3);
+
+    expect(driver.getMenuDriver().isLinkDisabledByIndex(3)).toBe(false);
+
   });
 
   it('should navigate to a parent menu and sub menu link should be active', done => {
