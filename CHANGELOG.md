@@ -12,6 +12,22 @@ Types of changes:
 1. **Security** in case of vulnerabilities.
 1. **Breaking** for breaking changes
 
+
+## Next Release
+### Fixed
+- 
+
+### Added
+- 
+
+## 2.0.21 - 2018-02-11
+### Fixed
+- `<Page/>` - Fixed width issues with windows browser.
+
+### Added
+- `puppeteer` testkit driver for the `<Label/>` component and added docs.
+- Added disalbed state for a `<SideMenu/>` Drillview.
+
 ## 2.0.20 - 2018-02-07
 ### Added
 - `puppeteer` testkit driver for the `Button` component.
