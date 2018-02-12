@@ -4,7 +4,7 @@ import castArray from 'lodash/castArray';
 
 import Input from '../Input';
 import InputWithOptions from '../InputWithOptions';
-import {google2address, includes} from './google2address';
+import {google2address, includes, trySetStreetNumberIfNotReceived} from './google2address';
 import styles from './GoogleAddressInput.scss';
 
 export const GoogleAddressInputHandler = {
@@ -57,11 +57,7 @@ class GoogleAddressInput extends React.Component {
 
       ...(
         this.props.footer ?
-        [{
-          id: suggestions.length,
-          value: this.props.footer,
-          ...this.props.footerOptions
-        }] :
+          [{id: suggestions.length, value: this.props.footer, ...this.props.footerOptions}] :
           []
       )
     ];
@@ -170,11 +166,11 @@ class GoogleAddressInput extends React.Component {
         // value returned by suggestions list
         return;
       }
-
+      const firstResult = trySetStreetNumberIfNotReceived(results[0], this.state.value);
       const result = {
         originValue: value,
-        googleResult: results[0],
-        address: google2address(results[0])
+        googleResult: firstResult,
+        address: google2address(firstResult)
       };
 
       this.props.onSet && this.props.onSet(result);

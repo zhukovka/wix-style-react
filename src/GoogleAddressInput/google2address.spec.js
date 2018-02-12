@@ -1,7 +1,10 @@
 /*eslint camelcase: off*/
-import {google2address} from './google2address';
+import {google2address, trySetStreetNumberIfNotReceived} from './google2address';
+
 
 describe('google 2 address', () => {
+  const deepClone = obj => JSON.parse(JSON.stringify(obj));
+
   const aComponent = (long_name, short_name, ...types) => ({
     long_name, short_name, types
   });
@@ -136,5 +139,113 @@ describe('google 2 address', () => {
   it('should extract the formatted street address if available', () => {
     const address = '<span class="street-address">Ha-Namal St 40</span>, <span class="locality">Tel Aviv</span>, <span class="country-name">Israel</span>';
     expect(google2address(aGoogleResponse({adr_address: address})).formattedStreetAddress).toEqual('Ha-Namal St 40');
+  });
+
+  it('should complete street addres with user input (5-202) in case google api doesnt return it', () => {
+    const resultFromGoogle = {
+      address_components: [
+        {
+          long_name: 'Chemin West Hill',
+          short_name: 'Chemin West Hill',
+          types: ['route']
+        }
+      ]
+    };
+    const userInput = '5-202 Chemin';
+    const actual = trySetStreetNumberIfNotReceived(resultFromGoogle, userInput);
+
+    const expected = {
+      address_components: [
+        {
+          long_name: '5-202',
+          short_name: '5-202',
+          types: ['street_number']
+        },
+        {
+          long_name: 'Chemin West Hill',
+          short_name: 'Chemin West Hill',
+          types: ['route']
+        }
+      ]
+    };
+
+    expect(actual).toEqual(expected);
+  });
+
+  it('should complete street addres with user input (5/202) in case google api doesnt return it', () => {
+    const resultFromGoogle = {
+      address_components: [
+        {
+          long_name: 'Chemin West Hill',
+          short_name: 'Chemin West Hill',
+          types: ['route']
+        }
+      ]
+    };
+    const userInput = '5/202 Chemin';
+    const actual = trySetStreetNumberIfNotReceived(resultFromGoogle, userInput);
+
+    const expected = {
+      address_components: [
+        {
+          long_name: '5/202',
+          short_name: '5/202',
+          types: ['street_number']
+        },
+        {
+          long_name: 'Chemin West Hill',
+          short_name: 'Chemin West Hill',
+          types: ['route']
+        }
+      ]
+    };
+
+    expect(actual).toEqual(expected);
+  });
+
+  it('should complete street addres with user input (5 202) in case google api doesnt return it', () => {
+    const resultFromGoogle = {
+      address_components: [
+        {
+          long_name: 'Chemin West Hill',
+          short_name: 'Chemin West Hill',
+          types: ['route']
+        }
+      ]
+    };
+    const userInput = '5 202 Chemin';
+    const actual = trySetStreetNumberIfNotReceived(resultFromGoogle, userInput);
+
+    const expected = {
+      address_components: [
+        {
+          long_name: '5 202',
+          short_name: '5 202',
+          types: ['street_number']
+        },
+        {
+          long_name: 'Chemin West Hill',
+          short_name: 'Chemin West Hill',
+          types: ['route']
+        }
+      ]
+    };
+
+    expect(actual).toEqual(expected);
+  });
+
+
+  it('should not complete street address in case it has been returned from google api', () => {
+    const given = {
+      address_components: [
+        {
+          long_name: '5-202',
+          short_name: '5-202',
+          types: ['street_number']
+        }
+      ]
+    };
+    const expected = deepClone(given);
+    expect(trySetStreetNumberIfNotReceived(given, '77777 Chemin')).toEqual(expected);
   });
 });
