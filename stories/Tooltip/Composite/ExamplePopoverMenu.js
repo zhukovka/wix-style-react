@@ -1,16 +1,15 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 
-import RadioGroup from '../../../src/RadioGroup';
-import Label from '../../../src/Label';
-import PopoverMenuBuilder from './PopoverMenuBuilder';
-import Input from '../../../src/Input';
+import RadioGroup from 'wix-style-react/RadioGroup';
+import Label from 'wix-style-react/Label';
+import Input from 'wix-style-react/Input';
 
-import styles from './Example.scss';
+import PopoverMenuBuilder from './PopoverMenuBuilder';
 import PopoverMenuTemplate from './PopoverMenuTemplate';
+import styles from './Example.scss';
 
 class ExamplePopoverMenu extends Component {
-
   static propTypes = {
     onChange: PropTypes.func
   };
@@ -27,11 +26,10 @@ class ExamplePopoverMenu extends Component {
     maxWidth: '378px'
   };
 
-  addRow = () => {
+  addRow = () =>
     this.setState({menuItems: [...this.state.menuItems, {iconName: '', text: ''}]});
-  };
 
-  updateRowIcon = (iconName, i) => {
+  updateRowIcon = (iconName, i) =>
     this.setState({
       menuItems: [
         ...(this.state.menuItems.slice(0, i).map(obj => Object.assign({}, obj))),
@@ -39,9 +37,8 @@ class ExamplePopoverMenu extends Component {
         ...(this.state.menuItems.slice(i + 1).map(obj => Object.assign({}, obj)))
       ]
     });
-  };
 
-  updateRowText = (text, i) => {
+  updateRowText = (text, i) =>
     this.setState({
       menuItems: [
         ...(this.state.menuItems.slice(0, i).map(obj => Object.assign({}, obj))),
@@ -49,7 +46,6 @@ class ExamplePopoverMenu extends Component {
         ...(this.state.menuItems.slice(i + 1).map(obj => Object.assign({}, obj)))
       ]
     });
-  };
 
   render() {
     return (

@@ -1,23 +1,42 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import classnames from 'classnames';
+
 import WixComponent from '../BaseComponents/WixComponent';
+import Text from '../Text';
+
 import styles from './PopoverMenuItem.scss';
-import typography from '../../src/Typography';
-import classNames from 'classnames';
 
 class PopoverMenuItem extends WixComponent {
   static propTypes = {
     icon: PropTypes.node,
     text: PropTypes.string,
-    onClick: PropTypes.func
+    onClick: PropTypes.func,
+    size: PropTypes.oneOf(['normal', 'large'])
+  };
+
+  static defaultProps = {
+    size: 'normal'
   };
 
   render() {
     return (
-      <li className={classNames(typography.t3, styles.menuItem)}>
-        <button type="button" className={styles.button} onClick={this.props.onClick}>
-          {this.props.icon && <span className={styles.icon}>{this.props.icon}</span>}
-          <span className={styles.text} data-hook="menu-item-text">{this.props.text}</span>
+      <li className={classnames(styles.root, {[styles.large]: this.props.size === 'large'})}>
+        <button
+          type="button"
+          className={styles.button}
+          onClick={this.props.onClick}
+          >
+          {this.props.icon && <div className={styles.icon}>{this.props.icon}</div>}
+
+          <div className={styles.text}>
+            <Text
+              dataHook="menu-item-text"
+              appearance={this.props.size === 'normal' ? 'T3' : 'T1'}
+              >
+              {this.props.text}
+            </Text>
+          </div>
         </button>
       </li>
     );

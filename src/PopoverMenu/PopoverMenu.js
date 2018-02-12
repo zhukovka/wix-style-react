@@ -5,10 +5,9 @@ import Tooltip from '../Tooltip';
 import Button from '../Backoffice/Button';
 import Dots from '../Icons/dist/components/Dots';
 import PopoverMenuItem from '../PopoverMenuItem';
-import classNames from 'classnames';
+import classnames from 'classnames';
 
 class PopoverMenu extends WixComponent {
-
   static propTypes = {
     size: Tooltip.propTypes.size,
     placement: Tooltip.propTypes.placement,
@@ -25,55 +24,77 @@ class PopoverMenu extends WixComponent {
     maxWidth: '378px'
   };
 
-  render() {
-    const menuItems = React.Children.map(this.props.children, (child, i) => {
-      if (!child) {
+  placements = {
+    top: styles.topPlacement,
+    right: styles.rightPlacement,
+    bottom: styles.bottomPlacement,
+    left: styles.leftPlacement
+  };
+
+  placementStyle = placement =>
+    this.placements[placement] || styles.topPlacement
+
+  menuItems = items =>
+    React.Children.map(items, (item, i) => {
+      if (!item) {
         return null;
       }
 
-      const {onClick, ...passThroughProps} = child.props;
-      const onClickWithHide = () => {
-        this.tooltip.hide();
-        onClick();
-      };
-      return <PopoverMenuItem {...passThroughProps} onClick={onClickWithHide} key={i}/>;
+      return (
+        <PopoverMenuItem
+          {...item.props}
+          size={this.props.size}
+          key={i}
+          onClick={() => {
+            this.tooltip.hide();
+            item.props.onClick();
+          }}
+          />
+      );
     });
 
-    const assertPlacement = placement => this.props.placement === placement;
-    const className = classNames({
-      [styles.menu]: true,
-      [styles.topPlacement]: assertPlacement('top'),
-      [styles.rightPlacement]: assertPlacement('right'),
-      [styles.bottomPlacement]: assertPlacement('bottom'),
-      [styles.leftPlacement]: assertPlacement('left')
-    });
+  menu = () =>
+    <ul
+      className={classnames(
+        styles.menu,
+        {
+          [styles.large]: this.props.size === 'large',
+          [styles.placementTop]: this.props.placement === 'top',
+          [styles.placementBottom]: this.props.placement === 'bottom'
+        }
+        )}
+      >
+      {this.menuItems(this.props.children)}
+    </ul>
 
-    const tooltipContent = (
-      <ul className={className}>
-        {menuItems}
-      </ul>
-    );
+  render() {
+    const {
+      placement,
+      size,
+      maxWidth,
+      buttonHeight,
+      buttonTheme
+    } = this.props;
 
     return (
       <Tooltip
-        ref={tooltip => {
-          this.tooltip = tooltip;
-        }}
-        placement={this.props.placement}
+        ref={tooltip => this.tooltip = tooltip}
+        placement={placement}
         alignment="center"
-        content={tooltipContent}
+        content={this.menu()}
         showTrigger="click"
-        hideDelay={0}
         hideTrigger="click"
+        hideDelay={0}
         theme="light"
-        size={this.props.size}
-        maxWidth={this.props.maxWidth}
+        size={size}
+        padding={0}
+        maxWidth={maxWidth}
         shouldCloseOnClickOutside
         >
         <Button
           type="button"
-          height={this.props.buttonHeight}
-          theme={this.props.buttonTheme}
+          height={buttonHeight}
+          theme={buttonTheme}
           >
           <Dots size="12px"/>
         </Button>
