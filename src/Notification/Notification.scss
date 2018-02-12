@@ -9,11 +9,13 @@
   align-items: center;
   justify-content: center;
   overflow: hidden;
+  padding: 12px;
 }
 
 .label {
   max-width: 70%;
   margin-right: 12px;
+  display: flex;
 }
 
 .closeButton {
@@ -52,10 +54,6 @@
 .warningTheme { background-color: $Y10; }
 .premiumTheme { background-color: $P20; }
 
-/*Size*/
-
-.smallSize { height: 42px; }
-.bigSize { height: 54px; }
 
 /*Animations*/
 $easeOutQuint: cubic-bezier(0.23, 1, 0.32, 1);

@@ -71,43 +71,6 @@ describe('Notification', () => {
     });
   });
 
-  describe('Sizes', () => {
-    it('should have a small size by default', () => {
-      const driver = createDriver(renderNotificationWithProps({show: true}));
-      expect(driver.isSmallSize()).toBeTruthy();
-    });
-
-    it('should have a big size if CTA button present', () => {
-      const driver = createDriver(
-        <Notification show>
-          <Notification.TextLabel>
-            label
-          </Notification.TextLabel>
-          <Notification.ActionButton>
-            action
-          </Notification.ActionButton>
-          <Notification.CloseButton/>
-        </Notification>
-      );
-      expect(driver.isBigSize()).toBeTruthy();
-    });
-
-    it('should have a small size if CTA link present', () => {
-      const driver = createDriver(
-        <Notification show>
-          <Notification.TextLabel>
-            label
-          </Notification.TextLabel>
-          <Notification.ActionButton type="textLink" link="http://some.link">
-            action
-          </Notification.ActionButton>
-          <Notification.CloseButton/>
-        </Notification>
-      );
-      expect(driver.isSmallSize()).toBeTruthy();
-    });
-  });
-
   describe('Content', () => {
     describe('Label', () => {
       it('should show have a text to show', () => {

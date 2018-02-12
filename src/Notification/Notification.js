@@ -21,9 +21,6 @@ export const notificationTypeToPosition = {
   [STICKY_NOTIFICATION]: 'fixed'
 };
 
-const SIZE_BIG = 'big';
-const SIZE_SMALL = 'small';
-
 const animationsTimeouts = {
   enter: 500,
   exit: 350
@@ -124,7 +121,6 @@ class Notification extends WixComponent {
   renderNotification() {
     const {zIndex, children, type, theme} = this.props;
     const childrenComponents = mapChildren(children);
-    const size = childrenComponents.ctaButton && childrenComponents.ctaButton.props.type === 'button' ? SIZE_BIG : SIZE_SMALL;
 
     return (
       <CSSTransition
@@ -142,7 +138,6 @@ class Notification extends WixComponent {
           className={classNames(
             css.notification,
             css[`${theme}Theme`],
-            css[`${size}Size`],
             css[`${notificationTypeToPosition[type]}Position`]
           )}
           >
