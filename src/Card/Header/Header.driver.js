@@ -8,8 +8,8 @@ const headerDriverFactory = ({element, wrapper, component}) => {
 
   return {
     exists: () => !!element,
-    title: () => title && title.innerHTML,
-    subtitle: () => subtitle && subtitle.innerHTML,
+    title: () => title && title.textContent,
+    subtitle: () => subtitle && subtitle.textContent,
     setProps: props => {
       const ClonedWithProps = React.cloneElement(component, Object.assign({}, component.props, props), ...(component.props.children || []));
       ReactDOM.render(<div ref={r => element = r}>{ClonedWithProps}</div>, wrapper);

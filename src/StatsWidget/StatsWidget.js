@@ -36,7 +36,10 @@ class StatsWidget extends WixComponent {
 
   _renderPercentage(percent) {
     return (<Text appearance="H3">
-      <div className={classnames(styles.percents, {[styles.isNegative]: percent < 0}, {[styles.isPositive]: percent > 0})} data-hook="percent-wrapper">
+      <div
+        className={classnames(styles.percents, {[styles.isNegative]: percent < 0}, {[styles.isPositive]: percent > 0})}
+        data-hook="percent-wrapper"
+        >
         <span className={classnames(styles.percentArrow)}><ArrowVertical/></span>
         <span data-hook="percent-value">{Math.abs(percent)}%</span>
       </div>
@@ -49,7 +52,7 @@ class StatsWidget extends WixComponent {
       <Text dataHook="statistics-item-subtitle" appearance="H3">
         {statistics.subtitle}
       </Text>
-      { typeof (statistics.percent) !== 'undefined' && this._renderPercentage(statistics.percent)}
+      {typeof (statistics.percent) === 'number' && this._renderPercentage(statistics.percent)}
     </div>);
   }
 
@@ -62,7 +65,11 @@ class StatsWidget extends WixComponent {
 
     return (
       <Card>
-        <Card.Header dataHook="stats-widget-title" title={title} suffix={this._renderFilters(children)}/>
+        <Card.Header
+          dataHook="stats-widget-title"
+          title={title}
+          suffix={this._renderFilters(children)}
+          />
         <Card.Content>
           <div className={styles.statsColumnWrapper} data-hook="stats-widget-content-wrapper">
             {statistics.map((stat, index) => this._renderColumn(stat, index))}

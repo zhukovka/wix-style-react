@@ -29,7 +29,7 @@ class Header extends WixComponent {
 
     const titleElement = (
       <div data-hook="title" className={styles.title}>
-        {title}
+        <span>{title}</span>
       </div>
     );
 
