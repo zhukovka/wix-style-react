@@ -13,6 +13,15 @@ Types of changes:
 1. **Breaking** for breaking changes
 
 
+## 2.0.24 - 2018-02-19
+### Changed
+- `<Page.Header/>` - update gradient height [#1458](https://github.com/wix/wix-style-react/pull/1458)
+
+### Fixed
+- `<Page/>` fixed bug in IE [#1468](https://github.com/wix/wix-style-react/pull/1468)
+- `<Card/>` header title position fix [#1464](https://github.com/wix/wix-style-react/pull/1464)
+- `<Selector/>` & `<ModalSelectorLayout/>` cover long text with ellipsis [#1461](https://github.com/wix/wix-style-react/pull/1461)
+
 ## 2.0.23 - 2018-02-14
 ### Fixed
 - `<RadioGroup/>` - Fix radio button width (#1457)
