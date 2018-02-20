@@ -398,6 +398,7 @@ describe('DatePicker', () => {
         const {calendarDriver} = createDriver(<DatePicker onChange={onChange}/>);
 
         calendarDriver.open();
+        expect(calendarDriver.isVisible()).toBe(true);
         calendarDriver.close();
 
         expect(calendarDriver.isVisible()).toBe(false);
