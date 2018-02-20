@@ -84,6 +84,7 @@
     "sinon": "^1.17.6",
     "svg2react-icon": "^1.0.0",
     "wait-for-cond": "^1.0.3",
+    "wix-eventually": "^2.2.0",
     "wix-storybook-utils": "^1.0.0"
   },
   "peerDependencies": {
