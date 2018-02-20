@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import ReactTestUtils from 'react-dom/test-utils';
 import styles from './RichTextArea.scss';
 
-const richTextAreaDriverFactory = ({element, wrapper, component}) => {
+const richTextAreaDriverFactory = ({element, wrapper, component, componentInstance}) => {
   const getButtons = () => [...element.querySelectorAll('[data-hook*="rich-text-area-button"]')];
   const getEditorWrapper = () => element.querySelector('[data-hook=editor-wrapper]');
   const getButtonType = button => button.getAttribute('data-hook').replace(/^rich-text-area-button-/, '');
@@ -22,7 +22,15 @@ const richTextAreaDriverFactory = ({element, wrapper, component}) => {
     clickUnorderedListButton: clickButtonByType('unordered-list'),
     clickOrderedListButton: clickButtonByType('ordered-list'),
     getContent: () => element.childNodes[1].textContent,
-    enterText: () => null,
+    enterText: text => {
+      const editorState = componentInstance.state.editorState;
+      const newEditorState = editorState
+              .transform()
+              .insertText(text)
+              .apply();
+
+      componentInstance.setEditorState(newEditorState);
+    },
     isErrorIndicatorVisible: () => Boolean(element.classList.contains(styles.withError)),
     isDisabled: () => (
       getButtons().every(button => button.classList.contains(styles.disabled)) &&

@@ -10,7 +10,7 @@ import datePickerDriverFactory from './DatePicker.driver';
 import Input from '../Input';
 import DatePicker from './DatePicker';
 
-describe.skip('DatePicker', () => {
+describe('DatePicker', () => {
   const createDriver = createDriverFactory(datePickerDriverFactory);
   let onChange;
 
