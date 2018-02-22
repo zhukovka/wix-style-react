@@ -12,6 +12,13 @@ Types of changes:
 1. **Security** in case of vulnerabilities.
 1. **Breaking** for breaking changes
 
+## 2.0.25 - 2018-02-22
+### Changed
+- `<Page/>` - Reverted a bug fix for IE [#1468](https://github.com/wix/wix-style-react/pull/1468) that caused google chrome issue.
+- Removed the `componentInstance` occurrences in tests.
+
+### **Added** for new features.
+- `<Icon/>` - new email icon
 
 ## 2.0.24 - 2018-02-19
 ### Changed
