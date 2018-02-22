@@ -11,6 +11,7 @@
   margin-top: 4px;
   margin-bottom: 4px;
   height: 24px;
+  transition: background-color ease 300ms;
 
   .thumb {
     position: relative;
@@ -33,6 +34,10 @@
   &.disabled {
     background-color: $GR30;
     color: $D30;
+
+    &:hover {
+      background-color: $GR30;
+    }
   }
 }
 
@@ -64,8 +69,13 @@
 
 .standard-theme {
   background-color: $B40;
+
   .tagRemoveButton {
     color: $B10;
+  }
+
+  &:hover {
+    background-color: $B30;
   }
 }
 
@@ -75,6 +85,7 @@
     color: white;
   }
 }
+
 .warning-theme:hover {
   background-color: $Y30;
 }

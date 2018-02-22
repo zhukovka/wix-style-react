@@ -18,6 +18,7 @@ const tagDriverFactory = ({element, wrapper, component}) => {
     isErrorTheme: () => isClassExists(element, 'errorTheme'),
     isRemovable: () => isClassExists(removeButton, 'tagRemoveButton'),
     removeTag: () => ReactTestUtils.Simulate.click(removeButton),
+    click: () => ReactTestUtils.Simulate.click(element),
     isThumbExists: () => isClassExists(thumb, 'thumb'),
     isWrapped: () => isClassExists(element, 'tagWrap') && isClassExists(contentWithoutThumb, 'innerTagWrap'),
     isDisabled: () => isClassExists(element, 'disabled'),
