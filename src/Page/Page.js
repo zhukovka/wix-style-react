@@ -116,11 +116,12 @@ class Page extends WixComponent {
   }
 
   _pageHeaderContainerStyle() {
-    // Fixes width issues when scrollllbar is present in windows
-    const pageWidth = this.pageHeaderRef && this.pageHeaderRef.parentElement.offsetWidth;
-    const contentWidth = this.contentContainerRef && this.contentContainerRef.offsetWidth;
-    if (contentWidth && pageWidth && contentWidth < pageWidth) {
-      return {width: `calc(100% - ${pageWidth - contentWidth}px`};
+    // Fixes width issues when scroll bar is present in windows
+    const scrollBarWidth =
+      this.scrollableContentRef &&
+      this.scrollableContentRef.offsetWidth - this.scrollableContentRef.clientWidth;
+    if (scrollBarWidth) {
+      return {width: `calc(100% - ${scrollBarWidth}px`};
     }
     return null;
   }
@@ -202,7 +203,7 @@ class Page extends WixComponent {
                 style={{height: gradientHeight}}
                 />
           }
-          <div className={s.contentContainer} ref={r => this.contentContainerRef = r}>
+          <div className={s.contentContainer}>
             <div className={classNames(s.content, {[s.contentFullScreen]: contentFullScreen})} style={contentFullScreen ? null : pageDimensionsStyle}>
               {this._safeGetChildren(PageContent)}
             </div>
