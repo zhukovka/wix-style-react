@@ -29,24 +29,31 @@ const MyComponent = () =>
   </Button>;
 ```
 
-## Tips & Tricks
+## Requirements
 
-* `wix-style-react` works best when [Haste](https://github.com/wix/haste) is used as build tool. If you do not use it, read [webpack setup instructions here](https://wix.github.io/wix-style-react/?selectedKind=Introduction&selectedStory=Usage%20Without%20Haste&full=0&down=0&left=1&panelRight=0);
-* Ensure `<body>` has either `ltr` or `rtl` class applied to it (depending on the displayed language);
-* To enable font smoothing, use browser specific css properties, for example:
+* Load Wix fonts from CDN
+    ```html
+    <link rel="stylesheet" href="//static.parastorage.com/services/third-party/fonts/Helvetica/fontFace.css">
+    ```
+* Ensure `<body>` has either `ltr` or `rtl` class applied to it (depending on displayed language);
+
+## Tips
+
+* Use [Haste](https://github.com/wix/haste) as build tool to avoid configuration. Otherwise follow [webpack setup instructions here](https://wix.github.io/wix-style-react/?selectedKind=Introduction&selectedStory=Usage%20Without%20Haste&full=0&down=0&left=1&panelRight=0)
+* Enable font smoothing with browser specific css properties, for example:
     ```css
     html {
       -webkit-font-smoothing: antialiased;
       -moz-osx-font-smoothing: grayscale;
     }
     ```
-* Make use of [storybook demo page](https://wix.github.io/wix-style-react) which includes all available components with interactive examples.
-
-## Tests
-Please refer to the [Testing page](https://wix.github.io/wix-style-react/?selectedKind=Introduction&selectedStory=Testing&full=0&down=0&left=1&panelRight=0)
+* Use [demo pages](https://wix.github.io/wix-style-react) to find all available components with examples.
 
 ## Contributing
 Please refer to the [Contribution page](https://wix.github.io/wix-style-react/?selectedKind=Introduction&selectedStory=Contribution&full=0&down=0&left=1&panelRight=0)
+
+## Tests
+Please refer to the [Testing page](https://wix.github.io/wix-style-react/?selectedKind=Introduction&selectedStory=Testing&full=0&down=0&left=1&panelRight=0)
 
 ## License
 This project is offered under [MIT License](https://github.com/wix/wix-style-react/blob/master/LICENSE).
