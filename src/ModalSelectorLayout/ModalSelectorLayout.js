@@ -1,15 +1,28 @@
 import React from 'react';
 import {bool, func, node, number, oneOf, string} from 'prop-types';
+
 import WixComponent from '../BaseComponents/WixComponent';
 import Loader from '../Loader/Loader';
 import HeaderLayout from '../MessageBox/HeaderLayout';
-import css from './ModalSelectorLayout.scss';
 import FooterLayout from '../MessageBox/FooterLayout';
 import Selector from '../Selector/Selector';
 import Search from '../Search/Search';
 import InfiniteScroll from '../DataTable/InfiniteScroll';
 import Text from '../Text/Text';
 import {dataHooks} from './ModalSelectorLayout.helpers';
+import Checkbox from '../Checkbox';
+
+import css from './ModalSelectorLayout.scss';
+
+
+const DEFAULT_EMPTY = (
+  <div className={css.defaultEmptyStateWrapper}>
+    <Text appearance="T1">
+      {'You don\'t have any items'}
+    </Text>
+  </div>
+);
+
 
 /**
  * Use this component when needed to select one / multiple items having complex descriptions.
@@ -90,7 +103,7 @@ export default class ModalSelectorLayout extends WixComponent {
 
     /**
      * Function that will get the current `searchQuery` and should return the component/element
-     * that will be rendered when there no items that suffice the entered search query
+     * that will be rendered when there are no items that suffice the entered search query
      *  */
     noResultsFoundStateFactory: func,
 
@@ -99,7 +112,16 @@ export default class ModalSelectorLayout extends WixComponent {
 
     /** Whether to display the search input or not */
     withSearch: bool,
-    height: string
+    height: string,
+
+    /** display checkbox and allow multi selection */
+    multiple: bool,
+
+    /** string to be displayed in footer when `multiple` prop is used and no items are selected  */
+    selectAllText: string,
+
+    /** string to be displayed in footer when `multiple` prop is used and some or all items ar selected */
+    deselectAllText: string
   };
 
   static defaultProps = {
@@ -112,9 +134,11 @@ export default class ModalSelectorLayout extends WixComponent {
     itemsPerPage: 50,
     withSearch: true,
     height: '100%',
-    emptyState: <div className={css.defaultEmptyStateWrapper}><Text appearance="T1">{'You don\'t have any items'}</Text></div>,
+    emptyState: DEFAULT_EMPTY,
     noResultsFoundStateFactory: searchValue =>
-      <div className={css.defaultNoResultsFoundStateWrapper}><Text appearance="T1">No items matched your search {`"${searchValue}"`}</Text></div>
+      <div className={css.defaultNoResultsFoundStateWrapper}><Text appearance="T1">No items matched your search {`"${searchValue}"`}</Text></div>,
+    selectAllText: 'Select All',
+    deselectAllText: 'Deselect All'
   };
 
   state = {
@@ -122,7 +146,7 @@ export default class ModalSelectorLayout extends WixComponent {
     isSearching: false,
     items: [],
     searchValue: '',
-    selectedItem: undefined,
+    selectedItems: [],
     shouldShowNoResultsFoundState: false,
     isEmpty: false
   };
@@ -132,10 +156,6 @@ export default class ModalSelectorLayout extends WixComponent {
       title,
       subtitle,
       onClose,
-      onCancel,
-      onOk,
-      cancelButtonText,
-      okButtonText,
       searchPlaceholder,
       emptyState,
       noResultsFoundStateFactory,
@@ -149,30 +169,34 @@ export default class ModalSelectorLayout extends WixComponent {
       isEmpty,
       isSearching,
       searchValue,
-      selectedItem,
       shouldShowNoResultsFoundState
     } = this.state;
 
     return (
       <div className={css.modalContent} style={{height}}>
         <HeaderLayout title={title} onCancel={onClose}/>
-        {isLoaded && !isEmpty && <div className={css.subheaderWrapper}>
-          {subtitle &&
-          <div className={css.subtitleWrapper}>
-            <Text appearance="T1" dataHook={dataHooks.subtitle}>{subtitle}</Text>
+
+        { isLoaded && !isEmpty &&
+          <div className={css.subheaderWrapper}>
+            {subtitle &&
+              <div className={css.subtitleWrapper}>
+                <Text appearance="T1" dataHook={dataHooks.subtitle}>{subtitle}</Text>
+              </div>
+            }
+
+            {withSearch &&
+              <div className={css.searchWrapper}>
+                <Search
+                  dataHook={dataHooks.search}
+                  placeholder={searchPlaceholder}
+                  value={searchValue}
+                  onChange={e => this._onSearchChange(e)}
+                  />
+              </div>
+            }
           </div>
-          }
-          {withSearch &&
-          <div className={css.searchWrapper}>
-            <Search
-              dataHook={dataHooks.search}
-              placeholder={searchPlaceholder}
-              value={searchValue}
-              onChange={e => this._onSearchChange(e)}
-              />
-          </div>
-          }
-        </div>}
+        }
+
         <div className={css.modalBody} data-hook={dataHooks.modalBody}>
           {
             ((items.length === 0 && !isLoaded) || isSearching) &&
@@ -183,52 +207,62 @@ export default class ModalSelectorLayout extends WixComponent {
                 />
             </div>
           }
+
           {isEmpty &&
-          <div data-hook={dataHooks.emptyState} className={css.emptyStateWrapper}>
-            {emptyState}
-          </div>
+            <div
+              data-hook={dataHooks.emptyState}
+              className={css.emptyStateWrapper}
+              children={emptyState}
+              />
           }
+
           {((!isLoaded || items.length > 0) || isSearching) &&
-          <InfiniteScroll
-            key={searchValue}
-            loadMore={() => this._loadMore()}
-            hasMore={this._hasMore()}
-            useWindow={false}
-            loader={items.length > 0 &&
-            <div className={css.nextPageLoaderWrapper}>
-              <Loader
-                size="small"
-                dataHook={dataHooks.nextPageLoader}
-                />
-            </div>}
-            >
-            {this._renderItems()}
-          </InfiniteScroll>
+            <InfiniteScroll
+              key={searchValue}
+              loadMore={() => this._loadMore()}
+              hasMore={this._hasMore()}
+              useWindow={false}
+              children={this._renderItems()}
+              loader={items.length > 0 &&
+                <div className={css.nextPageLoaderWrapper}>
+                  <Loader
+                    size="small"
+                    dataHook={dataHooks.nextPageLoader}
+                    />
+                </div>}
+              />
           }
+
           {shouldShowNoResultsFoundState &&
-          <div
-            data-hook={dataHooks.noResultsFoundState}
-            className={css.noResultsFoundStateWrapper}
-            >
-            {noResultsFoundStateFactory(searchValue)}
-          </div>
+            <div
+              data-hook={dataHooks.noResultsFoundState}
+              className={css.noResultsFoundStateWrapper}
+              children={noResultsFoundStateFactory(searchValue)}
+              />
           }
         </div>
-        <FooterLayout
-          withTopPadding={isLoaded}
-          onCancel={onCancel}
-          onOk={() => onOk(selectedItem)}
-          cancelText={cancelButtonText}
-          confirmText={okButtonText}
-          enableOk={!!selectedItem}
-          />
+
+        {this._renderFooter()}
       </div>
     );
   }
 
   _renderItems() {
-    const {items, selectedItem} = this.state;
-    const {imageSize, imageShape} = this.props;
+    const {items, selectedItems} = this.state;
+    const {imageSize, imageShape, multiple} = this.props;
+
+    const isSelected = item => !!selectedItems.find(({id}) => item.id === id);
+
+    const onToggle = item =>
+      this.setState({
+        selectedItems:
+          multiple ?
+            isSelected(item) ?
+              selectedItems.filter(({id}) => item.id !== id) :
+              selectedItems.concat(item) :
+
+           [item]
+      });
 
     if (items.length > 0) {
       return (
@@ -240,13 +274,13 @@ export default class ModalSelectorLayout extends WixComponent {
               dataHook={dataHooks.selector}
               imageSize={imageSize}
               imageShape={imageShape}
-              toggleType="radio"
+              toggleType={multiple ? 'checkbox' : 'radio'}
               image={item.image}
               title={item.title}
               subtitle={item.subtitle}
               extraNode={item.extraNode ? item.extraNode : <Text appearance="T1.1">{item.extraText}</Text>}
-              isSelected={selectedItem && (selectedItem.id === item.id)}
-              onToggle={() => this.setState({selectedItem: item})}
+              isSelected={isSelected(item)}
+              onToggle={() => onToggle(item)}
               />
 
           ))}
@@ -266,26 +300,99 @@ export default class ModalSelectorLayout extends WixComponent {
   _loadMore() {
     const {dataSource, itemsPerPage} = this.props;
     const {items, searchValue} = this.state;
-    dataSource(searchValue, items.length, itemsPerPage).then(({items: itemsFromNextPage, totalCount}) => {
-      if (this.state.searchValue === searchValue) { // react only to the resolve of the relevant search
-        const newItems = [...items, ...itemsFromNextPage];
 
-        const shouldShowNoResultsFoundState = (newItems.length === 0) && searchValue;
-        const isEmpty = (newItems.length === 0) && !searchValue;
-        this.setState({
-          items: newItems,
-          isLoaded: true,
-          isEmpty,
-          isSearching: false,
-          totalCount,
-          shouldShowNoResultsFoundState
-        });
-      }
-    });
+    dataSource(searchValue, items.length, itemsPerPage)
+      .then(({items: itemsFromNextPage, totalCount}) => {
+        if (this.state.searchValue === searchValue) { // react only to the resolve of the relevant search
+          const newItems = [...items, ...itemsFromNextPage];
+
+          const shouldShowNoResultsFoundState = (newItems.length === 0) && searchValue;
+          const isEmpty = (newItems.length === 0) && !searchValue;
+
+          this.setState({
+            items: newItems,
+            isLoaded: true,
+            isEmpty,
+            isSearching: false,
+            totalCount,
+            shouldShowNoResultsFoundState
+          });
+        }
+      });
   }
 
   _hasMore() {
     const {items, isLoaded, totalCount, isSearching} = this.state;
     return (items.length === 0 && !isLoaded) || (items.length < totalCount) || isSearching;
+  }
+
+  _renderFooter = () => {
+    const {
+      isLoaded,
+      selectedItems
+    } = this.state;
+
+    const {
+      onCancel,
+      onOk,
+      cancelButtonText,
+      okButtonText,
+      multiple
+    } = this.props;
+
+    return (
+      <FooterLayout
+        withTopPadding={isLoaded}
+        onCancel={onCancel}
+        onOk={() => onOk(multiple ? selectedItems : selectedItems[0])}
+        cancelText={cancelButtonText}
+        confirmText={okButtonText}
+        enableOk={!!selectedItems.length}
+        children={multiple && this._renderFooterSelector()}
+        />
+    );
+  }
+
+  _renderFooterSelector = () => {
+    const {selectAllText, deselectAllText} = this.props;
+    const {selectedItems, items} = this.state;
+
+    const cases = {
+      select: {
+        text: selectAllText,
+        number: items.length,
+        onChange: () => this.setState({selectedItems: items}),
+        indeterminate: false,
+        checked: false
+      },
+
+      deselect: {
+        text: deselectAllText,
+        number: selectedItems.length,
+        onChange: () => this.setState({selectedItems: []}),
+        indeterminate: selectedItems.length < items.length,
+        checked: true
+      }
+    };
+
+    const {
+      text,
+      number,
+      onChange,
+      checked,
+      indeterminate
+    } = selectedItems.length ? cases.deselect : cases.select;
+
+    return (
+      <Checkbox
+        checked={checked}
+        onChange={onChange}
+        indeterminate={indeterminate}
+        >
+        <Text appearance="T2">
+          {` ${text} (${number})`}
+        </Text>
+      </Checkbox>
+    );
   }
 }

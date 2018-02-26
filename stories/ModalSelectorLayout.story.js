@@ -5,7 +5,7 @@ import ModalSelectorLayout from 'wix-style-react/ModalSelectorLayout';
 import Button from 'wix-style-react/Button';
 import Text from 'wix-style-react/Text';
 
-const allItems = times(50, i => ({
+const ITEMS = times(50, i => ({
   id: i,
   title: `Title ${i}`,
   subtitle: `Subtitle ${i}`,
@@ -25,26 +25,40 @@ export default {
     onClose: () => setState({isOpen: false}),
     onCancel: () => setState({isOpen: false}),
     itemsPerPage: 4,
+
     dataSource: (searchQuery, offset, limit) =>
       new Promise(resolve =>
         setTimeout(() => {
-          const filteredItems = allItems.filter(item => item.title.toLowerCase().startsWith(searchQuery.toLowerCase()));
+          const filtered = ITEMS
+            .filter(({title}) => title.toLowerCase().startsWith(searchQuery.toLowerCase()));
 
-          return resolve({
-            items: filteredItems.slice(offset, offset + limit),
-            totalCount: filteredItems.length
+          resolve({
+            items: filtered.slice(offset, offset + limit),
+            totalCount: filtered.length
           });
         }, 2000)
       )
   }),
 
   exampleProps: {
-    onOk: ({id, title, subtitle}) => JSON.stringify({id, title, subtitle}),
+    onOk: data => {
+      const isArray = Array.isArray(data);
+      const view = i => ({id: i.id, title: i.title, subtitle: i.substitle});
+
+      return JSON.stringify(
+        isArray ?
+          data.map(view) :
+          view(data)
+      );
+    },
+
     onCancel: () => 'canceled',
+
     title: [
       ModalSelectorLayout.defaultProps.title,
       <Text key={0} appearance="T2">BOLD title</Text>
     ],
+
     subtitle: [
       '',
       'A list of items go below',
