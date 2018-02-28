@@ -46,4 +46,4 @@
 | important | bool | false | - | Whether font color should be stronger, more dominant |
 | sortable | bool | false | - | Enables sorting by column |
 | sortDescending | bool | - | - | Pass false - for ascending sort, true - for descending|
-| style | string | - | - | Sets the column inline style |
+| style | object | - | - | Sets the column inline style |
