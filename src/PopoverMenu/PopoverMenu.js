@@ -84,6 +84,7 @@ class PopoverMenu extends WixComponent {
         content={this.menu()}
         showTrigger="click"
         hideTrigger="click"
+        showDelay={0}
         hideDelay={0}
         theme="light"
         size={size}
