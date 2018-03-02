@@ -12,6 +12,20 @@ Types of changes:
 1. **Security** in case of vulnerabilities.
 1. **Breaking** for breaking changes
 
+## 2.0.26 - 2018-03-02
+### Added
+- `<Button/>` Implemented Tiny button [1491](https://github.com/wix/wix-style-react/pull/1491)
+
+### Fixed
+- `<Dropdown/>` - do not show options menu on focus [1500](https://github.com/wix/wix-style-react/pull/1500)
+- `<DataTable/>` - Fix column width not set when header is hidden [1477](https://github.com/wix/wix-style-react/pull/1477)
+- `<Page/>` fixed explorer bug again [1482](https://github.com/wix/wix-style-react/pull/1482)
+
+### Changed
+- `<Input/>` - Change Focus style (#1496)
+- `<PopoverMenu/>` - change show delay to 0 (#1489)
+- `<Tag/>` extend component functionality (#1481)
+
 ## 2.0.25 - 2018-02-22
 ### Changed
 - `<Page/>` - Reverted a bug fix for IE [#1468](https://github.com/wix/wix-style-react/pull/1468) that caused google chrome issue.
