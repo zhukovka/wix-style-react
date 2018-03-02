@@ -145,7 +145,7 @@ class InputWithOptions extends WixComponent {
     return this.props.closeOnSelect;
   }
 
-  _onManuallyInput(inputValue) {
+  _onManuallyInput(inputValue = '') {
     if (this.state.isComposing) {
       return;
     }

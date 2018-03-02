@@ -54,7 +54,11 @@ class Dropdown extends InputWithOptions {
   }
 
   dropdownAdditionalProps() {
-    return {selectedId: this.state.selectedId, value: this.state.value};
+    return {
+      selectedId: this.state.selectedId,
+      value: this.state.value,
+      tabIndex: -1
+    };
   }
 
   inputAdditionalProps() {
@@ -64,6 +68,17 @@ class Dropdown extends InputWithOptions {
   _onSelect(option) {
     this.setState({value: this.props.valueParser(option), selectedId: option.id});
     super._onSelect(option);
+  }
+
+  _onFocus() {
+    if (this.props.disabled) {
+      return;
+    }
+    this._focused = true;
+    this.setState({isEditing: false});
+    if (this.props.onFocus) {
+      this.props.onFocus();
+    }
   }
 }
 
