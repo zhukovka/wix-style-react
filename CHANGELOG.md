@@ -12,6 +12,10 @@ Types of changes:
 1. **Security** in case of vulnerabilities.
 1. **Breaking** for breaking changes
 
+## 2.0.27 - 2018-03-05
+### Fixed
+- `<Input/>` - revert changed focus style [1509](https://github.com/wix/wix-style-react/pull/1509)
+
 ## 2.0.26 - 2018-03-02
 ### Added
 - `<Button/>` Implemented Tiny button [1491](https://github.com/wix/wix-style-react/pull/1491)
@@ -22,9 +26,9 @@ Types of changes:
 - `<Page/>` fixed explorer bug again [1482](https://github.com/wix/wix-style-react/pull/1482)
 
 ### Changed
-- `<Input/>` - Change Focus style (#1496)
-- `<PopoverMenu/>` - change show delay to 0 (#1489)
-- `<Tag/>` extend component functionality (#1481)
+- `<Input/>` - Change Focus style [1496](https://github.com/wix/wix-style-react/pull/1496)
+- `<PopoverMenu/>` - change show delay to 0 [1489](https://github.com/wix/wix-style-react/pull/1489)
+- `<Tag/>` extend component functionality [1481](https://github.com/wix/wix-style-react/pull/1481)
 
 ## 2.0.25 - 2018-02-22
 ### Changed
