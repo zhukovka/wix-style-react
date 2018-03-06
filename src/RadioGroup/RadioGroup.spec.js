@@ -31,6 +31,13 @@ describe('RadioGroup', () => {
     expect(driver.getSelectedValue()).toBe(value.toString());
   });
 
+  it('should update selected value after change to props', () => {
+    const driver = createDriver(elementToRender({value: 1}));
+    const value = 2;
+    driver.setProps({value});
+    expect(driver.getSelectedValue()).toBe(value.toString());
+  });
+
   it('should not check any options if value was not matched', () => {
     const value = 10;
     const driver = createDriver(elementToRender({value}));
