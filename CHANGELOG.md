@@ -12,6 +12,10 @@ Types of changes:
 1. **Security** in case of vulnerabilities.
 1. **Breaking** for breaking changes
 
+## 2.0.28 - 2018-03-06
+### Fixed
+- `<RadioGroup/>` - fix testkit `getSelectedValue` to return the updated selected option [1515](https://github.com/wix/wix-style-react/pull/1515)
+
 ## 2.0.27 - 2018-03-05
 ### Fixed
 - `<Input/>` - revert changed focus style [1509](https://github.com/wix/wix-style-react/pull/1509)
