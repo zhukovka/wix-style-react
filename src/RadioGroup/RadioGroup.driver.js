@@ -8,7 +8,7 @@ const radioGroupDriverFactory = ({element, wrapper, component}) => {
   const radios = toArray(element.children) || [];
   const radioButtons = radios.map(radio => radio.childNodes[0]);
   const labels = radios.map(radio => radio.childNodes[1]);
-  const selectedRadio = radios.find(radio => radio.childNodes[0].checked);
+  const selectedRadio = () => radios.find(radio => radio.childNodes[0].checked);
   const getRadioByValue = value => radioButtons.find(radioButton => radioButton.value === value.toString());
 
   return {
@@ -17,7 +17,7 @@ const radioGroupDriverFactory = ({element, wrapper, component}) => {
     selectByIndex: index => ReactTestUtils.Simulate.change(radioButtons[index]),
     getRadioValueAt: index => radioButtons[index].value,
     getRadioAtIndex: index => radios[index],
-    getSelectedValue: () => selectedRadio ? selectedRadio.childNodes[0].value : null,
+    getSelectedValue: () => selectedRadio() ? selectedRadio().childNodes[0].value : null,
     getClassOfLabelAt: index => labels[index].className,
     isVerticalDisplay: () => isClassExists(element, 'vertical'),
     isHorizontalDisplay: () => isClassExists(element, 'horizontal'),
