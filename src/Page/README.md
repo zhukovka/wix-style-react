@@ -27,12 +27,7 @@ The component by design needs to be contained in a container otherwise the scrol
 <br/>
 The necessary style for the container is:
 <br/>
-```
-height: 100vh;
-display: flex;
-flex-flow: column;
-min-height: 0;
-```
+
 A live example is available <a href="https://wix.github.io/wix-style-react/?selectedKind=2.%20Layout&selectedStory=2.6%20%2B%20Page%20Example">here</a>.
 
 ## Gradient
