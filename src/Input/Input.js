@@ -169,9 +169,9 @@ class Input extends Component {
     this.input && this.input.select();
   };
 
-  _onFocus = () => {
+  _onFocus = e => {
     this.setState({focus: true});
-    this.props.onFocus && this.props.onFocus();
+    this.props.onFocus && this.props.onFocus(e);
 
     if (this.props.autoSelect) {
       // Set timeout is needed here since onFocus is called before react

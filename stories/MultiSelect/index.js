@@ -28,7 +28,7 @@ storiesOf('3. Inputs', module)
           <ExampleWithLimitedNumRows/>
         </CodeExample>
 
-        <CodeExample title="Without options" code={ExampleWithoutOptionsRaw}>
+        <CodeExample title="Without options & with Error" code={ExampleWithoutOptionsRaw}>
           <ExampleWithoutOptions/>
         </CodeExample>
       </div>

@@ -197,7 +197,7 @@ class InputWithOptions extends WixComponent {
     }
   }
 
-  _onFocus() {
+  _onFocus(e) {
     if (this.props.disabled) {
       return;
     }
@@ -205,7 +205,7 @@ class InputWithOptions extends WixComponent {
     this.setState({isEditing: false});
     this.showOptions();
     if (this.props.onFocus) {
-      this.props.onFocus();
+      this.props.onFocus(e);
     }
   }
 

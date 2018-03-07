@@ -29,6 +29,7 @@
   overflow-y: scroll;
 }
 
+// Override <Input>'s default focus style
 .tagsContainer div {
   border: none !important;
 }
@@ -47,4 +48,16 @@
 
 .hasFocus {
   border-color: $B20;
+
+  @include FocusBox;
+
+  // Override <Input>'s default focus style
+  [data-hook="inputWithTags-input"] {
+    box-shadow: none;
+  }
+
+  &.error {
+    @include FocusBoxError;
+  }
+  
 }
