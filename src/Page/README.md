@@ -20,5 +20,20 @@ The PageHeader component is the header implementation that will be changed when 
 | Page.Tail | Page.Tail | null | false | A placeholder for a component which sticks to the bottom of the header. Page.Tail.children receive `minimized` flag |
 | Page.Content | Page.Content | null | true | A placeholder for the page scrollable body, support `fullScreen` property which spans the content on the available area |
 
+## Usage
+When using the `Page` component it is mandatory to apply styles to it's container.
+<br/>
+The component by design needs to be contained in a container otherwise the scroll won't work.
+<br/>
+The necessary style for the container is:
+<br/>
+```
+height: 100vh;
+display: flex;
+flex-flow: column;
+min-height: 0;
+```
+A live example is available <a href="https://wix.github.io/wix-style-react/?selectedKind=2.%20Layout&selectedStory=2.6%20%2B%20Page%20Example">here</a>.
+
 ## Gradient
-You can generate Gradient CSS in here: <a href="https://www.cssmatic.com/gradient-generator">Gradient Generator</a>
+You can generate Gradient CSS <a href="https://www.cssmatic.com/gradient-generator">here</a>.
