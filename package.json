@@ -164,6 +164,16 @@
           "object": "browser",
           "property": "pause",
           "message": "Do not commit browser.pause()."
+        },
+        {
+          "object": "browser",
+          "property": "sleep",
+          "message": "Do not commit browser.sleep()."
+        },
+        {
+          "object": "eyes",
+          "property": "fit",
+          "message": "Do not commit eyes.fit()."
         }
       ],
       "no-restricted-globals": [

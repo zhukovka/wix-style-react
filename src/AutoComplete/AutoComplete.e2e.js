@@ -15,7 +15,7 @@ describe('AutoComplete', () => {
       expect(driver.getDropdown().isDisplayed()).toBe(false);
 
       driver.click();
-      browser.sleep(500);
+      browser.sleep(500);// eslint-disable-line no-restricted-properties
 
       expect(driver.getDropdown().isDisplayed()).toBe(true);
       expect(driver.getDropdownItemsCount()).toEqual(5);
