@@ -1,6 +1,6 @@
 @import '../common.scss';
 $transition-speed:.3s;
-
+$inactiveFocusedBackgroundColor: $B20;
 .toggleSwitch {
     display: inline-block;
 }
@@ -10,7 +10,7 @@ $transition-speed:.3s;
 }
 
 .toggleSwitch input[type=checkbox]:checked + .outerLabel {
-    background: #3899eb;
+    background: $B10;
     .innerLabel {
         left:   23px;
         .toggleActive {
@@ -39,13 +39,25 @@ $transition-speed:.3s;
     display:    inline-block;
     width:      45px;
     height:     24px;
-    background: #b0def8;
+    background: $B40;
     position:   relative;
     cursor:     pointer;
 
     &.disabled {
         cursor: default;
         background: $GR10;
+    }
+
+    &:focus {
+        outline: none;
+        background: $inactiveFocusedBackgroundColor;
+        @include FocusBox;
+
+        .toggleInactive {
+            path {
+                fill: $inactiveFocusedBackgroundColor
+            }
+        }
     }
 }
 
@@ -101,7 +113,7 @@ $transition-speed:.3s;
     transition: all $transition-speed cubic-bezier(0,1,0,1);
 
     path {
-        fill:#3899eb;
+        fill: $B10;
     }
 
     &.disabled {
@@ -117,7 +129,7 @@ $transition-speed:.3s;
     height: 6px;
 
     path {
-        fill:#6daae3;
+        fill:$B40;
     }
 
     &.disabled {
