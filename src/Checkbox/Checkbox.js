@@ -12,6 +12,12 @@ import Label from '../Label/Label';
 class Checkbox extends WixComponent {
   static displayName = 'Checkbox';
 
+  constructor(props) {
+    super(props);
+
+    this.state = {isFocused: false};
+  }
+
   static propTypes = {
     /** used for automatic testing */
     active: bool,
@@ -38,6 +44,14 @@ class Checkbox extends WixComponent {
 
   _id = `${Checkbox.displayName}-${uniqueId()}`;
 
+  handleInputBlur = () => {
+    this.state.isFocused && this.setState({isFocused: false});
+  }
+
+  handleInputFocus = () => {
+    !this.state.isFocused && this.setState({isFocused: true});
+  }
+
   render() {
     const {
       id = this._id,
@@ -59,7 +73,9 @@ class Checkbox extends WixComponent {
         [styles.hover]: hover,
         [styles.active]: active,
         [styles.disabled]: disabled,
-        [styles.hasError]: hasError
+        [styles.hasError]: hasError,
+        [styles.hasFocus]: this.state.isFocused
+
       }
     );
 
@@ -77,8 +93,13 @@ class Checkbox extends WixComponent {
           />
 
         <Label for={id} appearance={disabled ? 'T1.4' : 'T1.1'} dataHook="checkbox-label">
-          <div className={classNames(styles.checkbox, styles[size])}>
-            <div className={styles.inner}>
+          <div
+            className={classNames(styles.checkbox, styles[size])}
+            tabIndex={disabled ? null : 0}
+            onFocus={this.handleInputFocus}
+            onBlur={this.handleInputBlur}
+            >
+            <div className={styles.inner} >
               {checkedSymbol}
             </div>
           </div>

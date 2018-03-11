@@ -10,6 +10,24 @@ import {mount} from 'enzyme';
 describe('Checkbox', () => {
   const createDriver = createDriverFactory(checkboxDriverFactory);
 
+  it('should be initialy not in focus state', () => {
+    const checkbox = createDriver(<Checkbox/>);
+    expect(checkbox.hasFocusState()).toBeFalsy();
+  });
+
+  it('should switch to focus state when focused', () => {
+    const checkbox = createDriver(<Checkbox/>);
+    checkbox.focus();
+    expect(checkbox.hasFocusState()).toBeTruthy();
+  });
+
+  it('should switch to non-focus state when blured', () => {
+    const checkbox = createDriver(<Checkbox/>);
+    checkbox.focus();
+    checkbox.blur();
+    expect(checkbox.hasFocusState()).toBeFalsy();
+  });
+
   it('should be unchecked and not disabled by default', () => {
     const driver = createDriver(<Checkbox/>);
     expect(driver.isChecked()).toBeFalsy();

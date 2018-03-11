@@ -1,24 +1,28 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import ReactTestUtils from 'react-dom/test-utils';
-import $ from 'jquery';
 import {isClassExists} from '../../test/utils';
 import labelDriverFactory from '../Label/Label.driver';
 import {testkitFactoryCreator} from '../test-common';
 
 const labelTestkitFactory = testkitFactoryCreator(labelDriverFactory);
 
-const checkboxDriverFactory = ({element, wrapper, component}) => {
+const checkboxDriverFactory = ({element, wrapper, component, eventTrigger}) => {
 
-  const checkbox = $(element).find('input')[0];
+  const input = () => element.querySelector('input');
+  const checkbox = () => element.querySelector('.checkbox');
   const labelDriver = () => labelTestkitFactory({wrapper: element, dataHook: 'checkbox-label'});
 
   return {
     exists: () => !!element,
-    click: () => ReactTestUtils.Simulate.change(checkbox),
+    click: () => eventTrigger.change(input()),
+    /** trigger focus on the element */
+    focus: () => eventTrigger.focus(checkbox()),
+    /** trigger blur on the element */
+    blur: () => eventTrigger.blur(checkbox()),
+    hasFocusState: () => isClassExists(element, 'hasFocus'),
     isChecked: () => isClassExists(element, 'checked'),
     isDisabled: () => isClassExists(element, 'disabled'),
-    isIndeterminate: () => $(element).find('.indeterminate').length === 1,
+    isIndeterminate: () => !!element.querySelector('.indeterminate'),
     hasError: () => isClassExists(element, 'hasError'),
     getLabel: () => labelDriver().getLabelText(),
     getLabelDriver: () => labelDriver(),
