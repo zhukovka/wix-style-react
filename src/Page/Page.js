@@ -137,12 +137,14 @@ class Page extends WixComponent {
       PageTail
     } = getChildrenObject(children);
 
+    this._setContainerScrollTopThreshold(PageTail && hasGradientClassName);
     const contentFullScreen = PageContent && PageContent.props.fullScreen;
     const pageDimensionsStyle = this._calculatePageDimensionsStyle();
-    this._setContainerScrollTopThreshold(PageTail && hasGradientClassName);
+
     const imageHeight = `${headerHeight + (PageTail ? -tailHeight : 39)}px`;
     const gradientHeight = gradientCoverTail ? `${headerHeight + (PageTail ? -SCROLL_TOP_THRESHOLD : 39)}px` : imageHeight;
     const calculatedHeaderHeight = !minimized ? headerHeight : PageTail ? headerHeight - 78 : headerHeight - 54;
+    const headerHeightDelta = headerHeight - calculatedHeaderHeight;
 
     return (
       <div className={s.page}>
@@ -179,9 +181,9 @@ class Page extends WixComponent {
         <div
           className={s.scrollableContent}
           data-hook="page-scrollable-content"
+          style={{paddingTop: `${calculatedHeaderHeight}px`}}
           ref={r => this.scrollableContentRef = r}
           >
-          <div className={s.contentPlaceholder} style={{height: `${calculatedHeaderHeight}px`}}/>
           {
             hasBackgroundImage &&
               <div
@@ -203,7 +205,7 @@ class Page extends WixComponent {
                 style={{height: gradientHeight}}
                 />
           }
-          <div className={s.contentContainer}>
+          <div className={s.contentContainer} style={{paddingBottom: `${headerHeightDelta}px`}}>
             <div className={classNames(s.content, {[s.contentFullScreen]: contentFullScreen})} style={contentFullScreen ? null : pageDimensionsStyle}>
               {this._safeGetChildren(PageContent)}
             </div>
