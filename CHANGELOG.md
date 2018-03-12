@@ -12,6 +12,20 @@ Types of changes:
 1. **Security** in case of vulnerabilities.
 1. **Breaking** for breaking changes
 
+## 2.0.29 - 2018-03-12
+### Added
+- new icons `Duplicate3`, `EmailOpen`, `Trash4`, `Warning` [1504](https://github.com/wix/wix-style-react/pull/1504)
+
+### Changed
+- `<Checkbox/>` focus styles [1521](https://github.com/wix/wix-style-react/pull/1521)
+- `<ToggleSwitch/>` new focus styles + protractor isFocused util [1522](https://github.com/wix/wix-style-react/pull/1522)
+- `<Tags/>` new focus styles + disable <Input> focus style + bug fixes [1513](https://github.com/wix/wix-style-react/pull/1513)
+
+### Fixed
+- `<Page/>` Added more height to content on minimize [1535](https://github.com/wix/wix-style-react/pull/1535)
+- `<Button theme="no-border"/>` fix hover prop [1525](https://github.com/wix/wix-style-react/pull/1525)
+- `<Notification/>` include padding as part of width [1529](https://github.com/wix/wix-style-react/pull/1529)
+
 ## 2.0.28 - 2018-03-06
 ### Fixed
 - `<RadioGroup/>` - fix testkit `getSelectedValue` to return the updated selected option [1515](https://github.com/wix/wix-style-react/pull/1515)
