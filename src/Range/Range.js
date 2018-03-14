@@ -12,6 +12,7 @@ const Range = ({...props, children}) => (
 );
 
 Range.propTypes = {
+  ...RangeInputWithLabelComposite.propTypes,
   children: children(optional(Label), oneOf(Input, DatePicker), oneOf(Input, DatePicker))
 };
 

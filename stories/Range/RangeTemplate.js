@@ -6,6 +6,7 @@ import Range from '../../src/Range';
 import DatePicker from '../../src/DatePicker';
 import Input from '../../src/Input';
 import Label from '../../src/Label';
+import storySettings from './StorySettings';
 
 export default class Form extends Component {
 
@@ -32,7 +33,7 @@ export default class Form extends Component {
 
   getComponent() {
     return (
-      <Range required={this.props.required} info={this.props.info}>
+      <Range dataHook={storySettings.dataHook} required={this.props.required} info={this.props.info}>
         {this.props.withLabel ? <Label {...this.props.label}/> : null}
         {(this.props.rangeType.value === 'InputRange') ?
           <Input id="first" {...this.props.firstInput}/> : <DatePicker placeholderText="From" id="fromDate" {...this.props.firstDate}/>}

@@ -8,33 +8,42 @@
   display: flex;
 }
 
-.hasFocus {
-  .firstinput {
-    border-right: 1px solid $B20;
+.hasFocusFirst {
+  .firstinput,.firstDate {
+    z-index: 1;
+    border-right-width: 1px;
+  }
+  .lastinput,.lastDate {
+    border-left-width: 0;
   }
 }
 
-.firstinput {
+.hasFocusLast {
+  .lastinput,.lastDate {
+    z-index: 1;
+    border-left-width: 1px;
+  }
+  .firstinput,.firstDate {
+    border-right-width: 0;
+  }
+}
+
+.firstinput,.firstDate {
   border-top-right-radius: 0;
   border-bottom-right-radius: 0;
-  width: 50%;
+
 }
 
-.lastinput {
+.lastinput,.lastDate {
   border-top-left-radius: 0;
   border-bottom-left-radius: 0;
-  border-left: 0;
+  border-left-width: 0;
+}
+
+
+.firstinput, .lastinput {
   width: 50%;
+  box-sizing: content-box;
 }
 
-.firstDate {
-  border-top-right-radius: 0;
-  border-bottom-right-radius: 0;
-}
 
-.lastDate {
-  border-top-left-radius: 0;
-  border-bottom-left-radius: 0;
-  border-left: 0;
-
-}
