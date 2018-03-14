@@ -60,6 +60,9 @@ export const textFieldTestkitFactory = protractorTestkitFactoryCreator(textField
 import dropdownCompositeDriverFactory from '../src/DropdownComposite/DropdownComposite.protractor.driver';
 export const dropdownCompositeTestkitFactory = protractorTestkitFactoryCreator(dropdownCompositeDriverFactory);
 
+import multiSelectCompositeDriverFactory from '../src/MultiSelectComposite/MultiSelectComposite.protractor.driver';
+export const multiSelectCompositeTestkitFactory = protractorTestkitFactoryCreator(multiSelectCompositeDriverFactory);
+
 import autoCompleteCompositeDriverFactory from '../src/AutoCompleteComposite/AutoCompleteComposite.protractor.driver';
 export const autoCompleteCompositeTestkitFactory = protractorTestkitFactoryCreator(autoCompleteCompositeDriverFactory);
 

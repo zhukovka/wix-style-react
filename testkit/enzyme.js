@@ -78,6 +78,9 @@ export const dropdownCompositeTestkitFactory = enzymeTestkitFactoryCreator(dropd
 import autoCompleteCompositeDriverFactory from '../src/AutoCompleteComposite/AutoCompleteComposite.driver';
 export const autoCompleteCompositeTestkitFactory = enzymeTestkitFactoryCreator(autoCompleteCompositeDriverFactory);
 
+import multiSelectCompositeDriverFactory from '../src/MultiSelectComposite/MultiSelectComposite.driver';
+export const multiSelectCompositeTestkitFactory = enzymeTestkitFactoryCreator(multiSelectCompositeDriverFactory);
+
 import loaderDriverFactory from '../src/Loader/Loader.driver';
 export const loaderTestkitFactory = enzymeTestkitFactoryCreator(loaderDriverFactory);
 

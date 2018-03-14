@@ -2,7 +2,7 @@ import React from 'react';
 import MultiSelect from 'wix-style-react/MultiSelect';
 import styles from './ExampleStandard.scss';
 
-const options = [
+export const options = [
   {value: 'Alabama', id: 'Alabama', tag: {label: 'Alabama'}},
   {value: 'Alaska', id: 'Alaska'},
   {value: <div className={styles.option}><div>Arizona</div><div className={styles.thumb}/></div>, id: 'Arizona', tag: {label: 'Arizona', thumb: <div className={styles.thumb}/>}},
@@ -17,7 +17,7 @@ const options = [
   {value: 'Two words', id: 'Two words'}
 ];
 
-const valueParser = option => option.tag ? option.tag.label : option.value;
+export const valueParser = option => option.tag ? option.tag.label : option.value;
 
 class ExampleStandard extends React.Component {
   constructor(props) {
