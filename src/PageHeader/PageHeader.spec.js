@@ -49,6 +49,14 @@ describe('PageHeader', () => {
     expect(driver.isBreadcrumbsExists()).toBeFalsy();
   });
 
+  it('should initialize component with title and subtitle with a special character', () => {
+    const someTextWithSpecialCharachters = 'tom & jerry';
+    const pageHeader = <PageHeader title={someTextWithSpecialCharachters} subtitle={someTextWithSpecialCharachters}/>;
+    const driver = createDriver(pageHeader);
+    expect(driver.titleText()).toEqual(someTextWithSpecialCharachters);
+    expect(driver.subtitleText()).toEqual(someTextWithSpecialCharachters);
+  });
+
   it('should initialize component with minimized title and subtitle', () => {
     const pageHeader = <PageHeader minimized title={title} subtitle={subtitle}/>;
     const driver = createDriver(pageHeader);
