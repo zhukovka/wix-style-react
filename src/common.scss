@@ -33,11 +33,13 @@ $FontBold: "HelveticaNeueW01-75Bold", "HelveticaNeueW02-75Bold", "HelveticaNeueW
 }
 
 @mixin FocusBox() {
+	outline: none;
 	border-color: $B10;
 	box-shadow: 0 0 0 3px $F00;
 }
 
 @mixin FocusBoxError() {
+	outline: none;
 	border-color: $R10;
 	box-shadow: 0 0 0 3px $R30;
 }

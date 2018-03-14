@@ -33,4 +33,35 @@ describe('RadioGroup', () => {
         expect(radioGroupDriver.isRadioChecked(3)).toBe(false);
       });
   });
+
+  describe('Focus tests', () => {
+
+    const pressTab = () => browser.actions().sendKeys(protractor.Key.TAB).perform();
+
+    beforeEach(() => {
+      // Needed in order to reset the focus state
+      browser.get(storyUrl);
+    });
+
+    eyes.it('should focus on first item (not-selected)', () => {
+      waitForVisibilityOf(radioGroupDriver.element(), 'Cannot find RadioGroup')
+      .then(async () => {
+        expect(radioGroupDriver.isRadioFocused(0)).toBe(false);
+        await pressTab();
+        expect(radioGroupDriver.isRadioFocused(0)).toBe(true);
+      });
+    });
+
+    eyes.it('should focus on first item (selected)', () => {
+      autoExampleDriver.setProps({value: 1});
+      waitForVisibilityOf(radioGroupDriver.element(), 'Cannot find RadioGroup')
+      .then(async () => {
+        expect(radioGroupDriver.isRadioChecked(0)).toBe(true);
+        expect(radioGroupDriver.isRadioFocused(0)).toBe(false);
+        await pressTab();
+        expect(radioGroupDriver.isRadioFocused(0)).toBe(true);
+      });
+    });
+  });
 });
+

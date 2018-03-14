@@ -25,20 +25,14 @@
   }
 }
 
-@mixin DisableBrowserFocus {
-  outline: none;
-}
-
 .hasFocus {
   .checkbox {
     @include FocusBox;
-    @include DisableBrowserFocus;
   }
 
   &.hasError {  
     .checkbox {
       @include FocusBoxError;
-      @include DisableBrowserFocus;
     } 
   }
 }

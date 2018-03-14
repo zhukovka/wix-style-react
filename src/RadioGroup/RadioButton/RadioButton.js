@@ -116,7 +116,7 @@ class RadioButton extends WixComponent {
             style={{height: lineHeight}}
             className={styles.radioButtonWrapper}
             >
-            <div className={styles.radio}/>
+            <div className={styles.radio} tabIndex={disabled ? null : 0}/>
           </div>
 
           { children &&

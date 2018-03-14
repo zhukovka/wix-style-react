@@ -79,6 +79,10 @@
   border: 1px solid $B10;
   background-color: $D80;
   border-radius: 50%;
+
+  &:focus {
+    @include FocusBox;
+  }
 }
 
 .disabled {
