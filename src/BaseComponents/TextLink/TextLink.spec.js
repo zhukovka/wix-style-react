@@ -9,7 +9,6 @@ import {spy} from 'sinon';
 import {mount} from 'enzyme';
 
 describe('TextLink', () => {
-
   const createDriver = createDriverFactory(textLinkDriverFactory);
 
   it('should have a textLink', () => {
@@ -98,6 +97,18 @@ describe('TextLink', () => {
     driver.click();
 
     expect(onClickFunc.called).toEqual(false);
+  });
+
+  describe('given `onClick` without `link`', () => {
+    it('should call `preventDefault`', () => {
+      const onClick = spy();
+      const preventDefault = spy();
+      const driver = createDriver(<TextLink onClick={onClick}/>);
+      driver.click({preventDefault});
+
+      expect(onClick.calledOnce).toBe(true);
+      expect(preventDefault.calledOnce).toBe(true);
+    });
   });
 });
 

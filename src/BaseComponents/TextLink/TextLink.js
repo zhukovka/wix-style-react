@@ -7,7 +7,7 @@ export default class BaseTextLink extends WixComponent {
 
   static propTypes = {
     ...TextLinkLayout.propTypes,
-    link: PropTypes.string.isRequired,
+    link: PropTypes.string,
     disabled: PropTypes.bool,
     download: PropTypes.bool,
     rel: PropTypes.string,
@@ -28,12 +28,21 @@ export default class BaseTextLink extends WixComponent {
     onClick: () => {}
   };
 
+  _handleOnClick = event => {
+    if (!this.props.link) {
+      event.preventDefault();
+    }
+
+    this.props.onClick(event);
+  }
+
   render() {
-    const {ariaLabel, disabled, link, children, download, rel, target, onMouseEnter, onMouseLeave, onClick} = this.props;
+    const {ariaLabel, disabled, link, children, download, rel, target, onMouseEnter, onMouseLeave} = this.props;
+
     const props = {
       download,
-      href: `${link}`,
-      onClick: event => disabled ? event.preventDefault() : onClick(event),
+      href: link,
+      ...(disabled ? {} : {onClick: this._handleOnClick}),
       role: 'link',
       style: {
         textDecoration: 'inherit',
