@@ -8,8 +8,7 @@ const toggleSwitchDriverFactory = component => ({
   isXSmall: () => component.getAttribute('class').then(classes => classes.includes(styles.toggleSwitchXSmall)),
   isSmall: () => component.getAttribute('class').then(classes => classes.includes(styles.toggleSwitchSmall)),
   isLarge: () => component.getAttribute('class').then(classes => !classes.includes(styles.toggleSwitchSmall) && !classes.includes(styles.toggleSwitchXSmall)),
-  isFocused: async () => isFocused(component.$('label'))
-
+  isFocused: () => isFocused(component.$('label'))
 });
 
 export default toggleSwitchDriverFactory;
