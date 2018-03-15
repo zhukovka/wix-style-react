@@ -14,17 +14,17 @@ Types of changes:
 
 ## 2.0.30 - 2018-03-15
 ### Added
-- `<MultiSelect/>` composite component [1538](https://github.com/wix/wix-style-react/1538)
+- `<MultiSelect/>` composite component [1538](https://github.com/wix/wix-style-react/pull/1538)
 
 ### Changed
-- `<ModalSelectorLayout/>` support disabled items [1550](https://github.com/wix/wix-style-react/1550)
-- `<InputArea/>`, `<RichTextArea/>`, `<Range>`, `<RadioGroup>` new focus styles [1553](https://github.com/wix/wix-style-react/1553) [1542](https://github.com/wix/wix-style-react/1542) [1548](https://github.com/wix/wix-style-react/1548)
-`<TextLink/>` - `preventDefault` for onClick when no `link` given [1551](https://github.com/wix/wix-style-react/1551)
+- `<ModalSelectorLayout/>` support disabled items [1550](https://github.com/wix/wix-style-react/pull/1550)
+- `<InputArea/>`, `<RichTextArea/>`, `<Range>`, `<RadioGroup>` new focus styles [1553](https://github.com/wix/wix-style-react/pull/1553) [1542](https://github.com/wix/wix-style-react/pull/1542) [1548](https://github.com/wix/wix-style-react/pull/1548)
+`<TextLink/>` - `preventDefault` for onClick when no `link` given [1551](https://github.com/wix/wix-style-react/pull/1551)
 
 ### Fixed
-- `<Tooltip/>` fix `tooltipPlacement` prop [1552](https://github.com/wix/wix-style-react/1552)
-- `<ToggleSwitch/>` - Remove from async from isFocused [1544](https://github.com/wix/wix-style-react/1544)
-- `<PageHeader/>` - update the title methods in the driver to return the [1549](https://github.com/wix/wix-style-react/1549)
+- `<Tooltip/>` fix `tooltipPlacement` prop [1552](https://github.com/wix/wix-style-react/pull/1552)
+- `<ToggleSwitch/>` - Remove from async from isFocused [1544](https://github.com/wix/wix-style-react/pull/1544)
+- `<PageHeader/>` - update the title methods in the driver to return the [1549](https://github.com/wix/wix-style-react/pull/1549)
 
 ## 2.0.29 - 2018-03-12
 ### Added
