@@ -42,8 +42,7 @@ class Selector extends WixComponent {
 
   radioButtonAndImageMargins = '57px';
 
-  _onClick = id => () =>
-    this.props.onToggle(id);
+  _onClick = () => !this.props.isDisabled && this.props.onToggle(this.props.id);
 
   render() {
     const {
@@ -55,14 +54,13 @@ class Selector extends WixComponent {
       extraNode,
       isSelected,
       isDisabled,
-      id,
       toggleType
     } = this.props;
 
     return (
       <li
         className={styles.root}
-        onClick={!isDisabled && this._onClick(id)}
+        onClick={this._onClick}
         >
         { toggleType === 'checkbox' ?
           <Checkbox dataHook="toggle" checked={isSelected} disabled={isDisabled}/> :
