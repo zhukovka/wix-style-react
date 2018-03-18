@@ -103,7 +103,7 @@ $material-gap: 8px;
   &-normal {
     @include ThemeDefault($color: $D10, $borderColor: $B30, $backgroundColor: $D80);
     @include ThemeHover($backgroundColor: $B50);
-    @include ThemeFocus($borderColor: $B20);
+    @include ThemeFocus;
     @include ThemeError($borderColor: $paletteR1);
     @include ThemeDisable($color: $D55, $borderColor: $D60, $backgroundColor: $D80);
     @include ThemeDisableHover($borderColor: $GR20);
