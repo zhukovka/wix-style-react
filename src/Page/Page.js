@@ -6,6 +6,7 @@ import Content from './Content';
 import Tail from './Tail';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
+import {ResizeSensor} from 'css-element-queries';
 
 const SCROLL_TOP_THRESHOLD = 20;
 const SHORT_SCROLL_TOP_THRESHOLD = 3;
@@ -24,18 +25,23 @@ class Page extends WixComponent {
 
     this._setContainerScrollTopThreshold(false);
     this._handleScroll = this._handleScroll.bind(this);
+    this._handleResize = this._handleResize.bind(this);
 
     this.state = {
       headerHeight: 0,
       tailHeight: 0,
+      scrollBarWidth: 0,
       minimized: false
     };
   }
 
   componentDidMount() {
     super.componentDidMount();
-    this._getScrollContainer().addEventListener('scroll', this._handleScroll);
+    const scrollContainer = this._getScrollContainer();
+    scrollContainer.addEventListener('scroll', this._handleScroll);
+    this.contentResizeListener = new ResizeSensor(scrollContainer.childNodes[0], this._handleResize);
     this._calculateComponentsHeights();
+    this._handleResize();
   }
 
   componentDidUpdate() {
@@ -48,6 +54,7 @@ class Page extends WixComponent {
   componentWillUnmount() {
     super.componentWillUnmount();
     this._getScrollContainer().removeEventListener('scroll', this._handleScroll);
+    this.contentResizeListener.detach(this._handleResize);
   }
 
   _calculateComponentsHeights() {
@@ -88,6 +95,16 @@ class Page extends WixComponent {
     }
   }
 
+  _handleResize() {
+    // Fixes width issues when scroll bar is present in windows
+    const scrollContainer = this._getScrollContainer();
+    const scrollBarWidth = scrollContainer && scrollContainer.offsetWidth - scrollContainer.clientWidth;
+
+    if (this.state.scrollBarWidth !== scrollBarWidth) {
+      this.setState({scrollBarWidth});
+    }
+  }
+
   _safeGetChildren(element) {
     if (!element || !element.props || !element.props.children) {
       return [];
@@ -116,10 +133,7 @@ class Page extends WixComponent {
   }
 
   _pageHeaderContainerStyle() {
-    // Fixes width issues when scroll bar is present in windows
-    const scrollBarWidth =
-      this.scrollableContentRef &&
-      this.scrollableContentRef.offsetWidth - this.scrollableContentRef.clientWidth;
+    const {scrollBarWidth} = this.state;
     if (scrollBarWidth) {
       return {width: `calc(100% - ${scrollBarWidth}px`};
     }
