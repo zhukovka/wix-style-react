@@ -12,6 +12,10 @@ Types of changes:
 1. **Security** in case of vulnerabilities.
 1. **Breaking** for breaking changes
 
+## 2.0.32 - 2018-03-??
+### Changed
+- `<toggleSwitch>` - Add hover style [#1576](https://github.com/wix/wix-style-react/pull/1576)
+
 ## 2.0.31 - 2018-03-19
 ### Added
 - `<PopoverMenu>` : add appendTo props [#1568](https://github.com/wix/wix-style-react/pull/1568)
