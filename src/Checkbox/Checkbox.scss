@@ -27,12 +27,12 @@
 
 .hasFocus {
   .checkbox {
-    @include FocusBox;
+    @include FocusBox($keyboardOnly: true);
   }
 
   &.hasError {  
     .checkbox {
-      @include FocusBoxError;
+      @include FocusBoxError($keyboardOnly: true);
     } 
   }
 }

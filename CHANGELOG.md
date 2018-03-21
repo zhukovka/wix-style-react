@@ -15,6 +15,7 @@ Types of changes:
 ## 2.0.32 - 2018-03-??
 ### Changed
 - `<toggleSwitch>` - Add hover style [#1576](https://github.com/wix/wix-style-react/pull/1576)
+- Focus-Styles: Disable focus style for component which need keyboardOnly [#1578](https://github.com/wix/wix-style-react/pull/1578)
 
 ## 2.0.31 - 2018-03-19
 ### Added

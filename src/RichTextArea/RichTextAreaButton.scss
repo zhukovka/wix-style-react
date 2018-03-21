@@ -15,7 +15,7 @@
     }
     
     &[data-focused="true"] {
-      @include FocusBox;
+      @include FocusBox($keyboardOnly: true);
       z-index: 1;
       position: relative;
     }

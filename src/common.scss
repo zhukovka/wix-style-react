@@ -32,16 +32,20 @@ $FontBold: "HelveticaNeueW01-75Bold", "HelveticaNeueW02-75Bold", "HelveticaNeueW
 	font-family: $FontBold;
 }
 
-@mixin FocusBox() {
+@mixin FocusBox($keyboardOnly: false) {
 	outline: none;
-	border-color: $B10;
-	box-shadow: 0 0 0 3px $F00;
+	@if not($keyboardOnly) {
+		border-color: $B10;
+		box-shadow: 0 0 0 3px $F00;
+	}
 }
 
-@mixin FocusBoxError() {
+@mixin FocusBoxError($keyboardOnly: false) {
 	outline: none;
-	border-color: $R10;
-	box-shadow: 0 0 0 3px $R30;
+	@if not($keyboardOnly) {
+		border-color: $R10;
+		box-shadow: 0 0 0 3px $R30;
+	}
 }
 
 /* New swatches! */

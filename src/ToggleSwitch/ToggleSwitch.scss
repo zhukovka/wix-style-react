@@ -65,7 +65,7 @@ $hoverBackgroundColor: $B20;
 
     &:focus {
         outline: none;
-        @include FocusBox;
+        @include FocusBox($keyboardOnly: true);
     }
 
     &:hover {

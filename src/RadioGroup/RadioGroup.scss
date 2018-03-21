@@ -81,7 +81,7 @@
   border-radius: 50%;
 
   &:focus {
-    @include FocusBox;
+    @include FocusBox($keyboardOnly: true);
   }
 }
 
