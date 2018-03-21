@@ -52,7 +52,7 @@ $marginLeft: $paddingLeft;
   border-top-left-radius: $borderRadius;
   border-top-right-radius: $borderRadius;
 
-  .withError:not(.isFocused) & {
+  .withError & {
     border-color: $borderColorError;
   }
 
@@ -76,11 +76,11 @@ $marginLeft: $paddingLeft;
     border-top-color: $borderColorNormal;
   }
 
-  .isFocused:not(.withError) & {
+  .isEditorFocused & {
     @include FocusBox;
   }
-
-  .isFocused.withError & {
+  
+  .isEditorFocused.withError & {
     @include FocusBoxError;
   }
 
