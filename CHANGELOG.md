@@ -12,10 +12,17 @@ Types of changes:
 1. **Security** in case of vulnerabilities.
 1. **Breaking** for breaking changes
 
-## 2.0.32 - 2018-03-??
+## 2.0.32 - 2018-03-22
 ### Changed
-- `<toggleSwitch>` - Add hover style [#1576](https://github.com/wix/wix-style-react/pull/1576)
+- `<toggleSwitch>` - add hover style [#1576](https://github.com/wix/wix-style-react/pull/1576)
 - Focus-Styles: Disable focus style for component which need keyboardOnly [#1578](https://github.com/wix/wix-style-react/pull/1578)
+- `<RichTextEditor/>` - add new focus styles to buttons [#1572](https://github.com/wix/wix-style-react/pull/1572)
+- `Grid` - grid rows bottom margin should be 30px [#1483](https://github.com/wix/wix-style-react/pull/1483)
+
+### Fixed
+- `<Page/>` - fixed issue when page jumps between minimized and full states on page without scroll [#1467](https://github.com/wix/wix-style-react/issues/1467)
+- `<Tooltip/>` - fix Tooltip active and disabled new props transition [#1573](https://github.com/wix/wix-style-react/pull/1573)
+- `<Checkbox>` protractor driver: use isFocused from test-common
 
 ## 2.0.31 - 2018-03-19
 ### Added
