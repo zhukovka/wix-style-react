@@ -21,9 +21,6 @@ import ExampleAutoAdjustedRowRaw from '!raw-loader!./ExampleAutoAdjustedRow';
 import ExampleGridActionHeaders from './ExampleGridActionHeaders';
 import ExampleGridActionHeadersRaw from '!raw-loader!./ExampleGridActionHeaders';
 
-import ExampleGridAnimation from './ExampleGridAnimation';
-import ExampleGridAnimationRaw from '!raw-loader!./ExampleGridAnimation';
-
 import GridReadme from '../../src/Grid/README.md';
 import CardReadme from '../../src/Card/README.md';
 
@@ -31,10 +28,6 @@ storiesOf('2. Layout', module)
   .add('Grid', () => (
     <div>
       <Markdown source={GridReadme}/>
-
-      <CodeExample title="Grid with animations" code={ExampleGridAnimationRaw}>
-        <ExampleGridAnimation/>
-      </CodeExample>
 
       <CodeExample title="Grid with card layout" code={ExampleGridStandardRaw}>
         <ExampleGridStandard/>
