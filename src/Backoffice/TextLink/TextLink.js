@@ -7,7 +7,7 @@ export default class TextLink extends WixComponent {
 
   static propTypes = {
     ...BaseTextLink.propTypes,
-    link: PropTypes.string.isRequired,
+    link: PropTypes.string,
     disabled: PropTypes.bool,
     download: PropTypes.bool,
     rel: PropTypes.string,
