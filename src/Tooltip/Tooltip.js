@@ -197,9 +197,10 @@ class Tooltip extends WixComponent {
 
   componentWillReceiveProps(nextProps) {
     super.componentWillReceiveProps && super.componentWillReceiveProps(nextProps);
-    if (nextProps.active !== this.props.active) {
+    if (nextProps.active !== this.props.active ||
+        nextProps.disabled !== this.props.disabled) {
       if (this.state.visible && this.props.hideTrigger === 'custom') {
-        if (!nextProps.active) {
+        if (!nextProps.active || nextProps.disabled) {
           this.hide();
         }
       }

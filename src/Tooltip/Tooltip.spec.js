@@ -234,6 +234,25 @@ describe('Tooltip', () => {
         expect(driver.isShown()).toBeFalsy();
       });
     });
+    it('should close tooltip when disabled changed to true when was active true before', () => {
+      const props = {
+        ..._props,
+        hideTrigger: 'custom',
+        showTrigger: 'custom',
+        active: true,
+        disabled: false
+      };
+      const driver = createDriver(<Tooltip {...props}>{children}</Tooltip>);
+      return resolveIn(30)
+      .then(() => {
+        expect(driver.isShown()).toBeTruthy();
+        driver.setProps({...props, disabled: true});
+        return resolveIn(30);
+      })
+      .then(() => {
+        expect(driver.isShown()).toBeFalsy();
+      });
+    });
   });
 
   describe('placement attribute', () => {
