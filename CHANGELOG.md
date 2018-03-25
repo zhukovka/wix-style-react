@@ -15,6 +15,7 @@ Types of changes:
 ## 2.0.33 - 2018-03-??
 ### Fixed
 - `<Range>` - fix e2e eyes failures by making the date fixed [#1589](https://github.com/wix/wix-style-react/pull/1589)
+- `<Page>` - fix an issue that renders `0` in a certain case
 
 ## 2.0.32 - 2018-03-22
 ### Changed
