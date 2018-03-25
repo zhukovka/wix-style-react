@@ -12,6 +12,10 @@ Types of changes:
 1. **Security** in case of vulnerabilities.
 1. **Breaking** for breaking changes
 
+## 2.0.33 - 2018-03-??
+### Fixed
+- `<Range>` - fix e2e eyes failures by making the date fixed [#1589](https://github.com/wix/wix-style-react/pull/1589)
+
 ## 2.0.32 - 2018-03-22
 ### Changed
 - `<toggleSwitch>` - add hover style [#1576](https://github.com/wix/wix-style-react/pull/1576)
