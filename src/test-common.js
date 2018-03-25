@@ -3,7 +3,8 @@ export {
     getStoryUrl,
     waitForVisibilityOf,
     protractorTestkitFactoryCreator,
-    isFocused
+    isFocused,
+    scrollToElement
 } from 'wix-ui-test-utils/protractor';
 export {enzymeTestkitFactoryCreator} from 'wix-ui-test-utils/enzyme';
 export {testkitFactoryCreator} from 'wix-ui-test-utils/vanilla';
