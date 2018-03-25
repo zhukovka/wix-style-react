@@ -18,20 +18,20 @@ describe('DrillView', () => {
     onSubMenuBackSpy = jest.fn();
   });
 
-  function createLinksForLevel(level, activeLink) {
+  function createLinksForLevel(level, activeLink, isLinkDisabled = false) {
     const {activeLevel, activeIndex} = activeLink;
     const isLevelActive = activeLevel === level;
 
     return [...new Array(linksPerLevel)].map((_, i) => {
       return (
         <SideMenuDrill.Link key={`${level}_${i}`} isActive={isLevelActive && activeIndex === i}>
-          <a href="//wix.com" onClick={onClickSpy}>Link {i}</a>
+          <a href="//wix.com" onClick={onClickSpy} disabled={isLinkDisabled}>Link {i}</a>
         </SideMenuDrill.Link>
       );
     });
   }
 
-  function createSubMenu(key, level, maxLevel, activeLink, isDisabled) {
+  function createSubMenu(key, level, maxLevel, activeLink, isDisabled, isLinkDisabled = false) {
     const menuKey = `${key}_${level}`;
     return (
       <SideMenuDrill.SubMenu
@@ -46,8 +46,8 @@ describe('DrillView', () => {
           {getHeader(level)}
         </SideMenu.Header>
         <SideMenuDrill.Navigation>
-          {createLinksForLevel(level, activeLink)}
-          {createSubMenus(`${key}_${level}`, level + 1, maxLevel, activeLink)}
+          {createLinksForLevel(level, activeLink, isLinkDisabled)}
+          {createSubMenus(`${key}_${level}`, level + 1, maxLevel, activeLink, false, isLinkDisabled)}
         </SideMenuDrill.Navigation>
         <SideMenu.Footer>
           {getFooter(level)}
@@ -56,24 +56,24 @@ describe('DrillView', () => {
     );
   }
 
-  function createSubMenus(key, level, maxLevel, activeLink, isDisabled) {
+  function createSubMenus(key, level, maxLevel, activeLink, isDisabled, isLinkDisabled = false) {
     if (level > maxLevel) {
       return <div/>;
     }
 
     return [...new Array(subMenusPerLevel)].map((_, i) => {
-      return createSubMenu(key + i, level, maxLevel, activeLink, isDisabled);
+      return createSubMenu(key + i, level, maxLevel, activeLink, isDisabled, isLinkDisabled);
     });
   }
 
-  function createSideMenu(maxLevel, activeLink = {}, isSubMenuDisabled = false) {
+  function createSideMenu(maxLevel, activeLink = {}, isSubMenuDisabled = false, isLinkDisabled = false) {
     return createDriver(
       <SideMenuDrill>
         <SideMenu.Header>
           {getHeader(0)}
         </SideMenu.Header>
-        {createLinksForLevel(0, activeLink)}
-        {createSubMenus('SubMenu', 1, maxLevel, activeLink, isSubMenuDisabled)}
+        {createLinksForLevel(0, activeLink, isLinkDisabled)}
+        {createSubMenus('SubMenu', 1, maxLevel, activeLink, isSubMenuDisabled, isLinkDisabled)}
         <SideMenu.Footer>
           {getFooter(0)}
         </SideMenu.Footer>
@@ -130,6 +130,21 @@ describe('DrillView', () => {
     expect(driver.getMenuDriver().hasBackLink()).toBe(true);
     expect(driver.getMenuDriver().isLinkActiveByIndex(activeIndex)).toBe(true);
     expect(driver.getMenuDriver().navigationCategoryContent(0)).toBe('SubMenu1_1');
+  });
+
+  it('should NOT trigger first child link\'s click when clicking a disabled sub menu', () => {
+    const driver = createSideMenu(3, {}, false, true);
+
+    expect(driver.getMenuDriver().headerContent()).toBe(getHeader(0));
+    expect(driver.getMenuDriver().footerContent()).toBe(getFooter(0));
+    expect(driver.getMenuDriver().hasBackLink()).toBe(false);
+
+    // click the first link
+    expect(onClickSpy.mock.calls.length).toBe(0);
+    driver.getMenuDriver().clickInnerLinkByIndex(3);
+
+    expect(onClickSpy.mock.calls.length).toBe(0);
+    expect(onSubMenuClickSpy.mock.calls.length).toBe(1);
   });
 
   it('should trigger first child link\'s click when clicking a sub menu', () => {
