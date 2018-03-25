@@ -58,7 +58,7 @@ describe('Page', () => {
       expect(driver.gradientContainerHeight()).toBe('39px');
     });
 
-    it.only('should not render 0 when maximized but header height delta is 0', () => {
+    it('should not render 0 when maximized but header height delta is 0', () => {
       const driver = createDriver(renderPageWithProps());
       expect(driver.getPageHtml()).not.toContain('>0<');
     });
