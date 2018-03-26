@@ -12,10 +12,16 @@ Types of changes:
 1. **Security** in case of vulnerabilities.
 1. **Breaking** for breaking changes
 
-## 2.0.33 - 2018-03-??
+## 2.0.33 - 2018-03-26
 ### Fixed
-- `<Range>` - fix e2e eyes failures by making the date fixed [#1589](https://github.com/wix/wix-style-react/pull/1589)
-- `<Page>` - fix an issue that renders `0` in a certain case
+- `<Range/>` - fix e2e eyes failures by making the date fixed [#1589](https://github.com/wix/wix-style-react/pull/1589)
+- `<Page/>` - fix an issue that renders `0` in a certain case
+- `<Tooltip/>` - fix disabled change when active true [#1584](https://github.com/wix/wix-style-react/pull/1584)
+- `<TextLink/>` - remove link prop required field [#1583](https://github.com/wix/wix-style-react/pull/1583)
+- `<DrillView/>` - don't trigger `onClick` for disabled items [#1591](https://github.com/wix/wix-style-react/pull/1591)
+
+### Added
+- Testing - add `scrollToElement` function for protractor testing [#1569](https://github.com/wix/wix-style-react/pull/1569)
 
 ## 2.0.32 - 2018-03-22
 ### Changed
