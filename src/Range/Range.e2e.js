@@ -85,9 +85,9 @@ describe('Range', () => {
     eyes.it('should show focused styles for last item', async () => {
       expect(driver.isFocusedLast()).toBe(false);
       await driver.clickLast();
+      await driver.clickLast(); // TODO: temporary :)
       expect(driver.isFocusedLast()).toBe(true);
     });
   });
 });
-
 
