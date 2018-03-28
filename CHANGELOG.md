@@ -12,6 +12,14 @@ Types of changes:
 1. **Security** in case of vulnerabilities.
 1. **Breaking** for breaking changes
 
+
+## 3.0.1 - 2018-03-28
+### Fixed
+- `<DrillView/>` - dont go over a tags if have no onClick prop [#1599](https://github.com/wix/wix-style-react/pull/1599)
+
+- `<Range/>` - fix click race condition
+
+
 ## 3.0.0
 ### Breaking
 - `<DatePicker/>` [migration guide](https://github.com/wix/wix-style-react/blob/master/src/DatePicker/MIGRATION.md)
