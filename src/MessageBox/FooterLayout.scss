@@ -25,6 +25,6 @@
   margin-left: auto;
 }
 
-.footerbuttons > button:first-of-type {
+.footerbuttons > :first-of-type:not(:last-of-type) {
   margin-right: 12px;
 }
