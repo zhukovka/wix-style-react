@@ -5,6 +5,10 @@ import SideMenu from '../core/SideMenu';
 import SlideAnimation, {SlideDirection} from '../../Animations/SlideAnimation';
 import styles from './DrillView.scss';
 
+const isAnchorTag = function (item) {
+  return item.type === 'a';
+};
+
 class SideMenuDrill extends WixComponent {
   constructor(props) {
     super(props);
@@ -79,6 +83,8 @@ class SideMenuDrill extends WixComponent {
     if (item.props.onClick && !item.props.disabled) {
       item.props.onClick(event);
       return true;
+    } else if (isAnchorTag(item)) {
+      return false;
     }
 
     Children.forEach(item.props.children, child => {
