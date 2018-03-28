@@ -149,22 +149,6 @@ describe('DropdownLayout', () => {
     expect(onClose).toBeCalled();
   });
 
-  it('should call onSelect with false boolean when clicking on an unselected option', () => {
-    const onSelect = jest.fn();
-    const driver = createDriver(<DropdownLayout visible options={options} onSelect={onSelect}/>);
-    driver.clickAtOption(0);
-    expect(onSelect).toBeCalledWith(options[0], false);
-    driver.clickAtOption(5);
-    expect(onSelect).toBeCalledWith(options[5], false);
-  });
-
-  it('should not call onSelect when composing text via external means', () => {
-    const onSelect = jest.fn();
-    const driver = createDriver(<DropdownLayout visible options={options} onSelect={onSelect}/>);
-    driver.pressEnterKey();
-    expect(onSelect).not.toBeCalled();
-  });
-
   it('should click an option by value', () => {
     const onSelect = jest.fn();
     const driver = createDriver(<DropdownLayout visible options={options} onSelect={onSelect}/>);
@@ -172,34 +156,72 @@ describe('DropdownLayout', () => {
     expect(onSelect).toBeCalledWith(options[3], false);
   });
 
-  it('should call onSelect with true value when clicking on a selected option', () => {
-    const onSelect = jest.fn();
-    const driver = createDriver(<DropdownLayout visible options={options} onSelect={onSelect} selectedId={0}/>);
-    driver.clickAtOption(0);
-    expect(onSelect).toBeCalledWith(options[0], true);
-  });
+  describe('onSelect', () => {
+    describe('with selectedId', () => {
+      it('should call onSelect with true value when clicking on a selected option', () => {
+        const onSelect = jest.fn();
+        const driver = createDriver(<DropdownLayout visible options={options} onSelect={onSelect} selectedId={0}/>);
+        driver.clickAtOption(0);
+        expect(onSelect).toBeCalledWith(options[0], true);
+      });
 
-  it('should call onSelect with false value when clicking on a selected option by hook', () => {
-    const onSelect = jest.fn();
-    const driver = createDriver(<DropdownLayout visible options={options} onSelect={onSelect} selectedId={0}/>);
-    driver.optionByHook('dropdown-item-3').click();
-    expect(onSelect).toBeCalledWith(options[3], false);
-  });
+      it('should call onSelect with false value when clicking on a selected option by hook', () => {
+        const onSelect = jest.fn();
+        const driver = createDriver(<DropdownLayout visible options={options} onSelect={onSelect} selectedId={0}/>);
+        driver.optionByHook('dropdown-item-3').click();
+        expect(onSelect).toBeCalledWith(options[3], false);
+      });
+    });
 
-  it('should call select when enter key is pressed', () => {
-    const onSelect = jest.fn();
-    const driver = createDriver(<DropdownLayout visible options={options} onSelect={onSelect}/>);
-    driver.pressDownKey();
-    driver.pressEnterKey();
-    expect(onSelect).toBeCalled();
-  });
+    describe('without selectedId', () => {
+      it('should nofity a new option was selected for first selection', () => {
+        const onSelect = jest.fn();
+        const driver = createDriver(<DropdownLayout visible options={options} onSelect={onSelect}/>);
+        driver.clickAtOption(0);
+        expect(onSelect).toBeCalledWith(options[0], false);
+      });
 
-  it('should call select when tab key is pressed', () => {
-    const onSelect = jest.fn();
-    const driver = createDriver(<DropdownLayout visible options={options} onSelect={onSelect}/>);
-    driver.pressDownKey();
-    driver.pressTabKey();
-    expect(onSelect).toBeCalled();
+      it('should nofity a new option was selected after a value was previously selected', () => {
+        const onSelect = jest.fn();
+        const driver = createDriver(<DropdownLayout visible options={options} onSelect={onSelect}/>);
+        driver.clickAtOption(0);
+        driver.clickAtOption(1);
+        expect(onSelect).toHaveBeenLastCalledWith(options[1], false);
+      });
+
+      it('should nofity the same option was selected', () => {
+        const onSelect = jest.fn();
+        const driver = createDriver(<DropdownLayout visible options={options} onSelect={onSelect}/>);
+        driver.clickAtOption(0);
+        driver.clickAtOption(0);
+        expect(onSelect).toHaveBeenLastCalledWith(options[0], true);
+      });
+    });
+
+    describe('keyboard events', () => {
+      it('should call onSelect when enter key is pressed', () => {
+        const onSelect = jest.fn();
+        const driver = createDriver(<DropdownLayout visible options={options} onSelect={onSelect}/>);
+        driver.pressDownKey();
+        driver.pressEnterKey();
+        expect(onSelect).toBeCalled();
+      });
+
+      it('should call onSelect when tab key is pressed', () => {
+        const onSelect = jest.fn();
+        const driver = createDriver(<DropdownLayout visible options={options} onSelect={onSelect}/>);
+        driver.pressDownKey();
+        driver.pressTabKey();
+        expect(onSelect).toBeCalled();
+      });
+
+      it('should not call onSelect when composing text via external means', () => {
+        const onSelect = jest.fn();
+        const driver = createDriver(<DropdownLayout visible options={options} onSelect={onSelect}/>);
+        driver.pressEnterKey();
+        expect(onSelect).not.toBeCalled();
+      });
+    });
   });
 
   it('should select the chosen value', () => {

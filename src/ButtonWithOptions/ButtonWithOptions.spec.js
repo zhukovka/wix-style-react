@@ -78,6 +78,16 @@ const runButtonWithOptionsTest = driverFactory => {
       expect(onSelect).not.toBeCalled();
     });
 
+    it('should not call onSelect when a selected option is pressed without initial selectedId', () => {
+      const onSelect = jest.fn();
+      const {buttonDriver, dropdownLayoutDriver} = createDriver(buttonWithOptions({onSelect}));
+      buttonDriver.click();
+      dropdownLayoutDriver.clickAtOption(0);
+      expect(onSelect).toBeCalledWith(options[0]);
+      dropdownLayoutDriver.clickAtOption(0);
+      expect(onSelect).toHaveBeenCalledTimes(1);
+    });
+
     describe('Option children validation', () => {
 
       let children;
