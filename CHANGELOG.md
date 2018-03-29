@@ -12,6 +12,11 @@ Types of changes:
 1. **Security** in case of vulnerabilities.
 1. **Breaking** for breaking changes
 
+
+## 2.0.35 - 2018-03-29
+### Fixed
+- `<DrillView/>` - dont go over tags without onClick prop
+
 ## 2.0.34 - 2018-03-26
 ### Fixed
 - `<Tooltip/>` - fixed Tooltip show and hide functions to accept the relevant props [#1597](https://github.com/wix/wix-style-react/pull/1597)
