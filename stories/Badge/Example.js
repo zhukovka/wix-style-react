@@ -3,6 +3,7 @@ import {Email} from 'wix-style-react/Icons';
 import DropdownComposite from '../../src/DropdownComposite';
 import Dropdown from '../../src/Dropdown';
 import Label from '../../src/Label';
+import Text from '../../src/Text';
 import TextField from '../../src/TextField';
 import Input from '../../src/Input';
 import {SKIN, TYPE} from 'wix-ui-backoffice/dist/src/components/Badge/constants';
@@ -18,7 +19,7 @@ class ControlledBadgeExample extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      skin: SKIN.default,
+      skin: SKIN.general,
       type: TYPE.solid,
       children: 'I\'M A BADGE!',
       prefixIcon: 'none',
@@ -27,30 +28,33 @@ class ControlledBadgeExample extends React.Component {
   }
   render() {
     return (
-      <div className={style.container}>
-        <div style={{width: '200px'}}>
-          <h1> Props </h1>
-          <TextField><Label>children</Label><Input value={this.state.children} onChange={e => this.setState({children: e.target.value})}/></TextField>
-          <DropdownComposite><Label>skin</Label><Dropdown selectedId={this.state.skin} options={skinOptions} onSelect={option => this.setState({skin: option.value})}/></DropdownComposite>
-          <DropdownComposite><Label>type</Label><Dropdown selectedId={this.state.type} options={typeOptions} onSelect={option => this.setState({type: option.value})}/></DropdownComposite>
+      <div>
+        <div style={{background: 'azure', width: '310px'}}><Text>{`import Badge from 'wix-style-react/Badge';`}</Text></div>
+        <div className={style.container}>
+          <div style={{width: '200px'}}>
+            <h1> Props </h1>
+            <TextField><Label>children</Label><Input value={this.state.children} onChange={e => this.setState({children: e.target.value})}/></TextField>
+            <DropdownComposite><Label>skin</Label><Dropdown selectedId={this.state.skin} options={skinOptions} onSelect={option => this.setState({skin: option.value})}/></DropdownComposite>
+            <DropdownComposite><Label>type</Label><Dropdown selectedId={this.state.type} options={typeOptions} onSelect={option => this.setState({type: option.value})}/></DropdownComposite>
 
-          <DropdownComposite><Label>prefixIcon</Label><Dropdown selectedId={this.state.prefixIcon} options={iconsOptions} onSelect={option => this.setState({prefixIcon: option.value})}/></DropdownComposite>
-          <DropdownComposite><Label>suffixIcon</Label><Dropdown selectedId={this.state.suffixIcon} options={iconsOptions} onSelect={option => this.setState({suffixIcon: option.value})}/></DropdownComposite>
-        </div>
-        <div>
-          <h1> Preview </h1>
+            <DropdownComposite><Label>prefixIcon</Label><Dropdown selectedId={this.state.prefixIcon} options={iconsOptions} onSelect={option => this.setState({prefixIcon: option.value})}/></DropdownComposite>
+            <DropdownComposite><Label>suffixIcon</Label><Dropdown selectedId={this.state.suffixIcon} options={iconsOptions} onSelect={option => this.setState({suffixIcon: option.value})}/></DropdownComposite>
+          </div>
+          <div>
+            <h1> Preview </h1>
 
-          <br/><br/><br/><br/><br/><br/>
+            <br/><br/><br/><br/><br/><br/>
 
-          <Badge
-            skin={this.state.skin}
-            type={this.state.type}
-            prefixIcon={this.state.prefixIcon === 'Email' ? <Email/> : null}
-            suffixIcon={this.state.suffixIcon === 'Email' ? <Email/> : null}
-            data-hook="storybook-badge"
-            >
-            {this.state.children}
-          </Badge>
+            <Badge
+              skin={this.state.skin}
+              type={this.state.type}
+              prefixIcon={this.state.prefixIcon === 'Email' ? <Email/> : null}
+              suffixIcon={this.state.suffixIcon === 'Email' ? <Email/> : null}
+              data-hook="storybook-badge"
+              >
+              {this.state.children}
+            </Badge>
+          </div>
         </div>
       </div>
     );
