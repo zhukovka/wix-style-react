@@ -1,21 +1,23 @@
-export default () => {
-  if (!document.createRange) {
-    document.createRange = () => {
+if (!document.createRange) {
+  document.createRange = () => {
+
+    return (function () {
       const pub = {};
-
-      pub.setEnd = elem =>
+      pub.setEnd = function (elem) {
         pub.commonAncestorContainer = elem;
+      };
 
-      pub.setStart = elem =>
+      pub.setStart = function (elem) {
         pub.commonAncestorContainer = elem;
+      };
 
-      pub.getBoundingClientRect = () =>
-        ({right: 0});
+      pub.getBoundingClientRect = function () {
+        return {right: 0};
+      };
 
-      pub.getClientRects = () =>
-        [];
+      pub.getClientRects = () => [];
 
       return pub;
-    };
-  }
-};
+    })();
+  };
+}

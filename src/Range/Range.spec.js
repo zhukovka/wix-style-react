@@ -4,13 +4,12 @@ import Range from './Range';
 import Input from '../Input';
 import Label from '../Label';
 import DatePicker from '../DatePicker';
-import applyRangePolyfill from '../utils/RangePolyfill.js';
+import '../utils/RangePolyfill.js';
+
 
 import {rangeTestkitFactory} from '../../testkit';
 import {rangeTestkitFactory as enzymeRangeTestkitFactory} from '../../testkit/enzyme';
 import {mount} from 'enzyme';
-
-applyRangePolyfill();
 
 describe('Range', () => {
   describe('testkit', () => {
