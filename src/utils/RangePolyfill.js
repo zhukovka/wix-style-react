@@ -1,23 +1,21 @@
-if (!document.createRange) {
-  document.createRange = () => {
-
-    return (function () {
+export default () => {
+  if (!document.createRange) {
+    document.createRange = () => {
       const pub = {};
-      pub.setEnd = function (elem) {
+
+      pub.setEnd = elem =>
         pub.commonAncestorContainer = elem;
-      };
 
-      pub.setStart = function (elem) {
+      pub.setStart = elem =>
         pub.commonAncestorContainer = elem;
-      };
 
-      pub.getBoundingClientRect = function () {
-        return {right: 0};
-      };
+      pub.getBoundingClientRect = () =>
+        ({right: 0});
 
-      pub.getClientRects = () => [];
+      pub.getClientRects = () =>
+        [];
 
       return pub;
-    })();
-  };
-}
+    };
+  }
+};

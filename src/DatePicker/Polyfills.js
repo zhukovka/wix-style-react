@@ -1,3 +1,5 @@
+import applyRangePolyfill from '../utils/RangePolyfill';
+
 export default function applyPolyfills(window, global) {
   let lastTime = 0;
   const vendors = ['ms', 'moz', 'webkit', 'o'];
@@ -24,4 +26,6 @@ export default function applyPolyfills(window, global) {
       clearTimeout(id);
     };
   }
+
+  applyRangePolyfill();
 }

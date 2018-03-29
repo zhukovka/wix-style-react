@@ -8,10 +8,11 @@ import {backofficeTooltipTestkitFactory as enzymeTooltipTestkitFactory} from '..
 import {mount} from 'enzyme';
 import Button from '../Button';
 import waitForCond from 'wait-for-cond';
-import '../../utils/RangePolyfill.js';
+import applyRangePolyfill from '../../utils/RangePolyfill.js';
+
+applyRangePolyfill();
 
 describe('Tooltip', () => {
-
   const createDriver = createDriverFactory(tooltipDriverFactory);
   const _props = {showDelay: 5, hideDelay: 5, content: <div>Some content</div>};
   const children = <div>foo children</div>;

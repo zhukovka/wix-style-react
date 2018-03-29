@@ -9,13 +9,12 @@ import datePickerDriverFactory from './DatePicker.driver';
 import Input from '../Input';
 import DatePicker from './DatePicker';
 import isSameDay from 'date-fns/is_same_day';
-import '../utils/RangePolyfill.js';
+
+applyPolyfills(window, global);
 
 describe('DatePicker', () => {
   const createDriver = createDriverFactory(datePickerDriverFactory);
   let onChange;
-
-  applyPolyfills(window, global);
 
   beforeEach(() => {
     onChange = jest.fn();
