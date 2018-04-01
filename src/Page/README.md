@@ -1,10 +1,10 @@
 # <Page/>
 
-Page component is a wrapper component which allows you to use the sticky header component.
-<br/>
+Page component is a wrapper component which allows you to use the sticky header component.\
 The PageHeader component is the header implementation that will be changed when scrolling down inside the page.
 
 ## Properties
+
 | propName | propType | defaultValue | isRequired | description |
 |----------|----------|--------------|------------|-------------|
 | backgroundImageUrl | string | null | false | Background image url of the header beackground |
@@ -14,6 +14,7 @@ The PageHeader component is the header implementation that will be changed when 
 | gradientCoverTail | bool | true | false | Should gradient cover Page.Tail |
 
 ## Children
+
 | propName | propType | defaultValue | isRequired | description |
 |----------|----------|--------------|------------|-------------|
 | Page.Header | Page.Header | null | true | The PageHeader object which defines the components within the Header |
@@ -21,19 +22,24 @@ The PageHeader component is the header implementation that will be changed when 
 | Page.Content | Page.Content | null | true | A placeholder for the page scrollable body, support `fullScreen` property which spans the content on the available area |
 
 ## Usage
-When using the `Page` component it is mandatory to apply styles to it's container.
-<br/>
-The component by design needs to be contained in a container otherwise the scroll won't work.
-<br/>
+
+When using the `Page` component it is mandatory to apply styles to it's container.\
+The component by design needs to be contained in a container otherwise the scroll won't work.\
 The necessary style for the container is:
-<br/>
-<pre>
+
+```css
 height: 100vh;
 display: flex;
 flex-flow: column;
 min-height: 0;
-</pre>
-A live example is available <a href="https://wix.github.io/wix-style-react/?selectedKind=2.%20Layout&selectedStory=2.6%20%2B%20Page%20Example">here</a>.
+```
+
+A live example is available [here](https://wix.github.io/wix-style-react/?selectedKind=2.%20Layout&selectedStory=2.6%20%2B%20Page%20Example).
 
 ## Gradient
-You can generate Gradient CSS <a href="https://www.cssmatic.com/gradient-generator">here</a>.
+
+You can generate Gradient CSS [here](https://www.cssmatic.com/gradient-generator).
+
+## Known issues
+
+* Scrolling when mouse is over the Header part won't trigger scroll on the content.
