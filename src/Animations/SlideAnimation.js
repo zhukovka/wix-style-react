@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {node, bool, oneOf} from 'prop-types';
+import {node, bool, oneOf, func} from 'prop-types';
 import {CSSTransition} from 'react-transition-group';
 import slideIn from './SlideInAnimation.scss';
 import slideOut from './SlideOutAnimation.scss';
@@ -13,7 +13,7 @@ const animationDuration = 300; // Synced with SlideAnimation.scss file
 
 class SlideAnimation extends Component {
   render() {
-    const {isVisible, animateAppear, animateEnter, animateLeave, children, direction} = this.props;
+    const {isVisible, animateAppear, animateEnter, animateLeave, children, direction, onEnter, onExit, onEntered, onExited} = this.props;
     const transitionNames = direction === SlideDirection.in ? slideIn : slideOut;
     const childTimeout = {
       enter: animateEnter ? animationDuration : 0,
@@ -28,6 +28,10 @@ class SlideAnimation extends Component {
         classNames={transitionNames}
         timeout={childTimeout}
         unmountOnExit
+        onEnter={onEnter}
+        onExit={onExit}
+        onEntered={onEntered}
+        onExited={onExited}
         >
         {children || <span/>}
       </CSSTransition>
@@ -44,7 +48,11 @@ SlideAnimation.propTypes = {
   animateAppear: bool,
   animateEnter: bool,
   animateLeave: bool,
-  children: node
+  children: node,
+  onEnter: func,
+  onEntered: func,
+  onExit: func,
+  onExited: func
 };
 
 SlideAnimation.defaultProps = {

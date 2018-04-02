@@ -23,6 +23,7 @@ class SideMenuDrill extends WixComponent {
 
     this.processChildren({props: this.props}, state);
     this.state = state;
+    this.isAnimating = false;
   }
 
   componentWillReceiveProps(nextProps) {
@@ -193,10 +194,41 @@ class SideMenuDrill extends WixComponent {
     const navigationMenu = this.renderNavigation(menu);
 
     return navigationMenu && (
-      <div className={styles.drillViewPanel}>
+      <div data-hook="drill-view-panel" className={styles.drillViewPanel}>
         {navigationMenu}
       </div>
     );
+  }
+
+  shouldComponentUpdate() {
+    this.setState({isWaitingForAnimation: true});
+    return !this.isAnimating;
+  }
+
+  animationStart() {
+    this.isAnimating = true;
+  }
+
+  animationComplete() {
+    const {isWaitingForAnimation} = this.state;
+    this.isAnimating = false;
+    if (isWaitingForAnimation) {
+      this.setState({isWaitingForAnimation: false});
+    }
+  }
+
+  getAnimationHandlers() {
+    const enterHandlers = {};
+    const exitHandlers = {};
+    const enterPromise = new Promise(resolve => enterHandlers.onEnter = resolve);
+    const enteredPromise = new Promise(resolve => enterHandlers.onEntered = resolve);
+    const exitPromise = new Promise(resolve => exitHandlers.onExit = resolve);
+    const exitedPromise = new Promise(resolve => exitHandlers.onExited = resolve);
+
+    Promise.race([enterPromise, exitPromise]).then(() => this.animationStart());
+    Promise.all([enteredPromise, exitedPromise]).then(() => this.animationComplete());
+
+    return {enterHandlers, exitHandlers};
   }
 
   render() {
@@ -207,13 +239,17 @@ class SideMenuDrill extends WixComponent {
     const menuA = menuAId && menus[menuAId].component;
     const menuB = menuBId && menus[menuBId].component;
 
+    const {enterHandlers, exitHandlers} = this.getAnimationHandlers();
+    const menuAHandlers = showMenuA ? enterHandlers : exitHandlers;
+    const menuBHandlers = showMenuA ? exitHandlers : enterHandlers;
+
     return (
       <SideMenu dataHook="drill-view" inFlex={this.props.inFlex}>
         <div className={styles.drillViewContainer}>
-          <SlideAnimation direction={slideDirection} animateAppear={false} isVisible={showMenuA}>
+          <SlideAnimation direction={slideDirection} animateAppear={false} isVisible={showMenuA} {...menuAHandlers}>
             {this.renderMenu(menuA)}
           </SlideAnimation>
-          <SlideAnimation direction={slideDirection} animateAppear={false} isVisible={!showMenuA}>
+          <SlideAnimation direction={slideDirection} animateAppear={false} isVisible={!showMenuA} {...menuBHandlers}>
             {this.renderMenu(menuB)}
           </SlideAnimation>
         </div>

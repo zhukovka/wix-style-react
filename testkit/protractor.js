@@ -126,6 +126,9 @@ export const sliderTestkitFactory = protractorTestkitFactoryCreator(sliderDriver
 import tabsDriverFactory from '../src/Tabs/Tabs.protractor.driver';
 export const tabsTestkitFactory = protractorTestkitFactoryCreator(tabsDriverFactory);
 
+import drillViewDriverFactory from '../src/SideMenu/DrillView/DrillView.protractor.driver';
+export const drillViewTestkitFactory = protractorTestkitFactoryCreator(drillViewDriverFactory);
+
 // wix-ui-backoffice proxy
 
 export {
