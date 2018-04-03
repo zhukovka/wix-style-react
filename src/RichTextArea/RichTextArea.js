@@ -1,10 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
+import FormFieldError from 'wix-ui-icons-common/system/FormFieldError';
 import WixComponent from '../BaseComponents/WixComponent';
 import {Editor, Block} from 'slate';
 import Tooltip from '../Tooltip';
-import SvgExclamation from '../svg/Exclamation.js';
 import RichTextEditorToolbar from './RichTextAreaToolbar';
 import htmlSerializer from './htmlSerializer';
 import styles from './RichTextArea.scss';
@@ -352,7 +352,7 @@ class RichTextArea extends WixComponent {
         content={errorMessage}
         theme="dark"
         >
-        <div className={styles.exclamation}><SvgExclamation width={2} height={11}/></div>
+        <div className={styles.exclamation}><FormFieldError/></div>
       </Tooltip>
     );
   };

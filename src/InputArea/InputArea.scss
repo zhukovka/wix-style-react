@@ -40,7 +40,12 @@ $gap: 6px;
     display: flex;
     align-items: center;
     justify-content: center;
-    path { stroke: #fff; }
+    color: #fff;
+
+    > svg {
+      width: 10px;
+      height: 10px;
+    }
 }
 
 .inputArea {

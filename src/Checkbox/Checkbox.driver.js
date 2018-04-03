@@ -22,7 +22,7 @@ const checkboxDriverFactory = ({element, wrapper, component, eventTrigger}) => {
     hasFocusState: () => isClassExists(element, 'hasFocus'),
     isChecked: () => isClassExists(element, 'checked'),
     isDisabled: () => isClassExists(element, 'disabled'),
-    isIndeterminate: () => !!element.querySelector('.indeterminate'),
+    isIndeterminate: () => isClassExists(element, 'indeterminate'),
     hasError: () => isClassExists(element, 'hasError'),
     getLabel: () => labelDriver().getLabelText(),
     getLabelDriver: () => labelDriver(),

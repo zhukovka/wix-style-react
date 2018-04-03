@@ -47,12 +47,17 @@ $headerImageHeight: 185px;
   right: 18px;
   top: 18px;
   z-index: 10;
-  width            : 25px;
-  height           : 25px;
-  border-radius    : 50%;
-  border           : none;
-  background-color : rgba(red($D10), green($D10), blue($D10), 0.2);
-  cursor           : pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 25px;
+  height: 25px;
+  padding: 0;
+  border-radius: 50%;
+  border: none;
+  background-color: rgba(red($D10), green($D10), blue($D10), 0.2);
+  cursor: pointer;
+  color: #fff;
 }
 
 .close:hover, .close:focus {
@@ -60,8 +65,8 @@ $headerImageHeight: 185px;
 }
 
 .close > svg {
-    margin-top : 1px;
-    path { stroke: #fff; }
+  width: 9px;
+  height: 9px;
 }
 
 .title {

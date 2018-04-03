@@ -2,9 +2,9 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import WixComponent from '../BaseComponents/WixComponent';
 import classNames from 'classnames';
+import CloseLarge from 'wix-ui-icons-common/system/CloseLarge';
 
 import Button from '../Backoffice/Button';
-import SvgX from '../svg/X.js';
 
 import * as styles from './MessageBoxMarketerialLayout.scss';
 
@@ -22,7 +22,7 @@ class MessageBoxMarketerialLayout extends WixComponent {
       <div className={styles.root}>
         <div className={headerClasses}>
           <button type="button" className={styles.close} onClick={onClose} data-hook="close-button">
-            <SvgX width={9} height={9} thickness={1} color={'white'}/>
+            <CloseLarge/>
           </button>
           { imageComponent ?
             <div className={styles.headerImageComponent}>{imageComponent}</div> :

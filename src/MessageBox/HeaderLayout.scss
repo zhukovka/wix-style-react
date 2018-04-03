@@ -23,22 +23,26 @@
 
 .close
 {
+    display          : flex;
+    align-items      : center;
+    justify-content  : center;
     width            : 25px;
     height           : 25px;
+    padding          : 0;
     border-radius    : 50%;
     border           : none;
     background-color : rgba(red($D10), green($D10), blue($D10), 0.2);
     cursor           : pointer;
-    font-size        : 11px;
+    color            : #fff;
+}
+
+.close > svg {
+    width: 9px;
+    height: 9px;
 }
 
 .close:hover, .close:focus {
     background-color : rgba(red($D10), green($D10), blue($D10), 0.4);
-}
-
-.close > svg {
-    margin           : 3px auto 0 auto;
-    path { stroke: #fff; }
 }
 
 

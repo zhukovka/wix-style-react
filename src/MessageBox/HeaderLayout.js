@@ -1,8 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
+import CloseLarge from 'wix-ui-icons-common/system/CloseLarge';
 import styles from './HeaderLayout.scss';
-import SvgX from '../svg/X.js';
 
 const HeaderLayout = ({title, onCancel, theme, closeButton}) => {
 
@@ -13,7 +13,7 @@ const HeaderLayout = ({title, onCancel, theme, closeButton}) => {
       </span>
       {closeButton &&
         <button type="button" className={styles.close} data-hook="header-close-button" onClick={onCancel}>
-          <SvgX width={9} height={9} thickness={1} color={'white'}/>
+          <CloseLarge/>
         </button>
       }
     </div>

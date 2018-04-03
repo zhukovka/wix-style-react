@@ -3,23 +3,22 @@
 .root {
   box-sizing: border-box;
   margin: 0 6px;
-}
-
-.up,
-.down {
-  box-sizing: border-box;
-  padding: 5px 0;
-  cursor: pointer;
   user-select: none;
-  svg { display: block; margin: 0 auto; }
 }
 
-.up.disabled,
-.down.disabled {
-  cursor: not-allowed;
-  path { stroke: $GR10}
-}
+.up, .down {
+  padding: 5px 0;
+  color: #3899EC;
+  cursor: pointer;
 
-.down svg {
-  transform: rotate(-180deg);
+  svg {
+    display: block;
+    width: 10px;
+    height: 5px;
+  }
+
+  &.disabled {
+    cursor: not-allowed;
+    color: $GR10;
+  }  
 }

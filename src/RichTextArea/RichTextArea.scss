@@ -84,7 +84,7 @@ $marginLeft: $paddingLeft;
     @include FocusBoxError;
   }
 
-  &:not(.disabled) :hover {
+  &:not(.disabled):hover {
     background: $B50;
   }
 
@@ -114,6 +114,12 @@ $marginLeft: $paddingLeft;
   align-items: center;
   justify-content: center;
   background-color: $R10;
+  color: #fff;
+
+  > svg {
+    width: 10px;
+    height: 10px;
+  }
 
   .withError  & {
     display: flex;
