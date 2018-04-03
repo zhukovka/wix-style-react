@@ -133,5 +133,6 @@ export const drillViewTestkitFactory = protractorTestkitFactoryCreator(drillView
 
 export {
   badgeTestkitFactory,
-  stylableCounterBadgeDriverFactory as counterBadgeDriverFactory
+  stylableCounterBadgeTestkitFactory as counterBadgeTestkitFactory,
+  headingTestkitFactory
 } from 'wix-ui-backoffice/dist/src/testkit/protractor';

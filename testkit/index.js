@@ -208,5 +208,6 @@ export const sectionHelperTestkitFactory = testkitFactoryCreator(sectionHelperDr
 
 export {
   badgeTestkitFactory,
-  stylableCounterBadgeDriverFactory as counterBadgeDriverFactory
+  stylableCounterBadgeTestkitFactory as counterBadgeTestkitFactory,
+  headingTestkitFactory
 } from 'wix-ui-backoffice/dist/src/testkit';
