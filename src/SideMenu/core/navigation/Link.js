@@ -1,15 +1,15 @@
 import React from 'react';
 import {bool, node, string} from 'prop-types';
+import ChevronRight from 'wix-ui-icons-common/ChevronRight';
 import LinkLayout from './LinkLayout';
 import styles from './styles.scss';
-import DataPickerArrow from '../../../Icons/dist/components/DataPickerArrow';
 
 const Link = ({children, isDiminishedHover, isActive, withArrow, badge, dataHook, disabled, ...rest}) =>
   <LinkLayout isDiminishedHover={isDiminishedHover} isActive={isActive} disabled={disabled}>
     <a data-hook={dataHook} {...rest}>
       {children}
       {badge}
-      {withArrow && <span className={styles.linkArrow}><DataPickerArrow/></span>}
+      {withArrow && <span className={styles.linkArrow}><ChevronRight/></span>}
     </a>
   </LinkLayout>;
 

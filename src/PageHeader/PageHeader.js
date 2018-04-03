@@ -3,10 +3,10 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import WixComponent from '../BaseComponents/WixComponent';
 import classNames from 'classnames';
+import ChevronLeft from 'wix-ui-icons-common/ChevronLeft';
 import Breadcrumbs from '../Breadcrumbs';
 import Text from '../Text';
 import {Animator} from 'wix-animations';
-import {ArrowLeft} from '../Icons';
 import Button from '../Button';
 
 const animateComponent = (show, useEnterDelay, content) => {
@@ -92,7 +92,7 @@ export default class PageHeader extends WixComponent {
               showBackButton && onBackClicked && animateComponent(!minimized, !breadcrumbsExists,
                 <div className={classNames(s.backButton, {[s.minimized]: minimized, [s.darkTheme]: isDarkTheme(hasBackgroundImage, minimized)})} data-hook="page-header-backbutton">
                   <Button onClick={onBackClicked} theme="icon-white">
-                    <ArrowLeft size="16px"/>
+                    <ChevronLeft className={s.backButtonIcon}/>
                   </Button>
                 </div>)
             }

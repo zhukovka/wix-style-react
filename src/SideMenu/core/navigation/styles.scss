@@ -91,12 +91,10 @@ $padding-vertical: 14px;
   opacity: 0;
   font-size: 10px;
   transition: 0.5s;
-}
 
-:global(.rtl) {
-  .linkArrow {
-    right: inherit;
-    left: 25px;
+  > svg {
+    display: block;
+    transform: scale(2.6);
   }
 }
 
@@ -116,26 +114,25 @@ $padding-vertical: 14px;
     color: $D80;
 
     .backArrow {
-      margin-right: 15px;
-      margin-left: -5px;
+      transform: translateX(-5px);
     }
   }
 }
 
 .backArrow {
-  font-size: 10px;
-  margin-right: 10px;
-  transition: 0.5s;
+  display: inline-block;
+  vertical-align: middle;
+  transition: transform 0.5s;
+
+  > svg {
+    display: block;
+    transform: scale(2);
+  }
 }
 
-:global(.rtl) {
-  .backArrow {
-    margin: 0 0 0 10px;
-  }
-
-  .backLink:hover .backArrow {
-    margin:: 0 -5px 0 15px;
-  }
+.backLabel {
+  vertical-align: middle;
+  margin: 0 8px;
 }
 
 .categoryLabel {

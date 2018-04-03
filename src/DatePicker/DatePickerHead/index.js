@@ -2,9 +2,9 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
 import range from 'lodash/range';
+import ChevronLeft from 'wix-ui-icons-common/ChevronLeft';
+import ChevronRight from 'wix-ui-icons-common/ChevronRight';
 
-import Button from '../../Button';
-import {ArrowLeftThin, ArrowRightThin} from '../../Icons';
 import DatePickerDropdown from '../DatePickerDropdown';
 
 import styles from './styles.scss';
@@ -40,14 +40,12 @@ const DatePickerHead = ({
       className={styles.root}
       >
 
-      <div className={classnames(styles.arrow, styles.arrowLeft)}>
-        <Button
-          theme="icon-standard"
-          height="small"
-          onClick={onLeftArrowClick}
-          dataHook="datepicker-left-arrow"
-          children={<ArrowLeftThin/>}
-          />
+      <div
+        className={classnames(styles.arrow, styles.arrowLeft)}
+        data-hook="datepicker-left-arrow"
+        onClick={onLeftArrowClick}
+        >
+        <ChevronLeft className={styles.arrowIcon}/>
       </div>
 
       {showMonthDropdown ?
@@ -78,14 +76,12 @@ const DatePickerHead = ({
         caption(selectedYear.value, 'datepicker-year-caption')
       }
 
-      <div className={classnames(styles.arrow, styles.arrowRight)}>
-        <Button
-          theme="icon-standard"
-          height="small"
-          onClick={onRightArrowClick}
-          dataHook="datepicker-right-arrow"
-          children={<ArrowRightThin/>}
-          />
+      <div
+        className={classnames(styles.arrow, styles.arrowRight)}
+        data-hook="datepicker-right-arrow"
+        onClick={onRightArrowClick}
+        >
+        <ChevronRight className={styles.arrowIcon}/>
       </div>
     </div>
   );

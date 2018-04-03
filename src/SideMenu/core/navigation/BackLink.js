@@ -1,12 +1,12 @@
 import React from 'react';
 import {func, node} from 'prop-types';
+import ChevronLeft from 'wix-ui-icons-common/ChevronLeft';
 import styles from './styles.scss';
-import ArrowLeft from '../../../Icons/dist/components/ArrowLeft';
 
 const BackLink = ({onBackHandler, children}) => (
   <a className={styles.backLink} onClick={onBackHandler} data-hook="menu-navigation-back-link">
-    <span className={styles.backArrow}><ArrowLeft/></span>
-    <span>{children}</span>
+    <span className={styles.backArrow}><ChevronLeft/></span>
+    <span className={styles.backLabel}>{children}</span>
   </a>
 );
 
