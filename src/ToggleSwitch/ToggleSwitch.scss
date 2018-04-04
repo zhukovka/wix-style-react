@@ -1,4 +1,6 @@
 @import '../common.scss';
+@import '../common/Focusable/Focusable';
+
 $transition-speed:.3s;
 $activeBackgroundColor: $B10;
 $inactiveFocusedBackgroundColor: $B20;
@@ -57,23 +59,25 @@ $hoverBackgroundColor: $B20;
     background: $B40;
     position:   relative;
     cursor:     pointer;
+    outline: none;
 
     &.disabled {
         cursor: default;
         background: $GR10;
     }
 
-    &:focus {
-        outline: none;
-        @include FocusBox($keyboardOnly: true);
-    }
-
     &:hover {
         @include backgroundColor($hoverBackgroundColor);
     }
+}
 
-    &:focus:not(&:hover) {
-        @include backgroundColor($inactiveFocusedBackgroundColor);
+.toggleSwitch#{$focusable-focus-visible} {
+    .outerLabel {
+        @include FocusBox;
+
+        &:not(&:hover) {
+            @include backgroundColor($inactiveFocusedBackgroundColor);
+        }
     }
 }
 

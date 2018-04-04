@@ -7,6 +7,7 @@ import WixComponent from '../../BaseComponents/WixComponent';
 
 import typography, {convertFromUxLangToCss} from '../../Typography';
 import styles from '../RadioGroup.scss';
+import {withFocusable, focusableStates} from '../../common/Focusable';
 
 class RadioButton extends WixComponent {
   static displayName = 'RadioGroup.Radio';
@@ -87,6 +88,10 @@ class RadioButton extends WixComponent {
           }
         )}
         style={style}
+        tabIndex={disabled ? null : 0}
+        onFocus={this.props.focusableOnFocus}
+        onBlur={this.props.focusableOnBlur}
+        {...focusableStates(this.props)}
         >
         <input
           type="radio"
@@ -115,12 +120,13 @@ class RadioButton extends WixComponent {
           <div
             style={{height: lineHeight}}
             className={styles.radioButtonWrapper}
+            data-hook="radiobutton-radio"
             >
-            <div className={styles.radio} tabIndex={disabled ? null : 0}/>
+            <div className={styles.radio}/>
           </div>
 
           { children &&
-            <div className={styles.children}>
+            <div className={styles.children} data-hook="radiobutton-children">
               {children}
             </div>
           }
@@ -143,4 +149,5 @@ class RadioButton extends WixComponent {
   }
 }
 
-export default RadioButton;
+export default withFocusable(RadioButton);
+

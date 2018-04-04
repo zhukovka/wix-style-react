@@ -15,6 +15,8 @@ Types of changes:
 ## 3.0.2 - 2018-04-??
 ### Changed
 - `<Button>` - Make it focusable by keyboard only - using new FocusableHOC [#1614](https://github.com/wix/wix-style-react/pull/1614)
+- Make keyboard-only focusable for: `<Checkbox> <RadioButton> <RichTextAreaButton> <ToggleSwitch>` [#1624](https://github.com/wix/wix-style-react/pull/1624)
+
 
 ## 3.0.1 - 2018-03-28
 ### Fixed

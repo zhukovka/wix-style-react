@@ -1,5 +1,6 @@
 @import '../common';
 @import '../Typography/Typography';
+@import '../common/Focusable/Focusable';
 
 .button {
   padding: 0;
@@ -7,6 +8,7 @@
   background: transparent;
   color: $D30;
   border-radius: 6px;
+  outline: none;
  
   &:not(.disabled) {
     &:hover,
@@ -14,8 +16,8 @@
       color: $B10;
     }
     
-    &[data-focused="true"] {
-      @include FocusBox($keyboardOnly: true);
+    &#{$focusable-focus-visible} {
+      @include FocusBox;
       z-index: 1;
       position: relative;
     }

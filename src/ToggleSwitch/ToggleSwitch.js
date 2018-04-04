@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import classnames from 'classnames';
 import uniqueId from 'lodash/uniqueId';
 import WixComponent from '../BaseComponents/WixComponent';
-
+import {withFocusable, focusableStates} from '../common/Focusable';
 import styles from './ToggleSwitch.scss';
 
 /**
@@ -51,7 +51,12 @@ class ToggleSwitch extends WixComponent {
     })();
 
     return (
-      <div className={rootClassName}>
+      <div
+        className={rootClassName}
+        onFocus={this.props.focusableOnFocus} // For some reason eslint react/prop-types rule doesn't work here ?!#$
+        onBlur={this.props.focusableOnBlur}
+        {...focusableStates(this.props)}
+        >
         <input type="checkbox" id={id} checked={checked} onChange={e => !disabled && onChange(e)} disabled={disabled}/>
         <label htmlFor={id} className={outerLabel} style={{background: fillColor}} tabIndex={disabled ? null : 0} >
           <label htmlFor={id} className={innerLabel}>
@@ -95,4 +100,4 @@ ToggleSwitch.defaultProps = {
   size: 'large'
 };
 
-export default ToggleSwitch;
+export default withFocusable(ToggleSwitch);

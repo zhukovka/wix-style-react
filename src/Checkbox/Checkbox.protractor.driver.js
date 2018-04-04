@@ -1,15 +1,43 @@
-import {isFocused} from '../test-common';
 import styles from './Checkbox.scss';
+import focusableDriverFactory from '../common/Focusable/Focusable.protractor.driver';
+import {mergeDrivers, hasAttribute, hasClass} from '../test-common';
 
-const checkboxDriverFactory = component => ({
-  click: () => component.click(),
-  getLabel: () => component.$(`label`),
-  getInput: () => component.$(`input`),
-  isChecked: () => component.$(`input`).isSelected(),
-  isFocused: () => isFocused(component.$('label').$('div')),
-  isDisabled: async () => await component.$(`input`).getAttribute('disabled') !== null,
-  hasError: async () => (await component.getAttribute('class').includes(styles.hasError)),
-  element: () => component
-});
+/**
+ * @return <T extends InternalFocusableDriver>
+ */
+export const internalDriverFactory = element => {
+  const getBox = () => element.$(`[data-hook="checkbox-box"]`);
+  const getTextChildren = () => element.$(`[data-hook="checkbox-children"]`);
+
+  return {
+    // Implements: InternalFocusableDriver
+    focusableElement: element,
+    clickableGetters: [getBox, getTextChildren]
+  };
+};
+
+const checkboxDriverFactory = element => {
+  const checkboxElement = element.$(`[data-hook="checkbox-box"]`);
+  const childrenElement = element.$(`[data-hook="checkbox-children"]`);
+
+  const focusableDriver = focusableDriverFactory({
+    rootElement: element,
+    nativeFocusableElement: element,
+    clickableElements: [checkboxElement, childrenElement]
+  });
+
+  const publicDriver = {
+    element: () => element,
+    click: () => element.click(),
+    getLabel: () => element.$(`label`),
+    getInput: () => element.$(`input`),
+    isChecked: () => element.$(`input`).isSelected(),
+    isDisabled: () => hasAttribute(element.$(`input`), 'disabled'),
+    hasError: () => hasClass(element, styles.hasError)
+  };
+
+  return mergeDrivers(publicDriver, focusableDriver);
+
+};
 
 export default checkboxDriverFactory;

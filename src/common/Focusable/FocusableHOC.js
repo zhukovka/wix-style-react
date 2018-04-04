@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import {wrapDisplayName, getDisplayName, isStatelessComponent} from '../hocUtils';
 
 /**
- * Use this method to spread the focusable focus states onto the ocmponent's root element.
+ * Use this method to spread the focusable focus states onto the a component's root element.
  * @param {object} props
  */
 export function focusableStates(props) {

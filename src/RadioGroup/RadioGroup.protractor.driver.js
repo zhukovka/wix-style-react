@@ -1,13 +1,21 @@
 import {isFocused} from '../test-common';
-const radioGroupDriverFactory = component => {
+import buttonDriverFactory from './RadioButton/RadioButton.protractor.driver';
 
-  const radioAtIndex = index => component.$$(`div [data-hook="radio-label"]`).get(index);
+const radioGroupDriverFactory = component => {
+  const getRadioButtonLabel = index => component.$$(`div [data-hook="radio-label"]`).get(index);
+  const getRadioButtonRoot = index => component.all(by.xpath('./div')).get(index);
+
 
   return {
-    getRadioAtIndex: index => radioAtIndex(index),
-    selectByIndex: index => radioAtIndex(index).click(),
+    getButtonDriver: index => buttonDriverFactory(getRadioButtonRoot(index)),
+    getRadioAtIndex: index => getRadioButtonLabel(index),
+    selectByIndex: index => getRadioButtonLabel(index).click(),
     isRadioChecked: index => component.$$(`div input`).get(index).isSelected(),
     isRadioDisabled: index => !!component.$$(`div input`).get(index).getAttribute('disabled'),
+    /**
+     * @deprecated
+     * @see getButtonDriver
+     */
     isRadioFocused: index => isFocused(component.$$(`div label`).get(index).$(`[tabindex="0"]`)),
     element: () => component
   };

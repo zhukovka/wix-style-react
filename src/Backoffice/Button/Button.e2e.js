@@ -4,12 +4,14 @@ import autoExampleDriver from 'wix-storybook-utils/AutoExampleDriver';
 import React from 'react';
 import {runFocusTests} from '../../common/Focusable/FocusableTestsE2E';
 
+const NO_DESCRIPTION = '';
+
 describe('Backoffice Button', () => {
   const storyUrl = getStoryUrl('5. Buttons', '5.1 Standard');
   const driver = buttonTestkitFactory({dataHook: 'storybook-button'});
 
   // Specific as opposed to 'Generic' tests like the Focusable tests.
-  describe('Specific', () => {
+  describe(NO_DESCRIPTION, () => {
 
     beforeEach(async() => {
       // TODO: We do browser.get() before EACH test in order to reset the focus.

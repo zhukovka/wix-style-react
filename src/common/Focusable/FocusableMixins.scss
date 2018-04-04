@@ -1,6 +1,3 @@
-$focusable-focus: "[data-focus]";
-$focusable-focus-visible: "[data-focus-visible]";
-
 @mixin FocusBox($keyboardOnly: false) {
 	outline: none;
 	@if not($keyboardOnly) {

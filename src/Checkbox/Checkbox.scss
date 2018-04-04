@@ -1,14 +1,29 @@
 @import '../common.scss';
+@import '../common/Focusable/Focusable';
 
 .root {
   display: inline-block;
-
+  outline: none;
+  
   label {
     display: flex;
     cursor: pointer;
     justify-content: center;
     align-items: center;
   }
+
+  &#{$focusable-focus-visible} {
+    .checkbox {
+      @include FocusBox;
+    }
+  
+    &.hasError {  
+      .checkbox {
+        @include FocusBoxError;
+      } 
+    }
+  }
+  
 }
 
 .children {
@@ -25,17 +40,6 @@
   }
 }
 
-.hasFocus {
-  .checkbox {
-    @include FocusBox($keyboardOnly: true);
-  }
-
-  &.hasError {  
-    .checkbox {
-      @include FocusBoxError($keyboardOnly: true);
-    } 
-  }
-}
 
 .checkbox {
   position: relative;
