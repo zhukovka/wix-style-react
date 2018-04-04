@@ -37,7 +37,10 @@ class DataTable extends WixComponent {
           return nextProps.data.length > index && nextProps.data[index] === elem;
         })) {
           isLoadingMore = true;
-          this.setState({lastPage: this.calcLastPage(nextProps)});
+          const lastPage = this.calcLastPage(nextProps);
+          const currentPage =
+            this.state.currentPage < lastPage ? this.state.currentPage + 1 : this.state.currentPage;
+          this.setState({lastPage, currentPage});
         }
       }
       if (!isLoadingMore) {

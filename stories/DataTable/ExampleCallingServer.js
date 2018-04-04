@@ -43,6 +43,7 @@ class DataTableExample extends React.Component {
     return (
       <div style={style}>
         <DataTable
+          dataHook="story-data-table-infinite-scroll"
           data={generateData(this.state.count)}
           onRowClick={(row, rowNum) => {
             /*eslint-disable no-alert*/

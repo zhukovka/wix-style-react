@@ -1,7 +1,18 @@
 
+
+const rowSelector = 'tbody tr';
+const rowByIdx = (component, index) => component.$$(rowSelector).get(index);
+const scrollIntoView = el => {
+  return browser.executeScript(element => {
+    element.scrollIntoView();
+  }, el.getWebElement());
+};
+
 const dataTableDriverFactory = component => ({
-  clickRowByIndex: index => component.$$('tbody tr').get(index).click(),
-  getRowTextByIndex: index => component.$$('tbody tr').get(index).getText(),
+  rowsCount: () => component.$$(rowSelector).count(),
+  clickRowByIndex: index => rowByIdx(component, index).click(),
+  getRowTextByIndex: index => rowByIdx(component, index).getText(),
+  scrollToRowByIdx: index => scrollIntoView(rowByIdx(component, index)),
   element: () => component
 });
 

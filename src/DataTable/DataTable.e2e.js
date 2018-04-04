@@ -26,4 +26,19 @@ describe('Data Table', () => {
           });
       });
   });
+
+  eyes.it('display new data when received', async () => {
+    const dataHook = 'story-data-table-infinite-scroll';
+    const driver = dataTableTestkitFactory({dataHook});
+
+    browser.get(storyUrl);
+
+    await waitForVisibilityOf(driver.element(), 'Cant find Data Table Component');
+    const initialItems = 20;
+    const itemsAfterLoad = 40;
+    driver.scrollToRowByIdx(initialItems - 1);
+
+    await browser.wait(async () => await driver.rowsCount() === itemsAfterLoad, 10000, 'New data wasnt loaded :(');
+    expect(driver.rowsCount()).toEqual(itemsAfterLoad);
+  });
 });
