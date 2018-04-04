@@ -9,7 +9,8 @@
 
 .table th {
   background-color: rgba(240, 243, 247, 0.5);
-  text-align: start;
+  text-align: left;
+  text-align: start;  // not supported in IE11 & Edge; 'left' as fallback
   color: $paletteD3;
   border-top: solid 1px $D60;
 }
