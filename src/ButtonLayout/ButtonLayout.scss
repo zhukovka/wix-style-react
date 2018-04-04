@@ -45,6 +45,10 @@ $base-transition: all 100ms linear;
   outline: none;
 
   transition: $base-transition;
+
+  &#{$focusable-focus-visible} {
+    @include FocusBox;
+  }
 }
 
 .button>.inner {

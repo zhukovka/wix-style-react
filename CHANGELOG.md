@@ -12,6 +12,9 @@ Types of changes:
 1. **Security** in case of vulnerabilities.
 1. **Breaking** for breaking changes
 
+## 3.0.2 - 2018-04-??
+### Changed
+- `<Button>` - Make it focusable by keyboard only - using new FocusableHOC [#1614](https://github.com/wix/wix-style-react/pull/1614)
 
 ## 3.0.1 - 2018-03-28
 ### Fixed
