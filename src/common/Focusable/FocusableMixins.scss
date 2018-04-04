@@ -1,15 +1,11 @@
-@mixin FocusBox($keyboardOnly: false) {
+@mixin FocusBox {
 	outline: none;
-	@if not($keyboardOnly) {
-		border-color: $B10;
-		box-shadow: 0 0 0 3px $F00;
-	}
+	border-color: $B10;
+	box-shadow: 0 0 0 3px $F00;
 }
 
-@mixin FocusBoxError($keyboardOnly: false) {
+@mixin FocusBoxError {
 	outline: none;
-	@if not($keyboardOnly) {
-		border-color: $R10;
-		box-shadow: 0 0 0 3px $R30;
-	}
+	border-color: $R10;
+	box-shadow: 0 0 0 3px $R30;
 }
