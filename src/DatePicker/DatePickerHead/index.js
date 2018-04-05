@@ -1,12 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
-import range from 'lodash/range';
+
 import ChevronLeft from 'wix-ui-icons-common/ChevronLeft';
 import ChevronRight from 'wix-ui-icons-common/ChevronRight';
 
-import DatePickerDropdown from '../DatePickerDropdown';
-
+import YearDropdown from './YearDropdown';
+import MonthDropdown from './MonthDropdown';
 import styles from './styles.scss';
 
 const caption = (text, dataHook) =>
@@ -16,8 +16,9 @@ const caption = (text, dataHook) =>
     children={text}
     />;
 
-const optionsOf = items =>
-  items.map((item, index) => ({value: item, id: index}));
+
+const getMonthName = (months, month) =>
+  months[month] || months[0];
 
 const DatePickerHead = ({
   date,
@@ -28,12 +29,6 @@ const DatePickerHead = ({
   showMonthDropdown,
   showYearDropdown
 }) => {
-  const months = optionsOf(localeUtils.getMonths());
-  const selectedMonth = months.find(({id}) => id === date.getMonth());
-
-  const years = optionsOf(range(2028, 1900));
-  const selectedYear = years.find(({value}) => value === date.getFullYear());
-
   return (
     <div
       data-hook="datepicker-head"
@@ -49,31 +44,25 @@ const DatePickerHead = ({
       </div>
 
       {showMonthDropdown ?
-        <DatePickerDropdown
-          dataHook="datepicker-month-dropdown"
-          caption={selectedMonth.value}
-          options={months}
-          selectedId={selectedMonth.id}
-          onChange={({id}) =>
-            onChange(new Date(date.getFullYear(), id))
-          }
+        <MonthDropdown
+          date={date}
+          onChange={onChange}
+          months={localeUtils.getMonths()}
           /> :
 
-        caption(selectedMonth.value, 'datepicker-month-caption')
+        caption(
+          getMonthName(localeUtils.getMonths(), date.getMonth()),
+          'datepicker-month-caption'
+        )
       }
 
-      {showYearDropdown ?
-        <DatePickerDropdown
-          dataHook="datepicker-year-dropdown"
-          caption={selectedYear.value}
-          options={years}
-          selectedId={selectedYear.id}
-          onChange={({value}) =>
-            onChange(new Date(value, date.getMonth()))
-          }
+      { showYearDropdown ?
+        <YearDropdown
+          date={date}
+          onChange={onChange}
           /> :
 
-        caption(selectedYear.value, 'datepicker-year-caption')
+        caption(date.getFullYear(), 'datepicker-year-caption')
       }
 
       <div

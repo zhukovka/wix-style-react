@@ -451,6 +451,24 @@ describe('DatePicker', () => {
       expect(calendarDriver.isMonthCaptionExists()).toEqual(false);
     });
 
+    describe('given date in forward future', () => {
+      it('should not fail', () => {
+        const {calendarDriver} = createDriver(
+          <DatePicker value={new Date('2055/01/01')} onChange={onChange} showYearDropdown/>
+        );
+
+        calendarDriver.open();
+
+        const yearDropdownDriver = calendarDriver.getYearDropdownDriver();
+        const years = yearDropdownDriver.optionsContent().map(n => parseInt(n, 10));
+        const firstYear = years[0];
+        const lastYear = years[years.length - 1];
+
+        expect(firstYear).toBe(2055);
+        expect(lastYear).toBe(1900);
+      });
+    });
+
     describe('`width` prop', () => {
       const noop = () => {};
 
