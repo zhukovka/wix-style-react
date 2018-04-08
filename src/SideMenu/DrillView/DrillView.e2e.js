@@ -16,6 +16,6 @@ describe('DrillView', () => {
 
     await driver.clickBackLink();
     await browser.wait(async () => await driver.hasSingleDrillViewPanel());
-    expect(await driver.hasNoTransitionClassesInDrillView()).toBe(true);
+    await browser.wait(async () => await driver.hasNoTransitionClassesInDrillView());
   });
 });
