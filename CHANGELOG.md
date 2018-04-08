@@ -12,7 +12,7 @@ Types of changes:
 1. **Security** in case of vulnerabilities.
 1. **Breaking** for breaking changes
 
-## 3.0.2 - 2018-04-08
+## 3.1.0 - 2018-04-08
 ### Added
 - `<Heading>` component [#1617](https://github.com/wix/wix-style-react/pull/1617)
 - `<Button>` - Make it focusable by keyboard only - using new FocusableHOC [#1614](https://github.com/wix/wix-style-react/pull/1614)
@@ -22,6 +22,7 @@ Types of changes:
 - `<Badge>` & `<CounterBadge>` - improve Badge & CounterBadge stories [#1610](https://github.com/wix/wix-style-react/pull/1610)
 - Icons - Migrated some of the internal icons to wix-ui-icons-common [#1616](https://github.com/wix/wix-style-react/pull/1616)
 - Icons - Migrate arrow icons to wix-ui-icons-common [#1621](https://github.com/wix/wix-style-react/pull/1621)
+- Migrate to yoshi [962c7eb](https://github.com/wix/wix-style-react/commit/962c7ebae41102297ebe2a96eb5360b205ab8e6c)
 
 ### Fixed
 - Typography - fix `h2` lineheight and use correct grey colors in `t1` and `t3` [e38cd6a](https://github.com/wix/wix-style-react/commit/e38cd6a8ddee4d67a09dcca106a35b830f3735dc)
