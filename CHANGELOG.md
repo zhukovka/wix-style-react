@@ -16,6 +16,13 @@ Types of changes:
 ### Changed
 - `<Button>` - Make it focusable by keyboard only - using new FocusableHOC [#1614](https://github.com/wix/wix-style-react/pull/1614)
 - Make keyboard-only focusable for: `<Checkbox> <RadioButton> <RichTextAreaButton> <ToggleSwitch>` [#1624](https://github.com/wix/wix-style-react/pull/1624)
+- `<Badge>` & `<CounterBadge>` - improve Badge & CounterBadge stories [#1610](https://github.com/wix/wix-style-react/pull/1610)
+
+### Added
+- `<Heading>` component [#1617](https://github.com/wix/wix-style-react/pull/1617)
+
+### Fixed
+- `<DataTable>` - Add fallback to text-align:start for IE [#1623](https://github.com/wix/wix-style-react/pull/1623)
 
 
 ## 3.0.1 - 2018-03-28
