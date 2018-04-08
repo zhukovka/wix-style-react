@@ -12,18 +12,25 @@ Types of changes:
 1. **Security** in case of vulnerabilities.
 1. **Breaking** for breaking changes
 
-## 3.0.2 - 2018-04-??
-### Changed
-- `<Button>` - Make it focusable by keyboard only - using new FocusableHOC [#1614](https://github.com/wix/wix-style-react/pull/1614)
-- Make keyboard-only focusable for: `<Checkbox> <RadioButton> <RichTextAreaButton> <ToggleSwitch>` [#1624](https://github.com/wix/wix-style-react/pull/1624)
-- `<Badge>` & `<CounterBadge>` - improve Badge & CounterBadge stories [#1610](https://github.com/wix/wix-style-react/pull/1610)
-
+## 3.0.2 - 2018-04-08
 ### Added
 - `<Heading>` component [#1617](https://github.com/wix/wix-style-react/pull/1617)
+- `<Button>` - Make it focusable by keyboard only - using new FocusableHOC [#1614](https://github.com/wix/wix-style-react/pull/1614)
+- Make keyboard-only focusable for: `<Checkbox> <RadioButton> <RichTextAreaButton> <ToggleSwitch>` [#1624](https://github.com/wix/wix-style-react/pull/1624)
+
+### Changed
+- `<Badge>` & `<CounterBadge>` - improve Badge & CounterBadge stories [#1610](https://github.com/wix/wix-style-react/pull/1610)
+- Icons - Migrated some of the internal icons to wix-ui-icons-common [#1616](https://github.com/wix/wix-style-react/pull/1616)
+- Icons - Migrate arrow icons to wix-ui-icons-common [#1621](https://github.com/wix/wix-style-react/pull/1621)
 
 ### Fixed
-- `<DataTable>` - Add fallback to text-align:start for IE [#1623](https://github.com/wix/wix-style-react/pull/1623)
-
+- Typography - fix `h2` lineheight and use correct grey colors in `t1` and `t3` [e38cd6a](https://github.com/wix/wix-style-react/commit/e38cd6a8ddee4d67a09dcca106a35b830f3735dc)
+- `<DatePicker>` - big date, year dropdown min/max values are no longer hardcoded  [#1629](https://github.com/wix/wix-style-react/pull/1629)
+- `<MessageBox>` - right margin only if more then one button [#1588](https://github.com/wix/wix-style-react/pull/1588)
+- `<DataTable>` - add fallback to text-align:start for IE[#1623](https://github.com/wix/wix-style-react/pull/1623)
+- `<DataTable>` - render newly received data on infinite scroll properly [#1618](https://github.com/wix/wix-style-react/pull/1618)
+- `<DrillView>` - Fix render new state while in transition casues menu to disappear [#1615](https://github.com/wix/wix-style-react/pull/1615)
+- `<ButtonWithOptions>`,`<DropdownLayout>` - don't invoke onSelect when same option is selected [#1579](https://github.com/wix/wix-style-react/pull/1579)
 
 ## 3.0.1 - 2018-03-28
 ### Fixed
