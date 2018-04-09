@@ -1,17 +1,14 @@
 import eyes from 'eyes.it';
-import {inputAreaTestkitFactory, getStoryUrl, waitForVisibilityOf} from '../../testkit/protractor';
-import autoExampleDriver from 'wix-storybook-utils/AutoExampleDriver';
+import {inputAreaTestkitFactory} from '../../testkit/protractor';
+import {createStoryUrl, waitForVisibilityOf} from '../../test/utils/protractor';
 
 describe('input area page', () => {
-  const storyUrl = getStoryUrl('3. Inputs', '3.2 + InputArea');
+  // const storyUrl = getStoryUrl('3. Inputs', '3.2 + InputArea');
+  const storyUrl = createStoryUrl({kind: '3. Inputs', story: '3.2 + InputArea', withExamples: false});
   const inputAreaTestkit = inputAreaTestkitFactory({dataHook: 'storybook-inputarea'});
 
-  beforeAll(() => {
-    browser.get(storyUrl);
-  });
-
-  beforeEach(async() => {
-    await autoExampleDriver.reset();
+  beforeEach(async () => {
+    await browser.get(storyUrl);
     await waitForVisibilityOf(inputAreaTestkit.element());
   });
 
@@ -19,9 +16,7 @@ describe('input area page', () => {
     expect(inputAreaTestkit.isFocused()).toBe(false, 'isFocused');
   });
 
-  // Skiped until storybook supported withExampled url parameter
-  // When removing `skip`, then add eyes.
-  xit('should show focus styles', async () => {
+  eyes.it('should show focus styles', async () => {
     expect(inputAreaTestkit.isFocused()).toBe(false);
     await browser.actions().sendKeys(protractor.Key.TAB).perform();
     expect(inputAreaTestkit.isFocused()).toBe(true);
