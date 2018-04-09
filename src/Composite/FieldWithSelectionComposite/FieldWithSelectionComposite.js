@@ -111,7 +111,7 @@ class FieldWithSelectionComposite extends WixComponent {
     return (
       <div className={styles.wrapper} >
         {label}
-        <div className={classNames(inputsWrapperClassNames)}>
+        <div className={classNames(inputsWrapperClassNames)} data-hook="input-wrappers">
           {React.cloneElement(textInput, {
             onFocus: this._onFocusFirst,
             onBlur: this._onBlurFirst,

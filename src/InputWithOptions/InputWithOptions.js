@@ -103,7 +103,7 @@ class InputWithOptions extends WixComponent {
       (this.props.showOptionsIfEmptyInput || this.state.inputValue.length > 0);
 
     return (
-      <div className={this.dropdownClasses()} style={customStyle}>
+      <div className={this.dropdownClasses()} style={customStyle} data-hook="dropdown-layout-wrapper">
         <DropdownLayout
           ref={dropdownLayout => this.dropdownLayout = dropdownLayout}
           {...dropdownProps}
