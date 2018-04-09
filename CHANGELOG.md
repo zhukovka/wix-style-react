@@ -15,6 +15,7 @@ Types of changes:
 ## 3.1.3 - TBD
 ### Fixed
 - `<Tooltip>` - Fixed `Tooltip` positioning within `Page` component [#1649](https://github.com/wix/wix-style-react/pull/1649)
+- `<DatePicker/>` - `onChange` called with time part untouched [#1631](https://github.com/wix/wix-style-react/pull/1631)
 
 ## 3.1.2 - 2018-04-08
 ### Fixed
