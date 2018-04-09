@@ -14,6 +14,9 @@ import subYears from 'date-fns/sub_years';
 import parse from 'date-fns/parse';
 import isSameDay from 'date-fns/is_same_day';
 import startOfMonth from 'date-fns/start_of_month';
+import setYear from 'date-fns/set_year';
+import setMonth from 'date-fns/set_month';
+import setDate from 'date-fns/set_date';
 
 import WixComponent from '../BaseComponents/WixComponent';
 import CalendarIcon from '../Icons/dist/components/Calendar';
@@ -182,9 +185,20 @@ export default class DatePicker extends WixComponent {
     }
 
     const isChanged = !isSameDay(value, this.props.value);
+
     if (isChanged) {
-      this.setState({value}, () => this.props.onChange(value));
+      const newValue = [
+        [value.getFullYear(), setYear],
+        [value.getMonth(), setMonth],
+        [value.getDate(), setDate]
+      ].reduce(
+        (value, [datePart, setter]) => setter(value, datePart),
+        this.props.value
+      );
+
+      this.setState({value: newValue}, () => this.props.onChange(newValue));
     }
+
     this.props.shouldCloseOnSelect && this.closeCalendar();
   }
 
