@@ -5,6 +5,7 @@ import ReactDOM from 'react-dom';
 import TooltipContent from './TooltipContent';
 import position from './TooltipPosition';
 import styles from './TooltipContent.scss';
+import {TooltipContainerStrategy} from './TooltipContainerStrategy';
 
 const renderSubtreeIntoContainer = ReactDOM.unstable_renderSubtreeIntoContainer;
 
@@ -124,6 +125,8 @@ class Tooltip extends WixComponent {
       visible: false,
       hidden: true
     };
+
+    this._tooltipContainerStrategy = new TooltipContainerStrategy(props.appendTo, props.appendToParent);
   }
 
   componentElements() {
@@ -240,13 +243,7 @@ class Tooltip extends WixComponent {
   };
 
   _getContainer() {
-    if (typeof document === 'undefined') {
-      return null;
-    }
-    if (this.props.appendTo) {
-      return this.props.appendTo;
-    }
-    return this.props.appendToParent ? this._childNode.parentElement : document ? document.body : null;
+    return this._tooltipContainerStrategy.getContainer(this._childNode);
   }
 
   show = (props = this.props) => {
@@ -421,12 +418,14 @@ class Tooltip extends WixComponent {
         height: el.offsetHeight
       };
     }
-    if (this.props.appendTo) {
-      const containerRect = this.props.appendTo.getBoundingClientRect();
+
+    const container = this._getContainer(el);
+    if (container !== document.body) {
+      const containerRect = container.getBoundingClientRect();
       const selfRect = el.getBoundingClientRect();
       return {
-        left: selfRect.left - containerRect.left + this.props.appendTo.scrollLeft,
-        top: selfRect.top - containerRect.top + this.props.appendTo.scrollTop,
+        left: selfRect.left - containerRect.left + container.scrollLeft,
+        top: selfRect.top - containerRect.top + container.scrollTop,
         width: selfRect.width,
         height: selfRect.height
       };
