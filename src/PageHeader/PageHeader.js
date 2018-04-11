@@ -23,9 +23,11 @@ const isDarkTheme = (hasBackgroundImage, minimized) => !minimized && hasBackgrou
 
 const getBreadcrumbsTheme = (hasBackgroundImage, minimized) => isDarkTheme(hasBackgroundImage, minimized) ? 'onDarkBackground' : 'onGrayBackground';
 
+const getTitle = (title, minimized) => typeof title === 'function' ? title(minimized) : title;
+
 const generateDefaultBreadcrumbs = (title, hasBackgroundImage, minimized) =>
   <Breadcrumbs
-    items={[{id: '1', value: title}]}
+    items={[{id: '1', value: getTitle(title, minimized)}]}
     activeId="1"
     size="medium"
     theme={getBreadcrumbsTheme(hasBackgroundImage, minimized)}
@@ -39,6 +41,8 @@ const generateThemedBreadcrumbs = (breadcrumbs, title, hasBackgroundImage, minim
 
   return generateDefaultBreadcrumbs(title, hasBackgroundImage, minimized);
 };
+
+
 
 /**
   * A header that sticks at the top of the container which minimizes on scroll
@@ -100,7 +104,7 @@ export default class PageHeader extends WixComponent {
               {
                 title && animateComponent(!minimized, !breadcrumbsExists,
                   <div className={classNames(s.title, {[s.minimized]: minimized})} data-hook="page-header-title">
-                    <Text appearance={isDarkTheme(hasBackgroundImage, minimized) ? 'H1.1' : 'H1'}>{title}</Text>
+                    <Text appearance={isDarkTheme(hasBackgroundImage, minimized) ? 'H1.1' : 'H1'}>{getTitle(title, minimized)}</Text>
                   </div>)
               }
               {
@@ -133,7 +137,11 @@ PageHeader.propTypes = {
   /** Wix-Style-React Breadcrumbs component */
   breadcrumbs: PropTypes.node,
   /** The main title text */
-  title: PropTypes.node,
+  title: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.node,
+    PropTypes.func
+  ]),
   /** The subtitle text */
   subtitle: PropTypes.node,
   /** Should show a back button */

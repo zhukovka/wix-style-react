@@ -4,6 +4,7 @@ import pageHeaderDriverFactory from './PageHeader.driver';
 import {createDriverFactory} from '../test-common';
 import Button from '../Button';
 import Breadcrumbs from '../Breadcrumbs/Breadcrumbs';
+import PropTypes from 'prop-types';
 
 const generateBreadcrumbs = title =>
   <Breadcrumbs
@@ -154,4 +155,39 @@ describe('PageHeader', () => {
     expect(driver.isBackButtonDarkTheme()).toBeTruthy();
     expect(driver.isBreadcrumbsDarkTheme()).toBeTruthy();
   });
+
+  describe('should initialize component with render props title', () => {
+
+    const altTitle = 'This is a different title';
+    const HeaderTitleComponent = props => <span>{props.minimized ? altTitle : title}</span>;
+    HeaderTitleComponent.propTypes = {minimized: PropTypes.bool};
+
+    it('not minimized', () => {
+      const pageHeader = <PageHeader title={minimized => (<HeaderTitleComponent minimized={minimized}/>)}/>;
+      const driver = createDriver(pageHeader);
+      expect(driver.titleText()).toBe(title);
+      expect(driver.isTitleExists()).toBeTruthy();
+      expect(driver.isSubtitleExists()).toBeFalsy();
+      expect(driver.isBreadcrumbsExists()).toBeFalsy();
+    });
+
+    it('minimized with breadcrumbs', () => {
+      const pageHeader = <PageHeader minimized breadcrumbs={breadcrumbs} title={minimized => (<HeaderTitleComponent minimized={minimized}/>)}/>;
+      const driver = createDriver(pageHeader);
+      expect(driver.isTitleExists()).toBeFalsy();
+      expect(driver.isSubtitleExists()).toBeFalsy();
+      expect(driver.isBreadcrumbsExists()).toBeTruthy();
+    });
+
+    it('minimized without breadcrumbs', () => {
+      const pageHeader = <PageHeader minimized title={minimized => (<HeaderTitleComponent minimized={minimized}/>)}/>;
+      const driver = createDriver(pageHeader);
+      expect(driver.isTitleExists()).toBeFalsy();
+      expect(driver.isSubtitleExists()).toBeFalsy();
+      expect(driver.isBreadcrumbsExists()).toBeTruthy();
+      expect(driver.breadcrumbsText()).toBe(altTitle);
+    });
+
+  });
+
 });

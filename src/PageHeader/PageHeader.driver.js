@@ -14,6 +14,7 @@ export default ({element}) => ({
   subtitleText: () => subtitleElement(element).textContent,
   isSubtitleExists: () => !!subtitleElement(element),
   isBreadcrumbsExists: () => !!breadcrumbsElement(element),
+  breadcrumbsText: () => breadcrumbsElement(element).textContent,
   isActionBarExists: () => !!actionBarElement(element),
   isBackButtonExists: () => !!backButtonElement(element),
   isTitleDarkTheme: () => isClassExists(titleElement(element), 'h1_1'),
