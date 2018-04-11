@@ -12,6 +12,10 @@ Types of changes:
 1. **Security** in case of vulnerabilities.
 1. **Breaking** for breaking changes
 
+## 3.1.4 - TBD
+### Fixed
+- `<RichTextArea>/` fix incorrect Tooltip input width [#1657](https://github.com/wix/wix-style-react/pull/1657)
+ 
 ## 3.1.3 - 2018-04-11
 ### Added
 - `<PageHeader>` - Passing minimize state to title component [#1665](https://github.com/wix/wix-style-react/pull/1665)
