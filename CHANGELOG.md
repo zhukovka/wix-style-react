@@ -13,6 +13,9 @@ Types of changes:
 1. **Breaking** for breaking changes
 
 ## 3.1.3 - TBD
+### Added
+- `<PageHeader>` - Passing minimize state to title component [#1665](https://github.com/wix/wix-style-react/pull/1665)
+
 ### Fixed
 - `<Tooltip>` - Fixed `Tooltip` positioning within `Page` component [#1649](https://github.com/wix/wix-style-react/pull/1649)
 - `<DatePicker/>` - `onChange` called with time part untouched [#1631](https://github.com/wix/wix-style-react/pull/1631)

@@ -138,7 +138,6 @@ PageHeader.propTypes = {
   breadcrumbs: PropTypes.node,
   /** The main title text */
   title: PropTypes.oneOfType([
-    PropTypes.string,
     PropTypes.node,
     PropTypes.func
   ]),
