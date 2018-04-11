@@ -12,8 +12,9 @@ Types of changes:
 1. **Security** in case of vulnerabilities.
 1. **Breaking** for breaking changes
 
-## 3.1.4 - TBD
+## 3.1.4 - 2018-04-11
 ### Fixed
+- `Page` - Removed z-index from PageHeader
 - `<RichTextArea/>` fix incorrect Tooltip input width [#1657](https://github.com/wix/wix-style-react/pull/1657)
 - `<DatePicker/>` fix position in safari [#1656](https://github.com/wix/wix-style-react/pull/1656)
  
