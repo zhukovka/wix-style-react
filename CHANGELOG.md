@@ -12,7 +12,7 @@ Types of changes:
 1. **Security** in case of vulnerabilities.
 1. **Breaking** for breaking changes
 
-## 3.1.3 - TBD
+## 3.1.3 - 2018-04-11
 ### Added
 - `<PageHeader>` - Passing minimize state to title component [#1665](https://github.com/wix/wix-style-react/pull/1665)
 
