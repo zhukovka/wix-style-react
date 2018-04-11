@@ -11,7 +11,9 @@ const multiSelectDriverFactory = ({element, wrapper, component}) => {
 
   const inputWrapper = driver.inputWrapper().childNodes[0];
 
-  const tags = initial(inputWrapper.childNodes);
+  const contentWrapper = inputWrapper.childNodes[0];
+
+  const tags = initial(contentWrapper.childNodes);
 
   const multiSelectDriver = Object.assign(driver, {
     getMaxHeight: () => inputWrapper.style.maxHeight,

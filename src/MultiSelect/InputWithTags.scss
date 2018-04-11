@@ -13,10 +13,14 @@
 }
 
 .tagsContainer {
-  width: 100%;
-  @include FontThin();
   border: 1px solid $B30;
   border-radius: 6px;
+}
+
+.contentWrapper {
+  margin: -1px;
+  width: 100%;
+  @include FontThin();
   display: flex;
   flex-wrap: wrap;
   align-items: center;

@@ -92,29 +92,31 @@ class InputWithTags extends React.Component {
         onMouseOut={() => this.handleHover()}
         data-hook={this.props.dataHook}
         >
-        {tags.map(({label, ...rest}) => <Tag key={rest.id} disabled={disabled} onRemove={onRemoveTag} {...rest}>{label}</Tag>)}
-        <span className={styles.input} data-hook="inner-input-with-tags">
-          <div className={styles.hiddenDiv} style={{fontSize}}>
-            {this.state.inputValue}
-          </div>
+        <div className={styles.contentWrapper}>
+          {tags.map(({label, ...rest}) => <Tag key={rest.id} disabled={disabled} onRemove={onRemoveTag} {...rest}>{label}</Tag>)}
+          <span className={styles.input} data-hook="inner-input-with-tags">
+            <div className={styles.hiddenDiv} style={{fontSize}}>
+              {this.state.inputValue}
+            </div>
 
-          <Input
-            width={this.props.width}
-            ref={input => this.input = input}
-            onFocus={() => this.handleInputFocus()}
-            onBlur={() => this.handleInputBlur()}
-            placeholder={tags.length === 0 ? placeholder : ''}
-            {...desiredProps}
-            dataHook="inputWithTags-input"
-            disabled={disabled}
-            onChange={e => {
-              if (!delimiters.includes(e.target.value)) {
-                this.setState({inputValue: e.target.value});
-                desiredProps.onChange && desiredProps.onChange(e);
-              }
-            }}
-            />
-        </span>
+            <Input
+              width={this.props.width}
+              ref={input => this.input = input}
+              onFocus={() => this.handleInputFocus()}
+              onBlur={() => this.handleInputBlur()}
+              placeholder={tags.length === 0 ? placeholder : ''}
+              {...desiredProps}
+              dataHook="inputWithTags-input"
+              disabled={disabled}
+              onChange={e => {
+                if (!delimiters.includes(e.target.value)) {
+                  this.setState({inputValue: e.target.value});
+                  desiredProps.onChange && desiredProps.onChange(e);
+                }
+              }}
+              />
+          </span>
+        </div>
       </div>
     );
   }
