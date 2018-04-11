@@ -17,6 +17,10 @@ Types of changes:
 - `<Tooltip>` - Fixed `Tooltip` positioning within `Page` component [#1649](https://github.com/wix/wix-style-react/pull/1649)
 - `<DatePicker/>` - `onChange` called with time part untouched [#1631](https://github.com/wix/wix-style-react/pull/1631)
 
+### Changed
+- `<Modal>` - upgrade react-modal version [#1661](https://github.com/wix/wix-style-react/pull/1661)
+- `Icons` - Migrate Button, Search, and Tag to wix-ui-icons-common [#1635](https://github.com/wix/wix-style-react/pull/1635)
+
 ## 3.1.2 - 2018-04-08
 ### Fixed
 - `<FieldWithSelection>` - Fix missing styling when with Checkbox [#1642](https://github.com/wix/wix-style-react/pull/1642)
