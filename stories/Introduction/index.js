@@ -1,18 +1,13 @@
 import React from 'react';
 import {storiesOf} from '@storybook/react';
 
-import AutoDocs from 'wix-storybook-utils/AutoDocs';
 import Markdown from 'wix-storybook-utils/Markdown';
-import TabbedView from 'wix-storybook-utils/TabbedView';
-import AutoExampleSource from '!raw-loader!wix-storybook-utils/src/AutoExample';
-import StorySource from '!raw-loader!wix-storybook-utils/src/Story';
 
 import Readme from '../../README.md';
 import TestsReadme from '../../docs/TESTS.md';
 import Contribution from '../../docs/CONTRIBUTING.md';
 import AddingStory from '../../docs/adding-story.md';
 import TPA from '../../src/TPA/README.md';
-import AutoDocsReadme from '../../docs/AutoDocs.md';
 import UsageWithoutHasteReadme from '../../docs/usage-without-haste.md';
 
 storiesOf('Introduction', module)
@@ -21,11 +16,4 @@ storiesOf('Introduction', module)
   .add('Contribution', () => <Markdown source={Contribution}/>)
   .add('TPA', () => <Markdown source={TPA}/>)
   .add('Usage Without Haste', () => <Markdown source={UsageWithoutHasteReadme}/>)
-  .add('Documenting components', () =>
-    <TabbedView tabs={['Adding a Story', 'story( )', 'AutoDocs', 'AutoExample']}>
-      <Markdown source={AddingStory}/>
-      <AutoDocs source={StorySource} showTitle={false}/>
-      <Markdown source={AutoDocsReadme}/>
-      <AutoDocs source={AutoExampleSource}/>
-    </TabbedView>
-  );
+  .add('Documenting components', () => <Markdown source={AddingStory}/>);

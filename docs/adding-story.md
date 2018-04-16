@@ -2,25 +2,211 @@
 
 All components exported by `wix-style-react` are documented and displayed on our [github page](wix.github.io/wix-style-react/) (you probably are looking at it now).
 
-This page is created with [Storybook](https://storybook.js.org). It displays automatically generated documentation.
+It is rendered with [Storybook](https://storybook.js.org).
 
-## Adding a Story
+## Story
 
-story is a page with all details and examples of a component. Given small config, this page is generated automatically.
+**story** is a term we use to describe single page which contains all documentation about component. For
+instance, [this page with `<ToggleSwitch/>`](https://github.com/wix/wix-style-react/blob/master/stories/ToggleSwitch.story.js) is a story.
 
-### Example
+All of what you see in the aforementioned link is generated automatically from component source. The code examples, the list of props, the preview, all of it is done so you don't have to.
 
-`stories/ToggleSwitch/index.js` ([view on github](https://github.com/wix/wix-style-react/blob/master/stories/ToggleSwitch/index.js)):
+All you need is a little configuration.
+
+## Creating a story
+
+Stories are files with `.story.js` extension. These files go through webpack loader which extracts component metadata
+and renders it. In order for loader to know what/how to document component, you must provide a configuration object.
+
+## Short example
+
+Let's look again at [`<ToggleSwitch/>` story page](https://github.com/wix/wix-style-react/blob/master/stories/ToggleSwitch.story.js):
 
 ```js
-// 1. import `story` function. It will create a story page
-import story from 'story';
+import ToggleSwitch from 'wix-style-react/ToggleSwitch'; // 1.
 
-// 2. call `story()` with object
-story({
-  category: 'Core',
-  componentSrcFolder: 'ToggleSwitch'
-});
+export default { // 2.
+  category: '4. Selection', // 3.
+  storyName: '4.4 ToggleSwitch', // 4.
+
+  component: ToggleSwitch, // 5.
+  componentPath: '../src/ToggleSwitch', // 6.
+
+  componentProps: (setState, getState) => ({ // 7.
+    onChange: () => setState({checked: !getState().checked}),
+    dataHook: 'storybook-toggleswitch'
+  })
+};
 ```
 
-Refer to __story()__ tab for full list `story` configuration API.
+1. `import` component you wish to document
+1. `export` a single object which will be treated as story configuration
+1. `category` is a name of Storybook sidebar section
+1. `storyName` is a name of specific story
+1. `component` a reference to component which is to be documented
+1. `componentPath` a path to component. This is for parser to know where to start parsing your component
+1. `componentProps` an object (or function returning object) which outlines props to be given to `5.` - a component
+
+## Full API (long example)
+
+Scaffold:
+
+```js
+// MyStory.story.js
+
+export default {
+  // config
+}
+```
+
+---
+
+#### `category` - `string` required
+
+Name of Storybook "section" under which this story will be placed (e.g. `Core`, `6. Navigation`, `3. Inputs`)
+
+---
+
+#### `component` - `ReactNode` required
+
+Reference to react component which will be used in interactive example.
+Most often it will be imported component:
+
+```js
+import MyComponent from 'wix-style-react/Component';
+
+export default {
+  // ... other config
+  component: MyComponent
+}
+```
+
+---
+
+#### `componentPath` - `string` required
+
+a string of relative path to component source. This is required in order
+for automatic documentation to know where to start parsing.
+
+even though just folder is enough, it is better to provide exact path to file.
+
+```js
+import MyComponent from './src/components/MyComponent';
+
+export default {
+  // ... other config
+  component: MyComponent,
+  componentPath: './src/components/MyComponent/index.js'
+}
+```
+
+---
+
+#### `storyName` - `string`
+
+Name of the story in sidebar. If omitted, it will use `displayName` of
+the component.
+
+---
+
+#### `componentProps` - `object` or `function`
+
+Props that will be passed to `component`. Either given as-is with `object` or computed in `function`.
+Imagine it as `<Component {...componentProps}/>`. Here you can set any required props.
+
+ * when `object`, it will be passed to `component` as props.
+ * when `function`, its signature is `(setState, getState) => props` where:
+   * `setState` - `function`: accepts one argument - object. When called this object will be set as `componentProps`
+   * `getState` - `function`: does not accept anything. When called it will return an object containing currently used props
+   * `props` - return value `object`: whatever is returned will be used as new `componentProps`
+
+For example:
+
+```js
+// `componentProps` as object
+export default {
+  component: ToggleSwitch,
+  // ...other config
+  componentProps: {
+    onChange: () => console.log('wooo onChange called!')
+  }
+}
+
+// This is equivalent to the following
+<ToggleSwitch onChange={() => console.log('wooo onChange called!')}/>
+```
+
+Function is used to allow dynamic changes from within `component`.
+The return value of that function will be used as new `component` props.
+
+When component calls `onChange` it will
+first take `checked` (which initially is set to `false`) and invert it.
+
+This is how you can imitate surrounding state without managing it yourself:
+```js
+// `componentProps` as function
+export default {
+  component: ToggleSwitch,
+  // ...other config
+  componentProps: (setState, getState) => ({
+    checked: false,
+    onChange: () => setProps({checked: !getProps().checked})
+  }),
+}
+```
+
+---
+
+#### `examples` - `ReactNode`
+
+Automatically generated story page might not include all possible
+examples. In that case use `examples` and pass a `ReactNode`. It will be
+rendered without modification at the bottom of story page.
+
+For example:
+
+```js
+export default {
+  // ... other config
+  examples: (
+    <div>
+      Hello, I am custom example
+    </div>
+  )
+}
+```
+
+---
+
+#### `exampleImport` - `string`
+
+at the top of the page there is code showing how to import component,
+something like `import Component from 'module/Component';`
+
+However, due to various reasons story may not show correct import example. In that case use `exampleImport` and pass
+hardcoded string of import example
+
+---
+
+#### `exampleProps` - `object`
+
+story page displays a list of interactive props on the left.
+when prop is something like `checked` and its type is `Boolean`, it is easy to understand that a toggle switch (a.k.a
+`<input type="checkbox"/>`) is something that can control the state of `checked`.
+
+however, if prop is something more complex, let's say a `ReactNode`, there is no way to automate example for it.
+
+hence, `exampleProps` allows to pass a custom list of nodes, for example:
+
+```js
+export default {
+  // ... other config
+  exampleProps: {
+    children: [
+      'hello',
+      <span>Another hello</span>,
+      <div onClick={() => console.log('you clicked me!')}>yet another hello</div>
+    ]
+  }
+}
+```
