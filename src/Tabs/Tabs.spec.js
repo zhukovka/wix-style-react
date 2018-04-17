@@ -79,6 +79,26 @@ describe('Tabs component', () => {
     expect(driver.getSideContent()).toBeFalsy();
   });
 
+  it('should have divider by default', () => {
+    const driver = createComponent({items});
+
+    expect(driver.hasDivider()).toBeTruthy();
+  });
+
+
+  it('should not have divider if props.divider is falsy', () => {
+    const driver = createComponent({items, hasDivider: false});
+
+    expect(driver.hasDivider()).toBeFalsy();
+  });
+
+  it('should have divider if props.divider is truthy', () => {
+    const driver = createComponent({items, hasDivider: true});
+
+    expect(driver.hasDivider()).toBeTruthy();
+  });
+
+
   describe('testkit', () => {
     it('should exist', () => {
       const div = document.createElement('div');

@@ -6,10 +6,6 @@
   display: flex;
   max-width: 100%;
   border-bottom: 1px solid transparent;
-
-  &.hasDivider {
-    border-color: $D60;
-  }
 }
 
 .itemsContainer {
@@ -71,6 +67,10 @@
 .active {
   @extend .t1_3;
   border-color: $B10;
+}
+
+.hasDivider {
+  border-color: $D60;
 }
 
 .sideContent {

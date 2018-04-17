@@ -21,6 +21,7 @@ const tabsDriverFactory = ({element, wrapper, component}) => {
     getItemsContainerClassList: () => getItemsContainer().classList,
     getDataHook: index => getItems()[index].getAttribute('data-hook'),
     getItemsWidth: () => new Set(getItems().map(item => item.style.width)),
+    hasDivider: () => element.classList.contains(styles.hasDivider),
     setProps: props => {
       const ClonedWithProps = React.cloneElement(component, Object.assign({}, component.props, props), ...(component.props.children || []));
       ReactDOM.render(<div ref={r => element = r.childNodes[0]}>{ClonedWithProps}</div>, wrapper);

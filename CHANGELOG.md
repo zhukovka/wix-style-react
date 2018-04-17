@@ -12,6 +12,10 @@ Types of changes:
 1. **Security** in case of vulnerabilities.
 1. **Breaking** for breaking changes
 
+## next
+### Fixed
+- `<Tabs/>` - Added missed `hasDivider` property, divider is visible by default [#1676](https://github.com/wix/wix-style-react/pull/1676) 
+
 ## 3.1.4 - 2018-04-11
 ### Fixed
 - `Page` - Removed z-index from PageHeader
