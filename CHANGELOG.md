@@ -14,6 +14,8 @@ Types of changes:
 
 ## next
 ### Fixed
+- `<DatePicker/>` - display `placeholderText` when no value given [#1667](https://github.com/wix/wix-style-react/pull/1677)
+- `<DatePicker/>` - fix `clickOnNthDay` testkit method [#1667](https://github.com/wix/wix-style-react/pull/1677)
 - `<Tabs/>` - Added missed `hasDivider` property, divider is visible by default [#1676](https://github.com/wix/wix-style-react/pull/1676) 
 
 ## 3.1.4 - 2018-04-11
