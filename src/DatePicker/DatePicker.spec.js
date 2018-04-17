@@ -49,6 +49,11 @@ describe('DatePicker', () => {
       expect(inputDriver.getValue()).toBe('10/02/2017');
     });
 
+    it('should show empty value', () => {
+      const {inputDriver} = createDriver(<DatePicker onChange={noop}/>);
+      expect(inputDriver.getValue()).toBe('');
+    });
+
     it('has prefix by default', () => {
       const {inputDriver} = createDriver(<DatePicker onChange={noop}/>);
       expect(inputDriver.hasPrefix()).toBe(true);
@@ -169,6 +174,31 @@ describe('DatePicker', () => {
 
       expect(onChange).not.toHaveBeenCalled();
       expect(calendarDriver.isVisible()).toBe(true);
+    });
+
+    it('should disable past dates given `excludePastDates` prop (current date selected)', () => {
+      const onChange = jest.fn();
+      const now = new Date();
+      const date = new Date(now);
+      date.setDate(now.getDate() === 1 ? 2 : 1); // set selected date other then now, but stay in the same month
+      const {calendarDriver, inputDriver} = createDriver(
+        <DatePicker
+          onChange={onChange}
+          value={date}
+          excludePastDates
+          />
+      );
+
+      inputDriver.trigger('click');
+      calendarDriver.clickOnNthDay();
+
+      expect(onChange).toHaveBeenCalled();
+      expect(calendarDriver.isVisible()).toBe(false);
+
+      const newDate = onChange.mock.calls[0][0];
+      expect(newDate.getMonth()).toEqual(now.getMonth());
+      expect(newDate.getDate()).toEqual(now.getDate());
+
     });
 
     describe('navbar arrow navigation', () => {

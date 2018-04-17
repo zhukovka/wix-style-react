@@ -12,6 +12,7 @@ export default {
     onChange: value => setState({value}),
     dateFormat: 'YYYY/MM/DD',
     dataHook: 'storybook-datepicker',
+    placeholderText: 'Select Date',
     value: new Date('2017/05/01')
   }),
 
