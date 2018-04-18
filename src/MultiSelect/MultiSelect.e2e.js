@@ -20,7 +20,7 @@ describe('MultiSelect', () => {
   });
 
   eyes.it('should break to new line when needed', () => {
-    const ELEMENT_HEIGHT_SINGLE_LINE = 38;
+    const ELEMENT_HEIGHT_SINGLE_LINE = 36;
 
     waitForVisibilityOf(driver.element(), 'Cannot find <MultiSelect/>')
       .then(() => {

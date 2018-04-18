@@ -2,6 +2,7 @@
 
 .input {
   min-width: 30px;
+  margin: -1px;
 }
 
 .hiddenDiv {
@@ -31,7 +32,7 @@
 
 // Override <Input>'s default focus style
 .tagsContainer div {
-  border: none !important;
+  border-color: transparent !important;
 }
 
 .tagsContainer div:hover {
