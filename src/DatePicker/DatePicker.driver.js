@@ -66,7 +66,7 @@ const datePickerDriverFactory = ({element, wrapper}) => {
       });
     },
 
-    mouseClickOutside: () => document.body.dispatchEvent(new Event('click', {cancelable: true}))
+    mouseClickOutside: () => document.body.dispatchEvent(new Event('mouseup', {cancelable: true}))
   };
 
   return {

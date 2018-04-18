@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import ReactDOM from 'react-dom';
 
-const MOUSE_EVENTS_SUPPORTED = ['click'];
+const MOUSE_EVENTS_SUPPORTED = ['mouseup', 'touchend'];
 
 class WixComponent extends React.PureComponent {
 

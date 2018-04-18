@@ -12,7 +12,7 @@ const ButtonWithOptionsDriverFactory = ({element, wrapper, component}) => {
 
   const driver = {
     exists: () => !!element,
-    outsideClick: () => document.body.dispatchEvent(new Event('click', {cancelable: true})),
+    outsideClick: () => document.body.dispatchEvent(new Event('mouseup', {cancelable: true})),
     setProps: props => {
       const ClonedWithProps = React.cloneElement(component, Object.assign({}, component.props, props), ...(component.props.children || []));
       ReactDOM.render(<div ref={r => element = r}>{ClonedWithProps}</div>, wrapper);

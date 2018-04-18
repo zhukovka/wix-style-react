@@ -27,7 +27,7 @@ const dropdownLayoutDriverFactory = ({element, wrapper, component}) => {
     optionsLength: () => optionsLength(),
     mouseEnterAtOption: position => doIfOptionExists(position, () => ReactTestUtils.Simulate.mouseEnter(optionAt(position))),
     mouseLeaveAtOption: position => doIfOptionExists(position, () => ReactTestUtils.Simulate.mouseLeave(optionAt(position))),
-    mouseClickOutside: () => document.body.dispatchEvent(new Event('click', {cancelable: true})),
+    mouseClickOutside: () => document.body.dispatchEvent(new Event('mouseup', {cancelable: true})),
     isOptionExists: optionText => [].filter.call(options.childNodes, opt => opt.textContent === optionText).length > 0,
     isOptionHovered: position => doIfOptionExists(position, () => isClassExists(optionAt(position), 'hovered')),
     isOptionSelected: position => doIfOptionExists(position, () => isClassExists(optionAt(position), 'selected')),

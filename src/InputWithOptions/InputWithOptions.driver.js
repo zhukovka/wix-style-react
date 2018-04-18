@@ -22,7 +22,7 @@ const inputWithOptionsDriverFactory = ({element, wrapper, component}) => {
     pressEnterKey: () => ReactTestUtils.Simulate.keyDown(inputWrapper, {key: 'Enter'}),
     pressTabKey: () => ReactTestUtils.Simulate.keyDown(inputWrapper, {key: 'Tab'}),
     pressEscKey: () => ReactTestUtils.Simulate.keyDown(inputWrapper, {key: 'Escape'}),
-    outsideClick: () => document.body.dispatchEvent(new Event('click', {cancelable: true})),
+    outsideClick: () => document.body.dispatchEvent(new Event('mouseup', {cancelable: true})),
     setProps: props => {
       const ClonedWithProps = React.cloneElement(component, Object.assign({}, component.props, props), ...(component.props.children || []));
       ReactDOM.render(<div ref={r => element = r}>{ClonedWithProps}</div>, wrapper);
