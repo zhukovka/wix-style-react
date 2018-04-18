@@ -12,11 +12,15 @@ Types of changes:
 1. **Security** in case of vulnerabilities.
 1. **Breaking** for breaking changes
 
-## next
+## 3.1.5 - 2018-04-18
+### Added
+- `<Tabs/>` - Added missed `hasDivider` property, divider is visible by default [#1676](https://github.com/wix/wix-style-react/pull/1676)
+- `<StatsWidget/>` - support empty state [#1670](https://github.com/wix/wix-style-react/pull/1670)
+
 ### Fixed
 - `<DatePicker/>` - display `placeholderText` when no value given [#1667](https://github.com/wix/wix-style-react/pull/1677)
 - `<DatePicker/>` - fix `clickOnNthDay` testkit method [#1667](https://github.com/wix/wix-style-react/pull/1677)
-- `<Tabs/>` - Added missed `hasDivider` property, divider is visible by default [#1676](https://github.com/wix/wix-style-react/pull/1676) 
+- `<*/>` rely on `mouseUp` instead of `click` to catch `onClickOutside` [issue #1647](https://github.com/wix/wix-style-react/issues/1647) [#1680](https://github.com/wix/wix-style-react/pull/1680)
 
 ## 3.1.4 - 2018-04-11
 ### Fixed
