@@ -1,6 +1,6 @@
-# Usage Without Haste
+# Usage Without Yoshi
 
-`wix-style-react` works best when [Haste](https://github.com/wix/haste) is used as build tool.
+`wix-style-react` works best when [Yoshi](https://github.com/wix/yoshi) is used as build tool.
 if you do not wish or cannot use it, you can use webpack. However, at the moment additional configuration is required.
 
 ## Webpack Loaders

@@ -39,7 +39,7 @@ const MyComponent = () =>
 
 ## Tips
 
-* Use [Haste](https://github.com/wix/haste) as build tool to avoid configuration. Otherwise follow [webpack setup instructions here](https://wix.github.io/wix-style-react/?selectedKind=Introduction&selectedStory=Usage%20Without%20Haste&full=0&down=0&left=1&panelRight=0)
+* Use [Yoshi](https://github.com/wix/yoshi) as build tool to avoid configuration. Otherwise follow [webpack setup instructions here](https://wix.github.io/wix-style-react/?selectedKind=Introduction&selectedStory=Usage%20Without%20Yoshi&full=0&down=0&left=1&panelRight=0)
 * Enable font smoothing with browser specific css properties, for example:
     ```css
     html {
