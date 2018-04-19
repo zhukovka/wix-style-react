@@ -20,7 +20,7 @@ Run all once:
 * `npm run test:e2e`
 
 Run "on demand":
-* `npm run storybook:e2e` - serve storybook in E2E mode
+* `npm run storybook` - serve storybook in E2E mode
 * `npm run test:e2e-only` - run just e2e tests in separate terminal instance
 
 We use [`eyes.it`](https://github.com/wix/eyes.it):
@@ -33,10 +33,9 @@ eyes.it('should test something with screenshot diff', () => {
 });
 ```
 
-Simply use `eyes.it` instead of `it`.
-`eyes.fit` to focus.
+Simply use `eyes.it` instead of `it` or `eyes.fit` to focus one test.
 
-Use `browser.pause()` or `browser.explore()` for debugging.
+Use `browser.sleep(999)` for quick debugging.
 Relevant details defined in [protractor docs](http://www.protractortest.org/#/api?view=ProtractorBrowser).
 
 # TestKits
