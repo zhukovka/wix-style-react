@@ -184,9 +184,9 @@ describe('Notification', () => {
         jest.runAllTimers();
       });
 
-      // it('should close the notification', () => {
-      //   expect(driver.visible()).toBeFalsy();
-      // });
+      it('should close the notification', () => {
+        expect(driver.visible()).toBeFalsy();
+      });
 
       it('should allow reopening the notification after closed by close button', () => {
         driver.setProps({show: true});
