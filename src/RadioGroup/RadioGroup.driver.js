@@ -22,7 +22,7 @@ const radioGroupDriverFactory = ({element, wrapper, component}) => {
     isVerticalDisplay: () => isClassExists(element, 'vertical'),
     isHorizontalDisplay: () => isClassExists(element, 'horizontal'),
     isButtonType: () => isClassExists(element, 'buttonType'),
-    spacing: () => radios[0].style._values['margin-bottom'],
+    spacing: () => radios[1].style._values['margin-top'],
     lineHeight: () => labels[0].style._values['line-height'],
     getNumberOfRadios: () => radios.length,
     setProps: props => {

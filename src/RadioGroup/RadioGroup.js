@@ -20,11 +20,9 @@ class RadioGroup extends WixComponent {
 
   render() {
     const {onChange, disabled, disabledRadios, value, vAlign, display, type, spacing, lineHeight} = this.props;
-    const style = display === 'vertical' ? {marginBottom: spacing} : {};
-
     return (
       <div className={classNames(styles[display], {[styles.buttonType]: type === 'button'})}>
-        {React.Children.map(this.props.children, radio => (
+        {React.Children.map(this.props.children, (radio, index) => (
           <RadioGroup.Radio
             dataHook={radio.props.dataHook}
             value={radio.props.value}
@@ -34,7 +32,7 @@ class RadioGroup extends WixComponent {
             type={type}
             disabled={disabled || disabledRadios.indexOf(radio.props.value) !== -1}
             checked={radio.props.value === value}
-            style={style}
+            style={display === 'vertical' && index > 0 ? {marginTop: spacing} : {}}
             icon={radio.props.icon}
             lineHeight={lineHeight}
             content={radio.props.content}
