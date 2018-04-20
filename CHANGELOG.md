@@ -12,6 +12,12 @@ Types of changes:
 1. **Security** in case of vulnerabilities.
 1. **Breaking** for breaking changes
 
+## next
+### Changed
+- `<RadioGroup/>` & `<RadioGroup.Radio/>` - remove bottom margin from last item [#1687](https://github.com/wix/wix-style-react/pull/1687)
+    Note: `RadioGroup.Radio`, if used standalone, no longer includes unexpected `margin-bottom`
+- `<Multiselect/>` - make component min-height 36 [#1683](https://github.com/wix/wix-style-react/pull/1683)
+
 ## 3.1.5 - 2018-04-18
 ### Added
 - `<Tabs/>` - Added missed `hasDivider` property, divider is visible by default [#1676](https://github.com/wix/wix-style-react/pull/1676)
