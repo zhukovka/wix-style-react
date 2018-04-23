@@ -71,13 +71,23 @@ $material-gap: 8px;
 
 .prefix,
 .suffix {
-  display: flex;
-  justify-content: center;
-  align-items: center;
   height: 100%;
+  display: flex;
+  align-items: center;
 
   &:first-child .unit-separator { margin-left: $double-gap; }
   &:last-child .unit { padding-right: $double-gap; }
+}
+
+.prefix {
+  width: 100%;
+}
+
+.prefixSuffixWrapper {
+  //needs additional wrapper with display:block to fix inputs with prefix in ie11
+  //https://github.com/wix/wix-style-react/issues/1693
+  //https://github.com/wix/wix-style-react/issues/1691
+  display: block;
 }
 
 .roundInput {
@@ -415,6 +425,9 @@ $material-gap: 8px;
   padding: 0 $gap;
   color: $paletteD3;
   @include FontLight();
+  //needs display:block to fix inputs with prefix in ie11
+  //https://github.com/wix/wix-style-react/issues/1691
+  display: block;
 }
 
 .unit-separator {
