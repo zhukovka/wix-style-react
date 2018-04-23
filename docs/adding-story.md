@@ -190,14 +190,20 @@ hardcoded string of import example
 
 #### `exampleProps` - `object`
 
-story page displays a list of interactive props on the left.
-when prop is something like `checked` and its type is `Boolean`, it is easy to understand that a toggle switch (a.k.a
-`<input type="checkbox"/>`) is something that can control the state of `checked`.
+exampleProps is an object who's keys are prop names, and their values are lists of possible values. For example:
+```js
+export default {
+  // ... other config
+  exampleProps: {
+    placement: ['bottom','top','right','left']
+  }
+}
+```
+In this example the story's Props section (which is interactive) will include a 'placement' props with a Radio-Selection (or Dropdown selection) for the `placement` values.
 
-however, if prop is something more complex, let's say a `ReactNode`, there is no way to automate example for it.
+Initialy, the rendered Preview is rendered with the props in `componentProps`, and the `placement` selection would be unselected.
 
-hence, `exampleProps` allows to pass a custom list of nodes, for example:
-
+`exampleProps` is mostly useful when the prop values have more complex types like functions or ReactNode. For example, you can use it with the children prop:
 ```js
 export default {
   // ... other config
@@ -210,3 +216,5 @@ export default {
   }
 }
 ```
+
+For simple primitive prop types (like booleans), auto-docs will automatically create the appropriate interactive control.
