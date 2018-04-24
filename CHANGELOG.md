@@ -17,6 +17,7 @@ Types of changes:
 - `<RadioGroup/>` & `<RadioGroup.Radio/>` - remove bottom margin from last item [#1687](https://github.com/wix/wix-style-react/pull/1687)
     Note: `RadioGroup.Radio`, if used standalone, no longer includes unexpected `margin-bottom`
 - `<Multiselect/>` - make component min-height 36 [#1683](https://github.com/wix/wix-style-react/pull/1683)
+- `<Tooltip/>` - Recalculate position during scroll [#1681](https://github.com/wix/wix-style-react/pull/1681)
 
 ## 3.1.5 - 2018-04-18
 ### Added
