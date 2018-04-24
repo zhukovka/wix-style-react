@@ -6,8 +6,12 @@ import TooltipContent from './TooltipContent';
 import position from './TooltipPosition';
 import styles from './TooltipContent.scss';
 import {TooltipContainerStrategy} from './TooltipContainerStrategy';
+import throttle from 'lodash/throttle';
 
 const renderSubtreeIntoContainer = ReactDOM.unstable_renderSubtreeIntoContainer;
+
+//maintain a 60fps rendering
+const createAThrottledOptimizedFunction = cb => () => window.requestAnimationFrame(throttle(cb, 16));
 
 /** A Tooltip component */
 class Tooltip extends WixComponent {
@@ -54,10 +58,10 @@ class Tooltip extends WixComponent {
     zIndex: PropTypes.number,
 
     /**
-      * In some cases when you need a tooltip scroll with your element, you can append the tooltip to the direct parent, just
-      * don't forget to apply `relative`, `absolute` positioning. And be aware that some of your styles may leak into
-      * tooltip content.
-      */
+     * In some cases when you need a tooltip scroll with your element, you can append the tooltip to the direct parent, just
+     * don't forget to apply `relative`, `absolute` positioning. And be aware that some of your styles may leak into
+     * tooltip content.
+     */
     appendToParent: PropTypes.bool,
 
     /** Element to attach the tooltip to  */
@@ -85,7 +89,7 @@ class Tooltip extends WixComponent {
     /** Allows changing the padding of the content */
     padding: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
 
-      /** Allows updating the tooltip position **/
+    /** Allows updating the tooltip position **/
     shouldUpdatePosition: PropTypes.bool
   };
 
@@ -118,6 +122,7 @@ class Tooltip extends WixComponent {
   _showInterval = null;
   _hideTimeout = null;
   _unmounted = false;
+  _containerScrollHandler = null;
 
   constructor(props) {
     super(props);
@@ -200,8 +205,7 @@ class Tooltip extends WixComponent {
 
   componentWillReceiveProps(nextProps) {
     super.componentWillReceiveProps && super.componentWillReceiveProps(nextProps);
-    if (nextProps.active !== this.props.active ||
-        nextProps.disabled !== this.props.disabled) {
+    if (nextProps.active !== this.props.active || nextProps.disabled !== this.props.disabled) {
       if (this.state.visible && this.props.hideTrigger === 'custom') {
         if (!nextProps.active || nextProps.disabled) {
           this.hide(nextProps);
@@ -273,7 +277,12 @@ class Tooltip extends WixComponent {
         this.setState({visible: true}, () => {
           if (!this._mountNode) {
             this._mountNode = document.createElement('div');
-            this._getContainer() && this._getContainer().appendChild(this._mountNode);
+            const container = this._getContainer();
+            if (container) {
+              container.appendChild(this._mountNode);
+              this._containerScrollHandler = createAThrottledOptimizedFunction(() => this._updatePosition(this.tooltipContent));
+              container.addEventListener('scroll', this._containerScrollHandler);
+            }
           }
           this._showTimeout = null;
 
@@ -308,7 +317,11 @@ class Tooltip extends WixComponent {
         if (this._mountNode) {
           ReactDOM.unmountComponentAtNode(this._mountNode);
           props.onHide && props.onHide();
-          this._getContainer() && this._getContainer().removeChild(this._mountNode);
+          const container = this._getContainer();
+          if (container) {
+            container.removeChild(this._mountNode);
+            container.removeEventListener('scroll', this._containerScrollHandler);
+          }
           this._mountNode = null;
         }
         this._hideTimeout = null;
