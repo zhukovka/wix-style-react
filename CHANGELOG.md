@@ -28,6 +28,7 @@ Types of changes:
 - `<Input/>` - fix case when prefix is cut in IE 11 on small inputs [#1692](https://github.com/wix/wix-style-react/pull/1692)
 - `<MultiSelect/>` - fix height according to specs [#1683](https://github.com/wix/wix-style-react/pull/1683)
 - `<PopoverMenu/>` - ellipsis for long items strings [#1686](https://github.com/wix/wix-style-react/pull/1686)
+- `<MultiSelect/>` - placeholder didn't get full input width [#1700](https://github.com/wix/wix-style-react/pull/1700)
 
 ## 3.1.5 - 2018-04-18
 ### Added
