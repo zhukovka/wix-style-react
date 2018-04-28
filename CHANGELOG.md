@@ -13,11 +13,21 @@ Types of changes:
 1. **Breaking** for breaking changes
 
 ## next
+### Added
+- `<NewFolder/>` and `Rename` icons [#1672](https://github.com/wix/wix-style-react/pull/1672)
+
 ### Changed
-- `<RadioGroup/>` & `<RadioGroup.Radio/>` - remove bottom margin from last item [#1687](https://github.com/wix/wix-style-react/pull/1687)
+- `<RadioGroup/>` - remove bottom margin from last item [#1687](https://github.com/wix/wix-style-react/pull/1687)
     Note: `RadioGroup.Radio`, if used standalone, no longer includes unexpected `margin-bottom`
+- `<PopoverMenu/` - pass the tooltip zIndex prop [#1674](https://github.com/wix/wix-style-react/pull/1674)
 - `<Multiselect/>` - make component min-height 36 [#1683](https://github.com/wix/wix-style-react/pull/1683)
-- `<Tooltip/>` - Recalculate position during scroll [#1681](https://github.com/wix/wix-style-react/pull/1681)
+- `<Tooltip/>` - recalculate position during scroll [#1681](https://github.com/wix/wix-style-react/pull/1681)
+- `<Modal/>` - move box-shadow to each modal layout [#1697](https://github.com/wix/wix-style-react/pull/1697)
+
+### Fixed
+- `<Input/>` - fix case when prefix is cut in IE 11 on small inputs [#1692](https://github.com/wix/wix-style-react/pull/1692)
+- `<MultiSelect/>` - fix height according to specs [#1683](https://github.com/wix/wix-style-react/pull/1683)
+- `<PopoverMenu/>` - ellipsis for long items strings [#1686](https://github.com/wix/wix-style-react/pull/1686)
 
 ## 3.1.5 - 2018-04-18
 ### Added
