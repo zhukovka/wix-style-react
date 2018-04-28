@@ -5,6 +5,10 @@
   margin: -1px;
 }
 
+.emptyInput {
+  width: 100%;
+}
+
 .hiddenDiv {
   @include FontRoman();
   visibility: hidden;

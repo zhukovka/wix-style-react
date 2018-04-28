@@ -93,7 +93,7 @@ class InputWithTags extends React.Component {
         data-hook={this.props.dataHook}
         >
         {tags.map(({label, ...rest}) => <Tag key={rest.id} disabled={disabled} onRemove={onRemoveTag} {...rest}>{label}</Tag>)}
-        <span className={styles.input} data-hook="inner-input-with-tags">
+        <span className={classNames(styles.input, {[styles.emptyInput]: !tags.length})} data-hook="inner-input-with-tags">
           <div className={styles.hiddenDiv} style={{fontSize}}>
             {this.state.inputValue}
           </div>
