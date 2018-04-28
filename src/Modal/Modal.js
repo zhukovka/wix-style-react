@@ -97,7 +97,6 @@ class Modal extends WixComponent {
         outline: 'none',
         borderRadius,
         padding: '0px',
-        boxShadow: '0 0 14px 0 rgba(22, 45, 60, 0.3)',
         // Overriding defaults - END
         backgroundColor: 'transparent',
         marginBottom: '0px',

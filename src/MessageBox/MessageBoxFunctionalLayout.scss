@@ -1,6 +1,7 @@
 @import '../common';
 
 .content {
+    box-shadow: $ModalLayoutsBoxShadow;
     border-radius: 8px;
     background-color: white;
     width: 600px;
