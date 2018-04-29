@@ -12,9 +12,9 @@ Types of changes:
 1. **Security** in case of vulnerabilities.
 1. **Breaking** for breaking changes
 
-## next
+## 3.1.6 - 2018-04-29
 ### Added
-- `<NewFolder/>` and `Rename` icons [#1672](https://github.com/wix/wix-style-react/pull/1672)
+- `<NewFolder/>` and `<Rename/>` icons [#1672](https://github.com/wix/wix-style-react/pull/1672)
 
 ### Changed
 - `<RadioGroup/>` - remove bottom margin from last item [#1687](https://github.com/wix/wix-style-react/pull/1687)
