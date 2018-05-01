@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 import styles from './ExampleStandard.scss';
 import Notification from './Notification';
-import {LOCAL_NOTIFICATION, GLOBAL_NOTIFICATION, STICKY_NOTIFICATION, DEFAULT_TIMEOUT} from '../../src/Notification';
+import {LOCAL_NOTIFICATION, GLOBAL_NOTIFICATION, STICKY_NOTIFICATION} from '../../src/Notification';
 import Label from '../../src/Label';
 import ToggleSwitch from '../../src/ToggleSwitch';
 import RadioGroup from '../../src/RadioGroup';
@@ -20,7 +20,7 @@ class ExampleStandard extends Component {
     notification: {
       show: true,
       type: GLOBAL_NOTIFICATION,
-      timeout: DEFAULT_TIMEOUT,
+      timeout: '',
       zIndex: 10000
     },
     actionButton: {
@@ -78,20 +78,16 @@ class ExampleStandard extends Component {
               </RadioGroup>
             </div>
           </div>
-          {
-            this.state.notification.type !== GLOBAL_NOTIFICATION ?
-              <div className={styles.option}>
-                <Label>Timeout in ms (for local notifications)</Label>
-                <div className={styles.column}>
-                  <Input
-                    placeholder="Set the timeout" size="small" type="number"
-                    value={this.state.notification.timeout}
-                    onChange={e => this.setComponentState('notification', {timeout: Number(e.target.value)})}
-                    />
-                </div>
-              </div> :
-              null
-          }
+          <div className={styles.option}>
+            <Label>Timeout in ms</Label>
+            <div className={styles.column}>
+              <Input
+                placeholder="Set the timeout" size="small" type="number"
+                value={this.state.notification.timeout}
+                onChange={e => this.setComponentState('notification', {timeout: Number(e.target.value)})}
+                />
+            </div>
+          </div>
           <div className={styles.option}>
             <Label>Button Type</Label>
             <div className={styles.flex}>

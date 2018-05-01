@@ -62,7 +62,7 @@ class Notification extends WixComponent {
   }
 
   startCloseTimer({type, timeout}) {
-    if (type !== GLOBAL_NOTIFICATION) {
+    if (type !== GLOBAL_NOTIFICATION || (type === GLOBAL_NOTIFICATION && timeout)) {
       this.closeTimeout = setTimeout(
         () => this.hideNotificationOnTimeout(),
         timeout || DEFAULT_TIMEOUT

@@ -194,35 +194,44 @@ describe('Notification', () => {
       });
     });
 
-    ['local', 'sticky'].forEach(type => {
+    ['local', 'sticky', 'global'].forEach(type => {
       describe(`Closing after timeout for ${type} Notification`, () => {
-        const defaultTimeout = 6000;
+        const someTimeout = 132;
 
-        it('should close after default timeout (6s)', () => {
-          driver = createDriver(renderNotificationWithProps({show: true, type}));
-          jest.runAllTimers();
+        if (type !== 'global') {
+          it('should close after default timeout (6s)', () => {
+            const defaultTimeout = 6000;
+            driver = createDriver(renderNotificationWithProps({show: true, type}));
+            jest.runAllTimers();
 
-          expect(driver.visible()).toBeFalsy();
-          expect(setTimeout.mock.calls.find(call => call[1] === defaultTimeout)).toBeTruthy();
-        });
+            expect(driver.visible()).toBeFalsy();
+            expect(setTimeout.mock.calls.find(call => call[1] === defaultTimeout)).toBeTruthy();
+          });
+        } else {
+          it(`should not close after default timeout (6s) for ${type} Notification`, () => {
+            driver = createDriver(renderNotificationWithProps({show: true, type}));
+            jest.runAllTimers();
+
+            expect(driver.visible()).toBeTruthy();
+            expect(setTimeout).not.toBeCalled();
+          });
+        }
 
         it('should close after a given timeout', () => {
-          const timeout = 132;
-
-          driver = createDriver(renderNotificationWithProps({show: true, type, timeout}));
+          driver = createDriver(renderNotificationWithProps({show: true, type, timeout: someTimeout}));
 
           jest.runAllTimers();
 
           expect(driver.visible()).toBeFalsy();
-          expect(setTimeout.mock.calls.find(call => call[1] === timeout)).toBeTruthy();
+          expect(setTimeout.mock.calls.find(call => call[1] === someTimeout)).toBeTruthy();
         });
 
         it('should be able to show notification again after timeout', () => {
-          driver = createDriver(renderNotificationWithProps({show: true, type}));
+          driver = createDriver(renderNotificationWithProps({show: true, type, timeout: someTimeout}));
 
           jest.runAllTimers();
           expect(driver.visible()).toBeFalsy();
-          expect(setTimeout.mock.calls.find(call => call[1] === defaultTimeout)).toBeTruthy();
+          expect(setTimeout.mock.calls.find(call => call[1] === someTimeout)).toBeTruthy();
           jest.clearAllTimers();
 
           driver.setProps({show: true});
@@ -230,7 +239,7 @@ describe('Notification', () => {
         });
 
         it('should close after starting from a closed status', () => {
-          driver = createDriver(renderNotificationWithProps({show: false, type}));
+          driver = createDriver(renderNotificationWithProps({show: false, type, timeout: someTimeout}));
 
           jest.runAllTimers();
           expect(driver.visible()).toBeFalsy();
@@ -239,7 +248,7 @@ describe('Notification', () => {
           jest.runAllTimers();
           expect(driver.visible()).toBeFalsy();
 
-          expect(setTimeout.mock.calls.find(call => call[1] === defaultTimeout)).toBeTruthy();
+          expect(setTimeout.mock.calls.find(call => call[1] === someTimeout)).toBeTruthy();
         });
       });
     });
