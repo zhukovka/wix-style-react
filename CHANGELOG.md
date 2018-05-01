@@ -12,6 +12,10 @@ Types of changes:
 1. **Security** in case of vulnerabilities.
 1. **Breaking** for breaking changes
 
+## next
+### Added
+`<Tooltip/>` - add showImmediately prop to disable animations and delay [#1705](https://github.com/wix/wix-style-react/pull/1705)
+
 ## 3.1.6 - 2018-04-29
 ### Added
 - `<NewFolder/>` and `<Rename/>` icons [#1672](https://github.com/wix/wix-style-react/pull/1672)
