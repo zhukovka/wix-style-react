@@ -68,7 +68,10 @@ class TooltipContent extends Component {
      * Specifies the font color of the content of the tooltip
      */
     color: PropTypes.string,
-    lineHeight: PropTypes.string
+    lineHeight: PropTypes.string,
+
+    /** Show Tooltip Immediately - with no delay and no animation */
+    showImmediately: PropTypes.bool
   };
 
   static defaultProps = {
@@ -96,12 +99,13 @@ class TooltipContent extends Component {
       minWidth,
       padding,
       color,
-      lineHeight
+      lineHeight,
+      showImmediately
     } = this.props;
 
     return (
       <div className={styles.root} style={style} onMouseEnter={onMouseEnter} onMouseLeave={onMouseLeave}>
-        <div className={styles.fadeIn}>
+        <div className={classnames({[styles.fadeIn]: !showImmediately})}>
           <div className={classnames({[styles[`bounce-${arrowPlacement}`]]: bounce})}>
             <div ref={ref => this.tooltip = ref} className={classnames(styles.tooltip, styles[theme], styles[size])} style={{maxWidth, minWidth, textAlign, padding, lineHeight, color}}>
               <div data-hook="tooltip-content">{children}</div>

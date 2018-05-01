@@ -417,6 +417,30 @@ describe('Tooltip', () => {
         expect(driver.isShown()).toBeFalsy();
       });
     });
+
+    it('should have fadeIn class and delay when showImmediately is unspecified', () => {
+      const driver = createDriver(<Tooltip {..._props} content={<div>HELLO WORLD</div>}>{children}</Tooltip>);
+      driver.mouseEnter();
+      return resolveIn(30).then(() => {
+        expect(driver.hasAnimationClass()).toBeTruthy();
+      });
+    });
+
+    it('should have fadeIn class and delay when showImmediately is false', () => {
+      const driver = createDriver(<Tooltip {..._props} content={<div>HELLO WORLD</div>} showImmediately={false}>{children}</Tooltip>);
+      driver.mouseEnter();
+      return resolveIn(30).then(() => {
+        expect(driver.hasAnimationClass()).toBeTruthy();
+      });
+    });
+
+    it('should not have fadeIn class and no delay when showImmediately is true', () => {
+      const driver = createDriver(<Tooltip {..._props} content={<div>HELLO WORLD</div>} showImmediately>{children}</Tooltip>);
+      driver.mouseEnter();
+      return resolveIn(0).then(() => {
+        expect(driver.hasAnimationClass()).toBeFalsy();
+      });
+    });
   });
 });
 
