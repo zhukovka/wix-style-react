@@ -12,7 +12,7 @@ Types of changes:
 1. **Security** in case of vulnerabilities.
 1. **Breaking** for breaking changes
 
-## next
+## 3.1.7 - 2018-05-02
 ### Added
 - `<Tooltip/>` - add showImmediately prop to disable animations and delay [#1705](https://github.com/wix/wix-style-react/pull/1705)
 - `<Notification/>` - add timeout functionality for global notification [#1696](https://github.com/wix/wix-style-react/pull/1696)
