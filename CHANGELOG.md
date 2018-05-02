@@ -16,6 +16,7 @@ Types of changes:
 ### Added
 - `<Tooltip/>` - add showImmediately prop to disable animations and delay [#1705](https://github.com/wix/wix-style-react/pull/1705)
 - `<Notification/>` - add timeout functionality for global notification [#1696](https://github.com/wix/wix-style-react/pull/1696)
+- `<Favorite/>` and `<FavoriteFilled/>` icons [#1707](https://github.com/wix/wix-style-react/pull/1707)
 
 ## 3.1.6 - 2018-04-29
 ### Added
