@@ -343,7 +343,7 @@ export default class DatePicker extends WixComponent {
 
     const inputProps = {
       dataHook: inputDataHook,
-      value: initialValue && formatDate(initialValue, dateFormat, locale),
+      value: (initialValue && formatDate(initialValue, dateFormat, locale)) || '',
       onInputClicked: this.openCalendar,
       disabled,
       readOnly,
