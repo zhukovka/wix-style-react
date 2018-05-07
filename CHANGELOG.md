@@ -16,6 +16,9 @@ Types of changes:
 ### Fix
 - `<DatePicker/>` - display `placeholderText` after `value` was removed [#1711](https://github.com/wix/wix-style-react/pull/1711)
 
+### Changed
+- `<ButtonWithOptions/>` - Always call `onSelect` when selecting an option. pass additional prop to indicate selection [#1719](https://github.com/wix/wix-style-react/pull/1719)
+
 ## 3.1.7 - 2018-05-02
 ### Added
 - `<Tooltip/>` - add showImmediately prop to disable animations and delay [#1705](https://github.com/wix/wix-style-react/pull/1705)
