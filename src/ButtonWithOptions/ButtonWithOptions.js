@@ -118,10 +118,7 @@ class ButtonWithOptions extends WixComponent {
 
   onSelect = (option, sameOptionSelected) => {
     this.hideOptions();
-
-    if (!sameOptionSelected) {
-      this.props.onSelect(option);
-    }
+    this.props.onSelect(option, sameOptionSelected);
   }
 }
 

@@ -6,7 +6,7 @@
 
 | propName | propType | defaultValue | isRequired | description |
 |----------|----------|--------------|------------|-------------|
-| onSelect | func | noop | - | Callback when the user selects one of the selections. Called with the selection. |
+| onSelect | func | noop | - | Callback when the user selects one of the selections. Called with the selection and a flag indicates whether the selected option was already selected `(selectedId, wasPreviouslySelected)`  |
 | restrainDropdownSize | bool | true | - | Restrain dropdown width to button's width |
 | ***All of the Button's and DropdownLayout Props are also available for this component*** | | | | |
 
