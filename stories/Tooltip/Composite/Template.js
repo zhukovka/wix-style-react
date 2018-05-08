@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import reactElementToJSXString from 'react-element-to-jsx-string';
 import {Tooltip, Button} from 'wix-style-react';
+import TooltipForEyesOnly from './TooltipForEyesOnly';
 
 export class Template extends Component {
 
@@ -74,7 +75,12 @@ export class Template extends Component {
   }
 
   render() {
-    return this.getComponent();
+    return (
+      <div>
+        {this.getComponent()}
+        <TooltipForEyesOnly/>
+      </div>
+    );
   }
 }
 

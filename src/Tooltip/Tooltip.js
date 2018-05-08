@@ -184,10 +184,13 @@ class Tooltip extends WixComponent {
           {this.props.content}
         </TooltipContent>);
 
-      if (this.props.shouldUpdatePosition) {
-        this._updatePosition(this.tooltipContent);
-      }
       renderSubtreeIntoContainer(this, tooltip, this._mountNode);
+
+      if (this.props.shouldUpdatePosition) {
+        setTimeout(() => {
+          this._updatePosition(this.tooltipContent);
+        });
+      }
     }
   }
 
