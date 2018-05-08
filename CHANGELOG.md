@@ -15,6 +15,8 @@ Types of changes:
 ## next
 ### Fix
 - `<DatePicker/>` - display `placeholderText` after `value` was removed [#1711](https://github.com/wix/wix-style-react/pull/1711)
+- `<TextLink/>` - fix hover state logic [#1720](https://github.com/wix/wix-style-react/pull/1720)
+- `<Tooltip/>` - update tooltip position after dom is updated [#1722](https://github.com/wix/wix-style-react/pull/1722)
 
 ### Changed
 - `<ButtonWithOptions/>` - Always call `onSelect` when selecting an option. pass additional prop to indicate selection [#1719](https://github.com/wix/wix-style-react/pull/1719)
