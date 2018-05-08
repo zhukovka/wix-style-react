@@ -12,7 +12,7 @@ Types of changes:
 1. **Security** in case of vulnerabilities.
 1. **Breaking** for breaking changes
 
-## next
+## 3.1.8 - 2018-05-08
 ### Fix
 - `<DatePicker/>` - display `placeholderText` after `value` was removed [#1711](https://github.com/wix/wix-style-react/pull/1711)
 - `<TextLink/>` - fix hover state logic [#1720](https://github.com/wix/wix-style-react/pull/1720)
