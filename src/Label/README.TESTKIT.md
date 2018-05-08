@@ -13,6 +13,14 @@
 | exists (Only in Unit Test) | - | bool | fulfilled if element in the DOM |
 | element (Only in E2E) | - | element | returns the driver element |
 
+### Puppeteer
+
+| method | arguments | returned value | description |
+|--------|-----------|----------------|-------------|
+| element | - | element | returns the element |
+| click | - | - | clicks on the label |
+| getLabelText | - | string | get label text |
+
 ## Usage Example
 
 > Unit testing example
@@ -71,3 +79,23 @@
      });
 
 ```
+
+```javascript
+/*******************
+   puppeteer example
+  *******************/
+
+  import puppeteer from 'puppeteer';
+  import {labelTestkitFactory} from 'wix-style-react/testkit/puppeteer';
+
+  //puppeteer setup
+  const browser = await puppeteer.launch();
+  const page = await browser.newPage();
+
+  //Create an element testkit via the data-hook attribute
+  const testkit = await labelTestkitFactory({dataHook: 'myDataHook', page});
+  await page.goto(appUrl); //Your application url
+
+  expect(await testkit.getLabelText()).to.equal('my test');
+```
+
