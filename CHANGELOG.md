@@ -12,12 +12,16 @@ Types of changes:
 1. **Security** in case of vulnerabilities.
 1. **Breaking** for breaking changes
 
+## 3.1.9 0 2018-05-09
+### Fix
+- docs: fix testkits import path [#1730](https://github.com/wix/wix-style-react/pull/1730)
+- `<Label/>` - fix puppeteer testkit driver [#1726](https://github.com/wix/wix-style-react/pull/1726)
+
 ## 3.1.8 - 2018-05-08
 ### Fix
 - `<DatePicker/>` - display `placeholderText` after `value` was removed [#1711](https://github.com/wix/wix-style-react/pull/1711)
 - `<TextLink/>` - fix hover state logic [#1720](https://github.com/wix/wix-style-react/pull/1720)
 - `<Tooltip/>` - update tooltip position after dom is updated [#1722](https://github.com/wix/wix-style-react/pull/1722)
-- docs: fix testkits import path [#1730](https://github.com/wix/wix-style-react/pull/1730)
 
 ### Changed
 - `<ButtonWithOptions/>` - Always call `onSelect` when selecting an option. pass additional prop to indicate selection [#1719](https://github.com/wix/wix-style-react/pull/1719)
