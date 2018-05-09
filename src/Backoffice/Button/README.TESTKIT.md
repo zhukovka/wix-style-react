@@ -27,8 +27,8 @@
 > Unit Testing Example
 ```javascript
   import React from 'react';
-  import {buttonTestkitFactory} from 'wix-style-react/testkit';
-  import {buttonTestkitFactory as enzymeButtonTestkitFactory} from 'wix-style-react/testkit/enzyme';
+  import {buttonTestkitFactory} from 'wix-style-react/dist/testkit';
+  import {buttonTestkitFactory as enzymeButtonTestkitFactory} from 'wix-style-react/dist/testkit/enzyme';
 
   /***************
    enzyme example
@@ -66,7 +66,7 @@
    Protractor example
   **********************/
 
-  import {buttonTestkitFactory, waitForVisibilityOf} from 'wix-style-react/testkit/protractor';
+  import {buttonTestkitFactory, waitForVisibilityOf} from 'wix-style-react/dist/testkit/protractor';
 
   //Create an element testkit via the data-hook attribute
   const testkit = buttonTestkitFactory({dataHook: 'myDataHook'});
@@ -86,7 +86,7 @@
   **********************/
 
   import puppeteer from 'puppeteer';
-  import {buttonTestkitFactory} from 'wix-style-react/testkit/puppeteer';
+  import {buttonTestkitFactory} from 'wix-style-react/dist/testkit/puppeteer';
 
   //puppeteer setup
   const browser = await puppeteer.launch();

@@ -22,8 +22,8 @@
 
 ```javascript
   import React from 'react';
-  import {checkboxTestkitFactory} from 'wix-style-react/testkit';
-  import {checkboxTestkitFactory as enzymeCheckboxTestkitFactory} from 'wix-style-react/testkit/enzyme';
+  import {checkboxTestkitFactory} from 'wix-style-react/dist/testkit';
+  import {checkboxTestkitFactory as enzymeCheckboxTestkitFactory} from 'wix-style-react/dist/testkit/enzyme';
 
   /***************
    enzyme example
@@ -60,7 +60,7 @@
    protractor example
   *******************/
 
-  import {checkboxTestkitFactory, waitForVisibilityOf} from 'wix-style-react/testkit/protractor';
+  import {checkboxTestkitFactory, waitForVisibilityOf} from 'wix-style-react/dist/testkit/protractor';
 
   //Create an element testkit via the data-hook attribute
   const testkit = checkboxTestkitFactory({dataHook: 'myDataHook'});

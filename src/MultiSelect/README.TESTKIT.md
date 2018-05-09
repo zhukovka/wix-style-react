@@ -30,8 +30,8 @@ The `<MultiSelect/>` TestKit is exposing the following drivers:
 
 ```javascript
   import React from 'react';
-  import {multiSelectTestkitFactory} from 'wix-style-react/testkit';
-  import {multiSelectTestkitFactory as enzymeMultiSelectTestkitFactory} from 'wix-style-react/testkit/enzyme';
+  import {multiSelectTestkitFactory} from 'wix-style-react/dist/testkit';
+  import {multiSelectTestkitFactory as enzymeMultiSelectTestkitFactory} from 'wix-style-react/dist/testkit/enzyme';
 
   /***************
    enzyme example

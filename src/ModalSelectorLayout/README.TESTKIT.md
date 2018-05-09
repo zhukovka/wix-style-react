@@ -49,8 +49,8 @@
 ```javascript
   import React from 'react';
   import {mount} from 'enzyme';
-  import {modalSelectorLayoutTestkitFactory} from 'wix-style-react/testkit';
-  import {modalSelectorLayoutTestkitFactory as enzymeModalSelectorLayoutTestkitFactory} from 'wix-style-react/testkit/enzyme';
+  import {modalSelectorLayoutTestkitFactory} from 'wix-style-react/dist/testkit';
+  import {modalSelectorLayoutTestkitFactory as enzymeModalSelectorLayoutTestkitFactory} from 'wix-style-react/dist/testkit/enzyme';
   import ModalSelectorLayout from 'wix-style-react/ModalSelectorLayout';
 
   /***************
@@ -88,7 +88,7 @@
    protractor example
   *******************/
 
-  import {modalSelectorLayoutTestkitFactory, waitForVisibilityOf} from 'wix-style-react/testkit/protractor';
+  import {modalSelectorLayoutTestkitFactory, waitForVisibilityOf} from 'wix-style-react/dist/testkit/protractor';
 
   //Create an element testkit via the data-hook attribute
   const testkit = modalSelectorLayoutTestkitFactory({dataHook: 'myDataHook'});

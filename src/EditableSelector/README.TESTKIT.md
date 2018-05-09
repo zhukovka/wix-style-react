@@ -42,8 +42,8 @@
 > Unit Testing Example
 ```javascript
   import React from 'react';
-  import {editableSelectorTestkitFactory} from 'wix-style-react/testkit';
-  import {editableSelectorTestkitFactory as enzymeEditableSelectorTestkitFactory} from 'wix-style-react/testkit/enzyme';
+  import {editableSelectorTestkitFactory} from 'wix-style-react/dist/testkit';
+  import {editableSelectorTestkitFactory as enzymeEditableSelectorTestkitFactory} from 'wix-style-react/dist/testkit/enzyme';
 
   /***************
    enzyme example
@@ -81,7 +81,7 @@
    Protractor example
   **********************/
 
-  import {editableSelectorTestkitFactory, waitForVisibilityOf} from 'wix-style-react/testkit/protractor';
+  import {editableSelectorTestkitFactory, waitForVisibilityOf} from 'wix-style-react/dist/testkit/protractor';
 
   //Create an element testkit via the data-hook attribute
   const testkit = editableSelectorTestkitFactory({dataHook: 'myDataHook'});

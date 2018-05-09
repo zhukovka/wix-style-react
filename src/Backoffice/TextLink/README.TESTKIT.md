@@ -26,8 +26,8 @@
 
 ```javascript
   import React from 'react';
-  import {textLinkTestkitFactory} from 'wix-style-react/testkit';
-  import {textLinkTestkitFactory as enzymeTextLinkTestkitFactory} from 'wix-style-react/testkit/enzyme';
+  import {textLinkTestkitFactory} from 'wix-style-react/dist/testkit';
+  import {textLinkTestkitFactory as enzymeTextLinkTestkitFactory} from 'wix-style-react/dist/testkit/enzyme';
 
   /***************
    enzyme example

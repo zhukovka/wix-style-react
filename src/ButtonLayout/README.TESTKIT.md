@@ -17,8 +17,8 @@
 > Unit Testing Example
 ```javascript
   import React from 'react';
-  import {buttonLayoutTestkitFactory} from 'wix-style-react/testkit';
-  import {buttonLayoutTestkitFactory as enzymeButtonLayoutTestkitFactory} from 'wix-style-react/testkit/enzyme';
+  import {buttonLayoutTestkitFactory} from 'wix-style-react/dist/testkit';
+  import {buttonLayoutTestkitFactory as enzymeButtonLayoutTestkitFactory} from 'wix-style-react/dist/testkit/enzyme';
 
   /***************
    enzyme example

@@ -11,8 +11,8 @@
 > Unit Testing Example
 ```javascript
   import React from 'react';
-  import {LanguagePickerTestkitFactory} from 'wix-style-react/testkit';
-  import {LanguagePickerTestkitFactory as enzymeLanguagePickerTestkitFactory} from 'wix-style-react/testkit/enzyme';
+  import {LanguagePickerTestkitFactory} from 'wix-style-react/dist/testkit';
+  import {LanguagePickerTestkitFactory as enzymeLanguagePickerTestkitFactory} from 'wix-style-react/dist/testkit/enzyme';
 
   /***************
    enzyme example

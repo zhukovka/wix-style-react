@@ -55,7 +55,7 @@
    Protractor example
   **********************/
 
-  import {tpaTextLinkTestkitFactory, waitForVisibilityOf} from 'wix-style-react/testkit/protractor';
+  import {tpaTextLinkTestkitFactory, waitForVisibilityOf} from 'wix-style-react/dist/testkit/protractor';
 
   //Create an element testkit via the data-hook attribute
   const testkit = tpaTextLinkTestkitFactory({dataHook: 'myDataHook'});

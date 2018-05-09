@@ -36,8 +36,8 @@
 
 ```javascript
   import React from 'react';
-  import {inputAreaTestkitFactory} from 'wix-style-react/testkit';
-  import {inputAreaTestkitFactory as enzymeInputAreaTestkitFactory} from 'wix-style-react/testkit/enzyme';
+  import {inputAreaTestkitFactory} from 'wix-style-react/dist/testkit';
+  import {inputAreaTestkitFactory as enzymeInputAreaTestkitFactory} from 'wix-style-react/dist/testkit/enzyme';
 
   /***************
    enzyme example

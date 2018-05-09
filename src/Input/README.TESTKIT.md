@@ -59,8 +59,8 @@
 
 ```javascript
   import React from 'react';
-  import {inputTestkitFactory} from 'wix-style-react/testkit';
-  import {inputTestkitFactory as enzymeInputTestkitFactory} from 'wix-style-react/testkit/enzyme';
+  import {inputTestkitFactory} from 'wix-style-react/dist/testkit';
+  import {inputTestkitFactory as enzymeInputTestkitFactory} from 'wix-style-react/dist/testkit/enzyme';
 
   /***************
    enzyme example
@@ -97,7 +97,7 @@
    protractor example
   *******************/
 
-  import {inputTestkitFactory, waitForVisibilityOf} from 'wix-style-react/testkit/protractor';
+  import {inputTestkitFactory, waitForVisibilityOf} from 'wix-style-react/dist/testkit/protractor';
 
   //Create an element testkit via the data-hook attribute
   const testkit = inputTestkitFactory({dataHook: 'myDataHook'});
@@ -117,7 +117,7 @@
   *******************/
 
   import puppeteer from 'puppeteer';
-  import {inputTestkitFactory} from 'wix-style-react/testkit/puppeteer';
+  import {inputTestkitFactory} from 'wix-style-react/dist/testkit/puppeteer';
 
   //puppeteer setup
   const browser = await puppeteer.launch();

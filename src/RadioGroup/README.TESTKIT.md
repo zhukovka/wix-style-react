@@ -26,8 +26,8 @@
 
 ```javascript
   import React from 'react';
-  import {radioGroupTestkitFactory} from 'wix-style-react/testkit';
-  import {radioGroupTestkitFactory as enzymeRadioGroupTestkitFactory} from 'wix-style-react/testkit/enzyme';
+  import {radioGroupTestkitFactory} from 'wix-style-react/dist/testkit';
+  import {radioGroupTestkitFactory as enzymeRadioGroupTestkitFactory} from 'wix-style-react/dist/testkit/enzyme';
 
   /***************
    enzyme example
@@ -64,7 +64,7 @@
    protractor example
   *******************/
 
-  import {radioGroupTestkitFactory, waitForVisibilityOf} from 'wix-style-react/testkit/protractor';
+  import {radioGroupTestkitFactory, waitForVisibilityOf} from 'wix-style-react/dist/testkit/protractor';
 
   //Create an element testkit via the data-hook attribute
   const testkit = radioGroupTestkitFactory({dataHook: 'myDataHook'});

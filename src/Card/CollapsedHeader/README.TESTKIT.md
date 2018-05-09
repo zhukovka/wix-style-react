@@ -33,8 +33,8 @@ animationPolyFill(window, global);
 
 ```javascript
   import React from 'react';
-  import {CollapsedHeaderTestkitFactory} from 'wix-style-react/testkit';
-  import {CollapsedHeaderTestkitFactory as enzymeCollapsedHeaderTestkitFactory} from 'wix-style-react/testkit/enzyme';
+  import {CollapsedHeaderTestkitFactory} from 'wix-style-react/dist/testkit';
+  import {CollapsedHeaderTestkitFactory as enzymeCollapsedHeaderTestkitFactory} from 'wix-style-react/dist/testkit/enzyme';
 
   /***************
    enzyme example

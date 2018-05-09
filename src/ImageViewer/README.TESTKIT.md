@@ -21,8 +21,8 @@
 
 ```javascript
   import React from 'react';
-  import {imageViewerTestkitFactory} from 'wix-style-react/testkit';
-  import {imageViewerTestkitFactory as enzymeImageViewerTestkitFactory} from 'wix-style-react/testkit/enzyme';
+  import {imageViewerTestkitFactory} from 'wix-style-react/dist/testkit';
+  import {imageViewerTestkitFactory as enzymeImageViewerTestkitFactory} from 'wix-style-react/dist/testkit/enzyme';
 
   /***************
    enzyme example
@@ -59,7 +59,7 @@
    protractor example
   *******************/
 
-  import {imageViewerTestkitFactory, waitForVisibilityOf} from 'wix-style-react/testkit/protractor';
+  import {imageViewerTestkitFactory, waitForVisibilityOf} from 'wix-style-react/dist/testkit/protractor';
 
   //Create an element testkit via the data-hook attribute
   const testkit = imageViewerTestkitFactory({dataHook: 'myDataHook'});

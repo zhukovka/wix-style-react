@@ -35,8 +35,8 @@ import 'wix-style-react/dist/src/Backoffice/Tooltip/CancelAnimationPolyfill.js';
 
 ```javascript
   import React from 'react';
-  import {backofficeTooltipTestkitFactory as tooltipTestkitFactory} from 'wix-style-react/testkit';
-  import {backofficeTooltipTestkitFactory as enzymeTooltipTestkitFactory} from 'wix-style-react/testkit/enzyme';
+  import {backofficeTooltipTestkitFactory as tooltipTestkitFactory} from 'wix-style-react/dist/testkit';
+  import {backofficeTooltipTestkitFactory as enzymeTooltipTestkitFactory} from 'wix-style-react/dist/testkit/enzyme';
   import waitForCond from 'wait-for-cond';
 
   function waitFor(predicate, msg) {
