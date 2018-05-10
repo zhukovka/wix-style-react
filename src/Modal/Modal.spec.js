@@ -80,6 +80,18 @@ describe('Modal', () => {
       expect(props.onRequestClose.calledOnce).toBeTruthy();
     });
 
+    it(`should trigger the onRequestClose function when clicking the close button`, () => {
+
+      props.onRequestClose = sinon.spy();
+      props.shouldDisplayCloseButton = true;
+      props.closeTimeoutMS = 0;
+
+      const driver = createDriver(<Modal {...props}/>);
+      driver.clickOnCloseButton();
+
+      expect(props.onRequestClose.calledOnce).toBeTruthy();
+    });
+
     describe('timeout', () => {
       let originalTimeout;
 
@@ -133,6 +145,19 @@ describe('Modal', () => {
     it('should allow disabling the scrolling', () => {
       const driver = createDriver(<Modal {...props} scrollable={false}/>);
       expect(driver.isScrollable()).toBe(false);
+    });
+  });
+
+  describe('close button', () => {
+    it('should not have a close button', () => {
+      props.shouldDisplayCloseButton = false;
+      const driver = createDriver(<Modal {...props}/>);
+      expect(driver.closeButtonExists()).toBe(false);
+    });
+    it('should have a close button', () => {
+      props.shouldDisplayCloseButton = true;
+      const driver = createDriver(<Modal {...props}/>);
+      expect(driver.closeButtonExists()).toBe(true);
     });
   });
 

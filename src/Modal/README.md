@@ -14,6 +14,7 @@
 | onCancel | func | - | - | Called when user presses the X on the top bar, or the cancel button on the footer |
 | zIndex | number | - | - |  |
 | shouldCloseOnOverlayClick | bool | - | - |  |
+| shouldDisplayCloseButton | bool | - | - | Displays a close button on the top right corner of the overlay |
 | onRequestClose | func | - | - |  |
 | onAfterOpen | func | - | - |  |
 | horizontalPosition | start, center, end | center | - | horizontal position of the modal |

@@ -37,7 +37,6 @@ $wix-ease-out-quad: cubic-bezier(0.25, 0.46, 0.45, 0.94);
         transition: background 0.2s $wix-modal-easeOutQuint;
       }
       &--before-close {
-        pointer-events: none;
         background: rgba($D10, 0);
         transition: background 0.15s $wix-ease-out-quad;
       }
@@ -45,6 +44,22 @@ $wix-ease-out-quad: cubic-bezier(0.25, 0.46, 0.45, 0.94);
   }
 }
 
+.children-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
+
+.close-button {
+  position: absolute;
+  top: 40px;
+  right: 38px;
+  width: 18px;
+  height: 18px;
+  cursor: pointer;
+  color: white;
+}
 .portal-non-scrollable {
   :global {
     .ReactModal__Overlay {

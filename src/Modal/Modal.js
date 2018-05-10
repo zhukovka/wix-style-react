@@ -5,6 +5,9 @@ import classnames from 'classnames';
 import styles from './Modal.scss';
 import {colors, flexPositions, positions} from './ModalConstants';
 import WixComponent from '../BaseComponents/WixComponent';
+import CloseThin from './../Icons/dist/components/CloseThin';
+
+const CHILDREN_WRAPPER_DIV_ID = 'modal-children-container';
 
 class Modal extends WixComponent {
   static propTypes = {
@@ -14,6 +17,7 @@ class Modal extends WixComponent {
     children: PropTypes.any,
     zIndex: PropTypes.number,
     shouldCloseOnOverlayClick: PropTypes.bool,
+    shouldDisplayCloseButton: PropTypes.bool,
     onRequestClose: PropTypes.func,
     onAfterOpen: PropTypes.func,
     horizontalPosition: PropTypes.oneOf(Object.keys(flexPositions)),
@@ -28,17 +32,17 @@ class Modal extends WixComponent {
   };
 
   static defaultProps = {
-    onOk: () => {
-    },
+    onOk: () => {},
     borderRadius: 0,
     theme: colors.blue,
     shouldCloseOnOverlayClick: false,
+    shouldDisplayCloseButton: false,
     horizontalPosition: 'center',
     verticalPosition: 'center',
     closeTimeoutMS: 500,
     scrollable: true,
     scrollableContent: false,
-    height: 'auto',
+    height: '100%',
     maxHeight: 'auto',
     overlayPosition: 'fixed'
   };
@@ -55,6 +59,7 @@ class Modal extends WixComponent {
       theme,
       isOpen,
       shouldCloseOnOverlayClick,
+      shouldDisplayCloseButton,
       onRequestClose,
       onAfterOpen,
       contentLabel,
@@ -64,6 +69,7 @@ class Modal extends WixComponent {
       overlayPosition,
       parentSelector
     } = this.props;
+
     let {maxHeight} = this.props;
     const justifyContent = flexPositions[horizontalPosition];
     const alignItems = flexPositions[verticalPosition];
@@ -93,6 +99,7 @@ class Modal extends WixComponent {
         overflowX: scrollableContent ? 'hidden' : 'initial',
         height,
         maxHeight,
+        width: '100%',
         WebkitOverflowScrolling: 'touch',
         outline: 'none',
         borderRadius,
@@ -116,22 +123,50 @@ class Modal extends WixComponent {
     }
 
     return (
-      <ReactModal
-        portalClassName={portalClassName}
-        isOpen={isOpen}
-        shouldCloseOnOverlayClick={shouldCloseOnOverlayClick}
-        onRequestClose={onRequestClose}
-        onAfterOpen={onAfterOpen}
-        style={modalStyles}
-        className={modalClasses}
-        contentLabel={contentLabel}
-        closeTimeoutMS={closeTimeoutMS}
-        parentSelector={parentSelector}
-        >
-        {children}
-      </ReactModal>
+      <div>
+        <ReactModal
+          portalClassName={portalClassName}
+          isOpen={isOpen}
+          shouldCloseOnOverlayClick={shouldCloseOnOverlayClick}
+          onRequestClose={onRequestClose}
+          onAfterOpen={onAfterOpen}
+          style={modalStyles}
+          className={modalClasses}
+          contentLabel={contentLabel}
+          closeTimeoutMS={closeTimeoutMS}
+          parentSelector={parentSelector}
+          >
+          {isOpen && shouldDisplayCloseButton && this.renderCloseButton()}
+          <div
+            id={CHILDREN_WRAPPER_DIV_ID}
+            className={styles.childrenContainer}
+            onClick={this.handleOverlayClick}
+            >
+            {children}
+          </div>
+        </ReactModal>
+      </div>
     );
   }
+
+  handleOverlayClick = event => {
+    const {shouldCloseOnOverlayClick, onRequestClose} = this.props;
+    if (shouldCloseOnOverlayClick && event.target.id === CHILDREN_WRAPPER_DIV_ID) {
+      onRequestClose();
+    }
+  };
+
+  renderCloseButton = () => {
+    return (
+      <div
+        onClick={this.props.onRequestClose}
+        className={styles.closeButton}
+        data-hook="modal-close-button"
+        >
+        <CloseThin size="18px"/>
+      </div>
+    );
+  };
 }
 
 export default Modal;
