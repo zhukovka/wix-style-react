@@ -12,6 +12,10 @@ Types of changes:
 1. **Security** in case of vulnerabilities.
 1. **Breaking** for breaking changes
 
+## 3.1.10 - 2018-05-10
+### Added
+- `<Modal/>` - add an optional close button to the modal (#1728)
+
 ## 3.1.9 0 2018-05-09
 ### Fix
 - docs: fix testkits import path [#1730](https://github.com/wix/wix-style-react/pull/1730)
