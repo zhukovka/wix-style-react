@@ -12,6 +12,10 @@ Types of changes:
 1. **Security** in case of vulnerabilities.
 1. **Breaking** for breaking changes
 
+## next
+### Changed
+- `<Loader/>` - allow nodes in `text` prop [#1733](https://github.com/wix/wix-style-react/pull/1733)
+
 ## 3.1.10 - 2018-05-10
 ### Added
 - `<Modal/>` - add an optional close button to the modal (#1728)
