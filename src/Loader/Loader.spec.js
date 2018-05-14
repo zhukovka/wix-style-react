@@ -46,6 +46,13 @@ describe('Loader', () => {
       expect(driver.getText()).toEqual(text);
     });
 
+    it('should create a component with text element', () => {
+      const text = 'All computers wait at the same speed';
+      const textElement = <div>{text}</div>;
+      const driver = createDriver(<Loader text={textElement}/>);
+      expect(driver.hasText()).toEqual(true);
+      expect(driver.getText()).toEqual(text);
+    });
   });
 
   describe('color property', () => {
