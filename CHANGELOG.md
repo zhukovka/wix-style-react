@@ -16,9 +16,15 @@ Types of changes:
 ### Changed
 - `<Loader/>` - allow nodes in `text` prop [#1733](https://github.com/wix/wix-style-react/pull/1733)
 
+### Fixed
+- `<Icons/>` - create a direct import to the icon component [#1735](https://github.com/wix/wix-style-react/pull/1735)
+
+### Removed
+- `<Selector/>` - remove the unused `<ExtraIcon/>` component [#1736](https://github.com/wix/wix-style-react/pull/1736)
+
 ## 3.1.10 - 2018-05-10
 ### Added
-- `<Modal/>` - add an optional close button to the modal (#1728)
+- `<Modal/>` - add an optional close button to the modal [#1728](https://github.com/wix/wix-style-react/pull/1728)
 
 ## 3.1.9 0 2018-05-09
 ### Fix
