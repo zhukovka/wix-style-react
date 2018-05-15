@@ -7,7 +7,6 @@ import RadioButton from '../RadioGroup/RadioButton/RadioButton';
 import Text from '../Text';
 import styles from './Selector.scss';
 import ExtraText from './ExtraText';
-import ExtraIcon from './ExtraIcon';
 import ProgressBar from './ProgressBar';
 
 class Selector extends WixComponent {
@@ -106,7 +105,6 @@ class Selector extends WixComponent {
 }
 
 Selector.ExtraText = ExtraText;
-Selector.ExtraIcon = ExtraIcon;
 Selector.ProgressBar = ProgressBar;
 
 export default Selector;
