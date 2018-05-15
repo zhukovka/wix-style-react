@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 import DropdownLayout from '../../DropdownLayout';
 import Text from '../../Text';
-import {ArrowDownThin} from '../../Icons';
+import ArrowDownThin from '../../Icons/dist/components/ArrowDownThin';
 import styles from './styles.scss';
 
 export default class DropdownPicker extends React.Component {
