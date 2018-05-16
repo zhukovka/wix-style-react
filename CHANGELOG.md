@@ -18,6 +18,7 @@ Types of changes:
 
 ### Fixed
 - `<Icons/>` - create a direct import to the icon component [#1735](https://github.com/wix/wix-style-react/pull/1735)
+- `<Checkbox/>` - fix test driver by applying the correct change event triggered by a click [#1737](https://github.com/wix/wix-style-react/pull/1737)
 
 ### Removed
 - `<Selector/>` - remove the unused `<ExtraIcon/>` component [#1736](https://github.com/wix/wix-style-react/pull/1736)
