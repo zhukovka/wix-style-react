@@ -4,10 +4,6 @@ import RadioGroup from 'wix-style-react/RadioGroup';
 const exampleChildren = [
   [1, 2, 3, 4].map(n =>
     <RadioGroup.Radio key={n} value={n} children={`Option ${n}`}/>),
-
-  [1, 2, 3, 4].map(n =>
-    <RadioGroup.Radio key={n} value={n} children={`אופציה ${n}`}/>),
-
   [
     <RadioGroup.Radio key={0} value={1}>
       <div>Option 1</div>
