@@ -21,6 +21,7 @@ Types of changes:
 ### Added
 - `<Card.ButtonHeader/>` - add 'emptyblue' theme [#1740](https://github.com/wix/wix-style-react/pull/1740)
 - `<Tag/>` - fix component box-sizing [#1759](https://github.com/wix/wix-style-react/pull/1759)
+- `<Tooltip/>` - use appendByPredicate to support custom appending strategies [#1754](https://github.com/wix/wix-style-react/pull/1754)
 
 ## 3.1.11 - 2018-05-16
 ### Changed
