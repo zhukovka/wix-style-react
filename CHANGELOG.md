@@ -16,6 +16,7 @@ Types of changes:
 ### Fixed
 - `<Loader/>` - error message margin should be 18px [#1749](https://github.com/wix/wix-style-react/pull/1749)
 - `<RadioGroup/>` - fix icon size [#1750](https://github.com/wix/wix-style-react/pull/1750)
+- `<RichTextArea/>` - Fix link creation that caused javascript errors [#1745](https://github.com/wix/wix-style-react/pull/1745)
 
 ### Added
 - `<Card.ButtonHeader/>` - add 'emptyblue' theme [#1740](https://github.com/wix/wix-style-react/pull/1740)
