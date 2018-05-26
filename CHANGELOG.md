@@ -13,6 +13,10 @@ Types of changes:
 1. **Breaking** for breaking changes
 
 ## next
+### Added
+- `<MultiSelectCheckbox/>` - new component [#1755](https://github.com/wix/wix-style-react/pull/1755)
+
+## 3.1.12 - 2018-05-23
 ### Fixed
 - `<Loader/>` - error message margin should be 18px [#1749](https://github.com/wix/wix-style-react/pull/1749)
 - `<RadioGroup/>` - fix icon size [#1750](https://github.com/wix/wix-style-react/pull/1750)
