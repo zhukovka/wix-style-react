@@ -16,6 +16,9 @@ Types of changes:
 ### Added
 - `<MultiSelectCheckbox/>` - new component [#1755](https://github.com/wix/wix-style-react/pull/1755)
 
+### Fixed
+- `<DatePicker/>` - focus year value in dropdown [#1748](https://github.com/wix/wix-style-react/pull/1748)
+
 ## 3.1.12 - 2018-05-23
 ### Fixed
 - `<Loader/>` - error message margin should be 18px [#1749](https://github.com/wix/wix-style-react/pull/1749)
