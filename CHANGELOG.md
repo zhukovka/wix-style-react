@@ -27,7 +27,7 @@ Types of changes:
 ### Fixed
 - `<DatePicker/>` - focus year value in dropdown [#1748](https://github.com/wix/wix-style-react/pull/1748)
 
-## 3.1.12 - 2018-05-23
+## 3.1.12 - 2018-05-28
 ### Fixed
 - `<Loader/>` - error message margin should be 18px [#1749](https://github.com/wix/wix-style-react/pull/1749)
 - `<RadioGroup/>` - fix icon size [#1750](https://github.com/wix/wix-style-react/pull/1750)
