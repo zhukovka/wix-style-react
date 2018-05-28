@@ -12,6 +12,14 @@ Types of changes:
 1. **Security** in case of vulnerabilities.
 1. **Breaking** for breaking changes
 
+## next
+
+## 4.0.0 - 2018-05-23
+### Breaking
+- `<ToggleSwitch>` -  [migration guide](https://github.com/wix/wix-style-react/blob/master/src/ToggleSwitch/MIGRATION.md)
+- `<Text/>` [migration guide](https://github.com/wix/wix-style-react/blob/master/src/Text/MIGRATION.md)
+- `<Label/>` [migration guide](https://github.com/wix/wix-style-react/blob/master/src/Label/MIGRATION.md)
+
 ## 3.2.0 - 2018-05-28
 ### Added
 - `<MultiSelectCheckbox/>` - new component [#1755](https://github.com/wix/wix-style-react/pull/1755)
@@ -145,7 +153,6 @@ Types of changes:
 - `<DrillView/>` - dont go over a tags if have no onClick prop [#1599](https://github.com/wix/wix-style-react/pull/1599)
 
 - `<Range/>` - fix click race condition
-
 
 ## 3.0.0
 ### Breaking
