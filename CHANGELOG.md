@@ -14,7 +14,7 @@ Types of changes:
 
 ## next
 
-## 4.0.0 - 2018-05-23
+## 4.0.0 - 2018-05-28
 ### Breaking
 - `<ToggleSwitch>` -  [migration guide](https://github.com/wix/wix-style-react/blob/master/src/ToggleSwitch/MIGRATION.md)
 - `<Text/>` [migration guide](https://github.com/wix/wix-style-react/blob/master/src/Text/MIGRATION.md)
@@ -27,7 +27,7 @@ Types of changes:
 ### Fixed
 - `<DatePicker/>` - focus year value in dropdown [#1748](https://github.com/wix/wix-style-react/pull/1748)
 
-## 3.1.12 - 2018-05-28
+## 3.1.12 - 2018-05-23
 ### Fixed
 - `<Loader/>` - error message margin should be 18px [#1749](https://github.com/wix/wix-style-react/pull/1749)
 - `<RadioGroup/>` - fix icon size [#1750](https://github.com/wix/wix-style-react/pull/1750)
