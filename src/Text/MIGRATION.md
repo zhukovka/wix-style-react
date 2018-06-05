@@ -87,9 +87,15 @@ We used to have `H0` - `H4`, which got mapped under the hood to html `h1` - `h5`
 
 ### Appearances updates
 `<Text appearance="H0">` -> DEPRECATED
+
 `<Text appearance="H1">` -> `<Heading appearance="H1">`
+
 `<Text appearance="H1.1">` -> `<Heading appearance="H1" light>`
+
 `<Text appearance="H2">` -> `<Heading appearance="H2">`
+
 `<Text appearance="H2.1">` -> `<Heading appearance="H2" light>`
+
 `<Text appearance="H3">` -> `<Heading appearance="H3">`
+
 `<Text appearance="H4">` -> `<Heading appearance="H4">`
