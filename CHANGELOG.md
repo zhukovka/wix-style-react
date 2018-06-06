@@ -21,6 +21,7 @@ Types of changes:
 ### Added
 - `<ImageViewer>` - Add error state [#1772](https://github.com/wix/wix-style-react/pull/1772)
 - `<Search/>` - Added expandable feature [#1775](https://github.com/wix/wix-style-react/pull/1775)
+  * KnownIssue with`<Search/>` !!! - When expandable feature is enabled, there is some bug related to keyboard navigation. Please DON't use it yet. Fix will come very soon. Thanks.
 - `<FloatingHelper/>` - add new component - 8.6 FloatingHelper [#1767](https://github.com/wix/wix-style-react/pull/1767),[#1790](https://github.com/wix/wix-style-react/pull/1790)
 
 ## 4.0.0 - 2018-05-28
