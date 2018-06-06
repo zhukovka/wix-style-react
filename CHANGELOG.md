@@ -21,7 +21,7 @@ Types of changes:
 ### Added
 - `<ImageViewer>` - Add error state [#1772](https://github.com/wix/wix-style-react/pull/1772)
 - `<Search/>` - Added expandable feature [#1775](https://github.com/wix/wix-style-react/pull/1775)
-- `<FloatingHelper/>` - add new component [#1767](https://github.com/wix/wix-style-react/pull/1767)
+- `<FloatingHelper/>` - add new component - 8.6 FloatingHelper [#1767](https://github.com/wix/wix-style-react/pull/1767),[#1790](https://github.com/wix/wix-style-react/pull/1790)
 
 ## 4.0.0 - 2018-05-28
 ### Breaking
