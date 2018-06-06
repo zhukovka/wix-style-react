@@ -12,7 +12,7 @@ Types of changes:
 1. **Security** in case of vulnerabilities.
 1. **Breaking** for breaking changes
 
-## next
+## 4.1.0 - 2018-06-06
 ### Fixed
 - `<Input/>` - display error icon and dropdown arrow [#1769](https://github.com/wix/wix-style-react/pull/1769)
 - `<Search/>` - keep the focus after pressing clear button [#1764](https://github.com/wix/wix-style-react/pull/1764)
