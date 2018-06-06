@@ -13,16 +13,14 @@ Types of changes:
 1. **Breaking** for breaking changes
 
 ## next
-
-## 4.0.1 - 2018-06-05
 ### Fixed
 - `<Input/>` - display error icon and dropdown arrow [#1769](https://github.com/wix/wix-style-react/pull/1769)
 - `<Search/>` - keep the focus after pressing clear button [#1764](https://github.com/wix/wix-style-react/pull/1764)
+- <Input/> - remove box shadow when focusing Input with 'tags' theme [#1792](https://github.com/wix/wix-style-react/pull/1792)
 
 ### Added
 - `<ImageViewer>` - Add error state [#1772](https://github.com/wix/wix-style-react/pull/1772)
 - `<Search/>` - Added expandable feature [#1775](https://github.com/wix/wix-style-react/pull/1775)
-
 
 ## 4.0.0 - 2018-05-28
 ### Breaking
