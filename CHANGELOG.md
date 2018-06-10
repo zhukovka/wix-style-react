@@ -12,6 +12,11 @@ Types of changes:
 1. **Security** in case of vulnerabilities.
 1. **Breaking** for breaking changes
 
+## 4.1.1 - 2018-06-??
+
+### Fixed
+- `<Input>` make ThemedInput noRight(Left)BorderRadius work. And fix DatePicker border. [#1794](https://github.com/wix/wix-style-react/pull/1794)
+
 ## 4.1.0 - 2018-06-06
 ### Fixed
 - `<Input/>` - display error icon and dropdown arrow [#1769](https://github.com/wix/wix-style-react/pull/1769)
