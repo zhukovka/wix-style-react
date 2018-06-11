@@ -14,7 +14,10 @@ Types of changes:
 
 ## next
 ### Added
-- <RichTextArea/> - add a flag to generate absolute paths url links [#1746](https://github.com/wix/wix-style-react/pull/1746)
+- `<RichTextArea/>` - add a flag to generate absolute paths url links [#1746](https://github.com/wix/wix-style-react/pull/1746)
+
+### Fixed
+- `<TimePicker/>` - Prevent typing letters [#1751](https://github.com/wix/wix-style-react/pull/1751)
 
 ## 4.1.1 - 2018-06-11
 
