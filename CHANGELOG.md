@@ -12,6 +12,10 @@ Types of changes:
 1. **Security** in case of vulnerabilities.
 1. **Breaking** for breaking changes
 
+## next
+### Added
+- <RichTextArea/> - add a flag to generate absolute paths url links [#1746](https://github.com/wix/wix-style-react/pull/1746)
+
 ## 4.1.1 - 2018-06-11
 
 ### Fixed
