@@ -13,8 +13,13 @@ Types of changes:
 1. **Breaking** for breaking changes
 
 ## next
+
+## 4.1.3 - 2018-06-12
 ### Fixed
 - `<TextLink/>` - Updated disabled property behaciour [#1798](https://github.com/wix/wix-style-react/pull/1798)
+
+### Added
+- `<DataTable>` - Add info icon with tooltip to table header [#1770](https://github.com/wix/wix-style-react/pull/1770)
 
 ## 4.1.2 - 2018-06-12
 ### Added
