@@ -13,6 +13,8 @@ Types of changes:
 1. **Breaking** for breaking changes
 
 ## next
+### Fixed
+- `<TextLink/>` - Updated disabled property behaciour [#1798](https://github.com/wix/wix-style-react/pull/1798)
 
 ## 4.1.2 - 2018-06-12
 ### Added
