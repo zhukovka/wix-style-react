@@ -13,6 +13,14 @@ Types of changes:
 1. **Breaking** for breaking changes
 
 ## next
+### Changed
+- `<Input/>` - select the entire text on click [#1773](https://github.com/wix/wix-style-react/pull/1773)
+
+### Aded
+- `<AddItem/>` - create a new component [#1802](https://github.com/wix/wix-style-react/pull/1802)
+
+### Fixed
+- `<DatePicker/>` - fix css issues with latest `node-sass` version.
 
 ## 4.1.3 - 2018-06-12
 ### Fixed
@@ -33,7 +41,6 @@ Types of changes:
 - Migrate to yoshi2 and storybook 4 [#1811](https://github.com/wix/wix-style-react/pull/1811)
 
 ## 4.1.1 - 2018-06-11
-
 ### Fixed
 - `<Input>` make ThemedInput noRight(Left)BorderRadius work. Add className prop. And fix DatePicker border. [#1794](https://github.com/wix/wix-style-react/pull/1794)
 - `<MultiSelect>` - Fix missing call to onManuallyInput when no options exists [#1804](https://github.com/wix/wix-style-react/pull/1804)
