@@ -20,7 +20,8 @@ Types of changes:
 - `<AddItem/>` - create a new component [#1802](https://github.com/wix/wix-style-react/pull/1802)
 
 ### Fixed
-- `<DatePicker/>` - fix css issues with latest `node-sass` version.
+- `<DatePicker/>` - fix css issues with latest `node-sass` version
+- `<Tooltip/>` - support React16 [#1814](https://github.com/wix/wix-style-react/pull/1814)
 
 ## 4.1.3 - 2018-06-12
 ### Fixed
