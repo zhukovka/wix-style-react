@@ -1,7 +1,10 @@
 import React from 'react';
 import DataTable from 'wix-style-react/DataTable';
-import {any, string} from 'prop-types';
 import './Example.scss';
+
+const style = {
+  width: '966px'
+};
 
 const baseData = [
   {firstName: 'Meghan', lastName: 'Bishop'},
@@ -11,19 +14,7 @@ const baseData = [
   {firstName: 'Amanda', lastName: 'Woods'}
 ];
 
-class DataTableSortableExample extends React.Component {
-  static propTypes = {
-    style: any,
-    dataHook: string
-  }
-
-  static defaultProps = {
-    style: {
-      width: '966px'
-    },
-    dataHook: 'story-data-table-sortable'
-  }
-
+class DataTableSortableOldDesignExample extends React.Component {
   constructor(props) {
     super(props);
     this.state = {sort: {}, data: baseData};
@@ -46,17 +37,16 @@ class DataTableSortableExample extends React.Component {
 
   render() {
     return (
-      <div style={this.props.style}>
+      <div style={style}>
         <DataTable
-          dataHook={this.props.dataHook}
+          dataHook="story-data-table"
           data={this.state.data}
           onSortClick={(col, colNum) => this.handleSortClick(colNum)}
           itemsPerPage={20}
-          newDesign
           columns={[
-            {title: 'Row Number', render: (row, rowNum) => '#' + (rowNum + 1), width: '20%', minWidth: '75px', important: true, infoTooltip: {content: 'Very informative tooltip text'}},
+            {title: 'Row Number', render: (row, rowNum) => '#' + (rowNum + 1), width: '20%', minWidth: '75px', important: true},
             {title: 'First Name', sortable: true, sortDescending: !!this.state.sort[1], render: row => <span>{row.firstName}</span>, width: '40%', minWidth: '100px'},
-            {title: 'Last Name', sortable: true, sortDescending: !!this.state.sort[2], render: row => <span>{row.lastName}</span>, width: '40%', minWidth: '100px', infoTooltip: {content: 'Very informative tooltip text'}}
+            {title: 'Last Name', sortable: true, sortDescending: !!this.state.sort[2], render: row => <span>{row.lastName}</span>, width: '40%', minWidth: '100px'}
           ]}
           />
       </div>
@@ -64,4 +54,4 @@ class DataTableSortableExample extends React.Component {
   }
 }
 
-export default DataTableSortableExample;
+export default DataTableSortableOldDesignExample;
