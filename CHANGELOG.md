@@ -12,6 +12,11 @@ Types of changes:
 1. **Security** in case of vulnerabilities.
 1. **Breaking** for breaking changes
 
+## next
+
+### Added
+- `<TimeInput/>` - Expose isDisable mehod in it's testkit[1838](https://github.com/wix/wix-style-react/pull/1838)
+
 ## 4.2.0 - 2018-06-17
 ### Changed
 - `<Input/>` - select the entire text on click [#1773](https://github.com/wix/wix-style-react/pull/1773)
