@@ -19,7 +19,7 @@ Types of changes:
 
 ### Added
 - `<DataTable/>` add newDesign prop [#1817](https://github.com/wix/wix-style-react/pull/1817), See [Storybook](https://wix-wix-style-react.surge.sh/?selectedKind=10.%20Tables&selectedStory=10.1%20DataTable&full=0&addons=0&stories=1&panelRight=0) for further details.
-- `<AddItem/>` - create a new component [#1802](https://github.com/wix/wix-style-react/pull/1802)
+- `<AddItem/>` - create a new component [#1802](https://github.com/wix/wix-style-react/pull/1802) [#1822](https://github.com/wix/wix-style-react/pull/1822)
 
 ### Fixed
 - `<DatePicker/>` - fix css issues with latest `node-sass` version
