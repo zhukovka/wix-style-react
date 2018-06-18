@@ -14,7 +14,7 @@ Types of changes:
 
 ## next
 
-## 4.3.0 - 2018-06-17
+## 4.3.0 - 2018-06-18
 
 ### Added
 - `<TimeInput/>` - Expose isDisable mehod in it's testkit[1838](https://github.com/wix/wix-style-react/pull/1838)
@@ -24,7 +24,7 @@ Types of changes:
 - `<AddItem/>` - Fix styles - [1839](https://github.com/wix/wix-style-react/pull/1839)
 
 
-## 4.2.0 - 2018-06-17
+## 4.2.0 - 2018-06-18
 ### Changed
 - `<Input/>` - select the entire text on click [#1773](https://github.com/wix/wix-style-react/pull/1773)
 - `<DataTable/>` - changed styles to new design with `newDesign` flag [#1817](https://github.com/wix/wix-style-react/pull/1817)
