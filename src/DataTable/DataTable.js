@@ -61,6 +61,12 @@ class DataTable extends WixComponent {
     }
   }
 
+  shouldComponentUpdate() {
+    // DataTable extends WixComponent which is a PureComponent, but DataTable is not pure.
+    // returning true, disables the PureComponent optimization.
+    return true;
+  }
+
   createInitialScrollingState(props) {
     return {currentPage: 0, lastPage: this.calcLastPage(props)};
   }
@@ -77,7 +83,6 @@ class DataTable extends WixComponent {
       data;
 
     const table = this.renderTable(rowsToRender);
-
     if (infiniteScroll) {
       return this.wrapWithInfiniteScroll(table);
     }
@@ -426,7 +431,6 @@ DataTable.propTypes = {
   hideHeader: PropTypes.bool,
   newDesign: PropTypes.bool
 };
-
 DataTable.displayName = 'DataTable';
 
 export default DataTable;
