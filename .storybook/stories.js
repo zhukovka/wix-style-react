@@ -14,6 +14,7 @@ import '../stories/Label'; // 1.2 + Label
 import '../stories/Heading'; // 1.3 Heading
 import '../stories/Icons'; // 1.4 Icons
 import '../stories/Loader.story.js'; // 1.5 Loader
+import '../stories/LinearProgressBar.story.js'; // 1.6 LinearProgressBar
 
 // 2. Layout
 import '../stories/Page/index.story.js'; // 2.5 Page

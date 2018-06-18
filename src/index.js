@@ -72,3 +72,4 @@ export {default as Search} from './Search';
 export {default as Tabs} from './Tabs';
 export {default as Tag} from './Tag';
 export {default as TextLink} from './TextLink';
+export {default as LinearProgressBar} from './LinearProgressBar';
