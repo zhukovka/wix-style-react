@@ -15,20 +15,16 @@ Types of changes:
 ## next
 ### Changed
 - `<Input/>` - select the entire text on click [#1773](https://github.com/wix/wix-style-react/pull/1773)
+- `<DataTable/>` - changed styles to new design with `newDesign` flag [#1817](https://github.com/wix/wix-style-react/pull/1817)
 
-### Aded
+### Added
 - `<DataTable/>` add newDesign prop [#1817](https://github.com/wix/wix-style-react/pull/1817), See [Storybook](https://wix-wix-style-react.surge.sh/?selectedKind=10.%20Tables&selectedStory=10.1%20DataTable&full=0&addons=0&stories=1&panelRight=0) for further details.
 - `<AddItem/>` - create a new component [#1802](https://github.com/wix/wix-style-react/pull/1802)
-
 
 ### Fixed
 - `<DatePicker/>` - fix css issues with latest `node-sass` version
 - `<Tooltip/>` - support React16 [#1814](https://github.com/wix/wix-style-react/pull/1814)
 `<GoogleAddressInput>` - Fix id management issue [#1834](https://github.com/wix/wix-style-react/pull/1834)
-
-### Added
-
-- `<DataTable/>` add newDesign [#1817](https://github.com/wix/wix-style-react/pull/1817)
 
 ## 4.1.3 - 2018-06-12
 ### Fixed
