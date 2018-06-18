@@ -14,8 +14,15 @@ Types of changes:
 
 ## next
 
+## 4.3.0 - 2018-06-17
+
 ### Added
 - `<TimeInput/>` - Expose isDisable mehod in it's testkit[1838](https://github.com/wix/wix-style-react/pull/1838)
+- `<LinearProgressBar>` - New component [1830](https://github.com/wix/wix-style-react/pull/1830)
+
+### Fixed
+- `<AddItem/>` - Fix styles - [1839](https://github.com/wix/wix-style-react/pull/1839)
+
 
 ## 4.2.0 - 2018-06-17
 ### Changed
