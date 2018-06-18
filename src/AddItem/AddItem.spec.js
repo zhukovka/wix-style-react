@@ -20,9 +20,7 @@ describe('AddItem', () => {
     addItem = jest.fn();
     props = {
       onClick: addItem,
-      tooltipContent: TOOLTIP_CONTENT,
-      width: 300,
-      height: 400
+      tooltipContent: TOOLTIP_CONTENT
     };
 
   });
@@ -39,24 +37,33 @@ describe('AddItem', () => {
 
   describe('height and width', () => {
 
-    it('should be added to style attribute when item is not present', () => {
+    it('should use asspect ratio from props', () => {
+      props = {
+        aspectRatio: '16/9'
+      };
       driver = createDriver(<AddItem {...props}/>);
-      expect(driver.getHeight()).toEqual('400px');
-      expect(driver.getWidth()).toEqual('300px');
+      expect(driver.getRatio()).toEqual('16x9');
     });
 
-    it('should not add style attribute when width and height props are not passed', () => {
-      props = {};
+    it('should have default asspect ratio 1x1', () => {
+      driver = createDriver(<AddItem/>);
+      expect(driver.getRatio()).toEqual('1x1');
+    });
+
+    it('should ignore asspect ratio from props when height is given', () => {
+      props = {
+        aspectRatio: '16/9',
+        height: 300
+      };
       driver = createDriver(<AddItem {...props}/>);
-      expect(driver.getHeight()).toEqual('');
-      expect(driver.getWidth()).toEqual('');
+      expect(driver.getHeight()).toEqual('300px');
     });
 
   });
 
   describe('hide or show add item', () => {
 
-    it('should have an Add item tooltip', () => {
+    it('should have a tooltip with given content', () => {
       driver = createDriver(<AddItem {...props}/>);
       const TooltipDriver = driver.getTooltipDriver();
       TooltipDriver.mouseEnter();
@@ -76,14 +83,6 @@ describe('AddItem', () => {
       const wrapper = shallow(<AddItem/>);
       expect(wrapper.find('Tooltip').exists()).toBeFalsy();
     });
-
-    // it('should not have an Add item tooltip', () => {
-    //   const wrapper = shallow(<AddItem/>);
-    //   expect(wrapper.find('<Tooltip/>').exists()).toBeFalsey();
-    //   driver = createDriver(<AddItem/>);
-    //   const TooltipDriver = driver.getTooltipDriver();
-    //   expect(TooltipDriver.exists()).toBeFalsey();
-    // });
 
   });
 
