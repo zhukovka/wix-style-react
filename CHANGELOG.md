@@ -24,7 +24,7 @@ Types of changes:
 ### Fixed
 - `<DatePicker/>` - fix css issues with latest `node-sass` version
 - `<Tooltip/>` - support React16 [#1814](https://github.com/wix/wix-style-react/pull/1814)
-`<GoogleAddressInput>` - Fix id management issue [#1834](https://github.com/wix/wix-style-react/pull/1834)
+- `<GoogleAddressInput>` - Fix id management issue [#1834](https://github.com/wix/wix-style-react/pull/1834)
 
 ## 4.1.3 - 2018-06-12
 ### Fixed
