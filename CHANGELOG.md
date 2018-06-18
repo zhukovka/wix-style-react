@@ -12,7 +12,7 @@ Types of changes:
 1. **Security** in case of vulnerabilities.
 1. **Breaking** for breaking changes
 
-## next
+## 4.2.0 - 2018-06-17
 ### Changed
 - `<Input/>` - select the entire text on click [#1773](https://github.com/wix/wix-style-react/pull/1773)
 - `<DataTable/>` - changed styles to new design with `newDesign` flag [#1817](https://github.com/wix/wix-style-react/pull/1817)
