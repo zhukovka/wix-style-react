@@ -14,6 +14,9 @@ Types of changes:
 
 ## next
 
+### Changed
+<Tags/> - Highlight the autocomplete suggestions when typing (#1818)(https://github.com/wix/wix-style-react/pull/1818)
+
 ### Fixed
 - `<Colorpicker/>` - Fix previous color (history) behavior [1823](https://github.com/wix/wix-style-react/pull/1823)
 
