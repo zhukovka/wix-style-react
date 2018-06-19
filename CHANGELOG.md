@@ -15,7 +15,8 @@ Types of changes:
 ## next
 
 ### Changed
-<Tags/> - Highlight the autocomplete suggestions when typing (#1818)(https://github.com/wix/wix-style-react/pull/1818)
+- `<Tags/>` - Highlight the autocomplete suggestions when typing [#1818](https://github.com/wix/wix-style-react/pull/1818)
+- `<TextArea/>` - InputArea should not add hover styles when focused and hovered [#1820](https://github.com/wix/wix-style-react/pull/1820)
 
 ### Fixed
 - `<Colorpicker/>` - Fix previous color (history) behavior [1823](https://github.com/wix/wix-style-react/pull/1823)
@@ -28,7 +29,6 @@ Types of changes:
 
 ### Fixed
 - `<AddItem/>` - Fix styles - [1839](https://github.com/wix/wix-style-react/pull/1839)
-
 
 ## 4.2.0 - 2018-06-18
 ### Changed
