@@ -14,10 +14,12 @@ Types of changes:
 
 ## next
 
+### Added
+- `<Notification/>` - Make Notification accessible for screen readers [1837](https://github.com/wix/wix-style-react/pull/1837)
+
 ### Changed
 - `<Tags/>` - Highlight the autocomplete suggestions when typing [#1818](https://github.com/wix/wix-style-react/pull/1818)
 - `<TextArea/>` - InputArea should not add hover styles when focused and hovered [#1820](https://github.com/wix/wix-style-react/pull/1820)
-- `<Notification/>` - Make Notification accessible for screen readers [1837](https://github.com/wix/wix-style-react/pull/1837)
 
 ### Fixed
 - `<Colorpicker/>` - Fix previous color (history) behavior [1823](https://github.com/wix/wix-style-react/pull/1823)
