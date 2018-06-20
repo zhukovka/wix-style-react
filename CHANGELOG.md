@@ -15,7 +15,7 @@ Types of changes:
 ## next
 
 ### Added
-- `<Notification/>` - Make Notification accessible for screen readers [1837](https://github.com/wix/wix-style-react/pull/1837)
+- `<Notification/>` - Make component accessible for screen readers [1837](https://github.com/wix/wix-style-react/pull/1837)
 
 ### Changed
 - `<Tags/>` - Highlight the autocomplete suggestions when typing [#1818](https://github.com/wix/wix-style-react/pull/1818)
@@ -23,6 +23,7 @@ Types of changes:
 
 ### Fixed
 - `<Colorpicker/>` - Fix previous color (history) behavior [1823](https://github.com/wix/wix-style-react/pull/1823)
+- `<MultiSelect/>` - fix bug where scrollbar was always shown [#1843](https://github.com/wix/wix-style-react/pull/1843)
 
 ## 4.3.0 - 2018-06-18
 
