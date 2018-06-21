@@ -3,8 +3,8 @@
 * [Overview](#overview)
 * [How to release a new version](#how-to-release-a-new-version)
    * [Regular release](#regular-release)
-      * [Major release](#major-release)
-      * [Minor or patch release](#minor-or-patch-release)
+     * [Minor or patch release](#minor-or-patch-release)
+     * [Major release](#major-release)
    * [Older version release](#older-version-release)
       * [Minor sensitive feature](#minor-sensitive-feature)
       * [Alpha release](#alpha-release)
@@ -27,46 +27,42 @@ This document summarizes the best practices of how to manage our versions, with 
 ## How to release a new version
 
 ### Regular release
-#### Major release
-Let's say we wish to release version `4.0.0`.
+#### Minor or Patch release
+1. Create a new branch from master branch called `release/<new_version>` (e.g. `release/4.0.1`).
+2. Make sure the [CHANGELOG](https://github.com/wix/wix-style-react/blob/master/CHANGELOG.md) is updated.
+3. Change `package.json` version according to semver rules.
+4. Create a PR from the branch, wait for the CI builds to pass and merge to master.
+5. Announce on #wix-style-react slack channel. If there are new components or features worth mentioning, add it to the slack message.
 
-1. First thing we need to do is to create a releasable version branch for current version `3`:
-- Create a new releasable branch from master branch called `version_3.x`. and configure it as a [protected branch](https://github.com/wix/wix-style-react/settings/branches).
--  Update the `surge-auto-release` command which runs during the `postpublish` step in the `package.json` with `--ver=v3` flag:
+#### Major release
+Let's say we are currently in some `3.x.x` version and wish to release version `4.0.0`. First, create a releasable branch for current version `3`:
+1. Create a new branch from master branch called `version_3.x`. and configure it as a [protected branch](https://github.com/wix/wix-style-react/settings/branches).
+2. Update the `surge-auto-release` command which runs during the `postpublish` step in the `package.json` with `--ver=v3` flag:
 ```
 "scripts": {
     "postpublish": "npx teamcity-surge-autorelease@^1.0.0 --dist=storybook-static --ver=v3"
 }
 ```
-
-2. Release the new version:
-- Create a new branch from master branch called `release/<new_version>`.
-- Make sure the [CHANGELOG](https://github.com/wix/wix-style-react/blob/master/CHANGELOG.md) is updated.
-- Change `package.json` version according to semver rules.
-- Create a pr, wait for the pr build to pass and merge to master.
-- Announce on #wix-style-react slack channel. If there are new components or features worth mentioning, add it to the slack message.
-
-#### Minor or patch release
-Follow step 2 of the [How to release a new version](#how-to-release-a-new-version)
-
+3. Follow the same flow or [Minor or Patch release](#minor-or-patch-release)
 
 ### Older version release
 Let's say we wish to introduce some bug fix to an older version which is represented by the version branch `version_3.x`. This branch should have been created in the previous major release.
 
-- Create a new branch from the `version_3.x` branch and name it with the next relevant version, for example: `release/3.1.1`.
-- Make sure the CHANGELOG is updated.
-- Change `package.json` version according to semver rules.
-- Create a pr, wait for the pr build to pass and merge to `version_3.x` branch.
+1. Create a new branch from the `version_3.x` branch and name it with the next relevant version, for example: `release/3.1.1`.
+2. Make sure the CHANGELOG is updated.
+3. Change `package.json` version according to semver rules.
+4. Create a PR, wait for the CI builds to pass and merge to `version_3.x` branch.
 
-### Speacial rc version release
+### Speacial RC version release
 
 #### Minor sensitive feature
 
 Let's say that our current latest version is `4.1.0`, and we wish to introduce some sensitive new feature we call `new-icons`.
-When we want to release an rc version to gradualy expose this feature:
-- Create a new release branch `version_new-icons`. This branch must be configured as a [protected branch](https://github.com/wix/wix-style-react/settings/branches).
-- Update the version in `package.json`.
-- Update the `surge-auto-release` command which runs during the `postpublish` step in the `package.json` has the relevant `--ver=new_icons` flag:
+When we want to release an RC version to gradualy expose this feature.
+
+1. Create a new release branch `version_new-icons`. This branch must be configured as a [protected branch](https://github.com/wix/wix-style-react/settings/branches).
+2. Update the version in `package.json`.
+3. Update the `surge-auto-release` command which runs during the `postpublish` step in the `package.json` has the relevant `--ver=new_icons` flag:
 ```
 "scripts": {
     "postpublish": "npx teamcity-surge-autorelease@^1.0.0 --dist=storybook-static --ver=new_icons"
@@ -78,9 +74,9 @@ When we want to release an rc version to gradualy expose this feature:
 Let's say we want to test some new breaking features that are planned to be added to the next major version `4`.
 Before we officially release the major version, we can create an alpha version:
 
-- Create a new release branch `version_4-alpha.x`. This branch must be configured as a [protected branch](https://github.com/wix/wix-style-react/settings/branches).
-- Update the version in `package.json`.
-- Update the `surge-auto-release` command which runs during the `postpublish` step in the `package.json` has the relevant `--ver=v4-alpha` flag:
+1. Create a new release branch `version_4-alpha.x`. This branch must be configured as a [protected branch](https://github.com/wix/wix-style-react/settings/branches).
+2. Update the version in `package.json`.
+3. Update the `surge-auto-release` command which runs during the `postpublish` step in the `package.json` has the relevant `--ver=v4-alpha` flag:
 ```
 "scripts": {
     "postpublish": "npx teamcity-surge-autorelease@^1.0.0 --dist=storybook-static --ver=v4-alpha"
