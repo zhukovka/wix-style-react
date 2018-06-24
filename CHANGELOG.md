@@ -26,6 +26,7 @@ Types of changes:
 - `<Colorpicker/>` - Fix previous color (history) behavior [1823](https://github.com/wix/wix-style-react/pull/1823)
 - `<MultiSelect/>` - fix bug where scrollbar was always shown [#1843](https://github.com/wix/wix-style-react/pull/1843)
 - `<MultiSelect/>` - fix onManuallyInput() called twice [#1831](https://github.com/wix/wix-style-react/pull/1831)
+- `<DataTable/>` - (fix/optinization) Add data.id as React key [#1878](https://github.com/wix/wix-style-react/pull/1878)
 
 ## 4.3.0 - 2018-06-18
 
