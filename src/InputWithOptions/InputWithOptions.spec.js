@@ -368,6 +368,23 @@ const runInputWithOptionsTest = driverFactory => {
       expect(inputDriver.getRequired()).toBeTruthy();
     });
 
+    describe('onKeyDown', () => {
+      it('should bahave normal when external onKeyDown passed', () => {
+        const {driver, dropdownLayoutDriver} = createDriver(
+          <InputWithOptions options={options} onKeyDown={() => null}/>
+        );
+        driver.focus();
+        expect(dropdownLayoutDriver.isShown()).toBeTruthy();
+        driver.pressEnterKey();
+        expect(dropdownLayoutDriver.isShown()).toBeFalsy();
+        driver.pressUpKey();
+        expect(dropdownLayoutDriver.isShown()).toBeTruthy();
+        driver.pressEscKey();
+        expect(dropdownLayoutDriver.isShown()).toBeFalsy();
+      });
+
+    });
+
     describe('testkit', () => {
       it('should exist', () => {
         const div = document.createElement('div');
