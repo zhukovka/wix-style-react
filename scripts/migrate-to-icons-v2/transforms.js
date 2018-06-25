@@ -41,6 +41,52 @@ const transformWSRComponents = ({node, oldIconName, newIconName}) => {
   }
 };
 
+const logIconSpreadImportMigrationStatus = ({file, node, importedIconNames, onTick, onError}) => {
+  importedIconNames.map(icon => icon.value).forEach(name => {
+    const newIconName = getNewIconName(name);
+    const logObj = {
+      newIconName,
+      oldIconName: name,
+      where: file.path,
+      fullValue: node.value.source.value
+    };
+    if (newIconName) {
+      onTick(logObj);
+    } else {
+      onError(logObj);
+    }
+  });
+};
+
+const logIconImportMigrationStatus = ({j, file, importedIconNames, onTick, onError}) => {
+  root.find(j.JSXMemberExpression, {object: {name: importedIconNames[0].value}})
+    .forEach(node => {
+      if (!node.value.property) {
+        return null;
+      }
+      const oldIconName = node.value.property.name;
+      const newIconName = getNewIconName(oldIconName);
+      const logObj = {
+        newIconName,
+        oldIconName,
+        where: file.path,
+        fullValue: ''
+      };
+      if (newIconName) {
+        node.value.property.name = newIconName;
+        onTick(logObj);
+      } else {
+        onError(logObj);
+      }
+    });
+};
+
+const transformSpreadImports = ({iconNames, importedIconNames, iconName, node}) => {
+  const newIconName = getNewIconName(iconName);
+  iconNames.push(...importedIconNames.map(icon => icon.value));
+  transformWSRComponents({node, newIconName, oldIconName: iconName});
+};
+
 const updateImports = ({root, j, file, onError, onTick}) => {
   const iconNames = [];
   const imports = root.find(j.ImportDeclaration);
@@ -52,54 +98,20 @@ const updateImports = ({root, j, file, onError, onTick}) => {
         importedIconNames.push({value: iconName});
       }
       if (importedIconNames[0] && importedIconNames[0].type !== 'all') {
-        importedIconNames.map(icon => icon.value).forEach(name => {
-          const newIconName = getNewIconName(name);
-          const logObj = {
-            newIconName,
-            oldIconName: name,
-            where: file.path,
-            fullValue: node.value.source.value
-          };
-          if (newIconName) {
-            onTick(logObj);
-          } else {
-            onError(logObj);
-          }
-        });
+        logIconSpreadImportMigrationStatus({file, node, importedIconNames, onTick, onError});
       }
       if (importedIconNames[0] && importedIconNames[0].type !== 'all' && importedIconNames.length) {
-        const newIconName = getNewIconName(iconName);
-        iconNames.push(...importedIconNames.map(icon => icon.value));
-        transformWSRComponents({node, newIconName, oldIconName: iconName});
+        transformSpreadImports({iconNames, importedIconNames, iconName, node});
       } else if (importedIconNames[0] && importedIconNames[0].type === 'all') {
         transformWSRComponents({node});
-        root.find(j.JSXMemberExpression, {object: {name: importedIconNames[0].value}})
-          .forEach(node => {
-            if (!node.value.property) {
-              return null;
-            }
-            const oldIconName = node.value.property.name;
-            const newIconName = getNewIconName(oldIconName);
-            const logObj = {
-              newIconName,
-              oldIconName,
-              where: file.path,
-              fullValue: ''
-            };
-            if (newIconName) {
-              node.value.property.name = newIconName;
-              onTick(logObj);
-            } else {
-              onError(logObj);
-            }
-          });
+        logIconImportMigrationStatus({j, file, importedIconNames, onTick, onError});
       }
     });
 
   return iconNames;
 };
 
-const updateIdentifiers = ({root, j, iconNames}) => {
+const updateUsageOfOldIconToNewIcons = ({root, j, iconNames}) => {
   iconNames.forEach(name => {
     root
       .find(j.Identifier, {name})
@@ -118,7 +130,7 @@ module.exports.transformFile = ({file, api, onError, onTick}) => {
   const j = api.jscodeshift;
   const root = j(file.source);
   const iconNames = updateImports({root, j, file, onTick, onError});
-  updateIdentifiers({root, j, iconNames});
+  updateUsageOfOldIconToNewIcons({root, j, iconNames});
   return root;
 };
 
