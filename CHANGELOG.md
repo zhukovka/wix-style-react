@@ -31,6 +31,10 @@ Types of changes:
 - `<Search/>` - Fixed bug with mounted component and expandable [#1795](https://github.com/wix/wix-style-react/pull/1795)
 - `<RichTextArea/>` - pass activeToolbarButton prop to trigger RichTextEditorToolbar re-render after toolbar button click [#1886](https://github.com/wix/wix-style-react/pull/1886)
 
+## 4.3.1 - 2018-06-25
+### Fixed
+- `<Tooltip/>` - revert support for React 16 (introduced in 4.3.0 [#1814](https://github.com/wix/wix-style-react/pull/1814)) due to CPU hug of death bug
+
 ## 4.3.0 - 2018-06-18
 
 ### Added
