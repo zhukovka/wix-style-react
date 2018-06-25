@@ -9,6 +9,19 @@
 | size | string | 1em | - | Set the size of the icon |
 | ***All other Props are passed to the SVG element*** | | | | |
 
+## Simple Usage example
+Look at the icons list below, choose an icon, and import it by name. For example the icon names `Add` can be used like this:
+```js
+import React from 'react';
+import {Add} from 'wix-style-react/Icons';
+
+export const MyComponent =  () => (
+  <div>
+    <Add/>
+  </div>
+);
+```
+
 ## Adding a new Icon
 
 * Add the new SVG file to the src/Icons/raw folder. Use a descriptive name since it'll be used as the React component name.
