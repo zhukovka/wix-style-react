@@ -17,7 +17,7 @@ describe('MultiSelect', () => {
         await browser.actions().sendKeys(protractor.Key.TAB).perform();
         // Should be in focus now
       });
-  });
+  }, {version: '4.3.1'});
 
   eyes.it('should break to new line when needed', () => {
     const ELEMENT_HEIGHT_SINGLE_LINE = 36;
@@ -31,5 +31,5 @@ describe('MultiSelect', () => {
       }).then(height => {
         expect(height).toBe(ELEMENT_HEIGHT_SINGLE_LINE);
       });
-  }, {version: '<Input/> - On text click - select all'});
+  }, {version: '4.3.1'});
 });

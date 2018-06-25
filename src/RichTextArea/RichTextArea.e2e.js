@@ -144,7 +144,7 @@ describe('RichTextArea', () => {
       expect(await richTextAreaTestkit.isEditorFocused()).toBe(false);
       await focusEditor();
       expect(await richTextAreaTestkit.isEditorFocused()).toBe(true);
-    });
+    }, {version: '4.3.1'});
 
     eyes.it('should show focus styles for each button', async () => {
       // TODO: replace with forEachAsync
@@ -155,7 +155,7 @@ describe('RichTextArea', () => {
         expect(await richTextAreaTestkit.isButtonFocused(index)).toBe(true);
         await eyes.checkWindow(`Button ${type}`);
       }
-    });
+    }, {version: '4.3.1'});
   });
 
 });
