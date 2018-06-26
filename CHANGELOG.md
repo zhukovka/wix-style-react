@@ -13,6 +13,8 @@ Types of changes:
 1. **Breaking** for breaking changes
 
 ## next
+### Fixed
+- `<Input/>` - should not change background color if hovered while focus [1765](https://github.com/wix/wix-style-react/pull/1765)
 
 ## 4.4.0 - 2018-06-26
 ### Added
@@ -20,11 +22,9 @@ Types of changes:
 - `<DropdownLayout/>` - Pressing spacebar should select the highlighted option [#1885](https://github.com/wix/wix-style-react/pull/1885)
 - `<CircularPropgressBar/>` - New component [1870](https://github.com/wix/wix-style-react/pull/1870)
 
-
 ### Changed
 - `<Tags/>` - Highlight the autocomplete suggestions when typing [#1818](https://github.com/wix/wix-style-react/pull/1818)
 - `<TextArea/>` - InputArea should not add hover styles when focused and hovered [#1820](https://github.com/wix/wix-style-react/pull/1820)
-- `<Checkbox/>` - add deprecation message for `size=large` and `active` prop [#1848](https://github.com/wix/wix-style-react/pull/1848)
 
 ### Fixed
 - `<Colorpicker/>` - Fix previous color (history) behavior [1823](https://github.com/wix/wix-style-react/pull/1823)
@@ -33,6 +33,9 @@ Types of changes:
 - `<DataTable/>` - (fix/optimization) Add data.id as React key [#1878](https://github.com/wix/wix-style-react/pull/1878)
 - `<Search/>` - Fixed bug with mounted component and expandable [#1795](https://github.com/wix/wix-style-react/pull/1795)
 - `<RichTextArea/>` - pass activeToolbarButton prop to trigger RichTextEditorToolbar re-render after toolbar button click [#1886](https://github.com/wix/wix-style-react/pull/1886)
+
+### Deprecated
+- `<Checkbox/>` - add deprecation message for `size=large` and `active` prop [#1848](https://github.com/wix/wix-style-react/pull/1848)
 
 ## 4.3.1 - 2018-06-25
 ### Fixed
