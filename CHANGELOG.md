@@ -14,6 +14,7 @@ Types of changes:
 
 ## next
 
+## 4.4.0 - 2018-06-26
 ### Added
 - `<Notification/>` - Make component accessible for screen readers [1837](https://github.com/wix/wix-style-react/pull/1837)
 - `<DropdownLayout/>` - Pressing spacebar should select the highlighted option [#1885](https://github.com/wix/wix-style-react/pull/1885)
