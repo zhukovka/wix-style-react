@@ -16,7 +16,9 @@ Types of changes:
 
 ### Added
 - `<Notification/>` - Make component accessible for screen readers [1837](https://github.com/wix/wix-style-react/pull/1837)
+- `<DropdownLayout/>` - Pressing spacebar should select the highlighted option [#1885](https://github.com/wix/wix-style-react/pull/1885)
 - `<CircularPropgressBar/>` - New component [1870](https://github.com/wix/wix-style-react/pull/1870)
+
 
 ### Changed
 - `<Tags/>` - Highlight the autocomplete suggestions when typing [#1818](https://github.com/wix/wix-style-react/pull/1818)
