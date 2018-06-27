@@ -7,6 +7,7 @@ import WixComponent from '../BaseComponents/WixComponent';
 import SortByArrowUp from 'wix-style-react/new-icons/system/SortByArrowUp';
 import {Add, Check, ChevronDown} from 'wix-style-react/new-icons';
 import {OpenModal} from 'wix-style-react/new-icons';
+import * as Icons from 'wix-style-react/new-icons';
 import {Hint} from 'wix-style-react/new-icons';
 import X from 'wix-style-react/new-icons/X';
 import {Animator} from 'wix-animations';
@@ -105,6 +106,7 @@ class DataTable extends WixComponent {
           <ChevronDown/>
           <OpenModal/>
           <Hint/>
+          <Icons.ChevronDown/>
           <X/>
         </table>
       </div>

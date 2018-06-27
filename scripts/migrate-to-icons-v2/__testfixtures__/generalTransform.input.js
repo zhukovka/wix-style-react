@@ -7,6 +7,7 @@ import WixComponent from '../BaseComponents/WixComponent';
 import ArrowVertical from '../Icons/dist/components/ArrowVertical';
 import {Add, Check, ArrowDown} from '../Icons/dist/index';
 import {Browser} from '../Icons';
+import * as Icons from '../Icons';
 import {Bulb} from 'wix-style-react/Icons';
 import Close from 'wix-style-react/Icons/dist/components/Close';
 import {Animator} from 'wix-animations';
@@ -105,6 +106,7 @@ class DataTable extends WixComponent {
           <ArrowDown/>
           <Browser/>
           <Bulb/>
+          <Icons.ArrowDownThin/>
           <Close/>
         </table>
       </div>);
