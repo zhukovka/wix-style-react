@@ -6,9 +6,10 @@
      * [Minor or patch release](#minor-or-patch-release)
      * [Major release](#major-release)
    * [Older version release](#older-version-release)
+   * [Special rc version release](#special-rc-version-release)
       * [Minor sensitive feature](#minor-sensitive-feature)
       * [Alpha release](#alpha-release)
-   * [Special rc version release](#speacial-rc-version-release)
+      * [Hotfix](#hotfix)
 * [Motivation](#motivation)
     * [Why semantic versioning](#why-semantic-versioning)
     * [Why do we need to maintain multiple versions](#why-do-we-need-to-maintain-multiple-versions)
@@ -53,7 +54,7 @@ Let's say we wish to introduce some bug fix to an older version which is represe
 3. Change `package.json` version according to semver rules.
 4. Create a PR, wait for the CI builds to pass and merge to `version_3.x` branch.
 
-### Speacial RC version release
+### Special RC version release
 
 #### Minor sensitive feature
 
@@ -82,6 +83,24 @@ Before we officially release the major version, we can create an alpha version:
     "postpublish": "npx teamcity-surge-autorelease@^1.0.0 --dist=storybook-static --ver=v4-alpha"
 }
 ```
+
+#### Hotfix
+
+Oh no, there's a bug! Current released version is `4.3.0` and master branch already has changes with various fixes and changes.
+You need to release `4.3.1` with only a bug fix and no new things.
+
+1. Checkout into commit with last release (`4.3.0` in this example)
+1. Fork releasable branch out of it (`version_4.3.1` in this example)
+1. Do the bugfix
+1. **Update** `postpublish` script in `package.json` with `--ver=4.3.1` flag:
+```
+"scripts": {
+  "postpublish": "npx teamcity-surge-autorelease@^1.0.0 --dist=storybook-static --ver=4.3.1"
+}
+```
+1. **Update** `version` in `package.json` by following semver rules
+1. Push branch to origin
+1. Protect branch on github to avoid accidental pushes
 
 ## Motivation
 
