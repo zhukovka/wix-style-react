@@ -13,6 +13,10 @@ Types of changes:
 1. **Breaking** for breaking changes
 
 ## next
+### Changed
+- `<DatePicker/>` - allow passing custom locale to DatePicker [#1684](https://github.com/wix/wix-style-react/pull/1684)
+
+
 ### Fixed
 - `<Input/>` - should not change background color if hovered while focus [1765](https://github.com/wix/wix-style-react/pull/1765)
 - `<Card/>` - add missing box-sizing property to `<Card.Content/>` [1872](https://github.com/wix/wix-style-react/pull/1872).
