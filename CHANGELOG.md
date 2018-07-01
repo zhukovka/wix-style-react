@@ -17,6 +17,10 @@ Types of changes:
 ## Added
 - `<Loader/>` - Add tiny size [#1911](https://github.com/wix/wix-style-react/pull/1911)
 
+## Fixed
+-`<Input/>` - Remove width property from Input component [1915](https://github.com/wix/wix-style-react/pull/1915)
+-`<Input/>` - Prevent error when clicking on unit suffix https://github.com/wix/wix-style-react/commit/7851147a0d62a13ab3e4545abceb62059fcb7d25
+
 ## 4.5.0 - 2018-07-01
 ### Changed
 - `<DatePicker/>` - allow passing custom locale to DatePicker [#1684](https://github.com/wix/wix-style-react/pull/1684)
