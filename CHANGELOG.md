@@ -16,6 +16,10 @@ Types of changes:
 ## Fixed
 - `<Tooltip/>` - another attempt to fix React 16 support [#1894](https://github.com/wix/wix-style-react/pull/1894)
 
+### Changed
+
+- `<DataTable/>` - Make `columns` prop required [#1898](https://github.com/wix/wix-style-react/pull/1898)
+
 ## 4.6.0 - 2018-07-02
 ### Added
 - `<Loader/>` - Add tiny size [#1911](https://github.com/wix/wix-style-react/pull/1911)
