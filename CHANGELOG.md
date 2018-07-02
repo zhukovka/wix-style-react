@@ -14,6 +14,7 @@ Types of changes:
 
 ## next
 
+## 4.6.0 - 2018-07-02
 ## Added
 - `<Loader/>` - Add tiny size [#1911](https://github.com/wix/wix-style-react/pull/1911)
 
