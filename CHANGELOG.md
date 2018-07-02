@@ -32,7 +32,7 @@ Types of changes:
 ### Fixed
 - `<Input/>` - should not change background color if hovered while focus [#1765](https://github.com/wix/wix-style-react/pull/1765)
 - `<Card/>` - add missing box-sizing property to `<Card.Content/>` [#1872](https://github.com/wix/wix-style-react/pull/1872).
-- `<SideMenue/>` - Fix SideMenu Header styles [#1900](https://github.com/wix/wix-style-react/pull/1900)
+- `<SideMenu/>` - Fix SideMenu Header styles [#1900](https://github.com/wix/wix-style-react/pull/1900)
 
 ## 4.4.0 - 2018-06-26
 ### Added
