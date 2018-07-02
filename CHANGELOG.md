@@ -13,14 +13,16 @@ Types of changes:
 1. **Breaking** for breaking changes
 
 ## next
+## Fixed
+- `<Tooltip/>` - another attempt to fix React 16 support [#1894](https://github.com/wix/wix-style-react/pull/1894)
 
 ## 4.6.0 - 2018-07-02
-## Added
+### Added
 - `<Loader/>` - Add tiny size [#1911](https://github.com/wix/wix-style-react/pull/1911)
 
-## Fixed
--`<Input/>` - Remove width property from Input component [1915](https://github.com/wix/wix-style-react/pull/1915)
--`<Input/>` - Prevent error when clicking on unit suffix https://github.com/wix/wix-style-react/commit/7851147a0d62a13ab3e4545abceb62059fcb7d25
+### Fixed
+- `<Input/>` - Remove width property from Input component [#1915](https://github.com/wix/wix-style-react/pull/1915)
+- `<Input/>` - Prevent error when clicking on unit suffix [#1908](https://github.com/wix/wix-style-react/pull/1908)
 
 ## 4.5.0 - 2018-07-01
 ### Changed
@@ -28,15 +30,15 @@ Types of changes:
 
 
 ### Fixed
-- `<Input/>` - should not change background color if hovered while focus [1765](https://github.com/wix/wix-style-react/pull/1765)
-- `<Card/>` - add missing box-sizing property to `<Card.Content/>` [1872](https://github.com/wix/wix-style-react/pull/1872).
+- `<Input/>` - should not change background color if hovered while focus [#1765](https://github.com/wix/wix-style-react/pull/1765)
+- `<Card/>` - add missing box-sizing property to `<Card.Content/>` [#1872](https://github.com/wix/wix-style-react/pull/1872).
 - `<SideMenue/>` - Fix SideMenu Header styles [#1900](https://github.com/wix/wix-style-react/pull/1900)
 
 ## 4.4.0 - 2018-06-26
 ### Added
-- `<Notification/>` - Make component accessible for screen readers [1837](https://github.com/wix/wix-style-react/pull/1837)
+- `<Notification/>` - Make component accessible for screen readers [#1837](https://github.com/wix/wix-style-react/pull/1837)
 - `<DropdownLayout/>` - Pressing spacebar should select the highlighted option [#1885](https://github.com/wix/wix-style-react/pull/1885)
-- `<CircularPropgressBar/>` - New component [1870](https://github.com/wix/wix-style-react/pull/1870)
+- `<CircularPropgressBar/>` - New component [#1870](https://github.com/wix/wix-style-react/pull/1870)
 
 ### Changed
 - `<Tags/>` - Highlight the autocomplete suggestions when typing [#1818](https://github.com/wix/wix-style-react/pull/1818)
