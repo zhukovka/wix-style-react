@@ -12,7 +12,7 @@ Types of changes:
 1. **Security** in case of vulnerabilities.
 1. **Breaking** for breaking changes
 
-## next
+## 4.6.1 - 2018-07-02
 ## Fixed
 - `<Tooltip/>` - another attempt to fix React 16 support [#1894](https://github.com/wix/wix-style-react/pull/1894)
 
@@ -211,7 +211,7 @@ Types of changes:
 - `Page` - Removed z-index from PageHeader
 - `<RichTextArea/>` fix incorrect Tooltip input width [#1657](https://github.com/wix/wix-style-react/pull/1657)
 - `<DatePicker/>` fix position in safari [#1656](https://github.com/wix/wix-style-react/pull/1656)
- 
+
 ## 3.1.3 - 2018-04-11
 ### Added
 - `<PageHeader>` - Passing minimize state to title component [#1665](https://github.com/wix/wix-style-react/pull/1665)
@@ -574,7 +574,7 @@ Fixed tabs styling bug
 ## 1.2.12 - 2017-12-24
 
 ### Added
-- `<MultiSelect/>` - Added Multiselect [1289](https://github.com/wix/wix-style-react/pull/1289) [1292](https://github.com/wix/wix-style-react/pull/1292) 
+- `<MultiSelect/>` - Added Multiselect [1289](https://github.com/wix/wix-style-react/pull/1289) [1292](https://github.com/wix/wix-style-react/pull/1292)
 
 ### Changed
 - `<Page/>` - Added height recalculation when inner height changes [1289](https://github.com/wix/wix-style-react/pull/1289)
