@@ -20,6 +20,11 @@ Types of changes:
 - `shadows` - Updated box-shadow in several components
 - `<DatePicker/>` - migrate to new icons [#1922](https://github.com/wix/wix-style-react/pull/1922)
 - `<DataTable/>` - migrate to new icons [#1922](https://github.com/wix/wix-style-react/pull/1922)
+- `<EditableSelector/>` - migrate to new icons [#1926](https://github.com/wix/wix-style-react/pull/1926)
+- `<DatePickerDropdown/>` - migrate to new icons [#1926](https://github.com/wix/wix-style-react/pull/1926)
+
+## Fixed
+ - `<DrillView/>` - fix wrong chevron icon size
 
 ## 4.6.1 - 2018-07-02
 ## Fixed
