@@ -18,6 +18,8 @@ Types of changes:
 
 ## Changed
 - `shadows` - Updated box-shadow in several components
+- `<DatePicker/>` - migrate to new icons [#1922](https://github.com/wix/wix-style-react/pull/1922)
+- `<DataTable/>` - migrate to new icons [#1922](https://github.com/wix/wix-style-react/pull/1922)
 
 ## 4.6.1 - 2018-07-02
 ## Fixed
