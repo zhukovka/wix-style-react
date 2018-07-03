@@ -1,5 +1,3 @@
-/* here is entry point for npx script */
-
 #!/usr/bin/env node
 const {exec} = require('child_process');
 
@@ -13,15 +11,15 @@ const getUserArgs = () => {
   const path = pathArg.split('=')[1];
   const type = typeArg.split('=')[1];
 
-  return {path, type}
-}
+  return {path, type};
+};
 
 /* absolute path to wix-style-react folder, we need it to get migration script */
 const getPathToWSRFolder = () => {
   const moduleName = 'wix-style-react';
   const pathToModuleRoot = require.resolve(moduleName);
   return pathToModuleRoot.substr(0, pathToModuleRoot.indexOf(moduleName) + moduleName.length);
-}
+};
 
 /* here we run jscodeshift on each file inside `path`, and transform this file with migrate-to-icons-v2 script */
 const run = () => {
@@ -31,6 +29,6 @@ const run = () => {
   execProc.stdout.on('data', data => console.log(data.toString()));
   execProc.stderr.on('data', data => console.log(data.toString()));
   execProc.on('exit', code => console.log('Done with code:', code.toString()));
-}
+};
 
 run();
