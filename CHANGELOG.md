@@ -12,6 +12,10 @@ Types of changes:
 1. **Security** in case of vulnerabilities.
 1. **Breaking** for breaking changes
 
+## next
+## Added
+- `<DropdownLayout/>` - add `minWidthPixels` prop. This prop is availble in `<Dropdown/>`, `<XXXWithOptions/>`, `<MultiSelect/>` and similar components... [#1914](https://github.com/wix/wix-style-react/pull/1914)
+
 ## 4.6.1 - 2018-07-02
 ## Fixed
 - `<Tooltip/>` - another attempt to fix React 16 support [#1894](https://github.com/wix/wix-style-react/pull/1894)
@@ -23,7 +27,6 @@ Types of changes:
 ## 4.6.0 - 2018-07-02
 ### Added
 - `<Loader/>` - Add tiny size [#1911](https://github.com/wix/wix-style-react/pull/1911)
-- `<DropdownLayout/>` - add `minWidthPixels` prop. This prop is availble in `<Dropdown/>`, `<XXXWithOptions/>`, `<MultiSelect/>` and similar components... [#1914](https://github.com/wix/wix-style-react/pull/1914)
 
 ### Fixed
 - `<Input/>` - Remove width property from Input component [#1915](https://github.com/wix/wix-style-react/pull/1915)
