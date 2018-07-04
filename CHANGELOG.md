@@ -13,18 +13,18 @@ Types of changes:
 1. **Breaking** for breaking changes
 
 ## 4.7.0 - 2018-07-04
-## Added
+### Added
 - `<FormField/>` - new component for easier form building [#1889](https://github.com/wix/wix-style-react/pull/1889)
 
-## Changed
+### Changed
 - `<RichTextArea/>` - migrate to new icons [#1929](https://github.com/wix/wix-style-react/pull/1929)
 - `<StatsWidget/>` - migrate to new icons [#1929](https://github.com/wix/wix-style-react/pull/1929)
 
 ## 4.6.2 - 2018-07-04
-## Added
+### Added
 - `<DropdownLayout/>` - add `minWidthPixels` prop. This prop is availble in `<Dropdown/>`, `<XXXWithOptions/>`, `<MultiSelect/>` and similar components... [#1914](https://github.com/wix/wix-style-react/pull/1914)
 
-## Changed
+### Changed
 - `shadows` - Updated box-shadow in several components
 - `<DatePicker/>` - migrate to new icons [#1922](https://github.com/wix/wix-style-react/pull/1922)
 - `<DataTable/>` - migrate to new icons [#1922](https://github.com/wix/wix-style-react/pull/1922)
@@ -34,11 +34,11 @@ Types of changes:
 - `<LanguagePicker/>` - migrate to new icons [#1928](https://github.com/wix/wix-style-react/pull/1928)
 - `<Modal/>` - migrate to new icons [#1928](https://github.com/wix/wix-style-react/pull/1928)
 
-## Fixed
+### Fixed
  - `<DrillView/>` - fix wrong chevron icon size
 
 ## 4.6.1 - 2018-07-02
-## Fixed
+### Fixed
 - `<Tooltip/>` - another attempt to fix React 16 support [#1894](https://github.com/wix/wix-style-react/pull/1894)
 
 ### Changed
