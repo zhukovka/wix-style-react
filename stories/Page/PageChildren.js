@@ -26,3 +26,8 @@ export const tail = (
   </Page.Tail>
 );
 
+export const fixedContent = (
+  <Page.FixedContent>
+    <div style={{padding: '10px 0px', backgroundColor: 'white'}}>This is a fixedContent</div>
+  </Page.FixedContent>
+);
