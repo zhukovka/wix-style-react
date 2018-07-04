@@ -22,6 +22,9 @@ Types of changes:
 - `<DataTable/>` - migrate to new icons [#1922](https://github.com/wix/wix-style-react/pull/1922)
 - `<EditableSelector/>` - migrate to new icons [#1926](https://github.com/wix/wix-style-react/pull/1926)
 - `<DatePickerDropdown/>` - migrate to new icons [#1926](https://github.com/wix/wix-style-react/pull/1926)
+- `<FilePicker/>` - migrate to new icons [#1928](https://github.com/wix/wix-style-react/pull/1928)
+- `<LanguagePicker/>` - migrate to new icons [#1928](https://github.com/wix/wix-style-react/pull/1928)
+- `<Modal/>` - migrate to new icons [#1928](https://github.com/wix/wix-style-react/pull/1928)
 
 ## Fixed
  - `<DrillView/>` - fix wrong chevron icon size
