@@ -1,13 +1,15 @@
 import eyes from 'eyes.it';
 import {getStoryUrl, loaderTestkitFactory, waitForVisibilityOf} from '../../testkit/protractor';
+import {disableCSSAnimation} from '../../test/utils/protractor.js';
 import autoExampleDriver from 'wix-storybook-utils/AutoExampleDriver';
 
-xdescribe('Loader', () => {
+describe('Loader', () => {
   const storyUrl = getStoryUrl('1. Foundation', '1.5 Loader');
   const loaderDriver = loaderTestkitFactory({dataHook: 'storybook-loader'});
 
   beforeAll(() => {
     browser.get(storyUrl);
+    browser.executeScript(disableCSSAnimation);
   });
 
   afterEach(() => {
