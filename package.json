@@ -130,7 +130,7 @@
     "react-transition-group": "^2.2.1",
     "slate": "^0.20.3",
     "wix-animations": "^1.0.141",
-    "wix-ui-backoffice": "1.0.271",
+    "wix-ui-backoffice": "1.0.274",
     "wix-ui-icons-common": "2.0.2",
     "wix-ui-test-utils": "^1.0.0"
   },
