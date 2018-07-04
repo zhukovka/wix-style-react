@@ -16,6 +16,10 @@ Types of changes:
 ## Added
 - `<FormField/>` - new component for easier form building [#1889](https://github.com/wix/wix-style-react/pull/1889)
 
+## Changed
+- `<RichTextArea/>` - migrate to new icons [#1929](https://github.com/wix/wix-style-react/pull/1929)
+- `<StatsWidget/>` - migrate to new icons [#1929](https://github.com/wix/wix-style-react/pull/1929)
+
 ## 4.6.2 - 2018-07-04
 ## Added
 - `<DropdownLayout/>` - add `minWidthPixels` prop. This prop is availble in `<Dropdown/>`, `<XXXWithOptions/>`, `<MultiSelect/>` and similar components... [#1914](https://github.com/wix/wix-style-react/pull/1914)
