@@ -132,6 +132,9 @@ export const drillViewTestkitFactory = protractorTestkitFactoryCreator(drillView
 import tooltipDriverFactory from '../src/Tooltip/Tooltip.protractor.driver';
 export const tooltipTestkitFactory = protractorTestkitFactoryCreator(tooltipDriverFactory);
 
+import formFieldDriverFactory from '../src/FormField/FormField.protractor.driver';
+export const formFieldTestkitFactory = protractorTestkitFactoryCreator(formFieldDriverFactory);
+
 // wix-ui-backoffice proxy
 
 export {
