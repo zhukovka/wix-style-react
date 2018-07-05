@@ -15,6 +15,9 @@
 | isSmall  | -         | boolean        | true when using the small loader         |
 | isTiny   | -         | boolean        | true when using the tiny loader          |
 | setProps | object    | element        | returns a clone of this element with the new props from the json |
+| isLoading| -         | boolean        | true when loader is in loading state     |
+| isError  | -         | boolean        | true when loader is in error state       |
+| isSuccess| -         | boolean        | true when loader is in success state     |
 
 ## Loader Protractor TestKit API
 
@@ -29,6 +32,9 @@
 | isMedium | -         | boolean        | true when using the medium loader        |
 | isSmall  | -         | boolean        | true when using the small loader         |
 | isTiny   | -         | boolean        | true when using the tiny loader          |
+| isLoading| -         | boolean        | true when loader is in loading state     |
+| isError  | -         | boolean        | true when loader is in error state       |
+| isSuccess| -         | boolean        | true when loader is in success state     |
 
 ## Usage Example
 

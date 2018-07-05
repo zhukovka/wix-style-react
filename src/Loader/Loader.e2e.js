@@ -2,6 +2,7 @@ import eyes from 'eyes.it';
 import {getStoryUrl, loaderTestkitFactory, waitForVisibilityOf} from '../../testkit/protractor';
 import {disableCSSAnimation} from '../../test/utils/protractor.js';
 import autoExampleDriver from 'wix-storybook-utils/AutoExampleDriver';
+import {ExpectedConditions as EC} from 'protractor';
 
 describe('Loader', () => {
   const storyUrl = getStoryUrl('1. Foundation', '1.5 Loader');
@@ -12,7 +13,7 @@ describe('Loader', () => {
     browser.executeScript(disableCSSAnimation);
   });
 
-  afterEach(() => {
+  beforeEach(() => {
     autoExampleDriver.reset();
   });
 
@@ -72,5 +73,19 @@ describe('Loader', () => {
     eyes.checkWindow('white loader');
 
     expect(loaderDriver.getColor()).toBe('white');
+  });
+
+  eyes.it('should render different loader states', async () => {
+    autoExampleDriver.setProps({status: 'loading'});
+    await browser.wait(EC.and(loaderDriver.isLoading));
+    await eyes.checkWindow('loading status');
+
+    autoExampleDriver.setProps({status: 'error'});
+    await browser.wait(EC.and(loaderDriver.isError));
+    await eyes.checkWindow('error status');
+
+    autoExampleDriver.setProps({status: 'success'});
+    await browser.wait(EC.and(loaderDriver.isSuccess));
+    await eyes.checkWindow('success status');
   });
 });

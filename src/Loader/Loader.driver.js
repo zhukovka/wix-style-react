@@ -22,7 +22,10 @@ const loaderDriverFactory = ({element, wrapper}) => {
     isTiny: () => isClassExists(element, 'tiny'),
     setProps: props => {
       ReactDOM.render(<div ref={r => element = r}><Loader {...props}/></div>, wrapper);
-    }
+    },
+    isLoading: () => isClassExists(element, 'loading'),
+    isError: () => isClassExists(element, 'error'),
+    isSuccess: () => isClassExists(element, 'success')
   };
 };
 

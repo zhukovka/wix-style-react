@@ -79,6 +79,23 @@ describe('Loader', () => {
     });
   });
 
+  describe('status property', () => {
+    it('should be loading by default', () => {
+      const driver = createDriver(<Loader/>);
+      expect(driver.isLoading()).toEqual(true);
+    });
+
+    it('should allow setting error status', () => {
+      const driver = createDriver(<Loader status="error"/>);
+      expect(driver.isError()).toEqual(true);
+    });
+
+    it('should allow setting success status', () => {
+      const driver = createDriver(<Loader status="success"/>);
+      expect(driver.isSuccess()).toEqual(true);
+    });
+  });
+
   describe('testkit', () => {
     it('should exist', () => {
       expect(isTestkitExists(<Loader/>, loaderTestkitFactory)).toBe(true);

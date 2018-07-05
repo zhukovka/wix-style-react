@@ -5,6 +5,10 @@ import WixComponent from '../BaseComponents/WixComponent';
 import Arc from './Arc';
 import css from './Loader.scss';
 import Text from '../Deprecated/Text';
+import FormFieldError from '../new-icons/system/FormFieldError';
+import FormFieldErrorSmall from '../new-icons/system/FormFieldErrorSmall';
+import CircleLoaderCheck from '../new-icons/system/CircleLoaderCheck';
+import CircleLoaderCheckSmall from '../new-icons/system/CircleLoaderCheckSmall';
 
 const arcsAngles = {
   tiny: {
@@ -32,6 +36,22 @@ const sizesInPx = {
   large: 102
 };
 
+const CIRCLE_ANGLE = 359;
+
+const sizeToSuccessIcon = {
+  tiny: <CircleLoaderCheckSmall/>,
+  small: <CircleLoaderCheckSmall/>,
+  medium: <CircleLoaderCheck/>,
+  large: <CircleLoaderCheck/>
+};
+
+const sizeToErrorIcon = {
+  tiny: <FormFieldErrorSmall/>,
+  small: <FormFieldErrorSmall/>,
+  medium: <FormFieldError/>,
+  large: <FormFieldError/>
+};
+
 export default class Loader extends WixComponent {
 
   static displayName = 'Loader';
@@ -44,23 +64,30 @@ export default class Loader extends WixComponent {
     color: PropTypes.oneOf(['blue', 'white']),
 
     /** Node (usually text) to be shown below the loader */
-    text: PropTypes.node
+    text: PropTypes.node,
+
+    /** The status of the loader */
+    status: PropTypes.oneOf(['loading', 'success', 'error'])
   };
 
   static defaultProps = {
     size: 'medium',
-    color: 'blue'
+    color: 'blue',
+    status: 'loading'
   };
 
   render() {
-    const {size, color, text} = this.props;
+    const {size, color, text, status} = this.props;
     const sizeInPx = sizesInPx[size];
-    const lightArcAngle = arcsAngles[size].light;
-    const darkArcAngle = arcsAngles[size].dark;
+    const shouldShowFullCircle = status !== 'loading';
+    const lightArcAngle = !shouldShowFullCircle ? arcsAngles[size].light : CIRCLE_ANGLE;
+    const darkArcAngle = !shouldShowFullCircle ? arcsAngles[size].dark : CIRCLE_ANGLE;
     const shouldShowText = size !== 'tiny';
+    const successIcon = sizeToSuccessIcon[size];
+    const errorIcon = sizeToErrorIcon[size];
 
     return (
-      <div className={classNames(css.loaderContainer, css[size], css[color])}>
+      <div className={classNames(css.loaderContainer, css[size], css[color], css[status])}>
         <div
           className={css.arcsContainer}
           style={{
@@ -79,6 +106,12 @@ export default class Loader extends WixComponent {
             strokeWidth={strokeWidth}
             viewBoxSize={sizeInPx}
             />
+          {status !== 'loading' &&
+            <div className={css.statusIndicator}>
+              {status === 'success' && successIcon}
+              {status === 'error' && errorIcon}
+            </div>
+          }
         </div>
         {
           shouldShowText && text &&
