@@ -12,6 +12,11 @@ Types of changes:
 1. **Security** in case of vulnerabilities.
 1. **Breaking** for breaking changes
 
+## next
+### Changed
+- `<ColorPicker/>` - migrate to new icons [#1945](https://github.com/wix/wix-style-react/pull/1945)
+- `<FieldLabelAttributes/>` - migrate to new icons [#1945](https://github.com/wix/wix-style-react/pull/1945)
+
 ## 4.7.0 - 2018-07-04
 ### Added
 - `<FormField/>` - new component for easier form building [#1889](https://github.com/wix/wix-style-react/pull/1889)
