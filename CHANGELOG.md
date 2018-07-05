@@ -17,6 +17,9 @@ Types of changes:
 - `<ColorPicker/>` - migrate to new icons [#1945](https://github.com/wix/wix-style-react/pull/1945)
 - `<FieldLabelAttributes/>` - migrate to new icons [#1945](https://github.com/wix/wix-style-react/pull/1945)
 
+### Added
+- `<Loader/>` - add error and success states (without tooltip yet) [#1953](https://github.com/wix/wix-style-react/pull/1953)
+
 ## 4.7.0 - 2018-07-04
 ### Added
 - `<FormField/>` - new component for easier form building [#1889](https://github.com/wix/wix-style-react/pull/1889)
