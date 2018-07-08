@@ -1,7 +1,7 @@
 import React from 'react';
 
 import Checkbox from 'wix-style-react/Checkbox';
-import {Languages} from 'wix-style-react/Icons';
+import Languages from 'wix-style-react/new-icons/Languages';
 
 const labelExamples = [
   {label: 'Simple string', value: 'Hello World!'},
