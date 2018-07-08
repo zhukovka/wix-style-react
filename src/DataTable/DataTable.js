@@ -108,7 +108,15 @@ class DataTable extends WixComponent {
     const style = {width: this.props.width};
     return (
       <div>
-        <table id={this.props.id} style={style} className={this.style.table}>
+        <table
+          id={this.props.id} style={style}
+          className={classNames(
+            this.style.table,
+            {
+              [this.style.showLastRowDivider]: this.props.showLastRowDivider
+            }
+          )}
+          >
           {!this.props.hideHeader &&
           <TableHeader {...this.props}/>}
           {this.renderBody(rowsToRender)}
@@ -359,7 +367,8 @@ DataTable.defaultProps = {
   scrollElement: null,
   useWindow: true,
   rowVerticalPadding: 'medium',
-  newDesign: false
+  newDesign: false,
+  showLastRowDivider: true
 };
 
 DataTable.propTypes = {
@@ -455,7 +464,9 @@ DataTable.propTypes = {
   /** Should we hide the header (Titlebar) of the table. */
   hideHeader: PropTypes.bool,
   /** A flag specifying weather to apply the new layout/design update. Default will change to true in the next major release (version 5.0.0) */
-  newDesign: PropTypes.bool
+  newDesign: PropTypes.bool,
+    /** A flag specifying weather to show a divider after the last row */
+  showLastRowDivider: PropTypes.bool
 };
 DataTable.displayName = 'DataTable';
 

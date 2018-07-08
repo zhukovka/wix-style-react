@@ -19,6 +19,7 @@ Types of changes:
 
 ### Added
 - `<Loader/>` - add error and success states (without tooltip yet) [#1953](https://github.com/wix/wix-style-react/pull/1953)
+- `<Table/>` - Add showLastRowDivider prop [#1964](https://github.com/wix/wix-style-react/pull/1964)
 
 ## 4.7.0 - 2018-07-04
 ### Added

@@ -58,6 +58,7 @@ class DataTableSortableExample extends React.Component {
             {title: 'First Name', sortable: true, sortDescending: !!this.state.sort[1], render: row => <span>{row.firstName}</span>, width: '40%', minWidth: '100px'},
             {title: 'Last Name', sortable: true, sortDescending: !!this.state.sort[2], render: row => <span>{row.lastName}</span>, width: '40%', minWidth: '100px', infoTooltip: {content: 'Very informative tooltip text'}}
           ]}
+          showLastRowDivider={false}
           />
       </div>
     );
