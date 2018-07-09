@@ -16,6 +16,9 @@ Types of changes:
 ### Changed
 - `<ColorPicker/>` - migrate to new icons [#1945](https://github.com/wix/wix-style-react/pull/1945)
 - `<FieldLabelAttributes/>` - migrate to new icons [#1945](https://github.com/wix/wix-style-react/pull/1945)
+- `<SelectionHelper/>` - migrate to new CloseIcon [#1948](https://github.com/wix/wix-style-react/pull/1948)
+- `<PopoverMenu/>` - migrate to new CloseIcon [#1948](https://github.com/wix/wix-style-react/pull/1948)
+- `<ButtonWithOptions/>` - migrate to new CloseIcon [#1948](https://github.com/wix/wix-style-react/pull/1948)
 
 ### Added
 - `<Loader/>` - add error and success states [#1953](https://github.com/wix/wix-style-react/pull/1953) [#1963](https://github.com/wix/wix-style-react/pull/1963)
