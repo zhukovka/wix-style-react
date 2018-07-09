@@ -55,17 +55,12 @@ export default {
     id: 'id',
     data,
     columns: columnsOption1,
-    showSelection: true,
-    children: <Table.Content/>
+    showSelection: true
   },
   exampleProps: {
     columns: [
       {label: '2 columns example', value: columnsOption1},
       {label: '4 columns example', value: columnsOption2}
-    ],
-    children: [
-      {label: 'With Toolbar', value: childrenWithToolbar},
-      {label: 'Without Toolbar', value: <Table.Content key="content"/>}
     ],
     data: [
       {label: '4 rows', value: data},

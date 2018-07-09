@@ -5,13 +5,13 @@ import {
   ItemGroup,
   Item,
   Label,
-  Title,
   SelectedCount,
   Divider
 } from 'wix-style-react/Table/Toolbar';
 
 import Dropdown from 'wix-style-react/Dropdown';
 import Search from 'wix-style-react/Search';
+import Checkbox from 'wix-style-react/Checkbox';
 import Card from 'wix-style-react/Card';
 import Page from 'wix-style-react/Page';
 import Button from 'wix-style-react/Button';
@@ -32,12 +32,13 @@ export class TablePageExample extends React.Component {
     data: allData,
     collectionId: 0,
     filterId: 0,
-    searchTerm: ''
+    searchTerm: '',
+    inStock: false
   }
 
   renderMainToolbar() {
     const collectionOptions = [
-      {id: 0, value: 'All Products'},
+      {id: 0, value: 'All'},
       {id: 1, value: 'Towels'},
       {id: 2, value: 'Slippers'}
     ];
@@ -53,11 +54,8 @@ export class TablePageExample extends React.Component {
         <TableToolbar>
           <ItemGroup position="start">
             <Item>
-              <Title>My Table</Title>
-            </Item>
-            <Item>
               <Label>
-            Collection
+            Product
             <span style={{width: '150px'}}>
               <Dropdown
                 options={collectionOptions}
@@ -72,7 +70,7 @@ export class TablePageExample extends React.Component {
             </Item>
             <Item>
               <Label>
-            Filter By
+            Color
             <span style={{width: '86px'}}>
               <Dropdown
                 options={filterOptions}
@@ -82,6 +80,11 @@ export class TablePageExample extends React.Component {
                 />
             </span>
               </Label>
+            </Item>
+            <Item>
+              <Checkbox checked={this.state.inStock} onChange={e => this.setState({inStock: e.target.checked})}>
+                In Stock only
+              </Checkbox>
             </Item>
           </ItemGroup>
           <ItemGroup position="end">
@@ -203,6 +206,9 @@ export class TablePageExample extends React.Component {
     }
     if (this.state.filterId > 0) {
       data = data.filter(row => row.filterId === this.state.filterId);
+    }
+    if (this.state.inStock) {
+      data = data.filter(row => row.inventory === 'In stock');
     }
     if (this.state.searchTerm !== '') {
       data = data.filter(row => row.name.toUpperCase().includes(this.state.searchTerm.toUpperCase()));
