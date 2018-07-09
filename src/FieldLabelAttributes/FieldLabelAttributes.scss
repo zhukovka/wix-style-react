@@ -3,6 +3,7 @@
 .root {
   display: flex;
   position: relative;
+  height: 27px;
 }
 
 .required {
@@ -12,6 +13,7 @@
   width: 13px;
   line-height: 17px;
   text-align: right;
+  align-self: start;
 }
 
 .icon {

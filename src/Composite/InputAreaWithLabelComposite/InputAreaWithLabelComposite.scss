@@ -1,11 +1,13 @@
 @import '../../common.scss';
 
 .label {
+	display: flex;
 	margin-bottom: 6px;
 }
 
 .withLabelAttributes {
 	display: flex;
+	align-items: center;
 }
 
 .inputWrapper {
