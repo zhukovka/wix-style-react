@@ -7,18 +7,21 @@ import {storySettings} from '../../stories/Table/storySettings';
 describe('Table', () => {
   const storyUrl = createStoryUrl({kind: storySettings.kind, story: storySettings.storyName, withExamples: false});
 
-  const driver = tableTestkitFactory({dataHook: 'storybook-table'});
-
-  beforeAll(() => browser.get(storyUrl));
+  const init = async () => {
+    await browser.get(storyUrl);
+    const driver = tableTestkitFactory({dataHook: 'storybook-table'});
+    await waitForVisibilityOf(driver.element, 'Can not find Table Component');
+    return driver;
+  };
 
   it('should be able to use DataTable driver methods', async () => {
-    await waitForVisibilityOf(driver.element(), 'Can not find Table Component');
-    expect(await driver.rowsCount()).toBe(2);
+    const driver = await init();
+    expect(await driver.rowsCount()).toBe(4);
   });
 
   eyes.it('should display table only', async () => {
-    await waitForVisibilityOf(driver.element(), 'Can not find Table Component');
-    await scrollToElement(driver.element());
+    const driver = await init();
+    await scrollToElement(driver.element);
     // need snapshot only
   });
 });

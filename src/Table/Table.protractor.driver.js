@@ -1,7 +1,8 @@
 import dataTableDriverFactory from '../DataTable/DataTable.protractor.driver';
 
 const tableDriverFactory = component => ({
-  ...dataTableDriverFactory(component.$(`[data-hook="table"]`))
+  ...dataTableDriverFactory(component),
+  element: component
 });
 
 export default tableDriverFactory;

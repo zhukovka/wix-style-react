@@ -461,7 +461,7 @@ DataTable.propTypes = {
   rowDetails: PropTypes.func,
   /** Allows to open multiple row details */
   allowMultiDetailsExpansion: PropTypes.bool,
-  /** Should we hide the header (Titlebar) of the table. */
+  /** Should we hide the header of the table. */
   hideHeader: PropTypes.bool,
   /** A flag specifying weather to apply the new layout/design update. Default will change to true in the next major release (version 5.0.0) */
   newDesign: PropTypes.bool,
