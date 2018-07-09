@@ -15,29 +15,29 @@ const getNewImportPath = (value, {oldIconName, newIconData} = {}) => {
   const newIconPath = `${ICONS_FOLDER}/${prefix}${newIconName}`;
 
   if (value.endsWith(pathes.indexSrcPath)) {
-    return isWSRMigration
-      ? value.replace(pathes.indexSrcPath, `/${ICONS_FOLDER}`)
-      : `wix-style-react/${ICONS_FOLDER}`;
+    return isWSRMigration ?
+      value.replace(pathes.indexSrcPath, `/${ICONS_FOLDER}`) :
+      `wix-style-react/${ICONS_FOLDER}`;
   } else if (value.endsWith(pathes.indexPath)) {
-    return isWSRMigration
-      ? value.replace(pathes.indexPath, `/../${ICONS_FOLDER}`)
-      : `wix-style-react/${ICONS_FOLDER}`;
+    return isWSRMigration ?
+      value.replace(pathes.indexPath, `/${ICONS_FOLDER}`) :
+      `wix-style-react/${ICONS_FOLDER}`;
   } else if (value.endsWith(pathes.rootSrcPath)) {
-    return isWSRMigration
-      ? value.replace(pathes.rootSrcPath, `/${ICONS_FOLDER}`)
-      : `wix-style-react/${ICONS_FOLDER}`;
+    return isWSRMigration ?
+      value.replace(pathes.rootSrcPath, `/${ICONS_FOLDER}`) :
+      `wix-style-react/${ICONS_FOLDER}`;
   } else if (value.endsWith(pathes.rootPath)) {
-    return isWSRMigration
-      ? value.replace(pathes.rootPath, `/../${ICONS_FOLDER}`)
-      : `wix-style-react/${ICONS_FOLDER}`;
+    return isWSRMigration ?
+      value.replace(pathes.rootPath, `/${ICONS_FOLDER}`) :
+      `wix-style-react/${ICONS_FOLDER}`;
   } else if (value.endsWith(pathes.commonSrcPath)) {
-    return isWSRMigration
-      ? value.replace(pathes.commonSrcPath, `/${newIconPath}`)
-      : `wix-style-react/${newIconPath}`;
+    return isWSRMigration ?
+      value.replace(pathes.commonSrcPath, `/${newIconPath}`) :
+      `wix-style-react/${newIconPath}`;
   } else if (value.endsWith(pathes.commonPath)) {
-    return isWSRMigration
-      ? value.replace(pathes.commonPath, `/../${newIconPath}`)
-      : `wix-style-react/${newIconPath}`;
+    return isWSRMigration ?
+      value.replace(pathes.commonPath, `/${newIconPath}`) :
+      `wix-style-react/${newIconPath}`;
   }
 };
 
