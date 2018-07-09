@@ -18,6 +18,7 @@
 | isLoading| -         | boolean        | true when loader is in loading state     |
 | isError  | -         | boolean        | true when loader is in error state       |
 | isSuccess| -         | boolean        | true when loader is in success state     |
+| getStatusMessage | - | string         | trigger the tooltip and returns the value of the tooltip message (async function) |
 
 ## Loader Protractor TestKit API
 

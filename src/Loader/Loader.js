@@ -5,6 +5,7 @@ import WixComponent from '../BaseComponents/WixComponent';
 import Arc from './Arc';
 import css from './Loader.scss';
 import Text from '../Deprecated/Text';
+import Tooltip from '../Tooltip';
 import FormFieldError from '../new-icons/system/FormFieldError';
 import FormFieldErrorSmall from '../new-icons/system/FormFieldErrorSmall';
 import CircleLoaderCheck from '../new-icons/system/CircleLoaderCheck';
@@ -36,7 +37,7 @@ const sizesInPx = {
   large: 102
 };
 
-const CIRCLE_ANGLE = 359;
+const FULL_CIRCLE_ANGLE = 359;
 
 const sizeToSuccessIcon = {
   tiny: <CircleLoaderCheckSmall/>,
@@ -67,7 +68,10 @@ export default class Loader extends WixComponent {
     text: PropTypes.node,
 
     /** The status of the loader */
-    status: PropTypes.oneOf(['loading', 'success', 'error'])
+    status: PropTypes.oneOf(['loading', 'success', 'error']),
+
+    /** Text to be shown in the tolltip **/
+    statusMessage: PropTypes.string
   };
 
   static defaultProps = {
@@ -77,42 +81,52 @@ export default class Loader extends WixComponent {
   };
 
   render() {
-    const {size, color, text, status} = this.props;
+    const {size, color, text, status, statusMessage} = this.props;
     const sizeInPx = sizesInPx[size];
     const shouldShowFullCircle = status !== 'loading';
-    const lightArcAngle = !shouldShowFullCircle ? arcsAngles[size].light : CIRCLE_ANGLE;
-    const darkArcAngle = !shouldShowFullCircle ? arcsAngles[size].dark : CIRCLE_ANGLE;
+    const lightArcAngle = !shouldShowFullCircle ? arcsAngles[size].light : FULL_CIRCLE_ANGLE;
+    const darkArcAngle = !shouldShowFullCircle ? arcsAngles[size].dark : FULL_CIRCLE_ANGLE;
     const shouldShowText = size !== 'tiny';
     const successIcon = sizeToSuccessIcon[size];
     const errorIcon = sizeToErrorIcon[size];
+    const loader = (
+      <div
+        className={css.arcsContainer}
+        style={{
+          width: `${sizeInPx}px`,
+          height: `${sizeInPx}px`
+        }}
+        >
+        <Arc
+          angle={lightArcAngle}
+          className={css.lightArc}
+          strokeWidth={strokeWidth}
+          viewBoxSize={sizeInPx}
+          />
+        <Arc
+          angle={darkArcAngle}
+          className={css.darkArc}
+          strokeWidth={strokeWidth}
+          viewBoxSize={sizeInPx}
+          />
+        {status !== 'loading' &&
+        <div className={css.statusIndicator}>
+          {status === 'success' && successIcon}
+          {status === 'error' && errorIcon}
+        </div>
+        }
+      </div>
+    );
 
     return (
       <div className={classNames(css.loaderContainer, css[size], css[color], css[status])}>
-        <div
-          className={css.arcsContainer}
-          style={{
-            width: `${sizeInPx}px`,
-            height: `${sizeInPx}px`}}
-          >
-          <Arc
-            angle={lightArcAngle}
-            className={css.lightArc}
-            strokeWidth={strokeWidth}
-            viewBoxSize={sizeInPx}
-            />
-          <Arc
-            angle={darkArcAngle}
-            className={css.darkArc}
-            strokeWidth={strokeWidth}
-            viewBoxSize={sizeInPx}
-            />
-          {status !== 'loading' &&
-            <div className={css.statusIndicator}>
-              {status === 'success' && successIcon}
-              {status === 'error' && errorIcon}
-            </div>
-          }
-        </div>
+        {
+          statusMessage ?
+            <Tooltip dataHook="loader-tooltip" placement="top" textAlign="center" alignment="center" content={statusMessage} theme="dark">
+              {loader}
+            </Tooltip> :
+            loader
+        }
         {
           shouldShowText && text &&
           <div className={css.text}>

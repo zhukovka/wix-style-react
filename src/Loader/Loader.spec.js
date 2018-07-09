@@ -94,6 +94,18 @@ describe('Loader', () => {
       const driver = createDriver(<Loader status="success"/>);
       expect(driver.isSuccess()).toEqual(true);
     });
+
+    describe('tooltip message when hovered', () => {
+      afterEach(() => {
+        document.body.innerHTML = ''; // required for tooltip element to be removed and not to leak in consecutive tests
+      });
+
+      it('should show tooltip when hovered', async () => {
+        const statusMessage = 'this is a some message';
+        const driver = createDriver(<Loader status="success" statusMessage={statusMessage}/>);
+        expect(await driver.getStatusMessage()).toBe(statusMessage);
+      });
+    });
   });
 
   describe('testkit', () => {

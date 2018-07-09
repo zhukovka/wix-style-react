@@ -9,6 +9,8 @@ export default {
 
   componentProps: {
     dataHook: 'storybook-loader',
-    status: 'loading'
+    status: 'loading',
+    statusMessage: 'some message here',
+    text: ''
   }
 };
