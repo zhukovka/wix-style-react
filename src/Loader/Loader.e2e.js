@@ -31,28 +31,28 @@ describe('Loader', () => {
     autoExampleDriver.setProps({size: 'tiny'});
     await waitForVisibilityOf(loaderDriver.element(), 'Cannot find <Loader/>');
 
-    eyes.checkWindow('tiny loader');
+    await eyes.checkWindow('tiny loader');
 
     expect(loaderDriver.isTiny()).toBe(true);
 
     autoExampleDriver.setProps({size: 'small'});
     await waitForVisibilityOf(loaderDriver.element(), 'Cannot find <Loader/>');
 
-    eyes.checkWindow('small loader');
+    await eyes.checkWindow('small loader');
 
     expect(loaderDriver.isSmall()).toBe(true);
 
     autoExampleDriver.setProps({size: 'medium'});
     await waitForVisibilityOf(loaderDriver.element(), 'Cannot find <Loader/>');
 
-    eyes.checkWindow('medium loader');
+    await eyes.checkWindow('medium loader');
 
     expect(loaderDriver.isMedium()).toBe(true);
 
     autoExampleDriver.setProps({size: 'large'});
     await waitForVisibilityOf(loaderDriver.element(), 'Cannot find <Loader/>');
 
-    eyes.checkWindow('large loader');
+    await eyes.checkWindow('large loader');
 
     expect(loaderDriver.isLarge()).toBe(true);
   });
@@ -62,7 +62,7 @@ describe('Loader', () => {
 
     await waitForVisibilityOf(loaderDriver.element(), 'Cannot find <Loader/>');
 
-    eyes.checkWindow('blue loader');
+    await eyes.checkWindow('blue loader');
 
     expect(loaderDriver.getColor()).toBe('blue');
 
@@ -70,12 +70,12 @@ describe('Loader', () => {
 
     await waitForVisibilityOf(loaderDriver.element(), 'Cannot find <Loader/>');
 
-    eyes.checkWindow('white loader');
+    await eyes.checkWindow('white loader');
 
     expect(loaderDriver.getColor()).toBe('white');
   });
 
-  eyes.it('should render different loader states', async () => {
+  eyes.it('should render different loader status', async () => {
     autoExampleDriver.setProps({status: 'loading'});
     await browser.wait(EC.and(loaderDriver.isLoading));
     await eyes.checkWindow('loading status');
