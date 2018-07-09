@@ -18,7 +18,7 @@ Types of changes:
 - `<FieldLabelAttributes/>` - migrate to new icons [#1945](https://github.com/wix/wix-style-react/pull/1945)
 
 ### Added
-- `<Loader/>` - add error and success states (without tooltip yet) [#1953](https://github.com/wix/wix-style-react/pull/1953)
+- `<Loader/>` - add error and success states [#1953](https://github.com/wix/wix-style-react/pull/1953) [#1963](https://github.com/wix/wix-style-react/pull/1963)
 - `<Table/>` - Add `showLastRowDivider` prop [#1964](https://github.com/wix/wix-style-react/pull/1964)
 
 ### Fixed
