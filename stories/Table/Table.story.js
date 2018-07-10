@@ -73,7 +73,7 @@ export default {
       <h1>Examples</h1>
       <div className={s.examples}>
         <div className={s.example}>
-          <CodeExample title="Default (With Toolbar)" code={TableExampleRaw}>
+          <CodeExample title="Typical (With Toolbar)" code={TableExampleRaw}>
             <TableExample/>
           </CodeExample>
         </div>
