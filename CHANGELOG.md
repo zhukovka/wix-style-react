@@ -12,6 +12,11 @@ Types of changes:
 1. **Security** in case of vulnerabilities.
 1. **Breaking** for breaking changes
 
+## 4.9.0 - 2018-07-10
+
+### Added
+- Make new `<Table/>` component officially released [#1974](https://github.com/wix/wix-style-react/pull/1974)
+
 ## 4.8.0 - 2018-07-09
 ### Changed
 - `<ColorPicker/>` - migrate to new icons [#1945](https://github.com/wix/wix-style-react/pull/1945)

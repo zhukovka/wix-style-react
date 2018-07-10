@@ -2,7 +2,7 @@ import eyes from 'eyes.it';
 import {dataTableTestkitFactory, getStoryUrl, waitForVisibilityOf, scrollToElement} from '../../testkit/protractor';
 
 describe('Data Table', () => {
-  const storyUrl = getStoryUrl('10. Tables', '10.1 DataTable');
+  const storyUrl = getStoryUrl('10. Tables', '10.1 DataTable (Legacy)');
 
   eyes.it('should call func on row click', async () => {
     const driver = dataTableTestkitFactory({dataHook: 'story-data-table-example'});

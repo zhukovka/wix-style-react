@@ -26,7 +26,7 @@ import ExampleSortableOldDesign from './ExampleSortableOldDesign';
 import ExampleSortableOldDesignRaw from '!raw-loader!./ExampleSortableOldDesign';
 
 storiesOf('10. Tables', module)
-  .add('10.1 DataTable', () => (
+  .add('10.1 DataTable (Legacy)', () => (
     <TabbedView tabs={['API', 'TestKits']}>
       <div>
         <Markdown source={Readme}/>

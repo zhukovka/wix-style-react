@@ -4,23 +4,12 @@ import {storySettings} from './storySettings';
 import CodeExample from 'wix-storybook-utils/CodeExample';
 
 import {Table} from '../../src/Table/Table';
-import {renderMyTableToolbar} from './DefaultToolbar';
 
 import {TableExample} from './TableExample';
 import TableExampleRaw from '!raw-loader!./TableExample';
 
 import {TablePageExample} from './TablePageExample';
 import TablePageExampleRaw from '!raw-loader!./TablePageExample';
-
-
-const childrenWithToolbar = (
-  [
-    <Table.Consumer key="toolbar">
-      {renderMyTableToolbar}
-    </Table.Consumer>,
-    <Table.Content key="content"/>
-  ]
-);
 
 const data = [
   {firstName: 'Meghan', lastName: 'Bishop'},
@@ -55,17 +44,12 @@ export default {
     id: 'id',
     data,
     columns: columnsOption1,
-    showSelection: true,
-    children: <Table.Content/>
+    showSelection: true
   },
   exampleProps: {
     columns: [
       {label: '2 columns example', value: columnsOption1},
       {label: '4 columns example', value: columnsOption2}
-    ],
-    children: [
-      {label: 'With Toolbar', value: childrenWithToolbar},
-      {label: 'Without Toolbar', value: <Table.Content key="content"/>}
     ],
     data: [
       {label: '4 rows', value: data},
@@ -78,7 +62,7 @@ export default {
       <h1>Examples</h1>
       <div className={s.examples}>
         <div className={s.example}>
-          <CodeExample title="Default (With Toolbar)" code={TableExampleRaw}>
+          <CodeExample title="Typical (With Toolbar)" code={TableExampleRaw}>
             <TableExample/>
           </CodeExample>
         </div>

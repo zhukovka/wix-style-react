@@ -45,7 +45,7 @@ The recomended behavior is for the Table to display a Main-Toolbar when there is
 
 ##### Properties
 | name | type | description |
-|----------|----------|--------------|------------|-------------|
+|----------|----------|--------------|
 | selectedCount | number | Number of selected items | 
 | bulkSelectionState | string | A string representing the BulkSelection state (not a React state). Possible values: ALL, SOME, NONE |
 
