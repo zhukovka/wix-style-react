@@ -28,15 +28,15 @@ const formFieldDriver = ({element}) => ({
     }
     return false;
   },
-  getInfoContent: async () => {
+  getInfoContent: () => {
     const tooltipDriver = tooltipTestkitFactory({
       wrapper: getInfoIcon(element),
       dataHook: 'formfield-infotooltip'
     });
 
     tooltipDriver.mouseEnter();
-    await resolveIn(500);
-    return tooltipDriver.getContent();
+    return resolveIn(500)
+      .then(() => tooltipDriver.getContent());
   }
 });
 
