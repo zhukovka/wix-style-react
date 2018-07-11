@@ -16,6 +16,9 @@ Types of changes:
 ### Changed
 - `<Input/>` - migrate to new icons [#1981](https://github.com/wix/wix-style-react/pull/1981)
 
+### Fixed
+- <EditableSelector/> - fix margins
+
 ## 4.9.0 - 2018-07-10
 
 ### Added
