@@ -393,7 +393,7 @@ $material-gap: 8px;
 .help {
   margin: 0 $gap;
   color: $B20;
-  padding-top: 4px;
+  display: flex;
 }
 
 :global(.rtl) {
@@ -406,7 +406,7 @@ $material-gap: 8px;
 .amaterial-help {
   margin: 0 $gap;
   color: $B20;
-  padding-bottom: 14px;
+  display: flex;
 }
 
 .clear-button {
@@ -439,7 +439,9 @@ $material-gap: 8px;
 }
 
 .menu-arrow {
+  display: flex;
   padding: 0 $double-gap;
+  margin-top: 1px;
   path { fill: $B10; }
 
   &[disabled] {
