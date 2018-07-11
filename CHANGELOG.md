@@ -17,6 +17,9 @@ Types of changes:
 - `<Input/>` - migrate to new icons [#1981](https://github.com/wix/wix-style-react/pull/1981)
 
 ### Fixed
+- `<Card/>` - Add overflow: hidden [#1962](https://github.com/wix/wix-style-react/pull/1962)
+
+### Fixed
 - <EditableSelector/> - fix margins
 
 ## 4.9.0 - 2018-07-10
