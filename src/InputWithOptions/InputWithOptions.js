@@ -284,6 +284,7 @@ InputWithOptions.propTypes = {
   inputElement: PropTypes.element,
   closeOnSelect: PropTypes.bool,
   onManuallyInput: PropTypes.func,
+  /** Function that receives an option, and should return the value to be displayed. By default returns `option.value`. */
   valueParser: PropTypes.func,
   dropdownWidth: PropTypes.string,
   dropdownOffsetLeft: PropTypes.string,

@@ -304,8 +304,10 @@ DropdownLayout.propTypes = {
   dropDirectionUp: PropTypes.bool,
   focusOnSelectedOption: PropTypes.bool,
   onClose: PropTypes.func,
+  /** Callback function called whenever the user selects a different option in the list */
   onSelect: PropTypes.func,
   visible: PropTypes.bool,
+  /** Array of objects. Objects must have an Id and can can include value and node. If value is '-', a divider will be rendered instead. */
   options: PropTypes.arrayOf(PropTypes.shape({
     id: PropTypes.oneOfType([
       PropTypes.string,
@@ -318,6 +320,7 @@ DropdownLayout.propTypes = {
     disabled: PropTypes.bool,
     overrideStyle: PropTypes.bool
   })),
+  /** The id of the selected option in the list  */
   selectedId: PropTypes.oneOfType([
     PropTypes.string,
     PropTypes.number
@@ -325,7 +328,9 @@ DropdownLayout.propTypes = {
   tabIndex: PropTypes.number,
   theme: PropTypes.string,
   onClickOutside: PropTypes.func,
+  /** A fixed header to the list */
   fixedHeader: PropTypes.node,
+  /** A fixed footer to the list */
   fixedFooter: PropTypes.node,
   maxHeightPixels: PropTypes.number,
   minWidthPixels: PropTypes.number,

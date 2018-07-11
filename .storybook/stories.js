@@ -45,7 +45,7 @@ import '../stories/GoogleAddressInput'; // 3.11 GoogleAddressInput
 import '../stories/AddItem/addItem.story.js'; // 3.12 AddItem
 
 // 4. Selection
-import '../stories/Dropdown'; // 4.1 Dropdown
+import '../stories/Dropdown/Dropdown.story.js'; // 4.1 Dropdown
 import '../stories/AutoComplete'; // 4.1 + AutoComplete
 import '../stories/AutoCompleteComposite'; // 4.1 + AutoCompleteComposite
 import '../stories/InputWithOptions'; // 4.1 + InputWithOptions
