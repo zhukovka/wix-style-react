@@ -5,11 +5,10 @@ import {
   Button,
   Tooltip
 } from 'wix-style-react';
-import {
-  Help as HelpIcon,
-  Chat as ChatIcon,
-  Preview
-} from 'wix-style-react/Icons';
+import HelpIcon from 'wix-style-react/new-icons/InfoCircle';
+import ChatIcon from 'wix-style-react/new-icons/Chat';
+import ExternalLink from 'wix-style-react/new-icons/ExternalLink';
+
 let counter = 3;
 
 const items = [
@@ -131,7 +130,7 @@ class ExampleSideMenuDrill extends React.Component {
         <SideMenu.FooterLink
           href="https://support.wix.com/"
           target="_blank"
-          icon={<HelpIcon size="1em"/>}
+          icon={<HelpIcon/>}
           >
           Help Me!
         </SideMenu.FooterLink>
@@ -139,7 +138,7 @@ class ExampleSideMenuDrill extends React.Component {
         <SideMenu.FooterTinyLink
           href="https://support.wix.com/en/article/wix-seo-wiz-suggestions-and-feedback"
           target="_blank"
-          icon={<div style={{marginTop: 2}}><ChatIcon size="1em"/></div>}
+          icon={<div style={{marginTop: 2}}><ChatIcon/></div>}
           tooltip="Hey, come talk to me!"
           onClick={() => console.log('clicked on tiny link yay!')}
           />
@@ -158,9 +157,9 @@ class ExampleSideMenuDrill extends React.Component {
             dataHook="site-name-tooltip"
             maxWidth="250"
             >
-            <div>
-              <span style={{marginRight: '5px', fontSize: '20px'}}>wix-style-react</span>
-              <Preview size={12}/>
+            <div style={{display: 'flex'}}>
+              <span style={{fontSize: '20px'}}>wix-style-react</span>
+              <ExternalLink style={{top: 1, position: 'relative'}}/>
             </div>
           </Tooltip>
           <div style={{marginTop: '5px', fontSize: '13px'}}>Role: Owner</div>
