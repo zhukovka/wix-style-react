@@ -11,7 +11,7 @@ import '../stories/Composite'; // TODO: Move to introduction
 import '../stories/Text'; // 1.2 Text
 // import '../stories/Label/index.story.js'; // 1.2 + Text
 import '../stories/Label'; // 1.2 + Label
-import '../stories/Heading'; // 1.3 Heading
+import '../stories/Heading.story'; // 1.3 Heading
 import '../stories/Icons'; // 1.4 Icons
 import '../stories/Loader.story.js'; // 1.5 Loader
 import '../stories/LinearProgressBar.story.js'; // 1.6 LinearProgressBar
