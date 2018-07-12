@@ -13,14 +13,15 @@ Types of changes:
 1. **Breaking** for breaking changes
 
 ## next
+### Added
+- Add withNewIcons prop for `<Button/>` component [#1960](https://github.com/wix/wix-style-react/pull/1960)
+
 ### Changed
 - `<Input/>` - migrate to new icons [#1981](https://github.com/wix/wix-style-react/pull/1981)
 
 ### Fixed
 - `<Card/>` - Add overflow: hidden [#1962](https://github.com/wix/wix-style-react/pull/1962)
-
-### Fixed
-- <EditableSelector/> - fix margins
+- `<EditableSelector/>` - fix margins [#1984](https://github.com/wix/wix-style-react/pull/1984)
 
 ## 4.9.0 - 2018-07-10
 
