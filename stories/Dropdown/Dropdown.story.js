@@ -63,8 +63,6 @@ export default {
   },
   examples: (
     <div>
-      <h1>Usage examples</h1>
-
       <CodeExample title="Standard" code={ExampleStandardRaw}>
         <ExampleStandard/>
       </CodeExample>
