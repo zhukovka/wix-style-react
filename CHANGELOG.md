@@ -22,6 +22,7 @@ Types of changes:
 ### Fixed
 - `<Card/>` - Add overflow: hidden [#1962](https://github.com/wix/wix-style-react/pull/1962)
 - `<EditableSelector/>` - fix margins [#1984](https://github.com/wix/wix-style-react/pull/1984)
+- `<ColorPicker/>` - fix history bar behavior [#1990](https://github.com/wix/wix-style-react/pull/1990)
 
 ## 4.9.0 - 2018-07-10
 
