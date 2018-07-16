@@ -26,6 +26,7 @@ Types of changes:
 - `<Card/>` - collapsed Card header should not have any bottom divider [#1972](https://github.com/wix/wix-style-react/pull/1972)
 - `<EditableSelector/>` - fix margins [#1984](https://github.com/wix/wix-style-react/pull/1984)
 - `<ColorPicker/>` - fix history bar behavior [#1990](https://github.com/wix/wix-style-react/pull/1990)
+- `<RichTextArea/>` - link popover padding is not according to spec [#1997](https://github.com/wix/wix-style-react/pull/1997)
 
 ## 4.9.0 - 2018-07-10
 
