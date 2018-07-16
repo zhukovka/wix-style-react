@@ -34,11 +34,11 @@ class EditableSelector extends WixComponent {
   };
 
   addNewRow = () => {
-    this.setState({addingNewRow: true});
+    this.setState({addingNewRow: true, editingRow: false});
   };
 
   editItem = index => {
-    this.setState({editingRow: index});
+    this.setState({editingRow: index, addingNewRow: false});
   };
 
   deleteItem = index => {
