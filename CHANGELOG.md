@@ -20,6 +20,7 @@ Types of changes:
 - `<Input/>` - migrate to new icons [#1981](https://github.com/wix/wix-style-react/pull/1981)
 - `<Card.ButtonHeader/>` - migrate to new icons [#1979](https://github.com/wix/wix-style-react/pull/1979)
 - `<Card.CollapsedHeader/>` - migrate to new icons [#1980](https://github.com/wix/wix-style-react/pull/1980)
+- `<EditableSelector/>` - improve behavior when editing a line [#1989](https://github.com/wix/wix-style-react/pull/1989)
 
 ### Fixed
 - `<Card/>` - Add `overflow: hidden` to make  [#1962](https://github.com/wix/wix-style-react/pull/1962)
