@@ -28,7 +28,7 @@ Types of changes:
 - `<EditableSelector/>` - fix margins [#1984](https://github.com/wix/wix-style-react/pull/1984)
 - `<ColorPicker/>` - fix history bar behavior [#1990](https://github.com/wix/wix-style-react/pull/1990)
 - `<RichTextArea/>` - link popover padding is not according to spec [#1997](https://github.com/wix/wix-style-react/pull/1997)
-- `<MultiSelect/>` - fix thumb background color on hover bug [#1991](https://github.com/wix/wix-style-react/pull/1991<Paste>)
+- `<MultiSelect/>` - fix thumb background color on hover bug [#1991](https://github.com/wix/wix-style-react/pull/1991)
 
 ## 4.9.0 - 2018-07-10
 
