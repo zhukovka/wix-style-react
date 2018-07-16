@@ -2,7 +2,7 @@ import React from 'react';
 import {Container, AutoAdjustedRow, Card} from '../../src/Grid';
 import styles from './ExampleGrid.scss';
 
-import {Plus} from 'wix-style-react/Icons';
+import {Add} from 'wix-style-react/new-icons';
 import Tooltip from '../../src/Tooltip';
 
 export default () =>
@@ -11,12 +11,13 @@ export default () =>
       <AutoAdjustedRow>
         <Card stretchVertically>
           <Card.ButtonHeader
+            withNewIcons
             tooltip={<Tooltip placement="top" alignment="center" content="Hi there!"/>}
             title="Stretched Card 1"
             buttonOnClick={() => {
               alert('Clicked!');
             }}
-            buttonPrefix={<Plus/>}
+            buttonPrefix={<Add/>}
             buttonTitle="Tooltip button!"
             />
           <Card.Content>Here comes some AMAZING content that will blow your mind.
@@ -24,12 +25,13 @@ export default () =>
         </Card>
         <Card stretchVertically>
           <Card.ButtonHeader
+            withNewIcons
             tooltip={<Tooltip placement="top" alignment="center" content="Hi there!"/>}
             title="Stretched Card 2"
             buttonOnClick={() => {
               alert('Clicked!');
             }}
-            buttonPrefix={<Plus/>}
+            buttonPrefix={<Add/>}
             buttonTitle="Tooltip button!"
             />
         </Card>
