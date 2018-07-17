@@ -13,6 +13,7 @@ const modulu = (n, m) => {
 };
 
 const NOT_HOVERED_INDEX = -1;
+export const DIVIDER_OPTION_VALUE = '-';
 
 class DropdownLayout extends WixComponent {
 
@@ -207,7 +208,7 @@ class DropdownLayout extends WixComponent {
 
   renderOption({option, idx}) {
     const {value, id, disabled, title, overrideStyle, linkTo} = option;
-    if (value === '-') {
+    if (value === DIVIDER_OPTION_VALUE) {
       return this.renderDivider(idx, `dropdown-item-${id}`);
     }
 

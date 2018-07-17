@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import WixComponent from '../BaseComponents/WixComponent';
 import Input from '../Input';
 import omit from 'omit';
-import DropdownLayout from '../DropdownLayout/DropdownLayout';
+import DropdownLayout, {DIVIDER_OPTION_VALUE} from '../DropdownLayout/DropdownLayout';
 import Highlighter from '../Highlighter/Highlighter';
 import {chainEventHandlers} from '../utils/ChainEventHandlers';
 
@@ -90,7 +90,7 @@ class InputWithOptions extends WixComponent {
       options.map(option => {
         return {
           ...option,
-          value: (
+          value: option.value === DIVIDER_OPTION_VALUE ? option.value : (
             <Highlighter match={this.state.inputValue} dataHook={`highlighter-${option.id}`}>
               {option.value}
             </Highlighter>
