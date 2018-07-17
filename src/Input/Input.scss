@@ -440,6 +440,8 @@ $material-gap: 8px;
 
 .menu-arrow {
   display: flex;
+  align-items: center;
+  height: 100%;
   padding: 0 $double-gap;
   margin-top: 1px;
   path { fill: $B10; }
