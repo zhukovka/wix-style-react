@@ -21,7 +21,7 @@ Types of changes:
 - `<Card.ButtonHeader/>` - migrate to new icons [#1979](https://github.com/wix/wix-style-react/pull/1979)
 - `<Card.CollapsedHeader/>` - migrate to new icons [#1980](https://github.com/wix/wix-style-react/pull/1980)
 - `<EditableSelector/>` - improve behavior when editing a line [#1989](https://github.com/wix/wix-style-react/pull/1989)
-- `<DropdownLayout/>` - items exist in DOM also when not displayed [#1996](https://github.com/wix/wix-style-react/pull/1996)
+- `<DropdownLayout/>` - impove preformance - items will not appear in DOM if not displayed [#1996](https://github.com/wix/wix-style-react/pull/1996)
 
 ### Fixed
 - `<Card/>` - Add `overflow: hidden` to make  [#1962](https://github.com/wix/wix-style-react/pull/1962)
@@ -30,6 +30,9 @@ Types of changes:
 - `<ColorPicker/>` - fix history bar behavior [#1990](https://github.com/wix/wix-style-react/pull/1990)
 - `<RichTextArea/>` - link popover padding is not according to spec [#1997](https://github.com/wix/wix-style-react/pull/1997)
 - `<MultiSelect/>` - fix thumb background color on hover bug [#1991](https://github.com/wix/wix-style-react/pull/1991)
+- `<Dropdown/>` - fix clickable area below and above the arrow icon [#1999](https://github.com/wix/wix-style-react/pull/1999)
+- `<MessageBox/>` - fix footer styles and improve docs [#1995](https://github.com/wix/wix-style-react/pull/1995)
+- `<InputWithOptions/>` - Fix broken divider option [#1992](https://github.com/wix/wix-style-react/pull/1992)
 
 ## 4.9.0 - 2018-07-10
 
