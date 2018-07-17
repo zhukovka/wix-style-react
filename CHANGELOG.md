@@ -21,6 +21,7 @@ Types of changes:
 - `<Card.ButtonHeader/>` - migrate to new icons [#1979](https://github.com/wix/wix-style-react/pull/1979)
 - `<Card.CollapsedHeader/>` - migrate to new icons [#1980](https://github.com/wix/wix-style-react/pull/1980)
 - `<EditableSelector/>` - improve behavior when editing a line [#1989](https://github.com/wix/wix-style-react/pull/1989)
+- `<DropdownLayout/>` - items exist in DOM also when not displayed [#1996](https://github.com/wix/wix-style-react/pull/1996)
 
 ### Fixed
 - `<Card/>` - Add `overflow: hidden` to make  [#1962](https://github.com/wix/wix-style-react/pull/1962)
