@@ -16,6 +16,9 @@ Types of changes:
 ### Added
 -  `<Button/>`- support new icons using the `withNewIcons` prop [#1960](https://github.com/wix/wix-style-react/pull/1960)
 
+### Fixed
+- `<Dropdown/>`, `<Slider/>` - Fix colors [#2003](https://github.com/wix/wix-style-react/pull/2003)
+
 ### Changed
 - `<Input/>` - migrate to new icons [#1981](https://github.com/wix/wix-style-react/pull/1981)
 - `<Card.ButtonHeader/>` - migrate to new icons [#1979](https://github.com/wix/wix-style-react/pull/1979)
