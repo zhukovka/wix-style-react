@@ -15,6 +15,8 @@ Types of changes:
 ## next
 ### Added
 -  `<Button/>`- support new icons using the `withNewIcons` prop [#1960](https://github.com/wix/wix-style-react/pull/1960)
+-  `<FullTextView/>`- the new component that can show tooltip in ellipsis state [#2000](https://github.com/wix/wix-style-react/pull/2000)
+- Migration script and [migration doc](https://github.com/wix/wix-style-react/blob/master/docs/NEW_ICONS_MIGRATION.md) for new icon designs
 
 ### Changed
 - `<Input/>` - migrate to new icons [#1981](https://github.com/wix/wix-style-react/pull/1981)
@@ -22,6 +24,8 @@ Types of changes:
 - `<Card.CollapsedHeader/>` - migrate to new icons [#1980](https://github.com/wix/wix-style-react/pull/1980)
 - `<EditableSelector/>` - improve behavior when editing a line [#1989](https://github.com/wix/wix-style-react/pull/1989)
 - `<DropdownLayout/>` - impove preformance - items will not appear in DOM if not displayed [#1996](https://github.com/wix/wix-style-react/pull/1996)
+- Migrated to [new icons](https://wix-wix-style-react.surge.sh/?selectedKind=1.%20Foundation&selectedStory=1.4%20Icons&full=0&addons=0&stories=1&panelRight=0)
+- Deprecated [current icons](https://wix-wix-style-react.surge.sh/?selectedKind=1.%20Foundation&selectedStory=1.4%20Icons%20-%20deprecated&full=0&addons=0&stories=1&panelRight=0)
 
 ### Fixed
 - `<Card/>` - Add `overflow: hidden` to make  [#1962](https://github.com/wix/wix-style-react/pull/1962)
