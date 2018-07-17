@@ -37,76 +37,91 @@ $FontBold: "HelveticaNeueW01-75Bold", "HelveticaNeueW02-75Bold", "HelveticaNeueW
 
 /* New swatches! */
 
-$D10: #162d3d;   // Main input text, titles
+$D10: #162D3D;   // Main input text, titles
 $D20: #32536A;   // Titles, texts
 $D30: #577083;   // Texts
-$D40: #7a92a5;   // Dividers, texts
-$D50: #b6c1cd;   // Dividers, texts
-$D55: #cbd3dc;   // Disabled button - new version - naming not final
-$D60: #dfe5eb;   // Dividers
-$D70: #f0f4f7;   // Page background, dividers
-$D80: #ffffff;   // Content box background
+$D40: #7A92A5;   // Dividers, texts
+$D50: #B6C1CD;   // Dividers, texts
+$D55: #CBD3DC;   // Disabled button - new version - naming not final
+$D60: #DFE5EB;   // Dividers
+$D70: #F0F4F7;   // Page background, dividers
+$D80: #FFFFFF;   // Content box background
 
-$B00: #2b81cb;   // Buttons
-$B05: #308ddd;   // CTA
-$B10: #3899ec;   // Main action color, active, buttons
-$B20: #4eb7f5;   // Hover for elements with B10, buttons
+$B00: #2B81CB;   // Buttons
+$B05: #308DDD;   // CTA
+$B10: #3899EC;   // Main action color, active, buttons
+$B20: #4EB7F5;   // Hover for elements with B10, buttons
 $B25: #A1D7FB;
-$B27: #b3e0fb;
-$B30: #c1e4fe;   // Notifications
-$B40: #daeffe;   // Dividers, table selected, table headers
-$B50: #eaf7ff;   // Dividers
-$B60: #f4fafe;   // Table hover
+$B27: #B3E0FB;
+$B30: #C1E4FE;   // Notifications
+$B40: #DAEFFE;   // Dividers, table selected, table headers
+$B50: #EAF7FF;   // Dividers
+$B60: #F4FAFE;   // Table hover
 
-$F00:  #aadbfc;  // Focus Outline
+$F00:  #AADBFC;  // Focus Outline
 
-$GR10: #c8c8c8;  // Disabled buttons
-$GR20: #dadada;  // Disabled fields
-$GR30: #f1f1f1;  // Disabled background
-$GR40: #cbd3dc;  // Disabled button - new version - naming not final
-$GR50: #eff1f2;
-$GR60: #a3abb0;	 // placeholder for InputArea theme="amaterial"
+$P00: #8E21B1;
+$P10: #AA4DC8;   // Wix premium
+$P20: #CD68ED;
+$P30: #E5C9EE;
+$P40: #EEDBF4;
+$P50: #FAEEFF;   // Section Helper
+$P60: #FAF7FC;
 
-$P00: #8e21b1;
-$P10: #aa4dc8;   // Wix premium
-$P20: #cd68ed;
-$P30: #e5c9ee;
-$P40: #eedbf4;
-$P50: #faeeff;   // Section Helper
+$O00: #EA5F0E;
+$O10: #FB7D33;
+$O20: #FF9A48;
 
-$O00: #ea5f0e;
-$O10: #fb7d33;
-$O20: #ff9a48;
+$R00: #D6453D;
+$R05: #D8504C;   // CTA
+$R10: #EE5951;   // Errors, CTA hover
+$R20: #FF6666;   // Notifications
+$R30: #FFD7D7;   // Notifications, Focus Errors
+$R40: #FFE1E1;
+$R50: #FFEBEB;   // Section Helper
+$R60: #FFF5F5;
 
-$R00: #d6453d;
-$R05: #d8504c;   // CTA
-$R10: #ee5951;   // Errors, CTA hover
-$R20: #ff6666;   // Notifications
-$R30: #ffd7d7;   // Notifications, Focus Errors
-$R40: #ffe1e1;
-$R50: #ffebeb;   // Section Helper
+$G00: #44823F;
+$G05: #61AD5A;   // CTA
+$G10: #60BC57;   // CTA hover
+$G20: #80C979;   // Notifications
+$G30: #C9EEBC;   // Notifications
+$G40: #DEF4D4;
+$G50: #EDF9E5;   // Section Helper
+$G60: #F2FBEF;
 
-$G00: #44823f;
-$G05: #61ad5a;   // CTA
-$G10: #60bc57;   // CTA hover
-$G20: #80c979;   // Notifications
-$G30: #c9eebc;   // Notifications
-$G50: #edf9e5;   // Section Helper
+$Y00: #C68801;
+$Y05: #EDA200;   // CTA
+$Y10: #FDB10C;   // CTA hover
+$Y20: #FAC249;   // Notifications
+$Y30: #FEF0BA;   // Notifications
+$Y40: #FEF4CD;
+$Y50: #FDF7DF;   // Section Helper
+$Y60: #FFFCF0;
 
-$Y00: #c68801;
-$Y05: #eda200;   // CTA
-$Y10: #fdb10c;   // CTA hover
-$Y20: #fac249;   // Notifications
-$Y30: #fef0ba;   // Notifications
-$Y40: #fef4cd;
-$Y50: #fff9e1;   // Section Helper
+$S10 : rgba(22, 45, 61, 0.12);
+$S20 : rgba(22, 45, 61, 0.48);
+$S30 : rgba(22, 45, 61, 0.06);
+$S40 : rgba(22, 45, 61, 0.18);
 
-$WR00: #e05050;  // Wix Restaurant red
+$Shadow10 : 0 2px 1px 0 $S20, 0 0 3px 0 $S10;
+$Shadow20 : 0 2px 4px 0 $S10, 0 0 6px 0 $S10;
+$Shadow30 : 0 6px 6px 0 $S30, 0 0 18px 0 $S10;
+$Shadow40 : 0 8px 8px 0 $S10, 0 3px 24px 0 $S40;
 
+/*********************************************
+*              DEPRECATED SECTION - START!
+* TODO: The ALL variable below this message. 
+***********************************************/
 
+$WR00: #E05050;  // Wix Restaurant red
 
-
-// TODO: The lower part is to be deprecated. DEPRECATED!
+$GR10: #C8C8C8;  // Disabled buttons
+$GR20: #DADADA;  // Disabled fields
+$GR30: #F1F1F1;  // Disabled background
+$GR40: #CBD3DC;  // Disabled button - new version - naming not final
+$GR50: #EFF1F2;
+$GR60: #A3ABB0;	 // placeholder for InputArea theme="amaterial"
 
 $paletteB1  : #3899EC;
 $paletteB2  : #4EB7F5;
@@ -125,7 +140,7 @@ $paletteE1  : #2B81CB;
 $paletteE2  : #0D487F;
 $paletteE3  : rgba(255,255,255,0.96);
 $paletteE4  : #2D4150;
-$paletteE5  : #B1DDf8;
+$paletteE5  : #B1DDF8;
 $paletteE6  : #B6C1CD;
 $paletteE7  : #5EFFFF;
 $paletteE8  : #18D2DE;
@@ -157,12 +172,6 @@ $paletteR4  : #FCE6E5;
 
 $BMCounter  : #F4553F;
 
-$S10 : rgba(22, 45, 61, 0.12);
-$S20 : rgba(22, 45, 61, 0.48);
-$S30 : rgba(22, 45, 61, 0.06);
-$S40 : rgba(22, 45, 61, 0.18);
-
-$Shadow10 : 0 2px 1px 0 $S20, 0 0 3px 0 $S10;
-$Shadow20 : 0 2px 4px 0 $S10, 0 0 6px 0 $S10;
-$Shadow30 : 0 6px 6px 0 $S30, 0 0 18px 0 $S10;
-$Shadow40 : 0 8px 8px 0 $S10, 0 3px 24px 0 $S40;
+/*********************************************
+*              DEPRECATED SECTION - END!!
+***********************************************/
