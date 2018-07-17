@@ -110,8 +110,9 @@ import '../stories/ColorPicker.story.js'; // 11.5 Color Picker
 // 12. Other
 import '../stories/Badge'; // 12.1 Badge
 import '../stories/CounterBadge'; //12.3 CounterBadge
-import '../stories/Highlighter.story.js'; // 12.4 Highlighter
+import '../stories/FullTextView.story.js'; //12.4 FullTextView
 import '../stories/Tag.story.js'; // 12.5 Tag
+import '../stories/Highlighter.story.js'; // Highlighter
 import '../stories/FormField.story.js'; // FormField
 
 // 13. Work in progress
