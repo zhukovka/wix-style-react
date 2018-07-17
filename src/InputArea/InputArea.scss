@@ -30,7 +30,6 @@ $gap: 6px;
 }
 
 .errorIcon {
-    color: #f2564d;
     margin: $gap;
 
     background-color: $paletteR1;
@@ -40,7 +39,7 @@ $gap: 6px;
     display: flex;
     align-items: center;
     justify-content: center;
-    color: #fff;
+    color: $D80;
 
     > svg {
       width: 10px;
