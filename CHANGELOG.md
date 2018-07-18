@@ -12,6 +12,9 @@ Types of changes:
 1. **Security** in case of vulnerabilities.
 1. **Breaking** for breaking changes
 
+## next
+- `<Icons/>` - fix wrong icons path in several components [#2012](https://github.com/wix/wix-style-react/pull/2012)
+
 ## 4.10.0 - 2018-07-18
 ### Added
 -  `<Button/>`- support new icons using the `withNewIcons` prop [#1960](https://github.com/wix/wix-style-react/pull/1960)
