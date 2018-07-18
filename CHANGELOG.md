@@ -12,6 +12,10 @@ Types of changes:
 1. **Security** in case of vulnerabilities.
 1. **Breaking** for breaking changes
 
+## 4.10.0-alpha.ts - 2018-07-18
+### Changed
+- Convert WSR to a TypeScript project with allowJS [#1836](https://github.com/wix/wix-style-react/pull/1836)
+
 ## 4.10.0 - 2018-07-18
 ### Added
 -  `<Button/>`- support new icons using the `withNewIcons` prop [#1960](https://github.com/wix/wix-style-react/pull/1960)
