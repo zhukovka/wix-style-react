@@ -14,7 +14,8 @@ Types of changes:
 
 ## next
 ### Added
--  `mixins.scss`- add public scrollbar mixin [#2007](https://github.com/wix/wix-style-react/pull/2007)
+-  Scrollbar - expose `mixins.scss` with scroll mixin to be applied externally [#2007](https://github.com/wix/wix-style-react/pull/2007)
+- `<DatePicker/>` - use fixed weeks to prevent dropdown flip [#2017](https://github.com/wix/wix-style-react/pull/2017)
 
 ## 4.10.1 - 2018-07-18
 - `<Icons/>` - fix wrong icons path in several components [#2012](https://github.com/wix/wix-style-react/pull/2012)
