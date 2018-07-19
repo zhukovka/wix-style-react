@@ -12,9 +12,11 @@ Types of changes:
 1. **Security** in case of vulnerabilities.
 1. **Breaking** for breaking changes
 
-## next
+## 4.11.0 - 2018-07-20
 ### Added
--  Scrollbar - expose `mixins.scss` with scroll mixin to be applied externally [#2007](https://github.com/wix/wix-style-react/pull/2007)
+-  Scrollbar - expose `mixins.scss` with scrollbar mixin to be consumed externally [#2007](https://github.com/wix/wix-style-react/pull/2007)
+
+### Changed
 - `<DatePicker/>` - use fixed weeks to prevent dropdown flip [#2017](https://github.com/wix/wix-style-react/pull/2017)
 
 ## 4.10.1 - 2018-07-18
