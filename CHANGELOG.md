@@ -12,6 +12,10 @@ Types of changes:
 1. **Security** in case of vulnerabilities.
 1. **Breaking** for breaking changes
 
+## next
+### Added
+-  `mixins.scss`- add public scrollbar mixin [#2007](https://github.com/wix/wix-style-react/pull/2007)
+
 ## 4.10.1 - 2018-07-18
 - `<Icons/>` - fix wrong icons path in several components [#2012](https://github.com/wix/wix-style-react/pull/2012)
 
