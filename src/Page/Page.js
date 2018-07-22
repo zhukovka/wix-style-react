@@ -222,9 +222,13 @@ class Page extends WixComponent {
     return (
       <div className={s.page}>
         <div
+          data-hook="page-fixed-container"
           style={this._fixedContainerStyle()}
           className={classNames(s.fixedContainer)}
           ref={r => this.fixedContainerRef = r}
+          onWheel={event => {
+            this._getScrollContainer().scrollTop = this._getScrollContainer().scrollTop + event.deltaY;
+          }}
           >
           <div
             className={classNames(s.pageHeaderContainer, {
