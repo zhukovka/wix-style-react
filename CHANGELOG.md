@@ -12,10 +12,13 @@ Types of changes:
 1. **Security** in case of vulnerabilities.
 1. **Breaking** for breaking changes
 
-## next
+## 4.11.1 - 2018-07-22
 ### Changed
 - `<Page/>` - Allow scrolling with mouse over header [#2015](https://github.com/wix/wix-style-react/pull/2015)
 - `<Page/>` - Remove content jumping when minimization occurs[#2016](https://github.com/wix/wix-style-react/pull/2016)
+
+### Fixed
+- `<MessageBoxFunctionalyLayout/>` - fix scroll bug and improve docs[#2021](https://github.com/wix/wix-style-react/pull/2021)
 
 ## 4.11.0 - 2018-07-20
 ### Added
