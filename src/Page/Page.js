@@ -178,9 +178,7 @@ class Page extends WixComponent {
     // fixedContainerHeight (and other heights) are calculated only when the Page is NOT minimized
     const {fixedContainerHeight, tailHeight, fixedContentHeight} = this.state;
 
-
     const minimizedFixedContainerHeight = PageTail ? fixedContainerHeight - 78 : fixedContainerHeight - (78 - TAIL_TOP_PADDING_PX);
-
     const headerContainerHeight = fixedContainerHeight - fixedContentHeight;
     const imageHeight = `${headerContainerHeight + (PageTail ? -tailHeight : 39)}px`;
     const gradientHeight = gradientCoverTail ? `${headerContainerHeight + (PageTail ? -SCROLL_TOP_THRESHOLD : 39)}px` : imageHeight;
@@ -274,7 +272,7 @@ class Page extends WixComponent {
           onScroll={this._handleScroll}
           data-hook="page-scrollable-content"
           data-class="page-scrollable-content"
-          style={{paddingTop: `${minimized ? minimizedFixedContainerHeight : fixedContainerHeight}px`}}
+          style={{paddingTop: `${fixedContainerHeight}px`}}
           ref={r => this.scrollableContentRef = r}
           >
           {
