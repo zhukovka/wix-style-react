@@ -105,10 +105,9 @@ export default class Calendar extends WixComponent {
       excludePastDates,
       value: propsValue,
       rtl,
-      onChange
+      onChange,
+      value
     } = this.props;
-
-    const {value} = this.state;
 
     const localeUtils = localeUtilsFactory(locale);
 
@@ -165,7 +164,7 @@ export default class Calendar extends WixComponent {
       //   this.openCalendar();
       // }
 
-      keyHandler(this.state.value);
+      keyHandler(this.props.value);
     }
   };
 
