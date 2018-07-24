@@ -26,6 +26,7 @@ import styles from './DatePicker.scss';
 import arrowStyles from './arrow.scss';
 import Input from '../Input';
 import DatePickerHead from './DatePickerHead';
+import Calendar from './Calendar';
 
 /**
  * DatePicker component
@@ -345,7 +346,13 @@ export default class DatePicker extends WixComponent {
       errorMessage,
       customInput,
       width,
-      inputProps
+      inputProps,
+      showMonthDropdown,
+      showYearDropdown,
+      filterDate,
+      excludePastDates,
+      value,
+      rtl
     } = this.props;
 
     const {isOpen} = this.state;
@@ -366,6 +373,17 @@ export default class DatePicker extends WixComponent {
       ...inputProps
     };
 
+    const calendarProps = {
+      locale,
+      showMonthDropdown,
+      showYearDropdown,
+      filterDate,
+      excludePastDates,
+      value,
+      rtl,
+      onChange: this._saveNewValue
+    };
+
     return (
       <div style={{width}} className={styles.root}>
         <div ref={ref => this.inputRef = ref}>
@@ -383,7 +401,9 @@ export default class DatePicker extends WixComponent {
           )}
           >
 
-          {isOpen && <DayPicker {...this._createDayPickerProps()}/>}
+          {/* {isOpen && <DayPicker {...this._createDayPickerProps()}/>} */}
+
+          {<Calendar {...calendarProps} visible={isOpen}/>}
         </div>
       </div>
     );
