@@ -104,7 +104,8 @@ export default class Calendar extends WixComponent {
       filterDate,
       excludePastDates,
       value: propsValue,
-      rtl
+      rtl,
+      onChange
     } = this.props;
 
     const {value} = this.state;
@@ -125,7 +126,7 @@ export default class Calendar extends WixComponent {
 
           onRightArrowClick: () => this._setValue(startOfMonth(addMonths(value, 1)))
         }}
-      />
+        />
     );
 
     return {
@@ -141,7 +142,7 @@ export default class Calendar extends WixComponent {
       fixedWeeks: true,
       modifiers: value ? {'keyboard-selected': value} : {},
       onKeyDown: this._handleKeyDown,
-      onDayClick: this._saveNewValue,
+      onDayClick: onChange,
       localeUtils,
       canChangeMonth: false, // this disables `navbarElement`, whereas `navbarElement: null` doesn't
       captionElement
@@ -170,7 +171,7 @@ export default class Calendar extends WixComponent {
 
   keyHandlers = {
     // enter
-    13: value => this._saveNewValue(value),
+    13: value => this.props.onChange(value),
 
     // escape
     27: this.closeCalendar,

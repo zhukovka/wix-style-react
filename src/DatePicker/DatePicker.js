@@ -73,7 +73,8 @@ export default class DatePicker extends WixComponent {
         'sv',
         'no',
         'nl',
-        'da']),
+        'da'
+      ]),
       PropTypes.shape({
         distanceInWords: PropTypes.object,
         format: PropTypes.object
@@ -142,9 +143,6 @@ export default class DatePicker extends WixComponent {
     super(props);
 
     this.state = {
-      isMonthPickerOpen: false,
-      isYearPickerOpen: false,
-      value: props.value,
       isOpen: props.isOpen || false
     };
   }
@@ -152,13 +150,9 @@ export default class DatePicker extends WixComponent {
   componentDidMount() {
     super.componentDidMount();
 
-    this._popper = new Popper(
-      this.inputRef,
-      this.calendarRef,
-      {
-        placement: 'top-start'
-      }
-    );
+    this._popper = new Popper(this.inputRef, this.calendarRef, {
+      placement: 'top-start'
+    });
   }
 
   componentWillUnmount() {
@@ -176,16 +170,9 @@ export default class DatePicker extends WixComponent {
         () => this._popper.scheduleUpdate()
       );
     }
-  }
+  };
 
-  closeCalendar = () =>
-    this.setState({value: this.state.value, isOpen: false});
-
-  _setValue = value =>
-    this.setState(
-      {value},
-      this._popper.scheduleUpdate
-    );
+  closeCalendar = () => this.setState({isOpen: false});
 
   _saveNewValue = (value, modifiers = {}) => {
     if (modifiers.disabled) {
@@ -199,133 +186,26 @@ export default class DatePicker extends WixComponent {
         [value.getFullYear(), setYear],
         [value.getMonth(), setMonth],
         [value.getDate(), setDate]
-      ].reduce(
-        (value, [datePart, setter]) => setter(value, datePart),
-        this.props.value
-      );
+      ].reduce((value, [datePart, setter]) => setter(value, datePart), this.props.value);
 
       this.setState({value: newValue}, () => this.props.onChange(newValue));
     }
 
     this.props.shouldCloseOnSelect && this.closeCalendar();
-  }
-
-  _createDayPickerProps = () => {
-    const {
-      locale,
-      showMonthDropdown,
-      showYearDropdown,
-      filterDate,
-      excludePastDates,
-      value: propsValue,
-      rtl
-    } = this.props;
-
-    const {value} = this.state;
-
-    const localeUtils = localeUtilsFactory(locale);
-
-    const captionElement = (
-      <DatePickerHead
-        {...{
-          date: value,
-          showYearDropdown,
-          showMonthDropdown,
-          localeUtils,
-          rtl,
-          onChange: this._setValue,
-
-          onLeftArrowClick: () =>
-            this._setValue(startOfMonth(addMonths(value, -1))),
-
-          onRightArrowClick: () =>
-            this._setValue(startOfMonth(addMonths(value, 1)))
-        }}
-        />
-    );
-
-    return {
-      disabledDays:
-        excludePastDates ?
-          [{before: new Date()}] : // todo adjust with tz
-          date => !filterDate(date),
-
-      initialMonth: value,
-      initialYear: value,
-      selectedDays: parse(propsValue),
-      month: value,
-      year: value,
-      firstDayOfWeek: 1,
-      locale: typeof locale === 'string' ? locale : '',
-      fixedWeeks: true,
-      modifiers: value ? {'keyboard-selected': value} : {},
-      onKeyDown: this._handleKeyDown,
-      onDayClick: this._saveNewValue,
-      localeUtils,
-      canChangeMonth: false, // this disables `navbarElement`, whereas `navbarElement: null` doesn't
-      captionElement
-    };
-  }
+  };
 
   _handleKeyDown = event => {
-    const keyHandler = this.keyHandlers[event.keyCode];
-
-    if (keyHandler) {
-      // TODO: dirty for now
-      // tab key should move focus so can't preventDefault
-      if (event.keyCode !== 9) {
-        event.preventDefault();
-      }
-
-      if (!this.state.isOpen) {
-        this.openCalendar();
-      }
-
-      keyHandler(this.state.value);
+    // TODO: dirty for now
+    // tab key should move focus so can't preventDefault
+    if (event.keyCode !== 9) {
+      event.preventDefault();
     }
-  }
 
-  keyHandlers = {
-    // enter
-    13: value => this._saveNewValue(value),
+    if (!this.state.isOpen) {
+      this.openCalendar();
+    }
 
-    // escape
-    27: this.closeCalendar,
-
-    // page up
-    33: value =>
-      this._setValue(subMonths(value, 1)),
-
-    // page down
-    34: value =>
-      this._setValue(addMonths(value, 1)),
-
-    // end
-    35: value =>
-      this._setValue(addYears(value, 1)),
-
-    // home
-    36: value =>
-      this._setValue(subYears(value, 1)),
-
-    // left arrow
-    37: value =>
-      this._setValue(subDays(value, this.props.rtl ? -1 : 1)),
-
-    // up arrow
-    38: value =>
-      this._setValue(subDays(value, 7)),
-
-    // right arrow
-    39: value =>
-      this._setValue(addDays(value, this.props.rtl ? -1 : 1)),
-
-    // down arrow
-    40: value =>
-      this._setValue(addDays(value, 7)),
-
-    // tab
-    9: this.closeCalendar
+    // keyHandler(this.state.value);
   };
 
   onClickOutside() {
@@ -364,7 +244,11 @@ export default class DatePicker extends WixComponent {
       disabled,
       readOnly,
       placeholder: placeholderText,
-      prefix: <span className={styles.icon}><CalendarIcon/></span>,
+      prefix: (
+        <span className={styles.icon}>
+          <CalendarIcon />
+        </span>
+      ),
       onFocus: this.openCalendar,
       onKeyDown: this._handleKeyDown,
       error,
@@ -386,24 +270,20 @@ export default class DatePicker extends WixComponent {
 
     return (
       <div style={{width}} className={styles.root}>
-        <div ref={ref => this.inputRef = ref}>
-          {React.cloneElement(customInput || <Input/>, _inputProps)}
+        <div ref={ref => (this.inputRef = ref)}>
+          {React.cloneElement(customInput || <Input />, _inputProps)}
         </div>
 
         <div
-          ref={ref => this.calendarRef = ref}
+          ref={ref => (this.calendarRef = ref)}
           data-hook={calendarDataHook}
-          className={classNames(
-            styles.calendarRoot,
-            {
-              [arrowStyles.root]: isOpen
-            }
-          )}
-          >
-
+          className={classNames(styles.calendarRoot, {
+            [arrowStyles.root]: isOpen
+          })}
+        >
           {/* {isOpen && <DayPicker {...this._createDayPickerProps()}/>} */}
 
-          {<Calendar {...calendarProps} visible={isOpen}/>}
+          {<Calendar {...calendarProps} visible={isOpen} />}
         </div>
       </div>
     );
