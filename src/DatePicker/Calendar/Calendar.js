@@ -143,7 +143,7 @@ export default class Calendar extends WixComponent {
       onKeyDown: this._handleKeyDown,
       onDayClick: onChange,
       localeUtils,
-      navbarElement: <span/>,
+      navbarElement: () => null,
       // canChangeMonth: false, // this disables `navbarElement`, whereas `navbarElement: null` doesn't
       captionElement
     };
