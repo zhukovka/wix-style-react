@@ -69,6 +69,11 @@ $dayHoverColor: $B50;
       border-radius: 50%;
       cursor: pointer;
 
+      &:focus {
+        outline: none;
+        border: 3px solid #AADBFC;
+      }
+      
       &:hover:not(.DayPicker-Day--today):not(.DayPicker-Day--selected) {
         background-color: $B50;
       }
@@ -79,18 +84,18 @@ $dayHoverColor: $B50;
        @include todayBackground(6px);
       }
 
-      &--today.DayPicker-Day--keyboard-selected:not(.DayPicker-Day--selected) {
-        @include todayBackground(3px);
-      }
+      // &--today.DayPicker-Day--keyboard-selected:not(.DayPicker-Day--selected) {
+      //   @include todayBackground(3px);
+      // }
 
       &--selected {
         background-color: $B10;
         color: $D80;
       }
 
-      &--keyboard-selected:not(.DayPicker-Day--selected) {
-        border: 3px solid $F00;
-      }
+      // &--keyboard-selected:not(.DayPicker-Day--selected) {
+      //   border: 3px solid $F00;
+      // }
 
       &--outside,
       &--disabled {

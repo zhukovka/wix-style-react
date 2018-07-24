@@ -3,12 +3,12 @@ import PropTypes from 'prop-types';
 
 import DayPicker from 'react-day-picker/DayPicker';
 
-import addDays from 'date-fns/add_days';
-import subDays from 'date-fns/sub_days';
+// import addDays from 'date-fns/add_days';
+// import subDays from 'date-fns/sub_days';
 import addMonths from 'date-fns/add_months';
-import subMonths from 'date-fns/sub_months';
-import addYears from 'date-fns/add_years';
-import subYears from 'date-fns/sub_years';
+// import subMonths from 'date-fns/sub_months';
+// import addYears from 'date-fns/add_years';
+// import subYears from 'date-fns/sub_years';
 import parse from 'date-fns/parse';
 import startOfMonth from 'date-fns/start_of_month';
 
@@ -90,11 +90,15 @@ export default class Calendar extends WixComponent {
     this.state = {
       isMonthPickerOpen: false,
       isYearPickerOpen: false,
-      value: props.value
+      month: props.value
     };
   }
 
-  _setValue = value => this.setState({value});
+  componentDidMount() {
+
+  }
+
+  _setMonth = month => this.setState({month});
 
   _createDayPickerProps = () => {
     const {
@@ -108,23 +112,23 @@ export default class Calendar extends WixComponent {
       onChange
     } = this.props;
 
-    const {value} = this.state;
+    const {month} = this.state;
 
     const localeUtils = localeUtilsFactory(locale);
 
     const captionElement = (
       <DatePickerHead
         {...{
-          date: value,
+          date: month,
           showYearDropdown,
           showMonthDropdown,
           localeUtils,
           rtl,
-          onChange: this._setValue,
+          onChange: this._setMonth,
 
-          onLeftArrowClick: () => this._setValue(startOfMonth(addMonths(value, -1))),
+          onLeftArrowClick: () => this._setMonth(startOfMonth(addMonths(month, -1))),
 
-          onRightArrowClick: () => this._setValue(startOfMonth(addMonths(value, 1)))
+          onRightArrowClick: () => this._setMonth(startOfMonth(addMonths(month, 1)))
         }}
         />
     );
@@ -132,19 +136,20 @@ export default class Calendar extends WixComponent {
     return {
       disabledDays: excludePastDates ? [{before: new Date()}] : date => !filterDate(date),
 
-      initialMonth: value,
-      initialYear: value,
+      initialMonth: month,
+      initialYear: month,
       selectedDays: parse(propsValue),
-      month: value,
-      year: value,
+      month,
+      year: month,
       firstDayOfWeek: 1,
       locale: typeof locale === 'string' ? locale : '',
       fixedWeeks: true,
-      modifiers: value ? {'keyboard-selected': value} : {},
+      // modifiers: value ? {'keyboard-selected': value} : {},
       onKeyDown: this._handleKeyDown,
       onDayClick: onChange,
       localeUtils,
-      canChangeMonth: false, // this disables `navbarElement`, whereas `navbarElement: null` doesn't
+      navbarElement: <span/>,
+      // canChangeMonth: false, // this disables `navbarElement`, whereas `navbarElement: null` doesn't
       captionElement
     };
   };
@@ -153,52 +158,52 @@ export default class Calendar extends WixComponent {
     const keyHandler = this.keyHandlers[event.keyCode];
 
     if (keyHandler) {
-      const isTabClicked = event.keyCode === 9;
+      // const isTabClicked = event.keyCode === 9;
 
       // tab key should move focus so can't preventDefault
-      if (!isTabClicked) {
-        event.preventDefault();
-      }
+      // if (!isTabClicked) {
+      //   event.preventDefault();
+      // }
 
       // TODO M: This looks like the only place we should keep on input
       // if (!this.state.isOpen) {
       //   this.openCalendar();
       // }
 
-      keyHandler(this.state.value);
+      keyHandler(this.state.month);
     }
   };
 
   keyHandlers = {
     // enter
-    13: value => this.props.onChange(value),
+    // 13: value => this.props.onChange(value),
 
     // escape
     27: this.closeCalendar,
 
     // page up
-    33: value => this._setValue(subMonths(value, 1)),
+    // 33: value => this._setMonth(subMonths(value, 1)),
 
-    // page down
-    34: value => this._setValue(addMonths(value, 1)),
+    // // page down
+    // 34: value => this._setMonth(addMonths(value, 1)),
 
-    // end
-    35: value => this._setValue(addYears(value, 1)),
+    // // end
+    // 35: value => this._setMonth(addYears(value, 1)),
 
-    // home
-    36: value => this._setValue(subYears(value, 1)),
+    // // home
+    // 36: value => this._setMonth(subYears(value, 1)),
 
-    // left arrow
-    37: value => this._setValue(subDays(value, this.props.rtl ? -1 : 1)),
+    // // left arrow
+    // 37: value => this._setMonth(subDays(value, this.props.rtl ? -1 : 1)),
 
-    // up arrow
-    38: value => this._setValue(subDays(value, 7)),
+    // // up arrow
+    // 38: value => this._setMonth(subDays(value, 7)),
 
-    // right arrow
-    39: value => this._setValue(addDays(value, this.props.rtl ? -1 : 1)),
+    // // right arrow
+    // 39: value => this._setMonth(addDays(value, this.props.rtl ? -1 : 1)),
 
-    // down arrow
-    40: value => this._setValue(addDays(value, 7)),
+    // // down arrow
+    // 40: value => this._setMonth(addDays(value, 7)),
 
     // tab
     9: this.closeCalendar
