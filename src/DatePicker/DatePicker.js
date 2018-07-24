@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import Popper from 'popper.js';
+import DayPickerInput from 'react-day-picker/DayPickerInput';
 
 import isSameDay from 'date-fns/is_same_day';
 import setYear from 'date-fns/set_year';
@@ -252,13 +253,17 @@ export default class DatePicker extends WixComponent {
       filterDate,
       excludePastDates,
       rtl,
-      onChange: this._saveNewValue
+      onChange: this._saveNewValue,
+      onClose: this.closeCalendar
     };
 
     return (
       <div style={{width}} className={styles.root}>
         <div ref={ref => (this.inputRef = ref)}>
-          {React.cloneElement(customInput || <Input/>, _inputProps)}
+          <DayPickerInput
+            component={() => React.cloneElement(customInput || <Input/>, _inputProps)}
+            keepFocus={false}
+            />
         </div>
 
         <div
@@ -270,7 +275,7 @@ export default class DatePicker extends WixComponent {
           >
           {/* {isOpen && <DayPicker {...this._createDayPickerProps()}/>} */}
 
-          {<Calendar {...calendarProps} visible={isOpen} value={this.state.value}/>}
+          <Calendar {...calendarProps} visible={isOpen} value={this.state.value}/>
         </div>
       </div>
     );

@@ -17,6 +17,7 @@ const datePickerDriverFactory = ({element, wrapper}) => {
   const getNthWeekDayName = n => element.querySelectorAll('[class="DayPicker-Weekday"] abbr')[n];
   const getPrevMonthButton = () => element.querySelector('[data-hook="datepicker-left-arrow"]');
   const getNextMonthButton = () => element.querySelector('[data-hook="datepicker-right-arrow"]');
+  const getFocusedDay = () => wrapper.querySelector('.DayPicker-Day:focus');
 
   const driver = {
     exists: () => !!element
@@ -42,9 +43,9 @@ const datePickerDriverFactory = ({element, wrapper}) => {
     getMonthCaption: () => getMonthCaption().textContent,
     getMonthDropdownLabel: () => getMonthDropdownButton().textContent,
     getSelectedYear: () => getYearDropdown().textContent,
-    getFocusedDay: () => element.querySelector('.DayPicker-Day--keyboard-selected').textContent,
-    pressLeftArrow: () => inputDriver.trigger('keyDown', {key: 'ArrowLeft', keyCode: 37}),
-    pressRightArrow: () => inputDriver.trigger('keyDown', {key: 'ArrowRight', keyCode: 39}),
+    getFocusedDay: () => getFocusedDay().textContent,
+    pressLeftArrow: () => ReactTestUtils.Simulate.keyDown(getFocusedDay(), {key: 'ArrowLeft', keyCode: 37}),
+    pressRightArrow: () => ReactTestUtils.Simulate.keyDown(element, {key: 'ArrowRight', keyCode: 39}),
     getSelectedDay: () => getSelectedDay().textContent,
     getWidth: () => element.style.width,
 

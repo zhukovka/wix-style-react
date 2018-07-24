@@ -94,10 +94,6 @@ export default class Calendar extends WixComponent {
     };
   }
 
-  componentDidMount() {
-
-  }
-
   _setMonth = month => this.setState({month});
 
   _createDayPickerProps = () => {
@@ -109,17 +105,16 @@ export default class Calendar extends WixComponent {
       excludePastDates,
       value: propsValue,
       rtl,
-      onChange,
-      value
+      onChange
     } = this.props;
 
-    const {month} = this.state;
+    const month = this.state.month || propsValue;
     const localeUtils = localeUtilsFactory(locale);
 
     const captionElement = (
       <DatePickerHead
         {...{
-          date: value,
+          date: month,
           showYearDropdown,
           showMonthDropdown,
           localeUtils,
@@ -174,6 +169,11 @@ export default class Calendar extends WixComponent {
     }
   };
 
+  closeCalendar = () => {
+    this.setState({month: this.props.value});
+    this.props.onClose();
+  }
+
   keyHandlers = {
     // enter
     // 13: value => this.props.onChange(value),
@@ -209,9 +209,15 @@ export default class Calendar extends WixComponent {
     9: this.closeCalendar
   };
 
+  initRef = el => {
+    if (el) {
+      el.dayPicker.querySelector('.DayPicker-Day--selected').focus();
+    }
+  }
+
   render() {
     const {visible} = this.props;
 
-    return <div>{visible && <DayPicker {...this._createDayPickerProps()}/>}</div>;
+    return <div>{visible && <DayPicker ref={this.initRef} {...this._createDayPickerProps()}/>}</div>;
   }
 }
