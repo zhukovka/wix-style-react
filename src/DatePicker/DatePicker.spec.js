@@ -85,16 +85,6 @@ describe('DatePicker', () => {
     });
 
     describe('should close', () => {
-      it('on select date with Enter key', () => {
-        const value = new Date(2017, 5, 2);
-        const {inputDriver, calendarDriver} = createDriver(<DatePicker value={value} onChange={noop}/>);
-
-        inputDriver.trigger('click');
-        inputDriver.trigger('keyDown', {key: 'ArrowRight', keyCode: 39});
-        inputDriver.trigger('keyDown', {key: 'Enter', keyCode: 13});
-
-        expect(calendarDriver.isVisible()).toBe(false);
-      });
 
       it('on select date with click', () => {
         const {inputDriver, calendarDriver} = createDriver(<DatePicker onChange={noop}/>);
