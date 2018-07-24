@@ -109,17 +109,17 @@ export default class Calendar extends WixComponent {
       excludePastDates,
       value: propsValue,
       rtl,
-      onChange
+      onChange,
+      value
     } = this.props;
 
     const {month} = this.state;
-
     const localeUtils = localeUtilsFactory(locale);
 
     const captionElement = (
       <DatePickerHead
         {...{
-          date: month,
+          date: value,
           showYearDropdown,
           showMonthDropdown,
           localeUtils,

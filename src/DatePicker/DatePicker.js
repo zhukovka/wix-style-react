@@ -3,29 +3,18 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import Popper from 'popper.js';
 
-import DayPicker from 'react-day-picker/DayPicker';
-
-import addDays from 'date-fns/add_days';
-import subDays from 'date-fns/sub_days';
-import addMonths from 'date-fns/add_months';
-import subMonths from 'date-fns/sub_months';
-import addYears from 'date-fns/add_years';
-import subYears from 'date-fns/sub_years';
-import parse from 'date-fns/parse';
 import isSameDay from 'date-fns/is_same_day';
-import startOfMonth from 'date-fns/start_of_month';
 import setYear from 'date-fns/set_year';
 import setMonth from 'date-fns/set_month';
 import setDate from 'date-fns/set_date';
 
 import WixComponent from '../BaseComponents/WixComponent';
 import CalendarIcon from '../new-icons/Date';
-import localeUtilsFactory, {formatDate} from './LocaleUtils';
+import {formatDate} from './LocaleUtils';
 
 import styles from './DatePicker.scss';
 import arrowStyles from './arrow.scss';
 import Input from '../Input';
-import DatePickerHead from './DatePickerHead';
 import Calendar from './Calendar';
 
 /**
@@ -231,7 +220,6 @@ export default class DatePicker extends WixComponent {
       showYearDropdown,
       filterDate,
       excludePastDates,
-      value,
       rtl
     } = this.props;
 
@@ -246,7 +234,7 @@ export default class DatePicker extends WixComponent {
       placeholder: placeholderText,
       prefix: (
         <span className={styles.icon}>
-          <CalendarIcon />
+          <CalendarIcon/>
         </span>
       ),
       onFocus: this.openCalendar,
@@ -263,7 +251,6 @@ export default class DatePicker extends WixComponent {
       showYearDropdown,
       filterDate,
       excludePastDates,
-      value,
       rtl,
       onChange: this._saveNewValue
     };
@@ -271,7 +258,7 @@ export default class DatePicker extends WixComponent {
     return (
       <div style={{width}} className={styles.root}>
         <div ref={ref => (this.inputRef = ref)}>
-          {React.cloneElement(customInput || <Input />, _inputProps)}
+          {React.cloneElement(customInput || <Input/>, _inputProps)}
         </div>
 
         <div
@@ -280,10 +267,10 @@ export default class DatePicker extends WixComponent {
           className={classNames(styles.calendarRoot, {
             [arrowStyles.root]: isOpen
           })}
-        >
+          >
           {/* {isOpen && <DayPicker {...this._createDayPickerProps()}/>} */}
 
-          {<Calendar {...calendarProps} visible={isOpen} />}
+          {<Calendar {...calendarProps} visible={isOpen} value={this.state.value}/>}
         </div>
       </div>
     );
