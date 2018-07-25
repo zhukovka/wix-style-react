@@ -45,9 +45,10 @@ const datePickerDriverFactory = ({element, wrapper}) => {
     getSelectedYear: () => getYearDropdown().textContent,
     getFocusedDay: () => getFocusedDay().textContent,
     pressLeftArrow: () => ReactTestUtils.Simulate.keyDown(getFocusedDay(), {key: 'ArrowLeft', keyCode: 37}),
-    pressRightArrow: () => ReactTestUtils.Simulate.keyDown(element, {key: 'ArrowRight', keyCode: 39}),
+    pressRightArrow: () => ReactTestUtils.Simulate.keyDown(getFocusedDay(), {key: 'ArrowRight', keyCode: 39}),
     getSelectedDay: () => getSelectedDay().textContent,
     getWidth: () => element.style.width,
+    triggerKeyDown: params => ReactTestUtils.Simulate.keyDown(getFocusedDay(), params),
 
     getMonthDropdownDriver: () => {
       ReactTestUtils.Simulate.click(element.querySelector('[data-hook="datepicker-month-dropdown-button"]'));

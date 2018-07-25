@@ -99,7 +99,7 @@ describe('DatePicker', () => {
         const {inputDriver, calendarDriver} = createDriver(<DatePicker onChange={noop}/>);
 
         inputDriver.trigger('click');
-        inputDriver.trigger('keyDown', {key: 'Escape', keyCode: 27});
+        calendarDriver.triggerKeyDown({key: 'Escape', keyCode: 27});
 
         expect(calendarDriver.isVisible()).toBe(false);
       });
