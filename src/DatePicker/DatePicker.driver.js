@@ -34,7 +34,7 @@ const datePickerDriverFactory = ({element, wrapper}) => {
     clickOnPrevMonthButton: () => ReactTestUtils.Simulate.click(getPrevMonthButton()),
     clickOnNextMonthButton: () => ReactTestUtils.Simulate.click(getNextMonthButton()),
     open: () => inputDriver.focus(),
-    close: () => inputDriver.trigger('keyDown', {key: 'Escape', keyCode: 27}),
+    close: () => ReactTestUtils.Simulate.keyDown(getFocusedDay(), {key: 'Escape', keyCode: 27}),
     isHeaderVisible: () => !!wrapper.querySelector('[data-hook="datepicker-head"]'),
     isYearDropdownExists: () => !!wrapper.querySelector('[data-hook="datepicker-year-dropdown"]'),
     isYearCaptionExists: () => !!getYearCaption(),
