@@ -109,7 +109,7 @@ describe('DatePicker', () => {
         const {inputDriver, calendarDriver} = createDriver(<DatePicker onChange={noop}/>);
 
         inputDriver.trigger('click');
-        inputDriver.trigger('keyDown', {key: 'Tab', keyCode: 9, preventDefault});
+        calendarDriver.triggerKeyDown({key: 'Tab', keyCode: 9, preventDefault});
 
         expect(preventDefault.mock.calls.length).toBe(0);
         expect(calendarDriver.isVisible()).toBe(false);
