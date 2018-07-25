@@ -22,7 +22,7 @@ $dayBadgeSize: 36px;
 
 :global {
   .DayPicker {
-    min-width: 333px;
+    min-width: 300px;
     box-shadow: $Shadow30;
     @include FontLight;
     font-size: 14px;
@@ -53,7 +53,7 @@ $dayBadgeSize: 36px;
 
     &-Weekday {
       width: 17px;
-      padding: $rootPadding 0 12px;
+      padding: 18px 0 12px;
       color: $D40;
     }
 

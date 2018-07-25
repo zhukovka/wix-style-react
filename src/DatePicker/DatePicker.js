@@ -1,6 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import classNames from 'classnames';
 import Popper from 'popper.js';
 import DayPickerInput from 'react-day-picker/DayPickerInput';
 
@@ -14,7 +13,6 @@ import CalendarIcon from '../new-icons/Date';
 import {formatDate} from './LocaleUtils';
 
 import styles from './DatePicker.scss';
-import arrowStyles from './arrow.scss';
 import Input from '../Input';
 import Calendar from './Calendar';
 
@@ -186,9 +184,7 @@ export default class DatePicker extends WixComponent {
         <div
           ref={ref => (this.calendarRef = ref)}
           data-hook={calendarDataHook}
-          className={classNames(styles.calendarRoot, {
-            [arrowStyles.root]: isOpen
-          })}
+          className={styles.calendarRoot}
           >
           <Calendar {...calendarProps}/>
         </div>

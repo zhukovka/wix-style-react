@@ -57,7 +57,7 @@ export default class DropdownPicker extends React.Component {
           onClick={this.toggleDropdown}
           >
           <Text
-            appearance="T1.2"
+            appearance="T2"
             dataHook={`${dataHook}-button`}
             children={caption}
             />
