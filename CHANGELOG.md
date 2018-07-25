@@ -15,6 +15,7 @@ Types of changes:
 ## next
 ### Added
 - `<MessageBoxFunctionalLayout/>` - Add fullscreen prop according to design [#2026](https://github.com/wix/wix-style-react/pull/2026)
+- `<MessageBoxFunctionalLayout/>` - Add footer border for scrollable content [#2027](https://github.com/wix/wix-style-react/pull/2027)
 
 ## 4.11.1 - 2018-07-22
 ### Changed
