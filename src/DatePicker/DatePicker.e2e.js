@@ -52,7 +52,7 @@ describe('DatePicker', () => {
       inputDriver.click();
       expect(calendarDriver.exists()).toBe(true);
 
-      inputDriver.pressEscKey();
+      calendarDriver.pressEscKey();
       expect(calendarDriver.exists()).toBe(false);
     }, {version: '<Input/> - On text click - select all'});
 
@@ -60,14 +60,14 @@ describe('DatePicker', () => {
       inputDriver.click();
       expect(calendarDriver.exists()).toBe(true);
 
-      inputDriver.pressTabKey();
+      calendarDriver.pressTabKey();
       expect(calendarDriver.exists()).toBe(false);
     });
 
     eyes.it('should not change date', () => {
       autoExampleDriver.setProps({value: new Date('2017/05/01')});
       inputDriver.click();
-      inputDriver.pressEnterKey();
+      calendarDriver.pressEnterKey();
 
       expect(inputDriver.getValue()).toBe('2017/05/01');
     }, {version: '<Input/> - On text click - select all'});
@@ -75,8 +75,8 @@ describe('DatePicker', () => {
     eyes.it('should select next day date', () => {
       autoExampleDriver.setProps({value: new Date('2017/05/01')});
       inputDriver.click();
-      inputDriver.pressArrowRightKey();
-      inputDriver.pressEnterKey();
+      calendarDriver.pressArrowRightKey();
+      calendarDriver.pressEnterKey();
 
       expect(inputDriver.getValue()).toBe('2017/05/02');
     });

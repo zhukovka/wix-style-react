@@ -97,9 +97,7 @@ export default class Calendar extends WixComponent {
   _handleKeyDown = event => {
     const keyHandler = this.keyHandlers[event.keyCode];
 
-    if (keyHandler) {
-      keyHandler(this.state.month);
-    }
+    keyHandler && keyHandler();
   };
 
   keyHandlers = {
