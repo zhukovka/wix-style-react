@@ -27,7 +27,8 @@ class MessageBoxFunctionalLayout extends WixComponent {
       disableCancel,
       width,
       noBodyPadding,
-      maxHeight
+      maxHeight,
+      fullscreen
     } = this.props;
 
 
@@ -35,15 +36,23 @@ class MessageBoxFunctionalLayout extends WixComponent {
       styles.body,
       {
         [styles.scrollable]: typeof maxHeight !== 'undefined',
-        [styles.noPadding]: noBodyPadding
+        [styles.noPadding]: noBodyPadding,
+        [styles.fullscreenBody]: fullscreen
       }
     );
     const messageBoxBodyStyle = {
       maxHeight
     };
 
+    const contentClassName = classNames(
+      styles.content,
+      {
+        [styles.fullscreenContent]: fullscreen
+      }
+    );
+
     return (
-      <div className={styles.content} style={{width}}>
+      <div className={contentClassName} style={{width}}>
         <HeaderLayout title={title} onCancel={onClose ? onClose : onCancel} theme={theme} closeButton={closeButton}/>
         <div
           data-hook="message-box-body"
@@ -87,15 +96,16 @@ MessageBoxFunctionalLayout.propTypes = {
   disableCancel: PropTypes.bool,
   disableConfirmation: PropTypes.bool,
   noBodyPadding: PropTypes.bool,
-  footerBottomChildren: PropTypes.node
+  footerBottomChildren: PropTypes.node,
+  fullscreen: PropTypes.bool
 };
 
 MessageBoxFunctionalLayout.defaultProps = {
   buttonsHeight: 'small',
   disableCancel: false,
   disableConfirmation: false,
-  width: '600px',
-  noBodyPadding: false
+  noBodyPadding: false,
+  fullscreen: false
 };
 
 export default MessageBoxFunctionalLayout;

@@ -1,5 +1,6 @@
 import eyes from 'eyes.it';
 import {createStoryUrl, waitForVisibilityOf, scrollToElement} from '../../test/utils/protractor';
+import {buttonTestkitFactory} from '../../testkit/protractor';
 
 const byDataHook = dataHook => $(`[data-hook="${dataHook}"]`);
 
@@ -36,6 +37,16 @@ describe('MessageBox', () => {
       await browser.get(storyUrl);
       await verifyItem(standard);
       await verifyItem(secondary);
+    });
+  });
+
+  describe('Custom Modal', () => {
+    eyes.it('should open full screen modal', async () => {
+      const storyUrl = createStoryUrl({kind: '9. Modals', story: '9.3 Custom Modal'});
+      await browser.get(storyUrl);
+      const button = buttonTestkitFactory({dataHook: 'open-full-screen-modal-button'});
+      button.click();
+      await verifyItem('fullscreen-modal');
     });
   });
 
