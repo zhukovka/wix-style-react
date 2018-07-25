@@ -273,7 +273,6 @@ export default class DatePicker extends WixComponent {
             [arrowStyles.root]: isOpen
           })}
           >
-          {/* {isOpen && <DayPicker {...this._createDayPickerProps()}/>} */}
 
           <Calendar {...calendarProps} visible={isOpen} value={this.state.value}/>
         </div>

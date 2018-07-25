@@ -3,12 +3,7 @@ import PropTypes from 'prop-types';
 
 import DayPicker from 'react-day-picker/DayPicker';
 
-// import addDays from 'date-fns/add_days';
-// import subDays from 'date-fns/sub_days';
 import addMonths from 'date-fns/add_months';
-// import subMonths from 'date-fns/sub_months';
-// import addYears from 'date-fns/add_years';
-// import subYears from 'date-fns/sub_years';
 import parse from 'date-fns/parse';
 import startOfMonth from 'date-fns/start_of_month';
 
@@ -94,6 +89,11 @@ export default class Calendar extends WixComponent {
     };
   }
 
+  // TODO: Change to getDerivedStateFromProps with React ^16.0.0
+  componentWillReceiveProps(nextProps) {
+    this.setState({month: nextProps.value});
+  }
+
   _setMonth = month => this.setState({month});
 
   _createDayPickerProps = () => {
@@ -139,12 +139,10 @@ export default class Calendar extends WixComponent {
       firstDayOfWeek: 1,
       locale: typeof locale === 'string' ? locale : '',
       fixedWeeks: true,
-      // modifiers: value ? {'keyboard-selected': value} : {},
       onKeyDown: this._handleKeyDown,
       onDayClick: onChange,
       localeUtils,
       navbarElement: () => null,
-      // canChangeMonth: false, // this disables `navbarElement`, whereas `navbarElement: null` doesn't
       captionElement
     };
   };
@@ -153,71 +151,25 @@ export default class Calendar extends WixComponent {
     const keyHandler = this.keyHandlers[event.keyCode];
 
     if (keyHandler) {
-      // const isTabClicked = event.keyCode === 9;
-
-      // tab key should move focus so can't preventDefault
-      // if (!isTabClicked) {
-      //   event.preventDefault();
-      // }
-
-      // TODO M: This looks like the only place we should keep on input
-      // if (!this.state.isOpen) {
-      //   this.openCalendar();
-      // }
-
       keyHandler(this.state.month);
     }
   };
 
-  closeCalendar = () => {
-    this.setState({month: this.props.value});
-    this.props.onClose();
-  }
-
   keyHandlers = {
-    // enter
-    // 13: value => this.props.onChange(value),
-
     // escape
-    27: this.closeCalendar,
-
-    // page up
-    // 33: value => this._setMonth(subMonths(value, 1)),
-
-    // // page down
-    // 34: value => this._setMonth(addMonths(value, 1)),
-
-    // // end
-    // 35: value => this._setMonth(addYears(value, 1)),
-
-    // // home
-    // 36: value => this._setMonth(subYears(value, 1)),
-
-    // // left arrow
-    // 37: value => this._setMonth(subDays(value, this.props.rtl ? -1 : 1)),
-
-    // // up arrow
-    // 38: value => this._setMonth(subDays(value, 7)),
-
-    // // right arrow
-    // 39: value => this._setMonth(addDays(value, this.props.rtl ? -1 : 1)),
-
-    // // down arrow
-    // 40: value => this._setMonth(addDays(value, 7)),
+    27: this.props.onClose,
 
     // tab
-    9: this.closeCalendar
+    9: this.props.onClose
   };
 
-  initRef = el => {
-    if (el) {
-      el.dayPicker.querySelector('.DayPicker-Day--selected').focus();
-    }
+  _focusSelectedDay = dayPickerRef => {
+    dayPickerRef && dayPickerRef.dayPicker.querySelector('.DayPicker-Day--selected').focus();
   }
 
   render() {
     const {visible} = this.props;
 
-    return <div>{visible && <DayPicker ref={this.initRef} {...this._createDayPickerProps()}/>}</div>;
+    return <div>{visible && <DayPicker ref={this._focusSelectedDay} {...this._createDayPickerProps()}/>}</div>;
   }
 }
