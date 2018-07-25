@@ -36,95 +36,10 @@ import Calendar from './Calendar';
 export default class DatePicker extends WixComponent {
   static displayName = 'DatePicker';
 
-  static propTypes = {
-    /** Can provide Input with your custom props. If you don't need a custom input element, and only want to pass props to the Input, then use inputProps prop. I think this is not in use outside of WSR, and can be deprecated. */
-    customInput: PropTypes.node,
-
-    /** Properties appended to the default Input component or the custom Input component. */
-    inputProps: PropTypes.object,
-
-    /** Custom date format */
-    dateFormat: PropTypes.string,
-
-    /** DatePicker instance locale */
-    locale: PropTypes.oneOfType([
-      PropTypes.oneOf([
-        'en',
-        'es',
-        'pt',
-        'fr',
-        'de',
-        'pl',
-        'it',
-        'ru',
-        'ja',
-        'ko',
-        'tr',
-        'sv',
-        'no',
-        'nl',
-        'da'
-      ]),
-      PropTypes.shape({
-        distanceInWords: PropTypes.object,
-        format: PropTypes.object
-      })
-    ]),
-
-    /** Is the DatePicker disabled */
-    disabled: PropTypes.bool,
-
-    /** Past dates are unselectable */
-    excludePastDates: PropTypes.bool,
-
-    /** Only the truthy dates are selectable */
-    filterDate: PropTypes.func,
-
-    /** dataHook for the DatePicker's Input */
-    inputDataHook: PropTypes.string,
-
-    /** calendarDataHook for the DatePicker's calendar view */
-    calendarDataHook: PropTypes.string,
-
-    /** Called upon every value change */
-    onChange: PropTypes.func.isRequired,
-
-    /** placeholder of the Input */
-    placeholderText: PropTypes.string,
-
-    /** RTL mode */
-    rtl: PropTypes.bool,
-
-    /** Display a selectable yearDropdown */
-    showYearDropdown: PropTypes.bool,
-
-    /** Display a selectable monthDropdown */
-    showMonthDropdown: PropTypes.bool,
-
-    /** The selected date */
-    value: PropTypes.object,
-
-    /** should the calendar close on day selection */
-    shouldCloseOnSelect: PropTypes.bool,
-
-    /** controls the whether the calendar will be visible or not */
-    isOpen: PropTypes.bool,
-
-    /** will show exclamation icon when true **/
-    error: PropTypes.bool,
-
-    /** will display message when hovering error icon **/
-    errorMessage: PropTypes.node,
-
-    /** set desired width of DatePicker input */
-    width: PropTypes.number
-  };
-
   static defaultProps = {
     locale: 'en',
     dateFormat: 'MM/DD/YYYY',
     filterDate: () => true,
-    shouldCloseOnSelect: true,
     rtl: false,
     width: 150
   };
@@ -180,8 +95,6 @@ export default class DatePicker extends WixComponent {
 
       this.setState({value: newValue}, () => this.props.onChange(newValue));
     }
-
-    this.props.shouldCloseOnSelect && this.closeCalendar();
   };
 
   _handleKeyDown = event => {
@@ -221,10 +134,11 @@ export default class DatePicker extends WixComponent {
       showYearDropdown,
       filterDate,
       excludePastDates,
-      rtl
+      rtl,
+      shouldCloseOnSelect
     } = this.props;
 
-    const {isOpen} = this.state;
+    const {isOpen, value} = this.state;
 
     const _inputProps = {
       dataHook: inputDataHook,
@@ -254,7 +168,10 @@ export default class DatePicker extends WixComponent {
       excludePastDates,
       rtl,
       onChange: this._saveNewValue,
-      onClose: this.closeCalendar
+      onClose: this.closeCalendar,
+      value,
+      visible: isOpen,
+      shouldCloseOnSelect
     };
 
     return (
@@ -273,10 +190,77 @@ export default class DatePicker extends WixComponent {
             [arrowStyles.root]: isOpen
           })}
           >
-
-          <Calendar {...calendarProps} visible={isOpen} value={this.state.value}/>
+          <Calendar {...calendarProps}/>
         </div>
       </div>
     );
   }
 }
+
+DatePicker.propTypes = {
+  ...Calendar.propTypes,
+
+  /** Can provide Input with your custom props. If you don't need a custom input element, and only want to pass props to the Input, then use inputProps prop. I think this is not in use outside of WSR, and can be deprecated. */
+  customInput: PropTypes.node,
+
+  /** Properties appended to the default Input component or the custom Input component. */
+  inputProps: PropTypes.object,
+
+  /** Custom date format */
+  dateFormat: PropTypes.string,
+
+  /** DatePicker instance locale */
+  locale: PropTypes.oneOfType([
+    PropTypes.oneOf([
+      'en',
+      'es',
+      'pt',
+      'fr',
+      'de',
+      'pl',
+      'it',
+      'ru',
+      'ja',
+      'ko',
+      'tr',
+      'sv',
+      'no',
+      'nl',
+      'da'
+    ]),
+    PropTypes.shape({
+      distanceInWords: PropTypes.object,
+      format: PropTypes.object
+    })
+  ]),
+
+  /** Is the DatePicker disabled */
+  disabled: PropTypes.bool,
+
+  /** dataHook for the DatePicker's Input */
+  inputDataHook: PropTypes.string,
+
+  /** calendarDataHook for the DatePicker's calendar view */
+  calendarDataHook: PropTypes.string,
+
+  /** placeholder of the Input */
+  placeholderText: PropTypes.string,
+
+  /** RTL mode */
+  rtl: PropTypes.bool,
+
+  /** The selected date */
+  value: PropTypes.object,
+
+  /** controls the whether the calendar will be visible or not */
+  isOpen: PropTypes.bool,
+
+  /** will show exclamation icon when true **/
+  error: PropTypes.bool,
+
+  /** will display message when hovering error icon **/
+  errorMessage: PropTypes.node,
+
+  /** set desired width of DatePicker input */
+  width: PropTypes.number
+};
