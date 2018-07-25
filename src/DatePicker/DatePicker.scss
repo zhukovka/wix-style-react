@@ -1,8 +1,10 @@
 @import '../common.scss';
 
-$rootPadding: 18px;
+$rootPadding: 24px;
 $rootBackgroundColor: $D80;
 $dayHoverColor: $B50;
+$calendarWidth: 300px;
+$dayBadgeSize: 36px;
 
 @mixin todayBackground($width) {
   box-shadow:
@@ -36,6 +38,7 @@ $dayHoverColor: $B50;
     &-Weekdays {
       background-color: $D80;
       padding: 0 $rootPadding;
+      width: $calendarWidth;
     }
 
     &-WeekdaysRow {
@@ -45,18 +48,19 @@ $dayHoverColor: $B50;
     }
 
     &-Body {
-      padding: 0 $rootPadding 18px;
+      padding: 0 $rootPadding $rootPadding;
     }
 
     &-Weekday {
       width: 17px;
-      padding: 18px 0 12px;
+      padding: $rootPadding 0 12px;
       color: $D40;
     }
 
     &-Week {
       display: flex;
       justify-content: space-around;
+      width: 252px;
     }
 
     &-Day {
@@ -64,8 +68,8 @@ $dayHoverColor: $B50;
       display: flex;
       align-items: center;
       justify-content: center;
-      width: 42px;
-      height: 42px;
+      width: $dayBadgeSize;
+      height: $dayBadgeSize;
       border-radius: 50%;
       cursor: pointer;
 
@@ -73,14 +77,14 @@ $dayHoverColor: $B50;
         outline: none;
         border: 3px solid #AADBFC;
       }
-      
+
       &:hover:not(.DayPicker-Day--today):not(.DayPicker-Day--selected) {
         background-color: $B50;
       }
 
       &--today:not(.DayPicker-Day--selected) {
        background-color: $D70;
-       color: $D40;
+       color: $D10;
        @include todayBackground(6px);
       }
 
