@@ -5,11 +5,12 @@ $rootBackgroundColor: $D80;
 $dayHoverColor: $B50;
 $calendarWidth: 300px;
 $dayBadgeSize: 36px;
-$hoverBoxShadow: 0 0 0 3px $F00;
+$boxShadowWidth: 3px;
+$hoverBoxShadow: 0 0 0 $boxShadowWidth $F00;
 
-@mixin todayBackground($width, $shadow: "") {
+@mixin todayBackground($shadow: "") {
   box-shadow:
-    0 0 0 $width $rootBackgroundColor inset, $shadow;
+    0 0 0 $boxShadowWidth $rootBackgroundColor inset, $shadow;
 }
 
 .root {
@@ -80,10 +81,10 @@ $hoverBoxShadow: 0 0 0 3px $F00;
       &--today:not(.DayPicker-Day--selected) {
         background-color: $D70;
         color: $D10;
-        @include todayBackground(3px);
+        @include todayBackground();
 
         &:focus {
-          @include todayBackground(3px, $hoverBoxShadow);
+          @include todayBackground($hoverBoxShadow);
         }
       }
 
