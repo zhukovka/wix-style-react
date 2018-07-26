@@ -8,7 +8,7 @@ $dayBadgeSize: 36px;
 $boxShadowWidth: 3px;
 $hoverBoxShadow: 0 0 0 $boxShadowWidth $F00;
 
-@mixin todayBackground($additionalShadow: false) {
+@mixin todayShadow($additionalShadow: false) {
   $boxShadow: 0 0 0 $boxShadowWidth $rootBackgroundColor inset;
   @if $additionalShadow {
     box-shadow: $boxShadow, $additionalShadow;
@@ -85,10 +85,10 @@ $hoverBoxShadow: 0 0 0 $boxShadowWidth $F00;
 
       &--today:not(.DayPicker-Day--selected) {
         background-color: $D70;
-        @include todayBackground();
+        @include todayShadow();
 
         &:focus {
-          @include todayBackground($hoverBoxShadow);
+          @include todayShadow($hoverBoxShadow);
         }
       }
 
