@@ -91,10 +91,6 @@ $hoverBoxShadow: 0 0 0 3px $F00;
         background-color: $B50;
       }
 
-      // &--today.DayPicker-Day--keyboard-selected:not(.DayPicker-Day--selected) {
-      //   @include todayBackground(3px);
-      // }
-
       &--selected {
         background-color: $B10;
         color: $D80;
@@ -102,10 +98,6 @@ $hoverBoxShadow: 0 0 0 3px $F00;
           background-color: $B20;
         }
       }
-
-      // &--keyboard-selected:not(.DayPicker-Day--selected) {
-      //   border: 3px solid $F00;
-      // }
 
       &--outside,
       &--disabled {
