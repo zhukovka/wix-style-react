@@ -76,14 +76,14 @@ $dayBadgeSize: 36px;
         box-shadow: 0 0 0 3px $F00;
       }
 
-      &:hover:not(.DayPicker-Day--today):not(.DayPicker-Day--selected) {
+      &:hover:not(.DayPicker-Day--selected) {
         background-color: $B50;
       }
 
-      &--today:not(.DayPicker-Day--selected) {
-       background-color: $D70;
-       color: $D10;
-       @include todayBackground(6px);
+      &--today:not(.DayPicker-Day--selected):not(:hover) {
+        background-color: $D70;
+        color: $D10;
+        @include todayBackground(3px);
       }
 
       // &--today.DayPicker-Day--keyboard-selected:not(.DayPicker-Day--selected) {
