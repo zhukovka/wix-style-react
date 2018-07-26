@@ -77,6 +77,7 @@ $hoverBoxShadow: 0 0 0 $boxShadowWidth $F00;
       cursor: pointer;
       transition: all 100ms linear;
       color: $D10;
+      z-index: 1;
 
       &:focus {
         outline: none;
@@ -86,6 +87,7 @@ $hoverBoxShadow: 0 0 0 $boxShadowWidth $F00;
       &--today:not(.DayPicker-Day--selected) {
         background-color: $D70;
         @include todayShadow();
+        z-index: 0;
 
         &:focus {
           @include todayShadow($hoverBoxShadow);
