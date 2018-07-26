@@ -18,6 +18,9 @@ Types of changes:
 - `<MessageBoxFunctionalLayout/>` - Add footer border for scrollable content [#2027](https://github.com/wix/wix-style-react/pull/2027)
 - `<DropdownLayout/>` - Allowing passing a divider option without an id [#2005](https://github.com/wix/wix-style-react/pull/2005)
 
+### Changed
+- `<SideMenuDrill/>` - create a standalone import path [#2040](https://github.com/wix/wix-style-react/pull/2040)
+
 ## 4.11.1 - 2018-07-22
 ### Changed
 - `<Page/>` - Allow scrolling with mouse over header [#2015](https://github.com/wix/wix-style-react/pull/2015)
