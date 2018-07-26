@@ -5,11 +5,11 @@ $rootBackgroundColor: $D80;
 $dayHoverColor: $B50;
 $calendarWidth: 300px;
 $dayBadgeSize: 36px;
+$hoverBoxShadow: 0 0 0 3px $F00;
 
-@mixin todayBackground($width) {
+@mixin todayBackground($width, $shadow: "") {
   box-shadow:
-    0 0 0 $width $rootBackgroundColor inset,
-    0 0 0 100px $D70 inset;
+    0 0 0 $width $rootBackgroundColor inset, $shadow;
 }
 
 .root {
@@ -72,11 +72,6 @@ $dayBadgeSize: 36px;
       cursor: pointer;
       transition: all 100ms linear;
 
-      &:focus {
-        outline: none;
-        box-shadow: 0 0 0 3px $F00;
-      }
-
       &:hover:not(.DayPicker-Day--selected) {
         background-color: $B50;
       }
@@ -85,6 +80,15 @@ $dayBadgeSize: 36px;
         background-color: $D70;
         color: $D10;
         @include todayBackground(3px);
+      }
+
+      &:focus {
+        outline: none;
+        box-shadow: $hoverBoxShadow;
+      }
+
+      &--today:focus {
+        @include todayBackground(3px, $hoverBoxShadow);
       }
 
       // &--today.DayPicker-Day--keyboard-selected:not(.DayPicker-Day--selected) {
