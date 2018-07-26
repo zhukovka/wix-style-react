@@ -70,6 +70,7 @@ $dayBadgeSize: 36px;
       height: $dayBadgeSize;
       border-radius: 50%;
       cursor: pointer;
+      transition: all 100ms linear;
 
       &:focus {
         outline: none;
