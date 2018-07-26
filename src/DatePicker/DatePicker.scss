@@ -53,7 +53,7 @@ $hoverBoxShadow: 0 0 0 3px $F00;
     &-Weekday {
       width: 17px;
       padding: 18px 0 12px;
-      color: $D40;
+      color: $D10;
     }
 
     &-Week {
@@ -71,6 +71,7 @@ $hoverBoxShadow: 0 0 0 3px $F00;
       border-radius: 50%;
       cursor: pointer;
       transition: all 100ms linear;
+      color: $D10;
 
       &:focus {
         outline: none;
@@ -79,7 +80,6 @@ $hoverBoxShadow: 0 0 0 3px $F00;
 
       &--today:not(.DayPicker-Day--selected) {
         background-color: $D70;
-        color: $D10;
         @include todayBackground(3px);
 
         &:focus {
@@ -110,7 +110,7 @@ $hoverBoxShadow: 0 0 0 3px $F00;
       &--outside,
       &--disabled {
         pointer-events: none;
-        color: $D60;
+        color: $D55;
       }
     }
   }
