@@ -46,7 +46,8 @@ export default class DatePicker extends WixComponent {
     super(props);
 
     this.state = {
-      isOpen: props.isOpen || false
+      isOpen: props.isOpen || false,
+      isDateInputFocusable: !props.isOpen
     };
   }
 
@@ -68,6 +69,7 @@ export default class DatePicker extends WixComponent {
       this.setState(
         {
           isOpen: true,
+          isDateInputFocusable: false,
           value: this.props.value || new Date()
         },
         () => this._popper.scheduleUpdate()
@@ -75,7 +77,24 @@ export default class DatePicker extends WixComponent {
     }
   };
 
-  closeCalendar = () => this.setState({isOpen: false});
+  closeCalendar = () => {
+    this.setState({isOpen: false});
+    /*
+      to fix case when user press tab in opened Calendar and:
+        1. Calendar become closed
+        2. Focus triggered
+        3. openCalendar triggered by focus
+        4. Calendar become visible
+        5. Looks like nothing happen
+      We need to do such steps:
+       1. Close calendar(with isDateInputFocusable: false)
+       2. After calendar is closed, on next event loop(after focus is fired)  make isDateInputFocusable: focusable
+       to allow user to press tab in future and open Calendar
+    */
+    setTimeout(() => this.makeInputFocusable());
+  }
+
+  makeInputFocusable = () => this.setState({isDateInputFocusable: true});
 
   _saveNewValue = (value, modifiers = {}) => {
     if (modifiers.disabled) {
@@ -152,6 +171,7 @@ export default class DatePicker extends WixComponent {
       ),
       onFocus: this.openCalendar,
       onKeyDown: this._handleKeyDown,
+      tabIndex: this.state.isDateInputFocusable ? '1' : '-1',
       error,
       errorMessage,
       ...(customInput ? customInput.props : {}),
