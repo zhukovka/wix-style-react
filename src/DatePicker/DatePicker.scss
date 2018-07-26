@@ -72,23 +72,23 @@ $hoverBoxShadow: 0 0 0 3px $F00;
       cursor: pointer;
       transition: all 100ms linear;
 
-      &:hover:not(.DayPicker-Day--selected) {
-        background-color: $B50;
-      }
-
-      &--today:not(.DayPicker-Day--selected):not(:hover) {
-        background-color: $D70;
-        color: $D10;
-        @include todayBackground(3px);
-      }
-
       &:focus {
         outline: none;
         box-shadow: $hoverBoxShadow;
       }
 
-      &--today:focus {
-        @include todayBackground(3px, $hoverBoxShadow);
+      &--today:not(.DayPicker-Day--selected) {
+        background-color: $D70;
+        color: $D10;
+        @include todayBackground(3px);
+
+        &:focus {
+          @include todayBackground(3px, $hoverBoxShadow);
+        }
+      }
+
+      &:hover {
+        background-color: $B50;
       }
 
       // &--today.DayPicker-Day--keyboard-selected:not(.DayPicker-Day--selected) {
@@ -98,6 +98,9 @@ $hoverBoxShadow: 0 0 0 3px $F00;
       &--selected {
         background-color: $B10;
         color: $D80;
+        &:hover {
+          background-color: $B20;
+        }
       }
 
       // &--keyboard-selected:not(.DayPicker-Day--selected) {
