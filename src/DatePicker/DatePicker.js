@@ -171,7 +171,7 @@ export default class DatePicker extends WixComponent {
       ),
       onFocus: this.openCalendar,
       onKeyDown: this._handleKeyDown,
-      tabIndex: this.state.isDateInputFocusable ? '1' : '-1',
+      tabIndex: this.state.isDateInputFocusable ? 1 : -1,
       error,
       errorMessage,
       ...(customInput ? customInput.props : {}),
