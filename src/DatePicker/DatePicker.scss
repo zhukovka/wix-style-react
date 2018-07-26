@@ -8,9 +8,13 @@ $dayBadgeSize: 36px;
 $boxShadowWidth: 3px;
 $hoverBoxShadow: 0 0 0 $boxShadowWidth $F00;
 
-@mixin todayBackground($shadow: "") {
-  box-shadow:
-    0 0 0 $boxShadowWidth $rootBackgroundColor inset, $shadow;
+@mixin todayBackground($additionalShadow: false) {
+  $boxShadow: 0 0 0 $boxShadowWidth $rootBackgroundColor inset;
+  @if $additionalShadow {
+    box-shadow: $boxShadow, $additionalShadow;
+  } @else {
+    box-shadow: $boxShadow;
+  }
 }
 
 .root {
@@ -90,6 +94,7 @@ $hoverBoxShadow: 0 0 0 $boxShadowWidth $F00;
 
       &:hover {
         background-color: $B50;
+        box-shadow: none;
       }
 
       &--selected {
