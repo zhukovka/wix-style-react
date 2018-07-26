@@ -2,7 +2,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Popper from 'popper.js';
 import DayPickerInput from 'react-day-picker/DayPickerInput';
-
 import isSameDay from 'date-fns/is_same_day';
 import setYear from 'date-fns/set_year';
 import setMonth from 'date-fns/set_month';
@@ -11,10 +10,10 @@ import setDate from 'date-fns/set_date';
 import WixComponent from '../BaseComponents/WixComponent';
 import CalendarIcon from '../new-icons/Date';
 import {formatDate} from './LocaleUtils';
+import Calendar from './Calendar';
+import Input from '../Input';
 
 import styles from './DatePicker.scss';
-import Input from '../Input';
-import Calendar from './Calendar';
 
 /**
  * DatePicker component

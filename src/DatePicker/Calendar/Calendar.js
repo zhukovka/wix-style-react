@@ -1,15 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-
 import DayPicker from 'react-day-picker/DayPicker';
-
 import addMonths from 'date-fns/add_months';
 import parse from 'date-fns/parse';
 import startOfMonth from 'date-fns/start_of_month';
 
 import WixComponent from '../../BaseComponents/WixComponent';
 import localeUtilsFactory from '../LocaleUtils';
-
 import DatePickerHead from '../DatePickerHead';
 
 export default class Calendar extends WixComponent {
