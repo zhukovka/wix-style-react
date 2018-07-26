@@ -5,11 +5,16 @@ $rootBackgroundColor: $D80;
 $dayHoverColor: $B50;
 $calendarWidth: 300px;
 $dayBadgeSize: 36px;
+$boxShadowWidth: 3px;
+$hoverBoxShadow: 0 0 0 $boxShadowWidth $F00;
 
-@mixin todayBackground($width) {
-  box-shadow:
-    0 0 0 $width $rootBackgroundColor inset,
-    0 0 0 100px $D70 inset;
+@mixin todayShadow($additionalShadow: false) {
+  $boxShadow: 0 0 0 $boxShadowWidth $rootBackgroundColor inset;
+  @if $additionalShadow {
+    box-shadow: $boxShadow, $additionalShadow;
+  } @else {
+    box-shadow: $boxShadow;
+  }
 }
 
 .root {
@@ -53,7 +58,7 @@ $dayBadgeSize: 36px;
     &-Weekday {
       width: 17px;
       padding: 18px 0 12px;
-      color: $D40;
+      color: $D10;
     }
 
     &-Week {
@@ -71,39 +76,41 @@ $dayBadgeSize: 36px;
       border-radius: 50%;
       cursor: pointer;
       transition: all 100ms linear;
+      color: $D10;
+      z-index: 1;
 
       &:focus {
         outline: none;
-        box-shadow: 0 0 0 3px $F00;
+        box-shadow: $hoverBoxShadow;
       }
 
-      &:hover:not(.DayPicker-Day--selected) {
-        background-color: $B50;
-      }
-
-      &--today:not(.DayPicker-Day--selected):not(:hover) {
+      &--today:not(.DayPicker-Day--selected) {
         background-color: $D70;
-        color: $D10;
-        @include todayBackground(3px);
+        @include todayShadow();
+        z-index: 0;
+
+        &:focus {
+          @include todayShadow($hoverBoxShadow);
+        }
       }
 
-      // &--today.DayPicker-Day--keyboard-selected:not(.DayPicker-Day--selected) {
-      //   @include todayBackground(3px);
-      // }
+      &:hover {
+        background-color: $B50;
+        box-shadow: none;
+      }
 
       &--selected {
         background-color: $B10;
         color: $D80;
+        &:hover {
+          background-color: $B20;
+        }
       }
-
-      // &--keyboard-selected:not(.DayPicker-Day--selected) {
-      //   border: 3px solid $F00;
-      // }
 
       &--outside,
       &--disabled {
         pointer-events: none;
-        color: $D60;
+        color: $D55;
       }
     }
   }
