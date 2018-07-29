@@ -15,6 +15,7 @@ Types of changes:
 ## next
 ### Fixed
 - `<Tooltip/>` - Fix react 16 regression [#2047](https://github.com/wix/wix-style-react/pull/2047)
+- `<MultiSelect/>` - add error indication and message, readonly styles [#2041](https://github.com/wix/wix-style-react/pull/2041)
 
 ## 4.12.0 - 2018-07-26
 ### Added
