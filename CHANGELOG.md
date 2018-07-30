@@ -13,6 +13,9 @@ Types of changes:
 1. **Breaking** for breaking changes
 
 ## next
+### Changed
+- `<Notification/>` - set notification height to always be 48px https://github.com/wix/wix-style-react/pull/2036
+
 ### Fixed
 - `<Tooltip/>` - Fix react 16 regression [#2047](https://github.com/wix/wix-style-react/pull/2047)
 - `<MultiSelect/>` - add error indication and message, readonly styles [#2041](https://github.com/wix/wix-style-react/pull/2041)
