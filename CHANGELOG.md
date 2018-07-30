@@ -12,12 +12,14 @@ Types of changes:
 1. **Security** in case of vulnerabilities.
 1. **Breaking** for breaking changes
 
-## next
+## 4.13.0 - 2018-07-30
+### Fixed
+- `<Tooltip/>` - Fix react 16 regression [#2047](https://github.com/wix/wix-style-react/pull/2047)
+
 ### Changed
 - `<Notification/>` - set notification height to always be 48px https://github.com/wix/wix-style-react/pull/2036
 
-### Fixed
-- `<Tooltip/>` - Fix react 16 regression [#2047](https://github.com/wix/wix-style-react/pull/2047)
+### Added
 - `<MultiSelect/>` - add error indication and message, readonly styles [#2041](https://github.com/wix/wix-style-react/pull/2041)
 
 ## 4.12.0 - 2018-07-26
