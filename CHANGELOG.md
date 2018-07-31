@@ -12,6 +12,17 @@ Types of changes:
 1. **Security** in case of vulnerabilities.
 1. **Breaking** for breaking changes
 
+## Next
+
+### Added
+
+- `<Input />` - Added `status` and `statusMessage` props, added loader suffix [#1784](https://github.com/wix/wix-style-react/pull/1784)
+
+### Changed
+
+- `<TextField/>` - Default info tooltip to not use `appendToParent: false` [#2035](https://github.com/wix/wix-style-react/pull/2035)
+- `<Loader/>` - styling updates according to the UX guidelines [#2045](https://github.com/wix/wix-style-react/pull/2045)
+
 ## 4.13.0 - 2018-07-30
 ### Fixed
 - `<Tooltip/>` - Fix react 16 regression [#2047](https://github.com/wix/wix-style-react/pull/2047)
