@@ -23,8 +23,6 @@ export default class Calendar extends WixComponent {
     super(props);
 
     this.state = {
-      isMonthPickerOpen: false,
-      isYearPickerOpen: false,
       month: props.value
     };
   }
