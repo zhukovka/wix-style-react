@@ -4,10 +4,44 @@ import HeaderLayout from './HeaderLayout';
 import FooterLayout from './FooterLayout';
 import WixComponent from '../BaseComponents/WixComponent';
 import classNames from 'classnames';
+import throttle from 'lodash/throttle';
 
 import styles from './MessageBoxFunctionalLayout.scss';
 
 class MessageBoxFunctionalLayout extends WixComponent {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      hasScroll: false,
+      scrolledToBottom: false
+    };
+    this.messageBoxRef = null;
+  }
+
+  componentWillUnmount() {
+    if (this.state.hasScroll) {
+      this.messageBoxRef.removeEventListener('scroll', this._handleMessageBoxScroll);
+    }
+  }
+
+  _initializeMessageBoxRef = el => {
+    if (el && el.scrollHeight > el.clientHeight) {
+      this.setState({hasScroll: true});
+
+      this.messageBoxRef = el;
+      this.messageBoxRef.addEventListener('scroll', this._handleMessageBoxScroll);
+    }
+  };
+
+  _handleMessageBoxScroll = throttle(() => {
+    const scrolledToBottom =
+      this.messageBoxRef.scrollTop + this.messageBoxRef.clientHeight === this.messageBoxRef.scrollHeight;
+
+    if (scrolledToBottom !== this.state.scrolledToBottom) {
+      this.setState({scrolledToBottom});
+    }
+  }, 16);
 
   render() {
     const {
@@ -27,28 +61,41 @@ class MessageBoxFunctionalLayout extends WixComponent {
       disableCancel,
       width,
       noBodyPadding,
-      maxHeight
+      maxHeight,
+      fullscreen
     } = this.props;
+    const {hasScroll, scrolledToBottom} = this.state;
 
 
     const messageBoxBodyClassNames = classNames(
       styles.body,
       {
         [styles.scrollable]: typeof maxHeight !== 'undefined',
-        [styles.noPadding]: noBodyPadding
+        [styles.noPadding]: noBodyPadding,
+        [styles.fullscreenBody]: fullscreen,
+        [styles.noFooter]: hideFooter,
+        [styles.footerBorder]: hasScroll && !scrolledToBottom
       }
     );
     const messageBoxBodyStyle = {
       maxHeight
     };
 
+    const contentClassName = classNames(
+      styles.content,
+      {
+        [styles.fullscreenContent]: fullscreen
+      }
+    );
+
     return (
-      <div className={styles.content} style={{width}}>
+      <div className={contentClassName} style={{width}}>
         <HeaderLayout title={title} onCancel={onClose ? onClose : onCancel} theme={theme} closeButton={closeButton}/>
         <div
           data-hook="message-box-body"
           className={messageBoxBodyClassNames}
           style={messageBoxBodyStyle}
+          ref={this._initializeMessageBoxRef}
           >
           {children}
         </div>
@@ -87,15 +134,16 @@ MessageBoxFunctionalLayout.propTypes = {
   disableCancel: PropTypes.bool,
   disableConfirmation: PropTypes.bool,
   noBodyPadding: PropTypes.bool,
-  footerBottomChildren: PropTypes.node
+  footerBottomChildren: PropTypes.node,
+  fullscreen: PropTypes.bool
 };
 
 MessageBoxFunctionalLayout.defaultProps = {
   buttonsHeight: 'small',
   disableCancel: false,
   disableConfirmation: false,
-  width: '600px',
-  noBodyPadding: false
+  noBodyPadding: false,
+  fullscreen: false
 };
 
 export default MessageBoxFunctionalLayout;

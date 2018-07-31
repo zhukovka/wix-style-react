@@ -12,6 +12,25 @@ Types of changes:
 1. **Security** in case of vulnerabilities.
 1. **Breaking** for breaking changes
 
+## 4.13.0 - 2018-07-30
+### Fixed
+- `<Tooltip/>` - Fix react 16 regression [#2047](https://github.com/wix/wix-style-react/pull/2047)
+
+### Changed
+- `<Notification/>` - set notification height to always be 48px https://github.com/wix/wix-style-react/pull/2036
+
+### Added
+- `<MultiSelect/>` - add error indication and message, readonly styles [#2041](https://github.com/wix/wix-style-react/pull/2041)
+
+## 4.12.0 - 2018-07-26
+### Added
+- `<MessageBoxFunctionalLayout/>` - Add fullscreen prop according to design [#2026](https://github.com/wix/wix-style-react/pull/2026)
+- `<MessageBoxFunctionalLayout/>` - Add footer border for scrollable content [#2027](https://github.com/wix/wix-style-react/pull/2027)
+- `<DropdownLayout/>` - Allowing passing a divider option without an id [#2005](https://github.com/wix/wix-style-react/pull/2005)
+
+### Changed
+- `<SideMenuDrill/>` - create a standalone import path [#2040](https://github.com/wix/wix-style-react/pull/2040)
+
 ## 4.11.1 - 2018-07-22
 ### Changed
 - `<Page/>` - Allow scrolling with mouse over header [#2015](https://github.com/wix/wix-style-react/pull/2015)
