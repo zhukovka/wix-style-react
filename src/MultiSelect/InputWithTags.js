@@ -140,8 +140,8 @@ class InputWithTags extends React.Component {
           <div className={styles.inputSuffix}>
             <InputSuffix
               disabled={disabled}
-              error={error}
-              errorMessage={errorMessage}
+              status={error && 'error'}
+              statusMessage={errorMessage}
               menuArrow={isSelectMode}
               />
           </div>
