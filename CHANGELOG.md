@@ -13,6 +13,8 @@ Types of changes:
 1. **Breaking** for breaking changes
 
 ## Next
+### Fixed
+- `FocusableHOC` - Fix focusable button in disabled state [#2054](https://github.com/wix/wix-style-react/pull/2054), ISSUE-1721
 
 ### Added
 
