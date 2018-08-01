@@ -12,3 +12,9 @@ export const formFieldTestkitFactory = puppeteerTestkitFactoryCreator(formFieldD
 
 import tableDriverFactory from '../src/Table/Table.puppeteer.driver';
 export const tableTestkitFactory = puppeteerTestkitFactoryCreator(tableDriverFactory);
+
+import headingDriverFactory from '../src/Heading/Heading.puppeteer.driver';
+export const headingTestkitFactory = puppeteerTestkitFactoryCreator(headingDriverFactory);
+
+import textDriverFactory from '../src/Text/Text.puppeteer.driver';
+export const textTestkitFactory = puppeteerTestkitFactoryCreator(textDriverFactory);
