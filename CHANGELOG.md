@@ -14,7 +14,10 @@ Types of changes:
 
 ## Next
 ### Changed
-`<StatsWidget/>` - refactor old Text to new Heading and Badge [#2065](https://github.com/wix/wix-style-react/pull/2065)
+`<StatsWidget/>` - refactor old Text to new Heading and Badge [#2067](https://github.com/wix/wix-style-react/pull/2067)
+
+### Added
+ - `<Icons/>` - Update wix-ui-icons-common version to handle new icons(ArrowDown, ArrowLeft, ArrowRight, ArrowUp, Crop, Mobile, PauseFilled, PlayFilled, StatusAlerFilled, StatusCompletetFilled, StopFilled, ZoomIn, ZoomOut) [#2065](https://github.com/wix/wix-style-react/pull/2065)
 
 ## 4.14.0 - 2018-08-01
 ### Fixed
