@@ -18,3 +18,6 @@ export const headingTestkitFactory = puppeteerTestkitFactoryCreator(headingDrive
 
 import textDriverFactory from '../src/Text/Text.puppeteer.driver';
 export const textTestkitFactory = puppeteerTestkitFactoryCreator(textDriverFactory);
+
+import tooltipDriverFactory from '../src/Tooltip/Tooltip.puppeteer.driver';
+export const tooltipTestkitFactory = puppeteerTestkitFactoryCreator(tooltipDriverFactory);
