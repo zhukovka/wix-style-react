@@ -9,3 +9,6 @@ export const buttonTestkitFactory = puppeteerTestkitFactoryCreator(buttonDriverF
 
 import formFieldDriverFactory from '../src/FormField/FormField.puppeteer.driver';
 export const formFieldTestkitFactory = puppeteerTestkitFactoryCreator(formFieldDriverFactory);
+
+import tableDriverFactory from '../src/Table/Table.puppeteer.driver';
+export const tableTestkitFactory = puppeteerTestkitFactoryCreator(tableDriverFactory);
