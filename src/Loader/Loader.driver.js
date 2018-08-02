@@ -9,7 +9,7 @@ const loaderDriverFactory = ({element}) => {
     component: () => element,
     exists: () => !!element,
     getColor: () => isClassExists(element, 'blue') ? 'blue' : 'white',
-    getText: () => getTextElement(element).innerHTML,
+    getText: () => getTextElement(element).textContent,
     hasText: () => !!getTextElement(element),
     isLarge: () => isClassExists(element, 'large'),
     isMedium: () => isClassExists(element, 'medium'),
