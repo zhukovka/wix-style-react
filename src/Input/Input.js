@@ -93,7 +93,7 @@ class Input extends Component {
     let suffixStatusMessage = statusMessage && statusMessage !== '' ? statusMessage : '';
 
     // Check for deprecated fields and use them if provided
-    if (error || errorMessage) {
+    if (error) {
       suffixStatus = Input.StatusError;
       suffixStatusMessage = errorMessage;
     }
