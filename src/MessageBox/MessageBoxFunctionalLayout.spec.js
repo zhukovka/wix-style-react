@@ -1,9 +1,9 @@
 import React from 'react';
 import MessageBoxFunctionalLayout from './MessageBoxFunctionalLayout';
 import MessageBoxFunctionalLayoutFactory from './MessageBoxFunctionalLayout.driver';
-import {createDriverFactory} from '../test-common';
+import {createDriverFactory} from 'wix-ui-test-utils/driver-factory';
 import sinon from 'sinon';
-import {isTestkitExists, isEnzymeTestkitExists} from '../../testkit/test-common';
+import {isTestkitExists, isEnzymeTestkitExists} from '../../test/utils/testkit-sanity';
 import {messageBoxFunctionalLayoutTestkitFactory} from '../../testkit';
 import {messageBoxFunctionalLayoutTestkitFactory as enzymeMessageBoxTestkitFactory} from '../../testkit/enzyme';
 import {mount} from 'enzyme';

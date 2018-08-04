@@ -1,5 +1,5 @@
 import ReactTestUtils from 'react-dom/test-utils';
-import {testkitFactoryCreator} from '../test-common';
+import {testkitFactoryCreator} from 'wix-ui-test-utils/vanilla';
 import loaderDriverFactory from '../Loader/Loader.driver';
 import buttonDriverFactory from '../Backoffice/Button/Button.driver';
 import selectorDriverFactory from '../Selector/Selector.driver';

@@ -1,10 +1,10 @@
 import React from 'react';
 import Loader from './Loader';
 import loaderDriverFactory from './Loader.driver';
-import {createDriverFactory} from '../test-common';
+import {createDriverFactory} from 'wix-ui-test-utils/driver-factory';
 import {loaderTestkitFactory} from '../../testkit';
 import {loaderTestkitFactory as enzymeLoaderTestkitFactory} from '../../testkit/enzyme';
-import {isEnzymeTestkitExists, isTestkitExists} from '../../testkit/test-common';
+import {isEnzymeTestkitExists, isTestkitExists} from '../../test/utils/testkit-sanity';
 import {mount} from 'enzyme';
 
 describe('Loader', () => {

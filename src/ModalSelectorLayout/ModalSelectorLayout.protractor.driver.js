@@ -1,4 +1,4 @@
-import {protractorTestkitFactoryCreator} from '../test-common';
+import {protractorTestkitFactoryCreator} from 'wix-ui-test-utils/protractor';
 import loaderDriverFactory from '../Loader/Loader.protractor.driver';
 import buttonDriverFactory from '../Backoffice/Button/Button.protractor.driver';
 import textDriverFactory from '../Text/Text.protractor.driver';

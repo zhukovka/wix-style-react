@@ -5,11 +5,9 @@ import {
 
 const EC = protractor.ExpectedConditions;
 
-import {
-  popoverMenuTestkitFactory,
-  getStoryUrl,
-  waitForVisibilityOf
-} from '../../testkit/protractor';
+import {popoverMenuTestkitFactory} from '../../testkit/protractor';
+import {waitForVisibilityOf} from 'wix-ui-test-utils/protractor';
+import {getStoryUrl} from '../../test/utils/storybook-helpers';
 
 describe('PopoverMenu', () => {
   const storyUrl = getStoryUrl('7. Tooltips', '7.3. Popover Menu');

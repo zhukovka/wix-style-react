@@ -1,24 +1,4 @@
 import omit from 'lodash/omit';
-
-// TODO: move to separate folders
-export {createDriverFactory} from 'wix-ui-test-utils/driver-factory';
-
-// TODO: Protractor helper should be imported from './test/utils/protractor'
-export {
-  getStoryUrl, // Deprecated
-  waitForVisibilityOf,
-  protractorTestkitFactoryCreator,
-  isFocused,
-  scrollToElement,
-  hasAttribute,
-  hasClass
-} from '../test/utils/protractor';
-
-export {enzymeTestkitFactoryCreator} from 'wix-ui-test-utils/enzyme';
-export {testkitFactoryCreator} from 'wix-ui-test-utils/vanilla';
-
-export {findByHook, resolveIn} from './test-common-vanilla';
-
 /**
  * Symbol for accessing driver methods which are internal
  * (we don't want to expose them to WSR consumers)

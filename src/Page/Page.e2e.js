@@ -1,12 +1,10 @@
 import eyes from 'eyes.it';
 import eventually from 'wix-eventually';
 
-import {
-  pageTestkitFactory,
-  waitForVisibilityOf,
-  scrollToElement
-} from '../../testkit/protractor';
-import {createStoryUrl} from '../../test/utils/protractor';
+import {pageTestkitFactory} from '../../testkit/protractor';
+import {waitForVisibilityOf, scrollToElement} from 'wix-ui-test-utils/protractor';
+import {createStoryUrl} from '../../test/utils/storybook-helpers';
+
 import autoExampleDriver from 'wix-storybook-utils/AutoExampleDriver';
 import {TESTS_PREFIX} from '../../stories/storyCategories';
 import {storybookConfig} from '../../stories/Page/storybookConfig';

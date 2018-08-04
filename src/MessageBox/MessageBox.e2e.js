@@ -1,6 +1,7 @@
 import eyes from 'eyes.it';
-import {createStoryUrl, waitForVisibilityOf, scrollToElement} from '../../test/utils/protractor';
 import {buttonTestkitFactory, messageBoxFunctionalLayoutTestkitFactory} from '../../testkit/protractor';
+import {waitForVisibilityOf, scrollToElement} from 'wix-ui-test-utils/protractor';
+import {createStoryUrl} from '../../test/utils/storybook-helpers';
 
 const byDataHook = dataHook => $(`[data-hook="${dataHook}"]`);
 

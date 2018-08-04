@@ -1,5 +1,7 @@
 import eyes from 'eyes.it';
-import {tooltipTestkitFactory, getStoryUrl, waitForVisibilityOf} from '../../testkit/protractor';
+import {tooltipTestkitFactory} from '../../testkit/protractor';
+import {waitForVisibilityOf} from 'wix-ui-test-utils/protractor';
+import {getStoryUrl} from '../../test/utils/storybook-helpers';
 import {SHORT_CONTENT, LONG_CONTENT} from '../../stories/Tooltip/Composite/TooltipForEyesOnly';
 
 describe('Tooltip', () => {

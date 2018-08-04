@@ -1,5 +1,4 @@
-import {isClassExists} from '../../test/utils';
-import {findByHook, resolveIn} from '../test-common';
+import {findByHook, resolveIn, isClassExists} from '../../test/utils';
 import tooltipDriverFactory from '../Tooltip/Tooltip.driver';
 
 const getTextElement = element => element.querySelector(`[data-hook="loader-text"]`);

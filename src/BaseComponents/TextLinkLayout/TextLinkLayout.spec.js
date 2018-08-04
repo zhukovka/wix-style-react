@@ -1,10 +1,10 @@
 import React from 'react';
 import textLinkLayoutDriverFactory from './TextLinkLayout.driver';
 import TextLinkLayout from './TextLinkLayout';
-import {createDriverFactory} from '../../test-common';
+import {createDriverFactory} from 'wix-ui-test-utils/driver-factory';
 import {textLinkLayoutTestkitFactory} from '../../../testkit';
 import {textLinkLayoutTestkitFactory as enzymeTextLinkLayoutTestkitFactory} from '../../../testkit/enzyme';
-import {isTestkitExists, isEnzymeTestkitExists} from '../../../testkit/test-common';
+import {isTestkitExists, isEnzymeTestkitExists} from '../../../test/utils/testkit-sanity';
 import {mount} from 'enzyme';
 
 describe('TextLinkLayout', () => {

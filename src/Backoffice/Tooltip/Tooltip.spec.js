@@ -2,7 +2,7 @@ import React from 'react';
 import ReactTestUtils from 'react-dom/test-utils';
 import tooltipDriverFactory from './Tooltip.driver';
 import Tooltip from './Tooltip';
-import {createDriverFactory} from '../../test-common';
+import {createDriverFactory} from 'wix-ui-test-utils/driver-factory';
 import {buttonTestkitFactory, backofficeTooltipTestkitFactory as tooltipTestkitFactory} from '../../../testkit';
 import {backofficeTooltipTestkitFactory as enzymeTooltipTestkitFactory} from '../../../testkit/enzyme';
 import {mount} from 'enzyme';

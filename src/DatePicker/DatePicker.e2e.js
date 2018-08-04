@@ -1,5 +1,6 @@
 import eyes from 'eyes.it';
-import {datePickerTestkitFactory, getStoryUrl} from '../../testkit/protractor';
+import {datePickerTestkitFactory} from '../../testkit/protractor';
+import {getStoryUrl} from '../../test/utils/storybook-helpers';
 import autoExampleDriver from 'wix-storybook-utils/AutoExampleDriver';
 
 describe('DatePicker', () => {

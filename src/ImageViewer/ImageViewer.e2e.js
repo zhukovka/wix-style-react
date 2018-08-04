@@ -1,5 +1,7 @@
 import eyes from 'eyes.it';
-import {imageViewerTestkitFactory, getStoryUrl, waitForVisibilityOf} from '../../testkit/protractor';
+import {imageViewerTestkitFactory} from '../../testkit/protractor';
+import {waitForVisibilityOf} from 'wix-ui-test-utils/protractor';
+import {getStoryUrl} from '../../test/utils/storybook-helpers';
 
 describe('ImageViewer', () => {
   const storyUrl = getStoryUrl('3. Inputs', '3.10 ImageViewer');

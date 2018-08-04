@@ -1,4 +1,4 @@
-import {enzymeTestkitFactoryCreator} from '../src/test-common';
+import {enzymeTestkitFactoryCreator} from 'wix-ui-test-utils/enzyme';
 
 import inputDriverFactory from '../src/Input/Input.driver';
 export const inputTestkitFactory = enzymeTestkitFactoryCreator(inputDriverFactory);

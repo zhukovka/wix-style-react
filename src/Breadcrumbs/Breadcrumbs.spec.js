@@ -2,7 +2,7 @@ import React from 'react';
 import ReactTestUtils from 'react-dom/test-utils';
 import {mount} from 'enzyme';
 
-import {createDriverFactory} from '../test-common';
+import {createDriverFactory} from 'wix-ui-test-utils/driver-factory';
 import {breadcrumbsTestkitFactory} from '../../testkit';
 import {breadcrumbsTestkitFactory as enzymeBreadcrumbsTestkitFactory} from '../../testkit/enzyme';
 import breadcrumbsDriverFactory from './Breadcrumbs.driver';

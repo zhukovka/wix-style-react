@@ -1,7 +1,8 @@
 import React from 'react';
 import ImageViewer from './ImageViewer';
 import ImageViewerDriverFactory from './ImageViewer.driver';
-import {createDriverFactory, resolveIn} from '../test-common';
+import {createDriverFactory} from 'wix-ui-test-utils/driver-factory';
+import {resolveIn} from '../../test/utils';
 import {imageViewerTestkitFactory, tooltipTestkitFactory} from '../../testkit';
 import {imageViewerTestkitFactory as enzymeImageViewerTestkitFactory} from '../../testkit/enzyme';
 import {mount} from 'enzyme';

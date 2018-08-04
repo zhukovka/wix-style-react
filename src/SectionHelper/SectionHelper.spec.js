@@ -1,10 +1,10 @@
 import React from 'react';
 import sectionHelperDriverFactory from './SectionHelper.driver';
-import {createDriverFactory} from '../test-common';
+import {createDriverFactory} from 'wix-ui-test-utils/driver-factory';
 import SectionHelper from './';
 import {sectionHelperTestkitFactory} from '../../testkit';
 import {sectionHelperTestkitFactory as enzymeSectionHelperTestkitFactory} from '../../testkit/enzyme';
-import {isTestkitExists, isEnzymeTestkitExists} from '../../testkit/test-common';
+import {isTestkitExists, isEnzymeTestkitExists} from '../../test/utils/testkit-sanity';
 import {mount} from 'enzyme';
 
 const renderWithProps = (properties = {}) =>

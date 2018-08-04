@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import {mount} from 'enzyme';
 import Button from '../../Button';
 
-import {createDriverFactory} from '../../test-common';
+import {createDriverFactory} from 'wix-ui-test-utils/driver-factory';
 
 import {withFocusable, focusableStates} from './FocusableHOC';
 

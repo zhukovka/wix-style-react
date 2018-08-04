@@ -4,8 +4,8 @@ import React from 'react';
 import {mount} from 'enzyme';
 
 import Label from 'wix-style-react/Label';
-import {createDriverFactory} from '../test-common';
-import {isTestkitExists, isEnzymeTestkitExists} from '../../testkit/test-common';
+import {createDriverFactory} from 'wix-ui-test-utils/driver-factory';
+import {isTestkitExists, isEnzymeTestkitExists} from '../../test/utils/testkit-sanity';
 import {formFieldTestkitFactory} from '../../testkit';
 import {formFieldTestkitFactory as enzymeFormFieldTestkitFactory} from '../../testkit/enzyme';
 import formFieldDriverFactory from './FormField.driver';

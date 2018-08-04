@@ -1,4 +1,6 @@
-import {multiSelectTestkitFactory, getStoryUrl, waitForVisibilityOf} from '../../testkit/protractor';
+import {multiSelectTestkitFactory} from '../../testkit/protractor';
+import {waitForVisibilityOf} from 'wix-ui-test-utils/protractor';
+import {getStoryUrl} from '../../test/utils/storybook-helpers';
 import {protractor} from 'protractor';
 import eyes from 'eyes.it';
 

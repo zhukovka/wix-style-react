@@ -1,6 +1,6 @@
 import dropdownLayoutDriver from '../ButtonWithOptions/ButtonWithOptions.driver';
 import headerDriverFactory from '../Card/Header/Header.driver';
-import {findByHook} from '../test-common-vanilla';
+import {findByHook} from '../../test/utils';
 
 const statsWidgetDriverFactory = ({element}) => {
   const getStatistic = index => findByHook(element, 'stats-widget-content-wrapper').childNodes[index];

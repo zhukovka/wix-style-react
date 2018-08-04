@@ -1,4 +1,4 @@
-import {testkitFactoryCreator} from '../src/test-common';
+import {testkitFactoryCreator} from 'wix-ui-test-utils/vanilla';
 
 import inputDriverFactory from '../src/Input/Input.driver';
 export const inputTestkitFactory = testkitFactoryCreator(inputDriverFactory);
