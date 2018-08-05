@@ -204,6 +204,9 @@ export const sectionHelperTestkitFactory = enzymeTestkitFactoryCreator(sectionHe
 import formFieldDriverFactory from '../src/FormField/FormField.driver';
 export const formFieldTestkitFactory = enzymeTestkitFactoryCreator(formFieldDriverFactory);
 
+import headingDriverFactory from '../src/Heading/Heading.driver';
+export const headingTestkitFactory = enzymeTestkitFactoryCreator(headingDriverFactory);
+
 import textDriverFactory from '../src/Text/Text.driver';
 export const textTestkitFactory = enzymeTestkitFactoryCreator(textDriverFactory);
 
@@ -212,7 +215,6 @@ export const textTestkitFactory = enzymeTestkitFactoryCreator(textDriverFactory)
 export {
   badgeTestkitFactory,
   stylableCounterBadgeTestkitFactory as counterBadgeTestkitFactory,
-  headingTestkitFactory,
   toggleSwitchTestkitFactory,
   labelTestkitFactory,
   floatingHelperTestkitFactory,
