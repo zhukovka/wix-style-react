@@ -14,8 +14,12 @@ Types of changes:
 
 
 ## 4.16.0 - 2018-08-05
+### Deprecated
+- `<Text/>` - Deprecated `bold` prop in favor `weight` prop which can be `thin`, `normal` or `bold`. [#2073](https://github.com/wix/wix-style-react/pull/2073)
+
 ### Added 
 - `<Text/>` - Show Tooltip when ellipsis is active [#2073](https://github.com/wix/wix-style-react/pull/2073)
+- `<Text/>` - Extend `size` prop to have also `size="tiny"`. [#2073](https://github.com/wix/wix-style-react/pull/2073)
 - `<Heading/>` - Show Tooltip when ellipsis is active [#2068](https://github.com/wix/wix-style-react/pull/2068)
 
 ### Fixed
