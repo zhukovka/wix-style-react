@@ -13,7 +13,7 @@ Types of changes:
 1. **Breaking** for breaking changes
 
 
-## Next
+## 4.16.0 - 2018-08-05
 ### Added 
 - `<Text/>` - Show Tooltip when ellipsis is active [#2073](https://github.com/wix/wix-style-react/pull/2073)
 - `<Heading/>` - Show Tooltip when ellipsis is active [#2068](https://github.com/wix/wix-style-react/pull/2068)
