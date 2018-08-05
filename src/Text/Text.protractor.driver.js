@@ -1,1 +1,10 @@
-export {textDriverFactory as default} from 'wix-ui-backoffice/dist/src/components/Text/Text.protractor.driver';
+export const textDriverFactory = component => ({
+  /** returns the component element */
+  element: () => component,
+  /** returns the component text */
+  getText: async () => component.getText(),
+  /** returns the component tag name */
+  getTagName: async () => component.getTagName()
+});
+
+export default textDriverFactory;
