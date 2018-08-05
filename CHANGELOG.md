@@ -13,6 +13,9 @@ Types of changes:
 1. **Breaking** for breaking changes
 
 ## 4.15.0 - 2018-08-02
+### Added 
+- `<Text/>` - Show Tooltip when ellipsis is active [#2073](https://github.com/wix/wix-style-react/pull/2073)
+- `<Heading/>` - Show Tooltip when ellipsis is active [#2068](https://github.com/wix/wix-style-react/pull/2068)
 
 ### Changed
 
