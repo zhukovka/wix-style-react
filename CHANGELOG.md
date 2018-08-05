@@ -12,11 +12,21 @@ Types of changes:
 1. **Security** in case of vulnerabilities.
 1. **Breaking** for breaking changes
 
-## 4.15.0 - 2018-08-02
+
+## Next
 ### Added 
 - `<Text/>` - Show Tooltip when ellipsis is active [#2073](https://github.com/wix/wix-style-react/pull/2073)
 - `<Heading/>` - Show Tooltip when ellipsis is active [#2068](https://github.com/wix/wix-style-react/pull/2068)
 
+### Fixed
+- `<Loader/>` - fix testkit to return textContent instead of innerHTML [#2076](https://github.com/wix/wix-style-react/pull/2076)
+- `<SideMenu/>` - fix the back link icon size to 14px [#2080](https://github.com/wix/wix-style-react/pull/2080)
+
+### Changed
+- Refactor testkits to import only their relevant technology [#2085](https://github.com/wix/wix-style-react/pull/2085)
+
+
+## 4.15.0 - 2018-08-02
 ### Changed
 
 - Refactor deprecated text to new `<Text/>` and `<Heading/>` components [#2037](https://github.com/wix/wix-style-react/pull/2037)
