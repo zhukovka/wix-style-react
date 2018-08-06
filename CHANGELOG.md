@@ -12,6 +12,64 @@ Types of changes:
 1. **Security** in case of vulnerabilities.
 1. **Breaking** for breaking changes
 
+## Next
+
+### Added
+
+- `<TextLink/>` - support prefix and suffix icons [#2088](https://github.com/wix/wix-style-react/pull/2088)
+
+### Changed
+
+- `<TextLink/>` - refactored folder structure and updated protractor testkit [#2088](https://github.com/wix/wix-style-react/pull/2088)
+
+## 4.16.0 - 2018-08-05
+### Deprecated
+- `<Text/>` - Deprecated `bold` prop in favor `weight` prop which can be `thin`, `normal` or `bold`. [#2073](https://github.com/wix/wix-style-react/pull/2073)
+
+### Added 
+- `<Text/>` - Show Tooltip when ellipsis is active [#2073](https://github.com/wix/wix-style-react/pull/2073)
+- `<Text/>` - Extend `size` prop to have also `size="tiny"`. [#2073](https://github.com/wix/wix-style-react/pull/2073)
+- `<Heading/>` - Show Tooltip when ellipsis is active [#2068](https://github.com/wix/wix-style-react/pull/2068)
+
+### Fixed
+- `<Loader/>` - fix testkit to return textContent instead of innerHTML [#2076](https://github.com/wix/wix-style-react/pull/2076)
+- `<SideMenu/>` - fix the back link icon size to 14px [#2080](https://github.com/wix/wix-style-react/pull/2080)
+
+### Changed
+- Refactor testkits to import only their relevant technology [#2085](https://github.com/wix/wix-style-react/pull/2085)
+
+
+## 4.15.0 - 2018-08-02
+### Changed
+
+- Refactor deprecated text to new `<Text/>` and `<Heading/>` components [#2037](https://github.com/wix/wix-style-react/pull/2037)
+
+### Fixed
+
+- `<Input/>` - fix error indication bug
+
+## 4.14.1 - 2018-08-02
+### Changed
+- `<StatsWidget/>` - refactor old Text to new Heading and Badge [#2065](https://github.com/wix/wix-style-react/pull/2065)
+
+### Fixed
+- fixed puppeteer driver imports
+
+### Added
+ - `<Icons/>` - Update wix-ui-icons-common version to handle new icons(ArrowDown, ArrowLeft, ArrowRight, ArrowUp, Crop, Mobile, PauseFilled, PlayFilled, StatusAlerFilled, StatusCompletetFilled, StopFilled, ZoomIn, ZoomOut) [#2067](https://github.com/wix/wix-style-react/pull/2067)
+
+## 4.14.0 - 2018-08-01
+### Fixed
+- `<Button/>` - Fix focusable button in disabled state [#2054](https://github.com/wix/wix-style-react/pull/2054)
+
+### Added
+- `<Input/>` - Added `status` and `statusMessage` props, added loader suffix [#1784](https://github.com/wix/wix-style-react/pull/1784)
+- new Testkit drivers for `Text`, `Heading` `Table`, `FormField` and fixed `Input` [#2060](https://github.com/wix/wix-style-react/pull/2060) [#2061](https://github.com/wix/wix-style-react/pull/2061) [#2062](https://github.com/wix/wix-style-react/pull/2062) [#2064](https://github.com/wix/wix-style-react/pull/2064)
+
+### Changed
+- `<TextField/>` - Default info tooltip to not use `appendToParent: false` [#2035](https://github.com/wix/wix-style-react/pull/2035)
+- `<Loader/>` - styling updates according to the UX guidelines [#2045](https://github.com/wix/wix-style-react/pull/2045)
+
 ## 4.13.0 - 2018-07-30
 ### Fixed
 - `<Tooltip/>` - Fix react 16 regression [#2047](https://github.com/wix/wix-style-react/pull/2047)

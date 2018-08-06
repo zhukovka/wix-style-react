@@ -1,4 +1,4 @@
-import {testkitFactoryCreator} from '../test-common';
+import {testkitFactoryCreator} from 'wix-ui-test-utils/vanilla';
 import buttonDriverFactory from '../Backoffice/Button/Button.driver';
 
 const buttonTestkitFactory = testkitFactoryCreator(buttonDriverFactory);

@@ -3,7 +3,7 @@ import ReactTestUtils from 'react-dom/test-utils';
 import {mount} from 'enzyme';
 import isSameDay from 'date-fns/is_same_day';
 
-import {createDriverFactory} from '../test-common';
+import {createDriverFactory} from 'wix-ui-test-utils/driver-factory';
 import applyPolyfills from './Polyfills';
 import {datePickerTestkitFactory} from '../../testkit/index';
 import {datePickerTestkitFactory as enzymeDatePickerTestkitFactory} from '../../testkit/enzyme';

@@ -1,7 +1,7 @@
 {
   "name": "wix-style-react",
   "description": "wix-style-react",
-  "version": "4.13.0",
+  "version": "4.16.0",
   "main": "./dist/src/index.js",
   "files": [
     "dist",
@@ -62,8 +62,8 @@
   },
   "homepage": "https://github.com/wix/wix-style-react#readme",
   "devDependencies": {
-    "@storybook/addon-options": "^4.0.0-alpha.9",
-    "@storybook/react": "^4.0.0-alpha.9",
+    "@storybook/addon-options": "4.0.0-alpha.14",
+    "@storybook/react": "4.0.0-alpha.14",
     "@types/react": "^15.5.4",
     "autosuggest-highlight": "^3.1.0",
     "babel-polyfill": "^6.23.0",
@@ -133,8 +133,8 @@
     "react-transition-group": "^2.2.1",
     "slate": "^0.20.3",
     "wix-animations": "^1.0.141",
-    "wix-ui-backoffice": "1.0.280",
-    "wix-ui-icons-common": "2.0.5",
+    "wix-ui-backoffice": "1.0.288",
+    "wix-ui-icons-common": "2.0.6",
     "wix-ui-test-utils": "^1.0.0"
   },
   "jest": {

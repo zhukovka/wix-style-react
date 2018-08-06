@@ -1,7 +1,8 @@
 import eyes from 'eyes.it';
 
 import {tableTestkitFactory} from '../../testkit/protractor';
-import {createStoryUrl, waitForVisibilityOf, scrollToElement} from '../../test/utils/protractor';
+import {waitForVisibilityOf, scrollToElement} from 'wix-ui-test-utils/protractor';
+import {createStoryUrl} from '../../test/utils/storybook-helpers';
 import {storySettings} from '../../stories/Table/storySettings';
 
 describe('Table', () => {

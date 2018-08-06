@@ -2,6 +2,21 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import typography from '../../Typography';
 import WixComponent from '../../BaseComponents/WixComponent';
+import styles from './TextLinkLayout.scss';
+import classNames from 'classnames';
+
+const ICON_SIZES = {
+  small: '18px',
+  medium: '24px'
+};
+
+const addIcon = (className, icon, size = 'medium') => (
+  icon ?
+    <div className={className} data-hook={className === styles.prefix ? 'prefix-icon' : 'suffix-icon'}>
+      {React.cloneElement(icon, {size: ICON_SIZES[size]})}
+    </div> :
+    null
+);
 
 export const ThemeOptions = {
   NORMAL: {type: 'normal', color: {hover: '#4eb7f5', normal: '#3899ec'}},
@@ -19,7 +34,9 @@ export default class TextLinkLayout extends WixComponent {
     theme: PropTypes.oneOf(['normal', 'darkBackground', 'greyScale']),
     size: PropTypes.oneOf(['small', 'medium']),
     display: PropTypes.oneOf(['block', 'inline-block']),
-    disabled: PropTypes.bool
+    disabled: PropTypes.bool,
+    prefixIcon: PropTypes.node,
+    suffixIcon: PropTypes.node
   };
 
   static defaultProps = {
@@ -71,21 +88,24 @@ export default class TextLinkLayout extends WixComponent {
     }
   }
 
-
   render() {
     const {isHover} = this.state;
-    const {underlineStyle, size, children, display, disabled} = this.props;
+    const {underlineStyle, size, children, display, disabled, prefixIcon, suffixIcon} = this.props;
     const color = this.getColor();
+
+    const displayStyle = (prefixIcon || suffixIcon) ? 'flex' : display;
 
     const style = {
       color,
-      display,
+      display: displayStyle,
       background: 'none',
       cursor: disabled ? 'default' : 'pointer',
       textDecoration: ((underlineStyle === 'hover' && isHover && !disabled) || underlineStyle === 'always') ? 'underline' : 'none'
     };
 
-    const className = size === 'medium' ? typography.t1_3 : typography.t3_3;
+    const className = classNames(
+      size === 'medium' ? typography.t1_3 : typography.t3_3
+    );
 
     return (
       <div
@@ -95,7 +115,9 @@ export default class TextLinkLayout extends WixComponent {
         onMouseLeave={() => this.setHover(false)}
         onMouseEnter={() => this.setHover(true)}
         >
+        {addIcon(styles.prefix, prefixIcon, size)}
         {children}
+        {addIcon(styles.suffix, suffixIcon, size)}
       </div>
     );
   }

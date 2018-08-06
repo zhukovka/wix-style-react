@@ -1,4 +1,4 @@
-import {resolveIn} from '../test-common';
+import {resolveIn} from '../../test/utils';
 import {tooltipTestkitFactory} from '../../testkit';
 
 const findByHook = (element, hook) =>

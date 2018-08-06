@@ -3,11 +3,11 @@ import sinon from 'sinon';
 
 import inputDriverFactory from './Input.driver';
 import Input from '.';
-import {createDriverFactory, resolveIn} from '../test-common';
+import {createDriverFactory} from 'wix-ui-test-utils/driver-factory';
 import {inputTestkitFactory, tooltipTestkitFactory} from '../../testkit';
 import {inputTestkitFactory as enzymeInputTestkitFactory} from '../../testkit/enzyme';
-import {isTestkitExists, isEnzymeTestkitExists} from '../../testkit/test-common';
-import {makeControlled} from '../../test/utils';
+import {isTestkitExists, isEnzymeTestkitExists} from '../../test/utils/testkit-sanity';
+import {makeControlled, resolveIn} from '../../test/utils';
 import {mount} from 'enzyme';
 
 describe('Input', () => {

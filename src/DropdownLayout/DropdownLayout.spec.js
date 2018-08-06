@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactTestUtils from 'react-dom/test-utils';
-import {createDriverFactory} from '../test-common';
+import {createDriverFactory} from 'wix-ui-test-utils/driver-factory';
 import DropdownLayout from './DropdownLayout';
 import dropdownLayoutDriverFactory from './DropdownLayout.driver';
 import {dropdownLayoutTestkitFactory} from '../../testkit';

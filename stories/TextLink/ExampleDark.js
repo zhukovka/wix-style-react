@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {TextLink} from 'wix-style-react/Backoffice';
+import TextLink from 'wix-style-react/TextLink';
 
 const style = {
   display: 'inline-block',
@@ -21,8 +21,6 @@ class ControlledExample extends Component {
         <br/>
         <TextLink theme="darkBackground" size="small" link="http://www.wix.com">Wix link small</TextLink>
       </div>
-
-
     );
   }
 }

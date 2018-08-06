@@ -8,10 +8,10 @@ import '../stories/Introduction';
 import '../stories/Composite'; // TODO: Move to introduction
 
 // 1. Foundations
-import '../stories/Text'; // 1.2 Text
+import '../stories/Text/index.story'; // 1.2 Text
 // import '../stories/Label/index.story.js'; // 1.2 + Text
 import '../stories/Label'; // 1.2 + Label
-import '../stories/Heading.story'; // 1.3 Heading
+import '../stories/Heading/index.story'; // 1.3 Heading
 import '../stories/Icons'; // 1.4 Icons - deprecated
 import '../stories/NewIcons'; // 1.4 Icons
 
@@ -24,7 +24,7 @@ import '../stories/ScrollBar'; // 1.8 ScrollBar
 import '../stories/Page/index.story.js'; // 2.5 Page
 import '../stories/PageHeader/index.story.js'; // 2.5 + PageHeader
 import '../stories/Page/FullPageExample.js'; // 2.5 + Page Example
-import '../stories/StatsWidget'; // 2.6 StatsWidget
+import '../stories/StatsWidget'; // 2.7 StatsWidget
 import '../stories/Grid';
 import '../stories/Card';
 

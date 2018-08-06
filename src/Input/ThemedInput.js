@@ -16,7 +16,6 @@ class ThemedInput extends Input {
       rtl,
       disabled,
       error,
-      errorMessage,
       status,
       forceHover,
       forceFocus,
@@ -31,7 +30,7 @@ class ThemedInput extends Input {
     let hasError = status === Input.StatusError;
 
     // Check for deprecated fields and use them if provided
-    if (error || errorMessage) {
+    if (error) {
       hasError = true;
     }
 

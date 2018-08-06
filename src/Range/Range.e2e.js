@@ -1,5 +1,7 @@
 import eyes from 'eyes.it';
-import {rangeTestkitFactory, getStoryUrl, waitForVisibilityOf} from '../../testkit/protractor';
+import {rangeTestkitFactory} from '../../testkit/protractor';
+import {waitForVisibilityOf} from 'wix-ui-test-utils/protractor';
+import {getStoryUrl} from '../../test/utils/storybook-helpers';
 import settings from '../../stories/Range/StorySettings';
 import inputDriver from '../Input/Input.protractor.driver';
 import datePickerDriver from '../DatePicker/DatePicker.protractor.driver';
