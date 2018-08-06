@@ -17,6 +17,7 @@ Types of changes:
 ### Added
 
 - `<TextLink/>` - support prefix and suffix icons [#2088](https://github.com/wix/wix-style-react/pull/2088)
+- `<Container/>` - add `fluid` prop to disable min/max width [#2082](https://github.com/wix/wix-style-react/pull/2082)
 
 ### Changed
 
