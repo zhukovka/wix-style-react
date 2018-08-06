@@ -187,7 +187,6 @@ export default class DatePicker extends WixComponent {
       onChange: this._saveNewValue,
       onClose: this.closeCalendar,
       value,
-      visible: isOpen,
       shouldCloseOnSelect
     };
 
@@ -205,7 +204,7 @@ export default class DatePicker extends WixComponent {
           data-hook={calendarDataHook}
           className={styles.calendarRoot}
           >
-          <Calendar {...calendarProps}/>
+          {isOpen && <Calendar {...calendarProps}/>}
         </div>
       </div>
     );

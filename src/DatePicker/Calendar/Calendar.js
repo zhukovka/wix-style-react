@@ -125,16 +125,11 @@ export default class Calendar extends WixComponent {
   }
 
   render() {
-    const {visible} = this.props;
-
-    return <div>{visible && <DayPicker ref={this._focusSelectedDay} {...this._createDayPickerProps()}/>}</div>;
+    return <DayPicker ref={this._focusSelectedDay} {...this._createDayPickerProps()}/>;
   }
 }
 
 Calendar.propTypes = {
-  /** Should show or hide the component */
-  visible: PropTypes.bool,
-
   /** Callback function called whenever the user selects a day in the calendar */
   onChange: PropTypes.func.isRequired,
 
