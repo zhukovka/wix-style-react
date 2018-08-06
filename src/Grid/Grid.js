@@ -134,7 +134,7 @@ class Col extends Component {
 
     const columnClasses = classNames(
       className,
-      styles.column,
+      styles.col,
       {
         [styles.rtl]: rtl,
         [styles[`colXs${span}`]]: this.isLegalCol(span),

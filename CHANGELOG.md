@@ -145,7 +145,6 @@ Types of changes:
 - `<DropdownLayout/>` - impove preformance - items will not appear in DOM if not displayed [#1996](https://github.com/wix/wix-style-react/pull/1996) 
 
 ### Fixed
-- `<Card/>` - Add `overflow: hidden` to make  [#1962](https://github.com/wix/wix-style-react/pull/1962)
 - `<Card/>` - collapsed Card header should not have any bottom divider [#1972](https://github.com/wix/wix-style-react/pull/1972)
 - `<EditableSelector/>` - fix margins [#1984](https://github.com/wix/wix-style-react/pull/1984)
 - `<ColorPicker/>` - fix history bar behavior [#1990](https://github.com/wix/wix-style-react/pull/1990)

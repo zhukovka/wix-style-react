@@ -1,20 +1,15 @@
-import React, {Component} from 'react';
+import React from 'react';
 import {node} from 'prop-types';
 import styles from './Content.scss';
 
-class Content extends Component {
+const Content = ({children}) =>
+  <div
+    className={styles.root}
+    children={children}
+    />;
 
-  static propTypes = {
-    children: node
-  };
-
-  render() {
-    return (
-      <div className={styles.content}>
-        {this.props.children}
-      </div>
-    );
-  }
-}
+Content.propTypes = {
+  children: node
+};
 
 export default Content;
