@@ -80,6 +80,20 @@ describe('TextLinkLayout', () => {
     const driver = createDriver(<TextLinkLayout display="inline-block"/>);
     expect(driver.getDisplay()).toBe('inline-block');
   });
+
+  it('should have a prefixIcon', () => {
+    const driver = createDriver(<TextLinkLayout prefixIcon={<div/>}/>);
+
+    expect(driver.isSuffixIconExists()).toBeFalsy();
+    expect(driver.isPrefixIconExists()).toBeTruthy();
+  });
+
+  it('should have a suffixIcon', () => {
+    const driver = createDriver(<TextLinkLayout suffixIcon={<div/>}/>);
+
+    expect(driver.isPrefixIconExists()).toBeFalsy();
+    expect(driver.isSuffixIconExists()).toBeTruthy();
+  });
 });
 
 describe('testkit', () => {

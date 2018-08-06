@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import ReactTestUtils from 'react-dom/test-utils';
-import {ThemeOptions} from '../TextLinkLayout/TextLinkLayout';
+import {ThemeOptions} from '../BaseComponents/TextLinkLayout/TextLinkLayout';
 
 const textLinkDriverFactory = ({element, wrapper, component}) => {
   const textLinkLayout = element ? element.children[0] : {};

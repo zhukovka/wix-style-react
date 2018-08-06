@@ -20,6 +20,16 @@
 | exists | - | bool | fulfilled if element in the DOM |
 | click | - | - | clicks on the text link |
 
+## Protractor TestKit API
+
+| method | arguments | returned value | description |
+|--------|-----------|----------------|-------------|
+| element | - | element | Returns the element |
+| getText | - | string | Returns the element's text content |
+| hover | - | - | Hover the element with the mouse |
+| isPrefixIconExists | - | boolean | Returns `true` if a prefix icon exists |
+| isSuffixIconExists | - | boolean | Returns `true` if a suffix icon exists |
+
 ## Usage Example
 
 > Unit testing example

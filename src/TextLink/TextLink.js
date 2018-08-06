@@ -1,14 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import WixComponent from '../../BaseComponents/WixComponent';
-import TextLinkLayout from '../../BaseComponents/TextLinkLayout';
+import WixComponent from '../BaseComponents/WixComponent';
+import TextLinkLayout from '../BaseComponents/TextLinkLayout';
 
-export default class BaseTextLink extends WixComponent {
+export default class TextLink extends WixComponent {
 
   static propTypes = {
     ...TextLinkLayout.propTypes,
     link: PropTypes.string,
-    disabled: PropTypes.bool,
     download: PropTypes.bool,
     rel: PropTypes.string,
     target: PropTypes.string,
@@ -20,7 +19,6 @@ export default class BaseTextLink extends WixComponent {
 
   static defaultProps = {
     ...TextLinkLayout.defaultProps,
-    disabled: false,
     download: false,
     rel: null,
     target: null,
@@ -37,7 +35,7 @@ export default class BaseTextLink extends WixComponent {
     if (!disabled) {
       this.props.onClick(event);
     }
-  }
+  };
 
   render() {
     const {ariaLabel, disabled, link, children, download, rel, target, onMouseEnter, onMouseLeave} = this.props;
@@ -52,27 +50,15 @@ export default class BaseTextLink extends WixComponent {
         tabIndex: 0,
         display: 'inline-block'
       },
-      disabled
+      disabled,
+      rel,
+      target,
+      onMouseEnter,
+      onMouseLeave
     };
 
     if (ariaLabel) {
       props['aria-label'] = ariaLabel;
-    }
-
-    if (rel) {
-      props.rel = rel;
-    }
-
-    if (target) {
-      props.target = target;
-    }
-
-    if (onMouseEnter) {
-      props.onMouseEnter = onMouseEnter;
-    }
-
-    if (onMouseLeave) {
-      props.onMouseLeave = onMouseLeave;
     }
 
     return (

@@ -89,6 +89,9 @@ export const imageViewerTestkitFactory = protractorTestkitFactoryCreator(imageVi
 import tpaTextLinkDriverFactory from '../src/TPA/TextLink/TextLink.protractor.driver';
 export const tpaTextLinkTestkitFactory = protractorTestkitFactoryCreator(tpaTextLinkDriverFactory);
 
+import textLinkDriverFactory from '../src/TextLink/TextLink.protractor.driver';
+export const textLinkTestkitFactory = protractorTestkitFactoryCreator(textLinkDriverFactory);
+
 import popoverMenuDriverFactory from '../src/PopoverMenu/PopoverMenu.protractor.driver';
 export const popoverMenuTestkitFactory = protractorTestkitFactoryCreator(popoverMenuDriverFactory);
 

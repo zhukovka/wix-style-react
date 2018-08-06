@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {TextLink} from 'wix-style-react/Backoffice';
+import TextLink from 'wix-style-react/TextLink';
 
 const style = {
   display: 'inline-block',
@@ -9,9 +9,7 @@ const style = {
 };
 
 class ControlledExample extends Component {
-
   render() {
-
     return (
       <div style={style}>
         <TextLink link="http://www.wix.com">Wix link</TextLink>
@@ -22,8 +20,6 @@ class ControlledExample extends Component {
         <br/>
         <TextLink size="small" ariaLabel="wix.com site" link="http://www.wix.com">Small link with ariaLabel</TextLink>
       </div>
-
-
     );
   }
 }

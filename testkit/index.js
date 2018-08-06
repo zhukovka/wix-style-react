@@ -60,7 +60,7 @@ export const checkboxTestkitFactory = testkitFactoryCreator(checkboxDriverFactor
 import buttonDriverFactory from '../src/Backoffice/Button/Button.driver';
 export const buttonTestkitFactory = testkitFactoryCreator(buttonDriverFactory);
 
-import textLinkDriverFactory from '../src/BaseComponents/TextLink/TextLink.driver';
+import textLinkDriverFactory from '../src/TextLink/TextLink.driver';
 export const textLinkTestkitFactory = testkitFactoryCreator(textLinkDriverFactory);
 
 import textLinkLayoutDriverFactory from '../src/BaseComponents/TextLinkLayout/TextLinkLayout.driver';

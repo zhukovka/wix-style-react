@@ -8,6 +8,7 @@ import {notificationTestkitFactory as enzymeNotificationTestkitFactory, buttonTe
 
 import Notification from './Notification';
 import Button from '../../src/Button';
+import TextLink from '../TextLink';
 
 const renderNotificationWithProps = (props = {}) => (
   <Notification {...props}>
@@ -317,7 +318,7 @@ describe('Notification', () => {
         </Notification.ActionButton>
       );
 
-      expect(component.find('TextLink').length).toEqual(1);
+      expect(component.find(TextLink).length).toEqual(1);
     });
   });
 });
