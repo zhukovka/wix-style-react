@@ -11,7 +11,6 @@ import '../stories/Composite'; // TODO: Move to introduction
 import '../stories/Text/index.story'; // 1.2 Text
 import '../stories/Label.story.js'; // 1.2 + Label
 import '../stories/Heading/index.story'; // 1.3 Heading
-import '../stories/Icons'; // 1.4 Icons - deprecated
 import '../stories/NewIcons'; // 1.4 Icons
 
 import '../stories/Loader.story.js'; // 1.5 Loader
