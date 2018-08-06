@@ -11,35 +11,37 @@ export default () =>
             <Card.Header subtitle="Card Subtitle" title="Card Header"/>
 
             <Card.Content>
-              <Row>
-                <Col span={4}>
-                  {text('<Col span={4}/>')}
-                </Col>
-                <Col span={4}>
-                  {text('<Col span={4}/>')}
-                </Col>
-                <Col span={4}>
-                  {text('<Col span={4}/>')}
-                </Col>
-              </Row>
+              <Container fluid>
+                <Row>
+                  <Col span={4}>
+                    {text('<Col span={4}/>')}
+                  </Col>
+                  <Col span={4}>
+                    {text('<Col span={4}/>')}
+                  </Col>
+                  <Col span={4}>
+                    {text('<Col span={4}/>')}
+                  </Col>
+                </Row>
 
-              <Row>
-                <Col span={6}>
-                  {text('<Col span={6}/>')}
-                </Col>
-              </Row>
+                <Row>
+                  <Col span={6}>
+                    {text('<Col span={6}/>')}
+                  </Col>
+                </Row>
 
-              <Row>
-                <Col span={6}>
-                  {text('<Col span={6}/>')}
-                </Col>
-                <Col span={3}>
-                  {text('<Col span={3}/>')}
-                </Col>
-                <Col span={3}>
-                  {text('<Col span={3}/>')}
-                </Col>
-              </Row>
+                <Row>
+                  <Col span={6}>
+                    {text('<Col span={6}/>')}
+                  </Col>
+                  <Col span={3}>
+                    {text('<Col span={3}/>')}
+                  </Col>
+                  <Col span={3}>
+                    {text('<Col span={3}/>')}
+                  </Col>
+                </Row>
+              </Container>
             </Card.Content>
           </Card>
         </Col>
@@ -49,24 +51,26 @@ export default () =>
             <Card.Header title="Side Card"/>
 
             <Card.Content>
-              <Row>
-                <Col span={12}>
-                  {text('<Col span={12}/>')}
-                </Col>
-              </Row>
-              <Row>
-                <Col span={6}>
-                  {text('<Col span={6}/>')}
-                </Col>
-                <Col span={6}>
-                  {text('<Col span={6}/>')}
-                </Col>
-              </Row>
-              <Row>
-                <Col span={12}>
-                  {text('<Col span={12}/>')}
-                </Col>
-              </Row>
+              <Container fluid>
+                <Row>
+                  <Col span={12}>
+                    {text('<Col span={12}/>')}
+                  </Col>
+                </Row>
+                <Row>
+                  <Col span={6}>
+                    {text('<Col span={6}/>')}
+                  </Col>
+                  <Col span={6}>
+                    {text('<Col span={6}/>')}
+                  </Col>
+                </Row>
+                <Row>
+                  <Col span={12}>
+                    {text('<Col span={12}/>')}
+                  </Col>
+                </Row>
+              </Container>
             </Card.Content>
           </Card>
         </Col>
@@ -78,17 +82,19 @@ export default () =>
             <Card.Header title="Full width Card"/>
 
             <Card.Content>
-              <Row>
-                <Col span={4}>
-                  {text('<Col span={4}/>')}
-                </Col>
-                <Col span={4}>
-                  {text('<Col span={4}/>')}
-                </Col>
-                <Col span={4}>
-                  {text('<Col span={4}/>')}
-                </Col>
-              </Row>
+              <Container fluid>
+                <Row>
+                  <Col span={4}>
+                    {text('<Col span={4}/>')}
+                  </Col>
+                  <Col span={4}>
+                    {text('<Col span={4}/>')}
+                  </Col>
+                  <Col span={4}>
+                    {text('<Col span={4}/>')}
+                  </Col>
+                </Row>
+              </Container>
             </Card.Content>
           </Card>
         </Col>
