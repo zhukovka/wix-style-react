@@ -116,10 +116,16 @@ import '../stories/FullTextView.story.js'; //12.4 FullTextView
 import '../stories/Tag.story.js'; // 12.5 Tag
 import '../stories/Highlighter.story.js'; // Highlighter
 import '../stories/FormField.story.js'; // FormField
+import '../stories/Layout';
 
 // 13. Work in progress
 import '../stories/Table'; // 13.1 Table Card
 import '../stories/Table/Toolbar/ToolbarStory.js'; // 13.2 TableToolbar
+
+// Components section, WIP and similar
+import '../stories/FormField.story.js';
+import '../stories/Layout/index.story.js';
+import '../stories/Layout';
 
 // TPA
 import '../stories/TPA/Button';
