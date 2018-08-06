@@ -122,16 +122,17 @@ import '../stories/FormField.story.js';
 import '../stories/Layout/index.story.js';
 import '../stories/Layout';
 
+// Components section, WIP and similar
+import '../stories/FormField.story.js';
+import '../stories/Layout/index.story.js';
+import '../stories/Layout';
+
 // TPA
 import '../stories/TPA/Button';
 import '../stories/TPA/FloatingTabs';
 import '../stories/TPA/TextLink';
 import '../stories/TPA/Input';
 import '../stories/TPA/Label';
-
-// DEPRECATED
-import '../stories/LanguagePicker/index.story.js';
-import '../stories/SideBar';
 
 // Tests
 import '../stories/Page/PageTestStories.js'; // Tests/2.5 + Page/

@@ -45,12 +45,18 @@ Types of changes:
 ### Fixed
 - `<FormField/>` - update counter color and typography to the same as for placeholder [#2083](https://github.com/wix/wix-style-react/pull/2083)
 - `<Table/>` - fix `TableToolbar` import path [#2023](https://github.com/wix/wix-style-react/pull/2023)
+- `<TextLink/>` - support prefix and suffix icons [#2088](https://github.com/wix/wix-style-react/pull/2088)
+- `<Container/>` - add `fluid` prop to disable min/max width [#2082](https://github.com/wix/wix-style-react/pull/2082)
+
+### Changed
+
+- `<TextLink/>` - refactored folder structure and updated protractor testkit [#2088](https://github.com/wix/wix-style-react/pull/2088)
 
 ## 4.16.0 - 2018-08-05
 ### Deprecated
 - `<Text/>` - Deprecated `bold` prop in favor `weight` prop which can be `thin`, `normal` or `bold`. [#2073](https://github.com/wix/wix-style-react/pull/2073)
 
-### Added 
+### Added
 - `<Text/>` - Show Tooltip when ellipsis is active [#2073](https://github.com/wix/wix-style-react/pull/2073)
 - `<Text/>` - Extend `size` prop to have also `size="tiny"`. [#2073](https://github.com/wix/wix-style-react/pull/2073)
 - `<Heading/>` - Show Tooltip when ellipsis is active [#2068](https://github.com/wix/wix-style-react/pull/2068)
@@ -142,7 +148,7 @@ Types of changes:
 - `<Card.ButtonHeader/>` - migrate to new icons [#1979](https://github.com/wix/wix-style-react/pull/1979)
 - `<Card.CollapsedHeader/>` - migrate to new icons [#1980](https://github.com/wix/wix-style-react/pull/1980)
 - `<EditableSelector/>` - improve behavior when editing a line [#1989](https://github.com/wix/wix-style-react/pull/1989)
-- `<DropdownLayout/>` - impove preformance - items will not appear in DOM if not displayed [#1996](https://github.com/wix/wix-style-react/pull/1996) 
+- `<DropdownLayout/>` - impove preformance - items will not appear in DOM if not displayed [#1996](https://github.com/wix/wix-style-react/pull/1996)
 
 ### Fixed
 - `<Card/>` - collapsed Card header should not have any bottom divider [#1972](https://github.com/wix/wix-style-react/pull/1972)
