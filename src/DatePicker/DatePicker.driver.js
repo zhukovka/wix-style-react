@@ -18,6 +18,7 @@ const datePickerDriverFactory = ({element, wrapper}) => {
   const getPrevMonthButton = () => element.querySelector('[data-hook="datepicker-left-arrow"]');
   const getNextMonthButton = () => element.querySelector('[data-hook="datepicker-right-arrow"]');
   const getFocusedDay = () => wrapper.querySelector('.DayPicker-Day:focus');
+  const getVisuallyUnfocusedDay = () => wrapper.querySelector('.DayPicker-Day--unfocused');
 
   const driver = {
     exists: () => !!element
@@ -49,6 +50,8 @@ const datePickerDriverFactory = ({element, wrapper}) => {
     getSelectedDay: () => getSelectedDay().textContent,
     getWidth: () => element.style.width,
     triggerKeyDown: params => ReactTestUtils.Simulate.keyDown(getFocusedDay(), params),
+    isFocusedDayVisuallyUnfocused: () => getFocusedDay().classList.contains('DayPicker-Day--unfocused'),
+    containsVisuallyUnfocusedDay: () => !!getVisuallyUnfocusedDay(),
 
     getMonthDropdownDriver: () => {
       ReactTestUtils.Simulate.click(element.querySelector('[data-hook="datepicker-month-dropdown-button"]'));

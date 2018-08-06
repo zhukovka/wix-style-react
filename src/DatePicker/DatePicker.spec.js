@@ -360,6 +360,12 @@ describe('DatePicker', () => {
         expect(calendarDriver.isVisible()).toBe(true);
       });
 
+      it('should hide the focus visually on the current element from the user', () => {
+        const {calendarDriver} = createDriver(<DatePicker onChange={noop}/>);
+        calendarDriver.open();
+        expect(calendarDriver.isFocusedDayVisuallyUnfocused()).toBeTruthy();
+      });
+
       it('should close calendar using ref', () => {
         const {calendarDriver} = createDriver(<DatePicker onChange={noop}/>);
 
@@ -426,6 +432,17 @@ describe('DatePicker', () => {
           expect(calendarDriver.getFocusedDay()).toEqual('4');
           done();
         });
+      });
+
+      it('should remove unfocused class from the selected day while navigating the calendar', () => {
+        const date = new Date(2018, 1, 5);
+        const {calendarDriver} = createDriver(<DatePicker onChange={noop} value={date}/>);
+
+        calendarDriver.open();
+        expect(calendarDriver.isFocusedDayVisuallyUnfocused()).toBeTruthy();
+
+        calendarDriver.pressLeftArrow();
+        expect(calendarDriver.containsVisuallyUnfocusedDay()).toBeFalsy();
       });
     });
   });

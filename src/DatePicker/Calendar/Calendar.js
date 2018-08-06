@@ -85,7 +85,8 @@ export default class Calendar extends WixComponent {
       onDayClick: this._handleDayClick,
       localeUtils,
       navbarElement: () => null,
-      captionElement
+      captionElement,
+      onDayKeyDown: this._handleDayKeyDown
     };
   };
 
@@ -104,7 +105,23 @@ export default class Calendar extends WixComponent {
   };
 
   _focusSelectedDay = dayPickerRef => {
-    dayPickerRef && dayPickerRef.dayPicker.querySelector('.DayPicker-Day--selected').focus();
+    if (dayPickerRef) {
+      this.dayPickerRef = dayPickerRef;
+      const selectedDay = this.dayPickerRef.dayPicker.querySelector('.DayPicker-Day--selected');
+
+      if (selectedDay) {
+        selectedDay.classList.add('DayPicker-Day--unfocused');
+        selectedDay.focus();
+      }
+    }
+  }
+
+  _handleDayKeyDown = () => {
+    const unfocusedDay = this.dayPickerRef.dayPicker.querySelector('.DayPicker-Day--unfocused');
+
+    if (unfocusedDay) {
+      unfocusedDay.classList.remove('DayPicker-Day--unfocused');
+    }
   }
 
   render() {
