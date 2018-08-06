@@ -83,7 +83,7 @@ $hoverBoxShadow: 0 0 0 $boxShadowWidth $F00;
         box-shadow: $hoverBoxShadow;
       }
 
-      &--today:not(.DayPicker-Day--selected) {
+      &--today:not(.DayPicker-Day--selected):not(:hover) {
         background-color: $D70;
         @include todayShadow();
         z-index: 0;
