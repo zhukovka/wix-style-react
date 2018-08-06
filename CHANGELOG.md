@@ -12,6 +12,15 @@ Types of changes:
 1. **Security** in case of vulnerabilities.
 1. **Breaking** for breaking changes
 
+## Next
+
+### Added
+
+- `<TextLink/>` - support prefix and suffix icons [#2088](https://github.com/wix/wix-style-react/pull/2088)
+
+### Changed
+
+- `<TextLink/>` - refactored folder structure and updated protractor testkit [#2088](https://github.com/wix/wix-style-react/pull/2088)
 
 ## 4.16.0 - 2018-08-05
 ### Deprecated
