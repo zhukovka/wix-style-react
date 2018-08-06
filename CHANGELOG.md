@@ -14,6 +14,11 @@ Types of changes:
 
 ## 4.18.0 - 2018-08-11
 
+### Breaking
+
+- `<Grid/>` & `<Row/>` - remove ambitious box-sizing [#2053](https://github.com/wix/wix-style-react/pull/2053)
+- remove `import {Card} from 'wix-style-react/Grid'` use `import Card from 'wix-style-react/Card'` instead
+
 ### Added
 
 - `<EmptyState/>` - add a new component [#2074](https://github.com/wix/wix-style-react/pull/2074)
@@ -51,7 +56,6 @@ Types of changes:
 ### Changed
 
 - `<TextLink/>` - refactored folder structure and updated protractor testkit [#2088](https://github.com/wix/wix-style-react/pull/2088)
-- `<Grid/>` & `<Row/>` - remove ambitious box-sizing [#2053](https://github.com/wix/wix-style-react/pull/2053)
 
 ## 4.16.0 - 2018-08-05
 ### Deprecated
