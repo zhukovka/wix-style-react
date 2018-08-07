@@ -704,4 +704,12 @@ describe('DatePicker', () => {
       expect(calendarDriver.isVisible()).toBe(false);
     });
   });
+
+  fdescribe('two months layout', () => {
+    it('should switch to 2 months layout if we set twoMonths prop to true', () => {
+      const {inputDriver, calendarDriver} = createDriver(<DatePicker twoMonths={true} onChange={noop}/>);
+      inputDriver.trigger('click');
+      expect(calendarDriver.usesTwoMonthsLayout()).toBeTruthy();
+    });
+  });
 });

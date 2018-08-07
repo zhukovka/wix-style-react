@@ -151,7 +151,8 @@ export default class DatePicker extends WixComponent {
       filterDate,
       excludePastDates,
       rtl,
-      shouldCloseOnSelect
+      shouldCloseOnSelect,
+      twoMonths
     } = this.props;
 
     const {isOpen, value} = this.state;
@@ -187,7 +188,8 @@ export default class DatePicker extends WixComponent {
       onChange: this._saveNewValue,
       onClose: this.closeCalendar,
       value,
-      shouldCloseOnSelect
+      shouldCloseOnSelect,
+      twoMonths
     };
 
     return (

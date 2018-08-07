@@ -115,6 +115,22 @@ $hoverBoxShadow: 0 0 0 $boxShadowWidth $F00;
         color: $D55;
       }
     }
+
+    &-Months {
+      display: flex;
+
+      .DayPicker-Month:first-child {
+        .DayPicker-Nav--Right {
+          visibility: hidden;
+        }
+      }
+
+      .DayPicker-Month:last-child {
+        .DayPicker-Nav--Left {
+          visibility: hidden;
+        }
+      }
+    }
   }
 }
 
