@@ -16,8 +16,12 @@ Types of changes:
 
 ### Breaking
 
+[Migration guide](https://github.com/wix/wix-style-react/blob/master/docs/migration/v4-v5.md)
+
 - `<Grid/>` & `<Row/>` - remove ambitious box-sizing [#2053](https://github.com/wix/wix-style-react/pull/2053)
 - remove `import {Card} from 'wix-style-react/Grid'` use `import Card from 'wix-style-react/Card'` instead
+- `<LanguagePicker/>` - remove component in favor of `<IconWithOptions/>`
+- `<SideBar/>` - remove component in favor of `<SideMenu/>`
 
 ### Added
 
