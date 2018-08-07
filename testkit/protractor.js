@@ -50,9 +50,6 @@ export const dropdownTestkitFactory = protractorTestkitFactoryCreator(dropdownDr
 import buttonWithOptionsDriverFactory from '../src/ButtonWithOptions/ButtonWithOptions.protractor.driver';
 export const buttonWithOptionsTestkitFactory = protractorTestkitFactoryCreator(buttonWithOptionsDriverFactory);
 
-import languagePickerDriverFactory from '../src/LanguagePicker/LanguagePicker.protractor.driver';
-export const languagePickerTestkitFactory = protractorTestkitFactoryCreator(languagePickerDriverFactory);
-
 import filePickerDriverFactory from '../src/FilePicker/FilePicker.protractor.driver';
 export const filePickerTestkitFactory = protractorTestkitFactoryCreator(filePickerDriverFactory);
 
