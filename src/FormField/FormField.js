@@ -19,7 +19,7 @@ const asterisk =
 const charactersLeft = lengthLeft =>
   (<div
     data-hook="formfield-counter"
-    className={classnames(styles.counter, typography.t3, {[typography.t3_5]: lengthLeft < 0})}
+    className={classnames(styles.counter, lengthLeft >= 0 ? typography.t4_4 : typography.t4_5)}
     children={lengthLeft}
     />);
 
