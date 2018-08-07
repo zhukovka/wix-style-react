@@ -29,7 +29,6 @@ export {default as Loader} from './Loader';
 export {default as DatePicker} from './DatePicker';
 export {default as TimeInput} from './TimeInput';
 export {default as Tooltip} from './Tooltip';
-export {default as SideBar} from './SideBar';
 export {default as Page} from './Page';
 export {default as SectionHelper} from './SectionHelper';
 export {default as PageHeader} from './PageHeader';
