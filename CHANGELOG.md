@@ -24,6 +24,10 @@ Types of changes:
 
 - `<TextLink/>` - refactored folder structure and updated protractor testkit [#2088](https://github.com/wix/wix-style-react/pull/2088)
 
+### Fixed
+
+- `<FormField/>` - Update counter color and typography to the same as for placeholder [#2083](https://github.com/wix/wix-style-react/pull/2083)
+
 ## 4.16.0 - 2018-08-05
 ### Deprecated
 - `<Text/>` - Deprecated `bold` prop in favor `weight` prop which can be `thin`, `normal` or `bold`. [#2073](https://github.com/wix/wix-style-react/pull/2073)
