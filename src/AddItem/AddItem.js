@@ -6,15 +6,15 @@ import AddMedia from 'wix-ui-icons-common/system/AddMedia';
 import WixComponent from '../BaseComponents/WixComponent';
 import classNames from 'classnames';
 
-const tooltipCommonProps = {
+const DEFAULT_TOOLTIP_PROPS = {
   showDelay: 0,
-  theme: 'dark',
   hideDelay: 0,
+  theme: 'dark',
   align: 'center',
   placement: 'top'
 };
 
-const ratioClasses = {
+const RATIO_CLASSES = {
   '16/9': style.ratio16x9,
   '3/4': style.ratio3x4,
   '4/3': style.ratio4x3,
@@ -35,13 +35,19 @@ class AddItem extends WixComponent {
       tooltipContent,
       aspectRatio
     } = this.props;
-    const ratio = !height && ratioClasses[aspectRatio];
+    const ratio = !height && RATIO_CLASSES[aspectRatio];
+    const tooltipProps = {
+      ...DEFAULT_TOOLTIP_PROPS,
+      ...this.props.tooltipProps,
+      content: tooltipContent || this.props.tooltipProps.content
+    };
+
     return (
       <div className={classNames(ratio, style.box)} style={{height}} >
         <div className={style.container} onClick={onClick} data-hook="add-container">
           {
-            tooltipContent ?
-              <Tooltip content={tooltipContent} dataHook="add-tooltip" {...tooltipCommonProps}>
+            tooltipProps.content ?
+              <Tooltip dataHook="add-tooltip" {...tooltipProps}>
                 {renderInnerAddItem()}
               </Tooltip> :
               renderInnerAddItem()
@@ -53,18 +59,24 @@ class AddItem extends WixComponent {
 }
 
 AddItem.propTypes = {
-  /** Funciton called upon click */
+  /** Function called upon click */
   onClick: PropTypes.func,
-  /** The elemnt's asspect ratio   */
-  aspectRatio: PropTypes.oneOf(Object.keys(ratioClasses)),
+  /** The element's aspect ratio */
+  aspectRatio: PropTypes.oneOf(Object.keys(RATIO_CLASSES)),
   /** Element's height - overrides the asspect ratio */
   height: PropTypes.number,
-  /** Content of the tooltip */
+  /** Tooltip props, leave undefined for no tooltip */
+  tooltipProps: PropTypes.shape({
+    ...Tooltip.propTypes,
+    content: PropTypes.node
+  }),
+  /** Content of the tooltip, leave undefined for no tooltip */
   tooltipContent: PropTypes.string
 };
 
 AddItem.defaultProps = {
-  aspectRatio: '1/1'
+  aspectRatio: '1/1',
+  tooltipProps: {}
 };
 
 export default AddItem;
