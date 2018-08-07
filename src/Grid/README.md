@@ -59,6 +59,14 @@ export default () =>
   | ---      | ---      | ---          | ---        | ---                                                   |
   | children | node     | -            | -          | Should only be `<Row/>`s although any node is allowed |
   | fluid    | bool     | false        | -          | disable min/max width, use for smaller grids          |
+
+  ---
+
+  > **Note**: when `<Container/>` is used as full width component, it is possible for horizontal
+  > scrollbar to appear. It is because of negative margins on `<Row>`s that come from bootstrap
+  > (which `<Container/>`, `<Row/>` and `<Col/>` are based on).
+  >
+  > To circumvent, use `html, body { overflow-x: hidden; }`
 </details>
 
 
