@@ -2,8 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
 
-import ChevronLeftLarge from 'wix-ui-icons-common/ChevronLeftLarge';
-import ChevronRightLarge from 'wix-ui-icons-common/ChevronRightLarge';
+import ChevronLeft from 'wix-ui-icons-common/ChevronLeft';
+import ChevronRight from 'wix-ui-icons-common/ChevronRight';
 
 import YearDropdown from './YearDropdown';
 import MonthDropdown from './MonthDropdown';
@@ -40,7 +40,7 @@ const DatePickerHead = ({
         data-hook="datepicker-left-arrow"
         onClick={onLeftArrowClick}
         >
-        <ChevronLeftLarge className={styles.arrowIcon}/>
+        <ChevronLeft className={styles.arrowIcon}/>
       </div>
 
       {showMonthDropdown ?
@@ -70,7 +70,7 @@ const DatePickerHead = ({
         data-hook="datepicker-right-arrow"
         onClick={onRightArrowClick}
         >
-        <ChevronRightLarge className={styles.arrowIcon}/>
+        <ChevronRight className={styles.arrowIcon}/>
       </div>
     </div>
   );

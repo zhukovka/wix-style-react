@@ -4,38 +4,35 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 18px 24px 0;
-  background: $D80;
+  padding: 15px 23px;
+  background: $B10;
   border-radius: 8px 8px 0 0;
-  color: $B10;
+  color: $D80;
 }
 
 .caption {
   padding: 0 6px;
-  color: $D10;
+  color: $D80;
   font-weight: 300;
-  @include FontRoman();
+  @include FontLight();
   font-size: 16px;
   line-height: 1.13;
 }
 
 .arrow {
   z-index: 1;
-  width: 36px;
-  height: 36px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
   transition: background-color 100ms;
   border-radius: 50%;
   &:hover:not(:active) {
-    background-color: $B50;
+    background-color: $B20;
   }
 }
 
 .arrow-icon {
   display: block;
   cursor: pointer;
+  width: 30px;
+  height: 30px;
 }
 
 .arrow-left {
