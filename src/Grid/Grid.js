@@ -7,20 +7,21 @@ import Card from '../Card';
 
 const containerProps = {
   children: PropTypes.node,
-  fluid: PropTypes.bool
+  fluid: PropTypes.bool,
+  className: PropTypes.string
 };
 
-const RawContainer = ({children, fluid}) =>
+const RawContainer = ({children, fluid, className}) =>
   <div
-    className={classNames(styles.rawContainer, {[styles.fluidContainer]: fluid})}
+    className={classNames(styles.rawContainer, className, {[styles.fluidContainer]: fluid})}
     children={children}
     />;
 
 RawContainer.propTypes = containerProps;
 
-const Container = ({children, fluid}) =>
+const Container = ({children, fluid, className}) =>
   <div
-    className={classNames(styles.wixContainer, {[styles.fluidContainer]: fluid})}
+    className={classNames(styles.wixContainer, className, {[styles.fluidContainer]: fluid})}
     children={children}
     />;
 

@@ -55,10 +55,11 @@ export default () =>
 
   `fluid` allows to use grid for any content, be it big (whole page layout) or small (form element layout, for example).
 
-  | propName | propType | defaultValue | isRequired | description                                           |
-  | ---      | ---      | ---          | ---        | ---                                                   |
-  | children | node     | -            | -          | Should only be `<Row/>`s although any node is allowed |
-  | fluid    | bool     | false        | -          | disable min/max width, use for smaller grids          |
+  | propName  | propType | defaultValue | isRequired | description                                           |
+  | ---       | ---      | ---          | ---        | ---                                                   |
+  | children  | node     | -            | -          | Should only be `<Row/>`s although any node is allowed |
+  | className | string   | -            | -          | Specify custom className for any css tweaks           |
+  | fluid     | bool     | false        | -          | disable min/max width, use for smaller grids          |
 
   ---
 
