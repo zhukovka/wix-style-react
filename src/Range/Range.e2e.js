@@ -78,17 +78,16 @@ describe('Range', () => {
       expect(driver.isFocusedLast()).toBe(false, 'isFocusedLast');
     });
 
-    eyes.it('should show focused styles for first item', async () => {
+    eyes.it('should not show focused styles for first item', async () => {
       expect(driver.isFocusedFirst()).toBe(false);
       await driver.clickFirst();
-      expect(driver.isFocusedFirst()).toBe(true);
+      expect(driver.isFocusedFirst()).toBe(false);
     }, {version: '<Input/>-On text click - select all'});
 
-    eyes.it('should show focused styles for last item', async () => {
+    eyes.it('should not show focused styles for last item', async () => {
       expect(driver.isFocusedLast()).toBe(false);
       await driver.clickLast();
-      await driver.clickLast(); // TODO: temporary :)
-      expect(driver.isFocusedLast()).toBe(true);
+      expect(driver.isFocusedLast()).toBe(false);
     });
   });
 });
