@@ -24,6 +24,7 @@ Types of changes:
 ### Changed
 
 - `<TextLink/>` - refactored folder structure and updated protractor testkit [#2088](https://github.com/wix/wix-style-react/pull/2088)
+- `<Container/>` - add `className` prop [#2102](https://github.com/wix/wix-style-react/pull/2102)
 
 ### Fixed
 
