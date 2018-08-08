@@ -51,7 +51,23 @@ export default () =>
 
   Use as wrapper for main content. Only `<Row/>`s should be its children.
 
-  It has `minWidth: 894px` and `maxWidth: 1254px`.
+  By default it has `minWidth: 894px` and `maxWidth: 1254px`. Add `fluid` prop to remove those widths.
+
+  `fluid` allows to use grid for any content, be it big (whole page layout) or small (form element layout, for example).
+
+  | propName  | propType | defaultValue | isRequired | description                                           |
+  | ---       | ---      | ---          | ---        | ---                                                   |
+  | children  | node     | -            | -          | Should only be `<Row/>`s although any node is allowed |
+  | className | string   | -            | -          | Specify custom className for any css tweaks           |
+  | fluid     | bool     | false        | -          | disable min/max width, use for smaller grids          |
+
+  ---
+
+  > **Note**: when `<Container/>` is used as full width component, it is possible for horizontal
+  > scrollbar to appear. It is because of negative margins on `<Row>`s that come from bootstrap
+  > (which `<Container/>`, `<Row/>` and `<Col/>` are based on).
+  >
+  > To circumvent, use `html, body { overflow-x: hidden; }`
 </details>
 
 

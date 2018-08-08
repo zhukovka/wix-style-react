@@ -43,6 +43,11 @@ $grid-row-margin-bottom: 30px;
   display: flex;
 }
 
+.fluidContainer {
+  min-width: initial;
+  max-width: initial;
+}
+
 .wixContainer {
   > div > span:last-child .row:last-child {
     margin-bottom: 0;

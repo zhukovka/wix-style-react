@@ -83,7 +83,7 @@ $hoverBoxShadow: 0 0 0 $boxShadowWidth $F00;
         box-shadow: $hoverBoxShadow;
       }
 
-      &.DayPicker-Day--unfocused {
+      &.DayPicker-Day--unfocused, &:focus:hover {
         box-shadow: none;
       }
 

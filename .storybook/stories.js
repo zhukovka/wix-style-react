@@ -43,7 +43,7 @@ import '../stories/Range'; // 3.7 Range
 import '../stories/MultiSelect'; // 3.8 Tags
 import '../stories/MultiSelectComposite'; // 3.8 + MultiSelectComposite
 import '../stories/Search/index.story'; // 3.9 Search
-import '../stories/ImageViewer'; // 3.10 ImageViewer
+import '../stories/ImageViewer/index.story'; // 3.10 ImageViewer
 import '../stories/FilePicker'; // 3.10 + FilePicker
 import '../stories/GoogleAddressInput'; // 3.11 GoogleAddressInput
 import '../stories/AddItem/addItem.story.js'; // 3.12 AddItem
@@ -102,6 +102,8 @@ import '../stories/EndorseContentLayout';
 
 // 10. Tables
 import '../stories/DataTable'; // 10.1 DataTable
+import '../stories/Table'; // 10.1 Table
+import '../stories/TableToolbar/ToolbarStory.js'; // 10.1 Table -> TableToolbar
 
 // 11. Pickers and Selectors
 import '../stories/DropdownLayout'; // 11.1 DropdownLayout
@@ -116,10 +118,12 @@ import '../stories/FullTextView.story.js'; //12.4 FullTextView
 import '../stories/Tag.story.js'; // 12.5 Tag
 import '../stories/Highlighter.story.js'; // Highlighter
 import '../stories/FormField.story.js'; // FormField
+import '../stories/Layout';
 
-// 13. Work in progress
-import '../stories/Table'; // 13.1 Table Card
-import '../stories/Table/Toolbar/ToolbarStory.js'; // 13.2 TableToolbar
+// Components section, WIP and similar
+import '../stories/FormField.story.js';
+import '../stories/Layout/index.story.js';
+import '../stories/Layout';
 
 // TPA
 import '../stories/TPA/Button';

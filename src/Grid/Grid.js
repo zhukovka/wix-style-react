@@ -1,26 +1,31 @@
 import React, {Component} from 'react';
-import styles from './Grid.scss';
-import Card from '../Card';
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
 
-const childrenProp = {children: PropTypes.node};
+import styles from './Grid.scss';
+import Card from '../Card';
 
-const RawContainer = ({children}) =>
+const containerProps = {
+  children: PropTypes.node,
+  fluid: PropTypes.bool,
+  className: PropTypes.string
+};
+
+const RawContainer = ({children, fluid, className}) =>
   <div
-    className={styles.rawContainer}
+    className={classNames(styles.rawContainer, className, {[styles.fluidContainer]: fluid})}
     children={children}
     />;
 
-RawContainer.propTypes = childrenProp;
+RawContainer.propTypes = containerProps;
 
-const Container = ({children}) =>
+const Container = ({children, fluid, className}) =>
   <div
-    className={styles.wixContainer}
+    className={classNames(styles.wixContainer, className, {[styles.fluidContainer]: fluid})}
     children={children}
     />;
 
-Container.propTypes = childrenProp;
+Container.propTypes = containerProps;
 
 class Columns extends Component {
   static propTypes = {
@@ -163,5 +168,5 @@ export {
   AutoAdjustedColumns,
   AutoAdjustedColumns as AutoAdjustedRow,
   Col,
-  Card
+  Card // TODO: next major version should remove this export. Card is available from wix-style-react/Card
 };

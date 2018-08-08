@@ -131,10 +131,9 @@ export default class DatePicker extends WixComponent {
     this.closeCalendar();
   }
 
-  render() {
+  _renderInput = () => {
     const {
       inputDataHook,
-      calendarDataHook,
       dateFormat,
       locale,
       disabled,
@@ -144,18 +143,9 @@ export default class DatePicker extends WixComponent {
       error,
       errorMessage,
       customInput,
-      width,
       inputProps,
-      showMonthDropdown,
-      showYearDropdown,
-      filterDate,
-      excludePastDates,
-      rtl,
-      shouldCloseOnSelect,
       twoMonths
     } = this.props;
-
-    const {isOpen, value} = this.state;
 
     const _inputProps = {
       dataHook: inputDataHook,
@@ -174,9 +164,32 @@ export default class DatePicker extends WixComponent {
       tabIndex: this.state.isDateInputFocusable ? 1 : -1,
       error,
       errorMessage,
+      autoSelect: false,
       ...(customInput ? customInput.props : {}),
       ...inputProps
     };
+
+    return React.cloneElement(customInput || <Input/>, _inputProps);
+  };
+
+  _setInputRef = ref => this.inputRef = ref;
+
+  _setCalendarRef = ref => this.calendarRef = ref;
+
+  render() {
+    const {
+      showMonthDropdown,
+      showYearDropdown,
+      filterDate,
+      excludePastDates,
+      rtl,
+      shouldCloseOnSelect,
+      width,
+      calendarDataHook,
+      locale
+    } = this.props;
+
+    const {isOpen, value} = this.state;
 
     const calendarProps = {
       locale,
@@ -194,15 +207,15 @@ export default class DatePicker extends WixComponent {
 
     return (
       <div style={{width}} className={styles.root}>
-        <div ref={ref => (this.inputRef = ref)}>
+        <div ref={this._setInputRef}>
           <DayPickerInput
-            component={() => React.cloneElement(customInput || <Input/>, _inputProps)}
+            component={this._renderInput}
             keepFocus={false}
             />
         </div>
 
         <div
-          ref={ref => (this.calendarRef = ref)}
+          ref={this._setCalendarRef}
           data-hook={calendarDataHook}
           className={styles.calendarRoot}
           >

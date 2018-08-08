@@ -66,7 +66,7 @@ export default class DropdownPicker extends React.Component {
           className={styles.button}
           onClick={this.toggleDropdown}
           >
-          <Text light dataHook={`${dataHook}-button`}>{caption}</Text>
+          <Text dataHook={`${dataHook}-button`}>{caption}</Text>
           <div className={styles.icon}>
             <ChevronDown/>
           </div>
