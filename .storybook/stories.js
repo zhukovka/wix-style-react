@@ -102,6 +102,8 @@ import '../stories/EndorseContentLayout';
 
 // 10. Tables
 import '../stories/DataTable'; // 10.1 DataTable
+import '../stories/Table'; // 10.1 Table
+import '../stories/TableToolbar/ToolbarStory.js'; // 10.1 Table -> TableToolbar
 
 // 11. Pickers and Selectors
 import '../stories/DropdownLayout'; // 11.1 DropdownLayout
@@ -117,10 +119,6 @@ import '../stories/Tag.story.js'; // 12.5 Tag
 import '../stories/Highlighter.story.js'; // Highlighter
 import '../stories/FormField.story.js'; // FormField
 import '../stories/Layout';
-
-// 13. Work in progress
-import '../stories/Table'; // 13.1 Table Card
-import '../stories/Table/Toolbar/ToolbarStory.js'; // 13.2 TableToolbar
 
 // Components section, WIP and similar
 import '../stories/FormField.story.js';
