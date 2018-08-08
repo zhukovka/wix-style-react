@@ -23,7 +23,7 @@ export default {
     showYearDropdown: false,
     showMonthDropdown: false,
     locale: 'en',
-    twoMonths: true
+    twoMonths: false
   }),
 
   exampleProps: {

@@ -69,9 +69,6 @@ export default class Calendar extends WixComponent {
         />
     );
 
-    let className = '';
-    twoMonths && (className += 'DayPicker--TwoMonths');
-
     return {
       disabledDays: excludePastDates ? [{before: new Date()}] : date => !filterDate(date),
       initialMonth: month,
@@ -89,7 +86,7 @@ export default class Calendar extends WixComponent {
       captionElement,
       onDayKeyDown: this._handleDayKeyDown,
       numberOfMonths: twoMonths ? 2 : 1,
-      className
+      className: twoMonths ? 'DayPicker--TwoMonths' : ''
     };
   };
 
