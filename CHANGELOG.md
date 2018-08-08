@@ -25,6 +25,7 @@ Types of changes:
 
 - `<TextLink/>` - refactored folder structure and updated protractor testkit [#2088](https://github.com/wix/wix-style-react/pull/2088)
 - `<Container/>` - add `className` prop [#2102](https://github.com/wix/wix-style-react/pull/2102)
+- `<InputArea/>` - pass event for on focus handler [#2084](https://github.com/wix/wix-style-react/pull/2084)
 
 ### Fixed
 
