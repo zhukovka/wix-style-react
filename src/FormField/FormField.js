@@ -1,12 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
-
 import Label from 'wix-style-react/Label';
+import Tooltip from 'wix-style-react/Tooltip';
 
 import InfoIcon from './components/InfoIcon';
 import typography from '../Typography';
-
 import styles from './FormField.scss';
 
 const asterisk =
@@ -46,6 +45,9 @@ class FormField extends React.Component {
     /** display info icon with tooltip. Node from this prop is content of tooltip */
     infoContent: PropTypes.node,
 
+    /** info icon tooltip props */
+    infoTooltipProps: PropTypes.shape(Tooltip.propTypes),
+
     /** string used to match text label with FormField children. For example:
      *
      * ```js
@@ -81,6 +83,11 @@ class FormField extends React.Component {
     return children;
   }
 
+  renderInfoIcon = () => {
+    const {infoContent, infoTooltipProps} = this.props;
+    return infoContent && <InfoIcon tooltipProps={{content: infoContent, ...infoTooltipProps}}/>;
+  }
+
   render() {
     const {label, required, infoContent, dataHook, id} = this.props;
     const {lengthLeft} = this.state;
@@ -98,7 +105,7 @@ class FormField extends React.Component {
           <Label appearance="T1" children={label} for={id}/>
 
           { required && asterisk }
-          { infoContent && <InfoIcon content={infoContent}/> }
+          { this.renderInfoIcon() }
           { typeof lengthLeft === 'number' && charactersLeft(lengthLeft) }
         </div>
       }
@@ -116,7 +123,7 @@ class FormField extends React.Component {
           className={styles.suffixesInline}
           >
           { required && asterisk }
-          { infoContent && <InfoIcon content={infoContent}/> }
+          { this.renderInfoIcon() }
         </div>
       }
       </div>

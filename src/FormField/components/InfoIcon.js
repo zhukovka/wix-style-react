@@ -1,29 +1,27 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import Tooltip from 'wix-style-react/Tooltip';
 import InfoCircle from 'wix-ui-icons-common/InfoCircle';
 
+import Tooltip from '../../Tooltip';
 import styles from '../FormField.scss';
 
-const InfoIcon = ({content}) =>
-  <div
-    className={styles.infoIcon}
-    data-hook="formfield-infoicon"
-    >
+const InfoIcon = ({tooltipProps}) => (
+  <div className={styles.infoIcon} data-hook="formfield-infoicon">
     <Tooltip
-      content={content}
-      theme="dark"
       dataHook="formfield-infotooltip"
+      theme="dark"
+      {...tooltipProps}
       >
       <div>
         <InfoCircle size="24px"/>
       </div>
     </Tooltip>
-  </div>;
+  </div>
+);
 
 InfoIcon.propTypes = {
-  content: PropTypes.any.isRequired
+  tooltipProps: PropTypes.shape(Tooltip.propTypes)
 };
 
 export default InfoIcon;
