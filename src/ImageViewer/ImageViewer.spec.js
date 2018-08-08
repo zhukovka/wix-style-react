@@ -112,7 +112,8 @@ describe('ImageViewer', () => {
   describe('tooltips', () => {
     const tooltipProps = {
       relative: true,
-      appendToParent: true
+      appendToParent: true,
+      showDelay: 0
     };
 
     describe('add image', () => {

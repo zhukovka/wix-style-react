@@ -1,10 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import style from './AddItem.scss';
-import Tooltip from '../Tooltip';
 import AddMedia from 'wix-ui-icons-common/system/AddMedia';
-import WixComponent from '../BaseComponents/WixComponent';
 import classNames from 'classnames';
+
+import WixComponent from '../BaseComponents/WixComponent';
+import Tooltip from '../Tooltip';
+import style from './AddItem.scss';
 
 const DEFAULT_TOOLTIP_PROPS = {
   showDelay: 0,
@@ -38,8 +39,8 @@ class AddItem extends WixComponent {
     const ratio = !height && RATIO_CLASSES[aspectRatio];
     const tooltipProps = {
       ...DEFAULT_TOOLTIP_PROPS,
-      ...this.props.tooltipProps,
-      content: tooltipContent || this.props.tooltipProps.content
+      content: tooltipContent,
+      ...this.props.tooltipProps
     };
 
     return (
@@ -66,17 +67,13 @@ AddItem.propTypes = {
   /** Element's height - overrides the asspect ratio */
   height: PropTypes.number,
   /** Tooltip props, leave undefined for no tooltip */
-  tooltipProps: PropTypes.shape({
-    ...Tooltip.propTypes,
-    content: PropTypes.node
-  }),
+  tooltipProps: PropTypes.shape(Tooltip.propTypes),
   /** Content of the tooltip, leave undefined for no tooltip */
   tooltipContent: PropTypes.string
 };
 
 AddItem.defaultProps = {
-  aspectRatio: '1/1',
-  tooltipProps: {}
+  aspectRatio: '1/1'
 };
 
 export default AddItem;

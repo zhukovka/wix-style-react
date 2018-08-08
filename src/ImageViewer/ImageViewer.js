@@ -1,13 +1,15 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import Delete from 'wix-ui-icons-common/Delete';
+import Replace from 'wix-ui-icons-common/Replace';
+import FormFieldError from 'wix-ui-icons-common/system/FormFieldError';
+import classNames from 'classnames';
+import omit from 'omit';
+
 import style from './ImageViewer.scss';
 import Tooltip from '../Tooltip';
 import Button from '../Button';
-import Delete from 'wix-ui-icons-common/Delete';
-import Replace from 'wix-ui-icons-common/Replace';
 import WixComponent from '../BaseComponents/WixComponent';
-import FormFieldError from 'wix-ui-icons-common/system/FormFieldError';
-import classNames from 'classnames';
 import AddItem from '../AddItem/AddItem';
 
 const DEFAULT_TOOLTIP_PROPS = {
@@ -101,10 +103,7 @@ ImageViewer.propTypes = {
    */
   tooltipPlacement: PropTypes.string,
   /** Tooltip props, common for all tooltips */
-  tooltipProps: PropTypes.shape({
-    ...Tooltip.propTypes,
-    content: PropTypes.node
-  }),
+  tooltipProps: PropTypes.shape(omit(['content'], Tooltip.propTypes)),
   /** Add image click handler */
   onAddImage: PropTypes.func,
   /** Update image click handler */
