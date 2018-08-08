@@ -30,6 +30,7 @@ Types of changes:
 ### Fixed
 
 - `<FormField/>` - Update counter color and typography to the same as for placeholder [#2083](https://github.com/wix/wix-style-react/pull/2083)
+- `<Table/>` - Fix `TableToolbar` import path [#2023](https://github.com/wix/wix-style-react/pull/2023)
 
 ## 4.16.0 - 2018-08-05
 ### Deprecated
