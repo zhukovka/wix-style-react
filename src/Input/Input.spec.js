@@ -144,10 +144,21 @@ describe('Input', () => {
     });
   });
 
-  describe('type attribute', () => {
-    it('should set the type attribute', () => {
+  describe('`type` prop', () => {
+    it('should set type attribute', () => {
       const driver = createDriver(<Input type="number"/>);
       expect(driver.getType()).toBe('number');
+    });
+
+    describe('when "number"', () => {
+      it('should prevent onChange to be called with non numeric values', () => {
+        const onChange = jest.fn();
+        const driver = createDriver(<Input type="number" onChange={onChange} value="2"/>);
+        driver.trigger('change', {target: {value: 'a'}});
+        driver.trigger('keyPress', {target: {key: 'l'}});
+        expect(driver.getValue()).toEqual('2');
+        expect(onChange).not.toHaveBeenCalled();
+      });
     });
   });
 

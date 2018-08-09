@@ -126,6 +126,7 @@ class Input extends Component {
         defaultValue={defaultValue}
         value={value}
         onChange={this._onChange}
+        onKeyPress={this._onKeyPress}
         maxLength={maxLength}
         onFocus={this._onFocus}
         onBlur={this._onBlur}
@@ -225,12 +226,20 @@ class Input extends Component {
     }
   };
 
+  _isInvalidNumber = value => this.props.type === 'number' && !(/^[\d.,\-+]*$/.test(value));
+
   _onChange = e => {
-    if (this.props.type === 'number' && !(/^[\d.,\-+]*$/.test(e.target.value))) {
+    if (this._isInvalidNumber(e.target.value)) {
       return;
     }
 
     this.props.onChange && this.props.onChange(e);
+  }
+
+  _onKeyPress = e => {
+    if (this._isInvalidNumber(e.key)) {
+      e.preventDefault();
+    }
   }
 
   _onClear = e => {
