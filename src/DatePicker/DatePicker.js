@@ -12,8 +12,12 @@ import CalendarIcon from '../new-icons/Date';
 import {formatDate} from './LocaleUtils';
 import Calendar from './Calendar';
 import Input from '../Input';
+import isDate from 'lodash/isDate';
 
 import styles from './DatePicker.scss';
+export const getValue = (datePart, value) => {
+  return value && isDate(value) ? value : value[datePart];
+};
 
 /**
  * DatePicker component
@@ -38,7 +42,10 @@ export default class DatePicker extends WixComponent {
     dateFormat: 'MM/DD/YYYY',
     filterDate: () => true,
     rtl: false,
-    width: 150
+    width: 150,
+    rangeEndInputOptions: {
+      placeholderText: 'End date'
+    }
   };
 
   constructor(props) {
@@ -95,23 +102,33 @@ export default class DatePicker extends WixComponent {
 
   makeInputFocusable = () => this.setState({isDateInputFocusable: true});
 
-  _saveNewValue = (value, modifiers = {}) => {
+  _saveNewValue = ({start, end}, modifiers = {}) => {
     if (modifiers.disabled) {
       return;
     }
 
-    const isChanged = !isSameDay(value, this.props.value);
+    const prevValue = getValue('start', this.props.value);
+    const isChanged = !isSameDay(start, prevValue);
 
     if (isChanged) {
-      const newValue = [
-        [value.getFullYear(), setYear],
-        [value.getMonth(), setMonth],
-        [value.getDate(), setDate]
-      ].reduce((value, [datePart, setter]) => setter(value, datePart), this.props.value);
+      const newValue = this.getNewValue(start);
+      const newEndValue = this.getNewValue(end);
 
-      this.setState({value: newValue}, () => this.props.onChange(newValue));
+      this.setState(
+        {value: newValue},
+        () => this.props.onChange(end ? {start: newValue, end: newEndValue} : newValue)
+      );
     }
   };
+
+
+  getNewValue(value) {
+    return value && [
+      [value.getFullYear(), setYear],
+      [value.getMonth(), setMonth],
+      [value.getDate(), setDate]
+    ].reduce((value, [datePart, setter]) => setter(value, datePart), this.props.value);
+  }
 
   _handleKeyDown = event => {
     // TODO: dirty for now
@@ -131,7 +148,11 @@ export default class DatePicker extends WixComponent {
     this.closeCalendar();
   }
 
-  _renderInput = () => {
+  _renderStartInput = () => this._renderInput(true);
+
+  _renderEndInput = () => this._renderInput(false);
+
+  _renderInput = (startInput = true) => {
     const {
       inputDataHook,
       dateFormat,
@@ -139,20 +160,25 @@ export default class DatePicker extends WixComponent {
       disabled,
       placeholderText,
       readOnly,
-      value: initialValue,
       error,
       errorMessage,
       customInput,
-      inputProps
+      inputProps,
+      rangeEndInputOptions
     } = this.props;
+    const initialValue = getValue(startInput ? 'start' : 'end', this.props.value);
+    const realCustomInput = startInput ? customInput : rangeEndInputOptions.customInput;
+    const realInputProps = startInput ? inputProps : rangeEndInputOptions.inputProps;
+    const realInputDataHook = startInput ? inputDataHook : rangeEndInputOptions.inputDataHook;
+    const realPlaceholderText = startInput ? placeholderText : rangeEndInputOptions.placeholderText;
 
     const _inputProps = {
-      dataHook: inputDataHook,
+      dataHook: realInputDataHook,
       value: (initialValue && formatDate(initialValue, dateFormat, locale)) || '',
       onInputClicked: this.openCalendar,
       disabled,
       readOnly,
-      placeholder: placeholderText,
+      placeholder: realPlaceholderText,
       prefix: (
         <span className={styles.icon}>
           <CalendarIcon/>
@@ -164,11 +190,11 @@ export default class DatePicker extends WixComponent {
       error,
       errorMessage,
       autoSelect: false,
-      ...(customInput ? customInput.props : {}),
-      ...inputProps
+      ...(realCustomInput ? realCustomInput.props : {}),
+      ...realInputProps
     };
 
-    return React.cloneElement(customInput || <Input/>, _inputProps);
+    return React.cloneElement(realCustomInput || <Input/>, _inputProps);
   };
 
   _setInputRef = ref => this.inputRef = ref;
@@ -186,6 +212,7 @@ export default class DatePicker extends WixComponent {
       width,
       calendarDataHook,
       twoMonths,
+      range,
       locale
     } = this.props;
 
@@ -202,17 +229,25 @@ export default class DatePicker extends WixComponent {
       onClose: this.closeCalendar,
       value,
       shouldCloseOnSelect,
-      twoMonths
+      twoMonths,
+      range
     };
 
     return (
       <div style={{width}} className={styles.root}>
         <div ref={this._setInputRef}>
           <DayPickerInput
-            component={this._renderInput}
+            component={this._renderStartInput}
             keepFocus={false}
             />
         </div>
+
+        {range && <div ref={null}>
+          <DayPickerInput
+            component={this._renderEndInput}
+            keepFocus={false}
+            />
+        </div>}
 
         <div
           ref={this._setCalendarRef}
@@ -234,6 +269,14 @@ DatePicker.propTypes = {
 
   /** Properties appended to the default Input component or the custom Input component. */
   inputProps: PropTypes.object,
+
+  /** Properties appended to the end date Input component or the custom end date Input component. */
+  rangeEndInputOptions: PropTypes.shape({
+    placeholderText: PropTypes.string,
+    customInput: PropTypes.node,
+    inputProps: PropTypes.object,
+    inputDataHook: PropTypes.string
+  }),
 
   /** Custom date format */
   dateFormat: PropTypes.string,
@@ -277,9 +320,6 @@ DatePicker.propTypes = {
 
   /** RTL mode */
   rtl: PropTypes.bool,
-
-  /** The selected date */
-  value: PropTypes.object,
 
   /** controls the whether the calendar will be visible or not */
   isOpen: PropTypes.bool,

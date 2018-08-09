@@ -23,7 +23,8 @@ export default {
     showYearDropdown: false,
     showMonthDropdown: false,
     locale: 'en',
-    twoMonths: false
+    twoMonths: false,
+    range: true
   }),
 
   exampleProps: {
@@ -31,7 +32,8 @@ export default {
     value: [
       {label: '2017/05/01', value: defaultValue},
       {label: 'Today', value: today},
-      {label: 'Tomorrow', value: tomorrow}
+      {label: 'Tomorrow', value: tomorrow},
+      {label: 'range', value: {start: today, end: tomorrow}}
     ]
   }
 };
