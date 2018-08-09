@@ -12,6 +12,10 @@ Types of changes:
 1. **Security** in case of vulnerabilities.
 1. **Breaking** for breaking changes
 
+## Next
+### Fixed
+- `<Input/>` - when `type="number"` prevent characters to be typed in Firefox, Safari & Edge [#2100](https://github.com/wix/wix-style-react/pull/2100)
+
 ## 4.17.0 - 2018-08-08
 ### Added
 - `<TextLink/>` - support prefix and suffix icons [#2088](https://github.com/wix/wix-style-react/pull/2088)
