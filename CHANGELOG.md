@@ -12,26 +12,22 @@ Types of changes:
 1. **Security** in case of vulnerabilities.
 1. **Breaking** for breaking changes
 
-## Next
-
+## 4.17.0 - 2018-08-08
 ### Added
-
 - `<TextLink/>` - support prefix and suffix icons [#2088](https://github.com/wix/wix-style-react/pull/2088)
 - `<Container/>` - add `fluid` prop to disable min/max width [#2082](https://github.com/wix/wix-style-react/pull/2082)
 - `<ImageViewer/>` - allow to specify tooltip content [#2081](https://github.com/wix/wix-style-react/pull/2081)
 - `<FormField/>` - add `infoTooltipProps` prop to allow full control of into tooltip [#2099](https://github.com/wix/wix-style-react/pull/2099)
 
 ### Changed
-
 - `<TextLink/>` - refactored folder structure and updated protractor testkit [#2088](https://github.com/wix/wix-style-react/pull/2088)
 - `<Container/>` - add `className` prop [#2102](https://github.com/wix/wix-style-react/pull/2102)
 - `<InputArea/>` - pass event for on focus handler [#2084](https://github.com/wix/wix-style-react/pull/2084)
 - `<DatePicker>` - new design for 1 month layout [#2030](https://github.com/wix/wix-style-react/pull/2030)
 
 ### Fixed
-
-- `<FormField/>` - Update counter color and typography to the same as for placeholder [#2083](https://github.com/wix/wix-style-react/pull/2083)
-- `<Table/>` - Fix `TableToolbar` import path [#2023](https://github.com/wix/wix-style-react/pull/2023)
+- `<FormField/>` - update counter color and typography to the same as for placeholder [#2083](https://github.com/wix/wix-style-react/pull/2083)
+- `<Table/>` - fix `TableToolbar` import path [#2023](https://github.com/wix/wix-style-react/pull/2023)
 
 ## 4.16.0 - 2018-08-05
 ### Deprecated
