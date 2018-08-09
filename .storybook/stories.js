@@ -117,8 +117,6 @@ import '../stories/CounterBadge'; //12.3 CounterBadge
 import '../stories/FullTextView.story.js'; //12.4 FullTextView
 import '../stories/Tag.story.js'; // 12.5 Tag
 import '../stories/Highlighter.story.js'; // Highlighter
-import '../stories/FormField.story.js'; // FormField
-import '../stories/Layout';
 
 // Components section, WIP and similar
 import '../stories/FormField.story.js';
