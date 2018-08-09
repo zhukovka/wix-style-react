@@ -204,6 +204,9 @@ export const sectionHelperTestkitFactory = enzymeTestkitFactoryCreator(sectionHe
 import formFieldDriverFactory from '../src/FormField/FormField.driver';
 export const formFieldTestkitFactory = enzymeTestkitFactoryCreator(formFieldDriverFactory);
 
+import emptyStateDriverFactory from '../src/EmptyState/EmptyState.driver';
+export const emptyStateTestkitFactory = enzymeTestkitFactoryCreator(emptyStateDriverFactory);
+
 import headingDriverFactory from '../src/Heading/Heading.driver';
 export const headingTestkitFactory = enzymeTestkitFactoryCreator(headingDriverFactory);
 

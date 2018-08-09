@@ -140,6 +140,9 @@ export const tooltipTestkitFactory = protractorTestkitFactoryCreator(tooltipDriv
 import formFieldDriverFactory from '../src/FormField/FormField.protractor.driver';
 export const formFieldTestkitFactory = protractorTestkitFactoryCreator(formFieldDriverFactory);
 
+import emptyStateDriverFactory from '../src/EmptyState/EmptyState.protractor.driver';
+export const emptyStateTestkitFactory = protractorTestkitFactoryCreator(emptyStateDriverFactory);
+
 import textDriverFactory from '../src/Text/Text.protractor.driver';
 export const textTestkitFactory = protractorTestkitFactoryCreator(textDriverFactory);
 

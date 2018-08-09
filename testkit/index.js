@@ -207,6 +207,9 @@ export const sectionHelperTestkitFactory = testkitFactoryCreator(sectionHelperDr
 import formFieldDriverFactory from '../src/FormField/FormField.driver';
 export const formFieldTestkitFactory = testkitFactoryCreator(formFieldDriverFactory);
 
+import emptyStateDriverFactory from '../src/EmptyState/EmptyState.driver';
+export const emptyStateTestkitFactory = testkitFactoryCreator(emptyStateDriverFactory);
+
 import headingDriverFactory from '../src/Heading/Heading.driver';
 export const headingTestkitFactory = testkitFactoryCreator(headingDriverFactory);
 
