@@ -143,8 +143,7 @@ export default class DatePicker extends WixComponent {
       error,
       errorMessage,
       customInput,
-      inputProps,
-      twoMonths
+      inputProps
     } = this.props;
 
     const _inputProps = {
@@ -186,6 +185,7 @@ export default class DatePicker extends WixComponent {
       shouldCloseOnSelect,
       width,
       calendarDataHook,
+      twoMonths,
       locale
     } = this.props;
 

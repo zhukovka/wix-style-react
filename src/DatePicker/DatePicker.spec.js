@@ -669,7 +669,6 @@ describe('DatePicker', () => {
     });
   });
 
-
   describe('testkit', () => {
     it('should exist', () => {
       const div = document.createElement('div');
@@ -707,7 +706,7 @@ describe('DatePicker', () => {
 
   describe('two months layout', () => {
     it('should switch to 2 months layout if we set twoMonths prop to true', () => {
-      const {inputDriver, calendarDriver} = createDriver(<DatePicker twoMonths={true} onChange={noop}/>);
+      const {inputDriver, calendarDriver} = createDriver(<DatePicker twoMonths onChange={noop}/>);
       inputDriver.trigger('click');
       expect(calendarDriver.usesTwoMonthsLayout()).toBeTruthy();
     });
