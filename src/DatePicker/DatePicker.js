@@ -13,7 +13,7 @@ import {formatDate} from './LocaleUtils';
 import Calendar from './Calendar';
 import Input from '../Input';
 import isDate from 'lodash/isDate';
-
+import classNames from 'classnames';
 import styles from './DatePicker.scss';
 export const getValue = (datePart, value) => {
   return value && isDate(value) ? value : value[datePart];
@@ -233,8 +233,9 @@ export default class DatePicker extends WixComponent {
       range
     };
 
+    const className = classNames({[styles.root]: true, [styles.range]: range});
     return (
-      <div style={{width}} className={styles.root}>
+      <div style={{width}} className={className}>
         <div ref={this._setInputRef}>
           <DayPickerInput
             component={this._renderStartInput}

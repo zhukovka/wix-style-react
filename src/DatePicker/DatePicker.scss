@@ -134,6 +134,26 @@ $hoverBoxShadow: 0 0 0 $boxShadowWidth $F00;
   }
 }
 
+.range {
+  :global {
+    .DayPicker-Day--selected:not(.DayPicker-Day--start):not(.DayPicker-Day--end) {
+      color: $D10;
+      background-color: $B50;
+      border-radius: 0;
+    }
+
+    .DayPicker-Day--start {
+      box-shadow: none;
+      border-bottom-right-radius: 0;
+      border-top-right-radius: 0;
+    }
+    .DayPicker-Day--end {
+      border-bottom-left-radius: 0;
+      border-top-left-radius: 0;
+    }
+  }
+}
+
 .icon {
   margin: 0 6px;
   color: $B10;
