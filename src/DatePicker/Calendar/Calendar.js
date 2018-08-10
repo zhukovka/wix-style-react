@@ -37,10 +37,14 @@ export default class Calendar extends WixComponent {
   _setMonth = month => this.setState({month});
 
   _getInitialRangeState = () => {
+    const {value} = this.props;
+    const start = getValue('start', value) || null;
+    const end = getValue('end', value) || null;
+
     return {
-      from: null,
-      to: null,
-      enteredTo: null
+      from: start,
+      to: end,
+      enteredTo: end
     };
   };
 

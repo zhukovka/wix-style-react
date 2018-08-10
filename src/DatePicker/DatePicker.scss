@@ -136,20 +136,46 @@ $hoverBoxShadow: 0 0 0 $boxShadowWidth $F00;
 
 .range {
   :global {
-    .DayPicker-Day--selected:not(.DayPicker-Day--start):not(.DayPicker-Day--end) {
+    .DayPicker-Day--selected {
       color: $D10;
       background-color: $B50;
       border-radius: 0;
     }
 
-    .DayPicker-Day--start {
-      box-shadow: none;
-      border-bottom-right-radius: 0;
-      border-top-right-radius: 0;
+    .DayPicker-Day--outside {
+      background: none;
     }
+
+    .DayPicker-Day--start,
     .DayPicker-Day--end {
-      border-bottom-left-radius: 0;
-      border-top-left-radius: 0;
+      box-shadow: none;
+      color: $D80;
+      background-color: $B50;
+      position: relative;
+    }
+
+    .DayPicker-Day--start {
+      border-bottom-left-radius: 50%;
+      border-top-left-radius: 50%;
+    }
+
+    .DayPicker-Day--end {
+      border-bottom-right-radius: 50%;
+      border-top-right-radius: 50%;
+    }
+
+    .DayPicker-Day--start:before,
+    .DayPicker-Day--end:before {
+      background-color: $B10;
+      content: '';
+      display: block;
+      position: absolute;
+      top: 0;
+      right: 0;
+      border-radius: 100px;
+      height: 100%;
+      width: 100%;
+      z-index: -10;
     }
   }
 }
