@@ -159,7 +159,7 @@ export default class Calendar extends WixComponent {
       year: month,
       firstDayOfWeek: 1,
       locale: typeof locale === 'string' ? locale : '',
-      fixedWeeks: !twoMonths,
+      fixedWeeks: true,
       onKeyDown: this._handleKeyDown,
       onDayClick: this._handleDayClick,
       onDayMouseEnter: this._handleDayMouseEnter,

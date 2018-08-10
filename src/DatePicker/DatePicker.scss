@@ -116,19 +116,18 @@ $hoverBoxShadow: 0 0 0 $boxShadowWidth $F00;
       }
     }
 
-    &-Months {
-      display: flex;
+    &--TwoMonths {
+      .DayPicker-Months {
+        display: flex;
 
-      .DayPicker-Month:first-child {
-        .DayPicker-Nav--Right {
+        .DayPicker-Month:first-child .DayPicker-Nav--Right,
+        .DayPicker-Month:last-child .DayPicker-Nav--Left {
           visibility: hidden;
         }
       }
 
-      .DayPicker-Month:last-child {
-        .DayPicker-Nav--Left {
-          visibility: hidden;
-        }
+      .DayPicker-Day--outside {
+        visibility: hidden;
       }
     }
   }
