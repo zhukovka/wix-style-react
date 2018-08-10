@@ -53,7 +53,7 @@ const datePickerDriverFactory = ({element, wrapper}) => {
     triggerKeyDown: params => ReactTestUtils.Simulate.keyDown(getFocusedDay(), params),
     isFocusedDayVisuallyUnfocused: () => getFocusedDay().classList.contains('DayPicker-Day--unfocused'),
     containsVisuallyUnfocusedDay: () => !!getVisuallyUnfocusedDay(),
-    usesTwoMonthsLayout: () => getMonthContainers().length === 2,
+    isTwoMonthsLayout: () => getMonthContainers().length === 2,
 
     getMonthDropdownDriver: () => {
       ReactTestUtils.Simulate.click(element.querySelector('[data-hook="datepicker-month-dropdown-button"]'));

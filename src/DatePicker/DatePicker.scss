@@ -131,6 +131,12 @@ $hoverBoxShadow: 0 0 0 $boxShadowWidth $F00;
         }
       }
     }
+
+    &--TwoMonths {
+      .DayPicker-Day--outside {
+        visibility: hidden;
+      }
+    }
   }
 }
 
