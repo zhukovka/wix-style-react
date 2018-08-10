@@ -177,6 +177,11 @@ $hoverBoxShadow: 0 0 0 $boxShadowWidth $F00;
       width: 100%;
       z-index: -10;
     }
+
+    .DayPicker-Day--outside,
+    .DayPicker-Day--disabled {
+      pointer-events: auto;
+    }
   }
 }
 

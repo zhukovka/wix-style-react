@@ -48,8 +48,14 @@ export default class Calendar extends WixComponent {
     };
   };
 
+  _getEmptyRangeState = () => ({
+    from: null,
+    to: null,
+    enteredTo: null
+  });
+
   _handleResetClick = () => {
-    this.setState({range: this._getInitialRangeState()});
+    this.setState({range: this._getEmptyRangeState()});
   };
 
   _handleDayClick = (value, modifiers = {}) => {
@@ -94,7 +100,6 @@ export default class Calendar extends WixComponent {
   _handleDayMouseEnter = day => {
     const {from, to} = this.state.range;
     if (!this._isSelectingFirstDay(from, to, day)) {
-      console.log('setState', from, to, day);
       this.setState({
         range: {
           ...this.state.range,
