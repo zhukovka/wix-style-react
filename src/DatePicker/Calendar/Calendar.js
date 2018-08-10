@@ -72,6 +72,8 @@ export default class Calendar extends WixComponent {
             enteredTo: day
           }
         });
+        this.props.onChange({start: from, end: day}, modifiers);
+        this.props.shouldCloseOnSelect && this.props.onClose();
       }
     } else {
       this.props.onChange({start: value}, modifiers);
