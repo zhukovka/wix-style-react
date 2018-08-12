@@ -4,7 +4,7 @@ import classnames from 'classnames';
 import Label from 'wix-style-react/Label';
 import Tooltip from 'wix-style-react/Tooltip';
 
-import InfoIcon from './components/InfoIcon';
+import InfoIcon from '../common/InfoIcon';
 import typography from '../Typography';
 import styles from './FormField.scss';
 
@@ -83,10 +83,10 @@ class FormField extends React.Component {
     return children;
   }
 
-  renderInfoIcon = () => {
+  _renderInfoIcon = () => {
     const {infoContent, infoTooltipProps} = this.props;
-    return infoContent && <InfoIcon tooltipProps={{content: infoContent, ...infoTooltipProps}}/>;
-  }
+    return infoContent && <InfoIcon dataHook="formfield-infoicon" className={styles.infoIcon} tooltipProps={{content: infoContent, ...infoTooltipProps, dataHook: 'formfield-infotooltip'}}/>;
+  };
 
   render() {
     const {label, required, infoContent, dataHook, id} = this.props;
@@ -105,7 +105,7 @@ class FormField extends React.Component {
           <Label appearance="T1" children={label} for={id}/>
 
           { required && asterisk }
-          { this.renderInfoIcon() }
+          { this._renderInfoIcon() }
           { typeof lengthLeft === 'number' && charactersLeft(lengthLeft) }
         </div>
       }
@@ -123,7 +123,7 @@ class FormField extends React.Component {
           className={styles.suffixesInline}
           >
           { required && asterisk }
-          { this.renderInfoIcon() }
+          { this._renderInfoIcon() }
         </div>
       }
       </div>
