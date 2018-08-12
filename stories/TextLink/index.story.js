@@ -25,7 +25,8 @@ export default {
     underlineStyle: 'hover',
     children: 'Click to visit wix.com',
     theme: 'normal',
-    size: 'medium'
+    size: 'medium',
+    ellipsis: false
   },
   exampleProps: {
     prefixIcon: icons,

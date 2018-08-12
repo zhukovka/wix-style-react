@@ -14,7 +14,8 @@ export default class TextLink extends WixComponent {
     ariaLabel: PropTypes.string,
     onMouseEnter: PropTypes.func,
     onMouseLeave: PropTypes.func,
-    onClick: PropTypes.func
+    onClick: PropTypes.func,
+    ellipsis: PropTypes.bool
   };
 
   static defaultProps = {
@@ -22,7 +23,8 @@ export default class TextLink extends WixComponent {
     download: false,
     rel: null,
     target: null,
-    onClick: () => {}
+    onClick: () => {},
+    ellipsis: false
   };
 
   _handleOnClick = event => {
@@ -38,7 +40,7 @@ export default class TextLink extends WixComponent {
   };
 
   render() {
-    const {ariaLabel, disabled, link, children, download, rel, target, onMouseEnter, onMouseLeave} = this.props;
+    const {ariaLabel, disabled, link, children, download, rel, target, onMouseEnter, onMouseLeave, ellipsis} = this.props;
 
     const props = {
       download,
@@ -48,7 +50,7 @@ export default class TextLink extends WixComponent {
       style: {
         textDecoration: 'inherit',
         tabIndex: 0,
-        display: 'inline-block'
+        display: ellipsis ? 'inline' : 'inline-block'
       },
       disabled,
       rel,

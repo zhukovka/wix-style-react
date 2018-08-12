@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import TextLink from 'wix-style-react/TextLink';
+import Add from 'wix-style-react/new-icons/Add';
 
 const style = {
   display: 'inline-block',
@@ -19,6 +20,9 @@ class ControlledExample extends Component {
         <TextLink underlineStyle="never" link="http://www.wix.com">Wix link without underline</TextLink>
         <br/>
         <TextLink size="small" ariaLabel="wix.com site" link="http://www.wix.com">Small link with ariaLabel</TextLink>
+        <br/>
+        <TextLink ellipsis link="http://www.wix.com">A link with ellipsis and as very long text, so long, very long.</TextLink>
+        <TextLink ellipsis link="http://www.wix.com" prefixIcon={<Add/>}>A link with ellipsis (very long text) and a prefix icon!</TextLink>
       </div>
     );
   }
