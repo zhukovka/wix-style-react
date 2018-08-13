@@ -86,4 +86,17 @@ describe('Page', async () => {
       runTestCases({storyUrl, dataHook});
     });
   });
+
+  describe('With EmptyState', () => {
+    const storyUrl = createStoryUrl({kind: category, story: storyName});
+
+    it('should not break design', async () => {
+      const dataHook = 'story-page-empty-state';
+      const element = $(`[data-hook="${dataHook}"]`);
+
+      await browser.get(storyUrl);
+      await waitForVisibilityOf(element, `Cannot find ${dataHook}`);
+      await scrollToElement(element);
+    });
+  });
 });

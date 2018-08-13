@@ -8,16 +8,7 @@ import Add from '../../src/new-icons/Add';
 import Download from '../../src/new-icons/Download';
 import StatusComplete from '../../src/new-icons/StatusComplete';
 
-const imageNodeProp = (
-  <div
-    style={{
-      height: 120,
-      width: 120,
-      backgroundColor: '#dfe5eb',
-      borderRadius: '50%'
-    }}
-    />
-);
+import ImagePlaceholder from '../assets/ImagePlaceholder';
 
 const singleAction = (
   <TextLink prefixIcon={<Add/>}>New Item</TextLink>
@@ -43,7 +34,7 @@ export default {
     theme: 'page',
     title: 'You don\'t have any items yet',
     subtitle: 'Create your product item in an easy & fast way to display it on your site',
-    image: imageNodeProp,
+    image: <ImagePlaceholder/>,
     children: null
   },
 
@@ -52,7 +43,7 @@ export default {
     image: [
       {label: 'No image', value: null},
       {label: 'Image URL', value: 'https://static.wixstatic.com/media/c78d05b79ede429fb77c9d8ec4443b93.jpg/v1/fit/w_375,h_375/c78d05b79ede429fb77c9d8ec4443b93.jpg'},
-      {label: 'Node', value: imageNodeProp},
+      {label: 'Node', value: <ImagePlaceholder/>},
       {label: 'SVG', value: <StatusComplete size="120px"/>}
     ],
     children: [

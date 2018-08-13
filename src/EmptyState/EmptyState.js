@@ -38,7 +38,7 @@ const EmptyState = ({
       {title && (
         <div className={styles.titleContainer} data-hook="empty-state-title-container">
           {theme === 'section' ? (
-            <Text size="medium" bold>{title}</Text>
+            <Text wight="normal">{title}</Text>
           ) : (
             <Heading appearance="H2">{title}</Heading>
           )}
