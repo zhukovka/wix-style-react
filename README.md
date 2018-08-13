@@ -35,7 +35,6 @@ const MyComponent = () =>
     ```html
     <link rel="stylesheet" href="//static.parastorage.com/services/third-party/fonts/Helvetica/fontFace.css">
     ```
-* Ensure `<body>` has either `ltr` or `rtl` class applied to it (depending on displayed language);
 
 ## Tips
 

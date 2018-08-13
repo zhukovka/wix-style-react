@@ -5,7 +5,7 @@ import s from './styles.scss';
 export default () =>
   <div>
     <h3>Thin Text</h3>
-    <ul className={`ltr ${s.root}`}>
+    <ul className={s.root}>
       <li><h4>Medium Text</h4></li>
       <li>
         <span className={s.comp}>{'<Text weight="thin" size="medium" secondary={false} light={false}/>'}</span>
@@ -71,7 +71,7 @@ export default () =>
 
 
     <h3>Normal Text</h3>
-    <ul className={`ltr ${s.root}`}>
+    <ul className={s.root}>
       <li><h4>Medium Text</h4></li>
       <li>
         <span className={s.comp}>{'<Text weight="normal" size="medium" secondary={false} light={false}/>'}</span>
@@ -134,7 +134,7 @@ export default () =>
     </ul>
 
     <h3>Bold Text</h3>
-    <ul className={`ltr ${s.root}`}>
+    <ul className={s.root}>
       <li><h4>Medium Text</h4></li>
       <li>
         <span className={s.comp}>{'<Text weight="bold" size="medium" secondary={false} light={false}/>'}</span>

@@ -11,9 +11,9 @@ const style = {
 
 const Example = ({theme}) =>
   <div>
-    <div className="ltr" style={style}>Left to right<Input theme={theme} status={'loading'}/></div>
+    <div style={style}>Left to right<Input theme={theme} status={'loading'}/></div>
     <div className="rtl" style={style}>Right to left<Input theme={theme} rtl status={'loading'}/></div>
-    <div className="ltr" style={style}>Loader with tooltip<Input theme={theme} status={'loading'} statusMessage="I am a message"/></div>
+    <div style={style}>Loader with tooltip<Input theme={theme} status={'loading'} statusMessage="I am a message"/></div>
   </div>;
 
 Example.propTypes = {

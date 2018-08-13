@@ -36,16 +36,14 @@ class ExampleReadOnly extends React.Component {
 
   render() {
     return (
-      <div className="ltr">
-        <div className={styles.main}>
-          <MultiSelect
-            mode="select"
-            tags={this.state.tags}
-            onSelect={this.handleOnSelect}
-            onRemoveTag={this.handleOnRemoveTag}
-            options={this.state.options}
-            />
-        </div>
+      <div className={styles.main}>
+        <MultiSelect
+          mode="select"
+          tags={this.state.tags}
+          onSelect={this.handleOnSelect}
+          onRemoveTag={this.handleOnRemoveTag}
+          options={this.state.options}
+          />
       </div>
     );
   }

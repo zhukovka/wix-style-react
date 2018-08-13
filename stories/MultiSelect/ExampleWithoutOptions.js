@@ -26,7 +26,7 @@ class ExampleWithoutOptions extends React.Component {
 
   render() {
     return (
-      <div className="ltr">
+      <div>
         <div className={styles.main}>
           <MultiSelect
             error
