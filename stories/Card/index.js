@@ -14,6 +14,9 @@ import ExampleGridActionHeadersRaw from '!raw-loader!./ExampleActionHeaders';
 import ExampleCollapsableHeaders from './ExampleCollapsableHeaders';
 import ExampleCollapsableHeadersRaw from '!raw-loader!./ExampleCollapsableHeaders';
 
+import ExampleEmptyState from './ExampleEmptyState';
+import ExampleEmptyStateRaw from '!raw-loader!./ExampleEmptyState';
+
 storiesOf('2. Layout', module)
   .add('Card', () => (
     <div>
@@ -29,6 +32,10 @@ storiesOf('2. Layout', module)
 
       <CodeExample title="Cards with collapsed header" code={ExampleCollapsableHeadersRaw}>
         <ExampleCollapsableHeaders/>
+      </CodeExample>
+
+      <CodeExample title="Card with an EmptyState" code={ExampleEmptyStateRaw}>
+        <ExampleEmptyState/>
       </CodeExample>
     </div>
   ));
