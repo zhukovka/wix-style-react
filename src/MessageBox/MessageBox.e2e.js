@@ -17,6 +17,7 @@ describe('MessageBox', () => {
     const standard = 'alert-standard';
     const secondary = 'alert-secondary';
     const footnote = 'alert-footnote';
+    const emptyState = 'alert-empty-state';
     const scrollable = 'alert-scrollable';
 
     eyes.it('should not break design', async () => {
@@ -25,6 +26,7 @@ describe('MessageBox', () => {
       await verifyItem(standard);
       await verifyItem(secondary);
       await verifyItem(footnote);
+      await verifyItem(emptyState);
       await verifyItem(scrollable);
     });
 

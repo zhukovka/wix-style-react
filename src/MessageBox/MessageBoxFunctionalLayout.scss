@@ -29,6 +29,10 @@ $minimum-modal-margin: 48px;
   &.no-padding {
     padding: 0;
   }
+
+  &.withEmptyState {
+    padding: 42px 20px;
+  }
 }
 
 .fullscreen-body {

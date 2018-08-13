@@ -36,3 +36,4 @@
 | disableConfirmation | bool| false | - | Disable confirmation button |
 | width| string | '600px' | - | Set the message box width |
 | noBodyPadding| bool | false | - | Should the body of the layout will have surrounding padding |
+| withEmptyState | bool | false | - | Is the body contains an `<EmptyState/>` component |

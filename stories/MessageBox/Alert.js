@@ -18,6 +18,9 @@ import FootNoteAlertRaw from '!raw-loader!./AlertExamples/FootNote';
 import ScrollableAlert from './AlertExamples/Scrollable';
 import ScrollableAlertRaw from '!raw-loader!./AlertExamples/Scrollable';
 
+import EmptyStateAlert from './AlertExamples/EmptyState';
+import EmptyStateAlertRaw from '!raw-loader!./AlertExamples/EmptyState';
+
 const introduction = `# Alert (\`<MessageBoxFunctionalLayout/>\`)
 Components to be used within \`wix-style-react/Modal\`:
 `;
@@ -45,6 +48,11 @@ export default () => (
           title="Footnote"
           code={FootNoteAlertRaw}
           children={<FootNoteAlert/>}
+          />
+        <CodeExample
+          title="With EmptyState"
+          code={EmptyStateAlertRaw}
+          children={<EmptyStateAlert/>}
           />
         <CodeExample
           title="Scrollable"
