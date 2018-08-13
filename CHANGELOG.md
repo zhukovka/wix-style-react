@@ -54,7 +54,6 @@ Types of changes:
 ### Fixed
 - `<FormField/>` - update counter color and typography to the same as for placeholder [#2083](https://github.com/wix/wix-style-react/pull/2083)
 - `<Table/>` - fix `TableToolbar` import path [#2023](https://github.com/wix/wix-style-react/pull/2023)
-- `<TextLink/>` - support prefix and suffix icons [#2088](https://github.com/wix/wix-style-react/pull/2088)
 - `<Container/>` - add `fluid` prop to disable min/max width [#2082](https://github.com/wix/wix-style-react/pull/2082)
 
 ### Changed

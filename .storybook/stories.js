@@ -122,11 +122,6 @@ import '../stories/FormField.story.js';
 import '../stories/Layout/index.story.js';
 import '../stories/Layout';
 
-// Components section, WIP and similar
-import '../stories/FormField.story.js';
-import '../stories/Layout/index.story.js';
-import '../stories/Layout';
-
 // TPA
 import '../stories/TPA/Button';
 import '../stories/TPA/FloatingTabs';
