@@ -11,6 +11,9 @@ import TableExampleRaw from '!raw-loader!./TableExample';
 import {TablePageExample} from './TablePageExample';
 import TablePageExampleRaw from '!raw-loader!./TablePageExample';
 
+import {TableEmptyStateExample} from './TableEmptyStateExample';
+import TableEmptyStateExampleRaw from '!raw-loader!./TableEmptyStateExample';
+
 const data = [
   {firstName: 'Meghan', lastName: 'Bishop'},
   {firstName: 'Sara', lastName: 'Porter'},
@@ -68,6 +71,11 @@ export default {
         <div className={s.example}>
           <CodeExample title="Table in a Page (Fixed Header)" code={TablePageExampleRaw}>
             <TablePageExample/>
+          </CodeExample>
+        </div>
+        <div className={s.example}>
+          <CodeExample title="Table with EmptyState" code={TableEmptyStateExampleRaw}>
+            <TableEmptyStateExample/>
           </CodeExample>
         </div>
       </div>

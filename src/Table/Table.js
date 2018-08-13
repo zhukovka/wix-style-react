@@ -8,7 +8,7 @@ import WixComponent from '../BaseComponents/WixComponent';
 import Checkbox from '../Checkbox';
 import {TableContext} from './TableContext';
 import {BulkSelection, BulkSelectionState} from './BulkSelection';
-import {TableToolbarToggler, TableToolbarContainer, TableTitleBar, TableContent} from './components';
+import {TableToolbarToggler, TableToolbarContainer, TableTitleBar, TableContent, TableEmptyState} from './components';
 import Tooltip from '../Tooltip/Tooltip';
 
 export function createColumns({tableProps, bulkSelectionContext}) {
@@ -70,6 +70,7 @@ export class Table extends WixComponent {
   static ToolbarContainer = TableToolbarContainer;
   static Titlebar = TableTitleBar;
   static Content = TableContent;
+  static EmptyState = TableEmptyState;
 
   static ToggledToolbar = TableToolbarToggler;
 

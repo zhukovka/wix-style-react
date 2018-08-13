@@ -6,11 +6,11 @@ import {createStoryUrl} from '../../test/utils/storybook-helpers';
 import {storySettings} from '../../stories/Table/storySettings';
 
 describe('Table', () => {
-  const storyUrl = createStoryUrl({kind: storySettings.kind, story: storySettings.storyName, withExamples: false});
+  const storyUrl = createStoryUrl({kind: storySettings.kind, story: storySettings.storyName});
 
-  const init = async () => {
+  const init = async (dataHook = 'storybook-table') => {
     await browser.get(storyUrl);
-    const driver = tableTestkitFactory({dataHook: 'storybook-table'});
+    const driver = tableTestkitFactory({dataHook});
     await waitForVisibilityOf(driver.element, 'Can not find Table Component');
     return driver;
   };
@@ -23,6 +23,10 @@ describe('Table', () => {
   eyes.it('should display table only', async () => {
     const driver = await init();
     await scrollToElement(driver.element);
-    // need snapshot only
+  });
+
+  eyes.it('should render with an EmptyState', async () => {
+    const driver = await init('story-table-empty-state-example');
+    await scrollToElement(driver.element);
   });
 });

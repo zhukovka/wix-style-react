@@ -4,7 +4,7 @@
 
 | Method | Arguments | Returned value | Description |
 |--------|-----------|----------------|-------------|
-| `exists` | - | `boolean` | | Returns `true` wheter the elemnt exists or not |
+| `exists` | - | `boolean` | Returns `true` wheter the elemnt exists or not |
 | `element` | - | `element` | Returns the element |
 | `getTitleText` | - | `string` | Returns the text of the title |
 | `getSubtitleText` | - | `string` | Returns the text of the subtitle |
@@ -13,7 +13,6 @@
 | `childrenContentExists` | - | `bool` | Returns `true` if children content exists |
 
 ## Protractor TestKit API
-
 
 | Method | Arguments | Returned value | Description |
 |--------|-----------|----------------|-------------|
