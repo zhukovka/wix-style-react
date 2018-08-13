@@ -6,7 +6,6 @@ import styles from './Grid.scss';
 
 const containerProps = {
   children: PropTypes.node,
-<<<<<<< HEAD
   fluid: PropTypes.bool,
   className: PropTypes.string
 };
@@ -14,28 +13,14 @@ const containerProps = {
 const RawContainer = ({children, fluid, className}) =>
   <div
     className={classNames(styles.rawContainer, className, {[styles.fluidContainer]: fluid})}
-=======
-  fluid: PropTypes.bool
-};
-
-const RawContainer = ({children, fluid}) =>
-  <div
-    className={classNames(styles.rawContainer, {[styles.fluidContainer]: fluid})}
->>>>>>> chore(SideBar & LanguagePicker): remove documentation (#2063)
     children={children}
     />;
 
 RawContainer.propTypes = containerProps;
 
-<<<<<<< HEAD
 const Container = ({children, fluid, className}) =>
   <div
     className={classNames(styles.wixContainer, className, {[styles.fluidContainer]: fluid})}
-=======
-const Container = ({children, fluid}) =>
-  <div
-    className={classNames(styles.wixContainer, {[styles.fluidContainer]: fluid})}
->>>>>>> chore(SideBar & LanguagePicker): remove documentation (#2063)
     children={children}
     />;
 
