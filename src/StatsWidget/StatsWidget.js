@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import {Card} from '../Grid';
+import Card from '../Card';
 import WixComponent from '../BaseComponents/WixComponent';
 import styles from './StatsWidget.scss';
 import Heading from '../Heading';
