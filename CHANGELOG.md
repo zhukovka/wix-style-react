@@ -22,6 +22,7 @@ Types of changes:
 ### Fixed
 - `<Input/>` - when `type="number"` prevent characters to be typed in Firefox, Safari & Edge [#2100](https://github.com/wix/wix-style-react/pull/2100)
 - `<Table/>` - fix column info tooltip position and fix `<FormField/>` icon [#2119](https://github.com/wix/wix-style-react/pull/2119)
+- `<RadioGroup/>` - fix css to support nested `<RadioGroup.Radio/>` [#2128](https://github.com/wix/wix-style-react/pull/2128)
 
 ## 4.17.0 - 2018-08-08
 ### Added
