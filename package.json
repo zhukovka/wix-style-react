@@ -105,6 +105,7 @@
     "logLevel": "verbose"
   },
   "dependencies": {
+    "@storybook/addon-links": "^3.4.10",
     "bootstrap-sass": "^3.3.7",
     "classnames": "^2.2.5",
     "color": "^2.0.0",

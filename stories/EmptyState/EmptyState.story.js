@@ -1,8 +1,10 @@
 import React from 'react';
+import {linkTo} from '@storybook/addon-links';
 import {storySettings} from './storySettings';
 
 import EmptyState from '../../src/EmptyState';
 import TextLink from '../../src/TextLink';
+import Heading from '../../src/Heading';
 
 import Add from '../../src/new-icons/Add';
 import Download from '../../src/new-icons/Download';
@@ -12,6 +14,10 @@ import ImagePlaceholder from '../assets/ImagePlaceholder';
 
 const singleAction = (
   <TextLink prefixIcon={<Add/>}>New Item</TextLink>
+);
+
+const singleActionLongText = (
+  <TextLink ellipsis prefixIcon={<Add/>}>New Item with a ridiculous length name that does not fit to a single line</TextLink>
 );
 
 const twoActions = (
@@ -49,7 +55,22 @@ export default {
     children: [
       {label: 'No children', value: null},
       {label: 'Single action', value: singleAction},
-      {label: 'Two actions', value: twoActions}
+      {label: 'Two actions', value: twoActions},
+      {label: 'Single action with long text', value: singleActionLongText}
     ]
-  }
+  },
+
+  examples: (
+    <div>
+      <Heading appearance="H2">You can find more examples for components that utilize the EmptyState:</Heading>
+
+      <ul>
+        <li><TextLink onClick={linkTo('2. Layout', '2.5 Page')}>Page</TextLink><br/></li>
+        <li><TextLink onClick={linkTo('2. Layout', 'Card')}>Card</TextLink><br/></li>
+        <li><TextLink onClick={linkTo('7. Tooltips', '7.2. Popover')}>Popover</TextLink><br/></li>
+        <li><TextLink onClick={linkTo('9. Modals', '9.1 Alert')}>Alert</TextLink><br/></li>
+        <li><TextLink onClick={linkTo('10. Tables', '10.1 Table')}>Table</TextLink><br/></li>
+      </ul>
+    </div>
+  )
 };
