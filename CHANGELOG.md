@@ -17,6 +17,8 @@ Types of changes:
 ### Added
 
 - `<EmptyState/>` - add a new component [#2074](https://github.com/wix/wix-style-react/pull/2074)
+  - `<Table.EmptyState/>` - add support for EmptyState inside a `<Table/>` [#2116](https://github.com/wix/wix-style-react/pull/2116)
+  - `<Card.EmptyState/>` - add support for EmptyState inside a `<Crad/>` [#2117](https://github.com/wix/wix-style-react/pull/2117)
 - `<TextLink/>` - support ellipsis with tooltip [#2108](https://github.com/wix/wix-style-react/pull/2108)
 
 ### Fixed
