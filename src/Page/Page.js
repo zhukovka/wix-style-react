@@ -356,20 +356,20 @@ Page.propTypes = {
 
 function getChildrenObject(children) {
   return React.Children.toArray(children).reduce((acc, child) => {
-    switch (child.type) {
-      case Page.Header : {
+    switch (child.type.displayName) {
+      case 'Page.Header' : {
         acc.PageHeader = child;
         break;
       }
-      case Page.Content : {
+      case 'Page.Content' : {
         acc.PageContent = child;
         break;
       }
-      case Page.FixedContent : {
+      case 'Page.FixedContent' : {
         acc.PageFixedContent = child;
         break;
       }
-      case Page.Tail : {
+      case 'Page.Tail' : {
         acc.PageTail = child;
         break;
       }
