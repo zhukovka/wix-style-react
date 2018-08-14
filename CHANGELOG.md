@@ -19,6 +19,8 @@ Types of changes:
 - `<EmptyState/>` - add a new component [#2074](https://github.com/wix/wix-style-react/pull/2074)
   - `<Table.EmptyState/>` - add support for EmptyState inside a `<Table/>` [#2116](https://github.com/wix/wix-style-react/pull/2116)
   - `<Card.EmptyState/>` - add support for EmptyState inside a `<Crad/>` [#2117](https://github.com/wix/wix-style-react/pull/2117)
+  - `<EmptyState/>` - make `section` the default theme [#2129](https://github.com/wix/wix-style-react/pull/2129)
+  - `<EmptyState/>` - add links to component examples in the story [#2131](https://github.com/wix/wix-style-react/pull/2131)
 - `<TextLink/>` - support ellipsis with tooltip [#2108](https://github.com/wix/wix-style-react/pull/2108)
 
 ### Fixed
