@@ -12,7 +12,7 @@ Types of changes:
 1. **Security** in case of vulnerabilities.
 1. **Breaking** for breaking changes
 
-## Next
+## 4.18.0 - 2018-08-11
 
 ### Added
 
