@@ -26,6 +26,7 @@ const ExampleEmptyState = () => (
 
       <Page.Content>
         <EmptyState
+          theme="page"
           title="You don't have any items yet"
           subtitle="Create your product item in an easy & fast way to display it on your website"
           image={<ImagePlaceholder/>}

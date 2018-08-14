@@ -2,18 +2,19 @@
 
 .wrapper {
   text-align: center;
-  padding: 42px;
+  padding: 0;
 }
 
 // `page` theme
 .page {
   border: solid 1px $D60;
   border-radius: 8px;
+  padding: 42px;
 }
 
-// `section` theme
-.section {
-  padding: 0;
+.page-no-border {
+  @extend .page;
+  border: 0;
 }
 
 .container {

@@ -16,7 +16,6 @@ export default () => (
     dataHook="alert-empty-state"
     >
     <EmptyState
-      theme="section"
       title="You don't have any favorites yet"
       subtitle="Go back and add some items to your favorites' list"
       image={<ImagePlaceholder/>}

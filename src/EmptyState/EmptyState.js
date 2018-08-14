@@ -81,7 +81,7 @@ EmptyState.propTypes = {
 };
 
 EmptyState.defaultProps = {
-  theme: 'page',
+  theme: 'section',
   image: null,
   children: null
 };

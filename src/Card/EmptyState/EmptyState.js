@@ -7,7 +7,6 @@ const CardEmptyState = props => (
   <div className={styles.emptyStateContainer}>
     <EmptyState
       {...props}
-      theme="section"
       />
   </div>
 );

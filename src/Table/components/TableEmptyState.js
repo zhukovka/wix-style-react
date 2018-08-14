@@ -7,7 +7,6 @@ export const TableEmptyState = props => (
   <div className={styles.emptyStateContainer}>
     <EmptyState
       {...props}
-      theme="section"
       />
   </div>
 );

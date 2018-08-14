@@ -8,7 +8,6 @@ const ExamplePopoverEmptyState = () => (
   <Tooltip
     content={(
       <EmptyState
-        theme="section"
         title="You don't have labels yet"
         subtitle="Once you create some labels you'll see a list in here"
         />
