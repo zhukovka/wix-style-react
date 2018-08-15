@@ -12,16 +12,23 @@ Types of changes:
 1. **Security** in case of vulnerabilities.
 1. **Breaking** for breaking changes
 
-## 4.18.0 - 2018-08-11
-
+## next
 ### Breaking
 
 [Migration guide](https://github.com/wix/wix-style-react/blob/master/docs/migration/v4-v5.md)
 
-- `<Grid/>` & `<Row/>` - remove ambitious box-sizing [#2053](https://github.com/wix/wix-style-react/pull/2053)
-- remove `import {Card} from 'wix-style-react/Grid'` use `import Card from 'wix-style-react/Card'` instead
+- `<Checkbox/>` - remove prop `active` and value `large` for prop `size`
+- `<Icons/>` - remove old icons in favor of [new icons](https://github.com/wix/wix-style-react/blob/master/docs/NEW_ICONS_MIGRATION.md)
+- `<Button/>` - remove prop `withNewIcons` and make it behavior default
+- `<DataTable/>` - new styles
+- `<Heading/>` - new typography
+- `<MultiSelect/>` - remove prop `maxHeight`
+- `<Grid/>` & `<Row/>` & `<Col/>` - remove ambitious box-sizing
 - `<LanguagePicker/>` - remove component in favor of `<IconWithOptions/>`
 - `<SideBar/>` - remove component in favor of `<SideMenu/>`
+- `<Grid/>` - remove `import {Card} from 'wix-style-react/Grid'` use `import Card from 'wix-style-react/Card'` instead
+
+## 4.18.0 - 2018-08-11
 
 ### Added
 
