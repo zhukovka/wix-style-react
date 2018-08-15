@@ -17,7 +17,7 @@ Types of changes:
 
 [Migration guide](https://github.com/wix/wix-style-react/blob/master/docs/migration/v4-v5.md)
 
-- `<Checkbox/>` - remove prop `active` and value `large` for prop `size`
+- `<Checkbox/>` - remove prop `active`(use `checked` instead) and value `large`(use `medium` instead) for prop `size`
 - `<Icons/>` - remove old icons in favor of [new icons](https://github.com/wix/wix-style-react/blob/master/docs/NEW_ICONS_MIGRATION.md)
 - `<Button/>` - remove prop `withNewIcons` and make it behavior default
 - `<DataTable/>` - new styles
