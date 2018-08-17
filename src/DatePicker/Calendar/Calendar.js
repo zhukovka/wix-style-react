@@ -47,7 +47,8 @@ export default class Calendar extends WixComponent {
       filterDate,
       excludePastDates,
       value: propsValue,
-      rtl
+      rtl,
+      twoMonths
     } = this.props;
 
     const month = this.state.month || propsValue;
@@ -62,9 +63,7 @@ export default class Calendar extends WixComponent {
           localeUtils,
           rtl,
           onChange: this._setMonth,
-
           onLeftArrowClick: () => this._setMonth(startOfMonth(addMonths(month, -1))),
-
           onRightArrowClick: () => this._setMonth(startOfMonth(addMonths(month, 1)))
         }}
         />
@@ -72,7 +71,6 @@ export default class Calendar extends WixComponent {
 
     return {
       disabledDays: excludePastDates ? [{before: new Date()}] : date => !filterDate(date),
-
       initialMonth: month,
       initialYear: month,
       selectedDays: parse(propsValue),
@@ -86,7 +84,9 @@ export default class Calendar extends WixComponent {
       localeUtils,
       navbarElement: () => null,
       captionElement,
-      onDayKeyDown: this._handleDayKeyDown
+      onDayKeyDown: this._handleDayKeyDown,
+      numberOfMonths: twoMonths ? 2 : 1,
+      className: twoMonths ? 'DayPicker--TwoMonths' : ''
     };
   };
 
@@ -130,6 +130,11 @@ export default class Calendar extends WixComponent {
 }
 
 Calendar.propTypes = {
+  /** Use 2 months layout */
+  /* TODO WIP, uncomment after feature done
+  twoMonths: PropTypes.bool,
+  */
+
   /** Callback function called whenever the user selects a day in the calendar */
   onChange: PropTypes.func.isRequired,
 

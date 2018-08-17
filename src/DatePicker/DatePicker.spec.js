@@ -669,7 +669,6 @@ describe('DatePicker', () => {
     });
   });
 
-
   describe('testkit', () => {
     it('should exist', () => {
       const div = document.createElement('div');
@@ -702,6 +701,14 @@ describe('DatePicker', () => {
       expect(driver.exists()).toBe(true);
       expect(inputDriver.exists()).toBe(true);
       expect(calendarDriver.isVisible()).toBe(false);
+    });
+  });
+
+  describe('two months layout', () => {
+    it('should switch to 2 months layout if we set twoMonths prop to true', () => {
+      const {inputDriver, calendarDriver} = createDriver(<DatePicker twoMonths onChange={noop}/>);
+      inputDriver.trigger('click');
+      expect(calendarDriver.isTwoMonthsLayout()).toBeTruthy();
     });
   });
 });
