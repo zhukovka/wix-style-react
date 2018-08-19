@@ -8,7 +8,7 @@ import {backofficeTooltipTestkitFactory as enzymeTooltipTestkitFactory} from '..
 import {mount} from 'enzyme';
 import Button from '../Button';
 import waitForCond from 'wait-for-cond';
-import '../../utils/RangePolyfill.js';
+import {rangePolyfill} from '../../../testkit/polyfills';
 
 describe('Tooltip', () => {
 
@@ -18,6 +18,11 @@ describe('Tooltip', () => {
 
   beforeEach(() => {
     document.body.innerHTML = '';
+    rangePolyfill.install();
+  });
+
+  afterEach(() => {
+    rangePolyfill.uninstall();
   });
 
   it('should be hidden by default', () => {
