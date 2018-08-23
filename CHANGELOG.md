@@ -12,6 +12,12 @@ Types of changes:
 1. **Security** in case of vulnerabilities.
 1. **Breaking** for breaking changes
 
+## next
+
+### Fixed
+
+- `<Tooltip/>` - Fix issue with tooltip #2113 [#2133](https://github.com/wix/wix-style-react/pull/2133)
+
 ## 4.18.0 - 2018-08-11
 
 ### Added
