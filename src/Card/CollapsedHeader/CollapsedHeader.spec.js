@@ -7,14 +7,14 @@ import {collapsedHeaderTestkitFactory} from '../../../testkit';
 import {collapsedHeaderTestkitFactory as enzymeCollapsedHeaderTestkitFactory} from '../../../testkit/enzyme';
 import {mount} from 'enzyme';
 
-import animationPolyfills from './AnimationPolyfill';
+import {requestAnimationFramePolyfill} from '../../../testkit/polyfills';
 
 const dataHook = 'content';
 const content = <div data-hook={dataHook}>Some Content</div>;
 
 describe('CollapsedHeader', () => {
   const createDriver = createDriverFactory(collapsedHeaderDriverFactory);
-  animationPolyfills(window, global);
+  requestAnimationFramePolyfill.install();
 
   it('should have a title', () => {
     const driver = createDriver(

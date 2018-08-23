@@ -185,6 +185,7 @@ export default class DatePicker extends WixComponent {
       shouldCloseOnSelect,
       width,
       calendarDataHook,
+      twoMonths,
       locale
     } = this.props;
 
@@ -200,7 +201,8 @@ export default class DatePicker extends WixComponent {
       onChange: this._saveNewValue,
       onClose: this.closeCalendar,
       value,
-      shouldCloseOnSelect
+      shouldCloseOnSelect,
+      twoMonths
     };
 
     return (

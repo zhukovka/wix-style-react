@@ -4,13 +4,12 @@ import {mount} from 'enzyme';
 import isSameDay from 'date-fns/is_same_day';
 
 import {createDriverFactory} from 'wix-ui-test-utils/driver-factory';
-import applyPolyfills from './Polyfills';
 import {datePickerTestkitFactory} from '../../testkit/index';
 import {datePickerTestkitFactory as enzymeDatePickerTestkitFactory} from '../../testkit/enzyme';
 import datePickerDriverFactory from './DatePicker.driver';
 import Input from '../Input';
 import DatePicker from './DatePicker';
-import '../utils/RangePolyfill.js';
+import {rangePolyfill, requestAnimationFramePolyfill} from '../../testkit/polyfills';
 
 import isLocale from 'date-fns/locale/is';
 
@@ -19,7 +18,10 @@ const noop = () => {};
 describe('DatePicker', () => {
   const createDriver = createDriverFactory(datePickerDriverFactory);
 
-  applyPolyfills(window, global);
+  beforeAll(() => {
+    rangePolyfill.install();
+    requestAnimationFramePolyfill.install();
+  });
 
   describe('date picker input', () => {
     it('should exist', () => {
@@ -669,7 +671,6 @@ describe('DatePicker', () => {
     });
   });
 
-
   describe('testkit', () => {
     it('should exist', () => {
       const div = document.createElement('div');
@@ -702,6 +703,14 @@ describe('DatePicker', () => {
       expect(driver.exists()).toBe(true);
       expect(inputDriver.exists()).toBe(true);
       expect(calendarDriver.isVisible()).toBe(false);
+    });
+  });
+
+  describe('two months layout', () => {
+    it('should switch to 2 months layout if we set twoMonths prop to true', () => {
+      const {inputDriver, calendarDriver} = createDriver(<DatePicker twoMonths onChange={noop}/>);
+      inputDriver.trigger('click');
+      expect(calendarDriver.isTwoMonthsLayout()).toBeTruthy();
     });
   });
 });

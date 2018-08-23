@@ -12,7 +12,7 @@ Types of changes:
 1. **Security** in case of vulnerabilities.
 1. **Breaking** for breaking changes
 
-## next
+## next v5
 ### Breaking
 
 [Migration guide](https://github.com/wix/wix-style-react/blob/master/docs/migration/v4-v5.md)
@@ -27,6 +27,12 @@ Types of changes:
 - `<LanguagePicker/>` - remove component in favor of `<IconWithOptions/>`
 - `<SideBar/>` - remove component in favor of `<SideMenu/>`
 - `<Grid/>` - remove `import {Card} from 'wix-style-react/Grid'` use `import Card from 'wix-style-react/Card'` instead
+
+## next
+
+### Fixed
+
+- `<Tooltip/>` - Fix issue with tooltip #2113 [#2133](https://github.com/wix/wix-style-react/pull/2133)
 
 ## 4.18.0 - 2018-08-11
 
