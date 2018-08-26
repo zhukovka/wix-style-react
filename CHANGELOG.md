@@ -15,6 +15,7 @@ Types of changes:
 ## next
 ### Added
 - `<MessageBox/>` - add footer actions and image support [#2141](https://github.com/wix/wix-style-react/pull/2141)
+- `<SectionHelper/>` - explicitly decide to show or hide close button [#2148](https://github.com/wix/wix-style-react/pull/2148)
 
 ## 4.19.0 - 2018-08-26
 ### Fixed
