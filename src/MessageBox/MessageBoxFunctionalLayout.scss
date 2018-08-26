@@ -23,7 +23,7 @@ $minimum-modal-margin: 48px;
   color: $paletteD2;
   font-size: 16px;
   line-height: 24px;
-  padding: 36px 30px 12px 30px;
+  padding: 36px 30px 12px;
   box-sizing: border-box;
 
   &.no-padding {
@@ -33,6 +33,30 @@ $minimum-modal-margin: 48px;
   &.withEmptyState {
     padding: 42px 20px;
   }
+}
+
+.message-with-image {
+  display: flex;
+
+  .image {
+    display: inline-block;
+    margin: 24px 0 -30px 30px;
+    width: 126px;
+    height: 126px;
+
+    &.withFooterAction {
+      margin-bottom: -6px;
+    }
+
+    &.no-padding {
+      margin: 0;
+    }
+  }
+}
+
+.message {
+  padding-top: 36px;
+  padding-bottom: 12px;
 }
 
 .fullscreen-body {
