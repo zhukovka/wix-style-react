@@ -35,9 +35,9 @@ describe('SectionHelper', () => {
       const driver = createDriver(
         renderWithProps({
           actionText: 'Muffins are the best!',
-          onAction: () => {}
-        }
-        ));
+          onAction: () => null
+        })
+      );
 
       expect(driver.actionText()).toEqual('Muffins are the best!');
     });
@@ -50,12 +50,19 @@ describe('SectionHelper', () => {
     });
   });
 
+  describe('close button', () => {
+    it('should call `onClose` when close btn clicked', () => {
+      const onClose = jest.fn();
+      const driver = createDriver(renderWithProps({onClose}));
+      driver.clickClose();
+      expect(driver.isCloseButtonDisplayed()).toBeTruthy();
+      expect(onClose).toBeCalled();
+    });
 
-  it('should call `onClose` when close btn clicked', () => {
-    const onClose = jest.fn();
-    const driver = createDriver(renderWithProps({onClose}));
-    driver.clickClose();
-    expect(onClose).toBeCalled();
+    it('should not display the close button on demand', () => {
+      const driver = createDriver(renderWithProps({showCloseButton: false}));
+      expect(driver.isCloseButtonDisplayed()).toBeFalsy();
+    });
   });
 
   describe('Themes', () => {
