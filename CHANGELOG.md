@@ -17,6 +17,7 @@ Types of changes:
 ### Fixed
 
 - `<Tooltip/>` - Fix issue with tooltip #2113 [#2133](https://github.com/wix/wix-style-react/pull/2133)
+- `<Page/>` - Use displayName rather than reference for prop validation [#2154](https://github.com/wix/wix-style-react/pull/2154)
 
 ## 4.18.0 - 2018-08-11
 
