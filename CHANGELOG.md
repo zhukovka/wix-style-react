@@ -12,8 +12,11 @@ Types of changes:
 1. **Security** in case of vulnerabilities.
 1. **Breaking** for breaking changes
 
-## 4.19.0 - 2018-08-26
+## next
+### Added
+- `<MessageBox/>` - add footer actions and image support [#2141](https://github.com/wix/wix-style-react/pull/2141)
 
+## 4.19.0 - 2018-08-26
 ### Fixed
 - `<Tooltip/>` - Fix issue of self unmounting tooltip [#2133](https://github.com/wix/wix-style-react/pull/2133)
 - `<Page/>` - Use displayName rather than reference for prop validation [#2154](https://github.com/wix/wix-style-react/pull/2154)
@@ -23,7 +26,6 @@ Types of changes:
 - Tests: Update docs how to use polyfills for `Tooltip`, `CollapsedHeader`, `DatePicker` and `Range` [#2139](https://github.com/wix/wix-style-react/pull/2139)
 
 ## 4.18.0 - 2018-08-11
-
 ### Added
 - `<EmptyState/>` - add a new component [#2074](https://github.com/wix/wix-style-react/pull/2074)
   - `<Table.EmptyState/>` - add support for EmptyState inside a `<Table/>` [#2116](https://github.com/wix/wix-style-react/pull/2116)
