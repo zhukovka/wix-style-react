@@ -344,10 +344,10 @@ Page.propTypes = {
     }
 
     if (
-      children[key].type !== Page.Header &&
-      children[key].type !== Page.Content &&
-      children[key].type !== Page.FixedContent &&
-      children[key].type !== Page.Tail
+      children[key].type.displayName !== Page.Header.displayName &&
+      children[key].type.displayName !== Page.Content.displayName &&
+      children[key].type.displayName !== Page.FixedContent.displayName &&
+      children[key].type.displayName !== Page.Tail.displayName
     ) {
       return new Error(`Page: Invalid Prop children, unknown child ${children[key].type}`);
     }
