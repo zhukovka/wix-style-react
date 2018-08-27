@@ -1,31 +1,6 @@
-@import '../../Typography/Typography.scss';
-
-$header-padding: 27px 30px 26px;
-
-.header {
+.text {
   display: flex;
+  align-items: center;
   justify-content: space-between;
-  padding: $header-padding;
-  border-bottom: 1px solid transparent;
-
-  &.with-divider {
-    border-bottom-color: $D60;
-  }
-
-  .container {
-    flex-grow: 1;
-    display: flex;
-    align-items: flex-start;
-    justify-content: center;
-    flex-flow: column;
-  }
-
-  .title {
-    @extend .h2;
-    line-height: 1.2;
-  }
-
-  .subtitle {
-    @extend .t1_1;
-  }
+  padding: 27px 30px 26px;
 }
