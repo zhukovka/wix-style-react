@@ -17,154 +17,157 @@ $hoverBoxShadow: 0 0 0 $boxShadowWidth $F00;
   }
 }
 
-.calendar :global .DayPicker {
-  width: $calendarWidth;
-  box-shadow: $Shadow30;
-  @include FontLight;
-  font-size: 14px;
-  line-height: 1.29;
-  color: $D40;
-  background-color: $D80;
-  border-radius: 8px;
-
-  abbr {
-    text-decoration: none;
-  }
-
-  &-Weekdays {
+:global {
+  .DayPicker {
+    width: $calendarWidth;
+    box-shadow: $Shadow30;
+    @include FontLight;
+    font-size: 14px;
+    line-height: 1.29;
+    color: $D40;
     background-color: $D80;
-    padding: 0 $rootPadding;
-  }
+    border-radius: 8px;
 
-  &-WeekdaysRow {
-    display: flex;
-    align-items: center;
-    justify-content: space-around;
-  }
-
-  &-Body {
-    padding: 0 $rootPadding $rootPadding;
-  }
-
-  &-Weekday {
-    width: 17px;
-    padding: 18px 0 12px;
-    color: $D10;
-  }
-
-  &-Week {
-    display: flex;
-    justify-content: space-around;
-  }
-
-  &-Day {
-    box-sizing: border-box;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: $dayBadgeSize;
-    height: $dayBadgeSize;
-    border-radius: 50%;
-    cursor: pointer;
-    color: $D10;
-    z-index: 1;
-
-    &:focus {
-      outline: none;
-      box-shadow: $hoverBoxShadow;
+    abbr {
+      text-decoration: none;
     }
 
-    &.DayPicker-Day--unfocused,
-    &:focus:hover {
-      box-shadow: none;
+    &-Weekdays {
+      background-color: $D80;
+      padding: 0 $rootPadding;
     }
 
-    &--today:not(.DayPicker-Day--selected):not(:hover) {
-      background-color: $D70;
-      @include todayShadow();
-      z-index: 0;
+    &-WeekdaysRow {
+      display: flex;
+      align-items: center;
+      justify-content: space-around;
+    }
+
+    &-Body {
+      padding: 0 $rootPadding $rootPadding;
+    }
+
+    &-Weekday {
+      width: 17px;
+      padding: 18px 0 12px;
+      color: $D10;
+    }
+
+    &-Week {
+      display: flex;
+      justify-content: space-around;
+    }
+
+    &-Day {
+      box-sizing: border-box;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: $dayBadgeSize;
+      height: $dayBadgeSize;
+      border-radius: 50%;
+      cursor: pointer;
+      color: $D10;
+      z-index: 1;
 
       &:focus {
-        @include todayShadow($hoverBoxShadow);
+        outline: none;
+        box-shadow: $hoverBoxShadow;
       }
-    }
 
-    &:hover {
-      background-color: $B50;
-    }
+      &.DayPicker-Day--unfocused,
+      &:focus:hover {
+        box-shadow: none;
+      }
 
-    &--selected {
-      background-color: $B10;
-      color: $D80;
+      &--today:not(.DayPicker-Day--selected):not(:hover) {
+        background-color: $D70;
+        @include todayShadow();
+        z-index: 0;
+
+        &:focus {
+          @include todayShadow($hoverBoxShadow);
+        }
+      }
+
       &:hover {
-        background-color: $B20;
+        background-color: $B50;
+      }
+
+      &--selected {
+        background-color: $B10;
+        color: $D80;
+        &:hover {
+          background-color: $B20;
+        }
+      }
+
+      &--outside,
+      &--disabled {
+        pointer-events: none;
+        color: $D55;
       }
     }
 
-    &--outside,
-    &--disabled {
-      pointer-events: none;
-      color: $D55;
-    }
-  }
+    &--TwoMonths {
+      .DayPicker-Months {
+        display: flex;
 
-  &--TwoMonths {
-    .DayPicker-Months {
-      display: flex;
+        .DayPicker-Month:first-child .DayPicker-Nav--Right,
+        .DayPicker-Month:last-child .DayPicker-Nav--Left {
+          visibility: hidden;
+        }
+      }
 
-      .DayPicker-Month:first-child .DayPicker-Nav--Right,
-      .DayPicker-Month:last-child .DayPicker-Nav--Left {
+      .DayPicker-Day--outside {
         visibility: hidden;
       }
-    }
-
-    .DayPicker-Day--outside {
-      visibility: hidden;
     }
   }
 }
 
 .range {
   :global {
-    .DayPicker-Day--selected {
-      color: $D10;
-      background-color: $B50;
-      border-radius: 0;
-    }
-    .DayPicker-Day--outside {
-      background: none;
-    }
-    .DayPicker-Day--start,
-    .DayPicker-Day--end {
-      box-shadow: none;
-      color: $D80;
-      background-color: $B50;
-      position: relative;
-    }
-     .DayPicker-Day--start {
-      border-bottom-left-radius: 50%;
-      border-top-left-radius: 50%;
-    }
-    .DayPicker-Day--end {
-      border-bottom-right-radius: 50%;
-      border-top-right-radius: 50%;
-    }
-    .DayPicker-Day--start:before,
-    .DayPicker-Day--end:before {
-      background-color: $B10;
-      content: '';
-      display: block;
-      position: absolute;
-      top: 0;
-      right: 0;
-      border-radius: 100px;
-      height: 100%;
-      width: 100%;
-      z-index: -10;
-    }
-    .DayPicker-Day--outside,
-    .DayPicker-Day--disabled {
-      pointer-events: auto;
+    .DayPicker {
+      &-Day {
+        &--selected {
+          color: $D10;
+          background-color: $B50;
+          border-radius: 0;
+        }
+        &--outside {
+          background: none;
+        }
+        &--start, &--end {
+          box-shadow: none;
+          color: $D80;
+          background-color: $B50;
+          position: relative;
+        }
+        &--start:before, &--end:before {
+          background-color: $B10;
+          content: '';
+          display: block;
+          position: absolute;
+          top: 0;
+          right: 0;
+          border-radius: 100px;
+          height: 100%;
+          width: 100%;
+          z-index: -10;
+        }
+        &--start {
+          border-bottom-left-radius: 50%;
+          border-top-left-radius: 50%;
+        }
+        &--end {
+          border-bottom-right-radius: 50%;
+          border-top-right-radius: 50%;
+        }
+        &--outside, &--disabled {
+          pointer-events: auto;
+        }
+      }
     }
   }
 }
