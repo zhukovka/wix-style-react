@@ -21,6 +21,7 @@ const sectionHelperDriverFactory = ({element}) => {
     actionText: () => actionButtonDriver().getButtonTextContent(),
     clickAction: () => actionButtonDriver().click(),
     clickClose: () => closeButtonDriver().click(),
+    isCloseButtonDisplayed: () => closeButtonDriver().exists(),
     textContent: () => element.textContent,
     isWarning: () => classExists('warning'),
     isStandard: () => classExists('standard'),

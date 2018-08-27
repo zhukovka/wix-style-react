@@ -1,4 +1,5 @@
 import SectionHelper from 'wix-style-react/SectionHelper';
+import {storybookConfig} from './storybookConfig';
 
 const titleExamples = [
   {label: 'short text', value: 'Look at this important message!'},
@@ -21,17 +22,19 @@ const childrenExamples = [
 ];
 
 export default {
-  category: '8. Notification Bars',
-  storyName: '8.7 SectionHelper',
+  category: storybookConfig.category,
+  storyName: storybookConfig.storyName,
 
   component: SectionHelper,
-  componentPath: '../src/SectionHelper',
+  componentPath: '../../src/SectionHelper',
 
   componentProps: {
+    dataHook: 'storybook-sectionhelper',
     actionText: 'I understand the consequences',
     appearance: 'standard',
     title: titleExamples[0].value,
-    children: childrenExamples[0].value
+    children: childrenExamples[0].value,
+    showCloseButton: true
   },
 
   exampleProps: {

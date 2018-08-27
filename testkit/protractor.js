@@ -149,6 +149,9 @@ export const messageBoxFunctionalLayoutTestkitFactory = protractorTestkitFactory
 import headingDriverFactory from '../src/Heading/Heading.protractor.driver';
 export const headingTestkitFactory = protractorTestkitFactoryCreator(headingDriverFactory);
 
+import sectionHelperDriverFactory from '../src/SectionHelper/SectionHelper.protractor.driver';
+export const sectionHelperTestkitFactory = protractorTestkitFactoryCreator(sectionHelperDriverFactory);
+
 // wix-ui-backoffice proxy
 
 export {

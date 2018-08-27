@@ -91,7 +91,7 @@ import '../stories/Tooltip/Composite/CompositeStory';
 import '../stories/Notification';
 import '../stories/FloatingHelper/FloatingHelper.story.js'; // 8.6 FloatingHelper
 import '../stories/FloatingHelperContent/FloatingHelperContent.story.js'; // 8.6 + FloatingHelper.Content
-import '../stories/SectionHelper.story.js'; // 8.7 SectionHelper
+import '../stories/SectionHelper/SectionHelper.story.js'; // 8.7 SectionHelper
 
 
 // 9. Modals

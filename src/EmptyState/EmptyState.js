@@ -66,10 +66,10 @@ EmptyState.propTypes = {
   theme: PropTypes.oneOf(['page', 'page-no-border', 'section']),
 
   /** Content for the title of the Empty State */
-  title: PropTypes.string,
+  title: PropTypes.oneOfType([PropTypes.string, PropTypes.node]),
 
   /** Content for the subtitle of the Empty State */
-  subtitle: PropTypes.string,
+  subtitle: PropTypes.oneOfType([PropTypes.string, PropTypes.node]),
 
   /** The Empty State image, can be either a string representing the image URL, or a node to render instead */
   image: PropTypes.node,

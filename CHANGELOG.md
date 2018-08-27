@@ -29,15 +29,21 @@ Types of changes:
 - `<Grid/>` - remove `import {Card} from 'wix-style-react/Grid'` use `import Card from 'wix-style-react/Card'` instead
 
 ## next
+### Added
+- `<MessageBox/>` - add footer actions and image support [#2141](https://github.com/wix/wix-style-react/pull/2141)
+- `<SectionHelper/>` - explicitly decide to show or hide close button [#2148](https://github.com/wix/wix-style-react/pull/2148)
 
+## 4.19.0 - 2018-08-26
 ### Fixed
+- `<Tooltip/>` - Fix issue of self unmounting tooltip [#2133](https://github.com/wix/wix-style-react/pull/2133)
+- `<Page/>` - Use displayName rather than reference for prop validation [#2154](https://github.com/wix/wix-style-react/pull/2154)
 
-- `<Tooltip/>` - Fix issue with tooltip #2113 [#2133](https://github.com/wix/wix-style-react/pull/2133)
+
+### Changed
+- Tests: Update docs how to use polyfills for `Tooltip`, `CollapsedHeader`, `DatePicker` and `Range` [#2139](https://github.com/wix/wix-style-react/pull/2139)
 
 ## 4.18.0 - 2018-08-11
-
 ### Added
-
 - `<EmptyState/>` - add a new component [#2074](https://github.com/wix/wix-style-react/pull/2074)
   - `<Table.EmptyState/>` - add support for EmptyState inside a `<Table/>` [#2116](https://github.com/wix/wix-style-react/pull/2116)
   - `<Card.EmptyState/>` - add support for EmptyState inside a `<Crad/>` [#2117](https://github.com/wix/wix-style-react/pull/2117)
