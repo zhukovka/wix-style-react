@@ -20,20 +20,16 @@ export default class Calendar extends WixComponent {
     rtl: false
   };
 
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      month: props.value
-    };
+  state = {
+    value: this.props.value
   }
 
   // TODO: Change to getDerivedStateFromProps with React ^16.0.0
   componentWillReceiveProps(nextProps) {
-    this.setState({month: nextProps.value});
+    this.setState({value: nextProps.value});
   }
 
-  _setMonth = month => this.setState({month});
+  _setValue = value => this.setState({value});
 
   _handleDayClick = (value, modifiers = {}) => {
     this.props.onChange(value, modifiers);
@@ -52,31 +48,31 @@ export default class Calendar extends WixComponent {
       twoMonths
     } = this.props;
 
-    const month = this.state.month || propsValue;
+    const value = this.state.value || propsValue;
     const localeUtils = localeUtilsFactory(locale);
 
     const captionElement = (
       <DatePickerHead
         {...{
-          date: month,
+          date: value,
           showYearDropdown,
           showMonthDropdown,
           localeUtils,
           rtl,
-          onChange: this._setMonth,
-          onLeftArrowClick: () => this._setMonth(startOfMonth(addMonths(month, -1))),
-          onRightArrowClick: () => this._setMonth(startOfMonth(addMonths(month, 1)))
+          onChange: this._setValue,
+          onLeftArrowClick: () => this._setValue(startOfMonth(addMonths(value, -1))),
+          onRightArrowClick: () => this._setValue(startOfMonth(addMonths(value, 1)))
         }}
         />
     );
 
     return {
       disabledDays: excludePastDates ? {before: new Date()} : date => !filterDate(date),
-      initialMonth: month,
-      initialYear: month,
+      initialMonth: value,
+      initialYear: value,
       selectedDays: parse(propsValue),
-      month,
-      year: month,
+      month: value,
+      year: value,
       firstDayOfWeek: 1,
       locale: typeof locale === 'string' ? locale : '',
       fixedWeeks: true,
@@ -136,9 +132,10 @@ export default class Calendar extends WixComponent {
 
 Calendar.propTypes = {
   /** Use 2 months layout */
-  /* TODO WIP, uncomment after feature done
   twoMonths: PropTypes.bool,
-  */
+
+  /** Enable ability to select date range */
+  range: PropTypes.bool,
 
   /** Callback function called whenever the user selects a day in the calendar */
   onChange: PropTypes.func.isRequired,
@@ -155,8 +152,11 @@ Calendar.propTypes = {
   /** RTL mode */
   rtl: PropTypes.bool,
 
-  /** The selected date */
+  /** The selected date for common calendar and start of range for calendar with range */
   value: PropTypes.object,
+
+  /** Not used for common calendar and end of range for calendar with range */
+  endValue: PropTypes.object,
 
   /** Display a selectable yearDropdown */
   showYearDropdown: PropTypes.bool,
