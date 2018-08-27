@@ -1,8 +1,8 @@
 /**
-  * Storybook list of stories
-  *
-  * order is reflected in storybook sidebar
-  */
+ * Storybook list of stories
+ *
+ * order is reflected in storybook sidebar
+ */
 
 import '../stories/Introduction';
 import '../stories/Composite'; // TODO: Move to introduction
@@ -35,7 +35,7 @@ import '../stories/Input'; // 3.1 + Input
 import '../stories/TextArea'; // 3.2a Text Area
 import '../stories/InputArea/index.story.js'; // 3.2a + InputArea
 import '../stories/RichTextAreaComposite'; // 3.2b RichTextAreaComposite
-import '../stories/RichTextArea/RichTextArea.story.js' // 3.2b + RichTextArea
+import '../stories/RichTextArea/RichTextArea.story.js'; // 3.2b + RichTextArea
 import '../stories/FieldWithSelectionComposite'; // 3.3 Field With Selection
 import '../stories/TimeInput.story.js'; // 3.4 TimeInput
 import '../stories/DatePicker.story.js'; // 3.6 DatePicker
@@ -47,6 +47,7 @@ import '../stories/ImageViewer/index.story'; // 3.10 ImageViewer
 import '../stories/FilePicker'; // 3.10 + FilePicker
 import '../stories/GoogleAddressInput'; // 3.11 GoogleAddressInput
 import '../stories/AddItem/addItem.story.js'; // 3.12 AddItem
+import '../stories/Calendar/index.story'; // 3.13 Calendar
 
 // 4. Selection
 import '../stories/Dropdown/Dropdown.story.js'; // 4.1 Dropdown
@@ -63,7 +64,6 @@ import '../stories/ToggleSwitch.story'; // 4.4 ToggleSwitch
 import '../stories/Slider'; // 4.7 Slider
 import '../stories/GoogleAddressInputWithLabel'; // 4.8 Google address input
 
-
 // 5. Buttons
 import '../stories/ButtonLayout.story.js'; // 5.0 ButtonLayout
 import '../stories/Button/standard.story.js'; // 5.1 Standard
@@ -75,17 +75,14 @@ import '../stories/Button/transparent.story.js'; // 5.6 Transparent
 import '../stories/Button/close.story.js'; // 5.7 Close
 import '../stories/TextLink/index.story.js'; // 5.8 Text Link
 
-
 // 6. Navigation
 import '../stories/SideMenu'; // 6.1 SideMenu
 import '../stories/Breadcrumbs/index.story.js'; // 6.2 + Breadcrumbs
 import '../stories/Tabs'; // 6.3 Tabs
 
-
 // 7. Tooltips
 // 7.1 Tooltip, 7.2 Popover, 7.3 Popover Menu
 import '../stories/Tooltip/Composite/CompositeStory';
-
 
 // 8. Notification Bars
 // 8.1 Standard, 8.2 Error, 8.3 Success, 8.4 Warning, 8.5 Premium
@@ -93,7 +90,6 @@ import '../stories/Notification';
 import '../stories/FloatingHelper/FloatingHelper.story.js'; // 8.6 FloatingHelper
 import '../stories/FloatingHelperContent/FloatingHelperContent.story.js'; // 8.6 + FloatingHelper.Content
 import '../stories/SectionHelper/SectionHelper.story.js'; // 8.7 SectionHelper
-
 
 // 9. Modals
 import '../stories/MessageBox';

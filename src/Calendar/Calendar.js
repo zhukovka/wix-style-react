@@ -1,3 +1,4 @@
+import styles from './Calendar.scss';
 import React from 'react';
 import PropTypes from 'prop-types';
 import DayPicker from 'react-day-picker/DayPicker';
@@ -5,9 +6,9 @@ import addMonths from 'date-fns/add_months';
 import parse from 'date-fns/parse';
 import startOfMonth from 'date-fns/start_of_month';
 
-import WixComponent from '../../BaseComponents/WixComponent';
+import WixComponent from '../BaseComponents/WixComponent';
 import localeUtilsFactory from '../LocaleUtils';
-import DatePickerHead from '../DatePickerHead';
+import DatePickerHead from './DatePickerHead';
 
 export default class Calendar extends WixComponent {
   static displayName = 'Calendar';
@@ -70,7 +71,7 @@ export default class Calendar extends WixComponent {
     );
 
     return {
-      disabledDays: excludePastDates ? [{before: new Date()}] : date => !filterDate(date),
+      disabledDays: excludePastDates ? {before: new Date()} : date => !filterDate(date),
       initialMonth: month,
       initialYear: month,
       selectedDays: parse(propsValue),
@@ -114,7 +115,7 @@ export default class Calendar extends WixComponent {
         selectedDay.focus();
       }
     }
-  }
+  };
 
   _handleDayKeyDown = () => {
     const unfocusedDay = this.dayPickerRef.dayPicker.querySelector('.DayPicker-Day--unfocused');
@@ -122,10 +123,14 @@ export default class Calendar extends WixComponent {
     if (unfocusedDay) {
       unfocusedDay.classList.remove('DayPicker-Day--unfocused');
     }
-  }
+  };
 
   render() {
-    return <DayPicker ref={this._focusSelectedDay} {...this._createDayPickerProps()}/>;
+    return (
+      <div className={styles.calendar}>
+        <DayPicker ref={this._focusSelectedDay} {...this._createDayPickerProps()}/>
+      </div>
+    );
   }
 }
 

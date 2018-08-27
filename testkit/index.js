@@ -174,6 +174,9 @@ export const fieldLabelAttributesTestkitFactory = testkitFactoryCreator(fieldLab
 import popoverMenuDriverFactory from '../src/PopoverMenu/PopoverMenu.driver';
 export const popoverMenuTestkitFactory = testkitFactoryCreator(popoverMenuDriverFactory);
 
+import calendarDriverFactory from '../src/Calendar/Calendar.driver';
+export const calendarTestkitFactory = testkitFactoryCreator(calendarDriverFactory);
+
 import datePickerDriverFactory from '../src/DatePicker/DatePicker.driver';
 export const datePickerTestkitFactory = testkitFactoryCreator(datePickerDriverFactory);
 

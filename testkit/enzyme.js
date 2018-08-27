@@ -171,6 +171,9 @@ export const fieldLabelAttributesTestkitFactory = enzymeTestkitFactoryCreator(fi
 import popoverMenuDriverFactory from '../src/PopoverMenu/PopoverMenu.driver';
 export const popoverMenuTestkitFactory = enzymeTestkitFactoryCreator(popoverMenuDriverFactory);
 
+import calendarDriverFactory from '../src/Calendar/Calendar.driver';
+export const calendarTestkitFactory = enzymeTestkitFactoryCreator(calendarDriverFactory);
+
 import datePickerFactory from '../src/DatePicker/DatePicker.driver';
 export const datePickerTestkitFactory = enzymeTestkitFactoryCreator(datePickerFactory);
 
