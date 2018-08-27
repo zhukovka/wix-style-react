@@ -17,6 +17,10 @@ Types of changes:
 - `<MessageBox/>` - add footer actions and image support [#2141](https://github.com/wix/wix-style-react/pull/2141)
 - `<SectionHelper/>` - explicitly decide to show or hide close button [#2148](https://github.com/wix/wix-style-react/pull/2148)
 
+### Fixed
+- `<DatePicker/>` - fix onClose prop usage[#2158](https://github.com/wix/wix-style-react/pull/2158)
+- `<DatePicker/>` - copy value from props to state on constructor step[#2158](https://github.com/wix/wix-style-react/pull/2158)
+
 ## 4.19.0 - 2018-08-26
 ### Fixed
 - `<Tooltip/>` - Fix issue of self unmounting tooltip [#2133](https://github.com/wix/wix-style-react/pull/2133)
