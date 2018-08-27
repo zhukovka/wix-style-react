@@ -216,6 +216,9 @@ export const headingTestkitFactory = enzymeTestkitFactoryCreator(headingDriverFa
 import textDriverFactory from '../src/Text/Text.driver';
 export const textTestkitFactory = enzymeTestkitFactoryCreator(textDriverFactory);
 
+import draggableDriverFactory from '../src/DragAndDrop/Draggable/Draggable.driver';
+export const draggableTestkitFactory = enzymeTestkitFactoryCreator(draggableDriverFactory);
+
 // wix-ui-backoffice proxy
 
 export {

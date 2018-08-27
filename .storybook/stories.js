@@ -114,10 +114,13 @@ import '../stories/FullTextView.story.js'; //12.4 FullTextView
 import '../stories/Tag.story.js'; // 12.5 Tag
 import '../stories/Highlighter.story.js'; // Highlighter
 
-// Components section, WIP and similar
+// Components API
 import '../stories/FormField.story.js';
 import '../stories/Layout/index.story.js';
 import '../stories/Layout';
+
+//WIP
+import '../stories/DragAndDrop/DragAndDrop.js';
 
 // TPA
 import '../stories/TPA/Button';
