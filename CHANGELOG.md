@@ -16,8 +16,9 @@ Types of changes:
 ### Added
 - `<MessageBox/>` - add footer actions and image support [#2141](https://github.com/wix/wix-style-react/pull/2141)
 - `<SectionHelper/>` - explicitly decide to show or hide close button [#2148](https://github.com/wix/wix-style-react/pull/2148)
-- `<Calendar/>` - Calendar as a separate component [#2144](https://github.com/wix/wix-style-react/pull/2144)
+- `<Calendar/>` - split to a a separate component [#2144](https://github.com/wix/wix-style-react/pull/2144)
 - `<Card.Divider/>` - standalone divider to be used not only under `<Card.Header/>` [#2114](https://github.com/wix/wix-style-react/pull/2114)
+- `<SortableList/>` - a D&D sortable list (WIP) [#2151](https://github.com/wix/wix-style-react/pull/2151)
 
 ### Fixed
 - `<DatePicker/>` - fix onClose prop usage [#2158](https://github.com/wix/wix-style-react/pull/2158)
