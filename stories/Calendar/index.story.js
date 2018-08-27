@@ -17,7 +17,6 @@ export default {
   componentProps: {
     rtl: false,
     range: false,
-    twoMonths: false,
     value: new Date(),
     endValue: new Date(),
     excludePastDates: true,

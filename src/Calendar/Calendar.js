@@ -1,7 +1,8 @@
 import styles from './Calendar.scss';
 import React from 'react';
 import PropTypes from 'prop-types';
-import DayPicker from 'react-day-picker/DayPicker';
+import classNames from 'classnames';
+import DayPicker, {DateUtils} from 'react-day-picker/DayPicker';
 import addMonths from 'date-fns/add_months';
 import parse from 'date-fns/parse';
 import startOfMonth from 'date-fns/start_of_month';
@@ -21,7 +22,11 @@ export default class Calendar extends WixComponent {
   };
 
   state = {
-    value: this.props.value
+    value: this.props.value,
+    range: {
+      from: this.props.value,
+      to: this.props.endValue
+    }
   }
 
   // TODO: Change to getDerivedStateFromProps with React ^16.0.0
@@ -31,13 +36,40 @@ export default class Calendar extends WixComponent {
 
   _setValue = value => this.setState({value});
 
-  _handleDayClick = (value, modifiers = {}) => {
-    this.props.onChange(value, modifiers);
+  _handleDayClick = (clickedValue, modifiers = {}) => {
+    if (this.props.range) {
+      const {from, to} = this.state.range;
+      const isRangeSelected = from && to;
+      const range = {
+        from: isRangeSelected ? null : from,
+        to: isRangeSelected ? null : to
+      };
+      const nextRange = DateUtils.addDayToRange(clickedValue, range);
+      this.setState({
+        range: DateUtils.addDayToRange(clickedValue, range)
+      }, () => {
+        if (this.props.onChange && nextRange.from && nextRange.to) {
+          this.props.onChange(nextRange.from, nextRange.to, modifiers);
+        }
+      });
+    } else {
+      this.props.onChange(clickedValue, modifiers);
+    }
     this.props.shouldCloseOnSelect && this.props.onClose();
+  };
+
+  _handleDayMouseEnter = hoveredValue => {
+    const {from} = this.state.range;
+    if (from) {
+      this.setState({
+        range: DateUtils.addDayToRange(hoveredValue, this.state.range)
+      });
+    }
   };
 
   _createDayPickerProps = () => {
     const {
+      range,
       locale,
       showMonthDropdown,
       showYearDropdown,
@@ -66,11 +98,12 @@ export default class Calendar extends WixComponent {
         />
     );
 
+    const disabledDays = excludePastDates ? {before: new Date()} : date => !filterDate(date);
+
     return {
-      disabledDays: excludePastDates ? {before: new Date()} : date => !filterDate(date),
+      disabledDays: range ? {before: this.state.range.from} : disabledDays,
       initialMonth: value,
       initialYear: value,
-      selectedDays: parse(propsValue),
       month: value,
       year: value,
       firstDayOfWeek: 1,
@@ -81,7 +114,13 @@ export default class Calendar extends WixComponent {
       localeUtils,
       navbarElement: () => null,
       captionElement,
+      onDayMouseEnter: this._handleDayMouseEnter,
       onDayKeyDown: this._handleDayKeyDown,
+      selectedDays: range ? [this.state.range.from, {from: this.state.range.from, to: this.state.range.to}] : parse(propsValue),
+      modifiers: {
+        start: this.state.range.from,
+        end: this.state.range.to
+      },
       numberOfMonths: twoMonths ? 2 : 1,
       className: twoMonths ? 'DayPicker--TwoMonths' : ''
     };
@@ -123,7 +162,7 @@ export default class Calendar extends WixComponent {
 
   render() {
     return (
-      <div className={styles.calendar}>
+      <div className={classNames(styles.calendar, {[styles.range]: this.props.range})}>
         <DayPicker ref={this._focusSelectedDay} {...this._createDayPickerProps()}/>
       </div>
     );
@@ -132,7 +171,7 @@ export default class Calendar extends WixComponent {
 
 Calendar.propTypes = {
   /** Use 2 months layout */
-  twoMonths: PropTypes.bool,
+  /* twoMonths: PropTypes.bool, */
 
   /** Enable ability to select date range */
   range: PropTypes.bool,
