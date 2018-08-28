@@ -28,10 +28,17 @@ Types of changes:
 - `<SideBar/>` - remove component in favor of `<SideMenu/>`
 - `<Grid/>` - remove `import {Card} from 'wix-style-react/Grid'` use `import Card from 'wix-style-react/Card'` instead
 
-## next
+## 4.20.0 - 2018-08-28
 ### Added
 - `<MessageBox/>` - add footer actions and image support [#2141](https://github.com/wix/wix-style-react/pull/2141)
 - `<SectionHelper/>` - explicitly decide to show or hide close button [#2148](https://github.com/wix/wix-style-react/pull/2148)
+- `<Calendar/>` - split to a a separate component [#2144](https://github.com/wix/wix-style-react/pull/2144)
+- `<Card.Divider/>` - standalone divider to be used not only under `<Card.Header/>` [#2114](https://github.com/wix/wix-style-react/pull/2114)
+- `<SortableList/>` - a D&D sortable list (WIP) [#2151](https://github.com/wix/wix-style-react/pull/2151)
+
+### Fixed
+- `<DatePicker/>` - fix onClose prop usage [#2158](https://github.com/wix/wix-style-react/pull/2158)
+- `<DatePicker/>` - copy value from props to state on constructor step [#2158](https://github.com/wix/wix-style-react/pull/2158)
 
 ## 4.19.0 - 2018-08-26
 ### Fixed
