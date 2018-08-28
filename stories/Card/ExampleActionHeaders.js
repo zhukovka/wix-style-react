@@ -17,7 +17,7 @@ export default () =>
           <Card>
             <Card.Header
               title="Card header"
-              suffix={<Button onClick={() => alert('Clicked')} theme="fullblue">Click Me!</Button>}
+              suffix={<Button onClick={() => alert('Clicked')} height="small" theme="fullblue">Click Me!</Button>}
               />
 
             <Card.Content>
@@ -50,12 +50,17 @@ export default () =>
       <Row>
         <Col>
           <Card>
-            <Card.ButtonHeader
+            <Card.Header
               withoutDivider
               title="Card header without no content"
-              buttonOnClick={() => alert('Clicked!')}
-              buttonTitle="Click Me!"
-              theme="fullblue"
+              suffix={
+                <Button
+                  onClick={() => alert('Clicked!')}
+                  children="Click Me!"
+                  height="small"
+                  theme="fullblue"
+                  />
+              }
               />
           </Card>
         </Col>

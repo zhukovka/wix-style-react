@@ -39,7 +39,7 @@ class Header extends WixComponent {
 
     return (
       <div>
-        <div className={styles.text}>
+        <div className={styles.wrapper}>
           <div>
             { isString(title) ?
               <Heading
