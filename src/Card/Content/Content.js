@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {Component} from 'react';
 import {node} from 'prop-types';
 import styles from './Content.scss';
 
