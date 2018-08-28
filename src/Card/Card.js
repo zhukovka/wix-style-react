@@ -20,7 +20,7 @@ const Card = ({stretchVertically, children, dataHook}) =>
       }
     )}
     children={children}
-    dataHook={dataHook}
+    data-hook={dataHook}
     />;
 
 Card.displayName = 'Card';
