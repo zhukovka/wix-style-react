@@ -2,14 +2,23 @@ import React from 'react';
 import {node} from 'prop-types';
 import styles from './Content.scss';
 
-const Content = ({children}) =>
-  <div
-    className={styles.root}
-    children={children}
-    />;
+class Content extends Component {
+  static propTypes = {
+    children: node
+  };
 
-Content.propTypes = {
-  children: node
-};
+  _getChildName = children =>
+    children.type && (children.type.displayName || children.type.name);
+
+  render() {
+    const {children} = this.props;
+
+    return (
+      <div className={this._getChildName(children) === 'EmptyState' ? styles.emptyStateContent : styles.content}>
+        {children}
+      </div>
+    );
+  }
+}
 
 export default Content;

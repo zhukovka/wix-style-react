@@ -8,7 +8,6 @@ import Divider from './Divider';
 import LinkHeader from './LinkHeader';
 import ButtonHeader from './ButtonHeader';
 import CollapsedHeader from './CollapsedHeader';
-import EmptyState from './EmptyState';
 
 import styles from './Card.scss';
 
@@ -42,6 +41,5 @@ Card.Divider = Divider;
 Card.LinkHeader = LinkHeader;
 Card.ButtonHeader = ButtonHeader;
 Card.CollapsedHeader = CollapsedHeader;
-Card.EmptyState = EmptyState;
 
 export default Card;

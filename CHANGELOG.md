@@ -45,7 +45,6 @@ Types of changes:
 - `<Tooltip/>` - Fix issue of self unmounting tooltip [#2133](https://github.com/wix/wix-style-react/pull/2133)
 - `<Page/>` - Use displayName rather than reference for prop validation [#2154](https://github.com/wix/wix-style-react/pull/2154)
 
-
 ### Changed
 - Tests: Update docs how to use polyfills for `Tooltip`, `CollapsedHeader`, `DatePicker` and `Range` [#2139](https://github.com/wix/wix-style-react/pull/2139)
 
@@ -53,7 +52,6 @@ Types of changes:
 ### Added
 - `<EmptyState/>` - add a new component [#2074](https://github.com/wix/wix-style-react/pull/2074)
   - `<Table.EmptyState/>` - add support for EmptyState inside a `<Table/>` [#2116](https://github.com/wix/wix-style-react/pull/2116)
-  - `<Card.EmptyState/>` - add support for EmptyState inside a `<Crad/>` [#2117](https://github.com/wix/wix-style-react/pull/2117)
   - `<EmptyState/>` - make `section` the default theme [#2129](https://github.com/wix/wix-style-react/pull/2129)
   - `<EmptyState/>` - add links to component examples in the story [#2131](https://github.com/wix/wix-style-react/pull/2131)
 - `<TextLink/>` - support ellipsis with tooltip [#2108](https://github.com/wix/wix-style-react/pull/2108)
