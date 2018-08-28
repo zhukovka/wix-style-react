@@ -44,7 +44,7 @@ class Header extends WixComponent {
             { isString(title) ?
               <Heading
                 dataHook="title"
-                appearance="H2"
+                appearance="H3"
                 children={title}
                 /> :
                 title

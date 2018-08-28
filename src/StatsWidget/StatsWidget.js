@@ -63,8 +63,8 @@ class StatsWidget extends WixComponent {
 
   _renderColumn(statistics, index) {
     return (<div className={styles.statsColumn} key={index} data-hook="statistics-item">
-      <Heading dataHook="statistics-item-title">{statistics.title}</Heading>
-      <Heading dataHook="statistics-item-subtitle" appearance="H3">
+      <Heading dataHook="statistics-item-title" appearance="H1">{statistics.title}</Heading>
+      <Heading dataHook="statistics-item-subtitle" appearance="H5">
         {statistics.subtitle}
       </Heading>
       {typeof (statistics.percent) === 'number' && renderTrend(statistics.percent)}
