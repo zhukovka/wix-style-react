@@ -5,7 +5,7 @@ class YearMonthsCalendarExample extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      date: new Date(),
+      date: new Date('2017/05/01'),
       excludePastDates: true
     };
   }

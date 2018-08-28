@@ -16,7 +16,7 @@ export default {
 
   componentProps: {
     rtl: false,
-    value: new Date(),
+    value: new Date('2017/05/01'),
     excludePastDates: true,
     showYearDropdown: false,
     showMonthDropdown: false,
