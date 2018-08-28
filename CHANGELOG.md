@@ -12,7 +12,7 @@ Types of changes:
 1. **Security** in case of vulnerabilities.
 1. **Breaking** for breaking changes
 
-## next
+## 4.20.0 - 2018-08-28
 ### Added
 - `<MessageBox/>` - add footer actions and image support [#2141](https://github.com/wix/wix-style-react/pull/2141)
 - `<SectionHelper/>` - explicitly decide to show or hide close button [#2148](https://github.com/wix/wix-style-react/pull/2148)
