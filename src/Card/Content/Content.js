@@ -8,7 +8,7 @@ class Content extends Component {
   };
 
   _getChildName = children =>
-    children.type && (children.type.name || children.type.displayName);
+    children.type && (children.type.displayName || children.type.name);
 
   render() {
     const {children} = this.props;
