@@ -12,6 +12,9 @@ Types of changes:
 1. **Security** in case of vulnerabilities.
 1. **Breaking** for breaking changes
 
+## 4.20.1 - 2018-08-28
+- `<Card/>` - fix `dataHook` prop to not throw console warning [b0f134](https://github.com/wix/wix-style-react/commit/b0f1349a732c8fb7b95e2ac60d1f6d63be612f97)
+
 ## 4.20.0 - 2018-08-28
 ### Added
 - `<MessageBox/>` - add footer actions and image support [#2141](https://github.com/wix/wix-style-react/pull/2141)
