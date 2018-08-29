@@ -12,7 +12,7 @@ Types of changes:
 1. **Security** in case of vulnerabilities.
 1. **Breaking** for breaking changes
 
-## next v5
+## 5.0.0 - 2018-08-29
 ### Breaking
 
 [Migration guide](https://github.com/wix/wix-style-react/blob/master/docs/migration/v4-v5.md)
