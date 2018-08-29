@@ -14,7 +14,7 @@ class Content extends Component {
     const {children} = this.props;
 
     return (
-      <div className={this._getChildName(children) === 'EmptyState' ? styles.emptyStateContent : styles.content}>
+      <div className={this._getChildName(children) === 'EmptyState' ? styles.emptyStateContent : styles.root}>
         {children}
       </div>
     );

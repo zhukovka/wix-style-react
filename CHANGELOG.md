@@ -12,6 +12,22 @@ Types of changes:
 1. **Security** in case of vulnerabilities.
 1. **Breaking** for breaking changes
 
+## 5.0.0 - 2018-08-29
+### Breaking
+
+[Migration guide](https://github.com/wix/wix-style-react/blob/master/docs/migration/v4-v5.md)
+
+- `<Checkbox/>` - remove prop `active`(use `checked` instead) and value `large`(use `medium` instead) for prop `size`
+- `<Icons/>` - remove old icons in favor of [new icons](https://github.com/wix/wix-style-react/blob/master/docs/NEW_ICONS_MIGRATION.md)
+- `<Button/>` - remove prop `withNewIcons` and make it behavior default
+- `<DataTable/>` - new styles
+- `<Heading/>` - new typography
+- `<MultiSelect/>` - remove prop `maxHeight`
+- `<Grid/>` & `<Row/>` & `<Col/>` - remove ambitious box-sizing
+- `<LanguagePicker/>` - remove component in favor of `<IconWithOptions/>`
+- `<SideBar/>` - remove component in favor of `<SideMenu/>`
+- `<Grid/>` - remove `import {Card} from 'wix-style-react/Grid'` use `import Card from 'wix-style-react/Card'` instead
+
 ## 4.20.1 - 2018-08-28
 - `<Card/>` - fix `dataHook` prop to not throw console warning [b0f134](https://github.com/wix/wix-style-react/commit/b0f1349a732c8fb7b95e2ac60d1f6d63be612f97)
 
@@ -31,7 +47,6 @@ Types of changes:
 ### Fixed
 - `<Tooltip/>` - Fix issue of self unmounting tooltip [#2133](https://github.com/wix/wix-style-react/pull/2133)
 - `<Page/>` - Use displayName rather than reference for prop validation [#2154](https://github.com/wix/wix-style-react/pull/2154)
-
 
 ### Changed
 - Tests: Update docs how to use polyfills for `Tooltip`, `CollapsedHeader`, `DatePicker` and `Range` [#2139](https://github.com/wix/wix-style-react/pull/2139)
@@ -71,7 +86,7 @@ Types of changes:
 ### Deprecated
 - `<Text/>` - Deprecated `bold` prop in favor `weight` prop which can be `thin`, `normal` or `bold`. [#2073](https://github.com/wix/wix-style-react/pull/2073)
 
-### Added 
+### Added
 - `<Text/>` - Show Tooltip when ellipsis is active [#2073](https://github.com/wix/wix-style-react/pull/2073)
 - `<Text/>` - Extend `size` prop to have also `size="tiny"`. [#2073](https://github.com/wix/wix-style-react/pull/2073)
 - `<Heading/>` - Show Tooltip when ellipsis is active [#2068](https://github.com/wix/wix-style-react/pull/2068)
@@ -163,10 +178,9 @@ Types of changes:
 - `<Card.ButtonHeader/>` - migrate to new icons [#1979](https://github.com/wix/wix-style-react/pull/1979)
 - `<Card.CollapsedHeader/>` - migrate to new icons [#1980](https://github.com/wix/wix-style-react/pull/1980)
 - `<EditableSelector/>` - improve behavior when editing a line [#1989](https://github.com/wix/wix-style-react/pull/1989)
-- `<DropdownLayout/>` - impove preformance - items will not appear in DOM if not displayed [#1996](https://github.com/wix/wix-style-react/pull/1996) 
+- `<DropdownLayout/>` - impove preformance - items will not appear in DOM if not displayed [#1996](https://github.com/wix/wix-style-react/pull/1996)
 
 ### Fixed
-- `<Card/>` - Add `overflow: hidden` to make  [#1962](https://github.com/wix/wix-style-react/pull/1962)
 - `<Card/>` - collapsed Card header should not have any bottom divider [#1972](https://github.com/wix/wix-style-react/pull/1972)
 - `<EditableSelector/>` - fix margins [#1984](https://github.com/wix/wix-style-react/pull/1984)
 - `<ColorPicker/>` - fix history bar behavior [#1990](https://github.com/wix/wix-style-react/pull/1990)

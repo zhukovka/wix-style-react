@@ -1,5 +1,5 @@
 import React from 'react';
-import {bool, func, node, oneOf, string} from 'prop-types';
+import {func, node, oneOf, string} from 'prop-types';
 
 import Button from '../../../src/Backoffice/Button';
 import WixComponent from '../../BaseComponents/WixComponent';
@@ -16,7 +16,7 @@ class ButtonHeader extends WixComponent {
 
   static propTypes = {
     ...Header.propTypes,
-    withNewIcons: bool,
+    title: node.isRequired,
     buttonTitle: string.isRequired,
     buttonOnClick: func.isRequired,
     buttonPrefix: node,
@@ -30,7 +30,8 @@ class ButtonHeader extends WixComponent {
   };
 
   static defaultProps = {
-    withNewIcons: false,
+    subtitle: null,
+    withoutDivider: false,
     buttonPrefix: null,
     tooltip: null,
     theme: 'standard',
@@ -47,14 +48,12 @@ class ButtonHeader extends WixComponent {
       buttonSuffix,
       withoutDivider,
       tooltip,
-      theme,
-      withNewIcons
+      theme
     } = this.props;
 
     const buttonElement = (
       <div>
         <Button
-          withNewIcons={withNewIcons}
           dataHook="button"
           height={theme === 'standard' ? 'medium' : 'small'}
           suffixIcon={buttonSuffix}
