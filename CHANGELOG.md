@@ -13,6 +13,9 @@ Types of changes:
 1. **Breaking** for breaking changes
 
 ## next
+### Added
+- `<Sidemenu/>` - allowed custom className to be passed to Sidemenu components
+
 ### Deprecated
 - `<Card.ButtonHeader/>` & `<Card.LinkHeader/>` - add deprecation logs, `Card.Header` should be used instead [#2176](https://github.com/wix/wix-style-react/pull/2176)
 
