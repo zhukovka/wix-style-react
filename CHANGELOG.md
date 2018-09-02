@@ -15,6 +15,7 @@ Types of changes:
 ## next
 ### Added
 - `<Sidemenu/>` - allow custom className to be passed to Sidemenu components [#2179](https://github.com/wix/wix-style-react/pull/2179)
+- `<SideMenu/>` - add rtl support [#2173](https://github.com/wix/wix-style-react/pull/2173)
 
 ### Deprecated
 - `<Card.ButtonHeader/>` & `<Card.LinkHeader/>` - add deprecation logs, `Card.Header` should be used instead [#2176](https://github.com/wix/wix-style-react/pull/2176)
