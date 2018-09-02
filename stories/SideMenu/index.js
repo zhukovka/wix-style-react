@@ -9,6 +9,9 @@ import SideMenuDrillReadme from '../../src/SideMenu/DrillView/README.md';
 import ExampleStandard from './ExampleStandard';
 import ExampleStandardRaw from '!raw-loader!./ExampleStandard';
 
+import ExampleStandardRTL from './ExampleStandardRTL';
+import ExampleStandardRTLRaw from '!raw-loader!./ExampleStandardRTL';
+
 import ExampleSubMenu from './ExampleSubMenu';
 import ExampleSubMenuRaw from '!raw-loader!./ExampleSubMenu';
 
@@ -36,6 +39,10 @@ storiesOf('6. Navigation', module)
 
       <CodeExample title="Standard" code={ExampleStandardRaw}>
         <ExampleStandard/>
+      </CodeExample>
+
+      <CodeExample title="RTL Standard" code={ExampleStandardRTLRaw}>
+        <ExampleStandardRTL/>
       </CodeExample>
 
       <CodeExample title="Sub Menu" code={ExampleSubMenuRaw}>

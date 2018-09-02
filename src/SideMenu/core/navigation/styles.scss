@@ -151,7 +151,32 @@ $padding-vertical: 14px;
   background-clip:content-box;
   padding: 17px 26px;
   top: 0;
-  right:0;
+  right: 0;
+}
 
+:global(.rtl) {
+  .linkArrow {
+    left: 25px;
+    right: auto;
+    transform: scaleX(-1);
+  }
 
+  .backLink {
+    &:hover {
+      .backArrow {
+        transform: translateX(5px);
+      }
+    }
+  }
+
+  .backArrow {
+    > svg {
+      transform: scale(-2);
+    }
+  }
+
+  .linkBadge {
+    left: 0;
+    right: auto;
+  }
 }

@@ -100,4 +100,3 @@ export default () =>
       </SideMenu.Footer>
     </SideMenu>
   </div>;
-

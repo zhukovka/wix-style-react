@@ -1,5 +1,7 @@
 @import '../../../common.scss';
 
+$border-color: #375b74;
+
 .footer {
   display: flex;
   align-items: center;
@@ -34,7 +36,7 @@
 }
 
 .tinyLink {
-  border: 1px solid #375b74;
+  border: 1px solid $border-color;
   border-top: 0;
   border-bottom: 0;
 
@@ -51,3 +53,20 @@
 
 .link:not(.tinyLink) .linkIcon { margin-right: 15px; }
 
+:global(.rtl) {
+  .tinyLink {
+    &:first-child {
+      border-left-color: $border-color;
+      border-right-color: transparent;
+    }
+    &:last-child {
+      border-left-color: transparent;
+      border-right-color: $border-color;
+    }
+  }
+
+  .link:not(.tinyLink) .linkIcon {
+    margin-left: 15px;
+    margin-right: 0;
+  }
+}

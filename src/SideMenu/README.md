@@ -4,10 +4,6 @@ A collection of dumb components for easy side menu combination.
 
 You can use the [DrillView](./DrillView)
 
-yet to be done:
-
-* RTL
-
 ## Components
 
 ### Header `<SideMenu.Header/>` (alias: `<SideMenu.Logo/>`)
@@ -109,4 +105,3 @@ width & height so it's up to you to set parent styling appropriately
 to the top, adjust padding or margin to the children of `<SideMenu.Header/>`
 
 * when height is too little, `<SideMenu/>` add scrollbar to `<SideMenu.Navigation/>`
-
