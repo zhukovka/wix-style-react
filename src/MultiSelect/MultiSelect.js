@@ -24,7 +24,9 @@ class MultiSelect extends InputWithOptions {
     if (!options.length && value) {
       onSelect([{id: value.trim(), label: value.trim()}]);
     }
-    this.hideOptions();
+    if (this.state.showOptions) {
+      this.hideOptions();
+    }
   }
 
   getUnselectedOptions() {

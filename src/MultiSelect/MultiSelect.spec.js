@@ -95,25 +95,42 @@ describe('MultiSelect', () => {
     expect(inputDriver.isFocus()).toBeTruthy();
   });
 
-  it('should call onSelect on click-outside if options empty', () => {
-    const onSelect = jest.fn();
-    const {driver} = createDriver(<MultiSelect value={'bob'} onSelect={onSelect}/>);
-    driver.outsideClick();
-    expect(onSelect).toBeCalledWith([{id: 'bob', label: 'bob'}]);
-  });
+  describe('click-outside', () => {
+    it('should call onSelect on click-outside if options empty', () => {
+      const onSelect = jest.fn();
+      const {driver} = createDriver(<MultiSelect value={'bob'} onSelect={onSelect}/>);
+      driver.outsideClick();
+      expect(onSelect).toBeCalledWith([{id: 'bob', label: 'bob'}]);
+    });
 
-  it('should not call onSelect on click-outside if options is not empty', () => {
-    const onSelect = jest.fn();
-    const {driver} = createDriver(<MultiSelect value={'bob'} options={options} onSelect={onSelect}/>);
-    driver.outsideClick();
-    expect(onSelect.mock.calls.length).toBe(0);
-  });
+    it('should not call onSelect on click-outside if options is not empty', () => {
+      const onSelect = jest.fn();
+      const {driver} = createDriver(<MultiSelect value={'bob'} options={options} onSelect={onSelect}/>);
+      driver.outsideClick();
+      expect(onSelect.mock.calls.length).toBe(0);
+    });
 
-  it('should not call onSelect on click-outside if input is empty', () => {
-    const onSelect = jest.fn();
-    const {driver} = createDriver(<MultiSelect value={''} onSelect={onSelect}/>);
-    driver.outsideClick();
-    expect(onSelect.mock.calls.length).toBe(0);
+    it('should not call onSelect on click-outside if input is empty', () => {
+      const onSelect = jest.fn();
+      const {driver} = createDriver(<MultiSelect value={''} onSelect={onSelect}/>);
+      driver.outsideClick();
+      expect(onSelect.mock.calls.length).toBe(0);
+    });
+
+    it('should call onChange on click-outside if options is open', () => {
+      const onChange = jest.fn();
+      const {driver} = createDriver(<MultiSelect value={''} onChange={onChange}/>);
+      driver.focus();
+      driver.outsideClick();
+      expect(onChange.mock.calls.length).toBe(1);
+    });
+
+    it('should not call onChange on click-outside if options is hidden', () => {
+      const onChange = jest.fn();
+      const {driver} = createDriver(<MultiSelect value={''} onChange={onChange}/>);
+      driver.outsideClick();
+      expect(onChange.mock.calls.length).toBe(0);
+    });
   });
 
   it('should support custom delimiters', () => {
