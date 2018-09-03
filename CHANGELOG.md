@@ -21,6 +21,7 @@ Types of changes:
 - `<Card.ButtonHeader/>` & `<Card.LinkHeader/>` - add deprecation logs, `Card.Header` should be used instead [#2176](https://github.com/wix/wix-style-react/pull/2176)
 
 ### Fixed
+- `<MultiSelect>` - Fix redundant call to onChange when click-outside [#2175](https://github.com/wix/wix-style-react/pull/2175)
 - `<InputWithOptions/>` - disable autocomplete by default [2177](https://github.com/wix/wix-style-react/pull/2177)
 - `<Card.Header/>` - fix title & subtitle datahooks [#2176](https://github.com/wix/wix-style-react/pull/2176)
 - `<Input/>` - Fix infinite recursion, when you trigger chrome autofill and you have more then 3 inputs in form on screen [#2180](https://github.com/wix/wix-style-react/pull/2180)
