@@ -12,7 +12,12 @@ import SingleAreaList from './SortableList/SingleAreaList';
 import SingleAreaListRaw from '!raw-loader!./SortableList/SingleAreaList';
 import SingleAreaListReadme from './SortableList/README.md';
 
+import MultiAreaList from './SortableList/MultiAreaList';
+import MultiAreaListRaw from '!raw-loader!./SortableList/MultiAreaList';
+
 import SingleAreaListScssRaw from '!raw-loader!./SortableList/SingleAreaList.scss';
+
+import MultiAreaListScssRaw from '!raw-loader!./SortableList/MultiAreaList.scss';
 
 const SingleAreaListRawCombined = `
 //SingleAreaList.js
@@ -22,12 +27,20 @@ ${SingleAreaListRaw}
 ${SingleAreaListScssRaw}
 `;
 
+const MultiAreaListRawCombined = `
+//MultiAreaList.js
+${MultiAreaListRaw}
+
+//MultiAreaList.scss
+${MultiAreaListScssRaw}
+`;
+
 const TODO = `
 ----
 ## TODO
 
 ### missing concepts
-- explain how to use the provider (can't be part of the component). might want to have a generic provider in the lib. 
+- explain how to use the provider (can't be part of the component). might want to have a generic provider in the lib.
 - all common styles that are part of the library should be exposed as css classes
 
 ### examples
@@ -51,7 +64,9 @@ storiesOf('WIP', module)
       <CodeExample title="Sortable List - Single Area" code={SingleAreaListRawCombined}>
         <SingleAreaList/>
       </CodeExample>
-
+      <CodeExample title="Sortable List - Multi Area" code={MultiAreaListRawCombined}>
+        <MultiAreaList/>
+      </CodeExample>
       <Markdown source={TODO}/>
     </div>
   ));

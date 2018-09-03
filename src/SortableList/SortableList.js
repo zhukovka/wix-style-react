@@ -1,57 +1,83 @@
 import React from 'react';
+import PropTypes from 'prop-types';
+
 import WixComponent from '../BaseComponents/WixComponent';
 import {Draggable} from '../DragAndDrop/Draggable';
-import PropTypes from 'prop-types';
+import Container from '../DragAndDrop/Draggable/components/Container';
+
+const copy = value => JSON.parse(JSON.stringify(value));
+
 
 /**
  * Attaches Drag and Drop behavior to a list of items
  */
 export default class SortableList extends WixComponent {
-  constructor(props) {
-    super(props);
-    this.state = {
-      items: props.items || []
-    };
+  state = {
+    items: this.props.items || []
   }
 
   componentWillReceiveProps({items}) {
-    items && this.setState({items});
+    if (items) {
+      this.setState({items});
+    }
   }
 
-  _onHover = (dragIndex, hoverIndex) => {
-    this.setState(
-      ({items: [..._items]}) =>
-        _items.splice(hoverIndex, 0, ..._items.splice(dragIndex, 1)) && {
-          items: _items
-        }
-    );
+  handleMoveOut = id => {
+    this.setState({items: this.state.items.filter(it => it.id !== id)});
+  }
+
+  handleHover = (removedIndex, addedIndex, options = {}) => {
+    this.setState(prevState => {
+      const nextItems = copy(prevState.items);
+      if (!nextItems.find(it => it.id === options.id)) {
+        nextItems.splice(addedIndex, 0, options.item);
+      } else {
+        nextItems.splice(addedIndex, 0, ...nextItems.splice(removedIndex, 1));
+      }
+
+      return {items: nextItems};
+    });
   };
 
-  _onMove = ({id, from}) => {
-    const to = this.state.items.findIndex(({id: _}) => _ === id);
-
-    return this.props.onMove({id, from, to});
+  handleDrop = ({payload, addedIndex, removedIndex, addedToContainerId, removedFromContainerId}) => {
+    this.props.onDrop({
+      payload,
+      addedIndex,
+      removedIndex,
+      addedToContainerId,
+      removedFromContainerId
+    });
   };
 
   render() {
-    const {items} = this.state;
-    const {render, withHandle} = this.props;
-
+    const {className, groupName} = this.props;
+    const common = {
+      groupName,
+      containerId: this.props.containerId,
+      onHover: this.handleHover,
+      onMoveOut: this.handleMoveOut
+    };
     return (
-      <div>
-        {items.map(({id, ...props}, i) => (
-          <Draggable
-            key={`${id}-${i}`} data-hook={`sortable-list-item-${id}`}
-            id={id}
-            index={i}
-            onHover={this._onHover}
-            onMove={this._onMove}
-            render={render}
-            withHandle={withHandle}
-            {...props}
-            />
-        ))}
-      </div>
+      <Container
+        className={className}
+        total={this.state.items.length}
+        {...common}
+        >
+        <div>
+          {this.state.items.map((item, index) => (
+            <Draggable
+              {...common}
+              key={`${item.id}-${index}-${this.props.containerId}`}
+              id={item.id}
+              index={index}
+              item={item}
+              renderItem={this.props.renderItem}
+              withHandle={this.props.withHandle}
+              onDrop={this.handleDrop}
+              />
+          ))}
+        </div>
+      </Container>
     );
   }
 }
@@ -61,5 +87,6 @@ SortableList.displayName = 'SortableList';
 SortableList.propTypes = {
   ...Draggable.propTypes,
   /** list of items with {id: any} */
-  items: PropTypes.array
+  items: PropTypes.array,
+  className: PropTypes.string
 };

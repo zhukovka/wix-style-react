@@ -1,9 +1,8 @@
 import React from 'react';
 import classNames from 'classnames';
 import SortableList from 'wix-style-react/SortableList';
-import {DragDropContextProvider} from 'react-dnd';
-import backend from 'react-dnd-html5-backend';
 import DragAndDropLarge from 'wix-style-react/new-icons/system/DragAndDropLarge';
+import DragDropContextProvider from 'wix-style-react/DragDropContextProvider';
 import styles from './SingleAreaList.scss';
 
 /**
@@ -32,18 +31,16 @@ export default class SingleAreaList extends React.Component {
     ]};
   }
 
-  _onMove = ({id, from, to}) => {
-    this.setState(
-      ({items: [..._items]}) =>
-        _items.splice(to, 0, ..._items.splice(from, 1)) && {
-          items: _items
-        }, () => {
-      console.log(`onMove(id: ${id} from: ${from} to: ${to})`);
+  handleDrop = ({removedIndex, addedIndex}) => {
+    const nextItems = [...this.state.items];
+    nextItems.splice(addedIndex, 0, ...nextItems.splice(removedIndex, 1));
+    this.setState({
+      items: nextItems
     });
   };
 
 
-  _renderItem = ({isPlaceholder, isPreview, id, connectHandle, text}) => {
+  renderItem = ({isPlaceholder, isPreview, id, connectHandle, previewStyles, item}) => {
     const classes = classNames(
       styles.card,
       {
@@ -52,26 +49,27 @@ export default class SingleAreaList extends React.Component {
       });
 
     return (
-      <div className={classes} data-hook={`item-${id}`}>
+      <div className={classes} style={previewStyles} data-hook={`item-${id}`}>
         {connectHandle(
           <div className={styles.handle} data-hook={`card-${id}-handle`}>
             <DragAndDropLarge/>
           </div>
         )}
-        {text}
+        {item.text}
       </div>
     );
   };
 
   render() {
     return (
-      <DragDropContextProvider backend={backend}>
+      <DragDropContextProvider>
         <SortableList
+          containerId="single-area-1"
           dataHook="list-single-area"
           withHandle
           items={this.state.items}
-          render={this._renderItem}
-          onMove={this._onMove}
+          renderItem={this.renderItem}
+          onDrop={this.handleDrop}
           />
       </DragDropContextProvider>
     );

@@ -1,6 +1,8 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import {DragLayer as _DragLayer} from 'react-dnd';
+import {DragLayer} from 'react-dnd';
+
+/* eslint-disable new-cap */
 
 const layerStyles = {
   position: 'fixed',
@@ -36,9 +38,12 @@ const CustomDragLayer = ({
   currentOffset
 }) => {
   const shouldRenderLayer = isDragging && id === item.id && itemType === draggedType;
-  const styles = dragLayerStyle({initialOffset, currentOffset});
+  if (!shouldRenderLayer) {
+    return null;
+  }
+  const previewStyles = dragLayerStyle({initialOffset, currentOffset});
 
-  return shouldRenderLayer ? <div style={styles}>{renderPreview()}</div> : null;
+  return <div>{renderPreview({previewStyles})}</div>;
 };
 
 CustomDragLayer.propTypes = {
@@ -52,7 +57,7 @@ CustomDragLayer.propTypes = {
   currentOffset: PropTypes.number
 };
 
-export default _DragLayer(monitor => ({
+export default DragLayer(monitor => ({
   item: monitor.getItem(),
   itemType: monitor.getItemType(),
   initialOffset: monitor.getInitialSourceClientOffset(),
