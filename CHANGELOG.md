@@ -22,6 +22,7 @@ Types of changes:
 
 ### Fixed
 - `<Card.Header/>` - fix title & subtitle datahooks [#2176](https://github.com/wix/wix-style-react/pull/2176)
+- `<Input/>` - Fix infinite recursion, when you trigger chrome autofill and you have more then 3 inputs in form on screen [#2180](https://github.com/wix/wix-style-react/pull/2180)
 
 ## 5.0.0 - 2018-08-29
 ### Breaking
