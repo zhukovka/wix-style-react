@@ -274,7 +274,8 @@ InputWithOptions.defaultProps = {
   valueParser: option => option.value,
   dropdownWidth: null,
   dropdownOffsetLeft: '0',
-  showOptionsIfEmptyInput: true
+  showOptionsIfEmptyInput: true,
+  autocomplete: 'off'
 };
 
 InputWithOptions.propTypes = {
