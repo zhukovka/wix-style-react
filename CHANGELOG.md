@@ -14,6 +14,7 @@ Types of changes:
 
 ## next
 ### Added
+- `<Input/>`, `<InputWithOptions/>` - support focus(options) [#2146](https://github.com/wix/wix-style-react/pull/2146)
 - `<Sidemenu/>` - allow custom className to be passed to Sidemenu components [#2179](https://github.com/wix/wix-style-react/pull/2179)
 - `<SideMenu/>` - add rtl support [#2173](https://github.com/wix/wix-style-react/pull/2173)
 
