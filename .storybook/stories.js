@@ -24,9 +24,9 @@ import '../stories/PageHeader/index.story.js'; // 2.5 + PageHeader
 import '../stories/Page/FullPageExample.js'; // 2.5 + Page Example
 import '../stories/EmptyState/EmptyState.story'; // 2.6 EmptyState
 import '../stories/StatsWidget'; // 2.7 StatsWidget
+import '../stories/AddItem/AddItem.story'; // 2.8 AddItem
 import '../stories/Grid';
 import '../stories/Card';
-
 
 // 3. Inputs
 import '../stories/TextField'; // 3.1 Text Field
@@ -45,7 +45,6 @@ import '../stories/Search/index.story'; // 3.9 Search
 import '../stories/ImageViewer/index.story'; // 3.10 ImageViewer
 import '../stories/FilePicker'; // 3.10 + FilePicker
 import '../stories/GoogleAddressInput'; // 3.11 GoogleAddressInput
-import '../stories/AddItem/addItem.story.js'; // 3.12 AddItem
 import '../stories/Calendar/index.story'; // 3.13 Calendar
 
 // 4. Selection

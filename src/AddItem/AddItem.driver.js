@@ -1,35 +1,20 @@
-import ReactTestUtils from 'react-dom/test-utils';
+import textDriverFactory from '../Text/Text.driver';
 import tooltipDriverFactory from '../Tooltip/Tooltip.driver';
 
-const addItemDriverFactory = ({wrapper, element}) => {
-  const ratioRegex = /ratio\d+x\d+/;
-  const byHook = dataHook => element.querySelector(`[data-hook="${dataHook}"]`);
-  const addButton = () => byHook('add-container');
-  const addTooltip = () => byHook('add-tooltip');
-  const getTooltipDriver = () => tooltipDriverFactory({wrapper, element: addTooltip()});
+const addItemDriverFactory = ({element, eventTrigger}) => {
+  const byHook = hook => element.querySelector(`[data-hook*="${hook}"]`);
+  const tooltipDriver = () =>
+    tooltipDriverFactory({element: byHook('additem-tooltip')});
+  const textDriver = () => textDriverFactory({element: byHook('additem-text')});
 
   return {
-    /** return the driver element */
+    exists: () => !!element,
     element: () => element,
-    /** return the element ratio class */
-    getRatio: () => {
-      const result = element.getAttribute('class').match(ratioRegex);
-      return result ? result[0].replace('ratio', '') : '';
-    },
-    /** return the element's height */
-    getHeight: () => window.getComputedStyle(element).height,
-    /** return the element's width */
-    getWidth: () => window.getComputedStyle(element).width,
-    /** return true if tooltip is visible */
-    isAddButtonVisible: () => !!addButton(),
-    /** return true if button is visible */
-    isAddTooltipVisible: () => !!addTooltip(),
-    /** click the add button */
-    click: () => ReactTestUtils.Simulate.click(addButton()),
-    /** get the Tooltip's driver */
-    getTooltipDriver,
-    getTooltipContent: () => getTooltipDriver().hoverAndGetContent(),
-    exists: () => !!element
+    getText: () => textDriver().getText(),
+    textExists: () => textDriver().exists(),
+    getTooltipDriver: () => tooltipDriver(),
+    getTooltipContent: () => tooltipDriver().hoverAndGetContent(),
+    click: () => eventTrigger.click(element)
   };
 };
 

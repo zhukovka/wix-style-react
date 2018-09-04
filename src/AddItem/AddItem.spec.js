@@ -1,102 +1,116 @@
 import React from 'react';
-import {resolveIn} from '../../test/utils';
+import {mount} from 'enzyme';
+
+import {
+  isTestkitExists,
+  isEnzymeTestkitExists
+} from '../../test/utils/testkit-sanity';
 import {createDriverFactory} from 'wix-ui-test-utils/driver-factory';
+import addItemDriverFactory from './AddItem.driver';
+
 import {addItemTestkitFactory} from '../../testkit';
 import {addItemTestkitFactory as enzymeAddItemTestkitFactory} from '../../testkit/enzyme';
+
+const createDriver = createDriverFactory(addItemDriverFactory);
+
 import AddItem from './AddItem';
-import addItemDriverFactory from './AddItem.driver';
-import {isTestkitExists, isEnzymeTestkitExists} from '../../test/utils/testkit-sanity';
-import {mount, shallow} from 'enzyme';
 
 describe('AddItem', () => {
+  const renderAddItem = (props = {}) => <AddItem {...props}/>;
 
-  const TOOLTIP_CONTENT = 'BLA BLA';
-  const createDriver = createDriverFactory(addItemDriverFactory);
-  let props, driver;
-  let addItem;
-
-
-  beforeEach(() => {
-    document.body.innerHTML = '';
-    addItem = jest.fn();
-    props = {
-      onClick: addItem,
-      tooltipContent: TOOLTIP_CONTENT
-    };
-
+  it('should have correct displayName', () => {
+    const wrapper = mount(renderAddItem());
+    expect(wrapper.name()).toEqual('WithFocusable(AddItem)');
   });
 
-  describe('when default scenario', () => {
+  describe('`children` prop', () => {
+    const text = 'Add New Item';
+    const child = <div data-hook="child">Hello</div>;
+    it('should render text component when string is passed', () => {
+      const driver = createDriver(renderAddItem({children: text}));
+      expect(driver.getText()).toEqual(text);
+    });
 
-    it('should trigger add item', () => {
-      driver = createDriver(<AddItem {...props}/>);
+    it('should render children as component', () => {
+      const wrapper = mount(renderAddItem({children: child}));
+      expect(wrapper.find(`[data-hook*="child"]`).exists()).toEqual(true);
+    });
+
+    it('should not render text when children is undefined', () => {
+      const driver = createDriver(renderAddItem());
+      expect(driver.textExists()).toEqual(false);
+    });
+
+    it('should not render children as string when theme is `image`', () => {
+      const driver = createDriver(
+        renderAddItem({children: text, theme: 'image'})
+      );
+      expect(driver.textExists()).toEqual(false);
+    });
+
+    it('should not render children as component when theme is `image`', () => {
+      const wrapper = mount(renderAddItem({children: child, theme: 'image'}));
+      expect(wrapper.find(`[data-hook*="child"]`).exists()).toEqual(false);
+    });
+  });
+
+  describe('`onClick` prop', () => {
+    it('should call onClick when clicked', () => {
+      const onClick = jest.fn();
+      const driver = createDriver(renderAddItem({onClick, theme: 'image'}));
       driver.click();
-      expect(addItem).toBeCalled();
+      expect(onClick).toHaveBeenCalled();
     });
-
   });
 
-  describe('height and width', () => {
-
-    it('should use asspect ratio from props', () => {
-      props = {
-        aspectRatio: '16/9'
-      };
-      driver = createDriver(<AddItem {...props}/>);
-      expect(driver.getRatio()).toEqual('16x9');
+  describe('`disable` prop ', () => {
+    it('should not call onClick when disabled', () => {
+      const onClick = jest.fn();
+      const driver = createDriver(renderAddItem({onClick, disabled: true}));
+      driver.click();
+      expect(onClick).not.toHaveBeenCalled();
     });
-
-    it('should have default asspect ratio 1x1', () => {
-      driver = createDriver(<AddItem/>);
-      expect(driver.getRatio()).toEqual('1x1');
-    });
-
-    it('should ignore asspect ratio from props when height is given', () => {
-      props = {
-        aspectRatio: '16/9',
-        height: 300
-      };
-      driver = createDriver(<AddItem {...props}/>);
-      expect(driver.getHeight()).toEqual('300px');
-    });
-
   });
 
-  describe('hide or show add item', () => {
-
-    it('should have a tooltip with given content', () => {
-      driver = createDriver(<AddItem {...props}/>);
-      const TooltipDriver = driver.getTooltipDriver();
-      TooltipDriver.mouseEnter();
-      return resolveIn(50)
-        .then(() => {
-          expect(TooltipDriver.isShown()).toBeTruthy();
-          expect(TooltipDriver.getContent()).toEqual(props.tooltipContent);
-        });
+  describe('Icon svg', () => {
+    it('should render', () => {
+      const wrapper = mount(renderAddItem());
+      expect(wrapper.find(`[data-hook*="additem-icon"]`).exists()).toEqual(
+        true
+      );
     });
-
-    it('should have an AddItem tooltip markup', () => {
-      const wrapper = shallow(<AddItem {...props}/>);
-      expect(wrapper.find('Tooltip').exists()).toBeTruthy();
-    });
-
-    it('should not have an AddItem tooltip markup', () => {
-      const wrapper = shallow(<AddItem/>);
-      expect(wrapper.find('Tooltip').exists()).toBeFalsy();
-    });
-
   });
 
-  describe('testkit', () => {
+  describe('Tooltip', () => {
+    const tooltipContent = 'I am ToolTip';
+    it('should render tooltip with given tooltip content', async () => {
+      const driver = createDriver(renderAddItem({tooltipContent}));
+      expect(await driver.getTooltipContent()).toEqual(tooltipContent);
+    });
+
+    it(`should not render when disabled`, () => {
+      const wrapper = mount(renderAddItem({tooltipContent, disabled: true}));
+      expect(wrapper.find(`[data-hook*="additem-tooltip"]`).exists()).toEqual(
+        false
+      );
+    });
+  });
+
+  describe('testkits', () => {
     it('should exist', () => {
-      expect(isTestkitExists(<AddItem/>, addItemTestkitFactory)).toBeTruthy();
+      expect(isTestkitExists(renderAddItem(), addItemTestkitFactory)).toBe(
+        true
+      );
+    });
+
+    it('should exist for enzyme', () => {
+      expect(
+        isEnzymeTestkitExists(
+          renderAddItem(),
+          enzymeAddItemTestkitFactory,
+          mount
+        )
+      ).toBe(true);
     });
   });
-
-  describe('enzyme testkit', () => {
-    it('should exist', () => {
-      expect(isEnzymeTestkitExists(<AddItem/>, enzymeAddItemTestkitFactory, mount)).toBeTruthy();
-    });
-  });
-
 });

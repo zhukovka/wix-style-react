@@ -5,8 +5,8 @@ import {buttonTestkitFactory} from 'wix-style-react/dist/testkit';
 import addItemDriverFactory from '../AddItem/AddItem.driver';
 import tooltipDriverFactory from '../Tooltip/Tooltip.driver';
 
-const imageViewerDriverFactory = ({component, wrapper, element}) => {
-  const addItemDataHook = 'add-container';
+const imageViewerDriverFactory = ({component, wrapper, element, eventTrigger}) => {
+  const addItemDataHook = 'add-image';
   const updateDataHook = 'update-image';
   const removeDataHook = 'remove-image';
 
@@ -14,7 +14,9 @@ const imageViewerDriverFactory = ({component, wrapper, element}) => {
   const image = () => byHook('image-viewer-image');
   const errorIcon = () => byHook('error-tooltip');
   const addItem = () => byHook(addItemDataHook);
-  const addItemDriver = addItemDriverFactory({wrapper, element});
+  const addItemDriver = addItemDriverFactory({wrapper, element, eventTrigger});
+  const tooltipDriver = addItemDriver.getTooltipDriver();
+  const addItemClick = () => addItemDriverFactory({wrapper, element: byHook('add-image'), eventTrigger}).click();
   const updateIcon = () => byHook(updateDataHook);
   const removeIcon = () => byHook(removeDataHook);
   const updateButton = () => buttonTestkitFactory({wrapper: element, dataHook: updateDataHook});
@@ -26,13 +28,13 @@ const imageViewerDriverFactory = ({component, wrapper, element}) => {
     getContainerStyles: () => element.getAttribute('style'),
     getImageUrl: () => image().getAttribute('src'),
     getErrorTooltipContent: () => tooltipDriverFactory({wrapper, element: errorIcon()}).hoverAndGetContent(),
-    getAddTooltipContent: () => addItemDriver.getTooltipContent(),
+    getAddTooltipContent: () => tooltipDriver.hoverAndGetContent(),
     getUpdateTooltipContent: () => tooltipDriverFactory({wrapper, element: updateIcon()}).hoverAndGetContent(),
     getRemoveTooltipContent: () => tooltipDriverFactory({wrapper, element: removeIcon()}).hoverAndGetContent(),
     isAddItemVisible: () => !!addItem(),
     isImageVisible: () => !!image(),
     isErrorVisible: () => !!errorIcon(),
-    clickAdd: () => addItemDriver.click(),
+    clickAdd: () => addItemClick(),
     clickUpdate: () => updateButton().click(),
     clickRemove: () => removeButton().click(),
     exists: () => !!element,

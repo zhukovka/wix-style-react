@@ -1,18 +1,60 @@
 import eyes from 'eyes.it';
+import autoExampleDriver from 'wix-storybook-utils/AutoExampleDriver';
+
+import {createStoryUrl} from '../../test/utils/storybook-helpers';
+
 import {addItemTestkitFactory} from '../../testkit/protractor';
-import {waitForVisibilityOf} from 'wix-ui-test-utils/protractor';
-import {getStoryUrl} from '../../test/utils/storybook-helpers';
+import {storySettings} from '../../stories/AddItem/storySettings';
+import {runFocusTests} from '../common/Focusable/FocusableTestsE2E';
 
 describe('AddItem', () => {
-  const storyUrl = getStoryUrl('3. Inputs', '3.12 AddItem');
+  const storyUrl = createStoryUrl({
+    kind: storySettings.kind,
+    story: storySettings.storyName
+  });
 
-  eyes.it('should click AddItem', () => {
-    const driver = addItemTestkitFactory({dataHook: 'storybook-addItem'});
-    browser.get(storyUrl);
+  beforeAll(async () => {
+    await browser.get(storyUrl);
+  });
 
-    waitForVisibilityOf(driver.element(), 'Cannot find AddItem')
-      .then(() => {
-        driver.click();
-      });
+  beforeEach(() => {
+    autoExampleDriver.remount();
+  });
+
+  describe(`'alignItems' prop`, () => {
+    ['', 'left', 'right'].map(alignItems =>
+      eyes.it(`should render with value ${alignItems}`, async () => {
+        await autoExampleDriver.setProps({alignItems});
+      })
+    );
+  });
+
+  describe(`'theme' prop`, () => {
+    ['', 'filled', 'plain', 'image'].map(theme =>
+      eyes.it(`should render with theme ${theme}`, async () => {
+        await autoExampleDriver.setProps({theme});
+      })
+    );
+  });
+
+  describe(`'size' prop`, () => {
+    ['large', 'medium', 'small', ''].map(size =>
+      eyes.it(`should render with ${size} icon`, async () => {
+        await autoExampleDriver.setProps({size});
+      })
+    );
+  });
+
+  describe(`'disable' prop`, () => {
+    ['dashes', 'filled', 'plain', 'image'].map(theme =>
+      eyes.it(`should render with theme ${theme}`, async () => {
+        await autoExampleDriver.setProps({disabled: true, theme});
+      })
+    );
+  });
+
+  describe('Generic', () => {
+    const driver = addItemTestkitFactory({dataHook: storySettings.dataHook});
+    runFocusTests(driver, storyUrl);
   });
 });

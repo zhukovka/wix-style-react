@@ -36,49 +36,70 @@ class ImageViewer extends WixComponent {
       errorMessage,
       tooltipPlacement
     } = this.props;
-    const classes = classNames(style.container, {[style.hasLogo]: imageUrl, [style.hasError]: error});
+    const classes = classNames(style.container, {
+      [style.hasLogo]: imageUrl,
+      [style.hasError]: error
+    });
     const tooltipProps = {
       ...DEFAULT_TOOLTIP_PROPS,
       ...this.props.tooltipProps
     };
-
     return (
       <div className={classes} style={{width, height}}>
-        {!imageUrl &&
-        <AddItem data-hook="add-image" height={height} onClick={onAddImage} tooltipProps={{...tooltipProps, content: addImageInfo}}/>
-        }
-        {!!imageUrl &&
-        <div className={style.changeLogoContainer}>
-          <div className={style.imageLayout}>
-            <img data-hook="image-viewer-image" className={style.image} src={imageUrl}/>
-          </div>
-          <div className={style.imageBackground}>
-            <div className={style.buttons}>
-              <Tooltip dataHook="update-image" {...tooltipProps} content={updateImageInfo}>
-                <Button onClick={onUpdateImage} theme="icon-whitesecondary">
-                  <Replace size="1.5em"/>
-                </Button >
-              </Tooltip>
-              <Tooltip dataHook="remove-image" {...tooltipProps} content={removeImageInfo}>
-                <Button theme="icon-whitesecondary" onClick={onRemoveImage}>
-                  <Delete size="1.5em"/>
-                </Button>
-              </Tooltip>
+        {!imageUrl && (
+          <AddItem
+            onClick={onAddImage}
+            theme="image"
+            dataHook="add-image"
+            tooltipProps={{...tooltipProps, content: addImageInfo}}
+            />
+        )}
+        {!!imageUrl && (
+          <div className={style.changeLogoContainer}>
+            <div className={style.imageLayout}>
+              <img
+                data-hook="image-viewer-image"
+                className={style.image}
+                src={imageUrl}
+                />
+            </div>
+            <div className={style.imageBackground}>
+              <div className={style.buttons}>
+                <Tooltip
+                  dataHook="update-image"
+                  {...tooltipProps}
+                  content={updateImageInfo}
+                  >
+                  <Button onClick={onUpdateImage} theme="icon-whitesecondary">
+                    <Replace size="1.5em"/>
+                  </Button>
+                </Tooltip>
+                <Tooltip
+                  dataHook="remove-image"
+                  {...tooltipProps}
+                  content={removeImageInfo}
+                  >
+                  <Button theme="icon-whitesecondary" onClick={onRemoveImage}>
+                    <Delete size="1.5em"/>
+                  </Button>
+                </Tooltip>
+              </div>
             </div>
           </div>
-        </div>
-        }
-        {!!error &&
-        <Tooltip
-          dataHook="error-tooltip"
-          disabled={!errorMessage}
-          content={errorMessage}
-          {...tooltipProps}
-          placement={tooltipPlacement || tooltipProps.placement}
-          >
-          <div className={style.exclamation}><FormFieldError/></div>
-        </Tooltip>}
-
+        )}
+        {!!error && (
+          <Tooltip
+            dataHook="error-tooltip"
+            disabled={!errorMessage}
+            content={errorMessage}
+            {...tooltipProps}
+            placement={tooltipPlacement || tooltipProps.placement}
+            >
+            <div className={style.exclamation}>
+              <FormFieldError/>
+            </div>
+          </Tooltip>
+        )}
       </div>
     );
   }
