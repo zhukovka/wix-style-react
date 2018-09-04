@@ -12,6 +12,15 @@ Types of changes:
 1. **Security** in case of vulnerabilities.
 1. **Breaking** for breaking changes
 
+## Next
+
+### Added
+
+- `<TableActionCell/>` - added a new component [#2031](https://github.com/wix/wix-style-react/pull/2031)
+
+### Changes
+
+- `<DropdownLayout/>` - change the divider's data-hook to [#2159](https://github.com/wix/wix-style-react/pull/2159)
 
 ## 5.1.0 - 2018-09-04
 ### Added
