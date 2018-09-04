@@ -20,6 +20,7 @@ Types of changes:
 
 ### Changes
 
+- `<SideMenuDrill/>` - Add ellipsis, vertically center arrow [#2185](https://github.com/wix/wix-style-react/pull/2185)
 - `<DropdownLayout/>` - change the divider's data-hook to [#2159](https://github.com/wix/wix-style-react/pull/2159)
 
 ## 5.1.0 - 2018-09-04
