@@ -2,14 +2,22 @@ import React from 'react';
 import {string, number, arrayOf, oneOfType, func, bool, any, object, node, oneOf, shape, array} from 'prop-types';
 import omit from 'lodash/omit';
 import defaultTo from 'lodash/defaultTo';
+import classNames from 'classnames';
 
+import style from './Table.st.css';
 import DataTable from '../DataTable';
 import WixComponent from '../BaseComponents/WixComponent';
 import Checkbox from '../Checkbox';
 import {TableContext} from './TableContext';
 import {BulkSelection, BulkSelectionState} from './BulkSelection';
-import {TableToolbarToggler, TableToolbarContainer, TableTitleBar, TableContent, TableEmptyState} from './components';
 import Tooltip from '../Tooltip/Tooltip';
+import {
+  TableToolbarToggler,
+  TableToolbarContainer,
+  TableTitleBar,
+  TableContent,
+  TableEmptyState
+} from './components';
 
 export function createColumns({tableProps, bulkSelectionContext}) {
   const createCheckboxColumn = (
@@ -41,11 +49,14 @@ export function createColumns({tableProps, bulkSelectionContext}) {
     };
   };
 
-  return tableProps.showSelection ? [createCheckboxColumn(bulkSelectionContext), ...tableProps.columns] : tableProps.columns;
+  return tableProps.showSelection ?
+    [createCheckboxColumn(bulkSelectionContext), ...tableProps.columns] :
+    tableProps.columns;
 }
 
 
 export function getDataTableProps(tableProps) {
+
   return {
     ...omit(tableProps,
           'showSelection',
@@ -55,7 +66,8 @@ export function getDataTableProps(tableProps) {
           'newDesign',
           'hideHeader',
         ),
-    newDesign: true
+    newDesign: true,
+    rowClass: classNames(tableProps.rowClass, style.tableRow)
   };
 }
 
@@ -96,7 +108,7 @@ export class Table extends WixComponent {
   renderChildren() {
     const children = this.props.children;
     return this.props.withWrapper ? (
-      <div>
+      <div {...style('root', {isRowClickable: !!this.props.onRowClick}, this.props)}>
         {children}
       </div>) :
       children;

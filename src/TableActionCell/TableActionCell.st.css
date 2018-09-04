@@ -1,0 +1,22 @@
+.root {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  height: 36px;
+  position: relative;
+}
+
+.hoverSlot > button {
+  margin: 0 6px;
+  transition-property: background, border;
+}
+
+.hoverSlot.onHover {}
+.hoverSlot.notOnHover {}
+.placeholderIcon {}
+
+:global(.rtl) {
+  tr .actionsContainer .placeholderIcon svg {
+    transform: scaleX(-1);
+  }
+}
