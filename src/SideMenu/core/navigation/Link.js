@@ -6,8 +6,10 @@ import styles from './styles.scss';
 
 const Link = ({children, isDiminishedHover, isActive, withArrow, badge, dataHook, disabled, ...rest}) =>
   <LinkLayout isDiminishedHover={isDiminishedHover} isActive={isActive} disabled={disabled}>
-    <a data-hook={dataHook} {...rest}>
-      {children}
+    <a data-hook={dataHook} {...rest} className={styles.linkAnchor}>
+      <span className={styles.linkChildren}>
+        {children}
+      </span>
       {badge}
       {withArrow && <span className={styles.linkArrow}><ChevronRight/></span>}
     </a>

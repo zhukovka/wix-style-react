@@ -78,6 +78,15 @@ $padding-vertical: 14px;
   @extend .link-base;
 }
 
+.linkLayout .linkAnchor {
+  display: flex;
+  align-items: center;
+
+  & .linkChildren {
+    flex-grow: 1;
+  }
+}
+
 .linkActive a {
   color: #9fd8fc;
   background: #2A4F68;
@@ -85,12 +94,10 @@ $padding-vertical: 14px;
 }
 
 .linkArrow {
-  position: absolute;
-  right: 25px;
-  top: 9px;
   opacity: 0;
   font-size: 10px;
   transition: 0.5s;
+  height: 24px;
 }
 
 .separator {
@@ -156,8 +163,6 @@ $padding-vertical: 14px;
 
 :global(.rtl) {
   .linkArrow {
-    left: 25px;
-    right: auto;
     transform: scaleX(-1);
   }
 

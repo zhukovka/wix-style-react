@@ -18,6 +18,9 @@ import ExampleSubMenuRaw from '!raw-loader!./ExampleSubMenu';
 import ExampleSideMenuDrill from './ExampleSideMenuDrill';
 import ExampleSideMenuDrillRaw from '!raw-loader!./ExampleSideMenuDrill';
 
+import ExampleSideMenuDrillRTL from './ExampleSideMenuDrillRTL';
+import ExampleSideMenuDrillRTLRaw from '!raw-loader!./ExampleSideMenuDrillRTL';
+
 storiesOf('6. Navigation', module)
   .add('6.1 SideMenuDrill', () => (
     <div>
@@ -25,8 +28,11 @@ storiesOf('6. Navigation', module)
 
       <h1>Usage examples</h1>
 
-      <CodeExample title="SideMenu Example" code={ExampleSideMenuDrillRaw}>
+      <CodeExample title="SideMenu " code={ExampleSideMenuDrillRaw}>
         <ExampleSideMenuDrill/>
+      </CodeExample>
+      <CodeExample title="SideMenuDrill RTL" code={ExampleSideMenuDrillRTLRaw}>
+        <ExampleSideMenuDrillRTL/>
       </CodeExample>
     </div>
   ))
