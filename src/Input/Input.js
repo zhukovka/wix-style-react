@@ -176,9 +176,9 @@ class Input extends Component {
     </div>);
   }
 
-  focus = () => {
+  focus = (options = {}) => {
     this._onFocus();
-    this.input && this.input.focus();
+    this.input && this.input.focus(options);
   };
 
   blur = () => {

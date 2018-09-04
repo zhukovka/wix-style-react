@@ -13,8 +13,8 @@ const inputDriverFactory = ({element, wrapper, component}) => {
 
   const driver = {
     trigger: (trigger, event) => ReactTestUtils.Simulate[trigger](input, event),
-    focus: () => {
-      input.focus();
+    focus: options => {
+      input.focus(options);
       ReactTestUtils.Simulate.focus(input);
     },
     blur: () => {

@@ -251,8 +251,8 @@ class InputWithOptions extends WixComponent {
     }
   }
 
-  focus() {
-    this.input.focus();
+  focus(options = {}) {
+    this.input.focus(options);
   }
 
   blur() {
