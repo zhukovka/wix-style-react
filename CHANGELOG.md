@@ -12,9 +12,11 @@ Types of changes:
 1. **Security** in case of vulnerabilities.
 1. **Breaking** for breaking changes
 
-## next
+
+## 5.1.0 - 2018-09-04
 ### Added
 - `<Input/>`, `<InputWithOptions/>` - support focus(options) [#2146](https://github.com/wix/wix-style-react/pull/2146)
+- `<AddItem/>` - new themes and functionality [#2074](https://github.com/wix/wix-style-react/pull/2136)
 - `<Sidemenu/>` - allow custom className to be passed to Sidemenu components [#2179](https://github.com/wix/wix-style-react/pull/2179)
 - `<SideMenu/>` - add rtl support [#2173](https://github.com/wix/wix-style-react/pull/2173)
 
