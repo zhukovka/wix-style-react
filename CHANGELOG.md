@@ -19,7 +19,7 @@ Types of changes:
 - `<TableActionCell/>` - added a new component [#2031](https://github.com/wix/wix-style-react/pull/2031)
 
 ### Changes
-
+- `<Page/>` - Add ellipsis to Header title and subtitle [#2174](https://github.com/wix/wix-style-react/pull/2174)
 - `<SideMenuDrill/>` - Add ellipsis, vertically center arrow [#2185](https://github.com/wix/wix-style-react/pull/2185)
 - `<DropdownLayout/>` - change the divider's data-hook to [#2159](https://github.com/wix/wix-style-react/pull/2159)
 
