@@ -3,7 +3,7 @@ import {storiesOf} from '@storybook/react';
 
 import PopoverMenu from 'wix-style-react/PopoverMenu';
 import PopoverMenuItem from 'wix-style-react/PopoverMenuItem';
-import {TESTS_PREFIX} from '../../storyCategories';
+import {TESTS_PREFIX} from '../../storiesHierarchy';
 
 class TestComponent extends React.Component {
   state = {

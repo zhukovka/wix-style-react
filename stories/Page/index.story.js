@@ -2,7 +2,7 @@ import React from 'react';
 import CodeExample from 'wix-storybook-utils/CodeExample';
 import Page from 'wix-style-react/Page';
 import Breadcrumbs from './Breadcrumbs';
-import {storybookConfig} from './storybookConfig';
+import {storySettings} from './storySettings';
 
 import {header, tail, fixedContent, content} from './PageChildren';
 import './Page.scss';
@@ -11,8 +11,8 @@ import ExampleEmptyState from './ExampleEmptyState';
 import ExampleEmptyStateRaw from '!raw-loader!./ExampleEmptyState';
 
 export default {
-  category: storybookConfig.category,
-  storyName: storybookConfig.storyName,
+  category: storySettings.category,
+  storyName: storySettings.storyName,
   name: 'Page',
   component: Page,
   componentPath: '../../src/Page',

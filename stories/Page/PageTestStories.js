@@ -2,12 +2,13 @@ import React from 'react';
 import * as PropTypes from 'prop-types';
 import {storiesOf} from '@storybook/react';
 
-import {storybookConfig} from './storybookConfig';
 import Page from 'wix-style-react/Page';
+import {getTestStoryKind} from '../storiesHierarchy';
+
 import Breadcrumbs from './Breadcrumbs';
 import * as s from './PageExample.scss';
 import {header, fixedContent, content} from './PageChildren';
-import {TESTS_PREFIX} from '../storyCategories';
+import {storySettings} from './storySettings';
 
 const PageContainer = props => {
   return (
@@ -20,7 +21,7 @@ PageContainer.propTypes = {
   children: PropTypes.any
 };
 
-const kind = `${TESTS_PREFIX}/${storybookConfig.category}/${storybookConfig.storyName}`;
+const kind = getTestStoryKind(storySettings);
 const dataHook = 'story-page';
 
 storiesOf(kind, module)

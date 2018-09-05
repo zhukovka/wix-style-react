@@ -29,6 +29,9 @@ export const tpaInputTestkitFactory = protractorTestkitFactoryCreator(tpaInputDr
 import pageDriverFactory from '../src/Page/Page.protractor.driver';
 export const pageTestkitFactory = protractorTestkitFactoryCreator(pageDriverFactory);
 
+import pageHeaderDriverFactory from '../src/PageHeader/PageHeader.protractor.driver';
+export const pageHeaderTestkitFactory = protractorTestkitFactoryCreator(pageHeaderDriverFactory);
+
 import dataTableDriverFactory from '../src/DataTable/DataTable.protractor.driver';
 export const dataTableTestkitFactory = protractorTestkitFactoryCreator(dataTableDriverFactory);
 

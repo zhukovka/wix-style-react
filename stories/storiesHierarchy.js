@@ -2,3 +2,5 @@
 
 // Root Level
 export const TESTS_PREFIX = 'Tests';
+
+export const getTestStoryKind = ({category, storyName}) => `${TESTS_PREFIX}/${category}/${storyName}`;

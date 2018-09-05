@@ -5,10 +5,11 @@ import Button from 'wix-style-react/Button';
 
 import Breadcrumbs from '../Page/Breadcrumbs';
 import './PageHeader.scss';
+import {storySettings} from './storySettings';
 
 export default {
-  category: '2. Layout',
-  storyName: '2.5 + PageHeader',
+  category: storySettings.category,
+  storyName: storySettings.storyName,
   component: PageHeader,
   componentPath: '../../src/PageHeader',
 

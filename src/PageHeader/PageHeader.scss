@@ -9,6 +9,7 @@
 
 .header {
   flex: 1;
+  overflow: hidden;
 }
 
 .breadcrumbs-container {
@@ -79,6 +80,12 @@
   &.minimized {
     position: absolute;
   }
+}
+
+/* Includes title and subTitle */
+.titleColumn {
+  flex-grow: 1;
+  overflow: hidden;
 }
 
 .title {

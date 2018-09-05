@@ -3,23 +3,16 @@ import eventually from 'wix-eventually';
 
 import {pageTestkitFactory} from '../../testkit/protractor';
 import {waitForVisibilityOf, scrollToElement} from 'wix-ui-test-utils/protractor';
-import {createStoryUrl} from '../../test/utils/storybook-helpers';
-
+import {createStoryUrl, createTestStoryUrl} from '../../test/utils/storybook-helpers';
 import autoExampleDriver from 'wix-storybook-utils/AutoExampleDriver';
-import {TESTS_PREFIX} from '../../stories/storyCategories';
-import {storybookConfig} from '../../stories/Page/storybookConfig';
+import {storySettings} from '../../stories/Page/storySettings';
 
 
-const {category, storyName} = storybookConfig;
+const {category, storyName} = storySettings;
 
+const testStoryUrl = testName => createTestStoryUrl({category, storyName, testName});
 
 describe('Page', async () => {
-  const createTestStoryUrl = testName => {
-    return createStoryUrl({
-      kind: `${TESTS_PREFIX}/${category}/${storyName}`,
-      story: testName
-    });
-  };
   const dataHook = 'story-page';
 
   const initTest = async ({storyUrl, dataHook, props}) => {
@@ -65,24 +58,24 @@ describe('Page', async () => {
 
   describe('Header + Content', async () => {
     describe('With Background-Image', () => {
-      const storyUrl = createTestStoryUrl('1. Image');
+      const storyUrl = testStoryUrl('1. Image');
       runTestCases({storyUrl, dataHook});
     });
 
     describe('With Gradient', () => {
-      const storyUrl = createTestStoryUrl('2. Gradient');
+      const storyUrl = testStoryUrl('2. Gradient');
       runTestCases({storyUrl, dataHook});
     });
   });
 
   describe('Header + FixedContent + Content', () => {
     describe('With Background-Image', () => {
-      const storyUrl = createTestStoryUrl('3. FC-Image');
+      const storyUrl = testStoryUrl('3. FC-Image');
       runTestCases({storyUrl, dataHook});
     });
 
     describe('With Gradient', () => {
-      const storyUrl = createTestStoryUrl('4. FC-Gradient');
+      const storyUrl = testStoryUrl('4. FC-Gradient');
       runTestCases({storyUrl, dataHook});
     });
   });
