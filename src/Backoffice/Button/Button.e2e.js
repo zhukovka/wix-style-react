@@ -6,7 +6,7 @@ import {waitForVisibilityOf} from 'wix-ui-test-utils/protractor';
 import {getStoryUrl} from '../../../test/utils/storybook-helpers';
 import autoExampleDriver from 'wix-storybook-utils/AutoExampleDriver';
 import {runFocusTests} from '../../common/Focusable/FocusableTestsE2E';
-import {TESTS_PREFIX} from '../../../stories/storyCategories';
+import {TESTS_PREFIX} from '../../../stories/storiesHierarchy';
 
 const NO_DESCRIPTION = '';
 

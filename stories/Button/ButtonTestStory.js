@@ -2,7 +2,7 @@ import React from 'react';
 import {storiesOf} from '@storybook/react';
 import queryString from 'query-string';
 import pick from 'lodash/pick';
-import {TESTS_PREFIX} from '../../stories/storyCategories';
+import {TESTS_PREFIX} from '../../stories/storiesHierarchy';
 import Button from 'wix-style-react/Button';
 import Check from '../../src/new-icons/Check';
 import X from '../../src/new-icons/X';
