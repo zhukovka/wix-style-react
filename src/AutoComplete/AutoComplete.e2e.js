@@ -2,44 +2,43 @@ import eyes from 'eyes.it';
 import {waitForVisibilityOf} from 'wix-ui-test-utils/protractor';
 import {getStoryUrl} from '../../test/utils/storybook-helpers';
 import {autoCompleteTestkitFactory} from '../../testkit/protractor';
+import eventually from 'wix-eventually';
 
 describe('AutoComplete', () => {
   const storyUrl = getStoryUrl('4. Selection', '4.1 + AutoComplete');
   const dataHook = 'story-autocomplete';
 
-  eyes.it('should open autocomplete when it focused', () => {
+  eyes.it('should open autocomplete when it focused', async () => {
     const driver = autoCompleteTestkitFactory({dataHook});
 
-    browser.get(storyUrl);
+    await browser.get(storyUrl);
 
-    waitForVisibilityOf(driver.element(), 'Cannot find AutoComplete')
-      .then(() => {
-        expect(driver.getDropdown().isDisplayed()).toBe(false);
+    await waitForVisibilityOf(driver.element(), 'Cannot find AutoComplete');
 
-        driver.click();
-        browser.sleep(500);// eslint-disable-line no-restricted-properties
+    expect(await driver.getDropdown().isDisplayed()).toBe(false);
 
-        expect(driver.getDropdown().isDisplayed()).toBe(true);
-        expect(driver.getDropdownItemsCount()).toEqual(5);
+    await driver.click();
 
-        driver.getInput().sendKeys('first');
-        expect(driver.getDropdownItemsCount()).toEqual(1);
+    await eventually(async () => {
+      expect(await driver.getDropdown().isDisplayed()).toBe(true);
+    });
+    expect(await driver.getDropdownItemsCount()).toEqual(5);
 
-        expect(driver.getDropdownItem(0)).toBe('First option');
-      });
+    await driver.getInput().sendKeys('first');
+    expect(await driver.getDropdownItemsCount()).toEqual(1);
+
+    expect(await driver.getDropdownItem(0)).toBe('First option');
   });
 
-  eyes.it('should choose one of autocomplete items', () => {
+  eyes.it('should choose one of autocomplete items', async () => {
     const driver = autoCompleteTestkitFactory({dataHook});
 
-    browser.get(storyUrl);
+    await browser.get(storyUrl);
 
-    waitForVisibilityOf(driver.element(), 'Cannot find AutoComplete')
-      .then(() => {
-        driver.click();
-        driver.getDropdownItem(2).click();
+    await waitForVisibilityOf(driver.element(), 'Cannot find AutoComplete');
+    await driver.click();
+    await driver.getDropdownItem(2).click();
 
-        expect(driver.getInput().getAttribute('value')).toBe('Third option');
-      });
+    expect(await driver.getInput().getAttribute('value')).toBe('Third option');
   });
 });
