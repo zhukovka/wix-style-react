@@ -1,5 +1,6 @@
 import {waitForVisibilityOf} from 'wix-ui-test-utils/protractor';
 import {flattenInternalDriver} from '../../../test/utils/private-drivers';
+import autoExampleDriver from 'wix-storybook-utils/AutoExampleDriver';
 
 /**
  * IMPORTANT !!!
@@ -15,39 +16,61 @@ export function runFocusTests(driver, storyUrl) {
 
 // TODO: add tests for error mode and disabled mode
 function runFocusTestsImpl(driver, storyUrl) {
-
   describe('Focusable', () => {
-    const pressTab = () => browser.actions().sendKeys(protractor.Key.TAB).perform();
-    const pressShiftTab = () => browser.actions().sendKeys(protractor.Key.chord(
-      protractor.Key.SHIFT, protractor.Key.TAB)).perform();
-    const pressSpace = () => browser.actions().sendKeys(protractor.Key.SPACE).perform();
+    const pressTab = () =>
+      browser
+        .actions()
+        .sendKeys(protractor.Key.TAB)
+        .perform();
+    const pressShiftTab = () =>
+      browser
+        .actions()
+        .sendKeys(
+          protractor.Key.chord(protractor.Key.SHIFT, protractor.Key.TAB)
+        )
+        .perform();
+    const pressSpace = () =>
+      browser
+        .actions()
+        .sendKeys(protractor.Key.SPACE)
+        .perform();
 
     const expectKeyboardFocused = async (driver, msg) => {
       const prefix = msg ? `${msg} - ` : '';
       expect(await driver.hasFocusState()).toBe(true, `${prefix}hasFocusState`);
-      expect(await driver.hasFocusVisibleState()).toBe(true, `${prefix}hasFocusVisibleState`);
+      expect(await driver.hasFocusVisibleState()).toBe(
+        true,
+        `${prefix}hasFocusVisibleState`
+      );
     };
 
     const expectNotFocused = async (driver, msg) => {
       const prefix = msg ? `${msg} - ` : '';
-      expect(await driver.hasFocusState()).toBe(false, `${prefix}hasFocusState`);
-      expect(await driver.hasFocusVisibleState()).toBe(false, `${prefix}hasFocusVisibleState`);
+      expect(await driver.hasFocusState()).toBe(
+        false,
+        `${prefix}hasFocusState`
+      );
+      expect(await driver.hasFocusVisibleState()).toBe(
+        false,
+        `${prefix}hasFocusVisibleState`
+      );
     };
 
     const expectMouseFocused = async (driver, msg) => {
       const prefix = msg ? `${msg} - ` : '';
       expect(await driver.hasFocusState()).toBe(true, `${prefix}hasFocusState`);
-      expect(await driver.hasFocusVisibleState()).toBe(false, `${prefix}hasFocusVisibleState`);
+      expect(await driver.hasFocusVisibleState()).toBe(
+        false,
+        `${prefix}hasFocusVisibleState`
+      );
     };
 
-    beforeEach(async () => {
-      // TODO: We do browser.get() before EACH test in order to reset the focus.
-      // implmement a generic solution in AutoExampleDriver that will do
-      // propper reset of the focus, so we don't have to get the page,
-      // and thus the test will run faster.
+    beforeAll(async () => {
       await browser.get(storyUrl);
       await waitForVisibilityOf(driver.element(), 'Cannot find element');
     });
+
+    beforeEach(() => autoExampleDriver.remount());
 
     it('should not be focused [given] initial default', async () => {
       await expectNotFocused(driver);
