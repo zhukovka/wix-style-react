@@ -12,7 +12,7 @@ Types of changes:
 1. **Security** in case of vulnerabilities.
 1. **Breaking** for breaking changes
 
-## Next
+## 5.2.0 - 2018-09-06
 
 ### Added
 
@@ -20,8 +20,8 @@ Types of changes:
 - `<Tooltip/>` -  added a new `showArrow` prop [#2200](https://github.com/wix/wix-style-react/pull/2200)
 
 ### Changed
-- `<SideMenuDrill/>` - Add ellipsis, vertically center arrow [#2185](https://github.com/wix/wix-style-react/pull/2185)
-- `<DropdownLayout/>` - change the divider's data-hook to [#2159](https://github.com/wix/wix-style-react/pull/2159)
+- `<SideMenuDrill/>` - add ellipsis, vertically center arrow [#2185](https://github.com/wix/wix-style-react/pull/2185)
+- `<DropdownLayout/>` - change the divider's data-hook to `dropdown-divider` [#2159](https://github.com/wix/wix-style-react/pull/2159)
 
 ### Fixed
 - `<Calendar/>` - Do not fail when missing `value` or `onClose` prop [2214](https://github.com/wix/wix-style-react/pull/2214)
