@@ -17,7 +17,8 @@ export default class Calendar extends WixComponent {
     locale: 'en',
     filterDate: () => true,
     shouldCloseOnSelect: true,
-    rtl: false
+    rtl: false,
+    onClose: () => {}
   };
 
   constructor(props) {
@@ -52,7 +53,7 @@ export default class Calendar extends WixComponent {
       twoMonths
     } = this.props;
 
-    const month = this.state.month || propsValue;
+    const month = this.state.month || propsValue || new Date();
     const localeUtils = localeUtilsFactory(locale);
 
     const captionElement = (
@@ -64,14 +65,18 @@ export default class Calendar extends WixComponent {
           localeUtils,
           rtl,
           onChange: this._setMonth,
-          onLeftArrowClick: () => this._setMonth(startOfMonth(addMonths(month, -1))),
-          onRightArrowClick: () => this._setMonth(startOfMonth(addMonths(month, 1)))
+          onLeftArrowClick: () =>
+            this._setMonth(startOfMonth(addMonths(month, -1))),
+          onRightArrowClick: () =>
+            this._setMonth(startOfMonth(addMonths(month, 1)))
         }}
         />
     );
 
     return {
-      disabledDays: excludePastDates ? {before: new Date()} : date => !filterDate(date),
+      disabledDays: excludePastDates ?
+        {before: new Date()} :
+        date => !filterDate(date),
       initialMonth: month,
       initialYear: month,
       selectedDays: parse(propsValue),
@@ -108,7 +113,9 @@ export default class Calendar extends WixComponent {
   _focusSelectedDay = dayPickerRef => {
     if (dayPickerRef) {
       this.dayPickerRef = dayPickerRef;
-      const selectedDay = this.dayPickerRef.dayPicker.querySelector('.DayPicker-Day--selected');
+      const selectedDay = this.dayPickerRef.dayPicker.querySelector(
+        '.DayPicker-Day--selected'
+      );
 
       if (selectedDay) {
         selectedDay.classList.add('DayPicker-Day--unfocused');
@@ -118,7 +125,9 @@ export default class Calendar extends WixComponent {
   };
 
   _handleDayKeyDown = () => {
-    const unfocusedDay = this.dayPickerRef.dayPicker.querySelector('.DayPicker-Day--unfocused');
+    const unfocusedDay = this.dayPickerRef.dayPicker.querySelector(
+      '.DayPicker-Day--unfocused'
+    );
 
     if (unfocusedDay) {
       unfocusedDay.classList.remove('DayPicker-Day--unfocused');
@@ -128,7 +137,10 @@ export default class Calendar extends WixComponent {
   render() {
     return (
       <div className={styles.calendar}>
-        <DayPicker ref={this._focusSelectedDay} {...this._createDayPickerProps()}/>
+        <DayPicker
+          ref={this._focusSelectedDay}
+          {...this._createDayPickerProps()}
+          />
       </div>
     );
   }
