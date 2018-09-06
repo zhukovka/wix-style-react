@@ -20,12 +20,19 @@ const getRelativePositions = (child, parent) => {
 
 const target = {
   drop(props, monitor) {
+    /** if drop was already done(on child), we skip this drop call */
+    if (monitor.getDropResult()) {
+      return;
+    }
     return {
       containerId: props.containerId,
       index: monitor.getItem().index
     };
   },
   hover(props, monitor, component) {
+    if (!component) {
+      return;
+    }
     /**
       in this block we check that user dragging item over container empty pars
       and not over other draggable(sortable items)

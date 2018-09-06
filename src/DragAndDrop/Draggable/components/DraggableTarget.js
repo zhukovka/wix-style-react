@@ -3,13 +3,16 @@ import WixComponent from '../../../BaseComponents/WixComponent';
 import PropTypes from 'prop-types';
 import {DropTarget} from 'react-dnd';
 
-import {dragCoordinates} from './../DragUtils';
 import {ItemTypes} from './../types';
 
 /* eslint-disable new-cap */
 
 const target = {
-  drop(props) {
+  drop(props, monitor) {
+    /** if drop was already done(on child), we skip this drop call */
+    if (monitor.getDropResult()) {
+      return;
+    }
     /**
       after drop released we send containerId and index of dropped item to dropResult,
       so endDrag inside of drag source can use this data
@@ -33,16 +36,6 @@ const target = {
     if (!component || (hoverIndex === dragIndex && isSameContainer)) {
       return;
     }
-
-    /** check that we hover at least half of item, if no - do nothing */
-    const {hoverClientY, hoverMiddleY} = dragCoordinates({monitor, component});
-    if (isSameContainer && dragIndex < hoverIndex && hoverClientY < hoverMiddleY) {
-      return;
-    }
-    if (isSameContainer && dragIndex > hoverIndex && hoverClientY > hoverMiddleY) {
-      return;
-    }
-
     /**
       if item is from same group but different container, thats mean that we move item
       from one container to another, and we need to move out item from previous container
