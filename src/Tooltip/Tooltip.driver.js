@@ -44,6 +44,7 @@ const tooltipDriverFactory = ({element, wrapper}) => {
     hasDarkTheme: () => !!bodyOrWrapper.querySelector('.dark'),
     hasLightTheme: () => !!bodyOrWrapper.querySelector('.light'),
     hasAnimationClass: () => !!bodyOrWrapper.querySelector('.fadeIn'),
+    hasArrow: () => !!bodyOrWrapper.querySelector('[data-hook="tooltip-arrow"]'),
     getTooltipWrapper: getTooltipContent,
     getChildren: () => element.innerHTML,
     getPlacement: () => {

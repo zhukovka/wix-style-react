@@ -100,7 +100,10 @@ class Tooltip extends WixComponent {
     shouldUpdatePosition: PropTypes.bool,
 
     /** Show Tooltip Immediately - with no delay and no animation */
-    showImmediately: PropTypes.bool
+    showImmediately: PropTypes.bool,
+
+    /** Show an arrow shape */
+    showArrow: PropTypes.bool
   };
 
   static defaultProps = {
@@ -124,7 +127,8 @@ class Tooltip extends WixComponent {
     textAlign: 'left',
     relative: false,
     shouldUpdatePosition: false,
-    showImmediately: false
+    showImmediately: false,
+    showArrow: true
   };
 
   _childNode = null;
@@ -224,6 +228,7 @@ class Tooltip extends WixComponent {
           textAlign={this.props.textAlign}
           lineHeight={this.props.lineHeight}
           color={this.props.color}
+          showArrow={this.props.showArrow}
           >
           {this.props.content}
         </TooltipContent>);

@@ -21,7 +21,8 @@ export class Template extends Component {
     onHide: Tooltip.propTypes.onHide,
     shouldUpdatePosition: Tooltip.propTypes.shouldUpdatePosition,
     showImmediately: Tooltip.propTypes.showImmediately,
-    moveBy: Tooltip.propTypes.moveBy
+    moveBy: Tooltip.propTypes.moveBy,
+    showArrow: Tooltip.propTypes.showArrow
   };
 
   componentDidUpdate(props) {
@@ -55,6 +56,7 @@ export class Template extends Component {
         shouldUpdatePosition={this.props.shouldUpdatePosition}
         showImmediately={this.props.showImmediately}
         moveBy={this.props.moveBy}
+        showArrow={this.props.showArrow}
         >
         {this.getTooltipTarget()}
       </Tooltip>

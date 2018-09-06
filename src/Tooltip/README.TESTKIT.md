@@ -29,6 +29,7 @@ beforeAll(() => {
 | hasErrorTheme | - | boolean | true if the tooltip itself uses error theme | 
 | hasDarkTheme | - | boolean | true if the tooltip itself uses dark theme | 
 | hasLightTheme | - | boolean | true if the tooltip itself uses light theme | 
+| hasArrow | - | boolean | true if the tooltip has an arrow | 
 | getTooltipWrapper | - | element | return the wrapper that wraps the tooltip itself and the tooltip element | 
 | getChildren | - | element | return the tooltip children | 
 | getPlacement | - | string | return the tooltip placement | 

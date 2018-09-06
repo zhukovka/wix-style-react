@@ -343,6 +343,29 @@ describe('Tooltip', () => {
     });
   });
 
+  describe('showArrow prop', () => {
+    const props = {
+      ..._props,
+      content: 'This is the content'
+    };
+
+    it('should have an arrow by default', () => {
+      const driver = createDriver(<Tooltip {...props}>{children}</Tooltip>);
+      driver.mouseEnter();
+      return resolveIn(30).then(() => {
+        expect(driver.hasArrow()).toBeTruthy();
+      });
+    });
+
+    it('should not show an arrow if `showArrow` is set to false', () => {
+      const driver = createDriver(<Tooltip {...props} showArrow={false}>{children}</Tooltip>);
+      driver.mouseEnter();
+      return resolveIn(30).then(() => {
+        expect(driver.hasArrow()).toBeFalsy();
+      });
+    });
+  });
+
   describe('testkit', () => {
 
     const createTooltipTestkitDriver = props => {
