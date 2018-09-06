@@ -19,9 +19,12 @@ Types of changes:
 - `<TableActionCell/>` - added a new component [#2031](https://github.com/wix/wix-style-react/pull/2031)
 - `<Tooltip/>` -  added a new `showArrow` prop [#2200](https://github.com/wix/wix-style-react/pull/2200)
 
-### Changes
+### Changed
 - `<SideMenuDrill/>` - Add ellipsis, vertically center arrow [#2185](https://github.com/wix/wix-style-react/pull/2185)
 - `<DropdownLayout/>` - change the divider's data-hook to [#2159](https://github.com/wix/wix-style-react/pull/2159)
+
+### Fixed
+- `<Calendar/>` - Do not fail when missing `value` or `onClose` prop [2214](https://github.com/wix/wix-style-react/pull/2214)
 
 ## 5.1.0 - 2018-09-04
 ### Added
