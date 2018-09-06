@@ -17,6 +17,7 @@ Types of changes:
 ### Added
 
 - `<TableActionCell/>` - added a new component [#2031](https://github.com/wix/wix-style-react/pull/2031)
+- `<Tooltip/>` -  added a new `showArrow` prop [#2200](https://github.com/wix/wix-style-react/pull/2200)
 
 ### Changes
 - `<SideMenuDrill/>` - Add ellipsis, vertically center arrow [#2185](https://github.com/wix/wix-style-react/pull/2185)
