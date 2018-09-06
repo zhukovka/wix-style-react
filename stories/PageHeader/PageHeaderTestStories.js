@@ -22,7 +22,7 @@ const kind = getTestStoryKind(storySettings);
 const dataHook = 'story-page-header';
 
 storiesOf(kind, module)
-  .add('1. Ellipsed Title and Subtitle', () => (
+  .add('1. Long Title and Subtitle', () => (
     <PageHeaderContainer>
       <PageHeader
         dataHook={dataHook}

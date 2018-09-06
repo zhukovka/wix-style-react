@@ -18,9 +18,9 @@ describe('PageHeader', async () => {
     return driver;
   };
 
-  describe('ellipsis', async () => {
-    eyes.it('should disaply an ellipsed title and subtitle', async () => {
-      await initTest('1. Ellipsed Title and Subtitle');
+  describe('Long title', async () => {
+    eyes.it('should disaply multiline title and subtitle', async () => {
+      await initTest('1. Long Title and Subtitle');
     });
   });
 });
