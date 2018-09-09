@@ -11,11 +11,22 @@ Types of changes:
 1. **Fixed** for any bug fixes.
 1. **Security** in case of vulnerabilities.
 1. **Breaking** for breaking changes
+1. **Docs** for documentation changes
+
+## Next
+
+### Fixed
+- `<SectionHelper/>` - add box-sizing to not break styles [#2202](https://github.com/wix/wix-style-react/pull/2202)
+
+### Changed
+- Technical - remove `PureComponent` from non-pure components [#2160](https://github.com/wix/wix-style-react/pull/2160)
+
+### Docs
+- `<Badge/>` - migrate story to autodocs [#2221](https://github.com/wix/wix-style-react/pull/2221)
 
 ## 5.2.0 - 2018-09-06
 
 ### Added
-
 - `<TableActionCell/>` - added a new component [#2031](https://github.com/wix/wix-style-react/pull/2031)
 - `<Tooltip/>` -  added a new `showArrow` prop [#2200](https://github.com/wix/wix-style-react/pull/2200)
 
