@@ -4,7 +4,6 @@ import styles from './DataTable.scss';
 import typography from '../Typography/Typography.scss';
 import classNames from 'classnames';
 import InfiniteScroll from './InfiniteScroll';
-import WixComponent from '../BaseComponents/WixComponent';
 import SortByArrowUp from '../new-icons/system/SortByArrowUp';
 import SortByArrowDown from '../new-icons/system/SortByArrowDown';
 import {Animator} from 'wix-animations';
@@ -25,7 +24,7 @@ DataTableHeader.propTypes = {
   width: PropTypes.string
 };
 
-class DataTable extends WixComponent {
+class DataTable extends React.Component {
 
   constructor(props) {
     super(props);
@@ -105,9 +104,10 @@ class DataTable extends WixComponent {
   };
 
   renderTable = rowsToRender => {
+    const {dataHook} = this.props;
     const style = {width: this.props.width};
     return (
-      <div>
+      <div data-hook={dataHook}>
         <table
           id={this.props.id} style={style}
           className={classNames(
@@ -378,6 +378,7 @@ DataTable.defaultProps = {
 };
 
 DataTable.propTypes = {
+  dataHook: PropTypes.string,
   /** An id to pass to the table */
   id: PropTypes.string,
   /** The data to display. (If data.id exists then it will be used as the React key value for each row, otherwise, the rowIndex will be used) */
@@ -470,7 +471,8 @@ DataTable.propTypes = {
   /** Should we hide the header of the table. */
   hideHeader: PropTypes.bool,
     /** A flag specifying weather to show a divider after the last row */
-  showLastRowDivider: PropTypes.bool
+  showLastRowDivider: PropTypes.bool,
+  newDesign: PropTypes.bool
 };
 DataTable.displayName = 'DataTable';
 

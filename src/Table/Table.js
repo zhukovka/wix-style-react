@@ -1,12 +1,11 @@
 import React from 'react';
-import {string, number, arrayOf, oneOfType, func, bool, any, object, node, oneOf, shape, array} from 'prop-types';
+import PropTypes from 'prop-types';
 import omit from 'lodash/omit';
 import defaultTo from 'lodash/defaultTo';
 import classNames from 'classnames';
 
 import style from './Table.st.css';
 import DataTable from '../DataTable';
-import WixComponent from '../BaseComponents/WixComponent';
 import Checkbox from '../Checkbox';
 import {TableContext} from './TableContext';
 import {BulkSelection, BulkSelectionState} from './BulkSelection';
@@ -77,7 +76,7 @@ export function getDataTableProps(tableProps) {
  * Table is a composit component that allows adding SelectionColumn, Toolbar (on top of the TitleBar).
  * It is a context provider, and thus the Table.Consumer, Table.TitleBar and Table.Content can be rendered separatly.
  */
-export class Table extends WixComponent {
+export class Table extends React.Component {
 
   static ToolbarContainer = TableToolbarContainer;
   static Titlebar = TableTitleBar;
@@ -108,7 +107,7 @@ export class Table extends WixComponent {
   renderChildren() {
     const children = this.props.children;
     return this.props.withWrapper ? (
-      <div {...style('root', {isRowClickable: !!this.props.onRowClick}, this.props)}>
+      <div data-hook={this.props.dataHook} {...style('root', {isRowClickable: !!this.props.onRowClick}, this.props)}>
         {children}
       </div>) :
       children;
@@ -149,69 +148,69 @@ Table.defaultProps = {
 };
 
 Table.propTypes = {
-  children: any,
-  dataHook: string,
+  children: PropTypes.any,
+  dataHook: PropTypes.string,
 
   //DataTable Props
   /** Allows to open multiple row details */
-  allowMultiDetailsExpansion: bool,
+  allowMultiDetailsExpansion: PropTypes.bool,
   /** The data to display. (If data.id exists then it will be used as the React key value for each row, otherwise, the rowIndex will be used) */
-  data: array, // Not performing any shape validation to not hurt performance.
+  data: PropTypes.array, // Not performing any shape validation to not hurt performance.
   /** Configuration of the table's columns. See table below */
-  columns: arrayOf(shape({
-    title: oneOfType([
-      node,
-      string
+  columns: PropTypes.arrayOf(PropTypes.shape({
+    title: PropTypes.oneOfType([
+      PropTypes.node,
+      PropTypes.string
     ]).isRequired,
-    render: func.isRequired,
-    sortable: bool,
-    infoTooltipProps: shape(Tooltip.propTypes),
-    sortDescending: bool
+    render: PropTypes.func.isRequired,
+    sortable: PropTypes.bool,
+    infoTooltipProps: PropTypes.shape(Tooltip.propTypes),
+    sortDescending: PropTypes.bool
   })).isRequired,
   /** A func that gets row data and returns a class(es) to apply to that specific row */
-  dynamicRowClass: func,
+  dynamicRowClass: PropTypes.func,
   /** Whether there are more items to be loaded. Event listeners are removed if false. */
-  hasMore: bool,
+  hasMore: PropTypes.bool,
   /** Should we hide the header of the table. */
-  hideHeader: bool,
+  hideHeader: PropTypes.bool,
   /** An id to pass to the table */
-  id: string,
+  id: PropTypes.string,
   /** If true, table will not render all data to begin with, but will gradually render the data as the user scrolls */
-  infiniteScroll: bool,
+  infiniteScroll: PropTypes.bool,
   /** If infiniteScroll is on, this prop will determine how many rows will be rendered on each load */
-  itemsPerPage: number,
+  itemsPerPage: PropTypes.number,
   /** The loader to show when loading more items. */
-  loader: node,
+  loader: PropTypes.node,
   /** A callback when more items are requested by the user. */
-  loadMore: func,
+  loadMore: PropTypes.func,
   /** A callback method to be called on row click. Signature: `onRowClick(rowData, rowNum)` */
-  onRowClick: func,
+  onRowClick: PropTypes.func,
   /** A callback method to be called on row mouse enter. Signature: `onMouseEnterRow(rowData, rowNum)` */
-  onMouseEnterRow: func,
+  onMouseEnterRow: PropTypes.func,
   /** A callback method to be called on row mouse leave. Signature: `onMouseLeaveRow(rowData, rowNum)` */
-  onMouseLeaveRow: func,
+  onMouseLeaveRow: PropTypes.func,
 
   /** Add scroll listeners to the window, or else, the component's parentNode. */
-  useWindow: bool,
+  useWindow: PropTypes.bool,
   /** Add scroll listeners to specified DOM Object. */
-  scrollElement: object,
+  scrollElement: PropTypes.object,
   /** Table cell vertical padding. should be 'medium' or 'large'  */
-  rowVerticalPadding: oneOf([
+  rowVerticalPadding: PropTypes.oneOf([
     'medium',
     'large'
   ]),
   /** Function that returns React component that will be rendered in row details section. Example: `rowDetails={(row, rowNum) => <MyRowDetailsComponent {...row} />}` */
-  rowDetails: func,
+  rowDetails: PropTypes.func,
   /** A string data-hook to apply to all table body rows. or a func which calculates the data-hook for each row  - Signature: `(rowData, rowNum) => string` */
-  rowDataHook: oneOfType([
-    func,
-    string
+  rowDataHook: PropTypes.oneOfType([
+    PropTypes.func,
+    PropTypes.string
   ]),
   /** A class to apply to all table body rows */
-  rowClass: string,
+  rowClass: PropTypes.string,
 
   /** Should the table show the header when data is empty */
-  showHeaderWhenEmpty: bool,
+  showHeaderWhenEmpty: PropTypes.bool,
 
   // Table props
 
@@ -221,19 +220,19 @@ Table.propTypes = {
    * `change` object has a `type` property with the following possible values: 'ALL', 'NONE', 'SINGLE_TOGGLE'.
    * In case of 'SINGLE_TOGGLE' the `change` object will also include an `id` prop with the item's id,
    * and a `value` prop with the new boolean selection state of the item. */
-  onSelectionChanged: func,
+  onSelectionChanged: PropTypes.func,
   /** Indicates wether to show a selection column (with checkboxes) */
-  showSelection: bool,
+  showSelection: PropTypes.bool,
   /** Array of selected row ids.
    *  Idealy, id should be a property on the data row object.
    *  If data objects do not have id property, then the data row's index would be used as an id. */
-  selectedIds: oneOfType([arrayOf(string), arrayOf(number)]),
+  selectedIds: PropTypes.oneOfType([PropTypes.arrayOf(PropTypes.string), PropTypes.arrayOf(PropTypes.number)]),
   /** The width of the fixed table. Can be in percentages or pixels. */
-  width: string,
+  width: PropTypes.string,
   /**
    *  When false then Table would not create a `<div/>` wrapper around it's children.
    *  Useful when using `<Table/>` to wrap a `<Page/>` component, in that case we use the `<Table/>` only as a context provider and it doesn't render anything to the DOM by itself.*/
-  withWrapper: bool
+  withWrapper: PropTypes.bool
 };
 
 // export default Table;

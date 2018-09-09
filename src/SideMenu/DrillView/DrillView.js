@@ -1,6 +1,5 @@
 import React, {Children} from 'react';
-import WixComponent from '../../BaseComponents/WixComponent';
-import {string, node, bool} from 'prop-types';
+import PropTypes from 'prop-types';
 import SideMenu from '../core/SideMenu';
 import SlideAnimation, {SlideDirection} from '../../Animations/SlideAnimation';
 import styles from './DrillView.scss';
@@ -9,7 +8,7 @@ const isAnchorTag = function (item) {
   return item.type === 'a';
 };
 
-class SideMenuDrill extends WixComponent {
+class SideMenuDrill extends React.Component {
   constructor(props) {
     super(props);
 
@@ -244,7 +243,7 @@ class SideMenuDrill extends WixComponent {
     const menuBHandlers = showMenuA ? exitHandlers : enterHandlers;
 
     return (
-      <SideMenu dataHook="drill-view" inFlex={this.props.inFlex}>
+      <SideMenu dataHook={this.props.dataHook} inFlex={this.props.inFlex}>
         <div className={styles.drillViewContainer}>
           <SlideAnimation direction={slideDirection} animateAppear={false} isVisible={showMenuA} {...menuAHandlers}>
             {this.renderMenu(menuA)}
@@ -265,9 +264,11 @@ SideMenuDrill.defaultProps = {
 };
 
 SideMenuDrill.propTypes = {
-  inFlex: bool,
-  menuKey: string,
-  children: node
+  dataHook: PropTypes.string,
+  inFlex: PropTypes.bool,
+  menuKey: PropTypes.string,
+  children: PropTypes.node,
+  stickyFooter: PropTypes.node
 };
 
 export default SideMenuDrill;
