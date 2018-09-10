@@ -3,8 +3,8 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import styles from './styles.scss';
 
-const Logo = ({onClick, children}) => {
-  const classes = classNames(styles.logo, {[styles.clickable]: !!onClick});
+const Header = ({onClick, children, className}) => {
+  const classes = classNames(styles.logo, {[styles.clickable]: !!onClick}, className);
   return (
     <div onClick={onClick} className={classes} data-hook="menu-header">
       {children}
@@ -13,10 +13,10 @@ const Logo = ({onClick, children}) => {
 
 };
 
-Logo.propTypes = {
+Header.propTypes = {
   onClick: PropTypes.func,
-  children: PropTypes.node
+  children: PropTypes.node,
+  className: PropTypes.string
 };
 
-export default Logo;
-
+export default Header;
