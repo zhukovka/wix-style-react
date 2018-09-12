@@ -38,7 +38,7 @@ const MyComponent = () =>
 
 ## Tips
 
-* Use [Yoshi](https://github.com/wix/yoshi) as build tool to avoid configuration. Otherwise follow [webpack setup instructions here](https://wix-wix-style-react.surge.sh/?selectedKind=Introduction&selectedStory=Usage%20Without%20Yoshi&full=0&down=0&left=1&panelRight=0)
+* Use [Yoshi](https://github.com/wix/yoshi) as build tool to avoid configuration. Otherwise follow [webpack setup instructions here](https://github.com/wix/wix-style-react/blob/master/docs/usage-without-yoshi.md)
 * Enable font smoothing with browser specific css properties, for example:
     ```css
     html {
@@ -49,10 +49,10 @@ const MyComponent = () =>
 * Use [demo pages](https://wix-wix-style-react.surge.sh/) to find all available components with examples.
 
 ## Contributing
-Please refer to the [Contribution page](https://wix-wix-style-react.surge.sh/?selectedKind=Introduction&selectedStory=Contribution&full=0&down=0&left=1&panelRight=0)
+Please refer to the [Contribution page](https://github.com/wix/wix-style-react/blob/master/CONTRIBUTION.md)
 
 ## Tests
-Please refer to the [Testing page](https://wix-wix-style-react.surge.sh/?selectedKind=Introduction&selectedStory=Testing&full=0&down=0&left=1&panelRight=0)
+Please refer to the [Testing page](https://github.com/wix/wix-style-react/blob/master/docs/contribution/TESTING.md)
 
 ## License
 This project is offered under [MIT License](https://github.com/wix/wix-style-react/blob/master/LICENSE).

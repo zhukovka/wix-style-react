@@ -60,10 +60,10 @@ Types of changes:
 ## 5.0.0 - 2018-08-29
 ### Breaking
 
-[Migration guide](https://github.com/wix/wix-style-react/blob/master/docs/migration/v4-v5.md)
+[Migration guide](./docs/migration/v4-v5.md)
 
 - `<Checkbox/>` - remove prop `active`(use `checked` instead) and value `large`(use `medium` instead) for prop `size`
-- `<Icons/>` - remove old icons in favor of [new icons](https://github.com/wix/wix-style-react/blob/master/docs/NEW_ICONS_MIGRATION.md)
+- `<Icons/>` - remove old icons in favor of [new icons](./docs/migration/NEW_ICONS_MIGRATION.md)
 - `<Button/>` - remove prop `withNewIcons` and make it behavior default
 - `<DataTable/>` - new styles
 - `<Heading/>` - new typography
@@ -216,7 +216,7 @@ Types of changes:
 ### Added
 -  `<Button/>`- support new icons using the `withNewIcons` prop [#1960](https://github.com/wix/wix-style-react/pull/1960)
 -  `<FullTextView/>`- the new component that can show tooltip in ellipsis state [#2000](https://github.com/wix/wix-style-react/pull/2000)
-- **New Icons** - changed all icons assets to new icons. See the [migration guide](https://github.com/wix/wix-style-react/blob/master/docs/NEW_ICONS_MIGRATION.md) and script. The new icons can be found [here](https://wix-wix-style-react.surge.sh/?selectedKind=1.%20Foundation&selectedStory=1.4%20Icons&full=0&addons=0&stories=1&panelRight=0) and deprecated icons [here](https://wix-wix-style-react.surge.sh/?selectedKind=1.%20Foundation&selectedStory=1.4%20Icons%20-%20deprecated&full=0&addons=0&stories=1&panelRight=0)
+- **New Icons** - changed all icons assets to new icons. See the [migration guide](./docs/NEW_ICONS_MIGRATION.md) and script. The new icons can be found [here](https://wix-wix-style-react.surge.sh/?selectedKind=1.%20Foundation&selectedStory=1.4%20Icons&full=0&addons=0&stories=1&panelRight=0) and deprecated icons [here](https://wix-wix-style-react.surge.sh/?selectedKind=1.%20Foundation&selectedStory=1.4%20Icons%20-%20deprecated&full=0&addons=0&stories=1&panelRight=0)
 
 ### Changed
 - `<Input/>` - migrate to new icons [#1981](https://github.com/wix/wix-style-react/pull/1981)
