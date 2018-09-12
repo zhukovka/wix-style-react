@@ -11,7 +11,7 @@ import Card from 'wix-style-react/Card';
 import Search from 'wix-style-react/Search';
 import Dropdown from 'wix-style-react/Dropdown';
 
-export class MainExample extends React.Component {
+export default class MainExample extends React.Component {
   render() {
     const collectionOptions = [
       {id: 0, value: 'All Products'},

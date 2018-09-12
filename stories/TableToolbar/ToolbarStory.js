@@ -8,8 +8,11 @@ import Card from 'wix-style-react/Card';
 import {storySettings} from '../Table/storySettings';
 import {storiesOf} from '@storybook/react';
 
-import {MainExample} from './MainExample';
+import MainExample from './MainExample';
 import MainExampleRaw from '!raw-loader!./MainExample';
+
+import MainExampleRTL from './MainExampleRTL';
+import MainExampleRTLRaw from '!raw-loader!./MainExampleRTL';
 
 import {BulkActionsExample} from './BulkActionsExample';
 import BulkActionsExampleRaw from '!raw-loader!./BulkActionsExample';
@@ -40,6 +43,12 @@ It may include (by convention) the following UI components:
           <CodeExample title="Typical Main Toolbar" code={MainExampleRaw}>
             <Card>
               <MainExample/>
+            </Card>
+          </CodeExample>
+
+          <CodeExample title="Typical Main Toolbar (RTL)" code={MainExampleRTLRaw}>
+            <Card>
+              <MainExampleRTL/>
             </Card>
           </CodeExample>
         </div>
