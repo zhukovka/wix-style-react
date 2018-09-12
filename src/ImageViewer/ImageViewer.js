@@ -28,6 +28,7 @@ class ImageViewer extends WixComponent {
       onUpdateImage,
       onRemoveImage,
       addImageInfo,
+      showUpdateButton,
       updateImageInfo,
       removeImageInfo,
       width,
@@ -65,15 +66,17 @@ class ImageViewer extends WixComponent {
             </div>
             <div className={style.imageBackground}>
               <div className={style.buttons}>
-                <Tooltip
-                  dataHook="update-image"
-                  {...tooltipProps}
-                  content={updateImageInfo}
-                  >
-                  <Button onClick={onUpdateImage} theme="icon-whitesecondary">
-                    <Replace size="1.5em"/>
-                  </Button>
-                </Tooltip>
+                {!!showUpdateButton && (
+                  <Tooltip
+                    dataHook="update-image"
+                    {...tooltipProps}
+                    content={updateImageInfo}
+                    >
+                    <Button onClick={onUpdateImage} theme="icon-whitesecondary">
+                      <Replace size="1.5em"/>
+                    </Button>
+                  </Tooltip>
+                )}
                 <Tooltip
                   dataHook="remove-image"
                   {...tooltipProps}
@@ -106,6 +109,7 @@ class ImageViewer extends WixComponent {
 }
 
 ImageViewer.defaultProps = {
+  showUpdateButton: true,
   addImageInfo: 'Add Image',
   updateImageInfo: 'Update',
   removeImageInfo: 'Remove'
@@ -125,6 +129,8 @@ ImageViewer.propTypes = {
   tooltipPlacement: PropTypes.string,
   /** Tooltip props, common for all tooltips */
   tooltipProps: PropTypes.shape(omit(['content'], Tooltip.propTypes)),
+  /** Show update button */
+  showUpdateButton: PropTypes.bool,
   /** Add image click handler */
   onAddImage: PropTypes.func,
   /** Update image click handler */

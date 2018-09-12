@@ -37,6 +37,7 @@ const imageViewerDriverFactory = ({component, wrapper, element, eventTrigger}) =
     clickAdd: () => addItemClick(),
     clickUpdate: () => updateButton().click(),
     clickRemove: () => removeButton().click(),
+    updateExists: () => updateButton().exists(),
     exists: () => !!element,
     setProps: props => {
       const ClonedWithProps = React.cloneElement(component, Object.assign({}, component.props, props), ...(component.props.children || []));

@@ -158,6 +158,18 @@ describe('ImageViewer', () => {
       });
     });
 
+    describe('update button disabled', () => {
+      const props = {
+        imageUrl: IMAGE_URL,
+        showUpdateButton: false
+      };
+
+      it('should hide update button', async () => {
+        const driver = createDriver(<ImageViewer {...props}/>);
+        expect(await driver.updateExists()).toEqual(false);
+      });
+    });
+
     describe('error state', () => {
       it('should not display error icon by defualt', () => {
         props = {
