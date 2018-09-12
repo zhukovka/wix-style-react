@@ -66,6 +66,6 @@ $textFontFamily: (
   @include TextColor(
     $light: $light,
     $secondary: $secondary,
-    $skin: $skin
+    $skin: $skin,
     $link: $link);
 }
