@@ -23,6 +23,7 @@ Types of changes:
 - `<Tooltip/>` - fix tooltip jumping [#2225](https://github.com/wix/wix-style-react/pull/2225)
 
 ### Changed
+- `<ButtonLayout/>` - update typography [#2198](https://github.com/wix/wix-style-react/pull/2198)
 - Technical - remove `PureComponent` from non-pure components [#2160](https://github.com/wix/wix-style-react/pull/2160)
 
 ### Docs
