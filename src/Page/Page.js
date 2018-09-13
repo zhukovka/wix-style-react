@@ -104,6 +104,11 @@ class Page extends WixComponent {
     this.containerScrollTopThreshold = shortThreshold ? SHORT_SCROLL_TOP_THRESHOLD : SCROLL_TOP_THRESHOLD;
   }
 
+  _setScrollContainer(scrollContainer) {
+    this.scrollableContentRef = scrollContainer;
+    this.props.scrollableContentRef && this.props.scrollableContentRef(scrollContainer);
+  }
+
   _getScrollContainer() {
     return this.scrollableContentRef;
   }
@@ -273,7 +278,7 @@ class Page extends WixComponent {
           data-hook="page-scrollable-content"
           data-class="page-scrollable-content"
           style={{paddingTop: `${fixedContainerHeight}px`}}
-          ref={r => this.scrollableContentRef = r}
+          ref={r => this._setScrollContainer(r)}
           >
           {
             hasBackgroundImage &&
@@ -332,6 +337,9 @@ Page.propTypes = {
   gradientClassName: PropTypes.string,
   /** If false Gradient will not cover Page.Tail */
   gradientCoverTail: PropTypes.bool,
+  /** Is called with the Page's scrollable content ref **/
+  scrollableContentRef: PropTypes.func,
+
   children: PropTypes.arrayOf((children, key) => {
     const childrenObj = getChildrenObject(children);
 

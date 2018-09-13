@@ -11,6 +11,9 @@ import TableExampleRaw from '!raw-loader!./TableExample';
 import {TablePageExample} from './TablePageExample';
 import TablePageExampleRaw from '!raw-loader!./TablePageExample';
 
+import {TableInfiniteScrollExample} from './TableInfiniteScrollExample';
+import TableInfiniteScrollExampleRaw from '!raw-loader!./TableInfiniteScrollExample';
+
 import {ActionCellPrimaryExample} from './ActionCellPrimaryExample';
 import ActionCellPrimaryExampleRaw from '!raw-loader!./ActionCellPrimaryExample';
 
@@ -77,6 +80,11 @@ export default {
         <div className={s.example}>
           <CodeExample title="Table in a Page (Fixed Header)" code={TablePageExampleRaw}>
             <TablePageExample/>
+          </CodeExample>
+        </div>
+        <div className={s.example}>
+          <CodeExample title="Table in a Page (Infinite Scroll)" code={TableInfiniteScrollExampleRaw}>
+            <TableInfiniteScrollExample/>
           </CodeExample>
         </div>
         <div className={s.example}>
