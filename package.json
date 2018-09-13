@@ -141,7 +141,7 @@
     "wix-animations": "^1.0.141",
     "wix-eventually": "^2.2.0",
     "wix-ui-backoffice": "^1.0.299",
-    "wix-ui-icons-common": "2.0.9",
+    "wix-ui-icons-common": "^2.0.9",
     "wix-ui-test-utils": "^1.0.0"
   },
   "jest": {
