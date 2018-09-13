@@ -17,17 +17,24 @@ Types of changes:
 
 ### Added
 - `<SideMenu/>` - add `className` prop to the `Header` component [#2223](https://github.com/wix/wix-style-react/pull/2223)
+- `<TableToolbar/>` - add RTL support [#2222](https://github.com/wix/wix-style-react/pull/2222)
+- `<Page/>` - add support to Table infinite scroll inside a Page [#2230](https://github.com/wix/wix-style-react/pull/2230)
  
 ### Fixed
 - `<SectionHelper/>` - add box-sizing to not break styles [#2202](https://github.com/wix/wix-style-react/pull/2202)
 - `<Tooltip/>` - fix tooltip jumping [#2225](https://github.com/wix/wix-style-react/pull/2225)
+- `<ButtonLayout/>` - remove border from button focus [#2234](https://github.com/wix/wix-style-react/pull/2234)
 
 ### Changed
 - `<ButtonLayout/>` - update typography [#2198](https://github.com/wix/wix-style-react/pull/2198)
 - Technical - remove `PureComponent` from non-pure components [#2160](https://github.com/wix/wix-style-react/pull/2160)
 
+## Removed
+- Remove dead code `src/Backoffice/ButtonLayout` (was never in use) [#2231](https://github.com/wix/wix-style-react/pull/2231)
+
 ### Docs
 - `<Badge/>` - migrate story to autodocs [#2221](https://github.com/wix/wix-style-react/pull/2221)
+- Update Contriubtion guide [#2220](https://github.com/wix/wix-style-react/pull/2220)
 
 ## 5.2.0 - 2018-09-06
 
