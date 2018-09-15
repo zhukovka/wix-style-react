@@ -1,5 +1,5 @@
 import React from 'react';
-import {Html} from 'slate';
+import {Html} from 'slate-html-serializer';
 
 const BLOCK_TAGS = {
   p: 'paragraph',
