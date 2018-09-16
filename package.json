@@ -101,8 +101,8 @@
     "yoshi": "^2.8.3"
   },
   "peerDependencies": {
-    "react": "^15.0.0",
-    "react-dom": "^15.0.0"
+    "react": "^15.0.0 || ^16.0.0",
+    "react-dom": "^15.0.0 || ^16.0.0"
   },
   "publishConfig": {
     "registry": "https://registry.npmjs.org/",
@@ -137,7 +137,9 @@
     "react-motion": "^0.4.7",
     "react-remarkable": "^1.1.1",
     "react-transition-group": "^2.2.1",
-    "slate": "^0.20.3",
+    "slate": "^0.40.2",
+    "slate-html-serializer": "^0.7.2",
+    "slate-react": "^0.18.5",
     "wix-animations": "^1.0.141",
     "wix-eventually": "^2.2.0",
     "wix-ui-backoffice": "^1.0.299",

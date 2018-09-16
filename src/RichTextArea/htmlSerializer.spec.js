@@ -1,4 +1,4 @@
-import {Html} from 'slate-html-serializer';
+import Html from 'slate-html-serializer';
 import htmlSerializer from './htmlSerializer';
 
 describe('HTML serializer', () => {
@@ -90,7 +90,7 @@ describe('HTML serializer', () => {
     };
 
     const deserialized = htmlSerializer.deserialize(text);
-    expect(Html.fromJSON(deserialized, {terse: true})).toEqual(expected);
+    expect(Html.serialize(deserialized)).toEqual(expected);
   });
 
   it('should correctly serialize slate object to HTML string', () => {
@@ -171,7 +171,7 @@ describe('HTML serializer', () => {
         }
       ]
     };
-    const serialized = Html.toJSON(state, {terse: true});
+    const serialized = Html.deserialize(state);
     expect(htmlSerializer.serialize(serialized)).toEqual(expected);
   });
 });

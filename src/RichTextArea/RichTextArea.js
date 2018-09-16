@@ -88,9 +88,9 @@ class RichTextArea extends WixComponent {
         validate: document => {
           return document.nodes.size ? null : true;
         },
-        normalize: (transform, document) => {
+        normalize: (change, document) => {
           const block = Block.create(defaultBlock);
-          transform.insertNodeByKey(document.key, 0, block);
+          change.insertNodeByKey(document.key, 0, block);
         }
       },
       // Rule to insert a paragraph below a void node (the image) if that node is
@@ -103,9 +103,9 @@ class RichTextArea extends WixComponent {
           const lastNode = document.nodes.last();
           return lastNode && lastNode.isVoid ? true : null;
         },
-        normalize: (transform, document) => {
+        normalize: (change, document) => {
           const block = Block.create(defaultBlock);
-          transform.insertNodeByKey(document.key, document.nodes.size, block);
+          change.insertNodeByKey(document.key, document.nodes.size, block);
         }
       }
     ]
@@ -354,10 +354,11 @@ class RichTextArea extends WixComponent {
             placeholderClassName={styles.placeholder}
             className={classNames(styles.editor, {[styles.disabled]: disabled})}
             schema={this.schema}
-            state={editorState}
+            value={editorState}
             onPaste={this.onPaste}
             onChange={e =>
               {
+                console.log(e);
                 const serialized = htmlSerializer.serialize(e);
                 const isValueChanged = serialized !== this.lastValue;
                 this.lastValue = serialized;
