@@ -15,6 +15,8 @@ Types of changes:
 
 ## Next
 
+## 5.3.0 - 2018-09-16
+
 ### Added
 - `<SideMenu/>` - add `className` prop to the `Header` component [#2223](https://github.com/wix/wix-style-react/pull/2223)
 - `<TableToolbar/>` - add RTL support [#2222](https://github.com/wix/wix-style-react/pull/2222)
