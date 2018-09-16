@@ -1,4 +1,4 @@
-import {Value} from 'slate';
+import {Value, Document} from 'slate';
 import htmlSerializer from './htmlSerializer';
 
 describe('HTML serializer', () => {
@@ -12,7 +12,7 @@ describe('HTML serializer', () => {
           nodes: [
             {
               object: 'text',
-              ranges: [
+              leaves: [
                 {
                   text: 'Hello'
                 },
@@ -90,7 +90,8 @@ describe('HTML serializer', () => {
     };
 
     const deserialized = htmlSerializer.deserialize(text);
-    expect(Value.fromJSON(deserialized)).toEqual(expected);
+    // console.log('deserialized', deserialized);
+    expect(Document.fromJSON(deserialized).toJSON()).toEqual(expected);
   });
 
   it('should correctly serialize slate object to HTML string', () => {
@@ -129,7 +130,7 @@ describe('HTML serializer', () => {
           nodes: [
             {
               object: 'text',
-              ranges: [
+              leaves: [
                 {
                   text: 'Text here'
                 },
@@ -171,7 +172,7 @@ describe('HTML serializer', () => {
         }
       ]
     };
-    const serialized = Value.toJSON(state);
+    const serialized = Document.fromJSON(state);
     expect(htmlSerializer.serialize(serialized)).toEqual(expected);
   });
 });

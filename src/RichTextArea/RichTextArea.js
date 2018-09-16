@@ -83,26 +83,20 @@ class RichTextArea extends WixComponent {
       // Rule to insert a paragraph block if the document is empty.
       {
         match: {object: 'document'},
-        validate: document => {
-          return document.nodes.size ? null : true;
-        },
-        normalize: (change, document) => {
-          console.log('handle', change, document);
+        nodes: [{min: 1}],
+        normalize: (change, error) => {
           const block = Block.create(defaultBlock);
-          change.insertNodeByKey(document.key, 0, block);
+          change.insertNodeByKey(error.key, 0, block);
         }
       },
       // Rule to insert a paragraph below a void node (the image) if that node is
       // the last one in the document.
       {
         match: {object: 'document'},
-        validate: document => {
-          const lastNode = document.nodes.last();
-          return lastNode && lastNode.isVoid ? true : null;
-        },
-        normalize: (change, document) => {
+        last: {isVoid: true},
+        normalize: (change, error) => {
           const block = Block.create(defaultBlock);
-          change.insertNodeByKey(document.key, document.nodes.size, block);
+          change.insertNodeByKey(error.key, error.nodes.size, block);
         }
       }
     ]
@@ -150,11 +144,11 @@ class RichTextArea extends WixComponent {
     }
   }
 
-  hasBlock = type => this.state.editorValue.blocks.some(node => node.type == type);
+  hasBlock = type => this.state.editorValue.blocks.has(node => node.type == type);
 
   hasListBlock = type => {
     const {editorValue} = this.state;
-    return editorValue.blocks.some(node => {
+    return editorValue.blocks.has(node => {
       const parent = editorValue.document.getParent(node.key);
       return parent && parent.type === type;
     });
@@ -179,7 +173,6 @@ class RichTextArea extends WixComponent {
   };
 
   handleMarkButtonClick = type => {
-    console.log(this.state.editorValue, this.state.editorValue.marks.has);
     const editorValue = this.state.editorValue
       .change()
       .toggleMark(type);
@@ -314,7 +307,6 @@ class RichTextArea extends WixComponent {
     });
     const isScrollable = resizable || this.props.maxHeight;
 
-    // console.log(editorValue.fragment);
     return (
       <div className={className} data-hook={dataHook}>
         <div className={classNames(styles.toolbar, {[styles.disabled]: disabled})} data-hook='toolbar'>
@@ -323,7 +315,7 @@ class RichTextArea extends WixComponent {
               activeToolbarButton prop required to trigger RichTextEditorToolbar re-render after toolbar button click
             */
             activeToolbarButton={this.state.activeToolbarButton}
-            selection={editorValue.selection}
+            selection={editorValue.fragment.text}
             disabled={disabled}
             onClick={this.handleButtonClick}
             onLinkButtonClick={this.handleLinkButtonClick}
