@@ -15,8 +15,6 @@
 .hoverSlot.notOnHover {}
 .placeholderIcon {}
 
-:global(.rtl) {
-  tr .actionsContainer .placeholderIcon svg {
-    transform: scaleX(-1);
-  }
+:global(.rtl) tr .actionsContainer .placeholderIcon svg {
+  transform: scaleX(-1);
 }
