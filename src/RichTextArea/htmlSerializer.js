@@ -37,23 +37,23 @@ const rules = [
       }
 
       return {
-        kind: 'block',
+        object: 'block',
         type,
         data,
         nodes: next(el.children)
       };
     },
-    serialize(object, children) {
-      if (object.kind !== 'block') {
+    serialize(obj, children) {
+      if (obj.object !== 'block') {
         return;
       }
 
-      switch (object.type) {
+      switch (obj.type) {
         case 'paragraph': return <p>{children}</p>;
         case 'list-item': return <li>{children}</li>;
         case 'ordered-list': return <ol>{children}</ol>;
         case 'unordered-list': return <ul>{children}</ul>;//data-hook="editor-image"
-        case 'image': return <img data-hook="editor-image" src={object.data.get('src')}/>;
+        case 'image': return <img data-hook="editor-image" src={obj.data.get('src')}/>;
         default: return {children};
       }
     }
@@ -66,17 +66,17 @@ const rules = [
       }
 
       return {
-        kind: 'mark',
+        object: 'mark',
         type,
         nodes: next(el.children)
       };
     },
-    serialize(object, children) {
-      if (object.kind !== 'mark') {
+    serialize(obj, children) {
+      if (obj.object !== 'mark') {
         return;
       }
 
-      switch (object.type) {
+      switch (obj.type) {
         case 'bold': return <strong>{children}</strong>;
         case 'italic': return <em>{children}</em>;
         case 'underline': return <u>{children}</u>;
@@ -92,7 +92,7 @@ const rules = [
       }
 
       return {
-        kind: 'inline',
+        object: 'inline',
         type,
         data: {
           href: el.attribs.href
@@ -100,13 +100,13 @@ const rules = [
         nodes: next(el.children)
       };
     },
-    serialize(object, children) {
-      if (object.kind !== 'inline') {
+    serialize(obj, children) {
+      if (obj.object !== 'inline') {
         return;
       }
 
-      switch (object.type) {
-        case 'link': return <a rel="noopener noreferrer" target="_blank" href={object.data.get('href')}>{children}</a>;
+      switch (obj.type) {
+        case 'link': return <a rel="noopener noreferrer" target="_blank" href={obj.data.get('href')}>{children}</a>;
         default: return {children};
       }
     }

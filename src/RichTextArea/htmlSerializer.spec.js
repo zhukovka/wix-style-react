@@ -1,4 +1,5 @@
-import Html from 'slate-html-serializer';
+/*
+import {Value} from 'slate';
 import htmlSerializer from './htmlSerializer';
 
 describe('HTML serializer', () => {
@@ -7,11 +8,11 @@ describe('HTML serializer', () => {
     const expected = {
       nodes: [
         {
-          kind: 'block',
+          object: 'block',
           type: 'paragraph',
           nodes: [
             {
-              kind: 'text',
+              object: 'text',
               ranges: [
                 {
                   text: 'Hello'
@@ -40,25 +41,25 @@ describe('HTML serializer', () => {
           ]
         },
         {
-          kind: 'block',
+          object: 'block',
           type: 'ordered-list',
           nodes: [
             {
-              kind: 'block',
+              object: 'block',
               type: 'list-item',
               nodes: [
                 {
-                  kind: 'text',
+                  object: 'text',
                   text: 'one'
                 }
               ]
             },
             {
-              kind: 'block',
+              object: 'block',
               type: 'list-item',
               nodes: [
                 {
-                  kind: 'text',
+                  object: 'text',
                   text: 'two'
                 }
               ]
@@ -66,31 +67,31 @@ describe('HTML serializer', () => {
           ]
         },
         {
-          kind: 'block',
+          object: 'block',
           type: 'paragraph',
           nodes: [
-            {kind: 'text', text: ''},
+            {object: 'text', text: ''},
             {
-              kind: 'inline',
+              object: 'inline',
               type: 'link',
               data: {
                 href: 'http://localhost'
               },
               nodes: [
                 {
-                  kind: 'text',
+                  object: 'text',
                   text: 'Link to localhost'
                 }
               ]
             },
-            {kind: 'text', text: ''}
+            {object: 'text', text: ''}
           ]
         }
       ]
     };
 
     const deserialized = htmlSerializer.deserialize(text);
-    expect(Html.serialize(deserialized)).toEqual(expected);
+    expect(Value.fromJSON(deserialized)).toEqual(expected);
   });
 
   it('should correctly serialize slate object to HTML string', () => {
@@ -98,25 +99,25 @@ describe('HTML serializer', () => {
     const state = {
       nodes: [
         {
-          kind: 'block',
+          object: 'block',
           type: 'unordered-list',
           nodes: [
             {
-              kind: 'block',
+              object: 'block',
               type: 'list-item',
               nodes: [
                 {
-                  kind: 'text',
+                  object: 'text',
                   text: 'one'
                 }
               ]
             },
             {
-              kind: 'block',
+              object: 'block',
               type: 'list-item',
               nodes: [
                 {
-                  kind: 'text',
+                  object: 'text',
                   text: 'two'
                 }
               ]
@@ -124,11 +125,11 @@ describe('HTML serializer', () => {
           ]
         },
         {
-          kind: 'block',
+          object: 'block',
           type: 'paragraph',
           nodes: [
             {
-              kind: 'text',
+              object: 'text',
               ranges: [
                 {
                   text: 'Text here'
@@ -155,14 +156,14 @@ describe('HTML serializer', () => {
               ]
             },
             {
-              kind: 'inline',
+              object: 'inline',
               type: 'link',
               data: {
                 href: 'http://localhost'
               },
               nodes: [
                 {
-                  kind: 'text',
+                  object: 'text',
                   text: 'Link'
                 }
               ]
@@ -171,7 +172,8 @@ describe('HTML serializer', () => {
         }
       ]
     };
-    const serialized = Html.deserialize(state);
+    const serialized = Value.toJSON(state);
     expect(htmlSerializer.serialize(serialized)).toEqual(expected);
   });
 });
+*/
