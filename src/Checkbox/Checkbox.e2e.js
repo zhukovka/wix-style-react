@@ -29,22 +29,22 @@ describe('Checkbox', () => {
     });
 
     eyes.it('should have default props', async () => {
-      expect(checkboxDriver.hasError()).toBe(false, 'hasError');
-      expect(checkboxDriver.isChecked()).toBe(false, 'isChecked');
-      expect(checkboxDriver.isFocused()).toBe(false, 'isFocused');
-      expect(checkboxDriver.isDisabled()).toBe(false, 'isDisabled');
+      expect(await checkboxDriver.hasError()).toBe(false, 'hasError');
+      expect(await checkboxDriver.isChecked()).toBe(false, 'isChecked');
+      expect(await checkboxDriver.isFocused()).toBe(false, 'isFocused');
+      expect(await checkboxDriver.isDisabled()).toBe(false, 'isDisabled');
     });
 
     eyes.it('should set checked state when clicked', async () => {
-      expect(checkboxDriver.isChecked()).toBe(false);
+      expect(await checkboxDriver.isChecked()).toBe(false);
       await checkboxDriver.click();
-      expect(checkboxDriver.isChecked()).toBe(true);
+      expect(await checkboxDriver.isChecked()).toBe(true);
     });
 
     eyes.it('should show focused styles', async () => {
-      expect(checkboxDriver.isFocused()).toBe(false);
+      expect(await checkboxDriver.isFocused()).toBe(false);
       await clickTab();
-      expect(checkboxDriver.isFocused()).toBe(true);
+      expect(await checkboxDriver.isFocused()).toBe(true);
     });
 
     describe('has error', () => {
@@ -54,14 +54,14 @@ describe('Checkbox', () => {
       });
 
       eyes.it('should show error styles', async () => {
-        expect(checkboxDriver.hasError()).toBe(true);
+        expect(await checkboxDriver.hasError()).toBe(true);
       });
 
       eyes.it('should show focused styles', async () => {
-        expect(checkboxDriver.hasError()).toBe(true);
-        expect(checkboxDriver.isFocused()).toBe(false);
+        expect(await checkboxDriver.hasError()).toBe(true);
+        expect(await checkboxDriver.isFocused()).toBe(false);
         await clickTab();
-        expect(checkboxDriver.isFocused()).toBe(true);
+        expect(await checkboxDriver.isFocused()).toBe(true);
       });
     });
 
@@ -72,14 +72,14 @@ describe('Checkbox', () => {
       });
 
       eyes.it('should be disabled', async () => {
-        expect(checkboxDriver.isDisabled()).toBe(true);
+        expect(await checkboxDriver.isDisabled()).toBe(true);
       });
 
       eyes.it('should not be focusable', async () => {
-        expect(checkboxDriver.isDisabled()).toBe(true);
-        expect(checkboxDriver.isFocused()).toBe(false);
+        expect(await checkboxDriver.isDisabled()).toBe(true);
+        expect(await checkboxDriver.isFocused()).toBe(false);
         await clickTab();
-        expect(checkboxDriver.isFocused()).toBe(false);
+        expect(await checkboxDriver.isFocused()).toBe(false);
       });
     });
   });
