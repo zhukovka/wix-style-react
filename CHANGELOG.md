@@ -28,6 +28,7 @@ Types of changes:
 ### Changed
 - `<ButtonLayout/>` - update typography [#2198](https://github.com/wix/wix-style-react/pull/2198)
 - Technical - remove `PureComponent` from non-pure components [#2160](https://github.com/wix/wix-style-react/pull/2160)
+- <SortableList/> - improve performance of nested d&d [#2227](https://github.com/wix/wix-style-react/pull/2227)
 
 ## Removed
 - Remove dead code `src/Backoffice/ButtonLayout` (was never in use) [#2231](https://github.com/wix/wix-style-react/pull/2231)
