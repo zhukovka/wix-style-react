@@ -15,6 +15,11 @@ Types of changes:
 
 ## Next
 
+## 5.3.1 - 2018-09-16
+
+### Fixed
+- `<TableActionCel>` - Fix bad css syntax [#2243](https://github.com/wix/wix-style-react/pull/2243)
+
 ## 5.3.0 - 2018-09-16
 
 ### Added
