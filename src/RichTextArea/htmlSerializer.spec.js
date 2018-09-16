@@ -1,4 +1,3 @@
-/*
 import {Value} from 'slate';
 import htmlSerializer from './htmlSerializer';
 
@@ -176,4 +175,3 @@ describe('HTML serializer', () => {
     expect(htmlSerializer.serialize(serialized)).toEqual(expected);
   });
 });
-*/
