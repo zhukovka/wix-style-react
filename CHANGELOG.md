@@ -18,6 +18,7 @@ Types of changes:
 ### Fixed
 - Typography Fixes (`< DropdownLayout />`, `<InputArea/>`) and Refactor (convert old Typography usage from `.scss` only) [#2232](https://github.com/wix/wix-style-react/pull/2232)
 - `<Text>` - support dataHook for ellipsed text [#2246](https://github.com/wix/wix-style-react/pull/2246)
+- `<MultiSelect>` - fix testkit tags part [#2248](https://github.com/wix/wix-style-react/pull/2248)
 
 ## 5.3.1 - 2018-09-16
 
