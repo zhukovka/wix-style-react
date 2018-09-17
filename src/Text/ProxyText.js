@@ -8,7 +8,11 @@ import ellipsedStyle from '../common/EllipsedTooltip/EllipsedTooltip.st.css';
 const EllipsedText = withEllipsedTooltip({showTooltip: true})(Text);
 
 const ProxyText = ({ellipsis, ...props}) => ellipsis ?
-  <EllipsedText {...ellipsedStyle('root', {}, props)} {...props}/> :
+  <EllipsedText
+    {...ellipsedStyle('root', {}, props)}
+    {...props}
+    data-hook={props.dataHook || props['data-hook']}
+    /> :
   <Text {...props}/>;
 
 ProxyText.propTypes = {
