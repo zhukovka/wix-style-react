@@ -13,17 +13,13 @@ Types of changes:
 1. **Breaking** for breaking changes
 1. **Docs** for documentation changes
 
-## Next
-
-### Fixed
-- Typography Fixes (`< DropdownLayout />`, `<InputArea/>`) and Refactor (convert old Typography usage from `.scss` only) [#2232](https://github.com/wix/wix-style-react/pull/2232)
-- `<Text>` - support dataHook for ellipsed text [#2246](https://github.com/wix/wix-style-react/pull/2246)
-- `<MultiSelect>` - fix testkit tags part [#2248](https://github.com/wix/wix-style-react/pull/2248)
-
-## 5.3.1 - 2018-09-16
+## 5.3.1 - 2018-09-18
 
 ### Fixed
 - `<TableActionCell>` - Fix bad css syntax [#2243](https://github.com/wix/wix-style-react/pull/2243)
+- `<DropdownLayout/>`, `<InputArea/>` - new typography Fixes [#2232](https://github.com/wix/wix-style-react/pull/2232)
+- `<Text>` - support `dataHook` for ellipsed text [#2246](https://github.com/wix/wix-style-react/pull/2246)
+- `<MultiSelect>` - fix testkit to return correct number of tags [#2248](https://github.com/wix/wix-style-react/pull/2248)
 
 ## 5.3.0 - 2018-09-16
 
@@ -42,7 +38,7 @@ Types of changes:
 - Technical - remove `PureComponent` from non-pure components [#2160](https://github.com/wix/wix-style-react/pull/2160)
 - `<SortableList/>` - improve performance of nested d&d [#2227](https://github.com/wix/wix-style-react/pull/2227)
 
-## Removed
+### Removed
 - Remove dead code `src/Backoffice/ButtonLayout` (was never in use) [#2231](https://github.com/wix/wix-style-react/pull/2231)
 
 ### Docs
