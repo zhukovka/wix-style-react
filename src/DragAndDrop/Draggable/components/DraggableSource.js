@@ -127,10 +127,11 @@ export default class DraggableSource extends React.Component {
   }
 
   _renderPreviewItem() {
-    const {id} = this.props;
+    const {id, usePortal} = this.props;
     return (
       <DragLayer
         offsetOfHandle={this.state.offsetOfHandle}
+        usePortal={usePortal}
         renderPreview={this._renderPreview}
         id={id}
         draggedType={ItemTypes.DRAGGABLE}
@@ -153,6 +154,7 @@ DraggableSource.propTypes = {
   connectDragSource: PropTypes.func, // from react-dnd
   connectDragPreview: PropTypes.func, // from react-dnd
 
+  usePortal: PropTypes.bool,
   groupName: PropTypes.string,
   containerId: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
   renderItem: PropTypes.func,

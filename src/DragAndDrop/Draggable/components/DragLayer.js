@@ -1,4 +1,5 @@
 import * as React from 'react';
+import {Portal} from 'react-portal';
 import PropTypes from 'prop-types';
 import {DragLayer} from 'react-dnd';
 
@@ -30,23 +31,37 @@ const onOffsetChange = monitor => {
 };
 
 class CustomDragLayer extends React.Component {
+  shouldRenderLayer = (props = this.props) => {
+    const {id, item, itemType, draggedType, isDragging} = props;
+    return isDragging && id === item.id && itemType === draggedType;
+  };
+
+  renderPreview = () => {
+    const {offsetOfHandle} = this.props;
+    const styles = Object.assign({}, layerStyles, {left: -offsetOfHandle.x, top: -offsetOfHandle.y});
+    return (
+      <div
+        style={styles}
+        ref={node => dragPreviewRef = node}
+        >
+        {this.props.renderPreview({})}
+      </div>
+    );
+  }
+
+  renderPreviewInPortal = () => {
+    return (
+      <Portal>
+        {this.renderPreview()}
+      </Portal>
+    );
+  }
+
   render() {
-    const {
-      item,
-      itemType,
-      draggedType,
-      isDragging,
-      renderPreview,
-      id,
-      offsetOfHandle
-    } = this.props;
-    const shouldRenderLayer = isDragging && id === item.id && itemType === draggedType;
-    if (!shouldRenderLayer) {
+    if (!this.shouldRenderLayer()) {
       return null;
     }
-    /* if user drag by handle, then we need to move preview item, to show correct position of item during drag */
-    const styles = Object.assign({}, layerStyles, {left: -offsetOfHandle.x, top: -offsetOfHandle.y});
-    return <div style={styles} ref={node => dragPreviewRef = node}>{renderPreview({})}</div>;
+    return this.props.usePortal ? this.renderPreviewInPortal() : this.renderPreview();
   }
 }
 
@@ -57,6 +72,7 @@ CustomDragLayer.propTypes = {
   draggedType: PropTypes.string,
   isDragging: PropTypes.bool,
   renderPreview: PropTypes.func,
+  usePortal: PropTypes.bool,
   id: PropTypes.oneOfType([PropTypes.string, PropTypes.number])
 };
 

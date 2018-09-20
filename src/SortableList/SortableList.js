@@ -118,6 +118,7 @@ export default class SortableList extends WixComponent {
                 item={item}
                 renderItem={this.props.renderItem}
                 withHandle={this.props.withHandle}
+                usePortal={this.props.usePortal}
                 onDrop={this.handleDrop}
                 onDragStart={this.handleDragStart}
                 onDragEnd={this.handleDragEnd}
@@ -135,6 +136,8 @@ SortableList.displayName = 'SortableList';
 
 SortableList.propTypes = {
   ...Draggable.propTypes,
+  /** in case of wrong position of item during drag you can force SortableList to use portals */
+  usePortal: PropTypes.bool,
   /**
     if you are having nested SortableLists,
     list that you are currently dragging need to be marked as dragPreview
