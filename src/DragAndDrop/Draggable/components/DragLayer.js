@@ -37,17 +37,21 @@ class CustomDragLayer extends React.Component {
       draggedType,
       isDragging,
       renderPreview,
-      id
+      id,
+      offsetOfHandle
     } = this.props;
     const shouldRenderLayer = isDragging && id === item.id && itemType === draggedType;
     if (!shouldRenderLayer) {
       return null;
     }
-    return <div style={layerStyles} ref={node => dragPreviewRef = node}>{renderPreview({})}</div>;
+    /* if user drag by handle, then we need to move preview item, to show correct position of item during drag */
+    const styles = Object.assign({}, layerStyles, {left: -offsetOfHandle.x, top: -offsetOfHandle.y});
+    return <div style={styles} ref={node => dragPreviewRef = node}>{renderPreview({})}</div>;
   }
 }
 
 CustomDragLayer.propTypes = {
+  offsetOfHandle: PropTypes.object,
   item: PropTypes.object,
   itemType: PropTypes.string,
   draggedType: PropTypes.string,
@@ -56,9 +60,10 @@ CustomDragLayer.propTypes = {
   id: PropTypes.oneOfType([PropTypes.string, PropTypes.number])
 };
 
-export default DragLayer(monitor => {
+export default DragLayer((monitor, props) => {
   onOffsetChange(monitor);
   return {
+    offsetOfHandle: props.offsetOfHandle,
     item: monitor.getItem(),
     itemType: monitor.getItemType(),
     isDragging: monitor.isDragging()
