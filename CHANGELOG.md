@@ -13,7 +13,7 @@ Types of changes:
 1. **Breaking** for breaking changes
 1. **Docs** for documentation changes
 
-## next
+## 5.3.2 - 2018-09-20
 
 ### Fixed
 - `typography.scss` - Resolve bug with typography import(related to case-sensetive machines) [#2255](https://github.com/wix/wix-style-react/pull/2255)
@@ -32,7 +32,7 @@ Types of changes:
 - `<SideMenu/>` - add `className` prop to the `Header` component [#2223](https://github.com/wix/wix-style-react/pull/2223)
 - `<TableToolbar/>` - add RTL support [#2222](https://github.com/wix/wix-style-react/pull/2222)
 - `<Page/>` - add support to Table infinite scroll inside a Page [#2230](https://github.com/wix/wix-style-react/pull/2230)
- 
+
 ### Fixed
 - `<SectionHelper/>` - add box-sizing to not break styles [#2202](https://github.com/wix/wix-style-react/pull/2202)
 - `<Tooltip/>` - fix tooltip jumping [#2225](https://github.com/wix/wix-style-react/pull/2225)
