@@ -13,6 +13,11 @@ Types of changes:
 1. **Breaking** for breaking changes
 1. **Docs** for documentation changes
 
+## next
+
+### Fixed
+- `typography.scss` - Resolve bug with typography import(related to case-sensetive machines) [#2255](https://github.com/wix/wix-style-react/pull/2255)
+
 ## 5.3.1 - 2018-09-18
 
 ### Fixed
