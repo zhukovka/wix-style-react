@@ -13,6 +13,12 @@ Types of changes:
 1. **Breaking** for breaking changes
 1. **Docs** for documentation changes
 
+## Next
+### Fixed
+- `<Table/>` - fix broken `<TableToolbar/>` docs and `<TableActionCell/>` RTL [#2224](https://github.com/wix/wix-style-react/pull/2224)
+- `<SideMenu/>` - support `dataHook` prop [#2256](https://github.com/wix/wix-style-react/pull/2256)
+- Polyfills - fix `raf` not setting all methods on the global variable [#2258](https://github.com/wix/wix-style-react/pull/2258)
+
 ## 5.3.2 - 2018-09-20
 
 ### Fixed
