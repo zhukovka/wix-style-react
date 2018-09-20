@@ -365,7 +365,7 @@ class RichTextArea extends WixComponent {
         return <strong {...attributes}>{children}</strong>;
       case 'italic':
         return <em {...attributes}>{children}</em>;
-      case 'underlined':
+      case 'underline':
         return <u {...attributes}>{children}</u>;
     }
   }
