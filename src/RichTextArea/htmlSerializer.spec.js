@@ -1,4 +1,4 @@
-import {Value, Document} from 'slate';
+import {Document} from 'slate';
 import htmlSerializer from './htmlSerializer';
 
 describe('HTML serializer', () => {
