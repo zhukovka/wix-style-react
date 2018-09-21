@@ -1,4 +1,5 @@
 import React from 'react';
+import ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
 import {DragSource} from 'react-dnd';
 import {getEmptyImage} from 'react-dnd-html5-backend';
@@ -10,7 +11,10 @@ import {ItemTypes} from './../types';
 /* eslint-disable new-cap */
 
 const source = {
-  beginDrag: ({id, index, containerId, groupName, item, onMoveOut}) => {
+  beginDrag: ({id, index, containerId, groupName, item, onMoveOut, onDragStart}) => {
+    if (onDragStart) {
+      onDragStart();
+    }
     /** we setup monitor.getItem() snapshot, so we will be always able to get info about item that we drag */
     return {
       id,
@@ -25,8 +29,11 @@ const source = {
       }
     };
   },
-  endDrag: ({index, containerId, onDrop}, monitor) => {
+  endDrag: ({index, containerId, onDrop, onDragEnd}, monitor) => {
     /** if drop was called, on drop target and drag is end, then we notify parent about this */
+    if (onDragEnd) {
+      onDragEnd();
+    }
     if (monitor.getDropResult()) {
       onDrop({
         payload: monitor.getItem().originalItem, // original item
@@ -53,9 +60,32 @@ const collect = (connect, monitor) => ({
 
 @DragSource(ItemTypes.DRAGGABLE, source, collect)
 export default class DraggableSource extends React.Component {
+  state = {
+    offsetOfHandle: {x: 0, y: 0}
+  }
+
   componentDidMount() {
     if (this.props.connectDragPreview) {
       this.props.connectDragPreview(getEmptyImage(), {captureDraggingState: true});
+    }
+    this.updateDiff();
+  }
+
+  componentDidUpdate(prevProps) {
+    if (prevProps.id !== this.props.id || prevProps.containerId !== this.props.containerId) {
+      this.updateDiff();
+    }
+  }
+
+  updateDiff() {
+    /* in case if we have handle, the drag will start in wrong position and we need to fix this */
+    if (this.props.withHandle && this.handleNode) {
+      this.setState({
+        offsetOfHandle: {
+          x: this.handleNode.getBoundingClientRect().x - this.rootNode.getBoundingClientRect().x,
+          y: this.handleNode.getBoundingClientRect().y - this.rootNode.getBoundingClientRect().y
+        }
+      });
     }
   }
 
@@ -66,7 +96,12 @@ export default class DraggableSource extends React.Component {
         id,
         item,
         isPlaceholder: isDragging,
-        connectHandle: handle => connectDragSource(handle)
+        connectHandle: handle => {
+          const handleWithRef = React.cloneElement(handle, {
+            ref: node => this.handleNode = ReactDOM.findDOMNode(node)
+          });
+          return connectDragSource(handleWithRef);
+        }
       });
     }
 
@@ -92,9 +127,11 @@ export default class DraggableSource extends React.Component {
   }
 
   _renderPreviewItem() {
-    const {id} = this.props;
+    const {id, usePortal} = this.props;
     return (
       <DragLayer
+        offsetOfHandle={this.state.offsetOfHandle}
+        usePortal={usePortal}
         renderPreview={this._renderPreview}
         id={id}
         draggedType={ItemTypes.DRAGGABLE}
@@ -105,7 +142,7 @@ export default class DraggableSource extends React.Component {
   render() {
     const {connectDragSource} = this.props;
     return connectDragSource ?
-      <div>
+      <div ref={node => this.rootNode = node}>
         {this._renderDraggableItem()}
         {this._renderPreviewItem()}
       </div> : null;
@@ -117,6 +154,7 @@ DraggableSource.propTypes = {
   connectDragSource: PropTypes.func, // from react-dnd
   connectDragPreview: PropTypes.func, // from react-dnd
 
+  usePortal: PropTypes.bool,
   groupName: PropTypes.string,
   containerId: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
   renderItem: PropTypes.func,
@@ -125,6 +163,8 @@ DraggableSource.propTypes = {
   item: PropTypes.object,
   withHandle: PropTypes.bool,
   onDrop: PropTypes.func,
-  onMoveOut: PropTypes.func
+  onMoveOut: PropTypes.func,
+  onDragStart: PropTypes.func,
+  onDragEnd: PropTypes.func
 };
 

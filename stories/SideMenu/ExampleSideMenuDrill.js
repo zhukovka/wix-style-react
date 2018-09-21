@@ -175,7 +175,7 @@ class ExampleSideMenuDrill extends React.Component {
     return (
       <div style={{width: 220, height: 700, display: 'flex'}}>
         <div style={{display: 'flex', flexGrow: 1}}>
-          <SideMenuDrill inFlex stickyFooter={this.renderFooter()}>
+          <SideMenuDrill inFlex stickyFooter={this.renderFooter()} dataHook="side-menu">
             {this.renderHeader()}
             {this.renderNavigation(items)}
             <SideMenu.Promotion>

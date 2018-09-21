@@ -47,6 +47,20 @@ export default class SortableList extends WixComponent {
     });
   };
 
+  handleDragStart = () => {
+    console.log('start');
+    if (this.props.onDragStart) {
+      this.props.onDragStart();
+    }
+  }
+
+  handleDragEnd = () => {
+    console.log('end');
+    if (this.props.onDragEnd) {
+      this.props.onDragEnd();
+    }
+  }
+
   renderPreview() {
     const {className, contentClassName, renderItem} = this.props;
     return (
@@ -104,7 +118,10 @@ export default class SortableList extends WixComponent {
                 item={item}
                 renderItem={this.props.renderItem}
                 withHandle={this.props.withHandle}
+                usePortal={this.props.usePortal}
                 onDrop={this.handleDrop}
+                onDragStart={this.handleDragStart}
+                onDragEnd={this.handleDragEnd}
                 />
             ))
           }
@@ -119,6 +136,8 @@ SortableList.displayName = 'SortableList';
 
 SortableList.propTypes = {
   ...Draggable.propTypes,
+  /** in case of wrong position of item during drag you can force SortableList to use portals */
+  usePortal: PropTypes.bool,
   /**
     if you are having nested SortableLists,
     list that you are currently dragging need to be marked as dragPreview
@@ -127,6 +146,10 @@ SortableList.propTypes = {
   dragPreview: PropTypes.bool,
   /** list of items with {id: any} */
   items: PropTypes.array,
+  /** callback for drag start */
+  onDragStart: PropTypes.func,
+  /** callback for drag end */
+  onDragEnd: PropTypes.func,
   /** className of the root container */
   className: PropTypes.string,
   /** className of the first items parent container */

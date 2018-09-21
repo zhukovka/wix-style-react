@@ -3,7 +3,6 @@ import ReactTestUtils from 'react-dom/test-utils';
 import inputWithOptionsDriverFactory from '../InputWithOptions/InputWithOptions.driver';
 import tagDriverFactory from '../Tag/Tag.driver';
 import ReactDOM from 'react-dom';
-import initial from 'lodash/initial';
 
 const multiSelectDriverFactory = ({element, wrapper, component}) => {
 
@@ -11,7 +10,7 @@ const multiSelectDriverFactory = ({element, wrapper, component}) => {
 
   const inputWrapper = driver.inputWrapper().childNodes[0];
 
-  const tags = initial(inputWrapper.childNodes);
+  const tags = [...inputWrapper.querySelectorAll('[data-hook="tag"]')];
 
   const multiSelectDriver = Object.assign(driver, {
     getMaxHeight: () => inputWrapper.style.maxHeight,

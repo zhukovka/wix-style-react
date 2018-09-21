@@ -265,14 +265,39 @@ describe('Tooltip', () => {
       });
     });
 
-    ['top', 'bottom', 'left', 'right'].forEach(placement => {
-      it(`should be ${placement}`, () => {
-        const driver = createDriver(<Tooltip {...{..._props}} placement={placement}>{children}</Tooltip>);
-        driver.mouseEnter();
+    it(`should be bottom`, () => {
+      const driver = createDriver(<Tooltip {...{..._props}} placement="bottom">{children}</Tooltip>);
+      driver.mouseEnter();
 
-        return resolveIn(30).then(() => {
-          expect(driver.getPlacement()).toBe(placement);
-        });
+      return resolveIn(30).then(() => {
+        expect(driver.getPlacement()).toBe('bottom');
+      });
+    });
+
+    it(`should be top`, () => {
+      const driver = createDriver(<Tooltip {...{..._props}} placement="top">{children}</Tooltip>);
+      driver.mouseEnter();
+
+      return resolveIn(30).then(() => {
+        expect(driver.getPlacement()).toBe('top');
+      });
+    });
+
+    it(`should be left`, () => {
+      const driver = createDriver(<Tooltip {...{..._props}} placement="left">{children}</Tooltip>);
+      driver.mouseEnter();
+
+      return resolveIn(30).then(() => {
+        expect(driver.getPlacement()).toBe('left');
+      });
+    });
+
+    it(`should be right`, () => {
+      const driver = createDriver(<Tooltip {...{..._props}} placement="right">{children}</Tooltip>);
+      driver.mouseEnter();
+
+      return resolveIn(30).then(() => {
+        expect(driver.getPlacement()).toBe('right');
       });
     });
   });
@@ -362,6 +387,30 @@ describe('Tooltip', () => {
       driver.mouseEnter();
       return resolveIn(30).then(() => {
         expect(driver.hasArrow()).toBeFalsy();
+      });
+    });
+  });
+
+  describe('popover', () => {
+    it('should show a tooltip on click', () => {
+      const driver = createDriver(<Tooltip popover {..._props}>{children}</Tooltip>);
+      driver.click();
+      expect(driver.isShown()).toBeFalsy();
+      return resolveIn(30).then(() => {
+        expect(driver.isShown()).toBeTruthy();
+      });
+    });
+
+    it('should hide a tooltip on click', () => {
+      const driver = createDriver(<Tooltip popover {..._props}>{children}</Tooltip>);
+      driver.click();
+      expect(driver.isShown()).toBeFalsy();
+      return resolveIn(30).then(() => {
+        expect(driver.isShown()).toBeTruthy();
+        driver.click();
+        return resolveIn(30).then(() => {
+          expect(driver.isShown()).toBeFalsy();
+        });
       });
     });
   });

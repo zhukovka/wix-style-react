@@ -6,7 +6,7 @@ import {
   Item,
   Title,
   SelectedCount
-} from 'wix-style-react/Table/Toolbar';
+} from 'wix-style-react/TableToolbar';
 
 import TableActionCell from 'wix-style-react/TableActionCell';
 import Card from 'wix-style-react/Card';

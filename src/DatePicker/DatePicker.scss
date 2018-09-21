@@ -1,11 +1,14 @@
-@import '../common.scss';
+@import '../Tooltip/common.scss';
 
 .root {
   display: inline-block;
 }
 
-.calendarRoot {
+.date-picker-calendar {
   z-index: 1;
+  :global .DayPicker {
+    @include popoverTheme;
+  }
 }
 
 .icon {

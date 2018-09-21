@@ -8,7 +8,7 @@ import {
   Label,
   SelectedCount,
   Divider
-} from 'wix-style-react/Table/Toolbar';
+} from 'wix-style-react/TableToolbar';
 
 import Search from 'wix-style-react/Search';
 import Dropdown from 'wix-style-react/Dropdown';
@@ -106,4 +106,3 @@ const BulkActionsToolbar = props => (
   </TableToolbar>
 );
 BulkActionsToolbar.propTypes = TableContextPropTypes;
-

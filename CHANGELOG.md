@@ -14,12 +14,33 @@ Types of changes:
 1. **Docs** for documentation changes
 
 ## Next
+### Fixed
+- `<Calendar/>` - remove shadow and border-radius from component [#2205](https://github.com/wix/wix-style-react/pull/2205)
+- `<Tooltip/>` - add popover prop [#2205](https://github.com/wix/wix-style-react/pull/2205)
+- `<Table/>` - fix broken `<TableToolbar/>` docs and `<TableActionCell/>` RTL [#2224](https://github.com/wix/wix-style-react/pull/2224)
+- `<SideMenu/>` - support `dataHook` prop [#2256](https://github.com/wix/wix-style-react/pull/2256)
+- Polyfills - fix `raf` not setting all methods on the global variable [#2258](https://github.com/wix/wix-style-react/pull/2258)
+
+## 5.3.2 - 2018-09-20
+
+### Fixed
+- `typography.scss` - Resolve bug with typography import(related to case-sensetive machines) [#2255](https://github.com/wix/wix-style-react/pull/2255)
+
+## 5.3.1 - 2018-09-18
+
+### Fixed
+- `<TableActionCell>` - Fix bad css syntax [#2243](https://github.com/wix/wix-style-react/pull/2243)
+- `<DropdownLayout/>`, `<InputArea/>` - new typography Fixes [#2232](https://github.com/wix/wix-style-react/pull/2232)
+- `<Text>` - support `dataHook` for ellipsed text [#2246](https://github.com/wix/wix-style-react/pull/2246)
+- `<MultiSelect>` - fix testkit to return correct number of tags [#2248](https://github.com/wix/wix-style-react/pull/2248)
+
+## 5.3.0 - 2018-09-16
 
 ### Added
 - `<SideMenu/>` - add `className` prop to the `Header` component [#2223](https://github.com/wix/wix-style-react/pull/2223)
 - `<TableToolbar/>` - add RTL support [#2222](https://github.com/wix/wix-style-react/pull/2222)
 - `<Page/>` - add support to Table infinite scroll inside a Page [#2230](https://github.com/wix/wix-style-react/pull/2230)
- 
+
 ### Fixed
 - `<SectionHelper/>` - add box-sizing to not break styles [#2202](https://github.com/wix/wix-style-react/pull/2202)
 - `<Tooltip/>` - fix tooltip jumping [#2225](https://github.com/wix/wix-style-react/pull/2225)
@@ -28,8 +49,9 @@ Types of changes:
 ### Changed
 - `<ButtonLayout/>` - update typography [#2198](https://github.com/wix/wix-style-react/pull/2198)
 - Technical - remove `PureComponent` from non-pure components [#2160](https://github.com/wix/wix-style-react/pull/2160)
+- `<SortableList/>` - improve performance of nested d&d [#2227](https://github.com/wix/wix-style-react/pull/2227)
 
-## Removed
+### Removed
 - Remove dead code `src/Backoffice/ButtonLayout` (was never in use) [#2231](https://github.com/wix/wix-style-react/pull/2231)
 
 ### Docs
