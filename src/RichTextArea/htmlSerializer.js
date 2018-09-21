@@ -22,7 +22,7 @@ const INLINE_TAGS = {
 const rules = [
   {
     deserialize(el, next) {
-      const type = BLOCK_TAGS[el.tagName];
+      const type = BLOCK_TAGS[el.tagName.toLowerCase()];
       if (!type) {
         return;
       }
@@ -30,7 +30,7 @@ const rules = [
       const data = {};
       switch (type) {
         case 'image': {
-          data.src = el.attribs.src;
+          data.src = el.getAttribute('src');
           break;
         }
         default: break;
@@ -40,7 +40,7 @@ const rules = [
         object: 'block',
         type,
         data,
-        nodes: next(el.children)
+        nodes: next(el.childNodes)
       };
     },
     serialize(obj, children) {
@@ -60,7 +60,7 @@ const rules = [
   },
   {
     deserialize(el, next) {
-      const type = MARK_TAGS[el.tagName];
+      const type = MARK_TAGS[el.tagName.toLowerCase()];
       if (!type) {
         return;
       }
@@ -68,7 +68,7 @@ const rules = [
       return {
         object: 'mark',
         type,
-        nodes: next(el.children)
+        nodes: next(el.childNodes)
       };
     },
     serialize(obj, children) {
@@ -86,7 +86,7 @@ const rules = [
   },
   {
     deserialize(el, next) {
-      const type = INLINE_TAGS[el.tagName];
+      const type = INLINE_TAGS[el.tagName.toLowerCase()];
       if (!type) {
         return;
       }
@@ -95,9 +95,9 @@ const rules = [
         object: 'inline',
         type,
         data: {
-          href: el.attribs.href
+          href: el.getAttribute('href')
         },
-        nodes: next(el.children)
+        nodes: next(el.childNodes)
       };
     },
     serialize(obj, children) {

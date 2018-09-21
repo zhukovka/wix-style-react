@@ -21,6 +21,30 @@ const defaultBlock = {
   key: 'defaultBlock'
 };
 
+// function normalizeNodePlugin() {
+//   return {
+//     normalizeNode(node) {
+//       const {nodes} = node;
+//
+//       if (node.object === 'document') {
+//         const lastNode = nodes.last();
+//         // if (!nodes.size) {
+//         if (lastNode) {
+//           const block = Block.create(defaultBlock);
+//           return change => {
+//             if (change.value.schema.isVoid(lastNode)) {
+//               console.log(change.value.schema.isVoid(lastNode));
+//               change.insertNodeByKey(node.key, nodes.size, block);
+//             }
+//           };
+//         }
+//       }
+//       return;
+//     }
+//   };
+// }
+// const plugins = [normalizeNodePlugin()];
+
 /*
   here we are checking is link absolute(if it contain 'https' or http or '//')
   and if it not absolute, then we add '//' at the beginning of it,
@@ -42,24 +66,82 @@ class RichTextArea extends WixComponent {
     value: PropTypes.string,
     onChange: PropTypes.func,
     onImageRequest: PropTypes.func
-  }
+  };
 
   static defaultProps = {
     absoluteLinks: false,
     errorMessage: '',
     value: '<p></p>'
-  }
+  };
 
   /* eslint-disable react/prop-types */
   schema = {
+    document: {
+      // nodes: [
+      //   {match: {type: 'image'}, min: 1, max: 1, isVoid: true}
+      // ],
+      nodes: [
+        {min: 1}
+      ],
+      // last: {type: 'paragraph'},
+      // isVoid: true,
+      // normalize: (change, error) => {
+      //   console.log(change, error);
+      //   const block = Block.create(defaultBlock);
+      //   change.insertNodeByKey(error.key, 0, block);
+      // },
+      normalize: (change, error) => {
+        // const {code, node, child, index} = error;
+        const {code, node} = error;
+        console.log(code);
+        switch (code) {
+          case 'child_required': {
+            const block = Block.create(defaultBlock);
+            return change.insertNodeByKey(node.key, 0, block);
+          }
+          // case 'last_child_type_invalid': {
+          //   const block = Block.create(defaultBlock);
+          //   return change.insertNodeByKey(node.key, node.nodes.size, block);
+          // }
+          default: {
+            return;
+          }
+        }
+      }
+    },
+    blocks: {
+      image: {
+        isVoid: true,
+        parent: {object: 'document'},
+        next: [
+          {type: 'paragraph'},
+        ],
+        normalize: (change, error) => {
+          const {code, node} = error;
+          console.log(code);
+          switch (code) {
+            case 'child_required': {
+              const block = Block.create(defaultBlock);
+              return change.insertNodeByKey(node.key, 0, block);
+            }
+            default: {
+              return;
+            }
+          }
+        }
+      }
+    }
+    /*
     rules: [
       // Rule to insert a paragraph block if the document is empty.
       {
         match: {object: 'document'},
-        nodes: [{min: 1}],
+        nodes: [{max: 0}],
         normalize: (change, error) => {
+          console.log('rule1');
+          const {node} = error;
           const block = Block.create(defaultBlock);
-          change.insertNodeByKey(error.key, 0, block);
+          change.insertNodeByKey(node.key, 0, block);
         }
       },
       // Rule to insert a paragraph below a void node (the image) if that node is
@@ -68,11 +150,14 @@ class RichTextArea extends WixComponent {
         match: {object: 'document'},
         last: {isVoid: true},
         normalize: (change, error) => {
+          console.log('rule2');
+          const {node} = error;
           const block = Block.create(defaultBlock);
-          change.insertNodeByKey(error.key, error.nodes.size, block);
+          change.insertNodeByKey(node.key, node.nodes.size, block);
         }
       }
     ]
+    */
   };
   /* eslint-disable */
 
@@ -109,7 +194,7 @@ class RichTextArea extends WixComponent {
       editorValue = editorValue.value;
     }
     this.setState({editorValue}, () => this.triggerChange(isTextChanged));
-  };
+  }
 
   triggerChange(isTextChanged = true) {
     const serialized = htmlSerializer.serialize(this.state.editorValue);
@@ -128,14 +213,15 @@ class RichTextArea extends WixComponent {
       const parent = editorValue.document.getParent(node.key);
       return parent && parent.type === type;
     });
-  };
+  }
 
   hasMark = type => this.state.editorValue.marks.has(mark => mark.type == type);
 
   hasLink = () => this.state.editorValue.inlines.has(inline => inline.type === 'link');
 
   handleButtonClick = (action, type) => {
-    this.setState({activeToolbarButton: type})
+    this.setState({activeToolbarButton: type});
+
     switch (action) {
       case 'mark':
         return this.handleMarkButtonClick(type);
@@ -146,7 +232,7 @@ class RichTextArea extends WixComponent {
       case 'image':
         return this.handleImageButtonClick(type);
     }
-  };
+  }
 
   handleMarkButtonClick = type => {
     const editorValue = this.state.editorValue
@@ -154,7 +240,7 @@ class RichTextArea extends WixComponent {
       .toggleMark(type);
 
     this.setEditorValue(editorValue);
-  };
+  }
 
   handleImageButtonClick = type => {
     this.props.onImageRequest(this.handleImageInput.bind(this));
@@ -166,6 +252,7 @@ class RichTextArea extends WixComponent {
       this.setEditorValue(editorValue);
     }
   }
+
   onPaste = (e, change, editor) => {
     const {data} = e;
     switch (data.type) {
@@ -173,17 +260,17 @@ class RichTextArea extends WixComponent {
     }
   }
 
-  onPasteText = (text, state) => {
+  onPasteText = (text, value) => {
     if (this.isValidImage(text)) {
-      return this.insertImage(state, text);
+      return this.insertImage(value, text);
     }
     return;
   }
 
   isValidImage = (text) => isUrl(text) && isImage(text);
 
-  insertImage = (state, src) => {
-    return state
+  insertImage = (value, src) => {
+    return value
       .change()
       .insertBlock({
         type: 'image',
@@ -240,7 +327,7 @@ class RichTextArea extends WixComponent {
 
     editorValue = transform;
     this.setEditorValue(editorValue);
-  };
+  }
 
   handleLinkButtonClick = ({href, text} = {}) => {
     const {editorValue} = this.state;
@@ -272,7 +359,7 @@ class RichTextArea extends WixComponent {
     }
 
     this.setEditorValue(transform);
-  };
+  }
 
   render() {
     const {editorValue} = this.state;
@@ -328,7 +415,7 @@ class RichTextArea extends WixComponent {
                 const serialized = htmlSerializer.serialize(change.value);
                 const isValueChanged = serialized !== this.lastValue;
                 this.lastValue = serialized;
-                this.setEditorValue(change.value, isValueChanged)
+                this.setEditorValue(change, isValueChanged)
               }
             }/>
           {this.renderError()}
@@ -349,7 +436,7 @@ class RichTextArea extends WixComponent {
         const {data} = props.node;
         const href = data.get('href');
         return <a className={styles.link} {...props.attributes} rel="noopener noreferrer" target="_blank" href={href}>{props.children}</a>;
-      case 'img':
+      case 'image':
         const {node, isFocused} = props;
         // const isFocused = value.selection.hasEdgeIn(node);
         const src = node.data.get('src');
@@ -385,7 +472,7 @@ class RichTextArea extends WixComponent {
         <div className={styles.exclamation}><FormFieldError/></div>
       </Tooltip>
     );
-  };
+  }
 }
 
 export default RichTextArea;
