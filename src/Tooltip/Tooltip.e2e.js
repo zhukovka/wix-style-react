@@ -37,6 +37,19 @@ describe('Tooltip', () => {
             });
         });
     });
+
+    eyes.it('should show tooltip in popover mode', async () => {
+      const EC = protractor.ExpectedConditions;
+      const driver = tooltipTestkitFactory({dataHook});
+      await driver.element().$('[data-hook="popover-button"]').click();
+      eyes.checkWindow('Check tooltip with popover styles');
+      await waitForVisibilityOf(driver.getTooltipContentElement(tooltipDataHook), 'Cannot find Tooltip content');
+      await driver.element().$(`[data-hook="tooltip-anchor"]`).click();
+      await browser.wait(EC.not(EC.presenceOf(driver.getTooltipContentElement(tooltipDataHook))));
+      eyes.checkWindow('Check that we do not have tooltip content');
+      await driver.element().$(`[data-hook="tooltip-anchor"]`).click();
+      await waitForVisibilityOf(driver.getTooltipContentElement(tooltipDataHook), 'Cannot find Tooltip content');
+    });
   });
 
   describe('Popover story', () => {

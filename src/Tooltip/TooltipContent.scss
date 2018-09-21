@@ -1,3 +1,4 @@
+@import './common.scss';
 @import '../common.scss';
 
 .root {
@@ -5,17 +6,43 @@
   z-index: 2000;
 }
 
+@mixin arrow($side, $color) {
+  @if $side == 'right' {
+    border-top: 5px solid $color;
+    border-left: 5px solid transparent;
+    border-bottom: 5px solid transparent;
+    border-right: 5px solid $color;
+  }
+  @if $side == 'left' {
+    border-top: 5px solid transparent;
+    border-left: 5px solid $color;
+    border-bottom: 5px solid $color;
+    border-right: 5px solid transparent;
+  }
+  @if $side == 'top' {
+    border-top: 5px solid $color;
+    border-left: 5px solid $color;
+    border-bottom: 5px solid transparent;
+    border-right: 5px solid transparent;
+  }
+  @if $side == 'bottom' {
+    border-bottom: 5px solid $color;
+    border-right: 5px solid $color;
+    border-top: 5px solid transparent;
+    border-left: 5px solid transparent;
+  }
+}
+
 .tooltip {
   @include FontRoman;
+  @include popoverTheme;
 
   position: relative;
   display: inline-block;
-  border-radius: 8px;
   padding: 12px 24px;
   box-sizing: border-box;
   font-size: 14px;
   line-height: 1.29;
-  box-shadow: $Shadow30;
 
   word-wrap: break-word;
   -webkit-font-smoothing: antialiased;
@@ -48,6 +75,13 @@
   }
 }
 
+.popover-tooltip-content {
+  overflow: hidden;
+  word-wrap: normal;
+  vertical-align: top;
+  padding: 0;
+}
+
 .arrow {
   $arrow-size: 10px;
   $shadow-color-arrow: rgba(0, 0, 0, .1);
@@ -62,6 +96,49 @@
   transform: rotateZ(45deg);
   background: inherit;
 
+  box-sizing: border-box;
+  background: transparent;
+
+
+  &.light.top {
+    @include arrow('top', $D80)
+  }
+  &.light.bottom {
+    @include arrow('bottom', $D80)
+  }
+  &.light.right {
+    @include arrow('right', $D80)
+  }
+  &.light.left {
+    @include arrow('left', $D80)
+  }
+
+  &.dark.top {
+    @include arrow('top', $D10)
+  }
+  &.dark.bottom {
+    @include arrow('bottom', $D10)
+  }
+  &.dark.right {
+    @include arrow('right', $D10)
+  }
+  &.dark.left {
+    @include arrow('left', $D10)
+  }
+
+  &.error.top {
+    @include arrow('top', $R00)
+  }
+  &.error.bottom {
+    @include arrow('bottom', $R00)
+  }
+  &.error.right {
+    @include arrow('right', $R00)
+  }
+  &.error.left {
+    @include arrow('left', $R00)
+  }
+
   &.bottom,
   &.top {
     left: 50%;
@@ -69,12 +146,12 @@
   }
 
   &.bottom {
-    bottom: -4px;
+    bottom: -5px;
     box-shadow: $arrowBottomShadow;
   }
 
   &.top {
-    top: -4px;
+    top: -5px;
     box-shadow: $arrowTopShadow;
   }
 

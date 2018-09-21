@@ -13,6 +13,13 @@ const renderSubtreeIntoContainer = ReactDOM.unstable_renderSubtreeIntoContainer;
 //maintain a 60fps rendering
 const createAThrottledOptimizedFunction = cb => () => window.requestAnimationFrame(throttle(cb, 16));
 
+const popoverConfig = {
+  contentClassName: styles.popoverTooltipContent,
+  theme: 'light',
+  showTrigger: 'click',
+  hideTrigger: 'click'
+};
+
 /** A Tooltip component */
 class Tooltip extends WixComponent {
   static displayName = 'Tooltip';
@@ -32,6 +39,9 @@ class Tooltip extends WixComponent {
     active: PropTypes.bool,
     bounce: PropTypes.bool,
     disabled: PropTypes.bool,
+
+    /** Apply popover styles and even triggers */
+    popover: PropTypes.bool,
 
     /** The tooltip max width  */
     maxWidth: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
@@ -187,12 +197,12 @@ class Tooltip extends WixComponent {
   componentWillReceiveProps(nextProps) {
     super.componentWillReceiveProps && super.componentWillReceiveProps(nextProps);
     if (nextProps.active !== this.props.active || nextProps.disabled !== this.props.disabled) {
-      if (this.state.visible && this.props.hideTrigger === 'custom') {
+      if (this.state.visible && this.getTriggers().hideTrigger === 'custom') {
         if (!nextProps.active || nextProps.disabled) {
           this.hide(nextProps);
         }
       }
-      if (!this.state.visible && this.props.showTrigger === 'custom') {
+      if (!this.state.visible && this.getTriggers().showTrigger === 'custom') {
         if (nextProps.active && !nextProps.disabled) {
           this.show(nextProps);
         }
@@ -200,12 +210,24 @@ class Tooltip extends WixComponent {
     }
   }
 
+  getTriggers() {
+    return {
+      hideTrigger: this.props.popover ? 'click' : this.props.hideTrigger,
+      showTrigger: this.props.popover ? 'click' : this.props.showTrigger
+    };
+  }
+
   renderTooltipIntoContainer = () => {
     if (this._mountNode && this.state.visible) {
+      const contentClassName = this.props.popover ? popoverConfig.contentClassName : '';
+      const theme = this.props.popover ? popoverConfig.theme : this.props.theme;
+
       const arrowPlacement = {top: 'bottom', left: 'right', right: 'left', bottom: 'top'};
+      console.log(this.props.placement, 'what we send');
       const position = this.props.relative ? 'relative' : 'absolute';
       const tooltip = (
         <TooltipContent
+          contentClassName={contentClassName}
           onMouseEnter={() => this._onTooltipContentEnter()}
           onMouseLeave={() => this._onTooltipContentLeave()}
           ref={ref => {
@@ -216,13 +238,13 @@ class Tooltip extends WixComponent {
             }
           }}
           showImmediately={this.props.showImmediately}
-          theme={this.props.theme}
+          theme={theme}
           bounce={this.props.bounce}
           arrowPlacement={arrowPlacement[this.props.placement]}
           style={{zIndex: this.props.zIndex, position}}
-          padding={this.props.padding}
           arrowStyle={this.state.arrowStyle}
           maxWidth={this.props.maxWidth}
+          padding={this.props.padding}
           minWidth={this.props.minWidth}
           size={this.props.size}
           textAlign={this.props.textAlign}
@@ -381,9 +403,9 @@ class Tooltip extends WixComponent {
   }
 
   _hideOrShow(event) {
-    if (this.props.hideTrigger === event && !this.state.hidden) {
+    if (this.getTriggers().hideTrigger === event && !this.state.hidden) {
       this.hide();
-    } else if (this.props.showTrigger === event) {
+    } else if (this.getTriggers().showTrigger === event) {
       this.show();
     }
   }
@@ -503,14 +525,14 @@ class Tooltip extends WixComponent {
   }
 
   _onTooltipContentEnter() {
-    if (this.props.showTrigger === 'custom') {
+    if (this.getTriggers().showTrigger === 'custom') {
       return;
     }
     this.show();
   }
 
   _onTooltipContentLeave() {
-    if (this.props.hideTrigger === 'custom') {
+    if (this.getTriggers().hideTrigger === 'custom') {
       return;
     }
     this._onMouseLeave();
