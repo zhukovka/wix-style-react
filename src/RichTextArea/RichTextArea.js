@@ -114,7 +114,7 @@ class RichTextArea extends WixComponent {
         isVoid: true,
         parent: {object: 'document'},
         next: [
-          {type: 'paragraph'},
+          {type: 'paragraph'}
         ],
         normalize: (change, error) => {
           const {code, node} = error;
