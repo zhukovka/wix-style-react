@@ -15,6 +15,8 @@ Types of changes:
 
 ## Next
 ### Fixed
+- `<Calendar/>` - remove shadow and border-radius from component [#2205](https://github.com/wix/wix-style-react/pull/2205)
+- `<Tooltip/>` - add popover prop [#2205](https://github.com/wix/wix-style-react/pull/2205)
 - `<Table/>` - fix broken `<TableToolbar/>` docs and `<TableActionCell/>` RTL [#2224](https://github.com/wix/wix-style-react/pull/2224)
 - `<SideMenu/>` - support `dataHook` prop [#2256](https://github.com/wix/wix-style-react/pull/2256)
 - Polyfills - fix `raf` not setting all methods on the global variable [#2258](https://github.com/wix/wix-style-react/pull/2258)
