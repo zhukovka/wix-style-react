@@ -44,6 +44,7 @@ const rules = [
       };
     },
     serialize(obj, children) {
+      console.log(obj);
       if (obj.object !== 'block') {
         return;
       }
@@ -72,6 +73,7 @@ const rules = [
       };
     },
     serialize(obj, children) {
+      console.log(obj);
       if (obj.object !== 'mark') {
         return;
       }
@@ -101,6 +103,7 @@ const rules = [
       };
     },
     serialize(obj, children) {
+      console.log(obj);
       if (obj.object !== 'inline') {
         return;
       }

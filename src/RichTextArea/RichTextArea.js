@@ -76,6 +76,7 @@ class RichTextArea extends WixComponent {
 
   /* eslint-disable react/prop-types */
   schema = {
+    /*
     document: {
       // nodes: [
       //   {match: {type: 'image'}, min: 1, max: 1, isVoid: true}
@@ -131,19 +132,19 @@ class RichTextArea extends WixComponent {
         }
       }
     }
-    /*
+    */
     rules: [
       // Rule to insert a paragraph block if the document is empty.
       {
         match: {object: 'document'},
-        nodes: [{max: 0}],
+        nodes: [{min: 1}],
         normalize: (change, error) => {
-          console.log('rule1');
           const {node} = error;
           const block = Block.create(defaultBlock);
           change.insertNodeByKey(node.key, 0, block);
         }
-      },
+      }
+      /*
       // Rule to insert a paragraph below a void node (the image) if that node is
       // the last one in the document.
       {
@@ -156,8 +157,8 @@ class RichTextArea extends WixComponent {
           change.insertNodeByKey(node.key, node.nodes.size, block);
         }
       }
+      */
     ]
-    */
   };
   /* eslint-disable */
 
@@ -176,6 +177,7 @@ class RichTextArea extends WixComponent {
     const isValueChanged = props.value && props.value !== this.props.value && props.value !== this.lastValue;
     if (isPlaceholderChanged || isValueChanged) {
       if (props.isAppend) {
+        console.log(props.value);
         const newEditorValue = this.state.editorValue
               .change()
               .insertText(props.value);
@@ -403,7 +405,6 @@ class RichTextArea extends WixComponent {
           <Editor
             readOnly={disabled}
             placeholder={placeholder}
-            placeholderClassName={styles.placeholder}
             className={classNames(styles.editor, {[styles.disabled]: disabled})}
             schema={this.schema}
             value={editorValue}
@@ -412,10 +413,12 @@ class RichTextArea extends WixComponent {
             renderMark={this.renderMark}
             onChange={change =>
               {
+                console.log('first');
                 const serialized = htmlSerializer.serialize(change.value);
+                console.log('second', this.props.value, serialized);
                 const isValueChanged = serialized !== this.lastValue;
                 this.lastValue = serialized;
-                this.setEditorValue(change, isValueChanged)
+                this.setEditorValue(change, isValueChanged);
               }
             }/>
           {this.renderError()}
