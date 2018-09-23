@@ -143,8 +143,7 @@ class RichTextArea extends WixComponent {
           const block = Block.create(defaultBlock);
           change.insertNodeByKey(node.key, 0, block);
         }
-      }
-      /*
+      },
       // Rule to insert a paragraph below a void node (the image) if that node is
       // the last one in the document.
       {
@@ -157,7 +156,6 @@ class RichTextArea extends WixComponent {
           change.insertNodeByKey(node.key, node.nodes.size, block);
         }
       }
-      */
     ]
   };
   /* eslint-disable */
