@@ -9,7 +9,7 @@ import Tooltip from '../Tooltip';
 import RichTextEditorToolbar from './RichTextAreaToolbar';
 import htmlSerializer from './htmlSerializer';
 import styles from './RichTextArea.scss';
-import isImage from 'is-image';
+import imageExtensions from 'image-extensions';
 import isUrl from 'is-url';
 
 const DEFAULT_NODE = 'paragraph';
@@ -20,6 +20,10 @@ const DEFAULT_NODE = 'paragraph';
 //   data: {},
 //   key: 'defaultBlock'
 // };
+
+function isImage(url) {
+  return !!imageExtensions.find(url.endsWith);
+}
 
 /*
   here we are checking is link absolute(if it contain 'https' or http or '//')
