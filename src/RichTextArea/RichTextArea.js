@@ -14,12 +14,12 @@ import isUrl from 'is-url';
 
 const DEFAULT_NODE = 'paragraph';
 
-// const defaultBlock = {
-//   type: 'paragraph',
-//   isVoid: false,
-//   data: {},
-//   key: 'defaultBlock'
-// };
+const defaultBlock = {
+  type: 'paragraph',
+  isVoid: false,
+  data: {},
+  key: 'defaultBlock'
+};
 
 /*
   here we are checking is link absolute(if it contain 'https' or http or '//')
@@ -57,8 +57,8 @@ class RichTextArea extends WixComponent {
       normalize: (change, {code, node}) => {
         switch (code) {
           case 'last_child_type_invalid': {
-            const paragraph = Block.create(DEFAULT_NODE);
-            return change.insertNodeByKey(node.key, node.nodes.size, paragraph);
+            const block = Block.create(defaultBlock);
+            return change.insertNodeByKey(node.key, node.nodes.size, block);
           }
           default:
             return;
@@ -327,7 +327,7 @@ class RichTextArea extends WixComponent {
         </div>
       </div>
     );
-  };
+  }
 
   renderNode(props) {
     switch (props.node.type) {
