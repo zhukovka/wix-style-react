@@ -55,7 +55,6 @@ class RichTextArea extends WixComponent {
     document: {
       last: {type: 'paragraph'},
       normalize: (change, {code, node}) => {
-        console.log(node);
         switch (code) {
           case 'last_child_type_invalid': {
             const paragraph = Block.create(DEFAULT_NODE);
@@ -156,7 +155,7 @@ class RichTextArea extends WixComponent {
   }
 
   handleImageButtonClick = type => {
-    this.props.onImageRequest(this.handleImageInput.bind(this));
+    this.props.onImageRequest(this.handleImageInput);
   }
 
   handleImageInput = text => {
@@ -257,18 +256,11 @@ class RichTextArea extends WixComponent {
       const startPos = editorValue.anchorOffset;
       transform
         .insertText(linkContent)
-        // .select({
-        //   anchorOffset: startPos,
-        //   focusOffset: startPos + linkContent.length,
-        //   isFocused: true,
-        //   isBackward: false,
-        // })
         .moveFocusBackward(linkContent.length)
         .wrapInline({
           type: 'link',
           data: {href: decoratedHref}
         })
-        // .focus()
         .moveToEnd();
     }
 
@@ -337,7 +329,7 @@ class RichTextArea extends WixComponent {
     );
   };
 
-  renderNode = props => {
+  renderNode(props) {
     switch (props.node.type) {
       case 'unordered-list':
         return <ul {...props.attributes}>{props.children}</ul>;
@@ -350,7 +342,6 @@ class RichTextArea extends WixComponent {
         const href = data.get('href');
         return <a className={styles.link} {...props.attributes} rel="noopener noreferrer" target="_blank" href={href}>{props.children}</a>;
       case 'image':
-        console.log('props', props);
         const {node, isFocused} = props;
         // const isFocused = value.selection.hasEdgeIn(node);
         const src = node.data.get('src');
@@ -358,7 +349,7 @@ class RichTextArea extends WixComponent {
     }
   }
 
-  renderMark = props => {
+  renderMark(props) {
     const {attributes, children, mark} = props;
 
     switch (mark.type) {
@@ -371,7 +362,7 @@ class RichTextArea extends WixComponent {
     }
   }
 
-  renderError = () => {
+  renderError() {
     const {errorMessage} = this.props;
 
     return (
