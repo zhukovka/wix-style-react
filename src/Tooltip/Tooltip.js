@@ -420,7 +420,7 @@ class Tooltip extends WixComponent {
 
   _onClick(event) {
     this._hideOrShow('click');
-    event.stopPropagation();
+    event && event.stopPropagation();
   }
 
   _onMouseEnter() {

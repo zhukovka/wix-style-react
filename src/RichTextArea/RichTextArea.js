@@ -4,7 +4,7 @@ import classNames from 'classnames';
 import FormFieldError from 'wix-ui-icons-common/system/FormFieldError';
 import WixComponent from '../BaseComponents/WixComponent';
 import {Block} from 'slate';
-import {Editor} from 'slate-react';
+import {Editor, getEventRange, getEventTransfer} from 'slate-react';
 import Tooltip from '../Tooltip';
 import RichTextEditorToolbar from './RichTextAreaToolbar';
 import htmlSerializer from './htmlSerializer';
@@ -14,53 +14,12 @@ import isUrl from 'is-url';
 
 const DEFAULT_NODE = 'paragraph';
 
-const defaultBlock = {
-  type: 'paragraph',
-  isVoid: false,
-  data: {},
-  key: 'defaultBlock'
-};
-
-function normalizeEmptyDocument() {
-  return {
-    validateNode(node) {
-      console.log('node.object', node.object);
-      if (node.object === 'document') {
-        if (node.nodes.size === 0) {
-          return true;
-        }
-      }
-      return false;
-    },
-    normalizeNode(node) {
-      return change => {
-        const block = Block.create(defaultBlock);
-        change.insertNodeByKey(node.key, 0, block);
-      };
-    }
-  };
-}
-function normalizeImage() {
-  return {
-    validateNode(node) {
-      console.log('node.object22', node.object);
-      if (node.object === 'document') {
-        const lastNode = node.nodes.last();
-        if (lastNode && lastNode.isVoid) {
-          return true;
-        }
-      }
-      return false;
-    },
-    normalizeNode(node) {
-      return change => {
-        const block = Block.create(defaultBlock);
-        change.insertNodeByKey(node.key, node.nodes.size, block);
-      };
-    }
-  };
-}
-const plugins = [normalizeEmptyDocument(), normalizeImage()];
+// const defaultBlock = {
+//   type: 'paragraph',
+//   isVoid: false,
+//   data: {},
+//   key: 'defaultBlock'
+// };
 
 /*
   here we are checking is link absolute(if it contain 'https' or http or '//')
@@ -93,94 +52,25 @@ class RichTextArea extends WixComponent {
 
   /* eslint-disable react/prop-types */
   schema = {
-    /*
     document: {
-      // nodes: [
-      //   {match: {type: 'image'}, min: 1, max: 1, isVoid: true}
-      // ],
-      nodes: [
-        {min: 1}
-      ],
-      // last: {type: 'paragraph'},
-      // isVoid: true,
-      // normalize: (change, error) => {
-      //   console.log(change, error);
-      //   const block = Block.create(defaultBlock);
-      //   change.insertNodeByKey(error.key, 0, block);
-      // },
-      normalize: (change, error) => {
-        // const {code, node, child, index} = error;
-        const {code, node} = error;
-        console.log(code);
+      last: {type: 'paragraph'},
+      normalize: (change, {code, node}) => {
+        console.log(node);
         switch (code) {
-          case 'child_required': {
-            const block = Block.create(defaultBlock);
-            return change.insertNodeByKey(node.key, 0, block);
+          case 'last_child_type_invalid': {
+            const paragraph = Block.create(DEFAULT_NODE);
+            return change.insertNodeByKey(node.key, node.nodes.size, paragraph);
           }
-          // case 'last_child_type_invalid': {
-          //   const block = Block.create(defaultBlock);
-          //   return change.insertNodeByKey(node.key, node.nodes.size, block);
-          // }
-          default: {
+          default:
             return;
-          }
         }
       }
     },
     blocks: {
       image: {
-        isVoid: true,
-        parent: {object: 'document'},
-        next: [
-          {type: 'paragraph'}
-        ],
-        normalize: (change, error) => {
-          const {code, node} = error;
-          console.log(code);
-          switch (code) {
-            case 'child_required': {
-              const block = Block.create(defaultBlock);
-              return change.insertNodeByKey(node.key, 0, block);
-            }
-            default: {
-              return;
-            }
-          }
-        }
-      }
-    }
-    */
-    blocks: {
-      image: {
         isVoid: true
       }
     }
-    /*
-    rules: [
-      // Rule to insert a paragraph block if the document is empty.
-      {
-        match: {object: 'document'},
-        nodes: [{min: 1}],
-        normalize: (change, error) => {
-          const {node} = error;
-          const block = Block.create(defaultBlock);
-          change.insertNodeByKey(node.key, 0, block);
-        }
-      },
-      // Rule to insert a paragraph below a void node (the image) if that node is
-      // the last one in the document.
-      {
-        match: {object: 'document'},
-        last: {isVoid: true},
-        normalize: (change, error) => {
-          console.log('rule2');
-          const {node} = error;
-          const block = Block.create(defaultBlock);
-          change.insertNodeByKey(node.key, node.nodes.size, block);
-        }
-      }
-    ]
-    */
   };
   /* eslint-disable */
 
@@ -271,36 +161,37 @@ class RichTextArea extends WixComponent {
 
   handleImageInput = text => {
     if (this.isValidImage(text)) {
-      const editorValue = this.insertImage(this.state.editorValue, text);
+      const editorValue = this.state.editorValue
+        .change()
+        .insertBlock({
+          type: 'image',
+          data: { src: text }
+        });
+
       this.setEditorValue(editorValue);
     }
   }
 
   onPaste = (e, change, editor) => {
-    const {data} = e;
-    switch (data.type) {
-      case 'text': return this.onPasteText(data.text, change.value)
-    }
-  }
+    const target = getEventRange(event, change.value);
+    if (!target && event.type == 'drop') return;
 
-  onPasteText = (text, value) => {
-    if (this.isValidImage(text)) {
-      return this.insertImage(value, text);
+    const transfer = getEventTransfer(event)
+    const { type, text, files } = transfer;
+
+    switch (type) {
+      case 'text':
+        if (this.isValidImage(text)) {
+          change
+            .insertBlock({
+              type: 'image',
+              data: { src: text }
+            });
+        }
     }
-    return;
   }
 
   isValidImage = (text) => isUrl(text) && isImage(text);
-
-  insertImage = (value, src) => {
-    return value
-      .change()
-      .insertBlock({
-        type: 'image',
-        isVoid: true,
-        data: { src }
-      });
-  }
 
   handleBlockButtonClick = type => {
     let {editorValue} = this.state;
@@ -393,7 +284,6 @@ class RichTextArea extends WixComponent {
     });
     const isScrollable = resizable || this.props.maxHeight;
 
-    console.log(plugins.length);
     return (
       <div className={className} data-hook={dataHook}>
         <div className={classNames(styles.toolbar, {[styles.disabled]: disabled})} data-hook='toolbar'>
@@ -430,7 +320,6 @@ class RichTextArea extends WixComponent {
             className={classNames(styles.editor, {[styles.disabled]: disabled})}
             schema={this.schema}
             value={editorValue}
-            plugins={plugins}
             onPaste={this.onPaste}
             renderNode={this.renderNode}
             renderMark={this.renderMark}
@@ -461,6 +350,7 @@ class RichTextArea extends WixComponent {
         const href = data.get('href');
         return <a className={styles.link} {...props.attributes} rel="noopener noreferrer" target="_blank" href={href}>{props.children}</a>;
       case 'image':
+        console.log('props', props);
         const {node, isFocused} = props;
         // const isFocused = value.selection.hasEdgeIn(node);
         const src = node.data.get('src');

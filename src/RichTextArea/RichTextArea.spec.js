@@ -50,7 +50,6 @@ describe('RichTextArea', () => {
     const driver = createComponent();
     const text = 'testing';
     driver.enterText(text);
-    console.log('currentValue', currentValue);
     expect(currentValue).toBe(`<p>${text}</p>`);
   });
 
