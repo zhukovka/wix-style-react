@@ -2,9 +2,9 @@ import inputWithOptionsDriverFactory from '../InputWithOptions/InputWithOptions.
 
 const multiSelectDriverFactory = component => ({
   ...inputWithOptionsDriverFactory(component),
-  addTag: () => {
-    component.click();
-    component.$('[data-hook^="dropdown-item"]:first-of-type').click();
+  addTag: async () => {
+    await component.click();
+    await component.$('[data-hook^="dropdown-item"]:first-of-type').click();
   },
   element: () => component,
   getHeight: () => {

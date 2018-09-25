@@ -83,6 +83,6 @@
   
 }
 
-.hasHover {
+.hasHover:not(.hasFocus) {
   background: $B50;
 }
