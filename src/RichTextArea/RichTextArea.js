@@ -21,29 +21,46 @@ const defaultBlock = {
   key: 'defaultBlock'
 };
 
-// function normalizeNodePlugin() {
-//   return {
-//     normalizeNode(node) {
-//       const {nodes} = node;
-//
-//       if (node.object === 'document') {
-//         const lastNode = nodes.last();
-//         // if (!nodes.size) {
-//         if (lastNode) {
-//           const block = Block.create(defaultBlock);
-//           return change => {
-//             if (change.value.schema.isVoid(lastNode)) {
-//               console.log(change.value.schema.isVoid(lastNode));
-//               change.insertNodeByKey(node.key, nodes.size, block);
-//             }
-//           };
-//         }
-//       }
-//       return;
-//     }
-//   };
-// }
-// const plugins = [normalizeNodePlugin()];
+function normalizeEmptyDocument() {
+  return {
+    validateNode(node) {
+      console.log('node.object', node.object);
+      if (node.object === 'document') {
+        if (node.nodes.size === 0) {
+          return true;
+        }
+      }
+      return false;
+    },
+    normalizeNode(node) {
+      return change => {
+        const block = Block.create(defaultBlock);
+        change.insertNodeByKey(node.key, 0, block);
+      };
+    }
+  };
+}
+function normalizeImage() {
+  return {
+    validateNode(node) {
+      console.log('node.object22', node.object);
+      if (node.object === 'document') {
+        const lastNode = node.nodes.last();
+        if (lastNode && lastNode.isVoid) {
+          return true;
+        }
+      }
+      return false;
+    },
+    normalizeNode(node) {
+      return change => {
+        const block = Block.create(defaultBlock);
+        change.insertNodeByKey(node.key, node.nodes.size, block);
+      };
+    }
+  };
+}
+const plugins = [normalizeEmptyDocument(), normalizeImage()];
 
 /*
   here we are checking is link absolute(if it contain 'https' or http or '//')
@@ -133,6 +150,12 @@ class RichTextArea extends WixComponent {
       }
     }
     */
+    blocks: {
+      image: {
+        isVoid: true
+      }
+    }
+    /*
     rules: [
       // Rule to insert a paragraph block if the document is empty.
       {
@@ -157,6 +180,7 @@ class RichTextArea extends WixComponent {
         }
       }
     ]
+    */
   };
   /* eslint-disable */
 
@@ -175,7 +199,6 @@ class RichTextArea extends WixComponent {
     const isValueChanged = props.value && props.value !== this.props.value && props.value !== this.lastValue;
     if (isPlaceholderChanged || isValueChanged) {
       if (props.isAppend) {
-        console.log(props.value);
         const newEditorValue = this.state.editorValue
               .change()
               .insertText(props.value);
@@ -205,19 +228,19 @@ class RichTextArea extends WixComponent {
     }
   }
 
-  hasBlock = type => this.state.editorValue.blocks.has(node => node.type == type);
+  hasBlock = type => this.state.editorValue.blocks.some(node => node.type == type);
 
   hasListBlock = type => {
     const {editorValue} = this.state;
-    return editorValue.blocks.has(node => {
+    return editorValue.blocks.some(node => {
       const parent = editorValue.document.getParent(node.key);
       return parent && parent.type === type;
     });
   }
 
-  hasMark = type => this.state.editorValue.marks.has(mark => mark.type == type);
+  hasMark = type => this.state.editorValue.activeMarks.some(mark => mark.type == type);
 
-  hasLink = () => this.state.editorValue.inlines.has(inline => inline.type === 'link');
+  hasLink = () => this.state.editorValue.inlines.some(inline => inline.type === 'link');
 
   handleButtonClick = (action, type) => {
     this.setState({activeToolbarButton: type});
@@ -325,8 +348,7 @@ class RichTextArea extends WixComponent {
       }
     }
 
-    editorValue = transform;
-    this.setEditorValue(editorValue);
+    this.setEditorValue(transform);
   }
 
   handleLinkButtonClick = ({href, text} = {}) => {
@@ -344,17 +366,18 @@ class RichTextArea extends WixComponent {
       const startPos = editorValue.anchorOffset;
       transform
         .insertText(linkContent)
-        .select({
-          anchorOffset: startPos,
-          focusOffset: startPos + linkContent.length,
-          isFocused: true,
-          isBackward: false,
-        })
+        // .select({
+        //   anchorOffset: startPos,
+        //   focusOffset: startPos + linkContent.length,
+        //   isFocused: true,
+        //   isBackward: false,
+        // })
+        .moveFocusBackward(linkContent.length)
         .wrapInline({
           type: 'link',
           data: {href: decoratedHref}
         })
-        .focus()
+        // .focus()
         .moveToEnd();
     }
 
@@ -370,6 +393,7 @@ class RichTextArea extends WixComponent {
     });
     const isScrollable = resizable || this.props.maxHeight;
 
+    console.log(plugins.length);
     return (
       <div className={className} data-hook={dataHook}>
         <div className={classNames(styles.toolbar, {[styles.disabled]: disabled})} data-hook='toolbar'>
@@ -406,14 +430,13 @@ class RichTextArea extends WixComponent {
             className={classNames(styles.editor, {[styles.disabled]: disabled})}
             schema={this.schema}
             value={editorValue}
+            plugins={plugins}
             onPaste={this.onPaste}
             renderNode={this.renderNode}
             renderMark={this.renderMark}
             onChange={change =>
               {
-                console.log('first');
                 const serialized = htmlSerializer.serialize(change.value);
-                console.log('second', this.props.value, serialized);
                 const isValueChanged = serialized !== this.lastValue;
                 this.lastValue = serialized;
                 this.setEditorValue(change, isValueChanged);
