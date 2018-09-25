@@ -71,15 +71,15 @@ export default class Tooltip extends WixComponent {
   }
 
   componentElements() {
-    return [this.refs.target.children[0], this.refs.content.children[0]];
+    return [this.target.children[0], this.content.children[0]];
   }
 
   componentDidMount() {
     super.componentDidMount();
 
     const {placement} = this.state;
-    const target = this.refs.target.children[0];
-    const content = this.refs.content.children[0];
+    const target = this.target.children[0];
+    const content = this.content.children[0];
 
     this.popper = new Popper(target, content, {
       placement,
@@ -299,10 +299,10 @@ export default class Tooltip extends WixComponent {
 
     return (
       <div className={styles.root} style={targetStyle}>
-        <div ref="target" data-hook="target" className="targetWrapper">
+        <div ref={r => this.target = r} data-hook="target" className="targetWrapper">
           {clonedTarget}
         </div>
-        <div ref="content">
+        <div ref={r => this.content = r}>
           <div
             className={classNames(styles.tooltip, {
               [styles.active]: active

@@ -111,7 +111,7 @@ export default class Search extends WixComponent {
 
   _onWrapperClick = () => {
     if (this.props.expandable && this.state.collapsed) {
-      this.refs.searchInput.input.focus();
+      this.searchInput.input.focus();
       this.setState({collapsed: false});
     }
   };
@@ -139,7 +139,7 @@ export default class Search extends WixComponent {
       <div className={wrapperClasses} onClick={this._onWrapperClick} onMouseDown={this._onWrapperMouseDown}>
         <InputWithOptions
           {...this.props}
-          ref="searchInput"
+          ref={r => this.searchInput = r}
           roundInput
           prefix={<div className={styles.leftIcon}><SearchIcon/></div>}
           menuArrow={false}
