@@ -14,6 +14,11 @@ Types of changes:
 1. **Docs** for documentation changes
 
 ## Next
+
+### Changed
+
+- `<InputWithTags/>` - fix focus background color [#2245](https://github.com/wix/wix-style-react/pull/2245)
+
 ### Fixed
 - `<Calendar/>` - remove shadow and border-radius from component [#2205](https://github.com/wix/wix-style-react/pull/2205)
 - `<Tooltip/>` - add popover prop [#2205](https://github.com/wix/wix-style-react/pull/2205)

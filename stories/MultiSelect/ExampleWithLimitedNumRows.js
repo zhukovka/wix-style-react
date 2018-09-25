@@ -47,7 +47,7 @@ class ExampleWithLimitedNumRows extends React.Component {
     return (
       <div className={styles.main}>
         <MultiSelect
-          dataHook="multi-select"
+          dataHook="multi-select-limited"
           tags={this.state.tags}
           maxNumRows={2}
           onSelect={this.handleOnSelect}

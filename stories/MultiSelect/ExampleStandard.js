@@ -48,6 +48,7 @@ class ExampleStandard extends React.Component {
       <div>
         <div className={styles.main}>
           <MultiSelect
+            dataHook="multi-select-standard"
             tags={this.state.tags}
             onSelect={this.handleOnSelect}
             onRemoveTag={this.handleOnRemoveTag}
