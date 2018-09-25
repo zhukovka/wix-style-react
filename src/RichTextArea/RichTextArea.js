@@ -194,7 +194,7 @@ class RichTextArea extends WixComponent {
 
   handleBlockButtonClick = type => {
     let {editorValue} = this.state;
-    let transform = editorValue.change();
+    let change = editorValue.change();
     const {document} = editorValue;
 
     // Handle everything but list buttons.
@@ -203,14 +203,14 @@ class RichTextArea extends WixComponent {
       const isList = this.hasBlock('list-item');
 
       if (isList) {
-        transform
+        change
           .setBlocks(isActive ? '' : type)
           .unwrapBlock('unordered-list')
           .unwrapBlock('ordered-list');
       }
 
       else {
-        transform
+        change
           .setBlocks(isActive ? '' : type);
       }
     }
@@ -223,38 +223,38 @@ class RichTextArea extends WixComponent {
       });
 
       if (isList && isType) {
-        transform
+        change
           .setBlocks(DEFAULT_NODE)
           .unwrapBlock('unordered-list')
           .unwrapBlock('ordered-list');
       } else if (isList) {
-        transform
+        change
           .unwrapBlock(type == 'unordered-list' ? 'ordered-list' : 'unordered-list')
           .wrapBlock(type);
       } else {
-        transform
+        change
           .setBlocks('list-item')
           .wrapBlock(type);
       }
     }
 
-    this.setEditorValue(transform);
+    this.setEditorValue(change);
   }
 
   handleLinkButtonClick = ({href, text} = {}) => {
     const {editorValue} = this.state;
-    const transform = editorValue.change();
+    const change = editorValue.change();
     const decoratedHref = this.props.absoluteLinks
       ? makeHrefAbsolute(href)
       : href;
 
     if (this.hasLink()) {
-      transform
+      change
         .unwrapInline('link');
     } else {
       const linkContent = text || decoratedHref;
       const startPos = editorValue.anchorOffset;
-      transform
+      change
         .insertText(linkContent)
         .moveFocusBackward(linkContent.length)
         .wrapInline({
@@ -264,7 +264,7 @@ class RichTextArea extends WixComponent {
         .moveToEnd();
     }
 
-    this.setEditorValue(transform);
+    this.setEditorValue(change);
   }
 
   render() {
