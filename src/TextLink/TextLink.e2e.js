@@ -11,7 +11,7 @@ describe('TextLink', () => {
   beforeAll(() => browser.get(storyUrl));
 
   beforeEach(async () => {
-    autoExampleDriver.reset();
+    await autoExampleDriver.reset();
     await waitForVisibilityOf(driver.element(), 'Cannot find TextLink component');
   });
 
@@ -20,7 +20,7 @@ describe('TextLink', () => {
   });
 
   eyes.it('should show underline on hover', async () => {
-    driver.hover();
+    await driver.hover();
   });
 
   eyes.it('should render prefix & sufix', async () => {

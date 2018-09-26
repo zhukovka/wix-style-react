@@ -190,7 +190,9 @@ class InputWithOptions extends WixComponent {
 
     if (isSelectedOption) {
       this.setState({showOptions: false});
-    } else if (onSelect) {
+    }
+
+    if (onSelect) {
       onSelect(this.props.highlight ? this.props.options.find(opt => opt.id === option.id) : option);
     }
   }
