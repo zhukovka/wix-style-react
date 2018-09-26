@@ -80,7 +80,7 @@
   &.error {
     @include FocusBoxError;
   }
-  
+
 }
 
 .hasHover:not(.hasFocus) {
