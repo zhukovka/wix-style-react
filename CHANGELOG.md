@@ -13,7 +13,7 @@ Types of changes:
 1. **Breaking** for breaking changes
 1. **Docs** for documentation changes
 
-## Next
+## 5.3.3 - 2018-09-26
 
 ### Changed
 - `<InputWithTags/>` - fix focus background color [#2245](https://github.com/wix/wix-style-react/pull/2245)
