@@ -16,10 +16,10 @@ Types of changes:
 ## Next
 
 ### Changed
-
 - `<InputWithTags/>` - fix focus background color [#2245](https://github.com/wix/wix-style-react/pull/2245)
 
 ### Fixed
+- `<Tags/>` - input box should not have hover color after being focused [#2264](https://github.com/wix/wix-style-react/pull/2264)
 - `<Calendar/>` - remove shadow and border-radius from component [#2205](https://github.com/wix/wix-style-react/pull/2205)
 - `<Tooltip/>` - add popover prop [#2205](https://github.com/wix/wix-style-react/pull/2205)
 - `<Table/>` - fix broken `<TableToolbar/>` docs and `<TableActionCell/>` RTL [#2224](https://github.com/wix/wix-style-react/pull/2224)
