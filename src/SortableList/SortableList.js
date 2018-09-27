@@ -48,14 +48,12 @@ export default class SortableList extends WixComponent {
   };
 
   handleDragStart = () => {
-    console.log('start');
     if (this.props.onDragStart) {
       this.props.onDragStart();
     }
   }
 
   handleDragEnd = () => {
-    console.log('end');
     if (this.props.onDragEnd) {
       this.props.onDragEnd();
     }

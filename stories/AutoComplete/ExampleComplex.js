@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 import React from 'react';
 import AutoComplete from 'wix-style-react/AutoComplete';
 

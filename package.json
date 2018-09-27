@@ -213,7 +213,8 @@
         {
           "SwitchCase": 1
         }
-      ]
+      ],
+      "no-console": "error"
     }
   }
 }

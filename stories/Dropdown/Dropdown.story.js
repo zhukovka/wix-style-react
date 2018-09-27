@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 import React from 'react';
 import CodeExample from 'wix-storybook-utils/CodeExample';
 

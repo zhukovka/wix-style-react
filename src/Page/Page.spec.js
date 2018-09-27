@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 import React from 'react';
 import Page from './Page';
 import pageDriverFactory from './Page.driver';

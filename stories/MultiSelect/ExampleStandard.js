@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 import React from 'react';
 import MultiSelect from 'wix-style-react/MultiSelect';
 import styles from './ExampleStandard.scss';
