@@ -13,6 +13,11 @@ Types of changes:
 1. **Breaking** for breaking changes
 1. **Docs** for documentation changes
 
+## 5.3.4 - 2018-09-27
+
+### Fixed
+- `<Tooltip/>` remove console.log spam [#2273](https://github.com/wix/wix-style-react/pull/2273))
+
 ## 5.3.3 - 2018-09-26
 
 ### Changed
