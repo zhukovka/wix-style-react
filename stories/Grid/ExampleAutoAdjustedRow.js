@@ -1,6 +1,7 @@
 import React from 'react';
 
 import {Container, AutoAdjustedRow} from 'wix-style-react/Grid';
+import Button from 'wix-style-react/Button';
 import Card from 'wix-style-react/Card';
 import Tooltip from 'wix-style-react/Tooltip';
 
@@ -9,11 +10,22 @@ export default () =>
     <Container>
       <AutoAdjustedRow>
         <Card stretchVertically>
-          <Card.ButtonHeader
-            tooltip={<Tooltip placement="top" alignment="center" content="Hi there!"/>}
+          <Card.Header
             title="Stretched Card 1"
-            buttonOnClick={() => alert('Clicked!')}
-            buttonTitle="Tooltip button!"
+            suffix={
+              <Tooltip
+                placement="top"
+                alignment="center"
+                content="Hi there!"
+                >
+                <Button
+                  theme="whiteblueprimary"
+                  onClick={() => alert('Clicked!')}
+                  >
+                    Tooltip button!
+                </Button>
+              </Tooltip>
+            }
             />
           <Card.Content>
             Here comes some AMAZING content that will blow your mind.
@@ -22,11 +34,22 @@ export default () =>
         </Card>
 
         <Card stretchVertically>
-          <Card.ButtonHeader
-            tooltip={<Tooltip placement="top" alignment="center" content="Hi there!"/>}
+          <Card.Header
             title="Stretched Card 2"
-            buttonOnClick={() => alert('Clicked!')}
-            buttonTitle="Tooltip button!"
+            suffix={
+              <Tooltip
+                placement="top"
+                alignment="center"
+                content="Hi there!"
+                >
+                <Button
+                  theme="whiteblueprimary"
+                  onClick={() => alert('Clicked!')}
+                  >
+                  Tooltip button!
+                </Button>
+              </Tooltip>
+            }
             />
         </Card>
       </AutoAdjustedRow>
