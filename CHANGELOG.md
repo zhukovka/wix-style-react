@@ -14,6 +14,10 @@ Types of changes:
 1. **Docs** for documentation changes
 
 ## Next
+
+### Added
+- `<MultiSelect/>` - support reorderable tags(d&d) [#2233](https://github.com/wix/wix-style-react/pull/2233)
+
 ### Fixed
 - `<Tooltip/>` and `<Search/>` - refactor old refs usage [#2269](https://github.com/wix/wix-style-react/pull/2269)
 
