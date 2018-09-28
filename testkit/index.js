@@ -103,7 +103,9 @@ import rangeDriverFactory from '../src/Range/Range.driver';
 export const rangeTestkitFactory = testkitFactoryCreator(rangeDriverFactory);
 
 import fieldWithSelectionCompositeDriverFactory from '../src/Composite/FieldWithSelectionComposite/FieldWithSelectionComposite.driver';
-export const fieldWithSelectionCompositeTestkitFactory = testkitFactoryCreator(fieldWithSelectionCompositeDriverFactory);
+export const fieldWithSelectionCompositeTestkitFactory = testkitFactoryCreator(
+  fieldWithSelectionCompositeDriverFactory
+);
 
 import googleAddressWithInputDriverFactory from '../src/GoogleAddressInputWithLabel/GoogleAddressInputWithLabel.driver';
 export const googleAddressWithInputTestkitFactory = testkitFactoryCreator(googleAddressWithInputDriverFactory);
@@ -130,7 +132,9 @@ import messageBoxFunctionalLayoutDriverFactory from '../src/MessageBox/MessageBo
 export const messageBoxFunctionalLayoutTestkitFactory = testkitFactoryCreator(messageBoxFunctionalLayoutDriverFactory);
 
 import messageBoxMarketerialLayoutDriverFactory from '../src/MessageBox/MessageBoxMarketerialLayout.driver';
-export const messageBoxMarketerialLayoutTestkitFactory = testkitFactoryCreator(messageBoxMarketerialLayoutDriverFactory);
+export const messageBoxMarketerialLayoutTestkitFactory = testkitFactoryCreator(
+  messageBoxMarketerialLayoutDriverFactory
+);
 
 import modalDriverFactory from '../src/Modal/Modal.driver';
 export const modalTestkitFactory = testkitFactoryCreator(modalDriverFactory);
@@ -221,6 +225,9 @@ export const textTestkitFactory = testkitFactoryCreator(textDriverFactory);
 
 import sortableListDriverFactory from '../src/SortableList/SortableList.driver';
 export const sortableListTestkitFactory = testkitFactoryCreator(sortableListDriverFactory);
+
+import paginationDriverFactory from '../src/Pagination/Pagination.driver';
+export const paginationTestkitFactory = testkitFactoryCreator(paginationDriverFactory);
 
 // wix-ui-backoffice proxy
 

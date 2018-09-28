@@ -1,0 +1,61 @@
+:import {
+  -st-from: "wix-ui-core/dist/src/components/Pagination/Pagination.st.css";
+  -st-default: Pagination;
+}
+
+:import {
+  -st-from: "wix-ui-backoffice/dist/src/typography.st.css";
+  -st-named: fontLight;
+}
+
+:import {
+  -st-from: "wix-ui-backoffice/dist/src/colors.st.css";
+  -st-named: B20, B10, D10, D70, WHITE, F00;
+}
+
+.root {
+  -st-extends: Pagination;
+}
+
+.button-common-mixin {
+  align-items: center;
+  justify-content: center;
+  margin: 3px;
+  min-width: 30px;
+  min-height: 30px;
+  font: 14px/18px value(fontLight);
+  text-decoration: none;
+  border-radius: 50%;
+}
+
+.root::pageButton {
+  -st-mixin: button-common-mixin;
+  color: value(D10);
+}
+
+.root::pageButton:hover, .root::navButton:hover {
+  color: value(WHITE);
+  background-color: value(B20);
+}
+
+.root::pageButton:focus, .root::navButton:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px value(F00);
+  border-radius: 50%;
+}
+
+.root::currentPage {
+  -st-mixin: button-common-mixin;
+  color: value(WHITE);
+  background-color: value(B10);
+}
+
+.root::navButton {
+  -st-mixin: button-common-mixin;
+  color: value(B20);
+}
+
+.root::gap {
+  -st-mixin: button-common-mixin;
+  color: value(D10);
+}

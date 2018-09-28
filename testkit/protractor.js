@@ -164,6 +164,9 @@ export const sectionHelperTestkitFactory = protractorTestkitFactoryCreator(secti
 import tagDriverFactory from '../src/Tag/Tag.protractor.driver';
 export const tagTestkitFactory = protractorTestkitFactoryCreator(tagDriverFactory);
 
+import paginationDriverFactory from '../src/Pagination/Pagination.protractor.driver';
+export const paginationTestkitFactory = protractorTestkitFactoryCreator(paginationDriverFactory);
+
 // wix-ui-backoffice proxy
 
 export {
