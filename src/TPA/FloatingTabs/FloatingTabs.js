@@ -25,8 +25,9 @@ class FloatingTabs extends WixComponent {
     activeTabClassName: ''
   };
 
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
+
     this.state = {
       selectedTabIndex: null
     };

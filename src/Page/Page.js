@@ -49,8 +49,8 @@ class Page extends WixComponent {
     gradientCoverTail: true
   }
 
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
 
     this._setContainerScrollTopThreshold(false);
     this._handleScroll = this._handleScroll.bind(this);
