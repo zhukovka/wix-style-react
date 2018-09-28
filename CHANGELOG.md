@@ -13,15 +13,16 @@ Types of changes:
 1. **Breaking** for breaking changes
 1. **Docs** for documentation changes
 
+## Next
+### Fixed
+- `<Tooltip/>` and `<Search/>` - refactor old refs usage [#2269](https://github.com/wix/wix-style-react/pull/2269)
+
 ## 5.3.4 - 2018-09-27
 
 ### Fixed
-- `<Tooltip/>` remove console.log spam [#2273](https://github.com/wix/wix-style-react/pull/2273))
+- `<Tooltip/>` remove redundant `console.log()` calls [#2273](https://github.com/wix/wix-style-react/pull/2273)
 
 ## 5.3.3 - 2018-09-26
-
-### Changed
-- `<InputWithTags/>` - fix focus background color [#2245](https://github.com/wix/wix-style-react/pull/2245)
 
 ### Fixed
 - `<Tags/>` - input box should not have hover color after being focused [#2264](https://github.com/wix/wix-style-react/pull/2264)
