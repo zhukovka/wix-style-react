@@ -9,7 +9,7 @@
 }
 
 :import {
-  -st-from: "wix-ui-backoffice/dist/src/colors.st.css";
+  -st-from: "../colors.st.css";
   -st-named: B20, B10, D10, D70, WHITE, F00;
 }
 
