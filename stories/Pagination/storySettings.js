@@ -1,5 +1,5 @@
 export const storySettings = {
-  kind: '6. Navigation',
-  story: '6.3 Pagination',
+  kind: 'WIP', // 6. Navigation
+  story: 'Pagination', // 6.3 Pagination
   dataHook: 'storybook-pagination'
 };

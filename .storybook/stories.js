@@ -77,7 +77,6 @@ import '../stories/TextLink/index.story.js'; // 5.8 Text Link
 import '../stories/SideMenu'; // 6.1 SideMenu
 import '../stories/Breadcrumbs/index.story.js'; // 6.2 + Breadcrumbs
 import '../stories/Tabs'; // 6.3 Tabs
-import '../stories/Pagination/index.story.js'; // 6.4 Pagination
 
 // 7. Tooltips
 // 7.1 Tooltip, 7.2 Popover, 7.3 Popover Menu
@@ -122,6 +121,7 @@ import '../stories/Layout';
 //WIP
 import '../stories/WIP';
 import '../stories/DragAndDrop/DragAndDrop.js';
+import '../stories/Pagination/index.story.js'; // will go to 6.4 Pagination
 
 // TPA
 import '../stories/TPA/Button';
