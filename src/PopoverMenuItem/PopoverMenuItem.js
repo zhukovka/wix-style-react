@@ -12,17 +12,22 @@ class PopoverMenuItem extends WixComponent {
     icon: PropTypes.node,
     text: PropTypes.string,
     onClick: PropTypes.func,
-    size: PropTypes.oneOf(['normal', 'large'])
+    size: PropTypes.oneOf(['normal', 'large']),
+    disabled: PropTypes.bool
   };
 
   static defaultProps = {
-    size: 'normal'
+    size: 'normal',
+    disabled: false
   };
 
   render() {
+    const isDisabled = this.props.disabled;
+
     return (
       <li className={classnames(styles.root, {[styles.large]: this.props.size === 'large'})}>
         <button
+          disabled={isDisabled}
           type="button"
           className={styles.button}
           onClick={this.props.onClick}
@@ -30,7 +35,7 @@ class PopoverMenuItem extends WixComponent {
           {this.props.icon && <div className={styles.icon}>{this.props.icon}</div>}
 
           <div className={styles.text}>
-            <Text dataHook="menu-item-text" size={this.props.size === 'normal' ? 'small' : 'medium'}>
+            <Text light={isDisabled} secondary={isDisabled} dataHook="menu-item-text" size={this.props.size === 'normal' ? 'small' : 'medium'}>
               {this.props.text}
             </Text>
           </div>
