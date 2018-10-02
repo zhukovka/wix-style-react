@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import {Portal} from 'react-portal';
 import PropTypes from 'prop-types';
 import {DragLayer} from 'react-dnd';
