@@ -13,7 +13,9 @@ Types of changes:
 1. **Breaking** for breaking changes
 1. **Docs** for documentation changes
 
-## Next - 2018-10-??
+## Next
+
+## 5.5.0 - 2018-10-02
 
 ### Fixed
 - `<MultiSelectCheckbox/>` - Fix `onSelect` called twice [#2267](https://github.com/wix/wix-style-react/pull/2267)
