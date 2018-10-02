@@ -180,6 +180,7 @@ class InputWithTags extends React.Component {
       <div style={previewStyles}>
         <Tag
           id={id}
+          dataHook="tag"
           disabled={disabled}
           className={classes}
           onRemove={onRemoveTag} {...itemProps}
