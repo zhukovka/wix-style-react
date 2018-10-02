@@ -1,24 +1,24 @@
-## Thanks for reporting an issue :)
+<!--
+Thanks for reporting an issue 😄 ! Please fill the following form:
+-->
 
-### Summary:
+# Bug Report
 
-### Priority:
-- [ ] Blocker
-- [ ] Urgent
-- [ ] Normal
-- [ ] Minor
+### Relevant Components
+<!--- Please mention which components are affected -->
 
-### Steps to reproduce:
- 1.
- 2.
- 3.
+### Current Behavior
+<!--- Tell us what happens instead of the expected behavior -->
 
-### Expected behavior:
+### Expected Behavior
+<!--- Tell us what should happen -->
 
-### Relevant Components:
+### Steps to Reproduce
+<!--- Please add an easy way to reproduce it 
+It will be extremely helpful if you could create a simple reproducible example here: https://codesandbox.io/s/jj196orvpv?module=%2Fsrc%2FApp%2Findex.js
+-->
 
-### Additional notes:
-
-#### Thanks a lot!
-
-
+### Severity
+- [ ] Critical
+- [ ] Major
+- [ ] Low
