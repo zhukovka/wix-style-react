@@ -13,6 +13,11 @@ Types of changes:
 1. **Breaking** for breaking changes
 1. **Docs** for documentation changes
 
+## Next - 2018-10-??
+
+### Fixed
+- `<MultiSelectCheckbox/> - Fix `onSelect` called twice [#2267](https://github.com/wix/wix-style-react/pull/2267)
+
 ## 5.4.0 - 2018-10-02
 
 ### Added
@@ -22,7 +27,7 @@ Types of changes:
 ### Fixed
 - `<Tooltip/>` and `<Search/>` - refactor old refs usage [#2269](https://github.com/wix/wix-style-react/pull/2269)
 - `<InputArea/>`, `<Input/>` and `<RichTextArea/>` - Error icon size margins are incorrect [#2183](https://github.com/wix/wix-style-react/pull/2183)
-- `<MultiSelectCheckbox/> - Fix `onSelect` called twice [#2267](https://github.com/wix/wix-style-react/pull/2267)
+
 
 ### Changed
 - `<Tag/>` - align to new definitions [#2203](https://github.com/wix/wix-style-react/pull/2203)
