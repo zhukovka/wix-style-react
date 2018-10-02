@@ -9,9 +9,10 @@ import CloseLarge from '../new-icons/system/CloseLarge';
   TODO should be refactored later, together with buttons cleanup
 */
 
-const CloseButton = ({arialLabel, dataHook, size, theme, onClick}) => {
+const CloseButton = ({arialLabel, dataHook, size, theme, onClick, className}) => {
   return (
     <Button
+      className={className}
       aria-label={arialLabel}
       dataHook={dataHook}
       height={size === 'small' ? 'medium' : 'large'}
@@ -24,6 +25,7 @@ const CloseButton = ({arialLabel, dataHook, size, theme, onClick}) => {
 };
 
 CloseButton.propTypes = {
+  className: string,
   arialLabel: string,
   dataHook: string,
   size: oneOf(['small', 'large']),

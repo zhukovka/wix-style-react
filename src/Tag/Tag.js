@@ -4,52 +4,95 @@ import classNames from 'classnames';
 import styles from './Tag.scss';
 import CloseButton from '../CloseButton';
 import WixComponent from '../BaseComponents/WixComponent';
-import Typography from '../Typography';
+import Text from '../Text';
+import noop from 'lodash/noop';
+import deprecationLog from '../utils/deprecationLog';
+
+const useOldMarginsDeprecationMessage = `You're using the <Tag/> component with margins which are incorrect. Pass 'useOldMargins={false}' prop in order to remove them. They will be removed in the next major version`;
 
 /**
-  * A Tag component
-  */
+ * A Tag component
+ */
 class Tag extends WixComponent {
-  render() {
-    const {id, children, thumb, removable, onClick, onRemove, size, wrap, disabled, theme, maxWidth, className} = this.props;
+  static displayName = 'Tag';
 
+  componentDidMount() {
+    super.componentDidMount();
+    if (this.props.useOldMargins) {
+      deprecationLog(useOldMarginsDeprecationMessage);
+    }
+  }
+
+  _renderThumb() {
+    const {thumb} = this.props;
+    return thumb ? <span className={styles.thumb}>{thumb}</span> : null;
+  }
+
+  _renderText() {
+    const {size, wrap, children} = this.props;
     const classes = classNames({
-      [styles.tag]: true,
-      [styles.large]: size === 'large',
-      [styles.tagWrap]: wrap,
-      [styles.disabled]: disabled,
-      [styles[`${theme}Theme`]]: true,
-      [className]: className
+      [styles.tagTextEllipsis]: wrap
     });
 
-    const innerClassName = classNames({
-      [styles.innerTagWrap]: wrap,
-      [Typography.t4]: true
-    });
+    return (
+      <Text className={classes} size={size === 'large' ? 'medium' : 'small'}>
+        {children}
+      </Text>
+    );
+  }
 
-    const title = wrap ? children : '';
+  _renderRemoveButton() {
+    const {removable, disabled, size} = this.props;
+    if (removable && !disabled) {
+      return (<CloseButton
+        size={size}
+        theme="close-dark"
+        dataHook="remove-button"
+        className={styles.removeButton}
+        onClick={this._handleRemoveClick}
+        />);
+    } else {
+      return null;
+    }
+  }
+
+  _handleRemoveClick = event => {
+    const {onRemove, id} = this.props;
+    event.stopPropagation();
+    onRemove(id);
+  };
+
+  _getClassName() {
+    const {thumb, removable, size, wrap, disabled, theme, useOldMargins, className} = this.props;
+    return classNames(
+      styles.root,
+      className,
+      styles[`${theme}Theme`],
+      styles[`${size}Size`],
+      {
+        [styles.deprecatedMargins]: useOldMargins,
+        [styles.withRemoveButton]: removable && !disabled,
+        [styles.withThumb]: thumb,
+        [styles.tagEllipsis]: wrap,
+        [styles.disabled]: disabled
+      }
+    );
+  }
+
+  render() {
+    const {id, children, onClick, wrap, maxWidth} = this.props;
 
     return (
       <span
-        data-hook="tag"
-        className={classes}
-        disabled={disabled}
+        className={this._getClassName()}
         id={id}
-        title={title}
+        title={wrap ? children : ''}
         onClick={() => onClick(id)}
-        style={{
-          maxWidth: `${maxWidth}px`
-        }}
+        style={{maxWidth: `${maxWidth}px`}}
         >
-        {thumb && <span className={styles.thumb}>{thumb}</span>}
-        <span className={innerClassName}>{children}</span>
-        {removable && !disabled && <a
-          className={styles.tagRemoveButton}
-          onClick={event => {
-            event.stopPropagation();
-            onRemove(id);
-          }}
-          ><CloseButton size="small" theme="close-standard"/></a>}
+        {this._renderThumb()}
+        {this._renderText()}
+        {this._renderRemoveButton()}
       </span>
     );
   }
@@ -58,8 +101,11 @@ class Tag extends WixComponent {
 Tag.propTypes = {
   children: PropTypes.string.isRequired,
 
-  /** when set to true this component is disabled  */
+  /** when set to true this component is disabled */
   disabled: PropTypes.bool,
+
+  /** This feature keeps the old margins set to the component. in next major version will be set to false by default  */
+  useOldMargins: PropTypes.bool,
 
   /** The id of the Tag  */
   id: PropTypes.string.isRequired,
@@ -93,11 +139,13 @@ Tag.propTypes = {
 };
 
 Tag.defaultProps = {
-  onClick: () => {},
-  onRemove: () => {},
+  onClick: noop,
+  onRemove: noop,
   size: 'small',
   removable: true,
-  theme: 'standard'
+  theme: 'standard',
+  wrap: false,
+  useOldMargins: true
 };
 
 export default Tag;

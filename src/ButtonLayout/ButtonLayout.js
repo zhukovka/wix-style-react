@@ -1,5 +1,5 @@
 import React from 'react';
-import {any, bool, oneOf} from 'prop-types';
+import {any, bool, oneOf, string} from 'prop-types';
 import classNames from 'classnames';
 import styles from './ButtonLayout.scss';
 
@@ -7,7 +7,7 @@ import styles from './ButtonLayout.scss';
   * General Buttons
   */
 const ButtonLayout = props => {
-  const {theme, hover, active, disabled, height, children, matchParent} = props;
+  const {theme, hover, active, disabled, height, children, matchParent, className: extendingClassName} = props;
 
   const className = classNames({
     [styles.button]: true,
@@ -16,7 +16,7 @@ const ButtonLayout = props => {
     [styles.active]: active,
     [styles.disabled]: disabled,
     [styles[`height${height}`]]: height !== 'medium'
-  }, children.props.className);
+  }, children.props.className, extendingClassName);
 
   const _style = Object.assign({},
     children.props.style,
@@ -48,6 +48,7 @@ ButtonLayout.defaultProps = {
 };
 
 ButtonLayout.propTypes = {
+  className: string,
   active: bool,
   children: any,
   disabled: bool,

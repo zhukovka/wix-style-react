@@ -393,11 +393,18 @@ $base-transition: all 100ms linear;
   border-color: $P20;
 }
 
-.close-standard:hover, .close-standard.hover,
-.close-dark:hover, .close-dark.hover {
+.close-standard:hover,
+.close-standard.hover {
   background-color: transparent;
   border-color: transparent;
   color: $B20;
+}
+
+.close-dark:hover,
+.close-dark.hover {
+  background-color: transparent;
+  border-color: transparent;
+  color: $D20;
 }
 
 .icon-greybackground:active,
@@ -494,12 +501,17 @@ $base-transition: all 100ms linear;
 }
 
 .close-standard:active,
-.close-standard.active,
+.close-standard.active {
+  background-color: transparent;
+  border-color: transparent;
+  color: $B10;
+}
+
 .close-dark:active,
 .close-dark.active {
   background-color: transparent;
   border-color: transparent;
-  color: $B10;
+  color: $D10;
 }
 
 .button.no-border.disabled,

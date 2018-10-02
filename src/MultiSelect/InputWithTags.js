@@ -120,7 +120,7 @@ class InputWithTags extends React.Component {
             onDrop={onReorder}
             renderItem={this.renderReorderableTag}
             /> : tags.map(({label, ...rest}) =>
-              <Tag key={rest.id} disabled={disabled} onRemove={onRemoveTag} {...rest}>{label}</Tag>)
+              <Tag key={rest.id} dataHook="tag" useOldMargins={false} disabled={disabled} onRemove={onRemoveTag} className={styles.tag} {...rest}>{label}</Tag>)
         }
         <span
           className={classNames(styles.input, {[styles.emptyInput]: !tags.length})}
@@ -167,19 +167,23 @@ class InputWithTags extends React.Component {
 
   renderReorderableTag({item: {id, label, ...itemProps}, previewStyles, isPlaceholder, isPreview, ...rest}) {
     const {onRemoveTag, disabled} = this.props;
-    const classes = classNames({
-      [defaultDndStyles.itemPlaceholder]: isPlaceholder,
-      [styles.draggedTagPlaceholder]: isPlaceholder,
-      [defaultDndStyles.itemPreview]: isPreview,
-      [styles.draggedTag]: isPreview
-    });
+    const classes = classNames(
+      styles.tag,
+      {
+        [defaultDndStyles.itemPlaceholder]: isPlaceholder,
+        [styles.draggedTagPlaceholder]: isPlaceholder,
+        [defaultDndStyles.itemPreview]: isPreview,
+        [styles.draggedTag]: isPreview
+      });
 
     return (
       <div style={previewStyles}>
         <Tag
-          id={id} disabled={disabled}
+          id={id}
+          disabled={disabled}
           className={classes}
           onRemove={onRemoveTag} {...itemProps}
+          useOldMargins={false}
           {...rest}
           >
           {label}
@@ -229,8 +233,7 @@ InputWithTags.propTypes = {
 };
 
 InputWithTags.defaultProps = {
-  onRemoveTag: () => {
-  },
+  onRemoveTag: () => {},
   tags: [],
   placeholder: '',
   delimiters: []
