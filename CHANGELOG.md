@@ -16,11 +16,18 @@ Types of changes:
 ## Next
 
 ### Added
-- `<MultiSelect/>` - support reorderable tags(d&d) [#2233](https://github.com/wix/wix-style-react/pull/2233)
+- `<MultiSelect/>` - support reorderable tags (d&d) [#2233](https://github.com/wix/wix-style-react/pull/2233)
+- `<SortableList/>` **WIP** - a reusable drag and drop list component
 
 ### Fixed
 - `<Tooltip/>` and `<Search/>` - refactor old refs usage [#2269](https://github.com/wix/wix-style-react/pull/2269)
 - `<InputArea/>`, `<Input/>` and `<RichTextArea/>` - Error icon size margins are incorrect [#2183](https://github.com/wix/wix-style-react/pull/2183)
+
+### Changed
+- `<Tag/>` - align to new definitions [#2203](https://github.com/wix/wix-style-react/pull/2203)
+
+### Deprecated
+- `<Tag/>` - internal margins were removed as they belong to `tagsInput`. Backward compatible using the `useOldMargins` flag
 
 ## 5.3.4 - 2018-09-27
 
