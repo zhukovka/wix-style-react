@@ -16,7 +16,8 @@ Types of changes:
 ## Next - 2018-10-??
 
 ### Fixed
-- `<MultiSelectCheckbox/> - Fix `onSelect` called twice [#2267](https://github.com/wix/wix-style-react/pull/2267)
+- `<MultiSelectCheckbox/>` - Fix `onSelect` called twice [#2267](https://github.com/wix/wix-style-react/pull/2267)
+- `<InputWithTags/>` - add missing `<Tag>` dataHook [#2289](https://github.com/wix/wix-style-react/pull/2289)
 
 ## 5.4.0 - 2018-10-02
 
