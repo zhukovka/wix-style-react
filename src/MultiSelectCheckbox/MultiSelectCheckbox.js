@@ -10,7 +10,7 @@ const OPEN_DROPDOWN_CHARS = [13/*Enter*/, 40/*ArrowDown*/, 32/*Spacebar*/];
 class MultiSelectCheckbox extends InputWithOptions {
 
   wrapOptionsWithCheckbox(options) {
-    const newOptions = options.map(option => ({...option, value: this.wrapWithCheckBox(option, this.isSelected(option))}));
+    const newOptions = options.map(option => ({...option, value: this.wrapWithCheckBox(option, this.isSelectedId(option.id))}));
     return newOptions;
   }
 
@@ -20,8 +20,8 @@ class MultiSelectCheckbox extends InputWithOptions {
     </Checkbox>);
   }
 
-  isSelected(option) {
-    return this.props.selectedOptions.indexOf(option.id) !== -1;
+  isSelectedId(optionId) {
+    return this.props.selectedOptions.indexOf(optionId) !== -1;
   }
 
   dropdownAdditionalProps() {
@@ -52,11 +52,18 @@ class MultiSelectCheckbox extends InputWithOptions {
   }
 
   _onSelect(option) {
-    super._onSelect(option);
-    if (this.isSelected(option)) {
-      this.props.onDeselect && this.props.onDeselect(option.id);
+    this.showOptions();
+
+    if (this.closeOnSelect()) {
+      this.setState({showOptions: false});
+    }
+
+    // The option object is not the original since it was injected a checkbox
+    const originalOption = this.props.options.find(op => option.id === op.id);
+    if (this.isSelectedId(originalOption.id)) {
+      this.props.onDeselect && this.props.onDeselect(originalOption.id, originalOption);
     } else {
-      this.props.onSelect && this.props.onSelect(option.id);
+      this.props.onSelect && this.props.onSelect(originalOption.id, originalOption);
     }
   }
 
@@ -96,10 +103,10 @@ MultiSelectCheckbox.propTypes = {
   /** The selected options ids. */
   selectedOptions: PropTypes.array,
 
-  /** Callback function called whenever the user selects a single option. The function receives the id of the selected option. */
+  /** A callback function called whenever the user selects a single option. The function receives the id of the selected option as the first argument, and the actual option object as the second argument.. */
   onSelect: PropTypes.func,
 
-  /** A callback function to be called when an option was unchecked. The function receives the id of the unselected option. */
+  /** A callback function to be called when an option was unchecked. The function receives the id of the unselected option as the first argument, and the actual option object as the second argument. */
   onDeselect: PropTypes.func,
 
   /** delimiter between the selected options that will be displayed in the input. */
