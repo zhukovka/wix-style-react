@@ -13,7 +13,7 @@ Types of changes:
 1. **Breaking** for breaking changes
 1. **Docs** for documentation changes
 
-## Next
+## 5.4.0 - 2018-10-02
 
 ### Added
 - `<MultiSelect/>` - support reorderable tags (d&d) [#2233](https://github.com/wix/wix-style-react/pull/2233)
