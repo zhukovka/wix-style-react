@@ -37,11 +37,13 @@ export function createColumns({tableProps, bulkSelectionContext}) {
       render: (row, rowNum) => {
         const id = defaultTo(row.id, rowNum);
         return (
-          <Checkbox
-            dataHook="row-select"
-            checked={isSelected(id)}
-            onChange={() => toggleSelectionById(id)}
-            />
+          <div onClick={e => e.stopPropagation()}>
+            <Checkbox
+              dataHook="row-select"
+              checked={isSelected(id)}
+              onChange={() => toggleSelectionById(id)}
+              />
+          </div>
         );
       },
       width: '12px'
