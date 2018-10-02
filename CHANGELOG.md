@@ -19,6 +19,9 @@ Types of changes:
 - `<MultiSelectCheckbox/>` - Fix `onSelect` called twice [#2267](https://github.com/wix/wix-style-react/pull/2267)
 - `<InputWithTags/>` - add missing `<Tag>` dataHook [#2289](https://github.com/wix/wix-style-react/pull/2289)
 
+### Added
+- `<PopoverMenuItem/>`, `<TableActionCell/>` - support disabled menu items [#2235](https://github.com/wix/wix-style-react/pull/2235)
+
 ## 5.4.0 - 2018-10-02
 
 ### Added
