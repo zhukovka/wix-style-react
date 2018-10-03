@@ -1,7 +1,7 @@
 import React from 'react';
 import textDriverFactory from './Text.driver';
 import Text from './';
-import {SIZES, SKINS, WEIGHTS} from './Text';
+import {SIZES, SKINS, WEIGHTS} from './constants';
 import {createDriverFactory} from 'wix-ui-test-utils/driver-factory';
 import {isEnzymeTestkitExists} from 'wix-ui-test-utils/enzyme';
 import {isTestkitExists} from 'wix-ui-test-utils/vanilla';

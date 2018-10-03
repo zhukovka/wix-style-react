@@ -1,7 +1,6 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import styles from './DataTable.scss';
-import typography from '../Typography/Typography.scss';
 import classNames from 'classnames';
 import InfiniteScroll from './InfiniteScroll';
 import SortByArrowUp from '../new-icons/system/SortByArrowUp';
@@ -212,7 +211,6 @@ class DataTable extends React.Component {
 
   renderCell = (rowData, column, rowNum, colNum) => {
     const classes = classNames(
-      {[typography.t1]: this.props.newDesign},
       {[this.style.important]: column.important},
       {[this.style.largeVerticalPadding]: this.props.rowVerticalPadding === 'large'},
       {[this.style.mediumVerticalPadding]: this.props.rowVerticalPadding !== 'large'});
@@ -331,7 +329,7 @@ class TableHeader extends Component {
       <th
         style={style}
         key={colNum}
-        className={classNames({[typography.t4]: this.props.newDesign})}
+        className={classNames({[this.style.thText]: this.props.newDesign})}
         {...optionalHeaderCellProps}
         >
         <div className={this.style.thContainer}>

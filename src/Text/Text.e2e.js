@@ -3,7 +3,7 @@ import autoExampleDriver from 'wix-storybook-utils/AutoExampleDriver';
 import {createStoryUrl, waitForVisibilityOf} from 'wix-ui-test-utils/protractor';
 import {tooltipTestkitFactory} from 'wix-ui-core/dist/src/testkit/protractor';
 import {textTestkitFactory} from '../../testkit/protractor';
-import {SIZES, SKINS, WEIGHTS} from './Text';
+import {SIZES, SKINS, WEIGHTS} from './constants';
 
 describe('Text', () => {
   const storyUrl = createStoryUrl({kind: '1. Foundation', story: '1.2 Text', withExamples: false});

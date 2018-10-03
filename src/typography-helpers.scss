@@ -40,7 +40,7 @@ $typography_headers: (
   
   @if $light {
     color: nth($colors, 2);
-  } else {
+  } @else {
     color: nth($colors, 1);
   }
 }

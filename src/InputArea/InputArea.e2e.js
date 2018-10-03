@@ -13,14 +13,14 @@ describe('input area page', () => {
     await waitForVisibilityOf(inputAreaTestkit.element());
   });
 
-  eyes.it('should render default props', () => {
-    expect(inputAreaTestkit.isFocused()).toBe(false, 'isFocused');
+  eyes.it('should render default props', async () => {
+    expect(await inputAreaTestkit.isFocused()).toBe(false, 'isFocused');
   });
 
   eyes.it('should show focus styles', async () => {
-    expect(inputAreaTestkit.isFocused()).toBeFalsy();
+    expect(await inputAreaTestkit.isFocused()).toBeFalsy();
     await browser.actions().sendKeys(protractor.Key.TAB).perform();
-    expect(inputAreaTestkit.isFocused()).toBeTruthy();
+    expect(await inputAreaTestkit.isFocused()).toBeTruthy();
   });
 
   eyes.it('should show hover styles', async () => {
@@ -31,9 +31,9 @@ describe('input area page', () => {
 
   eyes.it('should show hover and focus styles', async () => {
     expect(await inputAreaTestkit.isHovered()).toBeFalsy();
-    expect(inputAreaTestkit.isFocused()).toBeFalsy();
+    expect(await inputAreaTestkit.isFocused()).toBeFalsy();
     await inputAreaTestkit.click();
-    expect(inputAreaTestkit.isFocused()).toBeTruthy();
+    expect(await inputAreaTestkit.isFocused()).toBeTruthy();
     expect(await inputAreaTestkit.isHovered()).toBeTruthy();
   });
 });

@@ -1,11 +1,16 @@
 import React from 'react';
 
+import CodeExample from 'wix-storybook-utils/CodeExample';
+
 import FormField from 'wix-style-react/FormField';
 import Input from 'wix-style-react/Input';
 import InputArea from 'wix-style-react/InputArea';
 import RichTextArea from 'wix-style-react/RichTextArea';
 import DatePicker from 'wix-style-react/DatePicker';
 import Dropdown from 'wix-style-react/Dropdown';
+
+import ExampleWithLengthCount from './ExampleWithLengthCount';
+import ExampleWithLengthCountRaw from '!raw-loader!./ExampleWithLengthCount';
 
 const ID = 'formFieldId';
 
@@ -56,7 +61,7 @@ export default {
   category: 'Components',
   storyName: 'FormField',
   component: FormField,
-  componentPath: '../src/FormField',
+  componentPath: '../../src/FormField',
 
   componentProps: {
     dataHook: 'storybook-formfield',
@@ -70,5 +75,13 @@ export default {
   exampleProps: {
     children: childrenExamples,
     infoTooltipProps: [{label: 'placement left', value: {placement: 'left'}}]
-  }
+  },
+  examples: (
+    <CodeExample title="With Length Count" code={ExampleWithLengthCountRaw}>
+      <div style={{width: '500px'}}>
+        <ExampleWithLengthCount/>
+      </div>
+    </CodeExample>
+
+  )
 };

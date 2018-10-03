@@ -3,9 +3,9 @@ import PropTypes from 'prop-types';
 import classnames from 'classnames';
 import Label from 'wix-style-react/Label';
 import Tooltip from 'wix-style-react/Tooltip';
+import Text, {SKINS} from '../Text';
 
 import InfoIcon from '../common/InfoIcon';
-import typography from '../Typography';
 import styles from './FormField.scss';
 
 const asterisk =
@@ -15,12 +15,16 @@ const asterisk =
     children="*"
     />);
 
-const charactersLeft = lengthLeft =>
-  (<div
-    data-hook="formfield-counter"
-    className={classnames(styles.counter, lengthLeft >= 0 ? typography.t4_4 : typography.t4_5)}
-    children={lengthLeft}
-    />);
+const charactersLeft = lengthLeft => {
+  const colorProps = lengthLeft >= 0 ? {light: true, secondary: true} : {skin: SKINS.error};
+  return (
+    <Text
+      size="small" weight="normal" {...colorProps}
+      data-hook="formfield-counter"
+      className={styles.counter}
+      children={lengthLeft}
+      />);
+};
 
 class FormField extends React.Component {
   static displayName = 'FormField';

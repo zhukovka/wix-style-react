@@ -114,7 +114,7 @@ import '../stories/Tag.story.js'; // 12.5 Tag
 import '../stories/Highlighter.story.js'; // Highlighter
 
 // Components API
-import '../stories/FormField.story.js';
+import '../stories/FormField/FormField.story.js';
 import '../stories/Layout/index.story.js';
 import '../stories/Layout';
 

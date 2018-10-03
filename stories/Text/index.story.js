@@ -1,6 +1,6 @@
 import React from 'react';
 import Text from 'wix-style-react/Text';
-import {SIZES, SKINS, WEIGHTS} from '../../src/Text/Text';
+import {SIZES, SKINS, WEIGHTS} from '../../src/Text';
 
 import CodeExample from 'wix-storybook-utils/CodeExample';
 

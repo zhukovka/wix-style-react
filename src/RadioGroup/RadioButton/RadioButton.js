@@ -5,9 +5,9 @@ import classnames from 'classnames';
 
 import WixComponent from '../../BaseComponents/WixComponent';
 
-import typography, {convertFromUxLangToCss} from '../../Typography';
 import styles from '../RadioGroup.scss';
 import {withFocusable, focusableStates} from '../../common/Focusable';
+import Text from '../../Text';
 
 class RadioButton extends WixComponent {
   static displayName = 'RadioGroup.Radio';
@@ -109,7 +109,6 @@ class RadioButton extends WixComponent {
           htmlFor={this.id}
           className={
             classnames(
-              typography[convertFromUxLangToCss(disabled ? 'T1.4' : 'T1.1')],
               {
                 [styles.vcenter]: vAlign === 'center',
                 [styles.vtop]: vAlign === 'top'
@@ -126,9 +125,17 @@ class RadioButton extends WixComponent {
           </div>
 
           { children &&
-            <div className={styles.children} data-hook="radiobutton-children">
-              {children}
-            </div>
+          <Text
+            className={styles.children}
+            data-hook="radiobutton-children"
+            tagName="div"
+            size="medium"
+            weight="thin"
+            secondary
+            light={disabled}
+            >
+            {children}
+          </Text>
           }
         </label>
 
