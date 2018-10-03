@@ -18,6 +18,7 @@ Types of changes:
 ### Changed
 
 - Typography - Update typography of `<Loader/>`, `<Table/>` [#2268](https://github.com/wix/wix-style-react/pull/2268)
+- `<InputWithOptions/>` - Do not open options when focused, but rather when clicked [#2280](https://github.com/wix/wix-style-react/pull/2280)
 
 ## 5.5.0 - 2018-10-02
 
