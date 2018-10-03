@@ -15,6 +15,10 @@ Types of changes:
 
 ## Next
 
+### Changed
+
+- Typography - Update typography of `<Loader/>`, `<Table/>` [#2268](https://github.com/wix/wix-style-react/pull/2268)
+
 ## 5.5.0 - 2018-10-02
 
 ### Fixed
