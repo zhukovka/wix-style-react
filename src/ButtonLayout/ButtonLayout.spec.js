@@ -35,6 +35,18 @@ describe('ButtonLayout', () => {
     expect(driver.getComponentAttribute('href')).toEqual(href);
   });
 
+  it('should have custom className', () => {
+    const driver = createDriver(
+      <ButtonLayout className="myClass">
+        <div>
+          abc
+        </div>
+      </ButtonLayout>
+    );
+
+    expect(driver.doesComponentHasClass('myClass')).toBeTruthy();
+  });
+
   it('should extend existing className of the element', () => {
     const driver = createDriver(
       <ButtonLayout>
