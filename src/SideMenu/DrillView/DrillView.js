@@ -198,9 +198,10 @@ class SideMenuDrill extends React.Component {
       </div>
     );
   }
-
   shouldComponentUpdate() {
-    this.setState({isWaitingForAnimation: true});
+    if (this.isAnimating) {
+      this.queuedUpdate = true;
+    }
     return !this.isAnimating;
   }
 
@@ -209,10 +210,10 @@ class SideMenuDrill extends React.Component {
   }
 
   animationComplete() {
-    const {isWaitingForAnimation} = this.state;
     this.isAnimating = false;
-    if (isWaitingForAnimation) {
-      this.setState({isWaitingForAnimation: false});
+    if (this.queuedUpdate) {
+      this.queuedUpdate = false;
+      this.forceUpdate();
     }
   }
 
