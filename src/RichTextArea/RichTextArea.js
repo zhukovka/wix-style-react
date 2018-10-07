@@ -204,14 +204,14 @@ class RichTextArea extends WixComponent {
 
       if (isList) {
         change
-          .setBlocks(isActive ? '' : type)
+          .setBlocks(isActive ? DEFAULT_NODE : type)
           .unwrapBlock('unordered-list')
           .unwrapBlock('ordered-list');
       }
 
       else {
         change
-          .setBlocks(isActive ? '' : type);
+          .setBlocks(isActive ? DEFAULT_NODE : type);
       }
     }
 
@@ -318,6 +318,7 @@ class RichTextArea extends WixComponent {
             onChange={change =>
               {
                 const serialized = htmlSerializer.serialize(change.value);
+                console.log(serialized);
                 const isValueChanged = serialized !== this.lastValue;
                 this.lastValue = serialized;
                 this.setEditorValue(change, isValueChanged);
@@ -343,7 +344,6 @@ class RichTextArea extends WixComponent {
         return <a className={styles.link} {...props.attributes} rel="noopener noreferrer" target="_blank" href={href}>{props.children}</a>;
       case 'image':
         const {node, isFocused} = props;
-        // const isFocused = value.selection.hasEdgeIn(node);
         const src = node.data.get('src');
         return (<img data-hook="editor-image" src={src} className={classNames(styles.editorImage, {[styles.activeEditorImage]: isFocused})}/>);
     }

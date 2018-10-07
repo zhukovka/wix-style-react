@@ -23,25 +23,23 @@ const rules = [
   {
     deserialize(el, next) {
       const type = BLOCK_TAGS[el.tagName.toLowerCase()];
-      if (!type) {
-        return;
-      }
-
-      const data = {};
-      switch (type) {
-        case 'image': {
-          data.src = el.getAttribute('src');
-          break;
+      if (type) {
+        const data = {};
+        switch (type) {
+          case 'image': {
+            data.src = el.getAttribute('src');
+            break;
+          }
+          default: break;
         }
-        default: break;
-      }
 
-      return {
-        object: 'block',
-        type,
-        data,
-        nodes: next(el.childNodes)
-      };
+        return {
+          object: 'block',
+          type,
+          data,
+          nodes: next(el.childNodes)
+        };
+      }
     },
     serialize(obj, children) {
       if (obj.object !== 'block') {
@@ -61,15 +59,13 @@ const rules = [
   {
     deserialize(el, next) {
       const type = MARK_TAGS[el.tagName.toLowerCase()];
-      if (!type) {
-        return;
+      if (type) {
+        return {
+          object: 'mark',
+          type,
+          nodes: next(el.childNodes)
+        };
       }
-
-      return {
-        object: 'mark',
-        type,
-        nodes: next(el.childNodes)
-      };
     },
     serialize(obj, children) {
       if (obj.object !== 'mark') {
@@ -87,18 +83,16 @@ const rules = [
   {
     deserialize(el, next) {
       const type = INLINE_TAGS[el.tagName.toLowerCase()];
-      if (!type) {
-        return;
+      if (type) {
+        return {
+          object: 'inline',
+          type,
+          data: {
+            href: el.getAttribute('href')
+          },
+          nodes: next(el.childNodes)
+        };
       }
-
-      return {
-        object: 'inline',
-        type,
-        data: {
-          href: el.getAttribute('href')
-        },
-        nodes: next(el.childNodes)
-      };
     },
     serialize(obj, children) {
       if (obj.object !== 'inline') {
