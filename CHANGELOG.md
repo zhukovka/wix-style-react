@@ -22,6 +22,7 @@ Types of changes:
 
 ### Fixed
 - `<DatePicker/>` Move z-index prop to the correct element in css [#2286](https://github.com/wix/wix-style-react/pull/2286)
+- `<SideMenu/>` - Fix infinite loop when using React 16 [#2293](https://github.com/wix/wix-style-react/pull/2293)
 
 ## 5.5.0 - 2018-10-02
 
