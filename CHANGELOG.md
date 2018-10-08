@@ -18,6 +18,7 @@ Types of changes:
 ### Changed
 
 - Typography - Update typography of `<Loader/>`, `<Table/>` [#2268](https://github.com/wix/wix-style-react/pull/2268)
+- Typography - Update typography of `<Tabs/>`, `<PopoverMenu/>`, `<EditableSelector/>` [#2299](https://github.com/wix/wix-style-react/pull/2299)
 - `<InputWithOptions/>` - Do not open options when focused, but rather when clicked [#2280](https://github.com/wix/wix-style-react/pull/2280)
 
 ### Fixed
