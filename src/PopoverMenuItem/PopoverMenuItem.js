@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import classnames from 'classnames';
 
 import WixComponent from '../BaseComponents/WixComponent';
-import Text from '../Text';
+import Text, {WEIGHTS} from '../Text';
 
 import styles from './PopoverMenuItem.scss';
 
@@ -35,7 +35,13 @@ class PopoverMenuItem extends WixComponent {
           {this.props.icon && <div className={styles.icon}>{this.props.icon}</div>}
 
           <div className={styles.text}>
-            <Text light={isDisabled} secondary={isDisabled} dataHook="menu-item-text" size={this.props.size === 'normal' ? 'small' : 'medium'}>
+            <Text
+              weight={WEIGHTS.normal}
+              light={isDisabled}
+              secondary={isDisabled}
+              dataHook="menu-item-text"
+              size={this.props.size === 'normal' ? 'small' : 'medium'}
+              >
               {this.props.text}
             </Text>
           </div>
