@@ -42,17 +42,15 @@ const rules = [
       }
     },
     serialize(obj, children) {
-      if (obj.object !== 'block') {
-        return;
-      }
-
-      switch (obj.type) {
-        case 'paragraph': return <p>{children}</p>;
-        case 'list-item': return <li>{children}</li>;
-        case 'ordered-list': return <ol>{children}</ol>;
-        case 'unordered-list': return <ul>{children}</ul>;//data-hook="editor-image"
-        case 'image': return <img data-hook="editor-image" src={obj.data.get('src')}/>;
-        default: return {children};
+      if (obj.object === 'block') {
+        switch (obj.type) {
+          case 'paragraph': return <p>{children}</p>;
+          case 'list-item': return <li>{children}</li>;
+          case 'ordered-list': return <ol>{children}</ol>;
+          case 'unordered-list': return <ul>{children}</ul>;//data-hook="editor-image"
+          case 'image': return <img data-hook="editor-image" src={obj.data.get('src')}/>;
+          default: break;
+        }
       }
     }
   },
@@ -68,15 +66,13 @@ const rules = [
       }
     },
     serialize(obj, children) {
-      if (obj.object !== 'mark') {
-        return;
-      }
-
-      switch (obj.type) {
-        case 'bold': return <strong>{children}</strong>;
-        case 'italic': return <em>{children}</em>;
-        case 'underline': return <u>{children}</u>;
-        default: return {children};
+      if (obj.object === 'mark') {
+        switch (obj.type) {
+          case 'bold': return <strong>{children}</strong>;
+          case 'italic': return <em>{children}</em>;
+          case 'underline': return <u>{children}</u>;
+          default: break;
+        }
       }
     }
   },
@@ -95,13 +91,11 @@ const rules = [
       }
     },
     serialize(obj, children) {
-      if (obj.object !== 'inline') {
-        return;
-      }
-
-      switch (obj.type) {
-        case 'link': return <a rel="noopener noreferrer" target="_blank" href={obj.data.get('href')}>{children}</a>;
-        default: return {children};
+      if (obj.object === 'inline') {
+        switch (obj.type) {
+          case 'link': return <a rel="noopener noreferrer" target="_blank" href={obj.data.get('href')}>{children}</a>;
+          default: break;
+        }
       }
     }
   }
