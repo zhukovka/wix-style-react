@@ -13,6 +13,12 @@ Types of changes:
 1. **Breaking** for breaking changes
 1. **Docs** for documentation changes
 
+## 5.5.2 - 2018-10-09
+
+### Fixed
+
+- Text - Story - fix story autodocs [#2307](https://github.com/wix/wix-style-react/pull/2307)
+
 ## 5.5.1 - 2018-10-09
 
 ### Changed
