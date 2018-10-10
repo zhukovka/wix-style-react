@@ -293,5 +293,5 @@ DatePicker.propTypes = {
   errorMessage: PropTypes.node,
 
   /** set desired width of DatePicker input */
-  width: PropTypes.number
+  width:  PropTypes.oneOfType([PropTypes.string, PropTypes.number])
 };
