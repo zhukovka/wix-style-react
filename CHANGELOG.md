@@ -15,6 +15,10 @@ Types of changes:
 
 ## Next
 
+### Fixed
+
+- <InputWithTags/> replace hasHover state with native css [#2294](https://github.com/wix/wix-style-react/pull/2294)
+
 ### Changed
 
 - `<Text/>` - Update secondary+light color from D50 to D40 [#2312](https://github.com/wix/wix-style-react/pull/2312)
