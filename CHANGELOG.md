@@ -22,6 +22,11 @@ Types of changes:
 ### Changed
 
 - `<Text/>` - Update secondary+light color from D50 to D40 [#2312](https://github.com/wix/wix-style-react/pull/2312)
+- Typography - Add UX story (move Text and Heading under Components) [#2309](https://github.com/wix/wix-style-react/pull/2309/)
+
+### Added
+
+- Typography - Add css typography classes [#2306](https://github.com/wix/wix-style-react/pull/2306)
 
 ## 5.5.2 - 2018-10-09
 
