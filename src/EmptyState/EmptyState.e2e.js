@@ -21,8 +21,8 @@ describe('EmptyState', () => {
     await browser.get(storyUrl);
   });
 
-  beforeEach(() => {
-    autoExampleDriver.reset();
+  beforeEach(async () => {
+    await autoExampleDriver.reset();
   });
 
   eyes.it(`should render for 'page' theme`, async () => {

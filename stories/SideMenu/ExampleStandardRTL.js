@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 import React from 'react';
 
 import SideMenu from 'wix-style-react/SideMenu';

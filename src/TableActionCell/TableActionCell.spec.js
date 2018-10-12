@@ -149,6 +149,29 @@ describe('Table Action Cell', () => {
     });
   });
 
+  it('should render disabled hidden actions', async () => {
+    const actionTrigger = jest.fn();
+    const disabledAction = {
+      text: `Disabled Action`,
+      icon: <span>Icon</span>,
+      onClick: actionTrigger,
+      disabled: true
+    };
+    const driver = createDriver(
+      <TableActionCell
+        {...primaryActionProps()}
+        secondaryActions={[disabledAction]}
+        numOfVisibleSecondaryActions={0}
+        />
+    );
+
+    driver.clickPopoverMenu();
+
+    await eventually(() => driver.clickHiddenAction(0));
+
+    expect(actionTrigger).toHaveBeenCalledTimes(0);
+  });
+
   it('should allow to change the number of visible secondary actions', async () => {
     const driver = createDriver(
       <TableActionCell

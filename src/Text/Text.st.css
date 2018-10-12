@@ -1,13 +1,13 @@
 :import {
-  -st-from: "wix-ui-backoffice/dist/src/palette.st.css";
-  -st-named: 
-    primaryText, secondaryText, primaryLightText, secondaryLightText,
-    success, danger, premium;
+  -st-from: "wix-ui-backoffice/dist/src/typography.st.css";
+  -st-named: fontLight, fontRoman, fontMedium, fontBold;
 }
 
 :import {
-  -st-from: "wix-ui-backoffice/dist/src/typography.st.css";
-  -st-named: fontLight, fontRoman, fontMedium, fontBold;
+  -st-from: "wix-ui-backoffice/dist/src/colors.st.css";
+  -st-named: 
+  D10, D20, D40,
+  G10, P10, R10, WHITE;
 }
 
 .root {
@@ -38,37 +38,37 @@
 }
 
 .root:size(medium), .root:size(small), .root:size(tiny) {
-  color: value(primaryText);
+  color: value(D10);
 }
 
 .root:size(medium):light, .root:size(small):light, .root:size(tiny):light {
-  color: value(primaryLightText);
+  color: value(WHITE);
 }
 
 .root:size(medium):secondary, .root:size(small):secondary, .root:size(tiny):secondary {
-  color: value(secondaryText);
+  color: value(D20);
 }
 
 .root:size(medium):secondary:light, .root:size(small):secondary:light, .root:size(tiny):secondary:light {
-  color: value(secondaryLightText);
+  color: value(D40);
 }
 
 .root:skin(success),
 .root:skin(success):light,
 .root:skin(success):secondary {
-  color: value(success);
+  color: value(G10);
 }
 
 .root:skin(error),
 .root:skin(error):light,
 .root:skin(error):secondary {
-  color: value(danger);
+  color: value(R10);
 }
 
 .root:skin(premium),
 .root:skin(premium):light,
 .root:skin(premium):secondary {
-  color: value(premium);
+  color: value(P10);
 }
 
 .root:size(medium):weight(bold),

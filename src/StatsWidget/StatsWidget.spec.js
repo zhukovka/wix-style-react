@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 import {createDriverFactory} from 'wix-ui-test-utils/driver-factory';
 import statsWidgetDriverFactory from './StatsWidget.driver';
 import StatsWidget from './StatsWidget';

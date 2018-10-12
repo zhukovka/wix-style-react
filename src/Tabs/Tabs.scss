@@ -2,7 +2,7 @@
 @import '../typography-helpers';
 
 .container {
-  @include Text($weight: thin, $size: medium);
+  @include Text($weight: normal, $size: medium);
   display: flex;
   max-width: 100%;
   border-bottom: 1px solid transparent;

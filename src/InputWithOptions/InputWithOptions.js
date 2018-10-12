@@ -190,7 +190,9 @@ class InputWithOptions extends WixComponent {
 
     if (isSelectedOption) {
       this.setState({showOptions: false});
-    } else if (onSelect) {
+    }
+
+    if (onSelect) {
       onSelect(this.props.highlight ? this.props.options.find(opt => opt.id === option.id) : option);
     }
   }
@@ -203,8 +205,12 @@ class InputWithOptions extends WixComponent {
   }
 
   _onInputClicked(event) {
-    if (this.state.showOptions && (Date.now() - this.state.lastOptionsShow > 2000)) {
-      this.hideOptions();
+    if (this.state.showOptions) {
+      if ((Date.now() - this.state.lastOptionsShow > 2000)) {
+        this.hideOptions();
+      }
+    } else {
+      this.showOptions();
     }
 
     if (this.props.onInputClicked) {
@@ -218,7 +224,6 @@ class InputWithOptions extends WixComponent {
     }
     this._focused = true;
     this.setState({isEditing: false});
-    this.showOptions();
     if (this.props.onFocus) {
       this.props.onFocus(e);
     }

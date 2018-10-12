@@ -33,7 +33,7 @@ class ExamplePopoverMenu extends Component {
     this.setState({
       menuItems: [
         ...(this.state.menuItems.slice(0, i).map(obj => Object.assign({}, obj))),
-        {iconName, text: this.state.menuItems[i].text},
+        {iconName, text: this.state.menuItems[i].text, disabled: this.state.menuItems[i].disabled},
         ...(this.state.menuItems.slice(i + 1).map(obj => Object.assign({}, obj)))
       ]
     });
@@ -42,7 +42,16 @@ class ExamplePopoverMenu extends Component {
     this.setState({
       menuItems: [
         ...(this.state.menuItems.slice(0, i).map(obj => Object.assign({}, obj))),
-        {iconName: this.state.menuItems[i].iconName, text},
+        {iconName: this.state.menuItems[i].iconName, text, disabled: this.state.menuItems[i].disabled},
+        ...(this.state.menuItems.slice(i + 1).map(obj => Object.assign({}, obj)))
+      ]
+    });
+
+  updateRowDisabled = (disabled, i) =>
+    this.setState({
+      menuItems: [
+        ...(this.state.menuItems.slice(0, i).map(obj => Object.assign({}, obj))),
+        {iconName: this.state.menuItems[i].iconName, text: this.state.menuItems[i].text, disabled},
         ...(this.state.menuItems.slice(i + 1).map(obj => Object.assign({}, obj)))
       ]
     });
@@ -118,6 +127,7 @@ class ExamplePopoverMenu extends Component {
                 updateRowText={this.updateRowText}
                 addRow={this.addRow}
                 updateRowIcon={this.updateRowIcon}
+                updateRowDisabled={this.updateRowDisabled}
                 />
             </div>
           </div>

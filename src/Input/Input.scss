@@ -1,5 +1,6 @@
 @import '../common.scss';
 @import './InputMixins.scss';
+@import '../typography-helpers.scss';
 
 $gap: 6px;
 $double-gap: 12px;
@@ -390,8 +391,8 @@ $material-gap: 8px;
 
   > svg {
     color: $paletteR1;
-    width: 20px;
-    height: 20px;
+    width: 18px;
+    height: 18px;
   }
 }
 
@@ -465,6 +466,9 @@ $material-gap: 8px;
   text-overflow: ellipsis;
   overflow: hidden;
   white-space: nowrap;
+
+  @include Text($weight: thin, $size: medium, $secondary: true);
+
 }
 
 .loaderContainer {

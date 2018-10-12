@@ -24,7 +24,7 @@ const exampleChildren = [
   }
 ];
 
-export const NUM_OF_BUTTONS_IN_EXAMPLE = exampleChildren[0].length;
+export const NUM_OF_BUTTONS_IN_EXAMPLE = exampleChildren[0].value.length;
 
 export default {
   category: '4. Selection',

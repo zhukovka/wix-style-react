@@ -28,10 +28,10 @@ describe('MultiSelect', () => {
     {value: 'Two words', id: 'Two words'}
   ];
 
-  it('should show dropdown when autofocus is on', () => {
+  it('should NOT show dropdown when autofocus is on', () => {
     const {inputDriver, dropdownLayoutDriver} = createDriver(<MultiSelect options={options} autoFocus/>);
     expect(inputDriver.isFocus()).toBeTruthy();
-    expect(dropdownLayoutDriver.isShown()).toBeTruthy();
+    expect(dropdownLayoutDriver.isShown()).toBeFalsy();
   });
 
   it('should remove options that were selected and became tags', () => {
@@ -55,7 +55,7 @@ describe('MultiSelect', () => {
 
   it('should not lose Focus or close the list on selection with a mouse click', () => {
     const {driver, inputDriver, dropdownLayoutDriver} = createDriver(<MultiSelect options={options}/>);
-    driver.focus();
+    driver.pressDownKey();
     dropdownLayoutDriver.clickAtOption(0);
     expect(dropdownLayoutDriver.isShown()).toBeTruthy();
     expect(inputDriver.isFocus());
@@ -72,8 +72,11 @@ describe('MultiSelect', () => {
 
   it('should not lose Focus or close the list on selection with tab press', () => {
     const onSelect = jest.fn();
-    const {driver, inputDriver, dropdownLayoutDriver} = createDriver(<MultiSelect options={options} onSelect={onSelect}/>);
-    driver.focus();
+    const {driver, inputDriver, dropdownLayoutDriver} = createDriver(<MultiSelect
+      options={options}
+      onSelect={onSelect}
+      />);
+    driver.pressDownKey();
     driver.pressDownKey();
     driver.pressTabKey();
     expect(onSelect).toBeCalledWith([{id: options[0].id, label: options[0].value}]);
@@ -85,9 +88,12 @@ describe('MultiSelect', () => {
     const onSelect = jest.fn();
     const onChange = jest.fn();
     const {driver, inputDriver, dropdownLayoutDriver} = createDriver(
-      <MultiSelect value={options[0].value} options={options} delimiters={[',']} onSelect={onSelect} onChange={onChange}/>
+      <MultiSelect
+        value={options[0].value} options={options} delimiters={[',']} onSelect={onSelect}
+        onChange={onChange}
+        />
     );
-    driver.focus();
+    driver.pressDownKey();
     inputDriver.trigger('keyDown', {key: ','});
     expect(onSelect).toBeCalledWith([{id: options[0].id, label: options[0].value}]);
     expect(onChange).toBeCalledWith({target: {value: ''}});
@@ -120,7 +126,7 @@ describe('MultiSelect', () => {
     it('should call onChange on click-outside if options is open', () => {
       const onChange = jest.fn();
       const {driver} = createDriver(<MultiSelect value={''} onChange={onChange}/>);
-      driver.focus();
+      driver.pressDownKey();
       driver.outsideClick();
       expect(onChange.mock.calls.length).toBe(1);
     });
@@ -137,9 +143,12 @@ describe('MultiSelect', () => {
     const onSelect = jest.fn();
     const onChange = jest.fn();
     const {driver, inputDriver, dropdownLayoutDriver} = createDriver(
-      <MultiSelect value={options[0].value} options={options} delimiters={[';']} onSelect={onSelect} onChange={onChange}/>
+      <MultiSelect
+        value={options[0].value} options={options} delimiters={[';']} onSelect={onSelect}
+        onChange={onChange}
+        />
     );
-    driver.focus();
+    driver.pressDownKey();
     inputDriver.trigger('keyDown', {key: ';'});
     expect(onSelect).toBeCalledWith([{id: options[0].id, label: options[0].value}]);
     expect(onChange).toBeCalledWith({target: {value: ''}});
@@ -234,7 +243,10 @@ describe('MultiSelect', () => {
   describe('onManuallyCalled', () => {
     it('should be called after Enter is pressed and input is not empty', () => {
       const onManuallyInput = jest.fn();
-      const {driver, inputDriver} = createDriver(<MultiSelect options={options} onManuallyInput={onManuallyInput} value="custom value"/>);
+      const {driver, inputDriver} = createDriver(<MultiSelect
+        options={options} onManuallyInput={onManuallyInput}
+        value="custom value"
+        />);
 
       driver.focus();
       inputDriver.enterText('custom value');
@@ -245,7 +257,10 @@ describe('MultiSelect', () => {
 
     it('should be called after delimiter is pressed and input is not empty', () => {
       const onManuallyInput = jest.fn();
-      const {driver, inputDriver} = createDriver(<MultiSelect options={options} onManuallyInput={onManuallyInput} value="custom value"/>);
+      const {driver, inputDriver} = createDriver(<MultiSelect
+        options={options} onManuallyInput={onManuallyInput}
+        value="custom value"
+        />);
 
       driver.focus();
       inputDriver.enterText('custom value');
@@ -329,12 +344,43 @@ describe('MultiSelect', () => {
     expect(onSelect).toBeCalledWith([{id: options[0].id, label: options[0].value}]);
   });
 
+  // TODO: dnd testkit is missing - once it's available, this test has to be completed and run
+  xit('should allow reordering the tags', () => {
+    const tags = [
+      {label: 'Alabama', id: 'Alabama'},
+      {label: 'California2', id: 'California2'},
+      {label: 'California3', id: 'California3'},
+      {label: 'California4', id: 'California4'}
+    ];
+    const onReorder = jest.fn();
+    const {driver: {getTagLabelAt, getTagDriverByTagId}} = createDriver(
+      <MultiSelect
+        draggable
+        options={options}
+        tags={tags}
+        onReorder={onReorder}
+        autoFocus
+        />
+    );
+    getTagDriverByTagId('Alabama').dragTo(getTagDriverByTagId('California3').element);
+    expect(onReorder).toBeCalledWith({removedIndex: 0, addedIndex: 2});
+
+    expect(getTagLabelAt(0)).toBe('California3');
+    expect(getTagLabelAt(2)).toBe('Alabama');
+  });
+
   describe('testkit', () => {
     it('should exist', () => {
       const div = document.createElement('div');
       const dataHook = 'myDataHook';
       const tags = [{id: 'Alabama', label: 'Alabama'}];
-      const wrapper = div.appendChild(ReactTestUtils.renderIntoDocument(<div><MultiSelect dataHook={dataHook} tags={tags}/></div>));
+      const wrapper = div.appendChild(ReactTestUtils.renderIntoDocument(
+        <div>
+          <MultiSelect
+            dataHook={dataHook}
+            tags={tags}
+            />
+        </div>));
       const multiSelectTestkit = multiSelectTestkitFactory({wrapper, dataHook});
       expect(multiSelectTestkit.driver.exists()).toBeTruthy();
       expect(multiSelectTestkit.inputDriver.exists()).toBeTruthy();
@@ -353,26 +399,6 @@ describe('MultiSelect', () => {
       expect(multiSelectTestkit.inputDriver.exists()).toBeTruthy();
       expect(multiSelectTestkit.dropdownLayoutDriver.exists()).toBeTruthy();
       expect(multiSelectTestkit.driver.getTagDriverByTagId('Alabama').exists()).toBeTruthy();
-    });
-  });
-  describe('hover on tags theme', () => {
-    it('should add hover class when hover and no element selected', () => {
-      const dataHook = 'myDataHook';
-      const wrapper = mount(<MultiSelect dataHook={dataHook} tags={[]}/>);
-      const multiSelectTestkit = enzymeMultiSelectTestkitFactory({wrapper, dataHook});
-      multiSelectTestkit.inputDriver.mouseOver();
-      expect(multiSelectTestkit.inputDriver.isHoveredStyle()).toBeTruthy();
-      multiSelectTestkit.inputDriver.mouseOut();
-      expect(multiSelectTestkit.inputDriver.isHoveredStyle()).toBeFalsy();
-    });
-
-    it('should not add hover style when there is one tag or more', () => {
-      const dataHook = 'myDataHook';
-      const tags = [{id: 'Alabama', label: 'Alabama'}];
-      const wrapper = mount(<MultiSelect dataHook={dataHook} tags={tags}/>);
-      const multiSelectTestkit = enzymeMultiSelectTestkitFactory({wrapper, dataHook});
-      multiSelectTestkit.inputDriver.mouseOver();
-      expect(multiSelectTestkit.inputDriver.isHoveredStyle()).toBeFalsy();
     });
   });
 });

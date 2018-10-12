@@ -7,7 +7,9 @@ export default {
   component: Tag,
   componentPath: '../src/Tag',
   componentProps: {
-    children: 'Hello World'
+    children: 'Hello World',
+    dataHook: 'story-tag',
+    useOldMargins: false
   },
   exampleProps: {
     onRemove: id => `ID: ${id} Removed!`,

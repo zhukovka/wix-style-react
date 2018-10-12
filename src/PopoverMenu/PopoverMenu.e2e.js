@@ -1,4 +1,5 @@
 import browserLogs from 'protractor-browser-logs';
+import eyes from 'eyes.it';
 import {
   POPOVER_MENU_DATA_HOOK,
   POPOVER_MENU_ITEM_DATA_HOOK
@@ -15,37 +16,34 @@ describe('PopoverMenu', () => {
   let driver;
   const logs = browserLogs(browser);
 
-  beforeEach(() => {
+  beforeEach(async () => {
     logs.reset();
     logs.ignore(message => message.message.indexOf('Uncaught') === -1);
 
     driver = popoverMenuTestkitFactory({dataHook: POPOVER_MENU_DATA_HOOK})
       .init.menuItemDataHook(POPOVER_MENU_ITEM_DATA_HOOK);
-    browser.get(storyUrl);
+    await browser.get(storyUrl);
   });
 
-  it('should show popover menu', () => {
-    waitForVisibilityOf(driver.element(), 'Can not find PopoverMenu trigger element').then(() => {
-      driver.click();
+  eyes.it('should show popover menu', async () => {
+    await waitForVisibilityOf(driver.element(), 'Can not find PopoverMenu trigger element');
+    await driver.click();
 
-      waitForVisibilityOf(driver.menu.element(), 'Can not find PopoverMenu menu');
-    });
+    waitForVisibilityOf(driver.menu.element(), 'Can not find PopoverMenu menu');
   });
 
-  it('should hide popover menu on item click', () => {
-    waitForVisibilityOf(driver.element()).then(() => {
-      driver.click();
+  it('should hide popover menu on item click', async () => {
+    await waitForVisibilityOf(driver.element());
+    await driver.click();
 
-      waitForVisibilityOf(driver.menu.element()).then(() => {
-        driver.menu.clickItemAt(0);
+    await waitForVisibilityOf(driver.menu.element());
+    await driver.menu.clickItemAt(0);
 
-        browser.wait(
-          EC.stalenessOf(driver.menu.element()),
-          5000,
-          'PopoverMenu has not been hidden after menu item click',
-        );
-      });
-    });
+    await browser.wait(
+      EC.stalenessOf(driver.menu.element()),
+      5000,
+      'PopoverMenu has not been hidden after menu item click',
+    );
   });
 
   describe('regression tests', () => {

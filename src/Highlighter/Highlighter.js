@@ -65,8 +65,8 @@ class Highlighter extends WixComponent {
     match: PropTypes.string
   };
 
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     // we want to create new react keys generator for instance of highlighter
     this.nextChildKey = childKeyGenerator();
   }

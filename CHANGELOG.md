@@ -15,17 +15,83 @@ Types of changes:
 
 ## Next
 
+### Fixed
+
+- <InputWithTags/> replace hasHover state with native css [#2294](https://github.com/wix/wix-style-react/pull/2294)
+
 ### Changed
 
-- `<InputWithTags/>` - fix focus background color [#2245](https://github.com/wix/wix-style-react/pull/2245)
+- `<Text/>` - Update secondary+light color from D50 to D40 [#2312](https://github.com/wix/wix-style-react/pull/2312)
+- Typography - Add UX story (move Text and Heading under Components) [#2309](https://github.com/wix/wix-style-react/pull/2309/)
+
+### Added
+
+- Typography - Add css typography classes [#2306](https://github.com/wix/wix-style-react/pull/2306)
+
+## 5.5.2 - 2018-10-09
 
 ### Fixed
+
+- Text - Story - fix story autodocs [#2307](https://github.com/wix/wix-style-react/pull/2307)
+
+## 5.5.1 - 2018-10-09
+
+### Changed
+
+- Typography - Update typography of `<Loader/>`, `<Table/>` [#2268](https://github.com/wix/wix-style-react/pull/2268)
+- Typography - Update typography of `<Tabs/>`, `<PopoverMenu/>`, `<EditableSelector/>` [#2299](https://github.com/wix/wix-style-react/pull/2299)
+- `<InputWithOptions/>` - Do not open options when focused, but rather when clicked [#2280](https://github.com/wix/wix-style-react/pull/2280)
+- `<Page/>`,`<PageHeader/>` - Added className prop [#2284](https://github.com/wix/wix-style-react/pull/2284)
+
+### Fixed
+- `<DatePicker/>` Move z-index prop to the correct element in css [#2286](https://github.com/wix/wix-style-react/pull/2286)
+- `<SideMenu/>` - Fix infinite loop when using React 16 [#2293](https://github.com/wix/wix-style-react/pull/2293)
+- `<Table/>` - remove state (Fixes React 16 warning) [#2296](https://github.com/wix/wix-style-react/pull/2296)
+
+## 5.5.0 - 2018-10-02
+
+### Fixed
+- `<MultiSelectCheckbox/>` - Fix `onSelect` called twice [#2267](https://github.com/wix/wix-style-react/pull/2267)
+- `<InputWithTags/>` - add missing `<Tag>` dataHook [#2289](https://github.com/wix/wix-style-react/pull/2289)
+- `<Checkbox/>` - remove `stopPropagation` call on `onClick` [#2290](https://github.com/wix/wix-style-react/pull/2290)
+- `<Draggable/>` - fix wrong react import causing React propTypes warning.
+
+### Added
+- `<PopoverMenuItem/>`, `<TableActionCell/>` - support disabled menu items [#2235](https://github.com/wix/wix-style-react/pull/2235)
+
+## 5.4.0 - 2018-10-02
+
+### Added
+- `<MultiSelect/>` - support reorderable tags (d&d) [#2233](https://github.com/wix/wix-style-react/pull/2233)
+- `<SortableList/>` **WIP** - a reusable drag and drop list component
+
+### Fixed
+- `<Tooltip/>` and `<Search/>` - refactor old refs usage [#2269](https://github.com/wix/wix-style-react/pull/2269)
+- `<InputArea/>`, `<Input/>` and `<RichTextArea/>` - Error icon size margins are incorrect [#2183](https://github.com/wix/wix-style-react/pull/2183)
+
+
+### Changed
+- `<Tag/>` - align to new definitions [#2203](https://github.com/wix/wix-style-react/pull/2203)
+
+### Deprecated
+- `<Tag/>` - internal margins were removed as they belong to `tagsInput`. Backward compatible using the `useOldMargins` flag
+
+## 5.3.4 - 2018-09-27
+
+### Fixed
+- `<Tooltip/>` remove redundant `console.log()` calls [#2273](https://github.com/wix/wix-style-react/pull/2273)
+
+## 5.3.3 - 2018-09-26
+
+### Fixed
+- `<Tags/>` - input box should not have hover color after being focused [#2264](https://github.com/wix/wix-style-react/pull/2264)
 - `<Calendar/>` - remove shadow and border-radius from component [#2205](https://github.com/wix/wix-style-react/pull/2205)
 - `<Tooltip/>` - add popover prop [#2205](https://github.com/wix/wix-style-react/pull/2205)
 - `<Table/>` - fix broken `<TableToolbar/>` docs and `<TableActionCell/>` RTL [#2224](https://github.com/wix/wix-style-react/pull/2224)
 - `<SideMenu/>` - support `dataHook` prop [#2256](https://github.com/wix/wix-style-react/pull/2256)
 - Polyfills - fix `raf` not setting all methods on the global variable [#2258](https://github.com/wix/wix-style-react/pull/2258)
 - `Tooltip` - remove `stopPropagation` from `onClick` as it breaks some use cases [#2260](https://github.com/wix/wix-style-react/pull/2260)
+- `<InputWithOptions/>` - fix `onSelect` to be called also when re-selecting same option [#2265](https://github.com/wix/wix-style-react/pull/2265/files)
 
 ## 5.3.2 - 2018-09-20
 

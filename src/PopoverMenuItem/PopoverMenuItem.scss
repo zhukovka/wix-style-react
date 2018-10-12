@@ -17,11 +17,12 @@
   margin: 0;
   background: none;
   border: none;
-  cursor: pointer;
   font: inherit;
   outline: none;
 
-  &:hover {
+  &:not(:disabled):hover {
+    cursor: pointer;
+
     span,
     svg {
       color: $B10;

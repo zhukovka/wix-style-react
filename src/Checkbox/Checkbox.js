@@ -80,7 +80,6 @@ class Checkbox extends WixComponent {
         onBlur={this.props.focusableOnBlur}
         {...focusableStates(this.props)}
         tabIndex={disabled ? null : 0}
-        onClick={e => e.stopPropagation()}
         >
         <input
           type="checkbox"

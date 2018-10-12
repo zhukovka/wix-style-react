@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 import React from 'react';
 import FilePicker from 'wix-style-react/FilePicker';
 

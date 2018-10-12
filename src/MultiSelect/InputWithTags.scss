@@ -44,7 +44,13 @@
   height: 0;
 }
 
-.tagsContainer {
+.tag {
+  margin-left: 7px;
+  margin-top: 3px;
+  margin-bottom: 3px;
+}
+
+.inputWithTagsContainer {
   width: 100%;
   @include FontThin();
   border: 1px solid $B30;
@@ -56,6 +62,10 @@
   font-size: 16px;
   overflow-y: hidden;
   box-sizing: border-box;
+
+  &:hover:not(.hasFocus) {
+    background: $B50;
+  }
 }
 
 .hasMaxHeight {
@@ -80,9 +90,27 @@
   &.error {
     @include FocusBoxError;
   }
-  
 }
 
-.hasHover:not(.hasFocus) {
-  background: $B50;
+.tagsContainer {
+  cursor: pointer;
+  display: flex;
+  flex-wrap: wrap;
+
+  .draggedTag {
+    background-color: transparentize($B30, 0.2);
+  }
+
+  .draggedTagPlaceholder {
+    background-color: $D60;
+
+    &:hover {
+      background-color: $D60
+    }
+
+    * {
+      visibility: hidden;
+    }
+  }
 }
+

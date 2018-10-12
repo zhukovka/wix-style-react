@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 import React from 'react';
 import CodeExample from 'wix-storybook-utils/CodeExample';
 
@@ -29,6 +30,9 @@ import OnlyVisibleSecondaryExampleRaw from '!raw-loader!./examples/OnlyVisibleSe
 
 import PrimarySecondaryRTLExample from './examples/PrimarySecondaryRTLExample';
 import PrimarySecondaryRTLExampleRaw from '!raw-loader!./examples/PrimarySecondaryRTLExample';
+
+import DisabledSecondaryExample from './examples/DisabledSecondaryExample';
+import DisabledSecondaryExampleRaw from '!raw-loader!./examples/DisabledSecondaryExample';
 
 import {Star, Download, Duplicate, Print} from 'wix-style-react/new-icons';
 
@@ -135,6 +139,12 @@ export default {
       <div className={style.example}>
         <CodeExample title="Primary and secondary actions with RTL" code={PrimarySecondaryRTLExampleRaw}>
           <PrimarySecondaryRTLExample/>
+        </CodeExample>
+      </div>
+
+      <div className={style.example}>
+        <CodeExample title="Disabled secondary actions" code={DisabledSecondaryExampleRaw}>
+          <DisabledSecondaryExample/>
         </CodeExample>
       </div>
     </div>

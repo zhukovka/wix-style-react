@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 import React from 'react';
 import Page from './Page';
 import pageDriverFactory from './Page.driver';
@@ -38,6 +39,13 @@ describe('Page', () => {
     it('should not initialize component with background image', () => {
       const driver = createDriver(renderPageWithProps());
       expect(driver.backgroundImageExists()).toBeFalsy();
+    });
+  });
+
+  describe('customClassName', () => {
+    it('should have custom className', () => {
+      const driver = createDriver(renderPageWithProps({className: 'myClass'}));
+      expect(driver.hasClass('myClass')).toBeTruthy();
     });
   });
 
@@ -175,5 +183,3 @@ describe('Page', () => {
     });
   });
 });
-
-

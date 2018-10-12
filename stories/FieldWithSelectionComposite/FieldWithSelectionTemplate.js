@@ -8,8 +8,8 @@ import Checkbox from '../../src/Checkbox';
 import Label from '../../src/Label';
 import Dropdown from '../../src/Dropdown';
 import RadioGroup from '../../src/RadioGroup';
+import Text from '../../src/Text';
 
-import typography, {convertFromUxLangToCss} from '../../src/Typography';
 import StorySettings from './StorySettings';
 
 const options = [
@@ -60,9 +60,9 @@ export default class Form extends Component {
             checked={this.state.checkboxValue}
             onChange={e => this.setState({checkboxValue: e.target.checked})}
             >
-            <span className={typography[convertFromUxLangToCss('T3.1')]}>
+            <Text weight="thin" size="small" secondary>
               Test
-            </span>
+            </Text>
           </Checkbox>
         );
         break;

@@ -10,7 +10,7 @@ import FormFieldErrorSmall from '../new-icons/system/FormFieldErrorSmall';
 import ToggleOn from '../new-icons/system/ToggleOn';
 import CircleLoaderCheck from '../new-icons/system/CircleLoaderCheck';
 import CircleLoaderCheckSmall from '../new-icons/system/CircleLoaderCheckSmall';
-import Typography from '../Typography';
+import Heading from '../Heading';
 
 const arcsAngles = {
   tiny: {
@@ -138,7 +138,7 @@ export default class Loader extends WixComponent {
         {
           shouldShowText && text &&
           <div className={css.text}>
-            <span className={Typography.t5} data-hook="loader-text">{this.props.text}</span>
+            <Heading appearance="H6" dataHook="loader-text">{this.props.text}</Heading>
           </div>
         }
       </div>

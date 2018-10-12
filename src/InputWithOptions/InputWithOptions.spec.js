@@ -23,10 +23,10 @@ const runInputWithOptionsTest = driverFactory => {
       {id: 'element1', value: <span style={{color: 'brown'}}>Option 4</span>}
     ];
 
-    it('should show dropdown when autofocus is on', () => {
+    it('should NOT show dropdown when autofocus is on', () => {
       const {inputDriver, dropdownLayoutDriver} = createDriver(<InputWithOptions options={options} autoFocus/>);
       expect(inputDriver.isFocus()).toBeTruthy();
-      expect(dropdownLayoutDriver.isShown()).toBeTruthy();
+      expect(dropdownLayoutDriver.isShown()).toBeFalsy();
     });
 
     it('should have an Input and an hidden DropdownLayout', () => {
@@ -39,39 +39,39 @@ const runInputWithOptionsTest = driverFactory => {
     it('should show DropdownLayout when input get focused', () => {
       const {driver, dropdownLayoutDriver} = createDriver(<InputWithOptions options={options}/>);
       driver.focus();
-      expect(dropdownLayoutDriver.isShown()).toBeTruthy();
+      expect(dropdownLayoutDriver.isShown()).toBeFalsy();
     });
 
     describe('showOptionsIfEmptyInput property', () => {
       describe('show options if input is empty (default behaviour)', () => {
-        it('should show DropdownLayout if input is empty and focused', () => {
-          const driver = createDriver(
+        it('should show DropdownLayout if input is empty and down arrow pressed', () => {
+          const {driver, dropdownLayoutDriver} = createDriver(
             <ControlledInputWithOptions
               showOptionsIfEmptyInput
               options={options}
               />
           );
 
-          driver.inputDriver.focus();
-          expect(driver.dropdownLayoutDriver.isShown()).toBe(true);
+          driver.pressDownKey();
+          expect(dropdownLayoutDriver.isShown()).toBe(true);
         });
       });
 
       describe('do not show options if input is empty', () => {
         it('should not show DropdownLayout if input is empty and focused', () => {
-          const driver = createDriver(
+          const {driver, dropdownLayoutDriver} = createDriver(
             <ControlledInputWithOptions
               showOptionsIfEmptyInput={false}
               options={options}
               />
           );
 
-          driver.inputDriver.focus();
-          expect(driver.dropdownLayoutDriver.isShown()).toBe(false);
+          driver.pressDownKey();
+          expect(dropdownLayoutDriver.isShown()).toBe(false);
         });
 
         it('should show DropdownLayout if initial value passed and input focused', () => {
-          const driver = createDriver(
+          const {driver, dropdownLayoutDriver} = createDriver(
             <ControlledInputWithOptions
               showOptionsIfEmptyInput={false}
               value={options[0].value}
@@ -79,9 +79,9 @@ const runInputWithOptionsTest = driverFactory => {
               />
           );
 
-          expect(driver.dropdownLayoutDriver.isShown()).toBe(false);
-          driver.inputDriver.focus();
-          expect(driver.dropdownLayoutDriver.isShown()).toBe(true);
+          expect(dropdownLayoutDriver.isShown()).toBe(false);
+          driver.pressDownKey();
+          expect(dropdownLayoutDriver.isShown()).toBe(true);
         });
 
         it('should show DropdownLayout if text was entered', () => {
@@ -166,7 +166,7 @@ const runInputWithOptionsTest = driverFactory => {
 
     it('should hide DropdownLayout on enter and esc key press', () => {
       const {driver, dropdownLayoutDriver} = createDriver(<InputWithOptions options={options}/>);
-      driver.focus();
+      driver.pressDownKey();
       expect(dropdownLayoutDriver.isShown()).toBeTruthy();
       driver.pressEnterKey();
       expect(dropdownLayoutDriver.isShown()).toBeFalsy();
@@ -183,6 +183,7 @@ const runInputWithOptionsTest = driverFactory => {
       dropdownLayoutDriver.clickAtOption(1);
       driver.outsideClick();
       driver.focus();
+      driver.pressDownKey();
 
       expect(dropdownLayoutDriver.isOptionSelected(1)).toBeTruthy();
       expect(dropdownLayoutDriver.isOptionHovered(1)).toBeTruthy();
@@ -226,6 +227,43 @@ const runInputWithOptionsTest = driverFactory => {
       // todo: jest limitation of mimicking native Tab browser behaviour
       // expect(inputDriver.isFocus()).toBe(false);
       expect(dropdownLayoutDriver.isShown()).toBe(false);
+    });
+
+    it('should open options when clicked', () => {
+      const {inputDriver, dropdownLayoutDriver} = createDriver(<InputWithOptions options={options}/>);
+      expect(dropdownLayoutDriver.isShown()).toBe(false);
+      inputDriver.click();
+      expect(dropdownLayoutDriver.isShown()).toBe(true);
+    });
+
+    it('should NOT close options when input clicked before 2 seconds passed from last opening', () => {
+      const {inputDriver, dropdownLayoutDriver} = createDriver(<InputWithOptions options={options}/>);
+      const originalNow = Date.now;
+
+      Date.now = () => 0;
+      inputDriver.click();
+      expect(dropdownLayoutDriver.isShown()).toBe(true);
+
+      Date.now = () => 1500;
+      inputDriver.click();
+      expect(dropdownLayoutDriver.isShown()).toBe(true);
+
+      Date.now = originalNow;
+    });
+
+    it('should close options when input clicked after 2 seconds from last opening', () => {
+      const {inputDriver, dropdownLayoutDriver} = createDriver(<InputWithOptions options={options}/>);
+      const originalNow = Date.now;
+
+      Date.now = () => 0;
+      inputDriver.click();
+      expect(dropdownLayoutDriver.isShown()).toBe(true);
+
+      Date.now = () => 2500;
+      inputDriver.click();
+      expect(dropdownLayoutDriver.isShown()).toBe(false);
+
+      Date.now = originalNow;
     });
 
     it('should stay focused on tab key press with closeOnSelect=false', () => {
@@ -276,12 +314,12 @@ const runInputWithOptionsTest = driverFactory => {
       expect(onSelect).toBeCalledWith(options[0]);
     });
 
-    it('should not call onSelect when a selected option is pressed', () => {
+    it('should call onSelect when a selected option is pressed', () => {
       const onSelect = jest.fn();
       const {driver, dropdownLayoutDriver} = createDriver(<InputWithOptions options={options} onSelect={onSelect} selectedId={options[0].id}/>);
       driver.focus();
       dropdownLayoutDriver.clickAtOption(0);
-      expect(onSelect).not.toBeCalled();
+      expect(onSelect).toBeCalled();
     });
 
     it('should call onFocus', () => {
@@ -378,7 +416,7 @@ const runInputWithOptionsTest = driverFactory => {
         const {driver, dropdownLayoutDriver} = createDriver(
           <InputWithOptions options={options} onKeyDown={() => null}/>
         );
-        driver.focus();
+        driver.pressDownKey();
         expect(dropdownLayoutDriver.isShown()).toBeTruthy();
         driver.pressEnterKey();
         expect(dropdownLayoutDriver.isShown()).toBeFalsy();
@@ -393,7 +431,7 @@ const runInputWithOptionsTest = driverFactory => {
       it('should call onSelect on enter key press', () => {
         const onSelect = jest.fn();
         const {driver} = createDriver(<InputWithOptions options={options} onSelect={onSelect}/>);
-        driver.focus();
+        driver.pressDownKey();
         driver.pressDownKey();
         driver.pressEnterKey();
         expect(onSelect).toBeCalledWith(options[0]);
@@ -402,7 +440,7 @@ const runInputWithOptionsTest = driverFactory => {
       it('should call onSelect on tab key press', () => {
         const onSelect = jest.fn();
         const {driver} = createDriver(<InputWithOptions options={options} onSelect={onSelect}/>);
-        driver.focus();
+        driver.pressDownKey();
         driver.pressDownKey();
         driver.pressTabKey();
         expect(onSelect).toBeCalledWith(options[0]);
@@ -423,7 +461,7 @@ const runInputWithOptionsTest = driverFactory => {
           inputAdditionalProps = () => ({readOnly: true})
         }
         const {driver} = createDriver(<ReadOnlyInput options={options} onSelect={onSelect}/>);
-        driver.focus();
+        driver.pressDownKey();
         driver.pressDownKey();
         driver.pressSpaceKey();
         expect(onSelect).toBeCalledWith(options[0]);

@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 
@@ -51,6 +52,7 @@ class PopoverMenuTemplate extends Component {
               key={i}
               icon={React.createElement(Icons[menuItem.iconName])}
               text={menuItem.text}
+              disabled={menuItem.disabled}
               onClick={() => console.log(`menu item ${i} clicked`)}
               />
           ))

@@ -14,7 +14,7 @@ describe('multiSelectCheckbox', () => {
 
   const createDriver = createDriverFactory(multiSelectCheckboxDriverFactory);
   const options = [
-    {value: 'Alabama', id: 'Alabama'},
+    {value: 'Alabama', id: 'Alabama-1'},
     {value: 'Alaska', id: 'Alaska'},
     {value: <div>Arkansas</div>, id: 'Arkansas', label: 'Arkansan Label'},
     {value: 'Arkansas', id: 'Arkansas'},
@@ -85,20 +85,20 @@ describe('multiSelectCheckbox', () => {
   it('should display a selectedOptions separetaed by default delimiter', () => {
     const selectedOptions = [options[0].id, options[1].id];
     const {inputDriver} = createDriver(<MultiSelectCheckbox options={options} selectedOptions={selectedOptions}/>);
-    expect(inputDriver.getValue()).toBe(`${options[0].id}, ${options[1].id}`);
+    expect(inputDriver.getValue()).toBe(`${options[0].value}, ${options[1].value}`);
   });
 
   it('should display a selectedOptions separetaed by custom delimiter', () => {
     const selectedOptions = [options[0].id, options[1].id];
     const delimiter = ';';
     const {inputDriver} = createDriver(<MultiSelectCheckbox options={options} selectedOptions={selectedOptions} delimiter={delimiter}/>);
-    expect(inputDriver.getValue()).toBe(`${options[0].id};${options[1].id}`);
+    expect(inputDriver.getValue()).toBe(`${options[0].value};${options[1].value}`);
   });
 
   it('should not display the selectedOptions that not included in options', () => {
     const selectedOptions = [options[0].id, 'NOT_LEGAL_ID', options[1].id];
     const {inputDriver} = createDriver(<MultiSelectCheckbox options={options} selectedOptions={selectedOptions}/>);
-    expect(inputDriver.getValue()).toBe(`${options[0].id}, ${options[1].id}`);
+    expect(inputDriver.getValue()).toBe(`${options[0].value}, ${options[1].value}`);
   });
 
   it('should use provided valueParser that will enable handling option with a component in value', () => {
@@ -115,8 +115,8 @@ describe('multiSelectCheckbox', () => {
 
     const {driver} = createDriver(<MultiSelectCheckbox options={options} selectedOptions={selectedOptions}/>);
     expect(driver.getNumOfLabels()).toBe(selectedOptions.length);
-    expect(driver.getLabelAt(0)).toBe(options[0].id);
-    expect(driver.getLabelAt(1)).toBe(options[1].id);
+    expect(driver.getLabelAt(0)).toBe(options[0].value);
+    expect(driver.getLabelAt(1)).toBe(options[1].value);
   });
 
   it('should not close dropdown after clicking on an option', () => {
@@ -130,7 +130,8 @@ describe('multiSelectCheckbox', () => {
     const onSelect = jest.fn();
     const {dropdownLayoutDriver} = createDriver(<MultiSelectCheckbox options={options} onSelect={onSelect}/>);
     dropdownLayoutDriver.clickAtOption(0);
-    expect(onSelect).toHaveBeenCalledWith(options[0].value);
+    expect(onSelect.mock.calls.length).toBe(1);
+    expect(onSelect).toHaveBeenCalledWith(options[0].id, options[0]);
   });
 
   it('should not call onSelect when selecting a disabled option', () => {
@@ -146,7 +147,7 @@ describe('multiSelectCheckbox', () => {
     const onDeselect = jest.fn();
     const {dropdownLayoutDriver} = createDriver(<MultiSelectCheckbox options={options} selectedOptions={selectedOptions} onDeselect={onDeselect}/>);
     dropdownLayoutDriver.clickAtOption(0);
-    expect(onDeselect).toHaveBeenCalledWith(options[0].id);
+    expect(onDeselect).toHaveBeenCalledWith(options[0].id, options[0]);
   });
 
   describe('testkit', () => {

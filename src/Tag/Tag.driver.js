@@ -1,32 +1,37 @@
-import React from 'react';
 import ReactTestUtils from 'react-dom/test-utils';
-import ReactDOM from 'react-dom';
 import {isClassExists} from '../../test/utils';
 
-const tagDriverFactory = ({element, wrapper, component}) => {
+import {testkitFactoryCreator} from 'wix-ui-test-utils/vanilla';
+import buttonDriverFactory from '../Backoffice/Button/Button.driver';
 
-  const removeButton = element.querySelector('a');
-  const thumb = element.querySelector('span');
-  const contentWithoutThumb = element.querySelector('span');
+const buttonTestkitFactory = testkitFactoryCreator(buttonDriverFactory);
+
+const getThumb = element => element.querySelector('span');
+const getContentWithoutThumb = element => element.querySelector('span');
+
+const getRemoveButtonDriver = element => {
+  return buttonTestkitFactory({
+    wrapper: element,
+    dataHook: 'remove-button'
+  });
+};
+
+const tagDriverFactory = ({element}) => {
 
   return {
     exists: () => !!element,
-    isLarge: () => isClassExists(element, 'large'),
+    isLarge: () => isClassExists(element, 'largeSize'),
     isStandardTheme: () => isClassExists(element, 'standardTheme'),
     isWarningTheme: () => isClassExists(element, 'warningTheme'),
     isErrorTheme: () => isClassExists(element, 'errorTheme'),
-    isRemovable: () => isClassExists(removeButton, 'tagRemoveButton'),
-    removeTag: () => ReactTestUtils.Simulate.click(removeButton),
+    isRemovable: () => getRemoveButtonDriver(element).exists(),
+    removeTag: () => getRemoveButtonDriver(element).click(),
     click: () => ReactTestUtils.Simulate.click(element),
-    isThumbExists: () => isClassExists(thumb, 'thumb'),
-    isWrapped: () => isClassExists(element, 'tagWrap') && isClassExists(contentWithoutThumb, 'innerTagWrap'),
+    isThumbExists: () => isClassExists(getThumb(element), 'thumb'),
+    isWrapped: () => isClassExists(element, 'tagEllipsis') && isClassExists(getContentWithoutThumb(element), 'tagTextEllipsis'),
     isDisabled: () => isClassExists(element, 'disabled'),
     getLabel: () => element.textContent,
-    getTitle: () => element.title,
-    setProps: props => {
-      const ClonedWithProps = React.cloneElement(component, Object.assign({}, component.props, props), ...(component.props.children || []));
-      ReactDOM.render(<div ref={r => element = r}>{ClonedWithProps}</div>, wrapper);
-    }
+    getTitle: () => element.title
   };
 };
 

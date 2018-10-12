@@ -37,11 +37,13 @@ export function createColumns({tableProps, bulkSelectionContext}) {
       render: (row, rowNum) => {
         const id = defaultTo(row.id, rowNum);
         return (
-          <Checkbox
-            dataHook="row-select"
-            checked={isSelected(id)}
-            onChange={() => toggleSelectionById(id)}
-            />
+          <div onClick={e => e.stopPropagation()}>
+            <Checkbox
+              dataHook="row-select"
+              checked={isSelected(id)}
+              onChange={() => toggleSelectionById(id)}
+              />
+          </div>
         );
       },
       width: '12px'
@@ -70,8 +72,6 @@ export function getDataTableProps(tableProps) {
   };
 }
 
-
-
 /**
  * Table is a composit component that allows adding SelectionColumn, Toolbar (on top of the TitleBar).
  * It is a context provider, and thus the Table.Consumer, Table.TitleBar and Table.Content can be rendered separatly.
@@ -84,16 +84,6 @@ export class Table extends React.Component {
   static EmptyState = TableEmptyState;
 
   static ToggledToolbar = TableToolbarToggler;
-
-  constructor(props) {
-    super(props);
-    this.state = props;
-  }
-
-  componentWillReceiveProps(nextProps) {
-    // The state IS the props since Table acts as a context provider for all Table props.
-    this.setState(nextProps);
-  }
 
   shouldComponentUpdate() {
     // Table is not really a PureComponent
@@ -115,13 +105,13 @@ export class Table extends React.Component {
 
   render() {
     return (
-      <TableContext.Provider value={this.state}>
+      <TableContext.Provider value={this.props}>
         {this.props.showSelection ?
         (
           <BulkSelection
             ref={_ref => this.bulkSelection = _ref}
             selectedIds={this.props.selectedIds}
-            allIds={this.state.data.map((rowData, rowIndex) => defaultTo(rowData.id, rowIndex))}
+            allIds={this.props.data.map((rowData, rowIndex) => defaultTo(rowData.id, rowIndex))}
             onSelectionChanged={this.props.onSelectionChanged}
             >
             {this.renderChildren()}

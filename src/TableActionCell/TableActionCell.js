@@ -52,13 +52,14 @@ function renderVisibleActions(actions) {
 function renderHiddenActions(actions) {
   return (
     <PopoverMenu buttonTheme="icon-greybackground" dataHook="table-action-cell-popover-menu" appendToParent>
-      {actions.map(({text, icon, onClick}, index) => (
+      {actions.map(({text, icon, onClick, disabled}, index) => (
         <PopoverMenuItem
           key={index}
           dataHook="table-action-cell-popover-menu-item"
           icon={icon}
           onClick={() => onClick()}
           text={text}
+          disabled={disabled}
           />
       ))}
     </PopoverMenu>
@@ -139,11 +140,13 @@ TableActionCell.propTypes = {
    * (will be shown in the tooltip), `icon` is the icon component for the
    * action, `onClick` is the callback function for the action, whose
    * signature is `onClick(rowData, rowNum)`.
+   * `disabled` is an optional prop for the secondary action to be disabled
    */
   secondaryActions: PropTypes.arrayOf(PropTypes.shape({
     text: PropTypes.string.isRequired,
     icon: PropTypes.node.isRequired,
-    onClick: PropTypes.func.isRequired
+    onClick: PropTypes.func.isRequired,
+    disabled: PropTypes.bool
   })),
 
    /** The number of secondary actions to show outside the PopoverMenu */

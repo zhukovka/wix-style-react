@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 import React from 'react';
 import Dropdown from 'wix-style-react/Dropdown';
 import Checkbox from 'wix-style-react/Checkbox';

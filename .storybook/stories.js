@@ -8,9 +8,8 @@ import '../stories/Introduction';
 import '../stories/Composite'; // TODO: Move to introduction
 
 // 1. Foundations
-import '../stories/Text/index.story'; // 1.2 Text
+import '../stories/Typography/TypographyStory.js'; // 1.2 Typography
 import '../stories/Label.story.js'; // 1.2 + Label
-import '../stories/Heading/index.story'; // 1.3 Heading
 import '../stories/NewIcons'; // 1.4 Icons
 
 import '../stories/Loader.story.js'; // 1.5 Loader
@@ -114,11 +113,17 @@ import '../stories/Tag.story.js'; // 12.5 Tag
 import '../stories/Highlighter.story.js'; // Highlighter
 
 // Components API
-import '../stories/FormField.story.js';
+import '../stories/FormField/FormField.story.js';
+import '../stories/Heading/index.story';
 import '../stories/Layout/index.story.js';
 import '../stories/Layout';
+import '../stories/Text/index.story';
+
+// Styling
+import '../stories/Typography/TypographyClassesStory';
 
 //WIP
+import '../stories/WIP';
 import '../stories/DragAndDrop/DragAndDrop.js';
 
 // TPA
@@ -129,6 +134,7 @@ import '../stories/TPA/Input';
 import '../stories/TPA/Label';
 
 // Tests
+import '../stories/Typography/TypographyTestStories';
 import '../stories/Page/PageTestStories.js'; // Tests/2.5 + Page/
 import '../stories/PageHeader/PageHeaderTestStories.js'; // Tests/2.5 + PageHeader/
 import '../stories/Tooltip/Composite/PopoverMenuRegressionTest.js'; // Tests/7.3. Popover Menu/

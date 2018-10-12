@@ -93,6 +93,28 @@ describe('PopoverMenu', () => {
 
     expect(driver.menu.itemsLength()).toBe(1);
   });
+
+  it('should render item disabled', async () => {
+    const menuItem1Listener = jest.fn();
+    const driver = createDriver(
+      <PopoverMenu>
+        <PopoverMenuItem
+          dataHook={menuItemDataHook}
+          onClick={menuItem1Listener}
+          disabled
+          />
+      </PopoverMenu>
+    ).init.menuItemDataHook(menuItemDataHook);
+
+    driver.click();
+
+    await waitFor(() => {
+      expect(driver.menu.isShown()).toBe(true);
+    });
+
+    driver.menu.clickItemAt(0);
+    expect(menuItem1Listener).not.toBeCalled();
+  });
 });
 
 describe('Testkits', () => {

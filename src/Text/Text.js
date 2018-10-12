@@ -4,6 +4,11 @@ import style from './Text.st.css';
 import deprecationLog from '../utils/deprecationLog';
 import omit from 'lodash/omit';
 
+/*
+ * Temporary fix: SIZES, SKINS, WEIGHTS constants are copied here from constants.js
+ * in order to have AutoDocs able to parse them.
+ * See this issue: https://github.com/wix/wix-ui/issues/784
+ */
 export const SIZES = {
   tiny: 'tiny',
   small: 'small',
@@ -58,6 +63,9 @@ Text.displayName = 'Text';
 Text.propTypes = {
   /** tag name that will be rendered */
   tagName: string,
+
+  /** class to be applied to the root element */
+  className: string,
 
   /** font size of the text */
   size: oneOf(Object.keys(SIZES)),

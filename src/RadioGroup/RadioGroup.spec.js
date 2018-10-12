@@ -123,18 +123,6 @@ describe('RadioGroup', () => {
     });
   });
 
-  describe('label appearance', () => {
-    it('should be T1.1 by default', () => {
-      const driver = createDriver(elementToRender());
-      expect(driver.getClassOfLabelAt(0)).toContain('t1_1');
-    });
-
-    it('should be T1.4 when disabled', () => {
-      const driver = createDriver(elementToRender({disabled: true}));
-      expect(driver.getClassOfLabelAt(0)).toContain('t1_4');
-    });
-  });
-
   describe('testkit', () => {
     it('should exist', () => {
       expect(isTestkitExists(<RadioGroup/>, radioGroupTestkitFactory)).toBe(true);

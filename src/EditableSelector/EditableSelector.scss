@@ -1,4 +1,5 @@
-// EditableSelector //
+@import '../typography-helpers.scss';
+
 $rows-margin: 6px;
 .row {
   display: flex;
@@ -45,6 +46,9 @@ $rows-margin: 6px;
     display: flex;
     .icon {
       margin-right: 6px;
+    }
+    .text {
+      @include TextSizeAndFontFamily($size: medium, $weight: normal);
     }
   }
 }
