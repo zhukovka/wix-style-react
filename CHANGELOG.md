@@ -17,6 +17,7 @@ Types of changes:
 
 ### Fixed
 
+- <DropdownLayout/> -replace deep-eql (IE11 support) [#2326](https://github.com/wix/wix-style-react/pull/2326)
 - <InputWithTags/> replace hasHover state with native css [#2294](https://github.com/wix/wix-style-react/pull/2294)
 
 ### Changed
