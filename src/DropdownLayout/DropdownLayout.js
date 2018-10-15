@@ -3,7 +3,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import WixComponent from '../BaseComponents/WixComponent';
-import isEqual from 'deep-eql';
+import isEqual from 'lodash/isEqual';
 import trim from 'lodash/trim';
 import findIndex from 'lodash/findIndex';
 
