@@ -8,7 +8,7 @@ import ExampleYearMonthsRaw from '!raw-loader!./ExampleYearMonths';
 import ExampleTooltip from './ExampleTooltip';
 import ExampleTooltipRaw from '!raw-loader!./ExampleTooltip';
 import {Container, Row, Col} from 'wix-style-react/Grid';
-
+import {CalendarPanel} from './CalendarPanel';
 export default {
   category: '3. Inputs',
   storyName: '3.13 Calendar',
@@ -44,6 +44,15 @@ export default {
           <CodeExample title="Within a Tooltip" code={ExampleTooltipRaw}>
             <ExampleTooltip/>
           </CodeExample>
+        </Col>
+      </Row>
+      <Row>
+        <Col span={12}>
+          <div style={{backgroundColor: '#F0F4F7', padding: '30px'}}>
+            <div style={{width: '900px'}}>
+              <CalendarPanel/>
+            </div>
+          </div>
         </Col>
       </Row>
     </Container>

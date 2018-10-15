@@ -1,0 +1,15 @@
+.root {
+  display: flex;
+}
+
+.vertical {
+
+}
+
+.horizontal {
+
+}
+
+.root.horizontal {
+  flex-direction: column;
+}
