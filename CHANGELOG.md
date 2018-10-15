@@ -13,10 +13,11 @@ Types of changes:
 1. **Breaking** for breaking changes
 1. **Docs** for documentation changes
 
-## Next
+## 5.6.0 - 2018-10-15
 
 ### Fixed
 
+- <DropdownLayout/> -replace deep-eql (IE11 support) [#2326](https://github.com/wix/wix-style-react/pull/2326)
 - <InputWithTags/> replace hasHover state with native css [#2294](https://github.com/wix/wix-style-react/pull/2294)
 
 ### Changed
