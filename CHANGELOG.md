@@ -13,7 +13,7 @@ Types of changes:
 1. **Breaking** for breaking changes
 1. **Docs** for documentation changes
 
-## Next
+## 5.6.0 - 2018-10-15
 
 ### Fixed
 
