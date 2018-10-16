@@ -15,6 +15,10 @@ Types of changes:
 
 ## Next
 
+### Changed
+- `<Tag/>` - add tiny and medium sizes [#2322](https://github.com/wix/wix-style-react/pull/2322)
+
+
 ## 5.6.1 - 2018-10-16
 
 ### Fixed
