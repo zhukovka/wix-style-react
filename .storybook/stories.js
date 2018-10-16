@@ -107,6 +107,7 @@ import '../stories/ColorPicker.story.js'; // 11.5 Color Picker
 
 // 12. Other
 import '../stories/Badge/index.story'; // 12.1 Badge
+import '../stories/BadgeSelect/index.story.js'; // 12.2 BadgeSelect
 import '../stories/CounterBadge'; //12.3 CounterBadge
 import '../stories/FullTextView.story.js'; //12.4 FullTextView
 import '../stories/Tag.story.js'; // 12.5 Tag
@@ -122,9 +123,10 @@ import '../stories/Text/index.story';
 // Styling
 import '../stories/Typography/TypographyClassesStory';
 
-//WIP
+// WIP
 import '../stories/WIP';
 import '../stories/DragAndDrop/DragAndDrop.js';
+import '../stories/Builders/BadgeSelectItemBuilder';
 
 // TPA
 import '../stories/TPA/Button';
