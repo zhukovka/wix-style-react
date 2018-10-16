@@ -16,7 +16,12 @@ Types of changes:
 ## Next
 
 ### Fixed
+
 - `<ModalSelectorLayout/>` - fix broken subtitle line [#2336](https://github.com/wix/wix-style-react/pull/2336)
+
+### Added
+
+- `<BadgeSelect/>` - create new component [#2219](https://github.com/wix/wix-style-react/pull/2219)
 
 ## 5.6.0 - 2018-10-15
 
@@ -33,7 +38,6 @@ Types of changes:
 ### Added
 
 - Typography - Add css typography classes [#2306](https://github.com/wix/wix-style-react/pull/2306)
-- `<BadgeSelect/>` - create new component [#2219](https://github.com/wix/wix-style-react/pull/2219)
 
 ## 5.5.2 - 2018-10-09
 
