@@ -15,6 +15,8 @@ Types of changes:
 
 ## Next
 
+## 5.6.1 - 2018-10-16
+
 ### Fixed
 
 - `<ModalSelectorLayout/>` - fix broken subtitle line [#2336](https://github.com/wix/wix-style-react/pull/2336)
