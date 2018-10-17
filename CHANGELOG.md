@@ -18,6 +18,9 @@ Types of changes:
 ### Changed
 - `<Tag/>` - add tiny and medium sizes [#2322](https://github.com/wix/wix-style-react/pull/2322)
 
+### Docs
+
+- Add Dropdown Snippet story using FormField [#2276](https://github.com/wix/wix-style-react/pull/2276)
 
 ## 5.6.1 - 2018-10-16
 
