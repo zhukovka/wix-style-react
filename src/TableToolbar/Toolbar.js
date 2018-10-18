@@ -1,12 +1,12 @@
 import React from 'react';
 import {any, oneOf} from 'prop-types';
 import classNames from 'classnames';
-import s from './Toolbar.scss';
+import style from './Toolbar.st.css';
 import OriginaLabel from '../Label';
 
 export const Toolbar = props => {
   return (
-    <div className={s.toolbar}>
+    <div {...style('root', {}, props)}>
       {props.children}
     </div>
   );
@@ -17,37 +17,23 @@ Toolbar.propTypes = {
 };
 
 export const ItemGroup = props => {
-  const classes = classNames(
-    [
-      s.itemGroup,
-      {
-        positionStart: props.position === 'start',
-        positionEnd: props.position === 'end'
-      }
-    ]
-  );
-
   return (
-    <div className={classes}>
+    <div className={style.itemGroup}>
       {props.children}
     </div>
   );
 };
 ItemGroup.displayName = 'Toolbar.ItemGroup';
 ItemGroup.propTypes = {
-  children: any, // TODO: validate children are either <Item> od <Divider>
-  position: oneOf(['start', 'end'])
-};
-ItemGroup.defaultProps = {
-  position: 'start'
+  children: any // TODO: validate children are either <Item> od <Divider>
 };
 
 export const Item = props => {
   const classes = classNames(
     [
-      s.item,
+      style.item,
       {
-        [s.layoutButton]: props.layout === 'button'
+        [style.layoutButton]: props.layout === 'button'
       }
     ]
   );
@@ -70,7 +56,7 @@ Item.propTypes = {
  */
 export const Label = props => {
   return (
-    <OriginaLabel {...props} className={s.itemLabel}>
+    <OriginaLabel {...props} className={style.itemLabel}>
       {
         React.Children.toArray(props.children).map((c, index) => {
           return typeof c === 'string' ?
@@ -87,7 +73,7 @@ Label.propTypes = {
 };
 
 export const Divider = () => {
-  return <span className={s.divider}/>;
+  return <span className={style.divider}/>;
 };
 Divider.displayName = 'Toolbar.Divider';
 
