@@ -55,6 +55,7 @@ describe('SortableList', () => {
           contentClassName="cl"
           dataHook={dataHook}
           containerId="sortable-list"
+          groupName="group"
           items={items}
           renderItem={renderItem}
           onDrop={onDrop}
@@ -69,8 +70,20 @@ describe('SortableList', () => {
     privateDriver.beginDrag('1');
     privateDriver.endDrag();
 
-    expect(onDragStart).toBeCalled();
-    expect(onDragEnd).toBeCalled();
+    expect(onDragStart).toBeCalledWith({
+      containerId: 'sortable-list',
+      groupName: 'group',
+      id: '1',
+      index: 0,
+      item: {id: '1', text: 'item 1'}
+    });
+    expect(onDragEnd).toBeCalledWith({
+      containerId: 'sortable-list',
+      groupName: 'group',
+      id: '1',
+      index: 0,
+      item: {id: '1', text: 'item 1'}
+    });
     expect(onDrop).not.toBeCalled();
   });
 
