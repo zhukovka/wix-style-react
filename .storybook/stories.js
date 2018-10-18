@@ -113,7 +113,8 @@ import '../stories/Tag.story.js'; // 12.5 Tag
 import '../stories/Highlighter.story.js'; // Highlighter
 
 // Components API
-import '../stories/components/Dropdown/Dropdown.story.js'; // 4.1 Dropdown
+import '../stories/CalendarPanel/index.story';
+import '../stories/components/Dropdown/Dropdown.story.js';
 import '../stories/FormField/FormField.story.js';
 import '../stories/Heading/index.story';
 import '../stories/Layout/index.story.js';

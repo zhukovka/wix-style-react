@@ -15,6 +15,7 @@ export const SplitPane = props => {
     props.className
   );
 
+  //TODO: Make border style from stylesheet and in inline
   return (
     <div
       {...style('root', {}, {...props, className: classes})}
@@ -34,3 +35,4 @@ SplitPane.propTypes = {
   children: propTypes.any
 };
 
+export default SplitPane;

@@ -1,11 +1,11 @@
 :import {
-  -st-from: "../../src/TableToolbar/Toolbar.st.css";
+  -st-from: "../TableToolbar/Toolbar.st.css";
   -st-default: Toolbar;
   -st-named: item, layoutButton;
 }
 
 :import {
-  -st-from: "../../src/TableToolbar/Toolbar.mixins.js";
+  -st-from: "../TableToolbar/Toolbar.mixins.js";
   -st-default: marginBetween;
 }
 

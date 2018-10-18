@@ -1,8 +1,7 @@
 import React from 'react';
 
-import {CalendarPanel} from './CalendarPanel';
+import CalendarPanel from '../../src/CalendarPanel';
 import Card from '../../src/Card';
-import Calendar from '../../src/Calendar';
 
 const TODAY = new Date();
 const presets = [
@@ -20,7 +19,7 @@ const presets = [
   {id: 12, value: 'Last 14 days', selectedDays: {from: TODAY - 14, to: TODAY}}
 ];
 
-export class CalendarPanelCustomExample extends React.Component {
+export class CalendarPanelExample extends React.Component {
 
   render() {
     return (
@@ -29,14 +28,6 @@ export class CalendarPanelCustomExample extends React.Component {
           presets={presets}
           onCancel={() => alert('cancel')}
           onSubmit={(e, selectedDays) => alert(`submit - ${selectedDays}`)}
-          calendar={
-            calendarProps => (
-              <Calendar
-                {...calendarProps}
-                excludePastDates
-                />
-            )
-          }
           />
       </Card>
     );

@@ -1,14 +1,15 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import {Toolbar, ItemGroup, Item} from '../../src/TableToolbar/Toolbar';
-import Calendar from '../../src/Calendar';
-import DropdownLayout from '../../src/DropdownLayout';
-import Button from '../../src/Button';
-
-import {SplitPane} from './SplitPane';
+import {Toolbar, ItemGroup, Item} from '../TableToolbar/Toolbar';
+import Calendar from '../Calendar';
+import DropdownLayout from '../DropdownLayout';
+import Button from '../Button';
+import SplitPane from '../SplitPane';
 
 import style from './CalendarPanel.st.css';
+
+const TODAY = new Date();
 
 export class CalendarPanel extends React.Component {
 
@@ -21,12 +22,24 @@ export class CalendarPanel extends React.Component {
   }
 
   renderSidePane() {
+    const children = React.Children.toArray(this.props.children);
+    let options = children.length > 0 ? children.map(c => ({
+      id: c.props.id,
+      value: c
+    })) :
+     this.props.presets;
+
+    if (!options) {
+      options = [
+        {id: 1, value: 'Today', selectedDays: TODAY}
+      ];
+    }
     return (
       <div className={style.sidePane}>
         <DropdownLayout
           visible
           inContainer
-          options={this.props.presets}
+          options={options}
           onSelect={option => this.setState({selectedDays: option.selectedDays})}
           />
       </div>
@@ -62,6 +75,7 @@ export class CalendarPanel extends React.Component {
       onChange: selectedDays => this.onChange(selectedDays),
       value: this.state.selectedDays
     };
+
     const calendar = this.props.calendar ? this.props.calendar(calendarProps) :
     (<Calendar
       {...calendarProps}
@@ -101,3 +115,4 @@ CalendarPanel.propTypes = {
   calendar: PropTypes.func
 };
 
+export default CalendarPanel;
