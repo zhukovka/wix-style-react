@@ -1,0 +1,21 @@
+:import {
+  -st-from: "../../src/TableToolbar/Toolbar.st.css";
+  -st-default: Toolbar;
+  -st-named: item, layoutButton;
+}
+
+:import {
+  -st-from: "../../src/TableToolbar/Toolbar.mixins.js";
+  -st-default: marginBetween;
+}
+
+.root {
+}
+
+.footer {
+  -st-extends: Toolbar;
+}
+
+.footer::item.layoutButton {
+  -st-mixin: marginBetween(9px);
+}

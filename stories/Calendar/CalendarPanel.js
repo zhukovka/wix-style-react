@@ -7,6 +7,8 @@ import Button from '../../src/Button';
 import Card from '../../src/Card';
 import {SplitPane} from './SplitPane';
 
+import style from './CalendarPanel.st.css';
+
 
 const TODAY = new Date();
 const options = [
@@ -37,19 +39,19 @@ export class CalendarPanel extends React.Component {
 
   renderFooter() {
     return (
-      <Toolbar>
+      <Toolbar className={style.footer}>
         <ItemGroup>
           <Item>
               Date Label
             </Item>
         </ItemGroup>
         <ItemGroup>
-          <Item>
+          <Item layout="button">
             <Button>
               Cancel
               </Button>
           </Item>
-          <Item>
+          <Item layout="button">
             <Button>
                 Update
               </Button>
@@ -61,18 +63,20 @@ export class CalendarPanel extends React.Component {
 
   render() {
     return (
-      <Card>
-        <SplitPane split="horizontal">
-          <SplitPane split="vertical">
-            {this.renderSidePane()}
-            <Calendar
-              onChange={date => this.onChange(date)}
-              value={this.state.selectedDays}
-              />
+      <div {...style('root', {}, this.props)}>
+        <Card>
+          <SplitPane split="horizontal">
+            <SplitPane split="vertical">
+              {this.renderSidePane()}
+              <Calendar
+                onChange={date => this.onChange(date)}
+                value={this.state.selectedDays}
+                />
+            </SplitPane>
+            {this.renderFooter()}
           </SplitPane>
-          {this.renderFooter()}
-        </SplitPane>
-      </Card>
+        </Card>
+      </div>
     );
   }
 }
