@@ -18,6 +18,7 @@ Types of changes:
 ### Changed
 
 - `<Tag/>` - add tiny and medium sizes [#2322](https://github.com/wix/wix-style-react/pull/2322)
+- `<SortableList/>` - Add draggable item to onDragStart and onDragEnd [#2343](https://github.com/wix/wix-style-react/pull/2343)
 
 ### Docs
 
