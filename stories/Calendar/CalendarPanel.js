@@ -32,6 +32,7 @@ export class CalendarPanel extends React.Component {
       <div style={{display: 'inline-block', width: '200px'}}>
         <DropdownLayout
           visible
+          inContainer
           options={options}
           onSelect={option => this.setState({date: option.selectedDays})}
           />
