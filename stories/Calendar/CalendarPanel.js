@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 import {Toolbar, ItemGroup, Item} from '../../src/TableToolbar/Toolbar';
 import Calendar from '../../src/Calendar';
@@ -10,21 +11,16 @@ import {SplitPane} from './SplitPane';
 import style from './CalendarPanel.st.css';
 
 
-const TODAY = new Date();
-const options = [
-  {id: 1, value: 'Today', selectedDays: TODAY},
-  {id: 2, value: 'Yesterday', selectedDays: TODAY - 1},
-  {id: 3, value: 'Last 7 days', selectedDays: {from: TODAY - 7, to: TODAY}},
-  {id: 4, value: 'Last 14 days', selectedDays: {from: TODAY - 14, to: TODAY}}
-];
+
+
 export class CalendarPanel extends React.Component {
 
   state = {
     selectedDays: new Date('2017/05/01')
   };
 
-  onChange(date) {
-    this.setState({date});
+  onChange(selectedDays) {
+    this.setState({selectedDays});
   }
 
   renderSidePane() {
@@ -33,8 +29,8 @@ export class CalendarPanel extends React.Component {
         <DropdownLayout
           visible
           inContainer
-          options={options}
-          onSelect={option => this.setState({date: option.selectedDays})}
+          options={this.props.presets}
+          onSelect={option => this.setState({selectedDays: option.selectedDays})}
           />
       </div>
     );
@@ -50,14 +46,14 @@ export class CalendarPanel extends React.Component {
         </ItemGroup>
         <ItemGroup>
           <Item layout="button">
-            <Button>
+            <Button onClick={e => this.props.onCancel && this.props.onCancel(e)}>
               Cancel
-              </Button>
+            </Button>
           </Item>
           <Item layout="button">
-            <Button>
-                Update
-              </Button>
+            <Button onClick={e => this.props.onSubmit && this.props.onSubmit(e, this.state.selectedDays)}>
+              Update
+            </Button>
           </Item>
         </ItemGroup>
       </Toolbar>
@@ -72,8 +68,8 @@ export class CalendarPanel extends React.Component {
             <SplitPane split="vertical">
               {this.renderSidePane()}
               <Calendar
-                onChange={date => this.onChange(date)}
-                value={this.state.date}
+                onChange={selectedDays => this.onChange(selectedDays)}
+                value={this.state.selectedDays}
                 />
             </SplitPane>
             {this.renderFooter()}
@@ -83,4 +79,22 @@ export class CalendarPanel extends React.Component {
     );
   }
 }
+
+CalendarPanel.propTypes = {
+  // TODO: See if we can add a propType validator for a Date.
+  /* A single Date or a range {from: Date, to:Date}. When passing this prop the Component is controlled.*/
+  selectedDays: PropTypes.oneOf([
+    PropTypes.object,
+    PropTypes.arrayOf(PropTypes.object)
+  ]),
+  /* The initial range (uncontrolled). Range - single Date or a range {from: Date, to:Date}. When passing this prop (and not `selectedDays` then this component is uncontrolled).*/
+  initialSelectedDays: PropTypes.oneOf([
+    PropTypes.object,
+    PropTypes.arrayOf(PropTypes.object)
+  ]),
+  onSelectedDaysChange: PropTypes.func,
+  presets: PropTypes.arrayOf(PropTypes.object), // TODO: be more specific, reuqired selectedDays
+  onCancel: PropTypes.func,
+  onSubmit: PropTypes.func
+};
 
