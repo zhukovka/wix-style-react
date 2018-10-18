@@ -12,8 +12,10 @@ import style from './CalendarPanel.st.css';
 
 const TODAY = new Date();
 const options = [
-  {id: 1, value: 'Last 7 days', selectedDays: {from: TODAY - 7, to: TODAY}},
-  {id: 2, value: 'Last 14 days', selectedDays: {from: TODAY - 14, to: TODAY}}
+  {id: 1, value: 'Today', selectedDays: TODAY},
+  {id: 2, value: 'Yesterday', selectedDays: TODAY - 1},
+  {id: 3, value: 'Last 7 days', selectedDays: {from: TODAY - 7, to: TODAY}},
+  {id: 4, value: 'Last 14 days', selectedDays: {from: TODAY - 14, to: TODAY}}
 ];
 export class CalendarPanel extends React.Component {
 
@@ -31,7 +33,7 @@ export class CalendarPanel extends React.Component {
         <DropdownLayout
           visible
           options={options}
-          onSelect={option => this.setState({selectedDays: option.selectedDays})}
+          onSelect={option => this.setState({date: option.selectedDays})}
           />
       </div>
     );
@@ -42,8 +44,8 @@ export class CalendarPanel extends React.Component {
       <Toolbar className={style.footer}>
         <ItemGroup>
           <Item>
-              Date Label
-            </Item>
+            Date
+          </Item>
         </ItemGroup>
         <ItemGroup>
           <Item layout="button">
@@ -70,7 +72,7 @@ export class CalendarPanel extends React.Component {
               {this.renderSidePane()}
               <Calendar
                 onChange={date => this.onChange(date)}
-                value={this.state.selectedDays}
+                value={this.state.date}
                 />
             </SplitPane>
             {this.renderFooter()}
