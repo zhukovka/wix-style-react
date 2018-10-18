@@ -8,15 +8,11 @@ import ExampleYearMonthsRaw from '!raw-loader!./ExampleYearMonths';
 import ExampleTooltip from './ExampleTooltip';
 import ExampleTooltipRaw from '!raw-loader!./ExampleTooltip';
 import {Container, Row, Col} from 'wix-style-react/Grid';
-import {CalendarPanel} from './CalendarPanel';
 
-const TODAY = new Date();
-const presets = [
-  {id: 1, value: 'Today', selectedDays: TODAY},
-  {id: 2, value: 'Yesterday', selectedDays: TODAY - 1},
-  {id: 3, value: 'Last 7 days', selectedDays: {from: TODAY - 7, to: TODAY}},
-  {id: 4, value: 'Last 14 days', selectedDays: {from: TODAY - 14, to: TODAY}}
-];
+import {CalendarPanelExample} from './CalendarPanelExample';
+import CalendarPanelExampleRaw from '!raw-loader!./CalendarPanelExample';
+
+
 
 export default {
   category: '3. Inputs',
@@ -58,12 +54,10 @@ export default {
       <Row>
         <Col span={12}>
           <div style={{backgroundColor: '#F0F4F7', padding: '30px'}}>
-            <div style={{width: '900px'}}>
-              <CalendarPanel
-                presets={presets}
-                onCancel={() => alert('cancel')}
-                onSubmit={(e, selectedDays) => alert(`submit - ${selectedDays}`)}
-                />
+            <div style={{width: '80%'}}>
+              <CodeExample title="CalendarPanel (default)" code={CalendarPanelExampleRaw}>
+                <CalendarPanelExample/>
+              </CodeExample>
             </div>
           </div>
         </Col>

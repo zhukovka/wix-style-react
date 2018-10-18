@@ -5,13 +5,10 @@ import {Toolbar, ItemGroup, Item} from '../../src/TableToolbar/Toolbar';
 import Calendar from '../../src/Calendar';
 import DropdownLayout from '../../src/DropdownLayout';
 import Button from '../../src/Button';
-import Card from '../../src/Card';
+
 import {SplitPane} from './SplitPane';
 
 import style from './CalendarPanel.st.css';
-
-
-
 
 export class CalendarPanel extends React.Component {
 
@@ -25,7 +22,7 @@ export class CalendarPanel extends React.Component {
 
   renderSidePane() {
     return (
-      <div style={{display: 'inline-block', width: '200px'}}>
+      <div className={style.sidePane}>
         <DropdownLayout
           visible
           inContainer
@@ -61,20 +58,24 @@ export class CalendarPanel extends React.Component {
   }
 
   render() {
+    const calendarProps = {
+      onChange: selectedDays => this.onChange(selectedDays),
+      value: this.state.selectedDays
+    };
+    const calendar = this.props.calendar ? this.props.calendar(calendarProps) :
+    (<Calendar
+      {...calendarProps}
+      />);
+
     return (
       <div {...style('root', {}, this.props)}>
-        <Card>
-          <SplitPane split="horizontal">
-            <SplitPane split="vertical">
-              {this.renderSidePane()}
-              <Calendar
-                onChange={selectedDays => this.onChange(selectedDays)}
-                value={this.state.selectedDays}
-                />
-            </SplitPane>
-            {this.renderFooter()}
+        <SplitPane split="horizontal">
+          <SplitPane split="vertical">
+            {this.renderSidePane()}
+            {calendar}
           </SplitPane>
-        </Card>
+          {this.renderFooter()}
+        </SplitPane>
       </div>
     );
   }
@@ -95,6 +96,8 @@ CalendarPanel.propTypes = {
   onSelectedDaysChange: PropTypes.func,
   presets: PropTypes.arrayOf(PropTypes.object), // TODO: be more specific, reuqired selectedDays
   onCancel: PropTypes.func,
-  onSubmit: PropTypes.func
+  onSubmit: PropTypes.func,
+  /* a function that gets calendar props and should render a <Calendar/>*/
+  calendar: PropTypes.func
 };
 

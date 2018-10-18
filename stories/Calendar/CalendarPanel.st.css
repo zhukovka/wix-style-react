@@ -12,6 +12,11 @@
 .root {
 }
 
+.sidePane {
+  width: 174px;
+  padding-top: 18px;
+}
+
 .footer {
   -st-extends: Toolbar;
 }
