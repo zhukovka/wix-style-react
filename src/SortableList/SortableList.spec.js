@@ -334,6 +334,114 @@ describe('Enzyme: SortableList', () => {
     });
   });
 
+  it('should call onDrop when drag between columns', () => {
+    const dataHook = 'sortable-list';
+    const items = [{id: '1', text: 'item 1'}, {id: '2', text: 'item 2'}];
+    const items2 = [{id: '11', text: 'item 11'}, {id: '21', text: 'item 21'}];
+    const onDrop = jest.fn();
+    const renderItem = ({item}) => <div key={item.id}>{item.text}</div>; // eslint-disable-line react/prop-types
+
+
+    class MyComponent extends React.Component {
+      render() {
+        return (
+          <div>
+            <SortableList
+              contentClassName="cl"
+              dataHook={dataHook}
+              containerId="sortable-list-1"
+              groupName="group1"
+              items={items}
+              renderItem={renderItem}
+              onDrop={onDrop}
+              />
+            <SortableList
+              contentClassName="cl"
+              dataHook={dataHook}
+              containerId="sortable-list-2"
+              groupName="group1"
+              items={items2}
+              renderItem={renderItem}
+              onDrop={onDrop}
+              />
+          </div>
+        );
+      }
+    }
+
+    const wrapper = mount(
+      <DragDropContextProvider backend={TestBackend}>
+        <MyComponent/>
+      </DragDropContextProvider>
+    );
+    const driver = enzymeSortableListTestkitFactory({wrapper, dataHook});
+
+    driver.reorder({removedId: '1', addedId: '21'});
+
+    expect(onDrop).toBeCalledWith({
+      addedIndex: 1,
+      addedToContainerId: 'sortable-list-2',
+      payload: {id: '1', text: 'item 1'},
+      removedFromContainerId: 'sortable-list-1',
+      removedIndex: 0
+    });
+  });
+
+  it('should call onDrop when drag&drop columns', () => {
+    const dataHook = 'sortable-list';
+    const items = [{id: '1', text: 'item 1'}, {id: '2', text: 'item 2'}];
+    const items2 = [{id: '11', text: 'item 11'}, {id: '21', text: 'item 21'}];
+    const onDrop = jest.fn();
+    const renderItem = ({item}) => <div key={item.id}>{item.text}</div>; // eslint-disable-line react/prop-types
+    const renderColumn = ({item}) => ( // eslint-disable-line react/prop-types
+      <div key={item.id}>
+        <SortableList
+          contentClassName="cl"
+          dataHook={dataHook}
+          containerId="sortable-list-2"
+          items={items2}
+          renderItem={renderItem}
+          onDrop={onDrop}
+          />
+      </div>
+    );
+
+    class MyComponent extends React.Component {
+      render() {
+        return (
+          <div>
+            <SortableList
+              contentClassName="cl"
+              dataHook={dataHook}
+              containerId="sortable-list-1"
+              groupName="group1"
+              items={items}
+              renderItem={renderColumn}
+              onDrop={onDrop}
+              />
+          </div>
+        );
+      }
+    }
+
+    const wrapper = mount(
+      <DragDropContextProvider backend={TestBackend}>
+        <MyComponent/>
+      </DragDropContextProvider>
+    );
+    const driver = enzymeSortableListTestkitFactory({wrapper, dataHook});
+
+    driver.reorder({removedId: '1', addedId: '2'});
+
+    expect(onDrop).toBeCalledWith({
+      addedIndex: 1,
+      addedToContainerId: 'sortable-list-1',
+      payload: {id: '1', text: 'item 1'},
+      removedFromContainerId: 'sortable-list-1',
+      removedIndex: 0
+    });
+  });
+
   it('should call onDrop(with portal)', () => {
     const dataHook = 'sortable-list';
     const items = [{id: '1', text: 'item 1'}, {id: '2', text: 'item 2'}];
