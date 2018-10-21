@@ -30,6 +30,10 @@ Types of changes:
 
 - `<Table/>` - support column alignments [#2333](https://github.com/wix/wix-style-react/pull/2333)
 
+### Fixed
+
+- `<ButtonLayout/>` - fix broken text colors for outline theme [#2350](https://github.com/wix/wix-style-react/pull/2350)
+
 ## 5.6.1 - 2018-10-16
 
 ### Fixed
