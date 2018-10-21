@@ -1,50 +1,7 @@
-@import '../common.scss'; // TODO: take only fonts & colors
+@import '../colors.scss';
+@import '../fonts.scss';
 @import '../typography-helpers.scss';
 
-/* HEADING */
-.h1 {
-  @include Heading($tagName: h1);
-  &.light {
-    @include HeadingColor($tagName: h1, $light: true);
-  }
-}
-
-.h2 {
-  @include Heading($tagName: h2);
-  &.light {
-    @include HeadingColor($tagName: h2, $light: true);
-  }
-}
-
-.h3 {
-  @include Heading($tagName: h3);
-  &.light {
-    @include HeadingColor($tagName: h3, $light: true);
-  }
-}
-
-.h4 {
-  @include Heading($tagName: h4);
-  &.light {
-    @include HeadingColor($tagName: h4, $light: true);
-  }
-}
-
-.h5 {
-  @include Heading($tagName: h5);
-  &.light {
-    @include HeadingColor($tagName: h5, $light: true);
-  }
-}
-
-.h6 {
-  @include Heading($tagName: h6);
-  &.light {
-    @include HeadingColor($tagName: h6, $light: true);
-  }
-}
-
-/* TEXT */
 .text {
   @include Text;
 
@@ -110,15 +67,23 @@
     @include TextFontFamily($weight: bold, $size: medium);
   }
 
-  &.link {
+  &.link,
+  &.link.skinStandard {
     color: $B10;
   }
 
-  &.light {
+  &.disabled,
+  &.disabled.skinStandard {
+    color: $D55;
+  }
+
+  &.light,
+  &.light.skinStandard {
     color: $D80;
   }
 
-  &.secondary {
+  &.secondary,
+  &.secondary.skinStandard {
     color: $D20;
   }
 
@@ -143,8 +108,3 @@
     color: $P10;
   }
 }
-
-
-
-
-

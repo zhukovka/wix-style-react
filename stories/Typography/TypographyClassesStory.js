@@ -12,10 +12,12 @@ import CodeExample from 'wix-storybook-utils/CodeExample';
 import BasicClassesExample from './BasicClassesExample';
 import BasicClassesExampleRaw from '!raw-loader!./BasicClassesExample';
 
-import BasicClassesSassExampleRaw from '!raw-loader!./BasicClassesSassExample.md';
+import BasicClassesSassExampleJs from './BasicClassesSassExample.js';
+import BasicClassesSassExampleJsRaw from '!raw-loader!./BasicClassesSassExample.js';
+import BasicClassesSassExampleSassRaw from '!raw-loader!./BasicClassesSassExample.scss';
 
 import TypographyClassesTableRaw from '!raw-loader!./TypographyClassesTable.md';
-
+import TypographyClassesMigration from '!raw-loader!./TypographyClassesMigration.md';
 
 storiesOf(Category.STYLING, module)
   .add('1.2 Typography Classes', () => {
@@ -51,16 +53,19 @@ In case the \`<Text/>\` and \`<Heading/>\` components do not suit your need, you
           </div>
         </CodeExample>
 
-        {/* <CodeExample
+        <CodeExample
           title="Basic Example (Sass)"
-          code={BasicClassesSassExampleRaw}
+          code={BasicClassesSassExampleJsRaw + BasicClassesSassExampleSassRaw}
+          autoExpand
           >
           <div className={styles.codeExample}>
-            <BasicClassesSassExample/>
+            <BasicClassesSassExampleJs/>
           </div>
-        </CodeExample> */}
-        <Markdown source={BasicClassesSassExampleRaw}/>
+        </CodeExample>
+
         <Markdown source={TypographyClassesTableRaw}/>
+        <Markdown source={TypographyClassesMigration}/>
+
       </div>
 
     );
