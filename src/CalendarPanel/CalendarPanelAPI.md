@@ -32,3 +32,20 @@ const presets = [
 ## Alternatives
 
 ### Presets - Change DropdownLayout "option" object API, to a more native one `<Option value="20">Twenty<Option>`
+
+### Props
+
+| propName       | propType | defaultValue | isRequired | description  |
+| ---            | ---      | ---          | ---        | ---          |
+| showPresets | boolean | `true` | - | Shows presets pane |
+| presetOptions | arrayOf(object) | - | - | Array of options (DropdownLayout options) |
+| calendarProps | - | - | - | - |
+| showFooter | boolean | `true` | - | Shows presets pane |
+| cancelButtonProps | - | - | - | - |
+| submitButtonProps | - | - | - | - |
+
+## Methods
+
+| method   | arguments | returned value | description   |
+| -------- | --------- | -------------- | ------------- |
+| setMonth | Date      | -        | Sets the displayed month (Start month, when numOfMonth > 1) |
