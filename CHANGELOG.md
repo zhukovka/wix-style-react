@@ -15,6 +15,10 @@ Types of changes:
 
 ## Next
 
+### Added
+
+- `<Table/>` - support column alignments [#2333](https://github.com/wix/wix-style-react/pull/2333)
+
 ### Changed
 
 - `<Tag/>` - add tiny and medium sizes [#2322](https://github.com/wix/wix-style-react/pull/2322)
@@ -22,17 +26,17 @@ Types of changes:
 - `<DropdownLayout/>` - update the scroll behaviour [#2327](https://github.com/wix/wix-style-react/pull/2327)
 - `<Page/>` - make the page's contents expand to full size [#2342](https://github.com/wix/wix-style-react/pull/2342)
 
-### Docs
+### Deprecated
 
-- Add Dropdown Snippet story using FormField [#2276](https://github.com/wix/wix-style-react/pull/2276)
-
-### Added
-
-- `<Table/>` - support column alignments [#2333](https://github.com/wix/wix-style-react/pull/2333)
+- Typography - Add deprecation log for old classes [#2315](https://github.com/wix/wix-style-react/pull/2315)
 
 ### Fixed
 
 - `<ButtonLayout/>` - fix broken text colors for outline theme [#2350](https://github.com/wix/wix-style-react/pull/2350)
+
+### Docs
+
+- Add Dropdown Snippet story using FormField [#2276](https://github.com/wix/wix-style-react/pull/2276)
 
 ## 5.6.1 - 2018-10-16
 
