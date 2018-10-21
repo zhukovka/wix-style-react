@@ -34,6 +34,7 @@ export class CalendarPanel extends React.Component {
         {id: 1, value: 'Today', selectedDays: TODAY}
       ];
     }
+    // FIXME: Dropdownlayout does NOT take all of the available height
     return (
       <div className={style.sidePane}>
         <DropdownLayout
