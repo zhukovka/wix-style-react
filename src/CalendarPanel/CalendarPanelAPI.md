@@ -5,47 +5,52 @@ const TODAY = new Date();
 const THIS_MONTH = new Date();
 const NEXT_WEEK = new Date()+7;
 
-const presets = [
-  {id: 1, value: 'Today', selectedDays: TODAY},
-  {id: 2, value: 'Yesterday', selectedDays: TODAY - 1},
-  {id: 3, value: 'Last 7 days', selectedDays: {from: TODAY - 7, to: TODAY}},
-  {id: 4, value: 'Last 14 days', selectedDays: {from: TODAY - 14, to: TODAY}}
-];
-
 <CalendarPanel
-  presets={presets}
-  calendarProps={{
-    mode: 'range',
-    initialMonth: THIS_MONTH,
-    selectedDays: TODAY
-  }}
-  cancelButtonProps= {{onClick: () => alert('cancel')}}
-  submitButtonProps= {{onClick: (e, selectedDays) => alert(`submit - ${selectedDays}`)}}
-  >
+  calendar={
+    <Calendar 
+      mode: 'range',
+      initialMonth: THIS_MONTH,
+      selectedDays: TODAY
+    />
+  }
+  presetOptions={[
+    <MenuItem value={{selectedDays: {from: TODAY, to: TODAY}}}>Today</MenuItem>,
+    <MenuItem value={{selectedDays: {from: TODAY-1, to: TODAY-1}}}>Yesterday</MenuItem>,
+    <MenuItem value={{selectedDays: {from: TODAY-7, to: TODAY}}}>Last 7 days</MenuItem>,
+    <MenuItem devider/>,
+    <MenuItem value={{selectedDays: {from: TODAY, to: TODAY+14}}}>Next 14 days</MenuItem>
+  ]}
+  footer={
+    (selectedDays=>(
+      <CalendarPanelFooter
+        cancelButtonProps= {{onClick: () => alert('cancel')}}
+        submitButtonProps= {{onClick: (e, selectedDays) => alert(`submit - ${selectedDays}`)}}
+      >
+    )
+  }
+  
 </CalendarPanel>
 ```
 
-- calendarProps allows any customization
-- The Presets will go into a DropdownLayout. The onSelect will call the Calendar's component method `setMonth` (sets the state).
-- The `<Calendar/>`'s `onSelectedDaysChange` will be intercepted, in order to update the Presets selection and the Footer.
-
-## Alternatives
-
-### Presets - Change DropdownLayout "option" object API, to a more native one `<Option value="20">Twenty<Option>`
 
 ### Props
 
 | propName       | propType | defaultValue | isRequired | description  |
 | ---            | ---      | ---          | ---        | ---          |
 | showPresets | boolean | `true` | - | Shows presets pane |
-| presetOptions | arrayOf(object) | - | - | Array of options (DropdownLayout options) |
-| calendarProps | - | - | - | - |
-| showFooter | boolean | `true` | - | Shows presets pane |
-| cancelButtonProps | - | - | - | - |
-| submitButtonProps | - | - | - | - |
+| presetOptions | arrayOf(MenuItem) | - | - | Array of options (DropdownLayout options) |
+| calendar | <Calendar/> | - | + | - |
+| showFooter | boolean | `true` | - | Shows footer pane |
+| footer | - | - | - | - |
+
 
 ## Methods
 
 | method   | arguments | returned value | description   |
 | -------- | --------- | -------------- | ------------- |
 | setMonth | Date      | -        | Sets the displayed month (Start month, when numOfMonth > 1) |
+
+## Explanation
+
+- The presetOptions will go into a DropdownLayout. The onSelect will call the Calendar's component method `setMonth` (sets the state).
+- The `<Calendar/>`'s `onSelectedDaysChange` will be intercepted, in order to update the Presets selection and the Footer.
