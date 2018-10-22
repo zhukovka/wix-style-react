@@ -18,39 +18,52 @@ class CalendarPanelConsumer {
   }
 
   render() {
+    const mode = 'single-range';
+
+    const presets = [
+      {id: 1, value: 'Today', selectedDays: TODAY},
+      {id: 2, value: 'Yesterday', selectedDays: TODAY - 1},
+      {id: 3, value: 'Last 7 days', selectedDays: {from: TODAY - 7, to: TODAY}},
+      {id: 4, value: 'Last 14 days', selectedDays: {from: TODAY - 14, to: TODAY}}
+    ];
+
     return (
       <CalendarPanel
         calendar={
           <Calendar
-            mode={'range'},
+            mode={mode},
             initialMonth= {THIS_MONTH},
+            numOfMonths={2}
             selectedDays= {this.state.selectedDays}
             onSelectedDaysChange={this.handleChange}
           />
         }
         presets={
-          <CalendarPanelPresets
+          <CalendarPresets
             selectedDays= {this.state.selectedDays}
             onSelect={{selectedDays}=> this.handleChange(selectedDays)}
           >
-            <MenuItem value={{selectedDays: {from: TODAY, to: TODAY}}}>Today</MenuItem>,
-            <MenuItem value={{selectedDays: {from: TODAY-1, to: TODAY-1}}}>Yesterday</MenuItem>,
-            <MenuItem value={{selectedDays: {from: TODAY-7, to: TODAY}}}>Last 7 days</MenuItem>,
-            <MenuItem devider/>,
-            <MenuItem value={{selectedDays: {from: TODAY, to: TODAY+14}}}>Next 14 days</MenuItem>
+            <Preset value={{selectedDays: {from: TODAY, to: TODAY}}}>Today</Preset>,
+            <Preset value={{selectedDays: {from: TODAY-1, to: TODAY-1}}}>Yesterday</Preset>,
+            <Preset value={{selectedDays: {from: TODAY-7, to: TODAY}}}>Last 7 days</Preset>,
+            <Preset devider/>,
+            <Preset value={{selectedDays: {from: TODAY, to: TODAY+14}}}>Next 14 days</Preset>
           </CalendarPanelPresets>
         }
         footer={
           <CalendarPanelFooter
-            cancelButtonProps= {{
+            selectedDaysText = {this.state.selectedDays.toLocaleDateString()}onCancelButtonProps= {{
               onClick: () => alert('cancel')
             }}
             submitButtonProps= {{
               onClick: (e, selectedDays) => alert(`submit - ${selectedDays}`)
+              disabled: {mode === 'single-range' ?
+                !this.selectedDays.to || !this.selectedDays.from : this.selectedDays
+              }
             }}
           >
         }
-      </CalendarPanel>
+      </CalendarPanelLayout>
     )
   }
 }

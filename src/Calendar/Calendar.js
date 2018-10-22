@@ -75,13 +75,16 @@ export default class Calendar extends WixComponent {
         />
     );
 
+    const selectedDays = propsValue.from || propsValue.to ? propsValue : parse(propsValue);
+    const TODAY = new Date();
+
     return {
       disabledDays: excludePastDates ?
         {before: new Date()} :
         date => !filterDate(date),
       initialMonth: month,
       initialYear: month,
-      selectedDays: parse(propsValue),
+      selectedDays: {from: TODAY, to: TODAY},
       month,
       year: month,
       firstDayOfWeek: 1,

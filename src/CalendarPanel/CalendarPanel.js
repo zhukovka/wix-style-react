@@ -14,34 +14,47 @@ const TODAY = new Date();
 export class CalendarPanel extends React.Component {
 
   state = {
-    selectedDays: new Date('2017/05/01')
+    selectedDays: {from: TODAY, to: TODAY}
   };
 
   onChange(selectedDays) {
     this.setState({selectedDays});
   }
 
+  // TODO: make static
+  isEqualDate(a, b) {
+    return a.getDate() === b.getDate();
+  }
+
+  // TODO: make static
+  isSelecteDaysEqual(a, b) {
+    // TODO: support missing from or missing to
+    return a && b &&
+      a.from && b && b.from && this.isEqualDate(a.from, b.from) &&
+      a.to && b.to && this.isEqualDate(a.to, b.to);
+  }
+
   renderSidePane() {
-    const children = React.Children.toArray(this.props.children);
-    let options = children.length > 0 ? children.map(c => ({
-      id: c.props.id,
-      value: c
-    })) :
-     this.props.presets;
+    let options = this.props.presets;
 
     if (!options) {
       options = [
         {id: 1, value: 'Today', selectedDays: TODAY}
       ];
     }
+
+
+    const selectedOption = options.find(o => this.isSelecteDaysEqual(this.state.selectedDays, o.selectedDays));
     // FIXME: Dropdownlayout does NOT take all of the available height
     return (
       <div className={style.sidePane}>
         <DropdownLayout
           visible
+          maxHeightPixels={342 - 18}
           inContainer
           options={options}
           onSelect={option => this.setState({selectedDays: option.selectedDays})}
+          selectedId={selectedOption ? selectedOption.id : -1}
           />
       </div>
     );
@@ -113,7 +126,8 @@ CalendarPanel.propTypes = {
   onCancel: PropTypes.func,
   onSubmit: PropTypes.func,
   /* a function that gets calendar props and should render a <Calendar/>*/
-  calendar: PropTypes.func
+  calendar: PropTypes.func,
+  mode: PropTypes.oneOf('day', 'single-range')
 };
 
 export default CalendarPanel;
