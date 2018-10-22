@@ -1,5 +1,8 @@
 # CalnedarPanel API
 
+
+> selectedDays is controlled
+
 ```js
 const TODAY = new Date();
 const THIS_MONTH = new Date();
@@ -25,13 +28,18 @@ class CalendarPanelConsumer {
             onSelectedDaysChange={this.handleChange}
           />
         }
-        presetOptions={[
-          <MenuItem value={{selectedDays: {from: TODAY, to: TODAY}}}>Today</MenuItem>,
-          <MenuItem value={{selectedDays: {from: TODAY-1, to: TODAY-1}}}>Yesterday</MenuItem>,
-          <MenuItem value={{selectedDays: {from: TODAY-7, to: TODAY}}}>Last 7 days</MenuItem>,
-          <MenuItem devider/>,
-          <MenuItem value={{selectedDays: {from: TODAY, to: TODAY+14}}}>Next 14 days</MenuItem>
-        ]}
+        presets={
+          <CalendarPanelPresets
+            selectedDays= {this.state.selectedDays}
+            onSelect={{selectedDays}=> this.handleChange(selectedDays)}
+          >
+            <MenuItem value={{selectedDays: {from: TODAY, to: TODAY}}}>Today</MenuItem>,
+            <MenuItem value={{selectedDays: {from: TODAY-1, to: TODAY-1}}}>Yesterday</MenuItem>,
+            <MenuItem value={{selectedDays: {from: TODAY-7, to: TODAY}}}>Last 7 days</MenuItem>,
+            <MenuItem devider/>,
+            <MenuItem value={{selectedDays: {from: TODAY, to: TODAY+14}}}>Next 14 days</MenuItem>
+          </CalendarPanelPresets>
+        }
         footer={
           <CalendarPanelFooter
             cancelButtonProps= {{
