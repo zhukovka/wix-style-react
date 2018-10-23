@@ -13,6 +13,11 @@ Types of changes:
 1. **Breaking** for breaking changes
 1. **Docs** for documentation changes
 
+## next
+
+### Added
+- `<DatePicker/>` - add `zIndex` prop for popup [#2352](https://github.com/wix/wix-style-react/pull/2352)
+
 ## 5.7.0 - 2018-10-20
 
 ### Added
