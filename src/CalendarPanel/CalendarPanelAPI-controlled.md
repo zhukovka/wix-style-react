@@ -44,7 +44,7 @@ class CalendarPanelConsumer {
           />
         </PanelBody>
         <PanelSidebar>
-          <CalendarPresets
+          <CalendarPanelPresets
             selectedDays= {this.state.selectedDays}
             onSelect={({selectedDays, month})=> this.setState({selectedDays, month})}
           >
