@@ -137,11 +137,23 @@ export default class DatePicker extends WixComponent {
     this.closeCalendar();
   }
 
+  _formatDateValue = () => {
+    const {value, dateFormat, locale} = this.props;
+
+    if (!value) {
+      return '';
+    }
+
+    if (typeof dateFormat === 'function') {
+      return dateFormat(value);
+    }
+
+    return formatDate(value, dateFormat, locale);
+  }
+
   _renderInput = () => {
     const {
       inputDataHook,
-      dateFormat,
-      locale,
       disabled,
       placeholderText,
       readOnly,
@@ -154,7 +166,7 @@ export default class DatePicker extends WixComponent {
 
     const _inputProps = {
       dataHook: inputDataHook,
-      value: (initialValue && formatDate(initialValue, dateFormat, locale)) || '',
+      value: this._formatDateValue(initialValue),
       onInputClicked: this.openCalendar,
       disabled,
       readOnly,
@@ -239,8 +251,11 @@ DatePicker.propTypes = {
   /** Properties appended to the default Input component or the custom Input component. */
   inputProps: PropTypes.object,
 
-  /** Custom date format */
-  dateFormat: PropTypes.string,
+  /** Custom date format, can be either:
+   * * `string` of tokens (see [`date-fns` docs](https://date-fns.org/v1.29.0/docs/format) for list of supported tokens)
+   * * `function` of signature `Date -> String`
+   */
+  dateFormat: PropTypes.oneOfType([PropTypes.string, PropTypes.func]),
 
   /** DatePicker instance locale */
   locale: PropTypes.oneOfType([

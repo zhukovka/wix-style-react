@@ -32,6 +32,14 @@ export default {
       {label: '2017/05/01', value: defaultValue},
       {label: 'Today', value: today},
       {label: 'Tomorrow', value: tomorrow}
+    ],
+    dateFormat: [
+      {label: 'YYYY/MM/DD', value: 'YYYY/MM/DD'},
+      {label: 'MM/DD/YYYY', value: 'MM/DD/YYYY'},
+      {
+        label: 'custom function (date.getDate())',
+        value: date => date.getDate()
+      }
     ]
   }
 };
