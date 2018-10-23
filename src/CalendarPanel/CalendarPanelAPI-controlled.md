@@ -1,13 +1,13 @@
 # CalnedarPanel API
 
-## Controlled / Layout
+## Suggestion #1 - Controlled + `<Panel/>`
 
-in this suggestion we offer a layout of 3 slots, each having a controlled component.
+In this suggestion we offer a new `<Panel/>` component, which only does layout.
+And we implement the CalendarPanel by using controlled components in each Panel slot:
 
-- `<CalendarPanelLayout/>`
-  - Main:   `<Calendar/>`
-  - Side:   `<CalendarPanelPresets/>`
-  - Bottom: `<CalendarPanelFooter/>`
+- PanelBody:    `<Calendar/>`
+- PanelSidebar: `<CalendarPanelPresets/>`
+- PanelFooter:  `<CalendarPanelFooter/>`
 
 ```js
 import Text from 'wix-style-react/Text';
