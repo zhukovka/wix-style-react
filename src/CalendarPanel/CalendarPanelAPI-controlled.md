@@ -1,9 +1,22 @@
 # CalnedarPanel API
 
+## Controlled / Layout
 
-> selectedDays is controlled
+in this suggestion we offer a layout of 3 slots, each having a controlled component.
+
+- `<CalendarPanelLayout/>`
+  - Main:   `<Calendar/>`
+  - Side:   `<CalendarPanelPresets/>`
+  - Bottom: `<CalendarPanelFooter/>`
 
 ```js
+import Text from 'wix-style-react/Text';
+import Calendar from 'wix-style-react/Calendar';
+import CalendarPanelPresets from 'wix-style-react/CalendarPanelPresets';
+import CalendarPanelFooter from 'wix-style-react/CalendarPanelFooter';
+import Panel from 'wix-style-react/Panel';
+import calendarPanelStyles from 'wix-style-react/CalendarPanel/styles.st.css
+
 const TODAY = new Date();
 const THIS_MONTH = new Date();
 const NEXT_WEEK = new Date()+7;
@@ -11,58 +24,48 @@ const NEXT_WEEK = new Date()+7;
 class CalendarPanelConsumer {
   state = {
     selectedDays: {from: TODAY, to: TODAY}
-  }
-
-  handleChange(selectedDays) {
-    this.setState({selectedDays})
+    month: TODAY
   }
 
   render() {
     const mode = 'single-range';
 
-    const presets = [
-      {id: 1, value: 'Today', selectedDays: TODAY},
-      {id: 2, value: 'Yesterday', selectedDays: TODAY - 1},
-      {id: 3, value: 'Last 7 days', selectedDays: {from: TODAY - 7, to: TODAY}},
-      {id: 4, value: 'Last 14 days', selectedDays: {from: TODAY - 14, to: TODAY}}
-    ];
-
     return (
-      <CalendarPanel
-        calendar={
+      <Panel className={calendarPanelStyles.calendarPanel}>
+        <PanelBody>
           <Calendar
             mode={mode},
-            initialMonth= {THIS_MONTH},
             numOfMonths={2}
-            selectedDays= {this.state.selectedDays}
-            onSelectedDaysChange={this.handleChange}
+            month={this.state.month},
+            onMonthChange={(month)=>this.setState({month})}
+            selectedDays={this.state.selectedDays}
+            onSelectedDaysChange={(selectedDays)=>this.setState({selectedDays})}
           />
-        }
-        presets={
+        </PanelBody>
+        <PanelSide>
           <CalendarPresets
             selectedDays= {this.state.selectedDays}
-            onSelect={{selectedDays}=> this.handleChange(selectedDays)}
+            onSelect={({selectedDays, month})=> this.setState({selectedDays, month})}
           >
-            <Preset value={{selectedDays: {from: TODAY, to: TODAY}}}>Today</Preset>,
-            <Preset value={{selectedDays: {from: TODAY-1, to: TODAY-1}}}>Yesterday</Preset>,
-            <Preset value={{selectedDays: {from: TODAY-7, to: TODAY}}}>Last 7 days</Preset>,
+            <Preset selectedDays={{from: TODAY, to: TODAY}}>Today</Preset>,
+            <Preset selectedDays={{from: TODAY-1, to: TODAY-1}}>Yesterday</Preset>,
+            <Preset selectedDays={{from: TODAY-7, to: TODAY}}>Last 7 days</Preset>,
             <Preset devider/>,
-            <Preset value={{selectedDays: {from: TODAY, to: TODAY+14}}}>Next 14 days</Preset>
+            <Preset selectedDays={{selectedDays: {from: TODAY, to: TODAY+14}}}>Next 14 days</Preset>
           </CalendarPanelPresets>
-        }
-        footer={
+        </PanelSide>
+        <PanelFooter>
           <CalendarPanelFooter
-            selectedDaysText = {this.state.selectedDays.toLocaleDateString()}onCancelButtonProps= {{
-              onClick: () => alert('cancel')
-            }}
-            submitButtonProps= {{
-              onClick: (e, selectedDays) => alert(`submit - ${selectedDays}`)
-              disabled: {mode === 'single-range' ?
-                !this.selectedDays.to || !this.selectedDays.from : this.selectedDays
-              }
-            }}
+            mode
+            selectedDaysDisplay={
+              <Text size='small' secondary>
+                {this.state.selectedDays.toLocaleDateString()}
+              </Text>
+            }
+            onCancel={() => alert('cancel')}
+            onSubmit={() => alert(`submit - ${this.state.selectedDays}`)}
           >
-        }
+        </PanelFooter>
       </CalendarPanelLayout>
     )
   }
