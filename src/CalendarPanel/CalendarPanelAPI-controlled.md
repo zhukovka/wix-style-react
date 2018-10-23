@@ -11,7 +11,7 @@ in this suggestion we offer a layout of 3 slots, each having a controlled compon
 
 ```js
 import Text from 'wix-style-react/Text';
-import Panel from 'wix-style-react/Panel';
+import {Panel, PanelBody, PanelSidebar, PanelFooter} from 'wix-style-react/Panel';
 
 import Calendar from 'wix-style-react/Calendar';
 import {CalendarPanelPresets, Preset} from 'wix-style-react/CalendarPanelPresets';
@@ -43,7 +43,7 @@ class CalendarPanelConsumer {
             onSelectedDaysChange={(selectedDays)=>this.setState({selectedDays})}
           />
         </PanelBody>
-        <PanelSide>
+        <PanelSidebar>
           <CalendarPresets
             selectedDays= {this.state.selectedDays}
             onSelect={({selectedDays, month})=> this.setState({selectedDays, month})}
