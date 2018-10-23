@@ -21,7 +21,7 @@ Types of changes:
 ### Changed
 - `<DatePicker/>` - support custom function in `dateFormat` prop [#2354](https://github.com/wix/wix-style-react/pull/2354)
 
-## 5.7.0 - 2018-10-20
+## 5.7.0 - 2018-10-22
 
 ### Added
 
