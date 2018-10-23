@@ -11,10 +11,11 @@ in this suggestion we offer a layout of 3 slots, each having a controlled compon
 
 ```js
 import Text from 'wix-style-react/Text';
-import Calendar from 'wix-style-react/Calendar';
-import CalendarPanelPresets from 'wix-style-react/CalendarPanelPresets';
-import CalendarPanelFooter from 'wix-style-react/CalendarPanelFooter';
 import Panel from 'wix-style-react/Panel';
+
+import Calendar from 'wix-style-react/Calendar';
+import {CalendarPanelPresets, Preset} from 'wix-style-react/CalendarPanelPresets';
+import CalendarPanelFooter from 'wix-style-react/CalendarPanelFooter';
 import calendarPanelStyles from 'wix-style-react/CalendarPanel/styles.st.css'
 
 const TODAY = new Date();
