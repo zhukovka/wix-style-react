@@ -28,13 +28,13 @@ class CalendarPanelConsumer {
   }
 
   render() {
-    const mode = 'single-range';
+    const selectionMode = 'single-range';
 
     return (
       <Panel className={calendarPanelStyles.calendarPanel}>
         <PanelBody>
           <Calendar
-            mode={mode},
+            selectionMode={selectionMode},
             numOfMonths={2}
             month={this.state.month},
             onMonthChange={(month)=>this.setState({month})}
@@ -56,7 +56,7 @@ class CalendarPanelConsumer {
         </PanelSide>
         <PanelFooter>
           <CalendarPanelFooter
-            mode
+            selectionMode
             selectedDaysDisplay={
               <Text size='small' secondary>
                 {this.state.selectedDays.toLocaleDateString()}
@@ -72,24 +72,12 @@ class CalendarPanelConsumer {
 }
 ```
 
+## Features
 
-### Props
+- Selecting Preset updates Calendar
+- Selecting day/range Calendar updates Preset selection
+- selectionMode: 'single-day', 'single-range'
+- Footer:
+  - selecteDaysDisplay shows currently range as text
+  - Submit button disabled if selectionMode!='day' and there is no valid range selected
 
-| propName       | propType | defaultValue | isRequired | description  |
-| ---            | ---      | ---          | ---        | ---          |
-| presetOptions | arrayOf(MenuItem) | - | - | Array of options (DropdownLayout options). When undefined, then no SidePane will appear |
-| calendar | <Calendar/> | - | + | - |
-| footer | renderProp | - | - | A function that renders the footer. When undefined then no Fotter pane will appear. The function receives the Calendar's (selectedDays,mode) argument.|
-
-
-## Methods
-
-| method   | arguments | returned value | description   |
-| -------- | --------- | -------------- | ------------- |
-| setMonth | Date      | -        | Sets the displayed month (Start month, when numOfMonth > 1) |
-
-## Explanation
-
-- The presetOptions will go into a DropdownLayout. The onSelect will call the Calendar's component method `setMonth` (sets the state).
-- The `<Calendar/>`'s `onSelectedDaysChange` will be intercepted, in order to update the Presets selection and the Footer.
-- The `<Calendar/>
