@@ -73,6 +73,15 @@ class CalendarPanelConsumer {
 }
 ```
 
+### CalendarPanelPresets
+```js
+export const CalendarPanelPresets = () => {
+  <DropdownLayout>
+  </DropdownLayout>
+}
+```
+
+
 ## Features
 
 - Selecting Preset updates Calendar
