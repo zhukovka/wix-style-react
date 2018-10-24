@@ -13,6 +13,13 @@ Types of changes:
 1. **Breaking** for breaking changes
 1. **Docs** for documentation changes
 
+## Next
+
+### Deprecated
+
+- `<DataTable/>` - deprecate `infoTooltip` in favor of `infoTooltipProps` [#2367](https://github.com/wix/wix-style-react/pull/2367)
+
+
 ## 5.7.2 - 2018-10-24
 
 ### Fixes
