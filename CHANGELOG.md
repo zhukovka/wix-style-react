@@ -13,6 +13,12 @@ Types of changes:
 1. **Breaking** for breaking changes
 1. **Docs** for documentation changes
 
+## next - 2018-10-24
+
+### Fixes
+
+- Hot-Fix! Typography deprecationLog - no proxy in production [#2370](https://github.com/wix/wix-style-react/pull/2370)
+
 ## 5.7.1 - 2018-10-23
 
 ### Added
