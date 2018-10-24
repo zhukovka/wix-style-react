@@ -205,7 +205,11 @@
       "no-restricted-globals": [
         "error",
         "fdescribe",
-        "fit"
+        "fit",
+        {
+          "name": "Proxy",
+          "message": "Proxy not supported in IE11."
+        }
       ],
       "indent": 0,
       "indent-legacy": [
