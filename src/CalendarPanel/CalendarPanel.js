@@ -5,108 +5,98 @@ import {Toolbar, ItemGroup, Item} from '../TableToolbar/Toolbar';
 import Calendar from '../Calendar';
 import DropdownLayout from '../DropdownLayout';
 import Button from '../Button';
-import SplitPane from '../SplitPane';
+import Panel from '../Panel';
 
 import style from './CalendarPanel.st.css';
 
-const TODAY = new Date();
+function renderSidebar(props) {
+  let options = this.props.presets;
 
-export class CalendarPanel extends React.Component {
+  const selectedOption = options.find(o => this.isSelecteDaysEqual(this.state.selectedDays, o.selectedDays));
+  // FIXME: Dropdownlayout does NOT take all of the available height
+  return (
+    <div className={style.sidePane}>
+      <DropdownLayout
+        visible
+        maxHeightPixels={342 - 18}
+        inContainer
+        options={options}
+        onSelect={option => this.setState({selectedDays: option.selectedDays})}
+        selectedId={selectedOption ? selectedOption.id : -1}
+        />
+    </div>
+  );
+}
 
-  state = {
-    selectedDays: {from: TODAY, to: TODAY}
-  };
+function renderFooter(props) {
+  return (
+    <Toolbar className={style.footer}>
+      <ItemGroup>
+        <Item>
+          Date
+        </Item>
+      </ItemGroup>
+      <ItemGroup>
+        <Item layout="button">
+          <Button onClick={e => this.props.onCancel && this.props.onCancel(e)}>
+            Cancel
+          </Button>
+        </Item>
+        <Item layout="button">
+          <Button onClick={e => this.props.onSubmit && this.props.onSubmit(e, this.state.selectedDays)}>
+            Update
+          </Button>
+        </Item>
+      </ItemGroup>
+    </Toolbar>
+  );
+}
 
-  onChange(selectedDays) {
-    this.setState({selectedDays});
-  }
+export const CalendarPanel = (props)=> {
 
-  // TODO: make static
-  isEqualDate(a, b) {
-    return a.getDate() === b.getDate();
-  }
+  const selectionMode = 'range';
 
-  // TODO: make static
-  isSelecteDaysEqual(a, b) {
-    // TODO: support missing from or missing to
-    return a && b &&
-      a.from && b && b.from && this.isEqualDate(a.from, b.from) &&
-      a.to && b.to && this.isEqualDate(a.to, b.to);
-  }
-
-  renderSidePane() {
-    let options = this.props.presets;
-
-    if (!options) {
-      options = [
-        {id: 1, value: 'Today', selectedDays: TODAY}
-      ];
-    }
-
-
-    const selectedOption = options.find(o => this.isSelecteDaysEqual(this.state.selectedDays, o.selectedDays));
-    // FIXME: Dropdownlayout does NOT take all of the available height
-    return (
-      <div className={style.sidePane}>
-        <DropdownLayout
-          visible
-          maxHeightPixels={342 - 18}
-          inContainer
-          options={options}
-          onSelect={option => this.setState({selectedDays: option.selectedDays})}
-          selectedId={selectedOption ? selectedOption.id : -1}
+  const calendar = (
+    <Calendar
+            selectionMode={selectionMode},
+            numOfMonths={2}
+            month={this.state.month},
+            onMonthChange={(month)=>this.setState({month})}
+            selectedDays={this.state.selectedDays}
+            onSelectedDaysChange={(selectedDays)=>this.setState({selectedDays})}
           />
-      </div>
-    );
-  }
-
-  renderFooter() {
+  );
     return (
-      <Toolbar className={style.footer}>
-        <ItemGroup>
-          <Item>
-            Date
-          </Item>
-        </ItemGroup>
-        <ItemGroup>
-          <Item layout="button">
-            <Button onClick={e => this.props.onCancel && this.props.onCancel(e)}>
-              Cancel
-            </Button>
-          </Item>
-          <Item layout="button">
-            <Button onClick={e => this.props.onSubmit && this.props.onSubmit(e, this.state.selectedDays)}>
-              Update
-            </Button>
-          </Item>
-        </ItemGroup>
-      </Toolbar>
-    );
-  }
-
-  render() {
-    const calendarProps = {
-      onChange: selectedDays => this.onChange(selectedDays),
-      value: this.state.selectedDays
-    };
-
-    const calendar = this.props.calendar ? this.props.calendar(calendarProps) :
-    (<Calendar
-      {...calendarProps}
-      />);
-
-    return (
-      <div {...style('root', {}, this.props)}>
-        <SplitPane split="horizontal">
-          <SplitPane split="vertical">
-            {this.renderSidePane()}
-            {calendar}
-          </SplitPane>
-          {this.renderFooter()}
-        </SplitPane>
-      </div>
-    );
-  }
+      <Panel className={calendarPanelStyles.calendarPanel}>
+        <PanelBody>
+          
+        </PanelBody>
+        <PanelSidebar>
+          <CalendarPanelPresets
+            selectedDays= {this.state.selectedDays}
+            onSelect={({selectedDays, month})=> this.setState({selectedDays, month})}
+          >
+            <Preset selectedDays={{from: TODAY, to: TODAY}}>Today</Preset>,
+            <Preset selectedDays={{from: TODAY-1, to: TODAY-1}}>Yesterday</Preset>,
+            <Preset selectedDays={{from: TODAY-7, to: TODAY}}>Last 7 days</Preset>,
+            <Preset devider/>,
+            <Preset selectedDays={{selectedDays: {from: TODAY, to: TODAY+14}}}>Next 14 days</Preset>
+          </CalendarPanelPresets>
+        </PanelSide>
+        <PanelFooter>
+          <CalendarPanelFooter
+            selectionMode
+            selectedDaysDisplay={
+              <Text size='small' secondary>
+                {this.state.selectedDays.toLocaleDateString()}
+              </Text>
+            }
+            onCancel={() => alert('cancel')}
+            onSubmit={() => alert(`submit - ${this.state.selectedDays}`)}
+          >
+        </PanelFooter>
+      </Panel>
+    )
 }
 
 CalendarPanel.propTypes = {
