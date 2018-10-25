@@ -19,6 +19,10 @@ Types of changes:
 
 - `<DataTable/>` - deprecate `infoTooltip` in favor of `infoTooltipProps` [#2367](https://github.com/wix/wix-style-react/pull/2367)
 
+### Docs
+
+- `<TextField/>` - deprecated component, and add snippet story using `<FormField/>` [#2361](https://github.com/wix/wix-style-react/pull/2361)
+
 
 ## 5.7.2 - 2018-10-24
 
