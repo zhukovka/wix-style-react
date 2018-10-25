@@ -125,7 +125,7 @@ export default class BadgeSelect extends React.Component {
           <Badge
             ref={badge => this.badge = badge}
             {...{type, size, uppercase}}
-            suffixIcon={<ChevronDown/>}
+            suffixIcon={<ChevronDown viewBox="6 6 12 12"/>}
             onClick={() => this.toggleDropdown()}
             skin={this.state.selectedBadge.skin}
             >
