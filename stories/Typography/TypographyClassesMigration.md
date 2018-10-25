@@ -1,5 +1,3 @@
-## Typography Classes Migration (from preior to WSR 5.6.x)
-
 ### Heading
 
 | Old | New classes |
@@ -17,7 +15,7 @@
 | `h5_1` | `h5`, `light`  |
 | `h6_1` | `h6`, `light`  |
 
-## Text
+### Text
 
 > Old classes marked with `*` have no exact matching in the new TYpography classes, so the new classes shown are the closest match.
 

@@ -34,7 +34,6 @@ storiesOf('4. Selection', module)
       <CodeExample
         title="Dropdown"
         code={ExampleRaw}
-
         autoExpand
         >
         <ExampleSnippet/>

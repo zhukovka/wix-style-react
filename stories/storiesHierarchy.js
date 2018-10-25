@@ -7,6 +7,7 @@ export const getTestStoryKind = ({category, storyName}) => `${TESTS_PREFIX}/${ca
 
 export const Category = {
   FOUNDATION: '1. Foundation',
+  INPUTS: '3. Inputs',
   COMPONENTS: 'Components',
   STYLING: 'Styling'
 };

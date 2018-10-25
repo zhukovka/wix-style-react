@@ -29,7 +29,6 @@ import '../../stories/Card';
 
 // 3. Inputs
 import '../../stories/TextField'; // 3.1 Text Field
-import '../../stories/Input'; // 3.1 + Input
 import '../../stories/TextArea'; // 3.2a Text Area
 import '../../stories/InputArea/index.story.js'; // 3.2a + InputArea
 import '../../stories/RichTextAreaComposite'; // 3.2b RichTextAreaComposite
@@ -116,6 +115,7 @@ import '../../stories/Highlighter.story.js'; // Highlighter
 import '../../stories/components/Dropdown/Dropdown.story.js'; // 4.1 Dropdown
 import '../../stories/FormField/FormField.story.js';
 import '../../stories/Heading/index.story';
+import '../../stories/Input';
 import '../../stories/Layout/index.story.js';
 import '../../stories/Layout';
 import '../../stories/Text/index.story';
