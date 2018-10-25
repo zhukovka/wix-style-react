@@ -15,6 +15,10 @@ Types of changes:
 
 ## Next
 
+### Changed
+
+- `<BadgeSelect/>` - updated icon size [#2372](https://github.com/wix/wix-style-react/pull/2372)
+
 ### Deprecated
 
 - `<DataTable/>` - deprecate `infoTooltip` in favor of `infoTooltipProps` [#2367](https://github.com/wix/wix-style-react/pull/2367)
