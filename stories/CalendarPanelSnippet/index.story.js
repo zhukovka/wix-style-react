@@ -4,11 +4,11 @@ import CodeExample from 'wix-storybook-utils/CodeExample';
 
 import {Container, Row, Col} from 'wix-style-react/Grid';
 
-import CalendarPanelRangeExample from './CalendarPanelRangeExample';
-import CalendarPanelRangeExampleRaw from '!raw-loader!./CalendarPanelRangeExample';
+import {CalendarPanelExample} from './CalendarPanelExample';
+import CalendarPanelExampleRaw from '!raw-loader!./CalendarPanelExample';
 
-import {CalendarPanelDayExample} from './CalendarPanelDayExample';
-import CalendarPanelDayExampleRaw from '!raw-loader!./CalendarPanelDayExample';
+import {CalendarPanelCustomExample} from './CalendarPanelCustomExample';
+import CalendarPanelCustomExampleRaw from '!raw-loader!./CalendarPanelCustomExample';
 
 
 export default {
@@ -19,7 +19,7 @@ export default {
   componentPath: '../../src/CalendarPanel',
 
   componentProps: {
-    dataHook: 'storybook-calendar-panel'
+    dataHook: 'calendar'
   },
 
   examples: (
@@ -27,8 +27,8 @@ export default {
       <Row>
         <Col span={12}>
           <div style={{backgroundColor: '#F0F4F7', padding: '30px'}}>
-            <CodeExample title="CalendarPanel (selectionMode: 'range')" code={CalendarPanelRangeExampleRaw}>
-              <CalendarPanelRangeExample/>
+            <CodeExample title="CalendarPanel (default)" code={CalendarPanelExampleRaw}>
+              <CalendarPanelExample/>
             </CodeExample>
           </div>
         </Col>
@@ -36,8 +36,8 @@ export default {
       <Row>
         <Col span={12}>
           <div style={{backgroundColor: '#F0F4F7', padding: '30px'}}>
-            <CodeExample title="CalendarPanel (selectionMode: 'day')" code={CalendarPanelDayExampleRaw}>
-              <CalendarPanelDayExample/>
+            <CodeExample title="CalendarPanel (Custom)" code={CalendarPanelCustomExampleRaw}>
+              <CalendarPanelCustomExample/>
             </CodeExample>
           </div>
         </Col>

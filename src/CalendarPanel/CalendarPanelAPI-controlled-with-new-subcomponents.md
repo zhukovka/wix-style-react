@@ -29,7 +29,7 @@ class CalendarPanelConsumer {
   }
 
   render() {
-    const selectionMode = 'single-range';
+    const selectionMode = 'range';
 
     return (
       <Panel className={calendarPanelStyles.calendarPanel}>
@@ -86,7 +86,7 @@ export const CalendarPanelPresets = () => {
 
 - Selecting Preset updates Calendar
 - Selecting day/range Calendar updates Preset selection
-- selectionMode: 'single-day', 'single-range'
+- selectionMode: 'day', 'range'
 - Footer:
   - selecteDaysDisplay shows currently range as text
   - Submit button disabled if selectionMode!='day' and there is no valid range selected

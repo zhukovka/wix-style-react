@@ -5,12 +5,6 @@
 }
 
 :import {
-  -st-from: "../Panel/Panel.st.css";
-  -st-default: Panel;
-  -st-named: sidebar;
-}
-
-:import {
   -st-from: "../TableToolbar/Toolbar.mixins.js";
   -st-default: marginBetween;
 }
@@ -18,11 +12,7 @@
 .root {
 }
 
-.calendarPanel {
-  -st-extends: Panel;
-}
-
-.calendarPanel .sidebar {
+.sidePane {
   width: 174px;
   padding-top: 18px;
   max-height: 342px;
