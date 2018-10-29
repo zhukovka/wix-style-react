@@ -96,7 +96,9 @@ storiesOf(kind, module)
 
 1. single run: `npm run test:unit`
 
-1. watch mode: `npm start`
+1. watch mode: `npm run test:watch`
+
+1. watch mode + storybook: `npm start` (This runs also storybook)
 
 #### Debugging
 
