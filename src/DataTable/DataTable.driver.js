@@ -6,8 +6,8 @@ import values from 'lodash/values';
 const arbitraryEmptyElement = () => document.createElement('div');
 
 const dataTableDriverFactory = ({element, wrapper, component}) => {
-  // When a React component renders null, a Comment-Element is rendered to the DOM.
-  const isDisplayingNothing = element.nodeType === Node.COMMENT_NODE;
+  // When a React component renders null in React 15, a Comment-Element is rendered to the DOM.
+  const isDisplayingNothing = !element || element.nodeType === Node.COMMENT_NODE;
   /* Since a Comment-Element has no methods like querySelector(),
    * we replace (if needed) it with an arbitrary Element.
    * This allows simple implementation of methods like getRows().
