@@ -13,12 +13,82 @@ Types of changes:
 1. **Breaking** for breaking changes
 1. **Docs** for documentation changes
 
+## Next
+
+### Changed
+
+- `<BadgeSelect/>` - updated icon size [#2372](https://github.com/wix/wix-style-react/pull/2372)
+
+### Deprecated
+
+- `<DataTable/>` - deprecate `infoTooltip` in favor of `infoTooltipProps` [#2367](https://github.com/wix/wix-style-react/pull/2367)
+
+### Docs
+
+- `<TextField/>` - deprecated component, and add snippet story using `<FormField/>` [#2361](https://github.com/wix/wix-style-react/pull/2361)
+
+
+## 5.7.2 - 2018-10-24
+
+### Fixes
+
+- Hot-Fix! Typography deprecationLog - no proxy in production [#2370](https://github.com/wix/wix-style-react/pull/2370)
+
+## 5.7.1 - 2018-10-23
+
+### Added
+
+- `<DatePicker/>` - add `zIndex` prop for popup [#2352](https://github.com/wix/wix-style-react/pull/2352)
+
+### Changed
+
+- `<DatePicker/>` - support custom function in `dateFormat` prop [#2354](https://github.com/wix/wix-style-react/pull/2354)
+
+### Fixed
+
+- `<DropdownLayout/>` - Revert scroll behaviour [#2362](https://github.com/wix/wix-style-react/pull/2362)
+
+## 5.7.0 - 2018-10-22
+
+### Added
+
+- `<Table/>` - support column alignments [#2333](https://github.com/wix/wix-style-react/pull/2333)
+
+### Changed
+
+- `<Tag/>` - add tiny and medium sizes [#2322](https://github.com/wix/wix-style-react/pull/2322)
+- `<SortableList/>` - Add draggable item to onDragStart and onDragEnd [#2343](https://github.com/wix/wix-style-react/pull/2343)
+- `<DropdownLayout/>` - update the scroll behaviour [#2327](https://github.com/wix/wix-style-react/pull/2327)
+- `<Page/>` - make the page's contents expand to full size [#2342](https://github.com/wix/wix-style-react/pull/2342)
+
+### Deprecated
+
+- Typography - Add deprecation log for old classes [#2315](https://github.com/wix/wix-style-react/pull/2315)
+
+### Fixed
+
+- `<ButtonLayout/>` - fix broken text colors for outline theme [#2350](https://github.com/wix/wix-style-react/pull/2350)
+
+### Docs
+
+- Add Dropdown Snippet story using FormField [#2276](https://github.com/wix/wix-style-react/pull/2276)
+
+## 5.6.1 - 2018-10-16
+
+### Fixed
+
+- `<ModalSelectorLayout/>` - fix broken subtitle line [#2336](https://github.com/wix/wix-style-react/pull/2336)
+
+### Added
+
+- `<BadgeSelect/>` - create new component [#2219](https://github.com/wix/wix-style-react/pull/2219)
+
 ## 5.6.0 - 2018-10-15
 
 ### Fixed
 
-- <DropdownLayout/> -replace deep-eql (IE11 support) [#2326](https://github.com/wix/wix-style-react/pull/2326)
-- <InputWithTags/> replace hasHover state with native css [#2294](https://github.com/wix/wix-style-react/pull/2294)
+- `<DropdownLayout/>` - replace `deep-eql` dependency (IE11 support) [#2326](https://github.com/wix/wix-style-react/pull/2326)
+- `<InputWithTags/>` replace `hasHover` state with native css [#2294](https://github.com/wix/wix-style-react/pull/2294)
 
 ### Changed
 

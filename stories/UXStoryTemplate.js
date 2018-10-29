@@ -1,5 +1,5 @@
 import React from 'react';
-import {string, array} from 'prop-types';
+import {string, array, any} from 'prop-types';
 import LinkTo from '@storybook/addon-links/react';
 import Markdown from 'wix-storybook-utils/Markdown';
 import TextLink from 'wix-style-react/TextLink';
@@ -13,10 +13,21 @@ Title.propTypes = {
 };
 
 export const SubTitle = props => (
-  <Markdown source={`## ${props.children}`}/>
+  <Markdown source={`### ${props.children}`}/>
 );
 SubTitle.propTypes = {
   children: string
+};
+
+export const Section = ({title, children}) => (
+  <div>
+    <Markdown source={`## ${title}`}/>
+    {children}
+  </div>
+);
+Section.propTypes = {
+  children: any,
+  title: string
 };
 
 export const StoryLink = props => {
@@ -41,11 +52,9 @@ export const StoryLink = props => {
 };
 StoryLink.propTypes = LinkTo.propTypes;
 
-
+/** Sections */
 export const IncludedComponents = props => (
-  <div>
-
-    <SubTitle>Included Components</SubTitle>
+  <Section title="Included Components">
     <lu>
       {
     props.componentNames.map(compName =>
@@ -60,9 +69,29 @@ export const IncludedComponents = props => (
     )
   }
     </lu>
-  </div>
+  </Section>
 );
 
 IncludedComponents.propTypes = {
   componentNames: array
+};
+
+export const TLDRSection = ({children}) => (
+  <Section title="Basic Usage">
+    {children}
+  </Section>
+);
+
+TLDRSection.propTypes = {
+  children: any
+};
+
+export const ExamplesSection = ({children}) => (
+  <Section title="Examples">
+    {children}
+  </Section>
+);
+
+ExamplesSection.propTypes = {
+  children: any
 };

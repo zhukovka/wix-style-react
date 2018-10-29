@@ -10,6 +10,7 @@ import InfoCircle from 'wix-ui-icons-common/InfoCircle';
 import Tooltip from '../Tooltip/Tooltip';
 import InfoIcon from '../common/InfoIcon';
 import omit from 'lodash/omit';
+import deprecationLog from '../utils/deprecationLog';
 
 export const DataTableHeader = props => (
   <div>
@@ -210,10 +211,16 @@ class DataTable extends React.Component {
   };
 
   renderCell = (rowData, column, rowNum, colNum) => {
-    const classes = classNames(
-      {[this.style.important]: column.important},
-      {[this.style.largeVerticalPadding]: this.props.rowVerticalPadding === 'large'},
-      {[this.style.mediumVerticalPadding]: this.props.rowVerticalPadding !== 'large'});
+    const classes = classNames({
+      [this.style.important]: column.important,
+      [this.style.largeVerticalPadding]: this.props.rowVerticalPadding === 'large',
+      [this.style.mediumVerticalPadding]: this.props.rowVerticalPadding !== 'large',
+
+      [this.style.alignStart]: column.align === 'start',
+      [this.style.alignCenter]: column.align === 'center',
+      [this.style.alignEnd]: column.align === 'end'
+    });
+
     const width = rowNum === 0 && this.props.hideHeader ? column.width : undefined;
 
     return (<td
@@ -308,6 +315,18 @@ class TableHeader extends Component {
   };
 
   renderHeaderCell = (column, colNum) => {
+    let infoTooltipProps = column.infoTooltipProps;
+
+    // Deprecate `infoTooltip` in favor of `infoTooltipProps`
+    if (!infoTooltipProps && column.infoTooltip) {
+      infoTooltipProps = column.infoTooltip;
+
+      deprecationLog(
+        'Property `infoTooltip` of Table\'s `columns` prop is deprecated; use `infoTooltipProps` instead.',
+        'infoTooltipDeprecation'
+      );
+    }
+
     const style = {
       width: column.width,
       padding: this.props.thPadding,
@@ -321,19 +340,36 @@ class TableHeader extends Component {
       cursor: column.sortable === undefined ? 'arrow' : 'pointer'
     };
 
+    const thClasses = classNames({
+      [this.style.thText]: this.props.newDesign,
+      [this.style.alignStart]: !column.align || column.align === 'start',
+      [this.style.alignCenter]: column.align === 'center',
+      [this.style.alignEnd]: column.align === 'end'
+    });
+
     const optionalHeaderCellProps = {};
+
     if (column.sortable) {
       optionalHeaderCellProps.onClick = () => this.props.onSortClick && this.props.onSortClick(column, colNum);
     }
+
     return (
       <th
         style={style}
         key={colNum}
-        className={classNames({[this.style.thText]: this.props.newDesign})}
+        className={thClasses}
         {...optionalHeaderCellProps}
         >
-        <div className={this.style.thContainer}>
-          {column.title}{this.renderSortingArrow(column.sortDescending, colNum)}{this.renderInfoTooltip(column.infoTooltip, colNum)}
+        <div
+          className={classNames(this.style.thContainer, {
+            // Vertical alignment if the head cell contains a node: a title
+            // which is a React node, or icons
+            [this.style.withNodes]: (
+              React.isValidElement(column.title) || column.sortable || column.sortDescending || infoTooltipProps
+            )
+          })}
+          >
+          {column.title}{this.renderSortingArrow(column.sortDescending, colNum)}{this.renderInfoTooltip(infoTooltipProps, colNum)}
         </div>
       </th>);
   };
@@ -390,7 +426,8 @@ DataTable.propTypes = {
     render: PropTypes.func.isRequired,
     sortable: PropTypes.bool,
     infoTooltipProps: PropTypes.shape(omit(Tooltip.propTypes, ['moveBy', 'dataHook'])),
-    sortDescending: PropTypes.bool
+    sortDescending: PropTypes.bool,
+    align: PropTypes.oneOf(['start', 'center', 'end'])
   })).isRequired,
   /** Should the table show the header when data is empty */
   showHeaderWhenEmpty: PropTypes.bool,

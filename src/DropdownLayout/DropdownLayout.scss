@@ -61,21 +61,23 @@ $arrowDownShadow: -3px -3px 8px rgba(0, 0, 0, .1);
     padding: 10px 0;
   }
 
-  &.up {
-    bottom: 0;
-    margin-top: 15px;
+  &.containerStyles {
+    &.up {
+      bottom: 0;
+      margin-top: 15px;
 
-    &.with-arrow {
-      margin-bottom: $top-arrow-size;
+      &.with-arrow {
+        margin-bottom: $top-arrow-size;
+      }
     }
-  }
 
-  &.down {
-    top: 0;
-    margin-bottom: 15px;
+    &.down {
+      top: 0;
+      margin-bottom: 15px;
 
-    &.with-arrow {
-      margin-top: $top-arrow-size;
+      &.with-arrow {
+        margin-top: $top-arrow-size;
+      }
     }
   }
 }
