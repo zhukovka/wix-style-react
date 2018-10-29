@@ -21,6 +21,7 @@ Types of changes:
 ### Changed
 
 - `<BadgeSelect/>` - updated icon size [#2372](https://github.com/wix/wix-style-react/pull/2372)
+- `<InputWithOptions/>` - update keyboard navigation to match the a11y guidelines [#2310](https://github.com/wix/wix-style-react/pull/2310)
 
 ### Fixed
 
