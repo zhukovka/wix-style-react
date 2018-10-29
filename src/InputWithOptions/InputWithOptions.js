@@ -14,8 +14,12 @@ class InputWithOptions extends WixComponent {
   dropdownClasses() {}
   dropdownAdditionalProps() {}
   inputAdditionalProps() {}
+
   /**
-   * An array of key codes (default ['Enter','Tab']) that act as manual submit. Will be used with the onKeyDown(event), tha key codes are values of event.key. When a manual submit key is pressed then onManuallyInput will be called.
+   * An array of key codes that act as manual submit. Will be used within
+   * onKeyDown(event).
+   *
+   * @returns {KeyboardEvent.key[]}
    */
   getManualSubmitKeys() {
     return ['Enter', 'Tab'];
@@ -161,6 +165,41 @@ class InputWithOptions extends WixComponent {
     return readOnly;
   }
 
+  /**
+   * Determine if the provided key should cause the dropdown to be opened.
+   *
+   * @param {KeyboardEvent.key}
+   * @returns {boolean}
+   */
+  shouldOpenDropdown(key) {
+    const openKeys = this.isReadOnly ?
+      ['Enter', 'Spacebar', ' ', 'ArrowDown'] :
+      ['ArrowDown'];
+
+    return openKeys.includes(key);
+  }
+
+  /**
+   * Determine if the provided key should delegate the keydown event to the
+   * DropdownLayout.
+   *
+   * @param {KeyboardEvent.key}
+   * @returns {boolean}
+   */
+  shouldDelegateKeyDown(key) {
+    return this.isReadOnly || !['Spacebar', ' '].includes(key);
+  }
+
+  /**
+   * Determine if the provided key should cause manual submit.
+   *
+   * @param {KeyboardEvent.key}
+   * @returns {boolean}
+   */
+  shouldPerformManualSubmit(key) {
+    return this.getManualSubmitKeys().includes(key);
+  }
+
   _onManuallyInput(inputValue = '') {
     if (this.state.isComposing) {
       return;
@@ -199,8 +238,14 @@ class InputWithOptions extends WixComponent {
 
   _onChange(event) {
     this.setState({inputValue: event.target.value});
+
     if (this.props.onChange) {
       this.props.onChange(event);
+    }
+
+    // If the input value is not empty, should show the options
+    if (event.target.value.trim()) {
+      this.showOptions();
     }
   }
 
@@ -241,17 +286,29 @@ class InputWithOptions extends WixComponent {
       return;
     }
 
-    if (event.key !== 'ArrowDown' && event.key !== 'ArrowUp') {
+    const {key} = event;
+
+    if (key !== 'ArrowDown' && key !== 'ArrowUp') {
       this.setState({isEditing: true});
     }
 
-    const shouldDelegate = !['Spacebar', ' '].includes(event.key) || this.isReadOnly;
+    if (this.shouldOpenDropdown(key)) {
+      this.showOptions();
+      event.preventDefault();
+    }
 
-    if (shouldDelegate && !this.dropdownLayout._onKeyDown(event)) {
-      if (this.getManualSubmitKeys().indexOf(event.key) !== -1) {
+    if (this.shouldDelegateKeyDown(key)) {
+
+      // Delegate event and get result
+      const eventWasHandled = this.dropdownLayout._onKeyDown(event);
+
+      if (eventWasHandled || this.isReadOnly) {
+        return;
+      }
+
+      // For editing mode, we want to *submit* only for specific keys.
+      if (this.shouldPerformManualSubmit(key)) {
         this._onManuallyInput(this.state.inputValue);
-      } else {
-        this.showOptions();
       }
     }
   }
