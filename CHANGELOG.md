@@ -19,6 +19,10 @@ Types of changes:
 
 - `<BadgeSelect/>` - updated icon size [#2372](https://github.com/wix/wix-style-react/pull/2372)
 
+### Fixed
+
+- `<DropdownLayout/>` - fixed scroll behaviour [#2365](https://github.com/wix/wix-style-react/pull/2365)
+
 ### Deprecated
 
 - `<DataTable/>` - deprecate `infoTooltip` in favor of `infoTooltipProps` [#2367](https://github.com/wix/wix-style-react/pull/2367)
