@@ -22,6 +22,7 @@ Types of changes:
 ### Fixed
 
 - `<DropdownLayout/>` - fixed scroll behaviour [#2365](https://github.com/wix/wix-style-react/pull/2365)
+- `<Table/>` - Fix column alignment when using a tooltip [#2360](https://github.com/wix/wix-style-react/pull/2360)
 
 ### Deprecated
 
