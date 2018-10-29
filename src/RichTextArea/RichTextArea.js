@@ -171,9 +171,9 @@ class RichTextArea extends WixComponent {
     }
   }
 
-  onPaste = (e, change, editor) => {
+  onPaste = (e, change, next) => {
     const target = getEventRange(event, change.value);
-    if (!target && event.type == 'drop') return;
+    if (!target && event.type == 'drop') return next();
 
     const transfer = getEventTransfer(event)
     const { type, text, files } = transfer;
@@ -186,7 +186,12 @@ class RichTextArea extends WixComponent {
               type: 'image',
               data: { src: text }
             });
+            return;
+        } else {
+          return next();
         }
+      default:
+        return next();
     }
   }
 
@@ -330,7 +335,7 @@ class RichTextArea extends WixComponent {
     );
   }
 
-  renderNode(props) {
+  renderNode(props, next) {
     switch (props.node.type) {
       case 'unordered-list':
         return <ul {...props.attributes}>{props.children}</ul>;
@@ -346,10 +351,12 @@ class RichTextArea extends WixComponent {
         const {node, isFocused} = props;
         const src = node.data.get('src');
         return (<img data-hook="editor-image" src={src} className={classNames(styles.editorImage, {[styles.activeEditorImage]: isFocused})}/>);
+      default:
+        return next();
     }
   }
 
-  renderMark(props) {
+  renderMark(props, next) {
     const {attributes, children, mark} = props;
 
     switch (mark.type) {
@@ -359,6 +366,8 @@ class RichTextArea extends WixComponent {
         return <em {...attributes}>{children}</em>;
       case 'underline':
         return <u {...attributes}>{children}</u>;
+      default:
+        return next();
     }
   }
 
