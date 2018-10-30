@@ -88,30 +88,38 @@ class RichTextArea extends WixComponent {
     const isValueChanged = props.value && props.value !== this.props.value && props.value !== this.lastValue;
     if (isPlaceholderChanged || isValueChanged) {
       if (props.isAppend) {
-        const newEditorValue = this.state.editorValue
-              .change()
-              .insertText(props.value);
-
-        this.setEditorValue(newEditorValue);
+        this.editor
+          .insertText(props.value);
       }
       else {
-        const editorValue = htmlSerializer.deserialize(props.value);
-        this.setEditorValue(editorValue);
+        const value = htmlSerializer.deserialize(props.value);
+        this.setEditorValue({value});
       }
     }
   }
 
-  setEditorValue = (editorValue, isTextChanged = true) => {
-    if (editorValue.value) {
-      editorValue = editorValue.value;
-    }
-    this.setState({editorValue}, () => this.triggerChange(isTextChanged));
+  ref = editor => {
+    this.editor = editor;
+  }
+
+  onChange = ({value}) => {
+    const serialized = htmlSerializer.serialize(value);
+    const isValueChanged = value.document != this.state.value.document;
+    // const isValueChanged = serialized !== this.lastValue;
+    console.log(isValueChanged, serialized);
+    this.lastValue = serialized;
+    this.setEditorValue({value}, isValueChanged);
+  }
+
+  setEditorValue = ({value}, isTextChanged = true) => {
+    this.setState({editorValue: value}, () => this.triggerChange(isTextChanged));
   }
 
   triggerChange(isTextChanged = true) {
     const serialized = htmlSerializer.serialize(this.state.editorValue);
     this.lastValue = serialized;
     if (isTextChanged) {
+      console.log(isTextChanged, 'serialized', serialized);
       const {onChange} = this.props;
       onChange && onChange(serialized);
     }
@@ -147,60 +155,12 @@ class RichTextArea extends WixComponent {
   }
 
   handleMarkButtonClick = type => {
-    const editorValue = this.state.editorValue
-      .change()
-      .toggleMark(type);
-
-    this.setEditorValue(editorValue);
+    this.editor.toggleMark(type);
   }
-
-  handleImageButtonClick = type => {
-    this.props.onImageRequest(this.handleImageInput);
-  }
-
-  handleImageInput = text => {
-    if (this.isValidImage(text)) {
-      const editorValue = this.state.editorValue
-        .change()
-        .insertBlock({
-          type: 'image',
-          data: { src: text }
-        });
-
-      this.setEditorValue(editorValue);
-    }
-  }
-
-  onPaste = (e, change, next) => {
-    const target = getEventRange(event, change.value);
-    if (!target && event.type == 'drop') return next();
-
-    const transfer = getEventTransfer(event)
-    const { type, text, files } = transfer;
-
-    switch (type) {
-      case 'text':
-        if (this.isValidImage(text)) {
-          change
-            .insertBlock({
-              type: 'image',
-              data: { src: text }
-            });
-            return;
-        } else {
-          return next();
-        }
-      default:
-        return next();
-    }
-  }
-
-  isValidImage = (text) => isUrl(text) && isImage(text);
 
   handleBlockButtonClick = type => {
-    let {editorValue} = this.state;
-    let change = editorValue.change();
-    const {document} = editorValue;
+    const { value } = this.editor;
+    const { document } = value;
 
     // Handle everything but list buttons.
     if (type !== 'unordered-list' && type !== 'ordered-list') {
@@ -208,14 +168,14 @@ class RichTextArea extends WixComponent {
       const isList = this.hasBlock('list-item');
 
       if (isList) {
-        change
+        this.editor
           .setBlocks(isActive ? DEFAULT_NODE : type)
           .unwrapBlock('unordered-list')
           .unwrapBlock('ordered-list');
       }
 
       else {
-        change
+        this.editor
           .setBlocks(isActive ? DEFAULT_NODE : type);
       }
     }
@@ -223,43 +183,40 @@ class RichTextArea extends WixComponent {
     // Handle the extra wrapping required for list buttons.
     else {
       const isList = this.hasBlock('list-item');
-      const isType = editorValue.blocks.some((block) => {
+      const isType = value.blocks.some((block) => {
         return !!document.getClosest(block.key, parent => parent.type == type);
       });
 
       if (isList && isType) {
-        change
+        this.editor
           .setBlocks(DEFAULT_NODE)
           .unwrapBlock('unordered-list')
           .unwrapBlock('ordered-list');
       } else if (isList) {
-        change
+        this.editor
           .unwrapBlock(type == 'unordered-list' ? 'ordered-list' : 'unordered-list')
           .wrapBlock(type);
       } else {
-        change
+        this.editor
           .setBlocks('list-item')
           .wrapBlock(type);
       }
     }
-
-    this.setEditorValue(change);
   }
 
   handleLinkButtonClick = ({href, text} = {}) => {
-    const {editorValue} = this.state;
-    const change = editorValue.change();
+    const { value } = this.editor;
     const decoratedHref = this.props.absoluteLinks
       ? makeHrefAbsolute(href)
       : href;
 
     if (this.hasLink()) {
-      change
+      this.editor
         .unwrapInline('link');
     } else {
       const linkContent = text || decoratedHref;
-      const startPos = editorValue.anchorOffset;
-      change
+      const startPos = value.anchorOffset;
+      this.editor
         .insertText(linkContent)
         .moveFocusBackward(linkContent.length)
         .wrapInline({
@@ -268,9 +225,45 @@ class RichTextArea extends WixComponent {
         })
         .moveToEnd();
     }
-
-    this.setEditorValue(change);
   }
+
+  handleImageButtonClick = type => {
+    this.props.onImageRequest(this.handleImageInput);
+  }
+
+  handleImageInput = text => {
+    if (this.isValidImage(text)) {
+      this.editor
+        .insertBlock({
+          type: 'image',
+          data: { src: text }
+        });
+    }
+  }
+
+  onPaste = (e, change, next) => {
+    const { editor } = change;
+    const target = getEventRange(event, editor);
+    if (!target && event.type == 'drop') return next();
+
+    const transfer = getEventTransfer(event)
+    const { type, text, files } = transfer;
+
+    if (type === 'text') {
+      if (!this.isValidImage(text)) return next();
+
+      change
+        .insertBlock({
+          type: 'image',
+          data: { src: text }
+        });
+        return;
+    }
+
+    next();
+  }
+
+  isValidImage = (text) => isUrl(text) && isImage(text);
 
   render() {
     const {editorValue} = this.state;
@@ -315,27 +308,21 @@ class RichTextArea extends WixComponent {
             readOnly={disabled}
             placeholder={placeholder}
             className={classNames(styles.editor, {[styles.disabled]: disabled})}
+            ref={this.ref}
             schema={this.schema}
             value={editorValue}
             onPaste={this.onPaste}
             renderNode={this.renderNode}
             renderMark={this.renderMark}
-            onChange={change =>
-              {
-                const serialized = htmlSerializer.serialize(change.value);
-                console.log(serialized);
-                const isValueChanged = serialized !== this.lastValue;
-                this.lastValue = serialized;
-                this.setEditorValue(change, isValueChanged);
-              }
-            }/>
+            onChange={this.onChange}
+            />
           {this.renderError()}
         </div>
       </div>
     );
   }
 
-  renderNode(props, next) {
+  renderNode(props, editor, next) {
     switch (props.node.type) {
       case 'unordered-list':
         return <ul {...props.attributes}>{props.children}</ul>;
@@ -356,7 +343,7 @@ class RichTextArea extends WixComponent {
     }
   }
 
-  renderMark(props, next) {
+  renderMark(props, editor, next) {
     const {attributes, children, mark} = props;
 
     switch (mark.type) {

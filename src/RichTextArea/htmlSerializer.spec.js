@@ -17,7 +17,12 @@ describe('HTML serializer', () => {
                     marks: [],
                     object: 'leaf',
                     text: 'Hello'
-                  },
+                  }
+                ],
+                object: 'text'
+              },
+              {
+                leaves: [
                   {
                     marks: [
                       {
@@ -28,7 +33,12 @@ describe('HTML serializer', () => {
                     ],
                     object: 'leaf',
                     text: 'bold text'
-                  },
+                  }
+                ],
+                object: 'text'
+              },
+              {
+                leaves: [
                   {
                     marks: [
                       {
@@ -38,8 +48,13 @@ describe('HTML serializer', () => {
                       }
                     ],
                     object: 'leaf',
-                    text: 'italic',
-                  },
+                    text: 'italic'
+                  }
+                ],
+                object: 'text'
+              },
+              {
+                leaves: [
                   {
                     marks: [
                       {
@@ -77,7 +92,7 @@ describe('HTML serializer', () => {
                         text: 'one'
                       }
                     ],
-                    object: 'text',
+                    object: 'text'
                   }
                 ],
                 object: 'block',
@@ -102,21 +117,11 @@ describe('HTML serializer', () => {
               }
             ],
             object: 'block',
-            type: 'ordered-list',
+            type: 'ordered-list'
           },
           {
             data: {},
             nodes: [
-              {
-                leaves: [
-                  {
-                    marks: [],
-                    object: 'leaf',
-                    text: ''
-                  }
-                ],
-                object: 'text'
-              },
               {
                 data: {
                   href: 'http://localhost'
@@ -135,16 +140,6 @@ describe('HTML serializer', () => {
                 ],
                 object: 'inline',
                 type: 'link'
-              },
-              {
-                leaves: [
-                  {
-                    marks: [],
-                    object: 'leaf',
-                    text: ''
-                  }
-                ],
-                object: 'text'
               }
             ],
             object: 'block',
@@ -163,128 +158,128 @@ describe('HTML serializer', () => {
   it('should correctly serialize slate object to HTML string', () => {
     const expected = `<ul><li>one</li><li>two</li></ul><p>Text here<strong>bold text</strong><em>italic</em><em><u>and underlined</u></em><a rel="noopener noreferrer" target="_blank" href="http://localhost">Link</a></p>`;
     const value = {
-      object: 'value',
       document: {
-        object: 'document',
         data: {},
         nodes: [
           {
+            data: {},
             object: 'block',
             type: 'unordered-list',
-            data: {},
             nodes: [
               {
-                object: 'block',
-                type: 'list-item',
                 data: {},
                 nodes: [
                   {
-                    object: 'text',
                     leaves: [
                       {
+                        marks: [],
                         object: 'leaf',
-                        text: 'one',
-                        marks: []
+                        text: 'one'
                       }
-                    ]
+                    ],
+                    object: 'text'
                   }
-                ]
+                ],
+                object: 'block',
+                type: 'list-item'
               },
               {
-                object: 'block',
-                type: 'list-item',
                 data: {},
                 nodes: [
                   {
-                    object: 'text',
                     leaves: [
                       {
+                        marks: [],
                         object: 'leaf',
-                        text: 'two',
-                        marks: []
+                        text: 'two'
                       }
-                    ]
+                    ],
+                    object: 'text'
                   }
-                ]
+                ],
+                object: 'block',
+                type: 'list-item'
               }
             ]
           },
           {
+            data: {},
             object: 'block',
             type: 'paragraph',
-            data: {},
             nodes: [
               {
                 object: 'text',
                 leaves: [
                   {
+                    marks: [],
                     object: 'leaf',
-                    text: 'Text here',
-                    marks: []
+                    text: 'Text here'
                   },
                   {
-                    object: 'leaf',
-                    text: 'bold text',
                     marks: [
                       {
+                        data: {},
                         object: 'mark',
-                        type: 'bold',
-                        data: {}
+                        type: 'bold'
                       }
-                    ]
+                    ],
+                    object: 'leaf',
+                    text: 'bold text'
                   },
                   {
-                    object: 'leaf',
-                    text: 'italic',
                     marks: [
                       {
+                        data: {},
                         object: 'mark',
-                        type: 'italic',
-                        data: {}
+                        type: 'italic'
                       }
-                    ]
+                    ],
+                    object: 'leaf',
+                    text: 'italic'
                   },
                   {
-                    object: 'leaf',
-                    text: 'and underlined',
                     marks: [
                       {
+                        data: {},
                         object: 'mark',
-                        type: 'underline',
-                        data: {}
+                        type: 'underline'
                       },
                       {
+                        data: {},
                         object: 'mark',
-                        type: 'italic',
-                        data: {}
+                        type: 'italic'
                       }
-                    ]
+                    ],
+                    object: 'leaf',
+                    text: 'and underlined'
                   }
                 ]
               },
               {
-                object: 'inline',
-                type: 'link',
                 data: {
                   href: 'http://localhost'
                 },
                 nodes: [
                   {
-                    object: 'text',
                     leaves: [
                       {
                         object: 'leaf',
                         text: 'Link',
                         marks: []
                       }
-                    ]
+                    ],
+                    object: 'text'
                   }
-                ]
+                ],
+                object: 'inline',
+                type: 'link'
               }
             ]
           }
-        ]
-      }
+        ],
+        object: 'document'
+      },
+      object: 'value'
     };
     const serialized = Value.fromJSON(value);
     expect(htmlSerializer.serialize(serialized)).toEqual(expected);
