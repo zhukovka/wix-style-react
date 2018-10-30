@@ -54,11 +54,11 @@ class RichTextArea extends WixComponent {
   schema = {
     document: {
       last: {type: 'paragraph'},
-      normalize: (change, {code, node}) => {
+      normalize: (editor, {code, node}) => {
         switch (code) {
           case 'last_child_type_invalid': {
             const block = Block.create(defaultBlock);
-            return change.insertNodeByKey(node.key, node.nodes.size, block);
+            return editor.insertNodeByKey(node.key, node.nodes.size, block);
           }
           default:
             return;
@@ -88,6 +88,7 @@ class RichTextArea extends WixComponent {
     const isValueChanged = props.value && props.value !== this.props.value && props.value !== this.lastValue;
     if (isPlaceholderChanged || isValueChanged) {
       if (props.isAppend) {
+        console.log('new append', props.value);
         this.editor
           .insertText(props.value);
       }
@@ -104,9 +105,8 @@ class RichTextArea extends WixComponent {
 
   onChange = ({value}) => {
     const serialized = htmlSerializer.serialize(value);
-    const isValueChanged = value.document != this.state.value.document;
+    const isValueChanged = value.document != this.state.editorValue.document;
     // const isValueChanged = serialized !== this.lastValue;
-    console.log(isValueChanged, serialized);
     this.lastValue = serialized;
     this.setEditorValue({value}, isValueChanged);
   }
@@ -159,7 +159,8 @@ class RichTextArea extends WixComponent {
   }
 
   handleBlockButtonClick = type => {
-    const { value } = this.editor;
+    const { editor } = this;
+    const { value } = editor;
     const { document } = value;
 
     // Handle everything but list buttons.
@@ -168,14 +169,14 @@ class RichTextArea extends WixComponent {
       const isList = this.hasBlock('list-item');
 
       if (isList) {
-        this.editor
+        editor
           .setBlocks(isActive ? DEFAULT_NODE : type)
           .unwrapBlock('unordered-list')
           .unwrapBlock('ordered-list');
       }
 
       else {
-        this.editor
+        editor
           .setBlocks(isActive ? DEFAULT_NODE : type);
       }
     }
@@ -188,16 +189,16 @@ class RichTextArea extends WixComponent {
       });
 
       if (isList && isType) {
-        this.editor
+        editor
           .setBlocks(DEFAULT_NODE)
           .unwrapBlock('unordered-list')
           .unwrapBlock('ordered-list');
       } else if (isList) {
-        this.editor
+        editor
           .unwrapBlock(type == 'unordered-list' ? 'ordered-list' : 'unordered-list')
           .wrapBlock(type);
       } else {
-        this.editor
+        editor
           .setBlocks('list-item')
           .wrapBlock(type);
       }
@@ -241,8 +242,7 @@ class RichTextArea extends WixComponent {
     }
   }
 
-  onPaste = (e, change, next) => {
-    const { editor } = change;
+  onPaste = (e, editor, next) => {
     const target = getEventRange(event, editor);
     if (!target && event.type == 'drop') return next();
 
@@ -252,7 +252,7 @@ class RichTextArea extends WixComponent {
     if (type === 'text') {
       if (!this.isValidImage(text)) return next();
 
-      change
+      editor
         .insertBlock({
           type: 'image',
           data: { src: text }
@@ -311,10 +311,10 @@ class RichTextArea extends WixComponent {
             ref={this.ref}
             schema={this.schema}
             value={editorValue}
+            onChange={this.onChange}
             onPaste={this.onPaste}
             renderNode={this.renderNode}
             renderMark={this.renderMark}
-            onChange={this.onChange}
             />
           {this.renderError()}
         </div>

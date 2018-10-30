@@ -141,7 +141,7 @@
     "react-transition-group": "^2.2.1",
     "slate": "^0.43.0",
     "slate-html-serializer": "^0.7.16",
-    "slate-react": "^0.20.1",
+    "slate-react": "^0.20.2",
     "wix-animations": "^1.0.141",
     "wix-eventually": "^2.2.0",
     "wix-ui-backoffice": "^1.0.299",
