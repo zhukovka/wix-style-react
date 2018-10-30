@@ -16,6 +16,9 @@ import EllipsisExampleRaw from '!raw-loader!./ExampleEllipsis';
 import H1TagNameExample from './ExampleH1TagName';
 import H1TagNameExampleRaw from '!raw-loader!./ExampleH1TagName';
 
+import LinkExample from './ExampleLink';
+import LinkExampleRaw from '!raw-loader!./ExampleLink';
+
 import {storySettings} from './storySettings';
 
 export default {
@@ -48,6 +51,10 @@ export default {
 
       <CodeExample title="Custom TagName Example" code={H1TagNameExampleRaw}>
         <H1TagNameExample/>
+      </CodeExample>
+
+      <CodeExample title="Link Example" code={LinkExampleRaw}>
+        <LinkExample/>
       </CodeExample>
 
       <CodeExample title="Typography Examples" code={TypographyExampleRaw}>

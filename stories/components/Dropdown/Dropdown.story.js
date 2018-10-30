@@ -14,7 +14,6 @@ import ExampleWithCustomValueRaw from '!raw-loader!./ExampleWithCustomValue';
 import Dropdown from 'wix-style-react/Dropdown';
 import {storySettings} from './storySettings';
 
-
 const options = [
   {id: 0, value: 'Option 1'},
   {id: 1, value: 'Option 2'},

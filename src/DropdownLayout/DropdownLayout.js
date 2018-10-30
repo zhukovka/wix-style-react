@@ -6,6 +6,7 @@ import WixComponent from '../BaseComponents/WixComponent';
 import isEqual from 'lodash/isEqual';
 import trim from 'lodash/trim';
 import findIndex from 'lodash/findIndex';
+import scrollIntoView from '../utils/scrollIntoView';
 
 const modulu = (n, m) => {
   const remain = n % m;
@@ -121,7 +122,11 @@ class DropdownLayout extends WixComponent {
     } while (!this.isSelectableOption(options[newHovered]));
 
     this.setState({hovered: newHovered});
-    this.options.scrollTop = (newHovered - 2) * 35;
+
+    const menuElement = this.options;
+    const hoveredElement = this.options.childNodes[newHovered];
+
+    scrollIntoView(menuElement, hoveredElement);
   }
 
   /**

@@ -11,9 +11,6 @@ import ExampleSizes from '../Breadcrumbs/ExampleSizes';
 import ExampleThemesRow from '!raw-loader!../Breadcrumbs/ExampleThemes';
 import ExampleThemes from '../Breadcrumbs/ExampleThemes';
 
-import ExampleWithNodesRow from '!raw-loader!../Breadcrumbs/ExampleWithNodes';
-import ExampleWithNodes from '../Breadcrumbs/ExampleWithNodes';
-
 import ExampleWithOnClickRow from '!raw-loader!../Breadcrumbs/ExampleWithOnClick';
 import ExampleWithOnClick from '../Breadcrumbs/ExampleWithOnClick';
 
@@ -72,10 +69,6 @@ export default {
 
       <CodeExample title="Themes" code={ExampleThemesRow}>
         <ExampleThemes/>
-      </CodeExample>
-
-      <CodeExample title="Html node items" code={ExampleWithNodesRow}>
-        <ExampleWithNodes/>
       </CodeExample>
 
       <CodeExample title="On click callback" code={ExampleWithOnClickRow}>

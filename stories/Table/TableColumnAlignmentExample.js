@@ -71,10 +71,17 @@ export class TableColumnAlignmentExample extends React.Component {
               ),
               width: '20%',
               minWidth: '100px',
-              align: 'center'
+              align: 'center',
+              infoTooltipProps: {
+                content: 'I am a Tooltip!'
+              }
             },
             {
-              title: 'Price', render: row => <span>{row.price}</span>, width: '20%', minWidth: '100px', align: 'end'
+              title: 'Price',
+              render: row => <span>{row.price}</span>,
+              width: '20%',
+              minWidth: '100px',
+              align: 'end'
             }
           ]}
           >

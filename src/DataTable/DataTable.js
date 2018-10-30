@@ -341,10 +341,7 @@ class TableHeader extends Component {
     };
 
     const thClasses = classNames({
-      [this.style.thText]: this.props.newDesign,
-      [this.style.alignStart]: !column.align || column.align === 'start',
-      [this.style.alignCenter]: column.align === 'center',
-      [this.style.alignEnd]: column.align === 'end'
+      [this.style.thText]: this.props.newDesign
     });
 
     const optionalHeaderCellProps = {};
@@ -362,11 +359,9 @@ class TableHeader extends Component {
         >
         <div
           className={classNames(this.style.thContainer, {
-            // Vertical alignment if the head cell contains a node: a title
-            // which is a React node, or icons
-            [this.style.withNodes]: (
-              React.isValidElement(column.title) || column.sortable || column.sortDescending || infoTooltipProps
-            )
+            [this.style.alignStart]: !column.align || column.align === 'start',
+            [this.style.alignCenter]: column.align === 'center',
+            [this.style.alignEnd]: column.align === 'end'
           })}
           >
           {column.title}{this.renderSortingArrow(column.sortDescending, colNum)}{this.renderInfoTooltip(infoTooltipProps, colNum)}
