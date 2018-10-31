@@ -13,7 +13,8 @@ Types of changes:
 1. **Breaking** for breaking changes
 1. **Docs** for documentation changes
 
-## Next
+## 5.8.0 - 2018-10-31
+
 ### Added
 
 - `<SideMenu/>`(styling hack) - add data-link-active DOM attribute to allow styling [#2392](https://github.com/wix/wix-style-react/pull/2392)
