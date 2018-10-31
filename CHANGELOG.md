@@ -16,6 +16,7 @@ Types of changes:
 ## Next
 ### Added
 
+- `<SideMenu/>`(styling hack) - add data-link-active DOM attribute to allow styling [#2392](https://github.com/wix/wix-style-react/pull/2392)
 - `<Text>` - Support anchors inside text component [2384](https://github.com/wix/wix-style-react/pull/2384)
 
 ### Changed
