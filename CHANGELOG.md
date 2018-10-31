@@ -14,10 +14,19 @@ Types of changes:
 1. **Docs** for documentation changes
 
 ## Next
+### Added
+
+- `<Text>` - Support anchors inside text component [2384](https://github.com/wix/wix-style-react/pull/2384)
 
 ### Changed
 
 - `<BadgeSelect/>` - updated icon size [#2372](https://github.com/wix/wix-style-react/pull/2372)
+- `<InputWithOptions/>` - update keyboard navigation to match the a11y guidelines [#2310](https://github.com/wix/wix-style-react/pull/2310)
+
+### Fixed
+
+- `<DropdownLayout/>` - fixed scroll behaviour [#2365](https://github.com/wix/wix-style-react/pull/2365)
+- `<Table/>` - Fix column alignment when using a tooltip [#2360](https://github.com/wix/wix-style-react/pull/2360)
 
 ### Deprecated
 

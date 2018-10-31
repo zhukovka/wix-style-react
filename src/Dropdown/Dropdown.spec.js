@@ -47,12 +47,18 @@ describe('Dropdown', () => {
 
   it('should update text when selected option changes', () => {
     const options = getOptions();
-    const {driver, inputDriver, dropdownLayoutDriver} = createDriver(<Dropdown options={options} selectedId={0}/>);
+    const dataHook = 'dropdown-comp';
+
+    const wrapper = mount(<Dropdown dataHook={dataHook} options={options} selectedId={0}/>);
+    const {driver, inputDriver, dropdownLayoutDriver} = enzymeDropdownTestkitFactory({wrapper, dataHook});
+
     driver.focus();
     dropdownLayoutDriver.clickAtOption(0);
     expect(inputDriver.getValue()).toBe('Option 1');
+
     options[0].value = 'Updated';
-    driver.setProps({options, selectedId: 0});
+    wrapper.setProps({options, selectedId: 0});
+
     expect(inputDriver.getValue()).toBe('Updated');
   });
 
