@@ -23,9 +23,11 @@ import ExampleSizesRaw from '!raw-loader!./ExampleSizes';
 
 export const AUTO_EXAMPLE_DATA_HOOK = 'storybook-inputarea';
 
+import {storySettings} from './storySettings';
+
 export default {
-  category: '3. Inputs',
-  storyName: '3.2 + InputArea',
+  category: storySettings.category,
+  storyName: storySettings.storyName,
   component: InputArea,
   componentPath: '../../src/InputArea',
 
