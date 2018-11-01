@@ -17,7 +17,7 @@ Types of changes:
 
 # Deprecated
 
-- <TextArea> - deprecate and add a snippet story using `<FormField/>` and `<InputArea/>` [#2383](https://github.com/wix/wix-style-react/pull/2383)
+- `<TextArea>` - deprecate and add a snippet story using `<FormField/>` and `<InputArea/>` [#2383](https://github.com/wix/wix-style-react/pull/2383)
 
 ## 5.8.0 - 2018-10-31
 
