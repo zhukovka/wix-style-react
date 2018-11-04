@@ -107,6 +107,7 @@ describe('DrillView', () => {
 
     expect(driver.getMenuDriver().headerContent()).toBe(getHeader(0));
     expect(driver.getMenuDriver().footerContent()).toBe(getFooter(0));
+    expect(driver.getMenuDriver().isLinkActiveByIndex(0)).toBe(false);
     expect(driver.getMenuDriver().isLinkActiveByIndex(activeIndex)).toBe(true);
   });
 

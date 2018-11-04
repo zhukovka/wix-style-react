@@ -23,7 +23,12 @@ const sideMenuDriverFactory = ({element}) => {
     headerContent: () => getHeader().textContent,
     navigationLinks: () => getNavigationLinks(),
     navigationInnerLinks: () => getNavigationLinkWrappers(),
-    isLinkActiveByIndex: index => getNavigationLinkWrappers()[index].classList.contains(navigationStyles.linkActive),
+    isLinkActiveByIndex: index => {
+      const activeLinkWrapper = getNavigationLinkWrappers()[index];
+      const classExists = activeLinkWrapper.classList.contains(navigationStyles.linkActive);
+      const dataAttributeExists = activeLinkWrapper.getAttribute('data-link-active') === 'true';
+      return classExists && dataAttributeExists;
+    },
     isLinkDisabledByIndex: index => getNavigationLinkWrappers()[index].classList.contains(navigationStyles.linkDisabled),
     isLinkBadgeVisibleByIndex: index => !!getBadge(getNavigationLinkWrappers()[index]),
     navigationSeparators: () => getNavigationSeparators(),

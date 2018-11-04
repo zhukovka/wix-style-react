@@ -231,7 +231,7 @@ class Tooltip extends WixComponent {
           onMouseLeave={() => this._onTooltipContentLeave()}
           ref={ref => {
             if (this.props.relative) {
-              this.tooltipContent = ref.tooltip;
+              this.tooltipContent = ref && ref.tooltip;
             } else {
               this.tooltipContent = ref;
             }

@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import {stub} from 'sinon';
 import {mount} from 'enzyme';
 
@@ -23,11 +24,17 @@ describe('withTooltip hoc', () => {
   const type = 'compactSide';
   const item = {id: 0, title: 'Title'};
 
-  const Component = ({initHasTooltip}) => ( // eslint-disable-line react/prop-types
-    <div>
-      <div ref={el => initHasTooltip(el)}/>
-    </div>
-  );
+  class Component extends React.Component {
+    static propTypes = {
+      initHasTooltip: PropTypes.func
+    };
+
+    render() {
+      return (<div>
+        <div ref={el => this.props.initHasTooltip(el)}/>
+      </div>);
+    }
+  }
 
   const aComponent = (props = {}) => mount(React.createElement(
     withTooltip(Component),

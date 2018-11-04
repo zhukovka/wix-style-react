@@ -11,6 +11,7 @@ const LinkLayout = ({children, isDiminishedHover, isActive, disabled, className,
       [styles.linkDisabled]: disabled
     }, className)}
     data-hook="menu-navigation-link-wrapper"
+    data-link-active={isActive} // hack to allow styling
     {...rest}
     >
     {children}

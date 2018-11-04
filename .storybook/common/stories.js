@@ -30,7 +30,6 @@ import '../../stories/Card';
 // 3. Inputs
 import '../../stories/TextField'; // 3.1 Text Field
 import '../../stories/TextArea'; // 3.2a Text Area
-import '../../stories/InputArea/index.story.js'; // 3.2a + InputArea
 import '../../stories/RichTextAreaComposite'; // 3.2b RichTextAreaComposite
 import '../../stories/RichTextArea/RichTextArea.story.js'; // 3.2b + RichTextArea
 import '../../stories/FieldWithSelectionComposite'; // 3.3 Field With Selection
@@ -112,10 +111,11 @@ import '../../stories/Tag.story.js'; // 12.5 Tag
 import '../../stories/Highlighter.story.js'; // Highlighter
 
 // Components API
-import '../../stories/components/Dropdown/Dropdown.story.js'; // 4.1 Dropdown
+import '../../stories/components/Dropdown/Dropdown.story.js';
 import '../../stories/FormField/FormField.story.js';
 import '../../stories/Heading/index.story';
 import '../../stories/Input';
+import '../../stories/InputArea/index.story.js';
 import '../../stories/Layout/index.story.js';
 import '../../stories/Layout';
 import '../../stories/Text/index.story';

@@ -14,8 +14,23 @@ Types of changes:
 1. **Docs** for documentation changes
 
 ## Next
+
+## 5.8.1 - 2018-11-04
+
+### Deprecated
+
+- `<TextArea>` - deprecate and add a snippet story using `<FormField/>` and `<InputArea/>` [#2383](https://github.com/wix/wix-style-react/pull/2383)
+
+### Fixed
+
+- `<Tooltip/>` - Fix potential null dereferencing that happens in React 16 [2391](https://github.com/wix/wix-style-react/pull/2391)
+- `<BadgeSelect/>` - fix word wrapping and eyes issues [#2397](https://github.com/wix/wix-style-react/pull/2397)
+
+## 5.8.0 - 2018-10-31
+
 ### Added
 
+- `<SideMenu/>`(styling hack) - add data-link-active DOM attribute to allow styling [#2392](https://github.com/wix/wix-style-react/pull/2392)
 - `<Text>` - Support anchors inside text component [2384](https://github.com/wix/wix-style-react/pull/2384)
 
 ### Changed
