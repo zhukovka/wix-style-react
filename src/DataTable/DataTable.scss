@@ -67,16 +67,15 @@ $rowShadow: inset 0 1px 0 0 $D70;
 
   // Sorting arrows
   .activeSortingArrow,
-  &:hover .hiddenSortingArrow{
+  &:hover .hiddenSortingArrow {
     display: inherit;
   }
 
   &:hover .activeSortingArrow,
-  .hiddenSortingArrow{
+  .hiddenSortingArrow {
     display: none;
   }
 }
-
 
 .table td {
   @include Text($weight: thin, $size: small, $secondary: true);

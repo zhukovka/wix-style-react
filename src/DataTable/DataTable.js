@@ -268,8 +268,21 @@ class TableHeader extends Component {
     newDesign: PropTypes.bool
   };
 
+  state = {
+    // This state property indicates what header cell is currently active. A
+    // cell becomes "active" when it is clicked, and stops being active when
+    // the mouse leaves it.
+    activeHeaderCell: -1
+  }
+
   get style() {
     return styles;
+  }
+
+  setActiveHeaderCell = colNum => {
+    this.setState({
+      activeHeaderCell: colNum
+    });
   }
 
   renderSortingArrow = (column, colNum) => {
@@ -301,6 +314,10 @@ class TableHeader extends Component {
       return null;
     }
 
+    // When the cell is active, we want to preserve the *previous* state after
+    // the click
+    const isCurrentCellActive = this.state.activeHeaderCell === colNum;
+
     return (
       <span
         data-hook={`${colNum}_title`}
@@ -308,6 +325,9 @@ class TableHeader extends Component {
         >
         {ActiveSortingArrow && (
           <ActiveSortingArrow
+            style={{
+              display: isCurrentCellActive ? 'inherit' : undefined
+            }}
             height={12}
             className={this.style.activeSortingArrow}
             data-hook={`active_arrow_${sortingIconDirection}`}
@@ -315,6 +335,9 @@ class TableHeader extends Component {
         )}
         {HiddenSortingArrow && (
           <HiddenSortingArrow
+            style={{
+              display: isCurrentCellActive ? 'none' : undefined
+            }}
             height={12}
             className={this.style.hiddenSortingArrow}
             data-hook={`active_arrow_${sortingIconDirection}`}
@@ -378,10 +401,17 @@ class TableHeader extends Component {
       [this.style.thText]: this.props.newDesign
     });
 
-    const optionalHeaderCellProps = {};
+    let optionalHeaderCellProps = {};
 
     if (column.sortable) {
-      optionalHeaderCellProps.onClick = () => this.props.onSortClick && this.props.onSortClick(column, colNum);
+      optionalHeaderCellProps = {
+        ...optionalHeaderCellProps,
+        onClick: () => {
+          this.setActiveHeaderCell(colNum);
+          this.props.onSortClick && this.props.onSortClick(column, colNum);
+        },
+        onMouseLeave: () => this.setActiveHeaderCell(-1)
+      };
     }
 
     let sortingIconDirection = column.sortingIconDirection;
