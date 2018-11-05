@@ -1,14 +1,21 @@
 {
   "name": "wix-style-react",
   "description": "wix-style-react",
-  "version": "5.8.1",
+  "version": "5.9.0",
   "main": "./dist/src/index.js",
+  "module": "./dist/es/src/index.js",
+  "sideEffects": [
+    "./.storybook/**/*.*",
+    "./stories/**/*.*",
+    "./src/**/*.scss"
+  ],
   "files": [
     "dist",
     "src",
     "scripts",
     ".babelrc",
     "testkit",
+    "es",
     "new-icons",
     "*.scss",
     "*.js"
@@ -164,7 +171,12 @@
   },
   "babel": {
     "presets": [
-      "es2015",
+      [
+        "es2015",
+        {
+          "modules": false
+        }
+      ],
       "react",
       "stage-2"
     ],
