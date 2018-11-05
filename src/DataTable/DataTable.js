@@ -272,22 +272,56 @@ class TableHeader extends Component {
     return styles;
   }
 
-  renderSortingArrow = (sortDescending, colNum) => {
-    if (sortDescending === undefined) {
+  renderSortingArrow = (column, colNum) => {
+    const {sortable, sortingIconDirection, sortingActive} = column;
+
+    const sortDescending = sortingIconDirection === 'desc';
+
+    // Support old design
+    if (!this.props.newDesign && sortingActive) {
+      const sortDirectionClassName = sortDescending ? this.style.sortArrowAsc : this.style.sortArrowDesc;
+      return <span data-hook={`${colNum}_title`} className={sortDirectionClassName}><SortByArrowUp/></span>;
+    }
+
+    const currentSortingArrow = sortDescending ? SortByArrowUp : SortByArrowDown;
+    const oppositeSortingArrow = sortDescending ? SortByArrowDown : SortByArrowUp;
+
+    let ActiveSortingArrow;
+    let HiddenSortingArrow;
+
+    if (sortable) {
+      ActiveSortingArrow = sortingActive ? currentSortingArrow : null;
+      HiddenSortingArrow = sortingActive ? oppositeSortingArrow : currentSortingArrow;
+    } else {
+      ActiveSortingArrow = sortingActive ? currentSortingArrow : null;
+      HiddenSortingArrow = null;
+    }
+
+    if (!ActiveSortingArrow && !HiddenSortingArrow) {
       return null;
     }
-    if (this.props.newDesign) {
-      const Arrow = sortDescending ? SortByArrowUp : SortByArrowDown;
-      return (
-        <span
-          data-hook={`${colNum}_title`}
-          className={this.style.sortArrow}
-          >
-          <Arrow height={12} data-hook={sortDescending ? 'sort_arrow_dec' : 'sort_arrow_asc'}/>
-        </span>);
-    }
-    const sortDirectionClassName = sortDescending ? this.style.sortArrowAsc : this.style.sortArrowDesc;
-    return <span data-hook={`${colNum}_title`} className={sortDirectionClassName}><SortByArrowUp/></span>;
+
+    return (
+      <span
+        data-hook={`${colNum}_title`}
+        className={this.style.sortArrow}
+        >
+        {ActiveSortingArrow && (
+          <ActiveSortingArrow
+            height={12}
+            className={this.style.activeSortingArrow}
+            data-hook={`active_arrow_${sortingIconDirection}`}
+            />
+        )}
+        {HiddenSortingArrow && (
+          <HiddenSortingArrow
+            height={12}
+            className={this.style.hiddenSortingArrow}
+            data-hook={`active_arrow_${sortingIconDirection}`}
+            />
+        )}
+      </span>
+    );
   };
 
   renderInfoTooltip = (tooltipProps, colNum) => {
@@ -350,6 +384,25 @@ class TableHeader extends Component {
       optionalHeaderCellProps.onClick = () => this.props.onSortClick && this.props.onSortClick(column, colNum);
     }
 
+    let sortingIconDirection = column.sortingIconDirection;
+    let sortingActive = column.sortingActive;
+
+    // Deprecate `sortDescending` in favor of `sortingIconDirection`
+    if (sortingIconDirection === undefined && sortingActive === undefined) {
+      sortingIconDirection = (
+        column.sortDescending === undefined ? undefined : (
+          column.sortDescending ? 'desc' : 'asc'
+        )
+      );
+
+      sortingActive = column.sortDescending !== undefined;
+
+      deprecationLog(
+        'Property `sortDescending` of Table\'s `columns` prop is deprecated; use `sortingIconDirection` instead.',
+        'sortDescendingDeprecation'
+      );
+    }
+
     return (
       <th
         style={style}
@@ -364,7 +417,9 @@ class TableHeader extends Component {
             [this.style.alignEnd]: column.align === 'end'
           })}
           >
-          {column.title}{this.renderSortingArrow(column.sortDescending, colNum)}{this.renderInfoTooltip(infoTooltipProps, colNum)}
+          {column.title}
+          {this.renderSortingArrow({...column, sortingIconDirection, sortingActive}, colNum)}
+          {this.renderInfoTooltip(infoTooltipProps, colNum)}
         </div>
       </th>);
   };
@@ -420,9 +475,12 @@ DataTable.propTypes = {
     ]).isRequired,
     render: PropTypes.func.isRequired,
     sortable: PropTypes.bool,
+    sortingIconDirection: PropTypes.oneOf(['asc', 'desc']),
+    sortingActive: PropTypes.bool,
     infoTooltipProps: PropTypes.shape(omit(Tooltip.propTypes, ['moveBy', 'dataHook'])),
-    sortDescending: PropTypes.bool,
-    align: PropTypes.oneOf(['start', 'center', 'end'])
+    align: PropTypes.oneOf(['start', 'center', 'end']),
+    /** @deprecated */
+    sortDescending: PropTypes.bool
   })).isRequired,
   /** Should the table show the header when data is empty */
   showHeaderWhenEmpty: PropTypes.bool,

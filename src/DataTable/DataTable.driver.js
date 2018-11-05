@@ -25,7 +25,7 @@ const dataTableDriverFactory = ({element, wrapper, component}) => {
   const getHeaderCell = index => getHeader().querySelectorAll('th')[index];
   const getSortableTitle = index => element.querySelector(`th [data-hook="${index}_title"]`);
   const getTitleInfoIcon = index => element.querySelector(`th [data-hook="${index}_info_tooltip"]`);
-  const getSortableTitleArrowDesc = index => element.querySelector(`th [data-hook="${index}_title"]  [data-hook="sort_arrow_dec"]`);
+  const getSortableTitleArrowDesc = index => element.querySelector(`th [data-hook="${index}_title"]  [data-hook="active_arrow_desc"]`);
 
   return {
     getRow,
