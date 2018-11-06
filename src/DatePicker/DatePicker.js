@@ -151,7 +151,7 @@ export default class DatePicker extends WixComponent {
     return formatDate(value, dateFormat, locale);
   }
 
-  _renderInput = () => {
+  _getInputProps = () => {
     const {
       inputDataHook,
       disabled,
@@ -164,7 +164,7 @@ export default class DatePicker extends WixComponent {
       inputProps
     } = this.props;
 
-    const _inputProps = {
+    return {
       dataHook: inputDataHook,
       value: this._formatDateValue(initialValue),
       onInputClicked: this.openCalendar,
@@ -185,8 +185,6 @@ export default class DatePicker extends WixComponent {
       ...(customInput ? customInput.props : {}),
       ...inputProps
     };
-
-    return React.cloneElement(customInput || <Input/>, _inputProps);
   };
 
   _setInputRef = ref => (this.inputRef = ref);
@@ -205,7 +203,8 @@ export default class DatePicker extends WixComponent {
       calendarDataHook,
       twoMonths,
       locale,
-      zIndex
+      zIndex,
+      customInput
     } = this.props;
 
     const {isOpen, value} = this.state;
@@ -227,7 +226,11 @@ export default class DatePicker extends WixComponent {
     return (
       <div style={{width}} className={styles.root}>
         <div ref={this._setInputRef}>
-          <DayPickerInput component={this._renderInput} keepFocus={false}/>
+          <DayPickerInput
+            component={customInput || Input}
+            keepFocus={false}
+            inputProps={this._getInputProps()}
+            />
         </div>
 
         <div
