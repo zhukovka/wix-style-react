@@ -26,6 +26,9 @@ import TableEmptyStateExampleRaw from '!raw-loader!./TableEmptyStateExample';
 import {TableColumnAlignmentExample} from './TableColumnAlignmentExample';
 import TableColumnAlignmentExampleRaw from '!raw-loader!./TableColumnAlignmentExample';
 
+import {TableSortingExample} from './TableSortingExample';
+import TableSortingExampleRaw from '!raw-loader!./TableSortingExample';
+
 const data = [
   {firstName: 'Meghan', lastName: 'Bishop'},
   {firstName: 'Sara', lastName: 'Porter'},
@@ -108,6 +111,11 @@ export default {
         <div className={s.example}>
           <CodeExample title="Table with column alignments" code={TableColumnAlignmentExampleRaw}>
             <TableColumnAlignmentExample/>
+          </CodeExample>
+        </div>
+        <div className={s.example}>
+          <CodeExample title="Table with sorting" code={TableSortingExampleRaw}>
+            <TableSortingExample/>
           </CodeExample>
         </div>
       </div>

@@ -272,51 +272,55 @@ class TableHeader extends Component {
     // This state property indicates what header cell is currently active. A
     // cell becomes "active" when it is clicked, and stops being active when
     // the mouse leaves it.
-    activeHeaderCell: -1
+    activeHeaderCell: -1,
+    lastSortDirectionOnHover: null
   }
 
   get style() {
     return styles;
   }
 
-  setActiveHeaderCell = colNum => {
+  setActiveHeaderCell = (activeHeaderCell, lastSortDirectionOnHover) => {
     this.setState({
-      activeHeaderCell: colNum
+      activeHeaderCell,
+      lastSortDirectionOnHover
     });
   }
 
-  renderSortingArrow = (column, colNum) => {
-    const {sortable, sortingIconDirection, sortingActive} = column;
+  getSortingArrow = (iconDirection = 'none') => {
+    const icons = {
+      asc: SortByArrowDown,
+      desc: SortByArrowUp,
+      none: null
+    };
 
-    const sortDescending = sortingIconDirection === 'desc';
+    return icons[iconDirection];
+  };
+
+  renderSortingArrow = (column, colNum) => {
+    const {sortIconDirection, sortIconDirectionOnHover} = column;
 
     // Support old design
-    if (!this.props.newDesign && sortingActive) {
-      const sortDirectionClassName = sortDescending ? this.style.sortArrowAsc : this.style.sortArrowDesc;
+    if (!this.props.newDesign) {
+      const sortDirectionClassName = sortIconDirection === 'desc' ? this.style.sortArrowAsc : this.style.sortArrowDesc;
       return <span data-hook={`${colNum}_title`} className={sortDirectionClassName}><SortByArrowUp/></span>;
-    }
-
-    const currentSortingArrow = sortDescending ? SortByArrowUp : SortByArrowDown;
-    const oppositeSortingArrow = sortDescending ? SortByArrowDown : SortByArrowUp;
-
-    let ActiveSortingArrow;
-    let HiddenSortingArrow;
-
-    if (sortable) {
-      ActiveSortingArrow = sortingActive ? currentSortingArrow : null;
-      HiddenSortingArrow = sortingActive ? oppositeSortingArrow : currentSortingArrow;
-    } else {
-      ActiveSortingArrow = sortingActive ? currentSortingArrow : null;
-      HiddenSortingArrow = null;
-    }
-
-    if (!ActiveSortingArrow && !HiddenSortingArrow) {
-      return null;
     }
 
     // When the cell is active, we want to preserve the *previous* state after
     // the click
     const isCurrentCellActive = this.state.activeHeaderCell === colNum;
+
+    const activeDirection = sortIconDirection;
+    const hiddenDirection = isCurrentCellActive ?
+      this.state.lastSortDirectionOnHover :
+      sortIconDirectionOnHover || sortIconDirection;
+
+    const ActiveSortingArrow = this.getSortingArrow(activeDirection);
+    const HiddenSortingArrow = this.getSortingArrow(hiddenDirection);
+
+    if (!ActiveSortingArrow && !HiddenSortingArrow) {
+      return null;
+    }
 
     return (
       <span
@@ -325,22 +329,16 @@ class TableHeader extends Component {
         >
         {ActiveSortingArrow && (
           <ActiveSortingArrow
-            style={{
-              display: isCurrentCellActive ? 'inherit' : undefined
-            }}
             height={12}
             className={this.style.activeSortingArrow}
-            data-hook={`active_arrow_${sortingIconDirection}`}
+            data-hook={`active_arrow_${activeDirection}`}
             />
         )}
         {HiddenSortingArrow && (
           <HiddenSortingArrow
-            style={{
-              display: isCurrentCellActive ? 'none' : undefined
-            }}
             height={12}
             className={this.style.hiddenSortingArrow}
-            data-hook={`active_arrow_${sortingIconDirection}`}
+            data-hook={`active_arrow_${hiddenDirection}`}
             />
         )}
       </span>
@@ -403,34 +401,34 @@ class TableHeader extends Component {
 
     let optionalHeaderCellProps = {};
 
-    if (column.sortable) {
-      optionalHeaderCellProps = {
-        ...optionalHeaderCellProps,
-        onClick: () => {
-          this.setActiveHeaderCell(colNum);
-          this.props.onSortClick && this.props.onSortClick(column, colNum);
-        },
-        onMouseLeave: () => this.setActiveHeaderCell(-1)
-      };
-    }
+    let sortIconDirection = column.sortIconDirection;
+    let sortIconDirectionOnHover = column.sortIconDirectionOnHover;
 
-    let sortingIconDirection = column.sortingIconDirection;
-    let sortingActive = column.sortingActive;
-
-    // Deprecate `sortDescending` in favor of `sortingIconDirection`
-    if (sortingIconDirection === undefined && sortingActive === undefined) {
-      sortingIconDirection = (
+    // Deprecate `sortDescending` in favor of `sortIconDirection`
+    if (sortIconDirection === undefined && sortIconDirectionOnHover === undefined) {
+      sortIconDirection = (
         column.sortDescending === undefined ? undefined : (
           column.sortDescending ? 'desc' : 'asc'
         )
       );
 
-      sortingActive = column.sortDescending !== undefined;
+      // "Disable" the hover effect when using the legacy `sortDescending` property
+      sortIconDirectionOnHover = sortIconDirection;
 
       deprecationLog(
-        'Property `sortDescending` of Table\'s `columns` prop is deprecated; use `sortingIconDirection` instead.',
-        'sortDescendingDeprecation'
+        'Property `sortDescending` of Table\'s `columns` prop is deprecated; use `sortIconDirection` instead.'
       );
+    }
+
+    if (column.sortable) {
+      optionalHeaderCellProps = {
+        ...optionalHeaderCellProps,
+        onClick: () => {
+          this.setActiveHeaderCell(colNum, sortIconDirectionOnHover);
+          this.props.onSortClick && this.props.onSortClick(column, colNum);
+        },
+        onMouseLeave: () => this.setActiveHeaderCell()
+      };
     }
 
     return (
@@ -448,7 +446,7 @@ class TableHeader extends Component {
           })}
           >
           {column.title}
-          {this.renderSortingArrow({...column, sortingIconDirection, sortingActive}, colNum)}
+          {this.renderSortingArrow({...column, sortIconDirection, sortIconDirectionOnHover}, colNum)}
           {this.renderInfoTooltip(infoTooltipProps, colNum)}
         </div>
       </th>);
@@ -505,8 +503,8 @@ DataTable.propTypes = {
     ]).isRequired,
     render: PropTypes.func.isRequired,
     sortable: PropTypes.bool,
-    sortingIconDirection: PropTypes.oneOf(['asc', 'desc']),
-    sortingActive: PropTypes.bool,
+    sortIconDirection: PropTypes.oneOf(['asc', 'desc', 'none']),
+    sortIconDirectionOnHover: PropTypes.oneOf(['asc', 'desc', 'none']),
     infoTooltipProps: PropTypes.shape(omit(Tooltip.propTypes, ['moveBy', 'dataHook'])),
     align: PropTypes.oneOf(['start', 'center', 'end']),
     /** @deprecated */
