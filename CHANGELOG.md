@@ -13,11 +13,22 @@ Types of changes:
 1. **Breaking** for breaking changes
 1. **Docs** for documentation changes
 
-## Next
+## 5.11.0 - 2018-11-12
+
+### Added
+- `<InputArea>` - add name prop to inputarea component [#2449](https://github.com/wix/wix-style-react/pull/2449)
+- `<GenericModalLayout/>` - add new component [#2439](https://github.com/wix/wix-style-react/pull/2439)
+
+### Changed
+- `<TableActionCell>` - allow passing `PopoverMenu` props [#2417](https://github.com/wix/wix-style-react/pull/2417)
+- `<BadgeSelect/>` - make component controlled [#2452](https://github.com/wix/wix-style-react/pull/2452)
+
+## 5.10.0 - 2018-11-11
+
 ### Changed
 - `<Tag>`- add bo tooltip instead of native title for Tag [#2431](https://github.com/wix/wix-style-react/pull/2431)
 
-## Fixed
+### Fixed
 - removed unnecessary console.log in deprecation logger.
 
 ## 5.9.1 - 2018-11-07
