@@ -21,6 +21,7 @@ Types of changes:
 
 ### Changed
 - `<TableActionCell>` - allow passing `PopoverMenu` props [#2417](https://github.com/wix/wix-style-react/pull/2417)
+- `<BadgeSelect/>` - make component controlled [#2452](https://github.com/wix/wix-style-react/pull/2452)
 
 ## 5.10.0 - 2018-11-11
 
