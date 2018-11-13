@@ -6,7 +6,7 @@
 | onSelectedDaysChange | func | | Yes | Called when selectedDays changes by user interaction. When `selectionMode=day`, the function receives a Date object. When `selectionMode=range`, the function receives an Range object of the form `{from: Date, to: Date}`.|
 | selectionMode | 'day' \| 'range' | 'day' |  | Affects the click behavior and how it selects a day or a range |
 | month | Date | | | The month to display in the calendar. This differs from the initialMonth prop, as it causes the calendar to re-render when its value changes. |
-| onMonthCahnged | func |  | | Event handler when the month is changed. Function receives a Date object. |
+| onMonthChanged | func |  | | Event handler when the month is changed. Function receives a Date object. |
 
 
 ## Selection
