@@ -92,6 +92,12 @@ describe('StatsWidget', () => {
     expect(driver.getStatisticPercentValue(1)).toBe(Math.abs(statisticsWithPercents[1].percent) + '%');
   });
 
+  it('should check the stats percent color skin', () => {
+    createComponent({title, statistics: statisticsWithPercents});
+    expect(driver.isNegativePercentValue(0)).toBe(false);
+    expect(driver.isNegativePercentValue(1)).toBe(true);
+  });
+
   it('should put proper classes to percentage according to value', () => {
     createComponent({title, statistics: statisticsWithPercents});
 
