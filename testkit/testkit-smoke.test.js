@@ -67,7 +67,8 @@ const FAILING_COMPONENTS = [
   'TextArea',
   'TextField',
   'Tooltip',
-  'VBox'
+  'VBox',
+  'Collapse'
 ];
 
 /**
