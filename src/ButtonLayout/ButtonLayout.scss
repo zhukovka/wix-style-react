@@ -649,7 +649,7 @@ $base-transition: all 100ms linear;
 }
 
 .heightx-small .suffix {
-  margin: 0 -6px 0 0;
+  margin: 0 -6px 0 3px;
   line-height: 0;
   width: 18px;
   height: 18px;
@@ -657,12 +657,12 @@ $base-transition: all 100ms linear;
 
 @include withRTL {
   .heightx-small .suffix {
-    margin: 0 0 0 -6px;
+    margin: 0 3px 0 -6px;
   }
 }
 
 .heightx-small .prefix {
-  margin: 0 0 0 -6px;
+  margin: 0 3px 0 -6px;
   line-height: 0;
   width: 18px;
   height: 18px;
@@ -670,7 +670,7 @@ $base-transition: all 100ms linear;
 
 @include withRTL {
   .heightx-small .prefix {
-    margin: 0 -6px 0 0;
+    margin: 0 -6px 0 3px;
   }
 }
 
