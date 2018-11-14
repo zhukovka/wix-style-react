@@ -13,6 +13,15 @@ Types of changes:
 1. **Breaking** for breaking changes
 1. **Docs** for documentation changes
 
+## Next
+### Added
+- `<StatsWidget/>` - support negative trends colors [#2453](https://github.com/wix/wix-style-react/pull/2453)
+- `<Collapse/>` - add new component and revise `<Card/>` implementation [#2251](https://github.com/wix/wix-style-react/pull/2251)
+
+### Fixed
+- `<TimePicker/>` - add missing classname [#2457](https://github.com/wix/wix-style-react/pull/2457)
+- `<ButtonLayout/>` - fix prefix/suffix margin for RTL [#2465](https://github.com/wix/wix-style-react/pull/2465)
+
 ## 5.11.0 - 2018-11-12
 
 ### Added
