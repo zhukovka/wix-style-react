@@ -14,6 +14,9 @@ Types of changes:
 1. **Docs** for documentation changes
 
 ## Next
+
+## 5.12.0 - 2018-11-14
+
 ### Added
 - `<StatsWidget/>` - support negative trends colors [#2453](https://github.com/wix/wix-style-react/pull/2453)
 - `<Collapse/>` - add new component and revise `<Card/>` implementation [#2251](https://github.com/wix/wix-style-react/pull/2251)
