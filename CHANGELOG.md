@@ -22,6 +22,7 @@ Types of changes:
 - `<TimePicker/>` - add missing classname [#2457](https://github.com/wix/wix-style-react/pull/2457)
 - `<ButtonLayout/>` - fix prefix/suffix margin for RTL [#2465](https://github.com/wix/wix-style-react/pull/2465)
 - `<Checkbox/>`- generates proper internal id. [#2464](https://github.com/wix/wix-style-react/pull/2464)
+- `<Button/>` - increased margin for x-small prefix and suffix icons. [#2470](https://github.com/wix/wix-style-react/pull/2470)
 
 ## 5.11.0 - 2018-11-12
 
