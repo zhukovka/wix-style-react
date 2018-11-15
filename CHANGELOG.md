@@ -13,7 +13,8 @@ Types of changes:
 1. **Breaking** for breaking changes
 1. **Docs** for documentation changes
 
-## Next
+## 5.13.0 - 2018-11-15
+
 ### Added
 - `<Skeleton/>` - new component to be used as visual placeholder for async tasks [#2467](https://github.com/wix/wix-style-react/pull/2467)
 
