@@ -14,6 +14,8 @@ Types of changes:
 1. **Docs** for documentation changes
 
 ## Next
+### Added
+- `<Skeleton/>` - new component to be used as visual placeholder for async tasks [#2467](https://github.com/wix/wix-style-react/pull/2467)
 
 ## 5.12.0 - 2018-11-14
 
