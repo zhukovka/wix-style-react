@@ -120,6 +120,7 @@ import '../../stories/InputArea/index.story.js';
 import '../../stories/Layout/index.story.js';
 import '../../stories/Layout';
 import '../../stories/Text/index.story';
+import '../../stories/Skeleton.story.js';
 import '../../stories/Collapse.story';
 
 // Styling
