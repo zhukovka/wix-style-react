@@ -21,14 +21,12 @@ import * as enzymeTestkitFactories from './enzyme';
 const FAILING_COMPONENTS = [
   'AutoCompleteComposite',
   'BadgeSelectItemBuilder',
-  'Breadcrumbs',
   'ButtonLayout',
   'ButtonWithOptions',
-  'Calendar',
   'CalendarPanel',
   'Card',
   'CloseButton',
-  'ColorPicker',
+  'ColorPicker', // missing testkit for enzyme
   'Composite',
   'DataTable',
   'DatePicker',
@@ -40,8 +38,8 @@ const FAILING_COMPONENTS = [
   'FullTextView',
   'GoogleAddressInput',
   'GoogleAddressInputWithLabel',
-  'Grid',
-  'HBox',
+  'Grid', // Component has no testkit
+  'HBox', // Component has no testkit
   'IconWithOptions',
   'Layout',
   'MessageBox',
@@ -57,17 +55,14 @@ const FAILING_COMPONENTS = [
   'Range',
   'RichTextArea',
   'RichTextAreaComposite',
-  'Selector',
   'SideMenuDrill',
-  'Slider',
-  'StatsWidget',
   'Table',
   'TableToolbar',
   'Tabs',
   'TextArea',
   'TextField',
   'Tooltip',
-  'VBox',
+  'VBox', // Component has no testkit
   'Collapse'
 ];
 
@@ -91,6 +86,23 @@ const REQUIRED_PROPS = {
   BadgeSelect: {
     options: [{id: '0', skin: 'general', text: 'general'}],
     selectedId: '0'
+  },
+  Breadcrumbs: {
+    items: [{id: 0, value: 'Option 1'}, {id: 1, value: 'Option 2'}]
+  },
+  Calendar: {
+    onChange: () => {}
+  },
+
+  Slider: {
+    onChange: () => {}
+  },
+  Selector: {
+    id: 1,
+    title: 'title'
+  },
+  StatsWidget: {
+    title: 'test title'
   }
 };
 
