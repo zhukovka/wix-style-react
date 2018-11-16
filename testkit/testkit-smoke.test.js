@@ -26,7 +26,7 @@ const FAILING_COMPONENTS = [
   'CalendarPanel',
   'Card',
   'CloseButton',
-  'ColorPicker', // missing testkit for enzyme
+  'ColorPicker',
   'Composite',
   'DataTable',
   'DatePicker',
@@ -67,42 +67,71 @@ const FAILING_COMPONENTS = [
 ];
 
 /**
- * Most of our components have required props and fail if used simply as <Component/>
+ * The following object allows to set which testkits should be asserted as well as provide any required props
  *
- * This object specifies those props so that `testkit.exists` can pass
+ * If component is not set here, then enzyme and vanilla testkits will be checked as default.
+ *
+ * COMPONENTS = {
+ *   [componentName]: {
+ *     drivers: ['vanilla', 'enzyme'],
+ *     props: {
+ *       // any required props
+ *     }
+ *   }
+ * }
  */
-const REQUIRED_PROPS = {
+const COMPONENTS = {
   Tag: {
-    useOldMargins: false,
-    id: 'hello',
-    children: 'a'
+    props: {
+      useOldMargins: false,
+      id: 'hello',
+      children: 'a'
+    }
   },
   ImageViewer: {
-    imageUrl: ''
+    props: {
+      imageUrl: ''
+    }
   },
   FormField: {
-    children: <div/>
+    props: {
+      children: <div/>
+    }
   },
   BadgeSelect: {
-    options: [{id: '0', skin: 'general', text: 'general'}],
-    selectedId: '0'
+    props: {
+      options: [{id: '0', skin: 'general', text: 'general'}],
+      selectedId: '0'
+    }
   },
   Breadcrumbs: {
-    items: [{id: 0, value: 'Option 1'}, {id: 1, value: 'Option 2'}]
+    props: {
+      items: [{id: 0, value: 'Option 1'}, {id: 1, value: 'Option 2'}]
+    }
   },
   Calendar: {
-    onChange: () => {}
+    props: {
+      onChange: () => {}
+    }
   },
-
   Slider: {
-    onChange: () => {}
+    props: {
+      onChange: () => {}
+    }
   },
   Selector: {
-    id: 1,
-    title: 'title'
+    props: {
+      id: 1,
+      title: 'title'
+    }
   },
   StatsWidget: {
-    title: 'test title'
+    props: {
+      title: 'test title'
+    }
+  },
+  TextButton: {
+    unidriver: true
   }
 };
 
@@ -118,29 +147,49 @@ const AllComponents = importAllComponents({
   ignore: FAILING_COMPONENTS
 });
 
-describe('ReactTestUtils testkits', () => {
-  Object.entries(AllComponents).map(([name, component]) =>
-    it(`${name} should have ReactTestUtils testkit`, () => {
-      expect(
-        isTestkitExists(
-          React.createElement(component, REQUIRED_PROPS[name] || {}),
-          reactTestUtilsTestkitFactories[`${lowerFirst(name)}TestkitFactory`]
-        )
-      );
-    })
-  );
-});
+const DRIVER_ASSERTS = {
+  enzyme: ({name, component, props}) => {
+    describe('Enzyme testkits', () => {
+      it(`${name} should have enzyme testkit`, () => {
+        expect(
+          isEnzymeTestkitExists(
+            React.createElement(component, props),
+            enzymeTestkitFactories[`${lowerFirst(name)}TestkitFactory`],
+            mount
+          )
+        );
+      });
+    });
+  },
 
-describe('Enzyme testkits', () => {
-  Object.entries(AllComponents).map(([name, component]) =>
-    it(`${name} should have enzyme testkit`, () => {
-      expect(
-        isEnzymeTestkitExists(
-          React.createElement(component, REQUIRED_PROPS[name] || {}),
-          enzymeTestkitFactories[`${lowerFirst(name)}TestkitFactory`],
-          mount
-        )
-      );
-    })
-  );
+  vanilla: ({name, component, props}) => {
+    describe('ReactTestUtils testkits', () => {
+      it(`${name} should have ReactTestUtils testkit`, () => {
+        expect(
+          isTestkitExists(
+            React.createElement(component, props),
+            reactTestUtilsTestkitFactories[`${lowerFirst(name)}TestkitFactory`]
+          )
+        );
+      });
+    });
+  }
+};
+
+Object.entries(AllComponents).forEach(([name, component]) => {
+  const driverConfig = COMPONENTS[name];
+
+  if (driverConfig) {
+    const drivers = driverConfig.drivers || ['vanilla', 'enzyme'];
+    const props = driverConfig.props || {};
+
+    if (driverConfig.unidriver) {
+      // TODO: implement unidriver assertion
+    } else {
+      drivers.map(driver => DRIVER_ASSERTS[driver]({name, component, props}));
+    }
+  } else {
+    DRIVER_ASSERTS.enzyme({name, component, props: {}});
+    DRIVER_ASSERTS.vanilla({name, component, props: {}});
+  }
 });
