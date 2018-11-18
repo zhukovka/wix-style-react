@@ -308,7 +308,7 @@ class TableHeader extends Component {
 
     // When the cell is active, we want to preserve the *previous* state after
     // the click
-    const isCurrentCellActive = this.state.activeHeaderCell === colNum;
+    const isCurrentCellActive = sortIconDirectionOnHover && this.state.activeHeaderCell === colNum;
 
     const activeDirection = sortIconDirection;
     const hiddenDirection = isCurrentCellActive ?
@@ -413,7 +413,7 @@ class TableHeader extends Component {
       );
 
       // "Disable" the hover effect when using the legacy `sortDescending` property
-      sortIconDirectionOnHover = sortIconDirection;
+      sortIconDirectionOnHover = undefined;
 
       deprecationLog(
         'Property `sortDescending` of Table\'s `columns` prop is deprecated; use `sortIconDirection` instead.'
