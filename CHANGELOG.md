@@ -16,7 +16,7 @@ Types of changes:
 ## Next
 
 ### Added
-- `<TextButton/>` - new component to be used for minimal distraction. [#2467](https://github.com/wix/wix-style-react/pull/2467)
+- `<TextButton/>` - new component to be used for minimal distraction. [#2434](https://github.com/wix/wix-style-react/pull/2434)
 
 ## 5.13.0 - 2018-11-15
 
