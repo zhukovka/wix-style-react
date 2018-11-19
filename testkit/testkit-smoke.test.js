@@ -4,7 +4,9 @@ import path from 'path';
 
 import {
   isTestkitExists,
-  isEnzymeTestkitExists
+  isEnzymeTestkitExists,
+  isUniEnzymeTestkitExists,
+  isUniTestkitExists
 } from '../test/utils/testkit-sanity';
 import importAllComponents from '../test/utils/import-all-components';
 
@@ -81,6 +83,9 @@ const FAILING_COMPONENTS = [
  * }
  */
 const COMPONENTS = {
+  TextButton: {
+    unidriver: true
+  },
   Tag: {
     props: {
       useOldMargins: false,
@@ -129,9 +134,6 @@ const COMPONENTS = {
     props: {
       title: 'test title'
     }
-  },
-  TextButton: {
-    unidriver: true
   }
 };
 
@@ -173,6 +175,31 @@ const DRIVER_ASSERTS = {
         );
       });
     });
+  },
+  enzymeUni: ({name, component, props}) => {
+    describe('Enzyme unidriver testkits', () => {
+      it(`${name} should have enzyme testkit`, () => {
+        expect(
+          isUniEnzymeTestkitExists(
+            React.createElement(component, props),
+            enzymeTestkitFactories[`${lowerFirst(name)}TestkitFactory`],
+            mount
+          )
+        );
+      });
+    });
+  },
+  vanillaUni: ({name, component, props}) => {
+    describe('ReactTestUtils unidriver testkits', () => {
+      it(`${name} should have ReactTestUtils testkit`, () => {
+        expect(
+          isUniTestkitExists(
+            React.createElement(component, props),
+            reactTestUtilsTestkitFactories[`${lowerFirst(name)}TestkitFactory`]
+          )
+        );
+      });
+    });
   }
 };
 
@@ -184,7 +211,8 @@ Object.entries(AllComponents).forEach(([name, component]) => {
     const props = driverConfig.props || {};
 
     if (driverConfig.unidriver) {
-      // TODO: implement unidriver assertion
+      DRIVER_ASSERTS.enzymeUni({name, component, props: {}});
+      DRIVER_ASSERTS.vanillaUni({name, component, props: {}});
     } else {
       drivers.map(driver => DRIVER_ASSERTS[driver]({name, component, props}));
     }

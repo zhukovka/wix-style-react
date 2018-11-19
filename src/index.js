@@ -81,3 +81,4 @@ export {Container, RawContainer, Columns, Columns as Row, AutoAdjustedColumns, A
 export {Layout, Cell} from './Layout';
 export {default as Typography} from './Typography';
 export {default as GenericModalLayout} from './GenericModalLayout';
+export {default as TextButton} from './TextButton';
