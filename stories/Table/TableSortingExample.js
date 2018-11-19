@@ -1,4 +1,5 @@
 import React from 'react';
+import sortBy from 'lodash/sortBy';
 import {Table} from 'wix-style-react/Table';
 import {
   TableToolbar,
@@ -15,82 +16,58 @@ export class TableSortingExample extends React.Component {
     super(props);
 
     this.state = {
-      sortedColumn: -1,
+      sortingField: '',
       sortingDirection: 'none',
 
       data: [
-        {name: 'Cyan Towls', visible: false, onSale: false, price: '$145.99'},
-        {name: 'Apple Towels', visible: true, onSale: false, price: '$22.99'},
-        {name: 'Red Slippers', visible: false, onSale: false, price: '$1,265.69'},
-        {name: 'Marble Slippers', visible: false, onSale: false, price: '$125,265.00'}
+        {name: 'Cyan Towls', visible: false, onSale: false, price: 145.99},
+        {name: 'Apple Towels', visible: true, onSale: false, price: 22.99},
+        {name: 'Red Slippers', visible: false, onSale: false, price: 1265.69},
+        {name: 'Marble Slippers', visible: false, onSale: false, price: 125.00}
       ]
     };
   }
 
   getNextSortingDirection(dir = 'none') {
-    const nextDirs = {
-      none: 'asc',
-      asc: 'desc',
-      desc: 'none'
-    };
-
-    return nextDirs[dir];
+    const dirs = ['none', 'asc', 'desc'];
+    return dirs.find((d, i) => i === (dirs.indexOf(dir) + 1) % dirs.length);
   }
 
-  getSortingProperties(colNum) {
-    const {sortedColumn, sortingDirection} = this.state;
+  getSortingProperties(field) {
+    const {sortingField, sortingDirection} = this.state;
 
-    const isCurentlySorted = sortedColumn === colNum;
+    const isCurentlySorted = sortingField === field;
 
     return {
       sortable: true,
+      sortingField: field, // This field is not used by `<Table/>`, but can be accessed on `handleSortClick`
       sortIconDirection: isCurentlySorted ? sortingDirection : 'none',
       sortIconDirectionOnHover: isCurentlySorted ? this.getNextSortingDirection(sortingDirection) : this.getNextSortingDirection()
     };
   }
 
-  handleSortClick(colNum) {
-    const {sortedColumn, sortingDirection} = this.state;
+  handleSortClick(field) {
+    const {sortingField, sortingDirection} = this.state;
 
-    const isCurentlySorted = sortedColumn === colNum;
+    const isCurentlySorted = sortingField === field;
 
     this.setState({
-      sortedColumn: colNum,
+      sortingField: field,
       sortingDirection: isCurentlySorted ? this.getNextSortingDirection(sortingDirection) : this.getNextSortingDirection()
     });
   }
 
   getSortedData() {
-    const {sortedColumn, sortingDirection, data} = this.state;
+    const {sortingField, sortingDirection, data} = this.state;
 
     if (sortingDirection === 'none') {
       return data;
     }
 
-    const fields = {
-      0: 'name',
-      3: 'price'
-    };
-
-    const fieldToSortBy = fields[sortedColumn];
     const desc = sortingDirection === 'desc';
+    const sortedData = sortBy(data, sortingField);
 
-    const newData = [...data];
-
-    // Currently comparing strings
-    newData.sort((a, b) => {
-      let res = 0;
-
-      if (a[fieldToSortBy] < b[fieldToSortBy]) {
-        res = -1;
-      } else if (a[fieldToSortBy] > b[fieldToSortBy]) {
-        res = 1;
-      }
-
-      return desc ? res : res * -1;
-    });
-
-    return newData;
+    return desc ? sortedData : sortedData.reverse();
   }
 
   render() {
@@ -100,14 +77,14 @@ export class TableSortingExample extends React.Component {
           dataHook="story-table-column-alignment-example"
           data={this.getSortedData()}
           itemsPerPage={20}
-          onSortClick={(column, colNum) => this.handleSortClick(colNum)}
+          onSortClick={column => this.handleSortClick(column.sortingField)}
           columns={[
             {
               title: 'Name',
               render: row => <span>{row.name}</span>,
               width: '30%',
               minWidth: '150px',
-              ...this.getSortingProperties(0)
+              ...this.getSortingProperties('name')
             },
             {
               title: 'Visibility',
@@ -130,10 +107,10 @@ export class TableSortingExample extends React.Component {
             },
             {
               title: 'Price',
-              render: row => <span>{row.price}</span>,
+              render: row => <span>{`$${row.price}`}</span>,
               width: '20%',
               minWidth: '100px',
-              ...this.getSortingProperties(3)
+              ...this.getSortingProperties('price')
             }
           ]}
           >

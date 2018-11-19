@@ -300,6 +300,10 @@ class TableHeader extends Component {
   renderSortingArrow = (column, colNum) => {
     const {sortIconDirection, sortIconDirectionOnHover} = column;
 
+    if (!sortIconDirection && !sortIconDirectionOnHover) {
+      return;
+    }
+
     // Support old design
     if (!this.props.newDesign) {
       const sortDirectionClassName = sortIconDirection === 'desc' ? this.style.sortArrowAsc : this.style.sortArrowDesc;
