@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {ButtonNext} from 'wix-ui-core/button-next';
 import cx from 'classnames';
-import {textButton, backofficeTheme} from 'wix-ui-core/themes/backoffice';
+import {textButton} from 'wix-ui-core/themes/backoffice';
 import {string, node, oneOf, element, bool} from 'prop-types';
 
 class TextButton extends Component {
@@ -52,15 +52,9 @@ class TextButton extends Component {
     const classNames = cx(className, textButton(skin, underline, weight, size));
 
     return (
-      <div className={backofficeTheme} data-hook={dataHook}>
-        <ButtonNext
-          {...rest}
-          data-hook="textButton-core"
-          className={classNames}
-          >
-          {children}
-        </ButtonNext>
-      </div>
+      <ButtonNext {...rest} data-hook={dataHook} className={classNames}>
+        {children}
+      </ButtonNext>
     );
   }
 }
