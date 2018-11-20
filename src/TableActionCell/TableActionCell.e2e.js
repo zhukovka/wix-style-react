@@ -20,7 +20,7 @@ describe('Table Action Cell', () => {
     await eyes.checkWindow(`${name} idle`);
 
     // Check hovered
-    hoverElement(element);
+    await hoverElement(element);
     await eyes.checkWindow(`${name} hovered`);
 
     // Check with PopoverMenu opened; It may not be present in all of the
