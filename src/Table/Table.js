@@ -154,9 +154,11 @@ Table.propTypes = {
     ]).isRequired,
     render: PropTypes.func.isRequired,
     sortable: PropTypes.bool,
+    sortIconDirection: PropTypes.oneOf(['asc', 'desc', 'none']),
     infoTooltipProps: PropTypes.shape(Tooltip.propTypes),
-    sortDescending: PropTypes.bool,
-    align: PropTypes.oneOf(['start', 'center', 'end'])
+    align: PropTypes.oneOf(['start', 'center', 'end']),
+    /** @deprecated */
+    sortDescending: PropTypes.bool
   })).isRequired,
   /** A func that gets row data and returns a class(es) to apply to that specific row */
   dynamicRowClass: PropTypes.func,
@@ -202,6 +204,9 @@ Table.propTypes = {
 
   /** Should the table show the header when data is empty */
   showHeaderWhenEmpty: PropTypes.bool,
+
+  /** A callback function called on each column title click, whose signature is `onSortClick(colData, colNum, nextSortingDirection)`. The `nextSortingDirection` is the desired sorting direction to be set after the user has changed the sorting direction, and its value can be one of the `sortIconDirection` values. */
+  onSortClick: PropTypes.func,
 
   // Table props
 

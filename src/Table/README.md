@@ -14,8 +14,8 @@
 | render | function | - | true | A function to render column cells. The function will be called with each row's data and should return a jsx element. Signature: `render(rowData, rowNum)` |
 | width | string | - | - | The width to apply to the column. No value means column will try to contain its children, if possible.  |
 | important | bool | false | - | Whether font color should be stronger, more dominant |
-| sortable | bool | false | - | Enables sorting by column |
-| sortDescending | bool | - | - | Pass false - for ascending sort, true - for descending|
+| sortable | bool | false | - | Set this to `true` to enable sorting for the column. This means that when the `onSortClick` prop will be called when the user presses the header cell. Check out the relevant example in the bottom for more info. |
+| sortIconDirection | oneOf([`asc`, `desc`, `none`]) | - | - | This property defines the current direction of the sorting icon. Pass `asc` to indicate that the data is sorted in an ascending order, `desc` for descending, and `none` if the data is not sorted by the column. |
 | infoTooltipProps | object | - | - | Props object for [tooltip](https://wix-wix-style-react.surge.sh/?selectedKind=7.%20Tooltips&selectedStory=7.1.%20Tooltip&full=0&addons=0&stories=1&panelRight=0). Note: dataHook, moveBy and children will not be passed to tooltip. |
 | align | oneOf(`start`, `center`, `end`) | - | - | The alignment of the column |
 
