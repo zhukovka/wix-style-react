@@ -5,6 +5,7 @@ import classNames from 'classnames';
 import InfiniteScroll from './InfiniteScroll';
 import SortByArrowUp from '../new-icons/system/SortByArrowUp';
 import SortByArrowDown from '../new-icons/system/SortByArrowDown';
+import CloseLarge from '../new-icons/system/CloseLarge';
 import {Animator} from 'wix-animations';
 import InfoCircle from 'wix-ui-icons-common/InfoCircle';
 import Tooltip from '../Tooltip/Tooltip';
@@ -320,7 +321,11 @@ class TableHeader extends Component {
       sortIconDirectionOnHover || sortIconDirection;
 
     const ActiveSortingArrow = this.getSortingArrow(activeDirection);
-    const HiddenSortingArrow = this.getSortingArrow(hiddenDirection);
+    const HiddenSortingArrow = this.getSortingArrow(hiddenDirection) || (
+      // Show the close icon when we don't have an icon to show (sorting
+      // direction is `none`), but only if the cell is not active
+      isCurrentCellActive ? null : CloseLarge
+    );
 
     if (!ActiveSortingArrow && !HiddenSortingArrow) {
       return null;
