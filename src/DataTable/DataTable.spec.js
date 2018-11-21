@@ -348,7 +348,7 @@ describe('Table', () => {
     });
   });
 
-  describe('Sortable column titles', () => {
+  describe('Legacy sortable column titles', () => {
     let props;
 
     beforeEach(() => {
@@ -388,14 +388,172 @@ describe('Table', () => {
       const _props = Object.assign({}, props, {onSortClick: jest.fn()});
       const driver = createDriver(<DataTable {..._props}/>);
       driver.clickSort(1);
-      expect(_props.onSortClick).toBeCalledWith(props.columns[1], 1);
+      expect(_props.onSortClick).toBeCalledWith(props.columns[1], 1, 'asc');
     });
 
-    it('should call on sort callback', () => {
+    it('should not call on sort callback', () => {
       const _props = Object.assign({}, props, {onSortClick: jest.fn()});
       const driver = createDriver(<DataTable {..._props}/>);
       driver.clickSort(2);
       expect(_props.onSortClick).not.toHaveBeenCalled();
+    });
+  });
+
+  describe('New sortable column title', () => {
+    const createTableWithSortingProps = () => {
+      return {
+        ...defaultProps,
+        newDesign: true,
+        onSortClick: jest.fn(),
+        columns: [
+          {title: 'Row Num', render: (row, rowNum) => rowNum},
+          {title: 'A', sortable: true, sortIconDirection: 'none', render: row => row.a},
+          {title: 'B', render: row => row.b},
+          {title: 'C', sortable: true, sortIconDirection: 'asc', render: row => row.c},
+          {title: 'D', sortable: true, sortIconDirection: 'desc', render: row => row.d}
+        ]
+      };
+    };
+
+    it('should have sorting titles', () => {
+      const props = createTableWithSortingProps();
+      const driver = createDriver(<DataTable {...props}/>);
+
+      expect(driver.hasSortableTitle(0)).toBe(false);
+      expect(driver.hasSortableTitle(1)).toBe(true);
+      expect(driver.hasSortableTitle(2)).toBe(false);
+      expect(driver.hasSortableTitle(3)).toBe(true);
+      expect(driver.hasSortableTitle(4)).toBe(true);
+    });
+
+    it('should display arrows accordingly', () => {
+      const props = createTableWithSortingProps();
+      const driver = createDriver(<DataTable {...props}/>);
+
+      expect(driver.getActiveSortingArrowDirection(1)).toBe(undefined); // non-existing
+      expect(driver.getHiddenSortingArrowDirection(1)).toBe('asc');
+
+      expect(driver.getActiveSortingArrowDirection(3)).toBe('asc');
+      expect(driver.getHiddenSortingArrowDirection(3)).toBe('desc');
+
+      expect(driver.getActiveSortingArrowDirection(4)).toBe('desc');
+      expect(driver.getHiddenSortingArrowDirection(4)).toBe('none'); // exists, as a close icon
+    });
+
+    it('should show the next sorting arrows on hover', () => {
+      // TODO: add this test as an e2e test
+      // This test is already made in the above case
+    });
+
+    it('should call onSortClick callback with the suggested next sorting direction', () => {
+      const props = createTableWithSortingProps();
+      const driver = createDriver(<DataTable {...props}/>);
+
+      driver.clickSort(1);
+      expect(props.onSortClick).toBeCalledWith(props.columns[1], 1, 'asc');
+
+      driver.clickSort(3);
+      expect(props.onSortClick).toBeCalledWith(props.columns[3], 3, 'desc');
+
+      driver.clickSort(4);
+      expect(props.onSortClick).toBeCalledWith(props.columns[4], 4, 'none');
+    });
+
+    describe('controlled usage', () => {
+      /*
+       * In a controlled example, when a sortable header cell is clicked, the
+       * consumer is expected to update the cell's sorting direction to the
+       * suggested one. This would cause an issue when the user still hovers
+       * the row, as the last direction that was shown on hover is gone.
+       *
+       * A solution for this is to store the previous icon direction when the
+       * user *clicks* the row, and mark the clicked row as "active" untill the
+       * user exists it. As long as the row is "active", the previous icon
+       * direction is preserved.
+       */
+
+      class ControlledSortingExample extends React.Component {
+        state = {
+          a: 'none',
+          b: 'asc',
+          c: 'desc'
+        };
+
+        data = [
+          {a: 'a1', b: 'b1', c: 'c1', d: 'd1'}
+        ];
+
+        handleSortClick = (column, colNum, nextSortingDirection) => {
+          this.setState({
+            [column.key]: nextSortingDirection
+          });
+        }
+
+        render() {
+          return (
+            <DataTable
+              newDesign
+              data={this.data}
+              onSortClick={this.handleSortClick}
+              columns={[
+                {title: 'Row Num', render: (row, rowNum) => rowNum},
+                {key: 'a', title: 'A', sortable: true, sortIconDirection: this.state.a, render: row => row.a},
+                {key: 'b', title: 'B', sortable: true, sortIconDirection: this.state.b, render: row => row.b},
+                {key: 'c', title: 'C', sortable: true, sortIconDirection: this.state.c, render: row => row.c}
+              ]}
+              />
+          );
+        }
+      }
+
+      describe('should preserve the last sorting state until exiting the header cell', () => {
+        it('from the "none" direction', () => {
+          // In the <ControlledSortingExample/>, column 1 has an initial
+          // sorting direction of "none"
+
+          const driver = createDriver(<ControlledSortingExample/>);
+          const nextSortingDirection = driver.getHiddenSortingArrowDirection(1);
+
+          driver.mouseEnterHeaderCell(1);
+          driver.clickSort(1);
+          expect(driver.getHiddenSortingArrowDirection(1)).toEqual(nextSortingDirection);
+
+          driver.mouseLeaveHeaderCell(1);
+          expect(driver.getActiveSortingArrowDirection(1)).toEqual(nextSortingDirection);
+        });
+
+        it('from the "asc" direction', () => {
+          // In the <ControlledSortingExample/>, column 2 has an initial
+          // sorting direction of "asc"
+
+          const driver = createDriver(<ControlledSortingExample/>);
+          const nextSortingDirection = driver.getHiddenSortingArrowDirection(2);
+
+          driver.mouseEnterHeaderCell(2);
+          driver.clickSort(2);
+          expect(driver.getHiddenSortingArrowDirection(2)).toEqual(nextSortingDirection);
+
+          driver.mouseLeaveHeaderCell(2);
+          expect(driver.getActiveSortingArrowDirection(2)).toEqual(nextSortingDirection);
+        });
+      });
+
+      it('should not show an icon for the "none" direction when cell is active', () => {
+        // In the <ControlledSortingExample/>, column 3 has an initial sorting
+        // direction of "desc"
+
+        const driver = createDriver(<ControlledSortingExample/>);
+
+        expect(driver.getHiddenSortingArrowDirection(3)).toEqual('none');
+
+        driver.mouseEnterHeaderCell(3);
+        driver.clickSort(3);
+
+        expect(driver.hasSortableTitle(3)).toBe(false);
+
+        driver.mouseLeaveHeaderCell(3);
+        expect(driver.hasSortableTitle(3)).toBe(true);
+      });
     });
   });
 

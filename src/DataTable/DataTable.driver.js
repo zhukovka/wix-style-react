@@ -27,6 +27,10 @@ const dataTableDriverFactory = ({element, wrapper, component}) => {
   const getTitleInfoIcon = index => element.querySelector(`th [data-hook="${index}_info_tooltip"]`);
   const getSortableTitleArrowDesc = index => element.querySelector(`th [data-hook="${index}_title"]  [data-hook="active_arrow_desc"]`);
 
+  const getSortingIconsDataHooks = index =>
+    Array.from(element.querySelectorAll(`th [data-hook="${index}_title"] svg`))
+      .map(el => el.getAttribute('data-hook') || '');
+
   return {
     getRow,
     getRowsCount,
@@ -71,7 +75,23 @@ const dataTableDriverFactory = ({element, wrapper, component}) => {
       return !!sortableTitle && sortableTitle.classList.contains('sortArrowAsc');
     },
     clickSort: (index, eventData) => ReactTestUtils.Simulate.click(getHeaderCell(index), eventData),
-    getRowDetails: index => getRowDetails(index)
+    getRowDetails: index => getRowDetails(index),
+
+    // New sorting arrows
+    getActiveSortingArrowDirection: index => {
+      const hooks = getSortingIconsDataHooks(index);
+      const activeIconDataHook = hooks.find(h => h.includes('active'));
+
+      return activeIconDataHook && /active_arrow_(.+)$/.exec(activeIconDataHook)[1];
+    },
+    getHiddenSortingArrowDirection: index => {
+      const hooks = getSortingIconsDataHooks(index);
+      const activeIconDataHook = hooks.find(h => h.includes('hidden'));
+
+      return activeIconDataHook && /hidden_arrow_(.+)$/.exec(activeIconDataHook)[1];
+    },
+    mouseEnterHeaderCell: (index, eventData) => ReactTestUtils.Simulate.mouseEnter(getHeaderCell(index), eventData),
+    mouseLeaveHeaderCell: (index, eventData) => ReactTestUtils.Simulate.mouseLeave(getHeaderCell(index), eventData)
   };
 };
 
