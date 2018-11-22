@@ -28,6 +28,10 @@
 | hasSortDescending | (index) | bool | true if column title has sort descending style |
 | clickSort | (index, eventData) | - | click with <eventData> the column index <number> |
 | getRowDetails | string | element | returns row details by row index |
+| getActiveSortingArrowDirection | (index: number) | string | returns the direction of the active (current) sorting arrow |
+| getHiddenSortingArrowDirection | (index: number) | string | returns the direction of the hidden (next) sorting arrow |
+| mouseEnterHeaderCell | (index: number) | - | mouse enter on a header cell |
+| mouseLeaveHeaderCell | (index: number) | - | mouse leave on a header cell |
 
 ## Protractor TestKit API
 
@@ -36,6 +40,7 @@
 | clickRowByIndex | number | - | click row index <number> |
 | getRowTextByIndex | number | string | get row index <number> text |
 | element | - | element | get the actual element |
+| getHeaderCell | (index: number) | element | get a header cell element |
 
 ## Usage Example
 

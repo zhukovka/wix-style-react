@@ -29,12 +29,16 @@
 | clickSort | (index, eventData) | - | click with <eventData> the column index <number> |
 | getRowDetails | string | element | returns row details by row index |
 |    getRowCheckboxDriver | index: number | CheckboxDriver | Get driver of row selection checbox by row index |
-|getBulkSelectionCheckboxDriver | - | CheckboxDriver | Get driver of row bulk-selection checbox |
-|clickRowChecbox | index | - | Click the row selection checkbox |
-|clickBulkSelectionCheckbox| - | - | Click the bulk-selection checkbox|
-|isRowSelected | index : number | boolean | Is row selected by index |
-|getBulkSelectionState | - | string | Get bulk seleciton state. Possible value 'ALL', 'SOME', 'NONE. |
-|getTitlebar | - | element | Get title-bar (column titles) |
+| getBulkSelectionCheckboxDriver | - | CheckboxDriver | Get driver of row bulk-selection checbox |
+| clickRowChecbox | index | - | Click the row selection checkbox |
+| clickBulkSelectionCheckbox| - | - | Click the bulk-selection checkbox|
+| isRowSelected | index : number | boolean | Is row selected by index |
+| getBulkSelectionState | - | string | Get bulk seleciton state. Possible value 'ALL', 'SOME', 'NONE. |
+| getTitlebar | - | element | Get title-bar (column titles) |
+| getActiveSortingArrowDirection | (index: number) | string | returns the direction of the active (current) sorting arrow |
+| getHiddenSortingArrowDirection | (index: number) | string | returns the direction of the hidden (next) sorting arrow |
+| mouseEnterHeaderCell | (index: number) | - | mouse enter on a header cell |
+| mouseLeaveHeaderCell | (index: number) | - | mouse leave on a header cell |
 
 ## Protractor TestKit API
 
@@ -44,6 +48,7 @@
 | getRowTextByIndex | number | string | get row index <number> text |
 | element | - | element | get the actual element |
 | hoverRow | (index) | element | Hover a specific row with the mouse |
+| getHeaderCell | (index: number) | element | get a header cell element |
 
 ### Puppeteer
 
