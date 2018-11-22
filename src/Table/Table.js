@@ -205,7 +205,7 @@ Table.propTypes = {
   /** Should the table show the header when data is empty */
   showHeaderWhenEmpty: PropTypes.bool,
 
-  /** A callback function called on each column title click, whose signature is `onSortClick(colData, colNum, nextSortingDirection)`. The `nextSortingDirection` is the desired sorting direction to be set after the user has changed the sorting direction, and its value can be one of the `sortIconDirection` values. */
+  /** A callback function called on each sortable column title click, whose signature is `onSortClick(colData, colNum, nextSortingDirection)`. The `nextSortingDirection` is the desired sorting direction to be set after the user has changed the sorting direction, and its value can be one of the `sortIconDirection` values. */
   onSortClick: PropTypes.func,
 
   // Table props
