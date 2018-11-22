@@ -35,8 +35,8 @@
 | isRowSelected | index : number | boolean | Is row selected by index |
 | getBulkSelectionState | - | string | Get bulk seleciton state. Possible value 'ALL', 'SOME', 'NONE. |
 | getTitlebar | - | element | Get title-bar (column titles) |
-| getActiveSortingArrowDirection | (index: number) | string | returns the direction of the active (current) sorting arrow |
-| getHiddenSortingArrowDirection | (index: number) | string | returns the direction of the hidden (next) sorting arrow |
+| getActiveSortingArrowDirection | (columnIndex: number) | string | returns the direction of the active (current) sorting arrow |
+| getHiddenSortingArrowDirection | (columnIndex: number) | string | returns the direction of the hidden (next) sorting arrow |
 | mouseEnterHeaderCell | (index: number) | - | mouse enter on a header cell |
 | mouseLeaveHeaderCell | (index: number) | - | mouse leave on a header cell |
 
