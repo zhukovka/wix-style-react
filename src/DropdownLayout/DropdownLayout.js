@@ -34,26 +34,30 @@ class DropdownLayout extends WixComponent {
     this.onClickOutside = this.onClickOutside.bind(this);
   }
 
+  _isControlled() {
+    return typeof this.props.selectedId !== 'undefined' && typeof this.props.onSelect !== 'undefined';
+  }
+
   componentDidMount() {
     super.componentDidMount();
     if (this.props.focusOnSelectedOption) {
-      this.focusOnSelectedOption();
+      this._focusOnSelectedOption();
     }
   }
 
-  focusOnSelectedOption() {
+  _focusOnSelectedOption() {
     if (this.selectedOption) {
       this.options.scrollTop = Math.max(this.selectedOption.offsetTop - this.selectedOption.offsetHeight, 0);
     }
   }
 
-  setSelectedOptionNode(optionNode, option) {
+  _setSelectedOptionNode(optionNode, option) {
     if (option.id === this.state.selectedId) {
       this.selectedOption = optionNode;
     }
   }
 
-  isLegalOption(option) {
+  _isLegalOption(option) {
     if (typeof option !== 'object' || typeof option.value === 'undefined') {
       return false;
     }
@@ -78,27 +82,23 @@ class DropdownLayout extends WixComponent {
   _onSelect(index) {
     const {options, onSelect} = this.props;
     const chosenOption = options[index];
+    const newState = {hovered: NOT_HOVERED_INDEX};
 
     if (chosenOption) {
       const sameOptionWasPicked = chosenOption.id === this.state.selectedId;
-      this.setState({
-        selectedId: chosenOption.id,
-        hovered: NOT_HOVERED_INDEX
-      });
       if (onSelect) {
         onSelect(chosenOption, sameOptionWasPicked);
       }
-    } else {
-      this.setState({
-        selectedId: undefined,
-        hovered: NOT_HOVERED_INDEX
-      });
     }
+    if (!this._isControlled()) {
+      newState.selectedId = chosenOption && chosenOption.id;
+    }
+    this.setState(newState);
     return !!onSelect && chosenOption;
   }
 
   _onMouseEnter(index) {
-    if (this.isSelectableOption(this.props.options[index])) {
+    if (this._isSelectableOption(this.props.options[index])) {
       this.setState({hovered: index});
     }
   }
@@ -109,22 +109,39 @@ class DropdownLayout extends WixComponent {
     });
   }
 
-  hoverNextStep(step) {
+  _getMarkedIndex() {
+    const {options} = this.props;
+    const useHoverIndex = this.state.hovered > NOT_HOVERED_INDEX;
+    const useSelectedIdIndex = typeof this.state.selectedId !== 'undefined';
+
+    let markedIndex;
+    if (useHoverIndex) {
+      markedIndex = this.state.hovered;
+    } else if (useSelectedIdIndex) {
+      markedIndex = options.findIndex(option => option.id === this.state.selectedId);
+    } else {
+      markedIndex = NOT_HOVERED_INDEX;
+    }
+
+    return markedIndex;
+  }
+
+  _markNextStep(step) {
     const {options} = this.props;
 
-    if (!options.some(this.isSelectableOption)) {
+    if (!options.some(this._isSelectableOption)) {
       return;
     }
 
-    let newHovered = this.state.hovered;
-    do {
-      newHovered = Math.abs(modulu(Math.max(newHovered + step, -1), options.length));
-    } while (!this.isSelectableOption(options[newHovered]));
+    let markedIndex = this._getMarkedIndex();
 
-    this.setState({hovered: newHovered});
+    do {
+      markedIndex = Math.abs(modulu(Math.max(markedIndex + step, -1), options.length));
+    } while (!this._isSelectableOption(options[markedIndex]));
+    this.setState({hovered: markedIndex});
 
     const menuElement = this.options;
-    const hoveredElement = this.options.childNodes[newHovered];
+    const hoveredElement = this.options.childNodes[markedIndex];
 
     scrollIntoView(menuElement, hoveredElement);
   }
@@ -142,12 +159,12 @@ class DropdownLayout extends WixComponent {
 
     switch (event.key) {
       case 'ArrowDown': {
-        this.hoverNextStep(1);
+        this._markNextStep(1);
         break;
       }
 
       case 'ArrowUp': {
-        this.hoverNextStep(-1);
+        this._markNextStep(-1);
         break;
       }
 
@@ -197,7 +214,7 @@ class DropdownLayout extends WixComponent {
     }
   }
 
-  renderNode(node) {
+  _renderNode(node) {
     return node ? <div className={styles.node}>{node}</div> : null;
   }
 
@@ -215,26 +232,26 @@ class DropdownLayout extends WixComponent {
     return (
       <div tabIndex={tabIndex} className={classNames(styles.wrapper, styles[`theme-${this.props.theme}`])} onKeyDown={this._onKeyDown} onMouseEnter={onMouseEnter} onMouseLeave={onMouseLeave}>
         <div className={contentContainerClassName} style={{maxHeight: this.props.maxHeightPixels + 'px', minWidth: this.props.minWidthPixels ? `${this.props.minWidthPixels}px` : undefined}}>
-          {this.renderNode(fixedHeader)}
+          {this._renderNode(fixedHeader)}
           <div className={styles.options} style={{maxHeight: this.props.maxHeightPixels - 35 + 'px'}} ref={options => this.options = options} data-hook="dropdown-layout-options">
             {options.map((option, idx) => (
-              this.renderOption({option, idx})
+              this._renderOption({option, idx})
             ))}
           </div>
-          {this.renderNode(fixedFooter)}
+          {this._renderNode(fixedFooter)}
         </div>
-        {this.renderTopArrow()}
+        {this._renderTopArrow()}
       </div>
     );
   }
 
-  renderOption({option, idx}) {
+  _renderOption({option, idx}) {
     const {value, id, disabled, title, overrideStyle, linkTo} = option;
     if (value === DIVIDER_OPTION_VALUE) {
-      return this.renderDivider(idx, `dropdown-divider-${id || idx}`);
+      return this._renderDivider(idx, `dropdown-divider-${id || idx}`);
     }
 
-    const content = this.renderItem({
+    const content = this._renderItem({
       option,
       idx,
       selected: id === this.state.selectedId,
@@ -248,11 +265,11 @@ class DropdownLayout extends WixComponent {
     return linkTo ? <a key={idx} data-hook="link-item" href={linkTo}>{content}</a> : content;
   }
 
-  renderDivider(idx, dataHook) {
+  _renderDivider(idx, dataHook) {
     return (<div key={idx} className={styles.divider} data-hook={dataHook}/>);
   }
 
-  renderItem({option, idx, selected, hovered, disabled, title, overrideStyle, dataHook}) {
+  _renderItem({option, idx, selected, hovered, disabled, title, overrideStyle, dataHook}) {
     const {itemHeight, selectedHighlight} = this.props;
 
     const optionClassName = classNames({
@@ -270,7 +287,7 @@ class DropdownLayout extends WixComponent {
     return (
       <div
         className={optionClassName}
-        ref={node => this.setSelectedOptionNode(node, option)}
+        ref={node => this._setSelectedOptionNode(node, option)}
         onMouseDown={!disabled ? () => this._onSelect(idx) : null}
         key={idx}
         onMouseEnter={() => this._onMouseEnter(idx)}
@@ -282,7 +299,7 @@ class DropdownLayout extends WixComponent {
     );
   }
 
-  renderTopArrow() {
+  _renderTopArrow() {
     const {withArrow, visible, dropDirectionUp} = this.props;
     const arrowClassName = classNames({
       [styles.arrow]: true,
@@ -294,11 +311,7 @@ class DropdownLayout extends WixComponent {
 
   componentWillReceiveProps(nextProps) {
     if (this.props.visible !== nextProps.visible) {
-      let hoverIndex;
-      if (nextProps.visible) {
-        hoverIndex = findIndex(this.props.options, item => item.id === this.state.selectedId);
-      }
-      this.setState({hovered: hoverIndex >= 0 ? hoverIndex : NOT_HOVERED_INDEX});
+      this.setState({hovered: NOT_HOVERED_INDEX});
     }
 
     if (this.props.selectedId !== nextProps.selectedId) {
@@ -306,7 +319,7 @@ class DropdownLayout extends WixComponent {
     }
 
     if (!isEqual(this.props.options, nextProps.options)) {
-      if (nextProps.options.some(option => !this.isLegalOption(option))) {
+      if (nextProps.options.some(option => !this._isLegalOption(option))) {
         throw new Error(`DropdownLayout: Invalid options provided: ${nextProps.options}`);
       }
 
@@ -318,8 +331,8 @@ class DropdownLayout extends WixComponent {
     }
   }
 
-  isSelectableOption(option) {
-    return option.value !== '-' && !option.disabled && !option.title;
+  _isSelectableOption(option) {
+    return option && option.value !== '-' && !option.disabled && !option.title;
   }
 }
 
@@ -376,7 +389,6 @@ DropdownLayout.propTypes = {
 DropdownLayout.defaultProps = {
   options: [],
   tabIndex: 0,
-  selectedId: NOT_HOVERED_INDEX,
   maxHeightPixels: 260,
   closeOnSelect: true,
   itemHeight: 'small',

@@ -93,70 +93,6 @@ describe('DropdownLayout', () => {
     expect(driver.optionByHook('dropdown-divider-6').isDivider()).toBeTruthy();
   });
 
-  it('should not hover any option by default', () => {
-    const driver = createDriver(<DropdownLayout visible options={options}/>);
-    expect(options.map((option, index) => driver.isOptionHovered(index))).not.toContain(true);
-  });
-
-  it('should hover when mouse enter and unhover when mouse leave', () => {
-    const driver = createDriver(<DropdownLayout visible options={options}/>);
-    driver.mouseEnterAtOption(0);
-    expect(driver.isOptionHovered(0)).toBeTruthy();
-    driver.mouseLeaveAtOption(0);
-    expect(driver.isOptionHovered(0)).toBeFalsy();
-  });
-
-  it('should hover when mouse enter and unhover when mouse leave by data hook', () => {
-    const driver = createDriver(<DropdownLayout visible options={options}/>);
-    const option = driver.optionByHook('dropdown-item-0');
-    option.mouseEnter();
-    expect(option.isHovered()).toBeTruthy();
-    option.mouseLeave();
-    expect(option.isHovered()).toBeFalsy();
-  });
-
-  it('should not hover divider or a disabled item when mouse enter', () => {
-    const driver = createDriver(<DropdownLayout visible options={options}/>);
-    driver.mouseEnterAtOption(2);
-    expect(driver.isOptionHovered(2)).toBeFalsy();
-    driver.mouseLeaveAtOption(4);
-    expect(driver.isOptionHovered(4)).toBeFalsy();
-  });
-
-  it('should have only one hovered option', () => {
-    const driver = createDriver(<DropdownLayout visible options={options}/>);
-    driver.mouseEnterAtOption(0);
-    expect(driver.isOptionHovered(0)).toBeTruthy();
-    driver.mouseEnterAtOption(1);
-    expect(driver.isOptionHovered(0)).toBeFalsy();
-    expect(driver.isOptionHovered(1)).toBeTruthy();
-  });
-
-  it('should hovered items cyclic and skipping divider or disabled items on down key', () => {
-    const driver = createDriver(<DropdownLayout visible options={options}/>);
-    driver.pressDownKey();
-    driver.pressDownKey();
-    expect(driver.isOptionHovered(1)).toBeTruthy();
-    driver.pressDownKey();
-    expect(driver.isOptionHovered(3)).toBeTruthy();
-    driver.pressDownKey();
-    expect(driver.isOptionHovered(5)).toBeTruthy();
-    driver.pressDownKey();
-    expect(driver.isOptionHovered(0)).toBeTruthy();
-  });
-
-  it('should hovered items cyclic and skipping divider or disabled on up key', () => {
-    const driver = createDriver(<DropdownLayout visible options={options}/>);
-    driver.pressUpKey();
-    expect(driver.isOptionHovered(5)).toBeTruthy();
-    driver.pressUpKey();
-    expect(driver.isOptionHovered(3)).toBeTruthy();
-    driver.pressUpKey();
-    expect(driver.isOptionHovered(1)).toBeTruthy();
-    driver.pressUpKey();
-    expect(driver.isOptionHovered(0)).toBeTruthy();
-  });
-
   it('should call onClose when esc key is pressed', () => {
     const onClose = jest.fn();
     const driver = createDriver(<DropdownLayout visible options={options} onClose={onClose}/>);
@@ -264,21 +200,6 @@ describe('DropdownLayout', () => {
     expect(driver.isOptionSelected(selectedId)).toBeTruthy();
   });
 
-  it('should hover when mouse enter and unhover when mouse leave when overrideStyle is true', () => {
-    const options = [
-      {id: 0, value: 'Option 1', overrideStyle: true}
-    ];
-
-    const driver = createDriver(<DropdownLayout visible options={options}/>);
-
-    driver.mouseEnterAtOption(0);
-    expect(driver.isOptionHoveredWithGlobalClassName(0)).toBeTruthy();
-    expect(driver.optionByHook('dropdown-item-0').isHoveredWithGlobalClassName()).toBeTruthy();
-    driver.mouseLeaveAtOption(0);
-    expect(driver.isOptionHoveredWithGlobalClassName(0)).toBeFalsy();
-    expect(driver.optionByHook('dropdown-item-0').isHoveredWithGlobalClassName()).toBeFalsy();
-  });
-
   it('should select the chosen value when overrideStyle is true', () => {
     const selectedId = 0;
     const options = [
@@ -361,6 +282,145 @@ describe('DropdownLayout', () => {
     it('should be a link option', () => {
       const driver = createDriver(<DropdownLayout visible options={options.map(opt => ({...opt, linkTo: 'http://wix.com'}))}/>);
       expect(driver.isLinkOption(0)).toBe(true);
+    });
+  });
+
+  describe('controlled and uncontrolled logic', () => {
+    describe('controlled', () => {
+      it('should work as a controlled component when selectedId an onSelect are given', () => {
+        //give selectedId and onSelect
+        const onSelect = jest.fn();
+        const driver = createDriver(<DropdownLayout visible options={options} onSelect={onSelect} selectedId={0}/>);
+        //select item
+        driver.clickAtOption(1);
+        //expect internal state to not change
+        expect(driver.isOptionSelected(0)).toBeTruthy();
+      });
+    });
+
+    describe('uncontrolled', () => {
+      it('should work as an uncontrolled component when only selectedId is supplied', () => {
+        //give selectedId
+        const driver = createDriver(<DropdownLayout visible options={options} selectedId={0}/>);
+        //select item
+        driver.clickAtOption(1);
+        //expect internal state to change
+        expect(driver.isOptionSelected(1)).toBeTruthy();
+      });
+
+      it('should work as an uncontrolled component when only onSelect is supplied', () => {
+        //give onSelect
+        const driver = createDriver(<DropdownLayout visible options={options} onSelect={jest.fn()}/>);
+        //select item
+        driver.clickAtOption(1);
+        //expect internal state to change
+        expect(driver.isOptionSelected(1)).toBeTruthy();
+      });
+    });
+  });
+
+  describe('hover logic', () => {
+    it('should not hover any option by default', () => {
+      const driver = createDriver(<DropdownLayout visible options={options}/>);
+      expect(options.map((option, index) => driver.isOptionHovered(index))).not.toContain(true);
+    });
+
+    it('should hover starting from the top', () => {
+      const driver = createDriver(<DropdownLayout visible options={options}/>);
+      driver.pressDownKey();
+      expect(driver.isOptionHovered(0)).toBeTruthy();
+    });
+
+    it('should hover starting from the selected item', () => {
+      const driver = createDriver(<DropdownLayout visible options={options}/>);
+      driver.clickAtOption(0);
+      driver.pressDownKey();
+      expect(driver.isOptionHovered(1)).toBeTruthy();
+    });
+
+    it('should hover when mouse enter and unhover when mouse leave', () => {
+      const driver = createDriver(<DropdownLayout visible options={options}/>);
+      driver.mouseEnterAtOption(0);
+      expect(driver.isOptionHovered(0)).toBeTruthy();
+      driver.mouseLeaveAtOption(0);
+      expect(driver.isOptionHovered(0)).toBeFalsy();
+    });
+
+    it('should hover when mouse enter and unhover when mouse leave by data hook', () => {
+      const driver = createDriver(<DropdownLayout visible options={options}/>);
+      const option = driver.optionByHook('dropdown-item-0');
+      option.mouseEnter();
+      expect(option.isHovered()).toBeTruthy();
+      option.mouseLeave();
+      expect(option.isHovered()).toBeFalsy();
+    });
+
+    it('should hover when mouse enter and unhover when mouse leave when overrideStyle is true', () => {
+      const options = [
+        {id: 0, value: 'Option 1', overrideStyle: true}
+      ];
+
+      const driver = createDriver(<DropdownLayout visible options={options}/>);
+
+      driver.mouseEnterAtOption(0);
+      expect(driver.isOptionHoveredWithGlobalClassName(0)).toBeTruthy();
+      expect(driver.optionByHook('dropdown-item-0').isHoveredWithGlobalClassName()).toBeTruthy();
+      driver.mouseLeaveAtOption(0);
+      expect(driver.isOptionHoveredWithGlobalClassName(0)).toBeFalsy();
+      expect(driver.optionByHook('dropdown-item-0').isHoveredWithGlobalClassName()).toBeFalsy();
+    });
+
+    it('should not hover divider or a disabled item when mouse enter', () => {
+      const driver = createDriver(<DropdownLayout visible options={options}/>);
+      driver.mouseEnterAtOption(2);
+      expect(driver.isOptionHovered(2)).toBeFalsy();
+      driver.mouseLeaveAtOption(4);
+      expect(driver.isOptionHovered(4)).toBeFalsy();
+    });
+
+    it('should have only one hovered option', () => {
+      const driver = createDriver(<DropdownLayout visible options={options}/>);
+      driver.mouseEnterAtOption(0);
+      expect(driver.isOptionHovered(0)).toBeTruthy();
+      driver.mouseEnterAtOption(1);
+      expect(driver.isOptionHovered(0)).toBeFalsy();
+      expect(driver.isOptionHovered(1)).toBeTruthy();
+    });
+
+    it('should hovered items cyclic and skipping divider or disabled items on down key', () => {
+      const driver = createDriver(<DropdownLayout visible options={options}/>);
+      driver.pressDownKey();
+      driver.pressDownKey();
+      expect(driver.isOptionHovered(1)).toBeTruthy();
+      driver.pressDownKey();
+      expect(driver.isOptionHovered(3)).toBeTruthy();
+      driver.pressDownKey();
+      expect(driver.isOptionHovered(5)).toBeTruthy();
+      driver.pressDownKey();
+      expect(driver.isOptionHovered(0)).toBeTruthy();
+    });
+
+    it('should hovered items cyclic and skipping divider or disabled on up key', () => {
+      const driver = createDriver(<DropdownLayout visible options={options}/>);
+      driver.pressUpKey();
+      expect(driver.isOptionHovered(5)).toBeTruthy();
+      driver.pressUpKey();
+      expect(driver.isOptionHovered(3)).toBeTruthy();
+      driver.pressUpKey();
+      expect(driver.isOptionHovered(1)).toBeTruthy();
+      driver.pressUpKey();
+      expect(driver.isOptionHovered(0)).toBeTruthy();
+    });
+
+    it('should hover starting from a given item', () => {
+      const options = [
+        {id: 10, value: 'Option 1'},
+        {id: 20, value: 'Option 2'},
+        {id: 30, value: 'Option 3'}
+      ];
+      const driver = createDriver(<DropdownLayout visible options={options} selectedId={20} onSelect={jest.fn()}/>);
+      driver.pressDownKey();
+      expect(driver.isOptionHovered(2)).toBeTruthy();
     });
   });
 

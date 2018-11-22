@@ -30,6 +30,7 @@ const dropdownLayoutDriverFactory = ({element, wrapper, component}) => {
     mouseLeaveAtOption: position => doIfOptionExists(position, () => ReactTestUtils.Simulate.mouseLeave(optionAt(position))),
     mouseClickOutside: () => document.body.dispatchEvent(new Event('mouseup', {cancelable: true})),
     isOptionExists: optionText => [].filter.call(options.childNodes, opt => opt.textContent === optionText).length > 0,
+    /** returns if an option is hovered. notice that it checks by index and __not__ by id */
     isOptionHovered: position => doIfOptionExists(position, () => isClassExists(optionAt(position), 'hovered')),
     isOptionSelected: position => doIfOptionExists(position, () => isClassExists(optionAt(position), 'selected')),
     isOptionHoveredWithGlobalClassName: position => doIfOptionExists(position, () => isClassExists(optionAt(position), 'wixstylereactHovered')),

@@ -188,7 +188,6 @@ const runInputWithOptionsTest = driverFactory => {
       driver.pressKey('ArrowDown');
 
       expect(dropdownLayoutDriver.isOptionSelected(1)).toBeTruthy();
-      expect(dropdownLayoutDriver.isOptionHovered(1)).toBeTruthy();
 
       driver.pressKey('ArrowDown'); // going to skip disabled option at index 2
       expect(dropdownLayoutDriver.isOptionHovered(3)).toBeTruthy();
