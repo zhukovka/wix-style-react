@@ -1,7 +1,7 @@
 import eyes from 'eyes.it';
 
 import {tableTestkitFactory, tableActionCellTestkitFactory} from '../../testkit/protractor';
-import {waitForVisibilityOf, scrollToElement} from 'wix-ui-test-utils/protractor';
+import {waitForVisibilityOf, scrollToElement, mouseEnter, mouseLeave} from 'wix-ui-test-utils/protractor';
 import {createStoryUrl} from '../../test/utils/storybook-helpers';
 import {flattenInternalDriver} from '../../test/utils/private-drivers';
 import {storySettings} from '../../stories/Table/storySettings';
@@ -78,6 +78,37 @@ describe('Table', () => {
 
         tableDriver.hoverRow(1);
       });
+    });
+  });
+
+  describe('sorting example', () => {
+    const checkSortingArrow = async (headerCellElement, currentSortingState) => {
+      await mouseEnter(headerCellElement);
+      eyes.checkWindow(`'${currentSortingState}' sorting state hover`);
+
+      headerCellElement.click();
+      eyes.checkWindow(`'${currentSortingState}' sorting state click`);
+
+      await mouseLeave(headerCellElement);
+      eyes.checkWindow(`'${currentSortingState}' sorting state exit`);
+    };
+
+    it('should render correctly', async () => {
+      await init('story-table-sorting-example');
+    });
+
+    it('should cycle through sorting direction', async () => {
+      const driver = await init('story-table-sorting-example');
+      const headerCellElement = driver.getHeaderCell(0);
+
+      // From the initial state (none) to asc
+      await checkSortingArrow(headerCellElement, 'none');
+
+      // From asc to desc
+      await checkSortingArrow(headerCellElement, 'asc');
+
+      // From desc to none
+      await checkSortingArrow(headerCellElement, 'desc');
     });
   });
 });
