@@ -19,6 +19,8 @@ Types of changes:
 
 - `<TextButton/>` - new component to be used for minimal distraction. [#2434](https://github.com/wix/wix-style-react/pull/2434)
 
+- `<IconButton/>` - new component. [#2445](https://github.com/wix/wix-style-react/pull/2445)
+
 ### Fixed
 
 - `<BadgeSelect/>` - add a z-index to the dropdown container [#2478](https://github.com/wix/wix-style-react/pull/2478)
