@@ -86,6 +86,9 @@ const COMPONENTS = {
   TextButton: {
     unidriver: true
   },
+  IconButton: {
+    unidriver: true
+  },
   Tag: {
     props: {
       useOldMargins: false,

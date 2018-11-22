@@ -61,8 +61,7 @@ import '../../stories/GoogleAddressInputWithLabel'; // 4.8 Google address input
 // 5. Buttons
 import '../../stories/ButtonLayout.story.js'; // 5.0 ButtonLayout
 import '../../stories/Button/standard.story.js'; // 5.1 Standard
-import '../../stories/Button/white.story.js'; // 5.2 White
-import '../../stories/Button/icon.story.js'; // 5.3 Icon
+import '../../stories/IconButton/index.story'; // 5.2 Icon Button
 import '../../stories/TextButton/index.story'; // 5.3 Text Button
 import '../../stories/Button/error.story.js'; // 5.4 Error
 import '../../stories/Button/premium.story.js'; // 5.5 Premium

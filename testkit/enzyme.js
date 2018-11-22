@@ -400,3 +400,8 @@ import {textButtonDriverFactory} from '../src/TextButton/TextButton.driver';
 export const textButtonTestkitFactory = enzymeUniTestkitFactoryCreator(
   textButtonDriverFactory
 );
+
+import {iconButtonDriverFactory} from '../src/IconButton/IconButton.driver';
+export const iconButtonTestkitFactory = enzymeUniTestkitFactoryCreator(
+  iconButtonDriverFactory
+);

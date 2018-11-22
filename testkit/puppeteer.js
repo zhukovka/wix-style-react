@@ -45,3 +45,8 @@ import {textButtonDriverFactory} from '../src/TextButton/TextButton.driver';
 export const textButtonTestkitFactory = puppeteerUniTestkitFactoryCreator(
   textButtonDriverFactory
 );
+
+import {iconButtonDriverFactory} from '../src/IconButton/IconButton.driver';
+export const iconButtonTestkitFactory = puppeteerUniTestkitFactoryCreator(
+  iconButtonDriverFactory
+);

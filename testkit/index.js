@@ -376,3 +376,8 @@ import {textButtonDriverFactory} from '../src/TextButton/TextButton.driver';
 export const textButtonTestkitFactory = uniTestkitFactoryCreator(
   textButtonDriverFactory
 );
+
+import {iconButtonDriverFactory} from '../src/IconButton/IconButton.driver';
+export const iconButtonTestkitFactory = uniTestkitFactoryCreator(
+  iconButtonDriverFactory
+);

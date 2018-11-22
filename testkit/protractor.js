@@ -300,3 +300,10 @@ import {textButtonDriverFactory} from '../src/TextButton/TextButton.driver';
 export const textButtonTestkitFactory = protractorUniTestkitFactoryCreator(
   textButtonDriverFactory
 );
+
+import {iconButtonDriverFactory} from '../src/IconButton/IconButton.driver';
+export const iconButtonTestkitFactory = protractorUniTestkitFactoryCreator(
+  iconButtonDriverFactory
+);
+
+

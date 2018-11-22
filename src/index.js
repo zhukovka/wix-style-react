@@ -1,4 +1,9 @@
-import {MessageBoxMarketerialLayout, MessageBoxFunctionalLayout, HeaderLayout, FooterLayout} from './MessageBox';
+import {
+  MessageBoxMarketerialLayout,
+  MessageBoxFunctionalLayout,
+  HeaderLayout,
+  FooterLayout
+} from './MessageBox';
 
 export {default as AddItem} from './AddItem';
 export {default as Button} from './Button';
@@ -12,10 +17,14 @@ export {default as ToggleSwitch} from './ToggleSwitch';
 export {default as Modal} from './Modal';
 export {ModalSelectorLayout} from './ModalSelectorLayout';
 export {
-  MessageBoxMarketerialLayout, MessageBoxMarketerialLayout as MessageBoxLayout1,
-  MessageBoxFunctionalLayout, MessageBoxFunctionalLayout as MessageBoxLayout2,
-  HeaderLayout, HeaderLayout as HeaderLayout1,
-  FooterLayout, FooterLayout as FooterLayout1
+  MessageBoxMarketerialLayout,
+  MessageBoxMarketerialLayout as MessageBoxLayout1,
+  MessageBoxFunctionalLayout,
+  MessageBoxFunctionalLayout as MessageBoxLayout2,
+  HeaderLayout,
+  HeaderLayout as HeaderLayout1,
+  FooterLayout,
+  FooterLayout as FooterLayout1
 };
 export {default as RadioGroup} from './RadioGroup';
 export {default as RadioButton} from './RadioGroup/RadioButton/RadioButton';
@@ -77,8 +86,17 @@ export {default as EmptyState} from './EmptyState';
 export {default as DragDropContextProvider} from './DragDropContextProvider';
 export {default as SortableList} from './SortableList';
 export {default as FilePicker} from './FilePicker';
-export {Container, RawContainer, Columns, Columns as Row, AutoAdjustedColumns, AutoAdjustedColumns as AutoAdjustedRow, Col} from './Grid';
+export {
+  Container,
+  RawContainer,
+  Columns,
+  Columns as Row,
+  AutoAdjustedColumns,
+  AutoAdjustedColumns as AutoAdjustedRow,
+  Col
+} from './Grid';
 export {Layout, Cell} from './Layout';
 export {default as Typography} from './Typography';
 export {default as GenericModalLayout} from './GenericModalLayout';
 export {default as TextButton} from './TextButton';
+export {default as IconButton} from './IconButton';
