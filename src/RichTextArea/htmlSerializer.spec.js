@@ -16,10 +16,10 @@ describe('HTML serializer', () => {
                   {
                     marks: [],
                     object: 'leaf',
-                    text: 'Hello'
-                  }
+                    text: 'Hello',
+                  },
                 ],
-                object: 'text'
+                object: 'text',
               },
               {
                 leaves: [
@@ -28,14 +28,14 @@ describe('HTML serializer', () => {
                       {
                         data: {},
                         object: 'mark',
-                        type: 'bold'
-                      }
+                        type: 'bold',
+                      },
                     ],
                     object: 'leaf',
-                    text: 'bold text'
-                  }
+                    text: 'bold text',
+                  },
                 ],
-                object: 'text'
+                object: 'text',
               },
               {
                 leaves: [
@@ -44,14 +44,14 @@ describe('HTML serializer', () => {
                       {
                         data: {},
                         object: 'mark',
-                        type: 'italic'
-                      }
+                        type: 'italic',
+                      },
                     ],
                     object: 'leaf',
-                    text: 'italic'
-                  }
+                    text: 'italic',
+                  },
                 ],
-                object: 'text'
+                object: 'text',
               },
               {
                 leaves: [
@@ -60,23 +60,23 @@ describe('HTML serializer', () => {
                       {
                         data: {},
                         object: 'mark',
-                        type: 'underline'
+                        type: 'underline',
                       },
                       {
                         data: {},
                         object: 'mark',
-                        type: 'italic'
-                      }
+                        type: 'italic',
+                      },
                     ],
                     object: 'leaf',
-                    text: 'and underlined'
-                  }
+                    text: 'and underlined',
+                  },
                 ],
-                object: 'text'
-              }
+                object: 'text',
+              },
             ],
             object: 'block',
-            type: 'paragraph'
+            type: 'paragraph',
           },
           {
             data: {},
@@ -89,14 +89,14 @@ describe('HTML serializer', () => {
                       {
                         marks: [],
                         object: 'leaf',
-                        text: 'one'
-                      }
+                        text: 'one',
+                      },
                     ],
-                    object: 'text'
-                  }
+                    object: 'text',
+                  },
                 ],
                 object: 'block',
-                type: 'list-item'
+                type: 'list-item',
               },
               {
                 data: {},
@@ -106,25 +106,25 @@ describe('HTML serializer', () => {
                       {
                         marks: [],
                         object: 'leaf',
-                        text: 'two'
-                      }
+                        text: 'two',
+                      },
                     ],
-                    object: 'text'
-                  }
+                    object: 'text',
+                  },
                 ],
                 object: 'block',
-                type: 'list-item'
-              }
+                type: 'list-item',
+              },
             ],
             object: 'block',
-            type: 'ordered-list'
+            type: 'ordered-list',
           },
           {
             data: {},
             nodes: [
               {
                 data: {
-                  href: 'http://localhost'
+                  href: 'http://localhost',
                 },
                 nodes: [
                   {
@@ -132,23 +132,23 @@ describe('HTML serializer', () => {
                       {
                         marks: [],
                         object: 'leaf',
-                        text: 'Link to localhost'
-                      }
+                        text: 'Link to localhost',
+                      },
                     ],
-                    object: 'text'
-                  }
+                    object: 'text',
+                  },
                 ],
                 object: 'inline',
-                type: 'link'
-              }
+                type: 'link',
+              },
             ],
             object: 'block',
-            type: 'paragraph'
-          }
+            type: 'paragraph',
+          },
         ],
-        object: 'document'
+        object: 'document',
       },
-      object: 'value'
+      object: 'value',
     };
 
     const deserialized = htmlSerializer.deserialize(text);
@@ -174,14 +174,14 @@ describe('HTML serializer', () => {
                       {
                         marks: [],
                         object: 'leaf',
-                        text: 'one'
-                      }
+                        text: 'one',
+                      },
                     ],
-                    object: 'text'
-                  }
+                    object: 'text',
+                  },
                 ],
                 object: 'block',
-                type: 'list-item'
+                type: 'list-item',
               },
               {
                 data: {},
@@ -191,16 +191,16 @@ describe('HTML serializer', () => {
                       {
                         marks: [],
                         object: 'leaf',
-                        text: 'two'
-                      }
+                        text: 'two',
+                      },
                     ],
-                    object: 'text'
-                  }
+                    object: 'text',
+                  },
                 ],
                 object: 'block',
-                type: 'list-item'
-              }
-            ]
+                type: 'list-item',
+              },
+            ],
           },
           {
             data: {},
@@ -213,51 +213,51 @@ describe('HTML serializer', () => {
                   {
                     marks: [],
                     object: 'leaf',
-                    text: 'Text here'
+                    text: 'Text here',
                   },
                   {
                     marks: [
                       {
                         data: {},
                         object: 'mark',
-                        type: 'bold'
-                      }
+                        type: 'bold',
+                      },
                     ],
                     object: 'leaf',
-                    text: 'bold text'
+                    text: 'bold text',
                   },
                   {
                     marks: [
                       {
                         data: {},
                         object: 'mark',
-                        type: 'italic'
-                      }
+                        type: 'italic',
+                      },
                     ],
                     object: 'leaf',
-                    text: 'italic'
+                    text: 'italic',
                   },
                   {
                     marks: [
                       {
                         data: {},
                         object: 'mark',
-                        type: 'underline'
+                        type: 'underline',
                       },
                       {
                         data: {},
                         object: 'mark',
-                        type: 'italic'
-                      }
+                        type: 'italic',
+                      },
                     ],
                     object: 'leaf',
-                    text: 'and underlined'
-                  }
-                ]
+                    text: 'and underlined',
+                  },
+                ],
               },
               {
                 data: {
-                  href: 'http://localhost'
+                  href: 'http://localhost',
                 },
                 nodes: [
                   {
@@ -265,21 +265,21 @@ describe('HTML serializer', () => {
                       {
                         object: 'leaf',
                         text: 'Link',
-                        marks: []
-                      }
+                        marks: [],
+                      },
                     ],
-                    object: 'text'
-                  }
+                    object: 'text',
+                  },
                 ],
                 object: 'inline',
-                type: 'link'
-              }
-            ]
-          }
+                type: 'link',
+              },
+            ],
+          },
         ],
-        object: 'document'
+        object: 'document',
       },
-      object: 'value'
+      object: 'value',
     };
     const serialized = Value.fromJSON(value);
     expect(htmlSerializer.serialize(serialized)).toEqual(expected);

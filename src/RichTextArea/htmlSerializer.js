@@ -30,26 +30,35 @@ const rules = [
             data.src = el.getAttribute('src');
             break;
           }
-          default: break;
+          default:
+            break;
         }
 
         return {
           object: 'block',
           type,
           data,
-          nodes: next(el.childNodes)
+          nodes: next(el.childNodes),
         };
       }
     },
     serialize(obj, children) {
       if (obj.object === 'block') {
         switch (obj.type) {
-          case 'paragraph': return <p>{children}</p>;
-          case 'list-item': return <li>{children}</li>;
-          case 'ordered-list': return <ol>{children}</ol>;
-          case 'unordered-list': return <ul>{children}</ul>;//data-hook="editor-image"
-          case 'image': return <img data-hook="editor-image" src={obj.data.get('src')}/>;
-          default: break;
+          case 'paragraph':
+            return <p>{children}</p>;
+          case 'list-item':
+            return <li>{children}</li>;
+          case 'ordered-list':
+            return <ol>{children}</ol>;
+          case 'unordered-list':
+            return <ul>{children}</ul>; //data-hook="editor-image"
+          case 'image':
+            return (
+              <img data-hook="editor-image" src={obj.data.get('src')} alt="" />
+            );
+          default:
+            break;
         }
       }
     },
@@ -61,17 +70,21 @@ const rules = [
         return {
           object: 'mark',
           type,
-          nodes: next(el.childNodes)
+          nodes: next(el.childNodes),
         };
       }
     },
     serialize(obj, children) {
       if (obj.object === 'mark') {
         switch (obj.type) {
-          case 'bold': return <strong>{children}</strong>;
-          case 'italic': return <em>{children}</em>;
-          case 'underline': return <u>{children}</u>;
-          default: break;
+          case 'bold':
+            return <strong>{children}</strong>;
+          case 'italic':
+            return <em>{children}</em>;
+          case 'underline':
+            return <u>{children}</u>;
+          default:
+            break;
         }
       }
     },
@@ -84,17 +97,27 @@ const rules = [
           object: 'inline',
           type,
           data: {
-            href: el.getAttribute('href')
+            href: el.getAttribute('href'),
           },
-          nodes: next(el.childNodes)
+          nodes: next(el.childNodes),
         };
       }
     },
     serialize(obj, children) {
       if (obj.object === 'inline') {
         switch (obj.type) {
-          case 'link': return <a rel="noopener noreferrer" target="_blank" href={obj.data.get('href')}>{children}</a>;
-          default: break;
+          case 'link':
+            return (
+              <a
+                rel="noopener noreferrer"
+                target="_blank"
+                href={obj.data.get('href')}
+              >
+                {children}
+              </a>
+            );
+          default:
+            break;
         }
       }
     },

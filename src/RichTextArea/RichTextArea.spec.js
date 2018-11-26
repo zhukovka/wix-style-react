@@ -176,10 +176,10 @@ describe('RichTextArea', () => {
         onChange: newValue => {
           console.log('renewed', newValue); // eslint-disable-line
           currentValue = newValue;
-        }
+        },
       },
       props,
     );
-    return createDriver(<RichTextArea {...mergedProps}/>);
+    return createDriver(<RichTextArea {...mergedProps} />);
   }
 });

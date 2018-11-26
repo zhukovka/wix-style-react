@@ -3,8 +3,8 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import FormFieldError from 'wix-ui-icons-common/system/FormFieldError';
 import WixComponent from '../BaseComponents/WixComponent';
-import {Block} from 'slate';
-import {Editor, getEventRange, getEventTransfer} from 'slate-react';
+import { Block } from 'slate';
+import { Editor, getEventRange, getEventTransfer } from 'slate-react';
 import Tooltip from '../Tooltip';
 import RichTextEditorToolbar from './RichTextAreaToolbar';
 import htmlSerializer from './htmlSerializer';
@@ -54,8 +54,8 @@ class RichTextArea extends WixComponent {
   /* eslint-disable react/prop-types */
   schema = {
     document: {
-      last: {type: 'paragraph'},
-      normalize: (editor, {code, node}) => {
+      last: { type: 'paragraph' },
+      normalize: (editor, { code, node }) => {
         switch (code) {
           case 'last_child_type_invalid': {
             const block = Block.create(defaultBlock);
@@ -64,13 +64,13 @@ class RichTextArea extends WixComponent {
           default:
             return;
         }
-      }
+      },
     },
     blocks: {
       image: {
-        isVoid: true
-      }
-    }
+        isVoid: true,
+      },
+    },
   };
   /* eslint-disable */
 
@@ -95,7 +95,7 @@ class RichTextArea extends WixComponent {
       }
       else {
         const value = htmlSerializer.deserialize(props.value);
-        this.setEditorValue({value});
+        this.setEditorValue({ value });
       }
     }
   }
@@ -104,16 +104,16 @@ class RichTextArea extends WixComponent {
     this.editor = editor;
   }
 
-  onChange = ({value}) => {
+  onChange = ({ value }) => {
     const serialized = htmlSerializer.serialize(value);
     const isValueChanged = value.document != this.state.editorValue.document;
     // const isValueChanged = serialized !== this.lastValue;
     this.lastValue = serialized;
-    this.setEditorValue({value}, isValueChanged);
+    this.setEditorValue({ value }, isValueChanged);
   }
 
   setEditorValue = ({value}, isTextChanged = true) => {
-    this.setState({editorValue: value}, () => this.triggerChange(isTextChanged));
+    this.setState({ editorValue: value }, () => this.triggerChange(isTextChanged));
   }
 
   triggerChange(isTextChanged = true) {
@@ -121,7 +121,7 @@ class RichTextArea extends WixComponent {
     this.lastValue = serialized;
     if (isTextChanged) {
       console.log(isTextChanged, 'serialized', serialized);
-      const {onChange} = this.props;
+      const { onChange } = this.props;
       onChange && onChange(serialized);
     }
   }
@@ -223,7 +223,7 @@ class RichTextArea extends WixComponent {
         .moveFocusBackward(linkContent.length)
         .wrapInline({
           type: 'link',
-          data: {href: decoratedHref}
+          data: {href: decoratedHref},
         })
         .moveToEnd();
     }
@@ -238,7 +238,7 @@ class RichTextArea extends WixComponent {
       this.editor
         .insertBlock({
           type: 'image',
-          data: { src: text }
+          data: { src: text },
         });
     }
   }
@@ -256,7 +256,7 @@ class RichTextArea extends WixComponent {
       editor
         .insertBlock({
           type: 'image',
-          data: { src: text }
+          data: { src: text },
         });
         return;
     }
