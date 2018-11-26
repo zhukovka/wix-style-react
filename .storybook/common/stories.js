@@ -61,8 +61,8 @@ import '../../stories/GoogleAddressInputWithLabel'; // 4.8 Google address input
 // 5. Buttons
 import '../../stories/ButtonLayout.story.js'; // 5.0 ButtonLayout
 import '../../stories/Button/standard.story.js'; // 5.1 Standard
-import '../../stories/Button/white.story.js'; // 5.2 White
-import '../../stories/Button/icon.story.js'; // 5.3 Icon
+import '../../stories/IconButton/index.story'; // 5.2 Icon Button
+import '../../stories/TextButton/index.story'; // 5.3 Text Button
 import '../../stories/Button/error.story.js'; // 5.4 Error
 import '../../stories/Button/premium.story.js'; // 5.5 Premium
 import '../../stories/Button/transparent.story.js'; // 5.6 Transparent
@@ -108,6 +108,7 @@ import '../../stories/BadgeSelect/index.story.js'; // 12.2 BadgeSelect
 import '../../stories/CounterBadge'; //12.3 CounterBadge
 import '../../stories/FullTextView.story.js'; //12.4 FullTextView
 import '../../stories/Tag.story.js'; // 12.5 Tag
+import '../../stories/Avatar/Avatar.story'; // 12.6 Avatar
 import '../../stories/Highlighter.story.js'; // Highlighter
 
 // Components API
@@ -120,6 +121,8 @@ import '../../stories/InputArea/index.story.js';
 import '../../stories/Layout/index.story.js';
 import '../../stories/Layout';
 import '../../stories/Text/index.story';
+import '../../stories/Skeleton.story.js';
+import '../../stories/Collapse.story';
 
 // Styling
 import '../../stories/Typography/TypographyClassesStory';
@@ -138,7 +141,8 @@ import '../../stories/TPA/Label';
 
 // Tests
 import '../../stories/Typography/TypographyTestStories';
-import '../../stories/Page/PageTestStories.js'; // Tests/2.5 + Page/
-import '../../stories/PageHeader/PageHeaderTestStories.js'; // Tests/2.5 + PageHeader/
+import '../../stories/Page/PageTestStories.js'; // Tests/2. Layout/2.5 + Page/
+import '../../stories/PageHeader/PageHeaderTestStories.js'; // Tests/2. Layout/2.5 + PageHeader/
+import '../../stories/Button/ButtonTestStory'; // Tests/5. Buttons
 import '../../stories/Tooltip/Composite/PopoverMenuRegressionTest.js'; // Tests/7.3. Popover Menu/
-import '../../stories/Button/ButtonTestStory';
+import '../../stories/Avatar/AvatarTestStory'; // Tests/12. Other

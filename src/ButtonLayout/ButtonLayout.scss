@@ -629,6 +629,12 @@ $base-transition: all 100ms linear;
   height: 24px;
 }
 
+@include withRTL {
+  .suffix {
+    margin: 0 6px 0 -12px;
+  }
+}
+
 .prefix {
   margin: 0 6px 0 -12px;
   line-height: 0;
@@ -636,18 +642,36 @@ $base-transition: all 100ms linear;
   height: 24px;
 }
 
+@include withRTL {
+  .prefix {
+    margin: 0 -12px 0 6px;
+  }
+}
+
 .heightx-small .suffix {
-  margin: 0 -6px 0 0;
+  margin: 0 -6px 0 3px;
   line-height: 0;
   width: 18px;
   height: 18px;
 }
 
+@include withRTL {
+  .heightx-small .suffix {
+    margin: 0 3px 0 -6px;
+  }
+}
+
 .heightx-small .prefix {
-  margin: 0 0 0 -6px;
+  margin: 0 3px 0 -6px;
   line-height: 0;
   width: 18px;
   height: 18px;
+}
+
+@include withRTL {
+  .heightx-small .prefix {
+    margin: 0 -6px 0 3px;
+  }
 }
 
 .heightsmall .suffix {
@@ -657,11 +681,23 @@ $base-transition: all 100ms linear;
   height: 18px;
 }
 
+@include withRTL {
+  .heightsmall .suffix {
+    margin: 0 6px 0 -6px;
+  }
+}
+
 .heightsmall .prefix {
   margin: 0 6px 0 -6px;
   line-height: 0;
   width: 18px;
   height: 18px;
+}
+
+@include withRTL {
+  .heightsmall .prefix {
+    margin: 0 -6px 0 6px;
+  }
 }
 
 .heightlarge .suffix {
@@ -671,11 +707,23 @@ $base-transition: all 100ms linear;
   height: 24px;
 }
 
+@include withRTL {
+  .heightlarge .suffix {
+    margin: 0 12px 0 -12px;
+  }
+}
+
 .heightlarge .prefix {
   margin: 0 12px 0 -12px;
   line-height: 0;
   width: 24px;
   height: 24px;
+}
+
+@include withRTL {
+  .heightlarge .prefix {
+    margin: 0 -12px 0 12px;
+  }
 }
 
 .heightx-large .suffix {
@@ -685,6 +733,12 @@ $base-transition: all 100ms linear;
   height: 24px;
 }
 
+@include withRTL {
+  .heightx-large .suffix {
+    margin: 0 12px 0 -12px;
+  }
+}
+
 .heightx-large .prefix {
   margin: 0 12px 0 -12px;
   line-height: 0;
@@ -692,12 +746,8 @@ $base-transition: all 100ms linear;
   height: 24px;
 }
 
-:global(.rtl) .prefix {
-  padding: 0 0 0 10px;
-  line-height: 0 !important;
-}
-
-:global(.rtl) .suffix {
-  padding: 0 10px 0 0;
-  line-height: 0 !important;
+@include withRTL {
+  .heightx-large .prefix {
+    margin: 0 -12px 0 12px;
+  }
 }

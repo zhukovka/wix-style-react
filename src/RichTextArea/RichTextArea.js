@@ -18,7 +18,7 @@ const defaultBlock = {
   type: 'paragraph',
   isVoid: false,
   data: {},
-  key: 'defaultBlock'
+  key: 'defaultBlock',
 };
 
 /*
@@ -26,7 +26,8 @@ const defaultBlock = {
   and if it not absolute, then we add '//' at the beginning of it,
   to make link absolute
 */
-export const makeHrefAbsolute = href => /^(https?:)?\/\//.test(href) ? href : `//${href}`;
+export const makeHrefAbsolute = href =>
+  /^(https?:)?\/\//.test(href) ? href : `//${href}`;
 
 class RichTextArea extends WixComponent {
   static propTypes = {
@@ -41,13 +42,13 @@ class RichTextArea extends WixComponent {
     resizable: PropTypes.bool,
     value: PropTypes.string,
     onChange: PropTypes.func,
-    onImageRequest: PropTypes.func
+    onImageRequest: PropTypes.func,
   };
 
   static defaultProps = {
     absoluteLinks: false,
     errorMessage: '',
-    value: '<p></p>'
+    value: '<p></p>',
   };
 
   /* eslint-disable react/prop-types */

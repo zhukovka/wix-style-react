@@ -6,17 +6,17 @@ const BLOCK_TAGS = {
   ul: 'unordered-list',
   li: 'list-item',
   ol: 'ordered-list',
-  img: 'image'
+  img: 'image',
 };
 
 const MARK_TAGS = {
   em: 'italic',
   strong: 'bold',
-  u: 'underline'
+  u: 'underline',
 };
 
 const INLINE_TAGS = {
-  a: 'link'
+  a: 'link',
 };
 
 const rules = [
@@ -52,7 +52,7 @@ const rules = [
           default: break;
         }
       }
-    }
+    },
   },
   {
     deserialize(el, next) {
@@ -74,7 +74,7 @@ const rules = [
           default: break;
         }
       }
-    }
+    },
   },
   {
     deserialize(el, next) {
@@ -97,8 +97,8 @@ const rules = [
           default: break;
         }
       }
-    }
-  }
+    },
+  },
 ];
 
-export default new Html({rules});
+export default new Html({ rules });
