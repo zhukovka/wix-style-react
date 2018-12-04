@@ -470,3 +470,9 @@ import { iconButtonDriverFactory } from '../src/IconButton/IconButton.driver';
 export const iconButtonTestkitFactory = uniTestkitFactoryCreator(
   iconButtonDriverFactory,
 );
+
+import { closeButtonDriverFactory } from '../src/CloseButton/CloseButton.driver';
+
+export const closeButtonTestkitFactory = uniTestkitFactoryCreator(
+  closeButtonDriverFactory,
+);
