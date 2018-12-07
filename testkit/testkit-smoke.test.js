@@ -26,8 +26,7 @@ const FAILING_COMPONENTS = [
   'ButtonLayout',
   'ButtonWithOptions',
   'CalendarPanel',
-  'Card',
-  'CloseButton',
+  'Card', // Component has no testkit
   'ColorPicker',
   'Composite',
   'DatePicker',
@@ -41,6 +40,7 @@ const FAILING_COMPONENTS = [
   'GoogleAddressInputWithLabel',
   'Grid', // Component has no testkit
   'HBox', // Component has no testkit
+  'RichTextAreaComposite',
   'IconWithOptions',
   'Layout',
   'MessageBox',
@@ -54,8 +54,6 @@ const FAILING_COMPONENTS = [
   'PageHeader',
   'PopoverMenuItem',
   'Range',
-  'RichTextArea',
-  'RichTextAreaComposite',
   'SideMenuDrill',
   'TableToolbar',
   'Tabs',
@@ -89,6 +87,9 @@ const COMPONENTS = {
   },
   CloseButton: {
     unidriver: true,
+  },
+  RichTextArea: {
+    beforeAllHook: () => (window.getSelection = () => ({})),
   },
   Tag: {
     props: {
@@ -171,9 +172,30 @@ const AllComponents = importAllComponents({
   ignore: FAILING_COMPONENTS,
 });
 
+const handleBeforeAllHook = (beforeTask, afterTask) => {
+  beforeAll(async () => beforeTask && (await beforeTask()));
+  afterAll(async () => afterTask && (await afterTask));
+};
+
+const handleUniDriverConfig = config => {
+  DRIVER_ASSERTS.enzymeUni(config);
+  DRIVER_ASSERTS.vanillaUni(config);
+};
+
+const handleDriverConfig = config => {
+  DRIVER_ASSERTS.enzyme(config);
+  DRIVER_ASSERTS.vanilla(config);
+};
+
+const handleNoConfig = config => {
+  DRIVER_ASSERTS.enzyme(config);
+  DRIVER_ASSERTS.vanilla(config);
+};
+
 const DRIVER_ASSERTS = {
-  enzyme: ({ name, component, props }) => {
+  enzyme: ({ name, component, props, beforeAllHook, afterAllHook }) => {
     describe('Enzyme testkits', () => {
+      handleBeforeAllHook(beforeAllHook, afterAllHook);
       it(`${name} should have enzyme testkit`, () => {
         expect(
           isEnzymeTestkitExists(
@@ -186,8 +208,9 @@ const DRIVER_ASSERTS = {
     });
   },
 
-  vanilla: ({ name, component, props }) => {
+  vanilla: ({ name, component, props, beforeAllHook, afterAllHook }) => {
     describe('ReactTestUtils testkits', () => {
+      handleBeforeAllHook(beforeAllHook, afterAllHook);
       it(`${name} should have ReactTestUtils testkit`, () => {
         expect(
           isTestkitExists(
@@ -198,8 +221,9 @@ const DRIVER_ASSERTS = {
       });
     });
   },
-  enzymeUni: ({ name, component, props }) => {
+  enzymeUni: ({ name, component, props, beforeAllHook, afterAllHook }) => {
     describe('Enzyme unidriver testkits', () => {
+      handleBeforeAllHook(beforeAllHook, afterAllHook);
       it(`${name} should have enzyme testkit`, () => {
         expect(
           isUniEnzymeTestkitExists(
@@ -211,8 +235,9 @@ const DRIVER_ASSERTS = {
       });
     });
   },
-  vanillaUni: ({ name, component, props }) => {
+  vanillaUni: ({ name, component, props, beforeAllHook, afterAllHook }) => {
     describe('ReactTestUtils unidriver testkits', () => {
+      handleBeforeAllHook(beforeAllHook, afterAllHook);
       it(`${name} should have ReactTestUtils testkit`, () => {
         expect(
           isUniTestkitExists(
@@ -228,18 +253,18 @@ const DRIVER_ASSERTS = {
 Object.entries(AllComponents).forEach(([name, component]) => {
   const driverConfig = COMPONENTS[name];
 
-  if (driverConfig) {
-    const drivers = driverConfig.drivers || ['vanilla', 'enzyme'];
-    const props = driverConfig.props || {};
+  const config = {
+    beforeAllHook: () => {},
+    ...driverConfig,
+    name,
+    component,
+  };
 
-    if (driverConfig.unidriver) {
-      DRIVER_ASSERTS.enzymeUni({ name, component, props: {} });
-      DRIVER_ASSERTS.vanillaUni({ name, component, props: {} });
-    } else {
-      drivers.map(driver => DRIVER_ASSERTS[driver]({ name, component, props }));
-    }
-  } else {
-    DRIVER_ASSERTS.enzyme({ name, component, props: {} });
-    DRIVER_ASSERTS.vanilla({ name, component, props: {} });
-  }
+  // handle unidriver
+  driverConfig && driverConfig.unidriver && handleUniDriverConfig(config);
+  // handle simple driverConfig
+  driverConfig && !driverConfig.unidriver && handleDriverConfig(config);
+
+  // handle no-config
+  !driverConfig && handleNoConfig({ name, component });
 });
