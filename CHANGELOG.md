@@ -19,6 +19,7 @@ Types of changes:
 
 - `<CloseButton>` - new component [#2480](https://github.com/wix/wix-style-react/pull/2480)
 - `<Tag/>`, `<MultiSelect/>` - Added RTL support [#2356](https://github.com/wix/wix-style-react/pull/2356)
+- `<Input/>`, `<InputArea/>` - Added name ( & type) attribute driver.click() callback [#2528](https://github.com/wix/wix-style-react/pull/2528)
 
 ### Fixed
 
