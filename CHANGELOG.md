@@ -18,6 +18,11 @@ Types of changes:
 ### Added
 
 - `<CloseButton>` - new component [#2480](https://github.com/wix/wix-style-react/pull/2480)
+- <Tag/>, <MultiSelect/> - Added RTL support [#2356](https://github.com/wix/wix-style-react/pull/2356)
+
+### Fixed
+
+- `<WixComponent/>` - Update dataHook on componentDidUpdate [#2542](https://github.com/wix/wix-style-react/pull/2542)
 
 ## 5.15.1 - 2018-12-03
 
