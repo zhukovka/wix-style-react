@@ -26,6 +26,10 @@ Types of changes:
 
 - `<WixComponent/>` - Update dataHook on componentDidUpdate [#2542](https://github.com/wix/wix-style-react/pull/2542)
 
+### Changed
+
+- `<Breadcrumbs/>` - do not limit breadcrumb width given only one item [#2553](https://github.com/wix/wix-style-react/pull/2553)
+
 ## 5.15.1 - 2018-12-03
 
 ### Fixed
