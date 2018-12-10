@@ -504,7 +504,7 @@ describe('DatePicker', () => {
         <DatePicker
           onChange={noop}
           locale="fr"
-          dateFormat={date => format(date, 'YYYY MMM DD')}
+          dateFormat={_date => format(_date, 'YYYY MMM DD')}
           value={date}
         />,
       );

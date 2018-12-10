@@ -16,7 +16,7 @@ const checkboxDriverFactory = ({
   const checkbox = () => element.querySelector('.checkbox');
   const labelDriver = () =>
     labelTestkitFactory({ wrapper: element, dataHook: 'checkbox-label' });
-  const isChecked = element => isClassExists(element, 'checked');
+  const isChecked = elm => isClassExists(elm, 'checked');
 
   return {
     exists: () => !!element,

@@ -49,13 +49,13 @@ describe('DropdownLayout', () => {
   });
 
   it('should have all options values in dropdown list', () => {
-    const options = [
+    const _options = [
       { id: 0, value: 'Option 1' },
       { id: 1, value: 'Option 2' },
       { id: 2, value: 'Option 3' },
     ];
-    const optionsContent = options.map(option => option.value);
-    const driver = createDriver(<DropdownLayout options={options} />);
+    const optionsContent = _options.map(option => option.value);
+    const driver = createDriver(<DropdownLayout options={_options} />);
     expect(driver.optionsContent()).toEqual(optionsContent);
   });
 
@@ -239,9 +239,9 @@ describe('DropdownLayout', () => {
 
   it('should select the chosen value when overrideStyle is true', () => {
     const selectedId = 0;
-    const options = [{ id: 0, value: 'Option 1', overrideStyle: true }];
+    const _options = [{ id: 0, value: 'Option 1', overrideStyle: true }];
     const driver = createDriver(
-      <DropdownLayout visible options={options} selectedId={selectedId} />,
+      <DropdownLayout visible options={_options} selectedId={selectedId} />,
     );
 
     expect(driver.isOptionSelectedWithGlobalClassName(0)).toBeTruthy();
@@ -438,9 +438,11 @@ describe('DropdownLayout', () => {
     });
 
     it('should hover when mouse enter and unhover when mouse leave when overrideStyle is true', () => {
-      const options = [{ id: 0, value: 'Option 1', overrideStyle: true }];
+      const _options = [{ id: 0, value: 'Option 1', overrideStyle: true }];
 
-      const driver = createDriver(<DropdownLayout visible options={options} />);
+      const driver = createDriver(
+        <DropdownLayout visible options={_options} />,
+      );
 
       driver.mouseEnterAtOption(0);
       expect(driver.isOptionHoveredWithGlobalClassName(0)).toBeTruthy();
@@ -497,7 +499,7 @@ describe('DropdownLayout', () => {
     });
 
     it('should hover starting from a given item', () => {
-      const options = [
+      const _options = [
         { id: 10, value: 'Option 1' },
         { id: 20, value: 'Option 2' },
         { id: 30, value: 'Option 3' },
@@ -505,7 +507,7 @@ describe('DropdownLayout', () => {
       const driver = createDriver(
         <DropdownLayout
           visible
-          options={options}
+          options={_options}
           selectedId={20}
           onSelect={jest.fn()}
         />,
@@ -515,14 +517,14 @@ describe('DropdownLayout', () => {
     });
 
     it('should remember the hovered option when options change', () => {
-      const options = [
+      const _options = [
         { id: 0, value: 'a 1' },
         { id: 1, value: 'a 2' },
         { id: 2, value: 'a 3' },
         { id: 3, value: 'a 4' },
       ];
 
-      const wrapper = mount(<DropdownLayout visible options={options} />);
+      const wrapper = mount(<DropdownLayout visible options={_options} />);
       const driver = dropdownLayoutDriverFactory({
         element: wrapper.getDOMNode(),
       });
@@ -533,7 +535,7 @@ describe('DropdownLayout', () => {
 
       expect(driver.isOptionHovered(3)).toBeTruthy();
 
-      wrapper.setProps({ options: options.slice(1) });
+      wrapper.setProps({ options: _options.slice(1) });
 
       expect(driver.isOptionHovered(2)).toBeTruthy();
     });

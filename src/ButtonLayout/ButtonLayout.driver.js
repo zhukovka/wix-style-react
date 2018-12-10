@@ -2,9 +2,9 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { isClassExists } from '../../test/utils';
 
-const buttonLayoutDriverFactory = ({ element, wrapper, component }) => {
-  const getAttribute = (element, attribute) => element.getAttribute(attribute);
+const getAttribute = (element, attribute) => element.getAttribute(attribute);
 
+const buttonLayoutDriverFactory = ({ element, wrapper, component }) => {
   return {
     exists: () => !!element,
     doesComponentHasClass: className => isClassExists(element, className),

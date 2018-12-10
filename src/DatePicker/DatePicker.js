@@ -114,7 +114,7 @@ export default class DatePicker extends WixComponent {
         [value.getMonth(), setMonth],
         [value.getDate(), setDate],
       ].reduce(
-        (value, [datePart, setter]) => setter(value, datePart),
+        (_value, [datePart, setter]) => setter(_value, datePart),
         this.props.value,
       );
 

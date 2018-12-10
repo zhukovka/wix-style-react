@@ -272,7 +272,7 @@ class DropdownLayout extends WixComponent {
           <div
             className={styles.options}
             style={{ maxHeight: this.props.maxHeightPixels - 35 + 'px' }}
-            ref={options => (this.options = options)}
+            ref={_options => (this.options = _options)}
             data-hook="dropdown-layout-options"
           >
             {options.map((option, idx) => this._renderOption({ option, idx }))}

@@ -46,9 +46,9 @@ export default class ColorPickerConverterHex extends WixComponent {
 
   change({ target: { value } }) {
     this.setState({ hex: value }, () => {
-      const color = safeColor(value);
-      if (color) {
-        this.props.onChange(color);
+      const _color = safeColor(value);
+      if (_color) {
+        this.props.onChange(_color);
       }
     });
   }

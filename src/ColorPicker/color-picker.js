@@ -61,8 +61,8 @@ export default class ColorPicker extends WixComponent {
     this.confirm = this.confirm.bind(this);
     this.cancel = this.cancel.bind(this);
 
-    const color = safeColor(props.value) || FALLBACK_COLOR;
-    this.state = { current: color, previous: color };
+    const _color = safeColor(props.value) || FALLBACK_COLOR;
+    this.state = { current: _color, previous: _color };
   }
 
   render() {
@@ -91,15 +91,15 @@ export default class ColorPicker extends WixComponent {
   }
 
   componentWillReceiveProps(props) {
-    const color = safeColor(props.value);
-    if (color && !equal(color, this.state.current)) {
-      this.setState({ current: color });
+    const _color = safeColor(props.value);
+    if (_color && !equal(_color, this.state.current)) {
+      this.setState({ current: _color });
     }
   }
 
-  change(color) {
-    this.setState({ current: color }, () => {
-      this.props.onChange(color);
+  change(_color) {
+    this.setState({ current: _color }, () => {
+      this.props.onChange(_color);
     });
   }
 

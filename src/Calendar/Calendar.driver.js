@@ -48,7 +48,7 @@ const calendarDriverFactory = ({ element, wrapper }) => {
     getCurrentMonthWithYear: () =>
       getMonthAndYear()
         ? getMonthAndYear()
-            .map(element => element.textContent)
+            .map(elm => elm.textContent)
             .join(' ')
         : '',
     getNthWeekDayName: (n = 0) =>

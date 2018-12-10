@@ -1,28 +1,28 @@
+const trimPath = (path, pathSeparator) => {
+  const escapedString = pathSeparator.replace(/[[\](){}?*+^$\\.|-]/g, '\\$&');
+
+  return path.replace(
+    new RegExp(`^[ ${escapedString}]+|[ ${escapedString}]+$`, 'g'),
+    '',
+  );
+};
+
+const explodePath = (path, pathSeparator) => {
+  const trimedPath = trimPath(path, pathSeparator);
+
+  if (trimedPath === '') {
+    return [];
+  }
+
+  return trimedPath.split(pathSeparator);
+};
+
 export default (
   path,
   baseUrlLink = '',
   baseUrlValue = null,
   pathSeparator = '/',
 ) => {
-  const trimPath = (path, pathSeparator) => {
-    const escapedString = pathSeparator.replace(/[[\](){}?*+^$\\.|-]/g, '\\$&');
-
-    return path.replace(
-      new RegExp(`^[ ${escapedString}]+|[ ${escapedString}]+$`, 'g'),
-      '',
-    );
-  };
-
-  const explodePath = (path, pathSeparator) => {
-    const trimedPath = trimPath(path, pathSeparator);
-
-    if (trimedPath === '') {
-      return [];
-    }
-
-    return trimedPath.split(pathSeparator);
-  };
-
   const pathArr = explodePath(path, pathSeparator);
   const options = [];
   let link = baseUrlLink;

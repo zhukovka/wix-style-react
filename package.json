@@ -187,6 +187,7 @@
     },
     "rules": {
       "import/no-unresolved": 0,
+      "jsx-a11y/alt-text": 0,
       "react/forbid-foreign-prop-types": 0,
       "react/jsx-handler-names": 0,
       "react/no-find-dom-node": 0,
