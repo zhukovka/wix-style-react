@@ -139,6 +139,7 @@ import '../stories/TPA/Label';
 import '../stories/Typography/TypographyTestStories';
 import '../stories/Page/PageTestStories.js'; // Tests/2. Layout/2.5 + Page/
 import '../stories/PageHeader/PageHeaderTestStories.js'; // Tests/2. Layout/2.5 + PageHeader/
+import '../stories/Calendar/CalendarTestStory'; // Tests/3. Inputs/3.13 Calendar
 import '../stories/Button/ButtonTestStory'; // Tests/5. Buttons
 import '../stories/Tooltip/Composite/PopoverMenuRegressionTest.js'; // Tests/7.3. Popover Menu/
 import '../stories/Avatar/AvatarTestStory'; // Tests/12. Other

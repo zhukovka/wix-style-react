@@ -26,6 +26,13 @@ const calendarDriverFactory = component => {
   const getCalendarWrapper = () => component.$('.DayPicker-wrapper');
   const getKeyboardSelectedDay = () => component.$('.DayPicker-Day:focus');
 
+  const getPrevMonthButton = () =>
+    component.$('[data-hook="datepicker-left-arrow"]');
+  const getNextMonthButton = () =>
+    component.$('[data-hook="datepicker-right-arrow"]');
+  const getMonthCaption = () =>
+    component.$('[data-hook="datepicker-month-caption"]');
+
   return {
     getElement: () => getCalendar(),
     exists: () => getCalendar().isPresent(),
@@ -45,6 +52,9 @@ const calendarDriverFactory = component => {
       getKeyboardSelectedDay().sendKeys(protractor.Key.ARROW_RIGHT),
     pressArrowLeftKey: () =>
       getKeyboardSelectedDay().sendKeys(protractor.Key.ARROW_LEFT),
+    nextMonth: () => getNextMonthButton().click(),
+    prevMonth: () => getPrevMonthButton().click(),
+    getMonthCaption: () => getMonthCaption().getText(),
   };
 };
 

@@ -16,17 +16,36 @@ export default {
   component: Calendar,
   componentPath: '../../src/Calendar',
 
-  componentProps: {
-    rtl: false,
-    value: new Date('2017/05/01'),
-    excludePastDates: true,
+  componentProps: setState => ({
+    onChange: value => setState({ value }),
     showYearDropdown: false,
     showMonthDropdown: false,
     shouldCloseOnSelect: true,
     locale: 'en',
+    excludePastDates: false,
+    selectionMode: 'day',
     dataHook: 'calendar',
+  }),
+  exampleProps: {
+    value: [
+      {
+        label: `1st of Today's month`,
+        value: new Date(new Date().getFullYear(), new Date().getMonth(), 1),
+      },
+      {
+        label: `Today`,
+        value: new Date(),
+      },
+      {
+        label: `Next Week (Range)`,
+        value: { from: new Date(), to: dayOffset(new Date(), 6) },
+      },
+      {
+        label: `Last Week (Range)`,
+        value: { from: dayOffset(new Date(), -6), to: new Date() },
+      },
+    ],
   },
-
   examples: (
     <Container>
       <Row>
@@ -52,3 +71,9 @@ export default {
     </Container>
   ),
 };
+
+function dayOffset(date, offset) {
+  const d = new Date();
+  d.setDate(d.getDate() + offset);
+  return d;
+}
