@@ -476,3 +476,9 @@ import { closeButtonDriverFactory } from '../src/CloseButton/CloseButton.driver'
 export const closeButtonTestkitFactory = uniTestkitFactoryCreator(
   closeButtonDriverFactory,
 );
+
+import { carouselDriverFactory } from '../src/Carousel/Carousel.driver';
+
+export const carouselTestkitFactory = uniTestkitFactoryCreator(
+  carouselDriverFactory,
+);

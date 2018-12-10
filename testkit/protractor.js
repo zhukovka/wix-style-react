@@ -340,6 +340,12 @@ export const genericModalLayoutTestkitFactory = protractorTestkitFactoryCreator(
   genericModalLayoutDriverFactory,
 );
 
+import carouselDriverFactory from '../src/Carousel/Carousel.protractor.driver';
+
+export const carouselTestkitFactory = protractorTestkitFactoryCreator(
+  carouselDriverFactory,
+);
+
 // wix-ui-backoffice proxy
 
 export {
