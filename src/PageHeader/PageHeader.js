@@ -224,7 +224,7 @@ PageHeader.propTypes = {
   showBackButton: PropTypes.bool,
   /** The callback when back button is clicked */
   onBackClicked: PropTypes.func,
-  /** A placeholder for a component that can contain actions / anything else */
+  /** A placeholder for a component that can contain actions / anything else. It should be a React component that receives `minimized` and `hasBackgroundImage` props. */
   actionsBar: PropTypes.node,
 };
 
