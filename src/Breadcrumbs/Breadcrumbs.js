@@ -50,12 +50,10 @@ class Breadcrumbs extends WixComponent {
   static defaultProps = {
     size: 'medium',
     theme: 'onGrayBackground',
+    onClick: () => {},
   };
 
-  handleBreadcrumbClick = item =>
-    this.props.onClick && this.props.onClick(item);
-
-  getValueAppearance(isActive) {
+  getTextAppearance(isActive) {
     const { theme, size } = this.props;
 
     const isDarkBackground = theme === 'onDarkBackground';
@@ -68,9 +66,9 @@ class Breadcrumbs extends WixComponent {
     };
   }
 
-  createItem({ item, isActive, onClick }) {
-    const breadcrumbValue = value => (
-      <Text dataHook="breadcrumbs-item" {...this.getValueAppearance(isActive)}>
+  createItem({ item, isActive, onClick, className }) {
+    const breadcrumbText = value => (
+      <Text dataHook="breadcrumbs-item" {...this.getTextAppearance(isActive)}>
         {value}
       </Text>
     );
@@ -79,12 +77,12 @@ class Breadcrumbs extends WixComponent {
       <button
         type="button"
         data-hook="breadcrumb-clickable"
-        className={classnames(styles.item, styles.button, {
+        className={classnames(styles.item, styles.button, className, {
           [styles.disabled]: item.disabled,
           [styles.active]: isActive,
         })}
         onClick={onClick}
-        children={breadcrumbValue(item.value)}
+        children={breadcrumbText(item.value)}
       />
     );
 
@@ -92,21 +90,21 @@ class Breadcrumbs extends WixComponent {
       <a
         href={item.link}
         data-hook="breadcrumb-clickable"
-        className={classnames(styles.item, styles.link, {
+        className={classnames(styles.item, styles.link, className, {
           [styles.disabled]: item.disabled,
           [styles.active]: isActive,
         })}
         onClick={onClick}
-        children={breadcrumbValue(item.value)}
+        children={breadcrumbText(item.value)}
       />
     );
 
     const customBreadcrumb = () => (
       <span
         data-hook="breadcrumb-clickable"
-        className={styles.item}
+        className={classnames(styles.item, className)}
         onClick={onClick}
-        children={breadcrumbValue(item.customElement)}
+        children={breadcrumbText(item.customElement)}
       />
     );
 
@@ -121,37 +119,35 @@ class Breadcrumbs extends WixComponent {
     }
   }
 
-  renderItem(item, activeId, isDividerVisible) {
-    const isActive = activeId === item.id;
+  _getIsActive = item => this.props.activeId === item.id;
 
-    return (
-      <div
-        key={item.id}
-        className={classnames(styles.itemContainer, {
-          [styles.active]: isActive,
-        })}
-      >
-        {this.createItem({
-          item,
-          isActive,
-          onClick: () =>
-            item.disabled !== true && this.handleBreadcrumbClick(item),
-        })}
-        {isDividerVisible && (
-          <BreadcrumbsChevronRight className={styles.divider} />
-        )}
-      </div>
-    );
-  }
+  _handleItemClick = item => () => !item.disabled && this.props.onClick(item);
 
   render() {
     const { items, size, theme, activeId } = this.props;
 
     return (
       <div className={classnames(styles[size], styles[theme])}>
-        {items.map((item, i, allItems) =>
-          this.renderItem(item, activeId, allItems[i + 1]),
-        )}
+        {items.map((item, i, allItems) => (
+          <div
+            key={item.id}
+            className={classnames(styles.itemContainer, {
+              [styles.active]: this._getIsActive(item),
+            })}
+          >
+            {this.createItem({
+              item,
+              isActive: this._getIsActive(item),
+              onClick: this._handleItemClick(item),
+              className:
+                i === 0 && allItems.length === 1 ? styles.itemFullWidth : '',
+            })}
+
+            {allItems[i + 1] && (
+              <BreadcrumbsChevronRight className={styles.divider} />
+            )}
+          </div>
+        ))}
       </div>
     );
   }
