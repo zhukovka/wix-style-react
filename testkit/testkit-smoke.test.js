@@ -1,5 +1,6 @@
 import React from 'react';
 import { mount } from 'enzyme';
+import { render, cleanup } from 'react-testing-library';
 import path from 'path';
 
 import {
@@ -218,6 +219,26 @@ const DRIVER_ASSERTS = {
             reactTestUtilsTestkitFactories[`${lowerFirst(name)}TestkitFactory`],
           ),
         );
+      });
+    });
+    describe('ReactTestUtils update dataHook', () => {
+      handleBeforeAllHook(beforeAllHook, afterAllHook);
+      /* eslint-disable jest/no-disabled-tests */
+      xit(`${name} should have an updated dataHook`, () => {
+        /* eslint-enable jest/no-disabled-tests */
+        const hook1 = 'my-data-hook-1';
+        const hook2 = 'my-data-hook-2';
+        const { rerender, container } = render(
+          React.createElement(component, { ...props, dataHook: hook1 }),
+        );
+        expect(
+          !!container.querySelector(`[data-hook="${hook1}"]`),
+        ).toBeTruthy();
+
+        rerender(React.createElement(component, { ...props, dataHook: hook2 }));
+        expect(
+          !!container.querySelector(`[data-hook="${hook2}"]`),
+        ).toBeTruthy();
       });
     });
   },
