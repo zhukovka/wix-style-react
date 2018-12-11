@@ -25,6 +25,7 @@ Types of changes:
 ### Fixed
 
 - `<WixComponent/>` - Update dataHook on componentDidUpdate [#2542](https://github.com/wix/wix-style-react/pull/2542)
+- `<Tooltip/>` - Fix testkit `isShown()` to be specific to the Tooltip instance [#2550](https://github.com/wix/wix-style-react/pull/2550)
 
 ### Changed
 
