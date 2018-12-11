@@ -60,7 +60,6 @@ const FAILING_COMPONENTS = [
   'Tabs',
   'TextArea',
   'TextField',
-  'Tooltip',
   'VBox', // Component has no testkit
   'Collapse',
 ];
@@ -151,6 +150,11 @@ const COMPONENTS = {
     props: {
       data: [{ a: 'value 1', b: 'value 2' }],
       columns: [{ title: 'A', render: row => row.a }],
+    },
+  },
+  Tooltip: {
+    props: {
+      content: "I'm the content",
     },
   },
   Modal: {

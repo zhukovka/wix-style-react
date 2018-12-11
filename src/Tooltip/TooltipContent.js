@@ -6,6 +6,7 @@ import styles from './TooltipContent.scss';
 
 class TooltipContent extends Component {
   static propTypes = {
+    dataHook: PropTypes.string,
     /** className for tooltip content  */
     contentClassName: PropTypes.string,
 
@@ -108,6 +109,7 @@ class TooltipContent extends Component {
       lineHeight,
       showImmediately,
       showArrow,
+      dataHook,
     } = this.props;
 
     return (
@@ -116,6 +118,7 @@ class TooltipContent extends Component {
         style={style}
         onMouseEnter={onMouseEnter}
         onMouseLeave={onMouseLeave}
+        data-hook={dataHook}
       >
         <div className={classnames({ [styles.fadeIn]: !showImmediately })}>
           <div
@@ -140,7 +143,7 @@ class TooltipContent extends Component {
                 color,
               }}
             >
-              <div data-hook="tooltip-content">{children}</div>
+              <div>{children}</div>
             </div>
             {showArrow && (
               <div

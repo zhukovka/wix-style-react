@@ -10,6 +10,13 @@ import throttle from 'lodash/throttle';
 
 const renderSubtreeIntoContainer = ReactDOM.unstable_renderSubtreeIntoContainer;
 
+// TestId is a uniq Tooltip id, used to find the content element in tests.
+let testId = 0;
+function nextTestId() {
+  testId++;
+  return testId;
+}
+
 //maintain a 60fps rendering
 const createAThrottledOptimizedFunction = cb => () =>
   window.requestAnimationFrame(throttle(cb, 16));
@@ -26,6 +33,7 @@ class Tooltip extends WixComponent {
   static displayName = 'Tooltip';
 
   static propTypes = {
+    dataHook: PropTypes.string,
     /** alignment of the tooltip's text  */
     textAlign: PropTypes.string,
     children: PropTypes.node,
@@ -176,6 +184,18 @@ class Tooltip extends WixComponent {
       props.appendToParent,
       props.appendByPredicate,
     );
+
+    this.testId = nextTestId();
+    this.contentHook = this._createContentHook();
+  }
+
+  _createContentHook = () =>
+    `tooltip-content-${this.props.dataHook || ''}-${this.testId}`;
+
+  _setContentDataHook() {
+    if (this._childNode) {
+      this._childNode.setAttribute('data-content-hook', this.contentHook);
+    }
   }
 
   componentElements() {
@@ -191,8 +211,17 @@ class Tooltip extends WixComponent {
     this.props.onClickOutside && this.props.onClickOutside(e);
   }
 
-  componentDidUpdate() {
+  componentDidUpdate(prevProps) {
+    if (prevProps.dataHook !== this.props.dataHook) {
+      this.contentHook = this._createContentHook();
+      this._setContentDataHook();
+    }
     this.renderTooltipIntoContainer();
+  }
+
+  componentDidMount() {
+    super.componentDidMount && super.componentDidMount();
+    this._setContentDataHook();
   }
 
   componentWillUnmount() {
@@ -253,9 +282,10 @@ class Tooltip extends WixComponent {
         right: 'left',
         bottom: 'top',
       };
-      const position = this.props.relative ? 'relative' : 'absolute';
+      const _position = this.props.relative ? 'relative' : 'absolute';
       const tooltip = (
         <TooltipContent
+          dataHook={this.contentHook}
           contentClassName={contentClassName}
           onMouseEnter={() => this._onTooltipContentEnter()}
           onMouseLeave={() => this._onTooltipContentLeave()}
@@ -270,7 +300,7 @@ class Tooltip extends WixComponent {
           theme={theme}
           bounce={this.props.bounce}
           arrowPlacement={arrowPlacement[this.props.placement]}
-          style={{ zIndex: this.props.zIndex, position }}
+          style={{ zIndex: this.props.zIndex, _position }}
           arrowStyle={this.state.arrowStyle}
           maxWidth={this.props.maxWidth}
           padding={this.props.padding}
@@ -358,57 +388,62 @@ class Tooltip extends WixComponent {
       return;
     }
     if (!this.state.visible) {
-      const delay = this.props.showImmediately ? 0 : props.showDelay;
-      this._showTimeout = setTimeout(() => {
-        if (typeof document === 'undefined') {
-          return;
-        }
-        if (props.onShow) {
-          props.onShow();
-        }
-
-        this.setState({ visible: true }, () => {
-          if (!this._mountNode) {
-            this._mountNode = document.createElement('div');
-            const container = this._getContainer();
-            if (container) {
-              container.appendChild(this._mountNode);
-              this._containerScrollHandler = createAThrottledOptimizedFunction(
-                () => this._updatePosition(this.tooltipContent),
-              );
-              container.addEventListener(
-                'scroll',
-                this._containerScrollHandler,
-              );
-            }
-          }
-          this._showTimeout = null;
-
-          this.renderTooltipIntoContainer();
-
-          // To prevent any possible jumping of tooltip, we need to try to update tooltip position in sync way
-          const tooltipNode = ReactDOM.findDOMNode(this.tooltipContent);
-          if (tooltipNode) {
-            this._updatePosition(this.tooltipContent);
-          }
-
-          let fw = 0;
-          let sw = 0;
-          // we need to set tooltip position after render of tooltip into container, on next event loop
-          setTimeout(() => {
-            do {
-              const tooltipNode = ReactDOM.findDOMNode(this.tooltipContent);
-              if (tooltipNode) {
-                fw = this._getRect(tooltipNode).width;
-                this._updatePosition(this.tooltipContent);
-                sw = this._getRect(tooltipNode).width;
-              }
-            } while (!props.appendToParent && fw !== sw);
-          });
-        });
-      }, delay);
+      if (this.props.showImmediately) {
+        this._doShow(props);
+      } else {
+        this._showTimeout = setTimeout(
+          () => this._doShow(props),
+          props.showDelay,
+        );
+      }
     }
   };
+
+  _doShow(props = this.props) {
+    if (typeof document === 'undefined') {
+      return;
+    }
+    if (props.onShow) {
+      props.onShow();
+    }
+
+    this.setState({ visible: true }, () => {
+      if (!this._mountNode) {
+        this._mountNode = document.createElement('div');
+        const container = this._getContainer();
+        if (container) {
+          container.appendChild(this._mountNode);
+          this._containerScrollHandler = createAThrottledOptimizedFunction(() =>
+            this._updatePosition(this.tooltipContent),
+          );
+          container.addEventListener('scroll', this._containerScrollHandler);
+        }
+      }
+      this._showTimeout = null;
+
+      this.renderTooltipIntoContainer();
+
+      // To prevent any possible jumping of tooltip, we need to try to update tooltip position in sync way
+      const tooltipNode = ReactDOM.findDOMNode(this.tooltipContent);
+      if (tooltipNode) {
+        this._updatePosition(this.tooltipContent);
+      }
+
+      let fw = 0;
+      let sw = 0;
+      // we need to set tooltip position after render of tooltip into container, on next event loop
+      setTimeout(() => {
+        do {
+          const _tooltipNode = ReactDOM.findDOMNode(this.tooltipContent);
+          if (_tooltipNode) {
+            fw = this._getRect(_tooltipNode).width;
+            this._updatePosition(this.tooltipContent);
+            sw = this._getRect(_tooltipNode).width;
+          }
+        } while (!props.appendToParent && fw !== sw);
+      });
+    });
+  }
 
   hide = (props = this.props) => {
     this.setState({ hidden: true });
