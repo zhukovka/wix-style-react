@@ -22,6 +22,7 @@ Types of changes:
 - `<Tag/>`, `<MultiSelect/>` - Added RTL support [#2356](https://github.com/wix/wix-style-react/pull/2356)
 - `<Input/>`, `<InputArea/>` - Added name ( & type) attribute driver.click() callback [#2528](https://github.com/wix/wix-style-react/pull/2528)
 - `<Calendar/>` - Add range support [#2533](https://github.com/wix/wix-style-react/pull/2533)
+- `<Popover/>` - add a new component [#2509](https://github.com/wix/wix-style-react/pull/2509)
 
 ### Fixed
 
