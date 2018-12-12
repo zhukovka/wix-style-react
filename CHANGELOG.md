@@ -12,6 +12,7 @@ Types of changes:
 1. **Security** in case of vulnerabilities.
 1. **Breaking** for breaking changes
 1. **Docs** for documentation changes
+1. **Lab** components and features that are still in a work in progress
 
 ## Next
 
@@ -34,6 +35,12 @@ Types of changes:
 ### Docs
 
 - `<ButtonLayout/>` - story - Add Disabled LinkButton example
+- `<PageHeader/>` add better docs for actionBar [#2558](https://github.com/wix/wix-style-react/pull/2558)
+- `<Tooltip/>`, `<Modal/>` - add a testkit readme and explanation how to test [#2534](https://github.com/wix/wix-style-react/pull/2534)
+
+### Lab
+
+- `<Carousel/>` - initial creation of component (WIP) [#2536](https://github.com/wix/wix-style-react/pull/2536)
 
 ## 5.15.1 - 2018-12-03
 
