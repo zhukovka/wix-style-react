@@ -1,0 +1,97 @@
+:import {
+  -st-from: "wix-ui-core/index.st.css";
+  -st-named: Popover;
+}
+
+:import {
+  -st-from: "wix-ui-backoffice/src/colors.st.css";
+  -st-named: D10, WHITE;
+}
+
+:import {
+  -st-from: "wix-ui-backoffice/src/shadows.st.css";
+  -st-named: shadow30;
+}
+
+.root {
+  -st-states: theme(string);
+  -st-extends: Popover;
+}
+
+.root[data-hook*="popover-portal"] {
+  /* This will cause the container's height to stay the same */
+  display: block;
+}
+
+
+/* Default styles with light theme */
+.root::popoverContent {
+  border: none;
+
+  border-radius: 8px;
+  box-sizing: border-box;
+  box-shadow: value(shadow30);
+  -webkit-font-smoothing: antialiased;
+
+  font-size: 14px;
+  line-height: 18px;
+
+  /* Light theme specific stuff */
+  color: value(D10);
+  background: value(WHITE);
+}
+
+.root::popover[data-placement*="right"]::arrow {
+  border-right-color: value(WHITE);
+}
+
+.root::popover[data-placement*="left"]::arrow {
+  border-left-color: value(WHITE);
+}
+
+.root::popover[data-placement*="top"]::arrow {
+  border-top-color: value(WHITE);
+}
+
+.root::popover[data-placement*="bottom"]::arrow {
+  border-bottom-color: value(WHITE);
+}
+
+/* Dark theme */
+.root:theme(dark)::popoverContent {
+  color: value(WHITE);
+  background: value(D10);
+}
+
+.root:theme(dark)::popover[data-placement*="right"]::arrow {
+  border-right-color: value(D10);
+}
+
+.root:theme(dark)::popover[data-placement*="left"]::arrow {
+  border-left-color: value(D10);
+}
+
+.root:theme(dark)::popover[data-placement*="top"]::arrow {
+  border-top-color: value(D10);
+}
+
+.root:theme(dark)::popover[data-placement*="bottom"]::arrow {
+  border-bottom-color: value(D10);
+}
+
+/*
+ * Entrance and exit animation
+ */
+
+.root::popoverAnimation-enter {
+  opacity: 0.85;
+  transform: scale(0.9);
+}
+
+.root::popoverAnimation-enter-active {
+  opacity: 1;
+  transform: scale(1);
+
+  transition: opacity 150ms cubic-bezier(0.23, 1, 0.32, 1),
+    transform 150ms cubic-bezier(0.23, 1, 0.32, 1);
+}

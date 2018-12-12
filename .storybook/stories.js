@@ -119,6 +119,7 @@ import '../stories/Layout';
 import '../stories/Text/index.story';
 import '../stories/Skeleton.story.js';
 import '../stories/Collapse.story';
+import '../stories/Popover/index.story';
 import '../stories/Carousel/index.story.js';
 
 // Styling
@@ -143,4 +144,6 @@ import '../stories/PageHeader/PageHeaderTestStories.js'; // Tests/2. Layout/2.5 
 import '../stories/Calendar/CalendarTestStory'; // Tests/3. Inputs/3.13 Calendar
 import '../stories/Button/ButtonTestStory'; // Tests/5. Buttons
 import '../stories/Tooltip/Composite/PopoverMenuRegressionTest.js'; // Tests/7.3. Popover Menu/
+import '../stories/Button/ButtonTestStory';
+import '../stories/Popover/testStory';
 import '../stories/Avatar/AvatarTestStory'; // Tests/12. Other

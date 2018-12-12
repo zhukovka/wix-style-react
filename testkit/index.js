@@ -69,6 +69,12 @@ export const pageHeaderTestkitFactory = testkitFactoryCreator(
   pageHeaderDriverFactory,
 );
 
+import popoverDriverFactory from '../src/Popover/Popover.driver';
+
+export const popoverTestkitFactory = testkitFactoryCreator(
+  popoverDriverFactory,
+);
+
 import autoCompleteDriverFactory from '../src/AutoComplete/AutoComplete.driver';
 
 export const autoCompleteTestkitFactory = testkitFactoryCreator(

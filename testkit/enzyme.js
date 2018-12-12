@@ -51,6 +51,12 @@ export const pageHeaderTestkitFactory = enzymeTestkitFactoryCreator(
   pageHeaderDriverFactory,
 );
 
+import popoverDriverFactory from '../src/Popover/Popover.driver';
+
+export const popoverTestkitFactory = enzymeTestkitFactoryCreator(
+  popoverDriverFactory,
+);
+
 import dropdownLayoutDriverFactory from '../src/DropdownLayout/DropdownLayout.driver';
 
 export const dropdownLayoutTestkitFactory = enzymeTestkitFactoryCreator(
