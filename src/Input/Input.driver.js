@@ -38,8 +38,10 @@ const inputDriverFactory = ({ element, wrapper, component }) => {
     mouseOver: () => ReactTestUtils.Simulate.mouseOver(input),
     mouseOut: () => ReactTestUtils.Simulate.mouseOut(input),
     clearText: () => driver.enterText(''),
-    enterText: text => 
-      ReactTestUtils.Simulate.change(input, {target: {name, type, value: text}}),
+    enterText: text =>
+      ReactTestUtils.Simulate.change(input, {
+        target: { name, type, value: text },
+      }),
     getValue: () => input.value,
     getPlaceholder: () => input.placeholder,
     getDefaultValue: () => input.defaultValue,

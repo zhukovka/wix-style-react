@@ -21,6 +21,8 @@ const fixtureDriverFactory = ({ element }) => {
 describe('WixComponent', () => {
   const render = createRendererWithDriver(fixtureDriverFactory);
 
+  afterEach(() => cleanup());
+
   it('should add data-hook to the root DOM node', () => {
     const { driver } = render(<Fixture dataHook="thehook" />);
 

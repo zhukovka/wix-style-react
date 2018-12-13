@@ -42,8 +42,8 @@ const highlight = (element, match, nextChildKey) => {
   }
   const elementType = getElementType(element);
   const elementTypesMap = {
-    [ELEM_TYPES.STRING]: (elem, match) => (
-      <HighlightedItem key={nextChildKey()} match={match}>
+    [ELEM_TYPES.STRING]: (elem, _match) => (
+      <HighlightedItem key={nextChildKey()} match={_match}>
         {elem}
       </HighlightedItem>
     ),

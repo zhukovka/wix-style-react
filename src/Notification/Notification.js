@@ -4,7 +4,7 @@ import { TransitionGroup, CSSTransition } from 'react-transition-group';
 import classNames from 'classnames';
 
 import WixComponent from '../BaseComponents/WixComponent';
-import { children, once, optional } from '../Composite';
+import * as Composite from '../Composite';
 import CloseButton from '../CloseButton';
 import TextLabel from './TextLabel';
 import ActionButton from './ActionButton';
@@ -201,10 +201,10 @@ Notification.propTypes = {
   timeout: PropTypes.number,
   zIndex: PropTypes.number,
   onClose: PropTypes.func,
-  children: children(
-    once(TextLabel),
-    optional(ActionButton),
-    optional(CloseButton),
+  children: Composite.children(
+    Composite.once(TextLabel),
+    Composite.optional(ActionButton),
+    Composite.optional(CloseButton),
   ),
 };
 

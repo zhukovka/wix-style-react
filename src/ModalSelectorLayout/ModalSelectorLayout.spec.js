@@ -265,8 +265,8 @@ describe('ModalSelectorLayout', () => {
       const searchValue = 'wubba lubba dub dub';
       const driver = createDriverWithProps({
         dataSource: paginatedDataSource,
-        noResultsFoundStateFactory: searchValue => (
-          <img alt={searchValue} src="no-results-found.png" />
+        noResultsFoundStateFactory: _searchValue => (
+          <img alt={_searchValue} src="no-results-found.png" />
         ),
       });
 
@@ -499,9 +499,12 @@ describe('ModalSelectorLayout', () => {
 
     const dataSource = paginatedDataSourceFactory(items);
 
-    const multiselectModalWithItems = async function(items) {
-      const dataSource = paginatedDataSourceFactory(items);
-      const driver = createDriverWithProps({ dataSource, multiple: true });
+    const multiselectModalWithItems = async function(_items) {
+      const _dataSource = paginatedDataSourceFactory(_items);
+      const driver = createDriverWithProps({
+        dataSource: _dataSource,
+        multiple: true,
+      });
       await flushPromises();
       return driver;
     };

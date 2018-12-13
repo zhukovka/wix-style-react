@@ -1,5 +1,5 @@
 import React from 'react';
-import { children, optional, once } from '../Composite';
+import * as Composite from '../Composite';
 import Label from '../Label';
 import GoogleAddressInput from '../GoogleAddressInput';
 import InputAreaWithLabelComposite from '../Composite/InputAreaWithLabelComposite/InputAreaWithLabelComposite';
@@ -11,7 +11,10 @@ const GoogleAddressInputWithLabel = ({ children, ...props }) => (
 );
 
 GoogleAddressInputWithLabel.propTypes = {
-  children: children(optional(Label), once(GoogleAddressInput)),
+  children: Composite.children(
+    Composite.optional(Label),
+    Composite.once(GoogleAddressInput),
+  ),
 };
 
 GoogleAddressInputWithLabel.displayName = 'GoogleAddressInputWithLabel';

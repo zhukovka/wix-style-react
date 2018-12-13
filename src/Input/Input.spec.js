@@ -106,23 +106,26 @@ describe('Input', () => {
       const props = {
         type: 'text',
         name: 'gal',
-        onChange
+        onChange,
       };
-      const driver = createDriver(<Input {...props}/>);
+      const driver = createDriver(<Input {...props} />);
       driver.enterText('some text');
       const eventTarget = onChange.mock.calls[0][0].target;
-      expect(eventTarget).toEqual({name: 'gal', type: 'text', value: 'some text'});
+      expect(eventTarget).toEqual({
+        name: 'gal',
+        type: 'text',
+        value: 'some text',
+      });
     });
   });
-
 
   describe('name attribute', () => {
     it('should pass down to the wrapped input', () => {
       const props = {
-        name: 'hello'
+        name: 'hello',
       };
 
-      const driver = createDriver(<Input {...props}/>);
+      const driver = createDriver(<Input {...props} />);
       expect(driver.getName()).toEqual(props.name);
     });
   });
@@ -130,10 +133,10 @@ describe('Input', () => {
   describe('type attribute', () => {
     it('should pass down to the wrapped input', () => {
       const props = {
-        type: 'number'
+        type: 'number',
       };
 
-      const driver = createDriver(<Input {...props}/>);
+      const driver = createDriver(<Input {...props} />);
       expect(driver.getType()).toEqual(props.type);
     });
   });

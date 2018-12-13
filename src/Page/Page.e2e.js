@@ -19,8 +19,6 @@ const testStoryUrl = testName =>
   createTestStoryUrl({ category, storyName, testName });
 
 describe('Page', () => {
-  const dataHook = 'story-page';
-
   const initTest = async ({ storyUrl, dataHook, props }) => {
     await browser.get(storyUrl);
     const driver = pageTestkitFactory({ dataHook });
@@ -48,6 +46,8 @@ describe('Page', () => {
   };
 
   describe('Header + Tail + Content', () => {
+    const dataHook = 'story-page';
+
     const storyUrl = createStoryUrl({
       kind: category,
       story: storyName,
@@ -63,6 +63,8 @@ describe('Page', () => {
   });
 
   describe('Header + Content', () => {
+    const dataHook = 'story-page';
+
     describe('With Background-Image', () => {
       const storyUrl = testStoryUrl('1. Image');
       runTestCases({ storyUrl, dataHook });
@@ -75,6 +77,8 @@ describe('Page', () => {
   });
 
   describe('Header + FixedContent + Content', () => {
+    const dataHook = 'story-page';
+
     describe('With Background-Image', () => {
       const storyUrl = testStoryUrl('3. FC-Image');
       runTestCases({ storyUrl, dataHook });
@@ -90,11 +94,11 @@ describe('Page', () => {
     const storyUrl = createStoryUrl({ kind: category, story: storyName });
 
     it('should not break design', async () => {
-      const dataHook = 'story-page-empty-state';
-      const element = $(`[data-hook="${dataHook}"]`);
+      const _dataHook = 'story-page-empty-state';
+      const element = $(`[data-hook="${_dataHook}"]`);
 
       await browser.get(storyUrl);
-      await waitForVisibilityOf(element, `Cannot find ${dataHook}`);
+      await waitForVisibilityOf(element, `Cannot find ${_dataHook}`);
       await scrollToElement(element);
     });
   });

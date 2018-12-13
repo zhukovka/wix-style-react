@@ -257,6 +257,7 @@ const DRIVER_ASSERTS = {
         expect(
           !!container.querySelector(`[data-hook="${hook2}"]`),
         ).toBeTruthy();
+        cleanup();
       });
     });
   },

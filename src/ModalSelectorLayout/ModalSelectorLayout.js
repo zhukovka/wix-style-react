@@ -397,7 +397,7 @@ export default class ModalSelectorLayout extends WixComponent {
 
     const {
       text,
-      number,
+      number: num,
       onChange,
       checked,
       indeterminate,
@@ -410,7 +410,7 @@ export default class ModalSelectorLayout extends WixComponent {
         onChange={onChange}
         indeterminate={indeterminate}
       >
-        <Text weight="normal">{` ${text} (${number})`}</Text>
+        <Text weight="normal">{` ${text} (${num})`}</Text>
       </Checkbox>
     );
   };

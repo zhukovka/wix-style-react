@@ -124,7 +124,7 @@ class Breadcrumbs extends WixComponent {
   _handleItemClick = item => () => !item.disabled && this.props.onClick(item);
 
   render() {
-    const { items, size, theme, activeId } = this.props;
+    const { items, size, theme } = this.props;
 
     return (
       <div className={classnames(styles[size], styles[theme])}>

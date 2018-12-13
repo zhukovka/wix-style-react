@@ -385,12 +385,12 @@ describe('MultiSelect', () => {
   });
 
   it('should set maxHeight when maxNumRows defined (large tags)', () => {
-    const options = [
+    const _options = [
       { value: 'Alaska', id: 'Alaska', label: 'Alaska', size: 'large' },
     ];
 
     const { driver } = createDriver(
-      <MultiSelect maxNumRows={2} tags={options} options={options} />,
+      <MultiSelect maxNumRows={2} tags={_options} options={_options} />,
     );
 
     expect(driver.getMaxHeight()).toBe('94px');

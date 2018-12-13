@@ -17,8 +17,8 @@ const loaderDriverFactory = component => {
     isMedium: () => hasClass(component, css, 'medium'),
     isLarge: () => hasClass(component, css, 'large'),
     getColor: () =>
-      hasClass(component, css, 'blue').then(hasClass =>
-        hasClass ? 'blue' : 'white',
+      hasClass(component, css, 'blue').then(hasBlueClass =>
+        hasBlueClass ? 'blue' : 'white',
       ),
     hasText: () => getLoaderTextElement(component).isPresent(),
     getText: () => getLoaderTextElement(component).getText(),
