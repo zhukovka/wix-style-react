@@ -217,6 +217,28 @@ describe('DropdownLayout', () => {
     });
   });
 
+
+  it('should render a function option with the rendered item props', () => {
+    const selectedId = 0;
+    const unSelectedId = 1;
+
+    const optionsWithFuncValues = [
+      { id: 0, value: ({selected}) => <div>option { selected ? 'selected' : 'not selected' }</div>},
+      { id: 1, value: ({selected}) => <div>option { selected ? 'selected' : 'not selected' }</div>},
+    ];
+
+    const driver = createDriver(
+      <DropdownLayout
+        visible
+        options={optionsWithFuncValues}
+        selectedId={selectedId}
+      />,
+    );
+
+    expect(driver.optionContentAt(selectedId)).toEqual('option selected');
+    expect(driver.optionContentAt(unSelectedId)).toEqual('option not selected');
+  });
+
   it('should select the chosen value', () => {
     const selectedId = 0;
     const driver = createDriver(

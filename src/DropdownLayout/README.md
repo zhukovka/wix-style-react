@@ -32,7 +32,7 @@
 | propName | propType | defaultValue | isRequired | description |
 |----------|----------|--------------|------------|-------------|
 | id | string or number | - | + | The id of the option, should be unique |
-| value | string or node | - | + | Can be a text or a react elements, if text is '-', a divider will render at that position. |
+| value | function, string or node | - | + | Can be a text or a react elements, if text is '-', a divider will render at that position. also, can be a builder function which returns a string or node. In case the value is a builder function, it able to take `{selected}` argument, which is true when option is selected by the wrapping `DropdownLayout` |
 | disabled | bool | false | - | Whether this option is disabled or not |
 | title | bool | false | - | Whether this option is a title or not |
 | linkTo | string | - | - | When provided the option will be an anchor to the given value |

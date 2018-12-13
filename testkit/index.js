@@ -445,6 +445,12 @@ export const genericModalLayoutTestkitFactory = testkitFactoryCreator(
   genericModalLayoutDriverFactory,
 );
 
+import contactItemBuilderDriverFactory from '../src/ContactItemBuilder/ContactItemBuilder.driver';
+
+export const contactItemBuilderTestkitFactory = testkitFactoryCreator(
+  contactItemBuilderDriverFactory,
+);
+
 // wix-ui-backoffice proxy
 
 export {

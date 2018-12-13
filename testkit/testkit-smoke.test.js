@@ -64,6 +64,7 @@ const FAILING_COMPONENTS = [
   'TextField',
   'VBox', // Component has no testkit
   'Collapse',
+  'ContactItemBuilder'
 ];
 
 /**

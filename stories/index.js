@@ -129,6 +129,7 @@ import './Typography/TypographyClassesStory';
 import './WIP';
 import './DragAndDrop/DragAndDrop.js';
 import './Builders/BadgeSelectItemBuilder';
+import './Builders/ContactItemBuilder';
 
 // TPA
 import './TPA/Button';
