@@ -14,6 +14,11 @@ Types of changes:
 1. **Docs** for documentation changes
 1. **Lab** components and features that are still in a work in progress
 
+## next
+
+### Fixed
+- `<Notification.CloseButton/>` - fix styling [#2578](https://github.com/wix/wix-style-react/pull/2578)
+
 ## 5.16.0 - 2018-12-12
 
 ### Added
