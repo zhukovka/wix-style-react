@@ -11,7 +11,7 @@ function loadStories() {
   }
 
   require("./stories.scss");
-  require("./stories");
+  require("../stories");
 }
 
 configure(loadStories, module);
