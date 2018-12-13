@@ -35,7 +35,7 @@ export default {
   componentProps: {
     images: imagesExamples[0].value,
     infinite: true,
-    autoplay: true,
+    autoplay: false,
     dataHook: storySettings.dataHook,
   },
 };

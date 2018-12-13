@@ -34,8 +34,7 @@ describe('Carousel', () => {
     });
 
     beforeEach(async () => {
-      await autoExampleDriver.reset();
-      await autoExampleDriver.setProps({ autoplay: false });
+      await autoExampleDriver.remount();
     });
 
     eyes.it('should render', async () => {
