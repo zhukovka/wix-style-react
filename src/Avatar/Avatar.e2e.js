@@ -29,7 +29,7 @@ describe('Avatar', () => {
   });
 
   describe('Test Pages', () => {
-    const eyes = eyesItInstance({ enableSnapshotAtBrowserGet: false });
+    const eyes = eyesItInstance();
 
     function testUrl(testCase) {
       return createStoryUrl({

@@ -18,7 +18,7 @@ describe('CloseButton', () => {
     return autoExampleDriver.remount();
   });
 
-  const eyes = eyesItInstance({ enableSnapshotAtBrowserGet: false });
+  const eyes = eyesItInstance();
 
   eyes.it('Make a screenshoft of all CloseButton examples', () => {
     expect(true).toBeTruthy();

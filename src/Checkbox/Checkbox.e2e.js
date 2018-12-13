@@ -1,4 +1,4 @@
-import eyes from 'eyes.it';
+import { eyesItInstance } from '../../test/utils/eyes-it';
 import { checkboxTestkitFactory } from '../../testkit/protractor';
 import { waitForVisibilityOf } from 'wix-ui-test-utils/protractor';
 import { getStoryUrl } from '../../test/utils/storybook-helpers';
@@ -12,6 +12,7 @@ describe('Checkbox', () => {
   const checkboxDriver = checkboxTestkitFactory({
     dataHook: 'storybook-checkbox',
   });
+  const eyes = eyesItInstance();
 
   describe(NO_DESCRIPTION, () => {
     const waitForCheckbox = () =>

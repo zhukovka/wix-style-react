@@ -1,5 +1,5 @@
 import React from 'react';
-import eyes from 'eyes.it';
+import { eyesItInstance } from '../../../test/utils/eyes-it';
 import queryString from 'query-string';
 import { buttonTestkitFactory } from '../../../testkit/protractor';
 import { waitForVisibilityOf } from 'wix-ui-test-utils/protractor';
@@ -13,6 +13,7 @@ const NO_DESCRIPTION = '';
 describe('Backoffice Button', () => {
   const storyUrl = getStoryUrl('5. Buttons', '5.1 Standard');
   const driver = buttonTestkitFactory({ dataHook: 'storybook-button' });
+  const eyes = eyesItInstance();
 
   // Specific as opposed to 'Generic' tests like the Focusable tests.
   describe(NO_DESCRIPTION, () => {

@@ -1,4 +1,4 @@
-import eyes from 'eyes.it';
+import { eyesItInstance } from '../../test/utils/eyes-it';
 import {
   waitForVisibilityOf,
   scrollToElement,
@@ -8,6 +8,7 @@ import { createStoryUrl } from '../../test/utils/storybook-helpers';
 describe('Card and Grid', () => {
   const byDataHook = dataHook => $(`[data-hook="${dataHook}"]`);
   const storyUrl = createStoryUrl({ kind: '2. Layout', story: 'Card' });
+  const eyes = eyesItInstance();
 
   eyes.it('should not break design', async () => {
     const dataHook = 'card-example-basic';

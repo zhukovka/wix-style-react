@@ -1,4 +1,4 @@
-import eyes from 'eyes.it';
+import { eyesItInstance } from '../../test/utils/eyes-it';
 import autoExampleDriver from 'wix-storybook-utils/AutoExampleDriver';
 import {
   createStoryUrl,
@@ -16,6 +16,7 @@ describe('Carousel', () => {
     story: storySettings.storyName,
     withExamples: false,
   });
+  const eyes = eyesItInstance();
 
   const createDriverFactory = async (dataHook = storySettings.dataHook) => {
     const driver = carouselTestkitFactory({ dataHook });

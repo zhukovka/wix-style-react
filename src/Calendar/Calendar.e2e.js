@@ -1,4 +1,4 @@
-import eyes from 'eyes.it';
+import { eyesItInstance } from '../../test/utils/eyes-it';
 import {
   calendarTestkitFactory,
   waitForVisibilityOf,
@@ -7,6 +7,8 @@ import { createStoryUrl } from '../../test/utils/storybook-helpers';
 import { TESTS_PREFIX } from '../../stories/storiesHierarchy';
 
 describe('Calendar', () => {
+  const eyes = eyesItInstance();
+
   const storyUrl = ({ selectedDays }) => {
     const baseUrl = createStoryUrl({
       kind: `${TESTS_PREFIX}/3. Inputs/3.13 Calendar`,

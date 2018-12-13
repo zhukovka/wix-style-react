@@ -1,4 +1,4 @@
-import eyes from 'eyes.it';
+import { eyesItInstance } from '../../test/utils/eyes-it';
 import autoExampleDriver from 'wix-storybook-utils/AutoExampleDriver';
 
 import { createStoryUrl } from '../../test/utils/storybook-helpers';
@@ -12,6 +12,8 @@ describe('AddItem', () => {
     kind: storySettings.kind,
     story: storySettings.storyName,
   });
+
+  const eyes = eyesItInstance();
 
   beforeAll(async () => {
     await browser.get(storyUrl);
