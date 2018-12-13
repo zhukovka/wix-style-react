@@ -214,7 +214,10 @@ Notification.defaultProps = {
   onClose: null,
 };
 
-Notification.CloseButton = CloseButton;
+const Close = props => <CloseButton skin="lightFilled" {...props} />;
+Close.displayName = 'Notification.CloseButton';
+
+Notification.CloseButton = Close;
 Notification.TextLabel = TextLabel;
 Notification.ActionButton = ActionButton;
 
