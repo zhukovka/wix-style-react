@@ -518,3 +518,9 @@ import { carouselDriverFactory } from '../src/Carousel/Carousel.driver';
 export const carouselTestkitFactory = enzymeUniTestkitFactoryCreator(
   carouselDriverFactory,
 );
+
+import { proportionDriverFactory } from '../src/Proportion/Proportion.driver';
+
+export const proportionTestkitFactory = enzymeUniTestkitFactoryCreator(
+  proportionDriverFactory,
+);

@@ -71,3 +71,9 @@ import { closeButtonDriverFactory } from '../src/CloseButton/CloseButton.driver'
 export const closeButtonTestkitFactory = puppeteerUniTestkitFactoryCreator(
   closeButtonDriverFactory,
 );
+
+import { proportionDriverFactory } from '../src/Proportion/Proportion.driver';
+
+export const proportionTestkitFactory = puppeteerUniTestkitFactoryCreator(
+  proportionDriverFactory,
+);

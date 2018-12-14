@@ -352,6 +352,12 @@ export const carouselTestkitFactory = protractorTestkitFactoryCreator(
   carouselDriverFactory,
 );
 
+import { proportionDriverFactory } from '../src/Proportion/Proportion.driver';
+
+export const proportionTestkitFactory = protractorUniTestkitFactoryCreator(
+  proportionDriverFactory,
+);
+
 // wix-ui-backoffice proxy
 
 export {

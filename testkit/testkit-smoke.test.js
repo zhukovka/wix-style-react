@@ -178,6 +178,11 @@ const COMPONENTS = {
       ],
     },
   },
+  Proportion: {
+    props: {
+      children: <div/>,
+    },
+  },
 };
 
 const cwd = path.resolve(__dirname, '..', 'src');

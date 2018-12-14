@@ -494,3 +494,9 @@ import { carouselDriverFactory } from '../src/Carousel/Carousel.driver';
 export const carouselTestkitFactory = uniTestkitFactoryCreator(
   carouselDriverFactory,
 );
+
+import { proportionDriverFactory } from '../src/Proportion/Proportion.driver';
+
+export const proportionTestkitFactory = uniTestkitFactoryCreator(
+  proportionDriverFactory,
+);
