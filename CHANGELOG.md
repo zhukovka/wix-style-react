@@ -19,6 +19,9 @@ Types of changes:
 ### Fixed
 - `<Notification.CloseButton/>` - fix styling [#2578](https://github.com/wix/wix-style-react/pull/2578)
 
+### Lab
+- <ContactItemBuilder/> - create new component builder [#2556](https://github.com/wix/wix-style-react/pull/2556/files#diff-273b5bf2a564405b1cd063031465c182)
+
 ## 5.16.0 - 2018-12-12
 
 ### Added
