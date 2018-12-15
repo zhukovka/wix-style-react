@@ -8,7 +8,7 @@ const style = {
   lineHeight: '22px',
 };
 
-const builder = id => `builder option ${id}`
+const builder = id => `builder option ${id}`;
 
 const options = [
   { id: 0, value: builder(0) },
@@ -37,8 +37,8 @@ export default () => (
   <div>
     <div style={style}>
       builder function
-      <br/>
-      <DropdownLayout visible options={options}/>
+      <br />
+      <DropdownLayout visible options={options} />
     </div>
   </div>
 );

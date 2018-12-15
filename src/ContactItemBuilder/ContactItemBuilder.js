@@ -5,12 +5,12 @@ import Text from '../Text';
 import { dataHooks } from './ContactItemBuilderDataHooks';
 import PropTypes from 'prop-types';
 
-export const ContactItem = props =>
+export const ContactItem = props => (
   <div className={styles.contactItemOption}>
     <div className={styles.avatar}>
       <Avatar
         name={props.title}
-        size='size30'
+        size="size30"
         imgProps={{ src: props.imageUrl }}
         data-hook={dataHooks.pickerOptionAvatar}
       />
@@ -18,8 +18,8 @@ export const ContactItem = props =>
     <div className={styles.contactItemTitles}>
       <Text
         ellipsis
-        size='medium'
-        weight='normal'
+        size="medium"
+        weight="normal"
         secondary={!props.selected}
         light={props.selected}
         dataHook={dataHooks.pickerOptionTitle}
@@ -29,8 +29,8 @@ export const ContactItem = props =>
       {props.subtitle ? (
         <Text
           ellipsis
-          size='small'
-          weight='thin'
+          size="small"
+          weight="thin"
           secondary={!props.selected}
           light={props.selected}
           dataHook={dataHooks.pickerOptionSubtitle}
@@ -39,7 +39,8 @@ export const ContactItem = props =>
         </Text>
       ) : null}
     </div>
-  </div>;
+  </div>
+);
 
 ContactItem.propTypes = {
   title: PropTypes.string.isRequired,
@@ -49,11 +50,12 @@ ContactItem.propTypes = {
 
 export const contactItemBuilder = ({ id, title, subtitle, imageUrl }) => ({
   id,
-  value: ({ selected }) =>
+  value: ({ selected }) => (
     <ContactItem
       title={title}
       subtitle={subtitle}
       imageUrl={imageUrl}
       selected={selected}
     />
+  ),
 });

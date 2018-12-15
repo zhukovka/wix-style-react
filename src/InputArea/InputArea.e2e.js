@@ -72,7 +72,9 @@ describe('input area page', () => {
     await inputAreaTestkit.sendKeys(longValue);
     const previousOffsetHeight = await inputAreaTestkit.getOffsetHeight();
 
-    await inputAreaTestkit.sendKeys(protractor.Key.BACK_SPACE.repeat(LONG_INPUT.length * 4));
+    await inputAreaTestkit.sendKeys(
+      protractor.Key.BACK_SPACE.repeat(LONG_INPUT.length * 4),
+    );
     const currentOffsetHeight = await inputAreaTestkit.getOffsetHeight();
 
     expect(currentOffsetHeight < previousOffsetHeight).toBeTruthy();

@@ -64,7 +64,7 @@ const FAILING_COMPONENTS = [
   'TextField',
   'VBox', // Component has no testkit
   'Collapse',
-  'ContactItemBuilder'
+  'ContactItemBuilder',
 ];
 
 /**
@@ -180,7 +180,7 @@ const COMPONENTS = {
   },
   Proportion: {
     props: {
-      children: <div/>,
+      children: <div />,
     },
   },
 };

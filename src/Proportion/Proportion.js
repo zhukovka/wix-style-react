@@ -51,7 +51,12 @@ class Proportion extends React.PureComponent {
   _getAspectRatioHolder() {
     const { width, height } = this._getRatio();
     const svg = `<svg viewBox="0 0 ${width} ${height}" xmlns="http://www.w3.org/2000/svg" />`;
-    return (<img className={styles.ratioHolder} src={`data:image/svg+xml,${encodeURIComponent(svg)}`} />);
+    return (
+      <img
+        className={styles.ratioHolder}
+        src={`data:image/svg+xml,${encodeURIComponent(svg)}`}
+      />
+    );
   }
 
   _getRatio() {

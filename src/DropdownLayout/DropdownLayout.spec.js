@@ -217,14 +217,23 @@ describe('DropdownLayout', () => {
     });
   });
 
-
   it('should render a function option with the rendered item props', () => {
     const selectedId = 0;
     const unSelectedId = 1;
 
     const optionsWithFuncValues = [
-      { id: 0, value: ({selected}) => <div>option { selected ? 'selected' : 'not selected' }</div>},
-      { id: 1, value: ({selected}) => <div>option { selected ? 'selected' : 'not selected' }</div>},
+      {
+        id: 0,
+        value: ({ selected }) => (
+          <div>option {selected ? 'selected' : 'not selected'}</div>
+        ),
+      },
+      {
+        id: 1,
+        value: ({ selected }) => (
+          <div>option {selected ? 'selected' : 'not selected'}</div>
+        ),
+      },
     ];
 
     const driver = createDriver(

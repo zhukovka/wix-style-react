@@ -67,7 +67,11 @@ class InputArea extends WixComponent {
     } = this.props;
 
     const inlineStyle = {};
-    const rowsAttr = rows ? rows : (autoGrow ? this.state.computedRows : undefined);
+    const rowsAttr = rows
+      ? rows
+      : autoGrow
+      ? this.state.computedRows
+      : undefined;
     const onInput = !rows && autoGrow ? this._onInput : undefined;
 
     if (minHeight) {

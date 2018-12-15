@@ -348,7 +348,9 @@ class DropdownLayout extends WixComponent {
         onMouseLeave={this._onMouseLeave}
         data-hook={dataHook}
       >
-        {typeof option.value === 'function' ? option.value({selected}) : option.value}
+        {typeof option.value === 'function'
+          ? option.value({ selected })
+          : option.value}
       </div>
     );
   }
@@ -416,8 +418,11 @@ DropdownLayout.propTypes = {
       PropTypes.shape({
         id: PropTypes.oneOfType([PropTypes.string, PropTypes.number])
           .isRequired,
-        value: PropTypes.oneOfType([PropTypes.node, PropTypes.string, PropTypes.func])
-          .isRequired,
+        value: PropTypes.oneOfType([
+          PropTypes.node,
+          PropTypes.string,
+          PropTypes.func,
+        ]).isRequired,
         disabled: PropTypes.bool,
         overrideStyle: PropTypes.bool,
       }),
