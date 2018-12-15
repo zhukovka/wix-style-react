@@ -31,8 +31,8 @@ export default class extends React.Component {
                   suffix={
                     <Button
                       onClick={() =>
-                        this.setState(({ firstCardOpen }) => ({
-                          firstCardOpen: !firstCardOpen,
+                        this.setState(state => ({
+                          firstCardOpen: !state.firstCardOpen,
                         }))
                       }
                     >
@@ -60,8 +60,8 @@ export default class extends React.Component {
                     >
                       <TextLink
                         onClick={() =>
-                          this.setState(({ secondCardOpen }) => ({
-                            secondCardOpen: !secondCardOpen,
+                          this.setState(state => ({
+                            secondCardOpen: !state.secondCardOpen,
                           }))
                         }
                       >

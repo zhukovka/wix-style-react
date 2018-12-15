@@ -32,8 +32,8 @@ const popoverMenuDriverFactory = ({ element }) => {
         menuItemDataHook = dataHook;
         return driver;
       },
-      parentElement: element => {
-        parentElement = element;
+      parentElement: elm => {
+        parentElement = elm;
         return driver;
       },
     },

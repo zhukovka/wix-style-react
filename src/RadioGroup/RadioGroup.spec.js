@@ -13,7 +13,7 @@ import { mount } from 'enzyme';
 describe('RadioGroup', () => {
   const createDriver = createDriverFactory(radioGroupDriverFactory);
 
-  const elementToRender = props => (
+  const defaultRadioGroup = props => (
     <RadioGroup {...props}>
       <RadioGroup.Radio value={1}>Option 1</RadioGroup.Radio>
       <RadioGroup.Radio value={2}>Option 2</RadioGroup.Radio>
@@ -23,14 +23,14 @@ describe('RadioGroup', () => {
   );
 
   it('should have the correct radio buttons', () => {
-    const driver = createDriver(elementToRender());
+    const driver = createDriver(defaultRadioGroup());
     expect(driver.getNumberOfRadios()).toBe(4);
     expect(driver.getRadioValueAt(0)).toBe('1');
   });
 
   it('should return true if a radio button is disabled and false otherwise', () => {
     const disabledRadios = [1, 2];
-    const driver = createDriver(elementToRender({ disabledRadios }));
+    const driver = createDriver(defaultRadioGroup({ disabledRadios }));
     expect(driver.isRadioDisabled(0)).toBe(true);
     expect(driver.isRadioDisabled(1)).toBe(true);
     expect(driver.isRadioDisabled(2)).toBe(false);
@@ -39,12 +39,12 @@ describe('RadioGroup', () => {
 
   it('should check the option that matches the initial value', () => {
     const value = 2;
-    const driver = createDriver(elementToRender({ value }));
+    const driver = createDriver(defaultRadioGroup({ value }));
     expect(driver.getSelectedValue()).toBe(value.toString());
   });
 
   it('should update selected value after change to props', () => {
-    const driver = createDriver(elementToRender({ value: 1 }));
+    const driver = createDriver(defaultRadioGroup({ value: 1 }));
     const value = 2;
     driver.setProps({ value });
     expect(driver.getSelectedValue()).toBe(value.toString());
@@ -52,14 +52,14 @@ describe('RadioGroup', () => {
 
   it('should not check any options if value was not matched', () => {
     const value = 10;
-    const driver = createDriver(elementToRender({ value }));
+    const driver = createDriver(defaultRadioGroup({ value }));
     expect(driver.getSelectedValue()).toBe(null);
   });
 
   describe('onChange attribute', () => {
     it('should be called with the correct option value', () => {
       const onChange = jest.fn();
-      const driver = createDriver(elementToRender({ onChange }));
+      const driver = createDriver(defaultRadioGroup({ onChange }));
       driver.selectByValue(1);
       expect(onChange).toBeCalledWith(1);
     });
@@ -67,7 +67,7 @@ describe('RadioGroup', () => {
     it('should not be called upon checked option', () => {
       const value = 1;
       const onChange = jest.fn();
-      const driver = createDriver(elementToRender({ onChange, value }));
+      const driver = createDriver(defaultRadioGroup({ onChange, value }));
 
       driver.selectByValue(1);
       expect(onChange.mock.calls).toHaveLength(0);
@@ -77,7 +77,7 @@ describe('RadioGroup', () => {
       const disabledRadios = [1];
       const onChange = jest.fn();
       const driver = createDriver(
-        elementToRender({ onChange, disabledRadios }),
+        defaultRadioGroup({ onChange, disabledRadios }),
       );
 
       driver.selectByValue(1);
@@ -86,7 +86,7 @@ describe('RadioGroup', () => {
   });
 
   describe('vAlign attribute', () => {
-    const elementToRender = props => (
+    const radioGroup = props => (
       <RadioGroup {...props}>
         <RadioGroup.Radio value={1}>Option 1</RadioGroup.Radio>
         <RadioGroup.Radio value={2}>Option 2</RadioGroup.Radio>
@@ -94,13 +94,13 @@ describe('RadioGroup', () => {
     );
 
     it('should have a default vcenter class', () => {
-      const driver = createDriver(elementToRender());
+      const driver = createDriver(radioGroup());
       expect(driver.getClassOfLabelAt(0)).toContain('vcenter');
       expect(driver.getClassOfLabelAt(1)).toContain('vcenter');
     });
 
     it('should have a vtop class', () => {
-      const driver = createDriver(elementToRender({ vAlign: 'top' }));
+      const driver = createDriver(radioGroup({ vAlign: 'top' }));
       expect(driver.getClassOfLabelAt(0)).toContain('vtop');
       expect(driver.getClassOfLabelAt(1)).toContain('vtop');
     });
@@ -108,31 +108,31 @@ describe('RadioGroup', () => {
 
   describe('display attribute', () => {
     it('should be vertical by default', () => {
-      const driver = createDriver(elementToRender());
+      const driver = createDriver(defaultRadioGroup());
       expect(driver.isVerticalDisplay()).toBe(true);
     });
 
     it('should be horizontal', () => {
-      const driver = createDriver(elementToRender({ display: 'horizontal' }));
+      const driver = createDriver(defaultRadioGroup({ display: 'horizontal' }));
       expect(driver.isHorizontalDisplay()).toBe(true);
     });
   });
 
   describe('spacing attribute', () => {
     it('should be 12px by default', () => {
-      const driver = createDriver(elementToRender());
+      const driver = createDriver(defaultRadioGroup());
       expect(driver.spacing()).toBe('12px');
     });
 
     it('should be spaced', () => {
-      const driver = createDriver(elementToRender({ spacing: '30px' }));
+      const driver = createDriver(defaultRadioGroup({ spacing: '30px' }));
       expect(driver.spacing()).toBe('30px');
     });
   });
 
   describe('line-height attribute', () => {
     it('should have default value', () => {
-      const driver = createDriver(elementToRender());
+      const driver = createDriver(defaultRadioGroup());
       expect(driver.lineHeight()).toBe(RadioGroup.defaultProps.lineHeight);
     });
   });

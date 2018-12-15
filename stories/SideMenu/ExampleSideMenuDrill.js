@@ -11,7 +11,7 @@ import ExternalLink from 'wix-style-react/new-icons/ExternalLink';
 
 let counter = 3;
 
-const items = [
+const initialItems = [
   { type: 'link', to: '//wix.com', title: 'link #0_1', disabled: true },
   {
     type: 'link',
@@ -74,7 +74,7 @@ class ExampleSideMenuDrill extends React.Component {
     super(props);
 
     this.state = {
-      items,
+      items: initialItems,
     };
   }
 
@@ -92,7 +92,7 @@ class ExampleSideMenuDrill extends React.Component {
     e.preventDefault();
     const items = [...this.state.items];
     this.selectMenu(items, link);
-    this.setState({ items });
+    this.setState({ items: items });
   }
 
   renderLink(link) {

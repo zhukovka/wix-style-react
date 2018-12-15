@@ -4,7 +4,6 @@ import Markdown from 'wix-storybook-utils/Markdown';
 import { storySettings, placements } from './storySettings';
 
 import Popover from '../../src/Popover';
-import Text from '../../src/Text';
 import Button from '../../src/Button';
 import Dropdown from '../../src/Dropdown';
 import FormField from '../../src/FormField';

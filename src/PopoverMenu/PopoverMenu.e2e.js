@@ -12,11 +12,11 @@ import { waitForVisibilityOf } from 'wix-ui-test-utils/protractor';
 import { getStoryUrl } from '../../test/utils/storybook-helpers';
 
 describe('PopoverMenu', () => {
-  const storyUrl = getStoryUrl('7. Tooltips', '7.3. Popover Menu');
   let driver;
   const logs = browserLogs(browser);
 
-  beforeEach(async () => {
+  async function getPage() {
+    const storyUrl = getStoryUrl('7. Tooltips', '7.3. Popover Menu');
     logs.reset();
     logs.ignore(message => message.message.indexOf('Uncaught') === -1);
 
@@ -24,9 +24,10 @@ describe('PopoverMenu', () => {
       dataHook: POPOVER_MENU_DATA_HOOK,
     }).init.menuItemDataHook(POPOVER_MENU_ITEM_DATA_HOOK);
     await browser.get(storyUrl);
-  });
+  }
 
   eyes.it('should show popover menu', async () => {
+    await getPage();
     await waitForVisibilityOf(
       driver.element(),
       'Can not find PopoverMenu trigger element',
@@ -37,6 +38,7 @@ describe('PopoverMenu', () => {
   });
 
   it('should hide popover menu on item click', async () => {
+    await getPage();
     await waitForVisibilityOf(driver.element());
     await driver.click();
 

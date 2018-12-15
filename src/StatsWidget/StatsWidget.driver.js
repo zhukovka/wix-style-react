@@ -4,7 +4,7 @@ import { badgeDriverFactory } from 'wix-ui-backoffice/dist/src/components/Badge/
 import { findByHook } from '../../test/utils';
 
 const statsWidgetDriverFactory = ({ element }) => {
-  const getBadgeDriver = element => badgeDriverFactory({ element });
+  const getBadgeDriver = elm => badgeDriverFactory({ element: elm });
 
   const getStatistic = index =>
     findByHook(element, 'stats-widget-content-wrapper').childNodes[index];

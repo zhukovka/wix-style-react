@@ -36,7 +36,7 @@ export default () => (
   </div>
 );
 
-function text(text, style) {
+function text(children, style) {
   return (
     <div
       style={{
@@ -48,7 +48,7 @@ function text(text, style) {
         ...style,
       }}
     >
-      <Text>{text}</Text>
+      <Text>{children}</Text>
     </div>
   );
 }

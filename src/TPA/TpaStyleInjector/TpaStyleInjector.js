@@ -3,7 +3,7 @@ import React from 'react';
 function tpaStyleInjector(Component, styles) {
   const displayName = Component.displayName;
   if (!displayName) {
-    throw 'Component must have a displayName';
+    throw new Error('Component must have a displayName');
   }
 
   const styleSheetId = `wix-style-react-${displayName}`;

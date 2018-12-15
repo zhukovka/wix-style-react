@@ -1,7 +1,6 @@
 import TableDriverFactory from './Table.driver';
 import React from 'react';
 import { Table } from './Table';
-import DataTable from '../DataTable';
 import { tableTestkitFactory } from '../../testkit';
 import { createRendererWithDriver, cleanup } from '../../test/utils/react';
 
@@ -67,16 +66,14 @@ describe('Table', () => {
     });
 
     it('should select rows according to selectedIds prop given numeric ids', () => {
-      const ID_1 = 1234,
-        ID_2 = 1235;
       const driver = createDriver(
         <Table
           {...defaultProps}
           data={[
-            { id: ID_1, a: 'value 1', b: 'value 2' },
-            { id: ID_2, a: 'value 3', b: 'value 4' },
+            { id: 1111, a: 'value 1', b: 'value 2' },
+            { id: 2222, a: 'value 3', b: 'value 4' },
           ]}
-          selectedIds={[ID_1]}
+          selectedIds={[1111]}
         />,
       );
       expect(driver.isRowSelected(0)).toBeTruthy();

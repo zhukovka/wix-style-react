@@ -48,7 +48,7 @@ describe('test-utils', () => {
 
     it('should bind passed prop-functions to *this*', () => {
       // NOTE: don't use arrow functions
-      const onEnter = function() {
+      const onEnterListener = function() {
         this.setState({ value: '' });
       };
       const NotifyOnEnter = ({ onEnter, ...passedProps }) => (
@@ -62,7 +62,7 @@ describe('test-utils', () => {
       };
       const ControlledInput = makeControlled(NotifyOnEnter);
       const component = mount(
-        <ControlledInput value="some value" onEnter={onEnter} />,
+        <ControlledInput value="some value" onEnter={onEnterListener} />,
       );
 
       const input = component.find('input');

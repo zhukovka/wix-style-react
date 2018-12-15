@@ -1,5 +1,4 @@
 import React from 'react';
-import queryString from 'query-string';
 import CodeExample from 'wix-storybook-utils/CodeExample';
 import MultiSelect from '../../src/MultiSelect';
 

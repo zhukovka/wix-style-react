@@ -65,9 +65,9 @@ describe('Tag', () => {
     async () => {
       const dataHook = 'story-tag';
       await autoExampleDriver.setProps({ wrap: true, maxWidth: 70 });
-      const tagDriver = tagTestkitFactory({ dataHook });
+      const _tagDriver = tagTestkitFactory({ dataHook });
       const tooltipDriver = tooltipTestkitFactory({ dataHook });
-      await waitForVisibilityOf(tagDriver.element(), 'Cannot find Tag');
+      await waitForVisibilityOf(_tagDriver.element(), 'Cannot find Tag');
       expect(await tooltipDriver.isContentElementExists()).toBeFalsy();
       await tooltipDriver.mouseEnter();
       expect(await tooltipDriver.isContentElementExists()).toBeTruthy();

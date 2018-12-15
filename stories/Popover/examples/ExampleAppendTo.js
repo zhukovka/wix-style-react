@@ -2,7 +2,6 @@ import React from 'react';
 
 import Markdown from 'wix-storybook-utils/Markdown';
 
-import Text from 'wix-style-react/Text';
 import { Layout, Cell } from 'wix-style-react/Layout';
 
 import LiveCodeExample, {

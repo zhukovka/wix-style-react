@@ -74,7 +74,7 @@ describe('Tabs component', () => {
   it('should show side content if defined via props', () => {
     const sideContent = (
       <div>
-        Click <a>here</a>!
+        Click <a href="blah">here</a>!
       </div>
     );
     const driver = createComponent({ items, sideContent });
