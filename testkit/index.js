@@ -500,3 +500,12 @@ import { proportionDriverFactory } from '../src/Proportion/Proportion.driver';
 export const proportionTestkitFactory = uniTestkitFactoryCreator(
   proportionDriverFactory,
 );
+
+/*
+ * Component generator test component
+ */
+import { generatedTestComponentDriverFactory } from '../src/GeneratedTestComponent/GeneratedTestComponent.driver';
+
+export const generatedTestComponentTestkitFactory = uniTestkitFactoryCreator(
+  generatedTestComponentDriverFactory,
+);

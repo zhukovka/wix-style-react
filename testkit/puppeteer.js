@@ -77,3 +77,12 @@ import { proportionDriverFactory } from '../src/Proportion/Proportion.driver';
 export const proportionTestkitFactory = puppeteerUniTestkitFactoryCreator(
   proportionDriverFactory,
 );
+
+/*
+ * Component generator test component
+ */
+import { generatedTestComponentDriverFactory } from '../src/GeneratedTestComponent/GeneratedTestComponent.driver';
+
+export const generatedTestComponentTestkitFactory = puppeteerUniTestkitFactoryCreator(
+  generatedTestComponentDriverFactory,
+);

@@ -524,3 +524,12 @@ import { proportionDriverFactory } from '../src/Proportion/Proportion.driver';
 export const proportionTestkitFactory = enzymeUniTestkitFactoryCreator(
   proportionDriverFactory,
 );
+
+/*
+ * Component generator test component
+ */
+import { generatedTestComponentDriverFactory } from '../src/GeneratedTestComponent/GeneratedTestComponent.driver';
+
+export const generatedTestComponentTestkitFactory = enzymeUniTestkitFactoryCreator(
+  generatedTestComponentDriverFactory,
+);

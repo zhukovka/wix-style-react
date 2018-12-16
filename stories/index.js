@@ -148,3 +148,6 @@ import './Button/ButtonTestStory'; // Tests/5. Buttons
 import './Tooltip/Composite/PopoverMenuRegressionTest.js'; // Tests/7.3. Popover Menu/
 import './Popover/testStory';
 import './Avatar/AvatarTestStory'; // Tests/12. Other
+
+// The generated test component
+import './GeneratedTestComponent/index.story';
