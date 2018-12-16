@@ -1,12 +1,13 @@
 import classNames from 'classnames';
 import React from 'react';
+import PropTypes from 'prop-types';
 import styles from './Carousel.scss';
 import ChevronLeftLarge from '../new-icons/ChevronLeftLarge';
 import ChevronRightLarge from '../new-icons/ChevronRightLarge';
 import IconButton from '../IconButton/IconButton';
-import Loader from '../Loader/Loader';
-import PropTypes from 'prop-types';
 import Pagination from './Pagination';
+import Loader from '../Loader';
+import Proportion from '../Proportion';
 
 // because lodash throttle is not compatible with jest timeout mocks
 function throttle(callback, time) {
@@ -127,60 +128,27 @@ class Carousel extends React.Component {
   }
 
   render() {
-    const gallery = (
-      <div className={styles.gallery}>
-        <div className={styles.buttonContainer}>
-          <IconButton
-            dataHook="prev-button"
-            priority="secondary"
-            onClick={() => this._prev()}
-          >
-            <ChevronLeftLarge />
-          </IconButton>
-        </div>
-        <div
-          data-hook="images-container"
-          className={classNames([
-            styles.imagesContainer,
-            { [styles.loading]: this._isLoading() },
-          ])}
-          onMouseOver={() => this._stopSlideshow()}
-          onMouseOut={() => this._continueSlideshow()}
+    const prevButton = (
+      <div className={styles.buttonContainer}>
+        <IconButton
+          dataHook="prev-button"
+          priority="secondary"
+          onClick={() => this._prev()}
         >
-          {this.props.images.map((image, currentIndex) => {
-            return (
-              <div
-                key={currentIndex}
-                className={classNames(styles.imageContainer, {
-                  [styles.active]: currentIndex === this.state.activeIndex,
-                  [styles.prev]: currentIndex === this._getPrevIndex(),
-                  [styles.next]: currentIndex === this._getNextIndex(),
-                })}
-              >
-                <img
-                  className={styles.image}
-                  data-hook="carousel-img"
-                  src={image.src}
-                  onLoad={() => this._onImageLoad()}
-                />
-              </div>
-            );
-          })}
-        </div>
-        {this._isLoading() ? (
-          <div className={styles.loader}>
-            <Loader dataHook="loader" size="small" />
-          </div>
-        ) : null}
-        <div className={styles.buttonContainer}>
-          <IconButton
-            dataHook="next-button"
-            priority="secondary"
-            onClick={() => this._next()}
-          >
-            <ChevronRightLarge />
-          </IconButton>
-        </div>
+          <ChevronLeftLarge />
+        </IconButton>
+      </div>
+    );
+
+    const nextButton = (
+      <div className={styles.buttonContainer}>
+        <IconButton
+          dataHook="next-button"
+          priority="secondary"
+          onClick={() => this._next()}
+        >
+          <ChevronRightLarge />
+        </IconButton>
       </div>
     );
 
@@ -190,13 +158,52 @@ class Carousel extends React.Component {
         data-hook={this.props.dataHook}
         data-ready={!this._isLoading()}
       >
-        {gallery}
-        {
-          <Pagination
-            totalPages={this.props.images.length}
-            currentPage={this._getActivePage()}
-          />
-        }
+          <div className={styles.imagesAndButtonsContainer}>
+            <div className={styles.gallery}>
+              {prevButton}
+              <Proportion aspectRatio={Proportion.PREDEFINED_RATIOS.landscape} className={styles.imagesContainerLayout}>
+                <div
+                  data-hook="images-container"
+                  className={styles.imagesContainer}
+                  data-is-loading={this._isLoading()}
+                  onMouseOver={() => this._stopSlideshow()}
+                  onMouseOut={() => this._continueSlideshow()}
+                >
+                  {this.props.images.map((image, currentIndex) => {
+                    return (
+                      <div
+                        key={currentIndex}
+                        className={classNames(styles.imageContainer, {
+                          [styles.active]:
+                            currentIndex === this.state.activeIndex,
+                          [styles.prev]: currentIndex === this._getPrevIndex(),
+                          [styles.next]: currentIndex === this._getNextIndex(),
+                        })}
+                      >
+                        <img
+                          className={styles.image}
+                          data-hook="carousel-img"
+                          src={image.src}
+                          onLoad={() => this._onImageLoad()}
+                        />
+                      </div>
+                    );
+                  })}
+                </div>
+                {this._isLoading() ? (
+                  <div className={styles.loader}>
+                    <Loader dataHook="loader" size="small" />
+                  </div>
+                ) : null}
+              </Proportion>
+              {nextButton}
+            </div>
+            <Pagination
+              className={styles.paginationLayout}
+              totalPages={this.props.images.length}
+              currentPage={this._getActivePage()}
+            />
+          </div>
       </div>
     );
   }

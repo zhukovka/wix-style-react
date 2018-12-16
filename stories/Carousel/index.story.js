@@ -25,10 +25,7 @@ export default {
   category: storySettings.category,
   storyName: storySettings.storyName,
   component: Carousel,
-  componentPath: '../../src/Carousel/index.js',
-  componentWrapper: ({ component }) => (
-    <div style={{ width: '500px', height: '300px' }}>{component}</div>
-  ),
+  componentPath: '../../src/Carousel/Carousel.js',
   exampleProps: {
     images: imagesExamples,
   },
