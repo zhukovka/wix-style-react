@@ -6,7 +6,13 @@ We support two types of drivers:
   * `enzyme` and `vanilla` for regular dom interaction.
   * `protractor` for browser interaction.
 1. The enzyme / vanilla drivers should be written without any enzyme related functionality, they should stay pure vanilla dom manipulation.
-1. Components use `data-hook`s to easily locate parts of the DOM. We use them in the driver to query the elements..
+1. Components use `data-hook`s to easily locate parts of the DOM. We use them in the driver to query the elements.
+
+
+## Public and Private drivers
+1. The **Public** drivers (`component.driver.js`) are the ones that exposed to the consumers of the components. They should be simple abstractions over common actions (for example, selecting the third element in the dropdown).
+2. The **Private** drivers (`component.driver.private.js`) are used for actions on a component that should not be exposed to the user. For example, asserting a class name existance on some component.
+3. The Private drivers are extending the public ones and should be used internally when testing the components.
 
 ## Best Practices
 1. Drivers should be used for when testing and do one of the following:
@@ -16,7 +22,6 @@ We support two types of drivers:
 1. Drivers are tested internally in the library and exposed to consumers as TestKits.
 1. Drivers should have the `exists()` method to verify component is rendered properly.
 1. Never return a `DOM` element as this is not a good abstraction over the component.
-
 
 ## Exposed TestKits
 1. Each component has a `<componentName>TestkitFactory` method which exposes  the test driveri of the relevant to component.
