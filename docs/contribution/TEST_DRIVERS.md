@@ -1,13 +1,16 @@
 # Test drivers
-Test driver is a simple abstraction on top of component and supply a good way to interact with the component.
+Test driver is a simple abstraction on top of component and supply a good way for the consumers to interact with the component.
 
 ## Types of drivers
-We support two types of drivers:
+
+### unidriver (for every new component)
+All component drivers in this library should be built on top of [unidriver](https://github.com/wix-incubator/unidriver). `unidriver` is a tool to write universal component drivers that can be reused in all test levels, from component to e2e.
+
+### legacy drivers (for existing components)
+The library still contain a lot of technology specific drivers, mainly for the following ones:
   * `enzyme` and `vanilla` for regular dom interaction.
   * `protractor` for browser interaction.
-1. The enzyme / vanilla drivers should be written without any enzyme related functionality, they should stay pure vanilla dom manipulation.
-1. Components use `data-hook`s to easily locate parts of the DOM. We use them in the driver to query the elements.
-
+We will slowly migrate to use only unidriver, but in the meanwhile both still exist.
 
 ## Public and Private drivers
 1. The **Public** drivers (`component.driver.js`) are the ones that exposed to the consumers of the components. They should be simple abstractions over common actions (for example, selecting the third element in the dropdown).
@@ -19,6 +22,7 @@ We support two types of drivers:
   * Make a side effect (e.g. click)
   * Retrieve some primitive value as string, number or boolean (e.g. some value / is checked)
 1. Drivers should help testing the behavior and the DOM and not test React, so never check for component props.
+1. Components use `data-hook`s to easily locate parts of the DOM. We use them in the driver to query the elements.
 1. Drivers are tested internally in the library and exposed to consumers as TestKits.
 1. Drivers should have the `exists()` method to verify component is rendered properly.
 1. Never return a `DOM` element as this is not a good abstraction over the component.
