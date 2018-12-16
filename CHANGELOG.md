@@ -23,6 +23,7 @@ Types of changes:
 
 ### Lab
 - `<ContactItemBuilder/>` - create new component builder [#2556](https://github.com/wix/wix-style-react/pull/2556)
+- `<Carousel/>` - add aspect ratio, align navigation buttons and minor refactors [#2592](https://github.com/wix/wix-style-react/pull/2592)
 
 ## 5.16.0 - 2018-12-12
 
