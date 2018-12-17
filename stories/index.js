@@ -97,7 +97,7 @@ import './DropdownLayout'; // 11.1 DropdownLayout
 import './EditableSelector'; // 11.2 EditableSelector
 import './ModalSelectorLayout.story.js'; // 11.3 ModalSelectorLayout
 import './ColorPicker.story.js'; // 11.5 Color Picker
-
+import './ItemPickerSelector/index.story'; // 11.6
 // 12. Other
 import './Badge/index.story'; // 12.1 Badge
 import './BadgeSelect/index.story.js'; // 12.2 BadgeSelect
@@ -131,7 +131,7 @@ import './WIP';
 import './DragAndDrop/DragAndDrop.js';
 import './Builders/BadgeSelectItemBuilder';
 import './Builders/ContactItemBuilder';
-import './ItemPickerSelector/index.story';
+
 
 // TPA
 import './TPA/Button';
