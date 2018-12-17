@@ -1,74 +1,30 @@
-import * as React from 'react';
-import { ItemPickerSelector } from '../../src/ItemPickerSelector';
-import EmptyState from '../../src/EmptyState/EmptyState';
-import Text from '../../src/Text/Text';
-import TextLink from '../../src/TextLink/TextLink';
-import Add from '../../new-icons/Add';
-import { contactItemBuilder } from '../../src/ContactItemBuilder';
+import React from 'react';
 
-function fetchItems({ query }) {
-  const items = [
-    { id: 0, title: 'Some Name', subtitle: 'some subtitle', imageUrl: 'https://randomuser.me/api/portraits/women/39.jpg' },
-    { id: 1, title: 'Some Other Name', subtitle: 'some other subtitle' },
-    { id: 2, title: 'No subtitle item' },
-    { id: 3, title: 'Siri Jacobsson', subtitle: 'siri                                                                                                                                                                                                                                                            @wix.com', imageUrl: 'https://randomuser.me/api/portraits/women/39.jpg' },
-    { id: 4, title: 'Some Item 1', subtitle: 'some item 1 subtitle' },
-    { id: 5, title: 'Some Item 2', subtitle: 'some item 2 subtitle' }
-  ];
-  if (query === '') {
-    return Promise.resolve(items);
-  } else {
-    return Promise.resolve(items.filter(x => x.title.toLowerCase().includes(query.toLowerCase())));
-  }
-}
+import Markdown from 'wix-storybook-utils/Markdown';
+import CodeExample from 'wix-storybook-utils/CodeExample';
 
-const emptyStateComponent =
-  <div>
-    <EmptyState
-      dataHook={'empty-message'}
-      title="No contacts found."
-      subtitle={
-        <Text>
-          Add or import contacts <a href="http://wwww.wix.com"> Learn more </a>
-        </Text>
-      }
-    >
-      <TextLink prefixIcon={<Add />}>Add Contact</TextLink>
-    </EmptyState>
-  </div>;
+import Card from 'wix-style-react/Card';
 
+import { storySettings } from './storySettings';
+import { storiesOf } from '@storybook/react';
 
-const footer =
-  <div>
-    <TextLink data-hook="footer" prefixIcon={<Add />}>
-      Add Contact
-    </TextLink>
-  </div>;
+import { Example, ItemPickerSelector } from './Example';
+import { ExampleRaw } from '!raw-loader!./Example';
 
-const itemBuilder = contactItemBuilder;
+import Readme from './README.md';
 
-const onSelect = item => item + ' selected!';
-
-export default {
-  category: '12. Other',
-  storyName: '12.7 ItemPickerSelector',
-  component: ItemPickerSelector,
-  componentPath: '../../src/ItemPickerSelector/ItemPickerSelector.js',
-  componentProps: {
-    footer,
-    emptyStateComponent,
-    itemBuilder,
-    fetchItems,
-    onSelect
-  },
-
-  examples: (
-    <ItemPickerSelector
-      fetchItems={fetchItems}
-      footer={footer}
-      emptyStateComponent={emptyStateComponent}
-      itemBuilder={itemBuilder}
-      onSelect={onSelect}
-    />
+storiesOf(storySettings.kind, module).add(
+  storySettings.storyName ,
+  () => (
+    <div>
+      <Markdown source={Readme}/>
+      <div>
+        <CodeExample title="Item picker selector as contact picker example " code={ExampleRaw}>
+          <Card>
+            <Example/>
+          </Card>
+        </CodeExample>
+      </div>
+    </div>
   ),
-};
+);
