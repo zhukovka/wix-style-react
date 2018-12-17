@@ -15,11 +15,18 @@ const pageDriverFactory = component => {
   };
 
   return {
+    /** returns the driver element */
     element: () => component,
-    /** Scroll content down, enough to minimize the Page. Receives scroll offset as argument, defaults to a step which is enough to minimize the Page. */
+    /** Scroll content down, enough to minimize page header */
     scrollDown: () => setContentScrollOffset(SCROLL_TOP_THRESHOLD + 1),
+
+    /** scrolls up to maximised page */
     scrollUp: () => setContentScrollOffset(SCROLL_TOP_THRESHOLD),
+
+    /** true if title exists */
     titleExists: () => titleElement(component).isPresent(),
+
+    /** returns title element */
     titleElement: () => titleElement(component),
   };
 };

@@ -30,17 +30,38 @@ export const makeHrefAbsolute = href =>
 
 class RichTextArea extends WixComponent {
   static propTypes = {
+    /** Is the rich text area automatically transforming relative links to absolute after user insert */
     absoluteLinks: PropTypes.bool,
     buttons: PropTypes.arrayOf(PropTypes.string), // TODO: use PropTypes.oneOf(),
     dataHook: PropTypes.string,
+
+    /** Is the rich text area disabled */
     disabled: PropTypes.bool,
+
+    /** Is input value erroneous */
     error: PropTypes.bool,
+
+    /** The error message to display when hovering the error icon, if not given or empty there will be no tooltip */
     errorMessage: PropTypes.string,
+
+    /** Placeholder text */
     placeholder: PropTypes.string,
+
+    /** Max height of the text editor */
     maxHeight: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
     resizable: PropTypes.bool,
+
+    /** Content HTML. Supported tags: `p`, `strong`, `em`, `u`, `ul`, `ol`, `li` */
     value: PropTypes.string,
+
+    /** Change callback */
     onChange: PropTypes.func,
+
+    /** Image icon click callback.
+     * It is a function which recieves a callback.
+     * The callback function should be called
+     * when we obtain the url text (callback(text)), causing the image to reflect in the editor
+     */
     onImageRequest: PropTypes.func,
   };
 
@@ -137,24 +158,26 @@ class RichTextArea extends WixComponent {
 
     const editorState = htmlSerializer.deserialize(props.value);
     this.state = {
-      editorState,
+      editorState
     };
     this.lastValue = props.value;
   }
 
   componentWillReceiveProps(props) {
     const isPlaceholderChanged = props.placeholder !== this.props.placeholder;
-    const isValueChanged = props.value && props.value !== this.props.value && props.value !== this.lastValue;
+    const isValueChanged =
+      props.value &&
+      props.value !== this.props.value &&
+      props.value !== this.lastValue;
     if (isPlaceholderChanged || isValueChanged) {
       if (props.isAppend) {
         const newEditorState = this.state.editorState
-              .transform()
-              .insertText(props.value)
-              .apply();
+          .transform()
+          .insertText(props.value)
+          .apply();
 
         this.setEditorState(newEditorState);
-      }
-      else {
+      } else {
         const editorState = htmlSerializer.deserialize(props.value);
         this.setEditorState(editorState);
       }
@@ -162,42 +185,45 @@ class RichTextArea extends WixComponent {
   }
 
   setEditorState = (editorState, isTextChanged = true) => {
-    this.setState({editorState}, () => this.triggerChange(isTextChanged));
+    this.setState({ editorState }, () => this.triggerChange(isTextChanged));
   };
 
   triggerChange(isTextChanged = true) {
     const serialized = htmlSerializer.serialize(this.state.editorState);
     this.lastValue = serialized;
     if (isTextChanged) {
-      const {onChange} = this.props;
+      const { onChange } = this.props;
       onChange && onChange(serialized);
     }
   }
 
-  hasBlock = type => this.state.editorState.blocks.some(node => node.type == type);
+  hasBlock = type =>
+    this.state.editorState.blocks.some(node => node.type == type);
 
   hasListBlock = type => {
-    const {editorState} = this.state;
+    const { editorState } = this.state;
     return editorState.blocks.some(node => {
       const parent = editorState.document.getParent(node.key);
       return parent && parent.type === type;
     });
   };
 
-  hasMark = type => this.state.editorState.marks.some(mark => mark.type == type);
+  hasMark = type =>
+    this.state.editorState.marks.some(mark => mark.type == type);
 
-  hasLink = () => this.state.editorState.inlines.some(inline => inline.type === 'link');
+  hasLink = () =>
+    this.state.editorState.inlines.some(inline => inline.type === "link");
 
   handleButtonClick = (action, type) => {
-    this.setState({activeToolbarButton: type})
+    this.setState({ activeToolbarButton: type });
     switch (action) {
-      case 'mark':
+      case "mark":
         return this.handleMarkButtonClick(type);
-      case 'block':
+      case "block":
         return this.handleBlockButtonClick(type);
-      case 'link':
+      case "link":
         return this.handleLinkButtonClick(type);
-      case 'image':
+      case "image":
         return this.handleImageButtonClick(type);
     }
   };
@@ -213,100 +239,97 @@ class RichTextArea extends WixComponent {
 
   handleImageButtonClick = type => {
     this.props.onImageRequest(this.handleImageInput.bind(this));
-  }
+  };
 
   handleImageInput = text => {
     if (this.isValidImage(text)) {
       const editorState = this.insertImage(this.state.editorState, text);
       this.setEditorState(editorState);
     }
-  }
+  };
   onPaste = (e, data, state, editor) => {
     switch (data.type) {
-      case 'text': return this.onPasteText(data.text, state)
+      case "text":
+        return this.onPasteText(data.text, state);
     }
-  }
+  };
 
   onPasteText = (text, state) => {
     if (this.isValidImage(text)) {
       return this.insertImage(state, text);
     }
     return;
-  }
+  };
 
-  isValidImage = (text) => isUrl(text) && isImage(text);
+  isValidImage = text => isUrl(text) && isImage(text);
 
   insertImage = (state, src) => {
     return state
       .transform()
       .insertBlock({
-        type: 'image',
+        type: "image",
         isVoid: true,
         data: { src }
       })
       .apply();
-  }
+  };
 
   handleBlockButtonClick = type => {
-    let {editorState} = this.state;
+    let { editorState } = this.state;
     let transform = editorState.transform();
-    const {document} = editorState;
+    const { document } = editorState;
 
     // Handle everything but list buttons.
-    if (type !== 'unordered-list' && type !== 'ordered-list') {
+    if (type !== "unordered-list" && type !== "ordered-list") {
       const isActive = this.hasBlock(type);
-      const isList = this.hasBlock('list-item');
+      const isList = this.hasBlock("list-item");
 
       if (isList) {
         transform
-          .setBlock(isActive ? '' : type)
-          .unwrapBlock('unordered-list')
-          .unwrapBlock('ordered-list');
-      }
-
-      else {
-        transform
-          .setBlock(isActive ? '' : type);
+          .setBlock(isActive ? "" : type)
+          .unwrapBlock("unordered-list")
+          .unwrapBlock("ordered-list");
+      } else {
+        transform.setBlock(isActive ? "" : type);
       }
     }
 
     // Handle the extra wrapping required for list buttons.
     else {
-      const isList = this.hasBlock('list-item');
-      const isType = editorState.blocks.some((block) => {
+      const isList = this.hasBlock("list-item");
+      const isType = editorState.blocks.some(block => {
         return !!document.getClosest(block.key, parent => parent.type == type);
       });
 
       if (isList && isType) {
         transform
           .setBlock(DEFAULT_NODE)
-          .unwrapBlock('unordered-list')
-          .unwrapBlock('ordered-list');
+          .unwrapBlock("unordered-list")
+          .unwrapBlock("ordered-list");
       } else if (isList) {
         transform
-          .unwrapBlock(type == 'unordered-list' ? 'ordered-list' : 'unordered-list')
+          .unwrapBlock(
+            type == "unordered-list" ? "ordered-list" : "unordered-list"
+          )
           .wrapBlock(type);
       } else {
-        transform
-          .setBlock('list-item')
-          .wrapBlock(type);
+        transform.setBlock("list-item").wrapBlock(type);
       }
     }
 
     editorState = transform.apply();
-    this.setState({editorState});
+    this.setState({ editorState });
   };
 
-  handleLinkButtonClick = ({href, text} = {}) => {
-    const {editorState} = this.state;
+  handleLinkButtonClick = ({ href, text } = {}) => {
+    const { editorState } = this.state;
     const transform = editorState.transform();
     const decoratedHref = this.props.absoluteLinks
       ? makeHrefAbsolute(href)
       : href;
 
     if (this.hasLink()) {
-      transform
-        .unwrapInline('link');
+      transform.unwrapInline("link");
     } else {
       const linkContent = text || decoratedHref;
       const startPos = editorState.anchorOffset;
@@ -316,11 +339,11 @@ class RichTextArea extends WixComponent {
           anchorOffset: startPos,
           focusOffset: startPos + linkContent.length,
           isFocused: true,
-          isBackward: false,
+          isBackward: false
         })
         .wrapInline({
-          type: 'link',
-          data: {href: decoratedHref}
+          type: "link",
+          data: { href: decoratedHref }
         })
         .focus()
         .collapseToEnd();
@@ -330,17 +353,29 @@ class RichTextArea extends WixComponent {
   };
 
   render = () => {
-    const {editorState} = this.state;
-    const {error, placeholder, disabled, resizable, onImageRequest, dataHook} = this.props;
+    const { editorState } = this.state;
+    const {
+      error,
+      placeholder,
+      disabled,
+      resizable,
+      onImageRequest,
+      dataHook
+    } = this.props;
     const className = classNames(styles.container, {
       [styles.withError]: error,
-      [styles.isEditorFocused]: editorState.isFocused,
+      [styles.isEditorFocused]: editorState.isFocused
     });
     const isScrollable = resizable || this.props.maxHeight;
 
     return (
       <div className={className} data-hook={dataHook}>
-        <div className={classNames(styles.toolbar, {[styles.disabled]: disabled})} data-hook='toolbar'>
+        <div
+          className={classNames(styles.toolbar, {
+            [styles.disabled]: disabled
+          })}
+          data-hook="toolbar"
+        >
           <RichTextEditorToolbar
             /*
               activeToolbarButton prop required to trigger RichTextEditorToolbar re-render after toolbar button click
@@ -350,40 +385,41 @@ class RichTextArea extends WixComponent {
             disabled={disabled}
             onClick={this.handleButtonClick}
             onLinkButtonClick={this.handleLinkButtonClick}
-            onImageButtonClick={onImageRequest ? this.handleImageButtonClick : null }
+            onImageButtonClick={
+              onImageRequest ? this.handleImageButtonClick : null
+            }
             hasMark={this.hasMark}
             hasListBlock={this.hasListBlock}
             hasLink={this.hasLink}
             isSelectionExpanded={editorState.isExpanded}
-            />
+          />
         </div>
         <div
-          className={classNames(
-            styles.editorWrapper, {
-              [styles.resizable]: resizable,
-              [styles.scrollable]: isScrollable,
-              [styles.disabled]: disabled
-            })
-          }
+          className={classNames(styles.editorWrapper, {
+            [styles.resizable]: resizable,
+            [styles.scrollable]: isScrollable,
+            [styles.disabled]: disabled
+          })}
           data-hook="editor-wrapper"
-          style={{maxHeight: this.props.maxHeight}}
+          style={{ maxHeight: this.props.maxHeight }}
         >
           <Editor
             readOnly={disabled}
             placeholder={placeholder}
             placeholderClassName={styles.placeholder}
-            className={classNames(styles.editor, {[styles.disabled]: disabled})}
+            className={classNames(styles.editor, {
+              [styles.disabled]: disabled
+            })}
             schema={this.schema}
             state={editorState}
             onPaste={this.onPaste}
-            onChange={e =>
-              {
-                const serialized = htmlSerializer.serialize(e);
-                const isValueChanged = serialized !== this.lastValue;
-                this.lastValue = serialized;
-                this.setEditorState(e, isValueChanged)
-              }
-            }/>
+            onChange={e => {
+              const serialized = htmlSerializer.serialize(e);
+              const isValueChanged = serialized !== this.lastValue;
+              this.lastValue = serialized;
+              this.setEditorState(e, isValueChanged);
+            }}
+          />
           {this.renderError()}
         </div>
       </div>
@@ -391,18 +427,20 @@ class RichTextArea extends WixComponent {
   };
 
   renderError = () => {
-    const {errorMessage} = this.props;
+    const { errorMessage } = this.props;
 
     return (
       <Tooltip
         disabled={!errorMessage}
         placement="top"
-        moveBy={{x: 2, y: 0}}
+        moveBy={{ x: 2, y: 0 }}
         alignment="center"
         content={errorMessage}
         theme="dark"
-        >
-        <div className={styles.exclamation}><FormFieldError/></div>
+      >
+        <div className={styles.exclamation}>
+          <FormFieldError />
+        </div>
       </Tooltip>
     );
   };

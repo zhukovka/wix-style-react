@@ -12,10 +12,15 @@ export default {
   component: RichTextArea,
   componentPath: '../../src/RichTextArea',
   componentProps: setProps => ({
+    value: '',
+    resizable: false,
+    error: false,
     dataHook: settings.dataHook,
     onChange: value => {
       setProps({ value });
     },
   }),
-  // TODO: Add old example. It has a nice live output box.
+  exampleProps: {
+    onChange: value => value,
+  },
 };
