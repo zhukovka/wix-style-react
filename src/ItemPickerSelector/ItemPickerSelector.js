@@ -16,7 +16,7 @@ export class ItemPickerSelector extends WixComponent {
 
   static propTypes = {
     button: PropTypes.any,
-    fetchItems: PropTypes.func,
+    fetchItems: PropTypes.any,
     emptyStateComponent: PropTypes.any,
     itemBuilder: PropTypes.func,
     footer: PropTypes.any,
@@ -35,64 +35,48 @@ export class ItemPickerSelector extends WixComponent {
     this.props.onSelect(selectedItem);
   };
 
-
   queryItems = (query = '') => {
     this.props.fetchItems({ query }).then(items => {
-      this.setState({ items: items });
+      this.setState({ items });
     });
   };
 
+  debouncedQueryItems = debounce(this.queryItems, 300);
 
   onChange = inputText => {
     inputText = inputText.target.value;
     this.setState({
-      inputText: inputText,
+      inputText,
     });
 
-    debounce(this.queryItems, 300);
-  };
-
-  displayItem = item => {
-    return this.props.itemBuilder(item);
+    this.debouncedQueryItems(inputText);
   };
 
   isEmpty = () => !this.state.items.length;
 
-  pickerDropdown = () => (
-    <DropdownLayout
-      dataHook={dataHooks.itemsDropdown}
-      className={styles.pickerDropdown}
-      options={this.state.items.map(this.displayItem)}
-      fixedFooter={this.props.footer}
-      onSelect={item => this.onSelectedItem({ id: item.id })}
-      inContainer
-      visible
-    />
-  );
-
-  renderContent = () =>
-    <span data-hook={dataHooks.itemPickerContent} className={styles.picker}>
-      <div className={styles.searchWrapper}>
-        <Search
-          dataHook={dataHooks.search}
-          className={styles.search}
-          onChange={inputText => this.onChange(inputText)}
-          placeholder={'Search...'}
-          value={this.state.inputText}
-        />
-      </div>
-      {this.isEmpty() ? this.props.emptyStateComponent : this.pickerDropdown()}
-    </span>;
-
+  searchComponent = () =>
+    <div className={styles.searchWrapper}>
+      <Search
+        dataHook={dataHooks.search}
+        className={styles.search}
+        onChange={inputText => this.onChange(inputText)}
+        placeholder={'Search...'}
+        value={this.state.inputText}
+      />
+    </div>;
+      
   render = () =>
-    <Tooltip
-      dataHook={dataHooks.itemPicker}
-      placement={'bottom'}
-      alignment="left"
-      minWidth="331px"
-      popover
-      content={this.renderContent()}
-    >
-      {this.props.button}
-    </Tooltip>;
+    this.isEmpty() ?
+      this.props.emptyStateComponent
+      :
+      <DropdownLayout
+        dataHook={dataHooks.itemsDropdown}
+        className={styles.pickerDropdown}
+        options={this.state.items.map(this.props.itemBuilder)}
+        fixedHeader={this.searchComponent()}
+        fixedFooter={this.props.footer}
+        onSelect={item => this.onSelectedItem({ id: item.id })}
+        inContainer
+        visible
+      />;
 }

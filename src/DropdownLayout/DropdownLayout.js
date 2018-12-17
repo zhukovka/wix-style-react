@@ -72,7 +72,8 @@ class DropdownLayout extends WixComponent {
       typeof option.id !== 'undefined' &&
       option.id.toString().trim().length > 0 &&
       (React.isValidElement(option.value) ||
-        (typeof option.value === 'string' && option.value.trim().length > 0))
+        ((typeof option.value === 'string' && option.value.trim().length > 0) ||
+          typeof option.value === 'function' ))
     );
   }
 
@@ -348,9 +349,7 @@ class DropdownLayout extends WixComponent {
         onMouseLeave={this._onMouseLeave}
         data-hook={dataHook}
       >
-        {typeof option.value === 'function'
-          ? option.value({ selected })
-          : option.value}
+        {typeof option.value === 'function' ? option.value({selected}) : option.value}
       </div>
     );
   }
@@ -418,11 +417,8 @@ DropdownLayout.propTypes = {
       PropTypes.shape({
         id: PropTypes.oneOfType([PropTypes.string, PropTypes.number])
           .isRequired,
-        value: PropTypes.oneOfType([
-          PropTypes.node,
-          PropTypes.string,
-          PropTypes.func,
-        ]).isRequired,
+        value: PropTypes.oneOfType([PropTypes.node, PropTypes.string, PropTypes.func])
+          .isRequired,
         disabled: PropTypes.bool,
         overrideStyle: PropTypes.bool,
       }),
