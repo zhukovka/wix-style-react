@@ -8,7 +8,6 @@ import * as styles from './ItemPickerSelector.story.scss';
 import { contactItemBuilder } from "wix-style-react/ContactItemBuilder";
 import Search from 'wix-style-react/Search';
 import DropdownLayout from 'wix-style-react/DropdownLayout';
-import WixComponent from "wix-style-react/WixComponent";
 import EmptyState from "wix-style-react/EmptyState";
 import Text from "wix-style-react/Text";
 import Add from "wix-style-react/Add";

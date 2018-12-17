@@ -67,7 +67,6 @@ export { default as Badge } from './Badge';
 export { default as BadgeSelect } from './BadgeSelect';
 export { badgeSelectItemBuilder } from './BadgeSelectItemBuilder';
 export { contactItemBuilder } from './ContactItemBuilder';
-export { ItemPickerSelector } from './ItemPickerSelector';
 export { default as EditableSelector } from './EditableSelector';
 export { default as StatsWidget } from './StatsWidget';
 export { default as Card } from './Card';

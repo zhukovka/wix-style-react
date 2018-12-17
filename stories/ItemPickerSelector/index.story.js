@@ -8,7 +8,7 @@ import Card from 'wix-style-react/Card';
 import { storySettings } from './storySettings';
 import { storiesOf } from '@storybook/react';
 
-import { Example, ItemPickerSelector } from './Example';
+import { Example } from './Example';
 import { ExampleRaw } from '!raw-loader!./Example';
 
 import Readme from './README.md';
@@ -19,7 +19,7 @@ storiesOf(storySettings.kind, module).add(
     <div>
       <Markdown source={Readme}/>
       <div>
-        <CodeExample title="Item picker selector as contact picker example " code={ExampleRaw}>
+        <CodeExample title="Item picker selector as contact picker example" code={ExampleRaw}>
           <Card>
             <Example/>
           </Card>
