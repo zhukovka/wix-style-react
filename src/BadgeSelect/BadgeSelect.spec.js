@@ -93,7 +93,6 @@ describe('BadgeSelect', () => {
     const onSelect = jest.fn();
     const selectedIndex = 3;
     const { driver } = createComponent({ onSelect });
-    driver.click();
     driver.clickAtOption(selectedIndex);
     expect(onSelect).toBeCalledWith(options[selectedIndex]);
   });
@@ -124,7 +123,6 @@ describe('BadgeSelect', () => {
       const { driver, badgeDriver } = createComponent();
       const selectedIndex = 3;
 
-      driver.click();
       driver.clickAtOption(selectedIndex);
       expect(badgeDriver.getSkin()).toBe(options[0].skin);
       expect(badgeDriver.text()).toBe(options[0].text);
@@ -142,7 +140,6 @@ describe('BadgeSelect', () => {
       });
       const selectedIndex = 3;
 
-      driver.click();
       driver.clickAtOption(selectedIndex);
 
       wrapper.setProps({ selectedId: `${selectedIndex}` });
