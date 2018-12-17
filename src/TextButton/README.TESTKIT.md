@@ -1,8 +1,8 @@
-# CloseButton Testkits
+# TextButton Testkits
 
-> CloseButton
+> TextButton
 
-## CloseButton TestKit API
+## TextButton TestKit API
 
 | method           | arguments | returned value | description                        |
 | ---------------- | --------- | -------------- | ---------------------------------- |
@@ -16,15 +16,15 @@
 ```javascript
 import React from 'react';
 import ReactTestUtils from 'react-dom/test-utils';
-import CloseButton from 'wix-style-react/CloseButton';
-import { closeButtonTestkitFactory } from 'wix-style-react/dist/testkit';
+import TextButton from 'wix-style-react/TextButton';
+import { textButtonTestkitFactory } from 'wix-style-react/dist/testkit';
 
 const div = document.createElement('div');
 const dataHook = 'myDataHook';
 
 const component = (
   <div>
-    <CloseButton dataHook={dataHook} />
+    <TextButton dataHook={dataHook} />
   </div>
 );
 
@@ -32,7 +32,7 @@ const wrapper = div.appendChild(
   ReactTestUtils.renderIntoDocument(component, { dataHook })
 );
 
-const testkit = closeButtonTestkitFactory({ wrapper, dataHook });
+const testkit = textButtonTestkitFactory({ wrapper, dataHook });
 
 //Do tests
 expect(testkit.exists()).toBeTruthy();
@@ -43,17 +43,17 @@ expect(testkit.exists()).toBeTruthy();
 ```javascript
 import React from 'react';
 import { mount } from 'enzyme';
-import CloseButton from 'wix-style-react/CloseButton';
-import { closeButtonTestkitFactory } from 'wix-style-react/dist/testkit/enzyme';
+import TextButton from 'wix-style-react/TextButton';
+import { textButtonTestkitFactory } from 'wix-style-react/dist/testkit/enzyme';
 
 const dataHook = 'myDataHook';
 const wrapper = mount(
   <div>
-    <CloseButton dataHook={dataHook} />
+    <TextButton dataHook={dataHook} />
   </div>
 );
 
-const testkit = closeButtonTestkitFactory({ wrapper, dataHook });
+const testkit = textButtonTestkitFactory({ wrapper, dataHook });
 
 //Do tests
 expect(testkit.exists()).toBeTruthy();
@@ -61,37 +61,37 @@ expect(testkit.exists()).toBeTruthy();
 
 ## Puppeteer Example
 
-> Element should be rendered with a data-hook into the DOM `<CloseButton dataHook="myDataHook" />`
+> Element should be rendered with a data-hook into the DOM `<TextButton dataHook="myDataHook" />`
 
 ```javascript
 import puppeteer from 'puppeteer';
-import { closeButtonTestkitFactory } from 'wix-style-react/dist/testkit/puppeteer';
+import { textButtonTestkitFactory } from 'wix-style-react/dist/testkit/puppeteer';
 
 //puppeteer setup
 const browser = await puppeteer.launch();
 const page = await browser.newPage();
 
 //Create an element testkit via the data-hook attribute
-const testkit = await closeButtonTestkitFactory({
+const testkit = await textButtonTestkitFactory({
   dataHook: 'myDataHook',
   page
 });
-await page.goto('/page-where-closebutton-appears'); //Your application url
+await page.goto('/page-where-button-appears'); //Your application url
 
 expect(await testkit.exists()).toBeTruthy();
 ```
 
 ## Protractor Example
 
-> Element should be rendered with a data-hook into the DOM `<CloseButton dataHook="myDataHook" />`
+> Element should be rendered with a data-hook into the DOM `<TextButton dataHook="myDataHook" />`
 
 ```javascript
-import { closeButtonTestkitFactory } from 'wix-style-react/dist/testkit/protractor';
+import { textButtonTestkitFactory } from 'wix-style-react/dist/testkit/protractor';
 
 //Create an element testkit via the data-hook attribute
-const testkit = closeButtonTestkitFactory({ dataHook: 'myDataHook' });
+const testkit = textButtonTestkitFactory({ dataHook: 'myDataHook' });
 
-await browser.get('/page-where-closebutton-appears'); //Your application url
+await browser.get('/page-where-button-appears'); //Your application url
 
 expect(await testkit.exists()).toBeTruthy();
 ```

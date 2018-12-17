@@ -1,16 +1,19 @@
 import Button from 'wix-style-react/Button';
 
-import icons from './icons-for-story';
+import { storySettings } from './storySettings';
+
+import icons from '../../utils/icons-for-story';
 
 export default {
-  category: '5. Buttons',
-  storyName: '5.5 Premium',
+  category: storySettings.kind,
+  storyName: storySettings.storyName,
   component: Button,
-  componentPath: '../../src/Backoffice/Button',
+  componentPath: '../../../src/Backoffice/Button',
 
   componentProps: {
-    theme: 'fullpurple',
+    theme: 'fullblue',
     children: 'Click Me',
+    dataHook: 'storybook-button',
   },
 
   exampleProps: {

@@ -325,7 +325,7 @@ describe('Notification', () => {
   });
 
   describe('enzyme testkit', () => {
-    it('should exist', () => {
+    it('should exist', async () => {
       const component = mount(<ControlledNotification />);
 
       const enzymeNotificationTestkit = enzymeNotificationTestkitFactory({
@@ -340,7 +340,7 @@ describe('Notification', () => {
       expect(enzymeNotificationTestkit.visible()).toBeFalsy();
       expect(enzymeButtonTestkit.exists()).toBeTruthy();
 
-      enzymeButtonTestkit.click();
+      await enzymeButtonTestkit.click();
 
       expect(enzymeNotificationTestkit.visible()).toBeTruthy();
     });

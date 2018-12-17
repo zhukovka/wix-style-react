@@ -106,6 +106,7 @@ describe('Table Action Cell', () => {
     tooltipDriver1.mouseLeave();
 
     tooltipDriver2.mouseEnter();
+
     await eventually(() =>
       expect(tooltipDriver2.getContent()).toEqual('Action 1'),
     );

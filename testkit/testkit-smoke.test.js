@@ -94,6 +94,12 @@ const COMPONENTS = {
   RichTextArea: {
     beforeAllHook: () => (window.getSelection = () => ({})),
   },
+  Button: {
+    unidriver: true,
+    props: {
+      upgrade: true,
+    },
+  },
   Tag: {
     props: {
       useOldMargins: false,
