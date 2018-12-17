@@ -3,9 +3,9 @@ import React from 'react';
 import { contactItemBuilder } from "wix-style-react/ContactItemBuilder";
 import EmptyState from "wix-style-react/EmptyState";
 import Text from "wix-style-react/Text";
-import Add from "wix-style-react/Add";
 import TextLink from "wix-style-react/TextLink";
 import { ItemPickerSelector } from "./ItemPickerSelector";
+import Add from "wix-ui-icons-common/dist/src/general/dist/components/Add";
 
 export class Example extends React.Component {
   render = () => {

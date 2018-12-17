@@ -54,7 +54,7 @@ export class ItemPickerSelector extends React.Component {
     this.isEmpty() ?
       this.props.emptyStateComponent
       :
-      <div>
+      <div className={styles.selectorWrapper}>
         <div className={styles.searchWrapper}>
           <Search
             className={styles.search}
