@@ -16,7 +16,7 @@ const runLintFix = glob => {
 };
 
 module.exports = async ({ ComponentName }) => {
-  logger.info('Fixing potential lint issues');
+  const spinner = logger.spinner('Fixing potential lint issues');
 
   await runLintFix(
     `${utils.getComponentPath(ComponentName)}/* ${utils.getComponentStoryPath(
@@ -24,5 +24,6 @@ module.exports = async ({ ComponentName }) => {
     )}/*`,
   );
 
-  logger.success('Lint fix succeeded');
+  spinner.stop();
+  logger.success('Linting issues fixed');
 };

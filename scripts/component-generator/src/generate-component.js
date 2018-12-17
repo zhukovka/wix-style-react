@@ -23,12 +23,12 @@ module.exports = async (cwd, options) => {
   logger.divider();
   await copyTemplates(answers);
 
+  logger.divider();
+
   if (!options.skipCodemods) {
-    logger.divider();
     await runCodemods(answers);
   }
 
-  logger.divider();
   await runLintFix(answers);
 
   logger.divider();

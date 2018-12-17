@@ -2,6 +2,9 @@
 
 Thanks for contributing. We're happy for your input and would ask you to follow this contribution guide to maintain a high quality code.
 
+## Creating Components
+[Read here](./docs/contribution/CREATING_COMPONENTS.md)
+
 ## Component Structure
 [Read here](./docs/contribution/COMPONENT_STRUCTURE.md)
 

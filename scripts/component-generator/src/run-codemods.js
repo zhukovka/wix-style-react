@@ -48,8 +48,6 @@ const runTransform = (
 module.exports = async answers => {
   const { ComponentName, componentName } = createValuesMap(answers);
 
-  logger.info('Running codemods');
-
   await runTransform(
     'stories-file.js',
     'Adding story to the stories file',
@@ -75,6 +73,4 @@ module.exports = async answers => {
     ].join(' '),
     { ComponentName, componentName },
   );
-
-  logger.success('Codemods succeeded');
 };
