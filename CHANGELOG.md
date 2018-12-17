@@ -16,15 +16,16 @@ Types of changes:
 
 ## next
 
-### Fixed
-
-- `<Input/>` - (driver) - Fix driver to be created without error when element is null [#2602](https://github.com/wix/wix-style-react/pull/2602)
-
 ### Added
 - `<Proportion/>` - create a new aspect ratio component [#2565](https://github.com/wix/wix-style-react/pull/2565)
+- Add a new component generator [#2552](https://github.com/wix/wix-style-react/pull/2552) [#2593](https://github.com/wix/wix-style-react/pull/2593)
 
 ### Fixed
 - `<Notification.CloseButton/>` - fix styling [#2578](https://github.com/wix/wix-style-react/pull/2578)
+- `<Input/>` - fix testkit driver throwing error when element is null [#2602](https://github.com/wix/wix-style-react/pull/2602)
+
+### Changed
+- `<BadgeSelect/>` - refactor internally to use `<Popover/>` [#2595](https://github.com/wix/wix-style-react/pull/2595)
 
 ### Lab
 - `<ContactItemBuilder/>` - create new component builder [#2556](https://github.com/wix/wix-style-react/pull/2556)
