@@ -18,7 +18,7 @@ function fetchItems({ query }) {
   if (query === '') {
     return Promise.resolve(items);
   } else {
-    return Promise.resolve(items.filter(x => x.title.includes(query)));
+    return Promise.resolve(items.filter(x => x.title.toLowerCase().includes(query.toLowerCase())));
   }
 }
 
