@@ -15,6 +15,11 @@ Types of changes:
 1. **Lab** components and features that are still in a work in progress
 
 ## next
+
+### Fixed
+
+- `<Input/>` - (driver) - Fix driver to be created without error when element is null [#2602](https://github.com/wix/wix-style-react/pull/2602)
+
 ### Added
 - `<Proportion/>` - create a new aspect ratio component [#2565](https://github.com/wix/wix-style-react/pull/2565)
 
