@@ -158,52 +158,55 @@ class Carousel extends React.Component {
         data-hook={this.props.dataHook}
         data-ready={!this._isLoading()}
       >
-          <div className={styles.imagesAndButtonsContainer}>
-            <div className={styles.gallery}>
-              {prevButton}
-              <Proportion aspectRatio={Proportion.PREDEFINED_RATIOS.landscape} className={styles.imagesContainerLayout}>
-                <div
-                  data-hook="images-container"
-                  className={styles.imagesContainer}
-                  data-is-loading={this._isLoading()}
-                  onMouseOver={() => this._stopSlideshow()}
-                  onMouseOut={() => this._continueSlideshow()}
-                >
-                  {this.props.images.map((image, currentIndex) => {
-                    return (
-                      <div
-                        key={currentIndex}
-                        className={classNames(styles.imageContainer, {
-                          [styles.active]:
-                            currentIndex === this.state.activeIndex,
-                          [styles.prev]: currentIndex === this._getPrevIndex(),
-                          [styles.next]: currentIndex === this._getNextIndex(),
-                        })}
-                      >
-                        <img
-                          className={styles.image}
-                          data-hook="carousel-img"
-                          src={image.src}
-                          onLoad={() => this._onImageLoad()}
-                        />
-                      </div>
-                    );
-                  })}
+        <div className={styles.imagesAndButtonsContainer}>
+          <div className={styles.gallery}>
+            {prevButton}
+            <Proportion
+              aspectRatio={Proportion.PREDEFINED_RATIOS.landscape}
+              className={styles.imagesContainerLayout}
+            >
+              <div
+                data-hook="images-container"
+                className={styles.imagesContainer}
+                data-is-loading={this._isLoading()}
+                onMouseOver={() => this._stopSlideshow()}
+                onMouseOut={() => this._continueSlideshow()}
+              >
+                {this.props.images.map((image, currentIndex) => {
+                  return (
+                    <div
+                      key={currentIndex}
+                      className={classNames(styles.imageContainer, {
+                        [styles.active]:
+                          currentIndex === this.state.activeIndex,
+                        [styles.prev]: currentIndex === this._getPrevIndex(),
+                        [styles.next]: currentIndex === this._getNextIndex(),
+                      })}
+                    >
+                      <img
+                        className={styles.image}
+                        data-hook="carousel-img"
+                        src={image.src}
+                        onLoad={() => this._onImageLoad()}
+                      />
+                    </div>
+                  );
+                })}
+              </div>
+              {this._isLoading() ? (
+                <div className={styles.loader}>
+                  <Loader dataHook="loader" size="small" />
                 </div>
-                {this._isLoading() ? (
-                  <div className={styles.loader}>
-                    <Loader dataHook="loader" size="small" />
-                  </div>
-                ) : null}
-              </Proportion>
-              {nextButton}
-            </div>
-            <Pagination
-              className={styles.paginationLayout}
-              totalPages={this.props.images.length}
-              currentPage={this._getActivePage()}
-            />
+              ) : null}
+            </Proportion>
+            {nextButton}
           </div>
+          <Pagination
+            className={styles.paginationLayout}
+            totalPages={this.props.images.length}
+            currentPage={this._getActivePage()}
+          />
+        </div>
       </div>
     );
   }
