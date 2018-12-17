@@ -4,6 +4,7 @@ import sinon from 'sinon';
 import inputDriverFactory from './Input.driver';
 import Input from '.';
 import { createDriverFactory } from 'wix-ui-test-utils/driver-factory';
+import { render, cleanup } from '../../test/utils/react';
 import { inputTestkitFactory, tooltipTestkitFactory } from '../../testkit';
 import { inputTestkitFactory as enzymeInputTestkitFactory } from '../../testkit/enzyme';
 import {
@@ -717,8 +718,41 @@ describe('Input', () => {
   });
 });
 
+describe('testkit exists', () => {
+  afterEach(() => cleanup());
+
+  it('should NOT exist', () => {
+    const dataHook1 = 'hook1';
+    const dataHook2 = 'hook2';
+    const value = 'hello';
+    const onChange = () => {};
+
+    const { container } = render(
+      <Input value={value} onChange={onChange} dataHook={dataHook1} />,
+    );
+
+    const driver = inputTestkitFactory({
+      wrapper: container,
+      dataHook: dataHook2,
+    });
+
+    expect(driver.exists()).toBeFalsy();
+  });
+});
+
 describe('testkit', () => {
   it('should exist', () => {
+    const value = 'hello';
+    const onChange = () => {};
+    expect(
+      isTestkitExists(
+        <Input value={value} onChange={onChange} />,
+        inputTestkitFactory,
+      ),
+    ).toBe(true);
+  });
+
+  it('should NOT exist', () => {
     const value = 'hello';
     const onChange = () => {};
     expect(

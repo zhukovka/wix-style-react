@@ -13,7 +13,8 @@ const inputDriverFactory = ({ element, wrapper, component }) => {
     element && element.querySelector(`.${styles.magnifyingGlass}`);
   const menuArrowNode =
     element && element.querySelector(`.${styles.menuArrow}`);
-  const [name, type] = [input.getAttribute('name'), input.getAttribute('type')];
+  const getName = () => input.getAttribute('name');
+  const getType = () => input.getAttribute('type');
 
   const driver = {
     trigger: (trigger, event) => ReactTestUtils.Simulate[trigger](input, event),
@@ -25,8 +26,8 @@ const inputDriverFactory = ({ element, wrapper, component }) => {
       input.blur();
       ReactTestUtils.Simulate.blur(input);
     },
-    getName: () => name,
-    getType: () => type,
+    getName,
+    getType,
     keyDown: key => ReactTestUtils.Simulate.keyDown(input, { key }),
     click: () => ReactTestUtils.Simulate.click(input),
     clickSuffix: () => ReactTestUtils.Simulate.click(suffixNode),
@@ -40,7 +41,7 @@ const inputDriverFactory = ({ element, wrapper, component }) => {
     clearText: () => driver.enterText(''),
     enterText: text =>
       ReactTestUtils.Simulate.change(input, {
-        target: { name, type, value: text },
+        target: { name: getName(), type: getType(), value: text },
       }),
     getValue: () => input.value,
     getPlaceholder: () => input.placeholder,
