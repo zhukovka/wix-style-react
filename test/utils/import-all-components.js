@@ -16,6 +16,7 @@ const NON_COMPONENT_FOLDER_NAMES = [
   'Typography',
   'TPA',
   'Animations',
+  'CalendarPanel'
 ];
 
 const matches = haystack => needle => haystack.some(h => needle === h);

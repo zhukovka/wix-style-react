@@ -7,6 +7,12 @@ import inputDriverFactory from '../src/Input/Input.driver';
 
 export const inputTestkitFactory = testkitFactoryCreator(inputDriverFactory);
 
+import buttonLayoutDriverFactory from '../src/ButtonLayout/ButtonLayout.driver';
+
+export const buttonLayoutTestkitFactory = testkitFactoryCreator(
+  buttonLayoutDriverFactory,
+);
+
 import inputAreaDriverFactory from '../src/InputArea/InputArea.driver';
 
 export const inputAreaTestkitFactory = testkitFactoryCreator(
