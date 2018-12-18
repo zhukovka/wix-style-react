@@ -9,13 +9,14 @@ import Text from "wix-style-react/Text";
 import TextButton from "wix-style-react/TextButton";
 import Button from "wix-style-react/Button";
 import Search from "wix-style-react/Search";
+import Loader from "wix-style-react/Loader";
 import DropdownLayout from "wix-style-react/DropdownLayout";
 import Add from "wix-ui-icons-common/dist/src/general/dist/components/Add";
 
 export class ItemPickerSelector extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { items: [], inputText: '', isFetching: false };
+    this.state = { items: [], inputText: '', isLoading: true };
   }
 
   static propTypes = {
@@ -39,9 +40,16 @@ export class ItemPickerSelector extends React.Component {
   };
 
   queryItems = (query = '') => {
-    this.props.fetchItems({ query }).then(items => {
-      this.setState({ items });
-    });
+    this.setState({ isLoading: true });
+    setTimeout(() => {
+        this.props.fetchItems({ query }).then(items => {
+          this.setState({
+            items,
+            isLoading: false
+          });
+        })
+      }
+      , 500);
   };
 
   debouncedQueryItems = debounce(this.queryItems, 300);
@@ -77,16 +85,26 @@ export class ItemPickerSelector extends React.Component {
             value={this.state.inputText}
           />
         </div>
-        {this.isEmpty() ?
-          this.props.emptyStateComponent
-          :
-          <DropdownLayout
-            options={this.state.items.map(this.props.itemBuilder)}
-            fixedFooter={this.props.footer}
-            onSelect={item => this.onSelectedItem({ id: item.id })}
-            inContainer
-            visible
-          />}
+        {
+          this.state.isLoading ?
+            <div style={{
+              'top': 'calc( 50% - 27px )',
+              'left': 'calc( 50% - 27px )',
+              'position': 'absolute'
+            }}>
+              <Loader/>
+            </div>
+            :
+            this.isEmpty() ?
+              this.props.emptyStateComponent
+              :
+              <DropdownLayout
+                options={this.state.items.map(this.props.itemBuilder)}
+                fixedFooter={this.props.footer}
+                onSelect={item => this.onSelectedItem({ id: item.id })}
+                inContainer
+                visible
+              />}
       </div>
     );
   }
@@ -102,27 +120,27 @@ export default class Example extends React.Component {
     this.setState(({ shown }) => ({ shown: !shown }));
   }
 
+  items = [
+    {
+      id: 0,
+      title: 'Title with image',
+      subtitle: 'subtitle with image',
+      imageUrl: 'https://randomuser.me/api/portraits/women/39.jpg'
+    },
+    { id: 1, title: 'No image title', subtitle: 'No image subtitle' },
+    { id: 2, title: 'No subtitle item' },
+  ];
   render = () => {
 
     const fetchItems = ({ query }) => {
-      const items = [
-        {
-          id: 0,
-          title: 'Title with image',
-          subtitle: 'subtitle with image',
-          imageUrl: 'https://randomuser.me/api/portraits/women/39.jpg'
-        },
-        { id: 1, title: 'No image title', subtitle: 'No image subtitle' },
-        { id: 2, title: 'No subtitle item' },
-      ];
       if (query === '') {
-        return Promise.resolve(items);
+        return Promise.resolve(this.items);
       } else {
-        return Promise.resolve(items.filter(x => x.title.toLowerCase().includes(query.toLowerCase())));
+        return Promise.resolve(this.items.filter(x => x.title.toLowerCase().includes(query.toLowerCase())));
       }
     };
 
-    const emptyStateStyle = {'margin' : 'auto 0'};
+    const emptyStateStyle = { 'margin': 'auto 0' };
 
     const emptyStateComponent =
       <div style={emptyStateStyle}>
@@ -164,7 +182,7 @@ export default class Example extends React.Component {
       timeout={150}
     >
       <Popover.Element>
-        <Button>toggle contact picker</Button>
+        <Button>toggle item picker selector</Button>
       </Popover.Element>
       <Popover.Content>
         <div style={wrapperStyle}>
