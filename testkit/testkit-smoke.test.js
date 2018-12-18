@@ -1,7 +1,6 @@
 import React from 'react';
 import { mount } from 'enzyme';
 import { render, cleanup } from 'react-testing-library';
-import path from 'path';
 
 import {
   isEnzymeTestkitExists,
@@ -17,7 +16,6 @@ import * as reactTestUtilsTestkitFactories from './index';
 import * as enzymeTestkitFactories from './enzyme';
 
 const noop = () => {};
-const cwd = path.resolve(__dirname, '..', 'src');
 const lowerFirst = a =>
   a
     .charAt(0)
@@ -34,7 +32,7 @@ const DRIVER_ASSERTS = {
     describe('Enzyme testkits', () => {
       attachHooks(beforeAllHook, afterAllHook);
 
-      it(`${name} should have enzyme testkit`, () =>
+      it(`${name} should pass sanity test`, () =>
         expect(
           isEnzymeTestkitExists(
             React.createElement(component, props),
@@ -48,7 +46,7 @@ const DRIVER_ASSERTS = {
   vanilla: ({ name, component, props, beforeAllHook, afterAllHook }) => {
     describe('ReactTestUtils testkits', () => {
       attachHooks(beforeAllHook, afterAllHook);
-      it(`${name} should have ReactTestUtils testkit`, () =>
+      it(`${name} should pass sanity test`, () =>
         expect(
           isTestkitExists(
             React.createElement(component, props),
@@ -84,7 +82,7 @@ const UNIDRIVER_ASSERTS = {
   enzyme: ({ name, component, props, beforeAllHook, afterAllHook }) => {
     describe('Enzyme unidriver testkits', () => {
       attachHooks(beforeAllHook, afterAllHook);
-      it(`${name} should have enzyme testkit`, () =>
+      it(`${name} should pass sanity test`, () =>
         expect(
           isUniEnzymeTestkitExists(
             React.createElement(component, props),
@@ -98,7 +96,7 @@ const UNIDRIVER_ASSERTS = {
   vanilla: ({ name, component, props, beforeAllHook, afterAllHook }) => {
     describe('ReactTestUtils unidriver testkits', () => {
       attachHooks(beforeAllHook, afterAllHook);
-      it(`${name} should have ReactTestUtils testkit`, () =>
+      it(`${name} should pass sanity test`, () =>
         expect(
           isUniTestkitExists(
             React.createElement(component, props),
@@ -109,13 +107,21 @@ const UNIDRIVER_ASSERTS = {
   },
 };
 
-const filteredComponents = Object.entries(AllComponents)
-  .filter(([name]) =>
-    COMPONENT_DEFINITIONS[name] ? !COMPONENT_DEFINITIONS[name].ignore : true,
-  )
-  .reduce((acc, [name, component]) => ({ ...acc, [name]: component }), {});
+const EXPORT_ASSERTS = {
+  enzyme: name => {
+    describe('Enzyme testkit exports', () => {
+      it(`should contain ${name}`, () =>
+        expect(
+          typeof enzymeTestkitFactories[`${lowerFirst(name)}TestkitFactory`],
+        ).toBe('function'));
+    });
+  },
+};
 
-Object.entries(filteredComponents).forEach(([name, component]) => {
+Object.keys({
+  ...AllComponents,
+  ...COMPONENT_DEFINITIONS,
+}).forEach(name => {
   const definition = COMPONENT_DEFINITIONS[name] || {};
 
   const config = {
@@ -124,14 +130,24 @@ Object.entries(filteredComponents).forEach(([name, component]) => {
     props: {},
     ...definition,
     name,
-    component,
+    component: AllComponents[name],
   };
 
-  const asserts = definition.unidriver ? UNIDRIVER_ASSERTS : DRIVER_ASSERTS;
+  if (!definition.skipSanityTest) {
+    const sanityAsserts = definition.unidriver
+      ? UNIDRIVER_ASSERTS
+      : DRIVER_ASSERTS;
 
-  if (definition.drivers) {
-    definition.drivers.forEach(driver => asserts[driver](config));
-  } else {
-    Object.keys(asserts).forEach(driver => asserts[driver](config));
+    if (definition.drivers) {
+      definition.drivers.forEach(driver => sanityAsserts[driver](config));
+    } else {
+      Object.keys(sanityAsserts).forEach(driver =>
+        sanityAsserts[driver](config),
+      );
+    }
+  }
+
+  if (!definition.noTestkit) {
+    EXPORT_ASSERTS.enzyme(name);
   }
 });

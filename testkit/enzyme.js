@@ -33,11 +33,14 @@ const importTestkit = name => {
   }
 };
 
-const isNotIgnored = name =>
-  COMPONENT_DEFINITIONS[name] ? !COMPONENT_DEFINITIONS[name].ignore : true;
+const hasTestkit = name =>
+  COMPONENT_DEFINITIONS[name] ? !COMPONENT_DEFINITIONS[name].noTestkit : true;
 
-const exportableTestkits = Object.keys(AllComponents)
-  .filter(isNotIgnored)
+const exportableTestkits = Object.keys({
+  ...AllComponents, // TODO: AllComponents does not yet include all components, because there are nested folders that are treated as top level components
+  ...COMPONENT_DEFINITIONS,
+})
+  .filter(hasTestkit)
 
   .reduce((testkits, name) => {
     const definition = COMPONENT_DEFINITIONS[name] || {};
@@ -64,55 +67,4 @@ const exportableTestkits = Object.keys(AllComponents)
     return testkits;
   }, {});
 
-// additional exports are NOT tested automatically, they are tested within component specs
-// TODO: they should be tested automatically, but because they're compound components with nondeterministic
-// locations, for now it's just manual
-const ADDITIONAL_TESTKITS = {
-  // TODO: is this component in use at all?
-  backofficeTooltipTestkitFactory: '../src/Backoffice/Tooltip/Tooltip.driver',
-
-  tpaButtonTestkitFactory: '../src/TPA/Button/Button.driver',
-  tpaTextLinkTestkitFactory: '../src/TPA/TextLink/TextLink.driver',
-
-  radioButtonTestkitFactory: '../src/RadioGroup/RadioButton/RadioButton.driver',
-  editableRowTestkitFactory:
-    '../src/EditableSelector/EditableRow/EditableRow.driver',
-  tpaInputTestkitFactory: '../src/TPA/Input/Input.driver',
-
-  // TODO: this is actually  Card.Header, but is exported just as header
-  headerTestkitFactory: '../src/Card/Header/Header.driver',
-
-  buttonHeaderTestkitFactory: '../src/Card/ButtonHeader/ButtonHeader.driver',
-  linkHeaderTestkitFactory: '../src/Card/LinkHeader/LinkHeader.driver',
-  messageBoxMarketerialLayoutTestkitFactory:
-    '../src/MessageBox/MessageBoxMarketerialLayout.driver',
-
-  messageBoxFunctionalLayoutTestkitFactory:
-    '../src/MessageBox/MessageBoxFunctionalLayout.driver',
-
-  multiSelectCheckboxTestkitFactory:
-    '../src/MultiSelectCheckbox/MultiSelectCheckbox.driver',
-
-  multiSelectTestkitFactory: '../src/MultiSelect/MultiSelect.driver',
-
-  buttonWithOptionsTestkitFactory:
-    '../src/ButtonWithOptions/ButtonWithOptions.driver',
-
-  iconWithOptionsTestkitFactory:
-    '../src/IconWithOptions/IconWithOptions.driver',
-  datePickerTestkitFactory: '../src/DatePicker/DatePicker.driver',
-
-  textLinkLayoutTestkitFactory:
-    '../src/BaseComponents/TextLinkLayout/TextLinkLayout.driver',
-};
-
-const requireAdditionalTestkits = testkits =>
-  Object.entries(testkits).reduce((acc, [name, importPath]) => {
-    acc[name] = enzymeTestkitFactoryCreator(require(importPath).default);
-    return acc;
-  }, {});
-
-module.exports = {
-  ...exportableTestkits,
-  ...requireAdditionalTestkits(ADDITIONAL_TESTKITS),
-};
+module.exports = exportableTestkits;

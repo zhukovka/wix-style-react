@@ -25,8 +25,9 @@ const {
 } = AllComponents;
 
 // these are just for object shortcuts
-const ignore = true;
+const skipSanityTest = true;
 const unidriver = true;
+const noTestkit = true;
 
 /*
  * This file exports object with component definitions.
@@ -52,7 +53,10 @@ const unidriver = true;
  *   drivers?: ['vanilla', 'enzyme']
  *
  *   // skip automatic export AND tests for this component entirely
- *   ignore?: false;
+ *   skipSanityTest?: false;
+ *
+ *   // do not export testkit automatically. Some components simply lack testkits.
+ *   noTestkit?: false;
  *
  *   unidriver?: false;
  *
@@ -75,14 +79,25 @@ const unidriver = true;
  */
 
 export default {
-  SideMenuDrill: { ignore },
-  BadgeSelectItemBuilder: { ignore },
+  SideMenuDrill: {
+    skipSanityTest,
+    enzymeTestkitFactory: require('../src/SideMenu/DrillView/DrillView.driver')
+      .default,
+  },
+  BadgeSelectItemBuilder: { skipSanityTest, noTestkit },
+  BackofficeTooltip: {
+    // TODO: is this component in use at all?
+    skipSanityTest,
+    enzymeTestkitFactory: require('../src/Backoffice/Tooltip/Tooltip.driver')
+      .default,
+  },
   ColorPicker: {
-    ignore,
-    enzymeTestkit: require('../src/ColorPicker/color-picker.driver').default,
+    skipSanityTest,
+    enzymeTestkitFactory: require('../src/ColorPicker/color-picker.driver')
+      .default,
   },
   ButtonWithOptions: {
-    ignore, // testkit does not have root `exists` method
+    skipSanityTest, // testkit does not have root `exists` method
   },
   DropdownComposite: {
     props: {
@@ -90,10 +105,10 @@ export default {
     },
   },
   IconWithOptions: {
-    ignore, // testkit does not have root `exists` method
+    skipSanityTest, // testkit does not have root `exists` method
   },
   MultiSelect: {
-    ignore, // testkit does not have root `exists` method
+    skipSanityTest, // testkit does not have root `exists` method
   },
   MultiSelectComposite: {
     props: {
@@ -101,24 +116,27 @@ export default {
     },
   },
   MultiSelectCheckbox: {
-    ignore, // testkit does not have root `exists` method
+    skipSanityTest, // testkit does not have root `exists` method
   },
   AutoCompleteComposite: {
     props: {
       children: [<AutoComplete key={1} />],
     },
   },
-  DragAndDrop: { ignore },
-  DragDropContextProvider: { ignore },
-  EndorseContentLayout: { ignore },
-  GoogleAddressInput: { ignore },
-  GoogleAddressInputWithLabel: { ignore },
-  Grid: { ignore }, // Component has no testkit
-  HBox: { ignore }, // Component has no testkit
-  Layout: { ignore },
-  MessageBox: { ignore },
+  DragAndDrop: { skipSanityTest, noTestkit },
+  DragDropContextProvider: { skipSanityTest, noTestkit },
+  EndorseContentLayout: { skipSanityTest },
+  GoogleAddressInput: { skipSanityTest },
+  GoogleAddressInputWithLabel: { skipSanityTest },
+  Grid: { skipSanityTest, noTestkit },
+  HBox: { skipSanityTest, noTestkit },
+  Layout: { skipSanityTest, noTestkit },
+  MessageBox: { skipSanityTest, noTestkit },
   ButtonHeader: {
     // it's actually Card.ButtonHeader, should be deprecated
+    enzymeTestkitFactory: require('../src/Card/ButtonHeader/ButtonHeader.driver')
+      .default,
+    skipSanityTest,
     props: {
       buttonTitle: 'Click me',
       subtitle: 'Header Subtitle',
@@ -126,9 +144,24 @@ export default {
       buttonOnClick: () => {},
     },
   },
-  Page: { ignore },
-  PageHeader: { ignore },
-  PopoverMenuItem: { ignore },
+  LinkHeader: {
+    enzymeTestkitFactory: require('../src/Card/LinkHeader/LinkHeader.driver')
+      .default,
+    skipSanityTest,
+  },
+  CollapsedHeader: {
+    skipSanityTest,
+    enzymeTestkitFactory: require('../src/Card/CollapsedHeader/CollapsedHeader.driver')
+      .default,
+  },
+  Header: {
+    // TODO: this is actually  Card.Header, but is exported just as header
+    enzymeTestkitFactory: require('../src/Card/Header/Header.driver').default,
+    skipSanityTest,
+  },
+  Page: { skipSanityTest },
+  PageHeader: { skipSanityTest },
+  PopoverMenuItem: { skipSanityTest, noTestkit },
   Popover: {
     props: {
       children: [
@@ -141,25 +174,25 @@ export default {
       ],
     },
   },
-  TableToolbar: { ignore },
-  Tooltip: { ignore },
-  VBox: { ignore }, // Component has no testkit
-  Collapse: { ignore },
-  Card: { ignore }, // Component has no testkit
+  TableToolbar: { skipSanityTest, noTestkit },
+  Tooltip: { skipSanityTest },
+  VBox: { skipSanityTest, noTestkit },
+  Collapse: { skipSanityTest, noTestkit },
+  Card: { skipSanityTest, noTestkit },
   LinearProgressBar: {
-    ignore,
-    enzymeTestkit: linearProgressBarTestkitFactory,
+    skipSanityTest,
+    enzymeTestkitFactory: linearProgressBarTestkitFactory,
   },
   CircularProgressBar: {
-    ignore,
-    enzymeTestkit: circularProgressBarTestkitFactory,
+    skipSanityTest,
+    enzymeTestkitFactory: circularProgressBarTestkitFactory,
   },
-  Composite: { ignore },
+  Composite: { skipSanityTest, noTestkit },
   FloatingHelper: {
-    ignore,
-    enzymeTestkit: floatingHelperTestkitFactory,
+    skipSanityTest,
+    enzymeTestkitFactory: floatingHelperTestkitFactory,
   },
-  FullTextView: { ignore },
+  FullTextView: { skipSanityTest, noTestkit },
 
   RichTextArea: {
     beforeAllHook: () => (window.getSelection = () => ({})),
@@ -174,9 +207,9 @@ export default {
       children: [<Input key="0" />, <Input key="1" />],
     },
   },
-  Avatar: { unidriver, ignore },
+  Avatar: { unidriver, skipSanityTest },
   ButtonLayout: {
-    ignore, // TODO: i don't knowm, it fails, need to check why. Currently it doesn't have test anyway. Leaving for later
+    skipSanityTest, // TODO: i don't knowm, it fails, need to check why. Currently it doesn't have test anyway. Leaving for later
     props: {
       children: <div>abc</div>,
     },
@@ -190,15 +223,15 @@ export default {
   },
   TextButton: {
     unidriver,
-    ignore, // different usage
+    skipSanityTest, // different usage
   },
   IconButton: {
     unidriver,
-    ignore,
+    skipSanityTest,
   },
   CloseButton: {
     unidriver,
-    ignore,
+    skipSanityTest,
   },
   Label: { enzymeTestkit: labelTestkitFactory },
   SideMenu: {
@@ -295,7 +328,28 @@ export default {
       contentLabel: 'modal_12345678',
     },
   },
-  ContactItemBuilder: { ignore },
+  ContactItemBuilder: { skipSanityTest },
+  Draggable: {
+    enzymeTestkitFactory: require('../src/DragAndDrop/Draggable/Draggable.driver')
+      .default,
+    skipSanityTest,
+  },
+  EditableRow: {
+    enzymeTestkitFactory: require('../src/EditableSelector/EditableRow/EditableRow.driver')
+      .default,
+    skipSanityTest,
+  },
+  FieldLabelAttributes: {
+    enzymeTestkitFactory: require('../src/FieldLabelAttributes/FieldLabelAttributes.driver')
+      .default,
+    skipSanityTest,
+  },
+
+  FieldWithSelectionComposite: {
+    enzymeTestkitFactory: require('../src/Composite/FieldWithSelectionComposite/FieldWithSelectionComposite.driver')
+      .default,
+    skipSanityTest,
+  },
   Carousel: {
     drivers: ['enzyme'],
   },
@@ -308,7 +362,7 @@ export default {
     },
   },
   DatePicker: {
-    ignore, // testkit does not have root `exists` method
+    skipSanityTest, // testkit does not have root `exists` method
     props: {
       onChange: () => {},
     },
@@ -322,6 +376,45 @@ export default {
         }),
     },
   },
-  Proportion: { ignore, unidriver, drivers: ['enzyme'] },
-  GeneratedTestComponent: { ignore, unidriver, drivers: ['enzyme'] },
+  Proportion: { skipSanityTest, unidriver, drivers: ['enzyme'] },
+  GeneratedTestComponent: { skipSanityTest, unidriver, drivers: ['enzyme'] },
+
+  TpaButton: {
+    enzymeTestkitFactory: require('../src/TPA/Button/Button.driver').default,
+    skipSanityTest,
+  },
+  TpaFloatingTabs: {
+    enzymeTestkitFactory: require('../src/TPA/FloatingTabs/FloatingTabs.driver')
+      .default,
+    skipSanityTest,
+  },
+  TpaTextLink: {
+    enzymeTestkitFactory: require('../src/TPA/TextLink/TextLink.driver')
+      .default,
+    skipSanityTest,
+  },
+  RadioButton: {
+    enzymeTestkitFactory: require('../src/RadioGroup/RadioButton/RadioButton.driver')
+      .default,
+    skipSanityTest,
+  },
+  TpaInput: {
+    enzymeTestkitFactory: require('../src/TPA/Input/Input.driver').default,
+    skipSanityTest,
+  },
+  MessageBoxMarketerialLayout: {
+    enzymeTestkitFactory: require('../src/MessageBox/MessageBoxMarketerialLayout.driver')
+      .default,
+    skipSanityTest,
+  },
+  MessageBoxFunctionalLayout: {
+    enzymeTestkitFactory: require('../src/MessageBox/MessageBoxFunctionalLayout.driver')
+      .default,
+    skipSanityTest,
+  },
+  TextLinkLayout: {
+    enzymeTestkitFactory: require('../src/BaseComponents/TextLinkLayout/TextLinkLayout.driver')
+      .default,
+    skipSanityTest,
+  },
 };
