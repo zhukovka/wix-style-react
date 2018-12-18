@@ -14,6 +14,16 @@ Types of changes:
 1. **Docs** for documentation changes
 1. **Lab** components and features that are still in a work in progress
 
+## Next
+
+### Added
+
+- `<MessageBox />` - Added RTL support [#2608](https://github.com/wix/wix-style-react/pull/2608)
+
+### Fixed
+
+- `<Tooltip/>` - Add back `tooltip-content` data-hook [#2609](https://github.com/wix/wix-style-react/pull/2609)
+
 ## 5.17.0
 
 ### Added
