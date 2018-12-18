@@ -152,6 +152,7 @@
       "jest": true
     },
     "rules": {
+      "wix-style-react/no-full-wsr-lib": 0,
       "react/jsx-handler-names": 0,
       "react/no-find-dom-node": 0,
       "react/no-string-refs": 0,
