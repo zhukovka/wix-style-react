@@ -25,6 +25,7 @@ Types of changes:
 
 - `<Tooltip/>` - Add back `tooltip-content` data-hook [#2609](https://github.com/wix/wix-style-react/pull/2609)
 - `<Search/>` - Allow regexp special chars as search term [#2606](https://github.com/wix/wix-style-react/pull/2606)
+- `<Button/>`,`<MessageBoxMarketerialLayout/>` - Fix deprecationLog [#2598](https://github.com/wix/wix-style-react/pull/2598)
 
 ## 5.17.0
 
