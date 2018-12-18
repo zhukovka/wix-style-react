@@ -143,7 +143,7 @@ class TooltipContent extends Component {
                 color,
               }}
             >
-              <div>{children}</div>
+              <div data-hook="tooltip-content">{children}</div>
             </div>
             {showArrow && (
               <div
