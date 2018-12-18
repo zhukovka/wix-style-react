@@ -111,4 +111,23 @@ const tooltipDriverFactory = ({ element, wrapper }) => {
   };
 };
 
-export default tooltipDriverFactory;
+export default assertExistsWrapper(
+  tooltipDriverFactory,
+  `The Tooltip testkit could not be initialized, please make sure that a dataHook is directly applied to the Tooltip component and passed to the tooltipTestkitFactory.`,
+);
+
+function assertExistsWrapper(driver, msg) {
+  return (...args) =>
+    /* eslint-disable no-restricted-globals */
+    new Proxy(driver(...args), {
+      /* eslint-enable no-restricted-globals */
+      get: (_driver, prop) => {
+        if (_driver.exists && prop !== 'exists') {
+          if (!_driver.exists()) {
+            throw new Error(msg);
+          }
+        }
+        return _driver[prop];
+      },
+    });
+}

@@ -730,6 +730,18 @@ describe('Tooltip', () => {
       expect(driver.hasAnimationClass()).toBeFalsy();
     });
   });
+
+  describe('assertExistsWrapper', () => {
+    it('should return exists false', () => {
+      const driver = tooltipDriverFactory({ element: null });
+      expect(driver.exists()).toBeFalsy();
+    });
+
+    it('should throw error', () => {
+      const driver = tooltipDriverFactory({ element: null });
+      expect(() => driver.isShown()).toThrowError('Tooltip');
+    });
+  });
 });
 
 function resolveIn(timeout) {

@@ -31,8 +31,10 @@ If your component's `unidriver` is composing other components that don’t use u
 1. Never return a `DOM` element as this is not a good abstraction over the component.
 
 ## Exposed TestKits
-1. Each component has a `<componentName>TestkitFactory` method which exposes  the test driveri of the relevant to component.
+
+1. Each component has a `<componentName>TestkitFactory` method which exposes the test driver of the relevant to component.
 1. A TestKit input is a wrapper object (DOM node for vanilla, enzyme wrapper for enzyme) and `dataHook`, and returns an object which contains all API methods.
+1. The created Testkit have an `exists` method. And all other methods should throw an error with propper message when `testkit.exists() === false`.
 1. Export your `testkitFactory` from the following files:
   * `wix-style-react/testkit/index.js`
   * `wix-style-react/testkit/enzyme.js`
