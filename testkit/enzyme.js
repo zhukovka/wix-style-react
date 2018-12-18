@@ -5,12 +5,11 @@ import {
   enzymeUniTestkitFactoryCreator,
 } from 'wix-ui-test-utils/enzyme';
 
-import importAllComponents from '../test/utils/import-all-components';
+import AllComponents from '../scripts/all-components';
 
 import COMPONENT_DEFINITIONS from './component-definitions';
 
 const cwd = path.resolve(__dirname, '..', 'src');
-const AllComponents = importAllComponents({ cwd });
 const TESTKIT_EXTENSION = '.driver';
 
 const lowerFirst = string => string[0].toLowerCase() + string.slice(1);

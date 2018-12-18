@@ -10,16 +10,19 @@ import {
   circularProgressBarTestkitFactory,
 } from 'wix-ui-backoffice/dist/src/testkit/enzyme';
 
-// TODO: this temporary, later reuse `importAllComponents` (but make it easily reusable)
-import Popover from '../src/Popover';
-import Dropdown from '../src/Dropdown';
-import MultiSelect from '../src/MultiSelect';
-import AutoComplete from '../src/AutoComplete';
-import Input from '../src/Input';
-import InputArea from '../src/InputArea';
-import Label from '../src/Label';
-import RichTextArea from '../src/RichTextArea';
-import Notification from '../src/Notification';
+import AllComponents from '../scripts/all-components';
+
+const {
+  Popover,
+  Dropdown,
+  MultiSelect,
+  AutoComplete,
+  Input,
+  InputArea,
+  Label,
+  RichTextArea,
+  Notification,
+} = AllComponents;
 
 // these are just for object shortcuts
 const ignore = true;

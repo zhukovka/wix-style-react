@@ -9,16 +9,12 @@ import {
 } from 'wix-ui-test-utils/enzyme';
 import { isTestkitExists, isUniTestkitExists } from 'wix-ui-test-utils/vanilla';
 
-import importAllComponents from '../test/utils/import-all-components';
+import AllComponents from '../scripts/all-components';
 
 import COMPONENT_DEFINITIONS from './component-definitions.js';
 
 import * as reactTestUtilsTestkitFactories from './index';
 import * as enzymeTestkitFactories from './enzyme';
-
-const IGNORED_COMPONENTS = Object.entries(COMPONENT_DEFINITIONS)
-  .filter(([, { ignore }]) => ignore)
-  .map(([name]) => name);
 
 const noop = () => {};
 const cwd = path.resolve(__dirname, '..', 'src');
@@ -27,11 +23,6 @@ const lowerFirst = a =>
     .charAt(0)
     .toLowerCase()
     .concat(a.slice(1));
-
-const AllComponents = importAllComponents({
-  cwd,
-  ignore: IGNORED_COMPONENTS,
-});
 
 const attachHooks = (beforeAllHook, afterAllHook) => {
   beforeAll(async () => await beforeAllHook());
@@ -118,7 +109,13 @@ const UNIDRIVER_ASSERTS = {
   },
 };
 
-Object.entries(AllComponents).forEach(([name, component]) => {
+const filteredComponents = Object.entries(AllComponents)
+  .filter(([name]) =>
+    COMPONENT_DEFINITIONS[name] ? !COMPONENT_DEFINITIONS[name].ignore : true,
+  )
+  .reduce((acc, [name, component]) => ({ ...acc, [name]: component }), {});
+
+Object.entries(filteredComponents).forEach(([name, component]) => {
   const definition = COMPONENT_DEFINITIONS[name] || {};
 
   const config = {
