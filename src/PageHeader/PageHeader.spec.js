@@ -169,6 +169,21 @@ describe('PageHeader', () => {
     expect(driver.isBackButtonExists()).toBeFalsy();
   });
 
+  it('should execute the given back button callback once the back button is clicked', () => {
+    const backButtonCallback = jest.fn();
+    const pageHeader = (
+      <PageHeader
+        title={title}
+        showBackButton
+        onBackClicked={backButtonCallback}
+      />
+    );
+    const driver = createDriver(pageHeader);
+    driver.clickBackButton();
+
+    expect(backButtonCallback).toBeCalledTimes(1);
+  });
+
   it('should have custom className', () => {
     const pageHeader = <PageHeader title={title} className="myClass" />;
     const driver = createDriver(pageHeader);
