@@ -19,10 +19,12 @@ Types of changes:
 ### Added
 
 - `<MessageBox />` - Added RTL support [#2608](https://github.com/wix/wix-style-react/pull/2608)
+- `<Popover/>` - improve arrow styles [#2594](https://github.com/wix/wix-style-react/pull/2594)
 
 ### Fixed
 
 - `<Tooltip/>` - Add back `tooltip-content` data-hook [#2609](https://github.com/wix/wix-style-react/pull/2609)
+- `<Search/>` - Allow regexp special chars as search term [#2606](https://github.com/wix/wix-style-react/pull/2606)
 
 ## 5.17.0
 
