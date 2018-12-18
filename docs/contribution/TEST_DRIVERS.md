@@ -12,6 +12,9 @@ The library still contain a lot of technology specific drivers, mainly for the f
   * `protractor` for browser interaction.
 We will slowly migrate to use only unidriver, but in the meanwhile both still exist.
 
+### Composing unidriver with legacy drivers
+If your component's `unidriver` is composing other components that don’t use unidriver, please make sure to create a new `ConsumedComponent.uni.driver.js` next to the consumed component. You can start by implementing only the required functions and not the entire driver.
+
 ## Public and Private drivers
 1. The **Public** drivers (`component.driver.js`) are the ones that exposed to the consumers of the components. They should be simple abstractions over common actions (for example, selecting the third element in the dropdown).
 2. The **Private** drivers (`component.driver.private.js`) are used for actions on a component that should not be exposed to the user. For example, asserting a class name existance on some component.
