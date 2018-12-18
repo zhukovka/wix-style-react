@@ -14,7 +14,10 @@ Types of changes:
 1. **Docs** for documentation changes
 1. **Lab** components and features that are still in a work in progress
 
-## Next
+## 5.18.1 - 2018-12-18
+
+### Fixed
+- re-add some mising enzyme testkits [#2618](https://github.com/wix/wix-style-react/pull/2618)
 
 ### Added
 
