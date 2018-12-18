@@ -13,6 +13,8 @@ import { runInputWithOptionsTest } from '../InputWithOptions/InputWithOptions.sp
 import { makeControlled } from '../../test/utils';
 import { mount } from 'enzyme';
 
+const REGEXP_SPECIAL_CHARS = '^$\\.*+?)(][}{|';
+
 // We use the parent component because the Search component has a wrapper around <InputWithOption />
 runInputWithOptionsTest(args =>
   searchDriverFactory({
@@ -28,6 +30,7 @@ const options = [
   'jumps over',
   'the lazy',
   'dog',
+  REGEXP_SPECIAL_CHARS,
 ].map((value, index) => ({ id: index, value }));
 
 describe('Search', () => {
@@ -118,6 +121,14 @@ describe('Search', () => {
       driver.inputDriver.clearText();
       driver.inputDriver.enterText('');
       expect(driver.dropdownLayoutDriver.optionsLength()).toBe(options.length);
+    });
+
+    it('should treat regex characters as text', () => {
+      const driver = createDriver(<ControlledSearch options={options} />);
+
+      driver.inputDriver.focus();
+      driver.inputDriver.enterText(REGEXP_SPECIAL_CHARS);
+      expect(driver.dropdownLayoutDriver.optionsLength()).toBe(1);
     });
 
     it('should show no results if nothing was found in options', () => {
