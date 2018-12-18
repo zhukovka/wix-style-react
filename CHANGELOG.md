@@ -14,6 +14,12 @@ Types of changes:
 1. **Docs** for documentation changes
 1. **Lab** components and features that are still in a work in progress
 
+## Next
+
+### Added
+
+- `<PageHeader/>` - add support for clicking the back button in the driver [#2581](https://github.com/wix/wix-style-react/pull/2581)
+
 ## 5.18.0 - 2018-12-18
 
 ### Added
