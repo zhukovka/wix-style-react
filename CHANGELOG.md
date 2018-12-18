@@ -12,6 +12,10 @@ Types of changes:
 1. **Security** in case of vulnerabilities.
 1. **Breaking** for breaking changes
 
+## 3.2.3 - 2018-12-18
+### Fixed
+- Infra: free fixed version of `wix-ui-icons-common`
+
 ## 3.2.2 - 2018-06-17
 ### Fixed
 - `<GoogleAddressInput>` - Fix id management issue [#1835](https://github.com/wix/wix-style-react/pull/1835)
