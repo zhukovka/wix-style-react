@@ -1,4 +1,9 @@
 :import {
+  -st-from: "wix-ui-core/src/mixins/calc";
+  -st-default: calc;
+}
+
+:import {
   -st-from: "wix-ui-core/index.st.css";
   -st-named: Popover;
 }
@@ -11,6 +16,10 @@
 :import {
   -st-from: "wix-ui-backoffice/src/shadows.st.css";
   -st-named: shadow30;
+}
+
+:vars {
+  contentArrowSize: 8px;
 }
 
 .root {
@@ -41,20 +50,83 @@
   background: value(WHITE);
 }
 
+/* Overriding arrow definitions */
+.root::popover::arrow {
+  width: value(contentArrowSize);
+  height: value(contentArrowSize);
+
+  background: transparent;
+  box-sizing: border-box;
+
+  /* Defaults for the top arrow */
+  transform: rotateZ(45deg);
+  box-shadow: 3px 3px 6px rgba(0, 0, 0, .1);
+}
+
+.root::popover[data-placement]::arrow {
+  border-width: calc(value(contentArrowSize) / 2);
+  border-color: transparent value(WHITE) value(WHITE) transparent;
+  margin: 0;
+}
+
+/*
+ * Right arrow
+ */
+.root::popover[data-placement*="right"].withArrow {
+  padding-left: calc(value(contentArrowSize) - 2);
+}
+
 .root::popover[data-placement*="right"]::arrow {
-  border-right-color: value(WHITE);
+  transform: rotateZ(135deg);
+  left: calc(value(contentArrowSize) / 2 - 2);
+
+  margin-top: value(contentArrowSize);
+  margin-bottom: value(contentArrowSize);
+}
+
+/*
+ * Left arrow
+ */
+.root::popover[data-placement*="left"].withArrow {
+  padding-right: calc(value(contentArrowSize) - 2);
 }
 
 .root::popover[data-placement*="left"]::arrow {
-  border-left-color: value(WHITE);
+  transform: rotateZ(-45deg);
+  right: calc(value(contentArrowSize) / 2 - 2);
+
+  margin-top: value(contentArrowSize);
+  margin-bottom: value(contentArrowSize);
+}
+
+/*
+ * Top arrow
+ */
+.root::popover[data-placement*="top"].withArrow {
+  padding-bottom: calc(value(contentArrowSize) - 2);
 }
 
 .root::popover[data-placement*="top"]::arrow {
-  border-top-color: value(WHITE);
+  transform: rotateZ(45deg);
+  bottom: calc(value(contentArrowSize) / 2 - 2);
+
+  margin-left: value(contentArrowSize);
+  margin-right: value(contentArrowSize);
+}
+
+/*
+ * Bottom arrow
+ */
+.root::popover[data-placement*="bottom"].withArrow {
+  padding-top: calc(value(contentArrowSize) - 2);
 }
 
 .root::popover[data-placement*="bottom"]::arrow {
-  border-bottom-color: value(WHITE);
+  transform: rotateZ(-135deg);
+  top: calc(value(contentArrowSize) / 2 - 2);
+
+  margin-left: value(contentArrowSize);
+  margin-right: value(contentArrowSize);
 }
 
 /* Dark theme */
@@ -63,20 +135,8 @@
   background: value(D10);
 }
 
-.root:theme(dark)::popover[data-placement*="right"]::arrow {
-  border-right-color: value(D10);
-}
-
-.root:theme(dark)::popover[data-placement*="left"]::arrow {
-  border-left-color: value(D10);
-}
-
-.root:theme(dark)::popover[data-placement*="top"]::arrow {
-  border-top-color: value(D10);
-}
-
-.root:theme(dark)::popover[data-placement*="bottom"]::arrow {
-  border-bottom-color: value(D10);
+.root:theme(dark)::popover::arrow {
+  border-color: transparent value(D10) value(D10) transparent;
 }
 
 /*
@@ -92,6 +152,6 @@
   opacity: 1;
   transform: scale(1);
 
-  transition: opacity 150ms cubic-bezier(0.23, 1, 0.32, 1),
-    transform 150ms cubic-bezier(0.23, 1, 0.32, 1);
+  transition: opacity 300ms cubic-bezier(0.23, 1, 0.32, 1),
+    transform 300ms cubic-bezier(0.23, 1, 0.32, 1);
 }
