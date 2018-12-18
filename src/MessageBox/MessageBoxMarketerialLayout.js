@@ -6,14 +6,12 @@ import Text from '../Text';
 import classNames from 'classnames';
 import CloseButton from '../CloseButton';
 import deprecationLog from '../utils/deprecationLog';
+import { validatorWithSideEffect } from '../utils/propTypes';
 
 import Button from '../Backoffice/Button';
 
 import * as styles from './MessageBoxMarketerialLayout.scss';
 
-deprecationLog(
-  'MessageBoxMarketerialLayout have issue with image positioning. Please use fixImagePosition prop to fix it. Next major version will have a fix by default.',
-);
 class MessageBoxMarketerialLayout extends WixComponent {
   render() {
     const {
@@ -113,7 +111,13 @@ MessageBoxMarketerialLayout.propTypes = {
   secondaryButtonLabel: PropTypes.string,
   onPrimaryButtonClick: PropTypes.func,
   onSecondaryButtonClick: PropTypes.func,
-  imageUrl: PropTypes.string,
+  imageUrl: validatorWithSideEffect(PropTypes.string, (props, propName) => {
+    if (props[propName] && !props['fixImagePosition']) {
+      deprecationLog(
+        'MessageBoxMarketerialLayout have issue with image positioning. Please use fixImagePosition prop to fix it. Next major version will have a fix by default.',
+      );
+    }
+  }),
   onClose: PropTypes.func.isRequired,
   imageComponent: PropTypes.node,
   footerBottomChildren: PropTypes.node,

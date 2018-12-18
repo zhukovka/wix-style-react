@@ -9,17 +9,19 @@ describe('item picker option builder', () => {
   const subtitle = 'some subtitle';
 
   it('should display item', () => {
-    const driver = createDriver(ContactItem({ title }));
+    const driver = createDriver(<ContactItem title={title} />);
     expect(driver.exists()).toBeTruthy();
   });
 
   it('should display item with Title', () => {
-    const driver = createDriver(ContactItem({ title }));
+    const driver = createDriver(<ContactItem title={title} />);
     expect(driver.getTitle()).toEqual(title);
   });
 
   it('should display item with Title and subtitle', () => {
-    const driver = createDriver(ContactItem({ title, subtitle }));
+    const driver = createDriver(
+      <ContactItem title={title} subtitle={subtitle} />,
+    );
     expect(driver.getTitle()).toEqual(title);
     expect(driver.getSubtitle()).toEqual(subtitle);
   });

@@ -1,7 +1,17 @@
-let deprecationLog = function() {};
+const noop = () => {};
+
+let depLogger = {
+  log: noop,
+};
+
+const LOG_PREFIX = `Wix-Style-React: [WARNING] `;
 
 if (process.env.NODE_ENV !== 'production') {
   class DeprecationLogger {
+    constructor() {
+      this.log = this.log.bind(this);
+    }
+
     reportedMessages = new Set();
 
     /**
@@ -16,8 +26,9 @@ if (process.env.NODE_ENV !== 'production') {
         this.printWarning(message);
       }
     }
+
     printWarning = msg => {
-      const message = `Wix-Style-React: [WARNING] ${msg}`;
+      const message = `${LOG_PREFIX}${msg}`;
       if (console) {
         console.warn(message); // eslint-disable-line
       }
@@ -30,9 +41,8 @@ if (process.env.NODE_ENV !== 'production') {
     };
   }
 
-  const logger = new DeprecationLogger();
-
-  deprecationLog = msg => logger.log(msg);
+  depLogger = new DeprecationLogger();
 }
 
-export default deprecationLog;
+export { depLogger };
+export default msg => depLogger.log(msg);

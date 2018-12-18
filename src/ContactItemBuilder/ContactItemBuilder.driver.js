@@ -1,4 +1,3 @@
-import React from 'react';
 import { testkitFactoryCreator } from 'wix-ui-test-utils/vanilla';
 import textDriverFactory from '../Text/Text.driver';
 import { dataHooks } from './ContactItemBuilderDataHooks';
