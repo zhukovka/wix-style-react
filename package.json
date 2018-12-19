@@ -68,6 +68,8 @@
   },
   "homepage": "https://github.com/wix/wix-style-react#readme",
   "devDependencies": {
+    "@applitools/dom-capture": "^3.3.3",
+    "@applitools/visual-grid-client": "^9.0.4",
     "@storybook/addon-links": "^3.4.10",
     "@storybook/addon-options": "4.0.0-alpha.14",
     "@storybook/react": "4.0.0-alpha.14",
