@@ -1,6 +1,5 @@
 import React from 'react';
 import PropTypes from "prop-types";
-import debounce from "lodash/debounce";
 
 import { contactItemBuilder } from "wix-style-react/ContactItemBuilder";
 import EmptyState from "wix-style-react/EmptyState";
@@ -11,7 +10,7 @@ import Button from "wix-style-react/Button";
 import Search from "wix-style-react/Search";
 import Loader from "wix-style-react/Loader";
 import DropdownLayout from "wix-style-react/DropdownLayout";
-import Add from "wix-ui-icons-common/dist/src/general/dist/components/Add";
+import Add from "wix-style-react/new-icons/Add";
 
 export class ItemPickerSelector extends React.Component {
   constructor(props) {
@@ -28,7 +27,7 @@ export class ItemPickerSelector extends React.Component {
   };
 
   componentDidMount() {
-    this.debouncedQueryItems();
+    this.queryItems();
   }
 
   onSelectedItem = ({ id }) => {
@@ -36,23 +35,19 @@ export class ItemPickerSelector extends React.Component {
     this.setState({
       inputText: selectedItem.title,
     });
+    alert(selectedItem.title + ' selected');
     this.props.onSelect(selectedItem);
   };
 
   queryItems = (query = '') => {
     this.setState({ isLoading: true });
-    setTimeout(() => {
-        this.props.fetchItems({ query }).then(items => {
-          this.setState({
-            items,
-            isLoading: false
-          });
-        })
-      }
-      , 500);
+    this.props.fetchItems({ query }).then(items => {
+      this.setState({
+        items,
+        isLoading: false
+      });
+    })
   };
-
-  debouncedQueryItems = debounce(this.queryItems, 300);
 
   onChange = event => {
     event = event.target.value;
@@ -60,54 +55,40 @@ export class ItemPickerSelector extends React.Component {
       inputText: event,
     });
 
-    this.debouncedQueryItems(event);
+    this.queryItems(event);
   };
 
   isEmpty = () => !this.state.items.length;
 
-  render = () => {
-    const styles = {
-      searchWrapper: {
-        'padding': '18px 20px 14px 18px'
-      },
-      search: {
-        'margin': 'auto 0',
-      },
-    };
-
-    return (
-      <div>
-        <div style={styles.searchWrapper}>
-          <Search
-            style={styles.search}
-            onChange={this.onChange}
-            placeholder={'Search...'}
-            value={this.state.inputText}
-          />
-        </div>
-        {
-          this.state.isLoading ?
-            <div style={{
-              'top': 'calc( 50% - 27px )',
-              'left': 'calc( 50% - 27px )',
-              'position': 'absolute'
-            }}>
-              <Loader/>
-            </div>
-            :
-            this.isEmpty() ?
-              this.props.emptyStateComponent
-              :
-              <DropdownLayout
-                options={this.state.items.map(this.props.itemBuilder)}
-                fixedFooter={this.props.footer}
-                onSelect={item => this.onSelectedItem({ id: item.id })}
-                inContainer
-                visible
-              />}
+  render = () =>
+    <div>
+      <div style={{ 'padding': '18px 20px 14px 18px' }}>
+        <Search
+          onChange={this.onChange}
+          placeholder={'Search...'}
+          value={this.state.inputText}
+        />
       </div>
-    );
-  }
+      {
+        this.state.isLoading ?
+          <div style={{
+            'margin': '120px 0 0 136px'
+          }}>
+            <Loader/>
+          </div>
+          :
+          this.isEmpty() ?
+            this.props.emptyStateComponent
+            :
+            <DropdownLayout
+              options={this.state.items.map(this.props.itemBuilder)}
+              fixedFooter={this.props.footer}
+              onSelect={item => this.onSelectedItem({ id: item.id })}
+              maxHeightPixels={340}
+              inContainer
+              visible
+            />}
+    </div>;
 }
 
 export default class Example extends React.Component {
@@ -129,72 +110,75 @@ export default class Example extends React.Component {
     },
     { id: 1, title: 'No image title', subtitle: 'No image subtitle' },
     { id: 2, title: 'No subtitle item' },
+    { id: 3, title: 'No subtitle item' },
+    { id: 4, title: 'No subtitle item' },
+    { id: 5, title: 'No subtitle item' },
+    { id: 6, title: 'No subtitle item' },
   ];
   render = () => {
 
     const fetchItems = ({ query }) => {
-      if (query === '') {
-        return Promise.resolve(this.items);
-      } else {
-        return Promise.resolve(this.items.filter(x => x.title.toLowerCase().includes(query.toLowerCase())));
-      }
+      return new Promise((resolve, reject) =>
+        setTimeout(() =>
+          query ?
+            resolve(this.items.filter(x => x.title.toLowerCase().includes(query.toLowerCase())))
+            :
+            resolve(this.items), 500)
+      );
     };
 
-    const emptyStateStyle = { 'margin': 'auto 0' };
-
     const emptyStateComponent =
-      <div style={emptyStateStyle}>
-        <EmptyState
-          dataHook={'empty-message'}
-          title="No contacts found."
-          subtitle={
-            <Text>
-              Add or import contacts <a href="http://wwww.wix.com"> Learn more </a>
-            </Text>
-          }
-        >
-          <TextButton prefixIcon={<Add/>}>Add Contact</TextButton>
-        </EmptyState>
-      </div>;
+      <EmptyState
+        dataHook={'empty-message'}
+        title="No contacts found."
+        subtitle={
+          <Text>
+            Add or import contacts <a href="http://wwww.wix.com"> Learn more </a>
+          </Text>
+        }
+      >
+        <TextButton prefixIcon={<Add/>}>Add Contact</TextButton>
+      </EmptyState>;
 
-    const footer =
-      <div>
-        <TextButton prefixIcon={<Add/>}>
-          Add Contact
-        </TextButton>
-      </div>;
+    const
+      footer =
+        <div>
+          <TextButton prefixIcon={<Add/>}>
+            Add Contact
+          </TextButton>
+        </div>;
 
     const onSelect = item => item + ' selected!';
 
     const wrapperStyle = {
       'width': '331px',
-      'height': '311px',
-      'border': '1px #C1E4FE solid',
+      'height': '394px',
     };
 
-
-    return <Popover
-      onClick={() => this.toggle()}
-      shown={this.state.shown}
-      appendTo="window"
-      placement="top"
-      showArrow
-      timeout={150}
-    >
-      <Popover.Element>
-        <Button>toggle item picker selector</Button>
-      </Popover.Element>
-      <Popover.Content>
-        <div style={wrapperStyle}>
-          <ItemPickerSelector
-            fetchItems={fetchItems}
-            footer={footer}
-            emptyStateComponent={emptyStateComponent}
-            itemBuilder={contactItemBuilder}
-            onSelect={onSelect}
-          />
-        </div>
-      </Popover.Content>
-    </Popover>
+    return (
+      <Popover
+        onClick={() => this.toggle()}
+        shown={this.state.shown}
+        appendTo="window"
+        placement="bottom"
+        showArrow
+        timeout={150}
+      >
+        <Popover.Element>
+          <Button>toggle item picker selector</Button>
+        </Popover.Element>
+        <Popover.Content>
+          <div style={wrapperStyle}>
+            <ItemPickerSelector
+              fetchItems={fetchItems}
+              footer={footer}
+              emptyStateComponent={emptyStateComponent}
+              itemBuilder={contactItemBuilder}
+              onSelect={onSelect}
+            />
+          </div>
+        </Popover.Content>
+      </Popover>
+    );
   }
 }
