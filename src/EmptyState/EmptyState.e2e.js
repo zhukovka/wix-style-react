@@ -9,7 +9,7 @@ import {
 } from 'wix-ui-test-utils/protractor';
 import { storySettings } from '../../stories/EmptyState/storySettings';
 
-describe('EmptyState', () => {
+fdescribe('EmptyState', () => {
   const storyUrl = createStoryUrl({
     kind: storySettings.kind,
     story: storySettings.storyName,
@@ -35,28 +35,9 @@ describe('EmptyState', () => {
     await autoExampleDriver.reset();
   });
 
-  eyes.it(`should render for 'page' theme`, async () => {
+  eyes.fit(`should render for 'page' theme`, async () => {
     await autoExampleDriver.setProps({ theme: 'page' });
     await createDriverFactory();
   });
 
-  eyes.it(`should render for 'page-no-border' theme`, async () => {
-    await autoExampleDriver.setProps({ theme: 'page-no-border' });
-    await createDriverFactory();
-  });
-
-  eyes.it(`should render for 'section' theme`, async () => {
-    await autoExampleDriver.setProps({ theme: 'section' });
-    await createDriverFactory();
-  });
-
-  eyes.it('should render without a title', async () => {
-    await autoExampleDriver.setProps({ title: '' });
-    await createDriverFactory();
-  });
-
-  eyes.it('should render without a subtitle', async () => {
-    await autoExampleDriver.setProps({ subtitle: '' });
-    await createDriverFactory();
-  });
 });

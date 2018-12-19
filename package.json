@@ -25,8 +25,7 @@
   },
   "scripts": {
     "start": "./scripts/npm-start.sh",
-    "precommit": "lint-staged",
-    "pretest": "npm run lint && ./scripts/ensure-dist.sh",
+    "pretest": "./scripts/ensure-dist.sh",
     "test": "npm run test:unit && npm run test:e2e",
     "test:unit": "yoshi test --jest",
     "test:watch": "yoshi test --jest --watch",
@@ -34,13 +33,12 @@
     "test:e2e": "concurrently 'npm run test:e2e-only' 'node scripts/e2e-server.js' --names 'protractor,e2e-server' --success first --kill-others",
     "test:e2e-only": "NODE_ENV=production yoshi test --protractor",
     "copy-public-styles": "cp src/*.scss .",
-    "build": "npm run lint && npm run proxy-wix-ui-icons && npm run generate-test-component && npm run copy-public-styles && yoshi build && npm run storybook:build && npm run export-components",
+    "build": "npm run proxy-wix-ui-icons && npm run generate-test-component && npm run copy-public-styles && yoshi build && npm run storybook:build && npm run export-components",
     "pr-postbuild": "npm install teamcity-surge-autorelease@^1.0.0 --no-save && teamcity-surge-autorelease",
     "storybook:build": "build-storybook",
     "storybook": "start-storybook -p 6006",
     "postpublish": "npm install teamcity-surge-autorelease@^1.0.0 --no-save && teamcity-surge-autorelease",
     "export-components": "import-path --path src",
-    "lint": "yoshi lint",
     "proxy-wix-ui-icons": "node scripts/proxy-wix-ui-icons",
     "generate": "./scripts/component-generator/bin/component-generator.js",
     "generate-test-component": "./scripts/component-generator/bin/generate-test-component.js"
@@ -158,9 +156,6 @@
     "wix-ui-core": "^2.0.1",
     "wix-ui-icons-common": "^2.0.9",
     "wix-ui-test-utils": "^1.0.115"
-  },
-  "lint-staged": {
-    "*.{js,scss}": "yoshi lint"
   },
   "jest": {
     "setupFiles": [
