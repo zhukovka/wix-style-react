@@ -212,6 +212,7 @@ class Tooltip extends WixComponent {
   }
 
   componentDidUpdate(prevProps) {
+    super.componentDidUpdate(prevProps);
     if (prevProps.dataHook !== this.props.dataHook) {
       this.contentHook = this._createContentHook();
       this._setContentDataHook();

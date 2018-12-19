@@ -129,7 +129,8 @@ export default class Tooltip extends WixComponent {
 
   //Schedule popper updates periodically, only when the tooltip is visible (for
   //tooltip repositioning - e.g. when the target dimensions change).
-  componentDidUpdate() {
+  componentDidUpdate(prevProps) {
+    super.componentDidUpdate(prevProps);
     if (this.state.active && !this.scheduleInterval) {
       this.scheduleInterval = setInterval(() => {
         this.popper.scheduleUpdate();
