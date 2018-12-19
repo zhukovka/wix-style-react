@@ -20,8 +20,8 @@
 ### Cleanup - Waiting For Modal To Close
 
 In your tests, you should do proper cleanup after each test.
-The Modal has a `closeTimeoutMS`, so if you leave it open, even if you unmount it, it will stay open for the `closeTimeoutMS` duration.
-Notice that in the following examples we are waiting for the Modal to actually close.
+The Modal has a `closeTimeoutMS`, so even if you unmount it, it will stay open for the `closeTimeoutMS` duration.
+Notice that in the following examples we are waiting for the Modal to actually NOT exist (The React portal is closed).
 
 ### Example Enzyme
 
@@ -47,7 +47,7 @@ it('should do something', async ()=> {
 
   // Cleanup
   wrapper.unmount();
-  await eventually(() => !testkit.isOpen() || Promise.reject('Modal still open'));
+  await eventually(() => !testkit.exists() || Promise.reject('Modal portal still exists'));
 });
 ```
 
@@ -72,7 +72,7 @@ it('should do something', async ()=> {
 
   // Cleanup
   ReactDOM.unmountComponentAtNode(wrapper);
-  await eventually(() => !testkit.isOpen() || Promise.reject('Modal still open'));
+  await eventually(() => !testkit.exists() || Promise.reject('Modal portal still exists'));
 });
 ```
 
@@ -164,7 +164,7 @@ describe('ModalExample', () => {
 
     // Cleanup
     cleanup();
-    await eventually(() => expect(modalDriver.isOpen()).toBeFalsy())); // Modal has a closeTimeoutMS prop which is non-zeo by default
+    await eventually(() => expect(modalDriver.exists()).toBeFalsy())); // Modal has a closeTimeoutMS prop which is non-zeo by default
   });
 });
 ```
