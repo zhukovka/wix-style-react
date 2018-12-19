@@ -22,6 +22,7 @@ const {
   Label,
   RichTextArea,
   Notification,
+  FloatingHelper,
 } = AllComponents;
 
 // these are just for object shortcuts
@@ -180,17 +181,18 @@ export default {
   Collapse: { skipSanityTest, noTestkit },
   Card: { skipSanityTest, noTestkit },
   LinearProgressBar: {
-    skipSanityTest,
-    enzymeTestkitFactory: linearProgressBarTestkitFactory,
+    enzymeTestkit: linearProgressBarTestkitFactory,
   },
   CircularProgressBar: {
-    skipSanityTest,
-    enzymeTestkitFactory: circularProgressBarTestkitFactory,
+    enzymeTestkit: circularProgressBarTestkitFactory,
   },
   Composite: { skipSanityTest, noTestkit },
   FloatingHelper: {
-    skipSanityTest,
-    enzymeTestkitFactory: floatingHelperTestkitFactory,
+    enzymeTestkit: floatingHelperTestkitFactory,
+    props: {
+      content: <FloatingHelper.Content title="title" body="body" />,
+      target: <div>target</div>,
+    },
   },
   FullTextView: { skipSanityTest, noTestkit },
 
@@ -379,6 +381,10 @@ export default {
   Proportion: { skipSanityTest, unidriver, drivers: ['enzyme'] },
   GeneratedTestComponent: { skipSanityTest, unidriver, drivers: ['enzyme'] },
 
+  TpaLink: {
+    enzymeTestkitFactory: require('../src/TPA/Label/Label.driver').default,
+    skipSanityTest,
+  },
   TpaButton: {
     enzymeTestkitFactory: require('../src/TPA/Button/Button.driver').default,
     skipSanityTest,
