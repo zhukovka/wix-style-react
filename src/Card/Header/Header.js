@@ -1,5 +1,6 @@
 import React from 'react';
 import { bool, node } from 'prop-types';
+import { Animator } from 'wix-animations';
 
 import Divider from '../Divider';
 import styles from './Header.scss';
@@ -63,7 +64,9 @@ class Header extends WixComponent {
           )}
         </div>
 
-        {!withoutDivider && <Divider />}
+        <Animator opacity timing="medium" show={!withoutDivider}>
+          <Divider />
+        </Animator>
       </div>
     );
   }
