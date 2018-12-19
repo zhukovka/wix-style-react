@@ -14,6 +14,11 @@ Types of changes:
 1. **Docs** for documentation changes
 1. **Lab** components and features that are still in a work in progress
 
+## 5.18.3 - 2018-12-19
+
+### Fixed
+- `<Button>` - fixed testkit export handler.
+
 ## 5.18.1 - 2018-12-18
 
 ### Fixed
