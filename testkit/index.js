@@ -1,3 +1,5 @@
+import ReactDOM from 'react-dom';
+
 import {
   testkitFactoryCreator,
   uniTestkitFactoryCreator,
@@ -118,10 +120,14 @@ export const checkboxTestkitFactory = testkitFactoryCreator(
 import buttonDriverFactory from '../src/Backoffice/Button/Button.driver';
 import { buttonDriverFactory as buttonNextDriverFactory } from '../src/Button/Button.driver';
 
-export const buttonTestkitFactory = obj =>
-  obj.wrapper && obj.wrapper.querySelector(`[data-upgrade]`)
+export const buttonTestkitFactory = obj => {
+  const domInstance = ReactDOM.findDOMNode(obj.wrapper);
+  const hasUpgrade = domInstance.querySelector('[data-upgrade]');
+
+  return hasUpgrade
     ? uniTestkitFactoryCreator(buttonNextDriverFactory)(obj)
     : testkitFactoryCreator(buttonDriverFactory)(obj);
+};
 
 import textLinkDriverFactory from '../src/TextLink/TextLink.driver';
 
