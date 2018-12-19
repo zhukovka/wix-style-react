@@ -14,6 +14,10 @@ Types of changes:
 1. **Docs** for documentation changes
 1. **Lab** components and features that are still in a work in progress
 
+## next
+
+- `<Card.Header/>` - add fade animation to divider [#2615](https://github.com/wix/wix-style-react/pull/2615)
+
 ## 5.18.3 - 2018-12-19
 
 ### Fixed
