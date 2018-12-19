@@ -67,7 +67,6 @@ module.exports = async answers => {
     'Add testkit exports',
     [
       utils.getDestinationPath('testkit/index.js'),
-      utils.getDestinationPath('testkit/enzyme.js'),
       utils.getDestinationPath('testkit/protractor.js'),
       utils.getDestinationPath('testkit/puppeteer.js'),
     ].join(' '),
