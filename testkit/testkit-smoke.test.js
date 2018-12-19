@@ -8,7 +8,7 @@ import {
 } from 'wix-ui-test-utils/enzyme';
 import { isTestkitExists, isUniTestkitExists } from 'wix-ui-test-utils/vanilla';
 
-import AllComponents from '../scripts/all-components';
+import AllComponents from './all-components';
 
 import COMPONENT_DEFINITIONS from './component-definitions.js';
 

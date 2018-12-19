@@ -10,7 +10,7 @@ import {
   circularProgressBarTestkitFactory,
 } from 'wix-ui-backoffice/dist/src/testkit/enzyme';
 
-import AllComponents from '../scripts/all-components';
+import AllComponents from './all-components';
 
 const {
   Popover,

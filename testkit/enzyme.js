@@ -5,7 +5,7 @@ import {
   enzymeUniTestkitFactoryCreator,
 } from 'wix-ui-test-utils/enzyme';
 
-import AllComponents from '../scripts/all-components';
+import AllComponents from './all-components';
 
 import COMPONENT_DEFINITIONS from './component-definitions';
 
