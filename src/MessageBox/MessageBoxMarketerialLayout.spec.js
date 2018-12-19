@@ -203,16 +203,19 @@ describe('MessageBoxMarketerialLayout', () => {
   });
 
   describe('deprecationLog fixImagePosition', () => {
-    const depLogSpyHelper = new SpyOnHelper(
-      depLogger,
-      'log',
-    ).beforeAndAfterEach();
+    let depLogSpy;
+
+    beforeEach(() => {
+      depLogSpy = jest.spyOn(depLogger, 'log');
+    });
+
+    afterEach(() => depLogSpy.mockRestore());
 
     it('should show deprecationLog', () => {
       createDriver(
         <MessageBoxMarketerialLayout {...requiredProps} imageUrl="blah" />,
       );
-      expect(depLogSpyHelper.spy).toBeCalledWith(
+      expect(depLogSpy).toBeCalledWith(
         'MessageBoxMarketerialLayout have issue with image positioning. Please use fixImagePosition prop to fix it. Next major version will have a fix by default.',
       );
     });
@@ -235,7 +238,7 @@ describe('MessageBoxMarketerialLayout', () => {
           fixImagePosition
         />,
       );
-      expect(depLogSpyHelper.spy).not.toHaveBeenCalled();
+      expect(depLogSpy).not.toHaveBeenCalled();
     });
   });
 

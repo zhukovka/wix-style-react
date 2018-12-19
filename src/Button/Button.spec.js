@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { SpyOnHelper, render, cleanup } from '../../test/utils/unit';
+import { render, cleanup } from '../../test/utils/unit';
 import { depLogger } from '../utils/deprecationLog';
 import Button from '.';
 
@@ -12,19 +12,22 @@ describe('Button', () => {
   });
 
   describe('deprecationLog', () => {
-    const depLogSpyHelper = new SpyOnHelper(
-      depLogger,
-      'log',
-    ).beforeAndAfterEach();
+    let depLogSpy;
+
+    beforeEach(() => {
+      depLogSpy = jest.spyOn(depLogger, 'log');
+    });
+
+    afterEach(() => depLogSpy.mockRestore());
 
     it('should have deprecationLog', () => {
       render(<Button />);
-      expect(depLogSpyHelper.spy).toHaveBeenCalledTimes(1);
+      expect(depLogSpy).toHaveBeenCalledTimes(1);
     });
 
     it('should NOT deprecationLog', () => {
       render(<Button upgrade />);
-      expect(depLogSpyHelper.spy).toHaveBeenCalledTimes(0);
+      expect(depLogSpy).toHaveBeenCalledTimes(0);
     });
   });
 });
