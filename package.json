@@ -37,6 +37,7 @@
     "pr-postbuild": "npm install teamcity-surge-autorelease@^1.0.0 --no-save && teamcity-surge-autorelease",
     "storybook:build": "build-storybook",
     "storybook": "start-storybook -p 6006",
+    "storybook:static": "start-storybook -p 6006 -s storybook-static",
     "postpublish": "npm install teamcity-surge-autorelease@^1.0.0 --no-save && teamcity-surge-autorelease",
     "export-components": "import-path --path src",
     "proxy-wix-ui-icons": "node scripts/proxy-wix-ui-icons",
