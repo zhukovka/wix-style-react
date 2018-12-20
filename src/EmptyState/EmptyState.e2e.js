@@ -2,8 +2,9 @@ import { createStoryUrl } from 'wix-ui-test-utils/protractor';
 import { storySettings } from '../../stories/EmptyState/storySettings';
 import { browser } from 'protractor';
 
+const fs = require('fs');
 const { makeVisualGridClient } = require('@applitools/visual-grid-client');
-const { getProcessPageScript } = require('@applitools/dom-capture');
+const { getProcessPageAndSerializeScript } = require('@applitools/dom-capture');
 
 const PROJECT_NAME = 'wix-style-react';
 const BRANCH_NAME = 'wix/wix-style-react/eyes/visual_grid/experiment_1';
@@ -29,7 +30,7 @@ fdescribe('EmptyState', () => {
 
     processPage = `
     var callback = arguments[arguments.length - 1];
-    (${await getProcessPageScript()})()
+    (${await getProcessPageAndSerializeScript()})()
     .then(function(cdt){callback(cdt);});
     `;
   });
@@ -46,18 +47,39 @@ fdescribe('EmptyState', () => {
     }));
   });
 
-  afterEach(() => closePromises.push(close()));
+  // afterEach(() => closePromises.push(close()));
 
   fit(`should render`, async () => {
     await browser.get(storyUrl);
-    const cdt = await browser.executeAsyncScript(processPage);
+    const {
+      cdt,
+      url,
+      resourceUrls,
+      blobs,
+      frames,
+    } = await browser.executeAsyncScript(processPage);
+    const source = await browser.getPageSource();
+    fs.writeFileSync('emptyStateSource.html', source);
 
-    checkWindow({
-      tag: 'first test',
-      url: 'http://localhost/index.html',
-      cdt: cdt,
-      sizeMode: 'viewport',
-    });
+    const resourceContents = blobs.map(({ _url, type, value }) => ({
+      url: _url,
+      type,
+      value: Buffer.from(value, 'base64'),
+    }));
+
+    console.log('****************** START ***********');
+    console.log('cdt= ', JSON.stringify(cdt));
+    console.log('****************** END ***********');
+
+    // checkWindow({
+    //   tag: 'first test',
+    //   sizeMode: 'viewport',
+    //   url,
+    //   cdt,
+    //   resourceUrls,
+    //   resourceContents,
+    //   frames,
+    // });
   });
 });
 

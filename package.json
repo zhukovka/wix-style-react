@@ -68,8 +68,8 @@
   },
   "homepage": "https://github.com/wix/wix-style-react#readme",
   "devDependencies": {
-    "@applitools/dom-capture": "^6.0.1",
-    "@applitools/visual-grid-client": "9.0.4",
+    "@applitools/dom-capture": "^6.1.1",
+    "@applitools/visual-grid-client": "^9.0.4",
     "@storybook/addon-links": "^3.4.10",
     "@storybook/addon-options": "4.0.0-alpha.14",
     "@storybook/react": "4.0.0-alpha.14",
@@ -81,6 +81,7 @@
     "babel-preset-react": "*",
     "babel-preset-stage-2": "*",
     "chalk": "^2.4.1",
+    "circular-json": "^0.5.9",
     "commander": "^2.19.0",
     "concurrently": "^3.4.0",
     "enzyme": "^3.3.0",
