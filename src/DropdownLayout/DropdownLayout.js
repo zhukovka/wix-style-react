@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import WixComponent from '../BaseComponents/WixComponent';
 import scrollIntoView from '../utils/scrollIntoView';
+import InfiniteScroll from '../DataTable/InfiniteScroll';
 
 const modulu = (n, m) => {
   const remain = n % m;
@@ -16,11 +17,15 @@ export const DIVIDER_OPTION_VALUE = '-';
 class DropdownLayout extends WixComponent {
   constructor(props) {
     super(props);
-
-    this.state = {
+    let state;
+    state = {
       hovered: NOT_HOVERED_INDEX,
       selectedId: props.selectedId,
     };
+    if (props.infiniteScroll) {
+      state = { ...state, ...this.createInitialScrollingState(props) };
+    }
+    this.state = state;
 
     this._onSelect = this._onSelect.bind(this);
     this._onMouseLeave = this._onMouseLeave.bind(this);
@@ -43,6 +48,14 @@ class DropdownLayout extends WixComponent {
       this._focusOnSelectedOption();
     }
   }
+
+  createInitialScrollingState(props) {
+    return { currentPage: 0, lastPage: this.calcLastPage(props) };
+  }
+
+  calcLastPage = ({ options, itemsPerPage }) =>
+    Math.ceil(options.length / itemsPerPage) - 1;
+
 
   _focusOnSelectedOption() {
     if (this.selectedOption) {
@@ -73,7 +86,7 @@ class DropdownLayout extends WixComponent {
       option.id.toString().trim().length > 0 &&
       (React.isValidElement(option.value) ||
         ((typeof option.value === 'string' && option.value.trim().length > 0) ||
-          typeof option.value === 'function' ))
+          typeof option.value === 'function'))
     );
   }
 
@@ -230,16 +243,32 @@ class DropdownLayout extends WixComponent {
   render() {
     const {
       options,
-      visible,
+      infiniteScroll,
+      itemsPerPage,
+    } = this.props;
+
+    const optionsToRender = infiniteScroll
+      ? options.slice(0, (this.state.currentPage + 1) * itemsPerPage)
+      : options;
+
+    return (
+      this.renderDropdownLayout(optionsToRender)
+    );
+  }
+
+  renderDropdownLayout(optionsToRender) {
+    const {
       dropDirectionUp,
+      visible,
+      inContainer,
       tabIndex,
-      fixedHeader,
-      fixedFooter,
-      withArrow,
       onMouseEnter,
       onMouseLeave,
-      inContainer,
+      fixedHeader,
+      withArrow,
+      fixedFooter
     } = this.props;
+
     const contentContainerClassName = classNames({
       [styles.contentContainer]: true,
       [styles.shown]: visible,
@@ -248,41 +277,38 @@ class DropdownLayout extends WixComponent {
       [styles.withArrow]: withArrow,
       [styles.containerStyles]: !inContainer,
     });
-
-    return (
+    return <div
+      tabIndex={tabIndex}
+      className={classNames(
+        styles.wrapper,
+        styles[`theme-${this.props.theme}`],
+      )}
+      onKeyDown={this._onKeyDown}
+      onMouseEnter={onMouseEnter}
+      onMouseLeave={onMouseLeave}
+    >
       <div
-        tabIndex={tabIndex}
-        className={classNames(
-          styles.wrapper,
-          styles[`theme-${this.props.theme}`],
-        )}
-        onKeyDown={this._onKeyDown}
-        onMouseEnter={onMouseEnter}
-        onMouseLeave={onMouseLeave}
+        className={contentContainerClassName}
+        style={{
+          maxHeight: this.props.maxHeightPixels + 'px',
+          minWidth: this.props.minWidthPixels
+            ? `${this.props.minWidthPixels}px`
+            : undefined,
+        }}
       >
+        {this._renderNode(fixedHeader)}
         <div
-          className={contentContainerClassName}
-          style={{
-            maxHeight: this.props.maxHeightPixels + 'px',
-            minWidth: this.props.minWidthPixels
-              ? `${this.props.minWidthPixels}px`
-              : undefined,
-          }}
+          className={styles.options}
+          style={{ maxHeight: this.props.maxHeightPixels - 35 + 'px' }}
+          ref={_options => (this.options = _options)}
+          data-hook="dropdown-layout-options"
         >
-          {this._renderNode(fixedHeader)}
-          <div
-            className={styles.options}
-            style={{ maxHeight: this.props.maxHeightPixels - 35 + 'px' }}
-            ref={_options => (this.options = _options)}
-            data-hook="dropdown-layout-options"
-          >
-            {options.map((option, idx) => this._renderOption({ option, idx }))}
-          </div>
-          {this._renderNode(fixedFooter)}
+          {optionsToRender.map((option, idx) => this._renderOption({ option, idx }))}
         </div>
-        {this._renderTopArrow()}
+        {this._renderNode(fixedFooter)}
       </div>
-    );
+      {this._renderTopArrow()}
+    </div>;
   }
 
   _renderOption({ option, idx }) {
@@ -312,19 +338,19 @@ class DropdownLayout extends WixComponent {
   }
 
   _renderDivider(idx, dataHook) {
-    return <div key={idx} className={styles.divider} data-hook={dataHook} />;
+    return <div key={idx} className={styles.divider} data-hook={dataHook}/>;
   }
 
   _renderItem({
-    option,
-    idx,
-    selected,
-    hovered,
-    disabled,
-    title,
-    overrideStyle,
-    dataHook,
-  }) {
+                option,
+                idx,
+                selected,
+                hovered,
+                disabled,
+                title,
+                overrideStyle,
+                dataHook,
+              }) {
     const { itemHeight, selectedHighlight } = this.props;
 
     const optionClassName = classNames({
@@ -349,7 +375,7 @@ class DropdownLayout extends WixComponent {
         onMouseLeave={this._onMouseLeave}
         data-hook={dataHook}
       >
-        {typeof option.value === 'function' ? option.value({selected}) : option.value}
+        {typeof option.value === 'function' ? option.value({ selected }) : option.value}
       </div>
     );
   }
@@ -361,16 +387,18 @@ class DropdownLayout extends WixComponent {
       [styles.up]: dropDirectionUp,
       [styles.down]: !dropDirectionUp,
     });
-    return withArrow && visible ? <div className={arrowClassName} /> : null;
+    return withArrow && visible ? <div className={arrowClassName}/> : null;
   }
 
   componentWillReceiveProps(nextProps) {
+    let state;
+
     if (this.props.visible !== nextProps.visible) {
-      this.setState({ hovered: NOT_HOVERED_INDEX });
+      state.assign({ hovered: NOT_HOVERED_INDEX });
     }
 
     if (this.props.selectedId !== nextProps.selectedId) {
-      this.setState({ selectedId: nextProps.selectedId });
+      state.assign({ selectedId: nextProps.selectedId });
     }
 
     if (nextProps.options.some(option => !this._isLegalOption(option))) {
@@ -384,16 +412,57 @@ class DropdownLayout extends WixComponent {
       this.state.hovered !== NOT_HOVERED_INDEX &&
       (!nextProps.options[this.state.hovered] ||
         this.props.options[this.state.hovered].id !==
-          nextProps.options[this.state.hovered].id)
+        nextProps.options[this.state.hovered].id)
     ) {
-      this.setState({
+      state = {
         hovered: this.findIndex(
           nextProps.options,
           item => item.id === this.props.options[this.state.hovered].id,
         ),
-      });
+      };
+    }
+
+    this.handleInfiniteScrollState(nextProps, state);
+
+    this.state = state;
+  }
+
+  handleInfiniteScrollState(nextProps, state) {
+    let isLoadingMore = false;
+
+    if (!this.props.infiniteScroll) {
+      return;
+    }
+
+    if (nextProps.options === this.props.options) {
+      return;
+    }
+
+    if (!nextProps.options instanceof Array || !this.props.options instanceof Array) {
+      return;
+    }
+
+    if (this.props.options.every((elem, index) => nextProps.options.length > index && nextProps.options[index] === elem)) {
+      isLoadingMore = true;
+      const lastPage = this.calcLastPage(nextProps);
+      const currentPage =
+        this.state.currentPage < lastPage
+          ? this.state.currentPage + 1
+          : this.state.currentPage;
+      state.assign({ lastPage, currentPage });
+    }
+    if (!isLoadingMore) {
+      state.assign(this.createInitialScrollingState(nextProps));
     }
   }
+
+  loadMore = () => {
+    if (this.state.currentPage < this.state.lastPage) {
+      this.setState({ currentPage: this.state.currentPage + 1 });
+    } else {
+      this.props.loadMore && this.props.loadMore();
+    }
+  };
 
   findIndex(arr, predicate) {
     return (Array.isArray(arr) ? arr : []).findIndex(predicate);
@@ -447,6 +516,10 @@ DropdownLayout.propTypes = {
   itemHeight: PropTypes.oneOf(['small', 'big']),
   selectedHighlight: PropTypes.bool,
   inContainer: PropTypes.bool,
+  infiniteScroll: PropTypes.bool,
+  itemsPerPage: PropTypes.number,
+  loadMore: PropTypes.func,
+  hasMore: PropTypes.bool,
 };
 
 DropdownLayout.defaultProps = {
@@ -457,6 +530,10 @@ DropdownLayout.defaultProps = {
   itemHeight: 'small',
   selectedHighlight: true,
   inContainer: false,
+  infiniteScroll: false,
+  itemsPerPage: 20,
+  loadMore: null,
+  hasMore: false,
 };
 
 DropdownLayout.NONE_SELECTED_ID = NOT_HOVERED_INDEX;
