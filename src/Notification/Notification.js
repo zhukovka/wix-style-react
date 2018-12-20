@@ -49,6 +49,8 @@ function mapChildren(children) {
 }
 
 class Notification extends WixComponent {
+  static displayName = 'Notification';
+
   closeTimeout;
 
   constructor(props) {
