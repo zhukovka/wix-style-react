@@ -1,10 +1,12 @@
 import { createStoryUrl } from 'wix-ui-test-utils/protractor';
 import { storySettings } from '../../stories/EmptyState/storySettings';
 import { browser } from 'protractor';
+import { JSDOM } from 'jsdom';
 
-const fs = require('fs');
 const { makeVisualGridClient } = require('@applitools/visual-grid-client');
 const { getProcessPageAndSerializeScript } = require('@applitools/dom-capture');
+
+import domNodesToCdt from '@applitools/dom-capture/src/browser/visual-grid/domNodesToCdt';
 
 const PROJECT_NAME = 'wix-style-react';
 const BRANCH_NAME = 'wix/wix-style-react/eyes/visual_grid/experiment_1';
@@ -47,39 +49,40 @@ fdescribe('EmptyState', () => {
     }));
   });
 
-  // afterEach(() => closePromises.push(close()));
+  afterEach(() => closePromises.push(close()));
 
   fit(`should render`, async () => {
     await browser.get(storyUrl);
+
+    // TODO: consider NOT using processPage at all, and specifying resources manually.
     const {
-      cdt,
       url,
       resourceUrls,
       blobs,
       frames,
     } = await browser.executeAsyncScript(processPage);
-    const source = await browser.getPageSource();
-    fs.writeFileSync('emptyStateSource.html', source);
 
-    const resourceContents = blobs.map(({ _url, type, value }) => ({
-      url: _url,
+    // Get HTML and turn it to CDT
+    // NOTE: We can not use the cdt returned from processPage since it includes Protractor wrappers. And we get Circular JSON error.
+    const html = await browser.getPageSource();
+    const dom = new JSDOM(html).window.document;
+    const cdt = domNodesToCdt(dom);
+
+    const resourceContents = blobs.map(({ resourceUrl, type, value }) => ({
+      url: resourceUrl,
       type,
       value: Buffer.from(value, 'base64'),
     }));
 
-    console.log('****************** START ***********');
-    console.log('cdt= ', JSON.stringify(cdt));
-    console.log('****************** END ***********');
-
-    // checkWindow({
-    //   tag: 'first test',
-    //   sizeMode: 'viewport',
-    //   url,
-    //   cdt,
-    //   resourceUrls,
-    //   resourceContents,
-    //   frames,
-    // });
+    checkWindow({
+      tag: 'first test',
+      sizeMode: 'viewport',
+      url,
+      cdt,
+      resourceUrls,
+      resourceContents,
+      frames,
+    });
   });
 });
 
