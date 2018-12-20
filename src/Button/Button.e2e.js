@@ -20,7 +20,7 @@ describe('Button', () => {
     await autoExampleDriver.remount();
   });
 
-  const eyes = eyesItInstance({ enableSnapshotAtBrowserGet: false });
+  const eyes = eyesItInstance();
 
   eyes.it('Make a screenshoft of all Button examples', () => {
     expect(true).toBeTruthy();

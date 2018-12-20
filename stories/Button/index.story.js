@@ -13,6 +13,7 @@ export default {
 
   componentProps: {
     upgrade: true,
+    as: 'button',
     children: 'Button',
     skin: 'standard',
     priority: 'primary',
@@ -25,6 +26,7 @@ export default {
     suffixIcon: icons,
     fullWidth: false,
     disabled: false,
+    as: ['button', 'a', 'span', 'div'],
   },
 
   examples: <ButtonStory />,

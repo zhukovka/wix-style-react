@@ -8,9 +8,13 @@ import ExamplesSizes from '!raw-loader!./ExamplesSizes';
 import ExamplesPrefix from '!raw-loader!./ExamplesPrefix';
 import ExamplesSuffix from '!raw-loader!./ExamplesSuffix';
 import ExamplesLoading from '!raw-loader!./ExamplesLoading';
+import ExampleRouter from '!raw-loader!./ExampleRouter';
+import ExampleAnchor from '!raw-loader!./ExampleAnchor';
 
 import { Layout, Cell } from '../../../src/Layout';
 import styles from './ButtonsSpacing.scss';
+
+const Link = props => <a {...props} />;
 
 class ButtonStory extends React.Component {
   render() {
@@ -63,6 +67,21 @@ class ButtonStory extends React.Component {
             scope={{ styles }}
             title="Button - loading"
             initialCode={ExamplesLoading}
+          />
+        </Cell>
+        <Cell span={6}>
+          <LiveCodeExample
+            compact
+            scope={{ Link }}
+            title="Button - render as React Router Link"
+            initialCode={ExampleRouter}
+          />
+        </Cell>
+        <Cell span={6}>
+          <LiveCodeExample
+            compact
+            title="Button - render as html anchor"
+            initialCode={ExampleAnchor}
           />
         </Cell>
       </Layout>

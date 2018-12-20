@@ -11,6 +11,7 @@ export default {
   componentPath: '../../src/CloseButton',
 
   componentProps: {
+    as: 'button',
     skin: 'standard',
     size: 'small',
     disabled: false,
@@ -18,6 +19,7 @@ export default {
 
   exampleProps: {
     onClick: () => 'Clicked!',
+    as: ['button', 'a', 'span', 'div'],
   },
 
   examples: <CloseButtonStory />,

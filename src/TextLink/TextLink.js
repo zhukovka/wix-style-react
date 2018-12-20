@@ -3,6 +3,13 @@ import PropTypes from 'prop-types';
 import WixComponent from '../BaseComponents/WixComponent';
 import TextLinkLayout from '../BaseComponents/TextLinkLayout';
 
+import deprecationLog from '../utils/deprecationLog';
+
+deprecationLog(
+  `Using "TextLink" is deprecated. Please see "5.3 TextButton" updated documentation and use "<TextButton as="a"/>" instead`,
+);
+
+
 export default class TextLink extends WixComponent {
   static propTypes = {
     ...TextLinkLayout.propTypes,

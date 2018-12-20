@@ -15,8 +15,8 @@ const children = (
 );
 
 export default {
-  category: '5. Buttons',
-  storyName: '5.0 ButtonLayout',
+  category: 'Deprecated',
+  storyName: 'ButtonLayout',
   component: ButtonLayout,
   componentPath: '../src/ButtonLayout',
   componentProps: {

@@ -13,6 +13,7 @@ export default {
   componentPath: '../../src/IconButton',
 
   componentProps: {
+    as: 'button',
     children: <More />,
     skin: 'standard',
     priority: 'primary',
@@ -23,6 +24,7 @@ export default {
   exampleProps: {
     onClick: () => 'Clicked!',
     children: icons,
+    as: ['button', 'a', 'span', 'div'],
   },
 
   examples: <IconButtonStory />,

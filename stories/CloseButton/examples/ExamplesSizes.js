@@ -1,5 +1,5 @@
 /* eslint-disable */
-<div>
+<div className={styles.spacing}>
   <CloseButton />
   <CloseButton size="medium" />
 </div>

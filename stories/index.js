@@ -58,12 +58,10 @@ import './Slider'; // 4.7 Slider
 import './GoogleAddressInputWithLabel'; // 4.8 Google address input
 
 // 5. Buttons
-import './ButtonLayout.story.js'; // 5.0 ButtonLayout
 import './Button/index.story.js'; // 5.1 Standard
 import './IconButton/index.story'; // 5.2 Icon Button
 import './TextButton/index.story'; // 5.3 Text Button
 import './CloseButton/index.story.js'; // 5.4 Close Button
-import './TextLink/index.story.js'; // 5.8 Text Link
 
 // 6. Navigation
 import './SideMenu'; // 6.1 SideMenu
@@ -153,3 +151,5 @@ import './GeneratedTestComponent/index.story';
 
 // Deprecated
 import './Deprecated/Button/standard.story.js';
+import './ButtonLayout.story.js'; // 5.0 ButtonLayout
+import './TextLink/index.story.js'; // 5.8 Text Link

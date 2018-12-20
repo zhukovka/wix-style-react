@@ -4,7 +4,9 @@ import autoExampleDriver from 'wix-storybook-utils/AutoExampleDriver';
 import { getStoryUrl, waitForVisibilityOf } from 'wix-ui-test-utils/protractor';
 import { textLinkTestkitFactory } from '../../testkit/protractor';
 
-const storyUrl = getStoryUrl('5. Buttons', '5.8 Text Link');
+import { storySettings } from '../../stories/TextLink/storySettings';
+
+const storyUrl = getStoryUrl(storySettings.kind, storySettings.storyName);
 const driver = textLinkTestkitFactory({ dataHook: 'storybook-textlink' });
 
 describe('TextLink', () => {
