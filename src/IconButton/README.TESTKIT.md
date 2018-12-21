@@ -35,7 +35,9 @@ const wrapper = div.appendChild(
 const testkit = iconButtonTestkitFactory({ wrapper, dataHook });
 
 //Do tests
-expect(testkit.exists()).toBeTruthy();
+describe('Element should exist', async () => {
+  expect(await testkit.exists()).toBeTruthy();
+});
 ```
 
 ## Enzyme Example
@@ -56,7 +58,9 @@ const wrapper = mount(
 const testkit = iconButtonTestkitFactory({ wrapper, dataHook });
 
 //Do tests
-expect(testkit.exists()).toBeTruthy();
+describe('Element should exist', async () => {
+  expect(await testkit.exists()).toBeTruthy();
+});
 ```
 
 ## Puppeteer Example
@@ -74,11 +78,14 @@ const page = await browser.newPage();
 //Create an element testkit via the data-hook attribute
 const testkit = await iconButtonTestkitFactory({
   dataHook: 'myDataHook',
-  page
+  page,
 });
 await page.goto('/page-where-button-appears'); //Your application url
 
-expect(await testkit.exists()).toBeTruthy();
+//Do tests
+describe('Element should exist', async () => {
+  expect(await testkit.exists()).toBeTruthy();
+});
 ```
 
 ## Protractor Example
@@ -93,5 +100,8 @@ const testkit = iconButtonTestkitFactory({ dataHook: 'myDataHook' });
 
 await browser.get('/page-where-button-appears'); //Your application url
 
-expect(await testkit.exists()).toBeTruthy();
+//Do tests
+describe('Element should exist', async () => {
+  expect(await testkit.exists()).toBeTruthy();
+});
 ```
