@@ -4,12 +4,13 @@
 
 ## TextButton TestKit API
 
-| method           | arguments | returned value | description                        |
-| ---------------- | --------- | -------------- | ---------------------------------- |
-| exists           | -         | boolean        | returns true if element in the DOM |
-| element          | -         | element        | returns the component element      |
-| click            | -         | -              | clicks on the button               |
-| isButtonDisabled | -         | boolean        | returns true if button is disabled |
+| method               | arguments | returned value | description                        |
+| -------------------- | --------- | -------------- | ---------------------------------- |
+| exists               | -         | boolean        | returns true if element in the DOM |
+| element              | -         | element        | returns the component element      |
+| click                | -         | -              | clicks on the button               |
+| getButtonTextContent | -         | string         | returns button text                |
+| isButtonDisabled     | -         | boolean        | returns true if button is disabled |
 
 ## ReactTestUtils Example
 
