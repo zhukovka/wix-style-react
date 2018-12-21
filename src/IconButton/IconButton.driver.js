@@ -1,8 +1,13 @@
+import { StylableDOMUtil } from '@stylable/dom-test-kit';
 import { baseUniDriverFactory } from 'wix-ui-test-utils/base-driver';
+import button from 'wix-ui-core/dist/src/components/button-next/button-next.st.css';
 
 export const iconButtonDriverFactory = base => {
+  const stylableDOMUtil = new StylableDOMUtil(button);
   return {
     ...baseUniDriverFactory(base),
-    isButtonDisabled: async () => !!(await base.attr('disabled')),
+    isButtonDisabled: async () =>
+      stylableDOMUtil.getStyleState(await base.getNative(), 'disabled') ===
+      'true',
   };
 };
