@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import WixComponent from '../../BaseComponents/WixComponent';
 import Input from '../../Input';
 import Tooltip from '../../Tooltip';
-import Button from '../../Button';
+import IconButton from '../../IconButton';
 import X from '../../new-icons/X';
 import Check from '../../new-icons/Check';
 import styles from '../EditableSelector.scss';
@@ -56,26 +56,25 @@ class EditableRow extends WixComponent {
 
         <div className={styles.editableRowButtons}>
           <Tooltip content="Cancel" shouldCloseOnClickOutside theme="dark">
-            <Button
+            <IconButton
               onClick={() => this.onCancel()}
-              height="medium"
-              theme="icon-standardsecondary"
+              size="medium"
+              priority="secondary"
               dataHook="edit-row-cancel-button"
             >
               <X />
-            </Button>
+            </IconButton>
           </Tooltip>
 
           <Tooltip content="Confirm" shouldCloseOnClickOutside theme="dark">
-            <Button
+            <IconButton
               onClick={() => this.onApprove()}
-              height="medium"
-              theme="icon-standard"
+              size="medium"
               disabled={this.state.newOption.length === 0}
               dataHook="edit-row-approve-button"
             >
               <Check />
-            </Button>
+            </IconButton>
           </Tooltip>
         </div>
       </div>
