@@ -1,4 +1,4 @@
-# `<CalendarPanel/>` Specification
+# `<CalendarPanel/>` Design Specification
 
 ## Intro
 
@@ -28,44 +28,45 @@ const presets = [
   {id: 2, value: 'Yesterday', selectedDays: {from: YESTERDAY, to: YESTERDAY}},
   {id: 3, value: 'Last 7 days', selectedDays: {from: A_WEEK_AGO, to: TODAY}},
   {id: 4, value: 'Next 7 days', selectedDays: {from: TODAY, to: NEXT_WEEK}},
-  {id: 5, value: 'A month (2 month ago)', selectedDays: {from: TWO_MONTH_AGO, to: ONE_MONTH_AGO}, month: TWO_MONTH_AGO}
+  {id: 5, value: 'A month (2 month ago)', selectedDays: {from: TWO_MONTH_AGO, to: ONE_MONTH_AGO}},
 ];
 
 export default class CalendarPanelCustomExample extends React.Component {
 
   state = {
     selectedDays: {from: TODAY, to: TODAY},
-    month: TODAY
+  }
+
+  handleChange = (selectedDays) => {
+    this.setState({selectedDays})
+  }
+
+  const renderFooter = ({selectedDays, submitEnabled}) => {
+    return (
+      <CalendarPanelFooter
+        selectedDays={selectedDays}
+        submitEnabled={submitEnabled}
+        dateToString={Date.toLocaleDateString}
+        cancelButtonProps={{
+          onCancel: () => alert('Cancel was clicked'),
+          children: translate('Cancel'),
+        }}
+        submitButtonProps={{
+          onCancel: () => alert(`submit - ${this.state.selectedDays}`),
+          children: translate('Cancel'),
+        }}
+        />
+    )
   }
 
   render() {
-    const calendarProps = {
-      selectionMode: 'range',
-      numOfMonths: 2, // This is the default
-      selectedDays: this.state.selectedDays,
-      month: this.state.month,
-      onSelectedDaysChange={(selectedDays)=> this.setState({selectedDays})}
-      onMonth={(month)=> this.setState({month}))}
-    }
-
-    const renderFooter = ({submitDisabled}) => {
-      return (
-        <CalendarPanelFooter
-          submitDisabled={submitDisabled}
-          selectedDaysText={this.state.selectedDays.toLocaleDateString()}
-          onCancel={() => alert('Cancel was clicked')}
-          cancelText={translate('Cancel')}
-          onSubmit={() => alert(`submit - ${this.state.selectedDays}`)}
-          submitText={translate('Submit')}
-          />
-      )
-    }
-
     return (
       <Card>
         <CalendarPanel
+          selectionMode: 'range',
+          selectedDays: this.state.selectedDays,
+          onSelectedDaysChange={this.handleChange}
           presets={presets}
-          calendarProps={calendarProps}
           footer={renderFooter}
           />
       </Card>
@@ -74,51 +75,49 @@ export default class CalendarPanelCustomExample extends React.Component {
 }
 ```
 
-### Things to notice about `<CalendarPanel/>` in the example
-
-- It is controlled component.
-- It has no border styling (it is wrapped in a `<Card/>` in this example).
-- `calendarProps.selectionMode` is used internally in order to decide the value of `submitDisabled`.
-- `<CalendarPanelFooter/>` is an optional component to simplify the API. Consumers can render anything as the footer.
-
 ## `<CalendarPanel/>` Props
 
 | propName          | propType | defaultValue | isRequired | description |
 | ---               | ---      | ---          | ---        | ---         |
-| presets           | array    | -            | -          | Array of calendar preset, as Dropdown option objects. Each item (which is not a divider) must have `selectedDays` props. `month` prop is optional |
-| calendarProps     | object | | | props for `<Calendar/>`. |
-| footer            | ()=>node | | | a node to be rendered in the footer pane. |
+| *All Calendar Props* | | | | All `<Calendar/>` props. |
+| presets           | array    | -            | -          | Array of calendar preset, as Dropdown option objects. Each item (which is not a divider) must have `selectedDays` props. |
+| footer            | ()=>node | | | A renderProp for the footer. Receives `selectedDays` and `submitDisabled` as arguments. |
 
-## Rational
+## Behavior
 
-### `presets`
+It is controlled component.
 
-Ideally this would be a `<List/>` with `<ListItems/>` snippet (render slot),
-but there are a few ugly edge-cases in DropdownLayout API that we want hide.
+- Presets:
+  - When a preset is clicked, the `<Calendar/>` selected changes.
+  - If many options exists then a vetcial scrollbar is enabled.
+- Calendar:
+  - When the Calendar is clicked (selection) then the current selected preset is updated.
+- Footer:
+  - The Submit button is disabled if selectionMode = 'range' and there is no range selected (from and to).
 
-### `calendarProps`
+### Things to notice about `<CalendarPanel/>` in the example
 
-- we need to use `selectionMode` in order to decide the value of `submitDisabled` (which is passes to the footer).
+- It has no border styling (it is wrapped in a `<Card/>` in this example).
+- `selectionMode` is used internally in order to decide the value of the footer's renderProp arguemnt, `submitEnabled`.
 
-Alternatives:
+### presets
 
-  - Lift all `<Calendar/>`'s props to `<ClendarPanel/>`.
-    - This is wrong, since `<CalendarPanel/>` does not "extend" `<Calendar/>` is only composes it. 
-    - It would create a flat API which is mixed with the presets API.
+- `presets` is an options array that matches the options of a `<DropdownLayout/>`.
+- It may include dividers according to `<DropdownLayout/>` props definitions.
 
-  - Have a `body` prop (render slot), which receives a `<Calendar/>` node. We could then look into it's props to get the `selectedMode`.
-    - This looks a bit more like magic.
-    - Need to add validation so that consumer get error if they render something other than a `<Calendar/>` node.
-    - Might be inefficient (React.cloneElement)
+### footer - `<CalendarPanelFooter/>`
 
-### `footer`
+The footer is a renderProp, so the consumer can render anything.
+The recommended footer is achieved by using the optional sub-component `<CalendarPanelFooter/>`.
 
-- The footer is actually a one-way state flow (into the footer).
-- Anyway there is need of translation of the buttons and the selectedDays text.
-- The layout is set by UX, but it is flexible. So UX layout is only a recommendation.
-- By makeing is a renderProp with `submitDisabled` argument, we allow to simplify the consumers custom solution if needed.
+#### `<CalendarPanelFooter/>` Props
 
-Aletrnatives:
+| propName          | propType | defaultValue | isRequired | description |
+| ---               | ---      | ---          | ---        | ---         |
+| submitEnabled     | boolean  | false        | -          | Wether the submit button should be enabled. |
+| selectedDays      | Date |  Range | | | SelecteDays will be used to dispaly a text representation of the current selected date or range (AKA status) |
+| dateToString      | Date=> String | | | Function that turns a date into a string. Should be a localized string. This is used in for the text status.
+| cancelButtonProps | object (ButtonProps) | | | Props of a `<Button/>` for the cancel button.|
+| submitButtonProps | object (ButtonProps) | | | Props of a `<Button/>` for the submit button. The `disabled` prop will be set according to the `submitEnabled` prop.|
 
- - A snippet, using Toolbar.
-   - The consumer can still use Toolbar directly, and render any kind of buttons, it is very simple.
+- `Range` is of the form `{from?: Date, to?: Date}`.
