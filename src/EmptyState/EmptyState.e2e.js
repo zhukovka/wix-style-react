@@ -1,6 +1,7 @@
 import { createStoryUrl } from 'wix-ui-test-utils/protractor';
 import { storySettings } from '../../stories/EmptyState/storySettings';
 import { browser } from 'protractor';
+
 import { JSDOM } from 'jsdom';
 
 const { makeVisualGridClient } = require('@applitools/visual-grid-client');
@@ -51,7 +52,7 @@ fdescribe('EmptyState', () => {
 
   afterEach(() => closePromises.push(close()));
 
-  fit(`should render`, async () => {
+  it(`should render`, async () => {
     await browser.get(storyUrl);
 
     // TODO: consider NOT using processPage at all, and specifying resources manually.
@@ -83,6 +84,21 @@ fdescribe('EmptyState', () => {
       resourceContents,
       frames,
     });
+  });
+});
+
+describe('JSDOM', () => {
+  const storyUrl = createStoryUrl({
+    kind: storySettings.kind,
+    story: storySettings.storyName,
+    withExamples: false,
+  });
+
+  it(`should only create JSDOM with no error`, async () => {
+    await browser.get(storyUrl);
+    const html = await browser.getPageSource();
+    const dom = new JSDOM(html).window.document;
+    const cdt = domNodesToCdt(dom);
   });
 });
 
