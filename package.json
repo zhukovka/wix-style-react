@@ -130,6 +130,7 @@
   },
   "dependencies": {
     "bootstrap-sass": "^3.3.7",
+    "chance": "^1.0.18",
     "classnames": "^2.2.5",
     "color": "^2.0.0",
     "create-react-context": "^0.2.2",
