@@ -22,6 +22,9 @@ import ExampleSizesRaw from '!raw-loader!./ExampleSizes';
 import ExampleAdornments from './ExampleAdornments';
 import ExampleAdornmentsRaw from '!raw-loader!./ExampleAdornments';
 
+import ExampleNumberInput from './ExampleNumberInput';
+import ExampleNumberInputRaw from '!raw-loader!./ExampleNumberInput';
+
 storiesOf(Category.INPUTS, module).add('3.1 Text Field', () => (
   <div>
     <Title>3.1 Text Field</Title>
@@ -42,6 +45,13 @@ storiesOf(Category.INPUTS, module).add('3.1 Text Field', () => (
       </CodeExample>
       <CodeExample title="Adornments" code={ExampleAdornmentsRaw}>
         <ExampleAdornments />
+      </CodeExample>
+      <CodeExample title="Number Input" code={ExampleNumberInputRaw}>
+        <Layout>
+          <Cell span={2}>
+            <ExampleNumberInput />
+          </Cell>
+        </Layout>
       </CodeExample>
     </ExamplesSection>
   </div>
