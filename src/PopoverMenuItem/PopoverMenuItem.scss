@@ -54,7 +54,7 @@
   }
 }
 
-:global(.rtl) {
+@include withRTL() {
   .icon {
     margin-left: 6px;
     margin-right: 0;

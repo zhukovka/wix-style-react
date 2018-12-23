@@ -30,7 +30,7 @@
   padding-left: 12px;
 }
 
-:global(.rtl) {
+@include withRTL() {
   .root {
     direction: rtl;
   }

@@ -161,7 +161,7 @@ $padding-vertical: 14px;
   right: 0;
 }
 
-:global(.rtl) {
+@include withRTL() {
   .linkArrow {
     transform: scaleX(-1);
   }

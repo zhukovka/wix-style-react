@@ -1,3 +1,5 @@
+@import '../../common';
+
 .suffix {
   padding: 0 0 0 6px;
   line-height: 0 !important;
@@ -8,12 +10,14 @@
   line-height: 0 !important;
 }
 
-:global(.rtl) .prefix {
-  padding: 0 0 0 6px;
-  line-height: 0 !important;
-}
+@include withRTL() {
+  .prefix {
+    padding: 0 0 0 6px;
+    line-height: 0 !important;
+  }
 
-:global(.rtl) .suffix {
-  padding: 0 6px 0 0;
-  line-height: 0 !important;
+  .suffix {
+    padding: 0 6px 0 0;
+    line-height: 0 !important;
+  }
 }

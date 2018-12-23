@@ -46,7 +46,7 @@
   margin-left: auto;
 }
 
-:global(.rtl) {
+@include withRTL() {
   .arrow-icon {
     transform: scaleX(-1);
   }
