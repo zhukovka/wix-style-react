@@ -19,10 +19,16 @@ Types of changes:
 ### Added
 - `<CardGalleryItem/>` - create new component [#2566](https://github.com/wix/wix-style-react/pull/2566)
 
-### Docs
+### Changed
+- `<EditableSelector/>` - migrate to use `<IconButton/>` [#2641](https://github.com/wix/wix-style-react/pull/2641)
+- Refactor RTL definitions to support `.rtl` class and `dir` attribute [#2577](https://github.com/wix/wix-style-react/pull/2577)
 
+### Fixed
+- `<GoogleAddressInput/>` - fix broken countryCode API [#2628](https://github.com/wix/wix-style-react/pull/2628)
+
+### Docs
 - `<TextField/>` - Add NumberInput example [#2653](https://github.com/wix/wix-style-react/pull/2653)
-- Fix broken component names (`<RichTextArea/>`, `<ImageViewer/>`, `<Tabs/>`, `<TextLink/>`, `<ModalSelectorLayout/>`) [#2654](https://github.com/wix/wix-style-react/pull/2654)
+- `<RichTextArea/>`, `<ImageViewer/>`, `<Tabs/>`, `<TextLink/>`, `<ModalSelectorLayout/>` - Fix broken component names [#2654](https://github.com/wix/wix-style-react/pull/2654)
 
 ## 5.19.0
 
