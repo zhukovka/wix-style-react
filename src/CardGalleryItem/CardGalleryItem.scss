@@ -1,0 +1,51 @@
+@import "../common.scss";
+
+$footerHeight: 80px;
+$dividerHeight: 1px;
+
+.root {
+  cursor: pointer;
+  height: 100%;
+  width: 100%
+}
+
+.content, .hoveredContent {
+  height: calc(100% - #{$footerHeight + $dividerHeight});
+}
+
+.content {
+  background-size: cover;
+  background-position: center;
+}
+
+.hoveredContent {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 6px;
+  box-sizing: border-box;
+  background-color: rgba($D20, 0.95);
+}
+
+.primaryAction {
+  position: relative;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.secondaryAction {
+  position: absolute;
+  top: 100%;
+  display: flex;
+  justify-content: center;
+  padding-top: 18px;
+}
+
+.footer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: $footerHeight;
+  padding: 0 30px;
+}

@@ -386,6 +386,12 @@ export const avatarTestkitFactory = protractorUniTestkitFactoryCreator(
   avatarDriverFactory,
 );
 
+import cardGalleryItemDriverFactory from '../src/CardGalleryItem/CardGalleryItem.driver';
+
+export const cardGalleryItemTestkitFactory = protractorUniTestkitFactoryCreator(
+  cardGalleryItemDriverFactory,
+);
+
 import { iconButtonDriverFactory } from '../src/IconButton/IconButton.driver';
 
 export const iconButtonTestkitFactory = protractorUniTestkitFactoryCreator(

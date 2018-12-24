@@ -27,6 +27,7 @@ export default () =>
   | ---               | ---      | ---          | ---        | ---                                                                        |
   | children          | node     | -            | -          | any nodes to render inside card. Ideally should be one of `<Card.Header/>` |
   | stretchVertically | bool     | false        | -          | Should this Card stretch vertically inside the container                   |
+  | hideOverflow      | bool     | false        | -          | Should this Card hide overflow content                                     |
 </details>
 
 <details>

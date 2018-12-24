@@ -118,6 +118,7 @@ import './Text/index.story';
 import './Skeleton.story.js';
 import './Collapse.story';
 import './Popover/index.story';
+import './CardGalleryItem/CardGalleryItem.story';
 import './Carousel/index.story.js';
 import './Proportion/index.story.js';
 

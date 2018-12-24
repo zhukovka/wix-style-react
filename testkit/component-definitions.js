@@ -235,6 +235,10 @@ export default {
     unidriver,
     skipSanityTest,
   },
+  CardGalleryItem: {
+    unidriver,
+    skipSanityTest,
+  },
   Label: { enzymeTestkit: labelTestkitFactory },
   SideMenu: {
     enzymeTestkitFactory: require('../src/SideMenu/core/SideMenu.driver')
