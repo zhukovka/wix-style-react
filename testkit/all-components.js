@@ -17,6 +17,7 @@ const NON_COMPONENT_FOLDER_NAMES = [
   'TPA',
   'Animations',
   'CalendarPanel',
+  'NumberInput',
 ];
 
 const cwd = path.resolve(__dirname, '..', 'src');
