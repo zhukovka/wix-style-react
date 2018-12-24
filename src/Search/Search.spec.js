@@ -9,19 +9,10 @@ import {
 } from '../../test/utils/testkit-sanity';
 import { searchTestkitFactory } from '../../testkit';
 import { searchTestkitFactory as enzymeSearchTestkitFactory } from '../../testkit/enzyme';
-import { runInputWithOptionsTest } from '../InputWithOptions/InputWithOptions.spec';
 import { makeControlled } from '../../test/utils';
 import { mount } from 'enzyme';
 
 const REGEXP_SPECIAL_CHARS = '^$\\.*+?)(][}{|';
-
-// We use the parent component because the Search component has a wrapper around <InputWithOption />
-runInputWithOptionsTest(args =>
-  searchDriverFactory({
-    ...args,
-    element: args.element ? args.element.parentElement : args.element,
-  }),
-);
 
 const options = [
   'The quick',

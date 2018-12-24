@@ -6,10 +6,7 @@ import { createDriverFactory } from 'wix-ui-test-utils/driver-factory';
 import { dropdownTestkitFactory } from '../../testkit';
 import { dropdownTestkitFactory as enzymeDropdownTestkitFactory } from '../../testkit/enzyme';
 import { mount } from 'enzyme';
-import { runInputWithOptionsTest } from '../InputWithOptions/InputWithOptions.spec';
 import { sleep } from 'wix-ui-test-utils/react-helpers';
-
-runInputWithOptionsTest(dropdownDriverFactory);
 
 describe('Dropdown', () => {
   const createDriver = createDriverFactory(dropdownDriverFactory);

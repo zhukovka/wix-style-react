@@ -6,9 +6,6 @@ import { createDriverFactory } from 'wix-ui-test-utils/driver-factory';
 import { multiSelectCheckboxTestkitFactory } from '../../testkit';
 import { multiSelectCheckboxTestkitFactory as enzymeMultiSelectCheckboxTestkitFactory } from '../../testkit/enzyme';
 import { mount } from 'enzyme';
-import { runInputWithOptionsTest } from '../InputWithOptions/InputWithOptions.spec';
-
-runInputWithOptionsTest(multiSelectCheckboxDriverFactory);
 
 describe('multiSelectCheckbox', () => {
   const createDriver = createDriverFactory(multiSelectCheckboxDriverFactory);

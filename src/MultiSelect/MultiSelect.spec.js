@@ -6,9 +6,6 @@ import { createDriverFactory } from 'wix-ui-test-utils/driver-factory';
 import { multiSelectTestkitFactory } from '../../testkit';
 import { multiSelectTestkitFactory as enzymeMultiSelectTestkitFactory } from '../../testkit/enzyme';
 import { mount } from 'enzyme';
-import { runInputWithOptionsTest } from '../InputWithOptions/InputWithOptions.spec';
-
-runInputWithOptionsTest(multiSelectDriverFactory);
 
 describe('MultiSelect', () => {
   const createDriver = createDriverFactory(multiSelectDriverFactory);
