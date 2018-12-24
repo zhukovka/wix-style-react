@@ -19,6 +19,7 @@ Types of changes:
 ### Docs
 
 - `<TextField/>` - Add NumberInput example [#2653](https://github.com/wix/wix-style-react/pull/2653)
+- Fix broken component names (`<RichTextArea/>`, `<ImageViewer/>`, `<Tabs/>`, `<TextLink/>`, `<ModalSelectorLayout/>`) [#2654](https://github.com/wix/wix-style-react/pull/2654)
 
 ## 5.19.0
 
