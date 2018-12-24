@@ -13,11 +13,31 @@ class NumberInput extends React.Component {
     return !Number.isNaN(Number.parseInt(value));
   }
 
-  handleTickerClick = step => {
-    NumberInput.isValidNumber(this.state.value) &&
-      this.setState(prevState => ({
-        value: prevState.value + step,
-      }));
+  handleTickerUp = () => {
+    this.applyStep(1);
+  };
+
+  handleTickerDown = () => {
+    this.applyStep(-1);
+  };
+
+  applyStep = step => {
+    this.setState(prevState => {
+      const currentValue = Number.parseInt(prevState.value);
+      if (Number.isNaN(currentValue)) {
+        return null;
+      } else {
+        const nextValue = currentValue + step;
+        const { min, max } = this.props;
+        if (nextValue > max) {
+          return { value: max };
+        } else if (nextValue < min) {
+          return { value: min };
+        } else {
+          return { value: nextValue };
+        }
+      }
+    });
   };
 
   handleChange = event => {
@@ -32,16 +52,19 @@ class NumberInput extends React.Component {
   };
 
   render() {
+    const { min, max } = this.props;
     return (
       <Input
         type="number"
+        min={min}
+        max={max}
         placeholder="Enter an integer number"
         value={this.state.value}
         onChange={this.handleChange}
         suffix={
           <Input.Ticker
-            onDown={() => this.handleTickerClick(-1)}
-            onUp={() => this.handleTickerClick(1)}
+            onDown={this.handleTickerDown}
+            onUp={this.handleTickerUp}
           />
         }
       />
@@ -52,9 +75,11 @@ class NumberInput extends React.Component {
 NumberInput.propTypes = {
   onChange: PropTypes.func,
   value: PropTypes.number,
+  min: PropTypes.number,
+  max: PropTypes.number,
 };
 
-export default class TextFieldNumberInputExample extends React.Component {
+export default class ExampleNumberInput extends React.Component {
   state = {
     value: 0,
   };
@@ -66,7 +91,12 @@ export default class TextFieldNumberInputExample extends React.Component {
   render() {
     return (
       <FormField label="This is the FormField label">
-        <NumberInput value={this.state.value} onChange={this.handleChange} />
+        <NumberInput
+          value={this.state.value}
+          onChange={this.handleChange}
+          min={0}
+          max={5}
+        />
       </FormField>
     );
   }
