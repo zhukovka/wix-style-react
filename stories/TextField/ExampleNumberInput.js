@@ -4,13 +4,22 @@ import PropTypes from 'prop-types';
 import FormField from 'wix-style-react/FormField';
 import Input from 'wix-style-react/Input';
 
+const translate = text => {
+  // TODO: use real translate function
+  return text;
+};
+
 class NumberInput extends React.Component {
   state = {
     value: 1,
   };
 
-  static isValidNumber(value) {
-    return !Number.isNaN(Number.parseInt(value));
+  isValidNumber(value) {
+    const { min, max } = this.props;
+    const numberValue = Number.parseInt(value);
+    return (
+      !Number.isNaN(numberValue) && !(numberValue < min || numberValue > max)
+    );
   }
 
   handleTickerUp = () => {
@@ -51,6 +60,17 @@ class NumberInput extends React.Component {
     }
   };
 
+  getErrorProps() {
+    const value = this.state.value;
+    const { min, max } = this.props;
+    return this.isValidNumber(value) || value === '' || value === '-'
+      ? {}
+      : {
+          status: 'error',
+          statusMessage: translate(`Number must be between ${min} and ${max}`),
+        };
+  }
+
   render() {
     const { min, max } = this.props;
     return (
@@ -58,6 +78,7 @@ class NumberInput extends React.Component {
         type="number"
         min={min}
         max={max}
+        {...this.getErrorProps()}
         placeholder="Enter an integer number"
         value={this.state.value}
         onChange={this.handleChange}
@@ -73,6 +94,7 @@ class NumberInput extends React.Component {
 }
 
 NumberInput.propTypes = {
+  /** Called when number value change. Not called for invalid numbers or numbers outside the given range (min,max props) */
   onChange: PropTypes.func,
   value: PropTypes.number,
   min: PropTypes.number,
