@@ -14,7 +14,9 @@ const NumberInput = props => {
     const { min, max } = props;
     const numberValue = Number.parseInt(value);
     return (
-      !Number.isNaN(numberValue) && !(numberValue < min || numberValue > max)
+      !Number.isNaN(numberValue) &&
+      !(numberValue < min || numberValue > max) &&
+      (numberValue - min) % props.step === 0 // Got issue if step is a fraction !
     );
   }
 
@@ -27,20 +29,26 @@ const NumberInput = props => {
   }
 
   function applyStep(step) {
+    if (step === 0) {
+      return;
+    }
     const currentValue = Number.parseInt(props.value);
+    const { min, max } = props;
+    let nextValue;
     if (Number.isNaN(currentValue)) {
-      props.onChange(props.value);
+      nextValue = min;
     } else {
-      const nextValue = currentValue + step;
-      const { min, max } = props;
-      if (nextValue > max) {
-        props.onChange(max);
-      } else if (nextValue < min) {
-        props.onChange(min);
+      if ((currentValue - min) % props.step === 0) {
+        nextValue = Math.min(Math.max(currentValue + step, min), max);
       } else {
-        props.onChange(nextValue);
+        const stepAbs = Math.abs(step);
+        const next = Math.ceil((currentValue - min) / stepAbs) * stepAbs + min;
+        const prev = Math.floor((currentValue - min) / stepAbs) * stepAbs + min;
+
+        nextValue = step > 0 ? next : prev;
       }
     }
+    props.onChange(nextValue.toString());
   }
 
   function getErrorProps() {
@@ -80,7 +88,7 @@ NumberInput.defaultProps = {
 
 export default class ExampleNumberInput extends React.Component {
   state = {
-    value: 0,
+    value: '0',
   };
 
   handleChange = value => {
@@ -88,8 +96,9 @@ export default class ExampleNumberInput extends React.Component {
   };
 
   render() {
-    const min = -5;
-    const max = 5;
+    const min = 0;
+    const max = 10;
+    const step = 5;
     return (
       <FormField label="This is the FormField label">
         <NumberInput
@@ -98,7 +107,10 @@ export default class ExampleNumberInput extends React.Component {
           placeholder="Enter an integer number"
           min={min}
           max={max}
-          errorMessage={translate(`Number must be between ${min} and ${max}`)}
+          step={step}
+          errorMessage={translate(
+            `Number must be between ${min} and ${max}, with steps of ${step}.`,
+          )}
         />
       </FormField>
     );
