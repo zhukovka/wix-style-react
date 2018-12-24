@@ -16,6 +16,9 @@ Types of changes:
 
 ## Next
 
+### Added
+- `<CardGalleryItem/>` - create new component [#2566](https://github.com/wix/wix-style-react/pull/2566)
+
 ### Docs
 
 - `<TextField/>` - Add NumberInput example [#2653](https://github.com/wix/wix-style-react/pull/2653)
