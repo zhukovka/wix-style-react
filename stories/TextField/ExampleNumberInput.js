@@ -9,96 +9,73 @@ const translate = text => {
   return text;
 };
 
-class NumberInput extends React.Component {
-  state = {
-    value: 1,
-  };
-
-  isValidNumber(value) {
-    const { min, max } = this.props;
+const NumberInput = props => {
+  function isValidNumber(value) {
+    const { min, max } = props;
     const numberValue = Number.parseInt(value);
     return (
       !Number.isNaN(numberValue) && !(numberValue < min || numberValue > max)
     );
   }
 
-  handleTickerUp = () => {
-    this.applyStep(1);
-  };
+  function handleTickerUp() {
+    applyStep(props.step);
+  }
 
-  handleTickerDown = () => {
-    this.applyStep(-1);
-  };
+  function handleTickerDown() {
+    applyStep(-props.step);
+  }
 
-  applyStep = step => {
-    this.setState(prevState => {
-      const currentValue = Number.parseInt(prevState.value);
-      if (Number.isNaN(currentValue)) {
-        return null;
-      } else {
-        const nextValue = currentValue + step;
-        const { min, max } = this.props;
-        if (nextValue > max) {
-          return { value: max };
-        } else if (nextValue < min) {
-          return { value: min };
-        } else {
-          return { value: nextValue };
-        }
-      }
-    });
-  };
-
-  handleChange = event => {
-    const numberValue = Number.parseInt(event.target.value);
-    if (Number.isNaN(numberValue)) {
-      this.setState({ value: event.target.value });
+  function applyStep(step) {
+    const currentValue = Number.parseInt(props.value);
+    if (Number.isNaN(currentValue)) {
+      props.onChange(props.value);
     } else {
-      this.setState({ value: numberValue }, () => {
-        this.props.onChange(this.state.value);
-      });
+      const nextValue = currentValue + step;
+      const { min, max } = props;
+      if (nextValue > max) {
+        props.onChange(max);
+      } else if (nextValue < min) {
+        props.onChange(min);
+      } else {
+        props.onChange(nextValue);
+      }
     }
-  };
+  }
 
-  getErrorProps() {
-    const value = this.state.value;
-    const { min, max } = this.props;
-    return this.isValidNumber(value) || value === '' || value === '-'
+  function getErrorProps() {
+    const value = props.value;
+    return isValidNumber(value) || value === '' || value === '-'
       ? {}
       : {
           status: 'error',
-          statusMessage: translate(`Number must be between ${min} and ${max}`),
+          statusMessage: props.errorMessage,
         };
   }
 
-  render() {
-    const { min, max } = this.props;
-    return (
-      <Input
-        type="number"
-        min={min}
-        max={max}
-        {...this.getErrorProps()}
-        placeholder="Enter an integer number"
-        value={this.state.value}
-        onChange={this.handleChange}
-        suffix={
-          <Input.Ticker
-            onDown={this.handleTickerDown}
-            onUp={this.handleTickerUp}
-          />
-        }
-      />
-    );
-  }
-}
+  return (
+    <Input
+      {...props}
+      {...getErrorProps()}
+      onChange={e => props.onChange(e.target.value)}
+      type="number"
+      suffix={<Input.Ticker onDown={handleTickerDown} onUp={handleTickerUp} />}
+    />
+  );
+};
 
 NumberInput.propTypes = {
-  /** Called when number value change. Not called for invalid numbers or numbers outside the given range (min,max props) */
-  onChange: PropTypes.func,
-  value: PropTypes.number,
+  /** Called with new value (not event) input value changes. Not called for invalid numbers or numbers outside the given range (min,max props) */
+  onChange: PropTypes.func.isRequired,
+  value: PropTypes.string.isRequired,
+  errorMessage: PropTypes.string,
   min: PropTypes.number,
   max: PropTypes.number,
+  step: PropTypes.number,
+};
+
+NumberInput.defaultProps = {
+  step: 1,
 };
 
 export default class ExampleNumberInput extends React.Component {
@@ -111,13 +88,17 @@ export default class ExampleNumberInput extends React.Component {
   };
 
   render() {
+    const min = -5;
+    const max = 5;
     return (
       <FormField label="This is the FormField label">
         <NumberInput
           value={this.state.value}
           onChange={this.handleChange}
-          min={0}
-          max={5}
+          placeholder="Enter an integer number"
+          min={min}
+          max={max}
+          errorMessage={translate(`Number must be between ${min} and ${max}`)}
         />
       </FormField>
     );
