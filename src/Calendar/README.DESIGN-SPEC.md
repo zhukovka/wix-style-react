@@ -2,14 +2,20 @@
 
 | propName | propType | defaultValue | isRequired | description |
 |----------|----------|--------------|------------|-------------|
-| selectedDays | Date \| `{from: Date, to: Date}` | | | Day / Range that should appear as selected. Range object may contain `from` only, `to` only, or both. (But not an empty objecty)|
-| onSelectedDaysChange | func | | Yes | Called when selectedDays changes by user interaction. When `selectionMode=day`, the function receives a Date object. When `selectionMode=range`, the function receives an Range object of the form `{from: Date, to: Date}`.|
+| value | Date \| `{from: Date, to: Date}` | | | Day / Range that should appear as selected. Range object may contain `from` only, `to` only, or both. (But not an empty objecty)|
+| onChange | func | | Yes | Called when selectedDays changes by user interaction. When `selectionMode=day`, the function receives a Date object. When `selectionMode=range`, the function receives an Range object of the form `{from: Date, to: Date}`.|
 | selectionMode | 'day' \| 'range' | 'day' |  | Affects the click behavior and how it selects a day or a range |
-| month | Date | | | The month to display in the calendar. This differs from the initialMonth prop, as it causes the calendar to re-render when its value changes. |
-| onMonthChanged | func |  | | Event handler when the month is changed. Function receives a Date object. |
 
+## Value Change Behavior
+
+When value (day | range) changes (componentWillReceiveProps) then we need to decide how to change the current month, in order to have the new day|range visible.
+
+The behavior is defined as such:
+
+- Apply the minimal month offset, so that as much of the day|range will be visible.
 
 ## Selection
+
 There are the following modes:
 - `day` (single day) - a single click selects a day
 
