@@ -11,6 +11,8 @@ deprecationLog(
 
 
 export default class TextLink extends WixComponent {
+  static displayName = 'TextLink';
+
   static propTypes = {
     ...TextLinkLayout.propTypes,
     link: PropTypes.string,

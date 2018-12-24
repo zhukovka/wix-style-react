@@ -25,6 +25,8 @@ const DEFAULT_EMPTY = (
  * E.g.: choosing products to promote via ShoutOuts
  */
 export default class ModalSelectorLayout extends WixComponent {
+  static displayName = 'ModalSelectorLayout';
+
   static propTypes = {
     /** Title of the modal */
     title: node,

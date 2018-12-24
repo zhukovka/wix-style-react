@@ -29,6 +29,8 @@ export const makeHrefAbsolute = href =>
   /^(https?:)?\/\//.test(href) ? href : `//${href}`;
 
 class RichTextArea extends WixComponent {
+  static displayName = 'RichTextArea';
+
   static propTypes = {
     /** Is the rich text area automatically transforming relative links to absolute after user insert */
     absoluteLinks: PropTypes.bool,
