@@ -25,6 +25,7 @@ Types of changes:
 
 ### Fixed
 - `<GoogleAddressInput/>` - fix broken countryCode API [#2628](https://github.com/wix/wix-style-react/pull/2628)
+- `<SectionHelper>` - update driver to work properly in browser environments [#2655](https://github.com/wix/wix-style-react/pull/2655)
 
 ### Docs
 - `<TextField/>` - Add NumberInput example [#2653](https://github.com/wix/wix-style-react/pull/2653)
