@@ -1,4 +1,4 @@
-export const getStylableState = async (base, style, state) => {
+export const getStylableState = (base, style, state) => {
   const stateKey = Object.keys(style.$cssStates({ [state]: true }))[0];
-  return await base.attr(stateKey);
+  return base.attr(stateKey);
 };
