@@ -1,11 +1,9 @@
-import React from 'react';
 import ReactTestUtils from 'react-dom/test-utils';
-import ReactDOM from 'react-dom';
 import styles from './DropdownLayout.scss';
 import values from '../utils/operators/values';
 import { isClassExists } from '../../test/utils';
 
-const dropdownLayoutDriverFactory = ({ element, wrapper, component }) => {
+const dropdownLayoutDriverFactory = ({ element }) => {
   const contentContainer = element.childNodes[0];
   const options = element.querySelector('[data-hook=dropdown-layout-options]');
   const optionAt = position => options.childNodes[position];
@@ -80,7 +78,11 @@ const dropdownLayoutDriverFactory = ({ element, wrapper, component }) => {
       ReactTestUtils.Simulate.keyDown(element, { key: 'Escape' }),
     optionContentAt: position =>
       doIfOptionExists(position, () => optionAt(position).textContent),
+    /** @deprecated Use optionAtDriver*/
     optionAt,
+    /** Get option driver given an option index */
+    optionDriver: position =>
+      doIfOptionExists(position, () => optionDriver(optionAt(position))),
     optionsContent: () =>
       values(options.childNodes).map(option => option.textContent),
     clickAtOption: position =>
@@ -99,43 +101,34 @@ const dropdownLayoutDriverFactory = ({ element, wrapper, component }) => {
       ),
     mouseEnter: () => ReactTestUtils.Simulate.mouseEnter(element),
     mouseLeave: () => ReactTestUtils.Simulate.mouseLeave(element),
-    setProps: props => {
-      const ClonedWithProps = React.cloneElement(
-        component,
-        Object.assign({}, component.props, props),
-        ...(component.props.children || []),
-      );
-      ReactDOM.render(
-        <div ref={r => (element = r)}>{ClonedWithProps}</div>,
-        wrapper,
-      );
-    },
     hasTopArrow: () => !!element.querySelector(`.${styles.arrow}`),
-    isSelectedHighlight: () => component.props.selectedHighlight,
     optionById(optionId) {
       return this.optionByHook(`dropdown-item-${optionId}`);
     },
+    /** @deprecated This should be a private method since the hook include internal parts ('dropdown-divider-{id}, dropdown-item-{id})') */
     optionByHook: hook => {
       const option = options.querySelector(`[data-hook=${hook}]`);
       if (!option) {
         throw new Error(`an option with data-hook ${hook} was not found`);
       }
-      return {
-        element: () => option,
-        mouseEnter: () => ReactTestUtils.Simulate.mouseEnter(option),
-        mouseLeave: () => ReactTestUtils.Simulate.mouseLeave(option),
-        isHovered: () => isClassExists(option, 'hovered'),
-        isSelected: () => isClassExists(option, 'selected'),
-        isHoveredWithGlobalClassName: () =>
-          isClassExists(option, 'wixstylereactHovered'),
-        isSelectedWithGlobalClassName: () =>
-          isClassExists(option, 'wixstylereactSelected'),
-        content: () => option.textContent,
-        click: () => ReactTestUtils.Simulate.mouseDown(option),
-        isDivider: () => isClassExists(option, 'divider'),
-      };
+      return optionDriver(option);
     },
   };
 };
+
+const optionDriver = option => ({
+  element: () => option,
+  mouseEnter: () => ReactTestUtils.Simulate.mouseEnter(option),
+  mouseLeave: () => ReactTestUtils.Simulate.mouseLeave(option),
+  isHovered: () => isClassExists(option, 'hovered'),
+  isSelected: () => isClassExists(option, 'selected'),
+  isHoveredWithGlobalClassName: () =>
+    isClassExists(option, 'wixstylereactHovered'),
+  isSelectedWithGlobalClassName: () =>
+    isClassExists(option, 'wixstylereactSelected'),
+  content: () => option.textContent,
+  click: () => ReactTestUtils.Simulate.mouseDown(option),
+  isDivider: () => isClassExists(option, 'divider'),
+});
 
 export default dropdownLayoutDriverFactory;

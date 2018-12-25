@@ -1,14 +1,14 @@
 import React from 'react';
-import ReactTestUtils from 'react-dom/test-utils';
-import { createDriverFactory } from 'wix-ui-test-utils/driver-factory';
 import DropdownLayout from './DropdownLayout';
 import dropdownLayoutDriverFactory from './DropdownLayout.driver';
-import { dropdownLayoutTestkitFactory } from '../../testkit';
-import { dropdownLayoutTestkitFactory as enzymeDropdownLayoutTestkitFactory } from '../../testkit/enzyme';
-import { mount } from 'enzyme';
+import { createRendererWithDriver, cleanup } from '../../test/utils/react';
 
 describe('DropdownLayout', () => {
-  const createDriver = createDriverFactory(dropdownLayoutDriverFactory);
+  const render = createRendererWithDriver(dropdownLayoutDriverFactory);
+  const createDriver = jsx => render(jsx).driver;
+  afterEach(() => {
+    cleanup();
+  });
   const options = [
     { id: 0, value: 'Option 1' },
     { id: 1, value: 'Option 2' },
@@ -60,9 +60,11 @@ describe('DropdownLayout', () => {
   });
 
   it('should hide dropdown on outside click', () => {
-    const driver = createDriver(
+    const { driver, rerender } = render(
       <DropdownLayout
-        onClickOutside={() => driver.setProps({ visible: false })}
+        onClickOutside={() =>
+          rerender(<DropdownLayout visible={false} options={options} />)
+        }
         visible
         options={options}
       />,
@@ -259,12 +261,11 @@ describe('DropdownLayout', () => {
 
   it('should remember the selected option when getting re-opened after got closed', () => {
     const selectedId = 1;
-    const driver = createDriver(
-      <DropdownLayout visible options={options} selectedId={selectedId} />,
-    );
+    const props = { visible: true, options, selectedId };
+    const { driver, rerender } = render(<DropdownLayout {...props} />);
     expect(driver.isOptionSelected(selectedId)).toBeTruthy();
-    driver.setProps({ visible: false });
-    driver.setProps({ visible: true });
+    rerender(<DropdownLayout {...props} visible={false} />);
+    rerender(<DropdownLayout {...props} visible />);
     expect(driver.isOptionSelected(selectedId)).toBeTruthy();
   });
 
@@ -337,9 +338,12 @@ describe('DropdownLayout', () => {
     const selectedId = 0;
 
     it('should be true by default', () => {
-      const driver = createDriver(<DropdownLayout visible options={options} />);
-      expect(driver.isSelectedHighlight()).toBe(true);
+      const driver = createDriver(
+        <DropdownLayout visible options={options} selectedId={selectedId} />,
+      );
+      expect(driver.optionById(selectedId).isSelected()).toBe(true);
     });
+
     describe('when true', () => {
       it('should give the option a selected classname', () => {
         const driver = createDriver(
@@ -350,9 +354,10 @@ describe('DropdownLayout', () => {
             selectedId={selectedId}
           />,
         );
-        expect(driver.isOptionSelected(0)).toBeTruthy();
+        expect(driver.optionById(selectedId).isSelected()).toBeTruthy();
       });
     });
+
     describe('when false', () => {
       it('should not give the option a selected classname', () => {
         const driver = createDriver(
@@ -363,7 +368,7 @@ describe('DropdownLayout', () => {
             selectedId={selectedId}
           />,
         );
-        expect(driver.isOptionSelected(0)).toBeFalsy();
+        expect(driver.optionById(selectedId).isSelected()).toBeFalsy();
       });
     });
   });
@@ -555,10 +560,9 @@ describe('DropdownLayout', () => {
         { id: 3, value: 'a 4' },
       ];
 
-      const wrapper = mount(<DropdownLayout visible options={_options} />);
-      const driver = dropdownLayoutDriverFactory({
-        element: wrapper.getDOMNode(),
-      });
+      const { driver, rerender } = render(
+        <DropdownLayout visible options={_options} />,
+      );
       driver.pressDownKey();
       driver.pressDownKey();
       driver.pressDownKey();
@@ -566,7 +570,7 @@ describe('DropdownLayout', () => {
 
       expect(driver.isOptionHovered(3)).toBeTruthy();
 
-      wrapper.setProps({ options: _options.slice(1) });
+      rerender(<DropdownLayout visible options={_options.slice(1)} />);
 
       expect(driver.isOptionHovered(2)).toBeTruthy();
     });
@@ -579,18 +583,15 @@ describe('DropdownLayout', () => {
         { id: 3, value: 'a 4' },
       ];
 
-      const wrapper = mount(
+      const { driver, rerender } = render(
         <DropdownLayout visible options={initialOptions} />,
       );
-      const driver = dropdownLayoutDriverFactory({
-        element: wrapper.getDOMNode(),
-      });
       driver.pressDownKey();
       driver.pressDownKey();
 
       expect(driver.isOptionHovered(1)).toBeTruthy();
 
-      wrapper.setProps({ options: initialOptions.slice(2) });
+      rerender(<DropdownLayout visible options={initialOptions.slice(2)} />);
 
       expect(driver.isOptionHovered(0)).toBeFalsy();
       expect(driver.isOptionHovered(1)).toBeFalsy();
@@ -599,48 +600,9 @@ describe('DropdownLayout', () => {
 
   describe('theme support', () => {
     it('should allow setting a custom theme', () => {
-      const props = { dataHook: 'myDataHook', theme: 'material', options };
-      const wrapper = mount(<DropdownLayout {...props} />);
-      const testkit = enzymeDropdownLayoutTestkitFactory({
-        wrapper,
-        dataHook: props.dataHook,
-      });
-      expect(testkit.hasTheme('material')).toBe(true);
-    });
-  });
-
-  describe('testkit', () => {
-    it('should exist', () => {
-      const div = document.createElement('div');
-      const dataHook = 'myDataHook';
-      const wrapper = div.appendChild(
-        ReactTestUtils.renderIntoDocument(
-          <div>
-            <DropdownLayout dataHook={dataHook} options={options} />
-          </div>,
-        ),
-      );
-      const dropdownLayoutTestkit = dropdownLayoutTestkitFactory({
-        wrapper,
-        dataHook,
-      });
-      expect(dropdownLayoutTestkit.exists()).toBeTruthy();
-      expect(dropdownLayoutTestkit.optionsLength()).toBe(7);
-    });
-  });
-
-  describe('enzyme testkit', () => {
-    it('should exist', () => {
-      const dataHook = 'myDataHook';
-      const wrapper = mount(
-        <DropdownLayout dataHook={dataHook} options={options} />,
-      );
-      const dropdownLayoutTestkit = enzymeDropdownLayoutTestkitFactory({
-        wrapper,
-        dataHook,
-      });
-      expect(dropdownLayoutTestkit.exists()).toBeTruthy();
-      expect(dropdownLayoutTestkit.optionsLength()).toBe(7);
+      const props = { theme: 'material', options };
+      const { driver } = render(<DropdownLayout {...props} />);
+      expect(driver.hasTheme('material')).toBe(true);
     });
   });
 });
