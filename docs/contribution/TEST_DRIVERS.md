@@ -1,29 +1,39 @@
 # Test drivers
+
 Test driver is a simple abstraction on top of component and supply a good way for the consumers to interact with the component.
 
 ## Types of drivers
 
 ### unidriver (for every new component)
+
 All component drivers in this library should be built on top of [unidriver](https://github.com/wix-incubator/unidriver). `unidriver` is a tool to write universal component drivers that can be reused in all test levels, from component to e2e.
 
 ### legacy drivers (for existing components)
+
 The library still contain a lot of technology specific drivers, mainly for the following ones:
-  * `enzyme` and `vanilla` for regular dom interaction.
-  * `protractor` for browser interaction.
+
+- `enzyme` and `vanilla` for regular dom interaction.
+- `protractor` for browser interaction.
+- `puppeteer` for browser interaction.
+
 We will slowly migrate to use only unidriver, but in the meanwhile both still exist.
 
 ### Composing unidriver with legacy drivers
+
 If your component's `unidriver` is composing other components that don’t use unidriver, please make sure to create a new `ConsumedComponent.uni.driver.js` next to the consumed component. You can start by implementing only the required functions and not the entire driver.
 
 ## Public and Private drivers
+
 1. The **Public** drivers (`component.driver.js`) are the ones that exposed to the consumers of the components. They should be simple abstractions over common actions (for example, selecting the third element in the dropdown).
 2. The **Private** drivers (`component.driver.private.js`) are used for actions on a component that should not be exposed to the user. For example, asserting a class name existance on some component.
 3. The Private drivers are extending the public ones and should be used internally when testing the components.
 
 ## Best Practices
+
 1. Drivers should be used for when testing and do one of the following:
-  * Make a side effect (e.g. click)
-  * Retrieve some primitive value as string, number or boolean (e.g. some value / is checked)
+
+    - Make a side effect (e.g. click)
+    - Retrieve some primitive value as string, number or boolean (e.g. some value / is checked)
 1. Drivers should help testing the behavior and the DOM and not test React, so never check for component props.
 1. Components use `data-hook`s to easily locate parts of the DOM. We use them in the driver to query the elements.
 1. Drivers are tested internally in the library and exposed to consumers as TestKits.
@@ -36,9 +46,9 @@ If your component's `unidriver` is composing other components that don’t use u
 1. A TestKit input is a wrapper object (DOM node for vanilla, enzyme wrapper for enzyme) and `dataHook`, and returns an object which contains all API methods.
 1. The created Testkit have an `exists` method. And all other methods should throw an error with propper message when `testkit.exists() === false`.
 1. Export your `testkitFactory` from the following files:
-  * `wix-style-react/testkit/index.js`
-  * `wix-style-react/testkit/enzyme.js`
-  * `wix-style-react/testkit/protractor.js`
+    - `wix-style-react/testkit/index.js`
+    - `wix-style-react/testkit/enzyme.js`
+    - `wix-style-react/testkit/protractor.js`
 1. Each component tests should use the sanity check for TestKit with `isTestkitExists` and `isEnzymeTestkitExists`
 
 ### Consumer Usage example
