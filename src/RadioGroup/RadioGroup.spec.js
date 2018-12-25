@@ -1,7 +1,6 @@
 import React from 'react';
 import RadioGroup from './RadioGroup';
 import radioGroupDriverFactory from './RadioGroup.driver';
-import { createDriverFactory } from 'wix-ui-test-utils/driver-factory';
 import { radioGroupTestkitFactory } from '../../testkit';
 import {
   isTestkitExists,
@@ -9,9 +8,11 @@ import {
 } from '../../test/utils/testkit-sanity';
 import { radioGroupTestkitFactory as enzymeRadioGroupTestkitFactory } from '../../testkit/enzyme';
 import { mount } from 'enzyme';
+import { createRendererWithDriver, cleanup } from '../../test/utils/unit';
 
 describe('RadioGroup', () => {
-  const createDriver = createDriverFactory(radioGroupDriverFactory);
+  const render = createRendererWithDriver(radioGroupDriverFactory);
+  const createDriver = jsx => render(jsx).driver;
 
   const defaultRadioGroup = props => (
     <RadioGroup {...props}>
@@ -21,6 +22,10 @@ describe('RadioGroup', () => {
       <RadioGroup.Radio value={4}>Option 4</RadioGroup.Radio>
     </RadioGroup>
   );
+
+  afterEach(() => {
+    cleanup();
+  });
 
   it('should have the correct radio buttons', () => {
     const driver = createDriver(defaultRadioGroup());
@@ -44,9 +49,9 @@ describe('RadioGroup', () => {
   });
 
   it('should update selected value after change to props', () => {
-    const driver = createDriver(defaultRadioGroup({ value: 1 }));
+    const { driver, rerender } = render(defaultRadioGroup({ value: 1 }));
     const value = 2;
-    driver.setProps({ value });
+    rerender(defaultRadioGroup({ value: 2 }));
     expect(driver.getSelectedValue()).toBe(value.toString());
   });
 

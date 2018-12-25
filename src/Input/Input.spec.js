@@ -4,7 +4,6 @@ import sinon from 'sinon';
 import inputDriverFactory from './Input.driver';
 import Input from '.';
 import { createDriverFactory } from 'wix-ui-test-utils/driver-factory';
-import { render, cleanup } from '../../test/utils/react';
 import { inputTestkitFactory, tooltipTestkitFactory } from '../../testkit';
 import { inputTestkitFactory as enzymeInputTestkitFactory } from '../../testkit/enzyme';
 import {
@@ -13,10 +12,20 @@ import {
 } from '../../test/utils/testkit-sanity';
 import { makeControlled, resolveIn } from '../../test/utils';
 import { mount } from 'enzyme';
+import {
+  createRendererWithDriver,
+  cleanup,
+  render,
+} from '../../test/utils/unit';
 
 describe('Input', () => {
+  const render = createRendererWithDriver(inputDriverFactory);
   const createDriver = createDriverFactory(inputDriverFactory);
   const ControlledInput = makeControlled(Input);
+
+  afterEach(() => {
+    cleanup();
+  });
 
   describe('test tooltip', () => {
     it('should display the error tooltip on hover', () => {
@@ -475,10 +484,10 @@ describe('Input', () => {
 
   describe('autoFocus attribute', () => {
     it('Mounting an input element with autoFocus=false, should give it the focus', () => {
-      const driver = createDriver(<Input autoFocus={false} />);
+      const { driver, rerender } = render(<Input autoFocus={false} />);
       expect(driver.isFocus()).toBeFalsy();
 
-      driver.setProps({ autoFocus: true });
+      rerender(<Input autoFocus />);
       expect(driver.isFocus()).toBeFalsy();
     });
 
