@@ -17,8 +17,8 @@ describe('AddItem', () => {
 
   // TEMP - ADDED BY EREZ - FOR INVESTIGATING EYES FAILURES
   // I put this in AddItem since its the first test that runs, I didn't have time to figure out where I could initialize this.
-  const ConsoleLogHandler = require('eyes.selenium').ConsoleLogHandler;
-  eyes.setLogHandler(new ConsoleLogHandler(true));
+  // const ConsoleLogHandler = require('eyes.selenium').ConsoleLogHandler;
+  // eyes.setLogHandler(new ConsoleLogHandler(true));
 
   beforeAll(async () => {
     await browser.get(storyUrl);
