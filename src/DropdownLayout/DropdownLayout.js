@@ -17,10 +17,8 @@ export const DIVIDER_OPTION_VALUE = '-';
 class DropdownLayout extends WixComponent {
   constructor(props) {
     super(props);
-    let state;
 
     this.state = {
-      options: props.options,
       hovered: NOT_HOVERED_INDEX,
       selectedId: props.selectedId,
     };
@@ -49,7 +47,7 @@ class DropdownLayout extends WixComponent {
 
   _focusOnSelectedOption() {
     if (this.selectedOption) {
-      this.state.options.scrollTop = Math.max(
+      this.options.scrollTop = Math.max(
         this.selectedOption.offsetTop - this.selectedOption.offsetHeight,
         0,
       );
@@ -88,8 +86,7 @@ class DropdownLayout extends WixComponent {
   }
 
   _onSelect(index) {
-    const { options } = this.state;
-    const { onSelect } = this.props;
+    const { options, onSelect } = this.props;
     const chosenOption = options[index];
     const newState = { hovered: NOT_HOVERED_INDEX };
 
@@ -119,7 +116,7 @@ class DropdownLayout extends WixComponent {
   }
 
   _getMarkedIndex() {
-    const { options } = this.state;
+    const { options } = this.props;
     const useHoverIndex = this.state.hovered > NOT_HOVERED_INDEX;
     const useSelectedIdIndex = typeof this.state.selectedId !== 'undefined';
 
@@ -138,7 +135,7 @@ class DropdownLayout extends WixComponent {
   }
 
   _markNextStep(step) {
-    const { options } = this.state;
+    const { options } = this.props;
 
     if (!options.some(this._isSelectableOption)) {
       return;
@@ -232,22 +229,23 @@ class DropdownLayout extends WixComponent {
   }
 
   render = () => {
-    const dropdownLayout = this._renderDropdownLayout(this.state.options);
+    const dropdownLayout = this._renderDropdownLayout(this.props.options);
     return this.props.infiniteScroll ? this._renderWithInfiniteScroll(dropdownLayout) : dropdownLayout;
   };
 
 
   _renderWithInfiniteScroll = dropdownLayout =>
     <InfiniteScroll
-      loadMore={this.loadMore}
+      loadMore={this.props.loadMore}
       hasMore={this.props.hasMore}
       threshold={100}
     >
       {dropdownLayout}
-    </InfiniteScroll>
+    </InfiniteScroll>;
 
   _renderDropdownLayout() {
     const {
+      options,
       dropDirectionUp,
       visible,
       inContainer,
@@ -258,8 +256,6 @@ class DropdownLayout extends WixComponent {
       withArrow,
       fixedFooter
     } = this.props;
-
-    const { options } = this.state;
 
     const contentContainerClassName = classNames({
       [styles.contentContainer]: true,
@@ -387,6 +383,7 @@ class DropdownLayout extends WixComponent {
     if (this.props.visible !== nextProps.visible) {
       this.setState({ hovered: NOT_HOVERED_INDEX });
     }
+
     if (this.props.selectedId !== nextProps.selectedId) {
       this.setState({ selectedId: nextProps.selectedId });
     }
@@ -412,10 +409,6 @@ class DropdownLayout extends WixComponent {
       });
     }
   }
-
-  loadMore = () => {
-    this.props.loadMore && this.setState({options: this.state.options.concat(this.props.loadMore())});
-  };
 
   findIndex(arr, predicate) {
     return (Array.isArray(arr) ? arr : []).findIndex(predicate);

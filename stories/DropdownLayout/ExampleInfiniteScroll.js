@@ -9,10 +9,9 @@ export default class ExampleInfiniteScroll extends React.Component {
   constructor(props) {
     super(props);
     this.loadMore = this.loadMore.bind(this);
-    this.itemsPerPage = 5;
+    this.itemsPerPage = 10;
     this.total = 50;
-    this.count = 0;
-    this.state = { hasMore: true };
+    this.state = { hasMore: true , data: []};
   }
 
   style = {
@@ -23,20 +22,19 @@ export default class ExampleInfiniteScroll extends React.Component {
   };
 
   generateData = () => {
-    const generatedOptions = [];
+    let newOptions = [];
     for (let i = 0; i < this.itemsPerPage; i++) {
-      generatedOptions.push(generateOption(this.count + i));
+      newOptions.push(generateOption(this.state.data.length + i));
     }
-    this.count += this.itemsPerPage;
-    return generatedOptions;
+    this.setState({data: this.state.data.concat(newOptions)})
   };
 
   loadMore() {
-    if (this.state.count >= this.total) {
+    if (this.state.data.length >= this.total) {
       this.setState({ hasMore: false });
     }
     else {
-      return this.generateData();
+      this.generateData();
     }
   };
 
@@ -44,9 +42,9 @@ export default class ExampleInfiniteScroll extends React.Component {
     return <div style={this.style}>
       <DropdownLayout infiniteScroll
                       visible
-                      options={this.generateData()}
                       hasMore={this.state.hasMore}
                       loadMore={this.loadMore}
+                      options={this.state.data}
       />
     </div>;
   }
