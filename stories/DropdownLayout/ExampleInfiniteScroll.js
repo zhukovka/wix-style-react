@@ -1,28 +1,18 @@
 import React from 'react';
 import DropdownLayout from 'wix-style-react/DropdownLayout';
-import Chance from 'chance';
 
-const chance = new Chance();
-
-const generateOption = () => {
-  return { id: chance.guid(), value: chance.name() }
+const generateOption = (id) => {
+  return { id, value: 'options ' + id }
 };
-
-const generateData = (itemsToAdd, currentOptions) => {
-  for (let i = 0; i < itemsToAdd; i++) {
-    currentOptions.push(generateOption());
-  }
-  return currentOptions;
-};
-
 
 export default class ExampleInfiniteScroll extends React.Component {
   constructor(props) {
     super(props);
     this.loadMore = this.loadMore.bind(this);
     this.itemsPerPage = 5;
-    this.total = 40;
-    this.state = { hasMore: true, count: this.itemsPerPage, options: generateData(this.itemsPerPage, []) };
+    this.total = 50;
+    this.count = 0;
+    this.state = { hasMore: true };
   }
 
   style = {
@@ -32,30 +22,32 @@ export default class ExampleInfiniteScroll extends React.Component {
     lineHeight: '22px',
   };
 
+  generateData = () => {
+    const generatedOptions = [];
+    for (let i = 0; i < this.itemsPerPage; i++) {
+      generatedOptions.push(generateOption(this.count + i));
+    }
+    this.count += this.itemsPerPage;
+    return generatedOptions;
+  };
+
   loadMore() {
-    const loadMoreData = () => {
-      this.setState({ count: this.state.count + this.itemsPerPage });
-      if (this.state.count >= this.total) {
-        this.setState({ hasMore: false });
-      }
-    };
-    setTimeout(loadMoreData, 300);
+    if (this.state.count >= this.total) {
+      this.setState({ hasMore: false });
+    }
+    else {
+      return this.generateData();
+    }
+  };
+
+  render = () => {
+    return <div style={this.style}>
+      <DropdownLayout infiniteScroll
+                      visible
+                      options={this.generateData()}
+                      hasMore={this.state.hasMore}
+                      loadMore={this.loadMore}
+      />
+    </div>;
   }
-
-  render = () => (
-    <div>
-      <div style={this.style}>
-        Left to right
-        <br/>
-        <DropdownLayout infiniteScroll
-                        visible
-                        options={generateData(this.itemsPerPage, this.state.options)}
-                        itemsPerPage={this.itemsPerPage}
-                        hasMore={this.state.hasMore}
-                        loadMore={this.loadMore}
-        />
-      </div>
-    </div>
-  );
-
 }
