@@ -14,7 +14,13 @@ Types of changes:
 1. **Docs** for documentation changes
 1. **Lab** components and features that are still in a work in progress
 
-## 5.20.0
+## 5.20.1 - 2018-12-25
+
+### Fixed
+
+- Update the `getStylableState` method to not use `async` / `await` [#2663](https://github.com/wix/wix-style-react/pull/2663)
+
+## 5.20.0 - 2018-12-25
 
 ### Added
 - `<CardGalleryItem/>` - create new component [#2566](https://github.com/wix/wix-style-react/pull/2566)
@@ -31,7 +37,7 @@ Types of changes:
 - `<TextField/>` - Add NumberInput example [#2653](https://github.com/wix/wix-style-react/pull/2653)
 - `<RichTextArea/>`, `<ImageViewer/>`, `<Tabs/>`, `<TextLink/>`, `<ModalSelectorLayout/>` - Fix broken component names [#2654](https://github.com/wix/wix-style-react/pull/2654)
 
-## 5.19.0
+## 5.19.0 - 2018-12-20
 
 ### Added
 
