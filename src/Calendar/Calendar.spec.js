@@ -9,7 +9,8 @@ const createDriver = createDriverFactory(calendarDriverFactory);
 describe('Calendar', () => {
   afterEach(() => cleanup());
 
-  const SEPTEMBER = 8,
+  const AUGUST = 7,
+    SEPTEMBER = 8,
     OCTOBER = 9,
     NOVEMBER = 10;
 
@@ -236,8 +237,8 @@ describe('Calendar', () => {
     });
   });
 
-  describe('rerender with new value prop', () => {
-    describe('month state', () => {
+  describe(`'value' update`, () => {
+    describe(`'month' state`, () => {
       const render = createRendererWithDriver(calendarDriverFactory);
 
       function testCase({
@@ -245,108 +246,184 @@ describe('Calendar', () => {
         nextValue,
         expectedInitialMonth,
         expectedMonth,
+        numOfMonths = 1,
       }) {
+        const props = {
+          onChange: () => {},
+          numOfMonths: numOfMonths,
+        };
         const { driver, rerender } = render(
-          <Calendar value={initialValue} onChange={() => {}} />,
+          <Calendar {...props} value={initialValue} />,
         );
         expect(driver.getMonthCaption()).toEqual(
           monthNames[expectedInitialMonth],
         );
-        rerender(<Calendar value={nextValue} onChange={() => {}} />);
+        rerender(<Calendar {...props} value={nextValue} />);
         expect(driver.getMonthCaption()).toEqual(monthNames[expectedMonth]);
       }
 
-      it('should not change the displayed month, provided that current month contains the new Date', () => {
-        testCase({
-          initialValue: new Date(2018, OCTOBER, 1),
-          expectedInitialMonth: OCTOBER,
-          nextValue: new Date(2018, OCTOBER, 2),
-          expectedMonth: OCTOBER,
+      describe('one month', () => {
+        it('should not change when nextValue is empty', () => {
+          testCase({
+            initialValue: new Date(2018, NOVEMBER, 1),
+            expectedInitialMonth: NOVEMBER,
+            nextValue: {},
+            expectedMonth: NOVEMBER,
+          });
+        });
+
+        describe('single day', () => {
+          it('should not change the displayed month, provided that current month contains the new Date', () => {
+            testCase({
+              initialValue: new Date(2018, OCTOBER, 1),
+              expectedInitialMonth: OCTOBER,
+              nextValue: new Date(2018, OCTOBER, 2),
+              expectedMonth: OCTOBER,
+            });
+          });
+
+          it('should change the displayed month, provided that the current month is earlier than the new Date', () => {
+            testCase({
+              initialValue: new Date(2018, OCTOBER, 1),
+              expectedInitialMonth: OCTOBER,
+              nextValue: new Date(2018, NOVEMBER, 1),
+              expectedMonth: NOVEMBER,
+            });
+          });
+
+          it('should change the displayed month, provided that the current month is later than the new Date', () => {
+            testCase({
+              initialValue: new Date(2018, OCTOBER, 1),
+              expectedInitialMonth: OCTOBER,
+              nextValue: new Date(2018, SEPTEMBER, 1),
+              expectedMonth: SEPTEMBER,
+            });
+          });
+        });
+
+        describe('range', () => {
+          it('should not change the displayed month, provided that the current month is contained in the new Range', () => {
+            testCase({
+              initialValue: new Date(2018, OCTOBER, 1),
+              expectedInitialMonth: OCTOBER,
+              nextValue: {
+                from: new Date(2018, SEPTEMBER, 1),
+                to: new Date(2018, NOVEMBER, 1),
+              },
+              expectedMonth: SEPTEMBER,
+            });
+          });
+
+          it('should move the displayed month forward, provided that the current month is earlier than the new Range', () => {
+            testCase({
+              initialValue: new Date(2018, SEPTEMBER, 1),
+              expectedInitialMonth: SEPTEMBER,
+              nextValue: {
+                from: new Date(2018, OCTOBER, 1),
+                to: new Date(2018, NOVEMBER, 1),
+              },
+              expectedMonth: OCTOBER,
+            });
+          });
+
+          it('should move the displayed month forward, provided that the current month is earlier than the new unbounded Range', () => {
+            testCase({
+              initialValue: new Date(2018, SEPTEMBER, 1),
+              expectedInitialMonth: SEPTEMBER,
+              nextValue: {
+                from: new Date(2018, OCTOBER, 1),
+              },
+              expectedMonth: OCTOBER,
+            });
+          });
+
+          it('should move the displayed month back, provided that the current month is later than the new Range', () => {
+            testCase({
+              initialValue: new Date(2018, NOVEMBER, 1),
+              expectedInitialMonth: NOVEMBER,
+              nextValue: {
+                from: new Date(2018, SEPTEMBER, 1),
+                to: new Date(2018, OCTOBER, 1),
+              },
+              expectedMonth: OCTOBER,
+            });
+          });
+
+          it('should move the displayed month back, provided that the current month is later than the new unbounded Range', () => {
+            testCase({
+              initialValue: new Date(2018, NOVEMBER, 1),
+              expectedInitialMonth: NOVEMBER,
+              nextValue: {
+                to: new Date(2018, OCTOBER, 1),
+              },
+              expectedMonth: OCTOBER,
+            });
+          });
         });
       });
 
-      it('should change the displayed month, provided that the current month is earlier than the new Date', () => {
-        testCase({
-          initialValue: new Date(2018, OCTOBER, 1),
-          expectedInitialMonth: OCTOBER,
-          nextValue: new Date(2018, NOVEMBER, 1),
-          expectedMonth: NOVEMBER,
+      describe('two month', () => {
+        describe('single day', () => {
+          it('should not change the displayed month, when new day is 2nd month', () => {
+            testCase({
+              initialValue: new Date(2018, OCTOBER, 1),
+              expectedInitialMonth: OCTOBER,
+              nextValue: new Date(2018, NOVEMBER, 2),
+              expectedMonth: OCTOBER,
+              numOfMonths: 2,
+            });
+          });
         });
-      });
 
-      it('should change the displayed month, provided that the current month is later than the new Date', () => {
-        testCase({
-          initialValue: new Date(2018, OCTOBER, 1),
-          expectedInitialMonth: OCTOBER,
-          nextValue: new Date(2018, SEPTEMBER, 1),
-          expectedMonth: SEPTEMBER,
-        });
-      });
+        describe('range', () => {
+          it(`should not change the displayed month, when new 'from' is in 2nd month`, () => {
+            testCase({
+              initialValue: new Date(2018, OCTOBER, 1),
+              expectedInitialMonth: OCTOBER,
+              nextValue: { from: new Date(2018, NOVEMBER, 2) },
+              expectedMonth: OCTOBER,
+              numOfMonths: 2,
+            });
+          });
 
-      it('should not change the displayed month, provided that the current month is contained in the new Range', () => {
-        testCase({
-          initialValue: new Date(2018, OCTOBER, 1),
-          expectedInitialMonth: OCTOBER,
-          nextValue: {
-            from: new Date(2018, SEPTEMBER, 1),
-            to: new Date(2018, NOVEMBER, 1),
-          },
-          expectedMonth: OCTOBER,
-        });
-      });
+          it(`should change the displayed month to new range 'from', when new 'to' is before calendar view and the new range fits in view`, () => {
+            testCase({
+              initialValue: new Date(2018, NOVEMBER, 1),
+              expectedInitialMonth: NOVEMBER,
+              nextValue: {
+                from: new Date(2018, SEPTEMBER, 1),
+                to: new Date(2018, OCTOBER, 10),
+              },
+              expectedMonth: SEPTEMBER,
+              numOfMonths: 2,
+            });
+          });
 
-      it('should move the displayed month forward, provided that the current month is earlier than the new Range', () => {
-        testCase({
-          initialValue: new Date(2018, SEPTEMBER, 1),
-          expectedInitialMonth: SEPTEMBER,
-          nextValue: {
-            from: new Date(2018, OCTOBER, 1),
-            to: new Date(2018, NOVEMBER, 1),
-          },
-          expectedMonth: OCTOBER,
-        });
-      });
+          it(`should change the displayed month so that new range 'to' is in the 2nd month, when new 'to' is before calendar view and the new range doesn't fit in view`, () => {
+            testCase({
+              initialValue: new Date(2018, NOVEMBER, 1),
+              expectedInitialMonth: NOVEMBER,
+              nextValue: {
+                from: new Date(2018, AUGUST, 1),
+                to: new Date(2018, OCTOBER, 20),
+              },
+              expectedMonth: SEPTEMBER,
+              numOfMonths: 2,
+            });
+          });
 
-      it('should move the displayed month forward, provided that the current month is earlier than the new unbounded Range', () => {
-        testCase({
-          initialValue: new Date(2018, SEPTEMBER, 1),
-          expectedInitialMonth: SEPTEMBER,
-          nextValue: {
-            from: new Date(2018, OCTOBER, 1),
-          },
-          expectedMonth: OCTOBER,
-        });
-      });
-
-      it('should move the displayed month back, provided that the current month is later than the new Range', () => {
-        testCase({
-          initialValue: new Date(2018, NOVEMBER, 1),
-          expectedInitialMonth: NOVEMBER,
-          nextValue: {
-            from: new Date(2018, SEPTEMBER, 1),
-            to: new Date(2018, OCTOBER, 1),
-          },
-          expectedMonth: OCTOBER,
-        });
-      });
-
-      it('should move the displayed month back, provided that the current month is later than the new unbounded Range', () => {
-        testCase({
-          initialValue: new Date(2018, NOVEMBER, 1),
-          expectedInitialMonth: NOVEMBER,
-          nextValue: {
-            to: new Date(2018, OCTOBER, 1),
-          },
-          expectedMonth: OCTOBER,
-        });
-      });
-
-      it('should not change when nextValue is empty', () => {
-        testCase({
-          initialValue: new Date(2018, NOVEMBER, 1),
-          expectedInitialMonth: NOVEMBER,
-          nextValue: {},
-          expectedMonth: NOVEMBER,
+          it(`should change the displayed month to the 'from', when new range contains the view`, () => {
+            testCase({
+              initialValue: new Date(2018, NOVEMBER, 1),
+              expectedInitialMonth: NOVEMBER,
+              nextValue: {
+                from: new Date(2018, AUGUST, 1),
+                to: new Date(2018, OCTOBER, 20),
+              },
+              expectedMonth: SEPTEMBER,
+              numOfMonths: 2,
+            });
+          });
         });
       });
     });

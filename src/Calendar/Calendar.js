@@ -2,10 +2,12 @@ import styles from './Calendar.scss';
 import React from 'react';
 import PropTypes from 'prop-types';
 import DayPicker from 'react-day-picker/DayPicker';
-import addMonths from 'date-fns/add_months';
-import startOfMonth from 'date-fns/start_of_month';
 import classNames from 'classnames';
+import addMonths from 'date-fns/add_months';
+import subMonths from 'date-fns/sub_months';
+import startOfMonth from 'date-fns/start_of_month';
 import parse from 'date-fns/parse';
+import { CalendarView } from './utils';
 
 import WixComponent from '../BaseComponents/WixComponent';
 import localeUtilsFactory from '../LocaleUtils';
@@ -25,19 +27,22 @@ export default class Calendar extends WixComponent {
   constructor(props) {
     super(props);
 
-    const initialMonth = Calendar.getNextMonth(props.value);
+    const initialMonth = Calendar.getUpdatedMonth(
+      props.value,
+      props.numOfMonths,
+    );
     this.state = {
       month: initialMonth || new Date(),
     };
   }
 
-  static dateToMonth(date) {
-    return date ? date.getFullYear() * 100 + date.getMonth() : null;
-  }
-
   componentWillReceiveProps(nextProps) {
     if (nextProps.value !== this.props.value) {
-      const month = Calendar.getNextMonth(nextProps.value, this.state.month);
+      const month = Calendar.getUpdatedMonth(
+        nextProps.value,
+        nextProps.numOfMonths,
+        this.state.month,
+      );
       if (month) {
         this.setState({ month });
       }
@@ -121,24 +126,53 @@ export default class Calendar extends WixComponent {
     return value instanceof Date;
   }
 
-  static getNextMonth = (nextPropsValue, currentMonthDate) => {
+  static getUpdatedMonth = (nextPropsValue, numOfMonths, currentMonthDate) => {
     const nextValue = Calendar.parseValue(nextPropsValue);
-    const currentMonth = Calendar.dateToMonth(currentMonthDate);
+
+    if (!currentMonthDate) {
+      return Calendar.isSingleDay(nextValue)
+        ? nextValue
+        : nextValue.from || nextValue.to;
+    }
+
+    const view = new CalendarView(currentMonthDate, numOfMonths);
 
     if (Calendar.isSingleDay(nextValue)) {
-      if (currentMonth !== Calendar.dateToMonth(nextValue)) {
+      if (!view.isContained(nextValue)) {
         return nextValue;
       }
     } else {
-      const fromMonth = Calendar.dateToMonth(nextValue.from);
-      const toMonth = Calendar.dateToMonth(nextValue.to);
-      if (fromMonth && (!currentMonth || currentMonth < fromMonth)) {
-        return nextValue.from;
-      } else if (toMonth && (!currentMonth || currentMonth > toMonth)) {
-        return nextValue.to;
+      const { from, to } = nextValue;
+
+      if (from && view.isAfterView(from)) {
+        //         F--- =>  F---
+        //   VVVVV      =>  VVVVV
+        return from;
+      } else if (to && view.isBeforeView(to)) {
+        if (view.isRangeFits(from, to)) {
+          //   F-T        =>  F-T
+          //       VVVVV  =>  VVVVV
+          return from;
+        } else {
+          //   F-----T        =>  F-----T
+          //          VVVVV    =>    VVVVV
+          return subMonths(to, numOfMonths - 1);
+        }
+      } else if (
+        from &&
+        view.isBeforeView(from) &&
+        to &&
+        view.isAfterView(to)
+      ) {
+        //   F-------T  =>    F-------T
+        //     VVVVV    =>    VVVVV
+        return from; // choose the 'from' anchor arbitrarly
       }
     }
-
+    /*
+     * We only changed the month if the day (or range.edges) are outside the view.
+     * This is to avoid changing the month right after a user clicks on the calendar.
+     */
     return null;
   };
 
@@ -179,7 +213,7 @@ export default class Calendar extends WixComponent {
   };
 
   _createDayPickerProps = () => {
-    const { locale, filterDate, excludePastDates, twoMonths } = this.props;
+    const { locale, filterDate, excludePastDates, numOfMonths } = this.props;
 
     const value = Calendar.parseValue(this.props.value);
 
@@ -188,8 +222,14 @@ export default class Calendar extends WixComponent {
     const { from, to } = value || {};
     const singleDay = !from && !to && value;
 
-    const firstOfMonth = new Date(month.getFullYear(), month.getMonth(), 1);
-    const lastOfMonth = new Date(month.getFullYear(), month.getMonth() + 1, 0);
+    const firstOfMonth = [
+      new Date(month.getFullYear(), month.getMonth(), 1),
+      new Date(month.getFullYear(), month.getMonth() + 1, 1),
+    ];
+    const lastOfMonth = [
+      new Date(month.getFullYear(), month.getMonth() + 1, 0),
+      new Date(month.getFullYear(), month.getMonth() + 2, 0),
+    ];
 
     const captionElement = this._createCaptionElement(month);
     const selectedDays = this._getSelectedDays(value);
@@ -212,8 +252,8 @@ export default class Calendar extends WixComponent {
       navbarElement: () => null,
       captionElement,
       onDayKeyDown: this._handleDayKeyDown,
-      numberOfMonths: twoMonths ? 2 : 1,
-      className: twoMonths ? 'DayPicker--TwoMonths' : '',
+      numberOfMonths: numOfMonths,
+      className: numOfMonths > 1 ? styles.TwoMonths : '',
       modifiers: { start: from, end: to, firstOfMonth, lastOfMonth, singleDay },
       renderDay: Calendar.renderDay,
     };
@@ -270,10 +310,8 @@ export default class Calendar extends WixComponent {
 }
 
 Calendar.propTypes = {
-  /** Use 2 months layout */
-  /* TODO WIP, uncomment after feature done
-  twoMonths: PropTypes.bool,
-  */
+  /** Display multiple months, currently allowing only 1 or 2 */
+  numOfMonths: PropTypes.oneOf([1, 2]),
 
   className: PropTypes.string,
 

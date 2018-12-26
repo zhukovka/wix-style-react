@@ -19,14 +19,13 @@ $dayBadgeSize: 36px;
 .calendar :global .DayPicker {
   width: $calendarWidth;
   @include Text($size: small, $weight: thin);
-  background-color: $D80;
-
+  
   abbr {
     text-decoration: none;
   }
 
   &-Weekdays {
-    background-color: $D80;
+    background-color: $rootBackgroundColor;
     padding: 0 $rootPadding;
   }
 
@@ -37,6 +36,7 @@ $dayBadgeSize: 36px;
   }
 
   &-Body {
+    background-color: $rootBackgroundColor;
     padding: 0 $rootPadding $rootPadding;
   }
 
@@ -174,7 +174,7 @@ $dayBadgeSize: 36px;
     }
   }
 
-  &--TwoMonths {
+  &:local(.TwoMonths) {
     .DayPicker-Months {
       display: flex;
 
