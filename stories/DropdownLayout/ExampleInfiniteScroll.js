@@ -9,8 +9,8 @@ export default class ExampleInfiniteScroll extends React.Component {
   constructor(props) {
     super(props);
     this.loadMore = this.loadMore.bind(this);
-    this.itemsPerPage = 10;
-    this.total = 50;
+    this.itemsPerPage = 15;
+    this.total = 300;
     this.state = { hasMore: true , data: []};
   }
 
@@ -30,12 +30,15 @@ export default class ExampleInfiniteScroll extends React.Component {
   };
 
   loadMore() {
-    if (this.state.data.length >= this.total) {
-      this.setState({ hasMore: false });
-    }
-    else {
-      this.generateData();
-    }
+    const loadMoreData = () => {
+      if (this.state.data.length >= this.total) {
+        this.setState({ hasMore: false });
+      }
+      else {
+        this.generateData();
+      }
+    };
+    setTimeout(loadMoreData, 500);
   };
 
   render = () => {

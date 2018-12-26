@@ -5,6 +5,7 @@ import classNames from 'classnames';
 import WixComponent from '../BaseComponents/WixComponent';
 import scrollIntoView from '../utils/scrollIntoView';
 import InfiniteScroll from '../utils/InfiniteScroll';
+import Loader from "../Loader/Loader";
 
 const modulu = (n, m) => {
   const remain = n % m;
@@ -228,22 +229,23 @@ class DropdownLayout extends WixComponent {
     return node ? <div className={styles.node}>{node}</div> : null;
   }
 
-  render = () => {
-    const dropdownLayout = this._renderDropdownLayout(this.props.options);
-    return this.props.infiniteScroll ? this._renderWithInfiniteScroll(dropdownLayout) : dropdownLayout;
-  };
-
-
-  _renderWithInfiniteScroll = dropdownLayout =>
+  _wrapWithInfiniteScroll = scrollableElement =>
     <InfiniteScroll
+      useWindow
+      scrollElement={this.options}
       loadMore={this.props.loadMore}
       hasMore={this.props.hasMore}
-      threshold={100}
+      loader={
+        <div className={styles.loader}>
+          <Loader size={'small'}/>
+        </div>
+      }
     >
-      {dropdownLayout}
+      {scrollableElement}
     </InfiniteScroll>;
 
-  _renderDropdownLayout() {
+
+  render() {
     const {
       options,
       dropDirectionUp,
@@ -257,6 +259,7 @@ class DropdownLayout extends WixComponent {
       fixedFooter
     } = this.props;
 
+    const renderedOptions = options.map((option, idx) => this._renderOption({ option, idx }));
     const contentContainerClassName = classNames({
       [styles.contentContainer]: true,
       [styles.shown]: visible,
@@ -291,7 +294,7 @@ class DropdownLayout extends WixComponent {
           ref={_options => (this.options = _options)}
           data-hook="dropdown-layout-options"
         >
-          {options.map((option, idx) => this._renderOption({ option, idx }))}
+          {this.props.infiniteScroll ? this._wrapWithInfiniteScroll(renderedOptions) : renderedOptions}
         </div>
         {this._renderNode(fixedFooter)}
       </div>
