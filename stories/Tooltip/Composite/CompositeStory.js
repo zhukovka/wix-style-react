@@ -9,8 +9,6 @@ import CodeExample from 'wix-storybook-utils/CodeExample';
 
 import ExampleTooltip from './ExampleTooltip';
 import ExamplePopover from './ExamplePopover';
-import ExamplePopoverMenu from './ExamplePopoverMenu';
-import PopoverReadmeTestKit from '../../../src/PopoverMenu/README.TESTKIT.md';
 import TooltipReadmeTestKit from '../../../src/Tooltip/README.TESTKIT.md';
 
 import ExamplePlacement from '../Core/ExamplePlacement';
@@ -83,20 +81,4 @@ storiesOf('7. Tooltips', module)
         <ExamplePopoverEmptyState />
       </CodeExample>
     </div>
-  ))
-
-  .add('7.3. Popover Menu', () => (
-    <TabbedView tabs={['Usage', 'Testkit']}>
-      <div>
-        <h1>Popover Menu</h1>
-        <InteractiveCodeExample title="Customize a <PopoverMenu/>">
-          <a href="?selectedKind=Core&selectedStory=PopoverMenu&full=0&down=0&left=1&panelRight=0">
-            Testkits API reference
-          </a>
-          <ExamplePopoverMenu />
-        </InteractiveCodeExample>
-      </div>
-
-      <Markdown source={PopoverReadmeTestKit} />
-    </TabbedView>
   ));

@@ -9,7 +9,6 @@ deprecationLog(
   `Using "TextLink" is deprecated. Please see "5.3 TextButton" updated documentation and use "<TextButton as="a"/>" instead`,
 );
 
-
 export default class TextLink extends WixComponent {
   static displayName = 'TextLink';
 

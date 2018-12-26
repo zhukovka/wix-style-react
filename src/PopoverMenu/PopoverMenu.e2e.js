@@ -1,9 +1,7 @@
 import browserLogs from 'protractor-browser-logs';
 import eyes from 'eyes.it';
-import {
-  POPOVER_MENU_DATA_HOOK,
-  POPOVER_MENU_ITEM_DATA_HOOK,
-} from '../../stories/Tooltip/Composite/PopoverMenuTemplate.helpers';
+
+import { storySettings } from '../../stories/PopoverMenu/storySettings';
 
 const EC = protractor.ExpectedConditions;
 
@@ -16,13 +14,13 @@ describe('PopoverMenu', () => {
   const logs = browserLogs(browser);
 
   async function getPage() {
-    const storyUrl = getStoryUrl('7. Tooltips', '7.3. Popover Menu');
+    const storyUrl = getStoryUrl('7. Tooltips', '7.3 Popover Menu');
     logs.reset();
     logs.ignore(message => message.message.indexOf('Uncaught') === -1);
 
     driver = popoverMenuTestkitFactory({
-      dataHook: POPOVER_MENU_DATA_HOOK,
-    }).init.menuItemDataHook(POPOVER_MENU_ITEM_DATA_HOOK);
+      dataHook: storySettings.dataHook,
+    }).init.menuItemDataHook(storySettings.itemDataHook);
     await browser.get(storyUrl);
   }
 

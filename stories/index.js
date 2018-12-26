@@ -69,8 +69,8 @@ import './Breadcrumbs/index.story.js'; // 6.2 + Breadcrumbs
 import './Tabs'; // 6.3 Tabs
 
 // 7. Tooltips
-// 7.1 Tooltip, 7.2 Popover, 7.3 Popover Menu
-import './Tooltip/Composite/CompositeStory';
+import './Tooltip/Composite/CompositeStory'; // 7.1 Tooltip, 7.2 Popover
+import './PopoverMenu/index.story'; // 7.3 Popover Menu
 
 // 8. Notification Bars
 // 8.1 Standard, 8.2 Error, 8.3 Success, 8.4 Warning, 8.5 Premium
@@ -143,7 +143,7 @@ import './Typography/TypographyTestStories';
 import './Page/PageTestStories.js'; // Tests/2. Layout/2.5 + Page/
 import './PageHeader/PageHeaderTestStories.js'; // Tests/2. Layout/2.5 + PageHeader/
 import './Calendar/CalendarTestStory'; // Tests/3. Inputs/3.13 Calendar
-import './Tooltip/Composite/PopoverMenuRegressionTest.js'; // Tests/7.3. Popover Menu/
+import './PopoverMenu/PopoverMenuRegressionTest.js'; // Tests/7.3. Popover Menu/
 import './Popover/testStory';
 import './Avatar/AvatarTestStory'; // Tests/12. Other
 

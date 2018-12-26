@@ -6,17 +6,38 @@ import Button from '../Backoffice/Button';
 import More from '../new-icons/More';
 import PopoverMenuItem from '../PopoverMenuItem';
 import classnames from 'classnames';
+import { oneOf, oneOfType, bool, element, number, string } from 'prop-types';
 
 class PopoverMenu extends WixComponent {
+  static displayName = 'PopoverMenu';
+
   static propTypes = {
-    size: Tooltip.propTypes.size,
-    placement: Tooltip.propTypes.placement,
-    buttonTheme: Button.propTypes.theme,
-    buttonHeight: Button.propTypes.height,
-    maxWidth: Tooltip.propTypes.maxWidth,
-    appendToParent: Tooltip.propTypes.appendToParent,
-    appendTo: Tooltip.propTypes.appendTo,
-    zIndex: Tooltip.propTypes.zIndex,
+    /** Sets size for the popover itself */
+    size: oneOf(['normal', 'large']),
+    /** A direction the popover will be opened */
+    placement: oneOf(['top', 'right', 'bottom', 'left']),
+    /** Sets theme for the button */
+    buttonTheme: oneOf([
+      'icon-greybackground',
+      'icon-standard',
+      'icon-standardsecondary',
+      'icon-white',
+      'icon-whitesecondary',
+    ]),
+    /** Sets size for the button */
+    buttonHeight: oneOf(['small', 'medium', 'large']),
+    /** Sets max width for the popover  */
+    maxWidth: oneOfType([string, number]),
+    /**
+     * In some cases when you need a popover scroll with your element, you can append the popover to the direct parent, just
+     * don't forget to apply `relative`, `absolute` positioning. And be aware that some of your styles may leak into
+     * popover content
+     */
+    appendToParent: bool,
+    /** An element which will contain the popover  */
+    appendTo: element,
+    /** Sets a zIndex to the popover  */
+    zIndex: number,
   };
 
   static defaultProps = {
@@ -25,19 +46,11 @@ class PopoverMenu extends WixComponent {
     buttonTheme: 'icon-greybackground',
     buttonHeight: 'medium',
     maxWidth: '378px',
+    appendToParent: false,
+    zIndex: 0,
   };
 
-  placements = {
-    top: styles.topPlacement,
-    right: styles.rightPlacement,
-    bottom: styles.bottomPlacement,
-    left: styles.leftPlacement,
-  };
-
-  placementStyle = placement =>
-    this.placements[placement] || styles.topPlacement;
-
-  menuItems = items =>
+  _menuItems = items =>
     React.Children.map(items, (item, i) => {
       if (!item) {
         return null;
@@ -56,7 +69,7 @@ class PopoverMenu extends WixComponent {
       );
     });
 
-  menu = () => (
+  _menu = () => (
     <ul
       className={classnames(styles.menu, {
         [styles.large]: this.props.size === 'large',
@@ -64,7 +77,7 @@ class PopoverMenu extends WixComponent {
         [styles.placementBottom]: this.props.placement === 'bottom',
       })}
     >
-      {this.menuItems(this.props.children)}
+      {this._menuItems(this.props.children)}
     </ul>
   );
 
@@ -76,7 +89,7 @@ class PopoverMenu extends WixComponent {
         ref={tooltip => (this.tooltip = tooltip)}
         placement={placement}
         alignment="center"
-        content={this.menu()}
+        content={this._menu()}
         showTrigger="click"
         hideTrigger="click"
         showDelay={0}
