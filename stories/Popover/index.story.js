@@ -87,7 +87,7 @@ export default {
 
     children: children[1].value,
     showArrow: true,
-    timeout: 150,
+    animate: true,
     shown: false,
     placement: 'top',
     appendTo: 'window',
@@ -105,6 +105,9 @@ export default {
       { label: 'parent', value: 'parent' },
       { label: 'null', value: null },
     ],
+
+    hideDelay: null,
+    showDelay: null,
 
     placement: placements,
   },

@@ -5,6 +5,8 @@ import PropTypes from 'prop-types';
 
 import style from './Popover.st.css';
 
+const ANIMATION_DURATION = 300;
+
 class Popover extends React.Component {
   static displayName = 'Popover';
 
@@ -14,6 +16,8 @@ class Popover extends React.Component {
   static propTypes = {
     ...CorePopover.propTypes,
     dataHook: PropTypes.string,
+
+    animate: PropTypes.bool,
 
     /** The theme of the popover */
     theme: PropTypes.oneOf(['dark', 'light']),
@@ -56,14 +60,20 @@ class Popover extends React.Component {
 
   static defaultProps = {
     appendTo: 'parent',
+    animate: false,
   };
 
   render() {
-    const { dataHook, theme, ...rest } = this.props;
+    const { dataHook, animate, theme, ...rest } = this.props;
+
+    const timeout = animate
+      ? { enter: ANIMATION_DURATION, exit: 0 }
+      : undefined;
 
     return (
       <div data-hook={dataHook}>
         <CorePopover
+          timeout={timeout}
           {...rest}
           {...style(
             'root',
