@@ -237,7 +237,7 @@ class DropdownLayout extends WixComponent {
       hasMore={this.props.hasMore}
       loader={
         <div className={styles.loader}>
-          <Loader size={'small'}/>
+          <Loader dataHook={'dropdownLayout-loader'} size={'small'}/>
         </div>
       }
     >

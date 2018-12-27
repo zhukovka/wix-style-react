@@ -44,7 +44,9 @@ export default class ExampleInfiniteScroll extends React.Component {
   render = () => {
     return <div style={this.style}>
       <DropdownLayout infiniteScroll
+                      dataHook={'infinite-scroll-dropdownLayout'}
                       visible
+                      onSelect={item => alert(item.value +' was selected!')}
                       hasMore={this.state.hasMore}
                       loadMore={this.loadMore}
                       options={this.state.data}
