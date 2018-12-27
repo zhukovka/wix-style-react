@@ -37,6 +37,7 @@
     "build": "npm run lint && npm run proxy-wix-ui-icons && npm run generate-test-component && npm run copy-public-styles && yoshi build && npm run storybook:build && npm run export-components",
     "pr-postbuild": "npm install teamcity-surge-autorelease@^1.0.0 --no-save && teamcity-surge-autorelease",
     "storybook:build": "build-storybook",
+    "storybook:static": "node scripts/e2e-server.js",
     "storybook": "start-storybook -p 6006",
     "postpublish": "npm install teamcity-surge-autorelease@^1.0.0 --no-save && teamcity-surge-autorelease",
     "export-components": "import-path --path src",
