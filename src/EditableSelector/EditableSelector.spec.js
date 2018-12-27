@@ -44,28 +44,28 @@ describe('EditableSelector', () => {
     expect(driver.newRowButton().textContent).toEqual(props.newRowLabel);
   });
 
-  it('should call onOptionAdded', async () => {
+  it('should call onOptionAdded', () => {
     props.onOptionAdded = sinon.spy();
     const driver = createDriver(<EditableSelector {...props} />);
     const newTitle = 'new option';
     driver.addNewRow(newTitle);
-    await driver.clickApprove();
+    driver.clickApprove();
     expect(props.onOptionAdded.calledWith({ newTitle })).toEqual(true);
   });
 
-  it('should exit editing mode after approve click', async () => {
+  it('should exit editing mode after approve click', () => {
     const driver = createDriver(<EditableSelector {...props} />);
     const label = 'new option';
     driver.addNewRow(label);
-    await driver.clickApprove();
+    driver.clickApprove();
     expect(driver.isEditing()).toEqual(false);
   });
 
-  it('should exit editing mode after cancel click', async () => {
+  it('should exit editing mode after cancel click', () => {
     const driver = createDriver(<EditableSelector {...props} />);
     const label = 'new option';
     driver.addNewRow(label);
-    await driver.clickCancel();
+    driver.clickCancel();
     expect(driver.isEditing()).toEqual(false);
   });
 
@@ -83,13 +83,13 @@ describe('EditableSelector', () => {
     expect(driver.editButtonAt(0).textContent).toEqual(props.editButtonText);
   });
 
-  it('should call onOptionEdit', async () => {
+  it('should call onOptionEdit', () => {
     props.options = [{ isSelected: false, title: 'Shir', onToggle: () => {} }];
     props.onOptionEdit = sinon.spy();
     const driver = createDriver(<EditableSelector {...props} />);
     const newTitle = 'yo';
     driver.editRow(0, newTitle);
-    await driver.clickApprove();
+    driver.clickApprove();
     expect(props.onOptionEdit.calledWith({ newTitle, index: 0 })).toEqual(true);
   });
 
@@ -148,5 +148,38 @@ describe('EditableSelector', () => {
     driver.startEditing(0, newTitle);
     expect(driver.isEditingRow()).toBeTruthy();
     expect(driver.isAddingRow()).toBeFalsy();
+  });
+
+  describe('testkit', () => {
+    it('should exist', () => {
+      const div = document.createElement('div');
+      const dataHook = 'myDataHook';
+      const wrapper = div.appendChild(
+        ReactTestUtils.renderIntoDocument(
+          <div>
+            <EditableSelector {...props} dataHook={dataHook} />
+          </div>,
+        ),
+      );
+      const editableSelectorTestkit = editableSelectorTestkitFactory({
+        wrapper,
+        dataHook,
+      });
+      expect(editableSelectorTestkit.exists()).toBeTruthy();
+    });
+  });
+
+  describe('enzyme testkit', () => {
+    it('should exist', () => {
+      const dataHook = 'myDataHook';
+      const wrapper = mount(
+        <EditableSelector {...props} dataHook={dataHook} />,
+      );
+      const editableSelectorTestkit = enzymeEditableSelectorTestkitFactory({
+        wrapper,
+        dataHook,
+      });
+      expect(editableSelectorTestkit.exists()).toBeTruthy();
+    });
   });
 });

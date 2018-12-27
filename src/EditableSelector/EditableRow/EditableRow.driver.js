@@ -1,20 +1,20 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import inputDriverFactory from '../../Input/Input.driver';
-import { iconButtonTestkitFactory } from '../../../testkit';
+import buttonDriverFactory from '../../Backoffice/Button/Button.driver';
 
 const editableRowDriverFactory = ({ element, wrapper, component }) => {
   const inputDriver = inputDriverFactory({
     element: element.querySelector('[data-hook="edit-row-input"]'),
     wrapper: element,
   });
-  const approveBtnDriver = iconButtonTestkitFactory({
+  const approveBtnDriver = buttonDriverFactory({
+    element: element.querySelector('[data-hook="edit-row-approve-button"]'),
     wrapper: element,
-    dataHook: 'edit-row-approve-button',
   });
-  const cancelBtnDriver = iconButtonTestkitFactory({
+  const cancelBtnDriver = buttonDriverFactory({
+    element: element.querySelector('[data-hook="edit-row-cancel-button"]'),
     wrapper: element,
-    dataHook: 'edit-row-cancel-button',
   });
 
   return {

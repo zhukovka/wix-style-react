@@ -21,11 +21,11 @@ describe('EditableRow', () => {
     expect(driver.isInputFocused()).toEqual(true);
   });
 
-  it('should toggle accept button disabled state according to input presence', async () => {
+  it('should toggle accept button disabled state according to input presence', () => {
     const driver = createDriver(<EditableRow {...props} />);
-    expect(await driver.isApproveDisabled()).toBe(true);
+    expect(driver.isApproveDisabled()).toBe(true);
     driver.setText('new option');
-    expect(await driver.isApproveDisabled()).toBe(false);
+    expect(driver.isApproveDisabled()).toBe(false);
   });
 
   it('should set input text from props', () => {
@@ -35,12 +35,12 @@ describe('EditableRow', () => {
     expect(driver.getText()).toEqual(text);
   });
 
-  it('should trigger onApprove callback when approve button is clicked', async () => {
+  it('should trigger onApprove callback when approve button is clicked', () => {
     props.onApprove = sinon.spy();
     const driver = createDriver(<EditableRow {...props} />);
     const text = 'new option';
     driver.setText(text);
-    await driver.clickApprove();
+    driver.clickApprove();
     expect(props.onApprove.calledOnce).toBe(true);
     expect(props.onApprove.calledWith(text)).toBe(true);
   });
@@ -55,10 +55,10 @@ describe('EditableRow', () => {
     expect(props.onApprove.calledWith(text)).toBe(true);
   });
 
-  it('should trigger onCancel callback when cancel button is clicked', async () => {
+  it('should trigger onCancel callback when cancel button is clicked', () => {
     props.onCancel = sinon.spy();
     const driver = createDriver(<EditableRow {...props} />);
-    await driver.clickCancel();
+    driver.clickCancel();
     expect(props.onCancel.calledOnce).toBe(true);
   });
 
@@ -67,5 +67,36 @@ describe('EditableRow', () => {
     const driver = createDriver(<EditableRow {...props} />);
     driver.keyDown(27); //esc
     expect(props.onCancel.calledOnce).toBe(true);
+  });
+
+  describe('testkit', () => {
+    it('should exist', () => {
+      const div = document.createElement('div');
+      const dataHook = 'myDataHook';
+      const wrapper = div.appendChild(
+        ReactTestUtils.renderIntoDocument(
+          <div>
+            <EditableRow {...props} dataHook={dataHook} />
+          </div>,
+        ),
+      );
+      const editableRowTestkit = editableRowTestkitFactory({
+        wrapper,
+        dataHook,
+      });
+      expect(editableRowTestkit.exists()).toBeTruthy();
+    });
+  });
+
+  describe('enzyme testkit', () => {
+    it('should exist', () => {
+      const dataHook = 'myDataHook';
+      const wrapper = mount(<EditableRow {...props} dataHook={dataHook} />);
+      const editableRowTestkit = enzymeEditableRowTestkitFactory({
+        wrapper,
+        dataHook,
+      });
+      expect(editableRowTestkit.exists()).toBeTruthy();
+    });
   });
 });
