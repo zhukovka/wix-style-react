@@ -14,7 +14,7 @@ It may appear as a standalone component (probably in a Modal), a generic popover
 ```js
 import React from 'react';
 
-import CalendarPanel, {CalendarPanelFooter} from '../../src/CalendarPanel';
+import CalendarPanel, {CalendarPanelFooter} from CalendarPanel;
 import Card from '../../src/Card';
 
 import {TODAY, YESTERDAY, NEXT_WEEK, A_WEEK_AGO, ONE_MONTH_AGO, TWO_MONTH_AGO} from './dateUtils';

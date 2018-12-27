@@ -467,6 +467,12 @@ export const contactItemBuilderTestkitFactory = testkitFactoryCreator(
   contactItemBuilderDriverFactory,
 );
 
+import calendarPanelDriverFactory from '../src/CalendarPanel/CalendarPanel.driver';
+
+export const calendarPanelTestkitFactory = testkitFactoryCreator(
+  calendarPanelDriverFactory,
+);
+
 // wix-ui-backoffice proxy
 
 export {

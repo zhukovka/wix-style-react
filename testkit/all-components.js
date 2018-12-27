@@ -16,7 +16,6 @@ const NON_COMPONENT_FOLDER_NAMES = [
   'Typography',
   'TPA',
   'Animations',
-  'CalendarPanel',
   'NumberInput',
 ];
 

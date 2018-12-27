@@ -120,6 +120,7 @@ import './Collapse.story';
 import './Popover/index.story';
 import './CardGalleryItem/CardGalleryItem.story';
 import './Carousel/index.story.js';
+import './CalendarPanel/index.story';
 import './Proportion/index.story.js';
 
 // Styling

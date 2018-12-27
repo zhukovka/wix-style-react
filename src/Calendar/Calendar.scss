@@ -17,7 +17,9 @@ $dayBadgeSize: 36px;
 }
 
 .calendar :global .DayPicker {
-  width: $calendarWidth;
+  &-Month {
+    width: $calendarWidth;
+  }
   @include Text($size: small, $weight: thin);
   
   abbr {

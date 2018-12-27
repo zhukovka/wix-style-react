@@ -107,4 +107,5 @@ export { default as IconButton } from './IconButton';
 export { default as CloseButton } from './CloseButton';
 export { default as CardGalleryItem } from './CardGalleryItem';
 export { default as Carousel } from './Carousel';
+export { default as CalendarPanel } from './CalendarPanel';
 export { default as Proportion } from './Proportion';

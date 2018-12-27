@@ -6,7 +6,9 @@ export const buttonDriverFactory = base => {
   return {
     ...baseUniDriverFactory(base),
     getButtonTextContent: async () => await base.text(),
-    isButtonDisabled: async () =>
-      (await getStylableState(base, button, 'disabled')) === 'true',
+    isButtonDisabled: async () => {
+      const stylableState = await getStylableState(base, button, 'disabled');
+      return stylableState === 'true';
+    },
   };
 };

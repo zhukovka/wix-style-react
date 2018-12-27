@@ -275,6 +275,11 @@ export default {
       selectedId: '0',
     },
   },
+  CalendarPanel: {
+    props: {
+      onChange: () => {},
+    },
+  },
   Breadcrumbs: {
     props: {
       items: [{ id: 0, value: 'Option 1' }, { id: 1, value: 'Option 2' }],

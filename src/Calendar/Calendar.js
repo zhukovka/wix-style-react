@@ -7,6 +7,7 @@ import addMonths from 'date-fns/add_months';
 import subMonths from 'date-fns/sub_months';
 import startOfMonth from 'date-fns/start_of_month';
 import parse from 'date-fns/parse';
+import isSameDay from 'date-fns/is_same_day';
 import { CalendarView } from './utils';
 
 import WixComponent from '../BaseComponents/WixComponent';
@@ -47,6 +48,19 @@ export default class Calendar extends WixComponent {
         this.setState({ month });
       }
     }
+  }
+
+  static areValuesEqual(date1 = {}, date2 = {}) {
+    const isRange = date => Boolean(date.from || date.to);
+    if (!Boolean(date1) && !Boolean(date2)) {
+      return true;
+    }
+
+    if (isRange(date1) && isRange(date2)) {
+      return isSameDay(date1.from, date2.from) && isSameDay(date1.to, date2.to);
+    }
+
+    return isSameDay(date1, date2);
   }
 
   static renderDay(day, modifiers) {

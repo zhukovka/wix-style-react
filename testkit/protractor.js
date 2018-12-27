@@ -342,6 +342,12 @@ export const badgeSelectTestkitFactory = protractorTestkitFactoryCreator(
   badgeSelectDriverFactory,
 );
 
+import calendarPanelDriverFactory from '../src/CalendarPanel/CalendarPanel.protractor.driver';
+
+export const calendarPanelTestkitFactory = protractorTestkitFactoryCreator(
+  calendarPanelDriverFactory,
+);
+
 import genericModalLayoutDriverFactory from '../src/GenericModalLayout/GenericModalLayout.protractor.driver';
 
 export const genericModalLayoutTestkitFactory = protractorTestkitFactoryCreator(
