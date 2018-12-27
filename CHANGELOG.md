@@ -14,6 +14,24 @@ Types of changes:
 1. **Docs** for documentation changes
 1. **Lab** components and features that are still in a work in progress
 
+## 5.21.0 - 2018-12-27
+
+## Added
+
+- `<Popover/>` - added the `animate`, `showDelay` and `hideDelay` [#2661](https://github.com/wix/wix-style-react/pull/2661)
+
+## Changed
+
+- `<DropdownLayout/>` - Remove `setProps` and `isSelectedHightLight` from the driver [#2666](https://github.com/wix/wix-style-react/pull/2666)
+
+## Fixed
+
+- `<EditableSelector/>` - revert migration of using `<IconButton/>` [#2679](https://github.com/wix/wix-style-react/pull/2679)
+
+## Docs
+
+- `<PopoverMenu/>` - migrate docs to use `<AutoDocs/>` [#2668](https://github.com/wix/wix-style-react/pull/2668)
+
 ## 5.20.1 - 2018-12-25
 
 ### Fixed
