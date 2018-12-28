@@ -13,15 +13,18 @@ export default {
   componentPath: '../../src/IconButton',
 
   componentProps: {
+    as: 'button',
     children: <More />,
     skin: 'standard',
     priority: 'primary',
     size: 'medium',
+    disabled: false,
   },
 
   exampleProps: {
     onClick: () => 'Clicked!',
     children: icons,
+    as: ['button', 'a', 'span', 'div'],
   },
 
   examples: <IconButtonStory />,

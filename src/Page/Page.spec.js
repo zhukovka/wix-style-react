@@ -132,14 +132,12 @@ describe('Page', () => {
   });
 
   describe('Prop Validation', () => {
-    let React;
     const stub = (console.error = jest.fn());
-    const createDriver = createDriverFactory(pageDriverFactory);
     const prefixWarning = 'Warning: Failed prop type: ';
     const suffixWarning = '\n    in Page';
 
     beforeEach(() => {
-      React = require('react');
+      require('react');
     });
 
     afterEach(() => {

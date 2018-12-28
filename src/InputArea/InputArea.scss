@@ -10,182 +10,184 @@ $exclamation-top: 4px;
 $gap: 6px;
 
 .error {
-    position: absolute;
-    right: 6px;
-    top: 0;
+  position: absolute;
+  right: 6px;
+  top: 0;
 }
 
 .wrapper {
-    position: relative;
+  position: relative;
 }
 
 .root {
-    position: relative;
-    display: flex;
-    align-items: stretch;
-    border: solid 1px;
-    border-radius: 6px;
-    @include BoxSizing();
-    @include FontRoman();
+  position: relative;
+  display: flex;
+  align-items: stretch;
+  border: solid 1px;
+  border-radius: 6px;
+  @include BoxSizing();
+  @include FontRoman();
 }
 
 .errorIcon {
-    margin: $gap;
+  margin: $gap;
 
-    background-color: $paletteR1;
-    width: 18px;
-    height: 18px;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: $D80;
+  background-color: $paletteR1;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: $D80;
 
-    > svg {
-      width: 10px;
-      height: 10px;
-    }
+  > svg {
+    width: 10px;
+    height: 10px;
+  }
 }
 
 .inputArea {
-    flex-grow: 1;
-    flex-shrink: 1;
-    min-width: 20px;
-    min-height: 36px;
-    padding: $input-area-padding-top $input-area-padding-horizontal;
-    margin: 0;
-    border: 0;
-    outline: 0;
-    background: transparent;
-    @include TextSizeAndFontFamily($size: medium, $weight: normal);
+  flex-grow: 1;
+  flex-shrink: 1;
+  min-width: 20px;
+  min-height: 36px;
+  padding: $input-area-padding-top $input-area-padding-horizontal;
+  margin: 0;
+  border: 0;
+  outline: 0;
+  background: transparent;
+  @include TextSizeAndFontFamily($size: medium, $weight: normal);
 
-    @include Placeholder(getTextColor($light: true, $secondary: true));
-    @include Selection($paletteB4);
+  @include Placeholder(getTextColor($light: true, $secondary: true));
+  @include Selection($paletteB4);
 }
 
 .counter{
-    position: absolute;
-    top: -30px;
-    right: 0;
-    font-size: 14px;
-    line-height: 1.3;
-    @include Placeholder($GR60);
-    color: $D40;
+  position: absolute;
+  top: -30px;
+  right: 0;
+  font-size: 14px;
+  line-height: 1.3;
+  @include Placeholder($GR60);
+  color: $D40;
 }
 
 .hasError > .inputArea {
-    padding-right: $input-area-padding-exclamation;
+  padding-right: $input-area-padding-exclamation;
 }
 
 .resizable > textarea{
-    resize: vertical;
+  resize: vertical;
 }
 
 .nonResizable > textarea{
-    resize: none;
+  resize: none;
 }
 
 .exclamation {
-    position: absolute;
-    display: flex;
-    align-items: center;
-    flex-shrink: 0;
-    flex-grow: 0;
-    min-width: 0;
-    user-select: none;
-    margin: 0 6px;
-    background-color: $paletteR1;
-    width: 18px;
-    height: 18px;
-    border-radius: 50%;
-    justify-content: center;
-    &:last-child { margin: 0; }
-    path { stroke: #fff; }
+  position: absolute;
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+  flex-grow: 0;
+  min-width: 0;
+  user-select: none;
+  margin: 0 6px;
+  background-color: $paletteR1;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  justify-content: center;
+  &:last-child { margin: 0; }
+  path { stroke: #fff; }
 
-    top: $exclamation-top;
-    right: $exclamation-horizontal;
+  top: $exclamation-top;
+  right: $exclamation-horizontal;
 
-    :global(.rtl) & {
-        left: $exclamation-horizontal;
-        right: initial;
+  @include withRTL() {
+    & {
+      left: $exclamation-horizontal;
+      right: initial;
     }
+  }
 }
 
 
 .theme {
-    &-normal {
-        @include ThemeDefault($color: $D10, $borderColor: $B30, $backgroundColor: $D80);
-        @include ThemeHover($backgroundColor: $B50);
-        @include ThemeFocus;
-        @include ThemeError($borderColor: $paletteR1);
+  &-normal {
+    @include ThemeDefault($color: $D10, $borderColor: $B30, $backgroundColor: $D80);
+    @include ThemeHover($backgroundColor: $B50);
+    @include ThemeFocus;
+    @include ThemeError($borderColor: $paletteR1);
+  }
+  &-paneltitle {
+    @include ThemeDefault($color: white, $borderColor: $B30, $backgroundColor: rgba(22,45,61,0.6));
+    @include ThemeHover($backgroundColor: rgba(22,45,61,0.4));
+    @include ThemeFocusPanelTile($borderColor: $B20, $boxShadow: inset 0 0 5px 0 rgba(56,153,236,0.6));
+    @include ThemeError($borderColor: $paletteR1);
+  }
+  &-amaterial {
+    .inputArea {
+      @include FontLight();
+      @include Placeholder($GR60);
+      padding-right: 37px;
     }
-    &-paneltitle {
-        @include ThemeDefault($color: white, $borderColor: $B30, $backgroundColor: rgba(22,45,61,0.6));
-        @include ThemeHover($backgroundColor: rgba(22,45,61,0.4));
-        @include ThemeFocusPanelTile($borderColor: $B20, $boxShadow: inset 0 0 5px 0 rgba(56,153,236,0.6));
-        @include ThemeError($borderColor: $paletteR1);
+    border-radius: 0;
+    @include ThemeDefault($color: $D10, $borderColor: #e0e3e5, $backgroundColor: $D80);
+    @include ThemeError($borderColor: $paletteR1);
+  }
+  &-material {
+    border-radius: 0;
+    .inputArea {
+      @include FontLight();
     }
-    &-amaterial {
-        .inputArea {
-            @include FontLight();
-            @include Placeholder($GR60);
-            padding-right: 37px;
+    @include ThemeDefault($color: $D10, $borderColor: transparent, $backgroundColor: $D80);
+    @at-root {
+      .bar {
+        position: absolute;
+        bottom: 0;
+        left: -1px;
+        right: -1px;
+        height: 1px;
+        background: $D60;
+        &:before, &:after {
+          content: '';
+          height: 1px;
+          width: 0;
+          bottom: 0;
+          position: absolute;
+          background: $D50;
+          transition: 0.2s ease all;
         }
-        border-radius: 0;
-        @include ThemeDefault($color: $D10, $borderColor: #e0e3e5, $backgroundColor: $D80);
-        @include ThemeError($borderColor: $paletteR1);
+        &:before { left: 50%; }
+        &:after { right: 50%; }
+      }
+      .hasFocus .bar:before,
+      .hasFocus .bar:after {
+        width:50%;
+      }
     }
-    &-material {
-        border-radius: 0;
-        .inputArea {
-            @include FontLight();
-        }
-        @include ThemeDefault($color: $D10, $borderColor: transparent, $backgroundColor: $D80);
-        @at-root {
-            .bar {
-                position: absolute;
-                bottom: 0;
-                left: -1px;
-                right: -1px;
-                height: 1px;
-                background: $D60;
-                &:before, &:after {
-                    content: '';
-                    height: 1px;
-                    width: 0;
-                    bottom: 0;
-                    position: absolute;
-                    background: $D50;
-                    transition: 0.2s ease all;
-                }
-                &:before { left: 50%; }
-                &:after { right: 50%; }
-            }
-            .hasFocus .bar:before,
-            .hasFocus .bar:after {
-                width:50%;
-            }
-        }
-    }
+  }
 }
 
 // RTL layout based on global style set on document body or parent element.
-:global(.rtl) {
-    .error {
-        position: absolute;
-        left: 6px;
-        top: 0;
-        right: auto;
-    }
+@include withRTL() {
+  .error {
+    position: absolute;
+    left: 6px;
+    top: 0;
+    right: auto;
+  }
 
-    .inputArea {
-        direction: rtl;
-    }
-    .counter{
-        right: auto;
-    }
-    .hasError > .inputArea {
-        padding-left: $input-area-padding-exclamation;
-        padding-right: $input-area-padding-horizontal;
-    }
+  .inputArea {
+    direction: rtl;
+  }
+  .counter{
+    right: auto;
+  }
+  .hasError > .inputArea {
+    padding-left: $input-area-padding-exclamation;
+    padding-right: $input-area-padding-horizontal;
+  }
 }

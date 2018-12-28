@@ -1,5 +1,5 @@
 import React from 'react';
-import { children, optional, once } from '../Composite';
+import * as Composite from '../Composite';
 import Label from '../Label';
 import Input from '../Input';
 import InputAreaWithLabelComposite from '../Composite/InputAreaWithLabelComposite/InputAreaWithLabelComposite';
@@ -17,7 +17,10 @@ const TextField = ({ children, ...props }) => (
 );
 
 TextField.propTypes = {
-  children: children(optional(Label), once(Input)),
+  children: Composite.children(
+    Composite.optional(Label),
+    Composite.once(Input),
+  ),
 };
 
 TextField.defaultProps = {

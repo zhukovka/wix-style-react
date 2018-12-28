@@ -2,10 +2,13 @@ import styles from './Calendar.scss';
 import React from 'react';
 import PropTypes from 'prop-types';
 import DayPicker from 'react-day-picker/DayPicker';
-import addMonths from 'date-fns/add_months';
-import parse from 'date-fns/parse';
-import startOfMonth from 'date-fns/start_of_month';
 import classNames from 'classnames';
+import addMonths from 'date-fns/add_months';
+import subMonths from 'date-fns/sub_months';
+import startOfMonth from 'date-fns/start_of_month';
+import parse from 'date-fns/parse';
+import isSameDay from 'date-fns/is_same_day';
+import { CalendarView } from './utils';
 
 import WixComponent from '../BaseComponents/WixComponent';
 import localeUtilsFactory from '../LocaleUtils';
@@ -19,53 +22,200 @@ export default class Calendar extends WixComponent {
     className: '',
     filterDate: () => true,
     shouldCloseOnSelect: true,
-    rtl: false,
     onClose: () => {},
   };
 
   constructor(props) {
     super(props);
 
+    const initialMonth = Calendar.getUpdatedMonth(
+      props.value,
+      props.numOfMonths,
+    );
     this.state = {
-      month: props.value,
+      month: initialMonth || new Date(),
     };
   }
 
-  // TODO: Change to getDerivedStateFromProps with React ^16.0.0
   componentWillReceiveProps(nextProps) {
-    this.setState({ month: nextProps.value });
+    if (nextProps.value !== this.props.value) {
+      const month = Calendar.getUpdatedMonth(
+        nextProps.value,
+        nextProps.numOfMonths,
+        this.state.month,
+      );
+      if (month) {
+        this.setState({ month });
+      }
+    }
   }
 
-  _setMonth = month => this.setState({ month });
+  static areValuesEqual(date1 = {}, date2 = {}) {
+    const isRange = date => Boolean(date.from || date.to);
+    if (!Boolean(date1) && !Boolean(date2)) {
+      return true;
+    }
 
-  _handleDayClick = (value, modifiers = {}) => {
-    this.props.onChange(value, modifiers);
-    this.props.shouldCloseOnSelect && this.props.onClose();
+    if (isRange(date1) && isRange(date2)) {
+      return isSameDay(date1.from, date2.from) && isSameDay(date1.to, date2.to);
+    }
+
+    return isSameDay(date1, date2);
+  }
+
+  static renderDay(day, modifiers) {
+    const relevantModifiers = ['start', 'end', 'selected'];
+    for (const modifier of relevantModifiers) {
+      if (modifier in modifiers) {
+        return (
+          <div
+            className={styles.dayCircle}
+            data-date={`${day.getFullYear()}-${day.getMonth()}-${day.getDate()}`}
+          >
+            {day.getDate()}
+          </div>
+        );
+      }
+    }
+
+    return (
+      <div
+        data-date={`${day.getFullYear()}-${day.getMonth()}-${day.getDate()}`}
+      >
+        {day.getDate()}
+      </div>
+    );
+  }
+
+  _setMonth = month => {
+    this.setState({ month });
   };
 
-  _createDayPickerProps = () => {
-    const {
-      locale,
-      showMonthDropdown,
-      showYearDropdown,
-      filterDate,
-      excludePastDates,
-      value: propsValue,
-      rtl,
-      twoMonths,
-    } = this.props;
+  _handleDayClick = (value, modifiers = {}) => {
+    const propsValue = this.props.value || {};
+    const { onChange, shouldCloseOnSelect } = this.props;
 
-    const month = this.state.month || propsValue || new Date();
+    if (this.props.selectionMode === 'range') {
+      if (
+        (!propsValue.from && !propsValue.to) ||
+        (propsValue.from && propsValue.to)
+      ) {
+        onChange({ from: value }, modifiers);
+      } else {
+        const anchor = propsValue.from || propsValue.to;
+        const newVal =
+          anchor < value
+            ? { from: anchor, to: value }
+            : { from: value, to: anchor };
+
+        onChange(newVal, modifiers);
+        shouldCloseOnSelect && this.props.onClose();
+      }
+    } else {
+      onChange(value, modifiers);
+      shouldCloseOnSelect && this.props.onClose();
+    }
+  };
+
+  static optionalParse = dateOrString =>
+    typeof dateOrString === 'string' ? parse(dateOrString) : dateOrString;
+
+  static parseValue = value => {
+    if (!value) {
+      return new Date();
+    }
+    if (typeof value === 'string') {
+      return parse(value);
+    } else if (value instanceof Date) {
+      return value;
+    } else {
+      return {
+        from: Calendar.optionalParse(value.from),
+        to: Calendar.optionalParse(value.to),
+      };
+    }
+  };
+
+  static isSingleDay(value) {
+    return value instanceof Date;
+  }
+
+  static getUpdatedMonth = (nextPropsValue, numOfMonths, currentMonthDate) => {
+    const nextValue = Calendar.parseValue(nextPropsValue);
+
+    if (!currentMonthDate) {
+      return Calendar.isSingleDay(nextValue)
+        ? nextValue
+        : nextValue.from || nextValue.to;
+    }
+
+    const view = new CalendarView(currentMonthDate, numOfMonths);
+
+    if (Calendar.isSingleDay(nextValue)) {
+      if (!view.isContained(nextValue)) {
+        return nextValue;
+      }
+    } else {
+      const { from, to } = nextValue;
+
+      if (from && view.isAfterView(from)) {
+        //         F--- =>  F---
+        //   VVVVV      =>  VVVVV
+        return from;
+      } else if (to && view.isBeforeView(to)) {
+        if (view.isRangeFits(from, to)) {
+          //   F-T        =>  F-T
+          //       VVVVV  =>  VVVVV
+          return from;
+        } else {
+          //   F-----T        =>  F-----T
+          //          VVVVV    =>    VVVVV
+          return subMonths(to, numOfMonths - 1);
+        }
+      } else if (
+        from &&
+        view.isBeforeView(from) &&
+        to &&
+        view.isAfterView(to)
+      ) {
+        //   F-------T  =>    F-------T
+        //     VVVVV    =>    VVVVV
+        return from; // choose the 'from' anchor arbitrarly
+      }
+    }
+    /*
+     * We only changed the month if the day (or range.edges) are outside the view.
+     * This is to avoid changing the month right after a user clicks on the calendar.
+     */
+    return null;
+  };
+
+  _getSelectedDays(value) {
+    const { from, to } = value || {};
+    if (from && to) {
+      return { from: from, to: to };
+    } else if (from) {
+      return { after: prevDay(from) };
+    } else if (to) {
+      return { before: nextDay(to) };
+    } else {
+      // Single day OR empty value
+      return value;
+    }
+  }
+
+  _createCaptionElement = month => {
+    const { locale, showMonthDropdown, showYearDropdown } = this.props;
+
     const localeUtils = localeUtilsFactory(locale);
 
-    const captionElement = (
+    return (
       <DatePickerHead
         {...{
           date: month,
           showYearDropdown,
           showMonthDropdown,
           localeUtils,
-          rtl,
           onChange: this._setMonth,
           onLeftArrowClick: () =>
             this._setMonth(startOfMonth(addMonths(month, -1))),
@@ -74,6 +224,29 @@ export default class Calendar extends WixComponent {
         }}
       />
     );
+  };
+
+  _createDayPickerProps = () => {
+    const { locale, filterDate, excludePastDates, numOfMonths } = this.props;
+
+    const value = Calendar.parseValue(this.props.value);
+
+    const month = this.state.month;
+    const localeUtils = localeUtilsFactory(locale);
+    const { from, to } = value || {};
+    const singleDay = !from && !to && value;
+
+    const firstOfMonth = [
+      new Date(month.getFullYear(), month.getMonth(), 1),
+      new Date(month.getFullYear(), month.getMonth() + 1, 1),
+    ];
+    const lastOfMonth = [
+      new Date(month.getFullYear(), month.getMonth() + 1, 0),
+      new Date(month.getFullYear(), month.getMonth() + 2, 0),
+    ];
+
+    const captionElement = this._createCaptionElement(month);
+    const selectedDays = this._getSelectedDays(value);
 
     return {
       disabledDays: excludePastDates
@@ -81,7 +254,7 @@ export default class Calendar extends WixComponent {
         : date => !filterDate(date),
       initialMonth: month,
       initialYear: month,
-      selectedDays: parse(propsValue),
+      selectedDays,
       month,
       year: month,
       firstDayOfWeek: 1,
@@ -93,8 +266,10 @@ export default class Calendar extends WixComponent {
       navbarElement: () => null,
       captionElement,
       onDayKeyDown: this._handleDayKeyDown,
-      numberOfMonths: twoMonths ? 2 : 1,
-      className: twoMonths ? 'DayPicker--TwoMonths' : '',
+      numberOfMonths: numOfMonths,
+      className: numOfMonths > 1 ? styles.TwoMonths : '',
+      modifiers: { start: from, end: to, firstOfMonth, lastOfMonth, singleDay },
+      renderDay: Calendar.renderDay,
     };
   };
 
@@ -149,14 +324,12 @@ export default class Calendar extends WixComponent {
 }
 
 Calendar.propTypes = {
-  /** Use 2 months layout */
-  /* TODO WIP, uncomment after feature done
-  twoMonths: PropTypes.bool,
-  */
+  /** Display multiple months, currently allowing only 1 or 2 */
+  numOfMonths: PropTypes.oneOf([1, 2]),
 
   className: PropTypes.string,
 
-  /** Callback function called whenever the user selects a day in the calendar */
+  /** Callback function called with a Date or a Range whenever the user selects a day in the calendar */
   onChange: PropTypes.func.isRequired,
 
   /** Callback function called whenever user press escape or click outside of the element */
@@ -168,11 +341,18 @@ Calendar.propTypes = {
   /** Only the truthy dates are selectable */
   filterDate: PropTypes.func,
 
-  /** RTL mode */
-  rtl: PropTypes.bool,
-
   /** The selected date */
-  value: PropTypes.object,
+  value: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.instanceOf(Date),
+    PropTypes.shape({
+      from: PropTypes.oneOfType([PropTypes.string, PropTypes.instanceOf(Date)]),
+      to: PropTypes.oneOfType([PropTypes.string, PropTypes.instanceOf(Date)]),
+    }),
+  ]),
+
+  /** Whether the user should be able to select a date range, or just a single day */
+  selectionMode: PropTypes.oneOf(['day', 'range']),
 
   /** Display a selectable yearDropdown */
   showYearDropdown: PropTypes.bool,
@@ -208,3 +388,15 @@ Calendar.propTypes = {
     }),
   ]),
 };
+
+function nextDay(date) {
+  const day = new Date(date);
+  day.setDate(day.getDate() + 1);
+  return day;
+}
+
+function prevDay(date) {
+  const day = new Date(date);
+  day.setDate(day.getDate() - 1);
+  return day;
+}

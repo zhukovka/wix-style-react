@@ -1,4 +1,4 @@
-import eyes from 'eyes.it';
+import { eyesItInstance } from '../../test/utils/eyes-it';
 import autoExampleDriver from 'wix-storybook-utils/AutoExampleDriver';
 import {
   createStoryUrl,
@@ -10,6 +10,8 @@ import { badgeSelectTestkitFactory } from '../../testkit/protractor';
 import { storySettings } from '../../stories/BadgeSelect/storySettings';
 
 describe('BadgeSelect', () => {
+  const eyes = eyesItInstance();
+
   const storyUrl = createStoryUrl({
     kind: storySettings.kind,
     story: storySettings.storyName,

@@ -4,7 +4,7 @@ import { TransitionGroup, CSSTransition } from 'react-transition-group';
 import classNames from 'classnames';
 
 import WixComponent from '../BaseComponents/WixComponent';
-import { children, once, optional } from '../Composite';
+import * as Composite from '../Composite';
 import CloseButton from '../CloseButton';
 import TextLabel from './TextLabel';
 import ActionButton from './ActionButton';
@@ -49,6 +49,8 @@ function mapChildren(children) {
 }
 
 class Notification extends WixComponent {
+  static displayName = 'Notification';
+
   closeTimeout;
 
   constructor(props) {
@@ -184,6 +186,9 @@ class Notification extends WixComponent {
   }
 }
 
+const Close = props => <CloseButton skin="lightFilled" {...props} />;
+Close.displayName = 'Notification.CloseButton';
+
 Notification.propTypes = {
   show: PropTypes.bool,
   theme: PropTypes.oneOf([
@@ -201,10 +206,10 @@ Notification.propTypes = {
   timeout: PropTypes.number,
   zIndex: PropTypes.number,
   onClose: PropTypes.func,
-  children: children(
-    once(TextLabel),
-    optional(ActionButton),
-    optional(CloseButton),
+  children: Composite.children(
+    Composite.once(TextLabel),
+    Composite.optional(ActionButton),
+    Composite.optional(Close),
   ),
 };
 
@@ -214,7 +219,7 @@ Notification.defaultProps = {
   onClose: null,
 };
 
-Notification.CloseButton = CloseButton;
+Notification.CloseButton = Close;
 Notification.TextLabel = TextLabel;
 Notification.ActionButton = ActionButton;
 

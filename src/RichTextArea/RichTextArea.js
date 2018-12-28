@@ -30,18 +30,41 @@ export const makeHrefAbsolute = href =>
   /^(https?:)?\/\//.test(href) ? href : `//${href}`;
 
 class RichTextArea extends WixComponent {
+  static displayName = 'RichTextArea';
+
   static propTypes = {
+    /** Is the rich text area automatically transforming relative links to absolute after user insert */
     absoluteLinks: PropTypes.bool,
     buttons: PropTypes.arrayOf(PropTypes.string), // TODO: use PropTypes.oneOf(),
     dataHook: PropTypes.string,
+
+    /** Is the rich text area disabled */
     disabled: PropTypes.bool,
+
+    /** Is input value erroneous */
     error: PropTypes.bool,
+
+    /** The error message to display when hovering the error icon, if not given or empty there will be no tooltip */
     errorMessage: PropTypes.string,
+
+    /** Placeholder text */
     placeholder: PropTypes.string,
+
+    /** Max height of the text editor */
     maxHeight: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
     resizable: PropTypes.bool,
+
+    /** Content HTML. Supported tags: `p`, `strong`, `em`, `u`, `ul`, `ol`, `li` */
     value: PropTypes.string,
+
+    /** Change callback */
     onChange: PropTypes.func,
+
+    /** Image icon click callback.
+     * It is a function which recieves a callback.
+     * The callback function should be called
+     * when we obtain the url text (callback(text)), causing the image to reflect in the editor
+     */
     onImageRequest: PropTypes.func,
   };
 
@@ -86,7 +109,10 @@ class RichTextArea extends WixComponent {
 
   componentWillReceiveProps(props) {
     const isPlaceholderChanged = props.placeholder !== this.props.placeholder;
-    const isValueChanged = props.value && props.value !== this.props.value && props.value !== this.lastValue;
+    const isValueChanged =
+      props.value &&
+      props.value !== this.props.value &&
+      props.value !== this.lastValue;
     if (isPlaceholderChanged || isValueChanged) {
       if (props.isAppend) {
         console.log('new append', props.value);
@@ -144,13 +170,13 @@ class RichTextArea extends WixComponent {
     this.setState({activeToolbarButton: type});
 
     switch (action) {
-      case 'mark':
+      case "mark":
         return this.handleMarkButtonClick(type);
-      case 'block':
+      case "block":
         return this.handleBlockButtonClick(type);
-      case 'link':
+      case "link":
         return this.handleLinkButtonClick(type);
-      case 'image':
+      case "image":
         return this.handleImageButtonClick(type);
     }
   }
@@ -165,9 +191,9 @@ class RichTextArea extends WixComponent {
     const { document } = value;
 
     // Handle everything but list buttons.
-    if (type !== 'unordered-list' && type !== 'ordered-list') {
+    if (type !== "unordered-list" && type !== "ordered-list") {
       const isActive = this.hasBlock(type);
-      const isList = this.hasBlock('list-item');
+      const isList = this.hasBlock("list-item");
 
       if (isList) {
         editor
@@ -277,7 +303,12 @@ class RichTextArea extends WixComponent {
 
     return (
       <div className={className} data-hook={dataHook}>
-        <div className={classNames(styles.toolbar, {[styles.disabled]: disabled})} data-hook='toolbar'>
+        <div
+          className={classNames(styles.toolbar, {
+            [styles.disabled]: disabled
+          })}
+          data-hook="toolbar"
+        >
           <RichTextEditorToolbar
             /*
               activeToolbarButton prop required to trigger RichTextEditorToolbar re-render after toolbar button click
@@ -287,7 +318,9 @@ class RichTextArea extends WixComponent {
             disabled={disabled}
             onClick={this.handleButtonClick}
             onLinkButtonClick={this.handleLinkButtonClick}
-            onImageButtonClick={onImageRequest ? this.handleImageButtonClick : null }
+            onImageButtonClick={
+              onImageRequest ? this.handleImageButtonClick : null
+            }
             hasMark={this.hasMark}
             hasListBlock={this.hasListBlock}
             hasLink={this.hasLink}
@@ -295,15 +328,13 @@ class RichTextArea extends WixComponent {
             />
         </div>
         <div
-          className={classNames(
-            styles.editorWrapper, {
-              [styles.resizable]: resizable,
-              [styles.scrollable]: isScrollable,
-              [styles.disabled]: disabled
-            })
-          }
+          className={classNames(styles.editorWrapper, {
+            [styles.resizable]: resizable,
+            [styles.scrollable]: isScrollable,
+            [styles.disabled]: disabled
+          })}
           data-hook="editor-wrapper"
-          style={{maxHeight: this.props.maxHeight}}
+          style={{ maxHeight: this.props.maxHeight }}
         >
           <Editor
             readOnly={disabled}
@@ -359,22 +390,24 @@ class RichTextArea extends WixComponent {
     }
   }
 
-  renderError() {
+  renderError = () => {
     const {errorMessage} = this.props;
 
     return (
       <Tooltip
         disabled={!errorMessage}
         placement="top"
-        moveBy={{x: 2, y: 0}}
+        moveBy={{ x: 2, y: 0 }}
         alignment="center"
         content={errorMessage}
         theme="dark"
-        >
-        <div className={styles.exclamation}><FormFieldError/></div>
+      >
+        <div className={styles.exclamation}>
+          <FormFieldError />
+        </div>
       </Tooltip>
     );
-  }
+  };
 }
 
 export default RichTextArea;

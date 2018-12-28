@@ -1,5 +1,4 @@
 import React from 'react';
-import { createDriverFactory } from 'wix-ui-test-utils/driver-factory';
 import badgeSelectPrivateDriverFactory from './BadgeSelect.driver.private';
 import BadgeSelect from './BadgeSelect';
 import {
@@ -7,14 +6,11 @@ import {
   SIZE,
   TYPE,
 } from 'wix-ui-backoffice/dist/src/components/Badge/constants';
-import { mount } from 'enzyme';
-import { enzymeTestkitFactoryCreator } from 'wix-ui-test-utils/enzyme';
+import { createRendererWithDriver, cleanup } from '../../test/utils/unit';
 
 describe('BadgeSelect', () => {
-  const createDriver = createDriverFactory(badgeSelectPrivateDriverFactory);
-  const badgeSelectEnzymeDriver = enzymeTestkitFactoryCreator(
-    badgeSelectPrivateDriverFactory,
-  );
+  const render = createRendererWithDriver(badgeSelectPrivateDriverFactory);
+  const createDriver = jsx => render(jsx).driver;
   const initialOptionId = 0;
   const options = Object.values(SKIN).map((skin, id) => ({
     id: id.toString(),
@@ -31,6 +27,10 @@ describe('BadgeSelect', () => {
 
     return createDriver(<BadgeSelect {...combinedProps} />);
   }
+
+  afterEach(() => {
+    cleanup();
+  });
 
   it('should have a badge and hidden options by default', () => {
     const { driver, badgeDriver } = createComponent();
@@ -93,7 +93,6 @@ describe('BadgeSelect', () => {
     const onSelect = jest.fn();
     const selectedIndex = 3;
     const { driver } = createComponent({ onSelect });
-    driver.click();
     driver.clickAtOption(selectedIndex);
     expect(onSelect).toBeCalledWith(options[selectedIndex]);
   });
@@ -124,7 +123,6 @@ describe('BadgeSelect', () => {
       const { driver, badgeDriver } = createComponent();
       const selectedIndex = 3;
 
-      driver.click();
       driver.clickAtOption(selectedIndex);
       expect(badgeDriver.getSkin()).toBe(options[0].skin);
       expect(badgeDriver.text()).toBe(options[0].text);
@@ -132,23 +130,24 @@ describe('BadgeSelect', () => {
 
     it('should change badge only on selectedIndex change', () => {
       const dataHook = 'badge-select';
-      const wrapper = mount(
+      const { driver, rerender } = render(
         <BadgeSelect selectedId={'0'} dataHook={dataHook} options={options} />,
       );
 
-      const { driver, badgeDriver } = badgeSelectEnzymeDriver({
-        wrapper,
-        dataHook,
-      });
       const selectedIndex = 3;
 
-      driver.click();
-      driver.clickAtOption(selectedIndex);
+      driver.driver.clickAtOption(selectedIndex);
 
-      wrapper.setProps({ selectedId: `${selectedIndex}` });
+      rerender(
+        <BadgeSelect
+          selectedId={`${selectedIndex}`}
+          dataHook={dataHook}
+          options={options}
+        />,
+      );
 
-      expect(badgeDriver.getSkin()).toBe(options[selectedIndex].skin);
-      expect(badgeDriver.text()).toBe(options[selectedIndex].text);
+      expect(driver.badgeDriver.getSkin()).toBe(options[selectedIndex].skin);
+      expect(driver.badgeDriver.text()).toBe(options[selectedIndex].text);
     });
   });
 });

@@ -107,6 +107,8 @@ class ImageViewer extends WixComponent {
   }
 }
 
+ImageViewer.displayName = 'ImageViewer';
+
 ImageViewer.defaultProps = {
   showUpdateButton: true,
   addImageInfo: 'Add Image',

@@ -77,7 +77,8 @@ class Page extends WixComponent {
     this._handleResize();
   }
 
-  componentDidUpdate() {
+  componentDidUpdate(prevProps) {
+    super.componentDidUpdate(prevProps);
     // Do not trigger height calculation if the component is minimized
     if (!this.state.minimized) {
       this._calculateComponentsHeights();
@@ -229,12 +230,8 @@ class Page extends WixComponent {
     const { minimized } = this.state;
     const hasBackgroundImage = !!backgroundImageUrl;
     const hasGradientClassName = !!gradientClassName && !backgroundImageUrl;
-    const {
-      PageHeader,
-      PageContent,
-      PageFixedContent,
-      PageTail,
-    } = getChildrenObject(children);
+    const childrenObject = getChildrenObject(children);
+    const { PageContent, PageFixedContent, PageTail } = childrenObject;
     this._setContainerScrollTopThreshold({
       shortThreshold: PageTail && hasGradientClassName,
     });
@@ -272,9 +269,9 @@ class Page extends WixComponent {
               [s.withoutBottomPadding]: PageTail && minimized,
             })}
           >
-            {PageHeader && (
+            {childrenObject.PageHeader && (
               <div className={s.pageHeader} style={pageDimensionsStyle}>
-                {React.cloneElement(PageHeader, {
+                {React.cloneElement(childrenObject.PageHeader, {
                   minimized,
                   hasBackgroundImage,
                 })}

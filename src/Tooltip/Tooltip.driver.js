@@ -1,10 +1,6 @@
-import React from 'react';
 import ReactTestUtils from 'react-dom/test-utils';
-import ReactDOM from 'react-dom';
 import eventually from 'wix-eventually';
 import last from 'lodash/last';
-
-import Tooltip from './Tooltip';
 
 const arrowDirectionToPlacement = {
   top: 'bottom',
@@ -25,10 +21,21 @@ const tooltipDriverFactory = ({ element, wrapper }) => {
         : wrapper.querySelectorAll && wrapper.querySelectorAll(query);
     },
   };
-  const getTooltipContent = () => bodyOrWrapper.querySelector('.tooltip');
+
+  const getContentRoot = () => {
+    const contentRootHook = element.getAttribute('data-content-hook');
+    if (!contentRootHook) {
+      throw new Error(
+        `Tooltip.driver: contentRootHook attribute must exist on the Toolrip's root element`,
+      );
+    }
+    return bodyOrWrapper.querySelector(`[data-hook="${contentRootHook}"]`);
+  };
+
+  const getTooltipContent = () => getContentRoot().querySelector('.tooltip');
   const mouseEnter = () => ReactTestUtils.Simulate.mouseEnter(element);
   const mouseLeave = () => ReactTestUtils.Simulate.mouseLeave(element);
-  const isShown = () => !!bodyOrWrapper.querySelector('.tooltip');
+  const isShown = () => !!getContentRoot();
   const getContent = () => {
     let content = getTooltipContent();
     while (content.children.length > 0) {
@@ -36,25 +43,30 @@ const tooltipDriverFactory = ({ element, wrapper }) => {
     }
     return content.innerHTML;
   };
+  const contentHasElement = selector => {
+    const content = getContentRoot();
+    return content && !!content.querySelector(selector);
+  };
 
   return {
+    exists: () => !!element,
     isShown,
     focus: () => ReactTestUtils.Simulate.focus(element),
     blur: () => ReactTestUtils.Simulate.blur(element),
     click: () => ReactTestUtils.Simulate.click(element),
     mouseEnter,
     mouseLeave,
-    hasErrorTheme: () => !!bodyOrWrapper.querySelector('.error'),
-    hasDarkTheme: () => !!bodyOrWrapper.querySelector('.dark'),
-    hasLightTheme: () => !!bodyOrWrapper.querySelector('.light'),
-    hasAnimationClass: () => !!bodyOrWrapper.querySelector('.fadeIn'),
-    hasArrow: () =>
-      !!bodyOrWrapper.querySelector('[data-hook="tooltip-arrow"]'),
+    hasErrorTheme: () => contentHasElement('.error'),
+    hasDarkTheme: () => contentHasElement('.dark'),
+    hasLightTheme: () => contentHasElement('.light'),
+    hasAnimationClass: () => contentHasElement('.fadeIn'),
+    hasArrow: () => contentHasElement('[data-hook="tooltip-arrow"]'),
     getTooltipWrapper: getTooltipContent,
     getChildren: () => element.innerHTML,
     getPlacement: () => {
+      const content = getContentRoot();
       const arrowDirection = last(
-        bodyOrWrapper.querySelectorAll('[data-hook="tooltip-arrow"]'),
+        content.querySelectorAll('[data-hook="tooltip-arrow"]'),
       ).className.split(' ')[2];
       return arrowDirectionToPlacement[arrowDirection];
     },
@@ -64,7 +76,7 @@ const tooltipDriverFactory = ({ element, wrapper }) => {
       return eventually(
         () => {
           if (!isShown()) {
-            throw 'Tooltip not visible';
+            throw new Error('Tooltip not visible');
           }
           const content = getContent();
           mouseLeave();
@@ -96,15 +108,26 @@ const tooltipDriverFactory = ({ element, wrapper }) => {
       const values = content.style._values;
       return values.padding;
     },
-    setProps: props => {
-      ReactDOM.render(
-        <div ref={r => (element = r)}>
-          <Tooltip {...props} />
-        </div>,
-        wrapper,
-      );
-    },
   };
 };
 
-export default tooltipDriverFactory;
+export default assertExistsWrapper(
+  tooltipDriverFactory,
+  `The Tooltip testkit could not be initialized, please make sure that a dataHook is directly applied to the Tooltip component and passed to the tooltipTestkitFactory.`,
+);
+
+function assertExistsWrapper(driver, msg) {
+  return (...args) =>
+    /* eslint-disable no-restricted-globals */
+    new Proxy(driver(...args), {
+      /* eslint-enable no-restricted-globals */
+      get: (_driver, prop) => {
+        if (_driver.exists && prop !== 'exists') {
+          if (!_driver.exists()) {
+            throw new Error(msg);
+          }
+        }
+        return _driver[prop];
+      },
+    });
+}

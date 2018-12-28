@@ -9,17 +9,10 @@ import {
 } from '../../test/utils/testkit-sanity';
 import { searchTestkitFactory } from '../../testkit';
 import { searchTestkitFactory as enzymeSearchTestkitFactory } from '../../testkit/enzyme';
-import { runInputWithOptionsTest } from '../InputWithOptions/InputWithOptions.spec';
 import { makeControlled } from '../../test/utils';
 import { mount } from 'enzyme';
 
-// We use the parent component because the Search component has a wrapper around <InputWithOption />
-runInputWithOptionsTest(args =>
-  searchDriverFactory({
-    ...args,
-    element: args.element ? args.element.parentElement : args.element,
-  }),
-);
+const REGEXP_SPECIAL_CHARS = '^$\\.*+?)(][}{|';
 
 const options = [
   'The quick',
@@ -28,6 +21,7 @@ const options = [
   'jumps over',
   'the lazy',
   'dog',
+  REGEXP_SPECIAL_CHARS,
 ].map((value, index) => ({ id: index, value }));
 
 describe('Search', () => {
@@ -118,6 +112,14 @@ describe('Search', () => {
       driver.inputDriver.clearText();
       driver.inputDriver.enterText('');
       expect(driver.dropdownLayoutDriver.optionsLength()).toBe(options.length);
+    });
+
+    it('should treat regex characters as text', () => {
+      const driver = createDriver(<ControlledSearch options={options} />);
+
+      driver.inputDriver.focus();
+      driver.inputDriver.enterText(REGEXP_SPECIAL_CHARS);
+      expect(driver.dropdownLayoutDriver.optionsLength()).toBe(1);
     });
 
     it('should show no results if nothing was found in options', () => {

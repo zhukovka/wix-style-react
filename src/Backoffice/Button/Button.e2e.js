@@ -1,18 +1,26 @@
 import React from 'react';
-import eyes from 'eyes.it';
+import { eyesItInstance } from '../../../test/utils/eyes-it';
 import queryString from 'query-string';
 import { buttonTestkitFactory } from '../../../testkit/protractor';
 import { waitForVisibilityOf } from 'wix-ui-test-utils/protractor';
-import { getStoryUrl } from '../../../test/utils/storybook-helpers';
+
 import autoExampleDriver from 'wix-storybook-utils/AutoExampleDriver';
 import { runFocusTests } from '../../common/Focusable/FocusableTestsE2E';
 import { TESTS_PREFIX } from '../../../stories/storiesHierarchy';
 
+import { createStoryUrl } from '../../../test/utils/storybook-helpers';
+import { storySettings } from '../../../stories/Deprecated/Button/storySettings';
+
 const NO_DESCRIPTION = '';
 
 describe('Backoffice Button', () => {
-  const storyUrl = getStoryUrl('5. Buttons', '5.1 Standard');
+  const storyUrl = createStoryUrl({
+    kind: storySettings.kind,
+    story: storySettings.storyName,
+  });
+
   const driver = buttonTestkitFactory({ dataHook: 'storybook-button' });
+  const eyes = eyesItInstance();
 
   // Specific as opposed to 'Generic' tests like the Focusable tests.
   describe(NO_DESCRIPTION, () => {
@@ -65,24 +73,6 @@ describe('Backoffice Button', () => {
       it('should be focused when clicked', async () => {
         await driver.click();
         expect(await driver.isFocused()).toBe(true);
-      });
-    });
-  });
-
-  describe('render variations', () => {
-    ['x-small', 'small', 'medium', 'large', 'x-large'].forEach(height => {
-      [false, true].forEach(hover => {
-        const props = { height, hover };
-        eyes.it(
-          `should display all themes with props=${JSON.stringify(props)}`,
-          async () => {
-            const storyUrl = getStoryUrl(
-              `${TESTS_PREFIX}/5. Buttons`,
-              '5.0 ButtonLayout',
-            );
-            await browser.get(`${storyUrl}&${queryString.stringify(props)}`);
-          },
-        );
       });
     });
   });

@@ -1,0 +1,16 @@
+.contact-item-option {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  height: 48px;
+}
+
+.contact-item-titles {
+  display: flex;
+  flex-direction: column;
+}
+
+.avatar {
+  margin-left: -6px;
+  margin-right: 13px;
+}

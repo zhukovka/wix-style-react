@@ -147,9 +147,12 @@ export default class PageHeader extends WixComponent {
                     [s.minimized]: minimized,
                     [s.darkTheme]: isDarkTheme(hasBackgroundImage, minimized),
                   })}
-                  data-hook="page-header-backbutton"
                 >
-                  <Button onClick={onBackClicked} theme="icon-white">
+                  <Button
+                    dataHook="page-header-backbutton"
+                    onClick={onBackClicked}
+                    theme="icon-white"
+                  >
                     <ChevronLeft className={s.backButtonIcon} />
                   </Button>
                 </div>,
@@ -224,7 +227,7 @@ PageHeader.propTypes = {
   showBackButton: PropTypes.bool,
   /** The callback when back button is clicked */
   onBackClicked: PropTypes.func,
-  /** A placeholder for a component that can contain actions / anything else */
+  /** A placeholder for a component that can contain actions / anything else. It should be a React component that receives `minimized` and `hasBackgroundImage` props. */
   actionsBar: PropTypes.node,
 };
 

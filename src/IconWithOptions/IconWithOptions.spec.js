@@ -19,8 +19,8 @@ describe('IconWithOptions', () => {
     { id: 'element1', value: <span style={{ color: 'brown' }}>Option 4</span> },
   ];
 
-  const optionsToArray = options =>
-    options.map(option => {
+  const optionsToArray = _options =>
+    _options.map(option => {
       const { value, ...props } = option;
       return (
         <IconWithOptions.Option key={option.id} {...props}>

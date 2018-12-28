@@ -1,7 +1,6 @@
 import React from 'react';
 import inputAreaDriverFactory from './InputArea.driver';
 import InputArea from './InputArea';
-import { createDriverFactory } from 'wix-ui-test-utils/driver-factory';
 import { resolveIn } from '../../test/utils';
 import { inputAreaTestkitFactory, tooltipTestkitFactory } from '../../testkit';
 import { inputAreaTestkitFactory as enzymeInputAreaTestkitFactory } from '../../testkit/enzyme';
@@ -11,13 +10,33 @@ import {
   isEnzymeTestkitExists,
 } from '../../test/utils/testkit-sanity';
 import { mount } from 'enzyme';
+import { createRendererWithDriver, cleanup } from '../../test/utils/unit';
 
 describe('InputArea', () => {
-  const createDriver = createDriverFactory(inputAreaDriverFactory);
+  const render = createRendererWithDriver(inputAreaDriverFactory);
+  const createDriver = jsx => render(jsx).driver;
 
   const InputAreaForTesting = props => (
     <InputArea {...props} dataHook="textarea-div" />
   );
+
+  afterEach(() => {
+    cleanup();
+  });
+
+  describe('enterText driver method', () => {
+    it('passes the name and value attribute', () => {
+      const onChangeMock = jest.fn();
+      const props = {
+        name: 'gal',
+        onChange: onChangeMock,
+      };
+      const driver = createDriver(<InputAreaForTesting {...props} />);
+      driver.enterText('some text');
+      const eventTarget = onChangeMock.mock.calls[0][0].target;
+      expect(eventTarget).toEqual({ name: 'gal', value: 'some text' });
+    });
+  });
 
   describe('value attribute', () => {
     it('should pass down to the wrapped input', () => {
@@ -238,11 +257,11 @@ describe('InputArea', () => {
 
   describe('autoFocus attribute', () => {
     it('Mounting an input element with autoFocus=false, should give it the focus', () => {
-      let autoFocus = false;
-      const driver = createDriver(<InputAreaForTesting autoFocus={false} />);
+      const { driver, rerender } = render(
+        <InputAreaForTesting autoFocus={false} />,
+      );
       expect(driver.isFocus()).toBeFalsy();
-      autoFocus = true;
-      driver.setProps({ autoFocus });
+      rerender(<InputAreaForTesting autoFocus />);
       expect(driver.isFocus()).toBeFalsy();
     });
 
@@ -279,8 +298,6 @@ describe('InputArea', () => {
   });
 
   describe('aria attributes', () => {
-    const createDriver = createDriverFactory(inputAreaDriverFactory);
-
     it('should allow adding a custom aria-label', () => {
       const driver = createDriver(<InputAreaForTesting ariaLabel="hello" />);
       expect(driver.getAriaLabel()).toBe('hello');

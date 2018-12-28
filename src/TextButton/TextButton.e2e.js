@@ -1,4 +1,4 @@
-import eyes from 'eyes.it';
+import { eyesItInstance } from '../../test/utils/eyes-it';
 import autoExampleDriver from 'wix-storybook-utils/AutoExampleDriver';
 
 import { createStoryUrl } from '../../test/utils/storybook-helpers';
@@ -14,39 +14,13 @@ describe('TextButton', () => {
     await browser.get(storyUrl);
   });
 
-  beforeEach(() => {
-    return autoExampleDriver.remount();
+  afterEach(async () => {
+    await autoExampleDriver.remount();
   });
 
-  describe(`'skin' prop`, () => {
-    ['', 'light', 'premium', 'dark'].map(skin =>
-      eyes.it(`should render with value ${skin}`, async () => {
-        await autoExampleDriver.setProps({ skin });
-      }),
-    );
-  });
+  const eyes = eyesItInstance();
 
-  describe(`'underline' prop`, () => {
-    ['', 'onHover', 'underline'].map(underline =>
-      eyes.it(`should render with theme ${underline}`, async () => {
-        await autoExampleDriver.setProps({ underline });
-      }),
-    );
-  });
-
-  describe(`'size' prop`, () => {
-    ['', 'small'].map(size =>
-      eyes.it(`should render with ${size} icon`, async () => {
-        await autoExampleDriver.setProps({ size });
-      }),
-    );
-  });
-
-  describe(`'weight' prop`, () => {
-    ['', 'normal'].map(weight =>
-      eyes.it(`should render with theme ${weight}`, async () => {
-        await autoExampleDriver.setProps({ disabled: true, weight });
-      }),
-    );
+  eyes.it('Make a screenshoft of all TextButton examples', () => {
+    expect(true).toBeTruthy();
   });
 });

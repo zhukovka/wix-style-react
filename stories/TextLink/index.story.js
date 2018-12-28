@@ -13,9 +13,11 @@ import * as Icons from 'wix-style-react/new-icons';
 
 const icons = Object.values(Icons).map(icon => React.createElement(icon));
 
+import { storySettings } from './storySettings';
+
 export default {
-  category: '5. Buttons',
-  storyName: '5.8 Text Link',
+  category: storySettings.kind,
+  storyName: storySettings.storyName,
   component: TextLink,
   componentPath: '../../src/TextLink',
 

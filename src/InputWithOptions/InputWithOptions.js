@@ -53,6 +53,7 @@ class InputWithOptions extends WixComponent {
   }
 
   componentDidUpdate(prevProps, prevState) {
+    super.componentDidUpdate(prevProps);
     if (
       !this.props.showOptionsIfEmptyInput &&
       ((!prevProps.value && this.props.value) ||

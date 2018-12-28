@@ -8,7 +8,10 @@ const addItemDriverFactory = element => {
     clickableElements: [element],
   });
   const publicDriver = {
+    /** returns element */
     click: () => element.click(),
+
+    /** clicks on element */
     element: () => element,
   };
   return mergeDrivers(publicDriver, focusableDriver);

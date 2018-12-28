@@ -8,8 +8,8 @@ import datePickerDriver from '../DatePicker/DatePicker.protractor.driver';
 
 const rangeTestkitE2EFactory = rangeDriver => {
   const component = rangeDriver.element();
-  const byDataHook = ({ component, dataHook }) =>
-    component.$(`[data-hook='${dataHook}']`);
+  const byDataHook = ({ component: wrapper, dataHook }) =>
+    wrapper.$(`[data-hook='${dataHook}']`);
   const firstItem = byDataHook({ dataHook: 'first-item', component });
   const lastItem = byDataHook({ dataHook: 'last-item', component });
 

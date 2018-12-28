@@ -14,9 +14,11 @@
 .breadcrumbs-container {
   margin-left: -10px;
 
-  :global(.rtl) & {
-    margin-left: 0;
-    margin-right: -10px;
+  @include withRTL() {
+    & {
+      margin-left: 0;
+      margin-right: -10px;
+    }
   }
 
   &.absolute {
@@ -32,8 +34,10 @@
   width: 36px;
   height: 36px;
 
-  :global(.rtl) & {
-    left: 12px;
+  @include withRTL() {
+    & {
+      left: 12px;
+    }
   }
 
   button {
@@ -68,8 +72,10 @@
   width: 36px;
   height: 36px;
 
-  :global(.rtl) & {
-    transform: scaleX(-1);
+  @include withRTL() {
+    & {
+      transform: scaleX(-1);
+    }
   }
 }
 

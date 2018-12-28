@@ -5,7 +5,7 @@ import classNames from 'classnames';
 import InputWithOptions from '../InputWithOptions';
 import SearchIcon from 'wix-ui-icons-common/Search';
 import WixComponent from '../BaseComponents/WixComponent';
-
+import { StringUtils } from '../utils/StringUtils';
 import styles from './Search.scss';
 
 /**
@@ -48,7 +48,7 @@ export default class Search extends WixComponent {
 
     return options.filter(option =>
       searchText && searchText.length
-        ? new RegExp(searchText.trim(), 'i').test(option.value)
+        ? StringUtils.includesCaseInsensitive(option.value, searchText.trim())
         : true,
     );
   }

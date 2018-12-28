@@ -12,6 +12,164 @@ Types of changes:
 1. **Security** in case of vulnerabilities.
 1. **Breaking** for breaking changes
 1. **Docs** for documentation changes
+1. **Lab** components and features that are still in a work in progress
+
+
+## Next
+
+### Lab
+
+- `<CalendarPanel/>` - New component - (WIP category) [#2664](https://github.com/wix/wix-style-react/pull/2674)
+
+## 5.21.0 - 2018-12-27
+
+### Added
+
+- `<Popover/>` - added the `animate`, `showDelay` and `hideDelay` [#2661](https://github.com/wix/wix-style-react/pull/2661)
+
+### Changed
+
+- `<DropdownLayout/>` - Remove `setProps` and `isSelectedHightLight` from the driver [#2666](https://github.com/wix/wix-style-react/pull/2666)
+
+### Fixed
+
+- `<EditableSelector/>` - revert migration of using `<IconButton/>` [#2679](https://github.com/wix/wix-style-react/pull/2679)
+
+### Docs
+
+- `<PopoverMenu/>` - migrate docs to use `<AutoDocs/>` [#2668](https://github.com/wix/wix-style-react/pull/2668)
+
+## 5.20.1 - 2018-12-25
+
+### Fixed
+
+- Update the `getStylableState` method to not use `async` / `await` [#2663](https://github.com/wix/wix-style-react/pull/2663)
+
+## 5.20.0 - 2018-12-25
+
+### Added
+- `<CardGalleryItem/>` - create new component [#2566](https://github.com/wix/wix-style-react/pull/2566)
+
+### Changed
+- `<EditableSelector/>` - migrate to use `<IconButton/>` [#2641](https://github.com/wix/wix-style-react/pull/2641)
+- Refactor RTL definitions to support `.rtl` class and `dir` attribute [#2577](https://github.com/wix/wix-style-react/pull/2577)
+
+### Fixed
+- `<GoogleAddressInput/>` - fix broken countryCode API [#2628](https://github.com/wix/wix-style-react/pull/2628)
+- `<SectionHelper>` - update driver to work properly in browser environments [#2655](https://github.com/wix/wix-style-react/pull/2655)
+
+### Docs
+- `<TextField/>` - Add NumberInput example [#2653](https://github.com/wix/wix-style-react/pull/2653)
+- `<RichTextArea/>`, `<ImageViewer/>`, `<Tabs/>`, `<TextLink/>`, `<ModalSelectorLayout/>` - Fix broken component names [#2654](https://github.com/wix/wix-style-react/pull/2654)
+
+## 5.19.0 - 2018-12-20
+
+### Added
+
+- `<Card.Header/>` - add fade animation to divider [#2615](https://github.com/wix/wix-style-react/pull/2615)
+
+- `<Button/>` - render with different html tag feature.[#2634](https://github.com/wix/wix-style-react/pull/2634)
+
+## 5.18.3 - 2018-12-19
+
+### Fixed
+- `<Button/>` - fixed testkit export handler.
+
+## 5.18.1 - 2018-12-18
+
+### Fixed
+- re-add some mising enzyme testkits [#2618](https://github.com/wix/wix-style-react/pull/2618)
+
+### Added
+
+- `<PageHeader/>` - add support for clicking the back button in the driver [#2581](https://github.com/wix/wix-style-react/pull/2581)
+
+## 5.18.0 - 2018-12-18
+
+### Added
+
+- `<Button />` - major refactor. New API. Does not break current Button. Read migration guide: (https://github.com/wix/wix-style-react/blob/master/src/Button/MIGRATION-API.md). [#2507](https://github.com/wix/wix-style-react/pull/2507)
+
+- `<MessageBox />` - Added RTL support [#2608](https://github.com/wix/wix-style-react/pull/2608)
+- `<Popover/>` - improve arrow styles [#2594](https://github.com/wix/wix-style-react/pull/2594)
+
+### Fixed
+
+- `<Tooltip/>` - Add back `tooltip-content` data-hook [#2609](https://github.com/wix/wix-style-react/pull/2609)
+- `<Search/>` - Allow regexp special chars as search term [#2606](https://github.com/wix/wix-style-react/pull/2606)
+- `<Button/>`,`<MessageBoxMarketerialLayout/>` - Fix deprecationLog [#2598](https://github.com/wix/wix-style-react/pull/2598)
+
+## 5.17.0 - 2018-12-17
+
+### Added
+
+- `<Proportion/>` - create a new aspect ratio component [#2565](https://github.com/wix/wix-style-react/pull/2565)
+- Add a new component generator [#2552](https://github.com/wix/wix-style-react/pull/2552) [#2593](https://github.com/wix/wix-style-react/pull/2593)
+
+### Fixed
+
+- `<Notification.CloseButton/>` - fix styling [#2578](https://github.com/wix/wix-style-react/pull/2578)
+- `<Input/>` - fix testkit driver throwing error when element is null [#2602](https://github.com/wix/wix-style-react/pull/2602)
+
+### Changed
+
+- `<BadgeSelect/>` - refactor internally to use `<Popover/>` [#2595](https://github.com/wix/wix-style-react/pull/2595)
+
+### Lab
+
+- `<ContactItemBuilder/>` - create new component builder [#2556](https://github.com/wix/wix-style-react/pull/2556)
+- `<Carousel/>` - add aspect ratio, align navigation buttons and minor refactors [#2592](https://github.com/wix/wix-style-react/pull/2592)
+
+## 5.16.0 - 2018-12-12
+
+### Added
+
+- `<CloseButton>` - new component [#2480](https://github.com/wix/wix-style-react/pull/2480)
+- `<Tag/>`, `<MultiSelect/>` - Added RTL support [#2356](https://github.com/wix/wix-style-react/pull/2356)
+- `<Input/>`, `<InputArea/>` - Added name ( & type) attribute driver.click() callback [#2528](https://github.com/wix/wix-style-react/pull/2528)
+- `<Calendar/>` - Add range support [#2533](https://github.com/wix/wix-style-react/pull/2533)
+- `<Popover/>` - add a new component [#2509](https://github.com/wix/wix-style-react/pull/2509)
+
+### Fixed
+
+- `<WixComponent/>` - Update dataHook on componentDidUpdate [#2542](https://github.com/wix/wix-style-react/pull/2542)
+- `<Tooltip/>` - Fix testkit `isShown()` to be specific to the Tooltip instance [#2550](https://github.com/wix/wix-style-react/pull/2550)
+
+### Changed
+
+- `<Breadcrumbs/>` - do not limit breadcrumb width given only one item [#2553](https://github.com/wix/wix-style-react/pull/2553)
+
+### Docs
+
+- `<ButtonLayout/>` - story - Add Disabled LinkButton example
+- `<PageHeader/>` add better docs for actionBar [#2558](https://github.com/wix/wix-style-react/pull/2558)
+- `<Tooltip/>`, `<Modal/>` - add a testkit readme and explanation how to test [#2534](https://github.com/wix/wix-style-react/pull/2534)
+
+### Lab
+
+- `<Carousel/>` - initial creation of component (WIP) [#2536](https://github.com/wix/wix-style-react/pull/2536)
+
+## 5.15.1 - 2018-12-03
+
+### Fixed
+
+- `<Dropdownlayout/>` - Fix update of hovered index [#2530](https://github.com/wix/wix-style-react/pull/2530)
+
+## 5.15.0 - 2018-12-02
+
+### Added
+
+- `<Avatar/>` - Improve story: props and examples [#2514](https://github.com/wix/wix-style-react/pull/2514)
+
+### Fixed
+
+- `<Checkbox/>` - protractor driver - fix click [#2525](https://github.com/wix/wix-style-react/pull/2525)
+- `<Table/>` - Fix bulkSelectionState when data changes [#2500](https://github.com/wix/wix-style-react/pull/2500)
+- `<Table/>` - testkit - Add ability to use Table driver when using Table in Page [#2515](https://github.com/wix/wix-style-react/pull/2515)
+
+### Docs
+
+- `<Modal/>` - Component Test & Docs - Do proper cleanup of document.body between tests [#2516](https://github.com/wix/wix-style-react/pull/2516)
 
 ## 5.14.0 - 2018-11-26
 

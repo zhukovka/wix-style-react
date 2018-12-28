@@ -1,5 +1,5 @@
 /* eslint-disable */
-<div>
+<div className={styles.spacing}>
   <TextButton>standard</TextButton>
   <TextButton skin="light">light</TextButton>
   <TextButton skin="premium">premium</TextButton>

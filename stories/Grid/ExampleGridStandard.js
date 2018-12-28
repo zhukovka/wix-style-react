@@ -76,7 +76,7 @@ export default () => (
   </div>
 );
 
-function text(text) {
+function text(children) {
   return (
     <div
       style={{
@@ -87,7 +87,7 @@ function text(text) {
         width: '100%',
         height: '50px',
       }}
-      children={text}
+      children={children}
     />
   );
 }

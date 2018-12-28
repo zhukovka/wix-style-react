@@ -1,6 +1,10 @@
+import popoverDriverFactory from '../Popover/Popover.protractor.driver';
+
 const badgeSelectDriverFactory = component => {
-  const getBadgeElement = () =>
-    component.$(`[data-hook="badgeSelect-badge-wrapper"] div`);
+  const popoverDriver = popoverDriverFactory(component);
+
+  const getBadgeElement = () => popoverDriver.getTargetElement();
+
   const getDropdownItem = index =>
     component.$$(`[data-hook="dropdown-layout-options"] div`).get(index);
 

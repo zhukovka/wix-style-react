@@ -42,6 +42,7 @@ export { default as Tooltip } from './Tooltip';
 export { default as Page } from './Page';
 export { default as SectionHelper } from './SectionHelper';
 export { default as PageHeader } from './PageHeader';
+export { default as Popover } from './Popover';
 export { default as SideMenu } from './SideMenu';
 export { default as SideMenuDrill } from './SideMenu/DrillView';
 export { default as DropdownLayout } from './DropdownLayout';
@@ -65,6 +66,7 @@ export { default as PopoverMenuItem } from './PopoverMenuItem';
 export { default as Badge } from './Badge';
 export { default as BadgeSelect } from './BadgeSelect';
 export { badgeSelectItemBuilder } from './BadgeSelectItemBuilder';
+export { contactItemBuilder } from './ContactItemBuilder';
 export { default as EditableSelector } from './EditableSelector';
 export { default as StatsWidget } from './StatsWidget';
 export { default as Card } from './Card';
@@ -96,8 +98,14 @@ export {
   AutoAdjustedColumns as AutoAdjustedRow,
   Col,
 } from './Grid';
+
 export { Layout, Cell } from './Layout';
 export { default as Typography } from './Typography';
 export { default as GenericModalLayout } from './GenericModalLayout';
 export { default as TextButton } from './TextButton';
 export { default as IconButton } from './IconButton';
+export { default as CloseButton } from './CloseButton';
+export { default as CardGalleryItem } from './CardGalleryItem';
+export { default as Carousel } from './Carousel';
+export { default as CalendarPanel } from './CalendarPanel';
+export { default as Proportion } from './Proportion';

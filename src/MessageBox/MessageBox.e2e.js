@@ -29,12 +29,14 @@ describe('MessageBox', () => {
     const actions = 'alert-actions';
     const imageWithActions = 'alert-image-actions';
 
+    const baseUrl = createStoryUrl({
+      kind: '9. Modals',
+      story: '9.1 Alert',
+    });
+
     eyes.it('should not break design', async () => {
-      const storyUrl = createStoryUrl({
-        kind: '9. Modals',
-        story: '9.1 Alert',
-      });
-      await browser.get(storyUrl);
+      await browser.get(baseUrl);
+
       await verifyItem(standard);
       await verifyItem(secondary);
       await verifyItem(footnote);
@@ -43,6 +45,12 @@ describe('MessageBox', () => {
       await verifyItem(image);
       await verifyItem(actions);
       await verifyItem(imageWithActions);
+    });
+
+    eyes.it('should not break design RTL', async () => {
+      await browser.get(`${baseUrl}&rtl`);
+
+      await verifyItem(actions);
     });
 
     eyes.it(
@@ -103,20 +111,27 @@ describe('MessageBox', () => {
   });
 
   describe('Announcement', () => {
+    const baseUrl = createStoryUrl({
+      kind: '9. Modals',
+      story: '9.4 Announcement',
+    });
+
+    const standard = 'announcement-standard';
+    const primaryTheme = 'announcement-primary-theme';
+    const footnote = 'announcement-footnote';
+    const disabledAction = 'announctement-disabled-action';
+
     eyes.it('should not break design', async () => {
-      const storyUrl = createStoryUrl({
-        kind: '9. Modals',
-        story: '9.4 Announcement',
-      });
-      const standard = 'announcement-standard';
-      const primaryTheme = 'announcement-primary-theme';
-      const footnote = 'announcement-footnote';
-      const disabledAction = 'announctement-disabled-action';
-      await browser.get(storyUrl);
+      await browser.get(baseUrl);
       await verifyItem(standard);
       await verifyItem(primaryTheme);
       await verifyItem(footnote);
       await verifyItem(disabledAction);
+    });
+
+    eyes.it('should not break design RTL', async () => {
+      await browser.get(`${baseUrl}&rtl`);
+      await verifyItem(standard);
     });
   });
 });

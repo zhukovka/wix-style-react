@@ -47,17 +47,24 @@ class ExampleStandard extends React.Component {
       ? option.value
       : option.value.props.children[0].props.children;
 
-  handleOnSelect = tags =>
+  handleOnSelect = tags => {
+    console.log('onSelect(tags): tags=', tags);
     Array.isArray(tags)
       ? this.setState({ tags: [...this.state.tags, ...tags] })
       : this.setState({ tags: [...this.state.tags, tags] });
+  };
 
   handleOnRemoveTag = tagId =>
     this.setState({
       tags: this.state.tags.filter(currTag => currTag.id !== tagId),
     });
 
-  handleOnChange = event => this.setState({ inputValue: event.target.value });
+  handleOnChange = event => {
+    console.log(`onChange('${event.target.value}')`);
+    this.setState({ inputValue: event.target.value });
+  };
+
+  handleOnManuallyInput = value => console.log(`onManuallyInput('${value}')`);
 
   predicate = option =>
     this.getValue(option)
@@ -74,7 +81,7 @@ class ExampleStandard extends React.Component {
             onSelect={this.handleOnSelect}
             onRemoveTag={this.handleOnRemoveTag}
             onChange={this.handleOnChange}
-            onManuallyInput={() => console.log('NOW')}
+            onManuallyInput={this.handleOnManuallyInput}
             options={this.state.options}
             value={this.state.inputValue}
             predicate={this.predicate}

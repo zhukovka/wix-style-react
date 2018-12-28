@@ -1,5 +1,5 @@
 import React from 'react';
-import { children, optional, once } from '../Composite';
+import * as Composite from '../Composite';
 import Label from '../Label';
 import InputArea from '../InputArea';
 import InputAreaWithLabelComposite from '../Composite/InputAreaWithLabelComposite/InputAreaWithLabelComposite';
@@ -17,7 +17,10 @@ const TextArea = ({ children, ...props }) => (
 );
 
 TextArea.propTypes = {
-  children: children(optional(Label), once(InputArea)),
+  children: Composite.children(
+    Composite.optional(Label),
+    Composite.once(InputArea),
+  ),
 };
 
 TextArea.displayName = 'TextArea';

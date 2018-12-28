@@ -105,21 +105,27 @@ storiesOf(kind, module)
 1. In watch mode, you can use `jest`'s interactive mode, for example, press `p` in your command line and type the name of the test:
 <img src="https://raw.githubusercontent.com/wix/wix-style-react/master/docs/assets/jest-interactive.png" alt="Interactive Jest Preview" width="600">
 
-### Running Browser tests only:
+### Running Browser tests only
 
-1. single run: `npm run build && npm run test:e2e`.
-    - Running `npm run build` between tests is required only if making changes to the component. Changing the tests doesn't require building again.
+#### Single Run
+`npm run build && npm run test:e2e`
 
-1. Watch mode:
-    - open a terminal console
-    - `npm run storybook` - serve storybook with hot reload
-    - open another terminal console
-    - `npm run test:e2e-only` - run just e2e tests
+- `npm run test:e2e` serves the storybook from `storybook-static` folder.
+- If you made any changes to components or stories, you need to run `npm run build` (or just `npm run storybook:build`) before running `npm run test:e2e`.
+- Changing the tests doesn't require building again.
+
+### Storybook with HMR
+
+- open a terminal console
+- `npm run storybook` - serve storybook with hot module reload
+- open another terminal console
+- `npm run test:e2e-only` - run just e2e tests
 
 #### Running a single test (focused test)
 
-1. To make a focused test (only it runs) use `fit` instead of `it` or use `eyes.fit` instead of `eyes.it`.
+- To make a focused test (only it runs) use `fit` instead of `it`
+- OR... use `eyes.fit` instead of `eyes.it`.
 
 #### Debugging
 
-1. Use `browser.sleep(10000)` for quick browser stop and debugging.
+1. Use `await browser.sleep(100000)` in your test, for quick browser stop and debugging.

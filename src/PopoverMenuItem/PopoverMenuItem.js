@@ -8,6 +8,8 @@ import Text, { WEIGHTS } from '../Text';
 import styles from './PopoverMenuItem.scss';
 
 class PopoverMenuItem extends WixComponent {
+  static displayName = 'PopoverMenuItem';
+
   static propTypes = {
     icon: PropTypes.node,
     text: PropTypes.string,

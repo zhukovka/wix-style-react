@@ -40,7 +40,7 @@ export default {
   category: '6. Navigation',
   storyName: '6.2 Breadcrumbs',
   component: Breadcrumbs,
-  componentPath: './../../src/Breadcrumbs',
+  componentPath: '../../src/Breadcrumbs',
   componentProps: {
     activeId: '1',
     items,

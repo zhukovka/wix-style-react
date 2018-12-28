@@ -1,4 +1,5 @@
 import { isClassExists } from '../../test/utils';
+import buttonDriverFactory from '../Backoffice/Button/Button.driver.js';
 
 const titleElement = element =>
   element.querySelector('[data-hook="page-header-title"] h1');
@@ -21,4 +22,8 @@ export default ({ element }) => ({
   breadcrumbsText: () => breadcrumbsElement(element).textContent,
   isActionBarExists: () => !!actionBarElement(element),
   isBackButtonExists: () => !!backButtonElement(element),
+  clickBackButton: () =>
+    buttonDriverFactory({
+      element: backButtonElement(element),
+    }).click(),
 });

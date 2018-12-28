@@ -272,7 +272,7 @@ class DropdownLayout extends WixComponent {
           <div
             className={styles.options}
             style={{ maxHeight: this.props.maxHeightPixels - 35 + 'px' }}
-            ref={options => (this.options = options)}
+            ref={_options => (this.options = _options)}
             data-hook="dropdown-layout-options"
           >
             {options.map((option, idx) => this._renderOption({ option, idx }))}
@@ -348,7 +348,9 @@ class DropdownLayout extends WixComponent {
         onMouseLeave={this._onMouseLeave}
         data-hook={dataHook}
       >
-        {option.value}
+        {typeof option.value === 'function'
+          ? option.value({ selected })
+          : option.value}
       </div>
     );
   }
@@ -381,8 +383,9 @@ class DropdownLayout extends WixComponent {
     // make sure the same item is hovered if options changed
     if (
       this.state.hovered !== NOT_HOVERED_INDEX &&
-      this.props.options[this.state.hovered].id !==
-        nextProps.options[this.state.hovered].id
+      (!nextProps.options[this.state.hovered] ||
+        this.props.options[this.state.hovered].id !==
+          nextProps.options[this.state.hovered].id)
     ) {
       this.setState({
         hovered: this.findIndex(
@@ -415,8 +418,11 @@ DropdownLayout.propTypes = {
       PropTypes.shape({
         id: PropTypes.oneOfType([PropTypes.string, PropTypes.number])
           .isRequired,
-        value: PropTypes.oneOfType([PropTypes.node, PropTypes.string])
-          .isRequired,
+        value: PropTypes.oneOfType([
+          PropTypes.node,
+          PropTypes.string,
+          PropTypes.func,
+        ]).isRequired,
         disabled: PropTypes.bool,
         overrideStyle: PropTypes.bool,
       }),

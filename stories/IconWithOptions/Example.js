@@ -21,8 +21,8 @@ const options = [
   { id: 5, value: 'Option 5' },
 ];
 
-const optionsToArray = options =>
-  options.map(option => {
+const optionsToArray = _options =>
+  _options.map(option => {
     const { value, ...props } = option;
     return (
       <IconWithOptions.Option key={option.id} {...props}>

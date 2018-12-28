@@ -1,3 +1,5 @@
+import ReactDOM from 'react-dom';
+
 import {
   testkitFactoryCreator,
   uniTestkitFactoryCreator,
@@ -6,6 +8,12 @@ import {
 import inputDriverFactory from '../src/Input/Input.driver';
 
 export const inputTestkitFactory = testkitFactoryCreator(inputDriverFactory);
+
+import buttonLayoutDriverFactory from '../src/ButtonLayout/ButtonLayout.driver';
+
+export const buttonLayoutTestkitFactory = testkitFactoryCreator(
+  buttonLayoutDriverFactory,
+);
 
 import inputAreaDriverFactory from '../src/InputArea/InputArea.driver';
 
@@ -69,6 +77,12 @@ export const pageHeaderTestkitFactory = testkitFactoryCreator(
   pageHeaderDriverFactory,
 );
 
+import popoverDriverFactory from '../src/Popover/Popover.driver';
+
+export const popoverTestkitFactory = testkitFactoryCreator(
+  popoverDriverFactory,
+);
+
 import autoCompleteDriverFactory from '../src/AutoComplete/AutoComplete.driver';
 
 export const autoCompleteTestkitFactory = testkitFactoryCreator(
@@ -104,8 +118,16 @@ export const checkboxTestkitFactory = testkitFactoryCreator(
 );
 
 import buttonDriverFactory from '../src/Backoffice/Button/Button.driver';
+import { buttonDriverFactory as buttonNextDriverFactory } from '../src/Button/Button.driver';
 
-export const buttonTestkitFactory = testkitFactoryCreator(buttonDriverFactory);
+export const buttonTestkitFactory = obj => {
+  const domInstance = ReactDOM.findDOMNode(obj.wrapper);
+  const hasUpgrade = domInstance.querySelector('[data-upgrade]');
+
+  return hasUpgrade
+    ? uniTestkitFactoryCreator(buttonNextDriverFactory)(obj)
+    : testkitFactoryCreator(buttonDriverFactory)(obj);
+};
 
 import textLinkDriverFactory from '../src/TextLink/TextLink.driver';
 
@@ -439,6 +461,18 @@ export const genericModalLayoutTestkitFactory = testkitFactoryCreator(
   genericModalLayoutDriverFactory,
 );
 
+import contactItemBuilderDriverFactory from '../src/ContactItemBuilder/ContactItemBuilder.driver';
+
+export const contactItemBuilderTestkitFactory = testkitFactoryCreator(
+  contactItemBuilderDriverFactory,
+);
+
+import calendarPanelDriverFactory from '../src/CalendarPanel/CalendarPanel.driver';
+
+export const calendarPanelTestkitFactory = testkitFactoryCreator(
+  calendarPanelDriverFactory,
+);
+
 // wix-ui-backoffice proxy
 
 export {
@@ -465,8 +499,41 @@ export const avatarTestkitFactory = uniTestkitFactoryCreator(
   avatarDriverFactory,
 );
 
+import cardGalleryItemDriverFactory from '../src/CardGalleryItem/CardGalleryItem.driver';
+
+export const cardGalleryItemTestkitFactory = uniTestkitFactoryCreator(
+  cardGalleryItemDriverFactory,
+);
+
 import { iconButtonDriverFactory } from '../src/IconButton/IconButton.driver';
 
 export const iconButtonTestkitFactory = uniTestkitFactoryCreator(
   iconButtonDriverFactory,
+);
+
+import { closeButtonDriverFactory } from '../src/CloseButton/CloseButton.driver';
+
+export const closeButtonTestkitFactory = uniTestkitFactoryCreator(
+  closeButtonDriverFactory,
+);
+
+import { carouselDriverFactory } from '../src/Carousel/Carousel.driver';
+
+export const carouselTestkitFactory = uniTestkitFactoryCreator(
+  carouselDriverFactory,
+);
+
+import { proportionDriverFactory } from '../src/Proportion/Proportion.driver';
+
+export const proportionTestkitFactory = uniTestkitFactoryCreator(
+  proportionDriverFactory,
+);
+
+/*
+ * Component generator test component
+ */
+import { generatedTestComponentDriverFactory } from '../src/GeneratedTestComponent/GeneratedTestComponent.driver';
+
+export const generatedTestComponentTestkitFactory = uniTestkitFactoryCreator(
+  generatedTestComponentDriverFactory,
 );

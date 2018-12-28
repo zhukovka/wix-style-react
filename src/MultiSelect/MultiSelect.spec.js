@@ -2,16 +2,15 @@ import React from 'react';
 import ReactTestUtils from 'react-dom/test-utils';
 import multiSelectDriverFactory from './MultiSelect.driver';
 import MultiSelect from './MultiSelect';
-import { createDriverFactory } from 'wix-ui-test-utils/driver-factory';
 import { multiSelectTestkitFactory } from '../../testkit';
 import { multiSelectTestkitFactory as enzymeMultiSelectTestkitFactory } from '../../testkit/enzyme';
 import { mount } from 'enzyme';
-import { runInputWithOptionsTest } from '../InputWithOptions/InputWithOptions.spec';
-
-runInputWithOptionsTest(multiSelectDriverFactory);
+import { createRendererWithDriver, cleanup } from '../../test/utils/unit';
 
 describe('MultiSelect', () => {
-  const createDriver = createDriverFactory(multiSelectDriverFactory);
+  const render = createRendererWithDriver(multiSelectDriverFactory);
+  const createDriver = jsx => render(jsx).driver;
+
   const options = [
     { value: 'Alabama', id: 'Alabama', tag: { label: 'Alabama' } },
     { value: 'Alaska', id: 'Alaska' },
@@ -27,6 +26,10 @@ describe('MultiSelect', () => {
     { value: 'Two words', id: 'Two words' },
   ];
 
+  afterEach(() => {
+    cleanup();
+  });
+
   it('should NOT show dropdown when autofocus is on', () => {
     const { inputDriver, dropdownLayoutDriver } = createDriver(
       <MultiSelect options={options} autoFocus />,
@@ -38,13 +41,14 @@ describe('MultiSelect', () => {
   it('should remove options that were selected and became tags', () => {
     const tags = [{ id: 'Alabama', label: 'Alabama' }];
 
-    const { driver, dropdownLayoutDriver } = createDriver(
+    const { driver: multiSelectDriver, rerender } = render(
       <MultiSelect options={options} autoFocus />,
     );
+    const { dropdownLayoutDriver } = multiSelectDriver;
     expect(dropdownLayoutDriver.optionsLength()).toBe(options.length);
     expect(dropdownLayoutDriver.isOptionExists('Alabama')).toBeTruthy();
 
-    driver.setProps({ options, tags });
+    rerender(<MultiSelect options={options} tags={tags} autoFocus />);
     expect(dropdownLayoutDriver.optionsLength()).toBe(
       options.length - tags.length,
     );
@@ -385,12 +389,12 @@ describe('MultiSelect', () => {
   });
 
   it('should set maxHeight when maxNumRows defined (large tags)', () => {
-    const options = [
+    const _options = [
       { value: 'Alaska', id: 'Alaska', label: 'Alaska', size: 'large' },
     ];
 
     const { driver } = createDriver(
-      <MultiSelect maxNumRows={2} tags={options} options={options} />,
+      <MultiSelect maxNumRows={2} tags={_options} options={_options} />,
     );
 
     expect(driver.getMaxHeight()).toBe('94px');

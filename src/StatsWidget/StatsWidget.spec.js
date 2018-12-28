@@ -132,12 +132,12 @@ describe('StatsWidget', () => {
   });
 
   it('filters should have selectable options', () => {
-    const stub = jest.fn();
+    const onSelectStub = jest.fn();
     const children = (
       <StatsWidget.Filter
         selectedId={1}
         dataHook="stats-widget-filter"
-        onSelect={stub}
+        onSelect={onSelectStub}
       >
         <ButtonWithOptions.Button />
         {[
@@ -151,7 +151,7 @@ describe('StatsWidget', () => {
     driver
       .getFilterDriver('stats-widget-filter')
       .dropdownLayoutDriver.clickAtOption(0);
-    expect(stub).toHaveBeenCalled();
+    expect(onSelectStub).toHaveBeenCalled();
   });
 
   it('should show filters with option value specified', () => {

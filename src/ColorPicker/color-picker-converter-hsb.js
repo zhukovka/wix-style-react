@@ -61,9 +61,9 @@ export default class ColorPickerConverterHsb extends WixComponent {
     },
   ) {
     this.setState({ [part]: value }, () => {
-      const color = safeColor(this.state);
-      if (color) {
-        this.props.onChange(color);
+      const _color = safeColor(this.state);
+      if (_color) {
+        this.props.onChange(_color);
       }
     });
   }

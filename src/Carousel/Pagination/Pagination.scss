@@ -1,0 +1,18 @@
+@import '../../../colors.scss';
+
+.pagination {
+  display: flex;
+  justify-content: center;
+}
+
+.dot {
+  width: 12px;
+  height: 12px;
+  background-color: $B40;
+  border-radius: 6px;
+  margin: 0 6px;
+
+  &[data-active="true"] {
+    background-color: $B10;
+  }
+}

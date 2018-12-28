@@ -5,8 +5,10 @@
   padding: 9px 0;
   list-style-type: none;
 
-  :global(.rtl) & {
-    text-align: right;
+  @include withRTL() {
+    & {
+      text-align: right;
+    }
   }
 
   &.large {

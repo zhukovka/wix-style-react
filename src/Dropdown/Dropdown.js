@@ -28,8 +28,8 @@ class Dropdown extends InputWithOptions {
     let value = '',
       selectedId = -1;
     if (!isUndefined(props.selectedId)) {
-      const option = props.options.find(option => {
-        return option.id === props.selectedId;
+      const option = props.options.find(_option => {
+        return _option.id === props.selectedId;
       });
 
       if (option) {

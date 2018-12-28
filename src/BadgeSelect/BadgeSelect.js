@@ -1,11 +1,12 @@
 import React from 'react';
-import DropdownLayout from '../DropdownLayout';
 import PropTypes from 'prop-types';
-import { badgeSelectItemBuilder } from '../BadgeSelectItemBuilder';
-import styles from './BadgeSelect.scss';
-import Badge, { SKIN, TYPE, SIZE } from '../Badge/Badge';
 import ChevronDown from 'wix-ui-icons-common/ChevronDown';
-import ReactDOM from 'react-dom';
+import style from './BadgeSelect.st.css';
+
+import DropdownLayout from '../DropdownLayout';
+import Popover from '../Popover';
+import Badge, { SKIN, TYPE, SIZE } from '../Badge';
+import { badgeSelectItemBuilder } from '../BadgeSelectItemBuilder';
 
 export default class BadgeSelect extends React.Component {
   static propTypes = {
@@ -32,6 +33,72 @@ export default class BadgeSelect extends React.Component {
 
   static displayName = 'BadgeSelect';
 
+  _isControlled = () => {
+    return typeof this.props.selectedId !== 'undefined';
+  };
+
+  /**
+   * Determine if a certain key should open the DropdownLayout
+   *
+   * @param {KeyboardEvent.key} key - The key name
+   * @return {boolean} - Whether the key should cause the DropdownLayout to open
+   */
+  _isOpenKey = key => {
+    return ['Enter', 'Spacebar', ' ', 'ArrowDown'].includes(key);
+  };
+
+  _getBadgeOptionById = (options, wantedId) => {
+    return options.find(({ id }) => id === wantedId);
+  };
+
+  _handleSelect = ({ id: selectedId }) => {
+    const { onSelect, options } = this.props;
+    const selectedBadge = this._getBadgeOptionById(options, selectedId);
+    const newState = { visible: false };
+    if (!this._isControlled()) {
+      newState.selectedBadge = selectedBadge;
+    }
+    this.setState(newState);
+
+    onSelect && onSelect(selectedBadge);
+  };
+
+  _onKeyDown = event => {
+    // Delegate the event to the DropdownLayout. It'll handle the navigation,
+    // option selection and closing of the dropdown.
+    const isHandledByDropdownLayout = this.dropdownLayout
+      ? this.dropdownLayout._onKeyDown(event)
+      : false;
+
+    // If the event wasn't handled by the DropdownLayout correctly, check if
+    // the pressed key should open the dropdown and act accordingly.
+    if (!isHandledByDropdownLayout) {
+      if (this._isOpenKey(event.key)) {
+        this.showDropdown();
+        event.preventDefault();
+      }
+    }
+  };
+
+  getSelectedOption = props => {
+    return (
+      this._getBadgeOptionById(props.options, props.selectedId) ||
+      props.options[0]
+    );
+  };
+
+  hideDropdown = () => {
+    this.setState({ visible: false });
+  };
+
+  showDropdown = () => {
+    this.setState({ visible: true });
+  };
+
+  toggleDropdown = () => {
+    this.setState({ visible: !this.state.visible });
+  };
+
   constructor(props) {
     super(props);
 
@@ -39,8 +106,11 @@ export default class BadgeSelect extends React.Component {
       visible: false,
       selectedBadge: this.getSelectedOption(props),
     };
+  }
 
-    this.onKeyDown = this.onKeyDown.bind(this);
+  get options() {
+    const { options } = this.props;
+    return Array.isArray(options) ? options.map(badgeSelectItemBuilder) : [];
   }
 
   componentWillReceiveProps(nextProps) {
@@ -51,111 +121,46 @@ export default class BadgeSelect extends React.Component {
     }
   }
 
-  _isControlled() {
-    return typeof this.props.selectedId !== 'undefined';
-  }
-
-  /**
-   * Determine if a certain key should open the DropdownLayout
-   *
-   * @param {KeyboardEvent.key} key - The key name
-   * @return {boolean} - Whether the key should cause the DropdownLayout to open
-   */
-  _isOpenKey(key) {
-    return ['Enter', 'Spacebar', ' ', 'ArrowDown'].includes(key);
-  }
-
-  _getBadgeOptionById(options, wantedId) {
-    return options.find(({ id }) => id === wantedId);
-  }
-
-  getSelectedOption(props) {
-    return (
-      this._getBadgeOptionById(props.options, props.selectedId) ||
-      props.options[0]
-    );
-  }
-
-  get options() {
-    const { options } = this.props;
-    return Array.isArray(options) ? options.map(badgeSelectItemBuilder) : [];
-  }
-
-  hideDropdown() {
-    this.setState({ visible: false });
-  }
-
-  showDropdown() {
-    this.setState({ visible: true });
-  }
-
-  toggleDropdown() {
-    this.setState({ visible: !this.state.visible });
-  }
-
-  handleOutsideClick(event) {
-    const ref = ReactDOM.findDOMNode(this.badge);
-    if (!ref.contains(event.target)) {
-      this.setState({ visible: false });
-    }
-  }
-
-  handleSelect({ id: selectedId }) {
-    const { onSelect, options } = this.props;
-    const selectedBadge = this._getBadgeOptionById(options, selectedId);
-    const newState = { visible: false };
-    if (!this._isControlled()) {
-      newState.selectedBadge = selectedBadge;
-    }
-    this.setState(newState);
-
-    onSelect && onSelect(selectedBadge);
-  }
-
-  onKeyDown(event) {
-    // Delegate the event to the DropdownLayout. It'll handle the navigation,
-    // option selection and closing of the dropdown.
-    const isHandledByDropdownLayout = this.dropdownLayout._onKeyDown(event);
-
-    // If the event wasn't handled by the DropdownLayout correctly, check if
-    // the pressed key should open the dropdown and act accordingly.
-    if (!isHandledByDropdownLayout) {
-      if (this._isOpenKey(event.key)) {
-        this.showDropdown();
-        event.preventDefault();
-      }
-    }
-  }
-
   render() {
     const { type, size, uppercase, dataHook } = this.props;
+    const { visible, selectedBadge } = this.state;
+
     return (
-      <div className={styles.container} data-hook={dataHook}>
-        <div data-hook="badgeSelect-badge-wrapper" onKeyDown={this.onKeyDown}>
+      <Popover
+        shown={visible}
+        dataHook={dataHook}
+        placement="bottom"
+        onKeyDown={this._onKeyDown}
+        onClickOutside={this.hideDropdown}
+        {...style('root', {}, this.props)}
+      >
+        <Popover.Element>
           <Badge
             ref={badge => (this.badge = badge)}
-            {...{ type, size, uppercase }}
+            type={type}
+            size={size}
+            uppercase={uppercase}
             suffixIcon={<ChevronDown viewBox="6 6 12 12" />}
-            onClick={() => this.toggleDropdown()}
             skin={this.state.selectedBadge.skin}
+            onClick={this.toggleDropdown}
           >
             {this.state.selectedBadge.text}
           </Badge>
-        </div>
-        <div className={styles.dropdown}>
+        </Popover.Element>
+
+        <Popover.Content>
           <DropdownLayout
             ref={r => (this.dropdownLayout = r)}
             dataHook="badgeSelect-dropdownLayout"
-            visible={this.state.visible}
-            selectedId={this.state.selectedBadge.id}
+            visible
+            selectedId={selectedBadge.id}
             options={this.options}
-            onSelect={selected => this.handleSelect(selected)}
-            onClose={() => this.hideDropdown()}
-            onClickOutside={e => this.handleOutsideClick(e)}
+            onSelect={this._handleSelect}
+            onClose={this.hideDropdown}
             inContainer
           />
-        </div>
-      </div>
+        </Popover.Content>
+      </Popover>
     );
   }
 }

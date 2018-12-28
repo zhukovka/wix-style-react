@@ -2,17 +2,15 @@ import React from 'react';
 import ReactTestUtils from 'react-dom/test-utils';
 import dropdownDriverFactory from './Dropdown.driver';
 import Dropdown from './Dropdown';
-import { createDriverFactory } from 'wix-ui-test-utils/driver-factory';
 import { dropdownTestkitFactory } from '../../testkit';
 import { dropdownTestkitFactory as enzymeDropdownTestkitFactory } from '../../testkit/enzyme';
 import { mount } from 'enzyme';
-import { runInputWithOptionsTest } from '../InputWithOptions/InputWithOptions.spec';
 import { sleep } from 'wix-ui-test-utils/react-helpers';
-
-runInputWithOptionsTest(dropdownDriverFactory);
+import { createRendererWithDriver, cleanup } from '../../test/utils/unit';
 
 describe('Dropdown', () => {
-  const createDriver = createDriverFactory(dropdownDriverFactory);
+  const render = createRendererWithDriver(dropdownDriverFactory);
+  const createDriver = jsx => render(jsx).driver;
 
   const getOptions = () => [
     { id: 0, value: 'Option 1' },
@@ -22,6 +20,10 @@ describe('Dropdown', () => {
     { id: 'divider1', value: '-' },
     { id: 'element1', value: <span style={{ color: 'brown' }}>Option 4</span> },
   ];
+
+  afterEach(() => {
+    cleanup();
+  });
 
   it('should select item with selectedId on init state', () => {
     const { inputDriver, dropdownLayoutDriver } = createDriver(
@@ -54,21 +56,17 @@ describe('Dropdown', () => {
     const options = getOptions();
     const dataHook = 'dropdown-comp';
 
-    const wrapper = mount(
+    const { driver: dropdownDriver, rerender } = render(
       <Dropdown dataHook={dataHook} options={options} selectedId={0} />,
     );
-    const {
-      driver,
-      inputDriver,
-      dropdownLayoutDriver,
-    } = enzymeDropdownTestkitFactory({ wrapper, dataHook });
+    const { driver, inputDriver, dropdownLayoutDriver } = dropdownDriver;
 
     driver.focus();
     dropdownLayoutDriver.clickAtOption(0);
     expect(inputDriver.getValue()).toBe('Option 1');
 
     options[0].value = 'Updated';
-    wrapper.setProps({ options, selectedId: 0 });
+    rerender(<Dropdown dataHook={dataHook} options={options} selectedId={0} />);
 
     expect(inputDriver.getValue()).toBe('Updated');
   });

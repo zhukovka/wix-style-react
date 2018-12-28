@@ -3,6 +3,8 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import Exclamation from './Exclamation';
 import WixComponent from '../BaseComponents/WixComponent';
+import debounce from 'lodash/debounce';
+import isNaN from 'lodash/isNaN';
 
 import styles from './InputArea.scss';
 
@@ -14,17 +16,23 @@ class InputArea extends WixComponent {
     super(props);
     this._onKeyDown = this._onKeyDown.bind(this);
     this._onChange = this._onChange.bind(this);
+    this._onInput = this._onInput.bind(this);
     this._onFocus = this._onFocus.bind(this);
     this._onBlur = this._onBlur.bind(this);
     this.focus = this.focus.bind(this);
     this.blur = this.blur.bind(this);
     this.select = this.select.bind(this);
+    this._computedStyle = null;
   }
 
   state = {
     focus: false,
     counter: (this.props.value || this.props.defaultValue || '').length,
+    computedRows: InputArea.MIN_ROWS,
   };
+
+  // For autoGrow prop min rows is 2 so the textarea doesn't look like an input
+  static MIN_ROWS = 2;
 
   componentDidMount() {
     super.componentDidMount();
@@ -45,6 +53,7 @@ class InputArea extends WixComponent {
       readOnly,
       tabIndex,
       rows,
+      autoGrow,
       value,
       minHeight,
       maxHeight,
@@ -58,6 +67,12 @@ class InputArea extends WixComponent {
     } = this.props;
 
     const inlineStyle = {};
+    const rowsAttr = rows
+      ? rows
+      : autoGrow
+      ? this.state.computedRows
+      : undefined;
+    const onInput = !rows && autoGrow ? this._onInput : undefined;
 
     if (minHeight) {
       inlineStyle.minHeight = minHeight;
@@ -91,7 +106,7 @@ class InputArea extends WixComponent {
       <div className={styles.wrapper}>
         <div className={classes}>
           <textarea
-            rows={rows}
+            rows={rowsAttr}
             maxLength={maxLength}
             ref={ref => (this.textArea = ref)}
             className={styles.inputArea}
@@ -104,6 +119,7 @@ class InputArea extends WixComponent {
             onBlur={this._onBlur}
             onKeyDown={this._onKeyDown}
             onChange={this._onChange}
+            onInput={onInput}
             onDoubleClick={this._onDoubleClick}
             placeholder={placeholder}
             tabIndex={tabIndex}
@@ -174,6 +190,65 @@ class InputArea extends WixComponent {
   _onChange(e) {
     this.props.hasCounter && this.setState({ counter: e.target.value.length });
     this.props.onChange && this.props.onChange(e);
+  }
+
+  _onInput() {
+    this.setState({ computedRows: 1 }, () => {
+      const rowsCount = this._getRowsCount();
+      const computedRows = Math.max(InputArea.MIN_ROWS, rowsCount);
+      this.setState({
+        computedRows,
+      });
+    });
+  }
+
+  _updateComputedStyle = debounce(
+    () => {
+      this._computedStyle = window.getComputedStyle(this.textArea);
+    },
+    500,
+    { leading: true },
+  );
+
+  _getComputedStyle() {
+    this._updateComputedStyle();
+    return this._computedStyle;
+  }
+
+  _getRowsCount() {
+    const computedStyle = this._getComputedStyle();
+    const fontSize = parseInt(computedStyle.getPropertyValue('font-size'), 10);
+    const lineHeight = parseInt(
+      computedStyle.getPropertyValue('line-height'),
+      10,
+    );
+    const lineHeightValue = isNaN(lineHeight)
+      ? this._getDefaultLineHeight() * fontSize
+      : lineHeight;
+    return Math.floor(this.textArea.scrollHeight / lineHeightValue);
+  }
+
+  _getDefaultLineHeight() {
+    if (!this._defaultLineHeight) {
+      const { parentNode } = this.textArea;
+      const computedStyles = this._getComputedStyle();
+      const fontFamily = computedStyles.getPropertyValue('font-family');
+      const fontSize = computedStyles.getPropertyValue('font-size');
+      const tempElement = document.createElement('span');
+      const defaultStyles =
+        'position:absolute;display:inline;border:0;margin:0;padding:0;line-height:normal;';
+      tempElement.setAttribute(
+        'style',
+        `${defaultStyles}font-family:${fontFamily};font-size:${fontSize};`,
+      );
+      tempElement.innerText = 'M';
+      parentNode.appendChild(tempElement);
+      this._defaultLineHeight =
+        parseInt(tempElement.clientHeight, 10) / parseInt(fontSize, 10);
+      tempElement.parentNode.removeChild(tempElement);
+    }
+
+    return this._defaultLineHeight;
   }
 }
 
@@ -249,6 +324,10 @@ InputArea.propTypes = {
 
   /** Sets initial height according to the number of rows (chrome uses the rows for minHeight as well) */
   rows: PropTypes.number,
+
+  /** Will cause the Input Area to grow and shrink according to user input */
+  autoGrow: PropTypes.bool,
+
   style: PropTypes.oneOf(['normal', 'paneltitle', 'material', 'amaterial']),
   tabIndex: PropTypes.number,
 

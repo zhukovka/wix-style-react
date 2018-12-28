@@ -330,7 +330,7 @@ $material-gap: 8px;
 }
 
 // RTL layout based on global style set on document body or parent element.
-:global(.rtl) {
+@include withRTL() {
   .root,
   .input-wrapper,
   .prefixes,
@@ -402,7 +402,7 @@ $material-gap: 8px;
   display: flex;
 }
 
-:global(.rtl) {
+@include withRTL() {
   .help,
   .amaterial-help {
     transform: scaleX(-1);

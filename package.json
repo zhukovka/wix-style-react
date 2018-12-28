@@ -1,7 +1,7 @@
 {
   "name": "wix-style-react",
   "description": "wix-style-react",
-  "version": "5.14.0",
+  "version": "5.21.0",
   "main": "./dist/src/index.js",
   "module": "./dist/es/src/index.js",
   "sideEffects": [
@@ -25,23 +25,26 @@
   },
   "scripts": {
     "start": "./scripts/npm-start.sh",
+    "precommit": "lint-staged",
     "pretest": "npm run lint && ./scripts/ensure-dist.sh",
-    "test": "npm run test:unit",
+    "test": "npm run test:unit && npm run test:e2e",
     "test:unit": "yoshi test --jest",
     "test:watch": "yoshi test --jest --watch",
     "pretest:e2e": "./scripts/ensure-dist.sh",
     "test:e2e": "concurrently 'npm run test:e2e-only' 'node scripts/e2e-server.js' --names 'protractor,e2e-server' --success first --kill-others",
     "test:e2e-only": "NODE_ENV=production yoshi test --protractor",
     "copy-public-styles": "cp src/*.scss .",
-    "build": "npm run lint && npm run proxy-wix-ui-icons && npm run copy-public-styles && yoshi build && npm run storybook:build && npm run export-components",
+    "build": "npm run lint && npm run proxy-wix-ui-icons && npm run generate-test-component && npm run copy-public-styles && yoshi build && npm run storybook:build && npm run export-components",
     "pr-postbuild": "npm install teamcity-surge-autorelease@^1.0.0 --no-save && teamcity-surge-autorelease",
-    "storybook:build": "build-storybook -c ./.storybook/config",
-    "storybook": "start-storybook -p 6006 -c ./.storybook/config",
-    "storybook:offline": "start-storybook -p 6006  -c ./.storybook/config-offline -s ./node_modules/react/dist,./node_modules/react-dom/dist",
+    "storybook:build": "build-storybook",
+    "storybook:static": "node scripts/e2e-server.js",
+    "storybook": "start-storybook -p 6006",
     "postpublish": "npm install teamcity-surge-autorelease@^1.0.0 --no-save && teamcity-surge-autorelease",
     "export-components": "import-path --path src",
     "lint": "yoshi lint",
-    "proxy-wix-ui-icons": "node scripts/proxy-wix-ui-icons"
+    "proxy-wix-ui-icons": "node scripts/proxy-wix-ui-icons",
+    "generate": "./scripts/component-generator/bin/component-generator.js",
+    "generate-test-component": "./scripts/component-generator/bin/generate-test-component.js"
   },
   "yoshi": {
     "entry": {
@@ -71,26 +74,29 @@
     "@storybook/addon-links": "^3.4.10",
     "@storybook/addon-options": "4.0.0-alpha.14",
     "@storybook/react": "4.0.0-alpha.14",
-    "@stylable/dom-test-kit": "^0.1.0",
-    "@types/react": "^15.5.4",
-    "autosuggest-highlight": "^3.1.0",
+    "@stylable/dom-test-kit": "^0.1.6",
+    "@types/react": "^15.6.20",
     "babel-plugin-transform-decorators-legacy": "^1.3.5",
     "babel-polyfill": "^6.23.0",
     "babel-preset-es2015": "^6.14.0",
     "babel-preset-react": "*",
     "babel-preset-stage-2": "*",
+    "chalk": "^2.4.1",
+    "commander": "^2.19.0",
     "concurrently": "^3.4.0",
-    "copy-to-clipboard": "^3.0.5",
     "enzyme": "^3.3.0",
-    "enzyme-adapter-react-15": "^1.0.5",
+    "enzyme-adapter-react-15": "^1.2.0",
     "eslint-plugin-react": "^6.8.0",
     "express": "^4.15.2",
     "eyes.it": "^2.0.0",
-    "gh-pages-auto-release": "^1.1.2",
-    "github-markdown-css": "^2.4.1",
-    "highlight.js": "^9.8.0",
+    "fs-extra": "^7.0.1",
+    "globby": "^8.0.1",
+    "husky": "~0.14.0",
     "identity-obj-proxy": "^3.0.0",
     "import-path": "^1.0.0",
+    "lint-staged": "^7.3.0",
+    "ora": "^3.0.0",
+    "prompts": "^1.2.1",
     "protractor": "^5.4.1",
     "protractor-browser-logs": "^1.0.351",
     "query-string": "^6.1.0",
@@ -101,10 +107,13 @@
     "react-element-to-jsx-string": "^13.0.0",
     "react-test-renderer": "^15.5.4",
     "react-test-utils": "^0.0.1",
+    "react-testing-library": "^5.3.1",
     "regenerator-runtime": "^0.11.0",
+    "simple-git": "^1.107.0",
     "sinon": "^1.17.6",
+    "tempy": "^0.2.1",
     "wait-for-cond": "^1.0.3",
-    "wix-storybook-utils": "^2.0.53",
+    "wix-storybook-utils": "^2.0.62",
     "yoshi": "^3.16.1",
     "yoshi-style-dependencies": "^3.16.0"
   },
@@ -121,7 +130,7 @@
     "classnames": "^2.2.5",
     "color": "^2.0.0",
     "create-react-context": "^0.2.2",
-    "css-element-queries": "^1.0.2",
+    "css-element-queries": "^1.1.1",
     "date-fns": "^1.29.0",
     "deep-eql": "^3.0.0",
     "difference": "^1.0.2",
@@ -132,29 +141,30 @@
     "lodash": "^4.17.4",
     "moment": "2.22.2",
     "omit": "^1.0.1",
-    "popper.js": "^1.10.8",
+    "popper.js": "^1.14.5",
     "prop-types": "^15.5.8",
     "rc-slider": "^8.0.2",
     "react-collapse": "^4.0.3",
     "react-day-picker": "^7.0.7",
     "react-dnd": "^2.5.1",
     "react-dnd-html5-backend": "^5.0.1",
-    "react-jss": "^8.0.0",
     "react-modal": "^3.3.2",
     "react-motion": "^0.4.7",
     "react-portal": "^4.1.5",
-    "react-remarkable": "^1.1.1",
     "react-transition-group": "^2.2.1",
-    "slate": "^0.44.5",
-    "slate-html-serializer": "^0.7.29",
-    "slate-react": "^0.21.11",
-    "slate-react-placeholder": "^0.1.8",
-    "wix-animations": "^1.0.141",
+    "slate": "^0.44.9",
+    "slate-html-serializer": "^0.7.33",
+    "slate-react": "^0.21.15",
+    "slate-react-placeholder": "^0.1.12",
+    "wix-animations": "^1.0.276",
     "wix-eventually": "^2.2.0",
     "wix-ui-backoffice": "^1.0.299",
-    "wix-ui-core": "^1.0.628",
+    "wix-ui-core": "^2.0.1",
     "wix-ui-icons-common": "^2.0.9",
     "wix-ui-test-utils": "^1.0.115"
+  },
+  "lint-staged": {
+    "*.{js,scss}": "yoshi lint"
   },
   "jest": {
     "setupFiles": [
@@ -167,7 +177,8 @@
     },
     "testPathIgnorePatterns": [
       "<rootDir>/dist/",
-      "<rootDir>/node_modules/"
+      "<rootDir>/node_modules/",
+      "<rootDir>/scripts/component-generator/templates/"
     ]
   },
   "babel": {
@@ -183,6 +194,9 @@
     ],
     "plugins": [
       "transform-decorators-legacy"
+    ],
+    "ignore": [
+      "./scripts/component-generator/templates/"
     ]
   },
   "eslintConfig": {
@@ -192,6 +206,8 @@
     },
     "rules": {
       "import/no-unresolved": 0,
+      "jsx-a11y/alt-text": 0,
+      "jsx-a11y/anchor-is-valid": 0,
       "react/forbid-foreign-prop-types": 0,
       "react/jsx-handler-names": 0,
       "react/no-find-dom-node": 0,

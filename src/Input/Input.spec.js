@@ -12,10 +12,20 @@ import {
 } from '../../test/utils/testkit-sanity';
 import { makeControlled, resolveIn } from '../../test/utils';
 import { mount } from 'enzyme';
+import {
+  createRendererWithDriver,
+  cleanup,
+  render,
+} from '../../test/utils/unit';
 
 describe('Input', () => {
+  const render = createRendererWithDriver(inputDriverFactory);
   const createDriver = createDriverFactory(inputDriverFactory);
   const ControlledInput = makeControlled(Input);
+
+  afterEach(() => {
+    cleanup();
+  });
 
   describe('test tooltip', () => {
     it('should display the error tooltip on hover', () => {
@@ -97,6 +107,47 @@ describe('Input', () => {
           expect(onTooltipShow.calledOnce).toBeTruthy();
         });
       });
+    });
+  });
+
+  describe('enterText driver method', () => {
+    it('passes the name and value attribute', () => {
+      const onChange = jest.fn();
+      const props = {
+        type: 'text',
+        name: 'gal',
+        onChange,
+      };
+      const driver = createDriver(<Input {...props} />);
+      driver.enterText('some text');
+      const eventTarget = onChange.mock.calls[0][0].target;
+      expect(eventTarget).toEqual({
+        name: 'gal',
+        type: 'text',
+        value: 'some text',
+      });
+    });
+  });
+
+  describe('name attribute', () => {
+    it('should pass down to the wrapped input', () => {
+      const props = {
+        name: 'hello',
+      };
+
+      const driver = createDriver(<Input {...props} />);
+      expect(driver.getName()).toEqual(props.name);
+    });
+  });
+
+  describe('type attribute', () => {
+    it('should pass down to the wrapped input', () => {
+      const props = {
+        type: 'number',
+      };
+
+      const driver = createDriver(<Input {...props} />);
+      expect(driver.getType()).toEqual(props.type);
     });
   });
 
@@ -433,10 +484,10 @@ describe('Input', () => {
 
   describe('autoFocus attribute', () => {
     it('Mounting an input element with autoFocus=false, should give it the focus', () => {
-      const driver = createDriver(<Input autoFocus={false} />);
+      const { driver, rerender } = render(<Input autoFocus={false} />);
       expect(driver.isFocus()).toBeFalsy();
 
-      driver.setProps({ autoFocus: true });
+      rerender(<Input autoFocus />);
       expect(driver.isFocus()).toBeFalsy();
     });
 
@@ -676,8 +727,41 @@ describe('Input', () => {
   });
 });
 
+describe('testkit exists', () => {
+  afterEach(() => cleanup());
+
+  it('should NOT exist', () => {
+    const dataHook1 = 'hook1';
+    const dataHook2 = 'hook2';
+    const value = 'hello';
+    const onChange = () => {};
+
+    const { container } = render(
+      <Input value={value} onChange={onChange} dataHook={dataHook1} />,
+    );
+
+    const driver = inputTestkitFactory({
+      wrapper: container,
+      dataHook: dataHook2,
+    });
+
+    expect(driver.exists()).toBeFalsy();
+  });
+});
+
 describe('testkit', () => {
   it('should exist', () => {
+    const value = 'hello';
+    const onChange = () => {};
+    expect(
+      isTestkitExists(
+        <Input value={value} onChange={onChange} />,
+        inputTestkitFactory,
+      ),
+    ).toBe(true);
+  });
+
+  it('should NOT exist', () => {
     const value = 'hello';
     const onChange = () => {};
     expect(

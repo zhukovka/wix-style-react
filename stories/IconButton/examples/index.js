@@ -5,58 +5,57 @@ import LiveCodeExample from '../../utils/Components/LiveCodeExample';
 import ExamplesSizes from '!raw-loader!./ExamplesSizes';
 import ExamplesPrimary from '!raw-loader!./ExamplesPrimary';
 import ExamplesSecondary from '!raw-loader!./ExamplesSecondary';
+import ExamplesRouter from '!raw-loader!./ExamplesRouter';
+import ExamplesAnchor from '!raw-loader!./ExamplesAnchor';
 
-const controlledWidth = {
-  height: 'auto',
-  width: '100%',
-  display: 'flex',
-};
+import { Layout, Cell } from '../../../src/Layout';
+import styles from './ButtonsSpacing.scss';
 
-const halfColumn = {
-  display: 'flex',
-  flexDirection: 'column',
-  padding: '10px',
-  width: '48%',
-  lineHeight: '1.6',
-};
-
-const Container = ({children}) => <div style={controlledWidth}>{children}</div>; //eslint-disable-line
-
-const Box = ({children}) => <div style={halfColumn}>{children}</div>; //eslint-disable-line
-
+const Link = props => <a {...props} />;
 class IconButtonStory extends React.Component {
   render() {
     return (
-      <div style={{ margin: '0px 0 16px', paddingLeft: '20px' }}>
-        <Container>
-          <Box>
-            <LiveCodeExample
-              compact
-              previewRow
-              title="IconButton - priority: primary"
-              initialCode={ExamplesPrimary}
-            />
-          </Box>
-          <Box>
-            <LiveCodeExample
-              compact
-              previewRow
-              title="IconButton - priority: secondary"
-              initialCode={ExamplesSecondary}
-            />
-          </Box>
-        </Container>
-        <Container>
-          <Box>
-            <LiveCodeExample
-              compact
-              previewRow
-              title="IconButton - size"
-              initialCode={ExamplesSizes}
-            />
-          </Box>
-        </Container>
-      </div>
+      <Layout>
+        <Cell span={6}>
+          <LiveCodeExample
+            compact
+            scope={{ styles }}
+            title="IconButton - priority: primary"
+            initialCode={ExamplesPrimary}
+          />
+        </Cell>
+        <Cell span={6}>
+          <LiveCodeExample
+            compact
+            scope={{ styles }}
+            title="IconButton - priority: secondary"
+            initialCode={ExamplesSecondary}
+          />
+        </Cell>
+        <Cell span={6}>
+          <LiveCodeExample
+            compact
+            scope={{ styles }}
+            title="IconButton - size"
+            initialCode={ExamplesSizes}
+          />
+        </Cell>
+        <Cell span={6}>
+          <LiveCodeExample
+            compact
+            scope={{ styles, Link }}
+            title="IconButton - render as React Router Link"
+            initialCode={ExamplesRouter}
+          />
+        </Cell>
+        <Cell span={6}>
+          <LiveCodeExample
+            compact
+            title="IconButton - render as html anchor"
+            initialCode={ExamplesAnchor}
+          />
+        </Cell>
+      </Layout>
     );
   }
 }

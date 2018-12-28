@@ -1,5 +1,5 @@
 /* eslint-disable */
-<div>
+<div className={styles.spacing}>
   <TextButton underline="onHover">standard</TextButton>
   <TextButton skin="light" underline="onHover">
     light
@@ -10,4 +10,4 @@
   <TextButton skin="dark" underline="onHover">
     dark
   </TextButton>
-</div>;
+</div>

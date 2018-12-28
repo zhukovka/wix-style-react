@@ -35,31 +35,37 @@ function runFocusTestsImpl(driver, storyUrl) {
         .sendKeys(protractor.Key.SPACE)
         .perform();
 
-    const expectKeyboardFocused = async (driver, msg) => {
+    const expectKeyboardFocused = async (_driver, msg) => {
       const prefix = msg ? `${msg} - ` : '';
-      expect(await driver.hasFocusState()).toBe(true, `${prefix}hasFocusState`);
-      expect(await driver.hasFocusVisibleState()).toBe(
+      expect(await _driver.hasFocusState()).toBe(
+        true,
+        `${prefix}hasFocusState`,
+      );
+      expect(await _driver.hasFocusVisibleState()).toBe(
         true,
         `${prefix}hasFocusVisibleState`,
       );
     };
 
-    const expectNotFocused = async (driver, msg) => {
+    const expectNotFocused = async (_driver, msg) => {
       const prefix = msg ? `${msg} - ` : '';
-      expect(await driver.hasFocusState()).toBe(
+      expect(await _driver.hasFocusState()).toBe(
         false,
         `${prefix}hasFocusState`,
       );
-      expect(await driver.hasFocusVisibleState()).toBe(
+      expect(await _driver.hasFocusVisibleState()).toBe(
         false,
         `${prefix}hasFocusVisibleState`,
       );
     };
 
-    const expectMouseFocused = async (driver, msg) => {
+    const expectMouseFocused = async (_driver, msg) => {
       const prefix = msg ? `${msg} - ` : '';
-      expect(await driver.hasFocusState()).toBe(true, `${prefix}hasFocusState`);
-      expect(await driver.hasFocusVisibleState()).toBe(
+      expect(await _driver.hasFocusState()).toBe(
+        true,
+        `${prefix}hasFocusState`,
+      );
+      expect(await _driver.hasFocusVisibleState()).toBe(
         false,
         `${prefix}hasFocusVisibleState`,
       );

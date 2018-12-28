@@ -1,10 +1,11 @@
-import eyes from 'eyes.it';
+import { eyesItInstance } from '../../test/utils/eyes-it';
 import { breadcrumbsTestkitFactory } from '../../testkit/protractor';
 import { waitForVisibilityOf } from 'wix-ui-test-utils/protractor';
 import { getStoryUrl } from '../../test/utils/storybook-helpers';
 
 describe('Breadcrumbs', () => {
   const storyUrl = getStoryUrl('6. Navigation', '6.2 Breadcrumbs');
+  const eyes = eyesItInstance();
 
   beforeAll(() => {
     browser.get(storyUrl);

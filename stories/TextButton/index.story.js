@@ -12,6 +12,7 @@ export default {
   componentPath: '../../src/TextButton',
 
   componentProps: {
+    as: 'button',
     children: 'Text button',
     skin: 'standard',
     underline: 'none',
@@ -23,6 +24,7 @@ export default {
     onClick: () => 'Clicked!',
     prefixIcon: icons,
     suffixIcon: icons,
+    as: ['button', 'a', 'span', 'div'],
   },
 
   examples: <TextButtonStory />,

@@ -1,6 +1,8 @@
 import { testkitFactoryCreator } from 'wix-ui-test-utils/vanilla';
 import buttonDriverFactory from '../Backoffice/Button/Button.driver';
 
+import styles from './styles.scss';
+
 const buttonTestkitFactory = testkitFactoryCreator(buttonDriverFactory);
 
 const sectionHelperDriverFactory = ({ element }) => {
@@ -26,11 +28,11 @@ const sectionHelperDriverFactory = ({ element }) => {
     clickClose: () => closeButtonDriver().click(),
     isCloseButtonDisplayed: () => closeButtonDriver().exists(),
     textContent: () => element.textContent,
-    isWarning: () => classExists('warning'),
-    isStandard: () => classExists('standard'),
-    isDanger: () => classExists('danger'),
-    isSuccess: () => classExists('success'),
-    isPremium: () => classExists('premium'),
+    isWarning: () => classExists(styles.warning),
+    isStandard: () => classExists(styles.standard),
+    isDanger: () => classExists(styles.danger),
+    isSuccess: () => classExists(styles.success),
+    isPremium: () => classExists(styles.premium),
   };
 };
 

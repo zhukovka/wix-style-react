@@ -5,6 +5,7 @@ import Markdown from 'wix-storybook-utils/Markdown';
 import Readme from '../../src/MessageBox/README.md';
 import ReadmeTestKit from '../../src/MessageBox/README.TESTKIT.md';
 import CodeExample from 'wix-storybook-utils/CodeExample';
+import { RTLWrapper } from '../utils';
 
 import StandardAlert from './AlertExamples/Standard';
 import StandardAlertRaw from '!raw-loader!./AlertExamples/Standard';
@@ -42,44 +43,50 @@ export default () => (
   <TabbedView tabs={['Usage', 'API', 'TestKits']}>
     <div>
       <Markdown source={introduction} />
-      <div style={layoutStyles}>
-        <CodeExample
-          title="Standard"
-          code={StandardAlertRaw}
-          children={<StandardAlert />}
-        />
-        <CodeExample
-          title="Secondary Action"
-          code={SecondaryAlertRaw}
-          children={<SecondaryAlert />}
-        />
-        <CodeExample
-          title="Footnote"
-          code={FootNoteAlertRaw}
-          children={<FootNoteAlert />}
-        />
-        <CodeExample
-          title="With EmptyState"
-          code={EmptyStateAlertRaw}
-          children={<EmptyStateAlert />}
-        />
-        <CodeExample
-          title="Scrollable"
-          code={ScrollableAlertRaw}
-          children={<ScrollableAlert />}
-        />
-        <CodeExample title="With image" code={ImageRaw} children={<Image />} />
-        <CodeExample
-          title="With Actions"
-          code={ActionsAlertRaw}
-          children={<ActionsAlert />}
-        />
-        <CodeExample
-          title="With Image And Actions"
-          code={ImageWithSideActionRaw}
-          children={<ImageWithSideAction />}
-        />
-      </div>
+      <RTLWrapper>
+        <div style={layoutStyles}>
+          <CodeExample
+            title="Standard"
+            code={StandardAlertRaw}
+            children={<StandardAlert />}
+          />
+          <CodeExample
+            title="Secondary Action"
+            code={SecondaryAlertRaw}
+            children={<SecondaryAlert />}
+          />
+          <CodeExample
+            title="Footnote"
+            code={FootNoteAlertRaw}
+            children={<FootNoteAlert />}
+          />
+          <CodeExample
+            title="With EmptyState"
+            code={EmptyStateAlertRaw}
+            children={<EmptyStateAlert />}
+          />
+          <CodeExample
+            title="Scrollable"
+            code={ScrollableAlertRaw}
+            children={<ScrollableAlert />}
+          />
+          <CodeExample
+            title="With image"
+            code={ImageRaw}
+            children={<Image />}
+          />
+          <CodeExample
+            title="With Actions"
+            code={ActionsAlertRaw}
+            children={<ActionsAlert />}
+          />
+          <CodeExample
+            title="With Image And Actions"
+            code={ImageWithSideActionRaw}
+            children={<ImageWithSideAction />}
+          />
+        </div>
+      </RTLWrapper>
     </div>
 
     <Markdown source={Readme} />

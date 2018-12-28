@@ -1,14 +1,14 @@
 import React from 'react';
-import ReactTestUtils from 'react-dom/test-utils';
-import { createDriverFactory } from 'wix-ui-test-utils/driver-factory';
 import DropdownLayout from './DropdownLayout';
 import dropdownLayoutDriverFactory from './DropdownLayout.driver';
-import { dropdownLayoutTestkitFactory } from '../../testkit';
-import { dropdownLayoutTestkitFactory as enzymeDropdownLayoutTestkitFactory } from '../../testkit/enzyme';
-import { mount } from 'enzyme';
+import { createRendererWithDriver, cleanup } from '../../test/utils/react';
 
 describe('DropdownLayout', () => {
-  const createDriver = createDriverFactory(dropdownLayoutDriverFactory);
+  const render = createRendererWithDriver(dropdownLayoutDriverFactory);
+  const createDriver = jsx => render(jsx).driver;
+  afterEach(() => {
+    cleanup();
+  });
   const options = [
     { id: 0, value: 'Option 1' },
     { id: 1, value: 'Option 2' },
@@ -49,20 +49,22 @@ describe('DropdownLayout', () => {
   });
 
   it('should have all options values in dropdown list', () => {
-    const options = [
+    const _options = [
       { id: 0, value: 'Option 1' },
       { id: 1, value: 'Option 2' },
       { id: 2, value: 'Option 3' },
     ];
-    const optionsContent = options.map(option => option.value);
-    const driver = createDriver(<DropdownLayout options={options} />);
+    const optionsContent = _options.map(option => option.value);
+    const driver = createDriver(<DropdownLayout options={_options} />);
     expect(driver.optionsContent()).toEqual(optionsContent);
   });
 
   it('should hide dropdown on outside click', () => {
-    const driver = createDriver(
+    const { driver, rerender } = render(
       <DropdownLayout
-        onClickOutside={() => driver.setProps({ visible: false })}
+        onClickOutside={() =>
+          rerender(<DropdownLayout visible={false} options={options} />)
+        }
         visible
         options={options}
       />,
@@ -217,6 +219,37 @@ describe('DropdownLayout', () => {
     });
   });
 
+  it('should render a function option with the rendered item props', () => {
+    const selectedId = 0;
+    const unSelectedId = 1;
+
+    const optionsWithFuncValues = [
+      {
+        id: 0,
+        value: ({ selected }) => (
+          <div>option {selected ? 'selected' : 'not selected'}</div>
+        ),
+      },
+      {
+        id: 1,
+        value: ({ selected }) => (
+          <div>option {selected ? 'selected' : 'not selected'}</div>
+        ),
+      },
+    ];
+
+    const driver = createDriver(
+      <DropdownLayout
+        visible
+        options={optionsWithFuncValues}
+        selectedId={selectedId}
+      />,
+    );
+
+    expect(driver.optionContentAt(selectedId)).toEqual('option selected');
+    expect(driver.optionContentAt(unSelectedId)).toEqual('option not selected');
+  });
+
   it('should select the chosen value', () => {
     const selectedId = 0;
     const driver = createDriver(
@@ -228,20 +261,19 @@ describe('DropdownLayout', () => {
 
   it('should remember the selected option when getting re-opened after got closed', () => {
     const selectedId = 1;
-    const driver = createDriver(
-      <DropdownLayout visible options={options} selectedId={selectedId} />,
-    );
+    const props = { visible: true, options, selectedId };
+    const { driver, rerender } = render(<DropdownLayout {...props} />);
     expect(driver.isOptionSelected(selectedId)).toBeTruthy();
-    driver.setProps({ visible: false });
-    driver.setProps({ visible: true });
+    rerender(<DropdownLayout {...props} visible={false} />);
+    rerender(<DropdownLayout {...props} visible />);
     expect(driver.isOptionSelected(selectedId)).toBeTruthy();
   });
 
   it('should select the chosen value when overrideStyle is true', () => {
     const selectedId = 0;
-    const options = [{ id: 0, value: 'Option 1', overrideStyle: true }];
+    const _options = [{ id: 0, value: 'Option 1', overrideStyle: true }];
     const driver = createDriver(
-      <DropdownLayout visible options={options} selectedId={selectedId} />,
+      <DropdownLayout visible options={_options} selectedId={selectedId} />,
     );
 
     expect(driver.isOptionSelectedWithGlobalClassName(0)).toBeTruthy();
@@ -306,9 +338,12 @@ describe('DropdownLayout', () => {
     const selectedId = 0;
 
     it('should be true by default', () => {
-      const driver = createDriver(<DropdownLayout visible options={options} />);
-      expect(driver.isSelectedHighlight()).toBe(true);
+      const driver = createDriver(
+        <DropdownLayout visible options={options} selectedId={selectedId} />,
+      );
+      expect(driver.optionById(selectedId).isSelected()).toBe(true);
     });
+
     describe('when true', () => {
       it('should give the option a selected classname', () => {
         const driver = createDriver(
@@ -319,9 +354,10 @@ describe('DropdownLayout', () => {
             selectedId={selectedId}
           />,
         );
-        expect(driver.isOptionSelected(0)).toBeTruthy();
+        expect(driver.optionById(selectedId).isSelected()).toBeTruthy();
       });
     });
+
     describe('when false', () => {
       it('should not give the option a selected classname', () => {
         const driver = createDriver(
@@ -332,7 +368,7 @@ describe('DropdownLayout', () => {
             selectedId={selectedId}
           />,
         );
-        expect(driver.isOptionSelected(0)).toBeFalsy();
+        expect(driver.optionById(selectedId).isSelected()).toBeFalsy();
       });
     });
   });
@@ -438,9 +474,11 @@ describe('DropdownLayout', () => {
     });
 
     it('should hover when mouse enter and unhover when mouse leave when overrideStyle is true', () => {
-      const options = [{ id: 0, value: 'Option 1', overrideStyle: true }];
+      const _options = [{ id: 0, value: 'Option 1', overrideStyle: true }];
 
-      const driver = createDriver(<DropdownLayout visible options={options} />);
+      const driver = createDriver(
+        <DropdownLayout visible options={_options} />,
+      );
 
       driver.mouseEnterAtOption(0);
       expect(driver.isOptionHoveredWithGlobalClassName(0)).toBeTruthy();
@@ -497,7 +535,7 @@ describe('DropdownLayout', () => {
     });
 
     it('should hover starting from a given item', () => {
-      const options = [
+      const _options = [
         { id: 10, value: 'Option 1' },
         { id: 20, value: 'Option 2' },
         { id: 30, value: 'Option 3' },
@@ -505,7 +543,7 @@ describe('DropdownLayout', () => {
       const driver = createDriver(
         <DropdownLayout
           visible
-          options={options}
+          options={_options}
           selectedId={20}
           onSelect={jest.fn()}
         />,
@@ -515,72 +553,56 @@ describe('DropdownLayout', () => {
     });
 
     it('should remember the hovered option when options change', () => {
-      const options = [
+      const _options = [
         { id: 0, value: 'a 1' },
         { id: 1, value: 'a 2' },
         { id: 2, value: 'a 3' },
         { id: 3, value: 'a 4' },
       ];
 
-      const wrapper = mount(<DropdownLayout visible options={options} />);
-      const driver = dropdownLayoutDriverFactory({
-        element: wrapper.getDOMNode(),
-      });
+      const { driver, rerender } = render(
+        <DropdownLayout visible options={_options} />,
+      );
+      driver.pressDownKey();
+      driver.pressDownKey();
+      driver.pressDownKey();
+      driver.pressDownKey();
+
+      expect(driver.isOptionHovered(3)).toBeTruthy();
+
+      rerender(<DropdownLayout visible options={_options.slice(1)} />);
+
+      expect(driver.isOptionHovered(2)).toBeTruthy();
+    });
+
+    it('should reset the hovered option when options change and hovered option does not exist anymore', () => {
+      const initialOptions = [
+        { id: 0, value: 'a 1' },
+        { id: 1, value: 'a 2' },
+        { id: 2, value: 'a 3' },
+        { id: 3, value: 'a 4' },
+      ];
+
+      const { driver, rerender } = render(
+        <DropdownLayout visible options={initialOptions} />,
+      );
       driver.pressDownKey();
       driver.pressDownKey();
 
       expect(driver.isOptionHovered(1)).toBeTruthy();
 
-      wrapper.setProps({ options: options.slice(1) });
+      rerender(<DropdownLayout visible options={initialOptions.slice(2)} />);
 
-      expect(driver.isOptionHovered(0)).toBeTruthy();
+      expect(driver.isOptionHovered(0)).toBeFalsy();
+      expect(driver.isOptionHovered(1)).toBeFalsy();
     });
   });
 
   describe('theme support', () => {
     it('should allow setting a custom theme', () => {
-      const props = { dataHook: 'myDataHook', theme: 'material', options };
-      const wrapper = mount(<DropdownLayout {...props} />);
-      const testkit = enzymeDropdownLayoutTestkitFactory({
-        wrapper,
-        dataHook: props.dataHook,
-      });
-      expect(testkit.hasTheme('material')).toBe(true);
-    });
-  });
-
-  describe('testkit', () => {
-    it('should exist', () => {
-      const div = document.createElement('div');
-      const dataHook = 'myDataHook';
-      const wrapper = div.appendChild(
-        ReactTestUtils.renderIntoDocument(
-          <div>
-            <DropdownLayout dataHook={dataHook} options={options} />
-          </div>,
-        ),
-      );
-      const dropdownLayoutTestkit = dropdownLayoutTestkitFactory({
-        wrapper,
-        dataHook,
-      });
-      expect(dropdownLayoutTestkit.exists()).toBeTruthy();
-      expect(dropdownLayoutTestkit.optionsLength()).toBe(7);
-    });
-  });
-
-  describe('enzyme testkit', () => {
-    it('should exist', () => {
-      const dataHook = 'myDataHook';
-      const wrapper = mount(
-        <DropdownLayout dataHook={dataHook} options={options} />,
-      );
-      const dropdownLayoutTestkit = enzymeDropdownLayoutTestkitFactory({
-        wrapper,
-        dataHook,
-      });
-      expect(dropdownLayoutTestkit.exists()).toBeTruthy();
-      expect(dropdownLayoutTestkit.optionsLength()).toBe(7);
+      const props = { theme: 'material', options };
+      const { driver } = render(<DropdownLayout {...props} />);
+      expect(driver.hasTheme('material')).toBe(true);
     });
   });
 });

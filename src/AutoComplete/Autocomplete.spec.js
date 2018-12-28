@@ -6,10 +6,8 @@ import { createDriverFactory } from 'wix-ui-test-utils/driver-factory';
 import { autoCompleteTestkitFactory } from '../../testkit';
 import { autoCompleteTestkitFactory as enzymeAutoCompleteTestkitFactory } from '../../testkit/enzyme';
 import { mount } from 'enzyme';
-import { runInputWithOptionsTest } from '../InputWithOptions/InputWithOptions.spec';
 
 const asciiA = '97';
-runInputWithOptionsTest(autoCompleteDriverFactory);
 
 describe('Autocomplete', () => {
   const createDriver = createDriverFactory(autoCompleteDriverFactory);

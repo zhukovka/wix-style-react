@@ -1,4 +1,4 @@
-import eyes from 'eyes.it';
+import { eyesItInstance } from '../../test/utils/eyes-it';
 import autoExampleDriver from 'wix-storybook-utils/AutoExampleDriver';
 
 import { createStoryUrl } from '../../test/utils/storybook-helpers';
@@ -12,6 +12,13 @@ describe('AddItem', () => {
     kind: storySettings.kind,
     story: storySettings.storyName,
   });
+
+  const eyes = eyesItInstance();
+
+  // TEMP - ADDED BY EREZ - FOR INVESTIGATING EYES FAILURES
+  // I put this in AddItem since its the first test that runs, I didn't have time to figure out where I could initialize this.
+  // const ConsoleLogHandler = require('eyes.selenium').ConsoleLogHandler;
+  // eyes.setLogHandler(new ConsoleLogHandler(true));
 
   beforeAll(async () => {
     await browser.get(storyUrl);

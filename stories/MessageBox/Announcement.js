@@ -5,6 +5,7 @@ import Markdown from 'wix-storybook-utils/Markdown';
 import Readme from '../../src/MessageBox/README.md';
 import ReadmeTestKit from '../../src/MessageBox/README.TESTKIT.md';
 import CodeExample from 'wix-storybook-utils/CodeExample';
+import { RTLWrapper } from '../utils';
 
 import AnnouncementStandard from './AnnouncementExamples/Standard';
 import AnnouncementStandardRaw from '!raw-loader!./AnnouncementExamples/Standard';
@@ -30,28 +31,30 @@ export default () => (
   <TabbedView tabs={['Usage', 'API', 'TestKits']}>
     <div>
       <Markdown source={introduction} />
-      <div style={layoutStyles}>
-        <CodeExample
-          title="Standard"
-          code={AnnouncementStandardRaw}
-          children={<AnnouncementStandard />}
-        />
-        <CodeExample
-          title="Premium Action"
-          code={PremiumActionRaw}
-          children={<PremiumAction />}
-        />
-        <CodeExample
-          title="Footnote"
-          code={FootnoteRaw}
-          children={<Footnote />}
-        />
-        <CodeExample
-          title="Disabled Action"
-          code={DisabledActionRaw}
-          children={<DisabledAction />}
-        />
-      </div>
+      <RTLWrapper>
+        <div style={layoutStyles}>
+          <CodeExample
+            title="Standard"
+            code={AnnouncementStandardRaw}
+            children={<AnnouncementStandard />}
+          />
+          <CodeExample
+            title="Premium Action"
+            code={PremiumActionRaw}
+            children={<PremiumAction />}
+          />
+          <CodeExample
+            title="Footnote"
+            code={FootnoteRaw}
+            children={<Footnote />}
+          />
+          <CodeExample
+            title="Disabled Action"
+            code={DisabledActionRaw}
+            children={<DisabledAction />}
+          />
+        </div>
+      </RTLWrapper>
     </div>
 
     <Markdown source={Readme} />

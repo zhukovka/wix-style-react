@@ -33,8 +33,8 @@ const inputWithOptionsDriverFactory = ({ element, wrapper }) => {
     outsideClick: () =>
       document.body.dispatchEvent(new Event('mouseup', { cancelable: true })),
     isOptionWrappedToHighlighter: optionId => {
-      const { element } = dropdownLayoutDriver.optionById(optionId);
-      return !!element().querySelector(`[data-hook=highlighter-${optionId}]`);
+      const { element: optionElm } = dropdownLayoutDriver.optionById(optionId);
+      return !!optionElm().querySelector(`[data-hook=highlighter-${optionId}]`);
     },
 
     // Deprecated key press methods

@@ -10,6 +10,9 @@ import ReadmeTestkit from '../../src/DropdownLayout/README.TESTKIT.md';
 import ExampleStandard from './ExampleStandard';
 import ExampleStandardRaw from '!raw-loader!./ExampleStandard';
 
+import ExampleBuilder from './ExampleBuilder';
+import ExampleBuilderRaw from '!raw-loader!./ExampleBuilder';
+
 import ExampleManyOptions from './ExampleManyOptions';
 import ExampleManyOptionsRaw from '!raw-loader!./ExampleManyOptions';
 
@@ -36,6 +39,12 @@ storiesOf('11. Pickers and Selectors', module).add(
 
         <CodeExample title="Standard" code={ExampleStandardRaw}>
           <ExampleStandard />
+        </CodeExample>
+
+        <div style={{ paddingTop: '230px' }} />
+
+        <CodeExample title="Options Builder" code={ExampleBuilderRaw}>
+          <ExampleBuilder />
         </CodeExample>
 
         <div style={{ paddingTop: '230px' }} />

@@ -9,6 +9,8 @@ import * as TabPropTypes from './core/constants/tab-prop-types';
 import styles from './Tabs.scss';
 
 class Tabs extends WixComponent {
+  static displayName = 'Tabs';
+
   static defaultProps = {
     hasDivider: true,
   };

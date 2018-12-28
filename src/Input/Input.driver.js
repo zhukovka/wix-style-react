@@ -13,6 +13,8 @@ const inputDriverFactory = ({ element, wrapper, component }) => {
     element && element.querySelector(`.${styles.magnifyingGlass}`);
   const menuArrowNode =
     element && element.querySelector(`.${styles.menuArrow}`);
+  const getName = () => input.getAttribute('name');
+  const getType = () => input.getAttribute('type');
 
   const driver = {
     trigger: (trigger, event) => ReactTestUtils.Simulate[trigger](input, event),
@@ -24,6 +26,8 @@ const inputDriverFactory = ({ element, wrapper, component }) => {
       input.blur();
       ReactTestUtils.Simulate.blur(input);
     },
+    getName,
+    getType,
     keyDown: key => ReactTestUtils.Simulate.keyDown(input, { key }),
     click: () => ReactTestUtils.Simulate.click(input),
     clickSuffix: () => ReactTestUtils.Simulate.click(suffixNode),
@@ -36,7 +40,9 @@ const inputDriverFactory = ({ element, wrapper, component }) => {
     mouseOut: () => ReactTestUtils.Simulate.mouseOut(input),
     clearText: () => driver.enterText(''),
     enterText: text =>
-      ReactTestUtils.Simulate.change(input, { target: { value: text } }),
+      ReactTestUtils.Simulate.change(input, {
+        target: { name: getName(), type: getType(), value: text },
+      }),
     getValue: () => input.value,
     getPlaceholder: () => input.placeholder,
     getDefaultValue: () => input.defaultValue,
@@ -48,7 +54,6 @@ const inputDriverFactory = ({ element, wrapper, component }) => {
     getAriaDescribedby: () => input.getAttribute('aria-describedby'),
     getAutocomplete: () => input.getAttribute('autocomplete'),
     getRequired: () => input.required,
-    getType: () => input.type,
     hasPrefix: () => element.querySelectorAll(`.${styles.prefix}`).length === 1,
     hasPrefixClass: () =>
       element.querySelectorAll(`.${styles.input}.${styles.withPrefix}`)

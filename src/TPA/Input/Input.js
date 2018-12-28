@@ -37,7 +37,7 @@ class Input extends WixComponent {
     /* eslint-disable no-unused-vars */
     const {
       injectedStyles,
-      styles,
+      styles: AVOID_NO_SHADOW_WARNING,
       errorClassName,
       inputClassName,
       error,

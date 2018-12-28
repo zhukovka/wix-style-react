@@ -11,10 +11,12 @@ export const inputTestkitFactory = puppeteerTestkitFactoryCreator(
 );
 
 import buttonDriverFactory from '../src/Backoffice/Button/Button.puppeteer.driver';
+import { buttonDriverFactory as buttonNextDriverFactory } from '../src/Button/Button.driver';
 
-export const buttonTestkitFactory = puppeteerTestkitFactoryCreator(
-  buttonDriverFactory,
-);
+export const buttonTestkitFactory = obj =>
+  obj.wrapper && obj.wrapper.$(`[data-upgrade]`)
+    ? puppeteerUniTestkitFactoryCreator(buttonNextDriverFactory)(obj)
+    : puppeteerTestkitFactoryCreator(buttonDriverFactory)(obj);
 
 import formFieldDriverFactory from '../src/FormField/FormField.puppeteer.driver';
 
@@ -64,4 +66,25 @@ import { iconButtonDriverFactory } from '../src/IconButton/IconButton.driver';
 
 export const iconButtonTestkitFactory = puppeteerUniTestkitFactoryCreator(
   iconButtonDriverFactory,
+);
+
+import { closeButtonDriverFactory } from '../src/CloseButton/CloseButton.driver';
+
+export const closeButtonTestkitFactory = puppeteerUniTestkitFactoryCreator(
+  closeButtonDriverFactory,
+);
+
+import { proportionDriverFactory } from '../src/Proportion/Proportion.driver';
+
+export const proportionTestkitFactory = puppeteerUniTestkitFactoryCreator(
+  proportionDriverFactory,
+);
+
+/*
+ * Component generator test component
+ */
+import { generatedTestComponentDriverFactory } from '../src/GeneratedTestComponent/GeneratedTestComponent.driver';
+
+export const generatedTestComponentTestkitFactory = puppeteerUniTestkitFactoryCreator(
+  generatedTestComponentDriverFactory,
 );

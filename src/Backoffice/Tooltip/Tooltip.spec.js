@@ -12,8 +12,11 @@ import { mount } from 'enzyme';
 import Button from '../Button';
 import waitForCond from 'wait-for-cond';
 import { rangePolyfill } from '../../../testkit/polyfills';
+import { createRendererWithDriver, cleanup } from '../../../test/utils/react';
+import { eventually } from '../../../test/utils/unit';
 
 describe('Tooltip', () => {
+  const render = createRendererWithDriver(tooltipDriverFactory);
   const createDriver = createDriverFactory(tooltipDriverFactory);
   const _props = {
     showDelay: 5,
@@ -29,6 +32,7 @@ describe('Tooltip', () => {
 
   afterEach(() => {
     rangePolyfill.uninstall();
+    cleanup();
   });
 
   it('should be hidden by default', () => {
@@ -133,25 +137,33 @@ describe('Tooltip', () => {
       });
   });
 
-  it('should hide tooltip when using custom triggers', () => {
+  it('should hide tooltip when using custom triggers', async () => {
     const props = { ..._props, hideTrigger: 'custom', showTrigger: 'custom' };
-    const driver = createDriver(<Tooltip {...props}>{children}</Tooltip>);
+    const { driver, rerender } = render(
+      <Tooltip {...props}>{children}</Tooltip>,
+    );
     driver.mouseEnter();
 
     expect(driver.isShown()).toBeFalsy();
-    driver.setProps({ ...props, active: true });
+    rerender(
+      <Tooltip {...props} active>
+        {children}
+      </Tooltip>,
+    );
 
-    return waitFor
-      .assert(() => {
-        expect(driver.isShown()).toBeTruthy();
-      })
-      .then(() => {
-        driver.setProps({ ...props, active: false });
+    await eventually(() => {
+      expect(driver.isShown()).toBeTruthy();
+    });
 
-        return waitFor.assert(() => {
-          expect(driver.isShown()).toBeFalsy();
-        });
-      });
+    rerender(
+      <Tooltip {...props} active={false}>
+        {children}
+      </Tooltip>,
+    );
+
+    await eventually(() => {
+      expect(driver.isShown()).toBeFalsy();
+    });
   });
 
   it('should test inner component', () => {

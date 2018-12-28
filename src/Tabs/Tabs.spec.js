@@ -2,14 +2,19 @@ import React from 'react';
 import ReactTestUtils from 'react-dom/test-utils';
 import { mount } from 'enzyme';
 
-import { createDriverFactory } from 'wix-ui-test-utils/driver-factory';
 import tabsDriverFactory from './Tabs.driver';
 import Tabs from './Tabs';
 import { tabsTestkitFactory } from '../../testkit';
+import { createRendererWithDriver, cleanup } from '../../test/utils/unit';
 import { tabsTestkitFactory as enzymeTabsTestkitFactory } from '../../testkit/enzyme';
 
 describe('Tabs component', () => {
-  const createDriver = createDriverFactory(tabsDriverFactory);
+  const render = createRendererWithDriver(tabsDriverFactory);
+
+  function createComponent(props) {
+    return render(<Tabs {...props} />).driver;
+  }
+
   let items;
 
   beforeEach(() => {
@@ -18,6 +23,10 @@ describe('Tabs component', () => {
       { id: 1, title: 'Tab 1', dataHook: 'tab-data-hook' },
       { id: 2, title: 'Tab 2' },
     ];
+  });
+
+  afterEach(() => {
+    cleanup();
   });
 
   it('should render tabs with correct titles', () => {
@@ -46,8 +55,8 @@ describe('Tabs component', () => {
   });
 
   it('should change active tab', () => {
-    const driver = createComponent({ items, activeId: 2 });
-    driver.setProps({ items, activeId: 1 });
+    const { driver, rerender } = render(<Tabs items={items} activeId={2} />);
+    rerender(<Tabs items={items} activeId={1} />);
     expect(driver.getActiveTabIndex()).toBe(1);
   });
 
@@ -74,7 +83,7 @@ describe('Tabs component', () => {
   it('should show side content if defined via props', () => {
     const sideContent = (
       <div>
-        Click <a>here</a>!
+        Click <a href="blah">here</a>!
       </div>
     );
     const driver = createComponent({ items, sideContent });
@@ -131,8 +140,4 @@ describe('Tabs component', () => {
       expect(breadcrumbsTestkit.exists()).toBeTruthy();
     });
   });
-
-  function createComponent(props) {
-    return createDriver(<Tabs {...props} />);
-  }
 });
