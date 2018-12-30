@@ -1,13 +1,7 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
 import ReactTestUtils from 'react-dom/test-utils';
 import styles from './MessageBoxFunctionalLayout.scss';
 
-const messageBoxFunctionalLayoutDriverFactory = ({
-  element,
-  wrapper,
-  component,
-}) => {
+const messageBoxFunctionalLayoutDriverFactory = ({ element }) => {
   const confirmationButton = () =>
     element.querySelector('[data-hook="confirmation-button"]');
   const cancellationButton = () =>
@@ -38,17 +32,6 @@ const messageBoxFunctionalLayoutDriverFactory = ({
       cancellationButton().className.indexOf('disabled') === -1,
     isConfirmationEnable: () =>
       confirmationButton().className.indexOf('disabled') === -1,
-    setProps: props => {
-      const ClonedWithProps = React.cloneElement(
-        component,
-        Object.assign({}, component.props, props),
-        ...(component.props.children || []),
-      );
-      ReactDOM.render(
-        <div ref={r => (element = r)}>{ClonedWithProps}</div>,
-        wrapper,
-      );
-    },
     toHaveBodyPadding: () => !body().classList.contains(`${styles.noPadding}`),
   };
 };

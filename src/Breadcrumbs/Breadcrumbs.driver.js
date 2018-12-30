@@ -1,9 +1,7 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
 import ReactTestUtils from 'react-dom/test-utils';
 import { isClassExists } from '../../test/utils';
 
-const breadcrumbsDriverFactory = ({ element, wrapper, component }) => {
+const breadcrumbsDriverFactory = ({ element }) => {
   const optionAt = position => element.childNodes[position];
 
   return {
@@ -54,17 +52,6 @@ const breadcrumbsDriverFactory = ({ element, wrapper, component }) => {
 
     /** returns true if the item is a link */
     isActiveLinkAt: index => !!optionAt(index).querySelector('a'),
-    setProps: props => {
-      const ClonedWithProps = React.cloneElement(
-        component,
-        Object.assign({}, component.props, props),
-        ...(component.props.children || []),
-      );
-      ReactDOM.render(
-        <div ref={r => (element = r)}>{ClonedWithProps}</div>,
-        wrapper,
-      );
-    },
   };
 };
 

@@ -1,7 +1,4 @@
-import React from 'react';
 import ReactTestUtils from 'react-dom/test-utils';
-import ReactDOM from 'react-dom';
-import Tooltip from './Tooltip';
 import { isClassExists } from '../../../test/utils';
 
 const tooltipDriverFactory = ({ element, wrapper }) => {
@@ -25,16 +22,6 @@ const tooltipDriverFactory = ({ element, wrapper }) => {
     getChildren: () => element.innerHTML,
     getPlacement: () => tooltipInner.getAttribute('class').split(' ')[2],
     getContent: () => tooltipContent.innerHTML,
-    setProps: props => {
-      ReactDOM.render(
-        <div ref={r => (element = r)}>
-          <Tooltip {...props}>
-            <div />
-          </Tooltip>
-        </div>,
-        wrapper,
-      );
-    },
     getWrapper: () => wrapper,
   };
 };

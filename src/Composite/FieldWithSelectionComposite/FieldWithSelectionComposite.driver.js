@@ -1,9 +1,6 @@
-import React from 'react';
-import FieldWithSelectionComposite from './FieldWithSelectionComposite';
-import ReactDOM from 'react-dom';
 import ReactTestUtils from 'react-dom/test-utils';
 
-const fieldWithSelectionCompositeDriverFactory = ({ element, wrapper }) => {
+const fieldWithSelectionCompositeDriverFactory = ({ element }) => {
   const label = element.querySelector('.label>label');
   const textInput =
     element.querySelector('input.input') || element.querySelector('textarea');
@@ -25,14 +22,6 @@ const fieldWithSelectionCompositeDriverFactory = ({ element, wrapper }) => {
     getNumberOfChildren: () => element.childElementCount,
     hasFieldLabelAttributes: () =>
       !!element.querySelectorAll('[data-hook="field-label-attributes"]').length,
-    setProps: props => {
-      ReactDOM.render(
-        <div ref={r => (element = r)}>
-          <FieldWithSelectionComposite {...props} />
-        </div>,
-        wrapper,
-      );
-    },
   };
 };
 

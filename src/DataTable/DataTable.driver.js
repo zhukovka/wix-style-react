@@ -1,11 +1,9 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
 import ReactTestUtils from 'react-dom/test-utils';
 import values from '../utils/operators/values';
 
 const arbitraryEmptyElement = () => document.createElement('div');
 
-const dataTableDriverFactory = ({ element, wrapper, component }) => {
+const dataTableDriverFactory = ({ element }) => {
   // When a React component renders null in React 15, a Comment-Element is rendered to the DOM.
   const isDisplayingNothing =
     !element || element.nodeType === Node.COMMENT_NODE;
@@ -78,17 +76,6 @@ const dataTableDriverFactory = ({ element, wrapper, component }) => {
       ReactTestUtils.Simulate.mouseEnter(getRow(index), eventData),
     mouseLeaveRow: (index, eventData) =>
       ReactTestUtils.Simulate.mouseLeave(getRow(index), eventData),
-    setProps: props => {
-      const ClonedWithProps = React.cloneElement(
-        component,
-        Object.assign({}, component.props, props),
-        ...(component.props.children || []),
-      );
-      ReactDOM.render(
-        <div ref={r => (element = r)}>{ClonedWithProps}</div>,
-        wrapper,
-      );
-    },
     hasRowDetails: index => !!getRowDetails(index),
     getRowDetailsText: index => getRowDetails(index).textContent,
     hasSortableTitle: index => !!getSortableTitle(index),

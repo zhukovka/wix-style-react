@@ -1,9 +1,7 @@
-import React from 'react';
 import ReactTestUtils from 'react-dom/test-utils';
-import ReactDOM from 'react-dom';
 import styles from './InputArea.scss';
 
-const inputAreaDriverFactory = ({ element, wrapper, component }) => {
+const inputAreaDriverFactory = ({ element }) => {
   const textAreaElement = element && element.childNodes[0];
   const textArea = element.querySelector('textarea');
   const name = textArea.getAttribute('name');
@@ -42,17 +40,6 @@ const inputAreaDriverFactory = ({ element, wrapper, component }) => {
     getAriaDescribedby: () => textArea.getAttribute('aria-describedby'),
     getTooltipDataHook: () => 'inputArea-tooltip',
     getTooltipElement: () => element,
-    setProps: props => {
-      const ClonedWithProps = React.cloneElement(
-        component,
-        Object.assign({}, component.props, props),
-        ...(component.props.children || []),
-      );
-      ReactDOM.render(
-        <div ref={r => (element = r)}>{ClonedWithProps}</div>,
-        wrapper,
-      );
-    },
   };
 };
 

@@ -1,9 +1,7 @@
-import React from 'react';
 import ReactTestUtils from 'react-dom/test-utils';
-import ReactDOM from 'react-dom';
 import styles from './Input.scss';
 
-const inputDriverFactory = ({ element, wrapper, component }) => {
+const inputDriverFactory = ({ element }) => {
   const input = element && element.querySelector('input');
   const clearButton =
     element && element.querySelector(`[data-hook=input-clear-button]`);
@@ -104,17 +102,6 @@ const inputDriverFactory = ({ element, wrapper, component }) => {
       !element.classList.contains(styles.noRightBorderRadius),
     hasLeftBorderRadius: () =>
       !element.classList.contains(styles.noLeftBorderRadius),
-    setProps: props => {
-      const ClonedWithProps = React.cloneElement(
-        component,
-        Object.assign({}, component.props, props),
-        ...(component.props.children || []),
-      );
-      ReactDOM.render(
-        <div ref={r => (element = r)}>{ClonedWithProps}</div>,
-        wrapper,
-      );
-    },
   };
 
   return driver;

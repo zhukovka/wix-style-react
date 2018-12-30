@@ -1,5 +1,3 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
 import ReactTestUtils from 'react-dom/test-utils';
 import { testkitFactoryCreator } from 'wix-ui-test-utils/vanilla';
 import { isClassExists } from '../../test/utils';
@@ -7,7 +5,7 @@ import textDriverFactory from '../Text/Text.driver';
 
 const textTestkitFactory = testkitFactoryCreator(textDriverFactory);
 
-const selectorDriverFactory = ({ element, wrapper, component }) => {
+const selectorDriverFactory = ({ element }) => {
   const toggleInput = () =>
     element.querySelector('[data-hook="toggle"] > input');
   const image = () => element.querySelector('[data-hook="selector-image"]');
@@ -37,17 +35,6 @@ const selectorDriverFactory = ({ element, wrapper, component }) => {
     hasExtraNode: () => !!extraNode(),
     getExtraNode: () => extraNode().childNodes[0],
     toggle: () => ReactTestUtils.Simulate.click(element),
-    setProps: props => {
-      const ClonedWithProps = React.cloneElement(
-        component,
-        Object.assign({}, component.props, props),
-        ...(component.props.children || []),
-      );
-      ReactDOM.render(
-        <div ref={r => (element = r)}>{ClonedWithProps}</div>,
-        wrapper,
-      );
-    },
   };
 };
 

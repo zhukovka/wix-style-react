@@ -1,10 +1,8 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
 import selectorDriverFactory from '../Selector/Selector.driver';
 import editableRowDriverFactory from './EditableRow/EditableRow.driver';
 import ReactTestUtils from 'react-dom/test-utils';
 
-const editableSelectorDriverFactory = ({ element, wrapper, component }) => {
+const editableSelectorDriverFactory = ({ element }) => {
   const newRowButton = () =>
     element.querySelector('[data-hook="new-row-button-text"]');
   const selectorRowDriver = index =>
@@ -58,17 +56,6 @@ const editableSelectorDriverFactory = ({ element, wrapper, component }) => {
       element.querySelector('[data-hook="editable-selector-title"] > span')
         .textContent,
     toggleItem: index => selectorRowDriver(index).toggle(),
-    setProps: props => {
-      const ClonedWithProps = React.cloneElement(
-        component,
-        Object.assign({}, component.props, props),
-        ...(component.props.children || []),
-      );
-      ReactDOM.render(
-        <div ref={r => (element = r)}>{ClonedWithProps}</div>,
-        wrapper,
-      );
-    },
   };
 };
 

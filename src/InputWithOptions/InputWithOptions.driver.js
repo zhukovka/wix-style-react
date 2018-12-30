@@ -2,7 +2,7 @@ import inputDriverFactory from '../Input/Input.driver';
 import dropdownLayoutDriverFactory from '../DropdownLayout/DropdownLayout.driver';
 import deprecationLog from '../utils/deprecationLog';
 
-const inputWithOptionsDriverFactory = ({ element, wrapper }) => {
+const inputWithOptionsDriverFactory = ({ element }) => {
   const inputWrapper = element && element.childNodes[0];
   const inputDriver =
     element &&
@@ -14,7 +14,6 @@ const inputWithOptionsDriverFactory = ({ element, wrapper }) => {
     element &&
     dropdownLayoutDriverFactory({
       element: element.childNodes[1].childNodes[0],
-      wrapper,
     });
 
   const createDeprecationMessageForKeyMethod = methodName =>

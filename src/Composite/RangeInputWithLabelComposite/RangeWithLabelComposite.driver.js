@@ -1,8 +1,4 @@
-import React from 'react';
-import RangeInputWithLabelComposite from './RangeInputWithLabelComposite';
-import ReactDOM from 'react-dom';
-
-const rangeInputWithLabelCompositeDriverFactory = ({ element, wrapper }) => {
+const rangeInputWithLabelCompositeDriverFactory = ({ element }) => {
   const label = element.childNodes[0].childNodes[0];
   const hasLabel = label.tagName.toLowerCase() === 'label';
   const firstInput = hasLabel
@@ -23,14 +19,6 @@ const rangeInputWithLabelCompositeDriverFactory = ({ element, wrapper }) => {
         : element.childNodes[0].childElementCount,
     hasFieldLabelAttributes: () =>
       !!element.querySelectorAll('[data-hook="field-label-attributes"]').length,
-    setProps: props => {
-      ReactDOM.render(
-        <div ref={r => (element = r)}>
-          <RangeInputWithLabelComposite {...props} />
-        </div>,
-        wrapper,
-      );
-    },
   };
 };
 

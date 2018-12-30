@@ -1,12 +1,6 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
 import ReactTestUtils from 'react-dom/test-utils';
 
-const messageBoxMarketerialLayoutDriverFactory = ({
-  element,
-  wrapper,
-  component,
-}) => {
+const messageBoxMarketerialLayoutDriverFactory = ({ element }) => {
   const primaryButton = () =>
     element.querySelector('[data-hook="primary-button"]');
   const secondaryButton = () =>
@@ -27,17 +21,6 @@ const messageBoxMarketerialLayoutDriverFactory = ({
       element.querySelector('[data-hook="message-box-title"]').textContent,
     getContentBySelector: selector => element.querySelector(selector),
     getImageSrc: () => element.querySelector('[data-hook="header-image"]').src,
-    setProps: props => {
-      const ClonedWithProps = React.cloneElement(
-        component,
-        Object.assign({}, component.props, props),
-        ...(component.props.children || []),
-      );
-      ReactDOM.render(
-        <div ref={r => (element = r)}>{ClonedWithProps}</div>,
-        wrapper,
-      );
-    },
   };
 };
 

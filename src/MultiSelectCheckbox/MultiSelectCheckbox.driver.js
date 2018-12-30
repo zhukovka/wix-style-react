@@ -1,13 +1,11 @@
-import React from 'react';
 import inputWithOptionsDriverFactory from '../InputWithOptions/InputWithOptions.driver';
-import ReactDOM from 'react-dom';
 
-const multiSelectCheckboxDriverFactory = ({ element, wrapper, component }) => {
+const multiSelectCheckboxDriverFactory = ({ element, component }) => {
   const {
     driver,
     inputDriver,
     dropdownLayoutDriver,
-  } = inputWithOptionsDriverFactory({ element, wrapper });
+  } = inputWithOptionsDriverFactory({ element });
   const multiSelectCheckboxDriver = Object.assign(driver, {
     getNumOfLabels() {
       return this.getLabels().length;
@@ -17,17 +15,6 @@ const multiSelectCheckboxDriverFactory = ({ element, wrapper, component }) => {
     },
     getLabelAt(index) {
       return this.getLabels()[index];
-    },
-    setProps: props => {
-      const ClonedWithProps = React.cloneElement(
-        component,
-        Object.assign({}, component.props, props),
-        ...(component.props.children || []),
-      );
-      ReactDOM.render(
-        <div ref={r => (element = r)}>{ClonedWithProps}</div>,
-        wrapper,
-      );
     },
   });
 

@@ -1,8 +1,6 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
 import ReactTestUtils from 'react-dom/test-utils';
 
-const notificationDriverFactory = ({ element, wrapper, component }) => {
+const notificationDriverFactory = ({ element }) => {
   const notificationWrapperSelector = '[data-hook="notification-wrapper"]';
   const labelTextSelector = '[data-hook="notification-label"]';
   const actionButtonSelector = '[data-hook="notification-cta-button"]';
@@ -43,17 +41,6 @@ const notificationDriverFactory = ({ element, wrapper, component }) => {
       Number(
         element.querySelector(notificationWrapperSelector).style['z-index'],
       ),
-    setProps: props => {
-      const ClonedWithProps = React.cloneElement(
-        component,
-        Object.assign({}, component.props, props),
-        ...(component.props.children || []),
-      );
-      ReactDOM.render(
-        <div ref={r => (element = r)}>{ClonedWithProps}</div>,
-        wrapper,
-      );
-    },
   };
 };
 

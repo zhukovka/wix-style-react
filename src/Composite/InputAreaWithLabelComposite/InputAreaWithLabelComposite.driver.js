@@ -1,12 +1,6 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
 import fieldLabelAttributesDriverFactory from '../../FieldLabelAttributes/FieldLabelAttributes.driver';
 
-const inputAreaWithLabelCompositeDriverFactory = ({
-  element,
-  wrapper,
-  component,
-}) => {
+const inputAreaWithLabelCompositeDriverFactory = ({ element, wrapper }) => {
   const label = element.childNodes[0].childNodes[0];
   return {
     exists: () => !!element,
@@ -21,17 +15,6 @@ const inputAreaWithLabelCompositeDriverFactory = ({
       }).getTooltipTestKit(),
     hasFieldLabelAttributes: () =>
       !!element.querySelectorAll('[data-hook="field-label-attributes"]').length,
-    setProps: props => {
-      const ClonedWithProps = React.cloneElement(
-        component,
-        Object.assign({}, component.props, props),
-        ...(component.props.children || []),
-      );
-      ReactDOM.render(
-        <div ref={r => (element = r)}>{ClonedWithProps}</div>,
-        wrapper,
-      );
-    },
   };
 };
 

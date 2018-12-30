@@ -1,10 +1,8 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
 import ReactTestUtils from 'react-dom/test-utils';
 import { ThemeOptions } from '../BaseComponents/TextLinkLayout/TextLinkLayout';
 import textLinkLayoutDriverFactory from '../BaseComponents/TextLinkLayout/TextLinkLayout.driver';
 
-const textLinkDriverFactory = ({ element, wrapper, component }) => {
+const textLinkDriverFactory = ({ element }) => {
   const textLinkLayoutElement = element ? element.children[0] : null;
   const textLinkLayoutDriver = textLinkLayoutElement
     ? textLinkLayoutDriverFactory({ element: textLinkLayoutElement })
@@ -28,17 +26,6 @@ const textLinkDriverFactory = ({ element, wrapper, component }) => {
     getLink: () => element.href,
     getTarget: () => element.target,
     getRel: () => element.rel,
-    setProps: props => {
-      const ClonedWithProps = React.cloneElement(
-        component,
-        Object.assign({}, component.props, props),
-        ...(component.props.children || []),
-      );
-      ReactDOM.render(
-        <div ref={r => (element = r)}>{ClonedWithProps}</div>,
-        wrapper,
-      );
-    },
   };
 };
 

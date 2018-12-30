@@ -78,19 +78,6 @@ const richTextAreaDriverFactory = ({ element, wrapper, component }) => {
     /** returns if the editor is resizable */
     isResizable: () => getEditorWrapper().classList.contains(styles.resizable),
     isDefaultBlockExist: () => getDefaultBlock(),
-
-    /** renders a new component with its existing props + the supplied props */
-    setProps: props => {
-      const ClonedWithProps = React.cloneElement(
-        component,
-        Object.assign({}, component.props, props),
-        ...(component.props.children || []),
-      );
-      ReactDOM.render(
-        <div ref={r => (element = r)}>{ClonedWithProps}</div>,
-        wrapper,
-      );
-    },
   };
 };
 
