@@ -17,6 +17,10 @@ Types of changes:
 
 ## Next
 
+### Changed
+
+- Drivers Cleanup - Remove `setProps` from ALL drivers [#2687](https://github.com/wix/wix-style-react/pull/2687)
+
 ### Lab
 
 - `<CalendarPanel/>` - New component - (WIP category) [#2664](https://github.com/wix/wix-style-react/pull/2674)
