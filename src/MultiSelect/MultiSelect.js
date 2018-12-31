@@ -72,10 +72,7 @@ class MultiSelect extends InputWithOptions {
   }
 
   _onChange(event) {
-    if (!this.state.pasteDetected) {
-      this.setState({ inputValue: event.target.value });
-      this.props.onChange && this.props.onChange(event);
-    } else {
+    if (this.state.pasteDetected) {
       const delimitersRegexp = new RegExp(this.props.delimiters.join('|'), 'g');
       const value = event.target.value.replace(delimitersRegexp, ',');
       const tags = value
@@ -97,6 +94,9 @@ class MultiSelect extends InputWithOptions {
       });
 
       this.onSelect(suggestedOptions);
+    } else {
+      this.setState({ inputValue: event.target.value });
+      this.props.onChange && this.props.onChange(event);
     }
     // If the input value is not empty, should show the options
     if (event.target.value.trim()) {
