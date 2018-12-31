@@ -94,7 +94,7 @@ export default {
   },
   ColorPicker: {
     skipSanityTest,
-    enzymeTestkitFactory: require('../src/ColorPicker/color-picker.driver')
+    enzymeTestkitFactory: require('../src/ColorPicker/ColorPicker.driver')
       .default,
   },
   ButtonWithOptions: {

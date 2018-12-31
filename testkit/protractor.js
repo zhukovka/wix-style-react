@@ -410,6 +410,12 @@ export const closeButtonTestkitFactory = protractorUniTestkitFactoryCreator(
   closeButtonDriverFactory,
 );
 
+import colorPickerDriverFactory from '../src/ColorPicker/ColorPicker.protractor.driver';
+
+export const colorPickerTestkitFactory = protractorTestkitFactoryCreator(
+  colorPickerDriverFactory,
+);
+
 /*
  * Component generator test component
  */
