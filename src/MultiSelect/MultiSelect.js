@@ -16,6 +16,10 @@ class MultiSelect extends InputWithOptions {
     this.state = { ...this.state, pasteDetected: false };
   }
 
+  _isNewCallbackApi() {
+    return this.props.onTagsAdded;
+  }
+
   hideOptions() {
     super.hideOptions();
     this.clearInput();
@@ -71,29 +75,37 @@ class MultiSelect extends InputWithOptions {
     this.setState({ pasteDetected: true });
   }
 
+  _splitValues(value) {
+    const delimitersRegexp = new RegExp(this.props.delimiters.join('|'), 'g');
+    const valueWithCommas = value.replace(delimitersRegexp, ',');
+    return valueWithCommas
+      .split(',')
+      .map(str => str.trim())
+      .filter(str => str);
+  }
+
   _onChange(event) {
     if (this.state.pasteDetected) {
-      const delimitersRegexp = new RegExp(this.props.delimiters.join('|'), 'g');
-      const value = event.target.value.replace(delimitersRegexp, ',');
-      const tags = value
-        .split(',')
-        .map(str => str.trim())
-        .filter(str => str);
-
-      this.clearInput();
       this.setState({ pasteDetected: false });
+      if (this._isNewCallbackApi()) {
+        this.submitValue(event.target.value);
+      } else {
+        const tags = this._splitValues(event.target.value);
+        this.clearInput();
 
-      const suggestedOptions = tags.map(tag => {
-        const tagObj = this.getUnselectedOptions().find(
-          element =>
-            this.props.valueParser(element).toLowerCase() === tag.toLowerCase(),
-        );
-        return tagObj
-          ? tagObj
-          : { id: uniqueId('customOption_'), value: tag, theme: 'error' };
-      });
+        const suggestedOptions = tags.map(tag => {
+          const tagObj = this.getUnselectedOptions().find(
+            element =>
+              this.props.valueParser(element).toLowerCase() ===
+              tag.toLowerCase(),
+          );
+          return tagObj
+            ? tagObj
+            : { id: uniqueId('customOption_'), value: tag, theme: 'error' };
+        });
 
-      this.onSelect(suggestedOptions);
+        this.onSelect(suggestedOptions);
+      }
     } else {
       this.setState({ inputValue: event.target.value });
       this.props.onChange && this.props.onChange(event);
@@ -183,8 +195,8 @@ class MultiSelect extends InputWithOptions {
     }
 
     const { onManuallyInput, onTagsAdded } = this.props;
-    if (onTagsAdded) {
-      onTagsAdded([inputValue]);
+    if (this._isNewCallbackApi()) {
+      onTagsAdded && onTagsAdded([inputValue]);
     } else if (onManuallyInput) {
       onManuallyInput(
         inputValue,
