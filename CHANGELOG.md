@@ -17,6 +17,13 @@ Types of changes:
 
 ## Next
 
+#### Added
+- `<ColorPicker/>` - trigger confirmation callback when pressing Enter [#2683](https://github.com/wix/wix-style-react/pull/2683)
+
+
+### Fixed
+- `<MultiSelect/>` - fix scenario when options are not shown when input is non empty [#2696](https://github.com/wix/wix-style-react/pull/2696)
+
 ### Changed
 
 - Drivers Cleanup - Remove `setProps` from ALL drivers [#2687](https://github.com/wix/wix-style-react/pull/2687)
