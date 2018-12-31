@@ -192,6 +192,7 @@ export default {
     props: {
       content: <FloatingHelper.Content title="title" body="body" />,
       target: <div>target</div>,
+      placement: 'left',
     },
   },
   FullTextView: { skipSanityTest, noTestkit },
