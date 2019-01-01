@@ -18,11 +18,14 @@ Types of changes:
 ## Next
 
 #### Added
+
 - `<ColorPicker/>` - trigger confirmation callback when pressing Enter [#2683](https://github.com/wix/wix-style-react/pull/2683)
 
 
 ### Fixed
-- `<MultiSelect/>` - fix scenario when options are not shown when input is non empty [#2696](https://github.com/wix/wix-style-react/pull/2696)
+
+- `<MultiSelect/>` - Fix scenario when options are not shown when input is non empty [#2696](https://github.com/wix/wix-style-react/pull/2696)
+- `<MultiSelect/>` - Fix onBlur to have a valid `event.target.value` [#2695](https://github.com/wix/wix-style-react/pull/2695)
 
 ### Changed
 
