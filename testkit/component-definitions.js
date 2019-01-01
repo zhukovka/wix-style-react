@@ -389,6 +389,7 @@ export default {
   },
   Proportion: { skipSanityTest, unidriver, drivers: ['enzyme'] },
   GeneratedTestComponent: { skipSanityTest, unidriver, drivers: ['enzyme'] },
+  DropdownPopover: { skipSanityTest, unidriver },
 
   TpaLink: {
     enzymeTestkitFactory: require('../src/TPA/Label/Label.driver').default,
