@@ -336,8 +336,7 @@ export default {
   },
   Modal: {
     props: {
-      isOpen: false,
-      contentLabel: 'modal_12345678',
+      isOpen: false
     },
   },
   ContactItemBuilder: { skipSanityTest },
