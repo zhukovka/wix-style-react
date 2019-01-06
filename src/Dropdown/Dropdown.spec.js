@@ -89,6 +89,17 @@ describe('Dropdown', () => {
     expect(driver.isReadOnly()).toBeTruthy();
   });
 
+  it('should be controlled', () => {
+    const { driver, dropdownLayoutDriver } = createDriver(
+      <Dropdown options={getOptions()} selectedId={0} controlled />
+    );
+
+    driver.focus();
+    dropdownLayoutDriver.clickAtOption(1);
+
+    expect(dropdownLayoutDriver.isOptionSelected(0)).toBeTruthy();
+  });
+
   describe('testkit', () => {
     it('should exist', () => {
       const div = document.createElement('div');

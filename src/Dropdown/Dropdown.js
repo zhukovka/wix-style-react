@@ -2,6 +2,7 @@ import classNames from 'classnames';
 import isUndefined from 'lodash/isUndefined';
 import InputWithOptions from '../InputWithOptions/InputWithOptions';
 import styles from './Dropdown.scss';
+import { PropTypes } from 'react';
 
 class Dropdown extends InputWithOptions {
   constructor(props) {
@@ -68,15 +69,17 @@ class Dropdown extends InputWithOptions {
   }
 
   _onSelect(option) {
-    this.setState({
-      value: this.props.valueParser(option),
-      selectedId: option.id,
-    });
+    if (!this.props.controlled) {
+      this.setState({
+        value: this.props.valueParser(option),
+        selectedId: option.id,
+      });
+    }
     super._onSelect(option);
   }
 }
 
-Dropdown.propTypes = InputWithOptions.propTypes;
+Dropdown.propTypes = {...InputWithOptions.propTypes, controlled: PropTypes.bool};
 Dropdown.defaultProps = InputWithOptions.defaultProps;
 Dropdown.displayName = 'Dropdown';
 
