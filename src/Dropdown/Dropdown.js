@@ -79,7 +79,12 @@ class Dropdown extends InputWithOptions {
   }
 }
 
-Dropdown.propTypes = {...InputWithOptions.propTypes, controlled: PropTypes.bool};
+Dropdown.propTypes = {
+  ...InputWithOptions.propTypes,
+  /** When true, changing `selectedId` prop will determine the selected option and its' parsed value */
+  controlled: PropTypes.bool
+};
+
 Dropdown.defaultProps = InputWithOptions.defaultProps;
 Dropdown.displayName = 'Dropdown';
 
