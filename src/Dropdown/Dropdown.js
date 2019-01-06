@@ -2,7 +2,7 @@ import classNames from 'classnames';
 import isUndefined from 'lodash/isUndefined';
 import InputWithOptions from '../InputWithOptions/InputWithOptions';
 import styles from './Dropdown.scss';
-import { PropTypes } from 'react';
+import PropTypes from 'prop-types';
 
 class Dropdown extends InputWithOptions {
   constructor(props) {

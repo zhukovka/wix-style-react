@@ -90,7 +90,7 @@ describe('Dropdown', () => {
   });
 
   it('should be controlled', () => {
-    const { driver, dropdownLayoutDriver } = createDriver(
+    const { driver, dropdownLayoutDriver, inputDriver } = createDriver(
       <Dropdown options={getOptions()} selectedId={0} controlled />
     );
 
@@ -98,6 +98,7 @@ describe('Dropdown', () => {
     dropdownLayoutDriver.clickAtOption(1);
 
     expect(dropdownLayoutDriver.isOptionSelected(0)).toBeTruthy();
+    expect(inputDriver.getValue()).toBe('Option 1');
   });
 
   describe('testkit', () => {
