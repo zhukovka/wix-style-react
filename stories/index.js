@@ -132,7 +132,6 @@ import './DragAndDrop/DragAndDrop.js';
 import './Builders/BadgeSelectItemBuilder';
 import './Builders/ContactItemBuilder';
 
-
 // TPA
 import './TPA/Button';
 import './TPA/FloatingTabs';

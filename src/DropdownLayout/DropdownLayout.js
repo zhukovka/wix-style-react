@@ -5,7 +5,7 @@ import classNames from 'classnames';
 import WixComponent from '../BaseComponents/WixComponent';
 import scrollIntoView from '../utils/scrollIntoView';
 import InfiniteScroll from '../utils/InfiniteScroll';
-import Loader from "../Loader/Loader";
+import Loader from '../Loader/Loader';
 
 const modulu = (n, m) => {
   const remain = n % m;
@@ -229,7 +229,7 @@ class DropdownLayout extends WixComponent {
     return node ? <div className={styles.node}>{node}</div> : null;
   }
 
-  _wrapWithInfiniteScroll = scrollableElement =>
+  _wrapWithInfiniteScroll = scrollableElement => (
     <InfiniteScroll
       useWindow
       scrollElement={this.options}
@@ -237,13 +237,13 @@ class DropdownLayout extends WixComponent {
       hasMore={this.props.hasMore}
       loader={
         <div className={styles.loader}>
-          <Loader dataHook={'dropdownLayout-loader'} size={'small'}/>
+          <Loader dataHook={'dropdownLayout-loader'} size={'small'} />
         </div>
       }
     >
       {scrollableElement}
-    </InfiniteScroll>;
-
+    </InfiniteScroll>
+  );
 
   render() {
     const {
@@ -256,10 +256,12 @@ class DropdownLayout extends WixComponent {
       onMouseLeave,
       fixedHeader,
       withArrow,
-      fixedFooter
+      fixedFooter,
     } = this.props;
 
-    const renderedOptions = options.map((option, idx) => this._renderOption({ option, idx }));
+    const renderedOptions = options.map((option, idx) =>
+      this._renderOption({ option, idx }),
+    );
     const contentContainerClassName = classNames({
       [styles.contentContainer]: true,
       [styles.shown]: visible,
@@ -268,39 +270,42 @@ class DropdownLayout extends WixComponent {
       [styles.withArrow]: withArrow,
       [styles.containerStyles]: !inContainer,
     });
-    return <div
-      tabIndex={tabIndex}
-      className={classNames(
-        styles.wrapper,
-        styles[`theme-${this.props.theme}`],
-      )}
-      onKeyDown={this._onKeyDown}
-      onMouseEnter={onMouseEnter}
-      onMouseLeave={onMouseLeave}
-    >
+    return (
       <div
-        className={contentContainerClassName}
-        style={{
-          maxHeight: this.props.maxHeightPixels + 'px',
-          minWidth: this.props.minWidthPixels
-            ? `${this.props.minWidthPixels}px`
-            : undefined,
-        }}
+        tabIndex={tabIndex}
+        className={classNames(
+          styles.wrapper,
+          styles[`theme-${this.props.theme}`],
+        )}
+        onKeyDown={this._onKeyDown}
+        onMouseEnter={onMouseEnter}
+        onMouseLeave={onMouseLeave}
       >
-        {this._renderNode(fixedHeader)}
         <div
-          className={styles.options}
-          style={{ maxHeight: this.props.maxHeightPixels - 35 + 'px' }}
-          ref={_options => (this.options = _options)}
-          data-hook="dropdown-layout-options"
+          className={contentContainerClassName}
+          style={{
+            maxHeight: this.props.maxHeightPixels + 'px',
+            minWidth: this.props.minWidthPixels
+              ? `${this.props.minWidthPixels}px`
+              : undefined,
+          }}
         >
-          {this.props.infiniteScroll ? this._wrapWithInfiniteScroll(renderedOptions) : renderedOptions}
+          {this._renderNode(fixedHeader)}
+          <div
+            className={styles.options}
+            style={{ maxHeight: this.props.maxHeightPixels - 35 + 'px' }}
+            ref={_options => (this.options = _options)}
+            data-hook="dropdown-layout-options"
+          >
+            {this.props.infiniteScroll
+              ? this._wrapWithInfiniteScroll(renderedOptions)
+              : renderedOptions}
+          </div>
+          {this._renderNode(fixedFooter)}
         </div>
-        {this._renderNode(fixedFooter)}
+        {this._renderTopArrow()}
       </div>
-      {this._renderTopArrow()}
-    </div>
-      ;
+    );
   }
 
   _renderOption({ option, idx }) {
@@ -330,19 +335,19 @@ class DropdownLayout extends WixComponent {
   }
 
   _renderDivider(idx, dataHook) {
-    return <div key={idx} className={styles.divider} data-hook={dataHook}/>;
+    return <div key={idx} className={styles.divider} data-hook={dataHook} />;
   }
 
   _renderItem({
-                option,
-                idx,
-                selected,
-                hovered,
-                disabled,
-                title,
-                overrideStyle,
-                dataHook,
-              }) {
+    option,
+    idx,
+    selected,
+    hovered,
+    disabled,
+    title,
+    overrideStyle,
+    dataHook,
+  }) {
     const { itemHeight, selectedHighlight } = this.props;
 
     const optionClassName = classNames({
@@ -367,7 +372,9 @@ class DropdownLayout extends WixComponent {
         onMouseLeave={this._onMouseLeave}
         data-hook={dataHook}
       >
-        {typeof option.value === 'function' ? option.value({ selected }) : option.value}
+        {typeof option.value === 'function'
+          ? option.value({ selected })
+          : option.value}
       </div>
     );
   }
@@ -379,7 +386,7 @@ class DropdownLayout extends WixComponent {
       [styles.up]: dropDirectionUp,
       [styles.down]: !dropDirectionUp,
     });
-    return withArrow && visible ? <div className={arrowClassName}/> : null;
+    return withArrow && visible ? <div className={arrowClassName} /> : null;
   }
 
   componentWillReceiveProps(nextProps) {
@@ -402,7 +409,7 @@ class DropdownLayout extends WixComponent {
       this.state.hovered !== NOT_HOVERED_INDEX &&
       (!nextProps.options[this.state.hovered] ||
         this.props.options[this.state.hovered].id !==
-        nextProps.options[this.state.hovered].id)
+          nextProps.options[this.state.hovered].id)
     ) {
       this.setState({
         hovered: this.findIndex(
@@ -435,8 +442,11 @@ DropdownLayout.propTypes = {
       PropTypes.shape({
         id: PropTypes.oneOfType([PropTypes.string, PropTypes.number])
           .isRequired,
-        value: PropTypes.oneOfType([PropTypes.node, PropTypes.string, PropTypes.func])
-          .isRequired,
+        value: PropTypes.oneOfType([
+          PropTypes.node,
+          PropTypes.string,
+          PropTypes.func,
+        ]).isRequired,
         disabled: PropTypes.bool,
         overrideStyle: PropTypes.bool,
       }),

@@ -10,17 +10,18 @@ import ExampleRaw from '!raw-loader!./Example';
 
 import Readme from './README.md';
 
-storiesOf('11. Pickers and Selectors', module).add('11.6 ItemPickerSelector',
+storiesOf('11. Pickers and Selectors', module).add(
+  '11.6 ItemPickerSelector',
   () => (
     <div>
-      <Markdown source={Readme}/>
+      <Markdown source={Readme} />
       <div>
         <CodeExample
           title="Item picker selector as contact picker example"
-          code={ExampleRaw}>
-          <Example/>
+          code={ExampleRaw}
+        >
+          <Example />
         </CodeExample>
-
       </div>
     </div>
   ),

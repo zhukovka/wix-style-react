@@ -2,8 +2,12 @@ import eyes from 'eyes.it';
 import { sleep } from 'wix-ui-test-utils/react-helpers';
 
 import { dropdownLayoutTestkitFactory } from '../../testkit/protractor';
-import { createStoryUrl, scrollToElement, waitForVisibilityOf, } from 'wix-ui-test-utils/protractor';
-import { browser } from "protractor";
+import {
+  createStoryUrl,
+  scrollToElement,
+  waitForVisibilityOf,
+} from 'wix-ui-test-utils/protractor';
+import { browser } from 'protractor';
 
 async function waitForFetching() {
   await sleep(700);

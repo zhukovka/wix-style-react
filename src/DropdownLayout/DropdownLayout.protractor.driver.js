@@ -1,8 +1,7 @@
 const driverFactory = component => {
   const getDropdown = () =>
     component.$(`[data-hook="dropdown-layout-options"]`);
-  const getLoader = () =>
-    component.$('[data-hook="dropdownLayout-loader"]');
+  const getLoader = () => component.$('[data-hook="dropdownLayout-loader"]');
   const getDropdownItemElement = index =>
     component.$$(`[data-hook*="dropdown-item"]`).get(index);
   const scrollIntoView = el => {
