@@ -45,7 +45,7 @@ $radioButtonDisabledShadow: $B50 0 0 0 1px;
 .radio-wrapper > label {
   display: flex;
   flex-direction: row;
-  cursor: pointer;
+  cursor: default;
 }
 
 .radio-wrapper.disabled > label {
@@ -91,6 +91,7 @@ $radioButtonDisabledShadow: $B50 0 0 0 1px;
   border: 1px solid $B10;
   background-color: $D80;
   border-radius: 50%;
+  cursor: pointer;
 }
 
 .disabled {
@@ -133,7 +134,6 @@ button.radioButton {
   border-radius: 5px;
   border: none;
   padding: 0;
-  cursor: pointer;
   line-height: 0;
   background: $D80;
   outline: 0;
