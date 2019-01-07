@@ -147,6 +147,7 @@ import './PageHeader/PageHeaderTestStories.js'; // Tests/2. Layout/2.5 + PageHea
 import './Calendar/CalendarTestStory'; // Tests/3. Inputs/3.13 Calendar
 import './PopoverMenu/PopoverMenuRegressionTest.js'; // Tests/7.3. Popover Menu/
 import './Popover/testStory';
+import './TableToolbar/ToolbarTestStory'; // Tests/10. Table
 import './Avatar/AvatarTestStory'; // Tests/12. Other
 
 // The generated test component
