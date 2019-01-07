@@ -89,16 +89,33 @@ describe('Dropdown', () => {
     expect(driver.isReadOnly()).toBeTruthy();
   });
 
-  it('should be controlled', () => {
-    const { driver, dropdownLayoutDriver, inputDriver } = createDriver(
-      <Dropdown options={getOptions()} selectedId={0} controlled />,
-    );
+  describe('Controlled mode', () => {
+    it('should keep current selection and value when option clicked', () => {
+      const { driver, dropdownLayoutDriver, inputDriver } = createDriver(
+        <Dropdown options={getOptions()} selectedId={0} controlled />,
+      );
 
-    driver.focus();
-    dropdownLayoutDriver.clickAtOption(1);
+      driver.focus();
+      dropdownLayoutDriver.clickAtOption(1);
 
-    expect(dropdownLayoutDriver.isOptionSelected(0)).toBeTruthy();
-    expect(inputDriver.getValue()).toBe('Option 1');
+      expect(dropdownLayoutDriver.isOptionSelected(0)).toBeTruthy();
+      expect(inputDriver.getValue()).toBe('Option 1');
+    });
+
+    it('should update selection and value when props change', () => {
+      const { driver: _driver, rerender } = render(
+        <Dropdown options={getOptions()} selectedId={0} controlled />,
+      );
+      const { dropdownLayoutDriver, inputDriver } = _driver;
+
+      expect(dropdownLayoutDriver.isOptionSelected(0)).toBeTruthy();
+      expect(inputDriver.getValue()).toBe('Option 1');
+
+      rerender(<Dropdown options={getOptions()} selectedId={1} controlled />);
+
+      expect(dropdownLayoutDriver.isOptionSelected(1)).toBeTruthy();
+      expect(inputDriver.getValue()).toBe('Option 2');
+    });
   });
 
   describe('testkit', () => {
