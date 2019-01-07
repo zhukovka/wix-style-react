@@ -91,7 +91,7 @@ describe('Dropdown', () => {
 
   it('should be controlled', () => {
     const { driver, dropdownLayoutDriver, inputDriver } = createDriver(
-      <Dropdown options={getOptions()} selectedId={0} controlled />
+      <Dropdown options={getOptions()} selectedId={0} controlled />,
     );
 
     driver.focus();
