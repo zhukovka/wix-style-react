@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { ButtonNext } from 'wix-ui-core/button-next';
 import cx from 'classnames';
 import { textButton } from 'wix-ui-core/themes/backoffice';
-import { string, node, oneOf, element, bool } from 'prop-types';
+import { string, node, oneOf, element, bool, func } from 'prop-types';
 
 class TextButton extends Component {
   static displayName = 'TextButton';
@@ -18,6 +18,8 @@ class TextButton extends Component {
     weight: oneOf(['thin', 'normal']),
     /** Size of TextButton content */
     size: oneOf(['small', 'medium']),
+    /** Click event handler  */
+    onClick: func,
     /** Element based icon (svg, image etc.) */
     suffixIcon: element,
     /** Element based icon (svg, image etc.) */

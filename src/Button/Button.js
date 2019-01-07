@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { ButtonNext } from 'wix-ui-core/button-next';
 import cx from 'classnames';
 import { button } from 'wix-ui-core/themes/backoffice';
-import { string, node, oneOf, element, bool } from 'prop-types';
+import { string, node, oneOf, element, bool, func } from 'prop-types';
 
 class Button extends Component {
   static displayName = 'Button';
@@ -24,6 +24,8 @@ class Button extends Component {
     priority: oneOf(['primary', 'secondary']),
     /** Size of Button content */
     size: oneOf(['tiny', 'small', 'medium', 'large']),
+    /** Click event handler  */
+    onClick: func,
     /** Sets button width to 100% */
     fullWidth: bool,
     /** Element based icon (svg, image etc.) */
