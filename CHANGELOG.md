@@ -21,7 +21,7 @@ Types of changes:
 
 ### Changed
 - `<Button />`, `<TextButton/>`, `<IconButton/>`, `<CloseButton/>` - add `onClick` callback [#2718](https://github.com/wix/wix-style-react/pull/2718)
-
+- `<SortableList />` - fix key-index dependency and improve performance [#2720](https://github.com/wix/wix-style-react/pull/2720)
 
 ### Fixed
 - `<Tooltip/>` fix reposition loop and avoid hangs [#2596](https://github.com/wix/wix-style-react/pull/2596)
