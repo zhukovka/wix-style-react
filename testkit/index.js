@@ -137,3 +137,12 @@ export const tpaInputTestkitFactory = testkitFactoryCreator(load('../src/TPA/Inp
 export const messageBoxMarketerialLayoutTestkitFactory = testkitFactoryCreator(load('../src/MessageBox/MessageBoxMarketerialLayout.driver'));
 export const messageBoxFunctionalLayoutTestkitFactory = testkitFactoryCreator(load('../src/MessageBox/MessageBoxFunctionalLayout.driver'));
 export const textLinkLayoutTestkitFactory = testkitFactoryCreator(load('../src/BaseComponents/TextLinkLayout/TextLinkLayout.driver'));
+export const generatedTestComponentTestkitFactory = uniTestkitFactoryCreator(
+  generatedTestComponentDriverFactory,
+);
+
+import { selectableListDriverFactory } from '../src/SelectableList/SelectableList.driver';
+
+export const selectableListTestkitFactory = uniTestkitFactoryCreator(
+  selectableListDriverFactory,
+);
