@@ -198,9 +198,9 @@ describe('MultiSelect', () => {
       expect(driver.getTagLabelAt(1)).toBe('Alaska');
     });
 
-    describe('Type & Submit', () => {
+    describe('Submit (Add Tag)', () => {
       describe('input is empty', () => {
-        it('should NOT call onTagsAdded when Enter is pressed', () => {
+        it('should NOT add tag when Enter is pressed', () => {
           const onTagsAdded = jest.fn();
           const { driver } = createDriver(
             <ControlledMultiSelect
@@ -220,7 +220,7 @@ describe('MultiSelect', () => {
         function testCase({
           props,
           keyPressed,
-          enteredText = 'custom value',
+          enteredText,
           Component = NewMultiSelect,
           expectOnTagsAddedToBeCalled,
         }) {
@@ -247,16 +247,17 @@ describe('MultiSelect', () => {
         }
 
         describe('Controlled', () => {
-          it('should call onTagsAdded when Enter is pressed', () => {
+          it('should add tag when text entered and Enter is pressed', () => {
             testCase({
-              props: { options },
-              keyPressed: 'Enter',
               Component: ControlledMultiSelect,
+              props: { options },
+              enteredText: 'custom value',
+              keyPressed: 'Enter',
               expectOnTagsAddedToBeCalled: true,
             });
           });
 
-          it('should call onTagsAdded when Enter pressed given initial value', () => {
+          it('should add tag when Enter pressed given initial value', () => {
             const onSelect = jest.fn();
             const onTagsAdded = jest.fn();
             const { driver } = createDriver(
@@ -275,7 +276,7 @@ describe('MultiSelect', () => {
             expect(onTagsAdded).toBeCalledWith(['foo']);
           });
 
-          it('should call onTagsAdded when Enter pressed given value updated', () => {
+          it('should add tag when Enter pressed given value updated', () => {
             const onSelect = jest.fn();
             const onTagsAdded = jest.fn();
             const { driver: _driver, rerender } = render(
@@ -303,31 +304,34 @@ describe('MultiSelect', () => {
         });
 
         describe('Uncontrolled', () => {
-          it('should call onTagsAdded when Enter is pressed', () => {
+          it('should add tag when text entered and Enter is pressed', () => {
             testCase({
               props: { options },
+              enteredText: 'custom value',
               keyPressed: 'Enter',
               expectOnTagsAddedToBeCalled: true,
             });
           });
 
-          it('should call onTagsAdded when delimiter is pressed', () => {
+          it('should add tag when text entered and delimiter is pressed', () => {
             testCase({
               props: { options },
+              enteredText: 'custom value',
               keyPressed: ',',
               expectOnTagsAddedToBeCalled: true,
             });
           });
 
-          it('should call onTagsAdded when delimiter is pressed given no options', () => {
+          it('should add tag when text entered and delimiter is pressed given no options', () => {
             testCase({
               props: {},
+              enteredText: 'custom value',
               keyPressed: ',',
               expectOnTagsAddedToBeCalled: true,
             });
           });
 
-          it('should NOT call onTagsAdded when Enter pressed given enteredText is spaces only', () => {
+          it('should NOT add tag when spaces-only text is entered and Enter pressed', () => {
             testCase({
               props: { options },
               enteredText: '   ',
@@ -336,7 +340,7 @@ describe('MultiSelect', () => {
             });
           });
 
-          it('should NOT call onTagsAdded when Enter pressed given enteredText is delimited spaces only', () => {
+          it('should NOT add tag when delimited-spaces text is entered and Enter pressed', () => {
             testCase({
               props: { options },
               enteredText: ' ,  ',
