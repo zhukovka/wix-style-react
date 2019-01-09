@@ -7,7 +7,7 @@ import { selectableListPrivateDriverFactory } from './SelectableList.driver.priv
 import Checkbox from '../Checkbox';
 import { checkboxTestkitFactory } from '../../testkit';
 
-describe.only('SelectableList', () => {
+describe('SelectableList', () => {
   const createDriver = createUniDriverFactory(
     selectableListPrivateDriverFactory,
   );
