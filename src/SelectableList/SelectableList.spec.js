@@ -29,7 +29,7 @@ describe('SelectableList', () => {
     const mockOnSelect = jest.fn();
 
     const driver = createDriver(
-      <SelectableList onSelect={mockOnSelect} selectTrigger="checked">
+      <SelectableList onSelect={mockOnSelect} trigger="checked">
         <Checkbox />
         <Checkbox />
         <Checkbox dataHook={dataHook} />
@@ -60,7 +60,7 @@ describe('SelectableList', () => {
       <SelectableList
         onSelect={mockOnSelect}
         onDeselect={mockOnDeselect}
-        selectTrigger="checked"
+        trigger="checked"
       >
         <Checkbox />
         <Checkbox />
@@ -84,18 +84,14 @@ describe('SelectableList', () => {
     expect(mockonDeselectCallback.props.dataHook).toBe(dataHook);
   });
 
-  it('`threshold` prop should limit amount of clicked items', async () => {
+  it('`limit` prop should limit amount of clicked items', async () => {
     const dataHook1 = 'clicked-checkbox1';
     const dataHook2 = 'clicked-checkbox2';
 
     const mockOnSelect = jest.fn();
 
     const driver = createDriver(
-      <SelectableList
-        threshold={1}
-        onSelect={mockOnSelect}
-        selectTrigger="checked"
-      >
+      <SelectableList limit={1} onSelect={mockOnSelect} trigger="checked">
         <Checkbox />
         <Checkbox dataHook={dataHook1} />
         <Checkbox dataHook={dataHook2} />
