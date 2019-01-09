@@ -101,14 +101,17 @@ describe('FormField', () => {
       expect(await driver.isInfoIconVisible()).toBe(true);
     });
 
-    eyes.it('should not stretch the children when stretchContent prop is false', async () => {
-      await autoExampleDriver.setProps({ stretchContent: false });
-      await waitForVisibilityOf(
-        driver.element(),
-        'Cannot find FormField component',
-      );
-      expect(await driver.isContentStretched()).toBeFalsy();
-    });
+    eyes.it(
+      'should not stretch the children when stretchContent prop is false',
+      async () => {
+        await autoExampleDriver.setProps({ stretchContent: false });
+        await waitForVisibilityOf(
+          driver.element(),
+          'Cannot find FormField component',
+        );
+        expect(await driver.isContentStretched()).toBeFalsy();
+      },
+    );
   });
 
   eyes.it('should render length count', async () => {

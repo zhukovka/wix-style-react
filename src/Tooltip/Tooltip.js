@@ -445,11 +445,7 @@ class Tooltip extends WixComponent {
           }
           ++iterations;
           pixelChange = Math.abs(fw - sw);
-        } while (
-          !props.appendToParent &&
-          pixelChange > 0.1 &&
-          iterations < 10
-        );
+        } while (!props.appendToParent && pixelChange > 0.1 && iterations < 10);
       });
     });
   }
