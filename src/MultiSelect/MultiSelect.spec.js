@@ -90,85 +90,6 @@ describe('MultiSelect', () => {
     expect(dropdownLayoutDriver.optionsLength()).toBe(options.length);
   });
 
-  it('should not lose Focus or close the list on selection with a mouse click', () => {
-    const { driver, inputDriver, dropdownLayoutDriver } = createDriver(
-      <NewMultiSelect options={options} />,
-    );
-    driver.pressKey('ArrowDown');
-    dropdownLayoutDriver.clickAtOption(0);
-    expect(dropdownLayoutDriver.isShown()).toBeTruthy();
-    expect(inputDriver.isFocus());
-  });
-
-  it('should not lose Focus or close the list on selection with enter press', () => {
-    const { driver, inputDriver, dropdownLayoutDriver } = createDriver(
-      <NewMultiSelect options={options} />,
-    );
-    driver.focus();
-    driver.pressKey('ArrowDown');
-    driver.pressKey('Enter');
-    expect(dropdownLayoutDriver.isShown()).toBeTruthy();
-    expect(inputDriver.isFocus()).toBeTruthy();
-  });
-
-  it('should not lose Focus or close the list on selection with tab press', () => {
-    const onSelect = jest.fn();
-    const { driver, inputDriver, dropdownLayoutDriver } = createDriver(
-      <NewMultiSelect options={options} onSelect={onSelect} />,
-    );
-    driver.pressKey('ArrowDown');
-    driver.pressKey('ArrowDown');
-    driver.pressKey('Tab');
-    expect(onSelect).toHaveBeenCalledTimes(1);
-    expect(dropdownLayoutDriver.isShown()).toBeTruthy();
-    expect(inputDriver.isFocus()).toBeTruthy();
-  });
-
-  // Disabled since in order to support this in new API, we better add ability for Dropdownlayout to accept custom "select" keys.
-  // We can also consider removing this feature (Ben?)
-  xdescribe('Select with delimiter', () => {
-    it('should select option when comma press', () => {
-      const onSelect = jest.fn();
-      const onChange = jest.fn();
-      const { driver, inputDriver, dropdownLayoutDriver } = createDriver(
-        <NewMultiSelect
-          value={options[0].value}
-          options={options}
-          delimiters={[',']}
-          onSelect={onSelect}
-          onChange={onChange}
-        />,
-      );
-      driver.pressKey('ArrowDown');
-      inputDriver.trigger('keyDown', { key: ',' });
-      expect(onSelect).toHaveBeenCalledTimes(1);
-      expect(onChange).toBeCalledWith({ target: { value: '' } });
-      expect(dropdownLayoutDriver.isShown()).toBeTruthy();
-      expect(inputDriver.isFocus()).toBeTruthy();
-    });
-
-    it('should select option when custom delimiters pressed', () => {
-      const onSelect = jest.fn();
-      const onChange = jest.fn();
-      const { driver, inputDriver, dropdownLayoutDriver } = createDriver(
-        <NewMultiSelect
-          value={options[0].value}
-          options={options}
-          delimiters={[';']}
-          onSelect={onSelect}
-          onChange={onChange}
-        />,
-      );
-      driver.pressKey('ArrowDown');
-      inputDriver.trigger('keyDown', { key: ';' });
-      expect(onSelect).toHaveBeenCalledTimes(1);
-      expect(onSelect).toBeCalledWith(options[0]);
-      expect(onChange).toBeCalledWith({ target: { value: '' } });
-      expect(dropdownLayoutDriver.isShown()).toBeTruthy();
-      expect(inputDriver.isFocus()).toBeTruthy();
-    });
-  });
-
   describe('click-outside', () => {
     it('should clear input when clicked-out-side given input is non-empty', () => {
       const onChange = jest.fn();
@@ -200,79 +121,83 @@ describe('MultiSelect', () => {
     });
   });
 
-  it('should display a placeholder if there are no tags', () => {
-    const placeholder = 'myPlaceholder';
-    const { inputDriver } = createDriver(
-      <NewMultiSelect options={options} placeholder={placeholder} />,
-    );
-    expect(inputDriver.getPlaceholder()).toBe(placeholder);
-  });
-
-  it('should render readonly input on select mode', () => {
-    const { inputDriver } = createDriver(
-      <NewMultiSelect options={options} mode="select" />,
-    );
-    expect(inputDriver.getReadOnly()).toBeTruthy();
-  });
-
-  it('should render arrow on select mode', () => {
-    const { inputDriver } = createDriver(
-      <NewMultiSelect options={options} mode="select" />,
-    );
-    expect(inputDriver.hasMenuArrow()).toBeTruthy();
-  });
-
-  it('should render input wrapper with error', () => {
-    const { driver } = createDriver(<NewMultiSelect error options={options} />);
-    expect(driver.inputWrapperHasError()).toBeTruthy();
-  });
-
-  it('should not display a placeholder if there are any tags', () => {
-    const tags = [{ id: 'Alabama', label: 'Alabama' }];
-    const placeholder = 'myPlaceholder';
-    const { inputDriver } = createDriver(
-      <NewMultiSelect
-        options={options}
-        tags={tags}
-        placeholder={placeholder}
-      />,
-    );
-    expect(inputDriver.getPlaceholder()).toBe('');
-  });
-
-  it('should focus the input when clicking on the input wrapper', () => {
-    const { driver, inputDriver } = createDriver(
-      <NewMultiSelect options={options} />,
-    );
-    expect(inputDriver.isFocus()).toBeFalsy();
-    driver.clickOnInputWrapper();
-    expect(inputDriver.isFocus()).toBeTruthy();
-  });
-
-  it('should check that wrapper has focus when the input element does', () => {
-    const { driver, inputDriver } = createDriver(
-      <NewMultiSelect options={options} />,
-    );
-    driver.clickOnInputWrapper();
-    expect(inputDriver.isFocus()).toBeTruthy();
-    expect(driver.inputWrapperHasFocus()).toBeTruthy();
-  });
-
-  it('should contain specific tags', () => {
-    const tags = [
-      { id: 'Alabama', label: 'Alabama' },
-      { id: 'Alaska', label: 'Alaska' },
-    ];
-
-    const { driver } = createDriver(
-      <NewMultiSelect options={options} tags={tags} />,
-    );
-    expect(driver.numberOfTags()).toBe(tags.length);
-    expect(driver.getTagLabelAt(0)).toBe('Alabama');
-    expect(driver.getTagLabelAt(1)).toBe('Alaska');
-  });
-
   describe('Tag Input', () => {
+    it('should render readonly input on select mode', () => {
+      const { inputDriver } = createDriver(
+        <NewMultiSelect options={options} mode="select" />,
+      );
+      expect(inputDriver.getReadOnly()).toBeTruthy();
+    });
+
+    it('should render arrow on select mode', () => {
+      const { inputDriver } = createDriver(
+        <NewMultiSelect options={options} mode="select" />,
+      );
+      expect(inputDriver.hasMenuArrow()).toBeTruthy();
+    });
+
+    it('should render input wrapper with error', () => {
+      const { driver } = createDriver(
+        <NewMultiSelect error options={options} />,
+      );
+      expect(driver.inputWrapperHasError()).toBeTruthy();
+    });
+
+    describe('Placeholder', () => {
+      it('should display a placeholder if there are no tags', () => {
+        const placeholder = 'myPlaceholder';
+        const { inputDriver } = createDriver(
+          <NewMultiSelect options={options} placeholder={placeholder} />,
+        );
+        expect(inputDriver.getPlaceholder()).toBe(placeholder);
+      });
+
+      it('should not display a placeholder if there are any tags', () => {
+        const tags = [{ id: 'Alabama', label: 'Alabama' }];
+        const placeholder = 'myPlaceholder';
+        const { inputDriver } = createDriver(
+          <NewMultiSelect
+            options={options}
+            tags={tags}
+            placeholder={placeholder}
+          />,
+        );
+        expect(inputDriver.getPlaceholder()).toBe('');
+      });
+    });
+
+    it('should focus the input when clicking on the input wrapper', () => {
+      const { driver, inputDriver } = createDriver(
+        <NewMultiSelect options={options} />,
+      );
+      expect(inputDriver.isFocus()).toBeFalsy();
+      driver.clickOnInputWrapper();
+      expect(inputDriver.isFocus()).toBeTruthy();
+    });
+
+    it('should check that wrapper has focus when the input element does', () => {
+      const { driver, inputDriver } = createDriver(
+        <NewMultiSelect options={options} />,
+      );
+      driver.clickOnInputWrapper();
+      expect(inputDriver.isFocus()).toBeTruthy();
+      expect(driver.inputWrapperHasFocus()).toBeTruthy();
+    });
+
+    it('should contain specific tags', () => {
+      const tags = [
+        { id: 'Alabama', label: 'Alabama' },
+        { id: 'Alaska', label: 'Alaska' },
+      ];
+
+      const { driver } = createDriver(
+        <NewMultiSelect options={options} tags={tags} />,
+      );
+      expect(driver.numberOfTags()).toBe(tags.length);
+      expect(driver.getTagLabelAt(0)).toBe('Alabama');
+      expect(driver.getTagLabelAt(1)).toBe('Alaska');
+    });
+
     describe('Type & Submit', () => {
       describe('input is empty', () => {
         it('should NOT call onTagsAdded when Enter is pressed', () => {
@@ -481,10 +406,24 @@ describe('MultiSelect', () => {
         });
       });
     });
+
+    it('should call onRemoveTag when removing a tag', () => {
+      const tagId = 'SweetHome';
+      const tags = [{ id: tagId, label: 'Alabama' }];
+      const onRemoveTag = jest.fn();
+      const { driver } = createDriver(
+        <NewMultiSelect autoFocus tags={tags} onRemoveTag={onRemoveTag} />,
+      );
+
+      const tagDriver = driver.getTagDriverByTagId(tagId);
+      tagDriver.removeTag();
+
+      expect(onRemoveTag).toHaveBeenCalledWith(tagId);
+    });
   });
 
-  describe('onSelect', () => {
-    it('should be called when option clicked', () => {
+  describe('Select Option', () => {
+    it('should call onSelect when option clicked', () => {
       const onSelect = jest.fn();
 
       const { driver, dropdownLayoutDriver } = createDriver(
@@ -496,34 +435,24 @@ describe('MultiSelect', () => {
       expect(onSelect).toHaveBeenCalledTimes(1);
     });
 
-    it('should be called with selected option given highlight enabled', () => {
+    it('should call onSelect with selected option given highlight enabled', () => {
       // This is a regression test for old bug , when highlight enabled the value would be a <Highlight> element
       const onSelect = jest.fn();
-      const option1 = {
-        id: '1',
-        value: 'alabama',
-        arbitraryPropName: { code: 'ALB' },
-      };
       const { driver, dropdownLayoutDriver } = createDriver(
-        <NewMultiSelect options={[option1]} onSelect={onSelect} />,
+        <NewMultiSelect options={options} onSelect={onSelect} />,
       );
       driver.pressKey('ArrowDown');
       dropdownLayoutDriver.clickAtOption(0);
 
       expect(onSelect).toHaveBeenCalledTimes(1);
-      expect(onSelect).toBeCalledWith(option1);
+      expect(onSelect).toBeCalledWith(options[0]);
     });
 
-    it('should be called with selected option given highlight disabled', () => {
+    it('should call onSelect with selected option given highlight disabled', () => {
       const onSelect = jest.fn();
-      const option1 = {
-        id: '1',
-        value: 'alabama',
-        arbitraryPropName: { code: 'ALB' },
-      };
       const { driver, dropdownLayoutDriver } = createDriver(
         <NewMultiSelect
-          options={[option1]}
+          options={options}
           onSelect={onSelect}
           highlight={false}
         />,
@@ -532,10 +461,10 @@ describe('MultiSelect', () => {
       dropdownLayoutDriver.clickAtOption(0);
 
       expect(onSelect).toHaveBeenCalledTimes(1);
-      expect(onSelect).toBeCalledWith(option1);
+      expect(onSelect).toBeCalledWith(options[0]);
     });
 
-    it('should be called when option is selected by keyboard', () => {
+    it('should call onSelect with selected option when selected by keyboard', () => {
       const onSelect = jest.fn();
 
       const { driver } = createDriver(
@@ -546,7 +475,88 @@ describe('MultiSelect', () => {
       driver.pressKey('Enter');
 
       expect(onSelect).toHaveBeenCalledTimes(1);
-      // TODO: add expect(onSelect).toBeCalledWith(...)
+      expect(onSelect).toBeCalledWith(options[0]);
+    });
+
+    // Disabled since in order to support this in new API, we better add ability for Dropdownlayout to accept custom "select" keys.
+    // We can also consider removing this feature (Ben?)
+    xdescribe('Select with delimiter', () => {
+      it('should select option when comma press', () => {
+        const onSelect = jest.fn();
+        const onChange = jest.fn();
+        const { driver, inputDriver, dropdownLayoutDriver } = createDriver(
+          <NewMultiSelect
+            value={options[0].value}
+            options={options}
+            delimiters={[',']}
+            onSelect={onSelect}
+            onChange={onChange}
+          />,
+        );
+        driver.pressKey('ArrowDown');
+        inputDriver.trigger('keyDown', { key: ',' });
+        expect(onSelect).toHaveBeenCalledTimes(1);
+        expect(onChange).toBeCalledWith({ target: { value: '' } });
+        expect(dropdownLayoutDriver.isShown()).toBeTruthy();
+        expect(inputDriver.isFocus()).toBeTruthy();
+      });
+
+      it('should select option when custom delimiters pressed', () => {
+        const onSelect = jest.fn();
+        const onChange = jest.fn();
+        const { driver, inputDriver, dropdownLayoutDriver } = createDriver(
+          <NewMultiSelect
+            value={options[0].value}
+            options={options}
+            delimiters={[';']}
+            onSelect={onSelect}
+            onChange={onChange}
+          />,
+        );
+        driver.pressKey('ArrowDown');
+        inputDriver.trigger('keyDown', { key: ';' });
+        expect(onSelect).toHaveBeenCalledTimes(1);
+        expect(onSelect).toBeCalledWith(options[0]);
+        expect(onChange).toBeCalledWith({ target: { value: '' } });
+        expect(dropdownLayoutDriver.isShown()).toBeTruthy();
+        expect(inputDriver.isFocus()).toBeTruthy();
+      });
+    });
+
+    describe('Keep Options Open', () => {
+      it('should not lose Focus or close the options when options selected by mouse click', () => {
+        const { driver, inputDriver, dropdownLayoutDriver } = createDriver(
+          <NewMultiSelect options={options} />,
+        );
+        driver.pressKey('ArrowDown');
+        dropdownLayoutDriver.clickAtOption(0);
+        expect(dropdownLayoutDriver.isShown()).toBeTruthy();
+        expect(inputDriver.isFocus());
+      });
+
+      it('should not lose Focus or close the options when options selected by pressing Enter', () => {
+        const { driver, inputDriver, dropdownLayoutDriver } = createDriver(
+          <NewMultiSelect options={options} />,
+        );
+        driver.focus();
+        driver.pressKey('ArrowDown');
+        driver.pressKey('Enter');
+        expect(dropdownLayoutDriver.isShown()).toBeTruthy();
+        expect(inputDriver.isFocus()).toBeTruthy();
+      });
+
+      it('should not lose Focus or close the options when options selected by pressing Tab', () => {
+        const onSelect = jest.fn();
+        const { driver, inputDriver, dropdownLayoutDriver } = createDriver(
+          <NewMultiSelect options={options} onSelect={onSelect} />,
+        );
+        driver.pressKey('ArrowDown');
+        driver.pressKey('ArrowDown');
+        driver.pressKey('Tab');
+        expect(onSelect).toHaveBeenCalledTimes(1);
+        expect(dropdownLayoutDriver.isShown()).toBeTruthy();
+        expect(inputDriver.isFocus()).toBeTruthy();
+      });
     });
   });
 
@@ -563,73 +573,63 @@ describe('MultiSelect', () => {
     });
   });
 
-  it('should call onRemoveTag when removing tags', () => {
-    const tagId = 'SweetHome';
-    const tags = [{ id: tagId, label: 'Alabama' }];
-    const onRemoveTag = jest.fn();
-    const { driver } = createDriver(
-      <NewMultiSelect autoFocus tags={tags} onRemoveTag={onRemoveTag} />,
-    );
+  describe('maxHeight', () => {
+    it('should set maxHeight to initial when no height limit introduced', () => {
+      const { driver } = createDriver(<NewMultiSelect options={options} />);
 
-    const tagDriver = driver.getTagDriverByTagId(tagId);
-    tagDriver.removeTag();
+      expect(driver.getMaxHeight()).toBe('initial');
+    });
 
-    expect(onRemoveTag).toHaveBeenCalledWith(tagId);
-  });
+    it('should set maxHeight when maxNumRows defined', () => {
+      const { driver } = createDriver(
+        <NewMultiSelect maxNumRows={2} options={options} />,
+      );
 
-  it('should set maxHeight to initial when no height limit introduced', () => {
-    const { driver } = createDriver(<NewMultiSelect options={options} />);
+      expect(driver.getMaxHeight()).toBe('70px');
+    });
 
-    expect(driver.getMaxHeight()).toBe('initial');
-  });
+    it('should set maxHeight when maxNumRows defined (large tags)', () => {
+      const _options = [
+        { value: 'Alaska', id: 'Alaska', label: 'Alaska', size: 'large' },
+      ];
 
-  it('should set maxHeight when maxNumRows defined', () => {
-    const { driver } = createDriver(
-      <NewMultiSelect maxNumRows={2} options={options} />,
-    );
+      const { driver } = createDriver(
+        <NewMultiSelect maxNumRows={2} tags={_options} options={_options} />,
+      );
 
-    expect(driver.getMaxHeight()).toBe('70px');
-  });
-
-  it('should set maxHeight when maxNumRows defined (large tags)', () => {
-    const _options = [
-      { value: 'Alaska', id: 'Alaska', label: 'Alaska', size: 'large' },
-    ];
-
-    const { driver } = createDriver(
-      <NewMultiSelect maxNumRows={2} tags={_options} options={_options} />,
-    );
-
-    expect(driver.getMaxHeight()).toBe('94px');
+      expect(driver.getMaxHeight()).toBe('94px');
+    });
   });
 
   // TODO: dnd testkit is missing - once it's available, this test has to be completed and run
-  xit('should allow reordering the tags', () => {
-    const tags = [
-      { label: 'Alabama', id: 'Alabama' },
-      { label: 'California2', id: 'California2' },
-      { label: 'California3', id: 'California3' },
-      { label: 'California4', id: 'California4' },
-    ];
-    const onReorder = jest.fn();
-    const {
-      driver: { getTagLabelAt, getTagDriverByTagId },
-    } = createDriver(
-      <NewMultiSelect
-        draggable
-        options={options}
-        tags={tags}
-        onReorder={onReorder}
-        autoFocus
-      />,
-    );
-    getTagDriverByTagId('Alabama').dragTo(
-      getTagDriverByTagId('California3').element,
-    );
-    expect(onReorder).toBeCalledWith({ removedIndex: 0, addedIndex: 2 });
+  xdescribe('Drag & Drop', () => {
+    it('should allow reordering the tags', () => {
+      const tags = [
+        { label: 'Alabama', id: 'Alabama' },
+        { label: 'California2', id: 'California2' },
+        { label: 'California3', id: 'California3' },
+        { label: 'California4', id: 'California4' },
+      ];
+      const onReorder = jest.fn();
+      const {
+        driver: { getTagLabelAt, getTagDriverByTagId },
+      } = createDriver(
+        <NewMultiSelect
+          draggable
+          options={options}
+          tags={tags}
+          onReorder={onReorder}
+          autoFocus
+        />,
+      );
+      getTagDriverByTagId('Alabama').dragTo(
+        getTagDriverByTagId('California3').element,
+      );
+      expect(onReorder).toBeCalledWith({ removedIndex: 0, addedIndex: 2 });
 
-    expect(getTagLabelAt(0)).toBe('California3');
-    expect(getTagLabelAt(2)).toBe('Alabama');
+      expect(getTagLabelAt(0)).toBe('California3');
+      expect(getTagLabelAt(2)).toBe('Alabama');
+    });
   });
 
   describe('testkit', () => {
