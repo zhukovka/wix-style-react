@@ -6,7 +6,6 @@ import { multiSelectTestkitFactory } from '../../testkit';
 import { multiSelectTestkitFactory as enzymeMultiSelectTestkitFactory } from '../../testkit/enzyme';
 import { mount } from 'enzyme';
 import { createRendererWithDriver, cleanup } from '../../test/utils/unit';
-import { depLogger } from '../utils/deprecationLog';
 
 describe('MultiSelect', () => {
   const render = createRendererWithDriver(multiSelectDriverFactory);
@@ -274,15 +273,6 @@ describe('MultiSelect', () => {
   });
 
   describe('Tag Input', () => {
-    it('should have deprecationLog when onManuallyInput is also passed', () => {
-      const depLogSpy = jest.spyOn(depLogger, 'log');
-      render(<NewMultiSelect options={options} onManuallyInput={() => {}} />);
-      expect(depLogSpy).toBeCalledWith(
-        `When 'upgrade' is passed then 'onManuallyInput' will not be called. Please remove the 'onManuallyInput' prop.`,
-      );
-      depLogSpy.mockRestore();
-    });
-
     describe('Type & Submit', () => {
       describe('input is empty', () => {
         it('should NOT call onTagsAdded when Enter is pressed', () => {

@@ -1,3 +1,7 @@
+/*
+ This test suit should be deleted once we release the next major version 
+ where the `upgrade` behavior is the default and the deprecated behavior is removed.
+*/
 import React from 'react';
 import ReactTestUtils from 'react-dom/test-utils';
 import multiSelectDriverFactory from './MultiSelect.driver';
@@ -5,6 +9,7 @@ import MultiSelect from './MultiSelect';
 import { multiSelectTestkitFactory } from '../../testkit';
 import { multiSelectTestkitFactory as enzymeMultiSelectTestkitFactory } from '../../testkit/enzyme';
 import { mount } from 'enzyme';
+import { depLogger } from '../utils/deprecationLog';
 import { createRendererWithDriver, cleanup } from '../../test/utils/unit';
 
 describe('MultiSelect', () => {
@@ -450,6 +455,52 @@ describe('MultiSelect', () => {
 
     expect(getTagLabelAt(0)).toBe('California3');
     expect(getTagLabelAt(2)).toBe('Alabama');
+  });
+
+  describe('upgrade deprecation logs', () => {
+    describe('with upgrade', () => {
+      it(`should have propTypes error log when 'onManuallyInput' provided`, () => {
+        const depLogSpy = jest.spyOn(depLogger, 'log');
+        render(
+          <MultiSelect options={options} onManuallyInput={() => {}} upgrade />,
+        );
+        expect(depLogSpy).toBeCalledWith(
+          `When 'upgrade' is passed then 'onManuallyInput' will not be called. Please remove the 'onManuallyInput' prop.`,
+        );
+        depLogSpy.mockRestore();
+      });
+
+      it(`should have propTypes error log when 'valueParser' is provided`, () => {
+        const depLogSpy = jest.spyOn(depLogger, 'log');
+        render(
+          <MultiSelect options={options} valueParser={() => {}} upgrade />,
+        );
+        expect(depLogSpy).toBeCalledWith(
+          `When 'upgrade' is passed then 'valueParser' will not be used. Please remove the 'valueParser' prop.`,
+        );
+        depLogSpy.mockRestore();
+      });
+    });
+
+    describe('without upgrade', () => {
+      it(`should have propTypes error log when 'onTagsAdded' is provided`, () => {
+        const depLogSpy = jest.spyOn(depLogger, 'log');
+        render(<MultiSelect options={options} onTagsAdded={() => {}} />);
+        expect(depLogSpy).toBeCalledWith(
+          `'onTagsAdded' is called only in new API. You should pass the 'upgrade' prop.`,
+        );
+        depLogSpy.mockRestore();
+      });
+
+      it(`should have deprecation log when 'upgrade' is not true`, () => {
+        const depLogSpy = jest.spyOn(depLogger, 'log');
+        render(<MultiSelect options={options} />);
+        expect(depLogSpy).toBeCalledWith(
+          `MultiSelect: New API! Please upgrade by passing the prop 'upgrade=true', and refer to documentation.`,
+        );
+        depLogSpy.mockRestore();
+      });
+    });
   });
 
   describe('testkit', () => {

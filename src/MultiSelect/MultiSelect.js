@@ -5,7 +5,7 @@ import InputWithTags from './InputWithTags';
 import last from 'lodash/last';
 import difference from 'difference';
 import uniqueId from 'lodash/uniqueId';
-import { validatorWithSideEffect } from '../utils/propTypes';
+import { validatorWithSideEffect, extendPropTypes } from '../utils/propTypes';
 import deprecationLog from '../utils/deprecationLog';
 
 class MultiSelect extends InputWithOptions {
@@ -289,29 +289,42 @@ MultiSelect.propTypes = {
   upgrade: PropTypes.bool,
 };
 
-MultiSelect.propTypes.onTagsAdded = validatorWithSideEffect(
-  PropTypes.func,
-  (props, propName) => {
+extendPropTypes(MultiSelect, {
+  onManuallyInput: validatorWithSideEffect(
+    PropTypes.func,
+    (props, propName) => {
+      if (props[propName] && props['upgrade']) {
+        // TODO: change to allValidators instead of deprecationLog
+        deprecationLog(
+          `When 'upgrade' is passed then 'onManuallyInput' will not be called. Please remove the 'onManuallyInput' prop.`,
+        );
+      }
+    },
+  ),
+  valueParser: validatorWithSideEffect(PropTypes.func, (props, propName) => {
+    if (props[propName] && props['upgrade']) {
+      // TODO: change to allValidators instead of deprecationLog
+      deprecationLog(
+        `When 'upgrade' is passed then 'valueParser' will not be used. Please remove the 'valueParser' prop.`,
+      );
+    }
+  }),
+  onTagsAdded: validatorWithSideEffect(PropTypes.func, (props, propName) => {
     if (props[propName] && !props['upgrade']) {
       // TODO: change to allValidators instead of deprecationLog
       deprecationLog(
         `'onTagsAdded' is called only in new API. You should pass the 'upgrade' prop.`,
       );
     }
-  },
-);
-
-MultiSelect.propTypes.onManuallyInput = validatorWithSideEffect(
-  PropTypes.func,
-  (props, propName) => {
-    if (props[propName] && props['upgrade']) {
-      // TODO: change to allValidators instead of deprecationLog
+  }),
+  upgrade: validatorWithSideEffect(PropTypes.bool, (props, propName) => {
+    if (!props[propName]) {
       deprecationLog(
-        `When 'upgrade' is passed then 'onManuallyInput' will not be called. Please remove the 'onManuallyInput' prop.`,
+        `MultiSelect: New API! Please upgrade by passing the prop 'upgrade=true', and refer to documentation.`,
       );
     }
-  },
-);
+  }),
+});
 
 MultiSelect.defaultProps = {
   ...InputWithOptions.defaultProps,
