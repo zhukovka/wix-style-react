@@ -16,19 +16,15 @@ describe('MultiSelect', () => {
     });
 
   const options = [
-    { value: 'Alabama', id: 'Alabama', tag: { label: 'Alabama' } },
+    { value: 'Alabama', id: 'Alabama' },
     { value: 'Alaska', id: 'Alaska' },
-    { value: 'Arkansas', id: 'Arkansas', tag: { label: 'Arkansas' } },
+    { value: 'Arkansas', id: 'Arkansas' },
     { value: 'Arkansas', id: 'Arkansas' },
     { value: 'California', id: 'California' },
-    { value: 'California2', id: 'California2' },
-    { value: 'California3', id: 'California3' },
-    { value: 'California4', id: 'California4' },
-    { value: 'California5', id: 'California5' },
-    { value: 'California6', id: 'California6' },
-    { value: 'California7', id: 'California7' },
     { value: 'Two words', id: 'Two words' },
   ];
+  const FIRST_OPTION = options[0];
+  const FIRST_OPTION_ID = options[0].id;
 
   afterEach(() => {
     cleanup();
@@ -430,11 +426,10 @@ describe('MultiSelect', () => {
     it('should call onSelect when option clicked', () => {
       const onSelect = jest.fn();
 
-      const { driver, dropdownLayoutDriver } = createDriver(
+      const { driver } = createDriver(
         <NewMultiSelect options={options} onSelect={onSelect} />,
       );
-      driver.pressKey('ArrowDown');
-      dropdownLayoutDriver.clickAtOption(0);
+      driver.selectOptionById(FIRST_OPTION_ID);
 
       expect(onSelect).toHaveBeenCalledTimes(1);
     });
@@ -442,14 +437,13 @@ describe('MultiSelect', () => {
     it('should call onSelect with selected option given highlight enabled', () => {
       // This is a regression test for old bug , when highlight enabled the value would be a <Highlight> element
       const onSelect = jest.fn();
-      const { driver, dropdownLayoutDriver } = createDriver(
+      const { driver } = createDriver(
         <NewMultiSelect options={options} onSelect={onSelect} />,
       );
-      driver.pressKey('ArrowDown');
-      dropdownLayoutDriver.clickAtOption(0);
+      driver.selectOptionById(FIRST_OPTION_ID);
 
       expect(onSelect).toHaveBeenCalledTimes(1);
-      expect(onSelect).toBeCalledWith(options[0]);
+      expect(onSelect).toBeCalledWith(FIRST_OPTION);
     });
 
     it('should call onSelect with selected option given highlight disabled', () => {
@@ -461,11 +455,9 @@ describe('MultiSelect', () => {
           highlight={false}
         />,
       );
-      driver.pressKey('ArrowDown');
-      dropdownLayoutDriver.clickAtOption(0);
-
+      driver.selectOptionById(FIRST_OPTION_ID);
       expect(onSelect).toHaveBeenCalledTimes(1);
-      expect(onSelect).toBeCalledWith(options[0]);
+      expect(onSelect).toBeCalledWith(FIRST_OPTION);
     });
 
     it('should call onSelect with selected option when selected by keyboard', () => {
@@ -532,8 +524,7 @@ describe('MultiSelect', () => {
         const { driver, inputDriver, dropdownLayoutDriver } = createDriver(
           <NewMultiSelect options={options} />,
         );
-        driver.pressKey('ArrowDown');
-        dropdownLayoutDriver.clickAtOption(0);
+        driver.selectOptionById(FIRST_OPTION_ID);
         expect(dropdownLayoutDriver.isShown()).toBeTruthy();
         expect(inputDriver.isFocus());
       });
