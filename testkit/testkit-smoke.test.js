@@ -11,6 +11,7 @@ import { isTestkitExists, isUniTestkitExists } from 'wix-ui-test-utils/vanilla';
 import AllComponents from './all-components';
 
 import COMPONENT_DEFINITIONS from './component-definitions.js';
+import TESTKIT_DEFINITIONS from '../scripts/generate-testkit-exports/testkit-definitions';
 
 import * as reactTestUtilsTestkitFactories from './index';
 import * as enzymeTestkitFactories from './enzyme';
@@ -116,18 +117,30 @@ const EXPORT_ASSERTS = {
         ).toBe('function'));
     });
   },
+
+  vanilla: name => {
+    describe('ReactTestUtils testkit exports', () => {
+      it(`should contain ${name}`, () =>
+        expect(
+          typeof reactTestUtilsTestkitFactories[
+            `${lowerFirst(name)}TestkitFactory`
+          ],
+        ).toBe('function'));
+    });
+  },
 };
 
 Object.keys({
   ...AllComponents,
   ...COMPONENT_DEFINITIONS,
+  ...TESTKIT_DEFINITIONS,
 }).forEach(name => {
-  const definition = COMPONENT_DEFINITIONS[name] || {};
+  const definition = TESTKIT_DEFINITIONS[name] || {};
 
   const config = {
     beforeAllHook: noop,
     afterAllHook: noop,
-    props: {},
+    props: COMPONENT_DEFINITIONS[name] ? COMPONENT_DEFINITIONS[name].props : {},
     ...definition,
     name,
     component: AllComponents[name],
@@ -148,6 +161,7 @@ Object.keys({
   }
 
   if (!definition.noTestkit) {
+    EXPORT_ASSERTS.vanilla(name);
     EXPORT_ASSERTS.enzyme(name);
   }
 });
