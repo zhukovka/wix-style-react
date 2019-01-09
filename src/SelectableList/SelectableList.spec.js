@@ -57,11 +57,7 @@ describe('SelectableList', () => {
     const mockOnDeselect = jest.fn();
 
     const driver = createDriver(
-      <SelectableList
-        onSelect={mockOnSelect}
-        onDeselect={mockOnDeselect}
-        trigger="checked"
-      >
+      <SelectableList onSelect={mockOnSelect} onDeselect={mockOnDeselect}>
         <Checkbox />
         <Checkbox />
         <Checkbox dataHook={dataHook} />
@@ -91,7 +87,7 @@ describe('SelectableList', () => {
     const mockOnSelect = jest.fn();
 
     const driver = createDriver(
-      <SelectableList limit={1} onSelect={mockOnSelect} trigger="checked">
+      <SelectableList limit={1} onSelect={mockOnSelect}>
         <Checkbox />
         <Checkbox dataHook={dataHook1} />
         <Checkbox dataHook={dataHook2} />

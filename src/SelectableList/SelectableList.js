@@ -22,7 +22,7 @@ class SelectableList extends React.Component {
     };
   }
 
-  _onChange = (event, key) => {
+  _onClick = (event, key) => {
     const { selected, items } = this.state;
     const { limit, onDeselect, onSelect } = this.props;
     const limitation = limit && selected.length >= limit;
@@ -41,14 +41,14 @@ class SelectableList extends React.Component {
   };
 
   render() {
-    const { dataHook } = this.props;
-    const { items, selected, trigger } = this.state;
+    const { dataHook, trigger } = this.props;
+    const { items, selected } = this.state;
     return (
       <div data-hook={dataHook}>
         {Object.entries(items).map(([key, value]) =>
           React.cloneElement(value, {
             key,
-            onChange: e => this._onChange(e, key),
+            onChange: e => this._onClick(e, key),
             [trigger]: selected.includes(key),
           }),
         )}
