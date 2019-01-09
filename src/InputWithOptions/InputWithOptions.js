@@ -9,6 +9,8 @@ import DropdownLayout, {
 import Highlighter from '../Highlighter/Highlighter';
 import { chainEventHandlers } from '../utils/ChainEventHandlers';
 
+export const DEFAULT_VALUE_PARSER = option => option.value;
+
 class InputWithOptions extends WixComponent {
   // Abstraction
   inputClasses() {}
@@ -362,7 +364,7 @@ InputWithOptions.defaultProps = {
   options: [],
   closeOnSelect: true,
   inputElement: <Input />,
-  valueParser: option => option.value,
+  valueParser: DEFAULT_VALUE_PARSER,
   dropdownWidth: null,
   dropdownOffsetLeft: '0',
   showOptionsIfEmptyInput: true,

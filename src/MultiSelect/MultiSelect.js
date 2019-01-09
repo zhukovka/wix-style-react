@@ -1,15 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import InputWithOptions from '../InputWithOptions/InputWithOptions';
+import InputWithOptions, {
+  DEFAULT_VALUE_PARSER,
+} from '../InputWithOptions/InputWithOptions';
 import InputWithTags from './InputWithTags';
 import last from 'lodash/last';
 import difference from 'difference';
 import uniqueId from 'lodash/uniqueId';
-import {
-  validatorWithSideEffect,
-  extendPropTypes,
-  allValidators,
-} from '../utils/propTypes';
+import { extendPropTypes, allValidators } from '../utils/propTypes';
 import deprecationLog from '../utils/deprecationLog';
 
 class MultiSelect extends InputWithOptions {
@@ -302,7 +300,12 @@ extendPropTypes(MultiSelect, {
     }
   }),
   valueParser: allValidators(PropTypes.func, (props, propName) => {
-    if (props[propName] && props['upgrade']) {
+    const valueParser = props[propName];
+    if (
+      valueParser &&
+      valueParser !== DEFAULT_VALUE_PARSER &&
+      props['upgrade']
+    ) {
       return new Error(
         `When 'upgrade' is passed then 'valueParser' will not be used. Please remove the 'valueParser' prop.`,
       );
@@ -315,7 +318,7 @@ extendPropTypes(MultiSelect, {
       );
     }
   }),
-  upgrade: validatorWithSideEffect(PropTypes.bool, (props, propName) => {
+  upgrade: allValidators(PropTypes.bool, (props, propName) => {
     if (!props[propName]) {
       deprecationLog(
         `MultiSelect: New API! Please upgrade by passing the prop 'upgrade=true', and refer to documentation.`,

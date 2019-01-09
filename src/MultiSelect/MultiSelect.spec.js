@@ -276,12 +276,10 @@ describe('MultiSelect', () => {
     describe('Type & Submit', () => {
       describe('input is empty', () => {
         it('should NOT call onTagsAdded when Enter is pressed', () => {
-          const onManuallyInput = jest.fn();
           const onTagsAdded = jest.fn();
           const { driver } = createDriver(
             <ControlledMultiSelect
               options={options}
-              onManuallyInput={onManuallyInput}
               onTagsAdded={onTagsAdded}
             />,
           );
@@ -289,7 +287,6 @@ describe('MultiSelect', () => {
           driver.focus();
           driver.pressKey('Enter');
 
-          expect(onManuallyInput).toHaveBeenCalledTimes(0);
           expect(onTagsAdded).toHaveBeenCalledTimes(0);
         });
       });
@@ -302,12 +299,10 @@ describe('MultiSelect', () => {
           Component = NewMultiSelect,
           expectOnTagsAddedToBeCalled,
         }) {
-          const onManuallyInput = jest.fn();
           const onSelect = jest.fn();
           const onTagsAdded = jest.fn();
           const { driver, inputDriver } = createDriver(
             <Component
-              onManuallyInput={onManuallyInput}
               onTagsAdded={onTagsAdded}
               onSelect={onSelect}
               {...props}
@@ -318,7 +313,6 @@ describe('MultiSelect', () => {
           inputDriver.enterText(enteredText);
           driver.pressKey(keyPressed);
 
-          expect(onManuallyInput).toHaveBeenCalledTimes(0);
           expect(onSelect).toHaveBeenCalledTimes(0);
           expect(onTagsAdded).toHaveBeenCalledTimes(
             expectOnTagsAddedToBeCalled ? 1 : 0,
@@ -338,12 +332,10 @@ describe('MultiSelect', () => {
           });
 
           it('should call onTagsAdded when Enter pressed given initial value', () => {
-            const onManuallyInput = jest.fn();
             const onSelect = jest.fn();
             const onTagsAdded = jest.fn();
             const { driver } = createDriver(
               <ControlledMultiSelect
-                onManuallyInput={onManuallyInput}
                 onTagsAdded={onTagsAdded}
                 onSelect={onSelect}
                 value="foo"
@@ -433,7 +425,6 @@ describe('MultiSelect', () => {
 
     describe('Paste', () => {
       function testCase({ props, pasteValue, expectedOnTagsAddedArg }) {
-        const onManuallyInput = jest.fn();
         const onSelect = jest.fn();
         const onTagsAdded = jest.fn();
         const { driver, inputDriver } = createDriver(
@@ -441,7 +432,6 @@ describe('MultiSelect', () => {
             options={options}
             onSelect={onSelect}
             onTagsAdded={onTagsAdded}
-            onManuallyInput={onManuallyInput}
             {...props}
           />,
         );
@@ -449,7 +439,6 @@ describe('MultiSelect', () => {
         inputDriver.trigger('paste');
         inputDriver.enterText(pasteValue);
 
-        expect(onManuallyInput).toHaveBeenCalledTimes(0);
         expect(onSelect).toHaveBeenCalledTimes(0);
         expect(onTagsAdded).toHaveBeenCalledTimes(1);
         expect(onTagsAdded).toBeCalledWith(expectedOnTagsAddedArg);
@@ -497,7 +486,6 @@ describe('MultiSelect', () => {
   describe('onSelect', () => {
     it('should be called when option clicked', () => {
       const onSelect = jest.fn();
-      const onManuallyInput = jest.fn();
 
       const { driver, dropdownLayoutDriver } = createDriver(
         <NewMultiSelect options={options} onSelect={onSelect} />,
@@ -505,7 +493,6 @@ describe('MultiSelect', () => {
       driver.pressKey('ArrowDown');
       dropdownLayoutDriver.clickAtOption(0);
 
-      expect(onManuallyInput).toHaveBeenCalledTimes(0);
       expect(onSelect).toHaveBeenCalledTimes(1);
     });
 
