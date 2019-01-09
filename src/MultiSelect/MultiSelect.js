@@ -5,7 +5,11 @@ import InputWithTags from './InputWithTags';
 import last from 'lodash/last';
 import difference from 'difference';
 import uniqueId from 'lodash/uniqueId';
-import { validatorWithSideEffect, extendPropTypes } from '../utils/propTypes';
+import {
+  validatorWithSideEffect,
+  extendPropTypes,
+  allValidators,
+} from '../utils/propTypes';
 import deprecationLog from '../utils/deprecationLog';
 
 class MultiSelect extends InputWithOptions {
@@ -290,29 +294,23 @@ MultiSelect.propTypes = {
 };
 
 extendPropTypes(MultiSelect, {
-  onManuallyInput: validatorWithSideEffect(
-    PropTypes.func,
-    (props, propName) => {
-      if (props[propName] && props['upgrade']) {
-        // TODO: change to allValidators instead of deprecationLog
-        deprecationLog(
-          `When 'upgrade' is passed then 'onManuallyInput' will not be called. Please remove the 'onManuallyInput' prop.`,
-        );
-      }
-    },
-  ),
-  valueParser: validatorWithSideEffect(PropTypes.func, (props, propName) => {
+  onManuallyInput: allValidators(PropTypes.func, (props, propName) => {
     if (props[propName] && props['upgrade']) {
-      // TODO: change to allValidators instead of deprecationLog
-      deprecationLog(
+      return new Error(
+        `When 'upgrade' is passed then 'onManuallyInput' will not be called. Please remove the 'onManuallyInput' prop.`,
+      );
+    }
+  }),
+  valueParser: allValidators(PropTypes.func, (props, propName) => {
+    if (props[propName] && props['upgrade']) {
+      return new Error(
         `When 'upgrade' is passed then 'valueParser' will not be used. Please remove the 'valueParser' prop.`,
       );
     }
   }),
-  onTagsAdded: validatorWithSideEffect(PropTypes.func, (props, propName) => {
+  onTagsAdded: allValidators(PropTypes.func, (props, propName) => {
     if (props[propName] && !props['upgrade']) {
-      // TODO: change to allValidators instead of deprecationLog
-      deprecationLog(
+      return new Error(
         `'onTagsAdded' is called only in new API. You should pass the 'upgrade' prop.`,
       );
     }

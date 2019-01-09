@@ -458,38 +458,49 @@ describe('MultiSelect', () => {
   });
 
   describe('upgrade deprecation logs', () => {
-    describe('with upgrade', () => {
-      it(`should have propTypes error log when 'onManuallyInput' provided`, () => {
-        const depLogSpy = jest.spyOn(depLogger, 'log');
-        render(
-          <MultiSelect options={options} onManuallyInput={() => {}} upgrade />,
-        );
-        expect(depLogSpy).toBeCalledWith(
-          `When 'upgrade' is passed then 'onManuallyInput' will not be called. Please remove the 'onManuallyInput' prop.`,
-        );
-        depLogSpy.mockRestore();
-      });
+    let consoleErrorSpy;
 
+    beforeEach(() => {
+      consoleErrorSpy = jest
+        .spyOn(global.console, 'error')
+        .mockImplementation(jest.fn());
+    });
+
+    afterEach(() => {
+      consoleErrorSpy.mockRestore();
+    });
+
+    describe('with upgrade', () => {
       it(`should have propTypes error log when 'valueParser' is provided`, () => {
-        const depLogSpy = jest.spyOn(depLogger, 'log');
         render(
           <MultiSelect options={options} valueParser={() => {}} upgrade />,
         );
-        expect(depLogSpy).toBeCalledWith(
-          `When 'upgrade' is passed then 'valueParser' will not be used. Please remove the 'valueParser' prop.`,
+        expect(consoleErrorSpy).toBeCalledWith(
+          expect.stringContaining(
+            `When 'upgrade' is passed then 'valueParser' will not be used. Please remove the 'valueParser' prop.`,
+          ),
         );
-        depLogSpy.mockRestore();
+      });
+      it(`should have propTypes error log when 'onManuallyInput' provided`, () => {
+        render(
+          <MultiSelect options={options} onManuallyInput={() => {}} upgrade />,
+        );
+        expect(consoleErrorSpy).toBeCalledWith(
+          expect.stringContaining(
+            `When 'upgrade' is passed then 'onManuallyInput' will not be called. Please remove the 'onManuallyInput' prop.`,
+          ),
+        );
       });
     });
 
     describe('without upgrade', () => {
       it(`should have propTypes error log when 'onTagsAdded' is provided`, () => {
-        const depLogSpy = jest.spyOn(depLogger, 'log');
         render(<MultiSelect options={options} onTagsAdded={() => {}} />);
-        expect(depLogSpy).toBeCalledWith(
-          `'onTagsAdded' is called only in new API. You should pass the 'upgrade' prop.`,
+        expect(consoleErrorSpy).toBeCalledWith(
+          expect.stringContaining(
+            `'onTagsAdded' is called only in new API. You should pass the 'upgrade' prop.`,
+          ),
         );
-        depLogSpy.mockRestore();
       });
 
       it(`should have deprecation log when 'upgrade' is not true`, () => {
