@@ -4,4 +4,4 @@
 
 ## Migration (`upgrade` prop)
 
-For detailed info about migrating to the latest API see this [MIGRATION](https://github.com/wix/wix-style-react/blob/master/src/MultiSelect/MIGRATION.md) docs.
+For detailed info about migrating to the latest API see this [MIGRATION](https://github.com/wix/wix-style-react/blob/master/src/MultiSelect/README.MIGRATION.md) docs.
