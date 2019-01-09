@@ -318,15 +318,6 @@ describe('MultiSelect', () => {
             });
           });
 
-          it('should add tag when text entered and delimiter is pressed given no options', () => {
-            testCase({
-              props: {},
-              enteredText: 'custom value',
-              keyPressed: ',',
-              expectOnTagsAddedToBeCalled: true,
-            });
-          });
-
           it('should NOT add tag when spaces-only text is entered and Enter pressed', () => {
             testCase({
               props: { options },
