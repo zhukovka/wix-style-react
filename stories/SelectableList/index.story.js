@@ -15,6 +15,7 @@ export default {
   componentProps: {
     dataHook: storySettings.dataHook,
     children: [<Checkbox />, <Checkbox />, <Checkbox />],
+    trigger: 'checked',
   },
 
   exampleProps: {

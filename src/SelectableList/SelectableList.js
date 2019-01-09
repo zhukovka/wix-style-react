@@ -22,7 +22,7 @@ class SelectableList extends React.Component {
     };
   }
 
-  _change = (event, key) => {
+  _onChange = (event, key) => {
     const { selected, items } = this.state;
     const { limit, onDeselect, onSelect } = this.props;
     const limitation = limit && selected.length >= limit;
@@ -30,12 +30,12 @@ class SelectableList extends React.Component {
       const selectedFiltered = selected.filter(vl => vl !== key);
       this.setState(
         { selected: selectedFiltered },
-        onDeselect(event, items[key]),
+        onDeselect ? onDeselect(event, items[key]) : undefined,
       );
     } else if (!limitation) {
       this.setState(
         { selected: [...selected, key] },
-        onSelect(event, items[key]),
+        onSelect ? onSelect(event, items[key]) : undefined,
       );
     }
   };
@@ -48,7 +48,7 @@ class SelectableList extends React.Component {
         {Object.entries(items).map(([key, value]) =>
           React.cloneElement(value, {
             key,
-            onChange: e => this._change(e, key),
+            onChange: e => this._onChange(e, key),
             [trigger]: selected.includes(key),
           }),
         )}

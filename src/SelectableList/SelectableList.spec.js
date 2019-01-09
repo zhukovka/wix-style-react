@@ -50,7 +50,7 @@ describe('SelectableList', () => {
     expect(mockCallback.props.dataHook).toBe(dataHook);
   });
 
-  it('`onDeselect` should return DeSelected component', async () => {
+  it('`onDeselect` should return deselected component', async () => {
     const dataHook = 'clicked-checkbox';
 
     const mockOnSelect = jest.fn();
@@ -117,5 +117,32 @@ describe('SelectableList', () => {
 
     expect(mockOnSelect).toHaveBeenCalledTimes(1);
     expect(mockOnSelectCallback.props.dataHook).toBe(dataHook1);
+  });
+
+  it('`trigger` prop should be used to trigger children state', async () => {
+    const dataHook = 'clicked-checkbox';
+    const trigger = 'checked';
+
+    const mockOnSelect = jest.fn();
+
+    const driver = createDriver(
+      <SelectableList onSelect={mockOnSelect} trigger={trigger}>
+        <Checkbox />
+        <Checkbox />
+        <Checkbox dataHook={dataHook} />
+      </SelectableList>,
+    );
+
+    const element = await driver.element();
+
+    const checkboxDriver = checkboxTestkitFactory({
+      wrapper: element,
+      dataHook: dataHook,
+    });
+
+    checkboxDriver.click();
+
+    expect(mockOnSelect).toHaveBeenCalledTimes(1);
+    expect(checkboxDriver.isChecked()).toBeTruthy();
   });
 });
