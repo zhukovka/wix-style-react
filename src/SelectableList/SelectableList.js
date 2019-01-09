@@ -10,6 +10,7 @@ const mapChildrenToId = children =>
     {},
   );
 
+/** A wrapper that makes a list clickable */
 class SelectableList extends React.Component {
   static displayName = 'SelectableList';
 
@@ -20,22 +21,26 @@ class SelectableList extends React.Component {
       selected: [],
     };
   }
-  _change = (e, key) => {
+  static defaultProps = {
+    threshold: 1000,
+  };
+  _change = (event, key) => {
     const { selected, items } = this.state;
+    const { threshold } = this.props;
 
-    if (selected.includes(key)) {
+    if (selected.includes(key) && selected.length < threshold) {
       this.setState(
         state => ({
           selected: state.selected.filter(value => value !== key),
         }),
-        this.props.onDeselect(items[key]),
+        this.props.onDeselect(event, items[key]),
       );
-    } else {
+    } else if (selected.length < threshold) {
       this.setState(
         state => ({
           selected: [...state.selected, key],
         }),
-        this.props.onSelect(items[key]),
+        this.props.onSelect(event, items[key]),
       );
     }
   };
