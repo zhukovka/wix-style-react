@@ -14,3 +14,7 @@
 | id | string or number | - | + | The id of the option, should be unique |
 | value | string or node | - | + | Can be a text or a react elements, if text is '-', a divider will render at that position. |
 | disabled | bool | false | - | Whether this option is disabled or not |
+
+## Migration
+
+See [Migration docs](https://github.com/wix/wix-style-react/blob/master/src/Dropdown/README.MIGRATION.md).
