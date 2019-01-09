@@ -88,18 +88,8 @@ describe('SelectableList', () => {
 
     const element = await driver.element();
 
-    const checkboxDriver1 = checkboxTestkitFactory({
-      wrapper: element,
-      dataHook: dataHook1,
-    });
-
-    const checkboxDriver2 = checkboxTestkitFactory({
-      wrapper: element,
-      dataHook: dataHook2,
-    });
-
-    checkboxDriver1.click();
-    checkboxDriver2.click();
+    checkboxTestkitFactory({ wrapper: element, dataHook: dataHook1 }).click();
+    checkboxTestkitFactory({ wrapper: element, dataHook: dataHook2 }).click();
 
     const mockOnSelectCallback = mockOnSelect.mock.calls[0][1];
 
