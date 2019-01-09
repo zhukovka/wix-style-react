@@ -474,7 +474,7 @@ describe('MultiSelect', () => {
       expect(onSelect).toBeCalledWith(options[0]);
     });
 
-    // Disabled since in order to support this in new API, we better add ability for Dropdownlayout to accept custom "select" keys.
+    // TODO: Disabled since in order to support this in new API, we better add ability for Dropdownlayout to accept custom "select" keys.
     // We can also consider removing this feature (Ben?)
     xdescribe('Select with delimiter', () => {
       it('should select option when comma press', () => {
