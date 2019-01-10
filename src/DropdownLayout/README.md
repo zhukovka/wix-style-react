@@ -2,6 +2,9 @@
 
 > Dropdown layout Component to use in autocopmlete and select
 
+**Note:** For creating dropdown-like components, please refer to the `<DropdownPopover/>` component
+documentation.
+
 ## Properties
 
 | propName | propType | defaultValue | isRequired | description |
