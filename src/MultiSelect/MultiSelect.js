@@ -141,7 +141,7 @@ class MultiSelect extends InputWithOptions {
       // FIXME: InputWithOptions is not updating it's inputValue state when the `value` prop changes.
       // So using `value` here, covers for that bug. (This is tested)
       // BTW: Previously, `value` was used to trigger onSelect, and `inputValue` was used to trigger onManuallyInput. Which is crazy.
-      // So now both of them trigger a submit (onTagsAdded).
+      // So now both of them trigger a submit (onManuallyInput).
       const _value =
         (value && value.trim()) || (inputValue && inputValue.trim());
 
@@ -241,10 +241,10 @@ class MultiSelect extends InputWithOptions {
       return;
     }
 
-    const { onManuallyInput, onTagsAdded } = this.props;
+    const { onManuallyInput } = this.props;
     if (this._isNewCallbackApi()) {
       const values = this._splitByDelimitersAndTrim(inputValue);
-      onTagsAdded && values.length && onTagsAdded(values);
+      onManuallyInput && values.length && onManuallyInput(values);
     } else {
       if (onManuallyInput) {
         onManuallyInput(
@@ -291,26 +291,17 @@ MultiSelect.propTypes = {
   onReorder: PropTypes.func,
   /** A callback which is called when the user performs a Submit-Action.
    * Submit-Action triggers are: "Enter", "Tab", [typing any defined delimiters], Paste action.
-   * `onTagsAdded(values: Array<string>): void - The array of strings is the result of splitting the input value by the given delimiters */
-  onTagsAdded: PropTypes.func,
+   * `onManuallyInput(values: Array<string>): void - The array of strings is the result of splitting the input value by the given delimiters */
+  onManuallyInput: PropTypes.func,
   /** A callback which is called when the user selects an option from the list.
    * `onSelect(option: Option): void` - Option is the original option from the provided `options` prop.
    */
   onSelect: PropTypes.func,
-  /** @deprecated Use `upgrade=true` and `onTagsAdded` instead. */
-  onManuallyInput: PropTypes.func,
   /** When `true`, then the latest Callback API will be used. Otherwise, see the Old API under the Deprecated stories. */
   upgrade: PropTypes.bool,
 };
 
 extendPropTypes(MultiSelect, {
-  onManuallyInput: allValidators(PropTypes.func, (props, propName) => {
-    if (props[propName] && props['upgrade']) {
-      return new Error(
-        `When 'upgrade' is passed then 'onManuallyInput' will not be called. Please remove the 'onManuallyInput' prop.`,
-      );
-    }
-  }),
   valueParser: allValidators(PropTypes.func, (props, propName) => {
     const valueParser = props[propName];
     if (
@@ -320,13 +311,6 @@ extendPropTypes(MultiSelect, {
     ) {
       return new Error(
         `When 'upgrade' is passed then 'valueParser' will not be used. Please remove the 'valueParser' prop.`,
-      );
-    }
-  }),
-  onTagsAdded: allValidators(PropTypes.func, (props, propName) => {
-    if (props[propName] && !props['upgrade']) {
-      return new Error(
-        `'onTagsAdded' is called only in new API. You should pass the 'upgrade' prop.`,
       );
     }
   }),

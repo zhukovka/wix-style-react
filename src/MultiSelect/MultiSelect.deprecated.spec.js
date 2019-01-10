@@ -481,28 +481,9 @@ describe('MultiSelect', () => {
           ),
         );
       });
-      it(`should have propTypes error log when 'onManuallyInput' provided`, () => {
-        render(
-          <MultiSelect options={options} onManuallyInput={() => {}} upgrade />,
-        );
-        expect(consoleErrorSpy).toBeCalledWith(
-          expect.stringContaining(
-            `When 'upgrade' is passed then 'onManuallyInput' will not be called. Please remove the 'onManuallyInput' prop.`,
-          ),
-        );
-      });
     });
 
     describe('without upgrade', () => {
-      it(`should have propTypes error log when 'onTagsAdded' is provided`, () => {
-        render(<MultiSelect options={options} onTagsAdded={() => {}} />);
-        expect(consoleErrorSpy).toBeCalledWith(
-          expect.stringContaining(
-            `'onTagsAdded' is called only in new API. You should pass the 'upgrade' prop.`,
-          ),
-        );
-      });
-
       it(`should have deprecation log when 'upgrade' is not true`, () => {
         const depLogSpy = jest.spyOn(depLogger, 'log');
         render(<MultiSelect options={options} />);
