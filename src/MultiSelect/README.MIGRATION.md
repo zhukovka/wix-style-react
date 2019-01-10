@@ -15,7 +15,7 @@ A new `upgrade` prop will apply API changes with a simplified approach for creat
   - **1st argument**: receives an **option** and not an array of **tag** objects!
 - `valueParser` is deprecated
 
-### onManuallyInput (new API)
+### onManuallyInput
 
 > New Signature
 
@@ -60,7 +60,7 @@ onManuallyInput(values: Array<string>): void
   }
 ```
 
-### onSelect (changed)
+### onSelect
 
 > New Signature
 
