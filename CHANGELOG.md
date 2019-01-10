@@ -17,6 +17,14 @@ Types of changes:
 
 ## Next - 2019-??-??
 
+### Deprecated
+
+- `<ButtonWithOptions/>`,` <IconWithOptions/>` - deprecated components [#2706](https://github.com/wix/wix-style-react/pull/2706)
+
+### Fixed
+
+- `<Popover/>` - fix component `dataHook` [#2693](https://github.com/wix/wix-style-react/pull/2693)
+
 ### Upgrade
 
 - `<Dropdown/>` - Add support for Controlled `selectedId` [#2719](https://github.com/wix/wix-style-react/pull/2719)
@@ -32,7 +40,6 @@ Types of changes:
 
 ### Fixed
 - `<Tooltip/>` fix reposition loop and avoid hangs [#2596](https://github.com/wix/wix-style-react/pull/2596)
-- `<Popover/>` - fix component `dataHook` [#2693](https://github.com/wix/wix-style-react/pull/2693)
 
 ### Docs
 - `<Popover/>` - make autodocs work with the drivers [#2584](https://github.com/wix/wix-style-react/pull/2584)
