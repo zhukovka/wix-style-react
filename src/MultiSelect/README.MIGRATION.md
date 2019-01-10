@@ -34,8 +34,9 @@ onManuallyInput(values: Array<string>): void
 > Before
 
 ```js
+  const createTag = value => {id: generateId(), label: value };
+
   handleOnManuallyInput(value, tags) {
-    const createTag = value => {id: generateId(), label: value };
     this.setState({
       tags: [
         ...this.state.tags,
@@ -49,8 +50,9 @@ onManuallyInput(values: Array<string>): void
 > After
 
 ```js
+  const createTag = value => {id: generateId(), label: value };
+
   handleOnManuallyInput(values) {
-    const createTag = value => {id: generateId(), label: value };
     this.setState({
       tags: [
         ...this.state.tags,
@@ -88,8 +90,9 @@ onSelect(option): void
 > After
 
 ```js
+  const createTag = option => {id: option.id, label: option.value };
+  
   handleOnSelect(option) {
-    const createTag = option => {id: option.id, label: option.value };
     this.setState({
       tags: [
         ...this.state.tags,
