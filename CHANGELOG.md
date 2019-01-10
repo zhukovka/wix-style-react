@@ -32,6 +32,7 @@ Types of changes:
 
 ### Fixed
 - `<Tooltip/>` fix reposition loop and avoid hangs [#2596](https://github.com/wix/wix-style-react/pull/2596)
+- `<Popover/>` - fix component `dataHook` [#2693](https://github.com/wix/wix-style-react/pull/2693)
 
 ### Docs
 - `<Popover/>` - make autodocs work with the drivers [#2584](https://github.com/wix/wix-style-react/pull/2584)
