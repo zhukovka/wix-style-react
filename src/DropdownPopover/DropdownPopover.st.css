@@ -5,7 +5,7 @@
 
 .root {
   -st-extends: Popover;
-  -st-states: withWidth;
+  -st-states: withWidth, withArrow;
 }
 
 .root::popoverContent {
@@ -19,4 +19,10 @@
 .root:withWidth::popoverContent {
   min-width: inherit;
   width: inherit;
+}
+
+/* Add padding when an arrow is used */
+.root:withArrow::popover[data-placement*="top"]::popoverContent,
+.root:withArrow::popover[data-placement*="bottom"]::popoverContent {
+  padding: 10px 0;
 }

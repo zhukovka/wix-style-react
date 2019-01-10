@@ -4,11 +4,11 @@ import Markdown from 'wix-storybook-utils/Markdown';
 import TabbedView from 'wix-storybook-utils/TabbedView';
 import InteractiveCodeExample from 'wix-storybook-utils/InteractiveCodeExample';
 
-import Readme from '../../src/ButtonWithOptions/README.md';
+import Readme from '../../../src/ButtonWithOptions/README.md';
 import ExampleStandardComp from './ButtonWithOptionsStandard';
-import ReadmeTestkit from '../../src/ButtonWithOptions/README.TESTKIT.md';
+import ReadmeTestkit from '../../../src/ButtonWithOptions/README.TESTKIT.md';
 
-storiesOf('4. Selection', module).add('4.1 + ButtonWithOptions', () => (
+storiesOf('Deprecated', module).add('ButtonWithOptions', () => (
   <TabbedView tabs={['API', 'Testkit']}>
     <div>
       <Markdown source={Readme} />
