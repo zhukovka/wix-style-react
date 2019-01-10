@@ -1,42 +1,114 @@
 # MultiSelect Migration Guide
 
-## Migration From 5.x.x to ?.x.x (`upgrade` prop)
+## `upgrade` prop - Migration to new API
 
-A new `upgrade` prop (introduced in 5.?.? ) will give you a new Callback-API.
-The new API will be available in the next major version by default.
+A new `upgrade` prop will apply API changes with a simplified approach for creating new tags versus selecting from options list.
 
-### onTagsAdded (new)
+### TL;DR
+
+- `onManuallyInput`
+  - **Trigger**: will be called for ALL cases when a new input value is submitted
+  - **1st argument**: receives an **array of values** (not a single value)
+  - **2nd argument deprecated**: does NOT receive an array of suggested options as 2nd argument
+- `onSelect`
+  - **Trigger**: will be called only when an option is selected from the options list
+  - **1st argument**: receives an **option** and not an array of **tag** objects!
+- `valueParser` is deprecated
+
+### onManuallyInput (new API)
+
+> New Signature
 
 ```js
-onTagsAdded(values: Array<string>): void
+onManuallyInput(values: Array<string>): void
 ```
 
-Replaces `onManuallyInput` which is deprecated.
+| What Changed? |  Before                         |            After               |
+|---------|---------------------------------|--------------------------------|
+| Trigger | not called for paste actions    | called for ALL cases when a new input value is submitted|
+| 1st Arg | single string value             | array of string values         |
+| 2nd Arg | array of suggested tags         |  -                             |  
 
-- The change is that is now called in ALL cases when an input value is submitted (Including paste).(Previously, when pasting values into the input, then `onSelect` was called).
+#### Migration Example (`onManuallyInput`)
+
+> Before
+
+```js
+  handleOnManuallyInput(value, tags) {
+    const createTag = value => {id: generateId(), label: value };
+    this.setState({
+      tags: [
+        ...this.state.tags,
+        createTag(value),
+        ...tags
+      ]
+    })
+  }
+```
+
+> After
+
+```js
+  handleOnManuallyInput(values) {
+    const createTag = value => {id: generateId(), label: value };
+    this.setState({
+      tags: [
+        ...this.state.tags,
+        values.map(v=> createTag(v)
+      ]
+    })
+  }
+```
 
 ### onSelect (changed)
+
+> New Signature
 
 ```js
 onSelect(option): void
 ```
 
-#### When is it called
+| What Changed? |  Before                         |            After               |
+|---------|---------------------------------|--------------------------------|
+| Trigger | Called for paste actions. Called (sometimes) when input value submited  | called ONLY when user selects an option |
+| 1st Arg | array of tags or single tag | single option   |
 
-Called ONLY when the user selects from the options (And not in value paste cases)
+#### Migration Example (`onSelect`)
 
-#### The Argument
+> Before
 
-- **Previously**: `onSelect` would get an array of tag objects. These could be passed straight to the `tags` prop.
-- **Now**: you get the original `option` object, and you need to create the tag object yourself.
+```js
+  handleOnSelect(tags) {
+    Array.isArray(tags)
+      ? this.setState({ tags: [...this.state.tags, ...tags] })
+      : this.setState({ tags: [...this.state.tags, tags] });
+  }
+```
 
-> Notice-1: You can put any properties you need on the `option` object, so you can later use them when an option is selected.
+> After
 
-> Notice-2: This means that the `valueParser` is no longer needed, since you are responsible for creating a Tag from an Option.
+```js
+  handleOnSelect(option) {
+    const createTag = option => {id: option.id, label: option.value };
+    this.setState({
+      tags: [
+        ...this.state.tags,
+        createTag(option)
+      ]
+    })
+  }
+```
 
-> Notice-3: Keep in mind that the `value` property of an option is a ReactNode, it is what gets renderedas an option. So if you use something other than a string, then you shouldn't have to deal with it in the `onSelect` handling.
+#### Notice
 
-##### Tag objects
+- **Option Meta**: You can put any properties you need on the `option` object (option meta), so you can later use them when an option is selected.
+- **`option.value`!**: Keep in mind that the `value` property of an option is a ReactNode, it is what gets renderedas an option. So if you use something other than a string, then you shouldn't have to deal with it in the `onSelect` handling.
+
+### valueParser
+
+`valueParser` is deprecated (not used). It was used to match Options with the input value when Paste is detected. We don't do that anymore, when Paste is detected, we simply call `onTagsAdded` with the inptu value.
+
+### Creating Tags (Reminder)
 
 Tag objects are simply props of the [12.5-Tag component](https://wix-wix-style-react.surge.sh/?selectedKind=12.%20Other&selectedStory=12.5%20Tag&full=0&addons=0&stories=1&panelRight=0) only that instead of children prop, you need to have a `label` prop.
 
@@ -45,10 +117,6 @@ Tag objects are simply props of the [12.5-Tag component](https://wix-wix-style-r
 ```js
 { id: "1", label: "Alabama" }
 ```
-
-### valueParser
-
-`valueParser` is deprecated (not used). It was used to match Options with the input value when Paste is detected. We don't do that anymore, when Paste is detected, we simply call `onTagsAdded` with the inptu value.
 
 ### More Info
 
