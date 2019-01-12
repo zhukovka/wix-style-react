@@ -65,7 +65,6 @@ class Input extends Component {
       type,
       maxLength,
       textOverflow,
-      theme,
       disabled,
       status,
       statusMessage,
@@ -210,7 +209,7 @@ class Input extends Component {
         className={classNames(
           classes,
           styles.root,
-          styles[`theme-${theme}`],
+          styles[`theme-normal`],
           styles[`size-${size}${withSelection ? '-with-selection' : ''}`],
           className,
         )}
@@ -229,7 +228,7 @@ class Input extends Component {
               <InputSuffix
                 status={suffixStatus}
                 statusMessage={suffixStatusMessage}
-                theme={theme}
+                theme={'normal'}
                 disabled={disabled}
                 help={help}
                 helpMessage={helpMessage}
@@ -382,7 +381,6 @@ Input.displayName = 'Input';
 Input.defaultProps = {
   autoSelect: true,
   size: 'normal',
-  theme: 'normal',
   statusMessage: '',
   errorMessage: '',
   helpMessage: '',
@@ -538,17 +536,6 @@ Input.propTypes = {
 
   /** Text overflow behaviour */
   textOverflow: PropTypes.string,
-
-  /** The theme of the input */
-  theme: PropTypes.oneOf([
-    'normal',
-    'tags',
-    'paneltitle',
-    'material',
-    'amaterial',
-    'flat',
-    'flatdark',
-  ]),
 
   /** The material design style floating label for input (supported only for amaterial theme for now) */
   title: PropTypes.string,
