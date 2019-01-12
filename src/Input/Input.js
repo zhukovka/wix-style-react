@@ -553,4 +553,4 @@ Input.propTypes = {
   required: PropTypes.bool,
 };
 
-export default themr('MyThemedButton', styles)(Input);
+export default themr('Input', styles)(Input);
