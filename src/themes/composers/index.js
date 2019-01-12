@@ -1,5 +1,7 @@
-import inputStyles from './Input.scss';
+import InputStyles from './Input.scss';
+import InputWithOptionsStyles from './InputWithOptions.scss';
 
 export default {
-  Input: inputStyles,
+  Input: InputStyles,
+  InputWithOptions: InputWithOptionsStyles,
 };

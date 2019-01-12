@@ -76,6 +76,7 @@ class Input extends Component {
       error,
       errorMessage,
       theme,
+      className,
     } = this.props;
 
     const onIconClicked = e => {
@@ -113,7 +114,7 @@ class Input extends Component {
       suffix,
     });
 
-    const inputClassNames = classNames(theme.input, {
+    const inputClassNames = classNames(theme.input, className, {
       [theme.withPrefix]: !!prefix,
       [theme.withSuffix]: visibleSuffixCount,
       [theme.withSuffixes]: visibleSuffixCount > 1,
@@ -130,7 +131,7 @@ class Input extends Component {
       );
 
     /* eslint-disable no-unused-vars */
-    const { className, ...inputElementProps } = props;
+    const { ...inputElementProps } = props;
 
     const inputElement = (
       <input

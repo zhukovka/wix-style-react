@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import cx from 'classnames';
 import WixComponent from '../BaseComponents/WixComponent';
 import Input from '../Input';
 import omit from 'omit';
@@ -8,6 +9,8 @@ import DropdownLayout, {
 } from '../DropdownLayout/DropdownLayout';
 import Highlighter from '../Highlighter/Highlighter';
 import { chainEventHandlers } from '../utils/ChainEventHandlers';
+import { themr } from 'react-css-themr';
+import styles from './InputWithOptions.scss';
 
 class InputWithOptions extends WixComponent {
   // Abstraction
@@ -160,11 +163,14 @@ class InputWithOptions extends WixComponent {
   }
 
   render() {
-    const { dropDirectionUp } = this.props;
+    const { dropDirectionUp, theme } = this.props;
     return (
-      <div>
+      <div className={theme.root}>
         {dropDirectionUp ? this._renderDropdownLayout() : null}
-        <div data-input-parent className={this.inputClasses()}>
+        <div
+          data-input-parent
+          className={cx(theme.inputWrapper, this.inputClasses())}
+        >
           {this.renderInput()}
         </div>
         {!dropDirectionUp ? this._renderDropdownLayout() : null}
@@ -387,4 +393,4 @@ InputWithOptions.propTypes = {
 
 InputWithOptions.displayName = 'InputWithOptions';
 
-export default InputWithOptions;
+export default themr('InputWithOptions', styles)(InputWithOptions);
