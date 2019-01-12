@@ -1,0 +1,23 @@
+@import '../../Input/InputMixins.scss';
+@import '../../colors.scss';
+
+.theme-normal {
+  //hard-coded differences and new styles
+  border-radius: 0;
+  box-shadow: 0 1px 0 0 rgba(223, 229, 235, 0.6);
+
+  //override through common mixins if possible
+  @include ThemeDefault($color: $D10, $borderColor: transparent, $backgroundColor: white);
+  @include ThemeHover($backgroundColor: white);
+
+  //combinations are also possible for none-defined mixins
+  &:hover:not(.hasFocus) {
+    @include ThemeDefault($color: $B10, $borderColor: transparent, $backgroundColor: white);
+    box-shadow: 0 1px 0 0 $B10;
+  }
+  @include ThemeFocus($borderColor: transparent, $boxShadow: 0 1px 0 0 $B10);
+
+  .input {
+    padding: 0;
+  }
+}

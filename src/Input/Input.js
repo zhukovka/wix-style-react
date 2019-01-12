@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
+import { themr } from 'react-css-themr';
 
 import Ticker from './Ticker';
 import Unit from './Unit';
@@ -74,6 +75,7 @@ class Input extends Component {
       required,
       error,
       errorMessage,
+      theme,
     } = this.props;
 
     const onIconClicked = e => {
@@ -111,10 +113,10 @@ class Input extends Component {
       suffix,
     });
 
-    const inputClassNames = classNames(styles.input, {
-      [styles.withPrefix]: !!prefix,
-      [styles.withSuffix]: visibleSuffixCount,
-      [styles.withSuffixes]: visibleSuffixCount > 1,
+    const inputClassNames = classNames(theme.input, {
+      [theme.withPrefix]: !!prefix,
+      [theme.withSuffix]: visibleSuffixCount,
+      [theme.withSuffixes]: visibleSuffixCount > 1,
     });
 
     const ariaAttribute = {};
@@ -184,16 +186,16 @@ class Input extends Component {
     }
 
     const classes = {
-      [styles.rtl]: !!rtl,
-      [styles.disabled]: disabled,
-      [styles.hasError]: hasError,
-      [styles.hasHover]: forceHover,
-      [styles.hasFocus]: forceFocus || this.state.focus,
-      [styles.roundInput]: roundInput,
-      [styles.hasValue]:
+      [theme.rtl]: !!rtl,
+      [theme.disabled]: disabled,
+      [theme.hasError]: hasError,
+      [theme.hasHover]: forceHover,
+      [theme.hasFocus]: forceFocus || this.state.focus,
+      [theme.roundInput]: roundInput,
+      [theme.hasValue]:
         (value && value.length) || (this.input && !!this.input.value),
-      [styles.noRightBorderRadius]: noRightBorderRadius === true, // assert boolean type
-      [styles.noLeftBorderRadius]: noLeftBorderRadius === true, // assert boolean type
+      [theme.noRightBorderRadius]: noRightBorderRadius === true, // assert boolean type
+      [theme.noLeftBorderRadius]: noLeftBorderRadius === true, // assert boolean type
       /* Adding [noRightBorderRadius] and [noLeftBorderRadius] as a string className, is a hack for backward compatibility with
        * a bug that existed in WSR version <= 4.1.0. This should be removed in version 5.x.x.
        */
@@ -208,23 +210,23 @@ class Input extends Component {
       <div
         className={classNames(
           classes,
-          styles.root,
-          styles[`theme-normal`],
-          styles[`size-${size}${withSelection ? '-with-selection' : ''}`],
+          theme.root,
+          theme[`theme-normal`],
+          theme[`size-${size}${withSelection ? '-with-selection' : ''}`],
           className,
         )}
         data-hook={dataHook}
       >
-        <div className={styles.inputWrapper}>
+        <div className={theme.inputWrapper}>
           {prefix && (
-            <div className={styles.prefixSuffixWrapper}>
-              <div className={styles.prefix}>{prefix}</div>
+            <div className={theme.prefixSuffixWrapper}>
+              <div className={theme.prefix}>{prefix}</div>
             </div>
           )}
 
           {inputElement}
           {visibleSuffixCount > 0 && (
-            <div className={styles.prefixSuffixWrapper}>
+            <div className={theme.prefixSuffixWrapper}>
               <InputSuffix
                 status={suffixStatus}
                 statusMessage={suffixStatusMessage}
@@ -551,4 +553,4 @@ Input.propTypes = {
   required: PropTypes.bool,
 };
 
-export default Input;
+export default themr('MyThemedButton', styles)(Input);
