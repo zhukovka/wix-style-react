@@ -11,7 +11,6 @@ Types of changes:
 1. **Fixed** for any bug fixes.
 1. **Security** in case of vulnerabilities.
 1. **Breaking** for breaking changes
-1. **Upgrade** for new API which is available as opt-in.
 1. **Docs** for documentation changes
 1. **Lab** components and features that are still in a work in progress
 
@@ -24,14 +23,11 @@ Types of changes:
 ### Deprecated
 
 - `<ButtonWithOptions/>`,` <IconWithOptions/>` - deprecated components [#2706](https://github.com/wix/wix-style-react/pull/2706)
+- `<Dropdown/>` - Add support for Controlled `selectedId` [#2719](https://github.com/wix/wix-style-react/pull/2719)
 
 ### Fixed
 
 - `<Popover/>` - fix component `dataHook` [#2693](https://github.com/wix/wix-style-react/pull/2693)
-
-### Upgrade
-
-- `<Dropdown/>` - Add support for Controlled `selectedId` [#2719](https://github.com/wix/wix-style-react/pull/2719)
 
 ## 5.23.0 - 2019-01-08
 
