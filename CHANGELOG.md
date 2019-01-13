@@ -19,6 +19,7 @@ Types of changes:
 ### Changed
 
 - `<DropdownLayout/>` - move options validation to propTypes [#2717](https://github.com/wix/wix-style-react/pull/2717)
+- `<DropdownPopover/>` - Rename to `<DropdownBase/>` [#2730](https://github.com/wix/wix-style-react/pull/2730)
 
 ### Deprecated
 
