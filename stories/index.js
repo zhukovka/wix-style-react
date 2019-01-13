@@ -143,6 +143,7 @@ import './Typography/TypographyTestStories';
 import './Page/PageTestStories.js'; // Tests/2. Layout/2.5 + Page/
 import './PageHeader/PageHeaderTestStories.js'; // Tests/2. Layout/2.5 + PageHeader/
 import './Button/testButton'; // Tests/5. Button/5.1 Button
+import './TextButton/testStory'; // Tests/5. Button/5.3 TextButton
 import './Calendar/CalendarTestStory'; // Tests/3. Inputs/3.13 Calendar
 import './PopoverMenu/PopoverMenuRegressionTest.js'; // Tests/7.3. Popover Menu/
 import './Popover/testStory';
