@@ -17,6 +17,10 @@ Types of changes:
 
 ## Next - 2019-??-??
 
+### Changed
+
+- `<DropdownLayout/>` - move options validation to propTypes [#2717](https://github.com/wix/wix-style-react/pull/2717)
+
 ### Deprecated
 
 - `<ButtonWithOptions/>`,` <IconWithOptions/>` - deprecated components [#2706](https://github.com/wix/wix-style-react/pull/2706)
