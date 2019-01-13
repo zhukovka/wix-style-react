@@ -116,7 +116,7 @@ import './Text/index.story';
 import './Skeleton.story.js';
 import './Collapse.story';
 import './Popover/index.story';
-import './DropdownPopover/index.story';
+import './DropdownBase/index.story';
 import './CardGalleryItem/CardGalleryItem.story';
 import './Carousel/index.story.js';
 import './CalendarPanel/index.story';

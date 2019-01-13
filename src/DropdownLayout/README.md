@@ -2,7 +2,7 @@
 
 > Dropdown layout Component to use in autocopmlete and select
 
-**Note:** For creating dropdown-like components, please refer to the `<DropdownPopover/>` component
+**Note:** For creating dropdown-like components, please refer to the `<DropdownBase/>` component
 documentation.
 
 ## Properties

@@ -4,6 +4,6 @@ export const storySettings = {
   kind: Category.COMPONENTS,
   category: Category.COMPONENTS,
 
-  storyName: 'DropdownPopover',
-  dataHook: 'story-dropdown-popover',
+  storyName: 'DropdownBase',
+  dataHook: 'story-dropdown-base',
 };

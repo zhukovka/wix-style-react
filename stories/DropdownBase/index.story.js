@@ -5,7 +5,7 @@ import LiveCodeExample from '../utils/Components/LiveCodeExample';
 import { Layout, Cell } from '../../src/Layout';
 
 import { placements } from '../../src/Popover';
-import DropdownPopover from '../../src/DropdownPopover';
+import DropdownBase from '../../src/DropdownBase';
 import Button from '../../src/Button';
 
 import ExampleUncontrolledClick from '!raw-loader!./examples/ExampleUncontrolledClick';
@@ -63,8 +63,8 @@ export default {
   category: storySettings.kind,
   storyName: storySettings.storyName,
 
-  component: DropdownPopover,
-  componentPath: '../../src/DropdownPopover/DropdownPopover.js',
+  component: DropdownBase,
+  componentPath: '../../src/DropdownBase/DropdownBase.js',
 
   componentProps: {
     dataHook: storySettings.dataHook,

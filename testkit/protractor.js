@@ -430,8 +430,8 @@ export const generatedTestComponentTestkitFactory = protractorUniTestkitFactoryC
   generatedTestComponentDriverFactory,
 );
 
-import { dropdownPopoverDriverFactory } from '../src/DropdownPopover/DropdownPopover.driver';
+import { dropdownBaseDriverFactory } from '../src/DropdownBase/DropdownBase.driver';
 
-export const dropdownPopoverTestkitFactory = protractorUniTestkitFactoryCreator(
-  dropdownPopoverDriverFactory,
+export const dropdownBaseTestkitFactory = protractorUniTestkitFactoryCreator(
+  dropdownBaseDriverFactory,
 );

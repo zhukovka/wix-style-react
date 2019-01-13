@@ -1,8 +1,8 @@
 /* eslint-disable */
 
 <div style={{ textAlign: 'center' }}>
-  <DropdownPopover
-    data-hook="story-dropdown-popover-uncontrolled-click"
+  <DropdownBase
+    data-hook="story-dropdown-base-uncontrolled-click"
     options={[
       { id: 0, value: 'First option' },
       { id: 1, value: 'Second option' },
@@ -19,5 +19,5 @@
         </TextButton>
       );
     }}
-  </DropdownPopover>
+  </DropdownBase>
 </div>;

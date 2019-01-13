@@ -5,23 +5,23 @@ import {
 } from 'wix-ui-test-utils/protractor';
 
 import { eyesItInstance } from '../../test/utils/eyes-it';
-import { dropdownPopoverTestkitFactory } from '../../testkit/protractor';
-import { storySettings } from '../../stories/DropdownPopover/storySettings';
+import { dropdownBaseTestkitFactory } from '../../testkit/protractor';
+import { storySettings } from '../../stories/DropdownBase/storySettings';
 
 const eyes = eyesItInstance();
 
-describe('DropdownPopover', () => {
+describe('DropdownBase', () => {
   const storyUrl = createStoryUrl({
     kind: storySettings.category,
     story: storySettings.storyName,
   });
 
   const createDriver = async (dataHook = storySettings.dataHook) => {
-    const driver = dropdownPopoverTestkitFactory({ dataHook });
+    const driver = dropdownBaseTestkitFactory({ dataHook });
 
     await waitForVisibilityOf(
       await driver.element(),
-      `Cannot find <DropdownPopover/> component with dataHook of ${dataHook}`,
+      `Cannot find <DropdownBase/> component with dataHook of ${dataHook}`,
     );
 
     await scrollToElement(await driver.element());
@@ -38,10 +38,10 @@ describe('DropdownPopover', () => {
   });
 
   [
-    'story-dropdown-popover-uncontrolled-click',
-    'story-dropdown-popover-uncontrolled-icon',
-    'story-dropdown-popover-controlled-mouse',
-    'story-dropdown-popover-controlled-input',
+    'story-dropdown-base-uncontrolled-click',
+    'story-dropdown-base-uncontrolled-icon',
+    'story-dropdown-base-controlled-mouse',
+    'story-dropdown-base-controlled-input',
   ].forEach(dataHook => {
     eyes.it(`should render ${dataHook}`, async () => {
       const driver = await createDriver(dataHook);

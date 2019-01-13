@@ -89,8 +89,8 @@ export const generatedTestComponentTestkitFactory = puppeteerUniTestkitFactoryCr
   generatedTestComponentDriverFactory,
 );
 
-import { dropdownPopoverDriverFactory } from '../src/DropdownPopover/DropdownPopover.driver';
+import { dropdownBaseDriverFactory } from '../src/DropdownBase/DropdownBase.driver';
 
-export const dropdownPopoverTestkitFactory = puppeteerUniTestkitFactoryCreator(
-  dropdownPopoverDriverFactory,
+export const dropdownBaseTestkitFactory = puppeteerUniTestkitFactoryCreator(
+  dropdownBaseDriverFactory,
 );
