@@ -1,8 +1,4 @@
-# MultiSelect component
-
-> Multi select with tags and AutoComplete.
-
-## MultiSelect Properties
+# MultiSelect Properties
 
 | propName | propType | defaultValue | isRequired | description |
 |----------|----------|--------------|------------|-------------|
