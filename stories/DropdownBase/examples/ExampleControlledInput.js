@@ -73,8 +73,8 @@ class ExampleControlledInput extends React.Component {
     const { open, selectedId, value } = this.state;
 
     return (
-      <DropdownPopover
-        data-hook="story-dropdown-popover-controlled-input"
+      <DropdownBase
+        data-hook="story-dropdown-base-controlled-input"
         open={open}
         onClickOutside={this._close}
         options={[
@@ -100,7 +100,7 @@ class ExampleControlledInput extends React.Component {
             />
           );
         }}
-      </DropdownPopover>
+      </DropdownBase>
     );
   }
 }

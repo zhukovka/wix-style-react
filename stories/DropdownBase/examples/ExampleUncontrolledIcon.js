@@ -1,8 +1,8 @@
 /* eslint-disable */
 
 <div style={{ textAlign: 'center' }}>
-  <DropdownPopover
-    data-hook="story-dropdown-popover-uncontrolled-icon"
+  <DropdownBase
+    data-hook="story-dropdown-base-uncontrolled-icon"
     showArrow
     options={[
       { id: 0, value: 'Today' },
@@ -19,5 +19,5 @@
         </IconButton>
       );
     }}
-  </DropdownPopover>
+  </DropdownBase>
 </div>

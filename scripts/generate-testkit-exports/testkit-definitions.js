@@ -276,7 +276,7 @@ module.exports = {
 
   GeneratedTestComponent: { unidriver, drivers: ['enzyme'] },
 
-  DropdownPopover: { unidriver },
+  DropdownBase: { unidriver },
 
   TpaLabel: {
     testkitPath: '../src/TPA/Label/Label.driver',

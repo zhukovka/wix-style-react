@@ -1,10 +1,10 @@
-# `<DropdownPopover/>`
+# `<DropdownBase/>`
 
 > A common dropdown mechanism using the Popover component
 
 There is a common behaviour of "Dropdown-like" components in our library. They have a trigger
 element, and a list of items that opens when the user interacts with that trigger element. The
-`<DropdownPopover/>` component is a higher-level component that encapsulates that logic, and allows
+`<DropdownBase/>` component is a higher-level component that encapsulates that logic, and allows
 you to create "Dropdown-like" component with ease.
 
 It uses the `<DropdownLayout/>` component to show the list of items, and the `<Popover/>`

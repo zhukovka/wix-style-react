@@ -4,7 +4,7 @@ import { dropdownLayoutDriverFactory } from '../DropdownLayout/DropdownLayout.un
 // TODO: remove when implementation with UniDriver becomes possible
 import { Simulate } from 'react-dom/test-utils';
 
-export const dropdownPopoverDriverFactory = base => {
+export const dropdownBaseDriverFactory = base => {
   const byDataHook = dataHook => base.$(`[data-hook="${dataHook}"]`);
 
   const getTargetElement = () => byDataHook('popover-element');
@@ -21,7 +21,7 @@ export const dropdownPopoverDriverFactory = base => {
     /** Returns `true` if the dropdown is being shown */
     isDropdownShown: async () => await getContentElement().exists(),
 
-    /** Select a specific option (requires the DropdownPopover to be opened) */
+    /** Select a specific option (requires the DropdownBase to be opened) */
     selectOption: async index =>
       createDropdownLayoutDriver().clickAtOption(index),
 

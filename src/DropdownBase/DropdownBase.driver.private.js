@@ -1,10 +1,10 @@
-import { dropdownPopoverDriverFactory as publicDriverFactory } from './DropdownPopover.driver';
+import { dropdownBaseDriverFactory as publicDriverFactory } from './DropdownBase.driver';
 import { dropdownLayoutDriverFactory } from '../DropdownLayout/DropdownLayout.uni.driver';
 
 // TODO: remove when implementation with UniDriver becomes possible
 import { Simulate } from 'react-dom/test-utils';
 
-export const dropdownPopoverPrivateDriverFactory = base => {
+export const dropdownBasePrivateDriverFactory = base => {
   const byDataHook = dataHook => base.$(`[data-hook="${dataHook}"]`);
 
   const getTargetElement = () => byDataHook('popover-element');

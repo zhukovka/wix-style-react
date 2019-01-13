@@ -3,16 +3,16 @@ import { mount } from 'enzyme';
 import { createUniDriverFactory } from 'wix-ui-test-utils/uni-driver-factory';
 import { enzymeUniTestkitFactoryCreator } from 'wix-ui-test-utils/enzyme';
 
-import DropdownPopover from './DropdownPopover';
-import { dropdownPopoverPrivateDriverFactory } from './DropdownPopover.driver.private';
+import DropdownBase from './DropdownBase';
+import { dropdownBasePrivateDriverFactory } from './DropdownBase.driver.private';
 
-describe('DropdownPopover', () => {
+describe('DropdownBase', () => {
   const createDriver = createUniDriverFactory(
-    dropdownPopoverPrivateDriverFactory,
+    dropdownBasePrivateDriverFactory,
   );
 
-  const dropdownPopoverEnzymeDriver = enzymeUniTestkitFactoryCreator(
-    dropdownPopoverPrivateDriverFactory,
+  const dropdownBaseEnzymeDriver = enzymeUniTestkitFactoryCreator(
+    dropdownBasePrivateDriverFactory,
   );
 
   const defaultProps = {
@@ -28,12 +28,12 @@ describe('DropdownPopover', () => {
     let args;
 
     const driver = createDriver(
-      <DropdownPopover {...defaultProps} {...initialProps}>
+      <DropdownBase {...defaultProps} {...initialProps}>
         {_args => {
           args = _args;
           return renderProp ? renderProp(_args) : <div>Hello again</div>;
         }}
-      </DropdownPopover>,
+      </DropdownBase>,
     );
 
     return {
@@ -45,9 +45,9 @@ describe('DropdownPopover', () => {
   const createControlledDriver = (renderProp, initialProps) => {
     let args;
 
-    const dataHook = 'dropdown-popover-0';
+    const dataHook = 'dropdown-base-0';
     const wrapper = mount(
-      <DropdownPopover
+      <DropdownBase
         {...defaultProps}
         dataHook={dataHook}
         open={false}
@@ -57,10 +57,10 @@ describe('DropdownPopover', () => {
           args = _args;
           return renderProp ? renderProp(_args) : <div>Hello again</div>;
         }}
-      </DropdownPopover>,
+      </DropdownBase>,
     );
 
-    const driver = dropdownPopoverEnzymeDriver({
+    const driver = dropdownBaseEnzymeDriver({
       wrapper,
       dataHook,
     });
@@ -73,15 +73,15 @@ describe('DropdownPopover', () => {
   };
 
   it('should render', async () => {
-    const driver = createDriver(<DropdownPopover {...defaultProps} />);
+    const driver = createDriver(<DropdownBase {...defaultProps} />);
     expect(await driver.exists()).toBeTruthy();
   });
 
   it('should accept a node as a children', async () => {
     const driver = createDriver(
-      <DropdownPopover {...defaultProps}>
+      <DropdownBase {...defaultProps}>
         <div>Hello</div>
-      </DropdownPopover>,
+      </DropdownBase>,
     );
 
     const targetElement = await driver.getTargetElement();
@@ -90,7 +90,7 @@ describe('DropdownPopover', () => {
 
   it('should accept a function as a children and pass it the required arguments', async () => {
     const driver = createDriver(
-      <DropdownPopover {...defaultProps}>
+      <DropdownBase {...defaultProps}>
         {({ open, close, toggle, delegateKeyDown, selectedOption }) => {
           expect(typeof open).toBe('function');
           expect(typeof close).toBe('function');
@@ -101,7 +101,7 @@ describe('DropdownPopover', () => {
 
           return <div>Hello again</div>;
         }}
-      </DropdownPopover>,
+      </DropdownBase>,
     );
 
     const targetElement = await driver.getTargetElement();
@@ -112,9 +112,9 @@ describe('DropdownPopover', () => {
     const onSelectFn = jest.fn();
 
     const driver = createDriver(
-      <DropdownPopover {...defaultProps} open onSelect={onSelectFn}>
+      <DropdownBase {...defaultProps} open onSelect={onSelectFn}>
         <div>Hello</div>
-      </DropdownPopover>,
+      </DropdownBase>,
     );
 
     await driver.selectOption(0);
@@ -126,9 +126,9 @@ describe('DropdownPopover', () => {
     const onClickOutsideFn = jest.fn();
 
     const driver = createDriver(
-      <DropdownPopover {...defaultProps} onClickOutside={onClickOutsideFn}>
+      <DropdownBase {...defaultProps} onClickOutside={onClickOutsideFn}>
         <div>Hello</div>
-      </DropdownPopover>,
+      </DropdownBase>,
     );
 
     await driver.clickOutside();
@@ -139,9 +139,9 @@ describe('DropdownPopover', () => {
     const onMouseEnterFn = jest.fn();
 
     const driver = createDriver(
-      <DropdownPopover {...defaultProps} onMouseEnter={onMouseEnterFn}>
+      <DropdownBase {...defaultProps} onMouseEnter={onMouseEnterFn}>
         <div>Hello</div>
-      </DropdownPopover>,
+      </DropdownBase>,
     );
 
     await driver.mouseEnter();
@@ -152,9 +152,9 @@ describe('DropdownPopover', () => {
     const onMouseLeaveFn = jest.fn();
 
     const driver = createDriver(
-      <DropdownPopover {...defaultProps} onMouseLeave={onMouseLeaveFn}>
+      <DropdownBase {...defaultProps} onMouseLeave={onMouseLeaveFn}>
         <div>Hello</div>
-      </DropdownPopover>,
+      </DropdownBase>,
     );
 
     await driver.mouseLeave();
@@ -234,7 +234,7 @@ describe('DropdownPopover', () => {
         // `mouseleave` event of the target element. Normally, The `mouseleave` event will trigger
         // when the user moves the cursor from the target element to the DropdownLayout, thus the
         // DropdownLayout will be closed.
-        // This is not the desired behaviour. As a result, the DropdownPopover handle this specific
+        // This is not the desired behaviour. As a result, the DropdownBase handle this specific
         // case.
 
         // We'll use a custom render function
@@ -322,9 +322,9 @@ describe('DropdownPopover', () => {
   describe('uncontrolled selection behaviour', () => {
     it('should accept an initialSelectedId and use it', async () => {
       const driver = createDriver(
-        <DropdownPopover {...defaultProps} open initialSelectedId={2}>
+        <DropdownBase {...defaultProps} open initialSelectedId={2}>
           <div>Hello</div>
-        </DropdownPopover>,
+        </DropdownBase>,
       );
 
       expect(await driver.isOptionSelected(2)).toBeTruthy();
@@ -332,9 +332,9 @@ describe('DropdownPopover', () => {
 
     it('should store the selection after user interaction', async () => {
       const driver = createDriver(
-        <DropdownPopover {...defaultProps} open>
+        <DropdownBase {...defaultProps} open>
           <div>Hello</div>
-        </DropdownPopover>,
+        </DropdownBase>,
       );
 
       await driver.selectOption(0);
