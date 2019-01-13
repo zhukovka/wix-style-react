@@ -99,7 +99,7 @@ import './Badge/index.story'; // 12.1 Badge
 import './BadgeSelect/index.story.js'; // 12.2 BadgeSelect
 import './CounterBadge'; //12.3 CounterBadge
 import './FullTextView.story.js'; //12.4 FullTextView
-import './Tag.story.js'; // 12.5 Tag
+import './Tag/Tag.story'; // 12.5 Tag
 import './Avatar/Avatar.story'; // 12.6 Avatar
 import './Highlighter.story.js'; // Highlighter
 
@@ -144,10 +144,12 @@ import './Typography/TypographyTestStories';
 import './Page/PageTestStories.js'; // Tests/2. Layout/2.5 + Page/
 import './PageHeader/PageHeaderTestStories.js'; // Tests/2. Layout/2.5 + PageHeader/
 import './Calendar/CalendarTestStory'; // Tests/3. Inputs/3.13 Calendar
+import './MultiSelect/MultiSelectTestStory'; // Tests/3. Inputs/3.8 Tags
 import './PopoverMenu/PopoverMenuRegressionTest.js'; // Tests/7.3. Popover Menu/
 import './Popover/testStory';
 import './TableToolbar/ToolbarTestStory'; // Tests/10. Table
-import './Avatar/AvatarTestStory'; // Tests/12. Other
+import './Tag/TagTestStory'; // Tests/12. Other/12.5 Tag
+import './Avatar/AvatarTestStory'; // Tests/12. Other/12.6 Avatar
 
 // The generated test component
 import './GeneratedTestComponent/index.story';

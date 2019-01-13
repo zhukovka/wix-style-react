@@ -1,7 +1,7 @@
 import React from 'react';
 
-import Tag from 'wix-style-react/Tag';
-import { createAutoExampleWrapper } from './AutoExampleWrapper';
+import Tag from '../../src/Tag';
+import { createAutoExampleWrapper } from '../AutoExampleWrapper';
 
 const GREEN_THUMB = (
   <div
@@ -18,15 +18,17 @@ const TagWrapper = ({ story__withThumb, ...rest }) =>
 TagWrapper.propTypes = Tag.propTypes;
 TagWrapper.displayName = Tag.displayName;
 
+import { storySettings } from './storySettings';
+
 export default {
-  category: '12. Other',
-  storyName: '12.5 Tag',
+  category: storySettings.category,
+  storyName: storySettings.storyName,
 
   component: createAutoExampleWrapper(TagWrapper),
-  componentPath: '../src/Tag',
+  componentPath: '../../src/Tag',
   componentProps: {
     children: 'Hello World',
-    dataHook: 'story-tag',
+    dataHook: storySettings.dataHook,
     useOldMargins: false,
   },
   exampleProps: {

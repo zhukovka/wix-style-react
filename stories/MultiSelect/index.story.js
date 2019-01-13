@@ -145,6 +145,7 @@ export default {
   category: storySettings.category,
   storyName: storySettings.storyName,
   component: MultiSelect,
+
   componentPath: '../../src/MultiSelect',
   ...playgroundStoryConfig,
   sections: [
