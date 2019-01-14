@@ -3,11 +3,7 @@ import PropTypes from 'prop-types';
 import isUndefined from 'lodash/isUndefined';
 import defaultTo from 'lodash/defaultTo';
 import differenceBy from 'lodash/differenceBy';
-import {
-  allValidators,
-  extendPropTypes,
-  validatorWithSideEffect,
-} from '../utils/propTypes';
+import { allValidators, extendPropTypes } from '../utils/propTypes';
 import deprecationLog from '../utils/deprecationLog';
 
 import InputWithOptions from '../InputWithOptions/InputWithOptions';
@@ -199,7 +195,7 @@ extendPropTypes(Dropdown, {
       }
     },
   ),
-  upgrade: validatorWithSideEffect(PropTypes.bool, (props, propName) => {
+  upgrade: allValidators(PropTypes.bool, (props, propName) => {
     if (!props[propName]) {
       deprecationLog(
         `Dropdown: New API! Please upgrade by passing the prop 'upgrade=true', and refer to documentation.`,
