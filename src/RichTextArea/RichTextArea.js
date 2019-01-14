@@ -3,7 +3,8 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import FormFieldError from 'wix-ui-icons-common/system/FormFieldError';
 import WixComponent from '../BaseComponents/WixComponent';
-import { Editor, Block } from 'slate';
+import { Block } from 'slate';
+import { Editor, getEventRange, getEventTransfer } from 'slate-react';
 import Tooltip from '../Tooltip';
 import RichTextEditorToolbar from './RichTextAreaToolbar';
 import htmlSerializer from './htmlSerializer';
@@ -75,92 +76,33 @@ class RichTextArea extends WixComponent {
 
   /* eslint-disable react/prop-types */
   schema = {
-    nodes: {
-      'unordered-list': props => (
-        <ul {...props.attributes}>{props.children}</ul>
-      ),
-      'list-item': props => <li {...props.attributes}>{props.children}</li>,
-      'ordered-list': props => <ol {...props.attributes}>{props.children}</ol>,
-      link: props => {
-        const { data } = props.node;
-        const href = data.get('href');
-        return (
-          <a
-            className={styles.link}
-            {...props.attributes}
-            rel="noopener noreferrer"
-            target="_blank"
-            href={href}
-          >
-            {props.children}
-          </a>
-        );
-      },
-      image: props => {
-        const { node, state } = props;
-        const isFocused = state.selection.hasEdgeIn(node);
-        const src = node.data.get('src');
-        return (
-          <img
-            data-hook="editor-image"
-            src={src}
-            className={classNames(styles.editorImage, {
-              [styles.activeEditorImage]: isFocused,
-            })}
-          />
-        );
+    document: {
+      last: { type: 'paragraph' },
+      normalize: (editor, { code, node }) => {
+        switch (code) {
+          case 'last_child_type_invalid': {
+            const block = Block.create(defaultBlock);
+            return editor.insertNodeByKey(node.key, node.nodes.size, block);
+          }
+          default:
+            return;
+        }
       },
     },
-    marks: {
-      bold: {
-        fontWeight: 'bold',
-      },
-      italic: {
-        fontStyle: 'italic',
-      },
-      underline: {
-        textDecoration: 'underline',
+    blocks: {
+      image: {
+        isVoid: true,
       },
     },
-    rules: [
-      // Rule to insert a paragraph block if the document is empty.
-      {
-        match: node => {
-          return node.kind === 'document';
-        },
-        validate: document => {
-          return document.nodes.size ? null : true;
-        },
-        normalize: (transform, document) => {
-          const block = Block.create(defaultBlock);
-          transform.insertNodeByKey(document.key, 0, block);
-        },
-      },
-      // Rule to insert a paragraph below a void node (the image) if that node is
-      // the last one in the document.
-      {
-        match: node => {
-          return node.kind === 'document';
-        },
-        validate: document => {
-          const lastNode = document.nodes.last();
-          return lastNode && lastNode.isVoid ? true : null;
-        },
-        normalize: (transform, document) => {
-          const block = Block.create(defaultBlock);
-          transform.insertNodeByKey(document.key, document.nodes.size, block);
-        },
-      },
-    ],
   };
   /* eslint-disable */
 
   constructor(props) {
     super(props);
 
-    const editorState = htmlSerializer.deserialize(props.value);
+    const editorValue = htmlSerializer.deserialize(props.value);
     this.state = {
-      editorState
+      editorValue,
     };
     this.lastValue = props.value;
   }
@@ -173,51 +115,60 @@ class RichTextArea extends WixComponent {
       props.value !== this.lastValue;
     if (isPlaceholderChanged || isValueChanged) {
       if (props.isAppend) {
-        const newEditorState = this.state.editorState
-          .transform()
-          .insertText(props.value)
-          .apply();
-
-        this.setEditorState(newEditorState);
-      } else {
-        const editorState = htmlSerializer.deserialize(props.value);
-        this.setEditorState(editorState);
+        console.log('new append', props.value);
+        this.editor
+          .insertText(props.value);
+      }
+      else {
+        const value = htmlSerializer.deserialize(props.value);
+        this.setEditorValue({ value });
       }
     }
   }
 
-  setEditorState = (editorState, isTextChanged = true) => {
-    this.setState({ editorState }, () => this.triggerChange(isTextChanged));
-  };
+  ref = editor => {
+    this.editor = editor;
+  }
+
+  onChange = ({ value }) => {
+    const serialized = htmlSerializer.serialize(value);
+    const isValueChanged = value.document != this.state.editorValue.document;
+    // const isValueChanged = serialized !== this.lastValue;
+    this.lastValue = serialized;
+    this.setEditorValue({ value }, isValueChanged);
+  }
+
+  setEditorValue = ({value}, isTextChanged = true) => {
+    this.setState({ editorValue: value }, () => this.triggerChange(isTextChanged));
+  }
 
   triggerChange(isTextChanged = true) {
-    const serialized = htmlSerializer.serialize(this.state.editorState);
+    const serialized = htmlSerializer.serialize(this.state.editorValue);
     this.lastValue = serialized;
     if (isTextChanged) {
+      console.log(isTextChanged, 'serialized', serialized);
       const { onChange } = this.props;
       onChange && onChange(serialized);
     }
   }
 
-  hasBlock = type =>
-    this.state.editorState.blocks.some(node => node.type == type);
+  hasBlock = type => this.state.editorValue.blocks.some(node => node.type == type);
 
   hasListBlock = type => {
-    const { editorState } = this.state;
-    return editorState.blocks.some(node => {
-      const parent = editorState.document.getParent(node.key);
+    const {editorValue} = this.state;
+    return editorValue.blocks.some(node => {
+      const parent = editorValue.document.getParent(node.key);
       return parent && parent.type === type;
     });
-  };
+  }
 
-  hasMark = type =>
-    this.state.editorState.marks.some(mark => mark.type == type);
+  hasMark = type => this.state.editorValue.activeMarks.some(mark => mark.type == type);
 
-  hasLink = () =>
-    this.state.editorState.inlines.some(inline => inline.type === "link");
+  hasLink = () => this.state.editorValue.inlines.some(inline => inline.type === 'link');
 
   handleButtonClick = (action, type) => {
-    this.setState({ activeToolbarButton: type });
+    this.setState({activeToolbarButton: type});
+
     switch (action) {
       case "mark":
         return this.handleMarkButtonClick(type);
@@ -228,58 +179,16 @@ class RichTextArea extends WixComponent {
       case "image":
         return this.handleImageButtonClick(type);
     }
-  };
+  }
 
   handleMarkButtonClick = type => {
-    const editorState = this.state.editorState
-      .transform()
-      .toggleMark(type)
-      .apply();
-
-    this.setEditorState(editorState);
-  };
-
-  handleImageButtonClick = type => {
-    this.props.onImageRequest(this.handleImageInput.bind(this));
-  };
-
-  handleImageInput = text => {
-    if (this.isValidImage(text)) {
-      const editorState = this.insertImage(this.state.editorState, text);
-      this.setEditorState(editorState);
-    }
-  };
-  onPaste = (e, data, state, editor) => {
-    switch (data.type) {
-      case "text":
-        return this.onPasteText(data.text, state);
-    }
-  };
-
-  onPasteText = (text, state) => {
-    if (this.isValidImage(text)) {
-      return this.insertImage(state, text);
-    }
-    return;
-  };
-
-  isValidImage = text => isUrl(text) && isImage(text);
-
-  insertImage = (state, src) => {
-    return state
-      .transform()
-      .insertBlock({
-        type: "image",
-        isVoid: true,
-        data: { src }
-      })
-      .apply();
-  };
+    this.editor.toggleMark(type);
+  }
 
   handleBlockButtonClick = type => {
-    let { editorState } = this.state;
-    let transform = editorState.transform();
-    const { document } = editorState;
+    const { editor } = this;
+    const { value } = editor;
+    const { document } = value;
 
     // Handle everything but list buttons.
     if (type !== "unordered-list" && type !== "ordered-list") {
@@ -287,86 +196,108 @@ class RichTextArea extends WixComponent {
       const isList = this.hasBlock("list-item");
 
       if (isList) {
-        transform
-          .setBlock(isActive ? "" : type)
-          .unwrapBlock("unordered-list")
-          .unwrapBlock("ordered-list");
-      } else {
-        transform.setBlock(isActive ? "" : type);
+        editor
+          .setBlocks(isActive ? DEFAULT_NODE : type)
+          .unwrapBlock('unordered-list')
+          .unwrapBlock('ordered-list');
+      }
+
+      else {
+        editor
+          .setBlocks(isActive ? DEFAULT_NODE : type);
       }
     }
 
     // Handle the extra wrapping required for list buttons.
     else {
-      const isList = this.hasBlock("list-item");
-      const isType = editorState.blocks.some(block => {
+      const isList = this.hasBlock('list-item');
+      const isType = value.blocks.some((block) => {
         return !!document.getClosest(block.key, parent => parent.type == type);
       });
 
       if (isList && isType) {
-        transform
-          .setBlock(DEFAULT_NODE)
-          .unwrapBlock("unordered-list")
-          .unwrapBlock("ordered-list");
+        editor
+          .setBlocks(DEFAULT_NODE)
+          .unwrapBlock('unordered-list')
+          .unwrapBlock('ordered-list');
       } else if (isList) {
-        transform
-          .unwrapBlock(
-            type == "unordered-list" ? "ordered-list" : "unordered-list"
-          )
+        editor
+          .unwrapBlock(type == 'unordered-list' ? 'ordered-list' : 'unordered-list')
           .wrapBlock(type);
       } else {
-        transform.setBlock("list-item").wrapBlock(type);
+        editor
+          .setBlocks('list-item')
+          .wrapBlock(type);
       }
     }
+  }
 
-    editorState = transform.apply();
-    this.setState({ editorState });
-  };
-
-  handleLinkButtonClick = ({ href, text } = {}) => {
-    const { editorState } = this.state;
-    const transform = editorState.transform();
+  handleLinkButtonClick = ({href, text} = {}) => {
+    const { value } = this.editor;
     const decoratedHref = this.props.absoluteLinks
       ? makeHrefAbsolute(href)
       : href;
 
     if (this.hasLink()) {
-      transform.unwrapInline("link");
+      this.editor
+        .unwrapInline('link');
     } else {
       const linkContent = text || decoratedHref;
-      const startPos = editorState.anchorOffset;
-      transform
+      const startPos = value.anchorOffset;
+      this.editor
         .insertText(linkContent)
-        .select({
-          anchorOffset: startPos,
-          focusOffset: startPos + linkContent.length,
-          isFocused: true,
-          isBackward: false
-        })
+        .moveFocusBackward(linkContent.length)
         .wrapInline({
-          type: "link",
-          data: { href: decoratedHref }
+          type: 'link',
+          data: {href: decoratedHref},
         })
-        .focus()
-        .collapseToEnd();
+        .moveToEnd();
+    }
+  }
+
+  handleImageButtonClick = type => {
+    this.props.onImageRequest(this.handleImageInput);
+  }
+
+  handleImageInput = text => {
+    if (this.isValidImage(text)) {
+      this.editor
+        .insertBlock({
+          type: 'image',
+          data: { src: text },
+        });
+    }
+  }
+
+  onPaste = (e, editor, next) => {
+    const target = getEventRange(event, editor);
+    if (!target && event.type == 'drop') return next();
+
+    const transfer = getEventTransfer(event)
+    const { type, text, files } = transfer;
+
+    if (type === 'text') {
+      if (!this.isValidImage(text)) return next();
+
+      editor
+        .insertBlock({
+          type: 'image',
+          data: { src: text },
+        });
+        return;
     }
 
-    this.setEditorState(transform.apply());
-  };
+    next();
+  }
 
-  render = () => {
-    const { editorState } = this.state;
-    const {
-      error,
-      placeholder,
-      disabled,
-      resizable,
-      onImageRequest,
-      dataHook
-    } = this.props;
+  isValidImage = (text) => isUrl(text) && isImage(text);
+
+  render() {
+    const {editorValue} = this.state;
+    const {error, placeholder, disabled, resizable, onImageRequest, dataHook} = this.props;
     const className = classNames(styles.container, {
       [styles.withError]: error,
-      [styles.isEditorFocused]: editorState.isFocused
+      [styles.isEditorFocused]: editorValue.isFocused,
     });
     const isScrollable = resizable || this.props.maxHeight;
 
@@ -383,7 +314,7 @@ class RichTextArea extends WixComponent {
               activeToolbarButton prop required to trigger RichTextEditorToolbar re-render after toolbar button click
             */
             activeToolbarButton={this.state.activeToolbarButton}
-            selection={editorState.fragment.text}
+            selection={editorValue.fragment.text}
             disabled={disabled}
             onClick={this.handleButtonClick}
             onLinkButtonClick={this.handleLinkButtonClick}
@@ -393,8 +324,8 @@ class RichTextArea extends WixComponent {
             hasMark={this.hasMark}
             hasListBlock={this.hasListBlock}
             hasLink={this.hasLink}
-            isSelectionExpanded={editorState.isExpanded}
-          />
+            isSelectionExpanded={editorValue.isExpanded}
+            />
         </div>
         <div
           className={classNames(styles.editorWrapper, {
@@ -408,28 +339,59 @@ class RichTextArea extends WixComponent {
           <Editor
             readOnly={disabled}
             placeholder={placeholder}
-            placeholderClassName={styles.placeholder}
-            className={classNames(styles.editor, {
-              [styles.disabled]: disabled
-            })}
+            className={classNames(styles.editor, {[styles.disabled]: disabled})}
+            ref={this.ref}
             schema={this.schema}
-            state={editorState}
+            value={editorValue}
+            onChange={this.onChange}
             onPaste={this.onPaste}
-            onChange={e => {
-              const serialized = htmlSerializer.serialize(e);
-              const isValueChanged = serialized !== this.lastValue;
-              this.lastValue = serialized;
-              this.setEditorState(e, isValueChanged);
-            }}
-          />
+            renderNode={this.renderNode}
+            renderMark={this.renderMark}
+            />
           {this.renderError()}
         </div>
       </div>
     );
-  };
+  }
+
+  renderNode(props, editor, next) {
+    switch (props.node.type) {
+      case 'unordered-list':
+        return <ul {...props.attributes}>{props.children}</ul>;
+      case 'list-item':
+        return <li {...props.attributes}>{props.children}</li>;
+      case 'ordered-list':
+        return <ol {...props.attributes}>{props.children}</ol>;
+      case 'link':
+        const {data} = props.node;
+        const href = data.get('href');
+        return <a className={styles.link} {...props.attributes} rel="noopener noreferrer" target="_blank" href={href}>{props.children}</a>;
+      case 'image':
+        const {node, isFocused} = props;
+        const src = node.data.get('src');
+        return (<img data-hook="editor-image" src={src} className={classNames(styles.editorImage, {[styles.activeEditorImage]: isFocused})}/>);
+      default:
+        return next();
+    }
+  }
+
+  renderMark(props, editor, next) {
+    const {attributes, children, mark} = props;
+
+    switch (mark.type) {
+      case 'bold':
+        return <strong {...attributes}>{children}</strong>;
+      case 'italic':
+        return <em {...attributes}>{children}</em>;
+      case 'underline':
+        return <u {...attributes}>{children}</u>;
+      default:
+        return next();
+    }
+  }
 
   renderError = () => {
-    const { errorMessage } = this.props;
+    const {errorMessage} = this.props;
 
     return (
       <Tooltip

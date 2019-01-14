@@ -1,5 +1,5 @@
 import React from 'react';
-import { Html } from 'slate';
+import Html from 'slate-html-serializer';
 
 const BLOCK_TAGS = {
   p: 'paragraph',
@@ -22,113 +22,103 @@ const INLINE_TAGS = {
 const rules = [
   {
     deserialize(el, next) {
-      const type = BLOCK_TAGS[el.tagName];
-      if (!type) {
-        return;
-      }
-
-      const data = {};
-      switch (type) {
-        case 'image': {
-          data.src = el.attribs.src;
-          break;
+      const type = BLOCK_TAGS[el.tagName.toLowerCase()];
+      if (type) {
+        const data = {};
+        switch (type) {
+          case 'image': {
+            data.src = el.getAttribute('src');
+            break;
+          }
+          default:
+            break;
         }
-        default:
-          break;
-      }
 
-      return {
-        kind: 'block',
-        type,
-        data,
-        nodes: next(el.children),
-      };
+        return {
+          object: 'block',
+          type,
+          data,
+          nodes: next(el.childNodes),
+        };
+      }
     },
-    serialize(object, children) {
-      if (object.kind !== 'block') {
-        return;
-      }
-
-      switch (object.type) {
-        case 'paragraph':
-          return <p>{children}</p>;
-        case 'list-item':
-          return <li>{children}</li>;
-        case 'ordered-list':
-          return <ol>{children}</ol>;
-        case 'unordered-list':
-          return <ul>{children}</ul>; //data-hook="editor-image"
-        case 'image':
-          return <img data-hook="editor-image" src={object.data.get('src')} />;
-        default:
-          return { children };
+    serialize(obj, children) {
+      if (obj.object === 'block') {
+        switch (obj.type) {
+          case 'paragraph':
+            return <p>{children}</p>;
+          case 'list-item':
+            return <li>{children}</li>;
+          case 'ordered-list':
+            return <ol>{children}</ol>;
+          case 'unordered-list':
+            return <ul>{children}</ul>; //data-hook="editor-image"
+          case 'image':
+            return (
+              <img data-hook="editor-image" src={obj.data.get('src')} alt="" />
+            );
+          default:
+            break;
+        }
       }
     },
   },
   {
     deserialize(el, next) {
-      const type = MARK_TAGS[el.tagName];
-      if (!type) {
-        return;
+      const type = MARK_TAGS[el.tagName.toLowerCase()];
+      if (type) {
+        return {
+          object: 'mark',
+          type,
+          nodes: next(el.childNodes),
+        };
       }
-
-      return {
-        kind: 'mark',
-        type,
-        nodes: next(el.children),
-      };
     },
-    serialize(object, children) {
-      if (object.kind !== 'mark') {
-        return;
-      }
-
-      switch (object.type) {
-        case 'bold':
-          return <strong>{children}</strong>;
-        case 'italic':
-          return <em>{children}</em>;
-        case 'underline':
-          return <u>{children}</u>;
-        default:
-          return { children };
+    serialize(obj, children) {
+      if (obj.object === 'mark') {
+        switch (obj.type) {
+          case 'bold':
+            return <strong>{children}</strong>;
+          case 'italic':
+            return <em>{children}</em>;
+          case 'underline':
+            return <u>{children}</u>;
+          default:
+            break;
+        }
       }
     },
   },
   {
     deserialize(el, next) {
-      const type = INLINE_TAGS[el.tagName];
-      if (!type) {
-        return;
+      const type = INLINE_TAGS[el.tagName.toLowerCase()];
+      if (type) {
+        return {
+          object: 'inline',
+          type,
+          data: {
+            href: el.getAttribute('href'),
+          },
+          nodes: next(el.childNodes),
+        };
       }
-
-      return {
-        kind: 'inline',
-        type,
-        data: {
-          href: el.attribs.href,
-        },
-        nodes: next(el.children),
-      };
     },
-    serialize(object, children) {
-      if (object.kind !== 'inline') {
-        return;
-      }
-
-      switch (object.type) {
-        case 'link':
-          return (
-            <a
-              rel="noopener noreferrer"
-              target="_blank"
-              href={object.data.get('href')}
-            >
-              {children}
-            </a>
-          );
-        default:
-          return { children };
+    serialize(obj, children) {
+      if (obj.object === 'inline') {
+        switch (obj.type) {
+          case 'link':
+            return (
+              <a
+                rel="noopener noreferrer"
+                target="_blank"
+                href={obj.data.get('href')}
+              >
+                {children}
+              </a>
+            );
+          default:
+            break;
+        }
       }
     },
   },

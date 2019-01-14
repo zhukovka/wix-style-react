@@ -172,7 +172,11 @@ describe('RichTextArea', () => {
   function createComponent(props) {
     const mergedProps = Object.assign(
       {
-        onChange: newValue => (currentValue = newValue),
+        // onChange: newValue => currentValue = newValue
+        onChange: newValue => {
+          console.log('renewed', newValue); // eslint-disable-line
+          currentValue = newValue;
+        },
       },
       props,
     );
