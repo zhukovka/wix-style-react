@@ -25,6 +25,7 @@ Types of changes:
 
 - `<ButtonWithOptions/>`,` <IconWithOptions/>` - deprecated components [#2706](https://github.com/wix/wix-style-react/pull/2706)
 - `<Dropdown/>` - Add support for Controlled `selectedId` [#2719](https://github.com/wix/wix-style-react/pull/2719)
+- `<MultiSelect/>` - New Api [#2752](https://github.com/wix/wix-style-react/pull/2752)
 
 ### Fixed
 
