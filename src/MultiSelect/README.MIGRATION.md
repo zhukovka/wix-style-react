@@ -1,6 +1,6 @@
 # MultiSelect Migration Guide
 
-## `upgrade` prop - Migration to new API
+## New Callback API (5.x to [5.24.0 + `upgrade` prop] OR [6.x])
 
 A new `upgrade` prop will apply API changes with a simplified approach for creating new tags versus selecting from options list.
 
