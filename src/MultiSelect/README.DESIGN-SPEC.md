@@ -16,19 +16,33 @@ These are internal actions which can be performed by the user:
 - Select: Selects the marked option (if there is one)
 - Cancel: Clears the input, and closes options.
 
+### Modes
+
+- **Input** - Allow entering new tags (Suggestions)
+- **Select** - Only selection from a list (no new tags)
+
 ### User Actions -> Internal Actions
 
-| User Action                 | Input State   | Marked Option |Internal Action |
-|-----------------------------|---------------|---------------|----------------|
-| Click on option             |  *            | *             | Select         |
-| Paste                       |  *            | *             | Submit         |
-| COS, Esc, Blur              |  *            | *             | Cancel         |
-| Enter, Delimiter, Tab       | non-empty     | exists        | Select         |
-| Enter, Delimiter, Tab       | non-empty     | none          | Submit         |
-| Enter, Tab                  | empty         | exists        | Select         |
-| Tab                         | empty         | none          | Step Out       |
+| User Action                 | Mode |Input State   | Marked Option |Internal Action |
+|-----------------------------|------|--------------|---------------|----------------|
+| Click on option             |  |*            | *             | Select         |
+| Paste                       | Input |*            | *             | Submit         |
+| *Paste                       | Select |*            | *             | Only paste text (no submit)         |
+| Enter, Tab       | |non-empty     | exists        | Select         |
+| Enter, Delimiter, Tab       | |non-empty     | none          | Submit         |
+| Enter, Tab                  | |empty         | exists        | Select         |
+| Tab                         | |empty         | none          | Step Out       |
+| Esc              |  |*            | *             | Cancel         |
+| COS, Blur              |  |*            | *             | Cancel , Close Options         |
 
 > COS : Click Out Side
+
+### Internal Actions
+| Action | Action Side-effects |
+|--------|----------------|
+| Select | Clear input |
+| Cancel | Clear input |
+| Submit | Clear input |
 
 ## Props
 
@@ -46,6 +60,8 @@ For example, when there is an `Alabama` option, and the input contains `Alab`, t
 - `markFirstMatchingOption === true` : The first matching option is marked (like hovered), "Enter" selects it.
 
 > When `preferOption===true` then it is not possible to enter a new Tag which is a prefix of an existing option vlaue.
+
+> `markFirstMatchingOption === true` is not implemented yet.
 
 ### onSelect (Changes)
 
