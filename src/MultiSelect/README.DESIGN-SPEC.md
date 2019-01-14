@@ -1,6 +1,6 @@
 As a discussion resulting from [this Issue](https://github.com/wix/wix-style-react/issues/2559)...
 
-# New API (`onTagsAdded` prop)
+# New API
 
 When this prop is passed, the component will have a new callback API.
 
@@ -12,7 +12,7 @@ When this prop is passed, the component will have a new callback API.
 
 These are internal actions which can be performed by the user:
 
-- Submit: Submits the current input value. Calls `onTagsAdded` (if non empty after triming)
+- Submit: Submits the current input value. Calls `onManuallyInput` (if non empty after triming)
 - Select: Selects the marked option (if there is one)
 - Cancel: Clears the input, and closes options.
 
@@ -51,7 +51,7 @@ These are internal actions which can be performed by the user:
 
 | propName | propType | defaultValue | isRequired | description |
 |----------|----------|--------------|------------|-------------|
-| onTagsAdded | function |  |  |  A callback which is called when the user performs a Submit action. Submit action triggers are: "Enter", "Tab", [typing any defined delimiter], Paste action. Callback receives a single argument `Array<string>` which is a result of splitting the value by the given `delimiters` prop (and trimming each part)|
+| onMnuallyInput | function |  |  |  A callback which is called when the user performs a Submit action. Submit action triggers are: "Enter", "Tab", [typing any defined delimiter], Paste action. Callback receives a single argument `Array<string>` which is a result of splitting the value by the given `delimiters` prop (and trimming each part)|
 | markFirstMatchingOption | boolean | false |  | When true then when typing, the first matching option will be "marked", so that pressing "Enter" will select it.|
 | onSelect | function | | |`onSelect` will be called ONLY when a user clicks on an option from the options list. It receives an `Array<object>` of newly selected options (usually one). Each object is the original option, excluding the `value` property. (`value` property should be used for rendering the option only)|
 
@@ -59,7 +59,7 @@ These are internal actions which can be performed by the user:
 
 For example, when there is an `Alabama` option, and the input contains `Alab`, the options is showing the `Alabama` option.
 
-- `markFirstMatchingOption === false` (default) : No option will be marked, "Enter" submits (calls `onTagsAdded`) the input value. (The user can navigate to the options)
+- `markFirstMatchingOption === false` (default) : No option will be marked, "Enter" submits (calls `onManuallyInput`) the input value. (The user can navigate to the options)
 - `markFirstMatchingOption === true` : The first matching option is marked (like hovered), "Enter" selects it.
 
 > When `preferOption===true` then it is not possible to enter a new Tag which is a prefix of an existing option vlaue.
@@ -99,14 +99,14 @@ We want to pass the original option, excluding the `value` prop.
 
 ### Paste logic
 
-- Paste will automatically submit (call `onTagsAdded`).
+- Paste will automatically submit (call `onManuallyInput`).
 - Paste will automatically clear the input.
 
 ## Callback Summary
 
 ### `markFirstMatchingOption === false`
 
-|#| Options | Action               | onSelect       | onTagsAdded      |
+|#| Options | Action               | onSelect       | onManuallyInput  |
 |---|-------|----------------------|----------------|------------------|
 |1  | -     | T&E(foo)             |                | [foo]            |
 |2  |       | T&E(alabama)         |                | [alabama]        |
@@ -126,7 +126,7 @@ We want to pass the original option, excluding the `value` prop.
 
 ### `markFirstMatchingOption === true`
 
-|#| Options | Action               | onSelect       | onTagsAdded      |
+|#| Options | Action               | onSelect       | onManuallyInput  |
 |---|-------|----------------------|----------------|------------------|
 |1  | -     | T&E(foo)             |                | [foo]            |
 |2  |       | T&E(alabama)         | [{...alabama}] |                  |
