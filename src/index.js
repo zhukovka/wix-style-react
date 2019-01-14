@@ -16,7 +16,7 @@ export { default as ButtonWithOptions } from './ButtonWithOptions';
 export { default as Checkbox } from './Checkbox';
 export { default as ToggleSwitch } from './ToggleSwitch';
 export { default as Modal } from './Modal';
-export { ModalSelectorLayout } from './ModalSelectorLayout';
+export { default as ModalSelectorLayout } from './ModalSelectorLayout';
 export {
   MessageBoxMarketerialLayout,
   MessageBoxMarketerialLayout as MessageBoxLayout1,
