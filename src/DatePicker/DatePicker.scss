@@ -1,14 +1,4 @@
-@import '../Tooltip/common.scss';
-
-.root {
-  display: inline-block;
-}
-
-.date-picker-calendar {
-  :global .DayPicker {
-    @include popoverTheme;
-  }
-}
+@import '../colors.scss';
 
 .icon {
   margin: 0 6px;

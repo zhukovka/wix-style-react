@@ -1,12 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Popper from 'popper.js';
 import DayPickerInput from 'react-day-picker/DayPickerInput';
 import isSameDay from 'date-fns/is_same_day';
 import setYear from 'date-fns/set_year';
 import setMonth from 'date-fns/set_month';
 import setDate from 'date-fns/set_date';
 
+import Popover from '../Popover';
 import WixComponent from '../BaseComponents/WixComponent';
 import CalendarIcon from '../new-icons/Date';
 import { formatDate } from '../LocaleUtils';
@@ -14,6 +14,16 @@ import Calendar from '../Calendar';
 import Input from '../Input';
 
 import styles from './DatePicker.scss';
+
+// React 16 throws a warning when passing `ref`s to SFCs. The <DayPickerInput/> component add a
+// `ref` to the passed `component` prop, so the solution is to wrap our SFC with a class. This HOC
+// does just that.
+const withClass = Component =>
+  class extends React.Component {
+    render() {
+      return <Component />;
+    }
+  };
 
 /**
  * DatePicker component
@@ -52,29 +62,13 @@ export default class DatePicker extends WixComponent {
     };
   }
 
-  componentDidMount() {
-    super.componentDidMount();
-
-    this._popper = new Popper(this.inputRef, this.calendarRef, {
-      placement: 'top-start',
-    });
-  }
-
-  componentWillUnmount() {
-    this._popper.destroy();
-    super.componentWillUnmount();
-  }
-
   openCalendar = () => {
     if (!this.state.isOpen) {
-      this.setState(
-        {
-          isOpen: true,
-          isDateInputFocusable: false,
-          value: this.props.value || new Date(),
-        },
-        () => this._popper.scheduleUpdate(),
-      );
+      this.setState({
+        isOpen: true,
+        isDateInputFocusable: false,
+        value: this.props.value || new Date(),
+      });
     }
   };
 
@@ -192,10 +186,6 @@ export default class DatePicker extends WixComponent {
     return React.cloneElement(customInput || <Input />, _inputProps);
   };
 
-  _setInputRef = ref => (this.inputRef = ref);
-
-  _setCalendarRef = ref => (this.calendarRef = ref);
-
   render() {
     const {
       showMonthDropdown,
@@ -228,24 +218,21 @@ export default class DatePicker extends WixComponent {
     };
 
     return (
-      <div style={{ width }} className={styles.root}>
-        <div ref={this._setInputRef}>
-          <DayPickerInput component={this._renderInput} keepFocus={false} />
-        </div>
-
-        <div
-          ref={this._setCalendarRef}
-          data-hook={calendarDataHook}
-          style={{ zIndex }}
-        >
-          {isOpen && (
-            <Calendar
-              className={styles.datePickerCalendar}
-              {...calendarProps}
+      <Popover shown={isOpen} placement="top-start" style={{ width }}>
+        <Popover.Element>
+          <div>
+            <DayPickerInput
+              component={withClass(this._renderInput)}
+              keepFocus={false}
             />
-          )}
-        </div>
-      </div>
+          </div>
+        </Popover.Element>
+        <Popover.Content>
+          <div data-hook={calendarDataHook} style={{ zIndex }}>
+            <Calendar {...calendarProps} />
+          </div>
+        </Popover.Content>
+      </Popover>
     );
   }
 }
