@@ -16,24 +16,27 @@ These are internal actions which can be performed by the user:
 - Select: Selects the marked option (if there is one)
 - Cancel: Clears the input, and closes options.
 
-### Modes
+### Tag Mode
+
+> This is not the 'mode' prop. The `mode` prop only sets the input's `read-only` attribute.
 
 - **Input** - Allow entering new tags (Suggestions)
 - **Select** - Only selection from a list (no new tags)
 
 ### User Actions -> Internal Actions
 
-| User Action                 | Mode |Input State   | Marked Option |Internal Action |
-|-----------------------------|------|--------------|---------------|----------------|
-| Click on option             |  |*            | *             | Select         |
-| Paste                       | Input |*            | *             | Submit         |
-| *Paste                       | Select |*            | *             | Only paste text (no submit)         |
-| Enter, Tab       | |non-empty     | exists        | Select         |
-| Enter, Delimiter, Tab       | |non-empty     | none          | Submit         |
-| Enter, Tab                  | |empty         | exists        | Select         |
-| Tab                         | |empty         | none          | Step Out       |
-| Esc              |  |*            | *             | Cancel         |
-| COS, Blur              |  |*            | *             | Cancel , Close Options         |
+| User Action                 | Tag Mode   |Input State   | Marked Option |Internal Action |
+|-----------------------------|--------|--------------|---------------|----------------|
+| Click on option             |        |*             | *             | Select         |
+| Paste                       | Input  |*             | *             | Submit         |
+| Paste (TBD)                 | Select | Single value | *             | Only paste text (no submit)         |
+| Paste (TBD)                 | Select | Delimited values | *             | Only paste text (no submit)         |
+| Enter, Tab                  |        |non-empty     | exists        | Select         |
+| Enter, Delimiter, Tab       |        |non-empty     | none          | Submit         |
+| Enter, Tab                  |        |empty         | exists        | Select         |
+| Tab                         |        |empty         | none          | Step Out       |
+| Esc                         |        |*             | *             | Cancel         |
+| COS, Blur                   |        |*             | *             | Cancel , Close Options         |
 
 > COS : Click Out Side
 
