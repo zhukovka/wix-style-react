@@ -5,6 +5,18 @@ import { BulkSelection } from './BulkSelection';
 
 describe('BulkSelection', () => {
   describe('BulkSelectionConsumer error', () => {
+    let consoleErrorSpy;
+
+    beforeEach(() => {
+      consoleErrorSpy = jest
+        .spyOn(global.console, 'error')
+        .mockImplementation(jest.fn());
+    });
+
+    afterEach(() => {
+      consoleErrorSpy.mockRestore();
+    });
+
     it('should throw error when consumer is not within a BulkSelection', () => {
       const create = () =>
         mount(<BulkSelectionConsumer>{() => null}</BulkSelectionConsumer>);
