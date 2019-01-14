@@ -19,10 +19,17 @@ describe('Modal', () => {
   afterEach(async () => {
     cleanup();
     if (testDriver !== null) {
-      await eventually(() => !testDriver.isOpen() || Promise.reject(), {
-        timeout: MODAL_CLOSE_TIMEOUT * 2,
-        interval: 10,
-      });
+      await eventually(
+        () => {
+          if (testDriver.isOpen() || testDriver.exists()) {
+            return Promise.reject();
+          }
+        },
+        {
+          timeout: MODAL_CLOSE_TIMEOUT * 2,
+          interval: 10,
+        },
+      );
     }
     testDriver = null;
   });
