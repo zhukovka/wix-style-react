@@ -7,8 +7,8 @@ export const storySettings = {
 };
 
 export const testStories = {
-  BUTTON_SKINS: 'Button Skins',
-  BUTTON_SIZES: 'Button Sizes',
-  BUTTON_AFFIXES: 'Button Affixes',
+  BUTTON_SKINS: 'Button skins',
+  BUTTON_SIZES: 'Button sizes',
+  BUTTON_AFFIXES: 'Button affixes',
   BUTTON_AS: 'Button as',
 };

@@ -84,6 +84,8 @@ storiesOf(kind, module).add(testStories.BUTTON_SIZES, () => (
       <Layout>
         <ButtonBlock size="large" title="Large" />
         <ButtonBlock size="medium" title="Medium" />
+      </Layout>
+      <Layout>
         <ButtonBlock size="small" title="Small" />
       </Layout>
     </div>
@@ -93,11 +95,11 @@ storiesOf(kind, module).add(testStories.BUTTON_SIZES, () => (
 storiesOf(kind, module).add(testStories.BUTTON_AFFIXES, () => (
   <TestContainer>
     <div style={{ marginLeft: '10px' }}>
-      <Layout cols={2}>
+      <Layout>
         <ButtonBlock
           priority="primary"
-          size="large"
-          title="Affixes (large)"
+          size="small"
+          title="Affixes (small)"
           suffixIcon={<AddChannel />}
           prefixIcon={<AddChannel />}
         />
@@ -108,13 +110,17 @@ storiesOf(kind, module).add(testStories.BUTTON_AFFIXES, () => (
           suffixIcon={<AddChannel />}
           prefixIcon={<AddChannel />}
         />
-        <ButtonBlock
-          priority="primary"
-          size="small"
-          title="Affixes (small)"
-          suffixIcon={<AddChannel />}
-          prefixIcon={<AddChannel />}
-        />
+      </Layout>
+      <Layout>
+        <Cell span={5}>
+          <ButtonBlock
+            priority="primary"
+            size="large"
+            title="Affixes (large)"
+            suffixIcon={<AddChannel />}
+            prefixIcon={<AddChannel />}
+          />
+        </Cell>
       </Layout>
     </div>
   </TestContainer>
@@ -123,7 +129,7 @@ storiesOf(kind, module).add(testStories.BUTTON_AFFIXES, () => (
 storiesOf(kind, module).add(testStories.BUTTON_AS, () => (
   <TestContainer>
     <div style={{ marginLeft: '10px' }}>
-      <Layout cols={2}>
+      <Layout>
         <ButtonBlock as="a" priority="primary" title="as Anchor (primary)" />
         <ButtonBlock
           as="a"

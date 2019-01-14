@@ -144,6 +144,7 @@ import './Typography/TypographyTestStories';
 import './Page/PageTestStories.js'; // Tests/2. Layout/2.5 + Page/
 import './PageHeader/PageHeaderTestStories.js'; // Tests/2. Layout/2.5 + PageHeader/
 import './Button/testButton'; // Tests/5. Button/5.1 Button
+import './IconButton/testStory'; // Tests/5. Button/5.2 IconButton
 import './TextButton/testStory'; // Tests/5. Button/5.3 TextButton
 import './CloseButton/testStory'; // Tests/5. Button/5.4 CloseButton
 import './Calendar/CalendarTestStory'; // Tests/3. Inputs/3.13 Calendar

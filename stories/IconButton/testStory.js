@@ -5,7 +5,7 @@ import { storiesOf } from '@storybook/react';
 import { getTestStoryKind } from '../storiesHierarchy';
 import { storySettings, testStories } from './storySettings';
 
-import TextButton from '../../src/TextButton';
+import IconButton from '../../src/IconButton';
 import { Layout, Cell } from '../../src/Layout';
 import AddChannel from 'wix-style-react/new-icons/AddChannel';
 
@@ -28,7 +28,7 @@ const TestContainer = ({ children }) => (
   </div>
 );
 
-const skins = ['standard', 'light', 'premium', 'dark'];
+const skins = ['standard', 'inverted', 'light'];
 
 const ButtonBlock = values => {
   const { title, ...rest } = values;
@@ -40,18 +40,18 @@ const ButtonBlock = values => {
       <Cell span={6}>
         {skins.map(skin => (
           <div style={{ margin: '5px 0' }}>
-            <TextButton {...rest} skin={skin}>
-              Click me
-            </TextButton>
+            <IconButton {...rest} skin={skin}>
+              <AddChannel />
+            </IconButton>
           </div>
         ))}
       </Cell>
       <Cell span={6}>
         {skins.map(skin => (
           <div style={{ margin: '5px 0' }}>
-            <TextButton {...rest} skin={skin} disabled>
-              Click me
-            </TextButton>
+            <IconButton {...rest} skin={skin} disabled>
+              <AddChannel />
+            </IconButton>
           </div>
         ))}
       </Cell>
@@ -59,51 +59,37 @@ const ButtonBlock = values => {
   );
 };
 
-storiesOf(kind, module).add(testStories.TEXTBUTTON_SKINS, () => (
+storiesOf(kind, module).add(testStories.ICONBUTTON_SKINS, () => (
   <TestContainer>
     <div style={{ marginLeft: '10px' }}>
       <Layout>
-        <ButtonBlock title="Underline: none" />
-        <ButtonBlock underline="onHover" title="Underline: onHover" />
-      </Layout>
-      <Layout>
-        <ButtonBlock underline="always" title="Underline: always" />
-        <ButtonBlock weight="normal" title="Weight: normal" />
+        <ButtonBlock title="Primary" />
+        <ButtonBlock priority="secondary" title="Secondary" />
       </Layout>
     </div>
   </TestContainer>
 ));
 
-storiesOf(kind, module).add(testStories.TEXTBUTTON_AFFIXES, () => (
+storiesOf(kind, module).add(testStories.ICONBUTTON_SIZES, () => (
   <TestContainer>
     <div style={{ marginLeft: '10px' }}>
       <Layout>
-        <ButtonBlock
-          size="medium"
-          title="Medium"
-          suffixIcon={<AddChannel />}
-          prefixIcon={<AddChannel />}
-        />
-        <ButtonBlock
-          size="small"
-          title="Small"
-          suffixIcon={<AddChannel />}
-          prefixIcon={<AddChannel />}
-        />
+        <ButtonBlock size="small" title="Small" />
+        <ButtonBlock title="Medium" />
       </Layout>
     </div>
   </TestContainer>
 ));
 
-storiesOf(kind, module).add(testStories.TEXTBUTTON_AS, () => (
+storiesOf(kind, module).add(testStories.ICONBUTTON_AS, () => (
   <TestContainer>
     <div style={{ marginLeft: '10px' }}>
       <Layout>
-        <ButtonBlock as="a" title="as Anchor (underline:none)" />
+        <ButtonBlock as="a" title="as Anchor (primary)" />
         <ButtonBlock
           as="a"
-          underline="always"
-          title="as Anchor (underline: always)"
+          priority="secondary"
+          title="as Anchor (secondary)"
         />
       </Layout>
     </div>

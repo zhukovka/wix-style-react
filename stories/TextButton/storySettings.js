@@ -7,7 +7,7 @@ export const storySettings = {
 };
 
 export const testStories = {
-  TEXTBUTTON_SKINS: 'TextButton Skins',
-  TEXTBUTTON_AFFIXES: 'TextButton Affixes',
+  TEXTBUTTON_SKINS: 'TextButton skins',
+  TEXTBUTTON_AFFIXES: 'TextButton affixes',
   TEXTBUTTON_AS: 'TextButton as',
 };
