@@ -58,14 +58,23 @@ const source = {
         item,
       });
     }
+
     if (monitor.getDropResult()) {
-      onDrop({
-        payload: monitor.getItem().originalItem, // original item
-        removedIndex: monitor.getItem().originalIndex, // original item index
-        addedIndex: monitor.getItem().index, // new item index
-        addedToContainerId: monitor.getDropResult().containerId, // new container for item
-        removedFromContainerId: containerId, // original item container
-      });
+      const isSameGroup =
+        groupName &&
+        monitor.getItem().groupName &&
+        groupName === monitor.getDropResult().groupName;
+      const isSameContainer = containerId === monitor.getDropResult().containerId;
+
+      if (isSameGroup || isSameContainer) {
+        onDrop({
+          payload: monitor.getItem().originalItem, // original item
+          removedIndex: monitor.getItem().originalIndex, // original item index
+          addedIndex: monitor.getItem().index, // new item index
+          addedToContainerId: monitor.getDropResult().containerId, // new container for item
+          removedFromContainerId: containerId, // original item container
+        });
+      }
     }
   },
   isDragging: ({ id, containerId, groupName }, monitor) => {
