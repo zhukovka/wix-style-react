@@ -38,7 +38,18 @@ import styles from './styles.scss';
 function processLive(code, ComponentName, label) {
   const filteredCode = code
     .split('\n')
-    .filter(line => !line.startsWith('import') && !line.startsWith('export'))
+    .map(line => {
+      if (line.startsWith('import')) {
+        return '// ' + line;
+      } else {
+        return line;
+      }
+    })
+    .filter(
+      line =>
+        !line.startsWith('export') &&
+        !(line === '/* eslint-disable no-console */'),
+    )
     .join('\n');
 
   return filteredCode + '\n\n' + createExampleRender(ComponentName, label);
