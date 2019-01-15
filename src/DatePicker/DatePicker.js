@@ -15,16 +15,6 @@ import Input from '../Input';
 
 import styles from './DatePicker.scss';
 
-// React 16 throws a warning when passing `ref`s to SFCs. The <DayPickerInput/> component add a
-// `ref` to the passed `component` prop, so the solution is to wrap our SFC with a class. This HOC
-// does just that.
-const withClass = Component =>
-  class extends React.Component {
-    render() {
-      return <Component />;
-    }
-  };
-
 /**
  * DatePicker component
  *
@@ -148,7 +138,7 @@ export default class DatePicker extends WixComponent {
     return formatDate(value, dateFormat, locale);
   };
 
-  _renderInput = () => {
+  _getInputProps = () => {
     const {
       inputDataHook,
       disabled,
@@ -161,7 +151,7 @@ export default class DatePicker extends WixComponent {
       inputProps,
     } = this.props;
 
-    const _inputProps = {
+    return {
       dataHook: inputDataHook,
       value: this._formatDateValue(initialValue),
       onInputClicked: this.openCalendar,
@@ -182,8 +172,6 @@ export default class DatePicker extends WixComponent {
       ...(customInput ? customInput.props : {}),
       ...inputProps,
     };
-
-    return React.cloneElement(customInput || <Input />, _inputProps);
   };
 
   render() {
@@ -199,6 +187,7 @@ export default class DatePicker extends WixComponent {
       twoMonths,
       locale,
       zIndex,
+      customInput,
     } = this.props;
 
     const { isOpen, value } = this.state;
@@ -222,8 +211,9 @@ export default class DatePicker extends WixComponent {
         <Popover.Element>
           <div>
             <DayPickerInput
-              component={withClass(this._renderInput)}
+              component={customInput || Input}
               keepFocus={false}
+              inputProps={this._getInputProps()}
             />
           </div>
         </Popover.Element>
