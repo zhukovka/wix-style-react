@@ -20,6 +20,10 @@ Types of changes:
 
 - `<CalendarPanel/>` - Release! (Added also `<CalendarPanelFooter/>`) [#2753](https://github.com/wix/wix-style-react/pull/2753)
 
+### Fixed
+
+ - `wix-style-react/dist/testkit` - fix `Cannot find module 'enzyme'` error when importing testkits [#2774](https://github.com/wix/wix-style-react/pull/2774)
+
 ## 5.24.0 - 2019-01-14
 
 ### Changed
