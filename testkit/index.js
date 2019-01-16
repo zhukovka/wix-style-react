@@ -54,6 +54,7 @@ export const buttonLayoutTestkitFactory = testkitFactoryCreator(load('../src/But
 export const buttonWithOptionsTestkitFactory = testkitFactoryCreator(load('../src/ButtonWithOptions/ButtonWithOptions.driver'));
 export const calendarTestkitFactory = testkitFactoryCreator(load('../src/Calendar/Calendar.driver'));
 export const calendarPanelTestkitFactory = testkitFactoryCreator(load('../src/CalendarPanel/CalendarPanel.driver'));
+export const calendarPanelFooterTestkitFactory = uniTestkitFactoryCreator(load('../src/CalendarPanelFooter/CalendarPanelFooter.driver'));
 export const cardGalleryItemTestkitFactory = uniTestkitFactoryCreator(load('../src/CardGalleryItem/CardGalleryItem.driver'));
 export const carouselTestkitFactory = testkitFactoryCreator(load('../src/Carousel/Carousel.driver'));
 export const checkboxTestkitFactory = testkitFactoryCreator(load('../src/Checkbox/Checkbox.driver'));

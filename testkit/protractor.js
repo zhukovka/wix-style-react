@@ -353,6 +353,12 @@ export const calendarPanelTestkitFactory = protractorTestkitFactoryCreator(
   calendarPanelDriverFactory,
 );
 
+import { calendarPanelFooterDriverFactory } from '../src/CalendarPanelFooter/CalendarPanelFooter.driver';
+
+export const calendarPanelFooterTestkitFactory = protractorUniTestkitFactoryCreator(
+  calendarPanelFooterDriverFactory,
+);
+
 import genericModalLayoutDriverFactory from '../src/GenericModalLayout/GenericModalLayout.protractor.driver';
 
 export const genericModalLayoutTestkitFactory = protractorTestkitFactoryCreator(

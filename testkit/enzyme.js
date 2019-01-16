@@ -51,6 +51,7 @@ export const buttonLayoutTestkitFactory = enzymeTestkitFactoryCreator(load('../s
 export const buttonWithOptionsTestkitFactory = enzymeTestkitFactoryCreator(load('../src/ButtonWithOptions/ButtonWithOptions.driver'));
 export const calendarTestkitFactory = enzymeTestkitFactoryCreator(load('../src/Calendar/Calendar.driver'));
 export const calendarPanelTestkitFactory = enzymeTestkitFactoryCreator(load('../src/CalendarPanel/CalendarPanel.driver'));
+export const calendarPanelFooterTestkitFactory = enzymeUniTestkitFactoryCreator(load('../src/CalendarPanelFooter/CalendarPanelFooter.driver'));
 export const cardGalleryItemTestkitFactory = enzymeUniTestkitFactoryCreator(load('../src/CardGalleryItem/CardGalleryItem.driver'));
 export const carouselTestkitFactory = enzymeTestkitFactoryCreator(load('../src/Carousel/Carousel.driver'));
 export const checkboxTestkitFactory = enzymeTestkitFactoryCreator(load('../src/Checkbox/Checkbox.driver'));

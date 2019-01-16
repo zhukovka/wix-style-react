@@ -1,4 +1,5 @@
 import React from 'react';
+import addDays from 'date-fns/add_days';
 import Calendar from '../../src/Calendar';
 import CodeExample from 'wix-storybook-utils/CodeExample';
 import ExampleStandardRaw from '!raw-loader!./ExampleStandard';
@@ -9,9 +10,11 @@ import ExampleTooltip from './ExampleTooltip';
 import ExampleTooltipRaw from '!raw-loader!./ExampleTooltip';
 import { Container, Row, Col } from 'wix-style-react/Grid';
 
+import { storySettings } from './storySettings';
+
 export default {
-  category: '3. Inputs',
-  storyName: '3.13 Calendar',
+  category: storySettings.category,
+  storyName: storySettings.storyName,
 
   component: Calendar,
   componentPath: '../../src/Calendar',
@@ -24,7 +27,7 @@ export default {
     locale: 'en',
     excludePastDates: false,
     selectionMode: 'day',
-    dataHook: 'calendar',
+    dataHook: storySettings.dataHook,
   }),
   exampleProps: {
     value: [
@@ -38,11 +41,11 @@ export default {
       },
       {
         label: `Next Week (Range)`,
-        value: { from: new Date(), to: dayOffset(new Date(), 6) },
+        value: { from: new Date(), to: addDays(new Date(), 6) },
       },
       {
         label: `Last Week (Range)`,
-        value: { from: dayOffset(new Date(), -6), to: new Date() },
+        value: { from: addDays(new Date(), -6), to: new Date() },
       },
     ],
   },
@@ -71,9 +74,3 @@ export default {
     </Container>
   ),
 };
-
-function dayOffset(date, offset) {
-  const d = new Date();
-  d.setDate(d.getDate() + offset);
-  return d;
-}

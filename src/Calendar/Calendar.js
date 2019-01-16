@@ -22,7 +22,7 @@ export default class Calendar extends WixComponent {
     className: '',
     filterDate: () => true,
     shouldCloseOnSelect: true,
-    onClose: event => {},
+    onClose: () => {},
   };
 
   constructor(props) {
@@ -50,17 +50,18 @@ export default class Calendar extends WixComponent {
     }
   }
 
-  static areValuesEqual(date1 = {}, date2 = {}) {
-    const isRange = date => Boolean(date.from || date.to);
-    if (!Boolean(date1) && !Boolean(date2)) {
+  static areValuesEqual(value1 = {}, value2 = {}) {
+    if (!Boolean(value1) && !Boolean(value2)) {
       return true;
     }
 
-    if (isRange(date1) && isRange(date2)) {
-      return isSameDay(date1.from, date2.from) && isSameDay(date1.to, date2.to);
+    if (Calendar.isRangeValue(value1) && Calendar.isRangeValue(value2)) {
+      return (
+        isSameDay(value1.from, value2.from) && isSameDay(value1.to, value2.to)
+      );
     }
 
-    return isSameDay(date1, date2);
+    return isSameDay(value1, value2);
   }
 
   static renderDay(day, modifiers) {
@@ -121,6 +122,7 @@ export default class Calendar extends WixComponent {
   static optionalParse = dateOrString =>
     typeof dateOrString === 'string' ? parse(dateOrString) : dateOrString;
 
+  /** Return a value in which all string-dates are parsed into Date objects */
   static parseValue = value => {
     if (!value) {
       return new Date();
@@ -139,6 +141,10 @@ export default class Calendar extends WixComponent {
 
   static isSingleDay(value) {
     return value instanceof Date;
+  }
+
+  static isRangeValue(value) {
+    return Boolean(value.from || value.to);
   }
 
   static getUpdatedMonth = (nextPropsValue, numOfMonths, currentMonthDate) => {

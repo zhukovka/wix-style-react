@@ -41,7 +41,6 @@ import './Search/index.story'; // 3.9 Search
 import './ImageViewer/index.story'; // 3.10 ImageViewer
 import './FilePicker'; // 3.10 + FilePicker
 import './GoogleAddressInput'; // 3.11 GoogleAddressInput
-import './Calendar/index.story'; // 3.13 Calendar
 
 // 4. Selection
 import './Dropdown/DropdownStory.js'; // 4.1 Dropdown
@@ -93,6 +92,8 @@ import './DropdownLayout'; // 11.1 DropdownLayout
 import './EditableSelector'; // 11.2 EditableSelector
 import './ModalSelectorLayout.story.js'; // 11.3 ModalSelectorLayout
 import './ColorPicker/index.story.js'; // 11.5 Color Picker
+import './Calendar/index.story'; // 11.5 Calendar
+import './CalendarPanel/index.story'; // 11.6 CalendarPanel
 
 // 12. Other
 import './Badge/index.story'; // 12.1 Badge
@@ -104,11 +105,14 @@ import './Avatar/Avatar.story'; // 12.6 Avatar
 import './Highlighter.story.js'; // Highlighter
 
 // Components API
-import './CalendarPanel/index.story';
+import './components/Calendar/index.story';
+import './components/CalendarPanel/index.story';
+import './CalendarPanelFooter/index.story';
 import './CardGalleryItem/CardGalleryItem.story';
 import './Carousel/index.story.js';
 import './Collapse.story';
 import './components/Dropdown/Dropdown.story.js';
+import './DropdownBase/index.story';
 import './FormField/FormField.story.js';
 import './GenericModalLayout/GenericModalLayout.story.js';
 import './Heading/index.story';
@@ -118,7 +122,6 @@ import './Layout/index.story.js';
 import './Layout';
 import './components/MultiSelect/index.story';
 import './Popover/index.story';
-import './DropdownBase/index.story';
 import './Proportion/index.story.js';
 import './Skeleton.story.js';
 import './Text/index.story';

@@ -1,5 +1,7 @@
+import { Category } from '../storiesHierarchy';
+
 export const storySettings = {
-  category: '11. Pickers and Selectors',
-  storyName: '11.5 ColorPicker',
+  category: Category.PICKERS_AND_SELECTORS,
+  storyName: '11.4 ColorPicker',
   dataHook: 'storybook-colorpicker',
 };

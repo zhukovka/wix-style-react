@@ -223,11 +223,15 @@ module.exports = {
 
   BadgeSelect: {},
 
-  CalendarPanel: {},
-
   Breadcrumbs: {},
 
   Calendar: {},
+
+  CalendarPanel: {},
+
+  CalendarPanelFooter: {
+    unidriver,
+  },
 
   DataTable: {},
 
