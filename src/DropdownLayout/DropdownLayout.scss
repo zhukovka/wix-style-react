@@ -1,6 +1,7 @@
 @import '../common.scss';
 @import '../mixins.scss';
-@import '../typography-helpers.scss';
+@import '../Typography/text.scss';
+@import '../Typography/heading.scss';
 
 $option_height: 35px;
 $big_option_hight: 47px;
@@ -94,10 +95,8 @@ $arrowDownShadow: -3px -3px 8px rgba(0, 0, 0, .1);
   text-overflow: ellipsis;
   text-align: left;
   padding: 6px 20px 6px 24px;
-  @include FontLight();
+  
 
-  font-size: 16px;
-  color: $D10;
   cursor: pointer;
 
   width: 100%;
@@ -112,8 +111,14 @@ $arrowDownShadow: -3px -3px 8px rgba(0, 0, 0, .1);
     min-height: $big_option_hight;
   }
 
+  &:not(.title) {
+    @extend .text;
+    @extend .sizeMedium;
+    @extend .weightNormal;
+  }
+
   &.title {
-    @include HeadingNoColor($tagName: h6);
+    @extend .h6;
     background: $D70;
     color: $D20;
   }
@@ -148,7 +153,7 @@ a[data-hook=link-item] {
 
 .option.selected {
   background-color: $B10;
-  color: $D80;
+  @extend .light;
 }
 
 .option.selected.hovered {
