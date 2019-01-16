@@ -20,6 +20,10 @@ Types of changes:
 
 - `<CalendarPanel/>` - Release! (Added also `<CalendarPanelFooter/>`) [#2753](https://github.com/wix/wix-style-react/pull/2753)
 
+### Changed
+
+- `<DropdownLayout/>` - Change option font weight to `normal` instead of `thin` #2765(https://github.com/wix/wix-style-react/pull/2765)
+
 ### Fixed
 
  - `wix-style-react/dist/testkit` - fix `Cannot find module 'enzyme'` error when importing testkits [#2774](https://github.com/wix/wix-style-react/pull/2774)
