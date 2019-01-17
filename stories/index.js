@@ -125,6 +125,7 @@ import './Popover/index.story';
 import './Proportion/index.story.js';
 import './Skeleton.story.js';
 import './Text/index.story';
+import './Box/index.story.js';
 
 // Styling
 import './Typography/TypographyClassesStory';

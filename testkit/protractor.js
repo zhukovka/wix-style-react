@@ -441,3 +441,9 @@ import { dropdownBaseDriverFactory } from '../src/DropdownBase/DropdownBase.driv
 export const dropdownBaseTestkitFactory = protractorUniTestkitFactoryCreator(
   dropdownBaseDriverFactory,
 );
+
+import { boxDriverFactory } from '../src/Box/Box.driver';
+
+export const boxTestkitFactory = protractorUniTestkitFactoryCreator(
+  boxDriverFactory,
+);

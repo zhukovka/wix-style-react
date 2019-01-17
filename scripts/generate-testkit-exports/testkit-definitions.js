@@ -336,4 +336,6 @@ module.exports = {
     testkitPath: '../src/BaseComponents/TextLinkLayout/TextLinkLayout.driver',
     skipSanityTest,
   },
+
+  Box: { unidriver },
 };

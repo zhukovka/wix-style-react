@@ -265,4 +265,10 @@ export default {
   },
 
   Proportion: { props: { children: 'test' } },
+
+  Box: {
+    props: {
+      children: <div />,
+    },
+  },
 };

@@ -100,3 +100,9 @@ import { calendarPanelFooterDriverFactory } from '../src/CalendarPanelFooter/Cal
 export const calendarPanelFooterTestkitFactory = puppeteerUniTestkitFactoryCreator(
   calendarPanelFooterDriverFactory,
 );
+
+import { boxDriverFactory } from '../src/Box/Box.driver';
+
+export const boxTestkitFactory = puppeteerUniTestkitFactoryCreator(
+  boxDriverFactory,
+);
