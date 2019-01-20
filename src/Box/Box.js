@@ -5,6 +5,7 @@ import classNames from 'classnames';
 import colors from '../colors.scss';
 import styles from './Box.scss';
 
+/** Defined according to the design system */
 export const spacingUnit = 6;
 
 const directions = {
@@ -38,7 +39,7 @@ const spacingValues = {
 const formatSpacingValue = value =>
   isFinite(value) ? value * spacingUnit : spacingValues[value] || `${value}`;
 
-/** 📦 Box is a wrapper component that provides a way to align, space and resize its children - easily and straightforwardly. */
+/** 📦 Box is a wrapper component that provides a way to align, space, resize and style - easily and straightforwardly. */
 const Box = ({
   dataHook,
   children,
@@ -68,7 +69,7 @@ const Box = ({
   backgroundColor,
 
   // Excluded props (which are handled above and should not be spread into `style`)
-  ['data-hook']: dataHookByKebabCase,
+  'data-hook': dataHookByKebabCase,
   flexDirection,
   justifyContent,
   alignItems,
@@ -134,25 +135,45 @@ Box.propTypes = {
   align: PropTypes.oneOf(Object.keys(horizontalAlignmentValues)),
   /** Defines how the children are aligned according to the Y axis */
   verticalAlign: PropTypes.oneOf(Object.keys(verticalAlignmentValues)),
-  /** Sets padding on all sides */
+  /** Sets padding on all sides.
+   * Accepts a numeric value (multiplied by spacing unit), predefined spacing value (tiny, small, etc.)
+   * or a string of space-separated values ("3px 3px") */
   padding: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
-  /** Sets padding on the top */
+  /** Sets padding on the top.
+   * Accepts a numeric value (multiplied by spacing unit), predefined spacing value (tiny, small, etc.)
+   * or a string of space-separated values ("3px 3px") */
   paddingTop: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
-  /** Sets padding on the right */
+  /** Sets padding on the right.
+   * Accepts a numeric value (multiplied by spacing unit), predefined spacing value (tiny, small, etc.)
+   * or a string of space-separated values ("3px 3px") */
   paddingRight: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
-  /** Sets padding on the bottom */
+  /** Sets padding on the bottom.
+   * Accepts a numeric value (multiplied by spacing unit), predefined spacing value (tiny, small, etc.)
+   * or a string of space-separated values ("3px 3px") */
   paddingBottom: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
-  /** Sets padding on the left */
+  /** Sets padding on the left.
+   * Accepts a numeric value (multiplied by spacing unit), predefined spacing value (tiny, small, etc.)
+   * or a string of space-separated values ("3px 3px") */
   paddingLeft: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
-  /** Sets margin on all sides */
+  /** Sets margin on all sides.
+   * Accepts a numeric value (multiplied by spacing unit), predefined spacing value (tiny, small, etc.)
+   * or a string of space-separated values ("3px 3px") */
   margin: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
-  /** Sets margin on the top */
+  /** Sets margin on the top.
+   * Accepts a numeric value (multiplied by spacing unit), predefined spacing value (tiny, small, etc.)
+   * or a string of space-separated values ("3px 3px") */
   marginTop: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
-  /** Sets margin on the right */
+  /** Sets margin on the right.
+   * Accepts a numeric value (multiplied by spacing unit), predefined spacing value (tiny, small, etc.)
+   * or a string of space-separated values ("3px 3px") */
   marginRight: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
-  /** Sets margin on the bottom */
+  /** Sets margin on the bottom.
+   * Accepts a numeric value (multiplied by spacing unit), predefined spacing value (tiny, small, etc.)
+   * or a string of space-separated values ("3px 3px") */
   marginBottom: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
-  /** Sets margin on the left */
+  /** Sets margin on the left.
+   * Accepts a numeric value (multiplied by spacing unit), predefined spacing value (tiny, small, etc.)
+   * or a string of space-separated values ("3px 3px") */
   marginLeft: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
   /** Sets the minimum width of the box (pixels) */
   minWidth: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
@@ -166,10 +187,10 @@ Box.propTypes = {
   maxHeight: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
   /** Sets the height of the box (pixels) */
   height: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
-  /** Sets a text color */
-  color: PropTypes.oneOfType([PropTypes.string, PropTypes.oneOf(Object.keys(colors))]),
-  /** Sets a background color */
-  backgroundColor: PropTypes.oneOfType([PropTypes.string, PropTypes.oneOf(Object.keys(colors))]),
+  /** Sets a text color by a key from the color palette or natively supported value (Hex, RGB, etc.) */
+  color: PropTypes.string,
+  /** Sets a background color by a key from the color palette or natively supported value (Hex, RGB, etc.) */
+  backgroundColor: PropTypes.string,
   /** Applied as data-hook HTML attribute that can be used in the tests */
   dataHook: PropTypes.string,
 };
