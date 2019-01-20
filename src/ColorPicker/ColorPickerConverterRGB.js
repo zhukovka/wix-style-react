@@ -1,7 +1,7 @@
 import React from 'react';
 import color from 'color';
 import { object, func } from 'prop-types';
-import mapValues from '../utils/operators/mapValues';
+import mapValue from '../utils/operators/mapValue';
 
 import WixComponent from '../BaseComponents/WixComponent';
 import Input from '../Input';
@@ -16,7 +16,7 @@ export default class ColorPickerConverterRGB extends WixComponent {
 
   constructor(props) {
     super(props);
-    this.state = mapValues(props.current.rgb().object(), Math.round);
+    this.state = mapValue(props.current.rgb().object(), Math.round);
   }
 
   render() {
@@ -44,7 +44,7 @@ export default class ColorPickerConverterRGB extends WixComponent {
   }
 
   componentWillReceiveProps(props) {
-    this.setState(mapValues(props.current.rgb().object(), Math.round));
+    this.setState(mapValue(props.current.rgb().object(), Math.round));
   }
 
   change(
