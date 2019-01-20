@@ -189,7 +189,7 @@ describe('Notification', () => {
     });
   });
 
-  describe('Closing', () => {
+  describe('Closing - deprecated logic', () => {
     let driver, rerender;
 
     beforeEach(() => {
@@ -222,103 +222,208 @@ describe('Notification', () => {
     });
 
     ['local', 'sticky', 'global'].forEach(type => {
-      describe(`Closing after timeout for ${type} Notification`, () => {
-        const someTimeout = 132;
+      describe(
+        `Closing after timeout for ${type} Notification`,
+        () => {
+          const someTimeout = 132;
 
-        if (type !== 'global') {
-          it('should close after default timeout (6s)', () => {
-            const defaultTimeout = 6000;
+          if (type !== 'global') {
+            it('should close after default timeout (6s)', () => {
+              const defaultTimeout = 6000;
+              driver = createDriver(
+                renderNotificationWithProps({ show: true, type }),
+              );
+              jest.runAllTimers();
+
+              expect(driver.visible()).toBeFalsy();
+              expect(
+                setTimeout.mock.calls.find(call => call[1] === defaultTimeout),
+              ).toBeTruthy();
+            });
+          } else {
+            it(`should not close after default timeout (6s) for ${type} Notification`, () => {
+              driver = createDriver(
+                renderNotificationWithProps({ show: true, type }),
+              );
+              jest.runAllTimers();
+
+              expect(driver.visible()).toBeTruthy();
+              expect(setTimeout).not.toBeCalled();
+            });
+          }
+
+          it('should close after a given timeout', () => {
             driver = createDriver(
-              renderNotificationWithProps({ show: true, type }),
+              renderNotificationWithProps({
+                show: true,
+                type,
+                timeout: someTimeout,
+              }),
             );
+
             jest.runAllTimers();
 
             expect(driver.visible()).toBeFalsy();
             expect(
-              setTimeout.mock.calls.find(call => call[1] === defaultTimeout),
+              setTimeout.mock.calls.find(call => call[1] === someTimeout),
             ).toBeTruthy();
           });
-        } else {
-          it(`should not close after default timeout (6s) for ${type} Notification`, () => {
-            driver = createDriver(
-              renderNotificationWithProps({ show: true, type }),
+
+          it('should be able to show notification again after timeout', () => {
+            const { driver: _driver, rerender: _rerender } = render(
+              renderNotificationWithProps({
+                show: true,
+                type,
+                timeout: someTimeout,
+              }),
             );
+
             jest.runAllTimers();
+            expect(_driver.visible()).toBeFalsy();
+            expect(
+              setTimeout.mock.calls.find(call => call[1] === someTimeout),
+            ).toBeTruthy();
+            jest.clearAllTimers();
 
-            expect(driver.visible()).toBeTruthy();
-            expect(setTimeout).not.toBeCalled();
+            _rerender(
+              renderNotificationWithProps({
+                show: true,
+                type,
+                timeout: someTimeout,
+              }),
+            );
+            expect(_driver.visible()).toBeTruthy();
           });
-        }
 
-        it('should close after a given timeout', () => {
-          driver = createDriver(
-            renderNotificationWithProps({
-              show: true,
-              type,
-              timeout: someTimeout,
-            }),
-          );
+          it('should close after starting from a closed status', () => {
+            const { driver: _driver, rerender: _rerender } = render(
+              renderNotificationWithProps({
+                show: false,
+                type,
+                timeout: someTimeout,
+              }),
+            );
 
-          jest.runAllTimers();
+            jest.runAllTimers();
+            expect(_driver.visible()).toBeFalsy();
+            _rerender(
+              renderNotificationWithProps({
+                show: true,
+                type,
+                timeout: someTimeout,
+              }),
+            );
+            expect(_driver.visible()).toBeTruthy();
+            jest.runAllTimers();
+            expect(_driver.visible()).toBeFalsy();
 
-          expect(driver.visible()).toBeFalsy();
-          expect(
-            setTimeout.mock.calls.find(call => call[1] === someTimeout),
-          ).toBeTruthy();
-        });
+            expect(
+              setTimeout.mock.calls.find(call => call[1] === someTimeout),
+            ).toBeTruthy();
+          });
+        },
+        `Closing after timeout for ${type} Notification`,
+      );
+    });
 
-        it('should be able to show notification again after timeout', () => {
-          const { driver: _driver, rerender: _rerender } = render(
-            renderNotificationWithProps({
-              show: true,
-              type,
-              timeout: someTimeout,
-            }),
-          );
+    afterEach(() => {
+      jest.clearAllTimers();
+    });
+  });
 
-          jest.runAllTimers();
-          expect(_driver.visible()).toBeFalsy();
-          expect(
-            setTimeout.mock.calls.find(call => call[1] === someTimeout),
-          ).toBeTruthy();
-          jest.clearAllTimers();
+  describe(`Closing - with upgrade prop`, () => {
+    beforeEach(() => {
+      jest.useFakeTimers();
+    });
 
-          _rerender(
-            renderNotificationWithProps({
-              show: true,
-              type,
-              timeout: someTimeout,
-            }),
-          );
-          expect(_driver.visible()).toBeTruthy();
-        });
+    describe('Closing when clicking on close button', () => {
+      it('should close the notification', () => {
+        const { driver } = render(
+          renderNotificationWithProps({ show: true, upgrade: true }),
+        );
+        driver.clickOnCloseButton();
+        jest.runAllTimers(); // for animations
+        expect(driver.visible()).toBeFalsy();
+      });
 
-        it('should close after starting from a closed status', () => {
-          const { driver: _driver, rerender: _rerender } = render(
-            renderNotificationWithProps({
-              show: false,
-              type,
-              timeout: someTimeout,
-            }),
-          );
+      it('should allow reopening the notification after closed by close button', () => {
+        const { driver, rerender } = render(
+          renderNotificationWithProps({ show: true, upgrade: true }),
+        );
+        driver.clickOnCloseButton();
+        jest.runAllTimers(); // for animations
+        expect(driver.visible()).toBeFalsy();
+        rerender(renderNotificationWithProps({ show: true, upgrade: true }));
+        expect(driver.visible()).toBeTruthy();
+      });
+    });
 
-          jest.runAllTimers();
-          expect(_driver.visible()).toBeFalsy();
-          _rerender(
-            renderNotificationWithProps({
-              show: true,
-              type,
-              timeout: someTimeout,
-            }),
-          );
-          expect(_driver.visible()).toBeTruthy();
-          jest.runAllTimers();
-          expect(_driver.visible()).toBeFalsy();
+    describe(`AutoHide`, () => {
+      const someTimeout = 132;
+      const renderNewNotification = props =>
+        renderNotificationWithProps({ ...props, upgrade: true });
 
-          expect(
-            setTimeout.mock.calls.find(call => call[1] === someTimeout),
-          ).toBeTruthy();
-        });
+      it(`should keep notification shown regardless of any timers`, () => {
+        const driver = createDriver(renderNewNotification({ show: true }));
+        jest.runAllTimers();
+
+        expect(driver.visible()).toBeTruthy();
+        expect(setTimeout).not.toBeCalled();
+      });
+
+      it('should auto-hide after a given timeout', () => {
+        const driver = createDriver(
+          renderNewNotification({
+            show: true,
+            autoHideTimeout: someTimeout,
+          }),
+        );
+
+        expect(driver.visible()).toBeTruthy();
+        jest.runAllTimers();
+        expect(driver.visible()).toBeFalsy();
+      });
+
+      it('should be able to show notification again after timeout', () => {
+        const { driver, rerender } = render(
+          renderNewNotification({
+            show: true,
+            autoHideTimeout: someTimeout,
+          }),
+        );
+
+        jest.runAllTimers();
+        expect(driver.visible()).toBeFalsy();
+        jest.clearAllTimers();
+
+        rerender(
+          renderNewNotification({
+            show: true,
+            autoHideTimeout: someTimeout,
+          }),
+        );
+        expect(driver.visible()).toBeTruthy();
+      });
+
+      it('should auto-hide after starting from a closed status', () => {
+        const { driver, rerender } = render(
+          renderNewNotification({
+            show: false,
+            autoHideTimeout: someTimeout,
+          }),
+        );
+
+        jest.runAllTimers();
+        expect(driver.visible()).toBeFalsy();
+        rerender(
+          renderNewNotification({
+            show: true,
+            autoHideTimeout: someTimeout,
+          }),
+        );
+        expect(driver.visible()).toBeTruthy();
+        jest.runAllTimers();
+        expect(driver.visible()).toBeFalsy();
       });
     });
 
