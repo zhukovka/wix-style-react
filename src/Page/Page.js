@@ -258,8 +258,8 @@ class Page extends WixComponent {
     };
 
     return (
-      <div className={s.pageWrapper}>
-        <div className={classNames(s.page, className)}>
+      <div className={classNames(s.pageWrapper, className)}>
+        <div className={s.page}>
           <div
             data-hook="page-fixed-container"
             style={this._fixedContainerStyle()}
