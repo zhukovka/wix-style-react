@@ -1,4 +1,5 @@
-@import '../../src/common';
+@import '../common';
+@import '../Grid/GridConstants.scss';
 
 $page-side-padding: 48px;
 $scroll-top-threshold: 20px;
@@ -18,7 +19,7 @@ $image-container-offset: 30px;
   min-height: 0;
   position: relative;
   background-color: $page-background-color;
-  min-width: 894px; // TODO: Use value from Grid.scss
+  min-width: $main-container-min-width;
 }
 
 .fixed-container {
