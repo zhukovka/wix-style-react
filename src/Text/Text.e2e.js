@@ -2,6 +2,7 @@ import eyes from 'eyes.it';
 import autoExampleDriver from 'wix-storybook-utils/AutoExampleDriver';
 import {
   createStoryUrl,
+  scrollToElement,
   waitForVisibilityOf,
 } from 'wix-ui-test-utils/protractor';
 import { tooltipTestkitFactory } from 'wix-ui-core/dist/src/testkit/protractor';
@@ -98,5 +99,18 @@ describe('Text', () => {
         expect(await tooltipDriver.isContentElementExists()).toBeTruthy();
       },
     );
+  });
+
+  describe('anchors', () => {
+    const testName = 'should apply link styling only to direct <a> children';
+
+    eyes.it(testName, async () => {
+      const driver = await init({
+        url: storyUrlWithExamples,
+        dataHook: 'storybook-text-link',
+      });
+      await scrollToElement(driver.element());
+      await eyes.checkWindow(testName);
+    });
   });
 });
