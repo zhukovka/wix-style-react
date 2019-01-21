@@ -15,7 +15,6 @@
 
 .pageContainer {
   @include PageConteiner;
-  margin: 0px 50px;
 }
 
 [data-hook="body-content"] {
