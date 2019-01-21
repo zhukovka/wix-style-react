@@ -25,6 +25,10 @@ Types of changes:
 - `<DropdownLayout/>` - Change option font weight to `normal` instead of `thin` [#2765](https://github.com/wix/wix-style-react/pull/2765)
 - `<Text/>` - apply link style only to `<a>` that are direct children [#2788](https://github.com/wix/wix-style-react/pull/2788)
 
+### Removed
+
+- Drivers cleanup - remove wrapper [#2786](https://github.com/wix/wix-style-react/pull/2786)
+
 ### Deprecated
 
 - `<Notification/>` - changed timeout behavior with `upgrade` prop [#2766](https://github.com/wix/wix-style-react/pull/2766)
