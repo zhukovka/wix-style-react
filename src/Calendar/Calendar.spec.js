@@ -400,8 +400,6 @@ describe('Calendar', () => {
 
   describe(`'value' update`, () => {
     describe(`'month' state`, () => {
-      const render = createRendererWithDriver(calendarDriverFactory);
-
       function testCase({
         initialValue,
         nextValue,

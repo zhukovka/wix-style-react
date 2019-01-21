@@ -1,14 +1,14 @@
 import calendarDriverFactory from '../Calendar/Calendar.driver';
 import dropdownLayoutDriverFactory from '../DropdownLayout/DropdownLayout.driver';
 
-const calendarPanelDriverFactory = ({ element, wrapper }) => {
+const calendarPanelDriverFactory = ({ element }) => {
   const dropdownLayoutElement = () =>
     element.querySelector('[data-hook=dropdown-layout]');
   const calendarElement = () => element.querySelector('[data-hook=calendar]');
   const getCalendarDriver = () =>
-    calendarDriverFactory({ element: calendarElement(), wrapper });
+    calendarDriverFactory({ element: calendarElement() });
   const dropdownLayoutDriver = () =>
-    dropdownLayoutDriverFactory({ element: dropdownLayoutElement(), wrapper });
+    dropdownLayoutDriverFactory({ element: dropdownLayoutElement() });
 
   const driver = {
     exists: () => !!element,

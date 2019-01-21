@@ -1,7 +1,7 @@
 import ReactTestUtils from 'react-dom/test-utils';
 import dropdownLayoutDriverFactory from '../DropdownLayout/DropdownLayout.driver';
 
-const calendarDriverFactory = ({ element, wrapper }) => {
+const calendarDriverFactory = ({ element }) => {
   const getCalendar = () => element.querySelector('.DayPicker');
   const getNthDay = n =>
     element.querySelectorAll(
@@ -34,10 +34,10 @@ const calendarDriverFactory = ({ element, wrapper }) => {
     element.querySelector('[data-hook="datepicker-left-arrow"]');
   const getNextMonthButton = () =>
     element.querySelector('[data-hook="datepicker-right-arrow"]');
-  const getFocusedDay = () => wrapper.querySelector('.DayPicker-Day:focus');
+  const getFocusedDay = () => element.querySelector('.DayPicker-Day:focus');
   const getVisuallyUnfocusedDay = () =>
-    wrapper.querySelector('.DayPicker-Day--unfocused');
-  const getMonthContainers = () => wrapper.querySelectorAll('.DayPicker-Month');
+    element.querySelector('.DayPicker-Day--unfocused');
+  const getMonthContainers = () => element.querySelectorAll('.DayPicker-Month');
   const getVisibleMonths = () =>
     element.querySelectorAll('[class="DayPicker-Month"]');
   const getSelectedDays = () =>
@@ -90,12 +90,12 @@ const calendarDriverFactory = ({ element, wrapper }) => {
     clickOnNextMonthButton: () =>
       ReactTestUtils.Simulate.click(getNextMonthButton()),
     isHeaderVisible: () =>
-      !!wrapper.querySelector('[data-hook="datepicker-head"]'),
+      !!element.querySelector('[data-hook="datepicker-head"]'),
     isYearDropdownExists: () =>
-      !!wrapper.querySelector('[data-hook="datepicker-year-dropdown"]'),
+      !!element.querySelector('[data-hook="datepicker-year-dropdown"]'),
     isYearCaptionExists: () => !!getYearCaption(),
     isMonthDropdownExists: () =>
-      !!wrapper.querySelector('[data-hook="datepicker-month-dropdown"]'),
+      !!element.querySelector('[data-hook="datepicker-month-dropdown"]'),
     isMonthCaptionExists: () => !!getMonthCaption(),
     getMonthCaption: () => getMonthCaption().textContent,
     getMonthDropdownLabel: () => getMonthDropdownButton().textContent,
@@ -127,10 +127,9 @@ const calendarDriverFactory = ({ element, wrapper }) => {
       );
 
       return dropdownLayoutDriverFactory({
-        element: wrapper.querySelector(
+        element: element.querySelector(
           '[data-hook="datepicker-month-dropdown-menu"]',
         ),
-        wrapper,
       });
     },
 
@@ -140,10 +139,9 @@ const calendarDriverFactory = ({ element, wrapper }) => {
       );
 
       return dropdownLayoutDriverFactory({
-        element: wrapper.querySelector(
+        element: element.querySelector(
           '[data-hook="datepicker-year-dropdown-menu"]',
         ),
-        wrapper,
       });
     },
     getNumOfVisibleMonths: () => getVisibleMonths().length,

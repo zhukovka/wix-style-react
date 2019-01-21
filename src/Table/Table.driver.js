@@ -1,11 +1,9 @@
 import dataTableDriverFactory from '../DataTable/DataTable.driver';
 import checkboxDriverFactory from '../Checkbox/Checkbox.driver';
 
-const tableDriverFactory = ({ element, wrapper, component, eventTrigger }) => {
+const tableDriverFactory = ({ element, eventTrigger }) => {
   const dataTableDriver = dataTableDriverFactory({
     element,
-    wrapper,
-    component,
   });
   const getTitlebar = () =>
     element.querySelector('[data-hook="table-title-bar"]');

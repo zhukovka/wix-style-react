@@ -1,11 +1,10 @@
 import tooltipDriverFactory from '../Tooltip/Tooltip.driver';
 
-const fieldLabelAttributesDriverFactory = ({ element, wrapper }) => {
+const fieldLabelAttributesDriverFactory = ({ element }) => {
   return {
     exists: () => !!element,
     getTooltipTestKit: () =>
       tooltipDriverFactory({
-        wrapper,
         element: element.querySelector('[data-hook="info"]'),
       }),
     hasRequired: () =>

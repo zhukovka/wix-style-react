@@ -9,19 +9,7 @@ const arrowDirectionToPlacement = {
   right: 'left',
 };
 
-const tooltipDriverFactory = ({ element, wrapper }) => {
-  const bodyOrWrapper = {
-    querySelector: query =>
-      document.body.querySelector(query) ||
-      (wrapper.querySelector && wrapper.querySelector(query)),
-    querySelectorAll: query => {
-      const documentResult = document.body.querySelectorAll(query);
-      return documentResult.length > 0
-        ? documentResult
-        : wrapper.querySelectorAll && wrapper.querySelectorAll(query);
-    },
-  };
-
+const tooltipDriverFactory = ({ element }) => {
   const getContentRoot = () => {
     const contentRootHook = element.getAttribute('data-content-hook');
     if (!contentRootHook) {
@@ -29,7 +17,7 @@ const tooltipDriverFactory = ({ element, wrapper }) => {
         `Tooltip.driver: contentRootHook attribute must exist on the Toolrip's root element`,
       );
     }
-    return bodyOrWrapper.querySelector(`[data-hook="${contentRootHook}"]`);
+    return document.body.querySelector(`[data-hook="${contentRootHook}"]`);
   };
 
   const getTooltipContent = () => getContentRoot().querySelector('.tooltip');

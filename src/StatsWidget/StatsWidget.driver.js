@@ -47,7 +47,7 @@ const statsWidgetDriverFactory = ({ element }) => {
 
     getFilterDriver: dataHook => {
       const optionElement = findByHook(element, dataHook);
-      return dropdownLayoutDriver({ wrapper: element, element: optionElement });
+      return dropdownLayoutDriver({ element: optionElement });
     },
   };
 };

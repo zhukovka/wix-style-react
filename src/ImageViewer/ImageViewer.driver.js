@@ -3,7 +3,7 @@ import { buttonTestkitFactory } from '../../testkit';
 import addItemDriverFactory from '../AddItem/AddItem.driver';
 import tooltipDriverFactory from '../Tooltip/Tooltip.driver';
 
-const imageViewerDriverFactory = ({ wrapper, element, eventTrigger }) => {
+const imageViewerDriverFactory = ({ element, eventTrigger }) => {
   const addItemDataHook = 'add-image';
   const updateDataHook = 'update-image';
   const removeDataHook = 'remove-image';
@@ -13,14 +13,12 @@ const imageViewerDriverFactory = ({ wrapper, element, eventTrigger }) => {
   const errorIcon = () => byHook('error-tooltip');
   const addItem = () => byHook(addItemDataHook);
   const addItemDriver = addItemDriverFactory({
-    wrapper,
     element,
     eventTrigger,
   });
   const tooltipDriver = addItemDriver.getTooltipDriver();
   const addItemClick = () =>
     addItemDriverFactory({
-      wrapper,
       element: byHook('add-image'),
       eventTrigger,
     }).click();
@@ -38,18 +36,15 @@ const imageViewerDriverFactory = ({ wrapper, element, eventTrigger }) => {
     getImageUrl: () => image().getAttribute('src'),
     getErrorTooltipContent: () =>
       tooltipDriverFactory({
-        wrapper,
         element: errorIcon(),
       }).hoverAndGetContent(),
     getAddTooltipContent: () => tooltipDriver.hoverAndGetContent(),
     getUpdateTooltipContent: () =>
       tooltipDriverFactory({
-        wrapper,
         element: updateIcon(),
       }).hoverAndGetContent(),
     getRemoveTooltipContent: () =>
       tooltipDriverFactory({
-        wrapper,
         element: removeIcon(),
       }).hoverAndGetContent(),
     isAddItemVisible: () => !!addItem(),

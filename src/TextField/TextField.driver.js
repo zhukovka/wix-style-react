@@ -1,10 +1,10 @@
 import inputAreaWithLabelCompositeDriverFactory from '../Composite/InputAreaWithLabelComposite/InputAreaWithLabelComposite.driver';
 
-const textFieldDriverFactory = ({ element, wrapper }) => {
+const textFieldDriverFactory = ({ element }) => {
   const input = element.querySelector('input.input');
 
   return {
-    ...inputAreaWithLabelCompositeDriverFactory({ element, wrapper }),
+    ...inputAreaWithLabelCompositeDriverFactory({ element }),
     getInput: () => input,
     hasInput: () => !!input,
   };
