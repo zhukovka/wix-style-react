@@ -1,4 +1,7 @@
-import eyes from 'eyes.it';
+import {
+  eyesItInstance,
+  DEFAULT_WINDOW_HEIGHT,
+} from '../../test/utils/eyes-it';
 import eventually from 'wix-eventually';
 
 import { pageTestkitFactory } from '../../testkit/protractor';
@@ -29,6 +32,11 @@ describe('Page', () => {
   };
 
   const runTestCases = initTestConfig => {
+    const eyes = eyesItInstance({
+      enableSnapshotAtBrowserGet: false,
+      enableSnapshotAtEnd: false,
+    });
+
     eyes.it('should hide title on scroll threshold', async () => {
       const driver = await initTest(initTestConfig);
 
@@ -92,8 +100,8 @@ describe('Page', () => {
 
   describe('With EmptyState', () => {
     const storyUrl = createStoryUrl({ kind: category, story: storyName });
-
-    it('should not break design', async () => {
+    const eyes = eyesItInstance();
+    eyes.it('should not break design', async () => {
       const _dataHook = 'story-page-empty-state';
       const element = $(`[data-hook="${_dataHook}"]`);
 
@@ -101,5 +109,34 @@ describe('Page', () => {
       await waitForVisibilityOf(element, `Cannot find ${_dataHook}`);
       await scrollToElement(element);
     });
+  });
+
+  describe('min/max width', () => {
+    const eyes = eyesItInstance();
+    eyes.it(
+      'should stop growing at max-width',
+      async () => {
+        const storyUrl = testStoryUrl('5. max-width exceeded');
+        await browser.get(storyUrl);
+      },
+      {
+        enableSnapshotAtBrowserGet: true,
+        enableSnapshotAtEnd: false,
+        width: 1500,
+        height: DEFAULT_WINDOW_HEIGHT,
+      },
+    );
+
+    eyes.it(
+      'should stop shrinking at min-width',
+      async () => {
+        const storyUrl = testStoryUrl('6. min-width exceeded');
+        await browser.get(storyUrl);
+      },
+      {
+        enableSnapshotAtBrowserGet: true,
+        enableSnapshotAtEnd: false,
+      },
+    );
   });
 });

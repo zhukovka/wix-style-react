@@ -49,6 +49,8 @@ import {
 class Page extends WixComponent {
   static defaultProps = {
     gradientCoverTail: true,
+    minWidth: 798, // 894 - 48*2,- Should correspond to the Grid min-width
+    maxWidth: 1158, // 1254 - 48*2 - Should correspond to the Grid max-width
   };
 
   constructor(props) {
@@ -168,14 +170,18 @@ class Page extends WixComponent {
   }
 
   _calculatePageDimensionsStyle() {
-    const { maxWidth, sidePadding } = this.props;
-    if (!maxWidth && !sidePadding && sidePadding !== 0) {
+    const { minWidth, maxWidth, sidePadding } = this.props;
+    if (!minWidth && !maxWidth && !sidePadding && sidePadding !== 0) {
       return null;
     }
 
     const styles = {};
     if (maxWidth) {
       styles.maxWidth = `${maxWidth}px`;
+    }
+
+    if (minWidth) {
+      styles.minWidth = `${minWidth}px`;
     }
 
     if (sidePadding || sidePadding === 0) {
@@ -359,8 +365,10 @@ Page.Tail = Tail;
 Page.propTypes = {
   /** Background image url of the header beackground */
   backgroundImageUrl: PropTypes.string,
-  /** Sets the max width of the header and the content */
+  /** Sets the max width of the content (Both in header and body) NOT including the padding */
   maxWidth: PropTypes.number,
+  /** Sets the min width of the content (Both in header and body) NOT including the padding */
+  minWidth: PropTypes.number,
   /** Sets padding of the sides of the page */
   sidePadding: PropTypes.number,
   /** A css class to be applied to the component's root element */

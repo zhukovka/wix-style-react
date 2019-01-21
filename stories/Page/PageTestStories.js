@@ -59,3 +59,24 @@ storiesOf(kind, module).add('4. FC-Gradient', () => (
     />
   </PageContainer>
 ));
+
+storiesOf(kind, module).add('5. max-width exceeded', () => (
+  // Snapshot needs to be taken with viewPort width 1500px
+  <div>
+    <Page
+      dataHook={dataHook}
+      children={[header(Breadcrumbs), fixedContent, content(false)]}
+      gradientClassName="background-gradient"
+    />
+  </div>
+));
+
+storiesOf(kind, module).add('6. min-width exceeded', () => (
+  <div style={{ width: '500px' }}>
+    <Page
+      dataHook={dataHook}
+      children={[header(Breadcrumbs), fixedContent, content(false)]}
+      gradientClassName="background-gradient"
+    />
+  </div>
+));
