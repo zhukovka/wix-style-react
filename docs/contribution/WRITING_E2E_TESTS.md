@@ -3,7 +3,7 @@
 ## Use async/await
 When writing e2e tests, don't forget to use `async/await`.
 
-> DON'T - relay on protractor's flow-control (deprecated Promise Manager)!
+> DON'T rely on Protractor's [Control Flow](https://github.com/angular/protractor/blob/master/docs/control-flow.md#the-webdriver-control-flow) (Promise Manager is being deprecated)!
 
 *Example:*
 
