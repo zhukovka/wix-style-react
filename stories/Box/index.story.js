@@ -1,9 +1,18 @@
 import React from 'react';
+import {
+  tab,
+  api,
+  playground,
+  testkit,
+  description,
+  importExample,
+  liveCode,
+} from 'wix-storybook-utils/Sections';
 
 import { storySettings } from './storySettings';
 import Box from '../../src/Box';
-import LiveCodeExample from '../utils/Components/LiveCodeExample';
-import ExampleMultipleBoxes from '!raw-loader!./ExampleMultipleBoxes';
+import Button from '../../src/Button';
+import propExplanations from './propExplanations';
 
 const childrenExamples = [
   {
@@ -56,6 +65,13 @@ const childrenExamples = [
   },
 ];
 
+const propExplanationLiveExample = source =>
+  liveCode({
+    compact: true,
+    source,
+    components: { Box, Button },
+  });
+
 export default {
   category: storySettings.category,
   storyName: storySettings.storyName,
@@ -79,13 +95,53 @@ export default {
     children: childrenExamples,
   },
 
-  examples: (
-    <div>
-      <LiveCodeExample
-        compact
-        title="Multiple Boxes"
-        initialCode={ExampleMultipleBoxes}
-      />
-    </div>
-  ),
+  sections: [
+    tab({
+      title: 'Description',
+      sections: [
+        description({
+          text: `📦  Box is a wrapper component that provides a way to align, space, resize and style - easily and straightforwardly.`,
+        }),
+
+        importExample({
+          source: "import Box from 'wix-style-react/Box';",
+        }),
+
+        // Children
+        description({ text: propExplanations.children.description }),
+        propExplanationLiveExample(propExplanations.children.example),
+
+        // Alignment
+        description({ text: propExplanations.alignment.description }),
+        propExplanationLiveExample(propExplanations.alignment.example),
+
+        // Spacing
+        description({ text: propExplanations.spacing.description }),
+        propExplanationLiveExample(propExplanations.spacing.example),
+
+        // Sizing
+        description({ text: propExplanations.sizing.description }),
+        propExplanationLiveExample(propExplanations.sizing.example),
+
+        // Styling
+        description({ text: propExplanations.styling.description }),
+        propExplanationLiveExample(propExplanations.styling.example),
+      ],
+    }),
+
+    tab({
+      title: 'Playground',
+      sections: [playground()],
+    }),
+
+    tab({
+      title: 'API',
+      sections: [api()],
+    }),
+
+    tab({
+      title: 'Testkit',
+      sections: [testkit()],
+    }),
+  ],
 };

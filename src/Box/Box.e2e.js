@@ -1,9 +1,15 @@
-import { scrollToElement, waitForVisibilityOf } from 'wix-ui-test-utils/protractor';
+import {
+  scrollToElement,
+  waitForVisibilityOf,
+} from 'wix-ui-test-utils/protractor';
 import autoExampleDriver from 'wix-storybook-utils/AutoExampleDriver';
 
 import { eyesItInstance } from '../../test/utils/eyes-it';
-import { createStoryUrl } from '../../test/utils/storybook-helpers';
-import { storySettings } from '../../stories/Box/storySettings';
+import {
+  createStoryUrl,
+  createTestStoryUrl,
+} from '../../test/utils/storybook-helpers';
+import { storySettings, testStories } from '../../stories/Box/storySettings';
 import { boxTestkitFactory } from '../../testkit/protractor';
 
 const eyes = eyesItInstance();
@@ -12,7 +18,6 @@ describe('Box', () => {
   const storyUrl = createStoryUrl({
     kind: storySettings.category,
     story: storySettings.storyName,
-    withExamples: true,
   });
 
   const createDriver = async (dataHook = storySettings.dataHook) => {
@@ -28,9 +33,9 @@ describe('Box', () => {
     return driver;
   };
 
-  beforeAll(async () => await browser.get(storyUrl));
-
   describe('AutoExample', () => {
+    beforeAll(async () => await browser.get(storyUrl));
+
     afterEach(async () => await autoExampleDriver.remount());
 
     eyes.it('should be rendered', async () => {
@@ -55,21 +60,15 @@ describe('Box', () => {
     });
 
     describe('Spacing', () => {
-      eyes.it(
-        'should be rendered with margin',
-        async () => {
-          await autoExampleDriver.setProps({ margin: 2 });
-          await createDriver();
-        },
-      );
+      eyes.it('should be rendered with margin', async () => {
+        await autoExampleDriver.setProps({ margin: 2 });
+        await createDriver();
+      });
 
-      eyes.it(
-        'should be rendered with padding',
-        async () => {
-          await autoExampleDriver.setProps({ padding: '3px 4px' });
-          await createDriver();
-        },
-      );
+      eyes.it('should be rendered with padding', async () => {
+        await autoExampleDriver.setProps({ padding: '3px 4px' });
+        await createDriver();
+      });
     });
 
     describe('Sizing', () => {
@@ -98,11 +97,16 @@ describe('Box', () => {
   });
 
   describe('Examples', () => {
-    eyes.it(
-      'should render a box that contains multiple boxes',
-      async () => {
-        await createDriver('storybook-multiple-boxes-within-box');
-      },
-    );
+    const testStoryUrl = testName =>
+      createTestStoryUrl({ ...storySettings, testName });
+
+    const checkTestStory = async testName => {
+      await browser.get(testStoryUrl(testName));
+      await eyes.checkWindow(testName);
+    };
+
+    eyes.it('should render a box that contains multiple boxes', async () => {
+      await checkTestStory(testStories.multipleBoxes);
+    });
   });
 });
