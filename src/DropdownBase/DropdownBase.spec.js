@@ -7,9 +7,7 @@ import DropdownBase from './DropdownBase';
 import { dropdownBasePrivateDriverFactory } from './DropdownBase.driver.private';
 
 describe('DropdownBase', () => {
-  const createDriver = createUniDriverFactory(
-    dropdownBasePrivateDriverFactory,
-  );
+  const createDriver = createUniDriverFactory(dropdownBasePrivateDriverFactory);
 
   const dropdownBaseEnzymeDriver = enzymeUniTestkitFactoryCreator(
     dropdownBasePrivateDriverFactory,
@@ -272,7 +270,7 @@ describe('DropdownBase', () => {
     });
 
     it('should not allow controlling the behaviour using a render prop', async () => {
-      const { args, driver, wrapper } = createControlledDriver();
+      const { args, driver } = createControlledDriver();
 
       args.open();
       expect(await driver.isDropdownShown()).toBeFalsy();

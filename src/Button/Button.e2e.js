@@ -1,5 +1,4 @@
 import { eyesItInstance } from '../../test/utils/eyes-it';
-import autoExampleDriver from 'wix-storybook-utils/AutoExampleDriver';
 
 import {
   createStoryUrl,

@@ -1,4 +1,3 @@
-import React from 'react';
 import Carousel from 'wix-style-react/Carousel';
 import { storySettings } from './storySettings';
 

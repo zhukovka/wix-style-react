@@ -64,7 +64,8 @@ const source = {
         groupName &&
         monitor.getItem().groupName &&
         groupName === monitor.getDropResult().groupName;
-      const isSameContainer = containerId === monitor.getDropResult().containerId;
+      const isSameContainer =
+        containerId === monitor.getDropResult().containerId;
 
       if (isSameGroup || isSameContainer) {
         onDrop({

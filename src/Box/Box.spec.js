@@ -12,7 +12,7 @@ describe('Box', () => {
       const expectedOpacity = '0.5';
       const children = <span>Children</span>;
       const driver = createDriver(
-        <Box style={{ opacity: expectedOpacity }}>{children}</Box>
+        <Box style={{ opacity: expectedOpacity }}>{children}</Box>,
       );
 
       expect(await driver.getStyle()).toContain(`opacity: ${expectedOpacity}`);
@@ -22,7 +22,7 @@ describe('Box', () => {
       const expectedClassName = 'some-selector';
       const children = <span>Children</span>;
       const driver = createDriver(
-        <Box className={expectedClassName}>{children}</Box>
+        <Box className={expectedClassName}>{children}</Box>,
       );
 
       expect(await driver.hasClass(expectedClassName)).toBeTruthy();
@@ -30,9 +30,7 @@ describe('Box', () => {
 
     it('should render the passed children', async () => {
       const children = <span>Children</span>;
-      const driver = createDriver(
-        <Box dataHook="box-child">{children}</Box>
-      );
+      const driver = createDriver(<Box dataHook="box-child">{children}</Box>);
 
       expect(await driver.hasChild()).toBeTruthy();
     });
@@ -42,9 +40,7 @@ describe('Box', () => {
     it('should render with padding when passing a numeric value', async () => {
       const expectedPadding = `${spacingUnit}px`;
       const children = <span>Children</span>;
-      const driver = createDriver(
-        <Box padding={1}>{children}</Box>
-      );
+      const driver = createDriver(<Box padding={1}>{children}</Box>);
 
       expect(await driver.getStyle()).toContain(`padding: ${expectedPadding}`);
     });
@@ -52,9 +48,7 @@ describe('Box', () => {
     it('should render with padding when passing a predefined spacing value', async () => {
       const expectedPadding = `${spacingUnit * 2}px`;
       const children = <span>Children</span>;
-      const driver = createDriver(
-        <Box padding="small">{children}</Box>
-      );
+      const driver = createDriver(<Box padding="small">{children}</Box>);
 
       expect(await driver.getStyle()).toContain(`padding: ${expectedPadding}`);
     });
@@ -63,7 +57,7 @@ describe('Box', () => {
       const expectedPadding = `${spacingUnit * 3}px ${spacingUnit * 3}px`;
       const children = <span>Children</span>;
       const driver = createDriver(
-        <Box padding={expectedPadding}>{children}</Box>
+        <Box padding={expectedPadding}>{children}</Box>,
       );
 
       expect(await driver.getStyle()).toContain(`padding: ${expectedPadding}`);

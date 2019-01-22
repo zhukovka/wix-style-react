@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import styles from './CalendarPanel.scss';
 import DropdownLayout from '../DropdownLayout';
 import Calendar from '../Calendar';
-import Text from '../Text';
 import { DIVIDER_OPTION_VALUE } from '../DropdownLayout/DropdownLayout';
 
 class CalendarPanel extends React.Component {

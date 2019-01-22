@@ -95,11 +95,6 @@ describe('MessageBox', () => {
   });
 
   describe('Announcement', () => {
-    const baseUrl = createStoryUrl({
-      kind: '9. Modals',
-      story: '9.4 Announcement',
-    });
-
     const standard = 'announcement-standard';
     const primaryTheme = 'announcement-primary-theme';
     const footnote = 'announcement-footnote';
