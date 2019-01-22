@@ -14,7 +14,10 @@ import {
   TAIL_TOP_PADDING_PX,
   PAGE_SIDE_PADDING_PX,
 } from './constants';
-
+import {
+  mainContainerMinWidthPx as GRID_MIN_WIDTH,
+  mainContainerMaxWidthPx as GRID_MAX_WIDTH,
+} from '../Grid/constants';
 /**
  * A page container which contains a header and scrollable content
  *
@@ -50,8 +53,8 @@ import {
 class Page extends WixComponent {
   static defaultProps = {
     gradientCoverTail: true,
-    minWidth: 798, // 894 - 48*2,- Should correspond to the Grid min-width
-    maxWidth: 1158, // 1254 - 48*2 - Should correspond to the Grid max-width
+    minWidth: GRID_MIN_WIDTH,
+    maxWidth: GRID_MAX_WIDTH,
   };
 
   constructor(props) {
@@ -368,9 +371,9 @@ Page.Tail = Tail;
 Page.propTypes = {
   /** Background image url of the header beackground */
   backgroundImageUrl: PropTypes.string,
-  /** Sets the max width of the content (Both in header and body) NOT including the padding */
+  /** Sets the max width of the content (Both in header and body) NOT including the page padding */
   maxWidth: PropTypes.number,
-  /** Sets the min width of the content (Both in header and body) NOT including the padding */
+  /** Sets the min width of the content (Both in header and body) NOT including the page padding */
   minWidth: PropTypes.number,
   /** Sets padding of the sides of the page */
   sidePadding: PropTypes.number,
