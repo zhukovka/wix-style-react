@@ -1,7 +1,6 @@
 import React from 'react';
 import CodeExample from 'wix-storybook-utils/CodeExample';
 import Page from 'wix-style-react/Page';
-import Breadcrumbs from './Breadcrumbs';
 import { storySettings } from './storySettings';
 
 import { header, tail, fixedContent, content } from './PageChildren';
@@ -18,7 +17,7 @@ export default {
   componentPath: '../../src/Page',
 
   componentProps: {
-    children: [header(Breadcrumbs), tail, content(false)],
+    children: [header(), tail, content(false)],
     dataHook: 'story-page',
     gradientClassName: 'background-gradient',
     gradientCoverTail: true,
@@ -30,11 +29,11 @@ export default {
     children: [
       {
         label: 'header, tail & content',
-        value: [header(Breadcrumbs), tail, content(false)],
+        value: [header(), tail, content(false)],
       },
       {
         label: 'header & content',
-        value: [header(Breadcrumbs), content(false)],
+        value: [header(), content(false)],
       },
       {
         label: 'just content',
@@ -42,7 +41,7 @@ export default {
       },
       {
         label: 'header, tail, fixed-content & content',
-        value: [header(Breadcrumbs), tail, fixedContent, content(false)],
+        value: [header(), tail, fixedContent, content(false)],
       },
     ],
     backgroundImageUrl: [

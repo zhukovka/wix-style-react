@@ -116,7 +116,7 @@ describe('Page', () => {
     eyes.it(
       'should stop growing at max-width',
       async () => {
-        const storyUrl = testStoryUrl('5. max-width exceeded');
+        const storyUrl = testStoryUrl('5. [min/max]-width');
         await browser.get(storyUrl);
       },
       {
@@ -130,12 +130,14 @@ describe('Page', () => {
     eyes.it(
       'should stop shrinking at min-width',
       async () => {
-        const storyUrl = testStoryUrl('6. min-width exceeded');
+        const storyUrl = testStoryUrl('5. [min/max]-width');
         await browser.get(storyUrl);
       },
       {
         enableSnapshotAtBrowserGet: true,
         enableSnapshotAtEnd: false,
+        width: 500,
+        height: DEFAULT_WINDOW_HEIGHT,
       },
     );
   });

@@ -5,7 +5,6 @@ import { storiesOf } from '@storybook/react';
 import Page from 'wix-style-react/Page';
 import { getTestStoryKind } from '../storiesHierarchy';
 
-import Breadcrumbs from './Breadcrumbs';
 import * as s from './PageExample.scss';
 import { header, fixedContent, content } from './PageChildren';
 import { storySettings } from './storySettings';
@@ -24,7 +23,7 @@ storiesOf(kind, module).add('1. Image', () => (
   <PageContainer>
     <Page
       dataHook={dataHook}
-      children={[header(Breadcrumbs), content(false)]}
+      children={[header(), content(false)]}
       backgroundImageUrl="https://static.wixstatic.com/media/f0548921c53940ec803dfb1c203e96fe.jpg/v1/fill/w_400,h_100/f0548921c53940ec803dfb1c203e96fe.jpg"
     />
   </PageContainer>
@@ -34,7 +33,7 @@ storiesOf(kind, module).add('2. Gradient', () => (
   <PageContainer>
     <Page
       dataHook={dataHook}
-      children={[header(Breadcrumbs), content(false)]}
+      children={[header(), content(false)]}
       gradientClassName="background-gradient"
     />
   </PageContainer>
@@ -44,7 +43,7 @@ storiesOf(kind, module).add('3. FC-Image', () => (
   <PageContainer>
     <Page
       dataHook={dataHook}
-      children={[header(Breadcrumbs), fixedContent, content(false)]}
+      children={[header(), fixedContent, content(false)]}
       backgroundImageUrl="https://static.wixstatic.com/media/f0548921c53940ec803dfb1c203e96fe.jpg/v1/fill/w_400,h_100/f0548921c53940ec803dfb1c203e96fe.jpg"
     />
   </PageContainer>
@@ -54,28 +53,28 @@ storiesOf(kind, module).add('4. FC-Gradient', () => (
   <PageContainer>
     <Page
       dataHook={dataHook}
-      children={[header(Breadcrumbs), fixedContent, content(false)]}
+      children={[header(), fixedContent, content(false)]}
       gradientClassName="background-gradient"
     />
   </PageContainer>
 ));
 
-storiesOf(kind, module).add('5. max-width exceeded', () => (
+storiesOf(kind, module).add('5. [min/max]-width', () => (
   // Snapshot needs to be taken with viewPort width 1500px
   <div>
     <Page
       dataHook={dataHook}
-      children={[header(Breadcrumbs), fixedContent, content(false)]}
+      children={[header(), content(false)]}
       gradientClassName="background-gradient"
     />
   </div>
 ));
 
-storiesOf(kind, module).add('6. min-width exceeded', () => (
+storiesOf(kind, module).add('6. Ellipsis Title & Subtitle', () => (
   <div style={{ width: '500px' }}>
     <Page
       dataHook={dataHook}
-      children={[header(Breadcrumbs), fixedContent, content(false)]}
+      children={[header(), fixedContent, content(false)]}
       gradientClassName="background-gradient"
     />
   </div>
