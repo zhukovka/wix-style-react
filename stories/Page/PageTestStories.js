@@ -59,8 +59,7 @@ storiesOf(kind, module).add('4. FC-Gradient', () => (
   </PageContainer>
 ));
 
-storiesOf(kind, module).add('5. [min/max]-width', () => (
-  // Snapshot needs to be taken with viewPort width 1500px
+storiesOf(kind, module).add('5. Default [min/max]-width', () => (
   <div>
     <Page
       dataHook={dataHook}
@@ -70,12 +69,14 @@ storiesOf(kind, module).add('5. [min/max]-width', () => (
   </div>
 ));
 
-storiesOf(kind, module).add('6. Ellipsis Title & Subtitle', () => (
-  <div style={{ width: '500px' }}>
+storiesOf(kind, module).add('6. Custom [min/max]-width', () => (
+  <div>
     <Page
       dataHook={dataHook}
-      children={[header(), fixedContent, content(false)]}
+      children={[header(), content(false)]}
       gradientClassName="background-gradient"
+      minWidth={504} // With padding: 504 + 48*2 = 600px
+      maxWidth={1304} // With padding: 1304 + 48*2 = 1400px
     />
   </div>
 ));

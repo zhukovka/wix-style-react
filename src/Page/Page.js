@@ -12,6 +12,7 @@ import {
   SCROLL_TOP_THRESHOLD,
   SHORT_SCROLL_TOP_THRESHOLD,
   TAIL_TOP_PADDING_PX,
+  PAGE_SIDE_PADDING_PX,
 } from './constants';
 
 /**
@@ -49,7 +50,7 @@ import {
 class Page extends WixComponent {
   static defaultProps = {
     gradientCoverTail: true,
-    // minWidth: 798, // 894 - 48*2,- Should correspond to the Grid min-width
+    minWidth: 798, // 894 - 48*2,- Should correspond to the Grid min-width
     maxWidth: 1158, // 1254 - 48*2 - Should correspond to the Grid max-width
   };
 
@@ -170,18 +171,14 @@ class Page extends WixComponent {
   }
 
   _calculatePageDimensionsStyle() {
-    const { minWidth, maxWidth, sidePadding } = this.props;
-    if (!minWidth && !maxWidth && !sidePadding && sidePadding !== 0) {
+    const { maxWidth, sidePadding } = this.props;
+    if (!maxWidth && !sidePadding && sidePadding !== 0) {
       return null;
     }
 
     const styles = {};
     if (maxWidth) {
       styles.maxWidth = `${maxWidth}px`;
-    }
-
-    if (minWidth) {
-      styles.minWidth = `${minWidth}px`;
     }
 
     if (sidePadding || sidePadding === 0) {
@@ -232,6 +229,7 @@ class Page extends WixComponent {
       gradientClassName,
       className,
       children,
+      minWidth,
     } = this.props;
     const { minimized } = this.state;
     const hasBackgroundImage = !!backgroundImageUrl;
@@ -259,7 +257,10 @@ class Page extends WixComponent {
 
     return (
       <div className={classNames(s.pageWrapper, className)}>
-        <div className={s.page}>
+        <div
+          className={s.page}
+          style={{ minWidth: minWidth + 2 * PAGE_SIDE_PADDING_PX }}
+        >
           <div
             data-hook="page-fixed-container"
             style={this._fixedContainerStyle()}
