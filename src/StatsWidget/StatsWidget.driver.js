@@ -1,7 +1,9 @@
-import dropdownLayoutDriver from '../ButtonWithOptions/ButtonWithOptions.driver';
+import buttonWithOptionsDriverFactory from '../ButtonWithOptions/ButtonWithOptions.driver';
+import dropdownLayoutDriverFactory from '../DropdownLayout/DropdownLayout.driver';
 import headerDriverFactory from '../Card/Header/Header.driver';
 import { badgeDriverFactory } from 'wix-ui-backoffice/dist/src/components/Badge/Badge.driver';
 import { findByHook } from '../../test/utils';
+import deprecationLog from '../utils/deprecationLog';
 
 const statsWidgetDriverFactory = ({ element }) => {
   const getBadgeDriver = elm => badgeDriverFactory({ element: elm });
@@ -45,9 +47,21 @@ const statsWidgetDriverFactory = ({ element }) => {
       return (percentIcon && percentIcon.getAttribute('data-class')) || '';
     },
 
+    getFilterButtonDriver: dataHook => ({
+      dropdownLayoutDriver: dropdownLayoutDriverFactory({
+        element: findByHook(
+          findByHook(element, dataHook),
+          'dropdown-base-dropdownlayout',
+        ),
+      }),
+    }),
+
     getFilterDriver: dataHook => {
+      deprecationLog(
+        'StatsWidget testkit method "getFilterDriver" is deprecated, use the new "getFilterButtonDriver" method instead.',
+      );
       const optionElement = findByHook(element, dataHook);
-      return dropdownLayoutDriver({ element: optionElement });
+      return buttonWithOptionsDriverFactory({ element: optionElement });
     },
   };
 };
