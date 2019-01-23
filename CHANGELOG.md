@@ -14,11 +14,12 @@ Types of changes:
 1. **Docs** for documentation changes
 1. **Lab** components and features that are still in a work in progress
 
-## Next
+## 5.25.0 - 2019-01-23
 
 ### Added
 
 - `<CalendarPanel/>` - Release! (Added also `<CalendarPanelFooter/>`) [#2753](https://github.com/wix/wix-style-react/pull/2753)
+- `<Thumbnail/>` - New component for thumbnails [#2728](https://github.com/wix/wix-style-react/pull/2728)
 
 ### Changed
 
@@ -32,7 +33,6 @@ Types of changes:
 ### Deprecated
 
 - `<Notification/>` - changed timeout behavior with `upgrade` prop [#2766](https://github.com/wix/wix-style-react/pull/2766)
-
 - `<StatsWidget.Filter/>` - deprecated component, you should use the newer `<StatsWidget.FilterButton/>` component instead [#2777](https://github.com/wix/wix-style-react/pull/2777)
 
 ### Fixed
