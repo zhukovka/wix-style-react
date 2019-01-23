@@ -4,7 +4,7 @@ import Page from 'wix-style-react/Page';
 import { storySettings } from './storySettings';
 
 import { header, tail, fixedContent, content } from './PageChildren';
-import './Page.scss';
+import './PageStory.scss';
 
 import ExampleEmptyState from './ExampleEmptyState';
 import ExampleEmptyStateRaw from '!raw-loader!./ExampleEmptyState';
@@ -18,7 +18,7 @@ export default {
 
   componentProps: {
     children: [header(), tail, content(false)],
-    dataHook: 'story-page',
+    dataHook: 'story-page-playground',
     gradientClassName: 'background-gradient',
     gradientCoverTail: true,
     backgroundImageUrl:
