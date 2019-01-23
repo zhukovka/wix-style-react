@@ -39,7 +39,6 @@ const spacingValues = {
 const formatSpacingValue = value =>
   isFinite(value) ? value * spacingUnit : spacingValues[value] || `${value}`;
 
-/** 📦 Box is a wrapper component that provides a way to align, space, resize and style - easily and straightforwardly. */
 const Box = ({
   dataHook,
   children,
