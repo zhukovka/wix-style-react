@@ -13,7 +13,6 @@ import {
   createStoryUrl,
   createTestStoryUrl,
 } from '../../test/utils/storybook-helpers';
-import autoExampleDriver from 'wix-storybook-utils/AutoExampleDriver';
 import { storySettings } from '../../stories/Page/storySettings';
 
 const { category, storyName } = storySettings;
@@ -22,12 +21,11 @@ const testStoryUrl = testName =>
   createTestStoryUrl({ category, storyName, testName });
 
 describe('Page', () => {
-  const initTest = async ({ storyUrl, dataHook, props }) => {
+  const initTest = async ({ storyUrl, dataHook }) => {
     await browser.get(storyUrl);
     const driver = pageTestkitFactory({ dataHook });
     await waitForVisibilityOf(driver.element(), 'Cannot find Page');
     await scrollToElement(driver.element());
-    props && (await autoExampleDriver.setProps(props));
     return driver;
   };
 
@@ -56,16 +54,15 @@ describe('Page', () => {
   describe('Header + Tail + Content', () => {
     const dataHook = 'story-page';
 
-    const storyUrl = createStoryUrl({
-      kind: category,
-      story: storyName,
-      withExamples: false,
-    });
     describe('With Background-Image', () => {
+      const storyUrl = testStoryUrl('Header-Tail-Content: 1. Image');
       runTestCases({ storyUrl, dataHook });
     });
 
     describe('With gradientCoverTail', () => {
+      const storyUrl = testStoryUrl(
+        'Header-Tail-Content: 2. Gradient Cover Tail',
+      );
       runTestCases({ storyUrl, dataHook, props: { backgroundImageUrl: '' } });
     });
   });

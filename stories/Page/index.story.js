@@ -9,6 +9,13 @@ import './PageStory.scss';
 import ExampleEmptyState from './ExampleEmptyState';
 import ExampleEmptyStateRaw from '!raw-loader!./ExampleEmptyState';
 
+const examplePageContainerStyles = {
+  height: 500,
+  display: 'flex',
+  flexFlow: 'column',
+  minHeight: 0,
+};
+
 export default {
   category: storySettings.category,
   storyName: storySettings.storyName,
@@ -55,7 +62,12 @@ export default {
 
   examples: (
     <CodeExample title="Page with and EmptyState" code={ExampleEmptyStateRaw}>
-      <ExampleEmptyState />
+      <div
+        data-hook="story-page-empty-state"
+        style={examplePageContainerStyles}
+      >
+        <ExampleEmptyState />
+      </div>
     </CodeExample>
   ),
 };
