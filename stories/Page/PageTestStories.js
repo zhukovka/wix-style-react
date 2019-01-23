@@ -10,7 +10,11 @@ import { header, fixedContent, content } from './PageChildren';
 import { storySettings } from './storySettings';
 
 const PageContainer = props => {
-  return <div className={s.pageContainer}>{props.children}</div>;
+  return (
+    <div className={s.pageContainer} {...props}>
+      {props.children}
+    </div>
+  );
 };
 PageContainer.propTypes = {
   children: PropTypes.any,
@@ -80,3 +84,34 @@ storiesOf(kind, module).add('6. Custom [min/max]-width', () => (
     />
   </div>
 ));
+
+const contentPrefix = (
+  <div
+    style={{
+      backgroundColor: 'white',
+      paddingBottom: '20px',
+      fontSize: '36px',
+    }}
+  >
+    <b>
+      This simulates what some consumers are currently doing to implement
+      min-width with horizontal scroll. So we can see tat they are not broken.
+      They can increase the min-width, bu the can not decrease it, unless they
+      use the minWidth prop.
+    </b>
+  </div>
+);
+storiesOf(kind, module).add(
+  '7. Regression for [min/max]-width (introduced in version 5.25.0)',
+  () => (
+    <div style={{ overflowX: 'auto' }}>
+      <PageContainer style={{ minWidth: '1100px' }}>
+        <Page
+          dataHook={dataHook}
+          children={[header(), content(false, contentPrefix)]}
+          gradientClassName="background-gradient"
+        />
+      </PageContainer>
+    </div>
+  ),
+);
