@@ -338,4 +338,6 @@ module.exports = {
   },
 
   Box: { unidriver },
+
+  Thumbnail: { unidriver },
 };

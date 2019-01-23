@@ -117,6 +117,7 @@ export const textAreaTestkitFactory = testkitFactoryCreator(load('../src/TextAre
 export const textButtonTestkitFactory = uniTestkitFactoryCreator(load('../src/TextButton/TextButton.driver'));
 export const textFieldTestkitFactory = testkitFactoryCreator(load('../src/TextField/TextField.driver'));
 export const textLinkTestkitFactory = testkitFactoryCreator(load('../src/TextLink/TextLink.driver'));
+export const thumbnailTestkitFactory = uniTestkitFactoryCreator(load('../src/Thumbnail/Thumbnail.driver'));
 export const timeInputTestkitFactory = testkitFactoryCreator(load('../src/TimeInput/TimeInput.driver'));
 export const tooltipTestkitFactory = testkitFactoryCreator(load('../src/Tooltip/Tooltip.driver'));
 export const backofficeTooltipTestkitFactory = testkitFactoryCreator(load('../src/Backoffice/Tooltip/Tooltip.driver'));

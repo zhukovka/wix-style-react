@@ -114,6 +114,7 @@ export const textAreaTestkitFactory = enzymeTestkitFactoryCreator(load('../src/T
 export const textButtonTestkitFactory = enzymeUniTestkitFactoryCreator(load('../src/TextButton/TextButton.driver'));
 export const textFieldTestkitFactory = enzymeTestkitFactoryCreator(load('../src/TextField/TextField.driver'));
 export const textLinkTestkitFactory = enzymeTestkitFactoryCreator(load('../src/TextLink/TextLink.driver'));
+export const thumbnailTestkitFactory = enzymeUniTestkitFactoryCreator(load('../src/Thumbnail/Thumbnail.driver'));
 export const timeInputTestkitFactory = enzymeTestkitFactoryCreator(load('../src/TimeInput/TimeInput.driver'));
 export const tooltipTestkitFactory = enzymeTestkitFactoryCreator(load('../src/Tooltip/Tooltip.driver'));
 export const backofficeTooltipTestkitFactory = enzymeTestkitFactoryCreator(load('../src/Backoffice/Tooltip/Tooltip.driver'));
