@@ -13,7 +13,6 @@ const pageContainerStyles = {
   display: 'flex',
   flexFlow: 'column',
   minHeight: 0,
-  maxWidth: '90%',
 };
 
 const ExampleEmptyState = () => (
