@@ -118,14 +118,14 @@ describe('Page', () => {
       };
     }
 
-    const DEFAULT_MIN_MAX_STORY_NAME = '5. Default [min/max]-width';
-
     const eyes = eyesItInstance();
     describe('Default values', () => {
+      const url = testStoryUrl('5. Default [min/max]-width');
+
       eyes.it(
         'should stop growing at max-width',
         async () => {
-          await browser.get(testStoryUrl(DEFAULT_MIN_MAX_STORY_NAME));
+          await browser.get(url);
         },
         eyesOptions({ width: 1500 }),
       );
@@ -133,16 +133,18 @@ describe('Page', () => {
       eyes.it(
         'should stop shrinking at default min-width',
         async () => {
-          await browser.get(testStoryUrl(DEFAULT_MIN_MAX_STORY_NAME));
+          await browser.get(url);
         },
         eyesOptions({ width: 500 }),
       );
     });
+
     describe('Custom values', () => {
+      const url = testStoryUrl('6. Custom [min/max]-width');
       eyes.it(
         'should stop growing at max-width (1400px)',
         async () => {
-          await browser.get(testStoryUrl(DEFAULT_MIN_MAX_STORY_NAME));
+          await browser.get(url);
         },
         eyesOptions({ width: 1500 }),
       );
@@ -150,7 +152,7 @@ describe('Page', () => {
       eyes.it(
         'should stop shrinking at default min-width (600px)',
         async () => {
-          await browser.get(testStoryUrl(DEFAULT_MIN_MAX_STORY_NAME));
+          await browser.get(url);
         },
         eyesOptions({ width: 500 }),
       );
