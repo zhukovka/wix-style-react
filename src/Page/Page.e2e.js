@@ -9,10 +9,7 @@ import {
   waitForVisibilityOf,
   scrollToElement,
 } from 'wix-ui-test-utils/protractor';
-import {
-  createStoryUrl,
-  createTestStoryUrl,
-} from '../../test/utils/storybook-helpers';
+import { createTestStoryUrl } from '../../test/utils/storybook-helpers';
 import { storySettings } from '../../stories/Page/storySettings';
 
 const { category, storyName } = storySettings;
@@ -96,15 +93,10 @@ describe('Page', () => {
   });
 
   describe('With EmptyState', () => {
-    const storyUrl = createStoryUrl({ kind: category, story: storyName });
+    const storyUrl = testStoryUrl('8. Empty State');
     const eyes = eyesItInstance();
     eyes.it('should not break design', async () => {
-      const _dataHook = 'story-page-empty-state';
-      const element = $(`[data-hook="${_dataHook}"]`);
-
       await browser.get(storyUrl);
-      await waitForVisibilityOf(element, `Cannot find ${_dataHook}`);
-      await scrollToElement(element);
     });
   });
 
