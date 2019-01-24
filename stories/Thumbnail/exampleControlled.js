@@ -3,23 +3,37 @@
 class ControlledThumbnail extends React.PureComponent {
   constructor(props) {
     super(props);
+
     this.state = {
-      selected: false
+      selected: [],
+      thumbnails: ["first", "second", "third"]
     };
   }
 
   render() {
-    const { selected } = this.state;
+    const { selected, thumbnails } = this.state;
 
     return (
-      <Thumbnail
-        selected={selected}
-        title="Thumbnail"
-        description={`This thumbnail is ${selected ? "" : "not "}selected `}
-        onClick={() =>
-          this.setState(({ selected }) => ({ selected: !selected }))
-        }
-      />
+      <Layout gap="12px">
+        {thumbnails.map(thumbnail => (
+          <Cell key={thumbnail} span={4}>
+            <Thumbnail
+              selected={selected.includes(thumbnail)}
+              title={`${thumbnail} thumbnail`}
+              description={`This thumbnail is ${
+                selected.includes(thumbnail) ? "" : "not "
+              }selected `}
+              onClick={() =>
+                this.setState(({ selected }) => ({
+                  selected: selected.includes(thumbnail)
+                    ? selected.filter(s => s !== thumbnail)
+                    : [...selected, thumbnail]
+                }))
+              }
+            />
+          </Cell>
+        ))}
+      </Layout>
     );
   }
 }
