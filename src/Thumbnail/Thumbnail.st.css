@@ -68,8 +68,8 @@
   background: value(D55);
 }
 
-.root:disabled::title,
-.root:disabled::description {
+.root:disabled ::title,
+.root:disabled ::description {
   color: value(D55);
 }
 
@@ -127,4 +127,9 @@
   height: 24px;
   border-radius: 50%;
   color: value(WHITE);
+}
+
+:global([dir="rtl"]) .selectedIcon {
+  left: -10px;
+  right: auto;
 }

@@ -64,6 +64,17 @@ storiesOf(kind, module).add(testStories.multipleThumbnails, () => (
       />
     </Cell>
     <Cell span={4}>
+      <div dir="rtl">
+        <div>RTL</div>
+        <Thumbnail
+          backgroundImage={getImageUrl(270, 270)}
+          selected
+          width={270}
+          height={170}
+        />
+      </div>
+    </Cell>
+    <Cell span={4}>
       <Thumbnail
         backgroundImage={getImageUrl(270, 270)}
         selected
