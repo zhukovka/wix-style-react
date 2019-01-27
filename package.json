@@ -26,7 +26,7 @@
   "scripts": {
     "start": "./scripts/npm-start.sh",
     "precommit": "lint-staged",
-    "pretest": "npm run lint && ./scripts/ensure-dist.sh",
+    "pretest": "npm run lint && npm run build && ./scripts/ensure-dist.sh",
     "test": "npm run test:unit && npm run test:e2e && npm run snap",
     "test:unit": "yoshi test --jest",
     "test:watch": "yoshi test --jest --watch",
