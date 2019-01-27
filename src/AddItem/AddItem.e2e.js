@@ -7,15 +7,9 @@ import { addItemTestkitFactory } from '../../testkit/protractor';
 import { storySettings } from '../../stories/AddItem/storySettings';
 import { runFocusTests } from '../common/Focusable/FocusableTestsE2E';
 
-const eyes = eyesItInstance();
-
-// TEMP - ADDED BY EREZ - FOR INVESTIGATING EYES FAILURES
-// I put this in AddItem since its the first test that runs, I didn't have time to figure out where I could initialize this.
-const ConsoleLogHandler = require('eyes.selenium').ConsoleLogHandler;
-
-eyes.setLogHandler(new ConsoleLogHandler(true));
-
 describe('AddItem', () => {
+  const eyes = eyesItInstance();
+
   const storyUrl = createStoryUrl({
     kind: storySettings.kind,
     story: storySettings.storyName,
