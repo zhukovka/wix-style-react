@@ -1,10 +1,9 @@
 import Registry from '@ui-autotools/registry';
 import Input from '../../Input';
-// import style from './EmptyState.scss'
 
-  const meta = Registry.getComponentMetadata(Input);
+const meta = Registry.getComponentMetadata(Input);
 
-  meta.addSim({
+meta.addSim({
   title: 'Normal_example',
   props: {
     theme: 'normal',
@@ -12,14 +11,6 @@ import Input from '../../Input';
   }
 });
 
+meta.exportName = 'Input'
 meta.compiledComponent = {cssPath: '/dist/statics/App.css', compPath: '/dist/src/Input'}
-
-meta.exportedFrom({
-    path: '.',
-    exportName: 'Input',
-    // baseStylePath: 'src/EmptyState/EmptyState.scss'
-  });
-
-// emptyStateMetadata.addStyle(style, {name: 'style', path: 'src/EmptyState/EmptyState.scss'});
-
 meta.nonEventListenerTestCompliant = true 
