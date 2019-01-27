@@ -1,16 +1,22 @@
-### What changed
+<!---
+Thanks for submitting a pull request 😄 !
+-->
 
+<!---
+- Be as descriptive as possible when explaining what was changed.
+- Link to an issue if one exists
+-->
+### 🔦 Summary
 ...
 
-### Why it changed
-
-...
-
----
-
-- [ ] Change is tested
-- [ ] Change is documented
-- [ ] Build is green
-- [ ] Change of UX is approved by [wuwa](https://github.com/wuwa) or [milkyfruit](https://github.com/milkyfruit)
-
-### Thanks for contributing :)
+<!--- Please mark all checkbox. If one is not relevant - delete it -->
+### ✅ Checklist
+- [ ] 👨‍💻 API change is approved by the UI Infra Developer <!--- Please tag the relevant team member -->
+- [ ] 👨‍🎨 UX change is approved by the Design System UX <!--- Please tag the relevant team member -->
+- [ ] 📚 Change is documented
+  - [ ] Story
+  - [ ] API description
+  - [ ] Other (explain)
+- [ ] 🔬 Change is tested
+  - [ ] Component
+  - [ ] Visual test
