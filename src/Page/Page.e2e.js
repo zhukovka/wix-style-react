@@ -1,7 +1,4 @@
-import {
-  eyesItInstance,
-  DEFAULT_WINDOW_HEIGHT,
-} from '../../test/utils/eyes-it';
+import { eyesItInstance } from '../../test/utils/eyes-it';
 import eventually from 'wix-eventually';
 
 import { pageTestkitFactory } from '../../testkit/protractor';
@@ -106,7 +103,6 @@ describe('Page', () => {
         enableSnapshotAtBrowserGet: true,
         enableSnapshotAtEnd: false,
         width,
-        height: DEFAULT_WINDOW_HEIGHT,
       };
     }
 

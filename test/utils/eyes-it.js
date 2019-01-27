@@ -1,10 +1,12 @@
 import eyes from 'eyes.it';
 
-export const DEFAULT_WINDOW_WIDTH = 1050;
-export const DEFAULT_WINDOW_HEIGHT = 1075;
+const DEFAULT_VIEWPORT_WIDTH = 1050;
+const DEFAULT_VIEWPORT_HEIGHT = 1075;
 
 const defaultConfig = {
   enableSnapshotAtBrowserGet: false,
+  width: DEFAULT_VIEWPORT_WIDTH,
+  height: DEFAULT_VIEWPORT_HEIGHT,
 };
 
 /**
