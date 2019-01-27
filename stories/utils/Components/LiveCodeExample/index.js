@@ -1,6 +1,9 @@
 import React from 'react';
 import LiveCodeExample from 'wix-storybook-utils/LiveCodeExample';
 
+import prettier from 'prettier/standalone';
+import babylonParser from 'prettier/parser-babylon';
+
 import * as wsrScope from '../../../../src/index';
 import * as iconsScope from 'wix-ui-icons-common';
 
@@ -51,11 +54,16 @@ const Component = props => {
     '',
   );
 
+  const formattedCode = prettier.format(filteredCode, {
+    parser: 'babel',
+    plugins: [babylonParser],
+  });
+
   return (
     <LiveCodeExample
       scope={{ ...baseScope, ...scope }}
       {...rest}
-      initialCode={filteredCode}
+      initialCode={formattedCode}
     />
   );
 };
