@@ -12,7 +12,7 @@ import Calendar from '../../Calendar';
   }
 });
 
-meta.compiledComponent = {cssPath: '/dist/statics/App', compPath: '/src/Calendar'}
+meta.compiledComponent = {cssPath: '/dist/statics/App.css', compPath: '/src/Calendar'}
 
 meta.exportedFrom({
     path: '.',

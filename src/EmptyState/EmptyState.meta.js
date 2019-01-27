@@ -12,7 +12,7 @@ import EmptyState from '../../EmptyState';
   }
 });
 
-emptyStateMetadata.compiledComponent = {cssPath: '/dist/statics/App', compPath: '/src/EmptyState'}
+emptyStateMetadata.compiledComponent = {cssPath: '/dist/statics/App.css', compPath: '/src/EmptyState'}
 
 emptyStateMetadata.exportedFrom({
     path: '.',

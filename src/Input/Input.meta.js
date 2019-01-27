@@ -12,7 +12,7 @@ import Input from '../../Input';
   }
 });
 
-meta.compiledComponent = {cssPath: '/dist/statics/App', compPath: '/dist/src/Input'}
+meta.compiledComponent = {cssPath: '/dist/statics/App.css', compPath: '/dist/src/Input'}
 
 meta.exportedFrom({
     path: '.',
