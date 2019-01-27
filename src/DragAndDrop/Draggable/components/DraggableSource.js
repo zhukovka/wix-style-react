@@ -35,6 +35,7 @@ const source = {
       index,
       containerId,
       groupName,
+      originalIndex: index, // as index is mutable during d&d, we need another storage for original index
       originalItem: item,
       onMoveOut,
       realTime: {
@@ -57,14 +58,24 @@ const source = {
         item,
       });
     }
+
     if (monitor.getDropResult()) {
-      onDrop({
-        payload: monitor.getItem().originalItem, // original item
-        removedIndex: index, // original item index
-        addedIndex: monitor.getDropResult().index, // new item index
-        addedToContainerId: monitor.getDropResult().containerId, // new container for item
-        removedFromContainerId: containerId, // original item container
-      });
+      const isSameGroup =
+        groupName &&
+        monitor.getItem().groupName &&
+        groupName === monitor.getDropResult().groupName;
+      const isSameContainer =
+        containerId === monitor.getDropResult().containerId;
+
+      if (isSameGroup || isSameContainer) {
+        onDrop({
+          payload: monitor.getItem().originalItem, // original item
+          removedIndex: monitor.getItem().originalIndex, // original item index
+          addedIndex: monitor.getItem().index, // new item index
+          addedToContainerId: monitor.getDropResult().containerId, // new container for item
+          removedFromContainerId: containerId, // original item container
+        });
+      }
     }
   },
   isDragging: ({ id, containerId, groupName }, monitor) => {

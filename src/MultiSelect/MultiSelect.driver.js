@@ -2,12 +2,12 @@ import ReactTestUtils from 'react-dom/test-utils';
 import inputWithOptionsDriverFactory from '../InputWithOptions/InputWithOptions.driver';
 import tagDriverFactory from '../Tag/Tag.driver';
 
-const multiSelectDriverFactory = ({ element, wrapper }) => {
+const multiSelectDriverFactory = ({ element }) => {
   const {
     driver,
     inputDriver,
     dropdownLayoutDriver,
-  } = inputWithOptionsDriverFactory({ element, wrapper });
+  } = inputWithOptionsDriverFactory({ element });
 
   const inputWrapper = driver.inputWrapper().childNodes[0];
 
@@ -24,7 +24,6 @@ const multiSelectDriverFactory = ({ element, wrapper }) => {
     getTagDriverByTagId: tagId =>
       tagDriverFactory({
         element: tags.find(tag => tag.id === tagId),
-        wrapper,
       }),
   });
 

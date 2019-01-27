@@ -217,9 +217,7 @@ class InputWithTags extends React.Component {
   }
 
   clear() {
-    this.setState({
-      inputValue: '',
-    });
+    this.input.clear();
   }
 }
 

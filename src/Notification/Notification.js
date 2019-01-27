@@ -9,11 +9,13 @@ import CloseButton from '../CloseButton';
 import TextLabel from './TextLabel';
 import ActionButton from './ActionButton';
 import css from './Notification.scss';
+import { allValidators, extendPropTypes } from '../utils/propTypes';
+import deprecationLog from '../utils/deprecationLog';
 
 export const LOCAL_NOTIFICATION = 'local';
 export const GLOBAL_NOTIFICATION = 'global';
 export const STICKY_NOTIFICATION = 'sticky';
-export const DEFAULT_TIMEOUT = 6000;
+export const DEFAULT_AUTO_HIDE_TIMEOUT = 6000;
 
 export const notificationTypeToPosition = {
   [LOCAL_NOTIFICATION]: 'absolute',
@@ -63,14 +65,12 @@ class Notification extends WixComponent {
     this.startCloseTimer(props);
   }
 
-  startCloseTimer({ type, timeout }) {
-    if (
-      type !== GLOBAL_NOTIFICATION ||
-      (type === GLOBAL_NOTIFICATION && timeout)
-    ) {
+  startCloseTimer({ type, timeout, autoHideTimeout, upgrade }) {
+    const _timeout = timeout || autoHideTimeout;
+    if (_timeout || (type !== GLOBAL_NOTIFICATION && !upgrade)) {
       this.closeTimeout = setTimeout(
         () => this.hideNotificationOnTimeout(),
-        timeout || DEFAULT_TIMEOUT,
+        _timeout || DEFAULT_AUTO_HIDE_TIMEOUT,
       );
     }
   }
@@ -203,7 +203,10 @@ Notification.propTypes = {
     LOCAL_NOTIFICATION,
     STICKY_NOTIFICATION,
   ]),
+  /** @deprecated use autoHideTimeout instead */
   timeout: PropTypes.number,
+  /** When provided, then the Notification will be hidden after the specified timeout. */
+  autoHideTimeout: PropTypes.number,
   zIndex: PropTypes.number,
   onClose: PropTypes.func,
   children: Composite.children(
@@ -211,7 +214,26 @@ Notification.propTypes = {
     Composite.optional(ActionButton),
     Composite.optional(Close),
   ),
+  /** When true, then there will not be a default close timeout. Meaning, if not `timeout` is provided, then the notificiation will be persistent. */
+  upgrade: PropTypes.bool,
 };
+
+extendPropTypes(Notification, {
+  upgrade: allValidators(PropTypes.bool, (props, propName) => {
+    if (!props[propName]) {
+      deprecationLog(
+        `Notification: New API! Please upgrade by passing the prop 'upgrade=true', and refer to documentation.`,
+      );
+    }
+  }),
+  timeout: allValidators(PropTypes.number, (props, propName) => {
+    if (props[propName]) {
+      deprecationLog(
+        `Notification: 'timeout' prop is deprecated. Use 'autoHideTimeout' prop instead. (This is just a rename)`,
+      );
+    }
+  }),
+});
 
 Notification.defaultProps = {
   theme: 'standard',

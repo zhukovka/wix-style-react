@@ -1,26 +1,48 @@
 import browserLogs from 'protractor-browser-logs';
-import eyes from 'eyes.it';
-
+import { eyesItInstance } from '../../test/utils/eyes-it';
+import autoExampleDriver from 'wix-storybook-utils/AutoExampleDriver';
 import { storySettings } from '../../stories/PopoverMenu/storySettings';
 
 const EC = protractor.ExpectedConditions;
 
 import { popoverMenuTestkitFactory } from '../../testkit/protractor';
 import { waitForVisibilityOf } from 'wix-ui-test-utils/protractor';
-import { getStoryUrl } from '../../test/utils/storybook-helpers';
+import { createStoryUrl } from '../../test/utils/storybook-helpers';
 
 describe('PopoverMenu', () => {
+  const eyes = eyesItInstance();
+
   let driver;
   const logs = browserLogs(browser);
 
-  async function getPage() {
-    const storyUrl = getStoryUrl('7. Tooltips', '7.3 Popover Menu');
+  async function getPage({ rtl } = {}) {
+    const storyUrl = createStoryUrl({
+      kind: '7. Tooltips',
+      story: '7.3 Popover Menu',
+      withExamples: false,
+      rtl,
+    });
     logs.reset();
     logs.ignore(message => message.message.indexOf('Uncaught') === -1);
 
     driver = popoverMenuTestkitFactory({
       dataHook: storySettings.dataHook,
     }).init.menuItemDataHook(storySettings.itemDataHook);
+    await browser.get(storyUrl);
+  }
+
+  async function getPageWithDividerMenu({ rtl } = {}) {
+    const storyUrl = createStoryUrl({
+      kind: '7. Tooltips',
+      story: '7.3 Popover Menu',
+      withExamples: true,
+      rtl,
+    });
+    logs.ignore(message => message.message.indexOf('Uncaught') === -1);
+
+    driver = popoverMenuTestkitFactory({
+      dataHook: storySettings.dataHookDivider,
+    }).init.menuItemDataHook(storySettings.itemDataHookDivider);
     await browser.get(storyUrl);
   }
 
@@ -33,6 +55,27 @@ describe('PopoverMenu', () => {
     await driver.click();
 
     waitForVisibilityOf(driver.menu.element(), 'Can not find PopoverMenu menu');
+  });
+
+  describe('RTL', () => {
+    afterEach(() => {
+      return autoExampleDriver.remount();
+    });
+
+    eyes.it('should show popover menu', async () => {
+      await getPage({ rtl: true });
+      await autoExampleDriver.setProps({ placement: 'left' });
+      await waitForVisibilityOf(
+        driver.element(),
+        'Can not find PopoverMenu trigger element',
+      );
+      await driver.click();
+
+      await waitForVisibilityOf(
+        driver.menu.element(),
+        'Can not find PopoverMenu menu',
+      );
+    });
   });
 
   it('should hide popover menu on item click', async () => {
@@ -50,9 +93,25 @@ describe('PopoverMenu', () => {
     );
   });
 
+  it('should contains divider', async () => {
+    await getPageWithDividerMenu();
+    await waitForVisibilityOf(driver.element());
+    await driver.click();
+    await waitForVisibilityOf(driver.menu.element());
+
+    await browser.wait(
+      waitForVisibilityOf(driver.menu.element(by.css(`[data-hook="${storySettings.itemDataHookDivider}"]`))),
+      1000,
+      'PopoverMenu has no divider',
+    );
+  });
+
   describe('regression tests', () => {
     it('Uncaught TypeError: https://github.com/wix/wix-style-react/issues/2113', async () => {
-      const storyUrl = getStoryUrl('Tests/7. Tooltip', '7.3. Popover Menu');
+      const storyUrl = createStoryUrl({
+        kind: 'Tests/7. Tooltip',
+        story: '7.3. Popover Menu',
+      });
       await browser.get(storyUrl);
 
       driver = popoverMenuTestkitFactory({

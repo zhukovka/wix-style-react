@@ -4,6 +4,8 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import WixComponent from '../BaseComponents/WixComponent';
 import scrollIntoView from '../utils/scrollIntoView';
+import InfiniteScroll from '../utils/InfiniteScroll';
+import Loader from '../Loader/Loader';
 
 const modulu = (n, m) => {
   const remain = n % m;
@@ -57,23 +59,6 @@ class DropdownLayout extends WixComponent {
     if (option.id === this.state.selectedId) {
       this.selectedOption = optionNode;
     }
-  }
-
-  _isLegalOption(option) {
-    if (typeof option !== 'object' || typeof option.value === 'undefined') {
-      return false;
-    }
-
-    if (option.value === DIVIDER_OPTION_VALUE) {
-      return true;
-    }
-
-    return (
-      typeof option.id !== 'undefined' &&
-      option.id.toString().trim().length > 0 &&
-      (React.isValidElement(option.value) ||
-        (typeof option.value === 'string' && option.value.trim().length > 0))
-    );
   }
 
   onClickOutside(event) {
@@ -226,19 +211,39 @@ class DropdownLayout extends WixComponent {
     return node ? <div className={styles.node}>{node}</div> : null;
   }
 
+  _wrapWithInfiniteScroll = scrollableElement => (
+    <InfiniteScroll
+      useWindow
+      scrollElement={this.options}
+      loadMore={this.props.loadMore}
+      hasMore={this.props.hasMore}
+      loader={
+        <div className={styles.loader}>
+          <Loader dataHook={'dropdownLayout-loader'} size={'small'} />
+        </div>
+      }
+    >
+      {scrollableElement}
+    </InfiniteScroll>
+  );
+
   render() {
     const {
       options,
       visible,
       dropDirectionUp,
       tabIndex,
-      fixedHeader,
-      fixedFooter,
-      withArrow,
       onMouseEnter,
       onMouseLeave,
+      fixedHeader,
+      withArrow,
+      fixedFooter,
       inContainer,
     } = this.props;
+
+    const renderedOptions = options.map((option, idx) =>
+      this._renderOption({ option, idx }),
+    );
     const contentContainerClassName = classNames({
       [styles.contentContainer]: true,
       [styles.shown]: visible,
@@ -247,7 +252,6 @@ class DropdownLayout extends WixComponent {
       [styles.withArrow]: withArrow,
       [styles.containerStyles]: !inContainer,
     });
-
     return (
       <div
         tabIndex={tabIndex}
@@ -275,7 +279,9 @@ class DropdownLayout extends WixComponent {
             ref={_options => (this.options = _options)}
             data-hook="dropdown-layout-options"
           >
-            {options.map((option, idx) => this._renderOption({ option, idx }))}
+            {this.props.infiniteScroll
+              ? this._wrapWithInfiniteScroll(renderedOptions)
+              : renderedOptions}
           </div>
           {this._renderNode(fixedFooter)}
         </div>
@@ -374,12 +380,6 @@ class DropdownLayout extends WixComponent {
       this.setState({ selectedId: nextProps.selectedId });
     }
 
-    if (nextProps.options.some(option => !this._isLegalOption(option))) {
-      throw new Error(
-        `DropdownLayout: Invalid options provided: ${nextProps.options}`,
-      );
-    }
-
     // make sure the same item is hovered if options changed
     if (
       this.state.hovered !== NOT_HOVERED_INDEX &&
@@ -405,6 +405,46 @@ class DropdownLayout extends WixComponent {
   }
 }
 
+const optionPropTypes = PropTypes.shape({
+  id: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
+  value: PropTypes.oneOfType([PropTypes.node, PropTypes.string, PropTypes.func])
+    .isRequired,
+  disabled: PropTypes.bool,
+  overrideStyle: PropTypes.bool,
+});
+
+export function optionValidator(props, propName, componentName) {
+  const option = props[propName];
+
+  // Notice: We don't use Proptypes.oneOf() to check for either option OR divider, because then the failure message would be less informative.
+  if (typeof option === 'object' && option.value === DIVIDER_OPTION_VALUE) {
+    return;
+  }
+
+  const optionError = PropTypes.checkPropTypes(
+    { option: optionPropTypes },
+    { option },
+    'option',
+    componentName,
+  );
+
+  if (optionError) {
+    return optionError;
+  }
+
+  if (option.id && option.id.toString().trim().length === 0) {
+    return new Error(
+      'Warning: Failed option type: The option `option.id` should be non-empty after trimming in `DropdownLayout`.',
+    );
+  }
+
+  if (option.value && option.value.toString().trim().length === 0) {
+    return new Error(
+      'Warning: Failed option type: The option `option.value` should be non-empty after trimming in `DropdownLayout`.',
+    );
+  }
+}
+
 DropdownLayout.propTypes = {
   dropDirectionUp: PropTypes.bool,
   focusOnSelectedOption: PropTypes.bool,
@@ -413,26 +453,7 @@ DropdownLayout.propTypes = {
   onSelect: PropTypes.func,
   visible: PropTypes.bool,
   /** Array of objects. Objects must have an Id and can can include value and node. If value is '-', a divider will be rendered instead (dividers do not require and id). */
-  options: PropTypes.arrayOf(
-    PropTypes.oneOfType([
-      PropTypes.shape({
-        id: PropTypes.oneOfType([PropTypes.string, PropTypes.number])
-          .isRequired,
-        value: PropTypes.oneOfType([
-          PropTypes.node,
-          PropTypes.string,
-          PropTypes.func,
-        ]).isRequired,
-        disabled: PropTypes.bool,
-        overrideStyle: PropTypes.bool,
-      }),
-
-      // A divider option without an id
-      PropTypes.shape({
-        value: PropTypes.oneOf([DIVIDER_OPTION_VALUE]),
-      }),
-    ]),
-  ),
+  options: PropTypes.arrayOf(optionValidator),
   /** The id of the selected option in the list  */
   selectedId: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
   tabIndex: PropTypes.number,
@@ -451,6 +472,9 @@ DropdownLayout.propTypes = {
   itemHeight: PropTypes.oneOf(['small', 'big']),
   selectedHighlight: PropTypes.bool,
   inContainer: PropTypes.bool,
+  infiniteScroll: PropTypes.bool,
+  loadMore: PropTypes.func,
+  hasMore: PropTypes.bool,
 };
 
 DropdownLayout.defaultProps = {
@@ -461,6 +485,9 @@ DropdownLayout.defaultProps = {
   itemHeight: 'small',
   selectedHighlight: true,
   inContainer: false,
+  infiniteScroll: false,
+  loadMore: null,
+  hasMore: false,
 };
 
 DropdownLayout.NONE_SELECTED_ID = NOT_HOVERED_INDEX;

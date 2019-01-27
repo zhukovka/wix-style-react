@@ -9,6 +9,8 @@ import ChevronDown from '../new-icons/ChevronDown';
 
 import styles from './ButtonWithOptions.scss';
 
+import deprecationLog from '../utils/deprecationLog';
+
 /**
  * A simple dropdown with button trigger
  *
@@ -25,6 +27,10 @@ class ButtonWithOptions extends WixComponent {
     if (props.children) {
       this.sortChildren(props);
     }
+
+    deprecationLog(
+      `Using "<ButtonWithOptions/>" is deprecated. Instead, we advise you to use the newer "<DropdownPopover/>" component. Please refer to it's documentation.`,
+    );
   }
 
   componentWillReceiveProps(nextProps) {

@@ -99,12 +99,12 @@
   font-family: value(fontRoman);
 }
 
-.root a {
+.root > a {
   color: value(B10);
   text-decoration: none;
 }
 
-.root a:hover {
+.root > a:hover {
   color: value(B20);
 }
 

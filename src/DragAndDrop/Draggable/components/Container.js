@@ -28,6 +28,7 @@ const target = {
     }
     return {
       containerId: props.containerId,
+      groupName: props.groupName,
       index: monitor.getItem().index,
     };
   },

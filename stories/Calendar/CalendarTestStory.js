@@ -1,6 +1,6 @@
 import React from 'react';
 import queryString from 'query-string';
-import pick from 'lodash/pick';
+import pick from '../../src/utils/operators/pick';
 
 import { storiesOf } from '@storybook/react';
 import { getTestStoryKind, Category } from '../storiesHierarchy';

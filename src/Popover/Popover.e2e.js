@@ -64,12 +64,40 @@ describe('Popover', () => {
     eyes.it('positioning example', async () => {
       const examplePlacements = placements.filter(p => !p.includes('auto'));
 
+      // Scroll and focus on the example container
+      await createDriver('story-popover-positioning');
+
       for (const placement of examplePlacements) {
-        const driver = await createDriver(
-          `story-popover-positioning-${placement}`,
-        );
+        const driver = popoverTestkitFactory({
+          dataHook: `story-popover-positioning-${placement}`,
+        });
+
         await driver.mouseEnter();
         eyes.checkWindow(`${placements} position`);
+      }
+    });
+
+    eyes.it('Flip behaviour example', async () => {
+      await createDriver('story-popover-flip-behaviour');
+    });
+
+    eyes.it('Fixed behaviour example', async () => {
+      const dataHooks = [
+        'story-popover-fixed-enabled',
+        'story-popover-fixed-disabled',
+        'story-popover-fixed-disabled-flip-disabled',
+      ];
+
+      for (const dataHook of dataHooks) {
+        // Just to scroll to the element
+        await createDriver(dataHook);
+
+        // Scroll to the bottom of the container
+        await browser.executeScript(
+          `document.querySelector('[data-hook="${dataHook}"]').scrollTop = 50`,
+        );
+
+        eyes.checkWindow(`${dataHook} scrolled down`);
       }
     });
   });

@@ -10,7 +10,6 @@ import { TableContext } from './TableContext';
 import { BulkSelection, BulkSelectionState } from './BulkSelection';
 import Tooltip from '../Tooltip/Tooltip';
 import {
-  TableToolbarToggler,
   TableToolbarContainer,
   TableTitleBar,
   TableContent,
@@ -81,8 +80,6 @@ export class Table extends React.Component {
   static Titlebar = TableTitleBar;
   static Content = TableContent;
   static EmptyState = TableEmptyState;
-
-  static ToggledToolbar = TableToolbarToggler;
 
   shouldComponentUpdate() {
     // Table is not really a PureComponent

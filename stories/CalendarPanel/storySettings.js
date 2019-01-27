@@ -1,8 +1,8 @@
 import { Category } from '../storiesHierarchy';
 
 export const storySettings = {
-  category: Category.WIP,
+  category: Category.PICKERS_AND_SELECTORS,
 
-  storyName: 'CalendarPanel',
+  storyName: '11.6 CalendarPanel',
   dataHook: 'story-calendar-panel',
 };

@@ -115,7 +115,7 @@ class CalendarPanel extends React.Component {
       }),
     ),
 
-    /** A renderProp for the footer */
+    /** A renderProp for the footer. `({selectedDays, submitDisabled}) => void` - `selectedDays` is the same as the CalendarPandel's `value` prop. `submitDisabled` is true when the current selectedDays is not valida for submittion.  */
     footer: PropTypes.func,
   };
 
@@ -145,6 +145,7 @@ class CalendarPanel extends React.Component {
 
   render() {
     const { dataHook, presets, footer, ...calendarProps } = this.props;
+
     return (
       <div className={styles.root} data-hook={dataHook}>
         <div className={styles.calendarWithPresets}>

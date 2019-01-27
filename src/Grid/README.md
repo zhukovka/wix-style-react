@@ -88,7 +88,7 @@ export default () =>
   | ---                    | ---      | ---          | ---        | ---                                            |
   | span                   | number   | -            | +          | The columns span of this column                |
   | rtl                    | bool     | -            | -          | Reverses the columns ordering                  |
-  | stretchViewsVertically | bool     | -            | -          | Make all the views in that raw the same height |
+  | stretchViewsVertically | bool     | -            | -          | Make all the views in that row the same height |
 </details>
 
 <details>
@@ -97,8 +97,8 @@ export default () =>
   A row of columns with as many columns as children with the same width.
   Can be used for multiple (not more than 12) equal cards on the same row.
   If you want that the children will be the at the same height,
-  just add height: 100%; to them (if there isn't already).
-  if its a card just add the stretchVertically prop.
+  just add `height: 100%;` to them (if there isn't already).
+  if its a card just add the `stretchVertically` prop.
 
   > Note that the span of each element will be `12 % {children.length}`, so in case of result greater than 0, you'll get incomplete line
 </details>

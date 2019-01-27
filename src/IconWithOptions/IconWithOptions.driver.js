@@ -2,7 +2,7 @@ import dropdownLayoutDriverFactory from '../DropdownLayout/DropdownLayout.driver
 import ReactTestUtils from 'react-dom/test-utils';
 import { isClassExists } from '../../test/utils';
 
-const IconWithOptionsDriverFactory = ({ element, wrapper }) => {
+const IconWithOptionsDriverFactory = ({ element }) => {
   const iconWrapper = element.querySelector('[data-hook=icon-wrapper]');
   const dropdownLayoutWrapper = element.querySelector(
     '[data-hook=iconWithOptions-dropdownLayout-wrapper]',
@@ -12,7 +12,6 @@ const IconWithOptionsDriverFactory = ({ element, wrapper }) => {
   );
   const dropdownLayoutDriver = dropdownLayoutDriverFactory({
     element: dropdownLayout,
-    wrapper,
   });
 
   const driver = {

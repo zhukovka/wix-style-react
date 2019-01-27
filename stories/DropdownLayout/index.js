@@ -10,6 +10,9 @@ import ReadmeTestkit from '../../src/DropdownLayout/README.TESTKIT.md';
 import ExampleStandard from './ExampleStandard';
 import ExampleStandardRaw from '!raw-loader!./ExampleStandard';
 
+import ExampleInfiniteScroll from './ExampleInfiniteScroll';
+import ExampleInfiniteScrollRaw from '!raw-loader!./ExampleInfiniteScroll';
+
 import ExampleBuilder from './ExampleBuilder';
 import ExampleBuilderRaw from '!raw-loader!./ExampleBuilder';
 
@@ -21,9 +24,6 @@ import ExampleReactElementRaw from '!raw-loader!./ExampleReactElements';
 
 import ExampleControlled from './ExampleControlled';
 import ExampleControlledRaw from '!raw-loader!./ExampleControlled';
-
-import ExampleControlledWithButtons from './ExampleControlledWithButtons';
-import ExampleControlledRawWithButtons from '!raw-loader!./ExampleControlledWithButtons';
 
 import ExampleControlledInContainer from './ExampleControlledInContainer';
 import ExampleControlledInContainerRaw from '!raw-loader!./ExampleControlledInContainer';
@@ -39,6 +39,12 @@ storiesOf('11. Pickers and Selectors', module).add(
 
         <CodeExample title="Standard" code={ExampleStandardRaw}>
           <ExampleStandard />
+        </CodeExample>
+
+        <div style={{ paddingTop: '230px' }} />
+
+        <CodeExample title="Infinite Scroll" code={ExampleInfiniteScrollRaw}>
+          <ExampleInfiniteScroll />
         </CodeExample>
 
         <div style={{ paddingTop: '230px' }} />
@@ -70,13 +76,6 @@ storiesOf('11. Pickers and Selectors', module).add(
           code={ExampleControlledInContainerRaw}
         >
           <ExampleControlledInContainer />
-        </CodeExample>
-
-        <CodeExample
-          title="Controlled with buttons"
-          code={ExampleControlledRawWithButtons}
-        >
-          <ExampleControlledWithButtons />
         </CodeExample>
 
         <div style={{ paddingTop: '230px' }} />

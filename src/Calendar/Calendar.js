@@ -50,17 +50,18 @@ export default class Calendar extends WixComponent {
     }
   }
 
-  static areValuesEqual(date1 = {}, date2 = {}) {
-    const isRange = date => Boolean(date.from || date.to);
-    if (!Boolean(date1) && !Boolean(date2)) {
+  static areValuesEqual(value1 = {}, value2 = {}) {
+    if (!Boolean(value1) && !Boolean(value2)) {
       return true;
     }
 
-    if (isRange(date1) && isRange(date2)) {
-      return isSameDay(date1.from, date2.from) && isSameDay(date1.to, date2.to);
+    if (Calendar.isRangeValue(value1) && Calendar.isRangeValue(value2)) {
+      return (
+        isSameDay(value1.from, value2.from) && isSameDay(value1.to, value2.to)
+      );
     }
 
-    return isSameDay(date1, date2);
+    return isSameDay(value1, value2);
   }
 
   static renderDay(day, modifiers) {
@@ -91,7 +92,8 @@ export default class Calendar extends WixComponent {
     this.setState({ month });
   };
 
-  _handleDayClick = (value, modifiers = {}) => {
+  _handleDayClick = (value, modifiers = {}, event = null) => {
+    this._preventActionEventDefault(event);
     const propsValue = this.props.value || {};
     const { onChange, shouldCloseOnSelect } = this.props;
 
@@ -109,17 +111,18 @@ export default class Calendar extends WixComponent {
             : { from: value, to: anchor };
 
         onChange(newVal, modifiers);
-        shouldCloseOnSelect && this.props.onClose();
+        shouldCloseOnSelect && this.props.onClose(event);
       }
     } else {
       onChange(value, modifiers);
-      shouldCloseOnSelect && this.props.onClose();
+      shouldCloseOnSelect && this.props.onClose(event);
     }
   };
 
   static optionalParse = dateOrString =>
     typeof dateOrString === 'string' ? parse(dateOrString) : dateOrString;
 
+  /** Return a value in which all string-dates are parsed into Date objects */
   static parseValue = value => {
     if (!value) {
       return new Date();
@@ -138,6 +141,10 @@ export default class Calendar extends WixComponent {
 
   static isSingleDay(value) {
     return value instanceof Date;
+  }
+
+  static isRangeValue(value) {
+    return Boolean(value.from || value.to);
   }
 
   static getUpdatedMonth = (nextPropsValue, numOfMonths, currentMonthDate) => {
@@ -204,6 +211,13 @@ export default class Calendar extends WixComponent {
     }
   }
 
+  _preventActionEventDefault = (event = null) => {
+    // We should not prevent "TAB"/"ESC" key
+    if (event && (!event.keyCode || !this.keyHandlers[event.keyCode])) {
+      event.preventDefault();
+    }
+  };
+
   _createCaptionElement = month => {
     const { locale, showMonthDropdown, showYearDropdown } = this.props;
 
@@ -265,6 +279,7 @@ export default class Calendar extends WixComponent {
       localeUtils,
       navbarElement: () => null,
       captionElement,
+      onCaptionClick: this._preventActionEventDefault,
       onDayKeyDown: this._handleDayKeyDown,
       numberOfMonths: numOfMonths,
       className: numOfMonths > 1 ? styles.TwoMonths : '',
@@ -276,7 +291,7 @@ export default class Calendar extends WixComponent {
   _handleKeyDown = event => {
     const keyHandler = this.keyHandlers[event.keyCode];
 
-    keyHandler && keyHandler();
+    keyHandler && keyHandler(event);
   };
 
   keyHandlers = {
@@ -301,7 +316,9 @@ export default class Calendar extends WixComponent {
     }
   };
 
-  _handleDayKeyDown = () => {
+  _handleDayKeyDown = (_value, _modifiers = {}, event = null) => {
+    this._preventActionEventDefault(event);
+
     const unfocusedDay = this.dayPickerRef.dayPicker.querySelector(
       '.DayPicker-Day--unfocused',
     );
@@ -313,7 +330,10 @@ export default class Calendar extends WixComponent {
 
   render() {
     return (
-      <div className={classNames(styles.calendar, this.props.className)}>
+      <div
+        className={classNames(styles.calendar, this.props.className)}
+        onClick={this._preventActionEventDefault}
+      >
         <DayPicker
           ref={this._focusSelectedDay}
           {...this._createDayPickerProps()}
@@ -332,7 +352,7 @@ Calendar.propTypes = {
   /** Callback function called with a Date or a Range whenever the user selects a day in the calendar */
   onChange: PropTypes.func.isRequired,
 
-  /** Callback function called whenever user press escape or click outside of the element */
+  /** Callback function called whenever user press escape or click outside of the element or a date is selected and `shouldCloseOnSelect` is set. Receives an event as first argument */
   onClose: PropTypes.func,
 
   /** Past dates are unselectable */

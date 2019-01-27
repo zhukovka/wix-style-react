@@ -8,8 +8,7 @@
 
 #### [Demo](https://wix-wix-style-react.surge.sh/) | [Source](https://github.com/wix/wix-style-react) | [Playground](https://codesandbox.io/s/7w8m804o5j)
 
-## Setup
-
+## Installation
 * Install with `npm` or `yarn`:
 ```sh
 npm i wix-style-react
@@ -17,7 +16,75 @@ npm i wix-style-react
 yarn add wix-style-react
 ```
 
-* Use in your project:
+## Prerequisites
+`wix-style-react` uses [Stylable](https://stylable.io/), [SASS](https://sass-lang.com/) and [CSS Modules](https://github.com/css-modules/css-modules) configuration by default. 
+in order to use `wix-style-react`, your module bundler should be configured accordingly.  
+
+### Example of `create-react-app` configuration
+- Run 
+    ```bash
+    $ npm run eject
+    $ npm i -D node-sass stylable @stylable/webpack-plugin @stylable/core
+    ```
+-  Enhance `webpack` configuration
+
+    ```js
+    // config/webpack.config.js
+    {
+      //...
+      modules: {
+        rules: [
+          {
+            exclude: /\.st.css$/, //This must appear before the "oneOf" property
+            oneOf: [
+              //...
+              {
+                test: sassRegex,
+                include: [
+                  path.join(__dirname, '../node_modules/wix-animations'),
+                  path.join(__dirname, '../node_modules/wix-style-react'),
+                  path.join(__dirname, '../node_modules/bootstrap-sass')
+                ],
+                exclude: sassModuleRegex,
+                use: getStyleLoaders(
+                  {
+                    modules: true,
+                    importLoaders: 2,
+                    sourceMap: isEnvProduction && shouldUseSourceMap,
+                    camelCase: true,
+                    localIdentName:'[name]__[local]___[hash:base64:5]',
+                  },
+                  'sass-loader'
+                ),
+                sideEffects: true,
+              },
+            ]
+          },
+        ],
+        plugins: [
+          //...
+          new StylableWebpackPlugin({
+             experimentalHMR: true,
+             useEntryModuleInjection: true
+           }),
+        ]
+      //...
+      }
+    }
+    ```
+### Typescript support
+- Refer to [Stylable Docs](https://stylable.io/docs/getting-started/install-configure#types) regarding Typescript configuration
+        
+## Usage
+
+### Requirements
+
+* Load Wix fonts from CDN
+    ```html
+    <link rel="stylesheet" href="//static.parastorage.com/services/third-party/fonts/Helvetica/fontFace.css">
+    ```
+### Usage   
+
 
 ```jsx
 import React from 'react';
@@ -29,13 +96,6 @@ const App = () => (
     </Button>
 );
 ```
-
-## Requirements
-
-* Load Wix fonts from CDN
-    ```html
-    <link rel="stylesheet" href="//static.parastorage.com/services/third-party/fonts/Helvetica/fontFace.css">
-    ```
 
 ## Tips
 

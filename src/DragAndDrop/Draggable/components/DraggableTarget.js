@@ -20,6 +20,7 @@ const target = {
     return {
       containerId: props.containerId,
       index: props.index,
+      groupName: props.groupName,
     };
   },
   hover(props, monitor, component) {

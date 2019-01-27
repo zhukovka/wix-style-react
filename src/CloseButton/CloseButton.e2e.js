@@ -1,8 +1,13 @@
 import { eyesItInstance } from '../../test/utils/eyes-it';
-import autoExampleDriver from 'wix-storybook-utils/AutoExampleDriver';
 
-import { createStoryUrl } from '../../test/utils/storybook-helpers';
-import { storySettings } from '../../stories/CloseButton/storySettings';
+import {
+  createStoryUrl,
+  createTestStoryUrl,
+} from '../../test/utils/storybook-helpers';
+import {
+  storySettings,
+  testStories,
+} from '../../stories/CloseButton/storySettings';
 
 describe('CloseButton', () => {
   const storyUrl = createStoryUrl({
@@ -14,13 +19,27 @@ describe('CloseButton', () => {
     await browser.get(storyUrl);
   });
 
-  beforeEach(() => {
-    return autoExampleDriver.remount();
-  });
+  const testStoryUrl = testName =>
+    createTestStoryUrl({ ...storySettings, testName });
 
   const eyes = eyesItInstance();
 
   eyes.it('Make a screenshoft of all CloseButton examples', () => {
     expect(true).toBeTruthy();
+  });
+
+  describe('test stories', () => {
+    const checkTestStory = async testName => {
+      await browser.get(testStoryUrl(testName));
+      eyes.checkWindow(testName);
+    };
+
+    eyes.it('check closebutton skins', async () => {
+      await checkTestStory(testStories.CLOSEBUTTON_SKINS);
+    });
+
+    eyes.it('check closebutton sizes', async () => {
+      await checkTestStory(testStories.CLOSEBUTTON_AS);
+    });
   });
 });

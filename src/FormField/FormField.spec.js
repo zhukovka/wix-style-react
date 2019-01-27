@@ -3,6 +3,7 @@ import React from 'react';
 import { mount } from 'enzyme';
 
 import Label from '../Label';
+import styles from './FormField.scss';
 import { createDriverFactory } from 'wix-ui-test-utils/driver-factory';
 import formFieldDriverFactory from './FormField.driver';
 
@@ -30,6 +31,29 @@ describe('FormField', () => {
     it('should not render div when `label` is undefined', () => {
       const driver = createDriver(renderFormField());
       expect(driver.getLabel()).toEqual(null);
+    });
+  });
+
+  describe('`labelPlacement` prop', () => {
+    it('should render the label on top', () => {
+      const driver = createDriver(
+        renderFormField({ label, labelPlacement: 'top' }),
+      );
+      expect(driver.getLabel().innerHTML).toMatch(label);
+    });
+
+    it('should render the label on the right', () => {
+      const driver = createDriver(
+        renderFormField({ label, labelPlacement: 'right' }),
+      );
+      expect(driver.getLabel().innerHTML).toMatch(label);
+    });
+
+    it('should render the label on the left', () => {
+      const driver = createDriver(
+        renderFormField({ label, labelPlacement: 'left' }),
+      );
+      expect(driver.getLabel().innerHTML).toMatch(label);
     });
   });
 
@@ -100,6 +124,13 @@ describe('FormField', () => {
       const text = 'hello';
       const driver = createDriver(renderFormField({ children: text }));
       expect(driver.getChildren().innerHTML).toEqual(text);
+    });
+
+    it('should apply minHeight on label wrapper when there is no children', () => {
+      const driver = createDriver(<FormField label="Text" />);
+      expect(
+        driver.element().querySelector(`.${styles.minLabelHeight}`),
+      ).not.toBeNull();
     });
 
     describe('when function', () => {

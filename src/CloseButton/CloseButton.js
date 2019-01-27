@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { ButtonNext } from 'wix-ui-core/button-next';
 import cx from 'classnames';
 
-import { string, oneOf, bool } from 'prop-types';
+import { string, oneOf, bool, func } from 'prop-types';
 import Close from '../new-icons/system/Close';
 import CloseLarge from '../new-icons/system/CloseLarge';
 
@@ -18,6 +18,8 @@ class CloseButton extends Component {
     skin: oneOf(['standard', 'standardFilled', 'light', 'lightFilled', 'dark']),
     /** size of closebutton */
     size: oneOf(['small', 'medium']),
+    /** Click event handler  */
+    onClick: func,
     /** applies disabled styles */
     disabled: bool,
     /** string based data hook for testing */

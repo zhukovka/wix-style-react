@@ -14,18 +14,96 @@ Types of changes:
 1. **Docs** for documentation changes
 1. **Lab** components and features that are still in a work in progress
 
-
 ## Next
 
-#### Added
+### Added
+- `<PopoverMenu/>` new `showArrow` prop, allows to change visibility of Popover arrow [#2800](https://github.com/wix/wix-style-react/pull/2800)
+- `<PopoverMenuItem/>` new `divider` prop, allows to add divider in between PopoverMenu items [#2800](https://github.com/wix/wix-style-react/pull/2800)
+
+### Docs
+
+- `<Button/>` - (Docs) - Emphasize that new drivers are async [#2817](https://github.com/wix/wix-style-react/pull/2817)
+
+## 5.25.0 - 2019-01-23
+
+### Added
+
+- `<CalendarPanel/>` - New panel component (Added also `<CalendarPanelFooter/>`) [#2753](https://github.com/wix/wix-style-react/pull/2753)
+- `<Box/>` - New layout component that helps in common alignment use cases [#2726](https://github.com/wix/wix-style-react/pull/2726)
+- `<Thumbnail/>` - New selection component for thumbnails selection [#2728](https://github.com/wix/wix-style-react/pull/2728)
+
+### Changed
+
+- `<DropdownLayout/>` - Change option font weight to `normal` instead of `thin` [#2765](https://github.com/wix/wix-style-react/pull/2765)
+- `<Text/>` - apply link style only to `<a>` that are direct children [#2788](https://github.com/wix/wix-style-react/pull/2788)
+- `<Notification/>` - changed timeout behavior with `upgrade` prop [#2766](https://github.com/wix/wix-style-react/pull/2766)
+
+### Removed
+
+- Drivers cleanup - remove wrapper [#2786](https://github.com/wix/wix-style-react/pull/2786)
+
+### Docs
+
+- `<MultiSelect/>` - improve examples
+- `<GoogleAddressInput/>` - update the Google Maps API key in the docs [#2801](https://github.com/wix/wix-style-react/pull/2801)
+- `<GoogleAddressInput/>` - create an automated story [#2802](https://github.com/wix/wix-style-react/pull/2802)
+
+### Fixed
+
+ - `wix-style-react/dist/testkit` - fix `Cannot find module 'enzyme'` error when importing testkits [#2774](https://github.com/wix/wix-style-react/pull/2774)
+ - `<Modal/>` - Changing closing transition timing, making it a bit smoother [#2807](https://github.com/wix/wix-style-react/pull/2807)
+- `<FieldWithSelectionComposite/>` - fix CSS issue of container div [#2808](https://github.com/wix/wix-style-react/pull/2808)
+
+### Deprecated
+
+- `<Notification/>` - changed timeout behavior with `upgrade` prop [#2766](https://github.com/wix/wix-style-react/pull/2766)
+- `<StatsWidget.Filter/>` - deprecated component, you should use the newer `<StatsWidget.FilterButton/>` component instead [#2777](https://github.com/wix/wix-style-react/pull/2777)
+
+## 5.24.0 - 2019-01-14
+
+### Changed
+
+- `<DropdownLayout/>` - move options validation to propTypes [#2717](https://github.com/wix/wix-style-react/pull/2717)
+- `<DropdownPopover/>` - Rename to `<DropdownBase/>` [#2730](https://github.com/wix/wix-style-react/pull/2730)
+
+### Deprecated
+
+- `<ButtonWithOptions/>`,` <IconWithOptions/>` - deprecated components [#2706](https://github.com/wix/wix-style-react/pull/2706)
+- `<Dropdown/>` - Add support for Controlled `selectedId` [#2719](https://github.com/wix/wix-style-react/pull/2719)
+- `<MultiSelect/>` - New Api [#2752](https://github.com/wix/wix-style-react/pull/2752)
+
+### Fixed
+
+- `<Popover/>` - fix component `dataHook` [#2693](https://github.com/wix/wix-style-react/pull/2693)
+
+## 5.23.0 - 2019-01-08
+
+### Added
+- `<FormField/>` - allow setting direction for one-unit components [#2698](https://github.com/wix/wix-style-react/pull/2698)
+
+### Changed
+- `<Button />`, `<TextButton/>`, `<IconButton/>`, `<CloseButton/>` - add `onClick` callback [#2718](https://github.com/wix/wix-style-react/pull/2718)
+- `<SortableList />` - fix key-index dependency and improve performance [#2720](https://github.com/wix/wix-style-react/pull/2720)
+
+### Fixed
+- `<Tooltip/>` fix reposition loop and avoid hangs [#2596](https://github.com/wix/wix-style-react/pull/2596)
+
+### Docs
+- `<Popover/>` - make autodocs work with the drivers [#2584](https://github.com/wix/wix-style-react/pull/2584)
+
+## 5.22.0 - 2019-01-06
+
+### Added
 
 - `<ColorPicker/>` - trigger confirmation callback when pressing Enter [#2683](https://github.com/wix/wix-style-react/pull/2683)
-
+- `<DropdownLayout/>` - add infinite scroll support [#2712](https://github.com/wix/wix-style-react/pull/2712)
+- `<Popover/>` - Added examples for the new `fixed` and `flip` props, added a new `animate` prop. [#2676](https://github.com/wix/wix-style-react/pull/2676)
 
 ### Fixed
 
 - `<MultiSelect/>` - Fix scenario when options are not shown when input is non empty [#2696](https://github.com/wix/wix-style-react/pull/2696)
 - `<MultiSelect/>` - Fix onBlur to have a valid `event.target.value` [#2695](https://github.com/wix/wix-style-react/pull/2695)
+- `<DatePicker/>` - Fixed Calendar Not Closing When Wrapped In `<label/>` tag. [#2590](https://github.com/wix/wix-style-react/pull/2590)
 
 ### Changed
 

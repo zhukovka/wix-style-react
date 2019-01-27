@@ -1,5 +1,7 @@
 @import '../colors';
 
+$DIVIDER: $D60 1px solid;
+
 .root {
   background-color: $D80;
   border-radius: 8px;
@@ -16,7 +18,7 @@
   height: 342px;
   box-sizing: border-box;
   padding-top: 18px;
-  border-right: $D60 1px solid;
+  border-right: $DIVIDER;
 }
 
 .calendar {
@@ -26,6 +28,5 @@
 }
 
 .footer {
-  padding: 24px 30px;
-  border-top: $D60 1px solid;
+  border-top: $DIVIDER;
 }

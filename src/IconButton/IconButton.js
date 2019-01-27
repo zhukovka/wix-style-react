@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { ButtonNext } from 'wix-ui-core/button-next';
 import cx from 'classnames';
 import { iconButton } from 'wix-ui-core/themes/backoffice';
-import { string, node, bool, oneOf } from 'prop-types';
+import { string, node, bool, oneOf, func } from 'prop-types';
 
 class IconButton extends Component {
   static displayName = 'IconButton';
@@ -18,6 +18,8 @@ class IconButton extends Component {
     priority: oneOf(['primary', 'secondary']),
     /** Button size */
     size: oneOf(['small', 'medium']),
+    /** Click event handler  */
+    onClick: func,
     /** Applies disabled styles */
     disabled: bool,
     /** String based data hook */

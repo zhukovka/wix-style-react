@@ -386,6 +386,102 @@ describe('Enzyme: SortableList', () => {
     });
   });
 
+  it('should not call onDrop when drag between columns with different groupName', () => {
+    const dataHook = 'sortable-list';
+    const items = [{ id: '1', text: 'item 1' }, { id: '2', text: 'item 2' }];
+    const items2 = [
+      { id: '11', text: 'item 11' },
+      { id: '21', text: 'item 21' },
+    ];
+    const onDrop = jest.fn();
+    const renderItem = ({ item }) => <div key={item.id}>{item.text}</div>; // eslint-disable-line react/prop-types
+
+    class MyComponent extends React.Component {
+      render() {
+        return (
+          <div>
+            <SortableList
+              contentClassName="cl"
+              dataHook={dataHook}
+              containerId="sortable-list-1"
+              groupName="group1"
+              items={items}
+              renderItem={renderItem}
+              onDrop={onDrop}
+            />
+            <SortableList
+              contentClassName="cl"
+              dataHook={dataHook}
+              containerId="sortable-list-2"
+              groupName="group2"
+              items={items2}
+              renderItem={renderItem}
+              onDrop={onDrop}
+            />
+          </div>
+        );
+      }
+    }
+
+    const wrapper = mount(
+      <DragDropContextProvider backend={TestBackend}>
+        <MyComponent />
+      </DragDropContextProvider>,
+    );
+    const driver = enzymeSortableListTestkitFactory({ wrapper, dataHook });
+
+    driver.reorder({ removedId: '1', addedId: '21' });
+
+    expect(onDrop).not.toBeCalled();
+  });
+
+  it('should not call onDrop when drag between columns without group name', () => {
+    const dataHook = 'sortable-list';
+    const items = [{ id: '1', text: 'item 1' }, { id: '2', text: 'item 2' }];
+    const items2 = [
+      { id: '11', text: 'item 11' },
+      { id: '21', text: 'item 21' },
+    ];
+    const onDrop = jest.fn();
+    const renderItem = ({ item }) => <div key={item.id}>{item.text}</div>; // eslint-disable-line react/prop-types
+
+    class MyComponent extends React.Component {
+      render() {
+        return (
+          <div>
+            <SortableList
+              contentClassName="cl"
+              dataHook={dataHook}
+              containerId="sortable-list-1"
+              items={items}
+              renderItem={renderItem}
+              onDrop={onDrop}
+            />
+            <SortableList
+              contentClassName="cl"
+              dataHook={dataHook}
+              containerId="sortable-list-2"
+              items={items2}
+              renderItem={renderItem}
+              onDrop={onDrop}
+            />
+          </div>
+        );
+      }
+    }
+
+    const wrapper = mount(
+      <DragDropContextProvider backend={TestBackend}>
+        <MyComponent />
+      </DragDropContextProvider>,
+    );
+    const driver = enzymeSortableListTestkitFactory({ wrapper, dataHook });
+
+    driver.reorder({ removedId: '1', addedId: '21' });
+
+    expect(onDrop).not.toBeCalled();
+  });
+
   it('should call onDrop when drag&drop columns', () => {
     const dataHook = 'sortable-list';
     const items = [{ id: '1', text: 'item 1' }, { id: '2', text: 'item 2' }];

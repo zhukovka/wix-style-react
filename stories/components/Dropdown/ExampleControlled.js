@@ -22,10 +22,15 @@ class ControlledDropdown extends React.Component {
   constructor(props) {
     super(props);
     this.onSelect = this.onSelect.bind(this);
+    this.state = {
+      selectedId: 1,
+    };
   }
 
   onSelect(option) {
-    console.log(`Option ${JSON.stringify(option)} selected`);
+    if (confirm(`Confirm selection of ${option.value}`)) {
+      this.setState({ selectedId: option.id });
+    }
   }
 
   render() {
@@ -35,6 +40,8 @@ class ControlledDropdown extends React.Component {
         options={options}
         onSelect={this.onSelect}
         placeholder={'Choose an option'}
+        selectedId={this.state.selectedId}
+        upgrade
       />
     );
   }

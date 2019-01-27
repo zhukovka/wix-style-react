@@ -1,5 +1,6 @@
 import React from 'react';
-import DropdownLayout from './DropdownLayout';
+import { consoleErrors } from 'wix-ui-test-utils/dist/src/jest-setup';
+import DropdownLayout, { DIVIDER_OPTION_VALUE } from './DropdownLayout';
 import dropdownLayoutDriverFactory from './DropdownLayout.driver';
 import { createRendererWithDriver, cleanup } from '../../test/utils/react';
 
@@ -603,6 +604,69 @@ describe('DropdownLayout', () => {
       const props = { theme: 'material', options };
       const { driver } = render(<DropdownLayout {...props} />);
       expect(driver.hasTheme('material')).toBe(true);
+    });
+  });
+
+  describe('option validator', () => {
+    describe('valid', () => {
+      it('option', () => {
+        render(<DropdownLayout options={[{ id: '1', value: 'hello' }]} />);
+        expect(consoleErrors.get()).toHaveLength(0);
+      });
+      it('option with function value', () => {
+        render(<DropdownLayout options={[{ id: '1', value: () => {} }]} />);
+        expect(consoleErrors.get()).toHaveLength(0);
+      });
+      it('divider', () => {
+        render(<DropdownLayout options={[{ value: DIVIDER_OPTION_VALUE }]} />);
+        expect(consoleErrors.get()).toHaveLength(0);
+      });
+    });
+
+    describe('invalid', () => {
+      let consoleErrorSpy;
+
+      beforeEach(() => {
+        consoleErrorSpy = jest
+          .spyOn(global.console, 'error')
+          .mockImplementation(jest.fn());
+      });
+
+      afterEach(() => {
+        consoleErrorSpy.mockRestore();
+      });
+
+      it('no value', () => {
+        render(<DropdownLayout options={[{ id: '1' }]} />);
+        expect(consoleErrorSpy).toHaveBeenCalledTimes(1);
+        expect(consoleErrorSpy).toBeCalledWith(
+          expect.stringContaining('option.value'),
+        );
+      });
+
+      it('no id and not divider', () => {
+        render(<DropdownLayout options={[{ value: 'aaa' }]} />);
+        expect(consoleErrorSpy).toHaveBeenCalledTimes(1);
+        expect(consoleErrorSpy).toBeCalledWith(
+          expect.stringContaining('option.id'),
+        );
+      });
+
+      it('empty trimmed id', () => {
+        render(<DropdownLayout options={[{ id: '   ', value: 'hello' }]} />);
+        expect(consoleErrorSpy).toHaveBeenCalledTimes(1);
+        expect(consoleErrorSpy).toBeCalledWith(
+          expect.stringContaining('option.id'),
+        );
+      });
+
+      it('empty trimmed value', () => {
+        render(<DropdownLayout options={[{ id: '1', value: '  ' }]} />);
+        expect(consoleErrorSpy).toHaveBeenCalledTimes(1);
+        expect(consoleErrorSpy).toBeCalledWith(
+          expect.stringContaining('option.value'),
+        );
+      });
     });
   });
 });

@@ -10,6 +10,9 @@ import ExampleDisabled from './ExampleDisabled';
 import ExampleDisabledRaw from '!raw-loader!./ExampleDisabled';
 import ExampleDisabledLarge from './ExampleDisabledLarge';
 import ExampleDisabledLargeRaw from '!raw-loader!./ExampleDisabledLarge';
+import ExampleWithDivider from './ExampleWithDivider';
+import ExampleWithDividerRaw from '!raw-loader!./ExampleWithDivider';
+import { createAutoExampleWrapper } from '../AutoExampleWrapper';
 
 const exampleContainerStyle = {
   display: 'flex',
@@ -55,7 +58,7 @@ const exampleChildren = [
 export default {
   category: storySettings.kind,
   storyName: storySettings.storyName,
-  component: PopoverMenu,
+  component: createAutoExampleWrapper(PopoverMenu),
   componentPath: '../../src/PopoverMenu/PopoverMenu.js',
 
   componentProps: {
@@ -88,6 +91,11 @@ export default {
       >
         <div style={exampleContainerStyle}>
           <ExampleDisabledLarge />
+        </div>
+      </CodeExample>
+      <CodeExample title="With divider" code={ExampleWithDividerRaw} >
+        <div style={exampleContainerStyle}>
+          <ExampleWithDivider />
         </div>
       </CodeExample>
     </div>

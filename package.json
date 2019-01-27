@@ -1,7 +1,7 @@
 {
   "name": "wix-style-react",
   "description": "wix-style-react",
-  "version": "5.21.0",
+  "version": "5.25.0",
   "main": "./dist/src/index.js",
   "module": "./dist/es/src/index.js",
   "sideEffects": [
@@ -34,7 +34,9 @@
     "test:e2e": "concurrently 'npm run test:e2e-only' 'node scripts/e2e-server.js' --names 'protractor,e2e-server' --success first --kill-others",
     "test:e2e-only": "NODE_ENV=production yoshi test --protractor",
     "copy-public-styles": "cp src/*.scss .",
-    "build": "npm run lint && npm run proxy-wix-ui-icons && npm run generate-test-component && npm run copy-public-styles && yoshi build && npm run storybook:build && npm run export-components",
+    "prebuild": "npm run generate-testkit-exports",
+    "build": "npm run lint && npm run proxy-wix-ui-icons && npm run generate-test-component && yoshi build && npm run storybook:build",
+    "postbuild": "npm run copy-public-styles && npm run export-components",
     "pr-postbuild": "npm install teamcity-surge-autorelease@^1.0.0 --no-save && teamcity-surge-autorelease",
     "storybook:build": "build-storybook",
     "storybook:static": "node scripts/e2e-server.js",
@@ -47,7 +49,8 @@
     "generate-test-component": "./scripts/component-generator/bin/generate-test-component.js",
     "a11y": "autotools-a11y -f 'src/**/*.meta.js'",
     "snap": "autotools-snap -f 'src/**/*.meta.js' -b",
-    "sanity": "autotools-sanity -f 'src/**/*.meta.js'"
+    "sanity": "autotools-sanity -f 'src/**/*.meta.js'",
+    "generate-testkit-exports": "node scripts/generate-testkit-exports"
   },
   "yoshi": {
     "entry": {
@@ -243,6 +246,41 @@
         {
           "name": "Proxy",
           "message": "Proxy not supported in IE11."
+        }
+      ],
+      "no-restricted-imports": [
+        "error",
+        {
+          "paths": [
+            {
+              "name": "lodash/isObject",
+              "message": "Please use {isObject} from src/utils/operators"
+            },
+            {
+              "name": "lodash/mapValue",
+              "message": "Please use {mapValue} from src/utils/operators"
+            },
+            {
+              "name": "lodash/pick",
+              "message": "Please use {pick} from src/utils/operators"
+            },
+            {
+              "name": "lodash/pickBy",
+              "message": "Please use {pickBy} from src/utils/operators"
+            },
+            {
+              "name": "lodash/range",
+              "message": "Please use {range} from src/utils/operators"
+            },
+            {
+              "name": "lodash/times",
+              "message": "Please use {times} from src/utils/operators"
+            },
+            {
+              "name": "lodash/values",
+              "message": "Please use {values} from src/utils/operators"
+            }
+          ]
         }
       ],
       "no-console": "error"
