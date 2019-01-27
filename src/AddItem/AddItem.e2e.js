@@ -8,12 +8,12 @@ import { storySettings } from '../../stories/AddItem/storySettings';
 import { runFocusTests } from '../common/Focusable/FocusableTestsE2E';
 
 describe('AddItem', () => {
-  const eyes = eyesItInstance();
-
   const storyUrl = createStoryUrl({
     kind: storySettings.kind,
     story: storySettings.storyName,
   });
+
+  const eyes = eyesItInstance();
 
   // TEMP - ADDED BY EREZ - FOR INVESTIGATING EYES FAILURES
   // I put this in AddItem since its the first test that runs, I didn't have time to figure out where I could initialize this.
