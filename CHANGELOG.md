@@ -17,11 +17,14 @@ Types of changes:
 ## Next
 
 ### Added
-- `<Button/>` - add premium light skin [#2809](https://github.com/wix/wix-style-react/pull/2809)
 
-### Added
+- `<Button/>` - add premium light skin [#2809](https://github.com/wix/wix-style-react/pull/2809)
 - `<PopoverMenu/>` new `showArrow` prop, allows to change visibility of Popover arrow [#2800](https://github.com/wix/wix-style-react/pull/2800)
 - `<PopoverMenuItem/>` new `divider` prop, allows to add divider in between PopoverMenu items [#2800](https://github.com/wix/wix-style-react/pull/2800)
+
+### Changed
+
+- `<Page/>` - Add min/max width according to Grid [#2824](https://github.com/wix/wix-style-react/pull/2824)
 
 ### Docs
 
