@@ -1,14 +1,20 @@
 import React from 'react';
 import CodeExample from 'wix-storybook-utils/CodeExample';
 import Page from 'wix-style-react/Page';
-import Breadcrumbs from './Breadcrumbs';
 import { storySettings } from './storySettings';
 
 import { header, tail, fixedContent, content } from './PageChildren';
-import './Page.scss';
+import './PageStory.scss';
 
 import ExampleEmptyState from './ExampleEmptyState';
 import ExampleEmptyStateRaw from '!raw-loader!./ExampleEmptyState';
+
+const examplePageContainerStyles = {
+  height: 500,
+  display: 'flex',
+  flexFlow: 'column',
+  minHeight: 0,
+};
 
 export default {
   category: storySettings.category,
@@ -18,8 +24,8 @@ export default {
   componentPath: '../../src/Page',
 
   componentProps: {
-    children: [header(Breadcrumbs), tail, content(false)],
-    dataHook: 'story-page',
+    children: [header(), tail, content(false)],
+    dataHook: 'story-page-playground',
     gradientClassName: 'background-gradient',
     gradientCoverTail: true,
     backgroundImageUrl:
@@ -30,11 +36,11 @@ export default {
     children: [
       {
         label: 'header, tail & content',
-        value: [header(Breadcrumbs), tail, content(false)],
+        value: [header(), tail, content(false)],
       },
       {
         label: 'header & content',
-        value: [header(Breadcrumbs), content(false)],
+        value: [header(), content(false)],
       },
       {
         label: 'just content',
@@ -42,7 +48,7 @@ export default {
       },
       {
         label: 'header, tail, fixed-content & content',
-        value: [header(Breadcrumbs), tail, fixedContent, content(false)],
+        value: [header(), tail, fixedContent, content(false)],
       },
     ],
     backgroundImageUrl: [
@@ -56,7 +62,12 @@ export default {
 
   examples: (
     <CodeExample title="Page with and EmptyState" code={ExampleEmptyStateRaw}>
-      <ExampleEmptyState />
+      <div
+        data-hook="story-page-empty-state"
+        style={examplePageContainerStyles}
+      >
+        <ExampleEmptyState />
+      </div>
     </CodeExample>
   ),
 };

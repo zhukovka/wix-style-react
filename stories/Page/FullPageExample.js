@@ -41,7 +41,7 @@ class FullPageExample extends React.Component {
 
   render() {
     return (
-      <div data-hook="story-page-example">
+      <div data-hook="story-full-page-example">
         <div data-hook="side-bar">Sidebar</div>
 
         <div data-hook="body-content">

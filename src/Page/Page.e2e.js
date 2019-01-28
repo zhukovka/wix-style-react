@@ -1,4 +1,4 @@
-import eyes from 'eyes.it';
+import { eyesItInstance } from '../../test/utils/eyes-it';
 import eventually from 'wix-eventually';
 
 import { pageTestkitFactory } from '../../testkit/protractor';
@@ -6,11 +6,7 @@ import {
   waitForVisibilityOf,
   scrollToElement,
 } from 'wix-ui-test-utils/protractor';
-import {
-  createStoryUrl,
-  createTestStoryUrl,
-} from '../../test/utils/storybook-helpers';
-import autoExampleDriver from 'wix-storybook-utils/AutoExampleDriver';
+import { createTestStoryUrl } from '../../test/utils/storybook-helpers';
 import { storySettings } from '../../stories/Page/storySettings';
 
 const { category, storyName } = storySettings;
@@ -19,16 +15,20 @@ const testStoryUrl = testName =>
   createTestStoryUrl({ category, storyName, testName });
 
 describe('Page', () => {
-  const initTest = async ({ storyUrl, dataHook, props }) => {
+  const initTest = async ({ storyUrl, dataHook }) => {
     await browser.get(storyUrl);
     const driver = pageTestkitFactory({ dataHook });
     await waitForVisibilityOf(driver.element(), 'Cannot find Page');
     await scrollToElement(driver.element());
-    props && (await autoExampleDriver.setProps(props));
     return driver;
   };
 
   const runTestCases = initTestConfig => {
+    const eyes = eyesItInstance({
+      enableSnapshotAtBrowserGet: false,
+      enableSnapshotAtEnd: false,
+    });
+
     eyes.it('should hide title on scroll threshold', async () => {
       const driver = await initTest(initTestConfig);
 
@@ -48,16 +48,15 @@ describe('Page', () => {
   describe('Header + Tail + Content', () => {
     const dataHook = 'story-page';
 
-    const storyUrl = createStoryUrl({
-      kind: category,
-      story: storyName,
-      withExamples: false,
-    });
     describe('With Background-Image', () => {
+      const storyUrl = testStoryUrl('Header-Tail-Content: 1. Image');
       runTestCases({ storyUrl, dataHook });
     });
 
     describe('With gradientCoverTail', () => {
+      const storyUrl = testStoryUrl(
+        'Header-Tail-Content: 2. Gradient Cover Tail',
+      );
       runTestCases({ storyUrl, dataHook, props: { backgroundImageUrl: '' } });
     });
   });
@@ -91,15 +90,60 @@ describe('Page', () => {
   });
 
   describe('With EmptyState', () => {
-    const storyUrl = createStoryUrl({ kind: category, story: storyName });
-
-    it('should not break design', async () => {
-      const _dataHook = 'story-page-empty-state';
-      const element = $(`[data-hook="${_dataHook}"]`);
-
+    const storyUrl = testStoryUrl('8. Empty State');
+    const eyes = eyesItInstance();
+    eyes.it('should not break design', async () => {
       await browser.get(storyUrl);
-      await waitForVisibilityOf(element, `Cannot find ${_dataHook}`);
-      await scrollToElement(element);
+    });
+  });
+
+  describe('min/max width', () => {
+    function eyesOptions({ width }) {
+      return {
+        enableSnapshotAtBrowserGet: true,
+        enableSnapshotAtEnd: false,
+        width,
+      };
+    }
+
+    const eyes = eyesItInstance();
+    describe('Default values', () => {
+      const url = testStoryUrl('5. Default [min/max]-width');
+
+      eyes.it(
+        'should stop growing at max-width',
+        async () => {
+          await browser.get(url);
+        },
+        eyesOptions({ width: 1500 }),
+      );
+
+      eyes.it(
+        'should stop shrinking at default min-width',
+        async () => {
+          await browser.get(url);
+        },
+        eyesOptions({ width: 500 }),
+      );
+    });
+
+    describe('Custom values', () => {
+      const url = testStoryUrl('6. Custom [min/max]-width');
+      eyes.it(
+        'should stop growing at max-width (1400px)',
+        async () => {
+          await browser.get(url);
+        },
+        eyesOptions({ width: 1500 }),
+      );
+
+      eyes.it(
+        'should stop shrinking at default min-width (600px)',
+        async () => {
+          await browser.get(url);
+        },
+        eyesOptions({ width: 500 }),
+      );
     });
   });
 });

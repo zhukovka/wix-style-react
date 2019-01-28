@@ -12,8 +12,12 @@ import {
   SCROLL_TOP_THRESHOLD,
   SHORT_SCROLL_TOP_THRESHOLD,
   TAIL_TOP_PADDING_PX,
+  PAGE_SIDE_PADDING_PX,
 } from './constants';
-
+import {
+  mainContainerMinWidthPx as GRID_MIN_WIDTH,
+  mainContainerMaxWidthPx as GRID_MAX_WIDTH,
+} from '../Grid/constants';
 /**
  * A page container which contains a header and scrollable content
  *
@@ -49,6 +53,8 @@ import {
 class Page extends WixComponent {
   static defaultProps = {
     gradientCoverTail: true,
+    minWidth: GRID_MIN_WIDTH,
+    maxWidth: GRID_MAX_WIDTH,
   };
 
   constructor(props) {
@@ -226,6 +232,7 @@ class Page extends WixComponent {
       gradientClassName,
       className,
       children,
+      minWidth,
     } = this.props;
     const { minimized } = this.state;
     const hasBackgroundImage = !!backgroundImageUrl;
@@ -252,91 +259,96 @@ class Page extends WixComponent {
     };
 
     return (
-      <div className={classNames(s.page, className)}>
+      <div className={classNames(s.pageWrapper, className)}>
         <div
-          data-hook="page-fixed-container"
-          style={this._fixedContainerStyle()}
-          className={classNames(s.fixedContainer)}
-          ref={r => (this.fixedContainerRef = r)}
-          onWheel={event => {
-            this._getScrollContainer().scrollTop =
-              this._getScrollContainer().scrollTop + event.deltaY;
-          }}
+          className={s.page}
+          style={{ minWidth: minWidth + 2 * PAGE_SIDE_PADDING_PX }}
         >
           <div
-            className={classNames(s.pageHeaderContainer, {
-              [s.minimized]: minimized,
-              [s.withoutBottomPadding]: PageTail && minimized,
-            })}
+            data-hook="page-fixed-container"
+            style={this._fixedContainerStyle()}
+            className={classNames(s.fixedContainer)}
+            ref={r => (this.fixedContainerRef = r)}
+            onWheel={event => {
+              this._getScrollContainer().scrollTop =
+                this._getScrollContainer().scrollTop + event.deltaY;
+            }}
           >
-            {childrenObject.PageHeader && (
-              <div className={s.pageHeader} style={pageDimensionsStyle}>
-                {React.cloneElement(childrenObject.PageHeader, {
-                  minimized,
-                  hasBackgroundImage,
-                })}
-              </div>
-            )}
-            {PageTail && (
+            <div
+              className={classNames(s.pageHeaderContainer, {
+                [s.minimized]: minimized,
+                [s.withoutBottomPadding]: PageTail && minimized,
+              })}
+            >
+              {childrenObject.PageHeader && (
+                <div className={s.pageHeader} style={pageDimensionsStyle}>
+                  {React.cloneElement(childrenObject.PageHeader, {
+                    minimized,
+                    hasBackgroundImage,
+                  })}
+                </div>
+              )}
+              {PageTail && (
+                <div
+                  data-hook="page-tail"
+                  className={classNames(s.tail, { [s.minimized]: minimized })}
+                  style={pageDimensionsStyle}
+                  ref={r => (this.pageHeaderTailRef = r)}
+                >
+                  {React.cloneElement(PageTail, { minimized })}
+                </div>
+              )}
+            </div>
+            {PageFixedContent && (
               <div
-                data-hook="page-tail"
-                className={classNames(s.tail, { [s.minimized]: minimized })}
-                style={pageDimensionsStyle}
-                ref={r => (this.pageHeaderTailRef = r)}
+                data-hook="page-fixed-content"
+                {...contentLayoutProps}
+                ref={r => (this.pageHeaderFixedContentRef = r)}
               >
-                {React.cloneElement(PageTail, { minimized })}
+                {React.cloneElement(PageFixedContent)}
               </div>
             )}
           </div>
-          {PageFixedContent && (
-            <div
-              data-hook="page-fixed-content"
-              {...contentLayoutProps}
-              ref={r => (this.pageHeaderFixedContentRef = r)}
-            >
-              {React.cloneElement(PageFixedContent)}
-            </div>
-          )}
-        </div>
-        <div
-          className={s.scrollableContent}
-          onScroll={this._handleScroll}
-          data-hook="page-scrollable-content"
-          data-class="page-scrollable-content"
-          style={{ paddingTop: `${fixedContainerHeight}px` }}
-          ref={r => this._setScrollContainer(r)}
-        >
-          {hasBackgroundImage && (
-            <div
-              className={s.imageBackgroundContainer}
-              style={{ height: imageHeight }}
-              data-hook="page-background-image"
-            >
+          <div
+            className={s.scrollableContent}
+            onScroll={this._handleScroll}
+            data-hook="page-scrollable-content"
+            data-class="page-scrollable-content"
+            style={{ paddingTop: `${fixedContainerHeight}px` }}
+            ref={r => this._setScrollContainer(r)}
+          >
+            {hasBackgroundImage && (
               <div
-                className={s.imageBackground}
-                style={{ backgroundImage: `url(${backgroundImageUrl})` }}
-              />
-            </div>
-          )}
-          {hasGradientClassName && !hasBackgroundImage && (
-            <div
-              data-hook="page-gradient-class-name"
-              className={`${s.gradientBackground} ${gradientClassName}`}
-              style={{ height: gradientHeight }}
-            />
-          )}
-          <div className={s.contentContainer}>
-            <div {...contentLayoutProps}>
-              {this._safeGetChildren(PageContent)}
-            </div>
-            {minimized ? (
+                className={s.imageBackgroundContainer}
+                style={{ height: imageHeight }}
+                data-hook="page-background-image"
+              >
+                <div
+                  className={s.imageBackground}
+                  style={{ backgroundImage: `url(${backgroundImageUrl})` }}
+                />
+              </div>
+            )}
+            {hasGradientClassName && !hasBackgroundImage && (
               <div
-                style={{
-                  height: `${fixedContainerHeight -
-                    minimizedFixedContainerHeight}px`,
-                }}
+                data-hook="page-gradient-class-name"
+                className={`${s.gradientBackground} ${gradientClassName}`}
+                style={{ height: gradientHeight }}
               />
-            ) : null}
+            )}
+            <div className={s.contentContainer}>
+              <div {...contentLayoutProps}>
+                {this._safeGetChildren(PageContent)}
+              </div>
+              {minimized ? (
+                <div
+                  style={{
+                    height: `${fixedContainerHeight -
+                      minimizedFixedContainerHeight}px`,
+                  }}
+                />
+              ) : null}
+            </div>
           </div>
         </div>
       </div>
@@ -359,8 +371,10 @@ Page.Tail = Tail;
 Page.propTypes = {
   /** Background image url of the header beackground */
   backgroundImageUrl: PropTypes.string,
-  /** Sets the max width of the header and the content */
+  /** Sets the max width of the content (Both in header and body) NOT including the page padding */
   maxWidth: PropTypes.number,
+  /** Sets the min width of the content (Both in header and body) NOT including the page padding */
+  minWidth: PropTypes.number,
   /** Sets padding of the sides of the page */
   sidePadding: PropTypes.number,
   /** A css class to be applied to the component's root element */
