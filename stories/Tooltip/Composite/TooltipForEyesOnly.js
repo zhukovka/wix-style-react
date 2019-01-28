@@ -40,10 +40,18 @@ export default class TooltipForEyesOnly extends Component {
             My Father is a Tooltip
           </div>
         </Tooltip>
-        <Button dataHook="long-text-button" onClick={() => this._onClick()}>
+        <Button
+          as="div"
+          dataHook="long-text-button"
+          onClick={() => this._onClick()}
+        >
           Change State
         </Button>
-        <Button dataHook="popover-button" onClick={() => this.togglePopover()}>
+        <Button
+          as="div"
+          dataHook="popover-button"
+          onClick={() => this.togglePopover()}
+        >
           Toggle popover
         </Button>
       </div>

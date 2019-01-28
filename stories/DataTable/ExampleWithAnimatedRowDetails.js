@@ -46,7 +46,6 @@ class ExampleWithAnimatedRowDetails extends React.Component {
           data={generateData()}
           rowDetails={row => <MyRowDetailsComponent {...row} />}
           rowDetailsAnimation
-          newDesign
           allowMultiDetailsExpansion
           columns={[
             {

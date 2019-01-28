@@ -1,4 +1,3 @@
-import buttonWithOptionsDriverFactory from '../ButtonWithOptions/ButtonWithOptions.driver';
 import dropdownLayoutDriverFactory from '../DropdownLayout/DropdownLayout.driver';
 import headerDriverFactory from '../Card/Header/Header.driver';
 import { badgeDriverFactory } from 'wix-ui-backoffice/dist/src/components/Badge/Badge.driver';
@@ -63,15 +62,6 @@ const statsWidgetDriverFactory = ({ element }) => {
         ),
       }),
     }),
-
-    /** return relevant driver for filter  */
-    getFilterDriver: dataHook => {
-      deprecationLog(
-        'StatsWidget testkit method "getFilterDriver" is deprecated, use the new "getFilterButtonDriver" method instead.',
-      );
-      const optionElement = findByHook(element, dataHook);
-      return buttonWithOptionsDriverFactory({ element: optionElement });
-    },
   };
 };
 

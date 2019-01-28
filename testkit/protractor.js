@@ -34,26 +34,6 @@ export const inputAreaTestkitFactory = protractorTestkitFactoryCreator(
   inputAreaDriverFactory,
 );
 
-import buttonDriverFactory from '../src/Backoffice/Button/Button.protractor.driver';
-import { buttonDriverFactory as buttonNextDriverFactory } from '../src/Button/Button.driver';
-
-export const buttonTestkitFactory = obj =>
-  obj.wrapper && obj.wrapper.$(`[data-upgrade]`)
-    ? protractorUniTestkitFactoryCreator(buttonNextDriverFactory)(obj)
-    : protractorTestkitFactoryCreator(buttonDriverFactory)(obj);
-
-import tpaButtonDriverFactory from '../src/TPA/Button/Button.protractor.driver';
-
-export const tpaButtonTestkitFactory = protractorTestkitFactoryCreator(
-  tpaButtonDriverFactory,
-);
-
-import tpaInputDriverFactory from '../src/TPA/Input/Input.protractor.driver';
-
-export const tpaInputTestkitFactory = protractorTestkitFactoryCreator(
-  tpaInputDriverFactory,
-);
-
 import pageDriverFactory from '../src/Page/Page.protractor.driver';
 
 export const pageTestkitFactory = protractorTestkitFactoryCreator(
@@ -119,12 +99,6 @@ export const dropdownLayoutTestkitFactory = protractorTestkitFactoryCreator(
   dropdownLayoutDriverFactory,
 );
 
-import buttonWithOptionsDriverFactory from '../src/ButtonWithOptions/ButtonWithOptions.protractor.driver';
-
-export const buttonWithOptionsTestkitFactory = protractorTestkitFactoryCreator(
-  buttonWithOptionsDriverFactory,
-);
-
 import filePickerDriverFactory from '../src/FilePicker/FilePicker.protractor.driver';
 
 export const filePickerTestkitFactory = protractorTestkitFactoryCreator(
@@ -135,24 +109,6 @@ import radioGroupDriverFactory from '../src/RadioGroup/RadioGroup.protractor.dri
 
 export const radioGroupTestkitFactory = protractorTestkitFactoryCreator(
   radioGroupDriverFactory,
-);
-
-import textAreaDriverFactory from '../src/TextArea/TextArea.protractor.driver';
-
-export const textAreaTestkitFactory = protractorTestkitFactoryCreator(
-  textAreaDriverFactory,
-);
-
-import textFieldDriverFactory from '../src/TextField/TextField.protractor.driver';
-
-export const textFieldTestkitFactory = protractorTestkitFactoryCreator(
-  textFieldDriverFactory,
-);
-
-import dropdownCompositeDriverFactory from '../src/DropdownComposite/DropdownComposite.protractor.driver';
-
-export const dropdownCompositeTestkitFactory = protractorTestkitFactoryCreator(
-  dropdownCompositeDriverFactory,
 );
 
 import multiSelectCompositeDriverFactory from '../src/MultiSelectComposite/MultiSelectComposite.protractor.driver';
@@ -191,18 +147,6 @@ export const imageViewerTestkitFactory = protractorTestkitFactoryCreator(
   imageViewerDriverFactory,
 );
 
-import tpaTextLinkDriverFactory from '../src/TPA/TextLink/TextLink.protractor.driver';
-
-export const tpaTextLinkTestkitFactory = protractorTestkitFactoryCreator(
-  tpaTextLinkDriverFactory,
-);
-
-import textLinkDriverFactory from '../src/TextLink/TextLink.protractor.driver';
-
-export const textLinkTestkitFactory = protractorTestkitFactoryCreator(
-  textLinkDriverFactory,
-);
-
 import popoverMenuDriverFactory from '../src/PopoverMenu/PopoverMenu.protractor.driver';
 
 export const popoverMenuTestkitFactory = protractorTestkitFactoryCreator(
@@ -237,12 +181,6 @@ import editableSelectorDriverFactory from '../src/EditableSelector/EditableSelec
 
 export const editableSelectorTestkitFactory = protractorTestkitFactoryCreator(
   editableSelectorDriverFactory,
-);
-
-import iconWithOptionsDriverFactory from '../src/IconWithOptions/IconWithOptions.protractor.driver';
-
-export const iconWithOptionsTestkitFactory = protractorTestkitFactoryCreator(
-  iconWithOptionsDriverFactory,
 );
 
 import searchDriverFactory from '../src/Search/Search.protractor.driver';
@@ -446,6 +384,12 @@ import { boxDriverFactory } from '../src/Box/Box.driver';
 
 export const boxTestkitFactory = protractorUniTestkitFactoryCreator(
   boxDriverFactory,
+);
+
+import { buttonDriverFactory } from '../src/Button/Button.driver';
+
+export const buttonTestkitFactory = protractorUniTestkitFactoryCreator(
+  buttonDriverFactory,
 );
 
 import { thumbnailDriverFactory } from '../src/Thumbnail/Thumbnail.driver';

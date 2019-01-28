@@ -5,10 +5,8 @@ import Heading from '../Heading';
 import Text from '../Text';
 import classNames from 'classnames';
 import CloseButton from '../CloseButton';
-import deprecationLog from '../utils/deprecationLog';
-import { allValidators } from '../utils/propTypes';
 
-import Button from '../Backoffice/Button';
+import Button from '../Deprecated/Button';
 
 import * as styles from './MessageBoxMarketerialLayout.scss';
 
@@ -28,7 +26,6 @@ class MessageBoxMarketerialLayout extends WixComponent {
       primaryButtonTheme,
       imageComponent,
       footerBottomChildren,
-      fixImagePosition,
     } = this.props;
 
     const headerClasses = classNames({
@@ -50,11 +47,7 @@ class MessageBoxMarketerialLayout extends WixComponent {
           {imageComponent ? (
             <div className={styles.headerImageComponent}>{imageComponent}</div>
           ) : (
-            <div
-              className={classNames(styles.headerImage, {
-                [styles.headerImageFix]: fixImagePosition,
-              })}
-            >
+            <div className={styles.headerImage}>
               <img src={imageUrl} data-hook="header-image" />
             </div>
           )}
@@ -111,19 +104,12 @@ MessageBoxMarketerialLayout.propTypes = {
   secondaryButtonLabel: PropTypes.string,
   onPrimaryButtonClick: PropTypes.func,
   onSecondaryButtonClick: PropTypes.func,
-  imageUrl: allValidators(PropTypes.string, (props, propName) => {
-    if (props[propName] && !props['fixImagePosition']) {
-      deprecationLog(
-        'MessageBoxMarketerialLayout have issue with image positioning. Please use fixImagePosition prop to fix it. Next major version will have a fix by default.',
-      );
-    }
-  }),
+  imageUrl: PropTypes.string,
   onClose: PropTypes.func.isRequired,
   imageComponent: PropTypes.node,
   footerBottomChildren: PropTypes.node,
   theme: PropTypes.oneOf(['blue', 'purple']),
   primaryButtonTheme: PropTypes.oneOf(['blue', 'purple']),
-  fixImagePosition: PropTypes.bool,
 };
 
 MessageBoxMarketerialLayout.defaultProps = {

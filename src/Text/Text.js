@@ -32,18 +32,11 @@ const Text = ({
   secondary,
   skin,
   light,
-  bold,
   weight,
   tagName,
   children,
   ...rest
 }) => {
-  if (bold !== undefined) {
-    deprecationLog('Text prop "bold" is deprecated, use "weight" prop instead');
-  } else {
-    bold = false;
-  }
-
   /* eslint-disable no-unused-vars */
   const { dataHook, ...textProps } = rest;
 
@@ -59,7 +52,6 @@ const Text = ({
           skin,
           light: light && skin === SKINS.standard,
           weight,
-          bold,
         },
         rest,
       ),
@@ -94,9 +86,6 @@ Text.propTypes = {
 
   /** font weight of the text */
   weight: oneOf(Object.keys(WEIGHTS)),
-
-  /** is the text bold */
-  bold: bool,
 };
 
 Text.defaultProps = {

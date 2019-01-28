@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import Label from '../../src/Label';
-import TextField from '../../src/TextField';
+import FormField from '../../src/FormField';
 import Input from '../../src/Input';
 import styles from './RichTextAreaComposite.scss';
 import ToggleSwitch from '../../src/ToggleSwitch';
@@ -179,7 +179,7 @@ class RichTextAreaCompositeExample extends Component {
 
     return (
       <div className={styles.output}>
-        <TextField>
+        <FormField>
           <Label for="errorMessageInput">Error message</Label>
           <Input
             id="errorMessageInput"
@@ -192,7 +192,7 @@ class RichTextAreaCompositeExample extends Component {
               })
             }
           />
-        </TextField>
+        </FormField>
       </div>
     );
   }

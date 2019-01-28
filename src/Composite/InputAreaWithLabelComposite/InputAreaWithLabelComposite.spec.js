@@ -4,21 +4,19 @@ import Label from '../../Label';
 import Input from '../../Input';
 import InputArea from '../../InputArea';
 import AutoComplete from '../../AutoComplete';
-import textAreaDriverFactory from '../../TextArea/TextArea.driver';
-import textFieldDriverFactory from '../../TextField/TextField.driver';
+import inputAreaWithLabelCompositeDriverFactory from './InputAreaWithLabelComposite.driver';
 import autoCompleteCompositeDriverFactory from '../../AutoCompleteComposite/AutoCompleteComposite.driver';
 import { createDriverFactory } from 'wix-ui-test-utils/driver-factory';
 import Tooltip from '../../Tooltip/Tooltip';
 
 describe('InputAreaWithLabelComposite', () => {
-  const createTextAreaDriver = createDriverFactory(textAreaDriverFactory);
-  const createTextFieldDriver = createDriverFactory(textFieldDriverFactory);
+  const createDriver = createDriverFactory(inputAreaWithLabelCompositeDriverFactory);
   const createAutoCompleteDriver = createDriverFactory(
     autoCompleteCompositeDriverFactory,
   );
 
   it('should remove label wrapping when label not given', () => {
-    const driver = createTextFieldDriver(
+    const driver = createDriver(
       <InputAreaWithLabelComposite>
         <Input />
       </InputAreaWithLabelComposite>,
@@ -28,7 +26,7 @@ describe('InputAreaWithLabelComposite', () => {
   });
 
   it('should render Label with Input', () => {
-    const driver = createTextFieldDriver(
+    const driver = createDriver(
       <InputAreaWithLabelComposite>
         <Label>myLabel</Label>
         <Input />
@@ -40,7 +38,7 @@ describe('InputAreaWithLabelComposite', () => {
   });
 
   it('should render Label with InputArea', () => {
-    const driver = createTextAreaDriver(
+    const driver = createDriver(
       <InputAreaWithLabelComposite>
         <Label />
         <InputArea />

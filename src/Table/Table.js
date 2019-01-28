@@ -60,13 +60,11 @@ export function getDataTableProps(tableProps) {
     selectedIds,
     onSelectionChanged,
     dataHook,
-    newDesign,
     hideHeader,
     ...props
   } = tableProps;
   return {
     ...props,
-    newDesign: true,
     rowClass: classNames(tableProps.rowClass, style.tableRow),
   };
 }

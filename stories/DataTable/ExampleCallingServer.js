@@ -53,7 +53,6 @@ class DataTableExample extends React.Component {
             /*eslint-enable no-alert*/
           }}
           infiniteScroll
-          newDesign
           itemsPerPage={20}
           columns={[
             {

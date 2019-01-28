@@ -16,11 +16,6 @@ const inputWithOptionsDriverFactory = ({ element }) => {
       element: element.childNodes[1].childNodes[0],
     });
 
-  const createDeprecationMessageForKeyMethod = methodName =>
-    deprecationLog(
-      `InputWithOptions testkit method "${methodName}" is deprecated. Use "pressKey" with the appropriate key mame instead.`,
-    );
-
   const assertOptionsOpen = () => {
     if (!dropdownLayoutDriver.isShown()) {
       inputDriver.focus();
@@ -51,36 +46,6 @@ const inputWithOptionsDriverFactory = ({ element }) => {
     isOptionWrappedToHighlighter: optionId => {
       const { element: optionElm } = dropdownLayoutDriver.optionById(optionId);
       return !!optionElm().querySelector(`[data-hook=highlighter-${optionId}]`);
-    },
-
-    // Deprecated key press methods
-    pressDownKey: () => {
-      createDeprecationMessageForKeyMethod('pressDownKey');
-      inputDriver.keyDown('ArrowDown');
-    },
-    pressUpKey: () => {
-      createDeprecationMessageForKeyMethod('pressUpKey');
-      inputDriver.keyDown('ArrowUp');
-    },
-    pressAnyKey: () => {
-      createDeprecationMessageForKeyMethod('pressAnyKey');
-      inputDriver.keyDown('Any');
-    },
-    pressEnterKey: () => {
-      createDeprecationMessageForKeyMethod('pressEnterKey');
-      inputDriver.keyDown('Enter');
-    },
-    pressSpaceKey: () => {
-      createDeprecationMessageForKeyMethod('pressSpaceKey');
-      inputDriver.keyDown(' ');
-    },
-    pressTabKey: () => {
-      createDeprecationMessageForKeyMethod('pressTabKey');
-      inputDriver.keyDown('Tab');
-    },
-    pressEscKey: () => {
-      createDeprecationMessageForKeyMethod('pressEscKey');
-      inputDriver.keyDown('Escape');
     },
   };
 

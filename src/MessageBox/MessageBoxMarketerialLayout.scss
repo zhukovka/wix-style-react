@@ -31,14 +31,11 @@ $headerImageHeight: 185px;
   left: 50%;
   transform: translateX(-50%);
   text-align: center;
+  top: 20%;
   img {
     max-width: 300px;
     max-height: $headerImageHeight;
   }
-}
-
-.headerImageFix {
-  top: 20%;
 }
 
 .header-image-component {

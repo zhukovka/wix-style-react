@@ -67,12 +67,7 @@ class Button extends Component {
     const classNames = cx(className, button(fluid, skin, priority, size));
 
     return (
-      <ButtonNext
-        {...rest}
-        data-upgrade={upgrade}
-        data-hook={dataHook}
-        className={classNames}
-      >
+      <ButtonNext {...rest} data-hook={dataHook} className={classNames}>
         {children}
       </ButtonNext>
     );

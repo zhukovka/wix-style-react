@@ -30,8 +30,6 @@ describe('MultiSelect', () => {
     cleanup();
   });
 
-  const NewMultiSelect = props => <MultiSelect {...props} upgrade />;
-
   class ControlledMultiSelect extends React.Component {
     state = { inputValue: this.props.value || '' };
 
@@ -41,7 +39,7 @@ describe('MultiSelect', () => {
 
     render() {
       return (
-        <NewMultiSelect
+        <MultiSelect
           {...this.props}
           onChange={e => {
             this.setState({ inputValue: e.target.value });
@@ -54,7 +52,7 @@ describe('MultiSelect', () => {
 
   it('should NOT show dropdown when autofocus is on', () => {
     const { inputDriver, dropdownLayoutDriver } = createDriver(
-      <NewMultiSelect options={options} autoFocus />,
+      <MultiSelect options={options} autoFocus />,
     );
     expect(inputDriver.isFocus()).toBeTruthy();
     expect(dropdownLayoutDriver.isShown()).toBeFalsy();
@@ -64,13 +62,13 @@ describe('MultiSelect', () => {
     const tags = [{ id: 'Alabama', label: 'Alabama' }];
 
     const { driver: multiSelectDriver, rerender } = render(
-      <NewMultiSelect options={options} autoFocus />,
+      <MultiSelect options={options} autoFocus />,
     );
     const { dropdownLayoutDriver } = multiSelectDriver;
     expect(dropdownLayoutDriver.optionsLength()).toBe(options.length);
     expect(dropdownLayoutDriver.isOptionExists('Alabama')).toBeTruthy();
 
-    rerender(<NewMultiSelect options={options} tags={tags} autoFocus />);
+    rerender(<MultiSelect options={options} tags={tags} autoFocus />);
     expect(dropdownLayoutDriver.optionsLength()).toBe(
       options.length - tags.length,
     );
@@ -80,7 +78,7 @@ describe('MultiSelect', () => {
   it('should not filter anything without predicate function', () => {
     const onSelect = jest.fn();
     const { driver, dropdownLayoutDriver } = createDriver(
-      <NewMultiSelect options={options} onSelect={onSelect} />,
+      <MultiSelect options={options} onSelect={onSelect} />,
     );
     driver.focus();
     expect(dropdownLayoutDriver.optionsLength()).toBe(options.length);
@@ -90,7 +88,7 @@ describe('MultiSelect', () => {
     it('should clear input when clicked-out-side given input is non-empty', () => {
       const onChange = jest.fn();
       const { driver, inputDriver } = createDriver(
-        <NewMultiSelect value={''} onChange={onChange} />,
+        <MultiSelect value={''} onChange={onChange} />,
       );
       inputDriver.focus('ArrowDown');
       inputDriver.enterText('foo');
@@ -120,22 +118,20 @@ describe('MultiSelect', () => {
   describe('Tag Input', () => {
     it('should render readonly input on select mode', () => {
       const { inputDriver } = createDriver(
-        <NewMultiSelect options={options} mode="select" />,
+        <MultiSelect options={options} mode="select" />,
       );
       expect(inputDriver.getReadOnly()).toBeTruthy();
     });
 
     it('should render arrow on select mode', () => {
       const { inputDriver } = createDriver(
-        <NewMultiSelect options={options} mode="select" />,
+        <MultiSelect options={options} mode="select" />,
       );
       expect(inputDriver.hasMenuArrow()).toBeTruthy();
     });
 
     it('should render input wrapper with error', () => {
-      const { driver } = createDriver(
-        <NewMultiSelect error options={options} />,
-      );
+      const { driver } = createDriver(<MultiSelect error options={options} />);
       expect(driver.inputWrapperHasError()).toBeTruthy();
     });
 
@@ -143,7 +139,7 @@ describe('MultiSelect', () => {
       it('should display a placeholder if there are no tags', () => {
         const placeholder = 'myPlaceholder';
         const { inputDriver } = createDriver(
-          <NewMultiSelect options={options} placeholder={placeholder} />,
+          <MultiSelect options={options} placeholder={placeholder} />,
         );
         expect(inputDriver.getPlaceholder()).toBe(placeholder);
       });
@@ -152,7 +148,7 @@ describe('MultiSelect', () => {
         const tags = [{ id: 'Alabama', label: 'Alabama' }];
         const placeholder = 'myPlaceholder';
         const { inputDriver } = createDriver(
-          <NewMultiSelect
+          <MultiSelect
             options={options}
             tags={tags}
             placeholder={placeholder}
@@ -164,7 +160,7 @@ describe('MultiSelect', () => {
 
     it('should focus the input when clicking on the input wrapper', () => {
       const { driver, inputDriver } = createDriver(
-        <NewMultiSelect options={options} />,
+        <MultiSelect options={options} />,
       );
       expect(inputDriver.isFocus()).toBeFalsy();
       driver.clickOnInputWrapper();
@@ -173,7 +169,7 @@ describe('MultiSelect', () => {
 
     it('should check that wrapper has focus when the input element does', () => {
       const { driver, inputDriver } = createDriver(
-        <NewMultiSelect options={options} />,
+        <MultiSelect options={options} />,
       );
       driver.clickOnInputWrapper();
       expect(inputDriver.isFocus()).toBeTruthy();
@@ -187,7 +183,7 @@ describe('MultiSelect', () => {
       ];
 
       const { driver } = createDriver(
-        <NewMultiSelect options={options} tags={tags} />,
+        <MultiSelect options={options} tags={tags} />,
       );
       expect(driver.numberOfTags()).toBe(tags.length);
       expect(driver.getTagLabelAt(0)).toBe('Alabama');
@@ -217,7 +213,7 @@ describe('MultiSelect', () => {
           props,
           keyPressed,
           enteredText,
-          Component = NewMultiSelect,
+          Component = MultiSelect,
           expectSubmit,
         }) {
           const onSelect = jest.fn();
@@ -341,7 +337,7 @@ describe('MultiSelect', () => {
         const onSelect = jest.fn();
         const onManuallyInput = jest.fn();
         const { driver, inputDriver } = createDriver(
-          <NewMultiSelect
+          <MultiSelect
             options={options}
             onSelect={onSelect}
             onManuallyInput={onManuallyInput}
@@ -400,7 +396,7 @@ describe('MultiSelect', () => {
       const tags = [{ id: tagId, label: 'Alabama' }];
       const onRemoveTag = jest.fn();
       const { driver } = createDriver(
-        <NewMultiSelect autoFocus tags={tags} onRemoveTag={onRemoveTag} />,
+        <MultiSelect autoFocus tags={tags} onRemoveTag={onRemoveTag} />,
       );
 
       const tagDriver = driver.getTagDriverByTagId(tagId);
@@ -415,7 +411,7 @@ describe('MultiSelect', () => {
       const onSelect = jest.fn();
 
       const { driver } = createDriver(
-        <NewMultiSelect options={options} onSelect={onSelect} />,
+        <MultiSelect options={options} onSelect={onSelect} />,
       );
       driver.selectOptionById(FIRST_OPTION_ID);
 
@@ -426,7 +422,7 @@ describe('MultiSelect', () => {
       // This is a regression test for old bug , when highlight enabled the value would be a <Highlight> element
       const onSelect = jest.fn();
       const { driver } = createDriver(
-        <NewMultiSelect options={options} onSelect={onSelect} />,
+        <MultiSelect options={options} onSelect={onSelect} />,
       );
       driver.selectOptionById(FIRST_OPTION_ID);
 
@@ -437,11 +433,7 @@ describe('MultiSelect', () => {
     it('should call onSelect with selected option given highlight disabled', () => {
       const onSelect = jest.fn();
       const { driver } = createDriver(
-        <NewMultiSelect
-          options={options}
-          onSelect={onSelect}
-          highlight={false}
-        />,
+        <MultiSelect options={options} onSelect={onSelect} highlight={false} />,
       );
       driver.selectOptionById(FIRST_OPTION_ID);
       expect(onSelect).toHaveBeenCalledTimes(1);
@@ -452,7 +444,7 @@ describe('MultiSelect', () => {
       const onSelect = jest.fn();
 
       const { driver } = createDriver(
-        <NewMultiSelect options={options} onSelect={onSelect} />,
+        <MultiSelect options={options} onSelect={onSelect} />,
       );
       driver.pressKey('ArrowDown');
       driver.pressKey('ArrowDown');
@@ -469,7 +461,7 @@ describe('MultiSelect', () => {
         const onSelect = jest.fn();
         const onChange = jest.fn();
         const { driver, inputDriver, dropdownLayoutDriver } = createDriver(
-          <NewMultiSelect
+          <MultiSelect
             value={options[0].value}
             options={options}
             delimiters={[',']}
@@ -489,7 +481,7 @@ describe('MultiSelect', () => {
         const onSelect = jest.fn();
         const onChange = jest.fn();
         const { driver, inputDriver, dropdownLayoutDriver } = createDriver(
-          <NewMultiSelect
+          <MultiSelect
             value={options[0].value}
             options={options}
             delimiters={[';']}
@@ -510,7 +502,7 @@ describe('MultiSelect', () => {
     describe('Keep Options Open', () => {
       it('should not lose Focus or close the options when options selected by mouse click', () => {
         const { driver, inputDriver, dropdownLayoutDriver } = createDriver(
-          <NewMultiSelect options={options} />,
+          <MultiSelect options={options} />,
         );
         driver.selectOptionById(FIRST_OPTION_ID);
         expect(dropdownLayoutDriver.isShown()).toBeTruthy();
@@ -519,7 +511,7 @@ describe('MultiSelect', () => {
 
       it('should not lose Focus or close the options when options selected by pressing Enter', () => {
         const { driver, inputDriver, dropdownLayoutDriver } = createDriver(
-          <NewMultiSelect options={options} />,
+          <MultiSelect options={options} />,
         );
         driver.focus();
         driver.pressKey('ArrowDown');
@@ -531,7 +523,7 @@ describe('MultiSelect', () => {
       it('should not lose Focus or close the options when options selected by pressing Tab', () => {
         const onSelect = jest.fn();
         const { driver, inputDriver, dropdownLayoutDriver } = createDriver(
-          <NewMultiSelect options={options} onSelect={onSelect} />,
+          <MultiSelect options={options} onSelect={onSelect} />,
         );
         driver.pressKey('ArrowDown');
         driver.pressKey('ArrowDown');
@@ -547,7 +539,7 @@ describe('MultiSelect', () => {
     it('should call onKeyDown once when character key pressed', () => {
       const onKeyDown = jest.fn();
       const { driver, inputDriver } = createDriver(
-        <NewMultiSelect options={options} onKeyDown={onKeyDown} />,
+        <MultiSelect options={options} onKeyDown={onKeyDown} />,
       );
 
       driver.focus();
@@ -558,14 +550,14 @@ describe('MultiSelect', () => {
 
   describe('maxHeight', () => {
     it('should set maxHeight to initial when no height limit introduced', () => {
-      const { driver } = createDriver(<NewMultiSelect options={options} />);
+      const { driver } = createDriver(<MultiSelect options={options} />);
 
       expect(driver.getMaxHeight()).toBe('initial');
     });
 
     it('should set maxHeight when maxNumRows defined', () => {
       const { driver } = createDriver(
-        <NewMultiSelect maxNumRows={2} options={options} />,
+        <MultiSelect maxNumRows={2} options={options} />,
       );
 
       expect(driver.getMaxHeight()).toBe('70px');
@@ -577,7 +569,7 @@ describe('MultiSelect', () => {
       ];
 
       const { driver } = createDriver(
-        <NewMultiSelect maxNumRows={2} tags={_options} options={_options} />,
+        <MultiSelect maxNumRows={2} tags={_options} options={_options} />,
       );
 
       expect(driver.getMaxHeight()).toBe('94px');
@@ -597,7 +589,7 @@ describe('MultiSelect', () => {
       const {
         driver: { getTagLabelAt, getTagDriverByTagId },
       } = createDriver(
-        <NewMultiSelect
+        <MultiSelect
           draggable
           options={options}
           tags={tags}
@@ -623,7 +615,7 @@ describe('MultiSelect', () => {
       const wrapper = div.appendChild(
         ReactTestUtils.renderIntoDocument(
           <div>
-            <NewMultiSelect dataHook={dataHook} tags={tags} />
+            <MultiSelect dataHook={dataHook} tags={tags} />
           </div>,
         ),
       );
@@ -644,7 +636,7 @@ describe('MultiSelect', () => {
     it('should exist', () => {
       const dataHook = 'myDataHook';
       const tags = [{ id: 'Alabama', label: 'Alabama' }];
-      const wrapper = mount(<NewMultiSelect dataHook={dataHook} tags={tags} />);
+      const wrapper = mount(<MultiSelect dataHook={dataHook} tags={tags} />);
       const multiSelectTestkit = enzymeMultiSelectTestkitFactory({
         wrapper,
         dataHook,

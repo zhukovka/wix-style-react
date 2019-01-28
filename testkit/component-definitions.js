@@ -4,11 +4,9 @@ import AllComponents from './all-components';
 
 const {
   Popover,
-  Dropdown,
   MultiSelect,
   AutoComplete,
   Input,
-  InputArea,
   Label,
   RichTextArea,
   Notification,
@@ -43,12 +41,6 @@ export default {
     },
   },
 
-  DropdownComposite: {
-    props: {
-      children: <Dropdown />,
-    },
-  },
-
   MultiSelectComposite: {
     props: {
       children: <MultiSelect />,
@@ -58,16 +50,6 @@ export default {
   AutoCompleteComposite: {
     props: {
       children: [<AutoComplete key={1} />],
-    },
-  },
-
-  ButtonHeader: {
-    // it's actually Card.ButtonHeader, should be deprecated
-    props: {
-      buttonTitle: 'Click me',
-      subtitle: 'Header Subtitle',
-      title: 'Header Title',
-      buttonOnClick: () => {},
     },
   },
 
@@ -108,15 +90,8 @@ export default {
     },
   },
 
-  ButtonLayout: {
-    props: {
-      children: <div>abc</div>,
-    },
-  },
-
   Tag: {
     props: {
-      useOldMargins: false,
       id: 'hello',
       children: 'a',
     },
@@ -125,12 +100,6 @@ export default {
   Badge: {
     props: {
       children: 'hello',
-    },
-  },
-
-  Button: {
-    props: {
-      upgrade: true,
     },
   },
 
@@ -212,18 +181,6 @@ export default {
     props: {
       data: [{ a: 'value 1', b: 'value 2' }],
       columns: [{ title: 'A', render: row => row.a }],
-    },
-  },
-
-  TextField: {
-    props: {
-      children: <Input />,
-    },
-  },
-
-  TextArea: {
-    props: {
-      children: <InputArea />,
     },
   },
 

@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import Label from '../../src/Label';
 import FormField from '../../src/FormField';
-import TextArea from '../../src/TextArea';
 import Input from '../../src/Input';
 import InputArea from '../../src/InputArea';
 import ToggleSwitch from '../../src/ToggleSwitch';
@@ -84,7 +83,7 @@ class RichTextAreaExample extends Component {
             {...this.state}
           />
           <div className={styles.output}>
-            <TextArea>
+            <FormField>
               <Label for="placeholderInput">Output value</Label>
               <InputArea
                 id="placeholderInput"
@@ -94,7 +93,7 @@ class RichTextAreaExample extends Component {
                 resizable
                 readOnly
               />
-            </TextArea>
+            </FormField>
           </div>
         </div>
       </div>

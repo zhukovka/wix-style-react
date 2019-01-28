@@ -52,7 +52,6 @@ class DataTableSortableExample extends React.Component {
           data={this.state.data}
           onSortClick={(col, colNum) => this.handleSortClick(colNum)}
           itemsPerPage={20}
-          newDesign
           columns={[
             {
               title: 'Row Number',

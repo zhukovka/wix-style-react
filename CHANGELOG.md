@@ -14,6 +14,31 @@ Types of changes:
 1. **Docs** for documentation changes
 1. **Lab** components and features that are still in a work in progress
 
+## 6.0.0 - 2019-01-28
+
+### Breaking
+
+- `<Card/>` - remove deprecated header components [#2735](https://github.com/wix/wix-style-react/pull/2735)
+- `<MultiSelect/>` - removed upgrade prop and deprecated callback API [#2757](https://github.com/wix/wix-style-react/pull/2757)
+- `<Tags/>` - remove `useOldMargins` prop flag, set the behaviour to false [#2737](https://github.com/wix/wix-style-react/pull/2737)
+- `<MessageBoxMarketerialLayout/>` - remove `fixImagePosition` prop [#2743](https://github.com/wix/wix-style-react/pull/2743)
+- `<InputWithOptions/>` - remove key presses methods from the driver [#2741](https://github.com/wix/wix-style-react/pull/2741)
+- `<DataTable/>` - remove the deprecated `infoTooltip` prop [#2742](https://github.com/wix/wix-style-react/pull/2742)
+- `<DataTable/>` - remove the newDesign prop, make it the default [#2764](https://github.com/wix/wix-style-react/pull/2764)
+- `<Text/>` - remove the `bold` prop [#2738](https://github.com/wix/wix-style-react/pull/2738)
+- `<Notification/>` - Remove old timeout behaviour [#2805](https://github.com/wix/wix-style-react/pull/2805)
+- `<Dropdown/>` - remove deprecared uncontrolled mode [#2806](https://github.com/wix/wix-style-react/pull/2806)
+- `<MessageBoxFixedHeaderFooter/>` - remove component [#2734](https://github.com/wix/wix-style-react/pull/2734)
+- `<TextField/>`, `<DropdownComposite/>`, `<TextArea/>` - remove components [#2740](https://github.com/wix/wix-style-react/pull/2740)
+- `<ButtonWithOptions/>`, `<IconWithOptions/>` - remove components [#2746](https://github.com/wix/wix-style-react/pull/2746)
+- `<TextLink/>`, `<TextLinkLayout/>`, Backoffice `<Button/>` , `<ButtonLayout/>` - remove components [#2811](https://github.com/wix/wix-style-react/pull/2811)
+
+- TPA - Removed the TPA folder and components [#2744](https://github.com/wix/wix-style-react/pull/2744)
+- Typography - Removed old typography classes [#2747](https://github.com/wix/wix-style-react/pull/2747)
+- Remove old polyfills [#2736](https://github.com/wix/wix-style-react/pull/2736)
+- Remove deprecated `Table/Toolbar` folder [#2739](https://github.com/wix/wix-style-react/pull/2739)
+- Backoffice `<Tooltip/>` and `<TextLink/>` - remove components [#2745](https://github.com/wix/wix-style-react/pull/2745)
+
 ## 5.26.0 - 2019-01-28
 
 ### Added

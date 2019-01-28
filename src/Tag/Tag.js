@@ -9,8 +9,6 @@ import noop from 'lodash/noop';
 import deprecationLog from '../utils/deprecationLog';
 import { dataHooks } from './Tag.helpers';
 
-const useOldMarginsDeprecationMessage = `You're using the <Tag/> component with margins which are incorrect. Pass 'useOldMargins={false}' prop in order to remove them. They will be removed in the next major version`;
-
 const tagToTextSize = {
   tiny: 'tiny',
   small: 'small',
@@ -23,13 +21,6 @@ const tagToTextSize = {
  */
 class Tag extends WixComponent {
   static displayName = 'Tag';
-
-  componentDidMount() {
-    super.componentDidMount();
-    if (this.props.useOldMargins) {
-      deprecationLog(useOldMarginsDeprecationMessage);
-    }
-  }
 
   _renderThumb() {
     const { thumb } = this.props;
@@ -81,7 +72,6 @@ class Tag extends WixComponent {
       size,
       disabled,
       theme,
-      useOldMargins,
       className,
       onClick,
     } = this.props;
@@ -91,7 +81,6 @@ class Tag extends WixComponent {
       styles[`${theme}Theme`],
       styles[`${size}Size`],
       {
-        [styles.deprecatedMargins]: useOldMargins,
         [styles.withRemoveButton]: removable && !disabled,
         [styles.withThumb]: thumb,
         [styles.disabled]: disabled,
@@ -123,9 +112,6 @@ Tag.propTypes = {
 
   /** when set to true this component is disabled */
   disabled: PropTypes.bool,
-
-  /** This feature keeps the old margins set to the component. in next major version will be set to false by default  */
-  useOldMargins: PropTypes.bool,
 
   /** The id of the Tag  */
   id: PropTypes.string.isRequired,
@@ -165,7 +151,6 @@ Tag.defaultProps = {
   removable: true,
   theme: 'standard',
   wrap: false,
-  useOldMargins: true,
 };
 
 export default Tag;

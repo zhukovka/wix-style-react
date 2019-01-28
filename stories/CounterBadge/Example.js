@@ -1,6 +1,6 @@
 import React from 'react';
 import Email from 'wix-style-react/new-icons/Email';
-import DropdownComposite from '../../src/DropdownComposite';
+import FormField from '../../src/FormField';
 import Dropdown from '../../src/Dropdown';
 import Label from '../../src/Label';
 import Text from '../../src/Text';
@@ -33,22 +33,22 @@ class ControlledCounterBadgeExample extends React.Component {
         <div className={style.container}>
           <div style={{ width: '200px' }}>
             <h1> Props </h1>
-            <DropdownComposite>
+            <FormField>
               <Label>children</Label>
               <Dropdown
                 selectedId={this.state.children}
                 options={childrenOptions}
                 onSelect={option => this.setState({ children: option.value })}
               />
-            </DropdownComposite>
-            <DropdownComposite>
+            </FormField>
+            <FormField>
               <Label>skin</Label>
               <Dropdown
                 selectedId={this.state.skin}
                 options={skinOptions}
                 onSelect={option => this.setState({ skin: option.value })}
               />
-            </DropdownComposite>
+            </FormField>
           </div>
           <div>
             <h1> Preview </h1>

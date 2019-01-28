@@ -1,14 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import InputWithOptions, {
-  DEFAULT_VALUE_PARSER,
-} from '../InputWithOptions/InputWithOptions';
+import InputWithOptions from '../InputWithOptions/InputWithOptions';
 import InputWithTags from './InputWithTags';
 import last from 'lodash/last';
 import difference from 'difference';
-import uniqueId from 'lodash/uniqueId';
-import { extendPropTypes, allValidators } from '../utils/propTypes';
-import deprecationLog from '../utils/deprecationLog';
 
 class MultiSelect extends InputWithOptions {
   constructor(props) {
@@ -18,22 +13,12 @@ class MultiSelect extends InputWithOptions {
     this.state = { ...this.state, pasteDetected: false };
   }
 
-  _isNewCallbackApi() {
-    return this.props.upgrade;
-  }
-
   hideOptions() {
     super.hideOptions();
     this.clearInput();
   }
 
   onClickOutside() {
-    const { value, options, onSelect } = this.props;
-    if (!this._isNewCallbackApi()) {
-      if (!options.length && value) {
-        onSelect([{ id: value.trim(), label: value.trim() }]);
-      }
-    }
     if (this.state.showOptions) {
       this.hideOptions();
     }
@@ -91,13 +76,9 @@ class MultiSelect extends InputWithOptions {
   _onChange(event) {
     if (this.state.pasteDetected) {
       const value = event.target.value;
-      if (this._isNewCallbackApi()) {
-        this.setState({ pasteDetected: false }, () => {
-          this.submitValue(value);
-        });
-      } else {
-        this.deprecatedOnChangePaste(value);
-      }
+      this.setState({ pasteDetected: false }, () => {
+        this.submitValue(value);
+      });
     } else {
       this.setState({ inputValue: event.target.value });
       this.props.onChange && this.props.onChange(event);
@@ -108,78 +89,24 @@ class MultiSelect extends InputWithOptions {
     }
   }
 
-  deprecatedOnChangePaste(value) {
-    const tags = this._splitByDelimitersAndTrim(value);
-    const suggestedOptions = tags.map(tag => {
-      const tagObj = this.getUnselectedOptions().find(
-        element =>
-          this.props.valueParser(element).toLowerCase() === tag.toLowerCase(),
-      );
-      return tagObj
-        ? tagObj
-        : { id: uniqueId('customOption_'), value: tag, theme: 'error' };
-    });
-
-    this.setState({ pasteDetected: false }, () => {
-      this.deprecatedOnSelect(suggestedOptions);
-      this.clearInput();
-    });
-  }
-
   _onSelect(option) {
-    if (this._isNewCallbackApi()) {
-      this.onSelect(option);
-    } else {
-      this.deprecatedOnSelect([option]);
-    }
+    this.onSelect(option);
   }
 
   _onManuallyInput(inputValue) {
-    if (this._isNewCallbackApi()) {
-      const { value } = this.props;
+    const { value } = this.props;
 
-      // FIXME: InputWithOptions is not updating it's inputValue state when the `value` prop changes.
-      // So using `value` here, covers for that bug. (This is tested)
-      // BTW: Previously, `value` was used to trigger onSelect, and `inputValue` was used to trigger onManuallyInput. Which is crazy.
-      // So now both of them trigger a submit (onManuallyInput).
-      const _value =
-        (value && value.trim()) || (inputValue && inputValue.trim());
+    // FIXME: InputWithOptions is not updating it's inputValue state when the `value` prop changes.
+    // So using `value` here, covers for that bug. (This is tested)
+    // BTW: Previously, `value` was used to trigger onSelect, and `inputValue` was used to trigger onManuallyInput. Which is crazy.
+    // So now both of them trigger a submit (onManuallyInput).
+    const _value = (value && value.trim()) || (inputValue && inputValue.trim());
 
-      this.submitValue(_value);
+    this.submitValue(_value);
 
-      if (this.closeOnSelect()) {
-        this.hideOptions();
-      }
-    } else {
-      this._deprecatedOnManuallyInput(inputValue);
+    if (this.closeOnSelect()) {
+      this.hideOptions();
     }
-  }
-
-  _deprecatedOnManuallyInput(inputValue) {
-    const { value, options } = this.props;
-    if (value && value.trim()) {
-      if (options.length) {
-        const unselectedOptions = this.getUnselectedOptions();
-        const visibleOptions = unselectedOptions.filter(this.props.predicate);
-        const maybeNearestOption = visibleOptions[0];
-
-        if (maybeNearestOption) {
-          this.deprecatedOnSelect([maybeNearestOption]);
-        }
-      } else {
-        this.props.onSelect([{ id: value.trim(), label: value.trim() }]);
-      }
-    }
-
-    if (inputValue) {
-      inputValue = inputValue.trim();
-      if (this.closeOnSelect()) {
-        this.hideOptions();
-      }
-
-      this.submitValue(inputValue);
-    }
-    this.clearInput();
   }
 
   getManualSubmitKeys() {
@@ -223,39 +150,14 @@ class MultiSelect extends InputWithOptions {
     this.input.focus();
   }
 
-  deprecatedOnSelect(_options) {
-    this.clearInput();
-
-    const { onSelect } = this.props;
-
-    if (onSelect) {
-      const tags = _options.map(this.optionToTag);
-      onSelect(tags);
-    }
-
-    this.input.focus();
-  }
-
   submitValue(inputValue) {
     if (!inputValue) {
       return;
     }
 
     const { onManuallyInput } = this.props;
-    if (this._isNewCallbackApi()) {
-      const values = this._splitByDelimitersAndTrim(inputValue);
-      onManuallyInput && values.length && onManuallyInput(values);
-    } else {
-      if (onManuallyInput) {
-        onManuallyInput(
-          inputValue,
-          this.optionToTag({
-            id: uniqueId('customOption_'),
-            value: inputValue,
-          }),
-        );
-      }
-    }
+    const values = this._splitByDelimitersAndTrim(inputValue);
+    onManuallyInput && values.length && onManuallyInput(values);
 
     this.clearInput();
   }
@@ -297,31 +199,7 @@ MultiSelect.propTypes = {
    * `onSelect(option: Option): void` - Option is the original option from the provided `options` prop.
    */
   onSelect: PropTypes.func,
-  /** When `true`, then the latest Callback API will be used. Otherwise, see the Old API under the Deprecated stories. */
-  upgrade: PropTypes.bool,
 };
-
-extendPropTypes(MultiSelect, {
-  valueParser: allValidators(PropTypes.func, (props, propName) => {
-    const valueParser = props[propName];
-    if (
-      valueParser &&
-      valueParser !== DEFAULT_VALUE_PARSER &&
-      props['upgrade']
-    ) {
-      return new Error(
-        `When 'upgrade' is passed then 'valueParser' will not be used. Please remove the 'valueParser' prop.`,
-      );
-    }
-  }),
-  upgrade: allValidators(PropTypes.bool, (props, propName) => {
-    if (!props[propName]) {
-      deprecationLog(
-        `MultiSelect: New API! Please upgrade by passing the prop 'upgrade=true', and refer to documentation.`,
-      );
-    }
-  }),
-});
 
 MultiSelect.defaultProps = {
   ...InputWithOptions.defaultProps,

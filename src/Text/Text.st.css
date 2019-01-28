@@ -17,8 +17,7 @@
     secondary,
     skin(enum(standard, success, error, premium)),
     light,
-    weight(enum(thin, normal, bold)),
-    bold;
+    weight(enum(thin, normal, bold));
 
   white-space: pre-line;
 }
@@ -106,9 +105,4 @@
 
 .root > a:hover {
   color: value(B20);
-}
-
-/* Deprecated */
-.root:bold {
-  font-family: value(fontRoman);
 }

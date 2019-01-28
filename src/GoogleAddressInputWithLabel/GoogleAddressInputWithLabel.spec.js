@@ -3,8 +3,8 @@ import ReactTestUtils from 'react-dom/test-utils';
 import GoogleAddressInputWithLabel from './GoogleAddressInputWithLabel';
 import GoogleAddressInput from '../GoogleAddressInput';
 import { GmapsTestClient } from '../GoogleAddressInput/GoogleAddressInput.spec';
-import { textFieldTestkitFactory } from '../../testkit';
-import { textFieldTestkitFactory as enzymeTextFieldTestkitFactory } from '../../testkit/enzyme';
+import { googleAddressInputWithLabelTestkitFactory } from '../../testkit';
+import { googleAddressInputWithLabelTestkitFactory as enzymeGoogleAddressInputWithLabelTestkitFactory } from '../../testkit/enzyme';
 import { mount } from 'enzyme';
 
 const props = {
@@ -25,8 +25,13 @@ describe('GoogleAddressInputWithLabel', () => {
           </div>,
         ),
       );
-      const textFieldTestkit = textFieldTestkitFactory({ wrapper, dataHook });
-      expect(textFieldTestkit.exists()).toBeTruthy();
+      const googleAddressInputWithLabelTestkit = googleAddressInputWithLabelTestkitFactory(
+        {
+          wrapper,
+          dataHook,
+        },
+      );
+      expect(googleAddressInputWithLabelTestkit.exists()).toBeTruthy();
     });
 
     describe('enzyme testkit', () => {
@@ -37,11 +42,13 @@ describe('GoogleAddressInputWithLabel', () => {
             <GoogleAddressInput {...props} />
           </GoogleAddressInputWithLabel>,
         );
-        const textFieldTestkit = enzymeTextFieldTestkitFactory({
-          wrapper,
-          dataHook,
-        });
-        expect(textFieldTestkit.exists()).toBeTruthy();
+        const googleAddressInputWithLabelTestkit = enzymeGoogleAddressInputWithLabelTestkitFactory(
+          {
+            wrapper,
+            dataHook,
+          },
+        );
+        expect(googleAddressInputWithLabelTestkit.exists()).toBeTruthy();
       });
     });
   });

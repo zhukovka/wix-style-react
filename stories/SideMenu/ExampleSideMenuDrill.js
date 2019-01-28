@@ -247,7 +247,7 @@ class ExampleSideMenuDrill extends React.Component {
             {this.renderNavigation(items)}
             <SideMenu.Promotion>
               <Button
-                theme="fullpurple"
+                skin="premium"
                 onClick={() => console.log('Promotion button clicked!')}
               >
                 Buy 1 for price of 2!

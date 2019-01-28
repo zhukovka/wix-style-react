@@ -47,24 +47,8 @@ module.exports = {
 
   BadgeSelectItemBuilder: { skipSanityTest, noTestkit },
 
-  BackofficeTooltip: {
-    // TODO: is this component in use at all?
-    skipSanityTest,
-    testkitPath: '../src/Backoffice/Tooltip/Tooltip.driver',
-  },
-
   ColorPicker: {
     skipSanityTest, // missing export in testkit/index.js, so skipping for now
-  },
-
-  ButtonWithOptions: {
-    skipSanityTest, // testkit does not have root `exists` method
-  },
-
-  DropdownComposite: {},
-
-  IconWithOptions: {
-    skipSanityTest, // testkit does not have root `exists` method
   },
 
   MultiSelect: {
@@ -106,22 +90,6 @@ module.exports = {
   Layout: { skipSanityTest, noTestkit },
 
   MessageBox: { skipSanityTest, noTestkit },
-
-  ButtonHeader: {
-    // it's actually Card.ButtonHeader, should be deprecated
-    testkitPath: '../src/Card/ButtonHeader/ButtonHeader.driver',
-    skipSanityTest,
-  },
-
-  LinkHeader: {
-    testkitPath: '../src/Card/LinkHeader/LinkHeader.driver',
-    skipSanityTest,
-  },
-
-  CollapsedHeader: {
-    skipSanityTest,
-    testkitPath: '../src/Card/CollapsedHeader/CollapsedHeader.driver',
-  },
 
   Header: {
     testkitPath: '../src/Card/Header/Header.driver',
@@ -173,10 +141,6 @@ module.exports = {
 
   Avatar: { unidriver },
 
-  ButtonLayout: {
-    skipSanityTest, // TODO: i don't knowm, it fails, need to check why. Currently it doesn't have test anyway. Leaving for later
-  },
-
   Tag: {},
 
   TextButton: {
@@ -212,10 +176,7 @@ module.exports = {
     manualExport,
   },
 
-  Button: {
-    manualExport, // TODO: should be automated but can't because of the `upgrade` prop. Once it's gone, it can be automated again
-    unidriver,
-  },
+  Button: { unidriver },
 
   ImageViewer: {},
 
@@ -242,10 +203,6 @@ module.exports = {
   StatsWidget: {},
 
   Table: {},
-
-  TextField: {},
-
-  TextArea: {},
 
   Tabs: {},
 
@@ -292,33 +249,8 @@ module.exports = {
 
   DropdownBase: { unidriver },
 
-  TpaLabel: {
-    testkitPath: '../src/TPA/Label/Label.driver',
-    skipSanityTest,
-  },
-
-  TpaTextLink: {
-    testkitPath: '../src/TPA/TextLink/TextLink.driver',
-    skipSanityTest,
-  },
-
-  TpaButton: {
-    skipSanityTest,
-    testkitPath: '../src/TPA/Button/Button.driver',
-  },
-
-  TpaFloatingTabs: {
-    testkitPath: '../src/TPA/FloatingTabs/FloatingTabs.driver',
-    skipSanityTest,
-  },
-
   RadioButton: {
     testkitPath: '../src/RadioGroup/RadioButton/RadioButton.driver',
-    skipSanityTest,
-  },
-
-  TpaInput: {
-    testkitPath: '../src/TPA/Input/Input.driver',
     skipSanityTest,
   },
 
@@ -329,11 +261,6 @@ module.exports = {
 
   MessageBoxFunctionalLayout: {
     testkitPath: '../src/MessageBox/MessageBoxFunctionalLayout.driver',
-    skipSanityTest,
-  },
-
-  TextLinkLayout: {
-    testkitPath: '../src/BaseComponents/TextLinkLayout/TextLinkLayout.driver',
     skipSanityTest,
   },
 
