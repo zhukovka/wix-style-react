@@ -14,13 +14,14 @@ Types of changes:
 1. **Docs** for documentation changes
 1. **Lab** components and features that are still in a work in progress
 
-## Next
+## 5.26.0 - 2019-01-28
 
 ### Added
 
 - `<Button/>` - add premium light skin [#2809](https://github.com/wix/wix-style-react/pull/2809)
 - `<PopoverMenu/>` new `showArrow` prop, allows to change visibility of Popover arrow [#2800](https://github.com/wix/wix-style-react/pull/2800)
 - `<PopoverMenuItem/>` new `divider` prop, allows to add divider in between PopoverMenu items [#2800](https://github.com/wix/wix-style-react/pull/2800)
+- `<Button/>` - add premium light skin [#2809](https://github.com/wix/wix-style-react/pull/2809)
 
 ### Changed
 
