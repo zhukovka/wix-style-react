@@ -132,7 +132,7 @@ const InputSuffix = ({
       isVisible: suffixRules.unit({ unit }),
     },
     {
-      component: () => suffix,
+      component: () => <span className={styles.customSuffix}>{suffix}</span>,
       isVisible: suffixRules.customSuffix({ suffix }),
     },
     {
