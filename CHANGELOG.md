@@ -16,6 +16,8 @@ Types of changes:
 
 ## 6.0.0 - 2019-01-28
 
+See [Migrating From v5 to v6](https://github.com/wix/wix-style-react/blob/master/docs/migration/v5-v6.md)
+
 ### Breaking
 
 - `<Card/>` - remove deprecated header components [#2735](https://github.com/wix/wix-style-react/pull/2735)
