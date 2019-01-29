@@ -62,8 +62,7 @@ before:
     size: oneOf(['small', 'normal', 'large'])
   }
 ```
-after
-before:
+after:
 ```javascript
   static propTypes = {
     size: oneOf(['small', 'medium', 'large'])
@@ -80,7 +79,7 @@ Example
     ...
 
     render(props) {
-      if (this.props.size !== 'normal') {
+      if (this.props.size === 'normal') {
         deprecationLog('SomeComponent prop "size" with value "normal" is deprecated and will be removed in next major release, please use "medium" size instead');
       }
       return <div>...</div>
