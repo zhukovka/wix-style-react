@@ -14,6 +14,16 @@ Types of changes:
 1. **Docs** for documentation changes
 1. **Lab** components and features that are still in a work in progress
 
+## Next
+
+### Added
+
+- `<Calendar/>` - Add `autoFocus` prop #2838(https://github.com/wix/wix-style-react/pull/2838)
+
+### Fixed
+
+- Changing vertical padding on side menu [#2837](https://github.com/wix/wix-style-react/pull/2837)
+
 ## 6.0.0 - 2019-01-28
 
 See [Migrating From v5 to v6](https://github.com/wix/wix-style-react/blob/master/docs/migration/v5-v6.md)
