@@ -14,6 +14,12 @@ Types of changes:
 1. **Docs** for documentation changes
 1. **Lab** components and features that are still in a work in progress
 
+## Next
+
+## Added
+
+- `<Calendar/>` - Add `autoFocus` prop [#2842](https://github.com/wix/wix-style-react/pull/2842)
+
 ## 5.26.0 - 2019-01-28
 
 ### Added
