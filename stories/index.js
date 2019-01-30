@@ -96,7 +96,7 @@ import './CalendarPanel/index.story'; // 11.6 CalendarPanel
 // 12. Other
 import './Badge/index.story'; // 12.1 Badge
 import './BadgeSelect/index.story.js'; // 12.2 BadgeSelect
-import './CounterBadge'; //12.3 CounterBadge
+import './CounterBadge/CounterBadge.story'; //12.3 CounterBadge
 import './FullTextView.story.js'; //12.4 FullTextView
 import './Tag/Tag.story'; // 12.5 Tag
 import './Avatar/Avatar.story'; // 12.6 Avatar
