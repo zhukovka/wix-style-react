@@ -100,7 +100,11 @@ const calendarDriverFactory = ({ element }) => {
     getMonthCaption: () => getMonthCaption().textContent,
     getMonthDropdownLabel: () => getMonthDropdownButton().textContent,
     getSelectedYear: () => getYearDropdown().textContent,
-    getFocusedDay: () => getFocusedDay().textContent,
+    /** Returns the text of the focused day or `null` if there is no focused day */
+    getFocusedDay: () => {
+      const focusedDayElement = getFocusedDay();
+      return !!focusedDayElement ? focusedDayElement.textContent : null;
+    },
     getFocusedDayElement: () => getFocusedDay(),
     pressLeftArrow: () =>
       ReactTestUtils.Simulate.keyDown(getFocusedDay(), {

@@ -398,6 +398,59 @@ describe('Calendar', () => {
     });
   });
 
+  describe('Auto Focus', () => {
+    const defaultProps = {
+      onChange: () => {},
+    };
+    it('should autoFocus on selected Day by default', () => {
+      const { driver } = render(
+        <Calendar {...defaultProps} value={new Date(2018, 10, 10)} />,
+      );
+      expect(driver.getFocusedDay()).toBe('10');
+    });
+
+    it('should NOT autoFocus on selected Day when autoFocus prop is false', () => {
+      const { driver } = render(
+        <Calendar
+          {...defaultProps}
+          value={new Date(2018, 10, 10)}
+          autoFocus={false}
+        />,
+      );
+      expect(driver.getFocusedDay()).toBe(null);
+    });
+
+    it('should autoFocus on selected Day when rerendering with autoFocus=true', () => {
+      const { driver, rerender } = render(
+        <Calendar
+          {...defaultProps}
+          value={new Date(2018, 10, 10)}
+          autoFocus={false}
+        />,
+      );
+      expect(driver.getFocusedDay()).toBe(null);
+
+      rerender(
+        <Calendar {...defaultProps} value={new Date(2018, 10, 10)} autoFocus />,
+      );
+
+      expect(driver.getFocusedDay()).toBe('10');
+    });
+
+    it('should NOT autoFocus on selected Day when rerendering without changing the autoFocus', () => {
+      const { driver, rerender } = render(
+        <Calendar {...defaultProps} value={new Date(2018, 10, 10)} autoFocus />,
+      );
+      expect(driver.getFocusedDay()).toBe('10');
+
+      rerender(
+        <Calendar {...defaultProps} value={new Date(2018, 10, 9)} autoFocus />,
+      );
+
+      expect(driver.getFocusedDay()).toBe('10');
+    });
+  });
+
   describe(`'value' update`, () => {
     describe(`'month' state`, () => {
       function testCase({
