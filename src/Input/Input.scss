@@ -19,13 +19,14 @@ $material-gap: 8px;
 .input-wrapper {
   display: flex;
   width: 100%;
+  padding: 0 $gap;
 }
 
 .input {
   flex-grow: 1;
   flex-shrink: 1;
   min-width: 20px;
-  padding: 0 $double-gap;
+  padding: 0 $gap;
   margin: 0;
   border: 0;
   outline: 0;
@@ -45,9 +46,6 @@ $material-gap: 8px;
     }
   }
 
-  &.withPrefix { padding-left: 0; }
-  &.withSuffix { padding-right: 0; }
-  &.withSuffixes { padding-right: $gap; }
 }
 
 // Remove IE10+ automatically x button
@@ -60,7 +58,6 @@ $material-gap: 8px;
   display: none !important;
 }
 
-.prefixes,
 .suffixes {
   display: flex;
   align-items: center;
@@ -71,7 +68,6 @@ $material-gap: 8px;
   height: 100%;
 }
 
-.prefix,
 .suffix {
   height: 100%;
   display: flex;
@@ -79,18 +75,6 @@ $material-gap: 8px;
 
   &:first-child .unit-separator { margin-left: $double-gap; }
   &:last-child .unit { padding-right: $double-gap; }
-}
-
-.prefix {
-  width: 100%;
-}
-
-.prefixSuffixWrapper {
-  //needs additional wrapper with display:block to fix inputs with prefix in ie11
-  //https://github.com/wix/wix-style-react/issues/1693
-  //https://github.com/wix/wix-style-react/issues/1691
-  display: block;
-  margin-right: 6px;
 }
 
 .roundInput {
@@ -255,7 +239,6 @@ $material-gap: 8px;
   }
   &-material {
     border-radius: 0;
-    .prefixes,
     .suffixes {
       padding: 0 4px;
     }
@@ -333,7 +316,6 @@ $material-gap: 8px;
 @include withRTL() {
   .root,
   .input-wrapper,
-  .prefixes,
   .suffixes { direction: rtl; }
   .input {
     direction: rtl;
@@ -347,17 +329,11 @@ $material-gap: 8px;
     &:first-child .unit-separator { margin-right: $double-gap; margin-left: $gap; }
     &:last-child .unit { padding-left: $double-gap; padding-right: $gap; }
   }
-
-  .prefixSuffixWrapper {
-    margin-right: 0;
-    margin-left: 6px;
-  }
 }
 
 // RTL layout based on a property passed directly to the component.
 .rtl.root {
   direction: rtl;
-  .prefixes,
   .suffixes { direction: rtl; }
   .input { direction: rtl; }
 }

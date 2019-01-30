@@ -4,6 +4,8 @@ import classNames from 'classnames';
 
 import Ticker from './Ticker';
 import Unit from './Unit';
+import Icon from './Icon';
+import Custom from './Custom';
 import Group from './Group';
 import InputSuffix, { getVisibleSuffixCount } from './InputSuffix';
 
@@ -13,6 +15,8 @@ import styles from './Input.scss';
 class Input extends Component {
   static Ticker = Ticker;
   static Unit = Unit;
+  static Icon = Icon;
+  static Custom = Custom;
   static Group = Group;
 
   static StatusError = 'error';
@@ -170,34 +174,28 @@ class Input extends Component {
     //https://github.com/wix/wix-style-react/issues/1691
     return (
       <div className={styles.inputWrapper}>
-        {prefix && (
-          <div className={styles.prefixSuffixWrapper}>
-            <div className={styles.prefix}>{prefix}</div>
-          </div>
-        )}
+        {prefix && <div className={styles.prefix}>{prefix}</div>}
 
         {inputElement}
         {visibleSuffixCount > 0 && (
-          <div className={styles.prefixSuffixWrapper}>
-            <InputSuffix
-              status={suffixStatus}
-              statusMessage={suffixStatusMessage}
-              theme={theme}
-              disabled={disabled}
-              help={help}
-              helpMessage={helpMessage}
-              onIconClicked={onIconClicked}
-              magnifyingGlass={magnifyingGlass}
-              isClearButtonVisible={isClearButtonVisible}
-              onClear={this.handleSuffixOnClear}
-              menuArrow={menuArrow}
-              unit={unit}
-              focused={this.state.focus}
-              suffix={suffix}
-              tooltipPlacement={tooltipPlacement}
-              onTooltipShow={onTooltipShow}
-            />
-          </div>
+          <InputSuffix
+            status={suffixStatus}
+            statusMessage={suffixStatusMessage}
+            theme={theme}
+            disabled={disabled}
+            help={help}
+            helpMessage={helpMessage}
+            onIconClicked={onIconClicked}
+            magnifyingGlass={magnifyingGlass}
+            isClearButtonVisible={isClearButtonVisible}
+            onClear={this.handleSuffixOnClear}
+            menuArrow={menuArrow}
+            unit={unit}
+            focused={this.state.focus}
+            suffix={suffix}
+            tooltipPlacement={tooltipPlacement}
+            onTooltipShow={onTooltipShow}
+          />
         )}
       </div>
     );

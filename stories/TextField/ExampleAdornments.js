@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import { Layout, Cell } from 'wix-style-react/Layout';
 import Input from 'wix-style-react/Input';
 import FormField from 'wix-style-react/FormField';
+import Date from '../../src/new-icons/Date';
 
 const defaultProps = {
   placeholder: 'Search term',
@@ -56,6 +57,55 @@ const Example = () => (
         <Cell span="4">
           <FormField label="Help + tooltip">
             <Input {...defaultProps} help helpMessage="I am a message" />
+            <br />
+          </FormField>
+        </Cell>
+        <Cell span="4">
+          <FormField label="Icon [Prefix & Suffix]">
+            <Input
+              {...defaultProps}
+              prefix={
+                <Input.Icon>
+                  <Date />
+                </Input.Icon>
+              }
+              suffix={
+                <Input.Icon>
+                  <Date />
+                </Input.Icon>
+              }
+            />
+            <br />
+          </FormField>
+        </Cell>
+      </Layout>
+    </Cell>
+    <Cell>
+      <Layout>
+        <Cell span="4">
+          <FormField label="Custom [Prefix & Suffix]">
+            <Input
+              {...defaultProps}
+              prefix={<Input.Custom>http://www...</Input.Custom>}
+              suffix={<Input.Custom value=".com" />}
+            />
+            <br />
+          </FormField>
+        </Cell>
+        <Cell span="4">
+          <FormField label="Custom [Prefix & Suffix]">
+            <Input
+              status={'error'}
+              {...defaultProps}
+              suffix={
+                <Input.Group>
+                  <Input.Custom value="$" />
+                  <Input.Icon>
+                    <Date />
+                  </Input.Icon>
+                </Input.Group>
+              }
+            />
             <br />
           </FormField>
         </Cell>

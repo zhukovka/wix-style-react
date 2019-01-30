@@ -1,0 +1,10 @@
+@import '../../common.scss';
+
+.custom {
+    @include FontLight();
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0 6px;
+    color: $D40;
+}
