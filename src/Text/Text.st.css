@@ -8,16 +8,16 @@
   -st-named: 
   B10, B20,
   D10, D20, D40,
-  G10, P10, R10, WHITE;
+  G10, P10, R10, WHITE, D55;
 }
 
 .root {
   -st-states: 
     size(enum(small, medium, tiny)),
     secondary,
-    skin(enum(standard, success, error, premium)),
+    skin(enum(standard, success, error, premium, disabled)),
     light,
-    weight(enum(thin, normal, bold));
+    weight(enum(thin, normal, bold)), disabled;
 
   white-space: pre-line;
 }
@@ -69,6 +69,12 @@
 .root:skin(premium):light,
 .root:skin(premium):secondary {
   color: value(P10);
+}
+
+.root:skin(disabled),
+.root:skin(disabled):light,
+.root:skin(disabled):secondary {
+  color: value(D55);
 }
 
 .root:size(medium):weight(bold),
