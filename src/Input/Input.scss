@@ -73,7 +73,6 @@ $material-gap: 8px;
   display: flex;
   align-items: center;
 
-  &:first-child .unit-separator { margin-left: $double-gap; }
   &:last-child .unit { padding-right: $double-gap; }
 }
 
@@ -326,7 +325,6 @@ $material-gap: 8px;
 
   .prefix,
   .suffix {
-    &:first-child .unit-separator { margin-right: $double-gap; margin-left: $gap; }
     &:last-child .unit { padding-left: $double-gap; padding-right: $gap; }
   }
 }
@@ -405,19 +403,6 @@ $material-gap: 8px;
   //needs display:block to fix inputs with prefix in ie11
   //https://github.com/wix/wix-style-react/issues/1691
   display: block;
-}
-
-.unit-separator {
-  width: 1px;
-  margin: 0 $gap;
-  background-color: $paletteB4;
-  height: 18px;
-
-  @at-root {
-    .hasError .unit-separator {
-      background-color: $paletteR1;
-    }
-  }
 }
 
 .menu-arrow {
