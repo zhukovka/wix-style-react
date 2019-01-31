@@ -19,11 +19,17 @@ Types of changes:
 ### Added
 
 - `<SegmentedToggle/>` - new component [#2797](https://github.com/wix/wix-style-react/pull/2797)
-- `<Calendar/>` - Add `autoFocus` prop [#2838](https://github.com/wix/wix-style-react/pull/2838)
+- `<Calendar/>` - add `autoFocus` prop [#2838](https://github.com/wix/wix-style-react/pull/2838)
 
 ### Fixed
 
-- Changing vertical padding on side menu [#2837](https://github.com/wix/wix-style-react/pull/2837)
+- `<SideMenu/>` - fix vertical padding according to spec [#2837](https://github.com/wix/wix-style-react/pull/2837)
+- `<Thumbnail/>` - minor css fixes [#2840](https://github.com/wix/wix-style-react/pull/2840)
+- `<Input/>` - fix line-height [#2835](https://github.com/wix/wix-style-react/pull/2835)
+-  `<FormField/>` - show char counter even if label is not displayed [#2855](https://github.com/wix/wix-style-react/pull/2855)
+
+### Docs
+- integrate Google analytics with Storybook [#2860](https://github.com/wix/wix-style-react/pull/2860)
 
 ## 6.0.0 - 2019-01-28
 
