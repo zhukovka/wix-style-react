@@ -5,6 +5,7 @@
  */
 
 import './Introduction';
+import './Playground/Playground';
 
 // 1. Foundations
 import './Typography/TypographyStory.js'; // 1.2 Typography
