@@ -148,6 +148,11 @@ class FormField extends React.Component {
     );
   };
 
+  _hasInlineLabel = (label, labelPlacement) =>
+    label &&
+    (labelPlacement === labelPlacements.left ||
+      labelPlacement === labelPlacements.right);
+
   render() {
     const {
       label,
@@ -160,11 +165,6 @@ class FormField extends React.Component {
       stretchContent,
     } = this.props;
     const { lengthLeft } = this.state;
-
-    const hasInlineLabel = (label, labelPlacement) =>
-      label &&
-      (labelPlacement === labelPlacements.left ||
-        labelPlacement === labelPlacements.right);
 
     return (
       <div
@@ -203,7 +203,7 @@ class FormField extends React.Component {
             data-hook="formfield-children"
             className={classnames(styles.children, {
               [styles.childrenWithInlineSuffixes]:
-                !label || hasInlineLabel(label, labelPlacement),
+                !label || this._hasInlineLabel(label, labelPlacement),
             })}
           >
             {this.renderChildren()}
@@ -212,7 +212,8 @@ class FormField extends React.Component {
 
         {!label && (required || infoContent) && this._renderInlineSuffixes()}
 
-        {hasInlineLabel(label, labelPlacement) && this._renderInlineSuffixes()}
+        {this._hasInlineLabel(label, labelPlacement) &&
+          this._renderInlineSuffixes()}
       </div>
     );
   }
