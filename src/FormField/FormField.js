@@ -109,6 +109,8 @@ class FormField extends React.Component {
     return children;
   }
 
+  _hasCharCounter = () => typeof this.state.lengthLeft === 'number';
+
   _renderInfoIcon = () => {
     const { infoContent, infoTooltipProps } = this.props;
     return (
@@ -134,6 +136,7 @@ class FormField extends React.Component {
         data-hook="formfield-inline-suffixes"
         className={classnames(styles.suffixesInline, {
           [styles.minLabelHeight]: !children,
+          [styles.inlineWithCharCounter]: this._hasCharCounter(),
         })}
       >
         <Label
@@ -194,7 +197,7 @@ class FormField extends React.Component {
 
             {required && asterisk}
             {this._renderInfoIcon()}
-            {typeof lengthLeft === 'number' && charactersLeft(lengthLeft)}
+            {this._hasCharCounter() && charactersLeft(lengthLeft)}
           </div>
         )}
 
@@ -206,6 +209,9 @@ class FormField extends React.Component {
                 !label || this._hasInlineLabel(label, labelPlacement),
             })}
           >
+            {(!label || labelPlacement !== labelPlacements.top) &&
+              this._hasCharCounter() &&
+              charactersLeft(lengthLeft)}
             {this.renderChildren()}
           </div>
         )}
