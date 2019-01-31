@@ -110,6 +110,14 @@ export default class DraggableSource extends React.Component {
     offsetOfHandle: { x: 0, y: 0 },
   };
 
+  node = null;
+
+  setNodeRef = (node) => {
+    this.node = node;
+  };
+
+  getNodeRef = () => this.node;
+
   componentDidMount() {
     if (this.props.connectDragPreview) {
       this.props.connectDragPreview(getEmptyImage(), {
@@ -144,32 +152,6 @@ export default class DraggableSource extends React.Component {
     }
   }
 
-  _getWrapperStyles() {
-    const {shift, ignoreMouseEvents, animationDuration, animationTiming} = this.props;
-    const [xShift, yShift] = shift || [0, 0];
-    const hasShift = (xShift || yShift);
-
-    const transition = ignoreMouseEvents
-      ? `transform ${animationDuration}ms ${animationTiming}`
-      : undefined;
-    const transform = hasShift
-      ? `translate(${xShift}px, ${yShift}px)`
-      : undefined;
-    const willChange = hasShift
-      ? 'transform'
-      : undefined;
-    const pointerEvents = ignoreMouseEvents || hasShift
-      ? 'none'
-      : undefined;
-
-    return {
-      willChange,
-      transition,
-      transform,
-      pointerEvents,
-    };
-  }
-
   _renderDraggableItem() {
     const {
       isDragging,
@@ -202,7 +184,7 @@ export default class DraggableSource extends React.Component {
     );
 
     return (
-      <div style={this._getWrapperStyles()}>
+      <div ref={this.setNodeRef}>
         {content}
       </div>
     );
@@ -261,13 +243,6 @@ DraggableSource.propTypes = {
   onDragStart: PropTypes.func,
   onDragEnd: PropTypes.func,
 
-  /** visual positioning shifting for an element (transform: translate) without moving it from its real position at DOM (left, top) */
-  shift: PropTypes.arrayOf(PropTypes.number),
-  ignoreMouseEvents: PropTypes.bool,
-  /** animation duration in ms, default = 0 - disabled */
-  animationDuration: PropTypes.number,
-  /** animation timing function, default = linear */
-  animationTiming: PropTypes.string,
   /** callback that prevents item from dragging */
   canDrag: PropTypes.func,
 };
