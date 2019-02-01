@@ -5,7 +5,7 @@
 
 :import {
   -st-from: "wix-ui-core/dist/src/themes/backoffice/colors.st.css";
-  -st-named: F00, B20, B50, D55;
+  -st-named: F00, B20, B50, D55, D10;
 }
 
 :import {
@@ -20,7 +20,9 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  position:relative;
+
+  /* Styling */
+  color: value(D10);
  
   /* Sizing */
   flex-basis: 100%;
@@ -33,6 +35,7 @@
   border: solid 2px transparent;
   border-radius: 6px;
   padding: 0 24px;
+  margin: 0;  
 
   /* Disable native focus */
   outline: none;
