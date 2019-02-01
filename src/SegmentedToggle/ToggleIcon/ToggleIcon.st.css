@@ -30,6 +30,7 @@
 
   /* Styling */
   color: value(D10);
+  cursor: pointer;
 
   /* Border & Spacing */
   background: transparent;

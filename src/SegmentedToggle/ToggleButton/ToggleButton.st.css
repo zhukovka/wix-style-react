@@ -23,7 +23,8 @@
 
   /* Styling */
   color: value(D10);
- 
+  cursor: pointer;
+  
   /* Sizing */
   flex-basis: 100%;
   height: 36px;
