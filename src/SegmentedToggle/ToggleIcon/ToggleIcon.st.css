@@ -66,14 +66,6 @@
 
 /* Additional styles */ 
 
-.text {
-  -st-states: shown;
-}
-
-.text:shown {
-   color: value(D80);
-}
-
 .textWrapper {
   padding: 12px 24px;
   text-align: center;
