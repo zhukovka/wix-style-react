@@ -70,3 +70,8 @@
   flex-shrink: 0;
   margin: 0 6px 0 -6px;
 }
+
+:global([dir='rtl']) .prefix {
+  flex-shrink: 0;
+  margin: 0 -6px 0 6px;
+}
