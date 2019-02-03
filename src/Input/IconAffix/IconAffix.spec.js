@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { componentFactory, iconDriverFactory } from './testkit/Icon';
+import { componentFactory, iconDriverFactory } from './testkit/IconAffix';
 
 describe('<Icon />', () => {
   const createDriver = props => iconDriverFactory(componentFactory(props));

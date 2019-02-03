@@ -4,8 +4,8 @@ import classNames from 'classnames';
 
 import Ticker from './Ticker';
 import Unit from './Unit';
-import IconAffix from './Icon';
-import CustomAffix from './Custom';
+import IconAffix from './IconAffix';
+import CustomAffix from './CustomAffix';
 import Group from './Group';
 import InputSuffix, { getVisibleSuffixCount } from './InputSuffix';
 

@@ -1,12 +1,13 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
-import Icon from '../Icon';
+import Custom from '../CustomAffix';
 
-const iconDriverFactory = ({ element }) => {
+const customDriverFactory = ({ element }) => {
   return {
     isEmpty: () => element.children.length === 0,
     hasChild: style => !!element.querySelector(style),
+    getValue: () => element.textContent,
   };
 };
 
@@ -15,16 +16,16 @@ const componentFactory = (props = {}) => {
   const wrapperDiv = document.createElement('div');
   ReactDOM.render(
     <div ref={r => (element = r)}>
-      <Icon {...props} />
+      <Custom {...props} />
     </div>,
     wrapperDiv,
   );
   return { element: element.childNodes[0], wrapper: wrapperDiv };
 };
 
-const iconTestkitFactory = ({ wrapper, dataHook }) => {
+const customTestkitFactory = ({ wrapper, dataHook }) => {
   const element = wrapper.querySelector(`[data-hook='${dataHook}']`);
-  return iconDriverFactory({ element, wrapper });
+  return customDriverFactory({ element, wrapper });
 };
 
-export { iconTestkitFactory, componentFactory, iconDriverFactory };
+export { customTestkitFactory, componentFactory, customDriverFactory };

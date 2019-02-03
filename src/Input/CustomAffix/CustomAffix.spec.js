@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { componentFactory, customDriverFactory } from './testkit/Custom';
+import { componentFactory, customDriverFactory } from './testkit/CustomAffix';
 
 describe('<Custom />', () => {
   const createDriver = props => customDriverFactory(componentFactory(props));

@@ -2,14 +2,14 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
-import styles from './Icon.scss';
+import styles from './IconAffix.scss';
 import InputConsumer from '../InputConsumer';
 
 const IconAffix = ({ children }) => (
   <InputConsumer consumerCompName={IconAffix.displayName}>
     {({ size, inSuffix }) => {
       const className = classNames(styles.icon, {
-        [styles.padRight]: inSuffix,
+        [styles.inSuffix]: inSuffix,
       });
       return (
         <div className={className} data-hook="icon">

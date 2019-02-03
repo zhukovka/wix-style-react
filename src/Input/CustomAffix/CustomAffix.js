@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
-import styles from './Custom.scss';
+import styles from './CustomAffix.scss';
 import InputConsumer from '../InputConsumer';
 
 const CustomAffix = ({ children, value }) => (
