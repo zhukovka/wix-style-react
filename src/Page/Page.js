@@ -253,20 +253,35 @@ class Page extends WixComponent {
       minimizedFixedContainerHeight,
     } = this._calculateHeaderMeasurements({ PageTail });
 
-    const classNameStretchVertically = stretchVertically ? s.stretchVertically: '';
+    const classNameStretchVertically = stretchVertically
+      ? s.stretchVertically
+      : '';
 
     const contentLayoutProps = {
-      className: classNames(s.content, {
-        [s.contentFullScreen]: contentFullScreen,
-      }, classNameStretchVertically),
+      className: classNames(
+        s.content,
+        {
+          [s.contentFullScreen]: contentFullScreen,
+        },
+        classNameStretchVertically,
+      ),
       style: contentFullScreen ? null : pageDimensionsStyle,
     };
 
     return (
-      <div className={classNames(s.pageWrapper, className, classNameStretchVertically)}>
+      <div
+        className={classNames(
+          s.pageWrapper,
+          className,
+          classNameStretchVertically,
+        )}
+      >
         <div
           className={classNames(s.page, classNameStretchVertically)}
-          style={{ minWidth: minWidth + 2 * PAGE_SIDE_PADDING_PX, paddingBottom: bottomPadding }}
+          style={{
+            minWidth: minWidth + 2 * PAGE_SIDE_PADDING_PX,
+            paddingBottom: bottomPadding,
+          }}
         >
           <div
             data-hook="page-fixed-container"
@@ -340,7 +355,12 @@ class Page extends WixComponent {
                 style={{ height: gradientHeight }}
               />
             )}
-            <div className={classNames(s.contentContainer, classNameStretchVertically)}>
+            <div
+              className={classNames(
+                s.contentContainer,
+                classNameStretchVertically,
+              )}
+            >
               <div {...contentLayoutProps}>
                 {this._safeGetChildren(PageContent)}
               </div>
