@@ -4,7 +4,9 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 0 6px;
     height: 100%;
     color: $B10;
+    &.pad-right {
+        padding-right: 6px;
+    }
 }

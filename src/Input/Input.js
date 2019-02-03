@@ -175,11 +175,16 @@ class Input extends Component {
     //https://github.com/wix/wix-style-react/issues/1693
     //https://github.com/wix/wix-style-react/issues/1691
     return (
-      <InputContext.Provider value={this.props}>
-        <div className={styles.inputWrapper}>
-          {prefix && <div className={styles.prefix}>{prefix}</div>}
-
-          {inputElement}
+      <div className={styles.inputWrapper}>
+        {prefix && (
+          <div className={styles.prefix}>
+            <InputContext.Provider value={{ ...this.props, inPrefix: true }}>
+              {prefix}
+            </InputContext.Provider>
+          </div>
+        )}
+        {inputElement}
+        <InputContext.Provider value={{ ...this.props, inSuffix: true }}>
           {visibleSuffixCount > 0 && (
             <InputSuffix
               status={suffixStatus}
@@ -201,8 +206,8 @@ class Input extends Component {
               onTooltipShow={onTooltipShow}
             />
           )}
-        </div>
-      </InputContext.Provider>
+        </InputContext.Provider>
+      </div>
     );
   }
 
