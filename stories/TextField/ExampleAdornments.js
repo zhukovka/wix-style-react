@@ -123,17 +123,8 @@ const Example = () => (
               size="large"
               roundInput
               status="loading"
-              prefix={
-                <Input.IconAffix>
-                  <Date />
-                </Input.IconAffix>
-              }
-              suffix={
-                <Input.Group>
-                  <Input.CustomAffix value="$" />
-                  <Input.Ticker />
-                </Input.Group>
-              }
+              prefix="@"
+              suffix="c"
             />
             <br />
           </FormField>
