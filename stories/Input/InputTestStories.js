@@ -27,10 +27,20 @@ storiesOf(kind, module).add('1. Input with suffix group', () => {
     <div>
       <h1>Input with group suffix and loading state</h1>
       <br />
-      <Input {...defaultProps} status={'loading'} suffix={groupSuffix} />
+      <Input
+        dataHook="storybook-input"
+        {...defaultProps}
+        status={'loading'}
+        suffix={groupSuffix}
+      />
       <h1>Input with group suffix and error state</h1>
       <br />
-      <Input {...defaultProps} status={'error'} suffix={groupSuffix} />
+      <Input
+        dataHook="storybook-input"
+        {...defaultProps}
+        status={'error'}
+        suffix={groupSuffix}
+      />
     </div>
   );
 });
@@ -40,16 +50,21 @@ storiesOf(kind, module).add('2. Input with prefix group', () => {
     <div>
       <h1>Input with group prefix</h1>
       <br />
-      <Input {...defaultProps} prefix={groupSuffix} />
+      <Input
+        dataHook="storybook-input"
+        {...defaultProps}
+        prefix={groupSuffix}
+      />
       <h1>Input with custom prefix</h1>
       <br />
       <Input
+        dataHook="storybook-input"
         {...defaultProps}
         prefix={<Input.CustomAffix>@</Input.CustomAffix>}
       />
       <h1>Input with custom textual prefix</h1>
       <br />
-      <Input {...defaultProps} prefix="https://" />
+      <Input dataHook="storybook-input" {...defaultProps} prefix="https://" />
     </div>
   );
 });

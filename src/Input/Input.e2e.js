@@ -9,48 +9,63 @@ import { getTestStoryKind, Category } from '../../stories/storiesHierarchy';
 describe('Input', () => {
   const eyes = eyesItInstance();
 
-  const storyUrl = createStoryUrl({
-    kind: 'Components',
-    story: 'Input',
-    withExamples: false,
-  });
-
-  const kind = getTestStoryKind({
-    category: Category.COMPONENTS,
-    storyName: 'Input',
-  });
-
-  const driver = inputTestkitFactory({ dataHook: 'storybook-input' });
-
-  beforeAll(() => browser.get(storyUrl));
-
-  afterEach(() => autoExampleDriver.remount());
-
-  eyes.it('should render input component', async () => {
-    await waitForVisibilityOf(driver.element(), 'Cannot find Input component');
-  });
-
-  eyes.it('should render with correct text', async () => {
-    await autoExampleDriver.setProps({ value: 'hello' });
-    await waitForVisibilityOf(driver.element(), 'Cannot find Input component');
-    expect(await driver.getText()).toEqual('hello');
-  });
-
-  eyes.it('should render with correct prefix group', async () => {
-    const url = createStoryUrl({
-      kind,
-      story: '1. Input with suffix group',
+  describe('Story tests', () => {
+    const storyUrl = createStoryUrl({
+      kind: 'Components',
+      story: 'Input',
+      withExamples: false,
     });
-    await browser.get(url);
-    await waitForVisibilityOf(driver.element(), 'Cannot find Input component');
+    const driver = inputTestkitFactory({ dataHook: 'storybook-input' });
+    beforeAll(() => browser.get(storyUrl));
+
+    afterEach(() => autoExampleDriver.remount());
+    eyes.it('should render input component', async () => {
+      await waitForVisibilityOf(
+        driver.element(),
+        'Cannot find Input component',
+      );
+      autoExampleDriver.remount();
+    });
+
+    eyes.it('should render with correct text', async () => {
+      await autoExampleDriver.setProps({ value: 'hello' });
+      await waitForVisibilityOf(
+        driver.element(),
+        'Cannot find Input component',
+      );
+      expect(await driver.getText()).toEqual('hello');
+    });
   });
 
-  eyes.it('should render with correct suffix group', async () => {
-    const url = createStoryUrl({
-      kind,
-      story: '2. Input with prefix group',
+  describe('Test pages', () => {
+    const kind = getTestStoryKind({
+      category: Category.COMPONENTS,
+      storyName: 'Input',
     });
-    await browser.get(url);
-    await waitForVisibilityOf(driver.element(), 'Cannot find Input component');
+
+    const testPageDriver = inputTestkitFactory({ dataHook: 'wsr-input' });
+    eyes.it('should render with correct prefix group', async () => {
+      const url = createStoryUrl({
+        kind,
+        story: '1. Input with suffix group',
+      });
+      await browser.get(url);
+      await waitForVisibilityOf(
+        testPageDriver.element(),
+        'Cannot find Input component',
+      );
+    });
+
+    eyes.it('should render with correct suffix group', async () => {
+      const url = createStoryUrl({
+        kind,
+        story: '2. Input with prefix group',
+      });
+      await browser.get(url);
+      await waitForVisibilityOf(
+        testPageDriver.element(),
+        'Cannot find Input component',
+      );
+    });
   });
 });
