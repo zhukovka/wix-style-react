@@ -74,7 +74,7 @@
   },
   "homepage": "https://github.com/wix/wix-style-react#readme",
   "devDependencies": {
-    "@storybook/addon-google-analytics": "4.0.0",
+    "@storybook/addon-google-analytics": "^4.1.11",
     "@storybook/addon-links": "^4.1.11",
     "@storybook/addon-options": "^4.1.11",
     "@storybook/react": "^4.1.11",
