@@ -8,7 +8,6 @@ import { Section } from '../../UXStoryTemplate';
 const defaultProps = {
   size: 'normal',
   placeholder: 'They did not know it was impossible, so they did it!',
-  unit: '$',
 };
 
 export default () => {

@@ -6,12 +6,13 @@ import { storySettings } from './storySettings';
 import {
   Standard,
   Error,
-  Unit,
   Controlled,
   Sizes,
   Rounded,
   InstanceMethods,
   Loader,
+  CustomAffix,
+  IconAffix,
 } from './examples';
 
 export default {
@@ -40,7 +41,8 @@ export default {
       <Standard />
       <Error />
       <Loader />
-      <Unit />
+      <CustomAffix />
+      <IconAffix />
       <Controlled />
       <Sizes />
       <Rounded />
