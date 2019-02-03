@@ -12,7 +12,7 @@ const PageExampleStories = storiesOf(
   module,
 );
 
-PageExampleStories.add('1. BM Like Layout', () => <FullPageExample />);
-PageExampleStories.add('2. StandAlone', () => <ExampleStandAlone />);
-PageExampleStories.add('3. Standard', () => <ExampleStandard />);
-PageExampleStories.add('4. Stretched Content', () => <ExampleStretchContent />);
+PageExampleStories.add('1. StandAlone', () => <ExampleStandAlone />);
+PageExampleStories.add('2. Standard', () => <ExampleStandard />);
+PageExampleStories.add('3. Stretched Content', () => <ExampleStretchContent />);
+PageExampleStories.add('99. Deprecated Example', () => <FullPageExample />);
