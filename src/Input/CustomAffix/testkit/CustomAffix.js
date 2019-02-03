@@ -2,6 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 
 import Custom from '../CustomAffix';
+import { InputContext } from '../../InputContext';
 
 const customDriverFactory = ({ element }) => {
   return {
@@ -11,12 +12,14 @@ const customDriverFactory = ({ element }) => {
   };
 };
 
-const componentFactory = (props = {}) => {
+const componentFactory = (props = {}, context = {}) => {
   let element;
   const wrapperDiv = document.createElement('div');
   ReactDOM.render(
     <div ref={r => (element = r)}>
-      <Custom {...props} />
+      <InputContext.Provider value={context}>
+        <Custom {...props} />
+      </InputContext.Provider>
     </div>,
     wrapperDiv,
   );

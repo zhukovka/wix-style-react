@@ -2,6 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 
 import Icon from '../IconAffix';
+import { InputContext } from '../../InputContext';
 
 const iconDriverFactory = ({ element }) => {
   return {
@@ -10,12 +11,14 @@ const iconDriverFactory = ({ element }) => {
   };
 };
 
-const componentFactory = (props = {}) => {
+const componentFactory = (props = {}, context = {}) => {
   let element;
   const wrapperDiv = document.createElement('div');
   ReactDOM.render(
     <div ref={r => (element = r)}>
-      <Icon {...props} />
+      <InputContext.Provider value={context}>
+        <Icon {...props} />
+      </InputContext.Provider>
     </div>,
     wrapperDiv,
   );
