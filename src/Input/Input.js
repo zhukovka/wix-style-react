@@ -57,6 +57,11 @@ class Input extends Component {
         `Input's unit prop is deprecated and will be removed in the next major release, please use suffix property with Input.CustomAffix instead`,
       );
     }
+    if (props.magnifyingGlass) {
+      deprecationLog(
+        `Input's magnifyingGlass prop is deprecated and will be removed in the next major release, please use suffix property with Input.IconAffix instead`,
+      );
+    }
   }
 
   render(props = {}) {

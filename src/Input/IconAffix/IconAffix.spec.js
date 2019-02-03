@@ -1,13 +1,14 @@
 import React from 'react';
+import Search from '../../new-icons/Search';
 
 import { componentFactory, iconDriverFactory } from './testkit/IconAffix';
 
 describe('<Icon />', () => {
   const createDriver = props => iconDriverFactory(componentFactory(props));
 
-  it('should create icon component and render the given children', () => {
-    const driver = createDriver({ children: <div className="smth" /> });
+  it('should create icon component and render the given icon', () => {
+    const driver = createDriver({ children: <Search /> });
     expect(driver.isEmpty()).toEqual(false);
-    expect(driver.hasChild('.smth')).toEqual(true);
+    expect(driver.getIconName()).toEqual('Search');
   });
 });

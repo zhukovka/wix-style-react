@@ -1,13 +1,14 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
-import Icon from '../IconAffix';
+import IconAffix from '../IconAffix';
 import { InputContext } from '../../InputContext';
 
 const iconDriverFactory = ({ element }) => {
   return {
     isEmpty: () => element.children.length === 0,
     hasChild: style => !!element.querySelector(style),
+    getIconName: () => element.getAttribute('data-icon'),
   };
 };
 
@@ -17,7 +18,7 @@ const componentFactory = (props = {}, context = {}) => {
   ReactDOM.render(
     <div ref={r => (element = r)}>
       <InputContext.Provider value={context}>
-        <Icon {...props} />
+        <IconAffix {...props} />
       </InputContext.Provider>
     </div>,
     wrapperDiv,
