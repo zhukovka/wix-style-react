@@ -7,12 +7,16 @@ import InputConsumer from '../InputConsumer';
 
 const IconAffix = ({ children }) => (
   <InputConsumer consumerCompName={IconAffix.displayName}>
-    {({ size, inSuffix }) => {
+    {({ size, inSuffix, onInputClicked }) => {
       const className = classNames(styles.icon, {
         [styles.inSuffix]: inSuffix,
       });
       return (
-        <div className={className} data-hook="icon">
+        <div
+          onClick={onInputClicked}
+          className={className}
+          data-hook="icon-affix"
+        >
           {React.cloneElement(children, {
             size: size === 'small' ? '18px' : '24px',
           })}

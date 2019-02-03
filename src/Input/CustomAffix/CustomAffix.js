@@ -7,14 +7,18 @@ import InputConsumer from '../InputConsumer';
 
 const CustomAffix = ({ children, value }) => (
   <InputConsumer consumerCompName={CustomAffix.displayName}>
-    {({ size, inSuffix, inPrefix }) => {
+    {({ size, inSuffix, inPrefix, onInputClicked }) => {
       const className = classNames(styles.custom, {
         [styles.inSuffix]: inSuffix,
         [styles.inPrefix]: inPrefix,
         [styles.small]: size === 'small',
       });
       return (
-        <div className={className} data-hook="custom">
+        <div
+          onClick={onInputClicked}
+          className={className}
+          data-hook="custom-affix"
+        >
           {value || children}
         </div>
       );
