@@ -1,0 +1,45 @@
+$headerHeight: 48px;
+$sideBarWidth: 220px;
+
+.root {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+}
+
+.header {
+  align-items: center;
+  box-shadow: 0 1px 5px 0 rgba(41,85,115,.21);
+  display: flex;
+  height: $headerHeight;
+  justify-content: space-between;
+  position: relative;
+  background-color: #fff;
+  z-index: 2000
+}
+
+.body {
+  flex: 1;
+  display: flex;
+  overflow: hidden;
+  height: calc(100% - $headerHeight);
+}
+
+.sideBar {
+  z-index: 2;
+  display: flex;
+  position: relative;
+  white-space: pre-wrap;
+  height: 100%;
+  width: $sideBarWidth;
+  background-color:rgb(35, 38, 60);
+}
+
+.pageContainer {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  direction: ltr;
+  background: #f0f4f7;
+}

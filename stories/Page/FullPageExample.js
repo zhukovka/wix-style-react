@@ -64,8 +64,3 @@ export class FullPageExample extends React.Component {
     );
   }
 }
-
-const displayAdditionalStories = false;
-const story = storiesOf('2. Layout', module).add('2.6 + Page Example', () => (
-  <FullPageExample />
-));

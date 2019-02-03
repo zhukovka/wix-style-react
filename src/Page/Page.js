@@ -269,15 +269,9 @@ class Page extends WixComponent {
     };
 
     return (
-      <div
-        className={classNames(
-          s.pageWrapper,
-          className,
-          classNameStretchVertically,
-        )}
-      >
+      <div className={classNames(s.pageWrapper, className)}>
         <div
-          className={classNames(s.page, classNameStretchVertically)}
+          className={s.page}
           style={{
             minWidth: minWidth + 2 * PAGE_SIDE_PADDING_PX,
             paddingBottom: bottomPadding,
