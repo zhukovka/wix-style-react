@@ -6,10 +6,28 @@
     justify-content: center;
     align-items: center;
     color: $D40;
-    &.pad-right {
-        padding-right: 6px;
+    padding: 0 6px;
+    &.inSuffix {
+        &.small {
+            padding-left: 0;
+        }
     }
-    &.pad-left {
-        padding-left: 6px;
+    &.inPrefix {
+        &.small {
+            padding-right: 0;
+        }
+    }
+}
+
+@include withRTL() {
+    &.inSuffix {
+        &.small {
+            padding-right: 0;
+        }
+    }
+    &.inPrefix {
+        &.small {
+            padding-left: 0;
+        }
     }
 }

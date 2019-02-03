@@ -9,8 +9,9 @@ const CustomAffix = ({ children, value }) => (
   <InputConsumer consumerCompName={CustomAffix.displayName}>
     {({ size, inSuffix, inPrefix }) => {
       const className = classNames(styles.custom, {
-        [styles.padRight]: inSuffix || size !== 'small',
-        [styles.padLeft]: inPrefix || size !== 'small',
+        [styles.inSuffix]: inSuffix,
+        [styles.inPrefix]: inPrefix,
+        [styles.small]: size === 'small',
       });
       return (
         <div className={className} data-hook="custom">
