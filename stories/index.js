@@ -5,6 +5,7 @@
  */
 
 import './Introduction';
+import './Playground/Playground';
 
 // 1. Foundations
 import './Typography/TypographyStory.js'; // 1.2 Typography
@@ -50,6 +51,7 @@ import './MultiSelectCheckbox/index.story.js'; // 4.1 + MultiSelectCheckbox
 import './CheckBox/index.story.js'; // 4.2 Checkbox
 import './RadioGroup.story.js'; // 4.3 RadioGroup
 import './ToggleSwitch/index.story'; // 4.4 ToggleSwitch
+import './SegmentedToggle/index.story'; // 4.5 SegmentedToggle
 import './Slider/index.story'; // 4.7 Slider
 
 // 5. Buttons
@@ -96,7 +98,7 @@ import './CalendarPanel/index.story'; // 11.6 CalendarPanel
 // 12. Other
 import './Badge/index.story'; // 12.1 Badge
 import './BadgeSelect/index.story.js'; // 12.2 BadgeSelect
-import './CounterBadge'; //12.3 CounterBadge
+import './CounterBadge/CounterBadge.story'; //12.3 CounterBadge
 import './FullTextView.story.js'; //12.4 FullTextView
 import './Tag/Tag.story'; // 12.5 Tag
 import './Avatar/Avatar.story'; // 12.6 Avatar
@@ -116,7 +118,7 @@ import './FormField/FormField.story.js';
 import './GenericModalLayout/GenericModalLayout.story.js';
 import './GoogleAddressInput/index.story.js';
 import './Heading/index.story';
-import './Input';
+import './Input/Input.story';
 import './InputArea/index.story.js';
 import './Layout/index.story.js';
 import './Layout';
@@ -156,6 +158,7 @@ import './Thumbnail/testStory';
 import './EditableSelector/testStory';
 import './Slider/testStory'; // 4.7 Slider
 import './StatsWidget/testStory'; // 2.7 StatsWidget
+import './SegmentedToggle/testStory'; // 4.5 SegmentedToggle
 
 // The generated test component
 import './GeneratedTestComponent/index.story';

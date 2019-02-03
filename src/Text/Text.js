@@ -1,7 +1,6 @@
 import React from 'react';
 import { oneOf, bool, string, any } from 'prop-types';
 import style from './Text.st.css';
-import deprecationLog from '../utils/deprecationLog';
 
 /*
  * Temporary fix: SIZES, SKINS, WEIGHTS constants are copied here from constants.js
@@ -19,6 +18,7 @@ export const SKINS = {
   error: 'error',
   success: 'success',
   premium: 'premium',
+  disabled: 'disabled',
 };
 
 export const WEIGHTS = {

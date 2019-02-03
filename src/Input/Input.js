@@ -12,7 +12,6 @@ import InputSuffix, { getVisibleSuffixCount } from './InputSuffix';
 import styles from './Input.scss';
 import { InputContext } from './InputContext';
 
-/** General input container */
 class Input extends Component {
   static Ticker = Ticker;
   static Unit = Unit;
@@ -51,8 +50,8 @@ class Input extends Component {
       id,
       name,
       value,
-      placeholder,
       help,
+      placeholder,
       helpMessage,
       unit,
       magnifyingGlass,
@@ -139,6 +138,7 @@ class Input extends Component {
 
     const inputElement = (
       <input
+        data-hook="wsr-input"
         style={{ textOverflow }}
         ref={input => (this.input = input)}
         className={inputClassNames}
