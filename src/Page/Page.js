@@ -258,14 +258,18 @@ class Page extends WixComponent {
       : '';
 
     const contentLayoutProps = {
+      className: classNames(s.content, {
+        [s.contentFullScreen]: contentFullScreen,
+      }),
+      style: contentFullScreen ? null : pageDimensionsStyle,
+    };
+
+    const scrollableContentLayoutProps = {
+      ...contentLayoutProps,
       className: classNames(
-        s.content,
-        {
-          [s.contentFullScreen]: contentFullScreen,
-        },
+        contentLayoutProps.className,
         classNameStretchVertically,
       ),
-      style: contentFullScreen ? null : pageDimensionsStyle,
     };
 
     return (
@@ -355,7 +359,7 @@ class Page extends WixComponent {
                 classNameStretchVertically,
               )}
             >
-              <div {...contentLayoutProps}>
+              <div {...scrollableContentLayoutProps}>
                 {this._safeGetChildren(PageContent)}
               </div>
               {minimized ? (
