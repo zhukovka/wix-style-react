@@ -7,8 +7,6 @@ import { Container, Row, Col } from 'wix-style-react/Grid';
 import { Add } from 'wix-style-react/new-icons';
 import { BusinessManagerMock } from './BusinessManagerMock';
 
-import { LONG_TEXT } from './SomeContentComponent';
-
 const ExampleStandard = () => (
   <BusinessManagerMock>
     <Page>

@@ -5,6 +5,7 @@ import { Category } from '../storiesHierarchy';
 import { FullPageExample } from './FullPageExample';
 import ExampleStandAlone from './ExampleStandAlone';
 import ExampleStandard from './ExampleStandard';
+import ExampleStretchContent from './ExampleStretchContent';
 
 const PageExampleStories = storiesOf(
   `${Category.LAYOUT}/2.5 Page Examples`,
@@ -14,3 +15,4 @@ const PageExampleStories = storiesOf(
 PageExampleStories.add('1. BM Like Layout', () => <FullPageExample />);
 PageExampleStories.add('2. StandAlone', () => <ExampleStandAlone />);
 PageExampleStories.add('3. Standard', () => <ExampleStandard />);
+PageExampleStories.add('4. Stretched Content', () => <ExampleStretchContent />);
