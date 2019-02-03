@@ -32,7 +32,7 @@ const tail = (
   </Page.Tail>
 );
 
-class FullPageExample extends React.Component {
+export class FullPageExample extends React.Component {
   static propTypes = {
     shortContent: bool,
     maxWidth: number,
@@ -69,33 +69,3 @@ const displayAdditionalStories = false;
 const story = storiesOf('2. Layout', module).add('2.6 + Page Example', () => (
   <FullPageExample />
 ));
-
-if (displayAdditionalStories) {
-  story
-    .add('2.7 + Page Example with short content', () => (
-      <FullPageExample shortContent />
-    ))
-    .add('2.8 + Page Example with maxWidth', () => (
-      <FullPageExample maxWidth={800} />
-    ))
-    .add('2.9 + Page Example with short content and maxWidth', () => (
-      <FullPageExample maxWidth={800} shortContent />
-    ))
-    .add('2.10 + Page Example with sidePadding', () => (
-      <FullPageExample sidePadding={0} />
-    ))
-    .add('2.11 + Page Example with short content and sidePadding', () => (
-      <FullPageExample sidePadding={0} shortContent />
-    ))
-    .add('2.12 + Page Example with sidePadding and maxWidth', () => (
-      <FullPageExample sidePadding={0} maxWidth={800} />
-    ))
-    .add(
-      '2.13 + Page Example with short content sidePadding and maxWidth',
-      () => <FullPageExample sidePadding={0} maxWidth={800} shortContent />,
-    )
-    .add(
-      '2.14 + Page Example with short content bottomPadding and stretchVertically',
-      () => <FullPageExample shortContent bottomPadding={120} stretchVertically/>,
-    );
-}

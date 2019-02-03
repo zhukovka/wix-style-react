@@ -9,6 +9,7 @@ import * as s from './PageExample.scss';
 import { header, tail, fixedContent, content } from './PageChildren';
 import { storySettings } from './storySettings';
 import ExampleEmptyState from './ExampleEmptyState';
+import { FullPageExample } from './FullPageExample';
 
 const PageContainer = props => {
   return (
@@ -146,3 +147,34 @@ storiesOf(kind, module).add('8. Empty State', () => (
     <ExampleEmptyState />
   </PageContainer>
 ));
+
+storiesOf(kind, module)
+  .add('10 + Page Example with short content', () => (
+    <FullPageExample shortContent />
+  ))
+  .add('11 + Page Example with maxWidth', () => (
+    <FullPageExample maxWidth={800} />
+  ))
+  .add('12 + Page Example with short content and maxWidth', () => (
+    <FullPageExample maxWidth={800} shortContent />
+  ))
+  .add('13 + Page Example with sidePadding', () => (
+    <FullPageExample sidePadding={0} />
+  ))
+  .add('14 + Page Example with short content and sidePadding', () => (
+    <FullPageExample sidePadding={0} shortContent />
+  ))
+  .add('15 + Page Example with sidePadding and maxWidth', () => (
+    <FullPageExample sidePadding={0} maxWidth={800} />
+  ))
+  .add('16 + Page Example with short content sidePadding and maxWidth', () => (
+    <FullPageExample sidePadding={0} maxWidth={800} shortContent />
+  ))
+  .add(
+    '17 + Page Example with short content bottomPadding and stretchVertically',
+    () => <FullPageExample shortContent bottomPadding={16} stretchVertically />,
+  )
+  .add(
+    '18 + Page Example with long content bottomPadding and stretchVertically',
+    () => <FullPageExample bottomPadding={16} stretchVertically />,
+  );
