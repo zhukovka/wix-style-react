@@ -5,6 +5,11 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 0 6px;
     color: $D40;
+    &.pad-right {
+        padding-right: 6px;
+    }
+    &.pad-left {
+        padding-left: 6px;
+    }
 }

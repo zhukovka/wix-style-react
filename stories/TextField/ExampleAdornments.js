@@ -86,8 +86,15 @@ const Example = () => (
           <FormField label="Custom [Prefix & Suffix]">
             <Input
               {...defaultProps}
-              prefix={<Input.CustomAffix>http://www...</Input.CustomAffix>}
-              suffix={<Input.CustomAffix value=".com" />}
+              size="small"
+              status="loading"
+              prefix={<Input.CustomAffix>@</Input.CustomAffix>}
+              suffix={
+                <Input.Group>
+                  <Input.CustomAffix value="$" />
+                  <Input.Ticker />
+                </Input.Group>
+              }
             />
             <br />
           </FormField>
@@ -95,14 +102,36 @@ const Example = () => (
         <Cell span="4">
           <FormField label="Custom [Prefix & Suffix]">
             <Input
-              status={'error'}
               {...defaultProps}
+              size="normal"
+              status="loading"
+              prefix={<Input.CustomAffix>@</Input.CustomAffix>}
               suffix={
                 <Input.Group>
                   <Input.CustomAffix value="$" />
-                  <Input.IconAffix>
-                    <Date />
-                  </Input.IconAffix>
+                  <Input.Ticker />
+                </Input.Group>
+              }
+            />
+            <br />
+          </FormField>
+        </Cell>
+        <Cell span="4">
+          <FormField label="Custom [Prefix & Suffix]">
+            <Input
+              {...defaultProps}
+              size="large"
+              roundInput
+              status="loading"
+              prefix={
+                <Input.IconAffix>
+                  <Date />
+                </Input.IconAffix>
+              }
+              suffix={
+                <Input.Group>
+                  <Input.CustomAffix value="$" />
+                  <Input.Ticker />
                 </Input.Group>
               }
             />
