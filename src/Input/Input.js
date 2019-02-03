@@ -4,19 +4,20 @@ import classNames from 'classnames';
 
 import Ticker from './Ticker';
 import Unit from './Unit';
-import Icon from './Icon';
-import Custom from './Custom';
+import IconAffix from './Icon';
+import CustomAffix from './Custom';
 import Group from './Group';
 import InputSuffix, { getVisibleSuffixCount } from './InputSuffix';
 
 import styles from './Input.scss';
+import { InputContext } from './InputContext';
 
 /** General input container */
 class Input extends Component {
   static Ticker = Ticker;
   static Unit = Unit;
-  static Icon = Icon;
-  static Custom = Custom;
+  static IconAffix = IconAffix;
+  static CustomAffix = CustomAffix;
   static Group = Group;
 
   static StatusError = 'error';
@@ -78,6 +79,7 @@ class Input extends Component {
       autocomplete,
       required,
       error,
+      size,
       errorMessage,
     } = this.props;
 
@@ -173,31 +175,34 @@ class Input extends Component {
     //https://github.com/wix/wix-style-react/issues/1693
     //https://github.com/wix/wix-style-react/issues/1691
     return (
-      <div className={styles.inputWrapper}>
-        {prefix && <div className={styles.prefix}>{prefix}</div>}
+      <InputContext.Provider value={this.props}>
+        <div className={styles.inputWrapper}>
+          {prefix && <div className={styles.prefix}>{prefix}</div>}
 
-        {inputElement}
-        {visibleSuffixCount > 0 && (
-          <InputSuffix
-            status={suffixStatus}
-            statusMessage={suffixStatusMessage}
-            theme={theme}
-            disabled={disabled}
-            help={help}
-            helpMessage={helpMessage}
-            onIconClicked={onIconClicked}
-            magnifyingGlass={magnifyingGlass}
-            isClearButtonVisible={isClearButtonVisible}
-            onClear={this.handleSuffixOnClear}
-            menuArrow={menuArrow}
-            unit={unit}
-            focused={this.state.focus}
-            suffix={suffix}
-            tooltipPlacement={tooltipPlacement}
-            onTooltipShow={onTooltipShow}
-          />
-        )}
-      </div>
+          {inputElement}
+          {visibleSuffixCount > 0 && (
+            <InputSuffix
+              status={suffixStatus}
+              statusMessage={suffixStatusMessage}
+              theme={theme}
+              disabled={disabled}
+              help={help}
+              helpMessage={helpMessage}
+              onIconClicked={onIconClicked}
+              magnifyingGlass={magnifyingGlass}
+              isClearButtonVisible={isClearButtonVisible}
+              onClear={this.handleSuffixOnClear}
+              menuArrow={menuArrow}
+              unit={unit}
+              focused={this.state.focus}
+              suffix={suffix}
+              size={size}
+              tooltipPlacement={tooltipPlacement}
+              onTooltipShow={onTooltipShow}
+            />
+          )}
+        </div>
+      </InputContext.Provider>
     );
   }
 

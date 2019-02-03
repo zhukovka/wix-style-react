@@ -1,24 +1,24 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import classNames from 'classnames';
 
 import styles from './Custom.scss';
+import InputConsumer from '../InputConsumer';
 
-const Custom = ({ children, value, isInGroup }) => {
-  const className = classNames(styles.custom, {
-    [styles.inGroup]: !!isInGroup,
-  });
-  return (
-    <div className={className} data-hook="custom">
-      {value || children}
-    </div>
-  );
-};
+const CustomAffix = ({ children, value }) => (
+  <InputConsumer consumerCompName={CustomAffix.displayName}>
+    {({ size }) => {
+      return (
+        <div className={styles.custom} data-hook="custom">
+          {value || children}
+        </div>
+      );
+    }}
+  </InputConsumer>
+);
 
-Custom.displayName = 'Input.Icon';
-Custom.propTypes = {
+CustomAffix.displayName = 'Input.CustomAffix';
+CustomAffix.propTypes = {
   children: PropTypes.node,
   value: PropTypes.string,
 };
-
-export default Custom;
+export default CustomAffix;

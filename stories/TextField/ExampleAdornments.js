@@ -65,14 +65,14 @@ const Example = () => (
             <Input
               {...defaultProps}
               prefix={
-                <Input.Icon>
+                <Input.IconAffix>
                   <Date />
-                </Input.Icon>
+                </Input.IconAffix>
               }
               suffix={
-                <Input.Icon>
+                <Input.IconAffix>
                   <Date />
-                </Input.Icon>
+                </Input.IconAffix>
               }
             />
             <br />
@@ -86,8 +86,8 @@ const Example = () => (
           <FormField label="Custom [Prefix & Suffix]">
             <Input
               {...defaultProps}
-              prefix={<Input.Custom>http://www...</Input.Custom>}
-              suffix={<Input.Custom value=".com" />}
+              prefix={<Input.CustomAffix>http://www...</Input.CustomAffix>}
+              suffix={<Input.CustomAffix value=".com" />}
             />
             <br />
           </FormField>
@@ -99,10 +99,10 @@ const Example = () => (
               {...defaultProps}
               suffix={
                 <Input.Group>
-                  <Input.Custom value="$" />
-                  <Input.Icon>
+                  <Input.CustomAffix value="$" />
+                  <Input.IconAffix>
                     <Date />
-                  </Input.Icon>
+                  </Input.IconAffix>
                 </Input.Group>
               }
             />

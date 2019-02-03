@@ -51,6 +51,7 @@ const InputSuffix = ({
   focused,
   tooltipPlacement,
   onTooltipShow,
+  size,
 }) => {
   const error = status === Input.StatusError;
 
@@ -58,6 +59,7 @@ const InputSuffix = ({
     {
       component: () => (
         <ThemedInputErrorSuffix
+          size={size}
           theme={theme}
           focused={focused}
           narrow={menuArrow}
@@ -71,6 +73,8 @@ const InputSuffix = ({
     {
       component: () => (
         <InputLoaderSuffix
+          theme={theme}
+          size={size}
           tooltipMessage={statusMessage}
           tooltipPlacement={tooltipPlacement}
           onTooltipShow={onTooltipShow}
@@ -82,6 +86,7 @@ const InputSuffix = ({
       component: () => (
         <ThemedInputHelpSuffix
           theme={theme}
+          size={size}
           help={help}
           helpMessage={helpMessage}
           tooltipPlacement={tooltipPlacement}
@@ -93,6 +98,7 @@ const InputSuffix = ({
     {
       component: () => (
         <div
+          size={size}
           className={styles.magnifyingGlass}
           disabled={disabled}
           onClick={onIconClicked}
