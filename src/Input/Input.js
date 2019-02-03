@@ -194,9 +194,6 @@ class Input extends Component {
       [styles.doublePad]: size === 'large',
     });
 
-    //needs additional wrapper with class .prefixSuffixWrapper to fix inputs with prefix in ie11
-    //https://github.com/wix/wix-style-react/issues/1693
-    //https://github.com/wix/wix-style-react/issues/1691
     return (
       <div className={inputWrapperClassName}>
         {prefix && (

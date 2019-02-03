@@ -56,7 +56,7 @@ class GoogleAddressInput extends React.Component {
 
   render() {
     const { suggestions, value } = this.state;
-    const { magnifyingGlass, ...props } = this.props;
+    const { magnifyingGlass } = this.props;
 
     const options = [
       ...suggestions.map(({ description, id }) => ({ id, value: description })),
