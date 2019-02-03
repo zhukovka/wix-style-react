@@ -5,6 +5,7 @@ import { Layout, Cell } from 'wix-style-react/Layout';
 import Input from 'wix-style-react/Input';
 import FormField from 'wix-style-react/FormField';
 import Date from '../../src/new-icons/Date';
+import Search from '../../src/new-icons/Search';
 
 const defaultProps = {
   placeholder: 'Search term',
@@ -39,14 +40,26 @@ const Example = () => (
     <Cell>
       <Layout>
         <Cell span="4">
-          <FormField label="Unit">
-            <Input {...defaultProps} unit="$" />
+          <FormField label="Suffix">
+            <Input
+              {...defaultProps}
+              suffix={<Input.CustomAffix>$</Input.CustomAffix>}
+            />
             <br />
           </FormField>
         </Cell>
         <Cell span="4">
-          <FormField label="Unit + [Status: Error]">
-            <Input {...defaultProps} unit="$" status={'error'} />
+          <FormField label="Prefix">
+            <Input
+              {...defaultProps}
+              prefix={<Input.CustomAffix>http://</Input.CustomAffix>}
+            />
+            <br />
+          </FormField>
+        </Cell>
+        <Cell span="4">
+          <FormField label="Suffix + [Status: Error]">
+            <Input {...defaultProps} suffix="$" status={'error'} />
             <br />
           </FormField>
         </Cell>
@@ -61,7 +74,7 @@ const Example = () => (
           </FormField>
         </Cell>
         <Cell span="4">
-          <FormField label="Icon [Prefix & Suffix]">
+          <FormField label="Icon [Prefix]">
             <Input
               {...defaultProps}
               prefix={
@@ -69,62 +82,19 @@ const Example = () => (
                   <Date />
                 </Input.IconAffix>
               }
+            />
+            <br />
+          </FormField>
+        </Cell>
+        <Cell span="4">
+          <FormField label="Icon [Suffix]">
+            <Input
+              {...defaultProps}
               suffix={
                 <Input.IconAffix>
-                  <Date />
+                  <Search />
                 </Input.IconAffix>
               }
-            />
-            <br />
-          </FormField>
-        </Cell>
-      </Layout>
-    </Cell>
-    <Cell>
-      <Layout>
-        <Cell span="4">
-          <FormField label="Custom [Prefix & Suffix]">
-            <Input
-              {...defaultProps}
-              size="small"
-              status="loading"
-              prefix={<Input.CustomAffix>@</Input.CustomAffix>}
-              suffix={
-                <Input.Group>
-                  <Input.CustomAffix value="$" />
-                  <Input.Ticker />
-                </Input.Group>
-              }
-            />
-            <br />
-          </FormField>
-        </Cell>
-        <Cell span="4">
-          <FormField label="Custom [Prefix & Suffix]">
-            <Input
-              {...defaultProps}
-              size="normal"
-              status="loading"
-              prefix={<Input.CustomAffix>@</Input.CustomAffix>}
-              suffix={
-                <Input.Group>
-                  <Input.CustomAffix value="$" />
-                  <Input.Ticker />
-                </Input.Group>
-              }
-            />
-            <br />
-          </FormField>
-        </Cell>
-        <Cell span="4">
-          <FormField label="Custom [Prefix & Suffix]">
-            <Input
-              {...defaultProps}
-              size="large"
-              roundInput
-              status="loading"
-              prefix="@"
-              suffix="c"
             />
             <br />
           </FormField>

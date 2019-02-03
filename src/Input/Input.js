@@ -8,6 +8,7 @@ import IconAffix from './IconAffix';
 import CustomAffix from './CustomAffix';
 import Group from './Group';
 import InputSuffix, { getVisibleSuffixCount } from './InputSuffix';
+import deprecationLog from '../utils/deprecationLog';
 
 import styles from './Input.scss';
 import { InputContext } from './InputContext';
@@ -25,6 +26,11 @@ class Input extends Component {
   state = {
     focus: false,
   };
+
+  constructor(props) {
+    super(props);
+    this.logDeprecations(props);
+  }
 
   componentDidMount() {
     const { autoFocus, value } = this.props;
@@ -44,6 +50,14 @@ class Input extends Component {
 
     this.isComposing = isComposing;
   };
+
+  logDeprecations(props) {
+    if (props.unit) {
+      deprecationLog(
+        `Input's unit prop is deprecated and will be removed in the next major release, please use suffix property with Input.CustomAffix instead`,
+      );
+    }
+  }
 
   render(props = {}) {
     const {
