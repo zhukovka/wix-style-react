@@ -121,7 +121,8 @@
     "wait-for-cond": "^1.0.3",
     "wix-storybook-utils": "^2.0.62",
     "yoshi": "^3.16.1",
-    "yoshi-style-dependencies": "^3.16.0"
+    "yoshi-style-dependencies": "^3.16.0",
+    "terser": "3.14.0"
   },
   "peerDependencies": {
     "react": "^15.0.0",
