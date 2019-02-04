@@ -16,7 +16,19 @@ Types of changes:
 
 ## Next
 
-- (Docs,Testkit) - Fix missing Testkits' docs by proxying the drivers from backoffice [#2853](https://github.com/wix/wix-style-react/pull/2853)
+### Added
+- `<StatsWidget/>` - support custom suffix header action [#2885](https://github.com/wix/wix-style-react/pull/2885)
+- `<FormField/>` - add max-width to children [#2894](https://github.com/wix/wix-style-react/pull/2894)
+- `<Checbox/>` - Add error message tooltip [#2892](https://github.com/wix/wix-style-react/pull/2892)
+
+### Fixed
+- `<SegmentedToggle/>` - minor CSS fixes in `ToggleIcon` and `ToggleButton` [#2879](https://github.com/wix/wix-style-react/pull/2879)
+
+### Docs
+- fix missing Testkits' docs by proxying the drivers from backoffice [#2853](https://github.com/wix/wix-style-react/pull/2853)
+- `<Grid/>` - `stretchViewsVertically` is a `<Row/>` prop
+- Improve google analytics [#2883](https://github.com/wix/wix-style-react/pull/2883) [#2897](https://github.com/wix/wix-style-react/pull/2897)
+- `<Button/>` - improve and tweak documentation [#2880](https://github.com/wix/wix-style-react/pull/2880)
 
 ## 6.1.0 - 2019-02-01
 
