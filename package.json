@@ -118,6 +118,7 @@
     "simple-git": "^1.107.0",
     "sinon": "^1.17.6",
     "tempy": "^0.2.1",
+    "terser": "3.14.1",
     "wait-for-cond": "^1.0.3",
     "wix-storybook-utils": "^2.0.62",
     "yoshi": "^3.16.1",
