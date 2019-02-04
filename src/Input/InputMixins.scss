@@ -44,8 +44,8 @@
 }
 
 @mixin ThemeHover($backgroundColor) {
-    &:hover:not(.hasFocus)    { background-color: $backgroundColor; }
-    &.hasHover { background-color: $backgroundColor; }
+    &:hover:not(.hasFocus):not(.disabled)    { background-color: $backgroundColor; }
+    &.hasHover:not(.disabled) { background-color: $backgroundColor; }
 }
 
 @mixin ThemeDisable($borderColor, $backgroundColor, $color) {
