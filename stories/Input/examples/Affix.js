@@ -11,32 +11,34 @@ export default () => {
         <Cell span={3}>
           <LiveCodeExample
             compact
-            title="Custom prefix"
-            initialCode={'<Input prefix="https://" />'}
-          />
-        </Cell>
-        <Cell span={3}>
-          <LiveCodeExample
-            compact
-            title="Custom suffix"
-            initialCode={'<Input suffix={<Input.Affix>$</Input.Affix>} />'}
-          />
-        </Cell>
-        <Cell span={3}>
-          <LiveCodeExample
-            compact
-            title="Custom prefix & suffix"
+            title="Prefix"
             initialCode={
-              '<Input prefix={<Input.Affix>https://</Input.Affix>} suffix=".com" />'
+              '<Input prefix={<Input.Affix>https://</Input.Affix>} />'
             }
           />
         </Cell>
         <Cell span={3}>
           <LiveCodeExample
             compact
-            title="Custom prefix & suffix with error"
+            title="Suffix"
+            initialCode={'<Input suffix={<Input.Affix>$</Input.Affix>} />'}
+          />
+        </Cell>
+        <Cell span={3}>
+          <LiveCodeExample
+            compact
+            title="Prefix & suffix"
             initialCode={
-              '<Input prefix={<Input.Affix>@</Input.Affix>} suffix="$" status="error" />'
+              '<Input prefix={<Input.Affix>https://</Input.Affix>} suffix={<Input.Affix>.com</Input.Affix>} />'
+            }
+          />
+        </Cell>
+        <Cell span={3}>
+          <LiveCodeExample
+            compact
+            title="Prefix & suffix with error"
+            initialCode={
+              '<Input prefix={<Input.Affix>@</Input.Affix>} suffix={<Input.Affix>$</Input.Affix>} status="error" />'
             }
           />
         </Cell>
