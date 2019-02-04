@@ -133,8 +133,7 @@ const InputSuffix = ({
       isVisible: suffixRules.unit({ unit }),
     },
     {
-      component: () =>
-        typeof suffix === 'string' ? <Input.Affix value={suffix} /> : suffix,
+      component: () => suffix,
       isVisible: suffixRules.customSuffix({ suffix }),
     },
     {

@@ -201,11 +201,7 @@ class Input extends Component {
         {prefix && (
           <div className={styles.prefix}>
             <InputContext.Provider value={{ ...this.props, inPrefix: true }}>
-              {typeof prefix === 'string' ? (
-                <Input.Affix value={prefix} />
-              ) : (
-                prefix
-              )}
+              {prefix}
             </InputContext.Provider>
           </div>
         )}
