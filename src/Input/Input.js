@@ -54,12 +54,14 @@ class Input extends Component {
   logDeprecations(props) {
     if (props.unit) {
       deprecationLog(
-        `Input's unit prop is deprecated and will be removed in the next major release, please use suffix property with Input.Affix instead`,
+        `Input's unit prop is deprecated and will be removed in the next major release, please use suffix property with '<Input suffix={<Input.Affix>${
+          props.unit
+        }</Input.Affix>}/>' instead`,
       );
     }
     if (props.magnifyingGlass) {
       deprecationLog(
-        `Input's magnifyingGlass prop is deprecated and will be removed in the next major release, please use suffix property with Input.IconAffix instead`,
+        `Input's magnifyingGlass prop is deprecated and will be removed in the next major release, please use suffix property with '<Input suffix={<Input.Affix><Search /></Input.Affix>}/>' instead`,
       );
     }
   }
