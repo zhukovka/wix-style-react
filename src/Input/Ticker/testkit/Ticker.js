@@ -24,7 +24,7 @@ export const componentFactory = (props = {}, context = {}) =>
   renderIntoDocument(
     <div>
       <InputContext.Provider value={context}>
-        <Ticker {...props} />
+        <Ticker dataHook="ticker" {...props} />
       </InputContext.Provider>
     </div>,
   ).childNodes[0];
