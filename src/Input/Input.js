@@ -99,7 +99,6 @@ class Input extends Component {
       autocomplete,
       required,
       error,
-      size,
       errorMessage,
     } = this.props;
 
@@ -219,7 +218,6 @@ class Input extends Component {
               unit={unit}
               focused={this.state.focus}
               suffix={suffix}
-              size={size}
               tooltipPlacement={tooltipPlacement}
               onTooltipShow={onTooltipShow}
             />
