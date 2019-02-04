@@ -192,12 +192,8 @@ class Input extends Component {
       />
     );
 
-    const inputWrapperClassName = classNames(styles.inputWrapper, {
-      [styles.doublePad]: size === 'large',
-    });
-
     return (
-      <div className={inputWrapperClassName}>
+      <div className={styles.inputWrapper}>
         {prefix && (
           <div className={styles.prefix}>
             <InputContext.Provider value={{ ...this.props, inPrefix: true }}>

@@ -20,7 +20,10 @@ $material-gap: 8px;
   display: flex;
   width: 100%;
   padding: 0 $gap;
-  &.double-pad {
+}
+
+.size-large {
+  .input-wrapper {
     padding: 0 $double-gap;
   }
 }
