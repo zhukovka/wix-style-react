@@ -701,7 +701,7 @@ describe('Input', () => {
       const onInputClicked = jest.fn();
       const driver = createDriver(
         <Input
-          prefix={<Input.CustomAffix>$</Input.CustomAffix>}
+          prefix={<Input.Affix>$</Input.Affix>}
           onInputClicked={onInputClicked}
         />,
       );
@@ -711,7 +711,7 @@ describe('Input', () => {
 
     it('should not fail while click on custom affix without passing onInputClicked', () => {
       const driver = createDriver(
-        <Input prefix={<Input.CustomAffix>$</Input.CustomAffix>} />,
+        <Input prefix={<Input.Affix>$</Input.Affix>} />,
       );
       expect(() => {
         driver.clickCustomAffix();
@@ -777,7 +777,7 @@ describe('Input', () => {
       const onInputClicked = jest.fn();
       const driver = createDriver(
         <Input
-          suffix={<Input.CustomAffix>$</Input.CustomAffix>}
+          suffix={<Input.Affix>$</Input.Affix>}
           onInputClicked={onInputClicked}
         />,
       );
@@ -787,7 +787,7 @@ describe('Input', () => {
 
     it('should not fail while click on custom affix without passing onInputClicked', () => {
       const driver = createDriver(
-        <Input suffix={<Input.CustomAffix>$</Input.CustomAffix>} />,
+        <Input suffix={<Input.Affix>$</Input.Affix>} />,
       );
       expect(() => {
         driver.clickCustomAffix();

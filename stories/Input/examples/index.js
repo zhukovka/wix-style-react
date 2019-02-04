@@ -1,6 +1,6 @@
 export { default as Standard } from './Standard';
 export { default as Error } from './Error';
-export { default as CustomAffix } from './CustomAffix';
+export { default as Affix } from './Affix';
 export { default as IconAffix } from './IconAffix';
 export { default as Controlled } from './Controlled';
 export { default as Sizes } from './Sizes';

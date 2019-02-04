@@ -11,7 +11,7 @@ import {
   Rounded,
   InstanceMethods,
   Loader,
-  CustomAffix,
+  Affix,
   IconAffix,
 } from './examples';
 
@@ -41,7 +41,7 @@ export default {
       <Standard />
       <Error />
       <Loader />
-      <CustomAffix />
+      <Affix />
       <IconAffix />
       <Controlled />
       <Sizes />

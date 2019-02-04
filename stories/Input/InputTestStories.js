@@ -12,7 +12,7 @@ const defaultProps = {
 
 const groupSuffix = (
   <Input.Group>
-    <Input.CustomAffix>$</Input.CustomAffix>
+    <Input.Affix>$</Input.Affix>
     <Input.IconAffix>
       <Search />
     </Input.IconAffix>
@@ -60,7 +60,7 @@ storiesOf(kind, module).add('2. Input with prefix group', () => {
       <Input
         dataHook="storybook-input"
         {...defaultProps}
-        prefix={<Input.CustomAffix>@</Input.CustomAffix>}
+        prefix={<Input.Affix>@</Input.Affix>}
       />
       <h1>Input with custom textual prefix</h1>
       <br />

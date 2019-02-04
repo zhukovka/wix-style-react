@@ -41,10 +41,7 @@ const Example = () => (
       <Layout>
         <Cell span="4">
           <FormField label="Suffix">
-            <Input
-              {...defaultProps}
-              suffix={<Input.CustomAffix>$</Input.CustomAffix>}
-            />
+            <Input {...defaultProps} suffix={<Input.Affix>$</Input.Affix>} />
             <br />
           </FormField>
         </Cell>
@@ -52,7 +49,7 @@ const Example = () => (
           <FormField label="Prefix">
             <Input
               {...defaultProps}
-              prefix={<Input.CustomAffix>http://</Input.CustomAffix>}
+              prefix={<Input.Affix>http://</Input.Affix>}
             />
             <br />
           </FormField>

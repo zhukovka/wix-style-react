@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
-import Custom from '../CustomAffix';
+import Custom from '../Affix';
 import { InputContext } from '../../InputContext';
 
 const customDriverFactory = ({ element }) => {

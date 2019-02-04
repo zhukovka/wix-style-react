@@ -8,7 +8,7 @@ class Unit extends React.Component {
   constructor(props) {
     super(props);
     deprecationLog(
-      'Input.Unit component is deprecated and will be removed in the next major release, please use Input.CustomAffix instead',
+      'Input.Unit component is deprecated and will be removed in the next major release, please use Input.Affix instead',
     );
   }
   render() {

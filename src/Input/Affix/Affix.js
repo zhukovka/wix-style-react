@@ -2,11 +2,11 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
-import styles from './CustomAffix.scss';
+import styles from './Affix.scss';
 import InputConsumer from '../InputConsumer';
 
-const CustomAffix = ({ children, value }) => (
-  <InputConsumer consumerCompName={CustomAffix.displayName}>
+const Affix = ({ children, value }) => (
+  <InputConsumer consumerCompName={Affix.displayName}>
     {({ size, inSuffix, inPrefix, onInputClicked }) => {
       const className = classNames(styles.custom, {
         [styles.inSuffix]: inSuffix,
@@ -26,9 +26,9 @@ const CustomAffix = ({ children, value }) => (
   </InputConsumer>
 );
 
-CustomAffix.displayName = 'Input.CustomAffix';
-CustomAffix.propTypes = {
+Affix.displayName = 'Input.Affix';
+Affix.propTypes = {
   children: PropTypes.node,
   value: PropTypes.string,
 };
-export default CustomAffix;
+export default Affix;

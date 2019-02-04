@@ -2,13 +2,11 @@ import React from 'react';
 
 import { Cell, Layout } from '../../../src';
 import LiveCodeExample from '../../utils/Components/LiveCodeExample';
-import createInputExample from './createInputExample';
 import { Section } from '../../UXStoryTemplate';
-import Input from '../../../src/Input/Input';
 
 export default () => {
   return (
-    <Section title="Custom Affix">
+    <Section title="Affix">
       <Layout>
         <Cell span={3}>
           <LiveCodeExample
@@ -21,9 +19,7 @@ export default () => {
           <LiveCodeExample
             compact
             title="Custom suffix"
-            initialCode={
-              '<Input suffix={<Input.CustomAffix>$</Input.CustomAffix>} />'
-            }
+            initialCode={'<Input suffix={<Input.Affix>$</Input.Affix>} />'}
           />
         </Cell>
         <Cell span={3}>
@@ -31,7 +27,7 @@ export default () => {
             compact
             title="Custom prefix & suffix"
             initialCode={
-              '<Input prefix={<Input.CustomAffix>https://</Input.CustomAffix>} suffix=".com" />'
+              '<Input prefix={<Input.Affix>https://</Input.Affix>} suffix=".com" />'
             }
           />
         </Cell>
@@ -40,7 +36,7 @@ export default () => {
             compact
             title="Custom prefix & suffix with error"
             initialCode={
-              '<Input prefix={<Input.CustomAffix>@</Input.CustomAffix>} suffix="$" status="error" />'
+              '<Input prefix={<Input.Affix>@</Input.Affix>} suffix="$" status="error" />'
             }
           />
         </Cell>

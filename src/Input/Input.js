@@ -5,7 +5,7 @@ import classNames from 'classnames';
 import Ticker from './Ticker';
 import Unit from './Unit';
 import IconAffix from './IconAffix';
-import CustomAffix from './CustomAffix';
+import Affix from './Affix';
 import Group from './Group';
 import InputSuffix, { getVisibleSuffixCount } from './InputSuffix';
 import deprecationLog from '../utils/deprecationLog';
@@ -17,7 +17,7 @@ class Input extends Component {
   static Ticker = Ticker;
   static Unit = Unit;
   static IconAffix = IconAffix;
-  static CustomAffix = CustomAffix;
+  static Affix = Affix;
   static Group = Group;
 
   static StatusError = 'error';
@@ -54,7 +54,7 @@ class Input extends Component {
   logDeprecations(props) {
     if (props.unit) {
       deprecationLog(
-        `Input's unit prop is deprecated and will be removed in the next major release, please use suffix property with Input.CustomAffix instead`,
+        `Input's unit prop is deprecated and will be removed in the next major release, please use suffix property with Input.Affix instead`,
       );
     }
     if (props.magnifyingGlass) {
@@ -200,7 +200,7 @@ class Input extends Component {
           <div className={styles.prefix}>
             <InputContext.Provider value={{ ...this.props, inPrefix: true }}>
               {typeof prefix === 'string' ? (
-                <Input.CustomAffix value={prefix} />
+                <Input.Affix value={prefix} />
               ) : (
                 prefix
               )}
