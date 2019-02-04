@@ -30,15 +30,19 @@ Types of changes:
 - Improve google analytics [#2883](https://github.com/wix/wix-style-react/pull/2883) [#2897](https://github.com/wix/wix-style-react/pull/2897)
 - `<Button/>` - improve and tweak documentation [#2880](https://github.com/wix/wix-style-react/pull/2880)
 
+## 6.1.1 - 2019-02-01
+
+### Fixed
+
+- `<ToggleButton/>` - add RTL support for prefix icon [#2878](https://github.com/wix/wix-style-react/pull/2878)
+
 ## 6.1.0 - 2019-02-01
 
 ### Added
 
 - `<SegmentedToggle/>` - new component [#2797](https://github.com/wix/wix-style-react/pull/2797)
 - `<Calendar/>` - add `autoFocus` prop [#2838](https://github.com/wix/wix-style-react/pull/2838)
-
 - `<Text/>` - added `disabled` skin [#2849](https://github.com/wix/wix-style-react/pull/2849)
-
 - `Typography.scss` - added `disabled` skin [#2872](https://github.com/wix/wix-style-react/pull/2872)
 
 ### Fixed
