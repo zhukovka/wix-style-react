@@ -47,11 +47,7 @@ storiesOf(Category.INPUTS, module).add('3.1 Text Field', () => (
         <ExampleAdornments />
       </CodeExample>
       <CodeExample title="Number Input" code={ExampleNumberInputRaw}>
-        <Layout>
-          <Cell span={2}>
-            <ExampleNumberInput />
-          </Cell>
-        </Layout>
+        <ExampleNumberInput />
       </CodeExample>
     </ExamplesSection>
   </div>

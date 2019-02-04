@@ -2,6 +2,7 @@ import React from 'react';
 
 import FormField from 'wix-style-react/FormField';
 import Input from 'wix-style-react/Input';
+import { Layout, Cell } from 'wix-style-react/Layout';
 
 const min = -5;
 const max = 5;
@@ -55,26 +56,51 @@ export default class ExampleNumberInput extends React.Component {
           };
 
     return (
-      <FormField label="This is the FormField label">
-        <Input
-          type="number"
-          value={this.state.value}
-          onChange={this.handleChange}
-          placeholder="Enter an integer number"
-          min={min}
-          max={max}
-          {...errorProps}
-          suffix={
-            // <Input.Group>
-            //   <div>Somthing</div>
-            // </Input.Group>
-            <Input.Ticker
-              onDown={this.handleTickerDown}
-              onUp={this.handleTickerUp}
-            />
-          }
-        />
-      </FormField>
+      <Layout>
+        <Cell>
+          <Layout>
+            <Cell span="4">
+              <FormField label="This is the FormField label">
+                <Input
+                  type="number"
+                  value={this.state.value}
+                  onChange={this.handleChange}
+                  placeholder="Enter an integer number"
+                  min={min}
+                  max={max}
+                  {...errorProps}
+                  suffix={
+                    <Input.Ticker
+                      onDown={this.handleTickerDown}
+                      onUp={this.handleTickerUp}
+                    />
+                  }
+                />
+              </FormField>
+            </Cell>
+            <Cell span="4">
+              <FormField label="Disabled number input">
+                <Input
+                  disabled
+                  type="number"
+                  value={this.state.value}
+                  onChange={this.handleChange}
+                  placeholder="Enter an integer number"
+                  min={min}
+                  max={max}
+                  {...errorProps}
+                  suffix={
+                    <Input.Ticker
+                      onDown={this.handleTickerDown}
+                      onUp={this.handleTickerUp}
+                    />
+                  }
+                />
+              </FormField>
+            </Cell>
+          </Layout>
+        </Cell>
+      </Layout>
     );
   }
 }
