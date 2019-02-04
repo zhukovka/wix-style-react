@@ -14,6 +14,10 @@ Types of changes:
 1. **Docs** for documentation changes
 1. **Lab** components and features that are still in a work in progress
 
+## Next
+
+- (Docs,Testkit) - Fix missing Testkits' docs by proxying the drivers from backoffice [#2853](https://github.com/wix/wix-style-react/pull/2853)
+
 ## 6.1.0 - 2019-02-01
 
 ### Added
