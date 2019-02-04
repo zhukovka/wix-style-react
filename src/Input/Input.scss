@@ -109,8 +109,8 @@ $material-gap: 8px;
   &-small-with-selection { @include Size($height: 28px, $fontSize: 14px); }
   &-normal { @include Size($height: 36px, $fontSize: 16px); }
   &-normal-with-selection { @include Size($height: 34px, $fontSize: 16px); }
-  &-large  { @include Size($height: 60px, $fontSize: 22px); }
-  &-large-with-selection { @include Size($height: 58px, $fontSize: 22px); }
+  &-large  { @include Size($height: 60px, $fontSize: 16px); }
+  &-large-with-selection { @include Size($height: 58px, $fontSize: 16px); }
 }
 
 .theme {
@@ -294,7 +294,7 @@ $material-gap: 8px;
     border: none;
     border-radius: 0;
 
-    &.size-large { @include Size($height: 54px, $fontSize: 20px); }
+    &.size-large { @include Size($height: 54px, $fontSize: 16px); }
 
     &:hover, &.hasFocus { @include ThemeFlat($B20); }
     &:active            { @include ThemeFlat($B10); }
@@ -307,7 +307,7 @@ $material-gap: 8px;
     border: none;
     border-radius: 0;
 
-    &.size-large { @include Size($height: 54px, $fontSize: 20px); }
+    &.size-large { @include Size($height: 54px, $fontSize: 16px); }
 
     &:hover, &.hasFocus { @include ThemeFlat($B20); }
     &:active            { @include ThemeFlat($B10); }
