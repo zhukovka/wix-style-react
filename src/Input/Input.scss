@@ -405,7 +405,7 @@ $material-gap: 8px;
 .unit {
   padding: 0 $gap;
   color: $paletteD3;
-  @include FontLight();
+  @include FontRoman();
   //needs display:block to fix inputs with prefix in ie11
   //https://github.com/wix/wix-style-react/issues/1691
   display: block;

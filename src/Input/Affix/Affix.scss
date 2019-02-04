@@ -1,7 +1,7 @@
 @import '../../common.scss';
 
 .custom {
-    @include FontLight();
+    @include FontRoman();
     display: flex;
     justify-content: center;
     align-items: center;
