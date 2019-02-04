@@ -65,9 +65,6 @@ export default class ExampleNumberInput extends React.Component {
           max={max}
           {...errorProps}
           suffix={
-            // <Input.Group>
-            //   <div>Somthing</div>
-            // </Input.Group>
             <Input.Ticker
               onDown={this.handleTickerDown}
               onUp={this.handleTickerUp}

@@ -12,9 +12,9 @@ class Unit extends React.Component {
     );
   }
   render() {
-    const { children, value } = this.props;
+    const { children, value, dataHook } = this.props;
     return (
-      <div className={styles.unit} data-hook="unit">
+      <div className={styles.unit} data-hook={dataHook}>
         {value || children}
       </div>
     );

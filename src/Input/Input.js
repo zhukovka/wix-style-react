@@ -201,7 +201,7 @@ class Input extends Component {
         {prefix && (
           <div className={styles.prefix}>
             <InputContext.Provider value={{ ...this.props, inPrefix: true }}>
-              {prefix}
+              <span>{prefix}</span>
             </InputContext.Provider>
           </div>
         )}
@@ -439,9 +439,6 @@ Input.propTypes = {
   helpMessage: PropTypes.node,
   id: PropTypes.string,
 
-  /** Should the component include a magnifyingGlass */
-  magnifyingGlass: PropTypes.bool,
-
   /** Input max length */
   maxLength: PropTypes.number,
 
@@ -538,7 +535,6 @@ Input.propTypes = {
   /** Placement of the error and help tooltips (supported only for amaterial theme for now) */
   tooltipPlacement: PropTypes.string,
   type: PropTypes.string,
-  unit: PropTypes.string,
 
   /** Inputs value */
   value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),

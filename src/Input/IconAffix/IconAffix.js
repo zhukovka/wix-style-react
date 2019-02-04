@@ -5,9 +5,9 @@ import classNames from 'classnames';
 import styles from './IconAffix.scss';
 import InputConsumer from '../InputConsumer';
 
-const IconAffix = ({ children }) => (
+const IconAffix = ({ children, dataHook }) => (
   <InputConsumer consumerCompName={IconAffix.displayName}>
-    {({ size, inSuffix, onInputClicked, dataHook }) => {
+    {({ size, inSuffix, onInputClicked }) => {
       const className = classNames(styles.icon, {
         [styles.inSuffix]: inSuffix,
       });
