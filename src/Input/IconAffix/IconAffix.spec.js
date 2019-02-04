@@ -8,7 +8,7 @@ describe('<Icon />', () => {
 
   it('should create icon component and render the given icon', () => {
     const driver = createDriver({
-      children: <Search dataHook="search-icon" />,
+      children: <Search data-hook="search-icon" />,
     });
     expect(driver.isEmpty()).toEqual(false);
     expect(driver.hasChild('[data-hook="search-icon"]')).toEqual(true);
