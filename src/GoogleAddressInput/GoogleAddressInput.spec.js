@@ -71,7 +71,7 @@ describe('GoogleAddressInput', () => {
   describe('appearance', () => {
     it('should show magnifying glass by default', () => {
       const component = createMount({ Client: GmapsTestClient }).getDOMNode();
-      expect(component.querySelector('[data-icon="Search"]')).toBeTruthy();
+      expect(component.querySelector('[data-hook="search-icon"]')).toBeTruthy();
     });
 
     it('should allow hiding magnifying glass', () => {
@@ -79,7 +79,7 @@ describe('GoogleAddressInput', () => {
         Client: GmapsTestClient,
         magnifyingGlass: false,
       }).getDOMNode();
-      expect(component.querySelector('[data-icon="Search"]')).toBeFalsy();
+      expect(component.querySelector('[data-hook="search-icon"]')).toBeFalsy();
     });
 
     it('should allow setting theme for the nested input', () => {

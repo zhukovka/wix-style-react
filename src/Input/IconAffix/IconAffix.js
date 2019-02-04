@@ -16,7 +16,6 @@ const IconAffix = ({ children }) => (
           onClick={onInputClicked}
           className={className}
           data-hook={dataHook}
-          data-icon={children.type.displayName}
         >
           {React.cloneElement(children, {
             size: size === 'small' ? '18px' : '24px',
