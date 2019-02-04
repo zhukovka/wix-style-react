@@ -36,19 +36,19 @@ export default {
     children: [
       {
         label: 'header, tail & content',
-        value: [header(), tail, content(false)],
+        value: [header(), tail, content()],
       },
       {
         label: 'header & content',
-        value: [header(), content(false)],
+        value: [header(), content()],
       },
       {
         label: 'just content',
-        value: [content(false)],
+        value: [content()],
       },
       {
         label: 'header, tail, fixed-content & content',
-        value: [header(), tail, fixedContent, content(false)],
+        value: [header(), tail, fixedContent, content()],
       },
     ],
     backgroundImageUrl: [

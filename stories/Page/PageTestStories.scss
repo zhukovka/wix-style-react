@@ -1,0 +1,7 @@
+@mixin PageConteiner() {
+  height: calc(100vh - 16px); // -16px account for chrome default body margin
+}
+
+.pageContainer {
+  @include PageConteiner;
+}

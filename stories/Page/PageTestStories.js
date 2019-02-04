@@ -5,11 +5,10 @@ import { storiesOf } from '@storybook/react';
 import Page from 'wix-style-react/Page';
 import { getTestStoryKind } from '../storiesHierarchy';
 
-import * as s from './PageExample.scss';
+import * as s from './PageTestStories.scss';
 import { header, tail, fixedContent, content } from './PageChildren';
 import { storySettings } from './storySettings';
 import ExampleEmptyState from './ExampleEmptyState';
-import { FullPageExample } from './FullPageExample';
 
 const PageContainer = props => {
   return (
@@ -111,32 +110,30 @@ storiesOf(kind, module).add('6. Custom [min/max]-width', () => (
   </div>
 ));
 
-const contentPrefix = (
-  <div
-    style={{
-      backgroundColor: 'white',
-      paddingBottom: '20px',
-      fontSize: '36px',
-    }}
-  >
-    <b>
-      This simulates what some consumers are currently doing to implement
-      min-width with horizontal scroll. So we can see tat they are not broken.
-      They can increase the min-width, bu the can not decrease it, unless they
-      use the minWidth prop.
-    </b>
-  </div>
-);
 storiesOf(kind, module).add(
   '7. Regression for [min/max]-width (introduced in version 5.25.0)',
   () => (
     <div style={{ overflowX: 'auto' }}>
       <PageContainer style={{ minWidth: '1100px' }}>
-        <Page
-          dataHook={dataHook}
-          children={[header(), content(false, contentPrefix)]}
-          gradientClassName="background-gradient"
-        />
+        <Page dataHook={dataHook} gradientClassName="background-gradient">
+          {header()}
+          <Page.Content>
+            <div
+              style={{
+                backgroundColor: 'white',
+                paddingBottom: '20px',
+                fontSize: '36px',
+              }}
+            >
+              <b>
+                This simulates what some consumers are currently doing to
+                implement min-width with horizontal scroll. So we can see tat
+                they are not broken. They can increase the min-width, bu the can
+                not decrease it, unless they use the minWidth prop.
+              </b>
+            </div>
+          </Page.Content>
+        </Page>
       </PageContainer>
     </div>
   ),
@@ -148,33 +145,32 @@ storiesOf(kind, module).add('8. Empty State', () => (
   </PageContainer>
 ));
 
-storiesOf(kind, module)
-  .add('10 + Page Example with short content', () => (
-    <FullPageExample shortContent />
-  ))
-  .add('11 + Page Example with maxWidth', () => (
-    <FullPageExample maxWidth={800} />
-  ))
-  .add('12 + Page Example with short content and maxWidth', () => (
-    <FullPageExample maxWidth={800} shortContent />
-  ))
-  .add('13 + Page Example with sidePadding', () => (
-    <FullPageExample sidePadding={0} />
-  ))
-  .add('14 + Page Example with short content and sidePadding', () => (
-    <FullPageExample sidePadding={0} shortContent />
-  ))
-  .add('15 + Page Example with sidePadding and maxWidth', () => (
-    <FullPageExample sidePadding={0} maxWidth={800} />
-  ))
-  .add('16 + Page Example with short content sidePadding and maxWidth', () => (
-    <FullPageExample sidePadding={0} maxWidth={800} shortContent />
-  ))
-  .add(
-    '17 + Page Example with short content bottomPadding and stretchVertically',
-    () => <FullPageExample shortContent bottomPadding={16} stretchVertically />,
-  )
-  .add(
-    '18 + Page Example with long content bottomPadding and stretchVertically',
-    () => <FullPageExample bottomPadding={16} stretchVertically />,
-  );
+storiesOf(kind, module).add('10 + Page Example with short content', () => (
+  <PageContainer>
+    <Page
+      dataHook={dataHook}
+      children={[header(), content({ shortContent: true })]}
+      gradientClassName="background-gradient"
+    />
+  </PageContainer>
+));
+// .add('13 + Page Example with sidePadding', () => (
+//   <FullPageExample sidePadding={0} />
+// ))
+// .add('14 + Page Example with short content and sidePadding', () => (
+//   <FullPageExample sidePadding={0} shortContent />
+// ))
+// .add('15 + Page Example with sidePadding and maxWidth', () => (
+//   <FullPageExample sidePadding={0} maxWidth={800} />
+// ))
+// .add('16 + Page Example with short content sidePadding and maxWidth', () => (
+//   <FullPageExample sidePadding={0} maxWidth={800} shortContent />
+// ))
+// .add(
+//   '17 + Page Example with short content bottomPadding and stretchVertically',
+//   () => <FullPageExample shortContent bottomPadding={16} stretchVertically />,
+// )
+// .add(
+//   '18 + Page Example with long content bottomPadding and stretchVertically',
+//   () => <FullPageExample bottomPadding={16} stretchVertically />,
+// );

@@ -18,10 +18,9 @@ export const header = props => (
   />
 );
 
-export const content = (showScss, prefixContent, embedInCard) => (
+export const content = props => (
   <Page.Content>
-    {prefixContent}
-    <SomeContentComponent showScss={showScss} embedInCard />
+    <SomeContentComponent {...props} />
   </Page.Content>
 );
 
