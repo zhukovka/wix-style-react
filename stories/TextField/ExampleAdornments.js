@@ -4,8 +4,8 @@ import PropTypes from 'prop-types';
 import { Layout, Cell } from 'wix-style-react/Layout';
 import Input from 'wix-style-react/Input';
 import FormField from 'wix-style-react/FormField';
-import Date from '../../src/new-icons/Date';
-import Search from '../../src/new-icons/Search';
+import Date from 'wix-style-react/new-icons/Date';
+import Search from 'wix-style-react/new-icons/Search';
 
 const defaultProps = {
   placeholder: 'Search term',
