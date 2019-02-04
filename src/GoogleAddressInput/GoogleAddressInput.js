@@ -74,7 +74,7 @@ class GoogleAddressInput extends React.Component {
 
     const suffix = magnifyingGlass ? (
       <Input.IconAffix>
-        <Search />
+        <Search data-hook="search-icon" />
       </Input.IconAffix>
     ) : (
       undefined

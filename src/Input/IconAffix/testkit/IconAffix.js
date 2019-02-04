@@ -8,7 +8,6 @@ const iconDriverFactory = ({ element }) => {
   return {
     isEmpty: () => element.children.length === 0,
     hasChild: style => !!element.querySelector(style),
-    getIconName: () => element.getAttribute('data-icon'),
   };
 };
 

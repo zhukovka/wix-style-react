@@ -722,7 +722,7 @@ describe('Input', () => {
       const driver = createDriver(
         <Input
           prefix={
-            <Input.IconAffix>
+            <Input.IconAffix dataHook="icon-affix">
               <Search />
             </Input.IconAffix>
           }
@@ -737,7 +737,7 @@ describe('Input', () => {
       const driver = createDriver(
         <Input
           prefix={
-            <Input.IconAffix>
+            <Input.IconAffix dataHook="icon-affix">
               <Search />
             </Input.IconAffix>
           }
@@ -799,7 +799,7 @@ describe('Input', () => {
       const driver = createDriver(
         <Input
           suffix={
-            <Input.IconAffix>
+            <Input.IconAffix dataHook="icon-affix">
               <Search />
             </Input.IconAffix>
           }
@@ -814,7 +814,7 @@ describe('Input', () => {
       const driver = createDriver(
         <Input
           suffix={
-            <Input.IconAffix>
+            <Input.IconAffix dataHook="icon-affix">
               <Search />
             </Input.IconAffix>
           }

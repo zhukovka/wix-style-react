@@ -7,8 +7,10 @@ describe('<Icon />', () => {
   const createDriver = props => iconDriverFactory(componentFactory(props));
 
   it('should create icon component and render the given icon', () => {
-    const driver = createDriver({ children: <Search /> });
+    const driver = createDriver({
+      children: <Search data-hook="search-icon" />,
+    });
     expect(driver.isEmpty()).toEqual(false);
-    expect(driver.getIconName()).toEqual('Search');
+    expect(driver.hasChild('[data-hook="search-icon"]')).toEqual(true);
   });
 });

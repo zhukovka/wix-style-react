@@ -5,7 +5,7 @@ import classNames from 'classnames';
 import styles from './IconAffix.scss';
 import InputConsumer from '../InputConsumer';
 
-const IconAffix = ({ children }) => (
+const IconAffix = ({ children, dataHook }) => (
   <InputConsumer consumerCompName={IconAffix.displayName}>
     {({ size, inSuffix, onInputClicked }) => {
       const className = classNames(styles.icon, {
@@ -15,8 +15,7 @@ const IconAffix = ({ children }) => (
         <div
           onClick={onInputClicked}
           className={className}
-          data-hook="icon-affix"
-          data-icon={children.type.displayName}
+          data-hook={dataHook}
         >
           {React.cloneElement(children, {
             size: size === 'small' ? '18px' : '24px',

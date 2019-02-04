@@ -54,12 +54,14 @@ class Input extends Component {
   logDeprecations(props) {
     if (props.unit) {
       deprecationLog(
-        `Input's unit prop is deprecated and will be removed in the next major release, please use suffix property with Input.Affix instead`,
+        `Input's unit prop is deprecated and will be removed in the next major release, please use suffix property with '<Input suffix={<Input.Affix>${
+          props.unit
+        }</Input.Affix>}/>' instead`,
       );
     }
     if (props.magnifyingGlass) {
       deprecationLog(
-        `Input's magnifyingGlass prop is deprecated and will be removed in the next major release, please use suffix property with Input.IconAffix instead`,
+        `Input's magnifyingGlass prop is deprecated and will be removed in the next major release, please use suffix property with '<Input suffix={<Input.Affix><Search /></Input.Affix>}/>' instead`,
       );
     }
   }
@@ -97,7 +99,6 @@ class Input extends Component {
       autocomplete,
       required,
       error,
-      size,
       errorMessage,
     } = this.props;
 
@@ -190,20 +191,12 @@ class Input extends Component {
       />
     );
 
-    const inputWrapperClassName = classNames(styles.inputWrapper, {
-      [styles.doublePad]: size === 'large',
-    });
-
     return (
-      <div className={inputWrapperClassName}>
+      <div className={styles.inputWrapper}>
         {prefix && (
           <div className={styles.prefix}>
             <InputContext.Provider value={{ ...this.props, inPrefix: true }}>
-              {typeof prefix === 'string' ? (
-                <Input.Affix value={prefix} />
-              ) : (
-                prefix
-              )}
+              <span>{prefix}</span>
             </InputContext.Provider>
           </div>
         )}
@@ -225,7 +218,6 @@ class Input extends Component {
               unit={unit}
               focused={this.state.focus}
               suffix={suffix}
-              size={size}
               tooltipPlacement={tooltipPlacement}
               onTooltipShow={onTooltipShow}
             />
@@ -441,9 +433,6 @@ Input.propTypes = {
   helpMessage: PropTypes.node,
   id: PropTypes.string,
 
-  /** Should the component include a magnifyingGlass */
-  magnifyingGlass: PropTypes.bool,
-
   /** Input max length */
   maxLength: PropTypes.number,
 
@@ -540,7 +529,6 @@ Input.propTypes = {
   /** Placement of the error and help tooltips (supported only for amaterial theme for now) */
   tooltipPlacement: PropTypes.string,
   type: PropTypes.string,
-  unit: PropTypes.string,
 
   /** Inputs value */
   value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
