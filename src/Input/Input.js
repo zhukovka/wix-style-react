@@ -4,14 +4,20 @@ import classNames from 'classnames';
 
 import Ticker from './Ticker';
 import Unit from './Unit';
+import IconAffix from './IconAffix';
+import Affix from './Affix';
 import Group from './Group';
 import InputSuffix, { getVisibleSuffixCount } from './InputSuffix';
+import deprecationLog from '../utils/deprecationLog';
 
 import styles from './Input.scss';
+import { InputContext } from './InputContext';
 
 class Input extends Component {
   static Ticker = Ticker;
   static Unit = Unit;
+  static IconAffix = IconAffix;
+  static Affix = Affix;
   static Group = Group;
 
   static StatusError = 'error';
@@ -20,6 +26,11 @@ class Input extends Component {
   state = {
     focus: false,
   };
+
+  constructor(props) {
+    super(props);
+    this.logDeprecations(props);
+  }
 
   componentDidMount() {
     const { autoFocus, value } = this.props;
@@ -39,6 +50,19 @@ class Input extends Component {
 
     this.isComposing = isComposing;
   };
+
+  logDeprecations(props) {
+    if (props.unit) {
+      deprecationLog(
+        `Input's unit prop is deprecated and will be removed in the next major release, please use suffix property with Input.Affix instead`,
+      );
+    }
+    if (props.magnifyingGlass) {
+      deprecationLog(
+        `Input's magnifyingGlass prop is deprecated and will be removed in the next major release, please use suffix property with Input.IconAffix instead`,
+      );
+    }
+  }
 
   render(props = {}) {
     const {
@@ -73,6 +97,7 @@ class Input extends Component {
       autocomplete,
       required,
       error,
+      size,
       errorMessage,
     } = this.props;
 
@@ -165,20 +190,26 @@ class Input extends Component {
       />
     );
 
-    //needs additional wrapper with class .prefixSuffixWrapper to fix inputs with prefix in ie11
-    //https://github.com/wix/wix-style-react/issues/1693
-    //https://github.com/wix/wix-style-react/issues/1691
+    const inputWrapperClassName = classNames(styles.inputWrapper, {
+      [styles.doublePad]: size === 'large',
+    });
+
     return (
-      <div className={styles.inputWrapper}>
+      <div className={inputWrapperClassName}>
         {prefix && (
-          <div className={styles.prefixSuffixWrapper}>
-            <div className={styles.prefix}>{prefix}</div>
+          <div className={styles.prefix}>
+            <InputContext.Provider value={{ ...this.props, inPrefix: true }}>
+              {typeof prefix === 'string' ? (
+                <Input.Affix value={prefix} />
+              ) : (
+                prefix
+              )}
+            </InputContext.Provider>
           </div>
         )}
-
         {inputElement}
-        {visibleSuffixCount > 0 && (
-          <div className={styles.prefixSuffixWrapper}>
+        <InputContext.Provider value={{ ...this.props, inSuffix: true }}>
+          {visibleSuffixCount > 0 && (
             <InputSuffix
               status={suffixStatus}
               statusMessage={suffixStatusMessage}
@@ -194,11 +225,12 @@ class Input extends Component {
               unit={unit}
               focused={this.state.focus}
               suffix={suffix}
+              size={size}
               tooltipPlacement={tooltipPlacement}
               onTooltipShow={onTooltipShow}
             />
-          </div>
-        )}
+          )}
+        </InputContext.Provider>
       </div>
     );
   }
