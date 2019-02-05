@@ -5,18 +5,9 @@ The PageHeader component is the header implementation that will be changed when 
 
 ## Usage
 
-When using the `Page` component it is mandatory to apply styles to it's container.\
-The component by design needs to be contained in a container otherwise the scroll won't work.\
-The necessary style for the container is:
+When using the `Page` component it container (PageContainer) should have a determined height (e.g. `height: 500px`, `height: 100vh`) otherwise the scroll won't work.
 
-```css
-height: 100vh;
-display: flex;
-flex-flow: column;
-min-height: 0;
-```
-
-A live example is available [here](https://wix-wix-style-react.surge.sh/?selectedKind=2.%20Layout&selectedStory=2.6%20%2B%20Page%20Example).
+> The above applies only when setting `upgrade` prop to `true`. (New Layout API)
 
 ## Gradient
 
