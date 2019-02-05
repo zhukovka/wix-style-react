@@ -9,6 +9,7 @@ import * as s from './PageTestStories.scss';
 import { header, tail, fixedContent, content } from './PageChildren';
 import { storySettings } from './storySettings';
 import ExampleEmptyState from './ExampleEmptyState';
+import { SCROLL_TOP_THRESHOLD } from '../../src/Page/constants';
 
 const PageContainer = props => {
   return (
@@ -139,70 +140,71 @@ PageTestStories.add('12. Page Example with stretchVertically', () => (
   </PageContainer>
 ));
 
-PageTestStories.add('13. Small scroll range', () => {
-  class Test extends React.Component {
-    componentDidMount = () => {
-      console.log(
-        'componentDidMount(): page.state.fixedContainerHeight=',
-        this.pageInstance.state.fixedContainerHeight,
-      );
-      this.forceUpdate(); // To get the fixedContainerHeight which is available only after a re-render of Page
-    };
+class PageWithScroll extends React.Component {
+  state = { fixedContainerHeight: null };
 
-    componentDidUpdate = () => {
-      console.log(
-        'componentDidUpdate(): page.state.fixedContainerHeight=',
-        this.pageInstance.state.fixedContainerHeight,
-      );
-      console.log('contentRef= ', this.contentRef);
-      if (this.state.fixedContainerHeight === null) {
-        this.setState({
-          fixedContainerHeight: this.pageInstance.state.fixedContainerHeight,
-        });
-      }
+  static propTypes = {
+    extraScroll: PropTypes.number,
+  };
 
-      // this.contentRef &&
-      //   this.contentRef.setAttribute(
-      //     'style',
-      //     `background-color: white;height: calc(100vh - 16px - ${
-      //       this.pageInstance.state.fixedContainerHeight
-      //     }px)`,
-      //   );
-    };
-    state = { fixedContainerHeight: null };
-    render() {
-      let contentHeight = 200;
+  componentDidMount = () => {
+    this.forceUpdate(); // To get the fixedContainerHeight which is available only after a re-render of Page
+  };
 
-      if (this.state.fixedContainerHeight) {
-        const browserPadding = 16;
-        const extraScroll = 20;
-        contentHeight =
-          window.innerHeight -
-          this.state.fixedContainerHeight -
-          browserPadding +
-          extraScroll;
-        console.log('contentHeight= ', contentHeight);
-      }
-
-      return (
-        <PageContainer>
-          <Page {...defaultPageProps} ref={ref => (this.pageInstance = ref)}>
-            {header()}
-            <Page.Content>
-              <div
-                ref={ref => (this.contentRef = ref)}
-                style={{
-                  backgroundColor: 'white',
-                  height: `${contentHeight}px`,
-                }}
-              />
-              {/* <LongTextContent /> */}
-            </Page.Content>
-          </Page>
-        </PageContainer>
-      );
+  componentDidUpdate = () => {
+    if (this.state.fixedContainerHeight === null) {
+      this.setState({
+        fixedContainerHeight: this.pageInstance.state.fixedContainerHeight,
+      });
     }
-  }
+  };
 
-  return <Test />;
-});
+  render() {
+    let contentHeight = 200;
+
+    if (this.state.fixedContainerHeight) {
+      const browserPadding = 16;
+      const pageBottomPadding = 0;
+      const extraScroll = this.props.extraScroll ? this.props.extraScroll : 0;
+      const noScrollHeight =
+        window.innerHeight -
+        this.state.fixedContainerHeight -
+        browserPadding -
+        pageBottomPadding;
+      contentHeight = noScrollHeight + extraScroll;
+    }
+
+    return (
+      <PageContainer>
+        <Page {...defaultPageProps} ref={ref => (this.pageInstance = ref)}>
+          {header()}
+          <Page.Content>
+            <div
+              ref={ref => (this.contentRef = ref)}
+              style={{
+                backgroundColor: 'white',
+                height: `${contentHeight}px`,
+              }}
+            />
+            {/* <LongTextContent /> */}
+          </Page.Content>
+        </Page>
+      </PageContainer>
+    );
+  }
+}
+
+PageTestStories.add('13. Max content height wihout scroll', () => (
+  // Small scroll - lower than the threshold that triggers minimization
+  <PageWithScroll extraScroll={0} />
+));
+
+PageTestStories.add('14. Scroll - No Minimize', () => (
+  // Small scroll - lower than the threshold that triggers minimization
+  <PageWithScroll extraScroll={SCROLL_TOP_THRESHOLD - 2} />
+));
+
+PageTestStories.add('15. Scroll - Minimize + 2px', () => (
+  // Small scroll - lower than the threshold that triggers minimization
+  <PageWithScroll extraScroll={SCROLL_TOP_THRESHOLD + 2} />
+));
