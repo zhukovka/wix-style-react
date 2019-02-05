@@ -19,11 +19,10 @@ import {
   mainContainerMaxWidthPx as GRID_MAX_WIDTH,
 } from '../Grid/constants';
 import deprecationLog from '../utils/deprecationLog';
-/**
- * A page container which contains a header and scrollable content
- *
+
+/*
  * Page structure is as follows:
- * @example
+ *
  * + PageWrapper --------------
  * | +- Page --------------------
  * | | +-- FixedContainer ---------
@@ -54,6 +53,10 @@ import deprecationLog from '../utils/deprecationLog';
  *
  * -  ScrollableContainer is called in the code scrollable-content, and should NOT be renamed, since
  * Tooltip is hard-coded-ly using a selector like this: [data-class="page-scrollable-content"]
+ */
+
+/**
+ * A page container which contains a header and scrollable content
  */
 class Page extends WixComponent {
   static defaultProps = {
