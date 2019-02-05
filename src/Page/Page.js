@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { ResizeSensor } from 'css-element-queries';
-
+import { allValidators, extendPropTypes } from '../utils/propTypes';
 import s from './Page.scss';
 import WixComponent from '../BaseComponents/WixComponent';
 import PageHeader from '../PageHeader';
@@ -18,6 +18,7 @@ import {
   mainContainerMinWidthPx as GRID_MIN_WIDTH,
   mainContainerMaxWidthPx as GRID_MAX_WIDTH,
 } from '../Grid/constants';
+import deprecationLog from '../utils/deprecationLog';
 /**
  * A page container which contains a header and scrollable content
  *
@@ -237,7 +238,7 @@ class Page extends WixComponent {
       className,
       children,
       minWidth,
-      stretchVertically,
+      upgrade,
     } = this.props;
     const { minimized } = this.state;
     const hasBackgroundImage = !!backgroundImageUrl;
@@ -256,9 +257,7 @@ class Page extends WixComponent {
       minimizedFixedContainerHeight,
     } = this._calculateHeaderMeasurements({ PageTail });
 
-    const classNameStretchVertically = stretchVertically
-      ? s.stretchVertically
-      : '';
+    const classNameStretchVertically = upgrade ? s.stretchVertically : '';
 
     const contentLayoutProps = {
       className: classNames(s.content, {
@@ -276,9 +275,14 @@ class Page extends WixComponent {
     };
 
     return (
-      <div className={classNames(s.pageWrapper, className)}>
+      <div
+        className={classNames(
+          upgrade ? s.pageWrapper : s.deprecatedPageWrapper,
+          className,
+        )}
+      >
         <div
-          className={s.page}
+          className={upgrade ? s.page : s.deprecatedPage}
           style={{
             minWidth: minWidth + 2 * PAGE_SIDE_PADDING_PX,
           }}
@@ -409,8 +413,6 @@ Page.propTypes = {
   gradientCoverTail: PropTypes.bool,
   /** Is called with the Page's scrollable content ref **/
   scrollableContentRef: PropTypes.func,
-  /** If true, page and page content will cover available height */
-  stretchVertically: PropTypes.bool,
 
   children: PropTypes.arrayOf((children, key) => {
     const childrenObj = getChildrenObject(children);
@@ -436,7 +438,22 @@ Page.propTypes = {
       );
     }
   }).isRequired,
+  /** When true the page will use height: 100% and not require a parent of `display: flex;flex-flow: column;`. Also Page.Content's may grow using `height: 100%`.*/
+  upgrade: PropTypes.bool,
 };
+
+extendPropTypes(Page, {
+  upgrade: allValidators(PropTypes.bool, (props, propName, componentName) => {
+    if (!props[propName]) {
+      deprecationLog(
+        `
+${componentName}: New Layout API ! Please set upgrade=true prop to use new Layout API.
+When enabled, the page will use height: 100% and not require a parent of 'display: flex;flex-flow: column;'.
+Also Page.Content's may grow using 'height: 100%'. See docs for more info: https://github.com/wix/wix-style-react/blob/master/src/Page/README.MIGRATION.md`,
+      );
+    }
+  }),
+});
 
 function getChildrenObject(children) {
   return React.Children.toArray(children).reduce((acc, child) => {
