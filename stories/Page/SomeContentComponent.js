@@ -54,8 +54,7 @@ export const LongTextContent = props => {
         tortor metus facilisis justo, sit amet blandit dolor urna eget diam.
         Etiam nec lorem cursus nisl finibus venenatis. Ut consequat dui non
         pharetra fringilla. Nulla facilisi.
-        <br />
-        <br />
+        {i < props.numOfPages - 1 && [<br key="br1" />, <br key="br2" />]}
       </div>
     </div>
   ));
