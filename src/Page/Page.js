@@ -417,6 +417,7 @@ Page.propTypes = {
   /** Is called with the Page's scrollable content ref **/
   scrollableContentRef: PropTypes.func,
 
+  /** Accepts these components as children: `Page.Header`, `Page.Tail`, `Page.Content`, `Page.FixedContent`. Order is insignificant. */
   children: PropTypes.arrayOf((children, key) => {
     const childrenObj = getChildrenObject(children);
 
