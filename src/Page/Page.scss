@@ -5,6 +5,7 @@ $page-side-padding: 48px;
 $scroll-top-threshold: 20px;
 $page-background-color: rgba($D70, .95);
 $image-container-offset: 30px;
+$pageBottomPadding: 48px; //  Should be synced with JS Page value
 
 .pageWrapper {
   overflow-x: auto;
@@ -79,7 +80,7 @@ $image-container-offset: 30px;
   }
 }
 
-.scrollable-content {
+.scrollableContainer {
   overflow-y: auto;
   width: 100%;
   position: relative;
@@ -127,6 +128,14 @@ $image-container-offset: 30px;
   position: relative;
   padding: 0 $page-side-padding;
   margin: 0 auto;
+}
+
+.contentWrapper {
+  height: calc(100% - 48px);
+
+  .pageBottomPadding {
+    height: 48px;
+  }
 }
 
 .content-placeholder {

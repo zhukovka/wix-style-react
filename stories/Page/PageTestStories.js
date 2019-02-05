@@ -164,7 +164,7 @@ class PageWithScroll extends React.Component {
 
     if (this.state.fixedContainerHeight) {
       const browserPadding = 16;
-      const pageBottomPadding = 0;
+      const pageBottomPadding = 48;
       const extraScroll = this.props.extraScroll ? this.props.extraScroll : 0;
       const noScrollHeight =
         window.innerHeight -

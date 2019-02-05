@@ -271,11 +271,9 @@ class Page extends WixComponent {
 
     const contentWrapperLayoutProps = {
       ...contentHorizontalLayoutProps,
-      className: classNames(
-        contentHorizontalLayoutProps.className,
-        classNameStretchVertically,
-        { [s.pageBottomPadding]: this.props.upgrade },
-      ),
+      className: classNames(contentHorizontalLayoutProps.className, {
+        [s.contentWrapper]: this.props.upgrade,
+      }),
     };
 
     return (
@@ -337,7 +335,7 @@ class Page extends WixComponent {
             )}
           </div>
           <div
-            className={s.scrollableContent}
+            className={s.scrollableContainer}
             onScroll={this._handleScroll}
             data-hook="page-scrollable-content"
             data-class="page-scrollable-content"
@@ -371,15 +369,8 @@ class Page extends WixComponent {
             >
               <div {...contentWrapperLayoutProps}>
                 {this._safeGetChildren(PageContent)}
+                <div className={s.pageBottomPadding} />
               </div>
-              {minimized ? (
-                <div
-                  style={{
-                    height: `${fixedContainerHeight -
-                      minimizedFixedContainerHeight}px`,
-                  }}
-                />
-              ) : null}
             </div>
           </div>
         </div>
