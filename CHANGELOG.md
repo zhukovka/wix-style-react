@@ -14,6 +14,11 @@ Types of changes:
 1. **Docs** for documentation changes
 1. **Lab** components and features that are still in a work in progress
 
+## next
+
+### Fixed
+- `<Thumbnail/>` - add visual hover state [#2904](https://github.com/wix/wix-style-react/pull/2904)
+
 ## 6.2.0 - 2019-02-04
 
 ### Added
