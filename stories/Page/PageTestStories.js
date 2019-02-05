@@ -24,6 +24,12 @@ PageContainer.propTypes = {
 const kind = getTestStoryKind(storySettings);
 const dataHook = 'story-page';
 
+const defaultPageProps = () => ({
+  dataHook: dataHook,
+  gradientClassName: 'background-gradient',
+  children: [header(), content()],
+});
+
 storiesOf(kind, module).add('Header-Tail-Content: 1. Image', () => (
   <PageContainer>
     <Page
@@ -145,32 +151,29 @@ storiesOf(kind, module).add('8. Empty State', () => (
   </PageContainer>
 ));
 
-storiesOf(kind, module).add('10 + Page Example with short content', () => (
-  <PageContainer>
-    <Page
-      dataHook={dataHook}
-      children={[header(), content({ shortContent: true })]}
-      gradientClassName="background-gradient"
-    />
-  </PageContainer>
-));
-// .add('13 + Page Example with sidePadding', () => (
-//   <FullPageExample sidePadding={0} />
-// ))
-// .add('14 + Page Example with short content and sidePadding', () => (
-//   <FullPageExample sidePadding={0} shortContent />
-// ))
-// .add('15 + Page Example with sidePadding and maxWidth', () => (
-//   <FullPageExample sidePadding={0} maxWidth={800} />
-// ))
-// .add('16 + Page Example with short content sidePadding and maxWidth', () => (
-//   <FullPageExample sidePadding={0} maxWidth={800} shortContent />
-// ))
-// .add(
-//   '17 + Page Example with short content bottomPadding and stretchVertically',
-//   () => <FullPageExample shortContent bottomPadding={16} stretchVertically />,
-// )
-// .add(
-//   '18 + Page Example with long content bottomPadding and stretchVertically',
-//   () => <FullPageExample bottomPadding={16} stretchVertically />,
-// );
+storiesOf(kind, module)
+  .add('9 + Page Example with short content', () => (
+    <PageContainer>
+      <Page
+        {...defaultPageProps()}
+        children={[header(), content({ shortContent: true })]}
+      />
+    </PageContainer>
+  ))
+  .add('10 + Page Example with sidePadding=0', () => (
+    <PageContainer>
+      <Page {...defaultPageProps()} sidePadding={0} />
+    </PageContainer>
+  ))
+  .add('11 + Page Example with stretchVertically', () => (
+    <PageContainer>
+      <Page
+        {...defaultPageProps()}
+        stretchVertically
+        children={[
+          header(),
+          content({ shortContent: true, stretchVertically: true }),
+        ]}
+      />
+    </PageContainer>
+  ));

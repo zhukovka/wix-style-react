@@ -5,7 +5,7 @@ import Tooltip from '../../src/Tooltip';
 export default class SomeContentComponent extends React.Component {
   static propTypes = {
     shortContent: bool,
-    strectchVertically: bool,
+    stretchVertically: bool,
   };
 
   getBody() {
@@ -87,7 +87,7 @@ export default class SomeContentComponent extends React.Component {
       <div
         style={{
           backgroundColor: 'white',
-          minHeight: this.props.strectchVertically ? '100%' : undefined,
+          minHeight: this.props.stretchVertically ? '100%' : undefined,
         }}
       >
         {this.getBody()}

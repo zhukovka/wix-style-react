@@ -15,6 +15,8 @@ const testStoryUrl = testName =>
   createTestStoryUrl({ category, storyName, testName });
 
 describe('Page', () => {
+  const eyes = eyesItInstance();
+
   const initTest = async ({ storyUrl, dataHook }) => {
     await browser.get(storyUrl);
     const driver = pageTestkitFactory({ dataHook });
@@ -23,25 +25,25 @@ describe('Page', () => {
     return driver;
   };
 
-  const runTestCases = initTestConfig => {
-    const eyes = eyesItInstance({
+  const runChildrenCombinationTests = initTestConfig => {
+    const eyesManual = eyesItInstance({
       enableSnapshotAtBrowserGet: false,
       enableSnapshotAtEnd: false,
     });
 
-    eyes.it('should hide title on scroll threshold', async () => {
+    eyesManual.it('should hide title on scroll threshold', async () => {
       const driver = await initTest(initTestConfig);
 
       await expect(await driver.titleExists()).toBeTruthy();
-      await eyes.checkWindow('Page title shown');
+      await eyesManual.checkWindow('Page title shown');
 
       await driver.scrollDown();
       await eventually(() => !driver.titleExists());
-      await eyes.checkWindow('Page title hidden');
+      await eyesManual.checkWindow('Page title hidden');
 
       await driver.scrollUp();
       await eventually(() => driver.titleExists());
-      await eyes.checkWindow('Page title appears');
+      await eyesManual.checkWindow('Page title appears');
     });
   };
 
@@ -50,14 +52,18 @@ describe('Page', () => {
 
     describe('With Background-Image', () => {
       const storyUrl = testStoryUrl('Header-Tail-Content: 1. Image');
-      runTestCases({ storyUrl, dataHook });
+      runChildrenCombinationTests({ storyUrl, dataHook });
     });
 
     describe('With gradientCoverTail', () => {
       const storyUrl = testStoryUrl(
         'Header-Tail-Content: 2. Gradient Cover Tail',
       );
-      runTestCases({ storyUrl, dataHook, props: { backgroundImageUrl: '' } });
+      runChildrenCombinationTests({
+        storyUrl,
+        dataHook,
+        props: { backgroundImageUrl: '' },
+      });
     });
   });
 
@@ -66,12 +72,12 @@ describe('Page', () => {
 
     describe('With Background-Image', () => {
       const storyUrl = testStoryUrl('1. Image');
-      runTestCases({ storyUrl, dataHook });
+      runChildrenCombinationTests({ storyUrl, dataHook });
     });
 
     describe('With Gradient', () => {
       const storyUrl = testStoryUrl('2. Gradient');
-      runTestCases({ storyUrl, dataHook });
+      runChildrenCombinationTests({ storyUrl, dataHook });
     });
   });
 
@@ -80,20 +86,12 @@ describe('Page', () => {
 
     describe('With Background-Image', () => {
       const storyUrl = testStoryUrl('3. FC-Image');
-      runTestCases({ storyUrl, dataHook });
+      runChildrenCombinationTests({ storyUrl, dataHook });
     });
 
     describe('With Gradient', () => {
       const storyUrl = testStoryUrl('4. FC-Gradient');
-      runTestCases({ storyUrl, dataHook });
-    });
-  });
-
-  describe('With EmptyState', () => {
-    const storyUrl = testStoryUrl('8. Empty State');
-    const eyes = eyesItInstance();
-    eyes.it('should not break design', async () => {
-      await browser.get(storyUrl);
+      runChildrenCombinationTests({ storyUrl, dataHook });
     });
   });
 
@@ -106,7 +104,6 @@ describe('Page', () => {
       };
     }
 
-    const eyes = eyesItInstance();
     describe('Default values', () => {
       const url = testStoryUrl('5. Default [min/max]-width');
 
@@ -145,5 +142,21 @@ describe('Page', () => {
         eyesOptions({ width: 500 }),
       );
     });
+  });
+
+  eyes.it('should have empty state', async () => {
+    await browser.get(testStoryUrl('8. Empty State'));
+  });
+
+  eyes.it('should have short content', async () => {
+    await browser.get(testStoryUrl('9 + Page Example with short content'));
+  });
+
+  eyes.it('should have sidePadding=0', async () => {
+    await browser.get(testStoryUrl('10 + Page Example with sidePadding=0'));
+  });
+
+  eyes.it('should have short content stretched vertically', async () => {
+    await browser.get(testStoryUrl('11 + Page Example with stretchVertically'));
   });
 });
