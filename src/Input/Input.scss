@@ -36,6 +36,7 @@ $material-gap: 8px;
   margin: 0;
   border: 0;
   outline: 0;
+  line-height: 1.5;
   background: transparent;
   @include BorderRadius(6px);
   @include FontRoman();
