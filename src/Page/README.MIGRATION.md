@@ -5,7 +5,7 @@
 ### TL;DR
 
 - **Flex Parent**: No need for Page parent to be a flex container with flow 'column'
-- **Content Stretch**: `Page.Content` takes 100% of remining height.
+- **Content Stretch**: `<Page.Content/>` now allows it's children to stretch vertically.
 
 ### Page Container
 
@@ -30,14 +30,19 @@ IMPORTANT: If you page is already in an App structure, your Page container may a
 
 ```raw
 +--------------------------------------------------
-|                    Header (100vh)
+|                    Header (48px)
 +--------------------------------------------------
-| Sidebar       |           Page
+| Sidebar       |           <Page/>
 | (100vh - 48px)|
 |               |
 |               |
 +---------------+----------------------------------
 ```
+
+#### Horizontal Scroll & min/max width
+
+Horizontal scrolling and min/max width are already supported,
+so you can remove any Page wrapper `<div>`'s you might have previously added in order to implement it.
 
 ### Content Stretch
 
