@@ -6,13 +6,24 @@ import SomeContentComponent from './SomeContentComponent';
 import SomeTailComponent from './SomeTailComponent';
 import Breadcrumbs from './Breadcrumbs';
 
+const ActionBar = props => {
+  const { minimized, hasBackgroundImage, children } = props;
+  return typeof children === 'function'
+    ? children({ minimized, hasBackgroundImage })
+    : children;
+};
+
 export const header = props => (
   <Page.Header
     title="Page Title"
     subtitle="Page subtitle"
     showBackButton
     onBackClicked={() => {}}
-    actionsBar={<Button>Action</Button>}
+    actionsBar={
+      <ActionBar>
+        <Button>Action</Button>
+      </ActionBar>
+    }
     breadcrumbs={Breadcrumbs}
     {...props}
   />
