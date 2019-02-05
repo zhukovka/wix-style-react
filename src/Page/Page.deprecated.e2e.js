@@ -12,9 +12,13 @@ import { storySettings } from '../../stories/Page/storySettings';
 const { category, storyName } = storySettings;
 
 const testStoryUrl = testName =>
-  createTestStoryUrl({ category, storyName, testName });
+  createTestStoryUrl({
+    category: `${category}/Deprecated`,
+    storyName,
+    testName,
+  });
 
-describe('Page', () => {
+describe('Page Deprecated', () => {
   const eyes = eyesItInstance();
 
   const initTest = async ({ storyUrl, dataHook }) => {
@@ -47,6 +51,26 @@ describe('Page', () => {
     });
   };
 
+  describe('Header + Tail + Content', () => {
+    const dataHook = 'story-page';
+
+    describe('With Background-Image', () => {
+      const storyUrl = testStoryUrl('Header-Tail-Content: 1. Image');
+      runChildrenCombinationTests({ storyUrl, dataHook });
+    });
+
+    describe('With gradientCoverTail', () => {
+      const storyUrl = testStoryUrl(
+        'Header-Tail-Content: 2. Gradient Cover Tail',
+      );
+      runChildrenCombinationTests({
+        storyUrl,
+        dataHook,
+        props: { backgroundImageUrl: '' },
+      });
+    });
+  });
+
   describe('Header + Content', () => {
     const dataHook = 'story-page';
 
@@ -75,24 +99,6 @@ describe('Page', () => {
     });
   });
 
-  describe('Header + Tail + Content', () => {
-    const dataHook = 'story-page';
-
-    describe('With Background-Image', () => {
-      const storyUrl = testStoryUrl('5. HTC-Image');
-      runChildrenCombinationTests({ storyUrl, dataHook });
-    });
-
-    describe('With gradientCoverTail', () => {
-      const storyUrl = testStoryUrl('6. HTC-Gradient Cover Tail');
-      runChildrenCombinationTests({
-        storyUrl,
-        dataHook,
-        props: { backgroundImageUrl: '' },
-      });
-    });
-  });
-
   describe('min/max width', () => {
     function eyesOptions({ width }) {
       return {
@@ -103,7 +109,7 @@ describe('Page', () => {
     }
 
     describe('Default values', () => {
-      const url = testStoryUrl('7. Default [min/max]-width');
+      const url = testStoryUrl('5. Default [min/max]-width');
 
       eyes.it(
         'should stop growing at max-width',
@@ -123,7 +129,7 @@ describe('Page', () => {
     });
 
     describe('Custom values', () => {
-      const url = testStoryUrl('8. Custom [min/max]-width');
+      const url = testStoryUrl('6. Custom [min/max]-width');
       eyes.it(
         'should stop growing at max-width (1400px)',
         async () => {
@@ -143,18 +149,18 @@ describe('Page', () => {
   });
 
   eyes.it('should have empty state', async () => {
-    await browser.get(testStoryUrl('9. Empty State'));
+    await browser.get(testStoryUrl('8. Empty State'));
   });
 
   eyes.it('should have short content', async () => {
-    await browser.get(testStoryUrl('10. Page Example with short content'));
+    await browser.get(testStoryUrl('9. Page Example with short content'));
   });
 
   eyes.it('should have sidePadding=0', async () => {
-    await browser.get(testStoryUrl('11. Page Example with sidePadding=0'));
+    await browser.get(testStoryUrl('10. Page Example with sidePadding=0'));
   });
 
   eyes.it('should have short content stretched vertically', async () => {
-    await browser.get(testStoryUrl('12. Page Example with stretchVertically'));
+    await browser.get(testStoryUrl('11. Page Example with stretchVertically'));
   });
 });

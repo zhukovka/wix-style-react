@@ -8,8 +8,8 @@ import { Add } from 'wix-style-react/new-icons';
 
 import ImagePlaceholder from '../assets/ImagePlaceholder';
 
-const ExampleEmptyState = () => (
-  <Page>
+const ExampleEmptyState = props => (
+  <Page {...props}>
     <Page.Header
       title="Your Product"
       actionsBar={
