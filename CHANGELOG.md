@@ -14,7 +14,7 @@ Types of changes:
 1. **Docs** for documentation changes
 1. **Lab** components and features that are still in a work in progress
 
-## Next
+## 6.2.0 - 2019-02-04
 
 ### Added
 - `<StatsWidget/>` - support custom suffix header action [#2885](https://github.com/wix/wix-style-react/pull/2885)
