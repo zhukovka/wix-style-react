@@ -37,6 +37,8 @@ $image-container-offset: 30px;
   min-width: $main-container-min-width;
 }
 
+
+
 .fixed-container {
   position: absolute;
   z-index: 2;
@@ -121,7 +123,7 @@ $image-container-offset: 30px;
   width: 100%;
 }
 
-.content {
+.contentHorizontalLayout {
   position: relative;
   padding: 0 $page-side-padding;
   margin: 0 auto;
@@ -132,7 +134,7 @@ $image-container-offset: 30px;
   width: 100%;
 }
 
-.content-full-screen {
+.content-full-width {
   padding-left: 0;
   padding-right: 0;
 }

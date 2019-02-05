@@ -262,18 +262,19 @@ class Page extends WixComponent {
 
     const classNameStretchVertically = upgrade ? s.stretchVertically : '';
 
-    const contentLayoutProps = {
-      className: classNames(s.content, {
-        [s.contentFullScreen]: contentFullScreen,
+    const contentHorizontalLayoutProps = {
+      className: classNames(s.contentHorizontalLayout, {
+        [s.contentFullWidth]: contentFullScreen,
       }),
       style: contentFullScreen ? null : pageDimensionsStyle,
     };
 
-    const scrollableContentLayoutProps = {
-      ...contentLayoutProps,
+    const contentWrapperLayoutProps = {
+      ...contentHorizontalLayoutProps,
       className: classNames(
-        contentLayoutProps.className,
+        contentHorizontalLayoutProps.className,
         classNameStretchVertically,
+        { [s.pageBottomPadding]: this.props.upgrade },
       ),
     };
 
@@ -328,7 +329,7 @@ class Page extends WixComponent {
             {PageFixedContent && (
               <div
                 data-hook="page-fixed-content"
-                {...contentLayoutProps}
+                {...contentHorizontalLayoutProps}
                 ref={r => (this.pageHeaderFixedContentRef = r)}
               >
                 {React.cloneElement(PageFixedContent)}
@@ -368,7 +369,7 @@ class Page extends WixComponent {
                 classNameStretchVertically,
               )}
             >
-              <div {...scrollableContentLayoutProps}>
+              <div {...contentWrapperLayoutProps}>
                 {this._safeGetChildren(PageContent)}
               </div>
               {minimized ? (
