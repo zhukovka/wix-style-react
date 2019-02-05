@@ -5,10 +5,10 @@ import Button from 'wix-style-react/Button';
 import Card from 'wix-style-react/Card';
 import { Container, Row, Col } from 'wix-style-react/Grid';
 import { Add } from 'wix-style-react/new-icons';
-import { BusinessManagerMock } from './BusinessManagerMock';
+import { ExamplePageContainer } from './ExamplePageContainer';
 
 const ExampleStandard = () => (
-  <BusinessManagerMock>
+  <ExamplePageContainer>
     <Page>
       <Page.Header
         title="Your Product"
@@ -90,7 +90,7 @@ const ExampleStandard = () => (
         </Container>
       </Page.Content>
     </Page>
-  </BusinessManagerMock>
+  </ExamplePageContainer>
 );
 
 export default ExampleStandard;

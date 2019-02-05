@@ -10,7 +10,7 @@ import {
   Divider,
 } from 'wix-style-react/TableToolbar';
 
-import { BusinessManagerMock } from './BusinessManagerMock';
+import { ExamplePageContainer } from './ExamplePageContainer';
 
 import Dropdown from 'wix-style-react/Dropdown';
 import Search from 'wix-style-react/Search';
@@ -219,7 +219,7 @@ class ExampleStretchTable extends React.Component {
     const tableData = this.getFilteredData();
 
     return (
-      <BusinessManagerMock>
+      <ExamplePageContainer>
         <Table
           withWrapper={false}
           dataHook="story-table-example"
@@ -310,7 +310,7 @@ class ExampleStretchTable extends React.Component {
             </Page.Content>
           </Page>
         </Table>
-      </BusinessManagerMock>
+      </ExamplePageContainer>
     );
   }
 

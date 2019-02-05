@@ -3,12 +3,11 @@ import React from 'react';
 import Page from 'wix-style-react/Page';
 import Button from 'wix-style-react/Button';
 import Card from 'wix-style-react/Card';
-import { Container, Row, Col } from 'wix-style-react/Grid';
 import { Add } from 'wix-style-react/new-icons';
-import { BusinessManagerMock } from './BusinessManagerMock';
+import { ExamplePageContainer } from './ExamplePageContainer';
 
 const ExampleStandard = () => (
-  <BusinessManagerMock>
+  <ExamplePageContainer>
     <Page stretchVertically>
       <Page.Header
         title="Your Product"
@@ -35,7 +34,7 @@ const ExampleStandard = () => (
         </Card>
       </Page.Content>
     </Page>
-  </BusinessManagerMock>
+  </ExamplePageContainer>
 );
 
 export default ExampleStandard;

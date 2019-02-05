@@ -1,7 +1,9 @@
 import React from 'react';
-import s from './BusinessManagerMock.scss';
+import s from './ExamplePageContainer.scss';
 
-export const BusinessManagerMock = ({ children }) => (
+/* This layout try to immitate the current BusinessManager's layout and styles. */
+
+export const ExamplePageContainer = ({ children }) => (
   <div className={s.root}>
     <div className={s.header} />
     <div className={s.body}>
