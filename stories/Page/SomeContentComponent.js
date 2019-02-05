@@ -84,7 +84,7 @@ export default class SomeContentComponent extends React.Component {
           minHeight: this.props.stretchVertically ? '100%' : undefined,
         }}
       >
-        <LongTextContent />
+        <LongTextContent numOfPages={this.props.shortContent ? 1 : undefined} />
       </div>
     );
   }
