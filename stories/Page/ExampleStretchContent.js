@@ -8,7 +8,7 @@ import { ExamplePageContainer } from './ExamplePageContainer';
 
 const ExampleStandard = () => (
   <ExamplePageContainer>
-    <Page stretchVertically>
+    <Page upgrade>
       <Page.Header
         title="Your Product"
         actionsBar={

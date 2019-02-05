@@ -6,10 +6,11 @@ import Card from 'wix-style-react/Card';
 import { Container, Row, Col } from 'wix-style-react/Grid';
 import { Add } from 'wix-style-react/new-icons';
 import s from './ExampleStandAlone.scss';
+import { LongTextContent } from './SomeContentComponent';
 
 const ExampleStandAlone = () => (
   <div className={s.fullHeightStoryContainer}>
-    <Page>
+    <Page upgrade>
       <Page.Header
         title="Your Product"
         actionsBar={
@@ -25,7 +26,9 @@ const ExampleStandAlone = () => (
             <Col>
               <Card>
                 <Card.Header title="Catchy Header" />
-                <Card.Content>Hello</Card.Content>
+                <Card.Content>
+                  <LongTextContent />
+                </Card.Content>
               </Card>
             </Col>
           </Row>

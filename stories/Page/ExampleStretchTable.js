@@ -261,7 +261,7 @@ class ExampleStretchTable extends React.Component {
           showSelection
           showLastRowDivider
         >
-          <Page stretchVertically>
+          <Page upgrade>
             <Page.Header title="My Table Title" />
             <Page.FixedContent>
               <Card>

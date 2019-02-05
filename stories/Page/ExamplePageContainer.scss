@@ -6,7 +6,7 @@ $sideBarWidth: 220px;
 .root {
   display: flex;
   flex-direction: column;
-  height: 100vh;
+  height: calc(100vh - 16px); // Compensate for browser's default margin
 }
 
 .header {
