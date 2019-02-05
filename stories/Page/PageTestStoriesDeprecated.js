@@ -5,7 +5,7 @@ import { storiesOf } from '@storybook/react';
 import Page from 'wix-style-react/Page';
 import { getTestStoryKind } from '../storiesHierarchy';
 
-import * as s from './PageTestStories.scss';
+import * as s from './PageTestStoriesDeprecated.scss';
 import { header, tail, fixedContent, content } from './PageChildren';
 import { storySettings } from './storySettings';
 import ExampleEmptyState from './ExampleEmptyState';
@@ -23,12 +23,6 @@ PageContainer.propTypes = {
 
 const kind = `${getTestStoryKind(storySettings)}/Deprecated`;
 const dataHook = 'story-page';
-
-const defaultPageProps = () => ({
-  dataHook: dataHook,
-  gradientClassName: 'background-gradient',
-  children: [header(), content()],
-});
 
 storiesOf(kind, module).add('Header-Tail-Content: 1. Image', () => (
   <PageContainer>
@@ -116,30 +110,32 @@ storiesOf(kind, module).add('6. Custom [min/max]-width', () => (
   </div>
 ));
 
+const contentPrefix = (
+  <div
+    style={{
+      backgroundColor: 'white',
+      paddingBottom: '20px',
+      fontSize: '36px',
+    }}
+  >
+    <b>
+      This simulates what some consumers are currently doing to implement
+      min-width with horizontal scroll. So we can see tat they are not broken.
+      They can increase the min-width, bu the can not decrease it, unless they
+      use the minWidth prop.
+    </b>
+  </div>
+);
 storiesOf(kind, module).add(
   '7. Regression for [min/max]-width (introduced in version 5.25.0)',
   () => (
     <div style={{ overflowX: 'auto' }}>
       <PageContainer style={{ minWidth: '1100px' }}>
-        <Page dataHook={dataHook} gradientClassName="background-gradient">
-          {header()}
-          <Page.Content>
-            <div
-              style={{
-                backgroundColor: 'white',
-                paddingBottom: '20px',
-                fontSize: '36px',
-              }}
-            >
-              <b>
-                This simulates what some consumers are currently doing to
-                implement min-width with horizontal scroll. So we can see tat
-                they are not broken. They can increase the min-width, bu the can
-                not decrease it, unless they use the minWidth prop.
-              </b>
-            </div>
-          </Page.Content>
-        </Page>
+        <Page
+          dataHook={dataHook}
+          children={[header(), content(false, contentPrefix)]}
+          gradientClassName="background-gradient"
+        />
       </PageContainer>
     </div>
   ),
@@ -148,33 +144,5 @@ storiesOf(kind, module).add(
 storiesOf(kind, module).add('8. Empty State', () => (
   <PageContainer>
     <ExampleEmptyState />
-  </PageContainer>
-));
-
-storiesOf(kind, module).add('9. Page Example with short content', () => (
-  <PageContainer>
-    <Page
-      {...defaultPageProps()}
-      children={[header(), content({ shortContent: true })]}
-    />
-  </PageContainer>
-));
-
-storiesOf(kind, module).add('10. Page Example with sidePadding=0', () => (
-  <PageContainer>
-    <Page {...defaultPageProps()} sidePadding={0} />
-  </PageContainer>
-));
-
-storiesOf(kind, module).add('11. Page Example with stretchVertically', () => (
-  <PageContainer>
-    <Page
-      {...defaultPageProps()}
-      stretchVertically
-      children={[
-        header(),
-        content({ shortContent: true, stretchVertically: true }),
-      ]}
-    />
   </PageContainer>
 ));

@@ -13,14 +13,12 @@ const { category, storyName } = storySettings;
 
 const testStoryUrl = testName =>
   createTestStoryUrl({
-    category: `${category}/Deprecated`,
-    storyName,
+    category,
+    storyName: `${storyName}/Deprecated`,
     testName,
   });
 
 describe('Page Deprecated', () => {
-  const eyes = eyesItInstance();
-
   const initTest = async ({ storyUrl, dataHook }) => {
     await browser.get(storyUrl);
     const driver = pageTestkitFactory({ dataHook });
@@ -29,25 +27,25 @@ describe('Page Deprecated', () => {
     return driver;
   };
 
-  const runChildrenCombinationTests = initTestConfig => {
-    const eyesManual = eyesItInstance({
+  const runTestCases = initTestConfig => {
+    const eyes = eyesItInstance({
       enableSnapshotAtBrowserGet: false,
       enableSnapshotAtEnd: false,
     });
 
-    eyesManual.it('should hide title on scroll threshold', async () => {
+    eyes.it('should hide title on scroll threshold', async () => {
       const driver = await initTest(initTestConfig);
 
       await expect(await driver.titleExists()).toBeTruthy();
-      await eyesManual.checkWindow('Page title shown');
+      await eyes.checkWindow('Page title shown');
 
       await driver.scrollDown();
       await eventually(() => !driver.titleExists());
-      await eyesManual.checkWindow('Page title hidden');
+      await eyes.checkWindow('Page title hidden');
 
       await driver.scrollUp();
       await eventually(() => driver.titleExists());
-      await eyesManual.checkWindow('Page title appears');
+      await eyes.checkWindow('Page title appears');
     });
   };
 
@@ -56,18 +54,14 @@ describe('Page Deprecated', () => {
 
     describe('With Background-Image', () => {
       const storyUrl = testStoryUrl('Header-Tail-Content: 1. Image');
-      runChildrenCombinationTests({ storyUrl, dataHook });
+      runTestCases({ storyUrl, dataHook });
     });
 
     describe('With gradientCoverTail', () => {
       const storyUrl = testStoryUrl(
         'Header-Tail-Content: 2. Gradient Cover Tail',
       );
-      runChildrenCombinationTests({
-        storyUrl,
-        dataHook,
-        props: { backgroundImageUrl: '' },
-      });
+      runTestCases({ storyUrl, dataHook, props: { backgroundImageUrl: '' } });
     });
   });
 
@@ -76,12 +70,12 @@ describe('Page Deprecated', () => {
 
     describe('With Background-Image', () => {
       const storyUrl = testStoryUrl('1. Image');
-      runChildrenCombinationTests({ storyUrl, dataHook });
+      runTestCases({ storyUrl, dataHook });
     });
 
     describe('With Gradient', () => {
       const storyUrl = testStoryUrl('2. Gradient');
-      runChildrenCombinationTests({ storyUrl, dataHook });
+      runTestCases({ storyUrl, dataHook });
     });
   });
 
@@ -90,12 +84,20 @@ describe('Page Deprecated', () => {
 
     describe('With Background-Image', () => {
       const storyUrl = testStoryUrl('3. FC-Image');
-      runChildrenCombinationTests({ storyUrl, dataHook });
+      runTestCases({ storyUrl, dataHook });
     });
 
     describe('With Gradient', () => {
       const storyUrl = testStoryUrl('4. FC-Gradient');
-      runChildrenCombinationTests({ storyUrl, dataHook });
+      runTestCases({ storyUrl, dataHook });
+    });
+  });
+
+  describe('With EmptyState', () => {
+    const storyUrl = testStoryUrl('8. Empty State');
+    const eyes = eyesItInstance();
+    eyes.it('should not break design', async () => {
+      await browser.get(storyUrl);
     });
   });
 
@@ -108,6 +110,7 @@ describe('Page Deprecated', () => {
       };
     }
 
+    const eyes = eyesItInstance();
     describe('Default values', () => {
       const url = testStoryUrl('5. Default [min/max]-width');
 
@@ -146,21 +149,5 @@ describe('Page Deprecated', () => {
         eyesOptions({ width: 500 }),
       );
     });
-  });
-
-  eyes.it('should have empty state', async () => {
-    await browser.get(testStoryUrl('8. Empty State'));
-  });
-
-  eyes.it('should have short content', async () => {
-    await browser.get(testStoryUrl('9. Page Example with short content'));
-  });
-
-  eyes.it('should have sidePadding=0', async () => {
-    await browser.get(testStoryUrl('10. Page Example with sidePadding=0'));
-  });
-
-  eyes.it('should have short content stretched vertically', async () => {
-    await browser.get(testStoryUrl('11. Page Example with stretchVertically'));
   });
 });

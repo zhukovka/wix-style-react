@@ -24,12 +24,12 @@ PageContainer.propTypes = {
 const kind = getTestStoryKind(storySettings);
 const dataHook = 'story-page';
 
-const defaultPageProps = () => ({
+const defaultPageProps = {
   upgrade: true,
   dataHook: dataHook,
   gradientClassName: 'background-gradient',
   children: [header(), content()],
-});
+};
 
 const PageTestStories = storiesOf(kind, module);
 
@@ -114,7 +114,7 @@ PageTestStories.add('9. Empty State', () => (
 PageTestStories.add('10. Page Example with short content', () => (
   <PageContainer>
     <Page
-      {...defaultPageProps()}
+      {...defaultPageProps}
       children={[header(), content({ shortContent: true })]}
     />
   </PageContainer>
@@ -122,14 +122,14 @@ PageTestStories.add('10. Page Example with short content', () => (
 
 PageTestStories.add('11. Page Example with sidePadding=0', () => (
   <PageContainer>
-    <Page {...defaultPageProps()} sidePadding={0} />
+    <Page {...defaultPageProps} sidePadding={0} />
   </PageContainer>
 ));
 
 PageTestStories.add('12. Page Example with stretchVertically', () => (
   <PageContainer>
     <Page
-      {...defaultPageProps()}
+      {...defaultPageProps}
       stretchVertically
       children={[
         header(),
