@@ -90,19 +90,19 @@ PageTestStories.add('6. HTC-Gradient Cover Tail', () => (
 ));
 
 PageTestStories.add('7. Default [min/max]-width', () => (
-  <div>
+  <PageContainer>
     <Page {...defaultPageProps} />
-  </div>
+  </PageContainer>
 ));
 
 PageTestStories.add('8. Custom [min/max]-width', () => (
-  <div>
+  <PageContainer>
     <Page
       {...defaultPageProps}
       minWidth={504} // With padding: 504 + 48*2 = 600px
       maxWidth={1304} // With padding: 1304 + 48*2 = 1400px
     />
-  </div>
+  </PageContainer>
 ));
 
 PageTestStories.add('9. Empty State', () => (
@@ -138,3 +138,71 @@ PageTestStories.add('12. Page Example with stretchVertically', () => (
     />
   </PageContainer>
 ));
+
+PageTestStories.add('13. Small scroll range', () => {
+  class Test extends React.Component {
+    componentDidMount = () => {
+      console.log(
+        'componentDidMount(): page.state.fixedContainerHeight=',
+        this.pageInstance.state.fixedContainerHeight,
+      );
+      this.forceUpdate(); // To get the fixedContainerHeight which is available only after a re-render of Page
+    };
+
+    componentDidUpdate = () => {
+      console.log(
+        'componentDidUpdate(): page.state.fixedContainerHeight=',
+        this.pageInstance.state.fixedContainerHeight,
+      );
+      console.log('contentRef= ', this.contentRef);
+      if (this.state.fixedContainerHeight === null) {
+        this.setState({
+          fixedContainerHeight: this.pageInstance.state.fixedContainerHeight,
+        });
+      }
+
+      // this.contentRef &&
+      //   this.contentRef.setAttribute(
+      //     'style',
+      //     `background-color: white;height: calc(100vh - 16px - ${
+      //       this.pageInstance.state.fixedContainerHeight
+      //     }px)`,
+      //   );
+    };
+    state = { fixedContainerHeight: null };
+    render() {
+      let contentHeight = 200;
+
+      if (this.state.fixedContainerHeight) {
+        const browserPadding = 16;
+        const extraScroll = 20;
+        contentHeight =
+          window.innerHeight -
+          this.state.fixedContainerHeight -
+          browserPadding +
+          extraScroll;
+        console.log('contentHeight= ', contentHeight);
+      }
+
+      return (
+        <PageContainer>
+          <Page {...defaultPageProps} ref={ref => (this.pageInstance = ref)}>
+            {header()}
+            <Page.Content>
+              <div
+                ref={ref => (this.contentRef = ref)}
+                style={{
+                  backgroundColor: 'white',
+                  height: `${contentHeight}px`,
+                }}
+              />
+              {/* <LongTextContent /> */}
+            </Page.Content>
+          </Page>
+        </PageContainer>
+      );
+    }
+  }
+
+  return <Test />;
+});
