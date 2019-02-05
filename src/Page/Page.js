@@ -23,29 +23,33 @@ import {
  *
  * Page structure is as follows:
  * @example
- * +-- FixedContainer --------
- * | +-- HeaderContainer --------
- * | |  header-content:padding-top
- * | | +-- Page.Header --------
- * | | |
- * | | |
- * | | +-----------------------
- * | |  tail:padding-top
- * | | +-- Page.Tail ----------
- * | | |
- * | | |
- * | | +-----------------------
- * | |  header-content:padding-bottom
- * | +-------------------------
- * | +-- Page.FixedContent ----   ==+
- * | |                              |
- * | +-------------------------     |
- * +---------------------------     | Content (Virtual)
- * +--  ScrollableContainer ---     |
- * | +-- Page.Content ----------    |                            |
- * | |                              |
- * | +--------------------------    |
- * +---------------------------   ==+
+ * + PageWrapper --------------
+ * | +- Page --------------------
+ * | | +-- FixedContainer ---------
+ * | | | +-- HeaderContainer ------
+ * | | | |  header-content:padding-top
+ * | | | | +-- Page.Header --------
+ * | | | | |
+ * | | | | |
+ * | | | | +-----------------------
+ * | | | |  tail:padding-top
+ * | | | | +-- Page.Tail ----------
+ * | | | | |
+ * | | | | |
+ * | | | | +-----------------------
+ * | | | |  header-content:padding-bottom
+ * | | | +-------------------------
+ * | | | +-- Page.FixedContent ----   ==+
+ * | | | |                              |
+ * | | | +-------------------------     |
+ * | | +---------------------------     | Content (Virtual)
+ * | | +--  ScrollableContainer ---     |
+ * | | | +-- Page.Content ---------     |
+ * | | | |                              |
+ * | | | +-------------------------     |
+ * | | +---------------------------   ==+
+ * | +-----------------------------
+ * +-------------------------------
  *
  * -  ScrollableContainer is called in the code scrollable-content, and should NOT be renamed, since
  * Tooltip is hard-coded-ly using a selector like this: [data-class="page-scrollable-content"]
@@ -234,7 +238,6 @@ class Page extends WixComponent {
       children,
       minWidth,
       stretchVertically,
-      bottomPadding,
     } = this.props;
     const { minimized } = this.state;
     const hasBackgroundImage = !!backgroundImageUrl;
@@ -278,7 +281,6 @@ class Page extends WixComponent {
           className={s.page}
           style={{
             minWidth: minWidth + 2 * PAGE_SIDE_PADDING_PX,
-            paddingBottom: bottomPadding,
           }}
         >
           <div
@@ -399,8 +401,6 @@ Page.propTypes = {
   minWidth: PropTypes.number,
   /** Sets padding of the sides of the page */
   sidePadding: PropTypes.number,
-  /** Sets padding at the bottom of the page */
-  bottomPadding: PropTypes.number,
   /** A css class to be applied to the component's root element */
   className: PropTypes.string,
   /** Header background color class name, allows to add a gradient to the header */
