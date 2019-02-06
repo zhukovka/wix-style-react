@@ -18,6 +18,7 @@ Types of changes:
 
 ### Fixed
 - `<Thumbnail/>` - add visual hover state [#2904](https://github.com/wix/wix-style-react/pull/2904)
+- `<Notification/>` - replace deprecated components in ActionButton [2903](https://github.com/wix/wix-style-react/pull/2903)
 
 ## 6.2.0 - 2019-02-04
 
