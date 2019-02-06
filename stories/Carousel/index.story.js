@@ -1,5 +1,17 @@
+import React from 'react';
 import Carousel from 'wix-style-react/Carousel';
+import { Container, Row, Col } from 'wix-style-react/Grid';
 import { storySettings } from './storySettings';
+import CodeExample from 'wix-storybook-utils/CodeExample';
+
+import ExampleWithItems from './ExampleWithItems';
+import ExampleWithItemsRaw from '!raw-loader!./ExampleWithItems';
+
+const exampleContainerStyles = {
+  display: 'flex',
+  flexFlow: 'column',
+  minHeight: 0,
+};
 
 const imagesExamples = [
   {
@@ -14,7 +26,7 @@ const imagesExamples = [
       },
       {
         src:
-          'https://a-static.besthdwallpaper.com/cartoons-garfield-wallpaper-1440x1080-6773_22.jpg',
+          'https://a-static.besthdwallpaper.com/cartoons-garfield-wallpaper-1440x1080-6773_22.jpg_',
       },
     ],
     label: 'three images',
@@ -31,7 +43,25 @@ export default {
   componentProps: {
     images: imagesExamples[0].value,
     infinite: true,
-    autoplay: false,
+    autoplay: true,
+    autopreloader: true,
     dataHook: storySettings.dataHook,
   },
+
+  examples: (
+    <CodeExample title="Carousel with items" code={ExampleWithItemsRaw}>
+      <Container>
+        <Row>
+          <Col span={6}>
+            <div
+              data-hook="story-carousel-with-items"
+              style={exampleContainerStyles}
+            >
+              <ExampleWithItems />
+            </div>
+          </Col>
+        </Row>
+      </Container>
+    </CodeExample>
+  ),
 };

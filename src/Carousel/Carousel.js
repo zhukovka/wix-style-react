@@ -1,28 +1,19 @@
-import classNames from 'classnames';
 import React from 'react';
+import ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
+import throttle_ from 'lodash/throttle';
+
 import styles from './Carousel.scss';
 import ChevronLeftLarge from '../new-icons/ChevronLeftLarge';
 import ChevronRightLarge from '../new-icons/ChevronRightLarge';
 import IconButton from '../IconButton/IconButton';
 import Pagination from './Pagination';
-import Loader from '../Loader';
 import Proportion from '../Proportion';
 
-// because lodash throttle is not compatible with jest timeout mocks
-function throttle(callback, time) {
-  let pause;
+import Item from './Item';
 
-  return function(...args) {
-    if (!pause) {
-      pause = true;
-      setTimeout(() => {
-        pause = false;
-      }, time);
-      callback(...args);
-    }
-  };
-}
+const RESIZE_REPAINT_SPEED = 200;
+const AUTOPLAY_SPEED = 2000;
 
 class Carousel extends React.Component {
   constructor(props) {
@@ -30,17 +21,30 @@ class Carousel extends React.Component {
     this.state = {
       activeIndex: 0,
       loadedImageCount: 0,
+      itemsQuantity: props.images.length || props.items.length,
     };
-    this._slide = throttle(this._slide.bind(this), 2000);
+    this._slideTo = this._slideTo.bind(this);
+    this._getItem = this._getItem.bind(this);
+    this._updateWidth = throttle_(
+      this._updateWidth.bind(this),
+      RESIZE_REPAINT_SPEED,
+      {
+        leading: true,
+        trailing: true,
+      },
+    );
   }
 
   componentDidMount() {
+    window.addEventListener('resize', this._updateWidth);
+    window.requestAnimationFrame(this._updateWidth);
     if (this.props.autoplay) {
       this._autoplay();
     }
   }
 
   componentWillUnmount() {
+    window.removeEventListener('resize', this._updateWidth);
     if (this.props.autoplay) {
       this._haltAutoplay();
     }
@@ -56,11 +60,19 @@ class Carousel extends React.Component {
     }
   }
 
+  _shouldRenderImages() {
+    return Boolean(this.props.images.length);
+  }
+
+  _updateWidth() {
+    const element = ReactDOM.findDOMNode(this.itemsContainerRef);
+    const width = element.getBoundingClientRect().width;
+
+    this.setState({ width });
+  }
+
   _autoplay() {
-    const intervalToken = setInterval(
-      () => this._slide(this._getNextIndex()),
-      4000,
-    );
+    const intervalToken = setInterval(() => this._next(), AUTOPLAY_SPEED);
     this._haltAutoplay = () => clearInterval(intervalToken);
   }
 
@@ -72,59 +84,62 @@ class Carousel extends React.Component {
     this.props.autoplay && this._autoplay();
   }
 
-  _isLastImage() {
-    return this.state.activeIndex === this.props.images.length - 1;
+  _isFirstImage() {
+    return this.state.activeIndex === 0;
   }
 
-  _slide(index) {
-    this.setState({
-      activeIndex: index,
-    });
+  _isLastImage() {
+    return this.state.activeIndex === this.state.itemsQuantity - 1;
+  }
+
+  _slideTo(index) {
+    if (index !== this.state.activeIndex) {
+      this.setState({
+        activeIndex: index,
+      });
+    }
   }
 
   _prev() {
-    if (this.state.activeIndex === 0 && !this.props.infinite) {
-      return;
-    }
-    this._slide(this._getPrevIndex());
+    this._slideTo(this._getPrevIndex());
   }
 
   _next() {
-    if (this._isLastImage() && !this.props.infinite) {
-      return;
-    }
-    this._slide(this._getNextIndex());
+    this._slideTo(this._getNextIndex());
   }
 
   _getNextIndex() {
-    return this.state.activeIndex === this.props.images.length - 1
-      ? 0
-      : this.state.activeIndex + 1;
+    const { activeIndex } = this.state;
+    if (this._isLastImage()) {
+      return this.props.infinite ? 0 : activeIndex;
+    } else {
+      return activeIndex + 1;
+    }
   }
 
   _getPrevIndex() {
-    return this.state.activeIndex === 0
-      ? this.props.images.length - 1
-      : this.state.activeIndex - 1;
+    const { activeIndex, itemsQuantity } = this.state;
+    if (this._isFirstImage()) {
+      return this.props.infinite ? itemsQuantity - 1 : 0;
+    } else {
+      return activeIndex - 1;
+    }
   }
 
-  _onImageLoad() {
-    this.setState(state => {
-      const loadedImageCount = state.loadedImageCount + 1;
-      return {
-        loadedImageCount,
-      };
-    });
-  }
+  _getItem(item, index) {
+    const props = {
+      key: index,
+      width: this.state.width,
+      autopreloader: this.props.autopreloader,
+    };
 
-  _isLoading() {
-    return this.state.loadedImageCount < this.props.images.length;
-  }
+    if (this._shouldRenderImages()) {
+      props.imageUrl = item.src;
+    } else {
+      props.getItem = item;
+    }
 
-  _getActivePage() {
-    const activeIndex = this.state.activeIndex;
-    const originalImageCount = this.props.images.length;
-    return activeIndex % originalImageCount;
+    return <Item {...props} />;
   }
 
   render() {
@@ -152,61 +167,43 @@ class Carousel extends React.Component {
       </div>
     );
 
+    const { activeIndex, width, itemsQuantity } = this.state;
+    const { images, items, autopreloader } = this.props;
+
     return (
       <div
         className={styles.carousel}
         data-hook={this.props.dataHook}
-        data-ready={!this._isLoading()}
+        onMouseOver={() => this._stopSlideshow()}
+        onMouseOut={() => this._continueSlideshow()}
       >
-        <div className={styles.imagesAndButtonsContainer}>
-          <div className={styles.gallery}>
-            {prevButton}
-            <Proportion
-              aspectRatio={Proportion.PREDEFINED_RATIOS.landscape}
-              className={styles.imagesContainerLayout}
+        <div className={styles.gallery}>
+          {prevButton}
+          <Proportion
+            aspectRatio={Proportion.PREDEFINED_RATIOS.landscape}
+            className={styles.imagesContainerLayout}
+          >
+            <div
+              data-hook="images-container"
+              ref={ref => (this.itemsContainerRef = ref)}
+              className={styles.imagesContainer}
+              style={{
+                transform: `translate3d(${activeIndex * width * -1}px, 0, 0)`,
+              }}
             >
-              <div
-                data-hook="images-container"
-                className={styles.imagesContainer}
-                data-is-loading={this._isLoading()}
-                onMouseOver={() => this._stopSlideshow()}
-                onMouseOut={() => this._continueSlideshow()}
-              >
-                {this.props.images.map((image, currentIndex) => {
-                  return (
-                    <div
-                      key={currentIndex}
-                      className={classNames(styles.imageContainer, {
-                        [styles.active]:
-                          currentIndex === this.state.activeIndex,
-                        [styles.prev]: currentIndex === this._getPrevIndex(),
-                        [styles.next]: currentIndex === this._getNextIndex(),
-                      })}
-                    >
-                      <img
-                        className={styles.image}
-                        data-hook="carousel-img"
-                        src={image.src}
-                        onLoad={() => this._onImageLoad()}
-                      />
-                    </div>
-                  );
-                })}
-              </div>
-              {this._isLoading() ? (
-                <div className={styles.loader}>
-                  <Loader dataHook="loader" size="small" />
-                </div>
-              ) : null}
-            </Proportion>
-            {nextButton}
-          </div>
-          <Pagination
-            className={styles.paginationLayout}
-            totalPages={this.props.images.length}
-            currentPage={this._getActivePage()}
-          />
+              {this._shouldRenderImages()
+                ? images.map(this._getItem)
+                : items.map(this._getItem)}
+            </div>
+          </Proportion>
+          {nextButton}
         </div>
+        <Pagination
+          className={styles.paginationLayout}
+          totalPages={itemsQuantity}
+          currentPage={this.state.activeIndex}
+          onClick={this._slideTo}
+        />
       </div>
     );
   }
@@ -216,11 +213,15 @@ class Carousel extends React.Component {
 Carousel.propTypes = {
   dataHook: PropTypes.string,
   /** Array of strings where each string is a src of an image (in \<img src="your_src" /\>) */
-  images: PropTypes.array.isRequired,
+  images: PropTypes.array,
+  /** Array of nodes */
+  items: PropTypes.array,
   /** Images loop endlessly */
   infinite: PropTypes.bool,
   /** Auto-playing of images */
   autoplay: PropTypes.bool,
+  /** Auto-preloader */
+  autopreloader: Proportion.bool,
 };
 
 Carousel.defaultProps = {
