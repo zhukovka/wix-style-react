@@ -14,6 +14,7 @@ import {
   SHORT_SCROLL_TOP_THRESHOLD,
   TAIL_TOP_PADDING_PX,
   PAGE_SIDE_PADDING_PX,
+  PAGE_BOTTOM_PADDING_PX,
 } from './constants';
 import {
   mainContainerMinWidthPx as GRID_MIN_WIDTH,
@@ -106,7 +107,12 @@ class Page extends WixComponent {
   }
 
   _calculateComponentsHeights() {
-    const { fixedContainerHeight, tailHeight, fixedContentHeight } = this.state;
+    const {
+      fixedContainerHeight,
+      tailHeight,
+      fixedContentHeight,
+      pageHeight,
+    } = this.state;
     const newFixedContainerHeight = this.fixedContainerRef
       ? this.fixedContainerRef.offsetHeight
       : 0;
@@ -116,15 +122,18 @@ class Page extends WixComponent {
     const newFixedContentHeight = this.pageHeaderFixedContentRef
       ? this.pageHeaderFixedContentRef.offsetHeight
       : 0;
+    const newPageHeight = this.pageRef ? this.pageRef.offsetHeight : 0;
     if (
       fixedContainerHeight !== newFixedContainerHeight ||
       tailHeight !== newTailHeight ||
-      fixedContentHeight !== newFixedContentHeight
+      fixedContentHeight !== newFixedContentHeight ||
+      pageHeight !== newPageHeight
     ) {
       this.setState({
         fixedContainerHeight: newFixedContainerHeight,
         tailHeight: newTailHeight,
         fixedContentHeight: newFixedContentHeight,
+        pageHeight: newPageHeight,
       });
     }
   }
@@ -333,23 +342,22 @@ class Page extends WixComponent {
     const minimizeDiff = fixedContainerHeight - minimizedFixedContainerHeight;
     const I_DONT_KNOW = 12; // TODO: Double-check the 78px in _calculateHeaderMeasurements
 
-    const classAndStyleProps = mergeClassAndStyleProps(
-      contentHorizontalLayoutProps,
-      {
-        className: classNames({
-          [s.contentWrapper]: this.props.upgrade,
-        }),
-        style: {
-          minHeight: `calc(100% + ${minimizeDiff}px + ${SCROLL_TOP_THRESHOLD}px + ${I_DONT_KNOW}px)`,
-        },
-      },
-    );
-
+    const { pageHeight, minimized } = this.state;
     return (
-      <div {...classAndStyleProps}>
-        <div style={{ height: '100%' }}>
-          {this._safeGetChildren(PageContent)}
-        </div>
+      <div
+        className={classNames(contentHorizontalLayoutProps.className, {
+          [s.contentWrapper]: this.props.upgrade,
+        })}
+        style={{
+          ...contentHorizontalLayoutProps.style,
+          minHeight:
+            minimized > 0
+              ? `calc(100% + ${minimizeDiff}px + ${SCROLL_TOP_THRESHOLD}px + ${I_DONT_KNOW}px)`
+              : undefined,
+        }}
+      >
+        {this._safeGetChildren(PageContent)}
+
         <div className={s.pageBottomPadding} />
       </div>
     );
@@ -393,6 +401,7 @@ class Page extends WixComponent {
           style={{
             minWidth: minWidth + 2 * PAGE_SIDE_PADDING_PX,
           }}
+          ref={ref => (this.pageRef = ref)}
         >
           {this._renderFixedContainer({
             contentHorizontalLayoutProps,
