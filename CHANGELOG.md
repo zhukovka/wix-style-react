@@ -16,6 +16,9 @@ Types of changes:
 
 ## next
 
+### Added
+- `<SectionHelper/>` new `appearance="preview"` [#2906](https://github.com/wix/wix-style-react/pull/2906)
+
 ### Fixed
 - `<Thumbnail/>` - add visual hover state [#2904](https://github.com/wix/wix-style-react/pull/2904)
 - `<Notification/>` - replace deprecated components in ActionButton [2903](https://github.com/wix/wix-style-react/pull/2903)
