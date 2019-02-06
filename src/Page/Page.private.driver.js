@@ -16,6 +16,10 @@ export class PagePrivateDriver {
     return this.element.querySelector(`[data-hook="${dataHook}"]`);
   }
 
+  exists(dataHook) {
+    return !!this.byDataHook(dataHook);
+  }
+
   get fixedContainer() {
     return this.byDataHook('page-fixed-container');
   }

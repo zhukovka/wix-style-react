@@ -7,6 +7,7 @@ import s from './Page.scss';
 import WixComponent from '../BaseComponents/WixComponent';
 import PageHeader from '../PageHeader';
 import Content from './Content';
+import FixedContent from './FixedContent';
 import Tail from './Tail';
 import {
   SCROLL_TOP_THRESHOLD,
@@ -238,7 +239,7 @@ class Page extends WixComponent {
     const hasBackgroundImage = !!backgroundImageUrl;
     const hasGradientClassName = !!gradientClassName && !backgroundImageUrl;
     const childrenObject = getChildrenObject(children);
-    const { PageContent, PageFixedContent, PageTail } = childrenObject;
+    const { PageContent, PageFixedContent, PageTail, PageHeader} = childrenObject;
     this._setContainerScrollTopThreshold({
       shortThreshold: PageTail && hasGradientClassName,
     });
@@ -251,12 +252,12 @@ class Page extends WixComponent {
       minimizedFixedContainerHeight,
     } = this._calculateHeaderMeasurements({ PageTail });
 
-    const contentLayoutProps = {
+    const contentLayoutProps = (additionalClass) => ({
       className: classNames(s.content, {
         [s.contentFullScreen]: contentFullScreen,
-      }),
+      }, additionalClass),
       style: contentFullScreen ? null : pageDimensionsStyle,
-    };
+    });
 
     return (
       <div className={classNames(s.pageWrapper, className)}>
@@ -280,9 +281,9 @@ class Page extends WixComponent {
                 [s.withoutBottomPadding]: PageTail && minimized,
               })}
             >
-              {childrenObject.PageHeader && (
+              {PageHeader && (
                 <div className={s.pageHeader} style={pageDimensionsStyle}>
-                  {React.cloneElement(childrenObject.PageHeader, {
+                  {React.cloneElement(PageHeader, {
                     minimized,
                     hasBackgroundImage,
                   })}
@@ -290,8 +291,8 @@ class Page extends WixComponent {
               )}
               {PageTail && (
                 <div
-                  data-hook="page-tail"
-                  className={classNames(s.tail, { [s.minimized]: minimized })}
+                  data-hook={PageTail.props.dataHook || 'page-tail'}
+                  className={classNames(s.tail, { [s.minimized]: minimized }, PageTail.props.className)}
                   style={pageDimensionsStyle}
                   ref={r => (this.pageHeaderTailRef = r)}
                 >
@@ -301,8 +302,8 @@ class Page extends WixComponent {
             </div>
             {PageFixedContent && (
               <div
-                data-hook="page-fixed-content"
-                {...contentLayoutProps}
+                data-hook={PageFixedContent.props.dataHook || 'page-fixed-content'}
+                {...contentLayoutProps(PageFixedContent.props.className)}
                 ref={r => (this.pageHeaderFixedContentRef = r)}
               >
                 {React.cloneElement(PageFixedContent)}
@@ -310,9 +311,9 @@ class Page extends WixComponent {
             )}
           </div>
           <div
-            className={s.scrollableContent}
+            className={classNames(s.scrollableContent, PageContent ? PageContent.props.className : '')}
             onScroll={this._handleScroll}
-            data-hook="page-scrollable-content"
+            data-hook={ (PageContent && PageContent.props.dataHook) || 'page-scrollable-content'}
             data-class="page-scrollable-content"
             style={{ paddingTop: `${fixedContainerHeight}px` }}
             ref={r => this._setScrollContainer(r)}
@@ -337,7 +338,7 @@ class Page extends WixComponent {
               />
             )}
             <div className={s.contentContainer}>
-              <div {...contentLayoutProps}>
+              <div {...contentLayoutProps()}>
                 {this._safeGetChildren(PageContent)}
               </div>
               {minimized ? (
@@ -355,12 +356,6 @@ class Page extends WixComponent {
     );
   }
 }
-
-const FixedContent = props => props.children;
-FixedContent.displayName = 'Page.FixedContent';
-FixedContent.propTypes = {
-  children: PropTypes.element.isRequired,
-};
 
 Page.displayName = 'Page';
 Page.Header = PageHeader;
@@ -400,6 +395,7 @@ Page.propTypes = {
     }
 
     if (
+      (children[key] !== false) &&
       children[key].type.displayName !== Page.Header.displayName &&
       children[key].type.displayName !== Page.Content.displayName &&
       children[key].type.displayName !== Page.FixedContent.displayName &&

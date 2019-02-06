@@ -2,8 +2,8 @@
 import React from 'react';
 import Page from './Page';
 import pageDriverFactory from './Page.driver';
-import { PagePrivateDriver } from './Page.private.driver';
-import { createDriverFactory } from 'wix-ui-test-utils/driver-factory';
+import {PagePrivateDriver} from './Page.private.driver';
+import {createDriverFactory} from 'wix-ui-test-utils/driver-factory';
 
 const Content = () => <div>content</div>;
 
@@ -11,9 +11,9 @@ const Tail = () => <div>tail</div>;
 
 const renderPageWithProps = (props = {}) => (
   <Page {...props}>
-    <Page.Header title="title" />
+    <Page.Header title="title"/>
     <Page.Content>
-      <Content />
+      <Content/>
     </Page.Content>
   </Page>
 );
@@ -29,7 +29,7 @@ describe('Page', () => {
   describe('backgroundImage', () => {
     it('should initialize component with background image', () => {
       const driver = createDriver(
-        renderPageWithProps({ backgroundImageUrl: '/some/image' }),
+        renderPageWithProps({backgroundImageUrl: '/some/image'}),
       );
       expect(driver.backgroundImageExists()).toBeTruthy();
     });
@@ -43,7 +43,7 @@ describe('Page', () => {
   describe('customClassName', () => {
     it('should have custom className', () => {
       const driver = createDriver(
-        renderPageWithProps({ className: 'myClass' }),
+        renderPageWithProps({className: 'myClass'}),
       );
       expect(driver.hasClass('myClass')).toBeTruthy();
     });
@@ -52,7 +52,7 @@ describe('Page', () => {
   describe('gradientClassName', () => {
     it('should initialize component with gradient class name', () => {
       const driver = createDriver(
-        renderPageWithProps({ gradientClassName: 'class' }),
+        renderPageWithProps({gradientClassName: 'class'}),
       );
       expect(driver.gradientClassNameExists()).toBeTruthy();
     });
@@ -66,7 +66,7 @@ describe('Page', () => {
   describe('gradient size', () => {
     it('should be 39px by default', () => {
       const driver = createDriver(
-        renderPageWithProps({ gradientClassName: 'class' }),
+        renderPageWithProps({gradientClassName: 'class'}),
       );
       expect(driver.gradientContainerHeight()).toBe('39px');
     });
@@ -77,15 +77,15 @@ describe('Page', () => {
     });
 
     it('should be zero when Tail exist and gradientCoverTail is false', () => {
-      const props = { gradientClassName: 'class', gradientCoverTail: false };
+      const props = {gradientClassName: 'class', gradientCoverTail: false};
       const driver = createDriver(
         <Page {...props}>
-          <Page.Header />
+          <Page.Header/>
           <Page.Tail>
-            <Tail />
+            <Tail/>
           </Page.Tail>
           <Page.Content>
-            <Content />
+            <Content/>
           </Page.Content>
         </Page>,
       );
@@ -97,12 +97,12 @@ describe('Page', () => {
     it('should attach a tail component', () => {
       const driver = createDriver(
         <Page>
-          <Page.Header title="title" />
+          <Page.Header title="title"/>
           <Page.Tail>
-            <Tail />
+            <Tail/>
           </Page.Tail>
           <Page.Content>
-            <Content />
+            <Content/>
           </Page.Content>
         </Page>,
       );
@@ -119,9 +119,9 @@ describe('Page', () => {
     it('should scroll ScrollableContent when getting wheel event on Header', () => {
       const driver = PagePrivateDriver.fromJsxElement(
         <Page>
-          <Page.Header title="title" />
+          <Page.Header title="title"/>
           <Page.Content>
-            <Content />
+            <Content/>
           </Page.Content>
         </Page>,
       );
@@ -148,8 +148,8 @@ describe('Page', () => {
     it('should not initialize without a PageContent component', () => {
       const page = (
         <Page>
-          <Page.Header title="title" />
-          <div />
+          <Page.Header title="title"/>
+          <div/>
         </Page>
       );
 
@@ -163,9 +163,9 @@ describe('Page', () => {
       const page = (
         <Page>
           <Page.Content>
-            <div />
+            <div/>
           </Page.Content>
-          <div />
+          <div/>
         </Page>
       );
 
@@ -178,9 +178,9 @@ describe('Page', () => {
     it('should not initialize component with an unknown type', () => {
       const page = (
         <Page>
-          <Page.Header title="title" />
+          <Page.Header title="title"/>
           <Page.Content>
-            <div />
+            <div/>
           </Page.Content>
           <div>Unwanted child</div>
         </Page>
@@ -190,6 +190,78 @@ describe('Page', () => {
       expect(stub).toHaveBeenCalledWith(
         `${prefixWarning}Page: Invalid Prop children, unknown child div${suffixWarning}`,
       );
+    });
+
+    it('should initialize component with inline conditional rendering', () => {
+      const shouldRenderPageFixedContent = false;
+      const page = (
+        <Page>
+          <Page.Header title="title"/>
+          <Page.Content>
+            <div/>
+          </Page.Content>
+          {shouldRenderPageFixedContent && <Page.FixedContent><span>fixed!</span></Page.FixedContent>}
+        </Page>
+      );
+
+      createDriver(page);
+      expect(stub).not.toHaveBeenCalled();
+    });
+
+    it('should have classNames', () => {
+      const expectedFixedContentClassName = 'fixed-content-className';
+      const expectedContentClassName = 'content-className';
+      const expectedTailClassName = 'tail-className';
+
+      const pageDriver = createDriver(
+        <Page>
+          <Page.Header title="check"/>
+          <Page.FixedContent
+            className={expectedFixedContentClassName}>
+            <span>tst</span>
+          </Page.FixedContent>
+          <Page.Tail
+            className={expectedTailClassName}>
+            <span>tst</span>
+          </Page.Tail>
+          <Page.Content
+            className={expectedContentClassName}>
+            <div/>
+          </Page.Content>
+        </Page>
+      );
+
+      expect(pageDriver.fixedContentHasClass(expectedFixedContentClassName)).toBe(true);
+      expect(pageDriver.contentHasClass(expectedContentClassName)).toBe(true);
+      expect(pageDriver.tailHasClass(expectedTailClassName)).toBe(true);
+    });
+
+    it('should have dataHooks', () => {
+      const expectedFixedContentDataHook = 'fixed-content-dataHook';
+      const expectedContentDataHook = 'content-dataHook';
+      const expectedTailDataHook = 'tail-dataHook';
+
+      const pageDriver = PagePrivateDriver.fromJsxElement(
+        <Page>
+          <Page.Header title="check"/>
+          <Page.FixedContent
+            dataHook={expectedFixedContentDataHook}>
+            <span>tst</span>
+          </Page.FixedContent>
+          <Page.Tail
+            dataHook={expectedTailDataHook}>
+            <span>tst</span>
+          </Page.Tail>
+          <Page.Content
+            dataHook={expectedContentDataHook}>
+            <div/>
+          </Page.Content>
+        </Page>
+      );
+
+      expect(pageDriver.exists(expectedFixedContentDataHook)).toBe(true);
+      expect(pageDriver.exists(expectedContentDataHook)).toBe(true);
+      expect(pageDriver.exists(expectedTailDataHook)).toBe(true);
     });
   });
 });
