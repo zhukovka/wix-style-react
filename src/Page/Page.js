@@ -235,7 +235,7 @@ class Page extends WixComponent {
     };
   }
 
-  getScrollableBackground({ gradientHeight, imageHeight }) {
+  _getScrollableBackground({ gradientHeight, imageHeight }) {
     if (this.hasBackgroundImage()) {
       return (
         <div
@@ -260,6 +260,34 @@ class Page extends WixComponent {
         />
       );
     }
+  }
+
+  _getContent({
+    contentHorizontalLayoutProps,
+    fixedContainerHeight,
+    minimizedFixedContainerHeight,
+    PageContent,
+  }) {
+    const minimizeDiff = fixedContainerHeight - minimizedFixedContainerHeight;
+
+    const classAndStyleProps = mergeClassAndStyleProps(
+      contentHorizontalLayoutProps,
+      {
+        className: classNames({
+          [s.contentWrapper]: this.props.upgrade,
+        }),
+        style: {
+          minHeight: `calc(100% + ${minimizeDiff}px + ${SCROLL_TOP_THRESHOLD}px)`,
+        },
+      },
+    );
+
+    return (
+      <div {...classAndStyleProps}>
+        {this._safeGetChildren(PageContent)}
+        <div className={s.pageBottomPadding} />
+      </div>
+    );
   }
 
   hasBackgroundImage() {
@@ -362,20 +390,16 @@ class Page extends WixComponent {
             style={{ paddingTop: `${fixedContainerHeight}px` }}
             ref={r => this._setScrollContainer(r)}
           >
-            {this.getScrollableBackground({
+            {this._getScrollableBackground({
               gradientHeight,
               imageHeight,
             })}
-            <div
-              {...mergeClassAndStyleProps(contentHorizontalLayoutProps, {
-                className: classNames({
-                  [s.contentWrapper]: this.props.upgrade,
-                }),
-              })}
-            >
-              {this._safeGetChildren(PageContent)}
-              <div className={s.pageBottomPadding} />
-            </div>
+            {this._getContent({
+              contentHorizontalLayoutProps,
+              fixedContainerHeight,
+              minimizedFixedContainerHeight,
+              PageContent,
+            })}
           </div>
         </div>
       </div>

@@ -86,9 +86,6 @@ $pageBottomPadding: 48px; //  Should be synced with JS Page value
   box-sizing: border-box;
 
   .contentWrapper {
-    // height: calc(100% - 48px);
-    min-height: calc(100% + 52px + 20px);
-    
     .pageBottomPadding {
       height: 48px;
     }
