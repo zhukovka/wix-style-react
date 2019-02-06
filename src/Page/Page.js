@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { ResizeSensor } from 'css-element-queries';
 import { allValidators, extendPropTypes } from '../utils/propTypes';
+import { mergeClassAndStyleProps } from './utils';
 import s from './Page.scss';
 import WixComponent from '../BaseComponents/WixComponent';
 import PageHeader from '../PageHeader';
@@ -234,22 +235,48 @@ class Page extends WixComponent {
     };
   }
 
+  getScrollableBackground({ gradientHeight, imageHeight }) {
+    if (this.hasBackgroundImage()) {
+      return (
+        <div
+          className={s.imageBackgroundContainer}
+          style={{ height: imageHeight }}
+          data-hook="page-background-image"
+        >
+          <div
+            className={s.imageBackground}
+            style={{ backgroundImage: `url(${this.props.backgroundImageUrl})` }}
+          />
+        </div>
+      );
+    }
+
+    if (this.hasGradientClassName()) {
+      return (
+        <div
+          data-hook="page-gradient-class-name"
+          className={`${s.gradientBackground} ${this.props.gradientClassName}`}
+          style={{ height: gradientHeight }}
+        />
+      );
+    }
+  }
+
+  hasBackgroundImage() {
+    return !!this.props.backgroundImageUrl;
+  }
+
+  hasGradientClassName() {
+    return !!this.props.gradientClassName && !this.props.backgroundImageUrl;
+  }
+
   render() {
-    const {
-      backgroundImageUrl,
-      gradientClassName,
-      className,
-      children,
-      minWidth,
-      upgrade,
-    } = this.props;
+    const { className, children, minWidth, upgrade } = this.props;
     const { minimized } = this.state;
-    const hasBackgroundImage = !!backgroundImageUrl;
-    const hasGradientClassName = !!gradientClassName && !backgroundImageUrl;
     const childrenObject = getChildrenObject(children);
     const { PageContent, PageFixedContent, PageTail } = childrenObject;
     this._setContainerScrollTopThreshold({
-      shortThreshold: PageTail && hasGradientClassName,
+      shortThreshold: PageTail && this.hasGradientClassName(),
     });
     const contentFullScreen = PageContent && PageContent.props.fullScreen;
     const pageDimensionsStyle = this._calculatePageDimensionsStyle();
@@ -267,13 +294,6 @@ class Page extends WixComponent {
         [s.contentFullWidth]: contentFullScreen,
       }),
       style: contentFullScreen ? null : pageDimensionsStyle,
-    };
-
-    const contentWrapperLayoutProps = {
-      ...contentHorizontalLayoutProps,
-      className: classNames(contentHorizontalLayoutProps.className, {
-        [s.contentWrapper]: this.props.upgrade,
-      }),
     };
 
     return (
@@ -309,7 +329,7 @@ class Page extends WixComponent {
                 <div className={s.pageHeader} style={pageDimensionsStyle}>
                   {React.cloneElement(childrenObject.PageHeader, {
                     minimized,
-                    hasBackgroundImage,
+                    hasBackgroundImage: this.hasBackgroundImage(),
                   })}
                 </div>
               )}
@@ -342,35 +362,19 @@ class Page extends WixComponent {
             style={{ paddingTop: `${fixedContainerHeight}px` }}
             ref={r => this._setScrollContainer(r)}
           >
-            {hasBackgroundImage && (
-              <div
-                className={s.imageBackgroundContainer}
-                style={{ height: imageHeight }}
-                data-hook="page-background-image"
-              >
-                <div
-                  className={s.imageBackground}
-                  style={{ backgroundImage: `url(${backgroundImageUrl})` }}
-                />
-              </div>
-            )}
-            {hasGradientClassName && !hasBackgroundImage && (
-              <div
-                data-hook="page-gradient-class-name"
-                className={`${s.gradientBackground} ${gradientClassName}`}
-                style={{ height: gradientHeight }}
-              />
-            )}
+            {this.getScrollableBackground({
+              gradientHeight,
+              imageHeight,
+            })}
             <div
-              className={classNames(
-                s.contentContainer,
-                classNameStretchVertically,
-              )}
+              {...mergeClassAndStyleProps(contentHorizontalLayoutProps, {
+                className: classNames({
+                  [s.contentWrapper]: this.props.upgrade,
+                }),
+              })}
             >
-              <div {...contentWrapperLayoutProps}>
-                {this._safeGetChildren(PageContent)}
-                <div className={s.pageBottomPadding} />
-              </div>
+              {this._safeGetChildren(PageContent)}
+              <div className={s.pageBottomPadding} />
             </div>
           </div>
         </div>
