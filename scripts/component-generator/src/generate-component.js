@@ -1,41 +1,60 @@
 const chalk = require('chalk');
 
 const logger = require('./logger');
-const verifyWorkingDirectory = require('./verify-working-directory');
-const runPrompts = require('./run-prompts');
-const copyTemplates = require('./copy-templates');
-const runCodemods = require('./run-codemods');
-const runLintFix = require('./run-lint-fix');
+const verifyWorkingDirectory = require('./tasks/verify-working-directory');
+const runPrompts = require('./tasks/run-prompts');
+const copyTemplates = require('./tasks/copy-templates');
+const runCodemods = require('./tasks/run-codemods');
+const runLintFix = require('./tasks/run-lint-fix');
 
 module.exports = async (cwd, options) => {
-  await verifyWorkingDirectory(cwd, {
-    skipGitChecks: options.force,
-  });
-
   const answers = options.answers || (await runPrompts());
 
   logger.info(
-    `Generating a new ${chalk.cyan(
-      `<${answers.ComponentName}/>`,
-    )} component for you...`,
+    `Generating ${chalk.cyan(`<${answers.ComponentName}/>`)} component...`,
   );
 
-  logger.divider();
-  await copyTemplates(answers);
+  return [
+    {
+      task: () => verifyWorkingDirectory(cwd),
+      skipped: options.force,
+      message: 'Verifying clean working directory',
+    },
+    { task: copyTemplates, message: 'Copy files' },
+    {
+      task: runCodemods,
+      message: 'Run codemods',
+      skipped: options.skipCodemods,
+    },
+    { task: runLintFix, message: 'Run lint fix' },
+    {
+      task: () => require('../../generate-testkit-exports')(),
+      message: 'Generate testkit exports',
+    },
+  ]
 
-  logger.divider();
+    .filter(({ skipped }) => !skipped)
 
-  if (!options.skipCodemods) {
-    await runCodemods(answers);
-  }
+    .reduce(
+      (promise, { task, message = '' }) =>
+        promise.then(() => {
+          const spinner = logger.spinner(message);
 
-  await runLintFix(answers);
+          return task(answers).then(() => {
+            spinner.stop();
+            logger.success(`Done: ${message}`);
+          });
+        }),
+      Promise.resolve(),
+    )
 
-  logger.divider();
-
-  logger.success(
-    `The ${chalk.cyan(
-      `<${answers.ComponentName}/>`,
-    )} component has been generated!`,
-  );
+    .then(() =>
+      logger.success(
+        `${chalk.cyan(`<${answers.ComponentName}/>`)} generated successfully!`,
+      ),
+    )
+    .catch(e => {
+      logger.error(e);
+      process.exit(1);
+    });
 };
