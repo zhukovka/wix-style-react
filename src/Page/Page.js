@@ -235,7 +235,69 @@ class Page extends WixComponent {
     };
   }
 
-  _getScrollableBackground({ gradientHeight, imageHeight }) {
+  hasBackgroundImage() {
+    return !!this.props.backgroundImageUrl;
+  }
+
+  hasGradientClassName() {
+    return !!this.props.gradientClassName && !this.props.backgroundImageUrl;
+  }
+
+  _renderFixedContainer({ contentHorizontalLayoutProps, pageDimensionsStyle }) {
+    const { children } = this.props;
+    const childrenObject = getChildrenObject(children);
+    const { PageFixedContent, PageTail } = childrenObject;
+    const { minimized } = this.state;
+    return (
+      <div
+        data-hook="page-fixed-container"
+        style={this._fixedContainerStyle()}
+        className={classNames(s.fixedContainer)}
+        ref={r => (this.fixedContainerRef = r)}
+        onWheel={event => {
+          this._getScrollContainer().scrollTop =
+            this._getScrollContainer().scrollTop + event.deltaY;
+        }}
+      >
+        <div
+          className={classNames(s.pageHeaderContainer, {
+            [s.minimized]: minimized,
+            [s.withoutBottomPadding]: PageTail && minimized,
+          })}
+        >
+          {childrenObject.PageHeader && (
+            <div className={s.pageHeader} style={pageDimensionsStyle}>
+              {React.cloneElement(childrenObject.PageHeader, {
+                minimized,
+                hasBackgroundImage: this.hasBackgroundImage(),
+              })}
+            </div>
+          )}
+          {PageTail && (
+            <div
+              data-hook="page-tail"
+              className={classNames(s.tail, { [s.minimized]: minimized })}
+              style={pageDimensionsStyle}
+              ref={r => (this.pageHeaderTailRef = r)}
+            >
+              {React.cloneElement(PageTail, { minimized })}
+            </div>
+          )}
+        </div>
+        {PageFixedContent && (
+          <div
+            data-hook="page-fixed-content"
+            {...contentHorizontalLayoutProps}
+            ref={r => (this.pageHeaderFixedContentRef = r)}
+          >
+            {React.cloneElement(PageFixedContent)}
+          </div>
+        )}
+      </div>
+    );
+  }
+
+  _renderScrollableBackground({ gradientHeight, imageHeight }) {
     if (this.hasBackgroundImage()) {
       return (
         <div
@@ -262,13 +324,14 @@ class Page extends WixComponent {
     }
   }
 
-  _getContent({
+  _renderContent({
     contentHorizontalLayoutProps,
     fixedContainerHeight,
     minimizedFixedContainerHeight,
     PageContent,
   }) {
     const minimizeDiff = fixedContainerHeight - minimizedFixedContainerHeight;
+    const I_DONT_KNOW = 12; // TODO: Double-check the 78px in _calculateHeaderMeasurements
 
     const classAndStyleProps = mergeClassAndStyleProps(
       contentHorizontalLayoutProps,
@@ -277,32 +340,26 @@ class Page extends WixComponent {
           [s.contentWrapper]: this.props.upgrade,
         }),
         style: {
-          minHeight: `calc(100% + ${minimizeDiff}px + ${SCROLL_TOP_THRESHOLD}px)`,
+          minHeight: `calc(100% + ${minimizeDiff}px + ${SCROLL_TOP_THRESHOLD}px + ${I_DONT_KNOW}px)`,
         },
       },
     );
 
     return (
       <div {...classAndStyleProps}>
-        {this._safeGetChildren(PageContent)}
+        <div style={{ height: '100%' }}>
+          {this._safeGetChildren(PageContent)}
+        </div>
         <div className={s.pageBottomPadding} />
       </div>
     );
   }
 
-  hasBackgroundImage() {
-    return !!this.props.backgroundImageUrl;
-  }
-
-  hasGradientClassName() {
-    return !!this.props.gradientClassName && !this.props.backgroundImageUrl;
-  }
-
   render() {
     const { className, children, minWidth, upgrade } = this.props;
-    const { minimized } = this.state;
+
     const childrenObject = getChildrenObject(children);
-    const { PageContent, PageFixedContent, PageTail } = childrenObject;
+    const { PageContent, PageTail } = childrenObject;
     this._setContainerScrollTopThreshold({
       shortThreshold: PageTail && this.hasGradientClassName(),
     });
@@ -337,51 +394,10 @@ class Page extends WixComponent {
             minWidth: minWidth + 2 * PAGE_SIDE_PADDING_PX,
           }}
         >
-          <div
-            data-hook="page-fixed-container"
-            style={this._fixedContainerStyle()}
-            className={classNames(s.fixedContainer)}
-            ref={r => (this.fixedContainerRef = r)}
-            onWheel={event => {
-              this._getScrollContainer().scrollTop =
-                this._getScrollContainer().scrollTop + event.deltaY;
-            }}
-          >
-            <div
-              className={classNames(s.pageHeaderContainer, {
-                [s.minimized]: minimized,
-                [s.withoutBottomPadding]: PageTail && minimized,
-              })}
-            >
-              {childrenObject.PageHeader && (
-                <div className={s.pageHeader} style={pageDimensionsStyle}>
-                  {React.cloneElement(childrenObject.PageHeader, {
-                    minimized,
-                    hasBackgroundImage: this.hasBackgroundImage(),
-                  })}
-                </div>
-              )}
-              {PageTail && (
-                <div
-                  data-hook="page-tail"
-                  className={classNames(s.tail, { [s.minimized]: minimized })}
-                  style={pageDimensionsStyle}
-                  ref={r => (this.pageHeaderTailRef = r)}
-                >
-                  {React.cloneElement(PageTail, { minimized })}
-                </div>
-              )}
-            </div>
-            {PageFixedContent && (
-              <div
-                data-hook="page-fixed-content"
-                {...contentHorizontalLayoutProps}
-                ref={r => (this.pageHeaderFixedContentRef = r)}
-              >
-                {React.cloneElement(PageFixedContent)}
-              </div>
-            )}
-          </div>
+          {this._renderFixedContainer({
+            contentHorizontalLayoutProps,
+            pageDimensionsStyle,
+          })}
           <div
             className={s.scrollableContainer}
             onScroll={this._handleScroll}
@@ -390,11 +406,11 @@ class Page extends WixComponent {
             style={{ paddingTop: `${fixedContainerHeight}px` }}
             ref={r => this._setScrollContainer(r)}
           >
-            {this._getScrollableBackground({
+            {this._renderScrollableBackground({
               gradientHeight,
               imageHeight,
             })}
-            {this._getContent({
+            {this._renderContent({
               contentHorizontalLayoutProps,
               fixedContainerHeight,
               minimizedFixedContainerHeight,
