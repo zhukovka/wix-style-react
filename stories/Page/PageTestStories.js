@@ -142,40 +142,24 @@ PageTestStories.add('12. Page Example with stretchVertically', () => (
 
 class PageWithScroll extends React.Component {
   state = { fixedContainerHeight: null };
+  pageHeight = 400;
 
   static propTypes = {
     extraScroll: PropTypes.number,
   };
 
-  componentDidMount = () => {
-    this.forceUpdate(); // To get the fixedContainerHeight which is available only after a re-render of Page
-  };
-
-  componentDidUpdate = () => {
-    if (this.state.fixedContainerHeight === null) {
-      this.setState({
-        fixedContainerHeight: this.pageInstance.state.fixedContainerHeight,
-      });
-    }
-  };
-
   render() {
     let contentHeight = 200;
 
-    if (this.state.fixedContainerHeight) {
-      const browserPadding = 16;
-      const pageBottomPadding = 48;
-      const extraScroll = this.props.extraScroll ? this.props.extraScroll : 0;
-      const noScrollHeight =
-        window.innerHeight -
-        this.state.fixedContainerHeight -
-        browserPadding -
-        pageBottomPadding;
-      contentHeight = noScrollHeight + extraScroll;
-    }
+    const pageBottomPadding = 48;
+    const extraScroll = this.props.extraScroll ? this.props.extraScroll : 0;
+    const fixedContainerHeight = 152;
+    const noScrollHeight =
+      this.pageHeight - fixedContainerHeight - pageBottomPadding;
+    contentHeight = noScrollHeight + extraScroll;
 
     return (
-      <PageContainer>
+      <PageContainer style={{ height: `${this.pageHeight}px` }}>
         <Page {...defaultPageProps} ref={ref => (this.pageInstance = ref)}>
           {header()}
           <Page.Content>
