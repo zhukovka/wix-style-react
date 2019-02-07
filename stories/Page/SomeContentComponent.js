@@ -81,7 +81,7 @@ export default class SomeContentComponent extends React.Component {
       <div
         style={{
           backgroundColor: 'white',
-          minHeight: this.props.stretchVertically ? '100%' : undefined,
+          minHeight: this.props.stretchVertically ? 'inherit' : undefined,
         }}
       >
         <LongTextContent numOfPages={this.props.shortContent ? 1 : undefined} />

@@ -94,6 +94,8 @@ class Page extends WixComponent {
   }
 
   componentDidUpdate(prevProps) {
+    // TODO: add watch on window.innerHeight - should
+
     super.componentDidUpdate(prevProps);
     // Do not trigger height calculation if the component is minimized
     if (!this.state.minimized) {
@@ -353,10 +355,18 @@ class Page extends WixComponent {
           minHeight:
             minimized > 0
               ? `calc(100% + ${minimizeDiff}px + ${SCROLL_TOP_THRESHOLD}px + ${I_DONT_KNOW}px)`
-              : undefined,
+              : '100%',
         }}
       >
-        {this._safeGetChildren(PageContent)}
+        <div
+          style={{
+            minHeight: `${pageHeight -
+              fixedContainerHeight -
+              PAGE_BOTTOM_PADDING_PX}px`,
+          }}
+        >
+          {this._safeGetChildren(PageContent)}
+        </div>
 
         <div className={s.pageBottomPadding} />
       </div>
