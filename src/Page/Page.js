@@ -367,8 +367,6 @@ class Page extends WixComponent {
         >
           {this._safeGetChildren(PageContent)}
         </div>
-
-        <div className={s.pageBottomPadding} />
       </div>
     );
   }
