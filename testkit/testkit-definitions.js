@@ -202,4 +202,6 @@ module.exports = {
     testkitPath: '../src/SegmentedToggle/SegmentedToggle.driver',
     unidriver: true,
   },
+
+  RichTextInputArea: { unidriver: true },
 };
