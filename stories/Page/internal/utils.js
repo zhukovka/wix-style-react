@@ -40,10 +40,11 @@ function processLive(code, ComponentName, label) {
   return filteredCode + '\n' + createExampleRender();
 }
 
-export const LiveCode = ({ title, initialCode }) => (
+export const LiveCode = ({ title, initialCode, scope }) => (
   <LiveCodeExample
     {...defaultLiveCodeProps}
     title={title}
     initialCode={processLive(initialCode)}
+    scope={scope}
   />
 );
