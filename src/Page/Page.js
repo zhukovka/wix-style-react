@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { ResizeSensor } from 'css-element-queries';
 import { allValidators, extendPropTypes } from '../utils/propTypes';
-import { mergeClassAndStyleProps } from './utils';
 import s from './Page.scss';
 import WixComponent from '../BaseComponents/WixComponent';
 import PageHeader from '../PageHeader';
