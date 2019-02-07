@@ -340,10 +340,14 @@ class Page extends WixComponent {
     minimizedFixedContainerHeight,
     PageContent,
   }) {
+    // TODO: re-render when window size changes
     const minimizeDiff = fixedContainerHeight - minimizedFixedContainerHeight;
     const I_DONT_KNOW = 12; // TODO: Double-check the 78px in _calculateHeaderMeasurements
 
     const { pageHeight, minimized } = this.state;
+    const minHeightOffset =
+      minimized > 0 ? minimizeDiff + SCROLL_TOP_THRESHOLD + I_DONT_KNOW : 0;
+
     return (
       <div
         className={classNames(contentHorizontalLayoutProps.className, {
@@ -351,10 +355,7 @@ class Page extends WixComponent {
         })}
         style={{
           ...contentHorizontalLayoutProps.style,
-          minHeight:
-            minimized > 0
-              ? `calc(100% + ${minimizeDiff}px + ${SCROLL_TOP_THRESHOLD}px + ${I_DONT_KNOW}px)`
-              : '100%',
+          minHeight: `calc(100% - ${PAGE_BOTTOM_PADDING_PX}px + ${minHeightOffset}px`,
         }}
       >
         <div
