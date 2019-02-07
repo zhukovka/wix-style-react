@@ -18,10 +18,13 @@ Types of changes:
 
 ### Added
 - `<SectionHelper/>` new `appearance="preview"` [#2906](https://github.com/wix/wix-style-react/pull/2906)
+- `<SortableList />` - add `delay` and `canDrag` props [#2908](https://github.com/wix/wix-style-react/pull/2908)
+- `<SortableList />` - add animation api [#2852](https://github.com/wix/wix-style-react/pull/2852)
 
 ### Fixed
 - `<Thumbnail/>` - add visual hover state [#2904](https://github.com/wix/wix-style-react/pull/2904)
 - `<Notification/>` - replace deprecated components in ActionButton [2903](https://github.com/wix/wix-style-react/pull/2903)
+- `<SortableList />` - item on drag between lists has wrong width [#2912](https://github.com/wix/wix-style-react/pull/2912)
 
 ## 6.2.0 - 2019-02-04
 
