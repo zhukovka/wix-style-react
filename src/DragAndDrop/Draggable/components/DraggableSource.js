@@ -78,16 +78,16 @@ const source = {
       }
     }
   },
-  canDrag: (
-    { id, index, containerId, groupName, item, canDrag },
-  ) => {
-    return canDrag ? canDrag({
-      id,
-      index,
-      containerId,
-      groupName,
-      item,
-    }) : true;
+  canDrag: ({ id, index, containerId, groupName, item, canDrag }) => {
+    return canDrag
+      ? canDrag({
+          id,
+          index,
+          containerId,
+          groupName,
+          item,
+        })
+      : true;
   },
   isDragging: ({ id, containerId, groupName }, monitor) => {
     const item = monitor.getItem();
@@ -145,9 +145,14 @@ export default class DraggableSource extends React.Component {
   }
 
   _getWrapperStyles() {
-    const {shift, ignoreMouseEvents, animationDuration, animationTiming} = this.props;
+    const {
+      shift,
+      ignoreMouseEvents,
+      animationDuration,
+      animationTiming,
+    } = this.props;
     const [xShift, yShift] = shift || [0, 0];
-    const hasShift = (xShift || yShift);
+    const hasShift = xShift || yShift;
 
     const transition = ignoreMouseEvents
       ? `transform ${animationDuration}ms ${animationTiming}`
@@ -155,12 +160,8 @@ export default class DraggableSource extends React.Component {
     const transform = hasShift
       ? `translate(${xShift}px, ${yShift}px)`
       : undefined;
-    const willChange = hasShift
-      ? 'transform'
-      : undefined;
-    const pointerEvents = ignoreMouseEvents || hasShift
-      ? 'none'
-      : undefined;
+    const willChange = hasShift ? 'transform' : undefined;
+    const pointerEvents = ignoreMouseEvents || hasShift ? 'none' : undefined;
 
     return {
       willChange,
@@ -180,32 +181,28 @@ export default class DraggableSource extends React.Component {
       item,
     } = this.props;
 
-    const content = withHandle ? (
-      renderItem({
-        id,
-        item,
-        isPlaceholder: isDragging,
-        connectHandle: handle => {
-          const handleWithRef = React.cloneElement(handle, {
-            ref: node => (this.handleNode = ReactDOM.findDOMNode(node)),
-          });
-          return connectDragSource(handleWithRef);
-        },
-      })
-    ) : (
-      connectDragSource(renderItem({
-        id,
-        item,
-        isPlaceholder: isDragging,
-        connectHandle: noop,
-      }))
-    );
+    const content = withHandle
+      ? renderItem({
+          id,
+          item,
+          isPlaceholder: isDragging,
+          connectHandle: handle => {
+            const handleWithRef = React.cloneElement(handle, {
+              ref: node => (this.handleNode = ReactDOM.findDOMNode(node)),
+            });
+            return connectDragSource(handleWithRef);
+          },
+        })
+      : connectDragSource(
+          renderItem({
+            id,
+            item,
+            isPlaceholder: isDragging,
+            connectHandle: noop,
+          }),
+        );
 
-    return (
-      <div style={this._getWrapperStyles()}>
-        {content}
-      </div>
-    );
+    return <div style={this._getWrapperStyles()}>{content}</div>;
   }
 
   _renderPreview = ({ previewStyles }) => {

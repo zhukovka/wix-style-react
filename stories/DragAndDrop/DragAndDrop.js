@@ -38,7 +38,9 @@ storiesOf('WIP/Drag And Drop/SortableList', module)
   ))
   .add('Styles', () => <SortableListStyles />)
   .add('Single Area List', () => <SingleAreaList />)
-  .add('Single Area List with animations', () => <SingleAreaListWithAnimation />)
+  .add('Single Area List with animations', () => (
+    <SingleAreaListWithAnimation />
+  ))
   .add('Multi Area List', () => <MultiAreaList />)
   .add('Multi Area List with sortable columns', () => (
     <MultiAreaListWithSortableColumns />
