@@ -45,12 +45,14 @@ import deprecationLog from '../utils/deprecationLog';
  * | | | +-------------------------     |
  * | | +---------------------------     | Content (Virtual)
  * | | +--  ScrollableContainer ---     |
- * | | | +-- Page.Content ---------     |
- * | | | |                              |
- * | | | +-------------------------     |
- * | | +---------------------------   ==+
- * | +-----------------------------
- * +-------------------------------
+ * | | | +-- contentWrapper--------     |
+ * | | | | +-- Page.Content ---------   |
+ * | | | | |                            |
+ * | | | | +-------------------------   |
+ * | | | +---------------------------   |
+ * | | +----------------------------- ==+
+ * | +----------------------------- (Page - End)
+ * +------------------------------- (PageWrapper - End)
  *
  * -  ScrollableContainer is called in the code scrollable-content, and should NOT be renamed, since
  * Tooltip is hard-coded-ly using a selector like this: [data-class="page-scrollable-content"]
