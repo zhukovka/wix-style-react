@@ -108,7 +108,10 @@ const collect = (connect, monitor) => ({
 export default class DraggableSource extends React.Component {
   state = {
     offsetOfHandle: { x: 0, y: 0 },
+    itemWidth: null
   };
+
+  rootNode = null;
 
   componentDidMount() {
     if (this.props.connectDragPreview) {
@@ -208,12 +211,20 @@ export default class DraggableSource extends React.Component {
     return <div style={this._getWrapperStyles()}>{content}</div>;
   }
 
+  _setRootNode = node => {
+    // Don't need to reset the values if node remains the same
+    if (node && this.rootNode !== node) {
+      this.rootNode = node;
+      this.setState({itemWidth: this.rootNode.getBoundingClientRect().width});
+    }
+  }
+
   _renderPreview = ({ previewStyles }) => {
     const { renderItem, id, item, delayed } = this.props;
     return renderItem({
       id,
       item,
-      previewStyles,
+      previewStyles: {width: this.state.itemWidth, ...previewStyles},
       isPreview: true,
       connectHandle: noop,
       delayed,
@@ -228,6 +239,8 @@ export default class DraggableSource extends React.Component {
         usePortal={usePortal}
         renderPreview={this._renderPreview}
         id={id}
+        // pass 'width' this prop to rerender element with changed width from state
+        width={this.state.itemWidth}
         draggedType={ItemTypes.DRAGGABLE}
       />
     );
@@ -236,7 +249,7 @@ export default class DraggableSource extends React.Component {
   render() {
     const { connectDragSource } = this.props;
     return connectDragSource ? (
-      <div ref={node => (this.rootNode = node)}>
+      <div ref={this._setRootNode}>
         {this._renderDraggableItem()}
         {this._renderPreviewItem()}
       </div>
