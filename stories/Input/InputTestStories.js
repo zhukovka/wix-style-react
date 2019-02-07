@@ -25,12 +25,11 @@ const kind = getTestStoryKind({
 storiesOf(kind, module).add('1. Input with suffix group', () => {
   return (
     <div>
-      <h1>Input with group suffix and loading state</h1>
+      <h1>Input with group suffix</h1>
       <br />
       <Input
         dataHook="storybook-input"
         {...defaultProps}
-        status={'loading'}
         suffix={groupSuffix}
       />
       <h1>Input with group suffix and error state</h1>

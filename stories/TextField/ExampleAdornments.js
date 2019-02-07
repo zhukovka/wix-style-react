@@ -56,7 +56,11 @@ const Example = () => (
         </Cell>
         <Cell span="4">
           <FormField label="Suffix + [Status: Error]">
-            <Input {...defaultProps} suffix="$" status={'error'} />
+            <Input
+              {...defaultProps}
+              suffix={<Input.Affix>$</Input.Affix>}
+              status={'error'}
+            />
             <br />
           </FormField>
         </Cell>
@@ -64,12 +68,6 @@ const Example = () => (
     </Cell>
     <Cell>
       <Layout>
-        <Cell span="4">
-          <FormField label="Help + tooltip">
-            <Input {...defaultProps} help helpMessage="I am a message" />
-            <br />
-          </FormField>
-        </Cell>
         <Cell span="4">
           <FormField label="Icon [Prefix]">
             <Input

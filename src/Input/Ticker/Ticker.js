@@ -9,7 +9,7 @@ import InputConsumer from '../InputConsumer';
 const Ticker = ({ onUp, onDown, upDisabled, downDisabled, dataHook }) => (
   <InputConsumer consumerCompName={Ticker.displayName}>
     {({ disabled }) => (
-      <div className={styles.root}  data-hook={dataHook}>
+      <div className={styles.root} data-hook={dataHook}>
         <div
           className={classnames(styles.up, {
             [styles.disabled]: upDisabled || disabled,

@@ -9,7 +9,7 @@ $material-gap: 8px;
 .root {
   position: relative;
   display: flex;
-  align-items: stretch;
+  align-items: center;
   border: solid 1px;
   border-radius: 6px;
   @include BoxSizing();
@@ -36,6 +36,7 @@ $material-gap: 8px;
   margin: 0;
   border: 0;
   outline: 0;
+  line-height: 1.5;
   background: transparent;
   @include BorderRadius(6px);
   @include FontRoman();
@@ -396,7 +397,6 @@ $material-gap: 8px;
 }
 
 .clear-button {
-  margin-right: 6px;
   line-height: 0;
   background: $B50;
   border-radius: 12px;

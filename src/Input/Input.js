@@ -64,6 +64,11 @@ class Input extends Component {
         `Input's magnifyingGlass prop is deprecated and will be removed in the next major release, please use suffix property with '<Input suffix={<Input.Affix><Search /></Input.Affix>}/>' instead`,
       );
     }
+    if (props.help) {
+      deprecationLog(
+        `Input's help prop is deprecated and will be removed in the next major release, please '<FormField infoContent="content"><Input /></FormField>'  instead`,
+      );
+    }
   }
 
   render(props = {}) {
