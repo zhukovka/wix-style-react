@@ -46,6 +46,8 @@
   | dragPreview      | bool     | false        | -          | in case if you have nested SortableLists, you need to set dragPreview to true when you drag nested SortableList |
   | animationDuration| number   | 0            | -          | animation duration. Please note, `SortableList` uses CSS `transition`s to animate itself
   | animationTiming  | string   | ''           | -          | animation timing function
+  | delay            | number   |  -           | -          | number of ms that user should press on item before drag will start
+  | canDrag          | func     |  -           | -          | function which will be used before drag start and can prevent it like if returns false: () => false |
 </details>
 
 Some details about complex props
@@ -93,12 +95,13 @@ Some details about complex props
 
   Example without handle:
   ```js
-  renderItem = ({isPlaceholder, isPreview, id, previewStyles, item}) => {
+  renderItem = ({isPlaceholder, isPreview, id, previewStyles, item, delayed}) => {
       const classes = classNames(
         styles.card,
         {
           [styles.placeholder]: isPlaceholder,
-          [styles.preview]: isPreview
+          [styles.preview]: isPreview,
+          [styles.delayed]: delayed
         });
 
       return (
