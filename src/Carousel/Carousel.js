@@ -1,37 +1,54 @@
-import classNames from 'classnames';
 import React from 'react';
+import { Transition } from 'react-transition-group';
 import PropTypes from 'prop-types';
+
 import styles from './Carousel.scss';
 import ChevronLeftLarge from '../new-icons/ChevronLeftLarge';
 import ChevronRightLarge from '../new-icons/ChevronRightLarge';
 import IconButton from '../IconButton/IconButton';
-import Pagination from './Pagination';
-import Loader from '../Loader';
 import Proportion from '../Proportion';
 
-// because lodash throttle is not compatible with jest timeout mocks
-function throttle(callback, time) {
-  let pause;
+import Pagination from './Pagination';
+import Item from './Item';
 
-  return function(...args) {
-    if (!pause) {
-      pause = true;
-      setTimeout(() => {
-        pause = false;
-      }, time);
-      callback(...args);
-    }
-  };
-}
+const AUTOPLAY_SPEED = 2000;
+const ANIMATION = {
+  PREV: 'PREV',
+  NEXT: 'NEXT',
+};
 
-class Carousel extends React.Component {
+const getItemStylesForAnimation = (direction, state, itemIsCurrent) => {
+  const itemStyles = {};
+  if (!itemIsCurrent) return itemStyles;
+  if (direction) {
+    itemStyles.transition = '600ms cubic-bezier(0.77, 0, 0.175, 1)';
+  }
+  if (state === 'entering') {
+    itemStyles[
+      `margin${direction === ANIMATION.NEXT ? 'Left' : 'Right'}`
+    ] = `${-100}%`;
+  }
+  return itemStyles;
+};
+
+const getContainerStylesForAnimation = direction => ({
+  flexDirection: direction === ANIMATION.PREV ? 'row-reverse' : 'row',
+});
+
+class Carousel extends React.PureComponent {
   constructor(props) {
     super(props);
     this.state = {
-      activeIndex: 0,
-      loadedImageCount: 0,
+      currentIndex: 0,
+      nextIndex: 0,
+      itemsQuantity: props.images.length || props.items.length,
+      animationDirection: null,
     };
-    this._slide = throttle(this._slide.bind(this), 2000);
+    this._slideTo = this._slideTo.bind(this);
+    this._getItem = this._getItem.bind(this);
+    this._setCurrentIndex = this._setCurrentIndex.bind(this);
+    this._prev = this._prev.bind(this);
+    this._next = this._next.bind(this);
   }
 
   componentDidMount() {
@@ -56,11 +73,12 @@ class Carousel extends React.Component {
     }
   }
 
+  _shouldRenderImages() {
+    return Boolean(this.props.images.length);
+  }
+
   _autoplay() {
-    const intervalToken = setInterval(
-      () => this._slide(this._getNextIndex()),
-      4000,
-    );
+    const intervalToken = setInterval(() => this._next(), AUTOPLAY_SPEED);
     this._haltAutoplay = () => clearInterval(intervalToken);
   }
 
@@ -72,59 +90,101 @@ class Carousel extends React.Component {
     this.props.autoplay && this._autoplay();
   }
 
-  _isLastImage() {
-    return this.state.activeIndex === this.props.images.length - 1;
+  _isFirstImage() {
+    return this.state.currentIndex === 0;
   }
 
-  _slide(index) {
-    this.setState({
-      activeIndex: index,
-    });
+  _isLastImage() {
+    return this.state.currentIndex === this.state.itemsQuantity - 1;
+  }
+
+  _slideTo(nextIndex, direction) {
+    const { currentIndex } = this.state;
+
+    if (nextIndex !== currentIndex) {
+      const animationDirection =
+        direction ||
+        (nextIndex > currentIndex ? ANIMATION.NEXT : ANIMATION.PREV);
+      this.setState({
+        nextIndex,
+        animationDirection,
+      });
+    }
   }
 
   _prev() {
-    if (this.state.activeIndex === 0 && !this.props.infinite) {
-      return;
-    }
-    this._slide(this._getPrevIndex());
+    this._slideTo(this._getPrevIndex(), ANIMATION.PREV);
   }
 
   _next() {
-    if (this._isLastImage() && !this.props.infinite) {
-      return;
-    }
-    this._slide(this._getNextIndex());
+    this._slideTo(this._getNextIndex(), ANIMATION.NEXT);
   }
 
   _getNextIndex() {
-    return this.state.activeIndex === this.props.images.length - 1
-      ? 0
-      : this.state.activeIndex + 1;
+    const { currentIndex } = this.state;
+    if (this._isLastImage()) {
+      return this.props.infinite ? 0 : currentIndex;
+    } else {
+      return currentIndex + 1;
+    }
   }
 
   _getPrevIndex() {
-    return this.state.activeIndex === 0
-      ? this.props.images.length - 1
-      : this.state.activeIndex - 1;
+    const { currentIndex, itemsQuantity } = this.state;
+    if (this._isFirstImage()) {
+      return this.props.infinite ? itemsQuantity - 1 : 0;
+    } else {
+      return currentIndex - 1;
+    }
   }
 
-  _onImageLoad() {
-    this.setState(state => {
-      const loadedImageCount = state.loadedImageCount + 1;
-      return {
-        loadedImageCount,
-      };
+  _getItem(item, index, animation) {
+    const props = {
+      key: index,
+      autopreloader: this.props.autopreloader,
+      animationStyles: animation,
+    };
+
+    if (this._shouldRenderImages()) {
+      props.imageUrl = item.src;
+    } else {
+      props.getItem = item;
+    }
+
+    return <Item {...props} />;
+  }
+
+  _getActiveItems(animationState) {
+    const { images, items } = this.props;
+    const { animationDirection, currentIndex, nextIndex } = this.state;
+    const collection = this._shouldRenderImages() ? images : items;
+    const currentItem = this._getItem(
+      collection[currentIndex],
+      currentIndex,
+      getItemStylesForAnimation(animationDirection, animationState, true),
+    );
+
+    if (nextIndex !== currentIndex) {
+      const nextItem = this._getItem(
+        collection[nextIndex],
+        nextIndex,
+        getItemStylesForAnimation(animationDirection, animationState),
+      );
+      return [currentItem, nextItem];
+    } else {
+      return [currentItem];
+    }
+  }
+
+  _setCurrentIndex() {
+    this.setState({
+      currentIndex: this.state.nextIndex,
+      animationDirection: null,
     });
   }
 
-  _isLoading() {
-    return this.state.loadedImageCount < this.props.images.length;
-  }
-
-  _getActivePage() {
-    const activeIndex = this.state.activeIndex;
-    const originalImageCount = this.props.images.length;
-    return activeIndex % originalImageCount;
+  _isAnimationActive() {
+    return Boolean(this.state.animationDirection);
   }
 
   render() {
@@ -133,7 +193,7 @@ class Carousel extends React.Component {
         <IconButton
           dataHook="prev-button"
           priority="secondary"
-          onClick={() => this._prev()}
+          onClick={this._prev}
         >
           <ChevronLeftLarge />
         </IconButton>
@@ -145,68 +205,54 @@ class Carousel extends React.Component {
         <IconButton
           dataHook="next-button"
           priority="secondary"
-          onClick={() => this._next()}
+          onClick={this._next}
         >
           <ChevronRightLarge />
         </IconButton>
       </div>
     );
 
+    const { currentIndex, itemsQuantity, animationDirection } = this.state;
+
     return (
       <div
         className={styles.carousel}
         data-hook={this.props.dataHook}
-        data-ready={!this._isLoading()}
+        onMouseOver={() => this._stopSlideshow()}
+        onMouseOut={() => this._continueSlideshow()}
       >
-        <div className={styles.imagesAndButtonsContainer}>
-          <div className={styles.gallery}>
-            {prevButton}
-            <Proportion
-              aspectRatio={Proportion.PREDEFINED_RATIOS.landscape}
-              className={styles.imagesContainerLayout}
+        <div className={styles.gallery}>
+          {prevButton}
+          <Proportion
+            aspectRatio={Proportion.PREDEFINED_RATIOS.landscape}
+            className={styles.imagesContainerLayout}
+          >
+            <Transition
+              in={this._isAnimationActive()}
+              timeout={600}
+              exit={false}
+              enter
+              onEntered={this._setCurrentIndex}
             >
-              <div
-                data-hook="images-container"
-                className={styles.imagesContainer}
-                data-is-loading={this._isLoading()}
-                onMouseOver={() => this._stopSlideshow()}
-                onMouseOut={() => this._continueSlideshow()}
-              >
-                {this.props.images.map((image, currentIndex) => {
-                  return (
-                    <div
-                      key={currentIndex}
-                      className={classNames(styles.imageContainer, {
-                        [styles.active]:
-                          currentIndex === this.state.activeIndex,
-                        [styles.prev]: currentIndex === this._getPrevIndex(),
-                        [styles.next]: currentIndex === this._getNextIndex(),
-                      })}
-                    >
-                      <img
-                        className={styles.image}
-                        data-hook="carousel-img"
-                        src={image.src}
-                        onLoad={() => this._onImageLoad()}
-                      />
-                    </div>
-                  );
-                })}
-              </div>
-              {this._isLoading() ? (
-                <div className={styles.loader}>
-                  <Loader dataHook="loader" size="small" />
+              {state => (
+                <div
+                  data-hook="images-container"
+                  style={getContainerStylesForAnimation(animationDirection)}
+                  className={styles.imagesContainer}
+                >
+                  {this._getActiveItems(state)}
                 </div>
-              ) : null}
-            </Proportion>
-            {nextButton}
-          </div>
-          <Pagination
-            className={styles.paginationLayout}
-            totalPages={this.props.images.length}
-            currentPage={this._getActivePage()}
-          />
+              )}
+            </Transition>
+          </Proportion>
+          {nextButton}
         </div>
+        <Pagination
+          className={styles.paginationLayout}
+          totalPages={itemsQuantity}
+          currentPage={currentIndex}
+          onClick={this._slideTo}
+        />
       </div>
     );
   }
@@ -216,16 +262,22 @@ class Carousel extends React.Component {
 Carousel.propTypes = {
   dataHook: PropTypes.string,
   /** Array of strings where each string is a src of an image (in \<img src="your_src" /\>) */
-  images: PropTypes.array.isRequired,
+  images: PropTypes.array,
+  /** Array of nodes */
+  items: PropTypes.array,
   /** Images loop endlessly */
   infinite: PropTypes.bool,
   /** Auto-playing of images */
   autoplay: PropTypes.bool,
+  /** Auto-preloader */
+  autopreloader: PropTypes.bool,
 };
 
 Carousel.defaultProps = {
   infinite: true,
+  autoplay: false,
   images: [],
+  items: [],
 };
 Carousel.displayName = 'Carousel';
 

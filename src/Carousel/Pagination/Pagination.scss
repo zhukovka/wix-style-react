@@ -11,6 +11,7 @@
   background-color: $B40;
   border-radius: 6px;
   margin: 0 6px;
+  cursor: pointer;
 
   &[data-active="true"] {
     background-color: $B10;
