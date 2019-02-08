@@ -73,7 +73,8 @@ class Page extends WixComponent {
 
     this._setContainerScrollTopThreshold(false);
     this._handleScroll = this._handleScroll.bind(this);
-    this._handleResize = this._handleResize.bind(this);
+    this._handleWidthResize = this._handleWidthResize.bind(this);
+    this._handleWindowResize = this._handleWindowResize.bind(this);
 
     this.state = {
       fixedContainerHeight: 0,
@@ -88,10 +89,11 @@ class Page extends WixComponent {
     super.componentDidMount();
     this.contentResizeListener = new ResizeSensor(
       this._getScrollContainer().childNodes[0],
-      this._handleResize,
+      this._handleWidthResize,
     );
     this._calculateComponentsHeights();
-    this._handleResize();
+    this._handleWidthResize();
+    window.addEventListener('resize', this._handleWindowResize);
   }
 
   componentDidUpdate(prevProps) {
@@ -106,7 +108,8 @@ class Page extends WixComponent {
 
   componentWillUnmount() {
     super.componentWillUnmount();
-    this.contentResizeListener.detach(this._handleResize);
+    this.contentResizeListener.detach(this._handleWidthResize);
+    window.removeEventListener('resize', this._handleWindowResize);
   }
 
   _calculateComponentsHeights() {
@@ -174,7 +177,7 @@ class Page extends WixComponent {
     }
   }
 
-  _handleResize() {
+  _handleWidthResize() {
     // Fixes width issues when scroll bar is present in windows
     const scrollContainer = this._getScrollContainer();
     const scrollBarWidth =
@@ -184,6 +187,11 @@ class Page extends WixComponent {
     if (this.state.scrollBarWidth !== scrollBarWidth) {
       this.setState({ scrollBarWidth });
     }
+  }
+
+  _handleWindowResize() {
+    // TODO: add optimization - render only when height changes
+    this.forceUpdate();
   }
 
   _safeGetChildren(element) {
