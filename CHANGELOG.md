@@ -17,14 +17,26 @@ Types of changes:
 ## next
 
 ### Added
-- `<SectionHelper/>` new `appearance="preview"` [#2906](https://github.com/wix/wix-style-react/pull/2906)
-- `<SortableList />` - add `delay` and `canDrag` props [#2908](https://github.com/wix/wix-style-react/pull/2908)
-- `<SortableList />` - add animation api [#2852](https://github.com/wix/wix-style-react/pull/2852)
+- `<SectionHelper/>` new `appearance="preview"` skin [#2906](https://github.com/wix/wix-style-react/pull/2906)
+- `<SortableList/>` - add `delay` and `canDrag` props [#2908](https://github.com/wix/wix-style-react/pull/2908)
+- `<SortableList/>` - add animation api [#2852](https://github.com/wix/wix-style-react/pull/2852)
+- `<Autocomplete/>` - add empty state feature [#2899](https://github.com/wix/wix-style-react/pull/2899)
+- `<Input/>` - add `<Input.Affix/>` and `<Input.IconAffix/>` for prefix/suffix rendering [#2887](https://github.com/wix/wix-style-react/pull/2887)
 
 ### Fixed
 - `<Thumbnail/>` - add visual hover state [#2904](https://github.com/wix/wix-style-react/pull/2904)
 - `<Notification/>` - replace deprecated components in ActionButton [2903](https://github.com/wix/wix-style-react/pull/2903)
-- `<SortableList />` - item on drag between lists has wrong width [#2912](https://github.com/wix/wix-style-react/pull/2912)
+- `<SortableList/>` - item on drag between lists has wrong width [#2912](https://github.com/wix/wix-style-react/pull/2912)
+- `<FormField/>` - fix asterisk font style [#2916](https://github.com/wix/wix-style-react/pull/2916)
+
+### Docs
+- `<Popover/>` remove old story and rename the tooltips and popover section [#2881](https://github.com/wix/wix-style-react/pull/2881)
+
+### Lab
+- `<RichTextArea/`> - implement basic input area with `Draft.js` [#2914](https://github.com/wix/wix-style-react/pull/2914)
+
+### Infra
+- fix typescript project consuming testkit issues by adding `transform-runtime` and use babel’s helpers + generator from `babel-runtime` package [#2905](https://github.com/wix/wix-style-react/pull/2905)
 
 ## 6.2.0 - 2019-02-04
 
