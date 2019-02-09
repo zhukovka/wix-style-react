@@ -112,62 +112,65 @@ PageTestStories.add('9. Empty State', () => (
   </PageContainer>
 ));
 
-PageTestStories.add('10. Page Example with short content', () => (
-  <PageContainer>
-    <Page
-      {...defaultPageProps}
-      children={[header(), content({ shortContent: true })]}
-    />
-  </PageContainer>
-));
-
-PageTestStories.add('11. Page Example with sidePadding=0', () => (
+PageTestStories.add('10. Page Example with sidePadding=0', () => (
   <PageContainer>
     <Page {...defaultPageProps} sidePadding={0} />
   </PageContainer>
 ));
 
-PageTestStories.add('12. Page Example with stretchVertically', () => (
-  <PageContainer>
-    <Page
-      {...defaultPageProps}
-      stretchVertically
-      children={[
-        header(),
-        content({ shortContent: true, stretchVertically: true }),
-      ]}
-    />
-  </PageContainer>
-));
+/*
+ *  Vertical Test Stories
+ */
 
 class PageWithScroll extends React.Component {
   state = { fixedContainerHeight: null };
-  pageHeight = 400;
+  pageHeight = 500;
 
   static propTypes = {
     extraScroll: PropTypes.number,
+    contentHeight: PropTypes.number,
+    stretchVertically: PropTypes.bool,
+    withFixedContent: PropTypes.bool,
+  };
+
+  static defaultProps = {
+    extraScroll: 0,
   };
 
   render() {
-    let contentHeight = 200;
+    let heightProps;
+    const { stretchVertically, contentHeight, withFixedContent } = this.props;
 
-    const pageBottomPadding = 48;
-    const extraScroll = this.props.extraScroll ? this.props.extraScroll : 0;
-    const fixedContainerHeight = 152;
-    const noScrollHeight =
-      this.pageHeight - fixedContainerHeight - pageBottomPadding;
-    contentHeight = noScrollHeight + extraScroll;
+    if (stretchVertically) {
+      heightProps = {
+        minHeight: 'inherit',
+      };
+    } else if (contentHeight) {
+      heightProps = { height: contentHeight };
+    } else {
+      const pageBottomPadding = 48;
+      const extraScroll = this.props.extraScroll;
+      const fixedContainerHeight = 152;
+      const fixedContentHeight = 35;
+      const noScrollHeight =
+        this.pageHeight -
+        fixedContainerHeight -
+        (withFixedContent ? fixedContentHeight : 0) -
+        pageBottomPadding;
+      heightProps = { height: noScrollHeight + extraScroll };
+    }
 
     return (
       <PageContainer style={{ height: `${this.pageHeight}px` }}>
         <Page {...defaultPageProps} ref={ref => (this.pageInstance = ref)}>
           {header()}
+          {withFixedContent && fixedContent}
           <Page.Content>
             <div
               ref={ref => (this.contentRef = ref)}
               style={{
                 backgroundColor: 'white',
-                height: `${contentHeight}px`,
+                ...heightProps,
               }}
             />
             {/* <LongTextContent /> */}
@@ -178,17 +181,36 @@ class PageWithScroll extends React.Component {
   }
 }
 
-PageTestStories.add('13. Max content height wihout scroll', () => (
-  // Small scroll - lower than the threshold that triggers minimization
-  <PageWithScroll extraScroll={0} />
-));
+[false, true].forEach(withFixedContent => {
+  const Stories = storiesOf(
+    `${kind}/Scroll${withFixedContent ? '_FC' : ''}`,
+    module,
+  );
 
-PageTestStories.add('14. Scroll - No Minimize', () => (
-  // Small scroll - lower than the threshold that triggers minimization
-  <PageWithScroll extraScroll={SCROLL_TOP_THRESHOLD - 2} />
-));
+  const prefix = testNumber => `${testNumber}. `;
+  // withFixedContent ? `2${testNumber}. FC - ` : `1${testNumber}. `;
+  const defaultProps = withFixedContent ? { withFixedContent } : {};
 
-PageTestStories.add('15. Scroll - Minimize + 2px', () => (
-  // Small scroll - lower than the threshold that triggers minimization
-  <PageWithScroll extraScroll={SCROLL_TOP_THRESHOLD + 2} />
-));
+  Stories.add(`${prefix(1)}Short Content`, () => (
+    <PageWithScroll {...defaultProps} contentHeight={200} />
+  ));
+
+  Stories.add(`${prefix(2)}Stretch Vertically`, () => (
+    <PageWithScroll {...defaultProps} stretchVertically />
+  ));
+
+  Stories.add(`${prefix(3)}Max Height No Scroll`, () => (
+    // Small scroll - lower than the threshold that triggers minimization
+    <PageWithScroll {...defaultProps} extraScroll={0} />
+  ));
+
+  Stories.add(`${prefix(4)}Scroll - No Minimize`, () => (
+    // Small scroll - lower than the threshold that triggers minimization
+    <PageWithScroll {...defaultProps} extraScroll={SCROLL_TOP_THRESHOLD - 2} />
+  ));
+
+  Stories.add(`${prefix(5)}Scroll - Minimize + 2px`, () => (
+    // Small scroll - lower than the threshold that triggers minimization
+    <PageWithScroll {...defaultProps} extraScroll={SCROLL_TOP_THRESHOLD + 2} />
+  ));
+});
