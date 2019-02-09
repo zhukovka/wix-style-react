@@ -232,7 +232,11 @@ class Page extends WixComponent {
   /**
    * See diagram in class documentation to better understand this method.
    */
-  _calculateHeaderMeasurements({ PageTail }) {
+  _calculateHeaderMeasurements() {
+    const { children } = this.props;
+    const childrenObject = getChildrenObject(children);
+    const { PageTail } = childrenObject;
+
     const { gradientCoverTail } = this.props;
     // fixedContainerHeight (and other heights) are calculated only when the Page is NOT minimized
     const { fixedContainerHeight, tailHeight, fixedContentHeight } = this.state;
@@ -263,11 +267,28 @@ class Page extends WixComponent {
     return !!this.props.gradientClassName && !this.props.backgroundImageUrl;
   }
 
-  _renderFixedContainer({ contentHorizontalLayoutProps, pageDimensionsStyle }) {
+  _getContentHorizontalLayoutProps() {
     const { children } = this.props;
     const childrenObject = getChildrenObject(children);
-    const { PageFixedContent, PageTail } = childrenObject;
+    const { PageContent } = childrenObject;
+    const contentFullScreen = PageContent && PageContent.props.fullScreen;
+    const pageDimensionsStyle = this._calculatePageDimensionsStyle();
+
+    return {
+      className: classNames(s.contentHorizontalLayout, {
+        [s.contentFullWidth]: contentFullScreen,
+      }),
+      style: contentFullScreen ? null : pageDimensionsStyle,
+    };
+  }
+
+  _renderFixedContainer() {
+    const { children } = this.props;
+    const childrenObject = getChildrenObject(children);
+    const { PageTail } = childrenObject;
     const { minimized } = this.state;
+    const pageDimensionsStyle = this._calculatePageDimensionsStyle();
+
     return (
       <div
         data-hook="page-fixed-container"
@@ -304,19 +325,36 @@ class Page extends WixComponent {
             </div>
           )}
         </div>
-        {PageFixedContent && (
-          <div
-            data-hook="page-fixed-content"
-            {...contentHorizontalLayoutProps}
-            ref={r => (this.pageHeaderFixedContentRef = r)}
-          >
-            {React.cloneElement(PageFixedContent)}
-          </div>
-        )}
+        {this._renderFixedContent()}
       </div>
     );
   }
 
+  _renderScrollableContainer() {
+    const {
+      imageHeight,
+      gradientHeight,
+      fixedContainerHeight,
+      minimizedFixedContainerHeight,
+    } = this._calculateHeaderMeasurements();
+
+    return (
+      <div
+        className={s.scrollableContainer}
+        onScroll={this._handleScroll}
+        data-hook="page-scrollable-content"
+        data-class="page-scrollable-content"
+        style={{ paddingTop: `${fixedContainerHeight}px` }}
+        ref={r => this._setScrollContainer(r)}
+      >
+        {this._renderScrollableBackground({
+          gradientHeight,
+          imageHeight,
+        })}
+        {this._renderContent()}
+      </div>
+    );
+  }
   _renderScrollableBackground({ gradientHeight, imageHeight }) {
     if (this.hasBackgroundImage()) {
       return (
@@ -344,12 +382,32 @@ class Page extends WixComponent {
     }
   }
 
-  _renderContent({
-    contentHorizontalLayoutProps,
-    fixedContainerHeight,
-    minimizedFixedContainerHeight,
-    PageContent,
-  }) {
+  _renderFixedContent() {
+    const { children } = this.props;
+    const childrenObject = getChildrenObject(children);
+    const { PageFixedContent } = childrenObject;
+    return (
+      PageFixedContent && (
+        <div
+          data-hook="page-fixed-content"
+          {...this._getContentHorizontalLayoutProps()}
+          ref={r => (this.pageHeaderFixedContentRef = r)}
+        >
+          {React.cloneElement(PageFixedContent)}
+        </div>
+      )
+    );
+  }
+  _renderContent() {
+    const { children } = this.props;
+    const childrenObject = getChildrenObject(children);
+    const { PageContent } = childrenObject;
+
+    const {
+      fixedContainerHeight,
+      minimizedFixedContainerHeight,
+    } = this._calculateHeaderMeasurements();
+
     // TODO: re-render when window size changes
     const minimizeDiff = fixedContainerHeight - minimizedFixedContainerHeight;
     const I_DONT_KNOW = 12; // TODO: Double-check the 78px in _calculateHeaderMeasurements
@@ -357,6 +415,8 @@ class Page extends WixComponent {
     const { pageHeight, minimized } = this.state;
     const minHeightOffset =
       minimized > 0 ? minimizeDiff + SCROLL_TOP_THRESHOLD + I_DONT_KNOW : 0;
+
+    const contentHorizontalLayoutProps = this._getContentHorizontalLayoutProps();
 
     return (
       <div
@@ -385,27 +445,10 @@ class Page extends WixComponent {
     const { className, children, minWidth, upgrade } = this.props;
 
     const childrenObject = getChildrenObject(children);
-    const { PageContent, PageTail } = childrenObject;
+    const { PageTail } = childrenObject;
     this._setContainerScrollTopThreshold({
       shortThreshold: PageTail && this.hasGradientClassName(),
     });
-    const contentFullScreen = PageContent && PageContent.props.fullScreen;
-    const pageDimensionsStyle = this._calculatePageDimensionsStyle();
-    const {
-      imageHeight,
-      gradientHeight,
-      fixedContainerHeight,
-      minimizedFixedContainerHeight,
-    } = this._calculateHeaderMeasurements({ PageTail });
-
-    const classNameStretchVertically = upgrade ? s.stretchVertically : '';
-
-    const contentHorizontalLayoutProps = {
-      className: classNames(s.contentHorizontalLayout, {
-        [s.contentFullWidth]: contentFullScreen,
-      }),
-      style: contentFullScreen ? null : pageDimensionsStyle,
-    };
 
     return (
       <div
@@ -421,29 +464,8 @@ class Page extends WixComponent {
           }}
           ref={ref => (this.pageRef = ref)}
         >
-          {this._renderFixedContainer({
-            contentHorizontalLayoutProps,
-            pageDimensionsStyle,
-          })}
-          <div
-            className={s.scrollableContainer}
-            onScroll={this._handleScroll}
-            data-hook="page-scrollable-content"
-            data-class="page-scrollable-content"
-            style={{ paddingTop: `${fixedContainerHeight}px` }}
-            ref={r => this._setScrollContainer(r)}
-          >
-            {this._renderScrollableBackground({
-              gradientHeight,
-              imageHeight,
-            })}
-            {this._renderContent({
-              contentHorizontalLayoutProps,
-              fixedContainerHeight,
-              minimizedFixedContainerHeight,
-              PageContent,
-            })}
-          </div>
+          {this._renderFixedContainer()}
+          {this._renderScrollableContainer()}
         </div>
       </div>
     );
