@@ -9,6 +9,8 @@ import Pagination from './Pagination';
 import Loader from '../Loader';
 import Proportion from '../Proportion';
 
+const TRANSITION_SPEED = 600;
+
 // because lodash throttle is not compatible with jest timeout mocks
 function throttle(callback, time) {
   let pause;
@@ -31,7 +33,7 @@ class Carousel extends React.Component {
       activeIndex: 0,
       loadedImageCount: 0,
     };
-    this._slide = throttle(this._slide.bind(this), 2000);
+    this._slide = throttle(this._slide.bind(this), TRANSITION_SPEED);
   }
 
   componentDidMount() {
