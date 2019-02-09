@@ -43,7 +43,12 @@ export const tail = (
 
 export const fixedContent = (
   <Page.FixedContent>
-    <div style={{ padding: '10px 0px', backgroundColor: 'white' }}>
+    <div
+      style={{
+        padding: '10px 0px',
+        background: 'blue',
+      }}
+    >
       This is a fixedContent
     </div>
   </Page.FixedContent>

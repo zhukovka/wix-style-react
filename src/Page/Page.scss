@@ -127,11 +127,18 @@ $pageBottomPadding: 48px; //  Should be synced with JS Page value
 }
 
 .contentHorizontalLayout {
-  position: relative;
   padding: 0 $page-side-padding;
   margin: 0 auto;
 }
 
+// Needed in order to be above the background image which has position absolute
+.contentFloating {
+  position: relative;
+}
+
+.fixedContent {
+  box-sizing: content-box; 
+}
 
 .content-placeholder {
   flex-shrink: 0;

@@ -82,6 +82,7 @@ class Page extends WixComponent {
       fixedContentHeight: 0,
       scrollBarWidth: 0,
       minimized: false,
+      isStickyFixedContent: false,
     };
   }
 
@@ -168,11 +169,19 @@ class Page extends WixComponent {
     const scrollContainer = this._getScrollContainer();
     const containerScrollTop = scrollContainer.scrollTop;
     const nextMinimized = this._shouldBeMinimized(containerScrollTop);
-    const { minimized } = this.state;
+    const { minimized, isStickyFixedContent } = this.state;
 
-    if (minimized !== nextMinimized) {
+    const { minimizedDiff } = this._calculateHeaderMeasurements();
+    const nextIsStickyFixedContent =
+      containerScrollTop > SCROLL_TOP_THRESHOLD + minimizedDiff;
+
+    if (
+      minimized !== nextMinimized ||
+      isStickyFixedContent !== nextIsStickyFixedContent
+    ) {
       this.setState({
         minimized: nextMinimized,
+        isStickyFixedContent: nextIsStickyFixedContent,
       });
     }
   }
@@ -244,18 +253,24 @@ class Page extends WixComponent {
     const minimizedFixedContainerHeight = PageTail
       ? fixedContainerHeight - 78
       : fixedContainerHeight - (78 - TAIL_TOP_PADDING_PX);
-    const headerContainerHeight = fixedContainerHeight - fixedContentHeight;
+    const headerContainerHeight = fixedContainerHeight;
     const imageHeight = `${headerContainerHeight +
       (PageTail ? -tailHeight : 39)}px`;
     const gradientHeight = gradientCoverTail
       ? `${headerContainerHeight + (PageTail ? -SCROLL_TOP_THRESHOLD : 39)}px`
       : imageHeight;
 
+    const I_DONT_KNOW_PX = 12; // TODO: Double-check the 78px above
+    const minimizedDiff =
+      fixedContainerHeight - minimizedFixedContainerHeight + I_DONT_KNOW_PX;
+
     return {
       imageHeight,
       gradientHeight,
+      fixedContentHeight,
       fixedContainerHeight,
       minimizedFixedContainerHeight,
+      minimizedDiff,
     };
   }
 
@@ -286,7 +301,7 @@ class Page extends WixComponent {
     const { children } = this.props;
     const childrenObject = getChildrenObject(children);
     const { PageTail } = childrenObject;
-    const { minimized } = this.state;
+    const { minimized, isStickyFixedContent } = this.state;
     const pageDimensionsStyle = this._calculatePageDimensionsStyle();
 
     return (
@@ -325,7 +340,9 @@ class Page extends WixComponent {
             </div>
           )}
         </div>
-        {this._renderFixedContent()}
+        <div {...this._getContentHorizontalLayoutProps()}>
+          {isStickyFixedContent && this._renderFixedContent()}
+        </div>
       </div>
     );
   }
@@ -335,7 +352,6 @@ class Page extends WixComponent {
       imageHeight,
       gradientHeight,
       fixedContainerHeight,
-      minimizedFixedContainerHeight,
     } = this._calculateHeaderMeasurements();
 
     return (
@@ -386,11 +402,12 @@ class Page extends WixComponent {
     const { children } = this.props;
     const childrenObject = getChildrenObject(children);
     const { PageFixedContent } = childrenObject;
+
     return (
       PageFixedContent && (
         <div
           data-hook="page-fixed-content"
-          {...this._getContentHorizontalLayoutProps()}
+          className={classNames(s.fixedContent, s.contentFloating)}
           ref={r => (this.pageHeaderFixedContentRef = r)}
         >
           {React.cloneElement(PageFixedContent)}
@@ -404,17 +421,14 @@ class Page extends WixComponent {
     const { PageContent } = childrenObject;
 
     const {
+      fixedContentHeight,
       fixedContainerHeight,
-      minimizedFixedContainerHeight,
+      minimizeDiff,
     } = this._calculateHeaderMeasurements();
 
-    // TODO: re-render when window size changes
-    const minimizeDiff = fixedContainerHeight - minimizedFixedContainerHeight;
-    const I_DONT_KNOW = 12; // TODO: Double-check the 78px in _calculateHeaderMeasurements
-
-    const { pageHeight, minimized } = this.state;
+    const { pageHeight, minimized, isStickyFixedContent } = this.state;
     const minHeightOffset =
-      minimized > 0 ? minimizeDiff + SCROLL_TOP_THRESHOLD + I_DONT_KNOW : 0;
+      minimized > 0 ? minimizeDiff + SCROLL_TOP_THRESHOLD : 0;
 
     const contentHorizontalLayoutProps = this._getContentHorizontalLayoutProps();
 
@@ -426,15 +440,21 @@ class Page extends WixComponent {
         style={{
           ...contentHorizontalLayoutProps.style,
           minHeight: `calc(100% - ${PAGE_BOTTOM_PADDING_PX}px + ${minHeightOffset}px`,
+          paddingTop: `${
+            this.state.isStickyFixedContent ? fixedContentHeight : 0
+          }px`,
         }}
       >
         <div
           style={{
             minHeight: `${pageHeight -
               fixedContainerHeight -
+              fixedContentHeight -
               PAGE_BOTTOM_PADDING_PX}px`,
           }}
+          className={s.contentFloating}
         >
+          {!isStickyFixedContent && this._renderFixedContent()}
           {this._safeGetChildren(PageContent)}
         </div>
       </div>
