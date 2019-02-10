@@ -37,13 +37,20 @@ export default class ColorPicker extends WixComponent {
     showInput: bool,
 
     /** Handle color change event. */
-    onChange: func.isRequired,
+    onChange: func,
 
     /** Handle cancel button click */
-    onCancel: func.isRequired,
+    onCancel: func,
+
+    /** Handle cancel button onMouseDown event */
+    onMouseDownCancel: func,
 
     /** Handle confirm button click */
-    onConfirm: func.isRequired,
+    onConfirm: func,
+
+    /** Handle confirm button onMouseDown event */
+    onMouseDownConfirm: func,
+
     /** Children would be rendered above action buttons */
     children: node,
   };
@@ -60,6 +67,8 @@ export default class ColorPicker extends WixComponent {
     this.change = this.change.bind(this);
     this.confirm = this.confirm.bind(this);
     this.cancel = this.cancel.bind(this);
+    this.onMouseDownConfirm = this.onMouseDownConfirm.bind(this);
+    this.onMouseDownCancel = this.onMouseDownCancel.bind(this);
 
     const _color = safeColor(props.value) || FALLBACK_COLOR;
     this.state = { current: _color, previous: _color };
@@ -88,7 +97,12 @@ export default class ColorPicker extends WixComponent {
           onEnter={this.confirm}
         />
         {children && <div className={css.children}>{children}</div>}
-        <ColorPickerActions onConfirm={this.confirm} onCancel={this.cancel} />
+        <ColorPickerActions
+          onMouseDownConfirm={this.onMouseDownConfirm}
+          onMouseDownCancel={this.onMouseDownCancel}
+          onConfirm={this.confirm}
+          onCancel={this.cancel}
+        />
       </div>
     );
   }
@@ -104,6 +118,15 @@ export default class ColorPicker extends WixComponent {
     this.setState({ current: _color }, () => {
       this.props.onChange(_color);
     });
+  }
+
+  onMouseDownConfirm() {
+    this.setState({ previous: this.state.current });
+    this.props.onMouseDownConfirm(this.state.current);
+  }
+
+  onMouseDownCancel() {
+    this.props.onMouseDownCancel(this.state.previous);
   }
 
   confirm() {

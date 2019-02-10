@@ -133,5 +133,44 @@ describe('ColorPicker', () => {
       driver.cancel();
       expect(onChange).toHaveBeenCalledTimes(1);
     });
+
+    it('`onMouseDownConfirm` should be called on confirm button', () => {
+      const onChange = jest.fn();
+      const onCancel = jest.fn();
+      const onMouseDownConfirm = jest.fn();
+      const value = '#00FF00';
+      createComponent({
+        value,
+        onChange,
+        onCancel,
+        onMouseDownConfirm,
+        showHistory: true,
+      });
+      driver.selectBlackColor();
+      expect(color(driver.historyCurrentColor()).hex()).toBe('#000000');
+      expect(color(driver.historyPreviousColor()).hex()).toBe(value);
+      driver.mouseDownConfirm();
+      expect(onMouseDownConfirm).toHaveBeenCalledTimes(1);
+      expect(color(driver.historyPreviousColor()).hex()).toBe('#000000');
+    });
+    it('`onMouseDownCancel` should be called on cancel button', () => {
+      const onChange = jest.fn();
+      const onConfirm = jest.fn();
+      const onMouseDownCancel = jest.fn();
+      const value = '#00FF00';
+      createComponent({
+        value,
+        onChange,
+        onConfirm,
+        onMouseDownCancel,
+        showHistory: true,
+      });
+      driver.selectBlackColor();
+      expect(color(driver.historyCurrentColor()).hex()).toBe('#000000');
+      expect(color(driver.historyPreviousColor()).hex()).toBe(value);
+      driver.mouseDownCancel();
+      expect(onMouseDownCancel).toHaveBeenCalledTimes(1);
+      expect(color(driver.historyPreviousColor()).hex()).toBe('#00FF00');
+    });
   });
 });

@@ -17,5 +17,7 @@ export default {
     onChange: ev => ev.hex(),
     onCancel: () => 'Cancelled',
     onConfirm: () => 'Confirmed',
+    onMouseDownCancel: () => 'Cancelled',
+    onMouseDownConfirm: () => 'Confirmed',
   },
 };
