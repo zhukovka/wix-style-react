@@ -110,3 +110,4 @@ export { default as Box } from './Box';
 export { default as Thumbnail } from './Thumbnail';
 export { default as SegmentedToggle } from './SegmentedToggle';
 export { default as RichTextInputArea } from './RichTextInputArea';
+export { default as MaterialInput } from './MaterialInput';

@@ -408,3 +408,9 @@ import { richTextInputAreaDriverFactory } from '../src/RichTextInputArea/RichTex
 export const richTextInputAreaTestkitFactory = protractorUniTestkitFactoryCreator(
   richTextInputAreaDriverFactory,
 );
+
+import { materialInputDriverFactory } from '../src/MaterialInput/MaterialInput.driver';
+
+export const materialInputTestkitFactory = protractorUniTestkitFactoryCreator(
+  materialInputDriverFactory,
+);

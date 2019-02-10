@@ -122,3 +122,9 @@ import { richTextInputAreaDriverFactory } from '../src/RichTextInputArea/RichTex
 export const richTextInputAreaTestkitFactory = puppeteerUniTestkitFactoryCreator(
   richTextInputAreaDriverFactory,
 );
+
+import { materialInputDriverFactory } from '../src/MaterialInput/MaterialInput.driver';
+
+export const materialInputTestkitFactory = puppeteerUniTestkitFactoryCreator(
+  materialInputDriverFactory,
+);
