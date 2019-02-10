@@ -31,6 +31,7 @@ Types of changes:
 - `<Carousel/>` - fix layout in firefox [#2928](https://github.com/wix/wix-style-react/pull/2928)
 - `<Carousel/>` - fix transition speed [#2927](https://github.com/wix/wix-style-react/pull/2927)
 - `<Carousel/>` - fix autoplay speed [#2926](https://github.com/wix/wix-style-react/pull/2926)
+- `<Typography/>` - Fix h2 line height from 42px to 36px[#2829](https://github.com/wix/wix-style-react/pull/2829)
 
 ### Docs
 - `<Popover/>` remove old story and rename the tooltips and popover section [#2881](https://github.com/wix/wix-style-react/pull/2881)
