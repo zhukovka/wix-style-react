@@ -1,21 +1,21 @@
 import React from 'react';
 import { createUniDriverFactory } from 'wix-ui-test-utils/uni-driver-factory';
 
-import GeneratedTestComponent from './GeneratedTestComponent';
-import { generatedTestComponentPrivateDriverFactory } from './GeneratedTestComponent.driver.private';
+import MaterialInput from './MaterialInput';
+import { materialInputPrivateDriverFactory } from './MaterialInput.driver.private';
 
-describe('GeneratedTestComponent', () => {
-  const createDriver = createUniDriverFactory(generatedTestComponentPrivateDriverFactory);
+describe('MaterialInput', () => {
+  const createDriver = createUniDriverFactory(materialInputPrivateDriverFactory);
 
   it('should render', async () => {
-    const driver = createDriver(<GeneratedTestComponent />);
+    const driver = createDriver(<MaterialInput />);
 
     expect(await driver.exists()).toBeTruthy();
     expect(await driver.getButtonText()).toEqual('Click me!');
   });
 
   it('should increment', async () => {
-    const driver = createDriver(<GeneratedTestComponent />);
+    const driver = createDriver(<MaterialInput />);
 
     await driver.clickButton();
     await driver.clickButton();
@@ -26,7 +26,7 @@ describe('GeneratedTestComponent', () => {
   });
 
   it('should allow changing the button text', async () => {
-    const driver = createDriver(<GeneratedTestComponent buttonText="Press me" />);
+    const driver = createDriver(<MaterialInput buttonText="Press me" />);
 
     expect(await driver.getButtonText()).toEqual('Press me');
   });

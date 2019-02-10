@@ -1,12 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import styles from './GeneratedTestComponent.scss';
+import styles from './MaterialInput.scss';
 
 import Text from '../Text';
 import Button from '../Button';
 
-class GeneratedTestComponent extends React.PureComponent {
-  static displayName = 'GeneratedTestComponent';
+class MaterialInput extends React.PureComponent {
+  static displayName = 'MaterialInput';
 
   static propTypes = {
     dataHook: PropTypes.string,
@@ -35,12 +35,12 @@ class GeneratedTestComponent extends React.PureComponent {
 
     return (
       <div className={styles.root} data-hook={dataHook}>
-        <Text dataHook="generatedTestComponent-count">
+        <Text dataHook="materialInput-count">
           You clicked this button {count} times
         </Text>
 
         <div className={styles.button}>
-          <Button onClick={this._handleClick} dataHook="generatedTestComponent-button">
+          <Button onClick={this._handleClick} dataHook="materialInput-button">
             {buttonText}
           </Button>
         </div>
@@ -49,4 +49,4 @@ class GeneratedTestComponent extends React.PureComponent {
   }
 }
 
-export default GeneratedTestComponent;
+export default MaterialInput;

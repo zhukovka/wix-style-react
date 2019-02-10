@@ -1,14 +1,15 @@
 import React from 'react';
 import { storySettings } from './storySettings';
+import LiveCodeExample from '../utils/Components/LiveCodeExample';
 
-import GeneratedTestComponent from '../../src/GeneratedTestComponent';
+import MaterialInput from '../../src/MaterialInput';
 
 export default {
   category: storySettings.kind,
   storyName: storySettings.storyName,
 
-  component: GeneratedTestComponent,
-  componentPath: '../../src/GeneratedTestComponent/GeneratedTestComponent.js',
+  component: MaterialInput,
+  componentPath: '../../src/MaterialInput/MaterialInput.js',
 
   componentProps: {
     dataHook: storySettings.dataHook,
@@ -22,10 +23,16 @@ export default {
 
   examples: (
     <div style={{ maxWidth: 627 }}>
-      <GeneratedTestComponent
-        dataHook="story-generated-test-component-live-example"
-        buttonText="Press me for a surprise"
-        />
+      <LiveCodeExample
+        compact
+        title="Live code example"
+        initialCode={`
+<MaterialInput
+  dataHook="story-material-input-live-example"
+  buttonText="Press me for a surprise"
+  />
+        `}
+      />
     </div>
   ),
 };
