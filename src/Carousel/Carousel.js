@@ -9,6 +9,7 @@ import Pagination from './Pagination';
 import Loader from '../Loader';
 import Proportion from '../Proportion';
 
+const AUTOPLAY_SPEED = 2000;
 const TRANSITION_SPEED = 600;
 
 // because lodash throttle is not compatible with jest timeout mocks
@@ -61,7 +62,7 @@ class Carousel extends React.Component {
   _autoplay() {
     const intervalToken = setInterval(
       () => this._slide(this._getNextIndex()),
-      4000,
+      AUTOPLAY_SPEED,
     );
     this._haltAutoplay = () => clearInterval(intervalToken);
   }
