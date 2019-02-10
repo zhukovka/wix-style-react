@@ -28,6 +28,9 @@ Types of changes:
 - `<Notification/>` - replace deprecated components in ActionButton [2903](https://github.com/wix/wix-style-react/pull/2903)
 - `<SortableList/>` - item on drag between lists has wrong width [#2912](https://github.com/wix/wix-style-react/pull/2912)
 - `<FormField/>` - fix asterisk font style [#2916](https://github.com/wix/wix-style-react/pull/2916)
+- `<Carousel/>` - fix layout in firefox [#2928](https://github.com/wix/wix-style-react/pull/2928)
+- `<Carousel/>` - fix transition speed [#2927](https://github.com/wix/wix-style-react/pull/2927)
+- `<Carousel/>` - fix autoplay speed [#2926](https://github.com/wix/wix-style-react/pull/2926)
 
 ### Docs
 - `<Popover/>` remove old story and rename the tooltips and popover section [#2881](https://github.com/wix/wix-style-react/pull/2881)
