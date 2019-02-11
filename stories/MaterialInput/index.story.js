@@ -32,8 +32,8 @@ export default {
 
   exampleProps: {
     status: [
-      { label: 'MaterialInput.StatusError', value: 'error' },
-      { label: 'MaterialInput.StatusLoading', value: 'loading' },
+      { label: 'Input.StatusError', value: 'error' },
+      { label: 'Input.StatusLoading', value: 'loading' },
     ],
   },
 
@@ -61,4 +61,3 @@ export default {
     </div>
   ),
 };
-

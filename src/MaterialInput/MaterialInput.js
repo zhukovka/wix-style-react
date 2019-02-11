@@ -6,7 +6,9 @@ import Unit from '../Input/Unit';
 import IconAffix from '../Input/IconAffix';
 import Affix from '../Input/Affix';
 import Group from '../Input/Group';
-import InputSuffix, { getVisibleSuffixCount } from '../Input/InputSuffix';
+import MaterialInputSuffix, {
+  getVisibleSuffixCount,
+} from './MaterialInputSuffix';
 import deprecationLog from '../utils/deprecationLog';
 
 import styles from './MaterialInput.scss';
@@ -56,7 +58,7 @@ class MaterialInput extends Component {
       deprecationLog(
         `Input's unit prop is deprecated and will be removed in the next major release, please use suffix property with '<Input suffix={<Input.Affix>${
           props.unit
-          }</Input.Affix>}/>' instead`,
+        }</Input.Affix>}/>' instead`,
       );
     }
     if (props.magnifyingGlass) {
@@ -155,7 +157,7 @@ class MaterialInput extends Component {
         key =>
           (ariaAttribute['aria-' + key.substr(4).toLowerCase()] = this.props[
             key
-            ]),
+          ]),
       );
 
     /* eslint-disable no-unused-vars */
@@ -208,7 +210,7 @@ class MaterialInput extends Component {
         {inputElement}
         <InputContext.Provider value={{ ...this.props, inSuffix: true }}>
           {visibleSuffixCount > 0 && (
-            <InputSuffix
+            <MaterialInputSuffix
               status={suffixStatus}
               statusMessage={suffixStatusMessage}
               theme={theme}
@@ -396,12 +398,21 @@ MaterialInput.propTypes = {
 
   /** when set to true this component is disabled */
   disabled: PropTypes.bool,
-//
+  //
   /** Input status - use to display an status indication for the user. for example: 'error' or 'loading' */
-  status: PropTypes.oneOf([MaterialInput.StatusError, MaterialInput.StatusLoading]),
+  status: PropTypes.oneOf([
+    MaterialInput.StatusError,
+    MaterialInput.StatusLoading,
+  ]),
 
   /** The status (error/loading) message to display when hovering the status icon, if not given or empty there will be no tooltip */
   statusMessage: PropTypes.node,
+
+  /** Is input has errors
+   * @deprecated
+   * @see status
+   */
+  error: PropTypes.bool,
 
   /** Error message to display
    * @deprecated

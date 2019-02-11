@@ -2,12 +2,12 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
-import InputErrorSuffix from './InputErrorSuffix';
+import InputErrorSuffix from '../Input/InputErrorSuffix';
 import Tooltip from '../Tooltip';
 
 import FormFieldErrorFilled from '../new-icons/system/FormFieldErrorFilled';
 
-import styles from './Input.scss';
+import styles from './MaterialInput.scss';
 
 const placementToMoveBy = {
   right: { x: 2, y: -10 },

@@ -14,6 +14,7 @@ class ThemedInput extends MaterialInput {
       rtl,
       disabled,
       status,
+      error,
       placeholder,
       forceHover,
       forceFocus,
@@ -23,6 +24,11 @@ class ThemedInput extends MaterialInput {
     } = this.props;
 
     let hasError = status === MaterialInput.StatusError;
+
+    // Check for deprecated fields and use them if provided
+    if (error) {
+      hasError = true;
+    }
 
     const classes = {
       [styles.rtl]: !!rtl,

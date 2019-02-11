@@ -2,10 +2,10 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import Tooltip from '../Tooltip';
-import InputHelpSuffix from './InputHelpSuffix';
+import InputHelpSuffix from './MaterialInputHelpSuffix';
 
 import InfoCircle from '../new-icons/InfoCircle';
-import styles from './Input.scss';
+import styles from './MaterialInput.scss';
 
 const placementToMoveBy = {
   right: { x: 10, y: -10 },
