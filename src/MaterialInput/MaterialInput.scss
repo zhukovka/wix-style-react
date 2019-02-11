@@ -4,7 +4,6 @@
 
 $gap: 6px;
 $double-gap: 12px;
-$material-gap: 8px;
 
 .root {
   position: relative;
@@ -83,28 +82,6 @@ $material-gap: 8px;
   &:last-child .unit { padding-right: $double-gap; }
 }
 
-.roundInput {
-  &.size-normal {
-    @include BorderRadius(18px);
-  }
-  &.size-small {
-    @include BorderRadius(15px);
-  }
-  &.size-large {
-    @include BorderRadius(30px);
-  }
-}
-
-.noRightBorderRadius {
-  border-bottom-right-radius: 0;
-  border-top-right-radius: 0;
-}
-
-.noLeftBorderRadius {
-  border-bottom-left-radius: 0;
-  border-top-left-radius: 0;
-}
-
 .size {
   &-small  { @include Size($height: 30px, $fontSize: 14px); }
   &-small-with-selection { @include Size($height: 28px, $fontSize: 14px); }
@@ -114,31 +91,7 @@ $material-gap: 8px;
   &-large-with-selection { @include Size($height: 58px, $fontSize: 16px); }
 }
 
-.theme {
-  &-normal {
-    @include ThemeDefault($color: $D10, $borderColor: $B30, $backgroundColor: $D80);
-    @include ThemeHover($backgroundColor: $B50);
-    @include ThemeFocus($borderColor: $B10, $boxShadow: 0 0 0 3px $F00);
-    @include ThemeError($borderColor: $paletteR1);
-    @include ThemeDisable($color: $D55, $borderColor: $D60, $backgroundColor: $D80);
-    @include ThemeDisableHover($borderColor: $GR20);
-  }
-  &-paneltitle {
-    @include ThemeDefault($color: white, $borderColor: $B30, $backgroundColor: rgba(22,45,61,0.6));
-    @include ThemeHover($backgroundColor: rgba(22,45,61,0.4));
-    @include ThemeFocusPanelTile($borderColor: $B20, $boxShadow: inset 0 0 5px 0 rgba(56,153,236,0.6));
-    @include ThemeError($borderColor: $paletteR1);
-    @include ThemeDisable($color: white, $borderColor: $GR40, $backgroundColor: rgba(22,45,61,0.6));
-  }
-  &-tags {
-    @include ThemeDefault($color: $D10, $borderColor: $B30, $backgroundColor: transparent);
-    @include ThemeHover($backgroundColor: $B50);
-    @include ThemeFocus($borderColor: transparent, $boxShadow: none);
-    @include ThemeError($borderColor: $paletteR1, $boxShadow: inset 0px 0px 5px 0px fade($R10, 60%));
-    @include ThemeDisable($color: $D55, $borderColor: $D60, $backgroundColor: $D80);
-    @include ThemeDisableHover($borderColor: $GR20);
-  }
-  &-amaterial {
+.theme-amaterial {
 
     .errorIcon {
       padding: 0 6px 16px;
@@ -243,80 +196,6 @@ $material-gap: 8px;
       }
     }
   }
-  &-material {
-    border-radius: 0;
-    .suffixes {
-      padding: 0 4px;
-    }
-    &.size-normal {
-      @include Size($height: 34px, $fontSize: 18px);
-    }
-    .input {
-      @include FontLight();
-      padding: 0 $material-gap;
-    }
-    @include ThemeDefault($color: $D10, $borderColor: transparent, $backgroundColor: $D80);
-    .bar {
-      position: absolute;
-      bottom: 0;
-      left: -1px;
-      right: -1px;
-      height: 1px;
-      background: $D60;
-      &:before, &:after {
-        content: '';
-        height: 1px;
-        width: 0;
-        bottom: 0;
-        position: absolute;
-        background: $D50;
-        transition: 0.2s ease all;
-      }
-      &:before { left: 50%; }
-      &:after { right: 50%; }
-    }
-    @at-root {
-      .hasFocus .barBlack:before,
-      .hasFocus .bar:after {
-        width: 50%;
-      }
-    }
-    &.hasError {
-      .bar {
-        background: $R05;
-        &:before, &:after {
-          background: $R05;
-        }
-      }
-    }
-  }
-
-  &-flat {
-    border: none;
-    border-radius: 0;
-
-    &.size-large { @include Size($height: 54px, $fontSize: 16px); }
-
-    &:hover, &.hasFocus { @include ThemeFlat($B20); }
-    &:active            { @include ThemeFlat($B10); }
-    &.disabled          { @include ThemeFlat($D50); }
-
-    @include ThemeFlat($D20);
-  }
-
-  &-flatdark {
-    border: none;
-    border-radius: 0;
-
-    &.size-large { @include Size($height: 54px, $fontSize: 16px); }
-
-    &:hover, &.hasFocus { @include ThemeFlat($B20); }
-    &:active            { @include ThemeFlat($B10); }
-    &.disabled          { @include ThemeFlat($D50); }
-
-    @include ThemeFlat($D80);
-  }
-}
 
 // RTL layout based on global style set on document body or parent element.
 @include withRTL() {
