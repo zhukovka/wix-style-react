@@ -3,36 +3,61 @@ import { storySettings } from './storySettings';
 import LiveCodeExample from '../utils/Components/LiveCodeExample';
 
 import MaterialInput from '../../src/MaterialInput';
+import {
+  Standard,
+  Error,
+  Controlled,
+  Sizes,
+  Rounded,
+  InstanceMethods,
+  Loader,
+  Affix,
+  IconAffix,
+} from '../Input/examples';
 
 export default {
-  category: storySettings.kind,
+  category: storySettings.category,
   storyName: storySettings.storyName,
 
   component: MaterialInput,
   componentPath: '../../src/MaterialInput/MaterialInput.js',
 
-  componentProps: {
+  componentProps: setState => ({
     dataHook: storySettings.dataHook,
-    buttonText: undefined,
-  },
+    value: '',
+    onChange: e => setState({ value: e.target.value }),
+    size: 'normal',
+    statusMessage: undefined,
+  }),
 
   exampleProps: {
-    // Put here presets of props, for more info:
-    // https://github.com/wix/wix-ui/blob/master/packages/wix-storybook-utils/docs/usage.md#using-list
+    status: [
+      { label: 'MaterialInput.StatusError', value: 'error' },
+      { label: 'MaterialInput.StatusLoading', value: 'loading' },
+    ],
   },
 
   examples: (
     <div style={{ maxWidth: 627 }}>
       <LiveCodeExample
         compact
-        title="Live code example"
+        title="Material input standard example"
         initialCode={`
-<MaterialInput
-  dataHook="story-material-input-live-example"
-  buttonText="Press me for a surprise"
-  />
+          <MaterialInput
+            dataHook="story-material-input-live-example"
+            placeholder="this is a placeholder"
+          />
         `}
       />
+      <Standard />
+      {/*<Error />*/}
+      {/*<Loader />*/}
+      {/*<Affix />*/}
+      {/*<IconAffix />*/}
+      {/*<Controlled />*/}
+      {/*<Sizes />*/}
+      {/*<Rounded />*/}
+      {/*<InstanceMethods />*/}
     </div>
   ),
 };
