@@ -374,19 +374,6 @@ MaterialInput.defaultProps = {
   clearButton: false,
 };
 
-const borderRadiusValidator = (props, propName) => {
-  const value = props[propName];
-  if (typeof value === 'string') {
-    throw new Error(
-      'Passing a string (for className) is deprecated. Use new className prop.',
-    );
-  } else if (typeof value === 'undefined' || typeof value === 'boolean') {
-    return null;
-  } else {
-    return new Error('Invalid type. boolean expected.');
-  }
-};
-
 MaterialInput.propTypes = {
   ariaControls: PropTypes.string,
   ariaDescribedby: PropTypes.string,
@@ -415,12 +402,6 @@ MaterialInput.propTypes = {
 
   /** The status (error/loading) message to display when hovering the status icon, if not given or empty there will be no tooltip */
   statusMessage: PropTypes.node,
-
-  /** Is input has errors
-   * @deprecated
-   * @see status
-   */
-  error: PropTypes.bool,
 
   /** Error message to display
    * @deprecated
@@ -451,12 +432,6 @@ MaterialInput.propTypes = {
   className: PropTypes.string,
 
   name: PropTypes.string,
-
-  /** When set to true, this input will have no rounded corners on its left */
-  noLeftBorderRadius: borderRadiusValidator,
-
-  /** When set to true, this input will have no rounded corners on its right */
-  noRightBorderRadius: borderRadiusValidator,
 
   /** Standard input onBlur callback */
   onBlur: PropTypes.func,
@@ -499,9 +474,6 @@ MaterialInput.propTypes = {
   /** Sets the input to readOnly */
   readOnly: PropTypes.bool,
 
-  /** When set to true, this input will be rounded */
-  roundInput: PropTypes.bool,
-
   /** Flip the magnify glass image so it be more suitable to rtl */
   rtl: PropTypes.bool,
 
@@ -516,17 +488,6 @@ MaterialInput.propTypes = {
 
   /** Text overflow behaviour */
   textOverflow: PropTypes.string,
-
-  /** The theme of the input */
-  theme: PropTypes.oneOf([
-    'normal',
-    'tags',
-    'paneltitle',
-    'material',
-    'amaterial',
-    'flat',
-    'flatdark',
-  ]),
 
   /** The material design style floating label for input (supported only for amaterial theme for now) */
   title: PropTypes.string,
