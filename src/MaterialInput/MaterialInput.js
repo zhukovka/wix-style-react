@@ -12,7 +12,6 @@ import MaterialInputSuffix, {
 import deprecationLog from '../utils/deprecationLog';
 
 import styles from './MaterialInput.scss';
-// import styles from '../Input/Input.scss';
 
 import { InputContext } from '../Input/InputContext';
 

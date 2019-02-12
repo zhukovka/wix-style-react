@@ -3,7 +3,7 @@
 @import '../typography-helpers.scss';
 
 $gap: 0;
-$double-gap: 12px;
+$double-gap: 0;
 $errorColor: #f2564d;
 $statusColor: #7a92a5;
 $disabledColor: #cbd3dc;
@@ -86,7 +86,7 @@ $disabledColor: #cbd3dc;
 }
 
 .size {
-  &-small  { @include Size($height: 30px, $fontSize: 14px); }
+  &-small  { @include Size($height: 18px, $fontSize: 14px); }
   &-small-with-selection { @include Size($height: 28px, $fontSize: 14px); }
   &-normal { @include Size($height: 24px, $fontSize: 16px); }
   &-normal-with-selection { @include Size($height: 34px, $fontSize: 16px); }
@@ -102,16 +102,16 @@ $disabledColor: #cbd3dc;
     color: $errorColor;
   }
 
-  .errorMessage {
-    color: $errorColor;
-  }
-
   .statusMessage {
     position: absolute;
     left: 0;
     bottom: -20px;
     font-size: 12px;
     color: $statusColor;
+
+    &.errorMessage {
+      color: $errorColor;
+    }
   }
 
   label {
@@ -148,6 +148,19 @@ $disabledColor: #cbd3dc;
   &.size-normal {
     padding-bottom: 4px;
     @include Size($height: 24px, $fontSize: 16px);
+  }
+
+  &.size-small {
+    padding-bottom: 4px;
+    @include Size($height: 18px, $fontSize: 14px);
+
+    label {
+      font-size: 14px;
+    }
+
+    .statusMessage {
+      bottom: -18px;
+    }
   }
 
   &.hasFocus,
@@ -248,6 +261,10 @@ $disabledColor: #cbd3dc;
   .prefix,
   .suffix {
     &:last-child .unit { padding-left: $double-gap; padding-right: $gap; }
+  }
+
+  .statusMessage {
+    right: 0;
   }
 }
 
