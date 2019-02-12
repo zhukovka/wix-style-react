@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import Tooltip from '../Tooltip';
-import InputHelpSuffix from './MaterialInputHelpSuffix';
+import MaterialInputHelpSuffix from './MaterialInputHelpSuffix';
 
 import InfoCircle from '../new-icons/InfoCircle';
 import styles from './MaterialInput.scss';
@@ -45,7 +45,7 @@ AmaterialHelpSuffix.defaultProps = {
   placement: 'right',
 };
 
-class ThemedInputHelpSuffix extends InputHelpSuffix {
+class ThemedInputHelpSuffix extends MaterialInputHelpSuffix {
   render() {
     const {
       theme,

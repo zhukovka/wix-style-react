@@ -1,35 +1,21 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import InfoCircle from '../new-icons/InfoCircle';
 import styles from './MaterialInput.scss';
 
-class InputHelpSuffix extends React.Component {
+class MaterialInputHelpSuffix extends React.Component {
   render() {
     return (
-      <div
-        dataHook="input-tooltip"
-        disabled={this.props.helpMessage.length === 0}
-        maxWidth="230px"
-        placement="right"
-        alignment="center"
-        textAlign="left"
-        hideDelay={100}
-        overlay=""
-      >
-        <div className={styles.help}>
-          <InfoCircle />
-        </div>
+      <div dataHook="input-help">
         <div className={styles.statusMessage}>{this.props.helpMessage}</div>
       </div>
     );
   }
 }
 
-InputHelpSuffix.propTypes = {
-  theme: PropTypes.oneOf(['normal', 'paneltitle', 'material', 'amaterial']),
+MaterialInputHelpSuffix.propTypes = {
   helpMessage: PropTypes.string.isRequired,
   help: PropTypes.bool,
 };
 
-export default InputHelpSuffix;
+export default MaterialInputHelpSuffix;

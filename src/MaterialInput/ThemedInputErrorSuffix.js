@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
-import InputErrorSuffix from '../Input/InputErrorSuffix';
+import MaterialInputErrorSuffix from './MaterialInputErrorSuffix';
 import Tooltip from '../Tooltip';
 
 import FormFieldErrorFilled from '../new-icons/system/FormFieldErrorFilled';
@@ -57,7 +57,7 @@ AmaterialErrorSuffix.defaultProps = {
   placement: 'right',
 };
 
-class ThemedInputErrorSuffix extends InputErrorSuffix {
+class ThemedInputErrorSuffix extends MaterialInputErrorSuffix {
   render() {
     const {
       theme,
