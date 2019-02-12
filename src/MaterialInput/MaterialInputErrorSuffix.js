@@ -12,7 +12,9 @@ class MaterialInputErrorSuffix extends React.Component {
         <div className={classes}>
           <FormFieldErrorFilled />
         </div>
-        <div className={styles.statusMessage}>{this.props.errorMessage}</div>
+        <div className={`${styles.statusMessage} ${styles.errorMessage}`}>
+          {this.props.errorMessage}
+        </div>
       </div>
     );
   }

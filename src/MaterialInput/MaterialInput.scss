@@ -4,6 +4,9 @@
 
 $gap: 0;
 $double-gap: 12px;
+$errorColor: #f2564d;
+$statusColor: #7a92a5;
+$disabledColor: #cbd3dc;
 
 .root {
   position: relative;
@@ -92,9 +95,15 @@ $double-gap: 12px;
 }
 
 .theme-amaterial {
+  border: 0;
+
   .errorIcon {
     padding: 0 6px 16px;
-    color: #f2564d;
+    color: $errorColor;
+  }
+
+  .errorMessage {
+    color: $errorColor;
   }
 
   .statusMessage {
@@ -107,18 +116,7 @@ $double-gap: 12px;
     font-stretch: normal;
     line-height: 1.25;
     letter-spacing: normal;
-    color: #7a92a5;
-  }
-
-  border: 0;
-  &.size-normal {
-    padding-bottom: 4px;
-    @include Size($height: 34px, $fontSize: 20px);
-  }
-
-  label,
-  .input {
-    color: #7a92a5;
+    color: $statusColor;
   }
 
   label {
@@ -127,6 +125,11 @@ $double-gap: 12px;
     position: absolute;
     top: 2px;
     padding: 0;
+    color: $statusColor;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 100%;
   }
 
   .input {
@@ -136,7 +139,7 @@ $double-gap: 12px;
     transition: border-bottom .3s, border-color .3s, border-width .3s, border .3s, opacity 0s ease-in-out;
     line-height: 1;
     display: block;
-    margin-top: 0;
+    margin-top: 0px;
     background: none;
     border-radius: 0;
     border-style: solid; // Firefox fix
@@ -144,6 +147,12 @@ $double-gap: 12px;
     // Fix number inputs in Firefox to be full-width
     width: 100%;
     box-sizing: border-box;
+    color: #162d3d;
+  }
+
+  &.size-normal {
+    padding-bottom: 4px;
+    @include Size($height: 34px, $fontSize: 20px);
   }
 
   &.hasFocus,
@@ -159,8 +168,9 @@ $double-gap: 12px;
 
     .bar {
       &:before, &:after {
-        height: 2px;
-        background-color: $B10;
+        height: 1px;
+        // background-color: $B10;
+        background-color: #3899ec;
       }
     }
     label {
@@ -175,14 +185,14 @@ $double-gap: 12px;
     left: -1px;
     right: -1px;
     height: 1px;
-    background: $D60;
+    background: transparent;
     &:before, &:after {
       content: '';
       height: 1px;
       width: 0;
       bottom: 0;
       position: absolute;
-      background: #000;
+      background: transparent;
       transition: 0.3s all;
     }
     transition: 0.3s ease all;
@@ -192,18 +202,38 @@ $double-gap: 12px;
     .hasFocus .barBlue:after {
       width:100%;
     }
+    &.disabled {
+      label, .input {
+        color: $disabledColor;
+      }
+    }
   }
+  
+
   &:hover:not(.disabled) {
     .bar, .input:hover ~ .barBlue, .input.hasHover ~ .barBlue {
-      background-color: #000;
       transition: 0.3s ease all;
+      background: $D60;
     }
   }
 
   &.hasError {
     .bar, .input:hover ~ .barBlue, .input.hasHover ~ .barBlue {
-      background-color: #f2564d;
-      height: 2px;
+      background: $errorColor;
+    }
+
+    &:hover:not(.disabled) {
+      .bar, .input:hover ~ .barBlue, .input.hasHover ~ .barBlue {
+        background: $errorColor;
+      }
+    }
+    
+    &.hasFocus {
+      .bar {
+        &:before, &:after {
+          background: $errorColor;
+        }
+      }
     }
   }
 }

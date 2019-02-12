@@ -374,6 +374,7 @@ MaterialInput.defaultProps = {
   maxLength: 524288,
   withSelection: false,
   clearButton: false,
+  title: 'Label Text',
 };
 
 MaterialInput.propTypes = {
