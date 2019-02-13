@@ -216,6 +216,7 @@ class MaterialInput extends Component {
               disabled={disabled}
               help={help}
               helpMessage={helpMessage}
+              errorMessage={errorMessage}
               onIconClicked={onIconClicked}
               magnifyingGlass={magnifyingGlass}
               isClearButtonVisible={isClearButtonVisible}

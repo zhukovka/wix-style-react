@@ -3,7 +3,6 @@ import classNames from 'classnames';
 import MaterialInput from './MaterialInput';
 
 import styles from './MaterialInput.scss';
-import { Title } from '../../stories/UXStoryTemplate';
 
 class ThemedInput extends MaterialInput {
   render() {
