@@ -30,6 +30,7 @@ Types of changes:
 - `<SortableList/>` - add animation api [#2852](https://github.com/wix/wix-style-react/pull/2852)
 - `<Autocomplete/>` - add empty state feature [#2899](https://github.com/wix/wix-style-react/pull/2899)
 - `<Input/>` - add `<Input.Affix/>` and `<Input.IconAffix/>` for prefix/suffix rendering [#2887](https://github.com/wix/wix-style-react/pull/2887)
+- `<ColorPicker/>` - add teskit method for cancel action button[#2933](https://github.com/wix/wix-style-react/pull/2933)
 
 ### Fixed
 
@@ -41,6 +42,7 @@ Types of changes:
 - `<Carousel/>` - fix transition speed [#2927](https://github.com/wix/wix-style-react/pull/2927)
 - `<Carousel/>` - fix autoplay speed [#2926](https://github.com/wix/wix-style-react/pull/2926)
 - `<Typography/>` - Fix h2 line height from 42px to 36px[#2829](https://github.com/wix/wix-style-react/pull/2829)
+- `<ColorPicker/>` - migrated deprecated action buttons to IconButton[#2933](https://github.com/wix/wix-style-react/pull/2933)
 
 ### Docs
 
