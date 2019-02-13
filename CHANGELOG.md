@@ -21,6 +21,10 @@ Types of changes:
 - `<SortableList/>` - add listOfPropsThatAffectItems to fix render bug [#2925](https://github.com/wix/wix-style-react/pull/2925)
 - `<PageHeader/>` - Add ellipsis to title and subtitle [#2871](https://github.com/wix/wix-style-react/pull/2871)
 
+### Fixed
+
+- `<ContactItemBuilder/>` - fixed ellipsis [#2951](https://github.com/wix/wix-style-react/pull/2951)
+
 ## 6.3.0 - 2019-02-10
 
 ### Added
