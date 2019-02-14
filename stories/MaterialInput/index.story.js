@@ -31,10 +31,7 @@ export default {
   }),
 
   exampleProps: {
-    status: [
-      { label: 'Input.StatusError', value: 'error' },
-      { label: 'Input.StatusLoading', value: 'loading' },
-    ],
+    status: [{ label: 'Input.StatusError', value: 'error' }],
   },
 
   examples: (
