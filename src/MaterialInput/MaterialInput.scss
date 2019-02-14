@@ -107,7 +107,10 @@ $disabledColor: #cbd3dc;
     left: 0;
     bottom: -20px;
     font-size: 12px;
-    color: $statusColor;
+
+    &.helpMessage {
+      color: $statusColor;
+    }
 
     &.errorMessage {
       color: $errorColor;
@@ -226,6 +229,10 @@ $disabledColor: #cbd3dc;
   }
 
   &.hasError {
+    .helpMessage {
+      display: none;
+    }
+    
     .bar, .input:hover ~ .barBlue, .input.hasHover ~ .barBlue {
       background: $errorColor;
     }

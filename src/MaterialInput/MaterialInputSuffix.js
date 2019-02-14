@@ -47,7 +47,9 @@ const InputSuffix = ({
     {
       component: () => (
         <div dataHook="input-help">
-          <div className={styles.statusMessage}>{helpMessage}</div>
+          <div className={`${styles.statusMessage} ${styles.helpMessage}`}>
+            {helpMessage}
+          </div>
         </div>
       ),
       isVisible: suffixRules.inputHelpSuffix({ help, disabled }),

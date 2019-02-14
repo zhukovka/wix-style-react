@@ -2,10 +2,6 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
-import Unit from '../Input/Unit';
-import IconAffix from '../Input/IconAffix';
-import Affix from '../Input/Affix';
-import Group from '../Input/Group';
 import MaterialInputSuffix, {
   getVisibleSuffixCount,
 } from './MaterialInputSuffix';
@@ -16,11 +12,6 @@ import styles from './MaterialInput.scss';
 import { InputContext } from '../Input/InputContext';
 
 class MaterialInput extends Component {
-  static Unit = Unit;
-  static IconAffix = IconAffix;
-  static Affix = Affix;
-  static Group = Group;
-
   static StatusError = 'error';
   static StatusLoading = 'loading';
 
@@ -53,18 +44,6 @@ class MaterialInput extends Component {
   };
 
   logDeprecations(props) {
-    if (props.unit) {
-      deprecationLog(
-        `Input's unit prop is deprecated and will be removed in the next major release, please use suffix property with '<Input suffix={<Input.Affix>${
-          props.unit
-        }</Input.Affix>}/>' instead`,
-      );
-    }
-    if (props.magnifyingGlass) {
-      deprecationLog(
-        `Input's magnifyingGlass prop is deprecated and will be removed in the next major release, please use suffix property with '<Input suffix={<Input.Affix><Search /></Input.Affix>}/>' instead`,
-      );
-    }
     if (props.help) {
       deprecationLog(
         `Input's help prop is deprecated and will be removed in the next major release, please '<FormField infoContent="content"><Input /></FormField>'  instead`,
@@ -80,13 +59,8 @@ class MaterialInput extends Component {
       help,
       placeholder,
       helpMessage,
-      unit,
-      magnifyingGlass,
-      menuArrow,
       defaultValue,
       tabIndex,
-      clearButton,
-      onClear,
       autoFocus,
       onKeyUp,
       onPaste,
@@ -100,21 +74,11 @@ class MaterialInput extends Component {
       disabled,
       status,
       statusMessage,
-      tooltipPlacement,
-      onTooltipShow,
       autocomplete,
       required,
       error,
       errorMessage,
     } = this.props;
-
-    const onIconClicked = e => {
-      if (!disabled) {
-        this.input.focus();
-        this._onFocus();
-        this._onClick(e);
-      }
-    };
 
     let suffixStatus = status;
     let suffixStatusMessage =
@@ -128,18 +92,11 @@ class MaterialInput extends Component {
 
     const hasErrors = suffixStatus === MaterialInput.StatusError;
 
-    const isClearButtonVisible =
-      (!!clearButton || !!onClear) && !!value && !hasErrors && !disabled;
-
     const visibleSuffixCount = getVisibleSuffixCount({
       status: suffixStatus,
       statusMessage: suffixStatusMessage,
       disabled,
       help,
-      magnifyingGlass,
-      isClearButtonVisible,
-      menuArrow,
-      unit,
       suffix,
     });
 
@@ -199,13 +156,6 @@ class MaterialInput extends Component {
 
     return (
       <div className={styles.inputWrapper}>
-        {prefix && (
-          <div className={styles.prefix}>
-            <InputContext.Provider value={{ ...this.props, inPrefix: true }}>
-              <span>{prefix}</span>
-            </InputContext.Provider>
-          </div>
-        )}
         {inputElement}
         <InputContext.Provider value={{ ...this.props, inSuffix: true }}>
           {visibleSuffixCount > 0 && (
@@ -217,27 +167,14 @@ class MaterialInput extends Component {
               help={help}
               helpMessage={helpMessage}
               errorMessage={errorMessage}
-              onIconClicked={onIconClicked}
-              magnifyingGlass={magnifyingGlass}
-              isClearButtonVisible={isClearButtonVisible}
-              onClear={this.handleSuffixOnClear}
-              menuArrow={menuArrow}
-              unit={unit}
               focused={this.state.focus}
               suffix={suffix}
-              tooltipPlacement={tooltipPlacement}
-              onTooltipShow={onTooltipShow}
             />
           )}
         </InputContext.Provider>
       </div>
     );
   }
-
-  handleSuffixOnClear = e => {
-    this.focus();
-    this.clear(e);
-  };
 
   focus = (options = {}) => {
     this._onFocus();
@@ -316,47 +253,6 @@ class MaterialInput extends Component {
     if (this._isInvalidNumber(e.key)) {
       e.preventDefault();
     }
-  };
-
-  /**
-   * Clears the input.
-   *
-   * Fires onChange ONLY if the input value was not empty.
-   * Then fires onClear.
-   *
-   * @param [Event] event and event to delegate to the onChange call. If no event is provided, a pseudo event object is created with only target.value
-   */
-  clear = event => {
-    const { onClear } = this.props;
-
-    const prevValue = this.input.value;
-    this.input.value = '';
-
-    if (prevValue) {
-      if (!event) {
-        /* We cannot dispatch a proper new event,
-         * using this.input.dispatchEvent(new Event('change'))),
-         * because react listens only to SyntheticEvents.
-         * There is this react-trigger-changes library which is a hack for testing only (https://github.com/vitalyq/react-trigger-change).
-         * The solution of creating a new pseudo event object, works for passing along tha target.value, but e.preventDefault() and e.stopPropagation() won't work.
-         */
-        event = {
-          target: this.input,
-        };
-      }
-      /* FIXME: The event (e) could be any event type, and even it's target may not be the input.
-       * So it would be better to do e.target = this.input.
-       * We don't use `clear` in WSR except in InputWithTags which does not pass an event, so it's ok.
-       * But if some consumer is using <Input/> directly, then this might be a breaking change.
-       */
-      event.target = {
-        ...event.target,
-        value: '',
-      };
-      this._onChange(event);
-    }
-
-    onClear && onClear();
   };
 }
 
