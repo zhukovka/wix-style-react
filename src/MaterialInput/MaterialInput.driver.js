@@ -1,16 +1,15 @@
-import { baseUniDriverFactory } from 'wix-ui-test-utils/base-driver';
+import inputDriverFactory from '../Input/Input.driver';
 
-export const materialInputDriverFactory = base => {
+const materialInputDriverFactory = ({ element }) => {
+  const inputDriver = inputDriverFactory({
+    element: element.querySelector('[data-hook="base-input"]'),
+    wrapper: element,
+  });
+
   return {
-    ...baseUniDriverFactory(base),
-
-    /** Get the current count */
-    getCountText: async () => base.$('[data-hook="materialInput-count"]').text(),
-
-    /** Click the button */
-    clickButton: async () => base.$('[data-hook="materialInput-button"]').click(),
-
-    /** Get the button's text */
-    getButtonText: async () => base.$('[data-hook="materialInput-button"]').text(),
+    ...inputDriver,
+    anyUniqueDriverFunctionForThisComponent: () => {},
   };
 };
+
+export default materialInputDriverFactory;

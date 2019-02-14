@@ -189,6 +189,6 @@ module.exports = {
   RichTextInputArea: { unidriver: true },
 
   MaterialInput: {
-    unidriver: true
-  }
+    unidriver: true,
+  },
 };
