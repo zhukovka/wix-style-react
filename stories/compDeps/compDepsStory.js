@@ -3,7 +3,6 @@ import React from 'react';
 import { storiesOf } from '@storybook/react';
 
 import Graph from 'react-graph-vis';
-import allCompsGraph from './graph.json';
 import components from './components.json';
 import AutoComplete from 'wix-style-react/AutoComplete';
 import DropdownLayout from 'wix-style-react/DropdownLayout';

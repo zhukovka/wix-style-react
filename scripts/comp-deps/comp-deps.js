@@ -5,12 +5,8 @@ const fs = require('fs');
 
 const entry = '/Users/erezm/Projects/wix-style-react-2/src/index.js';
 
-async function traverse() {
-  const m = await madge(entry);
-  const depsObj = m.obj();
-
+function initComps(depsObj) {
   const comps = {};
-
   depsObj['index.js'].forEach(
     (f, index) =>
       (comps[f] = {
@@ -21,8 +17,17 @@ async function traverse() {
         id: index,
       }),
   );
+  return comps;
+}
 
-  function isComp(filePath) {
+/**
+ * Updates provided `comps` with filtered comp deps
+ */
+function filterDepsByComponents(depsObj) {
+  const comps = initComps(depsObj);
+
+  /** Returns true if the filePath should be included */
+  function filter(filePath) {
     return comps[filePath];
   }
 
@@ -38,7 +43,7 @@ async function traverse() {
       if (visited.indexOf(cur) === -1) {
         visited.push(cur);
 
-        if (isComp(cur)) {
+        if (filter(cur)) {
           filteredDeps.push(cur);
         } else {
           filterDeps({
@@ -55,10 +60,21 @@ async function traverse() {
   Object.keys(comps).forEach(filePath => {
     const visited = [];
     const filteredDeps = [];
-    filterDeps({ filePath, filteredDeps, allDeps: depsObj, visited, level: 0 });
+    filterDeps({
+      filePath,
+      filteredDeps,
+      allDeps: depsObj,
+      visited,
+      level: 0,
+    });
     comps[filePath].deps = filteredDeps;
   });
 
+  return comps;
+}
+
+/** updates for each component it's dependency level. e.g. component with no dependencies is level 0, a component with a dependency has it's dependency's level + 1  */
+function calcAndUpdateDepLevel(comps) {
   function getDepLevel({ deps }) {
     if (deps.length === 0) {
       return 0;
@@ -75,17 +91,17 @@ async function traverse() {
   Object.values(comps).forEach(comp => {
     comp.depLevel = getDepLevel({ deps: comp.deps });
   });
+}
 
-  function updateDependents() {
-    Object.values(comps).forEach(c => {
-      c.deps.forEach(filePath => {
-        comps[filePath].dependents.push(c.filePath);
-      });
+function updateDependents(comps) {
+  Object.values(comps).forEach(c => {
+    c.deps.forEach(filePath => {
+      comps[filePath].dependents.push(c.filePath);
     });
-  }
+  });
+}
 
-  updateDependents();
-
+function calcAndUpdateDependentsCount(comps) {
   function countDependents(comp) {
     let dependentsCount = comp.dependents.length;
 
@@ -104,56 +120,39 @@ async function traverse() {
   Object.values(comps).forEach(comp => {
     comp.totalDependents = countDependents(comp);
   });
+}
 
-  function print() {
-    Object.values(comps).forEach(c => {
-      const { filePath, depLevel, totalDependents, dependents } = c;
-      console.log(
-        `${filePath.replace('/index.js', '')}, ${depLevel}, ${totalDependents}`,
-      );
-    });
-  }
+function print(comps) {
+  Object.values(comps).forEach(c => {
+    const { filePath, depLevel, totalDependents } = c;
+    console.log(
+      `${filePath.replace('/index.js', '')}, ${depLevel}, ${totalDependents}`,
+    );
+  });
+}
 
-  function toGraph() {
-    const graph = {
-      nodes: [],
-      edges: [],
-    };
+function saveAsJson(comps, filePath) {
+  fs.writeFile(filePath, JSON.stringify(comps), function(err) {
+    if (err) {
+      return console.log(err);
+    }
 
-    Object.values(comps).forEach(c => {
-      const { name, deps, id } = c;
-      graph.nodes.push({ id, label: name });
-      deps.forEach(filePath => {
-        const d = comps[filePath];
-        graph.edges.push({ from: id, to: d.id });
-      });
-    });
+    console.log('components saved!');
+  });
+}
 
-    return graph;
-  }
+async function buildComponentDeps() {
+  const m = await madge(entry);
+  const depsObj = m.obj();
+
+  const comps = filterDepsByComponents(depsObj);
+
+  calcAndUpdateDepLevel(comps);
+  updateDependents(comps);
+  calcAndUpdateDependentsCount(comps);
 
   // print();
-  fs.writeFile(
-    './stories/compDeps/graph.json',
-    JSON.stringify(toGraph()),
-    function(err) {
-      if (err) {
-        return console.log(err);
-      }
-
-      console.log('graph saved!');
-    },
-  );
-  fs.writeFile(
-    './stories/compDeps/components.json',
-    JSON.stringify(comps),
-    function(err) {
-      if (err) {
-        return console.log(err);
-      }
-
-      console.log('components saved!');
-    },
-  );
+  saveAsJson(comps, './stories/compDeps/components.json');
 }
-traverse();
+
+buildComponentDeps();
