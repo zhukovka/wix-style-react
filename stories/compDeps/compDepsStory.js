@@ -33,6 +33,8 @@ class CompDeps extends React.Component {
       showDependencies: true,
       showDependents: true,
       searchTerm: '',
+      sort: [],
+      data: Object.values(components).slice(0),
     };
     this.onSelect = this.onSelect.bind(this);
     this.onChange = this.onChange.bind(this);
@@ -202,8 +204,42 @@ class CompDeps extends React.Component {
     this.setState({ selectedCompIds: ids });
   };
 
+  handleSortClick(colNum) {
+    const desc = !this.state.sort[colNum];
+    const sort = Object.assign({}, this.state.sort, { [colNum]: desc });
+    const filelds = {
+      1: 'name',
+      2: 'depLevel',
+      3: 'totalDependents',
+    };
+    const sortedData = this.sortDataByField(filelds[colNum], desc);
+
+    this.setState({ sort, data: sortedData });
+  }
+
+  sortDataByField(field, desc) {
+    const newData = this.state.data.slice(0);
+    const raw = [{ a: 4 }, { a: 3 }, { a: 2 }, { a: 1 }];
+    const sorted = raw.sort((a, b) => a.a < b.a);
+
+    function strcmp(a, b) {
+      return a < b ? -1 : a > b ? 1 : 0;
+    }
+    return newData.sort((a, b) => {
+      const v1 = a[field];
+      const v2 = b[field];
+      return desc
+        ? typeof v1 === 'number'
+          ? v1 - v2
+          : strcmp(v2, v1)
+        : typeof v1 === 'number'
+        ? v2 - v1
+        : strcmp(v1, v2);
+    }); // eslint-disable-line
+  }
+
   renderCompTable() {
-    const data = Object.values(components).filter(c =>
+    const data = this.state.data.filter(c =>
       c.name.toLowerCase().includes(this.state.searchTerm),
     );
 
@@ -211,22 +247,29 @@ class CompDeps extends React.Component {
       <Table
         data={data}
         itemsPerPage={20}
+        onSortClick={(col, colNum) => this.handleSortClick(colNum)}
         columns={[
           {
             title: 'Name',
             render: row => <span>{row.name}</span>,
             width: '30%',
             minWidth: '100px',
+            sortable: true,
+            sortDescending: !!this.state.sort[1],
           },
           {
             title: 'Level',
             render: row => <span>{row.depLevel}</span>,
             width: '10%',
+            sortable: true,
+            sortDescending: !!this.state.sort[2],
           },
           {
             title: 'Deps',
             render: row => <span>{row.totalDependents}</span>,
             width: '10%',
+            sortable: true,
+            sortDescending: !!this.state.sort[3],
           },
         ]}
         showSelection
@@ -239,34 +282,7 @@ class CompDeps extends React.Component {
             <Table.ToolbarContainer>
               {() => this.renderMainToolbar()}
             </Table.ToolbarContainer>
-            {data.length ? (
-              <Table.Titlebar />
-            ) : (
-              <Table.EmptyState
-                subtitle={
-                  this.state.searchTerm ? (
-                    <Text>
-                      There are no search results for{' '}
-                      <Text weight="normal">{`"${
-                        this.state.searchTerm
-                      }"`}</Text>
-                      <br />
-                      Try search by other cryteria
-                    </Text>
-                  ) : (
-                    <Text>
-                      There are no results matching your filters
-                      <br />
-                      Try search by other cryteria
-                    </Text>
-                  )
-                }
-              >
-                <TextButton onClick={() => this.clearSearch()}>
-                  Clear the search
-                </TextButton>
-              </Table.EmptyState>
-            )}
+            <Table.Titlebar />
           </Card>
         </Page.Sticky>
         <Card>
@@ -329,7 +345,7 @@ class CompDeps extends React.Component {
                         suffix={this.renderControls()}
                       />
                       <Card.Content>
-                        <div style={{ height: '700px' }}>
+                        <div style={{ height: '660px' }}>
                           <Graph
                             key={this.state.selectedCompIds.join(',')}
                             graph={this.filter(this.state.selectedCompIds)}
