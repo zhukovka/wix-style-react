@@ -165,38 +165,39 @@ class CompDeps extends React.Component {
               <Cell span={10}>
                 <Layout>
                   <Cell>
-                    <Box align="space-between" verticalAlign="middle">
-                      <Checkbox
-                        onChange={e =>
-                          this.setState({ hierarchical: e.target.checked })
-                        }
-                        checked={this.state.hierarchical}
-                      >
-                        hierarchical
-                      </Checkbox>
-
-                      <Checkbox
-                        onChange={e =>
-                          this.setState({ showDependents: e.target.checked })
-                        }
-                        checked={this.state.showDependents}
-                      >
-                        Show Dependents
-                      </Checkbox>
-                      <Checkbox
-                        onChange={e =>
-                          this.setState({ showDependencies: e.target.checked })
-                        }
-                        checked={this.state.showDependencies}
-                      >
-                        Show Dependencies
-                      </Checkbox>
-                    </Box>
+                    <Layout>
+                      <Cell span={6} />
+                      <Cell span={6}>
+                        <Box align="space-between" verticalAlign="middle">
+                          <Checkbox
+                            onChange={e =>
+                              this.setState({
+                                showDependents: e.target.checked,
+                              })
+                            }
+                            checked={this.state.showDependents}
+                          >
+                            Show Dependents
+                          </Checkbox>
+                          <Checkbox
+                            onChange={e =>
+                              this.setState({
+                                showDependencies: e.target.checked,
+                              })
+                            }
+                            checked={this.state.showDependencies}
+                          >
+                            Show Dependencies
+                          </Checkbox>
+                        </Box>
+                      </Cell>
+                    </Layout>
                   </Cell>
                   <Cell>
                     <Card stretchVertically>
                       <div style={{ height: '700px' }}>
                         <Graph
+                          key={this.state.compName}
                           graph={this.filter(`${this.state.compName}/index.js`)}
                           options={this.getOptions()}
                           events={this.getEvents()}
