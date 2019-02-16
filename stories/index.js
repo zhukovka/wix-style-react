@@ -20,7 +20,7 @@ import './ScrollBar'; // 1.8 ScrollBar
 // 2. Layout
 import './Page/index.story.js'; // 2.5 Page
 import './PageHeader/index.story.js'; // 2.5 + PageHeader
-import './Page/FullPageExample.js'; // 2.5 + Page Example
+import './Page/PageExampleStories.js'; // 2.5 + Page Examples
 import './EmptyState/EmptyState.story'; // 2.6 EmptyState
 import './StatsWidget/index.story'; // 2.7 StatsWidget
 import './AddItem/AddItem.story'; // 2.8 AddItem
@@ -142,6 +142,7 @@ import './Builders/ContactItemBuilder';
 // Tests
 import './Typography/TypographyTestStories';
 import './Input/InputTestStories';
+import './Page/PageTestStories.js'; // Tests/2. Layout/2.5 + Page/
 import './Page/PageTestStoriesDeprecated.js'; // Tests/2. Layout/2.5 + Page/Deprecated
 import './PageHeader/PageHeaderTestStories.js'; // Tests/2. Layout/2.5 + PageHeader/
 import './Button/testButton'; // Tests/5. Button/5.1 Button

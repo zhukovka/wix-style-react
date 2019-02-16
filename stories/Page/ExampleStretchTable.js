@@ -9,6 +9,8 @@ import {
   SelectedCount,
   Divider,
 } from 'wix-style-react/TableToolbar';
+import { header, tail } from './PageChildren';
+import { ExamplePageContainer } from './ExamplePageContainer';
 
 import Dropdown from 'wix-style-react/Dropdown';
 import Search from 'wix-style-react/Search';
@@ -65,7 +67,7 @@ const allData = [1, 2, 3, 4, 5].reduce(
   [],
 );
 
-export class TablePageExample extends React.Component {
+class ExampleStretchTable extends React.Component {
   state = {
     data: allData,
     collectionId: 0,
@@ -158,9 +160,9 @@ export class TablePageExample extends React.Component {
         <ItemGroup position="end">
           <Item layout="button">
             <Button
+              prefixIcon={<Upload />}
               skin="light"
               priority="primary"
-              prefixIcon={<Upload />}
               onClick={() =>
                 window.alert(`Exporting selectedIds=${props.getSelectedIds()}`)
               }
@@ -217,15 +219,7 @@ export class TablePageExample extends React.Component {
     const tableData = this.getFilteredData();
 
     return (
-      <div
-        style={{
-          height: '800px',
-          paddingBottom: '16px',
-          display: 'flex',
-          flexFlow: 'column',
-          minWidth: '966px',
-        }}
-      >
+      <ExamplePageContainer>
         <Table
           withWrapper={false}
           dataHook="story-table-example"
@@ -267,8 +261,12 @@ export class TablePageExample extends React.Component {
           showSelection
           showLastRowDivider
         >
-          <Page>
-            <Page.Header title="My Table Title" />
+          <Page
+            upgrade
+            backgroundImageUrl="https://static.wixstatic.com/media/f0548921c53940ec803dfb1c203e96fe.jpg/v1/fill/w_400,h_100/f0548921c53940ec803dfb1c203e96fe.jpg"
+          >
+            {header()}
+            {tail}
             <Page.FixedContent>
               <Card>
                 <Table.ToolbarContainer>
@@ -310,13 +308,13 @@ export class TablePageExample extends React.Component {
               </Card>
             </Page.FixedContent>
             <Page.Content>
-              <Card>
+              <Card stretchVertically>
                 <Table.Content titleBarVisible={false} />
               </Card>
             </Page.Content>
           </Page>
         </Table>
-      </div>
+      </ExamplePageContainer>
     );
   }
 
@@ -339,3 +337,5 @@ export class TablePageExample extends React.Component {
     return data;
   }
 }
+
+export default ExampleStretchTable;

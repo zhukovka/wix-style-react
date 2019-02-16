@@ -9,6 +9,9 @@ import {
   SelectedCount,
   Divider,
 } from 'wix-style-react/TableToolbar';
+import { Container, Row } from 'wix-style-react/Grid';
+import { header, tail } from './PageChildren';
+import { ExamplePageContainer } from './ExamplePageContainer';
 
 import Dropdown from 'wix-style-react/Dropdown';
 import Search from 'wix-style-react/Search';
@@ -65,7 +68,7 @@ const allData = [1, 2, 3, 4, 5].reduce(
   [],
 );
 
-export class TablePageExample extends React.Component {
+class ExampleStretchTable extends React.Component {
   state = {
     data: allData,
     collectionId: 0,
@@ -158,9 +161,9 @@ export class TablePageExample extends React.Component {
         <ItemGroup position="end">
           <Item layout="button">
             <Button
+              prefixIcon={<Upload />}
               skin="light"
               priority="primary"
-              prefixIcon={<Upload />}
               onClick={() =>
                 window.alert(`Exporting selectedIds=${props.getSelectedIds()}`)
               }
@@ -213,110 +216,125 @@ export class TablePageExample extends React.Component {
     );
   }
 
-  render() {
+  renderTable() {
     const tableData = this.getFilteredData();
-
     return (
-      <div
-        style={{
-          height: '800px',
-          paddingBottom: '16px',
-          display: 'flex',
-          flexFlow: 'column',
-          minWidth: '966px',
-        }}
+      <Table
+        withWrapper
+        dataHook="story-table-example"
+        data={tableData}
+        itemsPerPage={20}
+        columns={[
+          {
+            title: 'Name',
+            render: row => (
+              <Highlighter match={this.state.searchTerm}>
+                {row.name}
+              </Highlighter>
+            ),
+            width: '30%',
+            minWidth: '150px',
+          },
+          {
+            title: 'SKU',
+            render: row => row.SKU,
+            width: '20%',
+            minWidth: '100px',
+          },
+          {
+            title: 'Price',
+            render: row => row.price,
+            width: '20%',
+            minWidth: '100px',
+          },
+          {
+            title: 'Inventory',
+            render: row => row.inventory,
+            width: '20%',
+            minWidth: '100px',
+          },
+        ]}
+        onSelectionChange={selectedIds =>
+          console.log('Table.onSelectionChange(): selectedIds=', selectedIds)
+        }
+        showSelection
+        showLastRowDivider
       >
-        <Table
-          withWrapper={false}
-          dataHook="story-table-example"
-          data={tableData}
-          itemsPerPage={20}
-          columns={[
-            {
-              title: 'Name',
-              render: row => (
-                <Highlighter match={this.state.searchTerm}>
-                  {row.name}
-                </Highlighter>
-              ),
-              width: '30%',
-              minWidth: '150px',
-            },
-            {
-              title: 'SKU',
-              render: row => row.SKU,
-              width: '20%',
-              minWidth: '100px',
-            },
-            {
-              title: 'Price',
-              render: row => row.price,
-              width: '20%',
-              minWidth: '100px',
-            },
-            {
-              title: 'Inventory',
-              render: row => row.inventory,
-              width: '20%',
-              minWidth: '100px',
-            },
-          ]}
-          onSelectionChange={selectedIds =>
-            console.log('Table.onSelectionChange(): selectedIds=', selectedIds)
-          }
-          showSelection
-          showLastRowDivider
+        <Page.Sticky>
+          <Card>
+            <Table.ToolbarContainer>
+              {selectionContext =>
+                selectionContext.selectedCount === 0
+                  ? this.renderMainToolbar()
+                  : this.renderBulkActionsToolbar(selectionContext)
+              }
+            </Table.ToolbarContainer>
+            {tableData.length ? (
+              <Table.Titlebar />
+            ) : (
+              <Table.EmptyState
+                image={<ImagePlaceholder />}
+                subtitle={
+                  this.state.searchTerm ? (
+                    <Text>
+                      There are no search results for{' '}
+                      <Text weight="normal">{`"${
+                        this.state.searchTerm
+                      }"`}</Text>
+                      <br />
+                      Try search by other cryteria
+                    </Text>
+                  ) : (
+                    <Text>
+                      There are no results matching your filters
+                      <br />
+                      Try search by other cryteria
+                    </Text>
+                  )
+                }
+              >
+                <TextButton onClick={() => this.clearSearch()}>
+                  Clear the search
+                </TextButton>
+              </Table.EmptyState>
+            )}
+          </Card>
+        </Page.Sticky>
+        <Card stretchVertically>
+          <Table.Content titleBarVisible={false} />
+        </Card>
+      </Table>
+    );
+  }
+
+  render() {
+    return (
+      <ExamplePageContainer>
+        <Page
+          upgrade
+          backgroundImageUrl="https://static.wixstatic.com/media/f0548921c53940ec803dfb1c203e96fe.jpg/v1/fill/w_400,h_100/f0548921c53940ec803dfb1c203e96fe.jpg"
         >
-          <Page>
-            <Page.Header title="My Table Title" />
-            <Page.FixedContent>
-              <Card>
-                <Table.ToolbarContainer>
-                  {selectionContext =>
-                    selectionContext.selectedCount === 0
-                      ? this.renderMainToolbar()
-                      : this.renderBulkActionsToolbar(selectionContext)
-                  }
-                </Table.ToolbarContainer>
-                {tableData.length ? (
-                  <Table.Titlebar />
-                ) : (
-                  <Table.EmptyState
-                    image={<ImagePlaceholder />}
-                    subtitle={
-                      this.state.searchTerm ? (
-                        <Text>
-                          There are no search results for{' '}
-                          <Text weight="normal">{`"${
-                            this.state.searchTerm
-                          }"`}</Text>
-                          <br />
-                          Try search by other cryteria
-                        </Text>
-                      ) : (
-                        <Text>
-                          There are no results matching your filters
-                          <br />
-                          Try search by other cryteria
-                        </Text>
-                      )
-                    }
-                  >
-                    <TextButton onClick={() => this.clearSearch()}>
-                      Clear the search
-                    </TextButton>
-                  </Table.EmptyState>
-                )}
-              </Card>
-            </Page.FixedContent>
-            <Page.Content>
-              <Card>
-                <Table.Content titleBarVisible={false} />
-              </Card>
-            </Page.Content>
-          </Page>
-        </Table>
-      </div>
+          {header()}
+          {tail}
+          <Page.Content>
+            <Container>
+              <Row>
+                <Card>
+                  <Card.Content>Some Content 1</Card.Content>
+                </Card>
+              </Row>
+              <Row>{this.renderTable()}</Row>
+
+              <Row>
+                <Card>
+                  <Card.Content>Some Content 2</Card.Content>
+                </Card>
+              </Row>
+              <Row>{this.renderTable()}</Row>
+            </Container>
+          </Page.Content>
+        </Page>
+      </ExamplePageContainer>
     );
   }
 
@@ -339,3 +357,5 @@ export class TablePageExample extends React.Component {
     return data;
   }
 }
+
+export default ExampleStretchTable;
