@@ -26,7 +26,7 @@ class CompDeps extends React.Component {
     super(props);
     this.state = {
       value: 'Calendar',
-      compName: ['Calendar'],
+      selectedCompIds: ['Calendar', 'AddItem'],
       hierarchical: true,
       showDependencies: true,
       showDependents: true,
@@ -40,7 +40,7 @@ class CompDeps extends React.Component {
   }
 
   onSelect(option) {
-    this.setState({ value: option.value, compName: [option.value] });
+    this.setState({ value: option.value, selectedCompIds: [option.value] });
   }
 
   getOptions() {
@@ -97,36 +97,35 @@ class CompDeps extends React.Component {
     return graph;
   }
 
-  filter(names) {
-    const comp = components[names[0]];
-
+  filter(compIds) {
     const graph = {
       nodes: [],
       edges: [],
     };
-    if (comp) {
+
+    compIds.forEach(compId => {
       this.addToGraph({
-        comp,
+        comp: components[compId],
         graph,
         includeDependencies: this.state.showDependencies,
         includeDependents: this.state.showDependents,
         level: 0,
       });
-    }
+      const compNode = graph.nodes.find(n => n.id === compId);
 
-    const compNode = graph.nodes.find(n => n.id === comp.id);
+      if (compNode) {
+        // compNode.chosen = true;
+        compNode.color = '#C1E4FE';
+      }
+    });
 
-    if (compNode) {
-      // compNode.chosen = true;
-      compNode.color = '#C1E4FE';
-    }
     return graph;
   }
 
   handleDoubleClick = event => {
     const { nodes, edges } = event;
     const comp = Object.values(components).find(c => c.id === nodes[0]);
-    this.setState({ compName: [comp.name], value: comp.name });
+    this.setState({ selectedCompIds: [comp.name], value: comp.name });
   };
 
   getEvents() {
@@ -184,7 +183,11 @@ class CompDeps extends React.Component {
   }
 
   handleRowClick = row => {
-    this.setState({ compName: [row.id] });
+    this.setState({ selectedCompIds: [row.id] });
+  };
+
+  handleTableSelectionChanged = ids => {
+    this.setState({ selectedCompIds: ids });
   };
 
   renderCompList() {
@@ -203,6 +206,8 @@ class CompDeps extends React.Component {
           ]}
           showSelection
           onRowClick={this.handleRowClick}
+          onSelectionChanged={this.handleTableSelectionChanged}
+          selectedIds={this.state.selectedCompIds}
         >
           <Table.ToolbarContainer>
             {() => this.renderMainToolbar()}
@@ -210,6 +215,35 @@ class CompDeps extends React.Component {
           <Table.Content />
         </Table>
       </Card>
+    );
+  }
+
+  renderControls() {
+    return (
+      <div style={{ width: '350px' }}>
+        <Box align="space-between" verticalAlign="middle">
+          <Checkbox
+            onChange={e =>
+              this.setState({
+                showDependents: e.target.checked,
+              })
+            }
+            checked={this.state.showDependents}
+          >
+            Show Dependents
+          </Checkbox>
+          <Checkbox
+            onChange={e =>
+              this.setState({
+                showDependencies: e.target.checked,
+              })
+            }
+            checked={this.state.showDependencies}
+          >
+            Show Dependencies
+          </Checkbox>
+        </Box>
+      </div>
     );
   }
 
@@ -229,49 +263,22 @@ class CompDeps extends React.Component {
             <Layout>
               <Cell span={3}>{this.renderCompList()}</Cell>
               <Cell span={9}>
-                <Layout>
-                  <Cell>
-                    <Layout>
-                      <Cell span={6} />
-                      <Cell span={6}>
-                        <Box align="space-between" verticalAlign="middle">
-                          <Checkbox
-                            onChange={e =>
-                              this.setState({
-                                showDependents: e.target.checked,
-                              })
-                            }
-                            checked={this.state.showDependents}
-                          >
-                            Show Dependents
-                          </Checkbox>
-                          <Checkbox
-                            onChange={e =>
-                              this.setState({
-                                showDependencies: e.target.checked,
-                              })
-                            }
-                            checked={this.state.showDependencies}
-                          >
-                            Show Dependencies
-                          </Checkbox>
-                        </Box>
-                      </Cell>
-                    </Layout>
-                  </Cell>
-                  <Cell>
-                    <Card stretchVertically>
-                      <div style={{ height: '700px' }}>
-                        <Graph
-                          key={this.state.compName.join(',')}
-                          graph={this.filter(this.state.compName)}
-                          options={this.getOptions()}
-                          events={this.getEvents()}
-                        />
-                      </div>
-                    </Card>
-                  </Cell>
-                </Layout>
+                <Card>
+                  <Card.Header
+                    title={this.state.selectedCompIds.join(', ')}
+                    suffix={this.renderControls()}
+                  />
+                  <Card.Content>
+                    <div style={{ height: '700px' }}>
+                      <Graph
+                        key={this.state.selectedCompIds.join(',')}
+                        graph={this.filter(this.state.selectedCompIds)}
+                        options={this.getOptions()}
+                        events={this.getEvents()}
+                      />
+                    </div>
+                  </Card.Content>
+                </Card>
               </Cell>
             </Layout>
           </Page.Content>
