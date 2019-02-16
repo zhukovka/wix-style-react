@@ -88,7 +88,9 @@ export default class PageHeader extends WixComponent {
   }
 
   _animateComponent = (show, useEnterDelay, content) => {
-    if (this.props.upgrade) {
+    const { upgrade } = this.props;
+
+    if (upgrade && show) {
       return content;
     }
 
@@ -120,6 +122,7 @@ export default class PageHeader extends WixComponent {
     const breadcrumbsExists = !!breadcrumbs;
     const { themedBreadcrumbs } = this.state;
     const _title = getTitle(title, minimized);
+
     return (
       <div className={classNames(s.headerContainer, className)}>
         <div className={s.header}>
@@ -145,7 +148,6 @@ export default class PageHeader extends WixComponent {
           >
             {showBackButton &&
               onBackClicked &&
-              !(upgrade && minimized) &&
               this._animateComponent(
                 !minimized,
                 !breadcrumbsExists,
@@ -166,7 +168,6 @@ export default class PageHeader extends WixComponent {
               )}
             <div className={s.titleColumn}>
               {title &&
-                !(upgrade && minimized) &&
                 this._animateComponent(
                   !minimized,
                   !breadcrumbsExists,
@@ -185,7 +186,6 @@ export default class PageHeader extends WixComponent {
                   </div>,
                 )}
               {subtitle &&
-                !(upgrade && minimized) &&
                 this._animateComponent(
                   !minimized,
                   !breadcrumbsExists,
