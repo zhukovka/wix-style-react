@@ -214,7 +214,6 @@ class CompDeps extends React.Component {
   }
 
   render() {
-    console.log('this.state.compName= ', this.state.compName);
     return (
       <div
         style={{
