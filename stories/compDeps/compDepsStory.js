@@ -189,6 +189,7 @@ class CompDeps extends React.Component {
             <Input
               onChange={this.handleSearchOnChange}
               value={this.state.searchTerm}
+              placeholder="Component Name"
             />
           </Item>
         </ItemGroup>
