@@ -190,7 +190,7 @@ class CompDeps extends React.Component {
     this.setState({ selectedCompIds: ids });
   };
 
-  renderCompList() {
+  renderCompTable() {
     return (
       <Card>
         <Table
@@ -201,7 +201,17 @@ class CompDeps extends React.Component {
               title: 'Name',
               render: row => <span>{row.name}</span>,
               width: '30%',
-              minWidth: '150px',
+              minWidth: '100px',
+            },
+            {
+              title: 'Level',
+              render: row => <span>{row.depLevel}</span>,
+              width: '10%',
+            },
+            {
+              title: 'Deps',
+              render: row => <span>{row.totalDependents}</span>,
+              width: '10%',
             },
           ]}
           showSelection
@@ -261,8 +271,8 @@ class CompDeps extends React.Component {
           <Page.Header title="Inter-Component Dependencies" />
           <Page.Content>
             <Layout>
-              <Cell span={3}>{this.renderCompList()}</Cell>
-              <Cell span={9}>
+              <Cell span={4}>{this.renderCompTable()}</Cell>
+              <Cell span={8}>
                 <Card>
                   <Card.Header
                     title={this.state.selectedCompIds.join(', ')}
