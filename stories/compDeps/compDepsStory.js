@@ -4,6 +4,7 @@ import { storiesOf } from '@storybook/react';
 
 import Graph from 'react-graph-vis';
 import Input from 'wix-style-react/Input';
+import TextButton from 'wix-style-react/TextButton';
 import DropdownLayout from 'wix-style-react/DropdownLayout';
 import Checkbox from 'wix-style-react/Checkbox';
 import Table from 'wix-style-react/Table';
@@ -202,44 +203,76 @@ class CompDeps extends React.Component {
   };
 
   renderCompTable() {
+    const data = Object.values(components).filter(c =>
+      c.name.toLowerCase().includes(this.state.searchTerm),
+    );
+
     return (
-      <Card>
-        <Table
-          data={Object.values(components).filter(c =>
-            c.name.toLowerCase().includes(this.state.searchTerm),
-          )}
-          itemsPerPage={20}
-          columns={[
-            {
-              title: 'Name',
-              render: row => <span>{row.name}</span>,
-              width: '30%',
-              minWidth: '100px',
-            },
-            {
-              title: 'Level',
-              render: row => <span>{row.depLevel}</span>,
-              width: '10%',
-            },
-            {
-              title: 'Deps',
-              render: row => <span>{row.totalDependents}</span>,
-              width: '10%',
-            },
-          ]}
-          showSelection
-          onRowClick={this.handleRowClick}
-          onSelectionChanged={this.handleTableSelectionChanged}
-          selectedIds={this.state.selectedCompIds}
-        >
-          <Page.Sticky>
+      <Table
+        data={data}
+        itemsPerPage={20}
+        columns={[
+          {
+            title: 'Name',
+            render: row => <span>{row.name}</span>,
+            width: '30%',
+            minWidth: '100px',
+          },
+          {
+            title: 'Level',
+            render: row => <span>{row.depLevel}</span>,
+            width: '10%',
+          },
+          {
+            title: 'Deps',
+            render: row => <span>{row.totalDependents}</span>,
+            width: '10%',
+          },
+        ]}
+        showSelection
+        onRowClick={this.handleRowClick}
+        onSelectionChanged={this.handleTableSelectionChanged}
+        selectedIds={this.state.selectedCompIds}
+      >
+        <Page.Sticky>
+          <Card>
             <Table.ToolbarContainer>
               {() => this.renderMainToolbar()}
             </Table.ToolbarContainer>
-          </Page.Sticky>
-          <Table.Content />
-        </Table>
-      </Card>
+            {data.length ? (
+              <Table.Titlebar />
+            ) : (
+              <Table.EmptyState
+                subtitle={
+                  this.state.searchTerm ? (
+                    <Text>
+                      There are no search results for{' '}
+                      <Text weight="normal">{`"${
+                        this.state.searchTerm
+                      }"`}</Text>
+                      <br />
+                      Try search by other cryteria
+                    </Text>
+                  ) : (
+                    <Text>
+                      There are no results matching your filters
+                      <br />
+                      Try search by other cryteria
+                    </Text>
+                  )
+                }
+              >
+                <TextButton onClick={() => this.clearSearch()}>
+                  Clear the search
+                </TextButton>
+              </Table.EmptyState>
+            )}
+          </Card>
+        </Page.Sticky>
+        <Card>
+          <Table.Content titleBarVisible={false} />
+        </Card>
+      </Table>
     );
   }
 
@@ -289,22 +322,24 @@ class CompDeps extends React.Component {
               <Row stretchViewsVertically>
                 <Col span={4}>{this.renderCompTable()}</Col>
                 <Col span={8}>
-                  <Card stretchVertically>
-                    <Card.Header
-                      title={this.state.selectedCompIds.join(', ')}
-                      suffix={this.renderControls()}
-                    />
-                    <Card.Content>
-                      <div style={{ height: '700px' }}>
-                        <Graph
-                          key={this.state.selectedCompIds.join(',')}
-                          graph={this.filter(this.state.selectedCompIds)}
-                          options={this.getOptions()}
-                          events={this.getEvents()}
-                        />
-                      </div>
-                    </Card.Content>
-                  </Card>
+                  <Page.Sticky>
+                    <Card stretchVertically>
+                      <Card.Header
+                        title={this.state.selectedCompIds.join(', ')}
+                        suffix={this.renderControls()}
+                      />
+                      <Card.Content>
+                        <div style={{ height: '700px' }}>
+                          <Graph
+                            key={this.state.selectedCompIds.join(',')}
+                            graph={this.filter(this.state.selectedCompIds)}
+                            options={this.getOptions()}
+                            events={this.getEvents()}
+                          />
+                        </div>
+                      </Card.Content>
+                    </Card>
+                  </Page.Sticky>
                 </Col>
               </Row>
             </Container>
