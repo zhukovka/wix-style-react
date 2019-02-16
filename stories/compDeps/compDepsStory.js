@@ -267,7 +267,7 @@ class CompDeps extends React.Component {
           flexDirection: 'column',
         }}
       >
-        <Page>
+        <Page upgrade>
           <Page.Header title="Inter-Component Dependencies" />
           <Page.Content>
             <Layout>
