@@ -48,7 +48,8 @@
     "proxy-wix-ui-icons": "node scripts/proxy-wix-ui-icons",
     "generate": "./scripts/component-generator/bin/component-generator.js",
     "generate-test-component": "./scripts/component-generator/bin/generate-test-component.js",
-    "generate-testkit-exports": "node scripts/generate-testkit-exports"
+    "generate-testkit-exports": "node scripts/generate-testkit-exports",
+    "generate-comp-deps": "node scripts/generate-comp-deps"
   },
   "yoshi": {
     "entry": {

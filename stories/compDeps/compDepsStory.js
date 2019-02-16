@@ -3,21 +3,30 @@ import React from 'react';
 import { storiesOf } from '@storybook/react';
 
 import Graph from 'react-graph-vis';
-import components from './components.json';
-import AutoComplete from 'wix-style-react/AutoComplete';
+import Search from 'wix-style-react/Search';
 import DropdownLayout from 'wix-style-react/DropdownLayout';
 import Checkbox from 'wix-style-react/Checkbox';
+import Table from 'wix-style-react/Table';
 import Box from 'wix-style-react/Box';
 import Card from 'wix-style-react/Card';
 import Page from 'wix-style-react/Page';
 import { Cell, Layout } from 'wix-style-react/Layout';
+import {
+  TableToolbar,
+  ItemGroup,
+  Item,
+  Label,
+  Title,
+} from 'wix-style-react/TableToolbar';
+
+import components from './components.json';
 
 class CompDeps extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       value: 'Calendar',
-      compName: 'Calendar',
+      compName: ['Calendar'],
       hierarchical: true,
       showDependencies: true,
       showDependents: true,
@@ -29,8 +38,9 @@ class CompDeps extends React.Component {
   onChange(event) {
     this.setState({ value: event.target.value });
   }
+
   onSelect(option) {
-    this.setState({ value: option.value, compName: option.value });
+    this.setState({ value: option.value, compName: [option.value] });
   }
 
   getOptions() {
@@ -52,8 +62,8 @@ class CompDeps extends React.Component {
 
     if (this.state.showDependencies && includeDependencies) {
       const nextLevel = level + 1;
-      comp.deps.forEach(filePath => {
-        const d = components[filePath];
+      comp.deps.forEach(id => {
+        const d = components[id];
         graph.edges.push({ from: comp.id, to: d.id });
         if (graph.nodes.find(n => n.id === d.id) === undefined) {
           graph.nodes.push({ id: d.id, label: d.name, level: nextLevel });
@@ -87,8 +97,8 @@ class CompDeps extends React.Component {
     return graph;
   }
 
-  filter(name) {
-    const comp = components[name];
+  filter(names) {
+    const comp = components[names[0]];
 
     const graph = {
       nodes: [],
@@ -116,7 +126,7 @@ class CompDeps extends React.Component {
   handleDoubleClick = event => {
     const { nodes, edges } = event;
     const comp = Object.values(components).find(c => c.id === nodes[0]);
-    this.setState({ compName: comp.name, value: comp.name });
+    this.setState({ compName: [comp.name], value: comp.name });
   };
 
   getEvents() {
@@ -128,7 +138,83 @@ class CompDeps extends React.Component {
     };
   }
 
+  renderDropDown() {
+    return (
+      <DropdownLayout
+        options={Object.values(components).map(c => ({
+          id: c.id,
+          value: c.name,
+        }))}
+        onSelect={this.onSelect}
+        onChange={this.onChange}
+        value={this.state.value}
+        placeholder={'Enter Component Name'}
+        predicate={option =>
+          option.value.toLowerCase().indexOf(this.state.value.toLowerCase()) !==
+          -1
+        }
+        visible
+        maxHeightPixels={780}
+      />
+    );
+  }
+
+  renderMainToolbar() {
+    // const collectionOptions = [
+    //   { id: 0, value: 'All Products' },
+    //   { id: 1, value: 'Towels' },
+    //   { id: 2, value: 'Slippers' },
+    // ];
+
+    // const filterOptions = [
+    //   { id: 0, value: 'All' },
+    //   { id: 1, value: 'Red' },
+    //   { id: 2, value: 'Cyan' },
+    // ];
+
+    return (
+      <TableToolbar>
+        <ItemGroup position="end">
+          <Item>
+            <Search />
+          </Item>
+        </ItemGroup>
+      </TableToolbar>
+    );
+  }
+
+  handleRowClick = row => {
+    this.setState({ compName: [row.id] });
+  };
+
+  renderCompList() {
+    return (
+      <Card>
+        <Table
+          data={Object.values(components)}
+          itemsPerPage={20}
+          columns={[
+            {
+              title: 'Name',
+              render: row => <span>{row.name}</span>,
+              width: '30%',
+              minWidth: '150px',
+            },
+          ]}
+          showSelection
+          onRowClick={this.handleRowClick}
+        >
+          <Table.ToolbarContainer>
+            {() => this.renderMainToolbar()}
+          </Table.ToolbarContainer>
+          <Table.Content />
+        </Table>
+      </Card>
+    );
+  }
+
   render() {
+    console.log('this.state.compName= ', this.state.compName);
     return (
       <div
         style={{
@@ -142,26 +228,8 @@ class CompDeps extends React.Component {
           <Page.Header title="Inter-Component Dependencies" />
           <Page.Content>
             <Layout>
-              <Cell span={2}>
-                <DropdownLayout
-                  options={Object.values(components).map(c => ({
-                    id: c.id,
-                    value: c.name,
-                  }))}
-                  onSelect={this.onSelect}
-                  onChange={this.onChange}
-                  value={this.state.value}
-                  placeholder={'Enter Component Name'}
-                  predicate={option =>
-                    option.value
-                      .toLowerCase()
-                      .indexOf(this.state.value.toLowerCase()) !== -1
-                  }
-                  visible
-                  maxHeightPixels={780}
-                />
-              </Cell>
-              <Cell span={10}>
+              <Cell span={3}>{this.renderCompList()}</Cell>
+              <Cell span={9}>
                 <Layout>
                   <Cell>
                     <Layout>
@@ -196,8 +264,8 @@ class CompDeps extends React.Component {
                     <Card stretchVertically>
                       <div style={{ height: '700px' }}>
                         <Graph
-                          key={this.state.compName}
-                          graph={this.filter(`${this.state.compName}/index.js`)}
+                          key={this.state.compName.join(',')}
+                          graph={this.filter(this.state.compName)}
                           options={this.getOptions()}
                           events={this.getEvents()}
                         />

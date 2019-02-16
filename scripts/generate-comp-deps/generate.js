@@ -1,20 +1,14 @@
 /* eslint-disable no-console */
 const madge = require('madge');
 
-const fs = require('fs');
-
-const entry = '/Users/erezm/Projects/wix-style-react-2/src/index.js';
-
 function initComps(depsObj) {
   const comps = {};
   depsObj['index.js'].forEach(
-    (f, index) =>
+    f =>
       (comps[f] = {
         filePath: f,
         deps: [],
         dependents: [],
-        name: f.replace('/index.js', ''),
-        id: index,
       }),
   );
   return comps;
@@ -122,27 +116,11 @@ function calcAndUpdateDependentsCount(comps) {
   });
 }
 
-function print(comps) {
-  Object.values(comps).forEach(c => {
-    const { filePath, depLevel, totalDependents } = c;
-    console.log(
-      `${filePath.replace('/index.js', '')}, ${depLevel}, ${totalDependents}`,
-    );
-  });
-}
+async function buildComponentDeps(entry) {
+  console.log('Starting madge traverse...');
 
-function saveAsJson(comps, filePath) {
-  fs.writeFile(filePath, JSON.stringify(comps), function(err) {
-    if (err) {
-      return console.log(err);
-    }
-
-    console.log('components saved!');
-  });
-}
-
-async function buildComponentDeps() {
   const m = await madge(entry);
+  console.log('Ended madge traverse.');
   const depsObj = m.obj();
 
   const comps = filterDepsByComponents(depsObj);
@@ -151,8 +129,7 @@ async function buildComponentDeps() {
   updateDependents(comps);
   calcAndUpdateDependentsCount(comps);
 
-  // print();
-  saveAsJson(comps, './stories/compDeps/components.json');
+  return comps;
 }
 
-buildComponentDeps();
+module.exports = buildComponentDeps;
