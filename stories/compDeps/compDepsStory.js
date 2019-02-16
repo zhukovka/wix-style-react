@@ -3,7 +3,7 @@ import React from 'react';
 import { storiesOf } from '@storybook/react';
 
 import Graph from 'react-graph-vis';
-import Search from 'wix-style-react/Search';
+import Input from 'wix-style-react/Input';
 import DropdownLayout from 'wix-style-react/DropdownLayout';
 import Checkbox from 'wix-style-react/Checkbox';
 import Table from 'wix-style-react/Table';
@@ -11,6 +11,7 @@ import Box from 'wix-style-react/Box';
 import Card from 'wix-style-react/Card';
 import Page from 'wix-style-react/Page';
 import { Cell, Layout } from 'wix-style-react/Layout';
+import { Container, Row, Col } from 'wix-style-react/Grid';
 import {
   TableToolbar,
   ItemGroup,
@@ -30,6 +31,7 @@ class CompDeps extends React.Component {
       hierarchical: true,
       showDependencies: true,
       showDependents: true,
+      searchTerm: '',
     };
     this.onSelect = this.onSelect.bind(this);
     this.onChange = this.onChange.bind(this);
@@ -158,6 +160,12 @@ class CompDeps extends React.Component {
     );
   }
 
+  handleSearchOnChange = e => {
+    const searchTerm = e.target.value;
+
+    this.setState({ searchTerm });
+  };
+
   renderMainToolbar() {
     // const collectionOptions = [
     //   { id: 0, value: 'All Products' },
@@ -175,7 +183,10 @@ class CompDeps extends React.Component {
       <TableToolbar>
         <ItemGroup position="end">
           <Item>
-            <Search />
+            <Input
+              onChange={this.handleSearchOnChange}
+              value={this.state.searchTerm}
+            />
           </Item>
         </ItemGroup>
       </TableToolbar>
@@ -194,7 +205,9 @@ class CompDeps extends React.Component {
     return (
       <Card>
         <Table
-          data={Object.values(components)}
+          data={Object.values(components).filter(c =>
+            c.name.toLowerCase().includes(this.state.searchTerm),
+          )}
           itemsPerPage={20}
           columns={[
             {
@@ -219,9 +232,11 @@ class CompDeps extends React.Component {
           onSelectionChanged={this.handleTableSelectionChanged}
           selectedIds={this.state.selectedCompIds}
         >
-          <Table.ToolbarContainer>
-            {() => this.renderMainToolbar()}
-          </Table.ToolbarContainer>
+          <Page.Sticky>
+            <Table.ToolbarContainer>
+              {() => this.renderMainToolbar()}
+            </Table.ToolbarContainer>
+          </Page.Sticky>
           <Table.Content />
         </Table>
       </Card>
@@ -270,27 +285,29 @@ class CompDeps extends React.Component {
         <Page upgrade>
           <Page.Header title="Inter-Component Dependencies" />
           <Page.Content>
-            <Layout>
-              <Cell span={4}>{this.renderCompTable()}</Cell>
-              <Cell span={8}>
-                <Card>
-                  <Card.Header
-                    title={this.state.selectedCompIds.join(', ')}
-                    suffix={this.renderControls()}
-                  />
-                  <Card.Content>
-                    <div style={{ height: '700px' }}>
-                      <Graph
-                        key={this.state.selectedCompIds.join(',')}
-                        graph={this.filter(this.state.selectedCompIds)}
-                        options={this.getOptions()}
-                        events={this.getEvents()}
-                      />
-                    </div>
-                  </Card.Content>
-                </Card>
-              </Cell>
-            </Layout>
+            <Container stretchVertically>
+              <Row stretchViewsVertically>
+                <Col span={4}>{this.renderCompTable()}</Col>
+                <Col span={8}>
+                  <Card stretchVertically>
+                    <Card.Header
+                      title={this.state.selectedCompIds.join(', ')}
+                      suffix={this.renderControls()}
+                    />
+                    <Card.Content>
+                      <div style={{ height: '700px' }}>
+                        <Graph
+                          key={this.state.selectedCompIds.join(',')}
+                          graph={this.filter(this.state.selectedCompIds)}
+                          options={this.getOptions()}
+                          events={this.getEvents()}
+                        />
+                      </div>
+                    </Card.Content>
+                  </Card>
+                </Col>
+              </Row>
+            </Container>
           </Page.Content>
         </Page>
       </div>
