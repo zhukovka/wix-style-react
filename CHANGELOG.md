@@ -21,6 +21,7 @@ Types of changes:
 - `<SortableList/>` - add listOfPropsThatAffectItems to fix render bug [#2925](https://github.com/wix/wix-style-react/pull/2925)
 - `<PageHeader/>` - Add ellipsis to title and subtitle [#2871](https://github.com/wix/wix-style-react/pull/2871)
 - `<FloatingNotification/>` - New Component [#2820](https://github.com/wix/wix-style-react/pull/2820)
+- `<Page/>` - New Generation - With Position Sticky ! [#2935](https://github.com/wix/wix-style-react/pull/2935)
 
 ### Fixed
 
