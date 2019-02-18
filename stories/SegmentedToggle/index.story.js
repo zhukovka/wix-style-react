@@ -6,15 +6,17 @@ import {
   testkit,
   description,
   importExample,
+  api,
 } from 'wix-storybook-utils/Sections';
+import { getParsedSource } from '../autodocsRegistry';
 
 import SegmentedToggle from '../../src/SegmentedToggle';
 import LockLocked from 'wix-style-react/new-icons/LockLocked';
 import LockUnlocked from 'wix-style-react/new-icons/LockUnlocked';
 import { Layout, Cell } from 'wix-style-react/Layout';
 
-import apiDocs from '!raw-loader!./API.md';
-
+import ToggleButton from '../../src/SegmentedToggle/ToggleButton/ToggleButton';
+import ToggleIcon from '../../src/SegmentedToggle/ToggleIcon/ToggleIcon';
 import * as examples from './examples';
 
 export default {
@@ -103,9 +105,9 @@ export default {
     tab({
       title: 'API',
       sections: [
-        description({
-          text: apiDocs,
-        }),
+        api(),
+        api({ parsedSource: getParsedSource(ToggleButton) }),
+        api({ parsedSource: getParsedSource(ToggleIcon) }),
       ],
     }),
 
