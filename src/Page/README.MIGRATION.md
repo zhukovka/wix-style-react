@@ -4,8 +4,10 @@
 
 ### TL;DR
 
+- Opt-In for new Page: `<Page upgrade/>`
 - **Flex Parent**: No need for Page parent to be a flex container with flow 'column'
 - **Content Stretch**: `<Page.Content/>` now allows it's children to stretch vertically.
+- **Bottom-Padding**: If you had any bottom-padding hacks, remove them!
 
 ### Page Container
 
@@ -50,7 +52,16 @@ This will stretch:
 
 ```js
 <Page.Content>
-  <div style={{height: '100%'}}>Hello</div>
+  <Container stretchVertically>
+    <Row stretchViewsVertically>
+      <Col>
+        <Card stretchVertically>
+          <Card.Content>
+             Hello World
+          </Card.Content>
+        </Card>
+      </Col>
+    </Row>
+  </Container>
 </Page.Content>
-
 ```
