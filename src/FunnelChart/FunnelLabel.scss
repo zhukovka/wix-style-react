@@ -1,0 +1,47 @@
+@import './variables';
+
+.funnelLabel {
+  z-index: 1;
+
+  box-sizing: border-box;
+  margin: 0 12px;
+
+  text-align: center;
+
+  &:first-child {
+    margin-left: 0;
+
+    .funnelLabelValue {
+      width: #{$bar-width}px;
+
+      text-align: center;
+    }
+
+    .funnelLabelText {
+      width: #{$bar-width}px;
+
+      text-align: center;
+    }
+  }
+
+  &:last-child {
+    margin-right: 0;
+
+    .funnelLabelValue {
+      width: #{$bar-width}px;
+      margin-left: auto;
+
+      text-align: center;
+    }
+
+    .funnelLabelText {
+      margin-left: auto;
+
+      text-align: right;
+    }
+
+    .funnelLabelEmptyTitle {
+      margin-left: auto;
+    }
+  }
+}

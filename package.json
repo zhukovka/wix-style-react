@@ -145,6 +145,7 @@
     "color": "^2.0.0",
     "create-react-context": "^0.2.2",
     "css-element-queries": "^1.1.1",
+    "currency-symbol-map": "^4.0.4",
     "date-fns": "^1.29.0",
     "deep-eql": "^3.0.0",
     "difference": "^1.0.2",

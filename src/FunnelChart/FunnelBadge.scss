@@ -1,0 +1,39 @@
+@import './_variables';
+
+.badge {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+
+  box-sizing: border-box;
+  width: 41px;
+
+  transform: translate(calc(-50% - 12px), calc(-50%));
+  text-align: center;
+
+  border-radius: 2px 0 0 2px;
+  background: $color-D55;
+
+  &:before {
+    position: absolute;
+    top: 50%;
+    right: 0;
+
+    width: 17px;
+    height: 17px;
+
+    content: '';
+    transform: translate(50%, -50%) rotate(-45deg);
+
+    border-radius: 0 0 2px 0;
+    background: $color-D55;
+  }
+}
+
+.badgeContent {
+  position: relative;
+
+  display: inline-block;
+
+  padding: 2px 8px 4px;
+}
