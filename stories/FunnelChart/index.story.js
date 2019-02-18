@@ -45,9 +45,5 @@ export default {
 
   componentProps: {
     dataset: sampleData
-  },
-
-  exampleProps: {
-    size: SIZES,
-  },
+  }
 };
