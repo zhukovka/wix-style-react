@@ -8,6 +8,7 @@
 - **Flex Parent**: No need for Page parent to be a flex container with flow 'column'
 - **Content Stretch**: `<Page.Content/>` now allows it's children to stretch vertically.
 - **Bottom-Padding**: If you had any bottom-padding hacks, remove them!
+- **`<Page.FixedContent/>`**: Is now rendered as the new `<Page.Sticky/>` (See Exmples in docs).
 
 ### Page Container
 
