@@ -129,6 +129,8 @@ import './Proportion/index.story.js';
 import './Skeleton.story.js';
 import './Text/index.story';
 import './Thumbnail/index.story';
+import './FunnelChart/index.story';
+import './EmptyFunnelChart/index.story';
 
 // Styling
 import './Typography/TypographyClassesStory';

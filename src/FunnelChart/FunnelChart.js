@@ -1,11 +1,12 @@
-import React, { Fragment } from 'react';
+import React from 'react';
 import { array } from 'prop-types';
 import classnames from 'classnames';
+import Fragment from 'react-dot-fragment';
 
 import FunnelBadge from './FunnelBadge';
 import FunnelLabel from './FunnelLabel';
 
-import { countPercentageFromBase } from '../../utils/numberFormatters';
+import { countPercentageFromBase } from '../utils/numberFormatters';
 
 import styles from './FunnelChart.scss';
 

@@ -3,7 +3,7 @@ import { string, number } from 'prop-types';
 
 import Heading from '../Heading';
 
-import UnitsHeading from '../UnitsHeading';
+import UnitsHeading from './UnitsHeading';
 
 import styles from './FunnelLabel.scss';
 

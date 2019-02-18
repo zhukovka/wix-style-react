@@ -52,6 +52,7 @@ export const filePickerTestkitFactory = enzymeTestkitFactoryCreator(load('../src
 export const floatingHelperTestkitFactory = enzymeTestkitFactoryCreator(load('../src/FloatingHelper/FloatingHelper.driver'));
 export const floatingNotificationTestkitFactory = enzymeUniTestkitFactoryCreator(load('../src/FloatingNotification/FloatingNotification.driver'));
 export const formFieldTestkitFactory = enzymeTestkitFactoryCreator(load('../src/FormField/FormField.driver'));
+export const funnelChartTestkitFactory = enzymeTestkitFactoryCreator(load('../src/FunnelChart/FunnelChart.driver'));
 export const generatedTestComponentTestkitFactory = enzymeUniTestkitFactoryCreator(load('../src/GeneratedTestComponent/GeneratedTestComponent.driver'));
 export const genericModalLayoutTestkitFactory = enzymeTestkitFactoryCreator(load('../src/GenericModalLayout/GenericModalLayout.driver'));
 export const googleAddressInputWithLabelTestkitFactory = enzymeTestkitFactoryCreator(load('../src/GoogleAddressInputWithLabel/GoogleAddressInputWithLabel.driver'));

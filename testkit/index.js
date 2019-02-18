@@ -52,6 +52,7 @@ export const filePickerTestkitFactory = testkitFactoryCreator(load('../src/FileP
 export const floatingHelperTestkitFactory = testkitFactoryCreator(load('../src/FloatingHelper/FloatingHelper.driver'));
 export const floatingNotificationTestkitFactory = uniTestkitFactoryCreator(load('../src/FloatingNotification/FloatingNotification.driver'));
 export const formFieldTestkitFactory = testkitFactoryCreator(load('../src/FormField/FormField.driver'));
+export const funnelChartTestkitFactory = testkitFactoryCreator(load('../src/FunnelChart/FunnelChart.driver'));
 export const generatedTestComponentTestkitFactory = uniTestkitFactoryCreator(load('../src/GeneratedTestComponent/GeneratedTestComponent.driver'));
 export const genericModalLayoutTestkitFactory = testkitFactoryCreator(load('../src/GenericModalLayout/GenericModalLayout.driver'));
 export const googleAddressInputWithLabelTestkitFactory = testkitFactoryCreator(load('../src/GoogleAddressInputWithLabel/GoogleAddressInputWithLabel.driver'));
