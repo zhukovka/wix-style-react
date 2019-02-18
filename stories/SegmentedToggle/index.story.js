@@ -2,7 +2,7 @@ import React from 'react';
 import { storySettings } from './storySettings';
 import {
   tab,
-  liveCode,
+  code,
   testkit,
   description,
   importExample,
@@ -62,7 +62,7 @@ export default {
           text: `Icon accompanied by text make information easier to find and scan.`,
         }),
 
-        liveCode({
+        code({
           source: examples.textAndIcon,
           components: { SegmentedToggle, LockLocked, Layout, Cell },
         }),
@@ -75,7 +75,7 @@ export default {
           text: `Simple usecase where prefix icon is not an option.`,
         }),
 
-        liveCode({
+        code({
           source: examples.text,
           components: { SegmentedToggle, LockLocked, Layout, Cell },
         }),
@@ -88,7 +88,7 @@ export default {
           text: `Icon only option is mostly used in narrow places. This option provides additional tooltip on hover in order to inform users on icons meaning.`,
         }),
 
-        liveCode({
+        code({
           source: examples.icon,
           components: {
             SegmentedToggle,
