@@ -24,29 +24,44 @@ export default {
   storyName: storySettings.storyName,
 
   sections: [
-    description({
-      text: `
-Text Input is a composition of 2 individual components – &lt;FormField/&gt; and &lt;Input /&gt;.
-
-This composition is used to build various forms.`,
-    }),
-
-    table({
-      title: 'Included Components',
-      rows: [
-        [
-          <LinkTo kind="Components" story="FormField">{`<FormField/>`}</LinkTo>,
-          'Layout component for form elements',
-        ],
-        [
-          <LinkTo kind="Components" story="Input">{`<Input/>`}</LinkTo>,
-          'Component that receives data',
-        ],
+    columns({
+      items: [
+        description({
+          text: `Text Input is a composition of 2 individual components – &lt;FormField/&gt; and &lt;Input /&gt;. This composition is used to build various forms.`,
+        }),
+        description(),
       ],
     }),
 
-    importExample({
-      source: examples.importExample,
+    columns({
+      items: [
+        table({
+          title: 'Included Components',
+          rows: [
+            [
+              <LinkTo
+                kind="Components"
+                story="FormField"
+              >{`<FormField/>`}</LinkTo>,
+              'Layout component for form elements',
+            ],
+            [
+              <LinkTo kind="Components" story="Input">{`<Input/>`}</LinkTo>,
+              'Component that receives data',
+            ],
+          ],
+        }),
+        description(),
+      ],
+    }),
+
+    columns({
+      items: [
+        importExample({
+          source: examples.importExample,
+        }),
+        description(),
+      ],
     }),
 
     description({ text: '## Examples' }),
@@ -77,7 +92,7 @@ This composition is used to build various forms.`,
       },
 
       {
-        title: 'Position',
+        title: 'Label Position',
         text:
           'Text Input’s label can be position on top, left or can be hidden. Additional properties behave accordingly.',
         source: examples.position,
