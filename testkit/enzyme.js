@@ -12,13 +12,25 @@ import {
 } from 'wix-ui-test-utils/enzyme';
 
 const load = path => {
-  const item = require(path);
+  const MODULE_META_KEYS = ['__esModule'];
 
-  return item.default
-    ? item.default
-    : Object.keys(item).length === 1
-    ? Object.values(item)[0]
-    : item;
+  const item = require(path);
+  const moduleFields = Object.keys(item).reduce((total, key) => {
+    if (!MODULE_META_KEYS.includes(key)) {
+      return total.concat(item[key]);
+    }
+    return total;
+  }, []);
+
+  let defaultOrFirstExport;
+  if (item.default) {
+    defaultOrFirstExport = item.default;
+  } else if (moduleFields.length === 1) {
+    defaultOrFirstExport = moduleFields[0];
+  } else {
+    defaultOrFirstExport = item;
+  }
+  return defaultOrFirstExport;
 };
 
 export const addItemTestkitFactory = enzymeTestkitFactoryCreator(load('../src/AddItem/AddItem.driver'));
