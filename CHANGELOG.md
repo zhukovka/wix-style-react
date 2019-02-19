@@ -14,7 +14,6 @@ Types of changes:
 1. **Docs** for documentation changes
 1. **Lab** components and features that are still in a work in progress
 
-
 ## Next
 
 ### Added
@@ -41,8 +40,10 @@ Types of changes:
 
 - `<ContactItemBuilder/>` - fixed ellipsis [#2951](https://github.com/wix/wix-style-react/pull/2951)
 - `<ColorPicker/>` - fixed border radius and action button icon size according to design spec [2959](https://github.com/wix/wix-style-react/pull/2959)
+- `<DropdownLayout/>` - fix double scrollbar issue [#2969](https://github.com/wix/wix-style-react/pull/2969)
 
 ### Lab
+
 - `<RichTextInputArea/>` - use `RichContentEditor` [2943](https://github.com/wix/wix-style-react/pull/2943)
 
 ## 6.3.0 - 2019-02-10
