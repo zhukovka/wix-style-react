@@ -14,6 +14,13 @@ Types of changes:
 1. **Docs** for documentation changes
 1. **Lab** components and features that are still in a work in progress
 
+
+## Next
+
+### Added
+
+- <Search /> - allow filtering options using custom predicate [#2907](https://github.com/wix/wix-style-react/pull/2907)
+
 ## 6.4.0 - 2019-02-18
 
 ### Added
