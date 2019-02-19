@@ -5,6 +5,7 @@ import Fragment from 'react-dot-fragment';
 
 import FunnelBadge from './FunnelBadge';
 import FunnelLabel from './FunnelLabel';
+import EmptyFunnelChart from './EmptyFunnelChart';
 
 import { countPercentageFromBase } from '../utils/numberFormatters';
 
@@ -18,6 +19,11 @@ const BADGE_OVERFLOWED_TOP_POSITION = 10;
 
 const FunnelChart = props => {
   const { dataset } = props;
+
+  if (!dataset || !dataset.length) {
+    return <EmptyFunnelChart />
+  }
+
   const total = dataset[0].value;
   const heights = calculateHeights(dataset, total);
   const itemsLength = dataset.length;
