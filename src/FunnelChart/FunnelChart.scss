@@ -1,4 +1,5 @@
 @import './_variables';
+@import '../colors.scss';
 
 :export {
   barWidth: $bar-width;
@@ -22,7 +23,7 @@
 
   width: #{$bar-width}px;
 
-  background: $color-B40;
+  background: $B40;
 }
 
 .funnelItemFilled {
@@ -33,7 +34,7 @@
   width: 100%;
   height: 0;
 
-  background: $color-B05;
+  background: $B05;
 }
 
 .funnelStepWrapper {
@@ -58,7 +59,7 @@
 
 .funnelStepWrapperZeroDelta {
   .funnelStep {
-    border-top: 1px solid $color-D55;
+    border-top: 1px solid $D55;
   }
 }
 
@@ -71,7 +72,7 @@
 .funnelStep {
   box-sizing: border-box;
 
-  background: $color-D70;
+  background: $D70;
 }
 
 .funnelStepPlaceholder {
@@ -83,7 +84,7 @@
 
   transform: translate(-1px, 2px);
 
-  background: $color-D70;
+  background: $D70;
 
   clip-path: polygon(0 0, 0 100%, 102% 100%);
 }
@@ -93,7 +94,7 @@
 
   transform: translateY(1px);
 
-  background: $color-D55;
+  background: $D55;
 
   clip-path: polygon(0 0, 0 100%, 102% 100%);
 }
