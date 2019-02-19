@@ -68,7 +68,7 @@ export default {
       items: [
         description({
           title: 'Plain Example',
-          text: 'The most basic example.',
+          text: 'Default text area setup.',
         }),
         liveCode({ compact: true, source: examples.basicExample }),
       ],
@@ -77,10 +77,11 @@ export default {
     columns({
       items: [
         description({
-          title: 'No Label',
-          text: 'Can be used without a label.',
+          title: 'Char Limit',
+          text:
+            'This component allows to limit number of characters can be inserted.',
         }),
-        liveCode({ compact: true, source: examples.withoutALabelExample }),
+        liveCode({ compact: true, source: examples.charLimitExample }),
       ],
     }),
 
@@ -88,9 +89,19 @@ export default {
       items: [
         description({
           title: 'Resizable Height',
-          text: 'The text area can changes its size by user drag.',
+          text: 'It is allowed to make text area resizable.',
         }),
         liveCode({ compact: true, source: examples.resizableHeightExample }),
+      ],
+    }),
+
+    columns({
+      items: [
+        description({
+          title: 'Label Position',
+          text: `Text Area's label can be position on top, left or can be hidden. Additional properties behave accordingly.`,
+        }),
+        liveCode({ compact: true, source: examples.positionExample }),
       ],
     }),
   ],
