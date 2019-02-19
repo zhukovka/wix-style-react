@@ -82,6 +82,7 @@ export const modalSelectorLayoutTestkitFactory = testkitFactoryCreator(load('../
 export const multiSelectTestkitFactory = testkitFactoryCreator(load('../src/MultiSelect/MultiSelect.driver'));
 export const multiSelectCheckboxTestkitFactory = testkitFactoryCreator(load('../src/MultiSelectCheckbox/MultiSelectCheckbox.driver'));
 export const multiSelectCompositeTestkitFactory = testkitFactoryCreator(load('../src/MultiSelectComposite/MultiSelectComposite.driver'));
+export const noBorderInputTestkitFactory = testkitFactoryCreator(load('../src/NoBorderInput/NoBorderInput.driver'));
 export const notificationTestkitFactory = testkitFactoryCreator(load('../src/Notification/Notification.driver'));
 export const pageTestkitFactory = testkitFactoryCreator(load('../src/Page/Page.driver'));
 export const pageHeaderTestkitFactory = testkitFactoryCreator(load('../src/PageHeader/PageHeader.driver'));
