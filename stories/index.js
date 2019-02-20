@@ -29,7 +29,7 @@ import './TextInput/index.story'; // 3.1. Text Input
 import './TextArea/index.story'; // 3.2 Text Area
 import './RichTextArea/RichTextArea.story.js'; // 3.2b + RichTextArea
 import './FieldWithSelectionComposite'; // 3.3 Field With Selection
-import './TimeInput.story.js'; // 3.4 TimeInput
+import './TimeInput/TimeInput.story.js'; // 3.4 TimeInput
 import './DatePicker.story.js'; // 3.6 DatePicker
 import './Range'; // 3.7 Range
 import './MultiSelect/index.story'; // 3.8 Tags
@@ -144,6 +144,7 @@ import './Builders/ContactItemBuilder';
 // Tests
 import './Typography/TypographyTestStories';
 import './Input/InputTestStories';
+import './TimeInput/testStory';
 import './components/Page/PageTestStories.js'; // Tests/2. Layout/2.5 + Page/
 import './components/Page/PageTestStoriesDeprecated.js'; // Tests/2. Layout/2.5 + Page/Deprecated
 import './components/PageHeader/PageHeaderTestStories.js'; // Tests/2. Layout/2.5 + PageHeader/
