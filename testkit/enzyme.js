@@ -70,7 +70,6 @@ export const googleAddressInputWithLabelTestkitFactory = enzymeTestkitFactoryCre
 export const headingTestkitFactory = enzymeTestkitFactoryCreator(load('../src/Heading/Heading.driver'));
 export const highlighterTestkitFactory = enzymeTestkitFactoryCreator(load('../src/Highlighter/Highlighter.driver'));
 export const iconButtonTestkitFactory = enzymeUniTestkitFactoryCreator(load('../src/IconButton/IconButton.driver'));
-export const iconsTestkitFactory = enzymeTestkitFactoryCreator(load('../src/Icons/Icons.driver'));
 export const imageViewerTestkitFactory = enzymeTestkitFactoryCreator(load('../src/ImageViewer/ImageViewer.driver'));
 export const inputTestkitFactory = enzymeTestkitFactoryCreator(load('../src/Input/Input.driver'));
 export const inputAreaTestkitFactory = enzymeTestkitFactoryCreator(load('../src/InputArea/InputArea.driver'));
