@@ -28,8 +28,7 @@ export default {
 
   sections: [
     ...UXStorySections({
-      description: `
-Page Layout`,
+      description: `Compositions from multiple components that help to setup a page.`,
       includedComponents: [
         { name: 'Page', description: 'Business Manager’s root component' },
         { name: 'Page.Header', description: '`<Page/>` component’s child' },
