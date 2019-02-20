@@ -28,6 +28,10 @@ Types of changes:
 
 - `<SortableList />` - fix hover bug [#2923](https://github.com/wix/wix-style-react/pull/2923)
 
+### Deprecated
+
+- `<RichTextAreaComposite />` - deprecated component, you should use a composition of <RichTextArea/> and <FormField/> [#2997](https://github.com/wix/wix-style-react/pull/2997)
+
 ## 6.4.0 - 2019-02-18
 
 ### Added
