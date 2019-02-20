@@ -1,6 +1,6 @@
 import React from 'react';
 import { storiesOf } from '@storybook/react';
-import { Category } from '../storiesHierarchy';
+import { Category } from '../../storiesHierarchy';
 
 import ExampleStandAlone from './ExampleStandAlone';
 import ExampleWithAppStructure from './ExampleWithAppStructure';
@@ -9,7 +9,7 @@ import ExampleStretchTable from './ExampleStretchTable';
 import ExampleStickyTableWithGap from './ExampleStickyTableWithGap';
 
 const PageExampleStories = storiesOf(
-  `${Category.LAYOUT}/2.5 Page Examples`,
+  `${Category.COMPONENTS}/Page Examples`,
   module,
 );
 

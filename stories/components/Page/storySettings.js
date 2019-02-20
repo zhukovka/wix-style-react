@@ -1,3 +1,5 @@
+import { Category } from '../../storiesHierarchy';
+
 const PageWithScrollConstants = (function() {
   const pageHeight = 500;
   const pageBottomPadding = 48;
@@ -15,8 +17,8 @@ const PageWithScrollConstants = (function() {
 })();
 
 export const storySettings = {
-  category: '2. Layout',
-  storyName: '2.5 Page',
+  category: Category.COMPONENTS,
+  storyName: 'Page',
   dataHook: 'story-page',
   PageWithScrollConstants,
 };

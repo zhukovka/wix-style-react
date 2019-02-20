@@ -11,7 +11,7 @@ export default {
   category: storySettings.category,
   storyName: storySettings.storyName,
   component: PageHeader,
-  componentPath: '../../src/PageHeader',
+  componentPath: '../../../src/PageHeader',
 
   componentProps: {
     onBackClicked: () => {},

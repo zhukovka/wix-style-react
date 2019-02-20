@@ -24,7 +24,7 @@ export default {
   componentWrapper: ({ component }) => (
     <div style={{ position: 'relative' }}>{component}</div>
   ),
-  componentPath: '../../src/Page/Page.deprecated.js',
+  componentPath: '../../../src/Page/Page.deprecated.js',
 
   componentProps: {
     children: [header(), tail, content(false)],
