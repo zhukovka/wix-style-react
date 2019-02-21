@@ -81,13 +81,13 @@ export default {
       {
         title: 'Plain Example',
         text: 'Default rich text area setup.',
-        source: examples.formFieldComposition,
+        source: examples.plainFormFieldComposition,
       },
       {
         title: 'Text Styling',
         text:
           'Rich text area supports two types of bullet point styles, basic text styling and hyperlinks.',
-        source: examples.richText,
+        source: examples.textStylingFormFieldComposition,
       },
     ].map(example),
   ],
