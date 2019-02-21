@@ -47,12 +47,12 @@ Types of changes:
 ### Changed
 - infra: improve build process. Migrate to `babel@7` [#2868](https://github.com/wix/wix-style-react/pull/2868)
 
-### Labe
+### Lab
 - `<NoBorderInput/>` - add new component [#2948](https://github.com/wix/wix-style-react/pull/2948)
 
 ### Deprecated
 
-- `<RichTextAreaComposite />` - deprecated component, you should use a composition of <RichTextArea/> and <FormField/> [#2997](https://github.com/wix/wix-style-react/pull/2997)
+- `<RichTextAreaComposite />` - deprecated component, you should use a composition of `<RichTextArea/>` and `<FormField/>` [#2997](https://github.com/wix/wix-style-react/pull/2997)
 
 ## 6.4.0 - 2019-02-18
 
