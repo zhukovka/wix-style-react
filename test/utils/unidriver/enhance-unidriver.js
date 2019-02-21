@@ -2,7 +2,7 @@
  * Adds extra methods to a Unidriver
  *
  * @param {*} baseUniDriver
- * @param {*} createExtraMethods receives (baseDriver, enhacen, enhanceList), returns an object with extra methods. Extra methods may override base unidriver methods
+ * @param {*} createExtraMethods receives (baseDriver, enhacen, enhanceList), returns an object with extra methods. Extra methods will NOT override base unidriver methods.
  * @returns enhacned Unidriver with extra methods
  */
 export function enhanceUnidriver(baseUniDriver, createExtraMethods) {
@@ -23,9 +23,9 @@ export function enhanceUnidriver(baseUniDriver, createExtraMethods) {
   }
 
   return {
+    ...createExtraMethods(baseUniDriver, enhance, enhanceList),
     ...rest,
     $: selector => enhance(baseUniDriver.$(selector)),
     $$: selector => enhanceList(baseUniDriver.$$(selector)),
-    ...createExtraMethods(baseUniDriver, enhance, enhanceList),
   };
 }
