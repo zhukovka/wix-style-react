@@ -14,6 +14,10 @@ Types of changes:
 1. **Docs** for documentation changes
 1. **Lab** components and features that are still in a work in progress
 
+## next
+### Fixed
+- infra: avoid dynamic require in testkit/index.js & testkit/enzyme.js [#3000](https://github.com/wix/wix-style-react/pull/3000)
+
 ## 6.5.1 - 2019-02-20
 ### Fixed
 - infra: transpile test directory [#3004](https://github.com/wix/wix-style-react/pull/3004)
