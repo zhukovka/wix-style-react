@@ -1,0 +1,21 @@
+# original dirs
+new-icons
+scripts
+src
+testkit
+stories
+
+# markdowns
+README.md
+CONTRIBUTING.md
+CHANGELOG.md
+
+# configs
+.travis.yml
+.editorconfig
+.ci_config
+protractor.conf.js
+babel.config.js
+depmonkey.ignore
+
+
