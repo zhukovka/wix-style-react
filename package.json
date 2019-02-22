@@ -300,6 +300,20 @@
         }
       ],
       "no-console": "error"
-    }
+    },
+    "overrides": [
+      {
+        "files": [ "**/*.uni.driver.js" ],
+        "rules": {
+          "no-restricted-properties": [
+            "error",
+            {
+              "property": "getNative",
+              "message": "Do not use getNative() in Unidrivers, only in tests."
+            }
+          ]
+        }
+      }
+    ]
   }
 }
