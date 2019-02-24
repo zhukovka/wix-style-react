@@ -70,11 +70,6 @@ describe('DropdownBase', () => {
     };
   };
 
-  it('should render', async () => {
-    const driver = createDriver(<DropdownBase {...defaultProps} />);
-    expect(await driver.exists()).toBeTruthy();
-  });
-
   it('should accept a node as a children', async () => {
     const driver = createDriver(
       <DropdownBase {...defaultProps}>
