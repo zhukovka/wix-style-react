@@ -310,7 +310,7 @@
             "error",
             {
               "property": "getNative",
-              "message": "Do not use getNative() in Unidrivers, only in tests."
+              "message": "Do not use getNative() in Unidrivers unless a method needs to return an HTMLElement (In which case, that method also need to be deprecated!)."
             }
           ]
         }
