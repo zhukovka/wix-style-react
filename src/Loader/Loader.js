@@ -4,13 +4,11 @@ import classNames from 'classnames';
 import WixComponent from '../BaseComponents/WixComponent';
 import Arc from './Arc';
 import css from './Loader.scss';
-import Tooltip from '../Tooltip';
 import FormFieldError from '../new-icons/system/FormFieldError';
 import FormFieldErrorSmall from '../new-icons/system/FormFieldErrorSmall';
 import ToggleOn from '../new-icons/system/ToggleOn';
 import CircleLoaderCheck from '../new-icons/system/CircleLoaderCheck';
 import CircleLoaderCheckSmall from '../new-icons/system/CircleLoaderCheckSmall';
-import Heading from '../Heading';
 
 const arcsAngles = {
   tiny: {
@@ -85,8 +83,53 @@ export default class Loader extends WixComponent {
     status: 'loading',
   };
 
+  state = {
+    Tooltip: null,
+    Heading: null,
+  };
+
+  componentDidMount() {
+    if (this.props.statusMessage) {
+      this.loadTooltip();
+    }
+
+    if (this.props.text && this.props.size !== 'tiny') {
+      this.loadHeading();
+    }
+  }
+
+  componentWillReceiveProps(nextProps) {
+    if (
+      !this.state.Tooltip &&
+      !this.props.statusMessage &&
+      nextProps.statusMessage
+    ) {
+      this.loadTooltip();
+    }
+
+    const prevTextState = this.props.text && this.props.size !== 'tiny';
+    const nextTextState = nextProps.text && nextProps.size !== 'tiny';
+
+    if (!this.state.Heading && !prevTextState && nextTextState) {
+      this.loadHeading();
+    }
+  }
+
+  loadTooltip() {
+    return import('../Tooltip').then(result => {
+      this.setState({ Tooltip: result.default });
+    });
+  }
+
+  loadHeading() {
+    return import('../Heading').then(result => {
+      this.setState({ Heading: result.default });
+    });
+  }
+
   render() {
     const { size, color, text, status, statusMessage } = this.props;
+    const { Tooltip, Heading } = this.state;
     const sizeInPx = sizesInPx[size];
     const shouldShowFullCircle = status !== 'loading';
     const lightArcAngle = !shouldShowFullCircle
@@ -138,7 +181,7 @@ export default class Loader extends WixComponent {
           css[status],
         )}
       >
-        {statusMessage ? (
+        {statusMessage && Tooltip ? (
           <Tooltip
             dataHook="loader-tooltip"
             placement="top"
@@ -152,7 +195,7 @@ export default class Loader extends WixComponent {
         ) : (
           loader
         )}
-        {shouldShowText && text && (
+        {shouldShowText && text && Heading && (
           <div className={css.text}>
             <Heading appearance="H6" dataHook="loader-text">
               {this.props.text}

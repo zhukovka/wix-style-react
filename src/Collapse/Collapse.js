@@ -4,7 +4,7 @@ import ReactCollapse from 'react-collapse';
 
 /** `<Collapse/>` component is used for hideable content.
  *
- * Easily create accordions or within `<Card/>` to collapse its `<Card.Content/>`.
+ * Easily create accordions or within `<Card/>` to collapse its `<CardContent/>`.
  */
 const Collapse = ({ children, open, dataHook }) => (
   <ReactCollapse data-hook={dataHook} isOpened={open} children={children} />

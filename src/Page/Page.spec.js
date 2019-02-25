@@ -1,6 +1,6 @@
 /* eslint-disable no-console */
 import React from 'react';
-import Page from './Page';
+import Page, { PageHeader, PageContent, PageTail } from './Page';
 import pageDriverFactory from './Page.driver';
 import { PagePrivateDriver } from './Page.private.driver';
 import { createDriverFactory } from 'wix-ui-test-utils/driver-factory';
@@ -11,10 +11,10 @@ const Tail = () => <div>tail</div>;
 
 const renderPageWithProps = (props = {}) => (
   <Page {...props}>
-    <Page.Header title="title" />
-    <Page.Content>
+    <PageHeader title="title" />
+    <PageContent>
       <Content />
-    </Page.Content>
+    </PageContent>
   </Page>
 );
 
@@ -64,11 +64,11 @@ describe('Page', () => {
   });
 
   describe('gradient size', () => {
-    it('should be 36px by default', () => {
+    it('should be 39px by default', () => {
       const driver = createDriver(
         renderPageWithProps({ gradientClassName: 'class' }),
       );
-      expect(driver.gradientContainerHeight()).toBe('36px');
+      expect(driver.gradientContainerHeight()).toBe('39px');
     });
 
     it('should not render 0 when maximized but header height delta is 0', () => {
@@ -80,30 +80,30 @@ describe('Page', () => {
       const props = { gradientClassName: 'class', gradientCoverTail: false };
       const driver = createDriver(
         <Page {...props}>
-          <Page.Header />
-          <Page.Tail>
+          <PageHeader />
+          <PageTail>
             <Tail />
-          </Page.Tail>
-          <Page.Content>
+          </PageTail>
+          <PageContent>
             <Content />
-          </Page.Content>
+          </PageContent>
         </Page>,
       );
       expect(driver.gradientContainerHeight()).toBe('0px');
     });
   });
 
-  describe('Page.Tail', () => {
+  describe('PageTail', () => {
     it('should attach a tail component', () => {
       const driver = createDriver(
         <Page>
-          <Page.Header title="title" />
-          <Page.Tail>
+          <PageHeader title="title" />
+          <PageTail>
             <Tail />
-          </Page.Tail>
-          <Page.Content>
+          </PageTail>
+          <PageContent>
             <Content />
-          </Page.Content>
+          </PageContent>
         </Page>,
       );
 
@@ -115,32 +115,20 @@ describe('Page', () => {
       expect(driver.tailExists()).toBeFalsy();
     });
   });
-
   describe('Scroll Header', () => {
     it('should scroll ScrollableContent when getting wheel event on Header', () => {
       const driver = PagePrivateDriver.fromJsxElement(
         <Page>
-          <Page.Header title="title" />
-          <Page.Content>
+          <PageHeader title="title" />
+          <PageContent>
             <Content />
-          </Page.Content>
+          </PageContent>
         </Page>,
       );
       expect(driver.getScrollAmount()).toBe(0);
       driver.wheelOnFixedContainer(10);
       expect(driver.getScrollAmount()).toBe(10);
     });
-  });
-
-  describe('DOM calculations', () => {
-    // eslint-disable-next-line jest/no-disabled-tests
-    xit('should recalculate component heights when rerendered', () => {
-      // TODO:
-    });
-  });
-  describe('Header layer', () => {
-    it('should NOT block clicks on content close to header', () => {});
-    it('should NOT block clicks on content close to header when MiniHeader appears', () => {});
   });
 
   describe('Prop Validation', () => {
@@ -160,53 +148,47 @@ describe('Page', () => {
     it('should not initialize without a PageContent component', () => {
       const page = (
         <Page>
-          <Page.Header title="title" />
+          <PageHeader title="title" />
           <div />
         </Page>
       );
 
       createDriver(page);
       expect(stub).toHaveBeenCalledWith(
-        expect.stringContaining(
-          `${prefixWarning}Page: Invalid Prop children, must contain Page.Content${suffixWarning}`,
-        ),
+        `${prefixWarning}Page: Invalid Prop children, must contain PageContent${suffixWarning}`,
       );
     });
 
     it('should not initialize without a PageHeader component', () => {
       const page = (
         <Page>
-          <Page.Content>
+          <PageContent>
             <div />
-          </Page.Content>
+          </PageContent>
           <div />
         </Page>
       );
 
       createDriver(page);
       expect(stub).toHaveBeenCalledWith(
-        expect.stringContaining(
-          `${prefixWarning}Page: Invalid Prop children, must contain Page.Header${suffixWarning}`,
-        ),
+        `${prefixWarning}Page: Invalid Prop children, must contain PageHeader${suffixWarning}`,
       );
     });
 
     it('should not initialize component with an unknown type', () => {
       const page = (
         <Page>
-          <Page.Header title="title" />
-          <Page.Content>
+          <PageHeader title="title" />
+          <PageContent>
             <div />
-          </Page.Content>
+          </PageContent>
           <div>Unwanted child</div>
         </Page>
       );
 
       createDriver(page);
       expect(stub).toHaveBeenCalledWith(
-        expect.stringContaining(
-          `${prefixWarning}Page: Invalid Prop children, unknown child div${suffixWarning}`,
-        ),
+        `${prefixWarning}Page: Invalid Prop children, unknown child div${suffixWarning}`,
       );
     });
   });

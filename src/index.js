@@ -65,7 +65,15 @@ export { badgeSelectItemBuilder } from './BadgeSelectItemBuilder';
 export { contactItemBuilder } from './ContactItemBuilder';
 export { default as EditableSelector } from './EditableSelector';
 export { default as StatsWidget } from './StatsWidget';
-export { default as Card } from './Card';
+export {
+  PureCard as Card,
+  CardContent,
+  CardHeader,
+  CardDivider,
+  CardLinkHeader,
+  CardButtonHeader,
+  CardCollapsedHeader,
+} from './Card';
 export { default as ColorPicker } from './ColorPicker';
 export { default as CounterBadge } from './CounterBadge';
 export { default as FloatingHelper } from './FloatingHelper';

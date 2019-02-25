@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
 import Hover from './Hover';
-import Card from '../Card';
+import Card, { CardDivider } from '../Card';
 import Button from '../Button';
 import TextButton from '../TextButton';
 import Text from '../Text';
@@ -111,7 +111,7 @@ class CardGalleryItem extends React.Component {
                 data-hook="background-image"
               />
 
-              <Card.Divider />
+              <CardDivider />
               <div className={styles.footer}>
                 <Heading appearance="H4" ellipsis data-hook="title">
                   {title}

@@ -1,11 +1,11 @@
 import React from 'react';
-import Card from 'wix-style-react/Card';
+import { Card, CardContent } from 'wix-style-react';
 import AddItem from 'wix-style-react/AddItem';
 
 export default () => (
   <Card>
-    <Card.Content>
+    <CardContent>
       <AddItem theme="image" />
-    </Card.Content>
+    </CardContent>
   </Card>
 );

@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Card from '../Card';
+import Card, { CardHeader, CardContent } from '../Card';
 import WixComponent from '../BaseComponents/WixComponent';
 import styles from './StatsWidget.scss';
 import Heading from '../Heading';
@@ -123,14 +123,14 @@ class StatsWidget extends WixComponent {
 
     return (
       <Card>
-        <Card.Header
+        <CardHeader
           dataHook="stats-widget-title"
           title={title}
           suffix={suffixElements.map((suffixElement, index) =>
             this._renderSuffix(suffixElement, index),
           )}
         />
-        <Card.Content>
+        <CardContent>
           {statistics ? (
             <div
               className={styles.statsColumnWrapper}
@@ -141,7 +141,7 @@ class StatsWidget extends WixComponent {
           ) : (
             <div data-hook="stats-widget-empty-state">{emptyState}</div>
           )}
-        </Card.Content>
+        </CardContent>
       </Card>
     );
   }

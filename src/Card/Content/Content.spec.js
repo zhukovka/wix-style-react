@@ -5,7 +5,7 @@ import Content from '.';
 import EmptyState from '../../EmptyState';
 import styles from './Content.scss';
 
-describe('Card.Content', () => {
+describe('CardContent', () => {
   describe('`children` prop', () => {
     it('should add `emptyStateContent` when `EmptyState`', () => {
       const component = shallow(<Content children={<EmptyState />} />);
