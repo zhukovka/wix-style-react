@@ -2,7 +2,7 @@ import React from 'react';
 import { createDriverFactory } from 'wix-ui-test-utils/driver-factory';
 
 import GenericModalLayout from '.';
-import genericModalLayoutPrivateDriverFactory from './GenericModalLayout.driver.private';
+import genericModalLayoutPrivateDriverFactory from './GenericModalLayout.private.driver';
 
 const renderWithProps = (properties = {}) => (
   <GenericModalLayout {...properties} />

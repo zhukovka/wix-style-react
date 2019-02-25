@@ -14,7 +14,7 @@ import Button from '../Button';
 import { sortableListTestkitFactory } from '../../testkit';
 import { sortableListTestkitFactory as enzymeSortableListTestkitFactory } from '../../testkit/enzyme';
 
-import privateSortableListDriver from './SortableList.driver.private';
+import privateSortableListDriver from './SortableList.private.driver';
 
 import SortableList from './SortableList';
 
