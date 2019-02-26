@@ -6,6 +6,5 @@ export const dateInputDriverFactory = base => {
   return {
     ...baseUniDriverFactory(base),
     getValue: () => getInput().value(),
-    hasDateIcon: () => base.$('[data-hook="date-input-date-icon"]').exists(),
   };
 };

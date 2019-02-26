@@ -1,36 +1,56 @@
 import React from 'react';
 import { storySettings } from './storySettings';
-import LiveCodeExample from '../utils/Components/LiveCodeExample';
+import {
+  header,
+  divider,
+  tabs,
+  tab,
+  code as baseCode,
+  description,
+  importExample,
+  api,
+  testkit,
+  playground,
+} from 'wix-storybook-utils/Sections';
+import { baseScope } from '../utils/Components/LiveCodeExample';
+import DateInput from 'wix-style-react/DateInput';
 
-import DateInput from '../../src/DateInput';
+const code = config => baseCode({ components: baseScope, ...config });
 
 export default {
   category: storySettings.kind,
   storyName: storySettings.storyName,
-
   component: DateInput,
   componentPath: '../../src/DateInput/DateInput.js',
 
   componentProps: {
-    dataHook: storySettings.dataHook,
+    theme: 'normal',
   },
 
-  exampleProps: {
-    // Put here presets of props, for more info:
-    // https://github.com/wix/wix-ui/blob/master/packages/wix-storybook-utils/docs/usage.md#using-list
+  componentProps: {
+    dateFormat: 'DD/MM/YYYY',
+    value: new Date().toString(),
   },
 
-  examples: (
-    <div style={{ maxWidth: 627 }}>
-      <LiveCodeExample
-        compact
-        title="Live code example"
-        initialCode={`
-<DateInput
-  dataHook="story-date-input-live-example"
-  />
-        `}
-      />
-    </div>
-  ),
+  sections: [
+    header({
+      issueUrl: 'https://github.com/wix/wix-style-react/issues/new',
+      sourceUrl:
+        'https://github.com/wix/wix-style-react/tree/master/src/DateInput',
+      component: (
+        <div style={{ width: '50%' }}>
+          <DateInput value={new Date().toString()} dateFormat="DD/MM/YYYY" />
+        </div>
+      ),
+    }),
+    tabs({
+      tabs: [
+        ...[
+          { title: 'API', sections: [api()] },
+          { title: 'TestKit', sections: [testkit()] },
+          { title: 'Playground', sections: [playground()] },
+        ].map(tab),
+      ],
+    }),
+  ],
 };
