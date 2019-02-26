@@ -9,11 +9,12 @@ import setDate from 'date-fns/set_date';
 
 import WixComponent from '../BaseComponents/WixComponent';
 import CalendarIcon from '../new-icons/Date';
-import { formatDate } from '../LocaleUtils';
+import {formatDate} from '../LocaleUtils';
 import Calendar from '../Calendar';
 import Input from '../Input';
 
 import styles from './DatePicker.scss';
+import DateInput from '../DateInput';
 
 /**
  * DatePicker component
@@ -42,46 +43,46 @@ export default class DatePicker extends WixComponent {
     zIndex: 1,
   };
 
-  constructor(props) {
-    super(props);
+  constructor (props) {
+    super (props);
 
     this.state = {
-      value: props.value || new Date(),
+      value: props.value || new Date (),
       isOpen: props.isOpen || false,
       isDateInputFocusable: !props.isOpen,
     };
   }
 
-  componentDidMount() {
-    super.componentDidMount();
+  componentDidMount () {
+    super.componentDidMount ();
 
-    this._popper = new Popper(this.inputRef, this.calendarRef, {
+    this._popper = new Popper (this.inputRef, this.calendarRef, {
       placement: 'top-start',
     });
   }
 
-  componentWillUnmount() {
-    this._popper.destroy();
-    super.componentWillUnmount();
+  componentWillUnmount () {
+    this._popper.destroy ();
+    super.componentWillUnmount ();
   }
 
   openCalendar = () => {
     if (!this.state.isOpen) {
-      this.setState(
+      this.setState (
         {
           isOpen: true,
           isDateInputFocusable: false,
-          value: this.props.value || new Date(),
+          value: this.props.value || new Date (),
         },
-        () => this._popper.scheduleUpdate(),
+        () => this._popper.scheduleUpdate ()
       );
     }
   };
 
   closeCalendar = () => {
-    this.setState({ isOpen: false }, () => {
+    this.setState ({isOpen: false}, () => {
       if (this.props.onClose) {
-        this.props.onClose();
+        this.props.onClose ();
       }
     });
     /*
@@ -96,29 +97,29 @@ export default class DatePicker extends WixComponent {
        2. After calendar is closed, on next event loop(after focus is fired)  make isDateInputFocusable: focusable
        to allow user to press tab in future and open Calendar
     */
-    setTimeout(() => this.makeInputFocusable());
+    setTimeout (() => this.makeInputFocusable ());
   };
 
-  makeInputFocusable = () => this.setState({ isDateInputFocusable: true });
+  makeInputFocusable = () => this.setState ({isDateInputFocusable: true});
 
   _saveNewValue = (value, modifiers = {}) => {
     if (modifiers.disabled) {
       return;
     }
 
-    const isChanged = !isSameDay(value, this.props.value);
+    const isChanged = !isSameDay (value, this.props.value);
 
     if (isChanged) {
       const newValue = [
-        [value.getFullYear(), setYear],
-        [value.getMonth(), setMonth],
-        [value.getDate(), setDate],
-      ].reduce(
-        (_value, [datePart, setter]) => setter(_value, datePart),
-        this.props.value,
+        [value.getFullYear (), setYear],
+        [value.getMonth (), setMonth],
+        [value.getDate (), setDate],
+      ].reduce (
+        (_value, [datePart, setter]) => setter (_value, datePart),
+        this.props.value
       );
 
-      this.setState({ value: newValue }, () => this.props.onChange(newValue));
+      this.setState ({value: newValue}, () => this.props.onChange (newValue));
     }
   };
 
@@ -126,33 +127,19 @@ export default class DatePicker extends WixComponent {
     // TODO: dirty for now
     // tab key should move focus so can't preventDefault
     if (event.keyCode !== 9) {
-      event.preventDefault();
+      event.preventDefault ();
     }
 
     if (!this.state.isOpen) {
-      this.openCalendar();
+      this.openCalendar ();
     }
 
     // keyHandler(this.state.value);
   };
 
-  onClickOutside() {
-    this.closeCalendar();
+  onClickOutside () {
+    this.closeCalendar ();
   }
-
-  _formatDateValue = () => {
-    const { value, dateFormat, locale } = this.props;
-
-    if (!value) {
-      return '';
-    }
-
-    if (typeof dateFormat === 'function') {
-      return dateFormat(value);
-    }
-
-    return formatDate(value, dateFormat, locale);
-  };
 
   _renderInput = () => {
     const {
@@ -165,38 +152,36 @@ export default class DatePicker extends WixComponent {
       errorMessage,
       customInput,
       inputProps,
+      dateFormat,
     } = this.props;
 
-    const _inputProps = {
-      dataHook: inputDataHook,
-      value: this._formatDateValue(initialValue),
-      onInputClicked: this.openCalendar,
-      disabled,
-      readOnly,
-      placeholder: placeholderText,
-      prefix: (
-        <Input.IconAffix>
-          <CalendarIcon />
-        </Input.IconAffix>
-      ),
-      onFocus: this.openCalendar,
-      onKeyDown: this._handleKeyDown,
-      tabIndex: this.state.isDateInputFocusable ? 1 : -1,
-      error,
-      errorMessage,
-      autoSelect: false,
-      ...(customInput ? customInput.props : {}),
-      ...inputProps,
-    };
-
-    return React.cloneElement(customInput || <Input />, _inputProps);
+    return (
+      <DateInput
+        inputDataHook={inputDataHook}
+        dataHook="date-picker-date-input"
+        value={initialValue}
+        onInputClicked={this.openCalendar}
+        disabled={disabled}
+        readOnly={readOnly}
+        placeholder={placeholderText}
+        onFocus={this.openCalendar}
+        onKeyDown={this._handleKeyDown}
+        tabIndex={this.state.isDateInputFocusable ? 1 : -1}
+        error={error}
+        errorMessage={errorMessage}
+        autoSelect={false}
+        dateFormat={dateFormat}
+        {...(customInput ? customInput.props : {})}
+        {...inputProps}
+      />
+    );
   };
 
   _setInputRef = ref => (this.inputRef = ref);
 
   _setCalendarRef = ref => (this.calendarRef = ref);
 
-  render() {
+  render () {
     const {
       showMonthDropdown,
       showYearDropdown,
@@ -211,7 +196,7 @@ export default class DatePicker extends WixComponent {
       zIndex,
     } = this.props;
 
-    const { isOpen, value } = this.state;
+    const {isOpen, value} = this.state;
 
     const calendarProps = {
       locale,
@@ -228,7 +213,7 @@ export default class DatePicker extends WixComponent {
     };
 
     return (
-      <div style={{ width }} className={styles.root}>
+      <div style={{width}} className={styles.root}>
         <div ref={this._setInputRef}>
           <DayPickerInput component={this._renderInput} keepFocus={false} />
         </div>
@@ -236,14 +221,13 @@ export default class DatePicker extends WixComponent {
         <div
           ref={this._setCalendarRef}
           data-hook={calendarDataHook}
-          style={{ zIndex }}
+          style={{zIndex}}
         >
-          {isOpen && (
+          {isOpen &&
             <Calendar
               className={styles.datePickerCalendar}
               {...calendarProps}
-            />
-          )}
+            />}
         </div>
       </div>
     );
@@ -263,11 +247,11 @@ DatePicker.propTypes = {
    * * `string` of tokens (see [`date-fns` docs](https://date-fns.org/v1.29.0/docs/format) for list of supported tokens)
    * * `function` of signature `Date -> String`
    */
-  dateFormat: PropTypes.oneOfType([PropTypes.string, PropTypes.func]),
+  dateFormat: PropTypes.oneOfType ([PropTypes.string, PropTypes.func]),
 
   /** DatePicker instance locale */
-  locale: PropTypes.oneOfType([
-    PropTypes.oneOf([
+  locale: PropTypes.oneOfType ([
+    PropTypes.oneOf ([
       'en',
       'es',
       'pt',
@@ -284,7 +268,7 @@ DatePicker.propTypes = {
       'nl',
       'da',
     ]),
-    PropTypes.shape({
+    PropTypes.shape ({
       distanceInWords: PropTypes.object,
       format: PropTypes.object,
     }),

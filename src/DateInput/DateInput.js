@@ -7,6 +7,10 @@ import { formatDate } from '../LocaleUtils';
 
 class DateInput extends React.PureComponent {
   static displayName = 'DateInput';
+  static defaultProps = {
+    locale: 'en',
+    dateFormat: 'MM/DD/YYYY',
+  };
 
   _formatDateValue = () => {
     const { value, dateFormat, locale } = this.props;
@@ -52,6 +56,8 @@ class DateInput extends React.PureComponent {
 
 DateInput.propTypes = {
   ...Input.propTypes,
+  /** The selected date */
+  value: PropTypes.object,
   /** Instance locale */
   locale: PropTypes.oneOfType([
     PropTypes.oneOf([

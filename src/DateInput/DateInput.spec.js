@@ -16,7 +16,7 @@ describe('DateInput', () => {
   });
 
   it('should format date based on locale', async () => {
-    const sampleDate = new Date().toString();
+    const sampleDate = new Date();
     const locale = 'ru';
     const dateFormat = 'HH:MM';
     const driver = createDriver(
@@ -28,7 +28,7 @@ describe('DateInput', () => {
   });
 
   it('should format date based on formating function', async () => {
-    const sampleDate = new Date().toString();
+    const sampleDate = new Date();
     const dateFormat = () => 'Some other string';
     const driver = createDriver(
       <DateInput value={sampleDate} dateFormat={dateFormat} />,
