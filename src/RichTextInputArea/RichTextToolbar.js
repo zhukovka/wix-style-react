@@ -11,6 +11,17 @@ import TextAreaUnderline from '../new-icons/system/TextAreaUnderline';
 import TextAreaBulletList from '../new-icons/system/TextAreaBulletList';
 import TextAreaNumberedList from '../new-icons/system/TextAreaNumberedList';
 
+const inlineStyleTypes = {
+  bold: 'BOLD',
+  italic: 'ITALIC',
+  underline: 'UNDERLINE',
+};
+
+const blockTypes = {
+  bulletedList: 'unordered-list-item',
+  numberedList: 'ordered-list-item',
+};
+
 const RichTextToolbar = ({
   className,
   editorState,
@@ -48,34 +59,35 @@ const RichTextToolbar = ({
 
   const buttons = [
     {
-      key: 'bold',
-      onClick: event => toggleStyle(event, onBold, 'BOLD'),
+      type: inlineStyleTypes.bold,
+      onClick: event => toggleStyle(event, onBold, inlineStyleTypes.bold),
       icon: TextAreaBold,
       tooltipText: 'Bold',
     },
     {
-      key: 'italic',
-      onClick: event => toggleStyle(event, onItalic, 'ITALIC'),
+      type: inlineStyleTypes.italic,
+      onClick: event => toggleStyle(event, onItalic, inlineStyleTypes.italic),
       icon: TextAreaItalic,
       tooltipText: 'Italic',
     },
     {
-      key: 'underline',
-      onClick: event => toggleStyle(event, onUnderline, 'UNDERLINE'),
+      type: inlineStyleTypes.underline,
+      onClick: event =>
+        toggleStyle(event, onUnderline, inlineStyleTypes.underline),
       icon: TextAreaUnderline,
       tooltipText: 'Underline',
     },
     {
-      key: 'unordered-list-item',
+      type: blockTypes.bulletedList,
       onClick: event =>
-        toggleBlockType(event, onBulletedList, 'unordered-list-item'),
+        toggleBlockType(event, onBulletedList, blockTypes.bulletedList),
       icon: TextAreaBulletList,
       tooltipText: 'Bulleted List',
     },
     {
-      key: 'ordered-list-item',
+      type: blockTypes.numberedList,
       onClick: event =>
-        toggleBlockType(event, onNumberedList, 'ordered-list-item'),
+        toggleBlockType(event, onNumberedList, blockTypes.numberedList),
       icon: TextAreaNumberedList,
       tooltipText: 'Numbered List',
     },
@@ -84,15 +96,14 @@ const RichTextToolbar = ({
   return (
     <div className={classNames(className, styles.root)}>
       {buttons.map((button, index) => {
-        const { key, onClick, toggledStyle, tooltipText, icon: Icon } = button;
+        const { type, onClick, tooltipText, icon: Icon } = button;
 
         return (
           <RichTextToolbarButton
-            key={`${index}-${key}`}
+            key={`${index}-${type}`}
             onClick={onClick}
-            toggledStyle={toggledStyle}
             tooltipText={tooltipText}
-            isActive={isActive(toggledStyle)}
+            isActive={isActive(type)}
           >
             <Icon />
           </RichTextToolbarButton>
