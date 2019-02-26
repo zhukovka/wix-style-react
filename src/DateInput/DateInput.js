@@ -31,7 +31,7 @@ class DateInput extends React.PureComponent {
       ...rest
     } = this.props;
     const _inputProps = {
-      dataHook: inputDataHook,
+      dataHook: inputDataHook || 'date-input-input',
       value: this._formatDateValue(initialValue),
       prefix: (
         <Input.IconAffix>
@@ -52,6 +52,35 @@ class DateInput extends React.PureComponent {
 
 DateInput.propTypes = {
   ...Input.propTypes,
+  /** Instance locale */
+  locale: PropTypes.oneOfType([
+    PropTypes.oneOf([
+      'en',
+      'es',
+      'pt',
+      'fr',
+      'de',
+      'pl',
+      'it',
+      'ru',
+      'ja',
+      'ko',
+      'tr',
+      'sv',
+      'no',
+      'nl',
+      'da',
+    ]),
+    PropTypes.shape({
+      distanceInWords: PropTypes.object,
+      format: PropTypes.object,
+    }),
+  ]),
+  /** Custom date format, can be either:
+   * * `string` of tokens (see [`date-fns` docs](https://date-fns.org/v1.29.0/docs/format) for list of supported tokens)
+   * * `function` of signature `Date -> String`
+   */
+  dateFormat: PropTypes.oneOfType([PropTypes.string, PropTypes.func]),
 };
 
 export default DateInput;
