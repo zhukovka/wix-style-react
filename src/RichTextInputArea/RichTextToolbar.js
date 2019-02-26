@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import { EditorState, RichUtils } from '@wix/draft-js';
+import { EditorState, RichUtils } from 'draft-js';
 
 import styles from './RichTextToolbar.scss';
 import RichTextToolbarButton from './RichTextToolbarButton';

@@ -161,7 +161,6 @@
   },
   "dependencies": {
     "@babel/runtime": "^7.3.1",
-    "@wix/draft-js": "^0.10.379",
     "bootstrap-sass": "^3.3.7",
     "classnames": "^2.2.5",
     "color": "^2.0.0",
@@ -195,7 +194,6 @@
     "slate": "^0.20.3",
     "wix-animations": "^1.0.276",
     "wix-eventually": "^2.2.0",
-    "wix-rich-content-editor": "^2.0.3",
     "wix-ui-backoffice": "^1.0.339",
     "wix-ui-core": "^2.0.1",
     "wix-ui-icons-common": "^2.0.9",
@@ -304,7 +302,9 @@
     },
     "overrides": [
       {
-        "files": [ "**/*.uni.driver.js" ],
+        "files": [
+          "**/*.uni.driver.js"
+        ],
         "rules": {
           "no-restricted-properties": [
             "error",

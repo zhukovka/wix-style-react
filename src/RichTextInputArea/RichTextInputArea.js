@@ -1,7 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { ContentState, convertFromHTML, convertToRaw } from '@wix/draft-js';
-import { EditorState, RichContentEditor } from 'wix-rich-content-editor';
+import {
+  EditorState,
+  Editor,
+  ContentState,
+  convertFromHTML,
+  convertToRaw,
+} from 'draft-js';
 import draftToHtml from 'draftjs-to-html';
 
 import styles from './RichTextInputArea.scss';
@@ -45,10 +50,9 @@ class RichTextInputArea extends React.PureComponent {
           onBulletedList={this._setEditorState}
           onNumberedList={this._setEditorState}
         />
-        <RichContentEditor
+        <Editor
           editorState={this.state.editorState}
           onChange={this._onEditorChange}
-          textToolbarType="static"
         />
       </div>
     );
