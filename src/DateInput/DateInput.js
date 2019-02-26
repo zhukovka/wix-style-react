@@ -34,7 +34,7 @@ class DateInput extends React.PureComponent {
       dataHook: inputDataHook || 'date-input-input',
       value: this._formatDateValue(initialValue),
       prefix: (
-        <Input.IconAffix>
+        <Input.IconAffix dataHook="date-input-date-icon">
           <CalendarIcon />
         </Input.IconAffix>
       ),
