@@ -14,6 +14,12 @@ Types of changes:
 1. **Docs** for documentation changes
 1. **Lab** components and features that are still in a work in progress
 
+## Next
+
+### Fixed
+
+- `<Input/>` (fix) : Fix placement vertical alignment, and remove required box-shadow in Firefox [#3041](https://github.com/wix/wix-style-react/pull/3041/)
+
 ## 6.6.0 - 2019-02-25
 
 ### Added
