@@ -178,3 +178,6 @@ import './RichTextInputArea/index.story';
 
 // This import was added by the component generator
 import './NoBorderInput/index.story';
+
+// This import was added by the component generator
+import './DateRangePicker/index.story';

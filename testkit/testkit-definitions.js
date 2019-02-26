@@ -151,7 +151,6 @@ module.exports = {
   },
 
   Notification: {},
-
   FloatingNotification: { unidriver: true, drivers: ['enzyme'] },
 
   DatePicker: {
@@ -186,6 +185,9 @@ module.exports = {
   },
 
   RichTextInputArea: { unidriver: true },
-
   NoBorderInput: {},
+
+  DateRangePicker: {
+    unidriver: true
+  }
 };
