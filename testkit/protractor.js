@@ -420,3 +420,9 @@ import { noBorderInputDriverFactory } from '../src/NoBorderInput/NoBorderInput.p
 export const noBorderInputTestkitFactory = protractorTestkitFactoryCreator(
   noBorderInputDriverFactory,
 );
+
+import { dateInputDriverFactory } from '../src/DateInput/DateInput.driver';
+
+export const dateInputTestkitFactory = protractorUniTestkitFactoryCreator(
+  dateInputDriverFactory,
+);
