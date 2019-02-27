@@ -29,6 +29,10 @@ Types of changes:
 
 - `<RadioGroup/>` - deprecated prop `type="button"` [#2874](https://github.com/wix/wix-style-react/pull/2874)
 
+### Fixed
+
+- `<Checkbox/>`: Fix `disabled` & `hasError` styling [#3037](https://github.com/wix/wix-style-react/pull/3037)
+
 ## 6.6.1 - 2019-02-26
 
 ### Fixed
