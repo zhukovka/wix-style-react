@@ -1,5 +1,6 @@
 import Registry from '@ui-autotools/registry';
 import Calendar from '../../Calendar';
+import { wsrPluginMetaKey } from '../../.autotools/plugins/wsr-plugin-meta-key';
 
 const meta = Registry.getComponentMetadata(Calendar);
 
@@ -13,10 +14,20 @@ meta.addSim({
   },
 });
 
+meta.addCustomField(wsrPluginMetaKey, {
+  compPath: 'src/Calendar',
+});
+
+meta.staticResources = [
+  {
+    path: 'dist/statics/App.css',
+    url: 'App.css',
+    mimeType: 'text/css',
+  },
+];
+
 meta.exportInfo = {
   exportName: 'Calender',
-  cssPath: '/dist/statics/App.css',
-  compPath: '/src/Calendar',
 };
 
 meta.nonEventListenerTestCompliant = true;
