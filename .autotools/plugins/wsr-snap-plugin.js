@@ -17,7 +17,6 @@ class WsrSnapPlugin {
      * We only want to create snapshots for components that have specified the correct info
      * in their metadata file.
      */
-    console.log('wsrPluginMetadata:', wsrPluginMetadata)
     if (!wsrPluginMetadata) { return; }
 
     // Get the path to the compiled component
