@@ -7,6 +7,7 @@ import SearchIcon from 'wix-ui-icons-common/Search';
 import WixComponent from '../BaseComponents/WixComponent';
 import { StringUtils } from '../utils/StringUtils';
 import styles from './Search.scss';
+import Input from '../Input/Input';
 
 /**
  * Search component with suggestions based on input value listed in dropdown
@@ -16,8 +17,10 @@ export default class Search extends WixComponent {
 
   static propTypes = {
     ...InputWithOptions.propTypes,
-    placeholder: PropTypes.string,
+    /** Will display the search icon only until clicked */
     expandable: PropTypes.bool,
+    /** Custom function for filtering options */
+    predicate: PropTypes.func,
   };
 
   static defaultProps = {
@@ -42,16 +45,21 @@ export default class Search extends WixComponent {
   }
 
   get _filteredOptions() {
-    const { options, value } = this.props;
+    const { options, value, predicate } = this.props;
 
     const searchText = this._isControlled ? value : this.state.inputValue;
-
-    return options.filter(option =>
-      searchText && searchText.length
-        ? StringUtils.includesCaseInsensitive(option.value, searchText.trim())
-        : true,
-    );
+    if (!searchText || !searchText.length) {
+      return options;
+    }
+    const filterFn = predicate || this._stringFilter;
+    return options.filter(filterFn);
   }
+
+  _stringFilter = option => {
+    const { value } = this.props;
+    const searchText = this._isControlled ? value : this.state.inputValue;
+    return StringUtils.includesCaseInsensitive(option.value, searchText.trim());
+  };
 
   _onChange = e => {
     if (this._isControlled) {
@@ -140,9 +148,9 @@ export default class Search extends WixComponent {
           ref={r => (this.searchInput = r)}
           roundInput
           prefix={
-            <div className={styles.leftIcon}>
+            <Input.IconAffix>
               <SearchIcon />
-            </div>
+            </Input.IconAffix>
           }
           menuArrow={false}
           clearButton

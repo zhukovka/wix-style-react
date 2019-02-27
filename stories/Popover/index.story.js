@@ -6,6 +6,7 @@ import { storySettings } from './storySettings';
 import Popover, { placements } from '../../src/Popover';
 import Button from '../../src/Button';
 import Dropdown from '../../src/Dropdown';
+import Calendar from '../../src/Calendar';
 import FormField from '../../src/FormField';
 
 import ExampleAppendTo from './examples/ExampleAppendTo';
@@ -71,6 +72,17 @@ const children = [
               placeholder="This is a placeholder"
             />
           </FormField>
+        </div>
+      </Popover.Content>,
+    ],
+  },
+  {
+    label: 'A Calendar',
+    value: [
+      <Popover.Element key="1">This is the Popover.Element</Popover.Element>,
+      <Popover.Content key="2">
+        <div style={{ padding: '12px 24px' }}>
+          <Calendar onChange={() => {}} autoFocusSelectedDay />
         </div>
       </Popover.Content>,
     ],

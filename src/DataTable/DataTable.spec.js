@@ -423,13 +423,6 @@ describe('Table', () => {
       expect(driver.hasSortDescending(3)).toBe(true);
     });
 
-    it('should display new sort asc/desc style', () => {
-      const _props = Object.assign({}, props, { onSortClick: jest.fn() });
-      const driver = createDriver(<DataTable {..._props} newDesign />);
-      expect(driver.hasNewSortDescending(1)).toBe(false);
-      expect(driver.hasNewSortDescending(3)).toBe(true);
-    });
-
     it('should call on sort callback', () => {
       const _props = Object.assign({}, props, { onSortClick: jest.fn() });
       const driver = createDriver(<DataTable {..._props} />);

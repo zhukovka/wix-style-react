@@ -5,6 +5,7 @@
  */
 
 import './Introduction';
+import './Playground/Playground';
 
 // 1. Foundations
 import './Typography/TypographyStory.js'; // 1.2 Typography
@@ -17,22 +18,18 @@ import './CircularProgressBar.story.js'; // 1.7 LinearProgressBar
 import './ScrollBar'; // 1.8 ScrollBar
 
 // 2. Layout
-import './Page/index.story.js'; // 2.5 Page
-import './PageHeader/index.story.js'; // 2.5 + PageHeader
-import './Page/FullPageExample.js'; // 2.5 + Page Example
-import './EmptyState/EmptyState.story'; // 2.6 EmptyState
+import './PageLayout/index.story.js'; // 2.1 Page Layout
+import './Card'; // 2.2 Card Layout
+import './EmptyState/EmptyState.story'; // 2.4 EmptyState
 import './StatsWidget/index.story'; // 2.7 StatsWidget
 import './AddItem/AddItem.story'; // 2.8 AddItem
-import './Grid';
-import './Card';
 
 // 3. Inputs
-import './TextField'; // 3.1 Text Field
-import './TextArea'; // 3.2a Text Area
-import './RichTextAreaComposite'; // 3.2b RichTextAreaComposite
-import './RichTextArea/RichTextArea.story.js'; // 3.2b + RichTextArea
+import './TextInput/index.story'; // 3.1. Text Input
+import './TextArea/index.story'; // 3.2 Text Area
+import './RichTextArea/index.story.js'; // 3.2b + RichTextArea
 import './FieldWithSelectionComposite'; // 3.3 Field With Selection
-import './TimeInput.story.js'; // 3.4 TimeInput
+import './TimeInput/TimeInput.story.js'; // 3.4 TimeInput
 import './DatePicker.story.js'; // 3.6 DatePicker
 import './Range'; // 3.7 Range
 import './MultiSelect/index.story'; // 3.8 Tags
@@ -50,6 +47,7 @@ import './MultiSelectCheckbox/index.story.js'; // 4.1 + MultiSelectCheckbox
 import './CheckBox/index.story.js'; // 4.2 Checkbox
 import './RadioGroup.story.js'; // 4.3 RadioGroup
 import './ToggleSwitch/index.story'; // 4.4 ToggleSwitch
+import './SegmentedToggle/index.story'; // 4.5 SegmentedToggle
 import './Slider/index.story'; // 4.7 Slider
 
 // 5. Buttons
@@ -64,12 +62,14 @@ import './Breadcrumbs/index.story.js'; // 6.2 + Breadcrumbs
 import './Tabs'; // 6.3 Tabs
 
 // 7. Tooltips
-import './Tooltip/Composite/CompositeStory'; // 7.1 Tooltip, 7.2 Popover
+import './Tooltip/Composite/CompositeStory'; // 7.1 Tooltip
+import './Popover/index.story'; //7.2 Popover
 import './PopoverMenu/index.story'; // 7.3 Popover Menu
 
 // 8. Notification Bars
 // 8.1 Standard, 8.2 Error, 8.3 Success, 8.4 Warning, 8.5 Premium
 import './Notification/index.story.js';
+import './FloatingNotification/index.story';
 import './FloatingHelper/FloatingHelper.story.js'; // 8.6 FloatingHelper
 import './FloatingHelperContent/FloatingHelperContent.story.js'; // 8.6 + FloatingHelper.Content
 import './SectionHelper/SectionHelper.story.js'; // 8.7 SectionHelper
@@ -96,7 +96,7 @@ import './CalendarPanel/index.story'; // 11.6 CalendarPanel
 // 12. Other
 import './Badge/index.story'; // 12.1 Badge
 import './BadgeSelect/index.story.js'; // 12.2 BadgeSelect
-import './CounterBadge'; //12.3 CounterBadge
+import './CounterBadge/CounterBadge.story'; //12.3 CounterBadge
 import './FullTextView.story.js'; //12.4 FullTextView
 import './Tag/Tag.story'; // 12.5 Tag
 import './Avatar/Avatar.story'; // 12.6 Avatar
@@ -104,25 +104,31 @@ import './Highlighter.story.js'; // Highlighter
 
 // Components API
 import './Box/index.story.js';
+import './components/Page/index.story.js';
 import './components/Calendar/index.story';
 import './components/CalendarPanel/index.story';
 import './CalendarPanelFooter/index.story';
+import './components/Card';
 import './CardGalleryItem/CardGalleryItem.story';
 import './Carousel/index.story.js';
 import './Collapse.story';
 import './components/Dropdown/Dropdown.story.js';
 import './DropdownBase/index.story';
-import './FormField/FormField.story.js';
+import './components/EmptyState/EmptyState.story';
+import './FormField/index.story.js';
 import './GenericModalLayout/GenericModalLayout.story.js';
 import './GoogleAddressInput/index.story.js';
+import './components/Grid';
 import './Heading/index.story';
-import './Input';
+import './Input/index.story';
 import './InputArea/index.story.js';
 import './Layout/index.story.js';
 import './Layout';
 import './components/MultiSelect/index.story';
-import './Popover/index.story';
+import './components/Page/PageExampleStories.js';
+import './components/PageHeader/index.story.js';
 import './Proportion/index.story.js';
+import './RichTextArea/api.story';
 import './Skeleton.story.js';
 import './Text/index.story';
 import './Thumbnail/index.story';
@@ -136,17 +142,13 @@ import './DragAndDrop/DragAndDrop.js';
 import './Builders/BadgeSelectItemBuilder';
 import './Builders/ContactItemBuilder';
 
-// TPA
-import './TPA/Button';
-import './TPA/FloatingTabs';
-import './TPA/TextLink';
-import './TPA/Input';
-import './TPA/Label';
-
 // Tests
 import './Typography/TypographyTestStories';
-import './Page/PageTestStories.js'; // Tests/2. Layout/2.5 + Page/
-import './PageHeader/PageHeaderTestStories.js'; // Tests/2. Layout/2.5 + PageHeader/
+import './Input/InputTestStories';
+import './TimeInput/testStory';
+import './components/Page/PageTestStories.js'; // Tests/2. Layout/2.5 + Page/
+import './components/Page/PageTestStoriesDeprecated.js'; // Tests/2. Layout/2.5 + Page/Deprecated
+import './components/PageHeader/PageHeaderTestStories.js'; // Tests/2. Layout/2.5 + PageHeader/
 import './Button/testButton'; // Tests/5. Button/5.1 Button
 import './IconButton/testStory'; // Tests/5. Button/5.2 IconButton
 import './TextButton/testStory'; // Tests/5. Button/5.3 TextButton
@@ -163,13 +165,16 @@ import './Thumbnail/testStory';
 import './EditableSelector/testStory';
 import './Slider/testStory'; // 4.7 Slider
 import './StatsWidget/testStory'; // 2.7 StatsWidget
+import './SegmentedToggle/testStory'; // 4.5 SegmentedToggle
+import './FloatingNotification/FloatingNotificationTestStory'; // 8.2 FloatingNotification
+import './FormField/testStory';
+import './RichTextArea/testStory';
 
 // The generated test component
 import './GeneratedTestComponent/index.story';
 
-// Deprecated
-import './Deprecated/Button/standard.story.js';
-import './Deprecated/IconWithOptions'; // IconWithOptions
-import './Deprecated/ButtonWithOptions'; // ButtonWithOptions
-import './ButtonLayout.story.js'; // 5.0 ButtonLayout
-import './TextLink/index.story.js'; // 5.8 Text Link
+// This import was added by the component generator
+import './RichTextInputArea/index.story';
+
+// This import was added by the component generator
+import './NoBorderInput/index.story';

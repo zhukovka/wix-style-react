@@ -1,0 +1,50 @@
+@import '~draft-js/dist/Draft';
+
+@import '../common';
+@import '../typography-helpers';
+
+$minWidth: 378px;
+$minHeight: 132px;
+$border: 1px solid $B30;
+$borderRadius: 6px;
+$padding: 12px;
+
+.root {
+  min-width: $minWidth;
+  background-color: $D80;
+  border-radius: $borderRadius;
+
+  :global(.public-DraftEditor-content) { 
+    min-height: $minHeight;
+    padding: $padding;
+    border: $border;
+    border-bottom-left-radius: $borderRadius;
+    border-bottom-right-radius: $borderRadius;
+
+    @include Text($weight: thin, $size: medium);
+
+    &:hover {
+      background-color: $B50;
+      cursor: pointer;
+    }
+
+    &:focus {
+      background-color: $D80;
+      cursor: text;
+      border-color: $B10;
+      box-shadow: 0 0 0 3px $F00;
+    }
+  }
+}
+
+.toolbar {
+  border: $border;
+  border-bottom: 0;
+  border-top-left-radius: $borderRadius;
+  border-top-right-radius: $borderRadius;
+}
+
+.link {
+  color: $B10;
+  text-decoration: none;
+}

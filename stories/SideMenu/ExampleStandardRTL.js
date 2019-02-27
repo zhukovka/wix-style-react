@@ -98,7 +98,7 @@ export default () => (
 
         <SideMenu.Promotion>
           <Button
-            theme="fullpurple"
+            skin="premium"
             onClick={() => console.log('Promotion button clicked!')}
           >
             Upgrade

@@ -9,7 +9,7 @@ import EditableRow from './EditableRow/EditableRow';
 import styles from './EditableSelector.scss';
 import Add from '../new-icons/Add';
 import Delete from '../new-icons/Delete';
-import TextLink from '../TextLink';
+import TextLink from '../Deprecated/TextLink';
 
 class EditableSelector extends WixComponent {
   static propTypes = {
@@ -125,7 +125,6 @@ class EditableSelector extends WixComponent {
                   </IconButton>
                   <div className={styles.editRow}>
                     <Button
-                      upgrade
                       onClick={() => this.editItem(index)}
                       dataHook="edit-item"
                       size="small"

@@ -32,7 +32,11 @@
   outline: none;
 }
 
-.root:focus-visible:before {
+.root:hover {
+  box-shadow: 0 0 0 1px value(B20) inset;
+}
+
+.root:focus-visible::before {
   position: absolute;
   top: 0;
   right: 0;
@@ -60,16 +64,16 @@
   cursor: default;
 }
 
-.root::selectedIcon {
-  background: red;
+.root:disabled .image {
+  opacity: .42;
 }
 
-.root:disabled ::selectedIcon {
+.root:disabled .selectedIcon {
   background: value(D55);
 }
 
-.root:disabled ::title,
-.root:disabled ::description {
+.root:disabled .title,
+.root:disabled .description {
   color: value(D55);
 }
 
@@ -79,12 +83,20 @@
   box-shadow: 0 0 0 1px value(B30);
 }
 
+.root:hasBackground:hover {
+  box-shadow: 0 0 0 1px value(B20);
+}
+
 .root:hasBackground:selected {
   box-shadow: 0 0 0 2px value(B10);
 }
 
 .root:hasBackground:selected:disabled {
   box-shadow: 0 0 0 2px value(D55);
+}
+
+.root:hasBackground:disabled {
+  box-shadow: 0 0 0 1px value(D55);
 }
 
 .title,
@@ -127,6 +139,7 @@
   height: 24px;
   border-radius: 50%;
   color: value(WHITE);
+  z-index: 1;
 }
 
 :global([dir="rtl"]) .selectedIcon {

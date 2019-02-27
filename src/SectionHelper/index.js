@@ -4,10 +4,12 @@ import classnames from 'classnames';
 
 import WixComponent from '../BaseComponents/WixComponent';
 import Text from '../Text';
-import Button from '../Button';
+import Button from '../Deprecated/Button';
 import CloseButton from '../CloseButton';
 
 import styles from './styles.scss';
+
+const experimentalDark = 'experimentalDark';
 
 export const HELPER_APPEARANCE = {
   warning: styles.warning,
@@ -15,6 +17,8 @@ export const HELPER_APPEARANCE = {
   danger: styles.danger,
   success: styles.success,
   premium: styles.premium,
+  preview: styles.preview,
+  experimentalDark: styles.experimentalDark,
 };
 
 /**
@@ -40,7 +44,9 @@ class SectionHelper extends WixComponent {
             <CloseButton
               dataHook="sectionhelper-close-btn"
               size="medium"
-              skin="dark"
+              skin={
+                this.props.appearance === experimentalDark ? 'light' : 'dark'
+              }
               onClick={this.props.onClose}
             />
           </div>
@@ -48,21 +54,32 @@ class SectionHelper extends WixComponent {
 
         {this.props.title && (
           <div className={styles.title}>
-            <Text dataHook="sectionhelper-title" size="small" weight="normal">
+            <Text
+              light={this.props.appearance === experimentalDark}
+              dataHook="sectionhelper-title"
+              size="small"
+              weight="normal"
+            >
               {this.props.title}
             </Text>
           </div>
         )}
 
         <div className={styles.content}>
-          <Text size="small">{this.props.children}</Text>
+          <Text size="small" light={this.props.appearance === experimentalDark}>
+            {this.props.children}
+          </Text>
         </div>
 
         {this.props.onAction && this.props.actionText && (
           <div className={styles.action}>
             <Button
               height="small"
-              theme="outlined"
+              theme={
+                this.props.appearance === experimentalDark
+                  ? 'fullblue'
+                  : 'outlined'
+              }
               onClick={this.props.onAction}
               dataHook="sectionhelper-action-btn"
               children={this.props.actionText}

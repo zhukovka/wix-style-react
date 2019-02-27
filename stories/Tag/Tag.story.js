@@ -29,7 +29,6 @@ export default {
   componentProps: {
     children: 'Hello World',
     dataHook: storySettings.dataHook,
-    useOldMargins: false,
   },
   exampleProps: {
     onRemove: id => `ID: ${id} Removed!`,

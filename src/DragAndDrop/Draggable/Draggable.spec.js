@@ -9,6 +9,8 @@ import { draggableTestkitFactory as enzymeDraggableTestkitFactory } from '../../
 import { mount } from 'enzyme';
 
 describe('Draggable', () => {
+  // TODO: fix or remove tests if not relevant
+  // eslint-disable-next-line jest/no-disabled-tests
   xit('is draggable', async () => {
     const dataHook = 'draggable-content';
     const render = ({ isPlaceholder }) =>

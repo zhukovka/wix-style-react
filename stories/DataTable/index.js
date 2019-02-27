@@ -30,19 +30,7 @@ storiesOf('10. Tables', module).add('10.1 DataTable (Legacy)', () => (
     <div>
       <Markdown source={Readme} />
       <h1>Usage examples</h1>
-      <h2>IMPORTANT NOTE - New Design!!!</h2>
-      <p style={{ fontSize: 24 }}>
-        These examples are using a prop `newDesign=true` which applies new css
-        rules from updates UX specs.
-        <br />
-        These rules include layout changes that could potentialy break design.{' '}
-        <br />
-        <span style={{ fontWeight: 'bold' }}>
-          Please enable this flag so you can adapt to the changes before the
-          breaking version is released
-        </span>
-        .
-      </p>
+
       <CodeExample title="With infinite scroll" code={ExampleRaw}>
         <Example />
       </CodeExample>

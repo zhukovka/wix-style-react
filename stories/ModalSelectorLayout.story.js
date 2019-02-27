@@ -64,7 +64,7 @@ export default {
       {
         label: 'BOLD title',
         value: (
-          <Text key={0} bold>
+          <Text key={0} weight="bold">
             BOLD title
           </Text>
         ),

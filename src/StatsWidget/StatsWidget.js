@@ -6,14 +6,10 @@ import styles from './StatsWidget.scss';
 import Heading from '../Heading';
 import SortByArrowUp from '../new-icons/system/SortByArrowUp';
 import SortByArrowDown from '../new-icons/system/SortByArrowDown';
-import ButtonWithOptions from '../ButtonWithOptions';
 import Badge from '../Badge';
 import DropdownBase from '../DropdownBase';
 import TextButton from '../TextButton';
 import ChevronDown from '../new-icons/ChevronDown';
-import deprecationLog from '../utils/deprecationLog';
-
-export const deprecationMessage = `Usage of <StatsWidget.Filter/> with <ButtonWithOptions/> is deprecated, use the newer <StatsWidget.FilterButton/> instead.`;
 
 function renderTrend(percent, invertPercentColor) {
   const badgeProps = {
@@ -47,6 +43,8 @@ function renderTrend(percent, invertPercentColor) {
  */
 class StatsWidget extends WixComponent {
   static propTypes = {
+    /** A component to be displayed on the right side of Stats Widget */
+    suffix: PropTypes.node,
     /** Widget title */
     title: PropTypes.string.isRequired,
     /** Statistics to display:
@@ -74,10 +72,6 @@ class StatsWidget extends WixComponent {
 
       const childrenArray = [].concat(props[propName]);
 
-      if (childrenArray.some(child => child.type === StatsWidget.Filter)) {
-        deprecationLog(deprecationMessage);
-      }
-
       if (childrenArray.length > 3) {
         return new Error(
           `Invalid Prop children, maximum amount of filters are 3`,
@@ -86,11 +80,7 @@ class StatsWidget extends WixComponent {
 
       // TODO: when deprecating <StatsWidget.Filter/>, remove it from the validation
       if (
-        childrenArray.some(
-          child =>
-            child.type !== StatsWidget.Filter &&
-            child.type !== StatsWidget.FilterButton,
-        )
+        childrenArray.some(child => child.type !== StatsWidget.FilterButton)
       ) {
         return new Error(
           `StatsWidget: Invalid Prop children, only <StatsWidget.FilterButton/> is allowed`,
@@ -114,24 +104,31 @@ class StatsWidget extends WixComponent {
           {statistics.subtitle}
         </Heading>
         {typeof statistics.percent === 'number' &&
-            renderTrend(statistics.percent, statistics.invertPercentColor)}
-          </div>
+          renderTrend(statistics.percent, statistics.invertPercentColor)}
+      </div>
     );
   }
 
-  _renderFilters(filters) {
-    return <div className={styles.filtersWrapper}>{filters}</div>;
+  _renderSuffix(suffixElement, index) {
+    return (
+      <div className={styles.filtersWrapper} key={index}>
+        {suffixElement}
+      </div>
+    );
   }
 
   render() {
-    const { title, statistics, children, emptyState } = this.props;
+    const { title, statistics, children, emptyState, suffix } = this.props;
+    const suffixElements = [].concat(suffix).concat(children);
 
     return (
       <Card>
         <Card.Header
           dataHook="stats-widget-title"
           title={title}
-          suffix={this._renderFilters(children)}
+          suffix={suffixElements.map((suffixElement, index) =>
+            this._renderSuffix(suffixElement, index),
+          )}
         />
         <Card.Content>
           {statistics ? (
@@ -164,7 +161,6 @@ const FilterButton = props => (
 
 FilterButton.displayName = 'StatsWidget.FilterButton';
 
-StatsWidget.Filter = ButtonWithOptions;
 StatsWidget.FilterButton = FilterButton;
 
 StatsWidget.displayName = 'StatsWidget';

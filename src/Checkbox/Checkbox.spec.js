@@ -1,11 +1,7 @@
 import React from 'react';
-import ReactTestUtils from 'react-dom/test-utils';
 import checkboxDriverFactory from './Checkbox.driver';
 import { createDriverFactory } from 'wix-ui-test-utils/driver-factory';
-import { checkboxTestkitFactory } from '../../testkit';
 import Checkbox from './Checkbox';
-import { checkboxTestkitFactory as enzymeCheckboxTestkitFactory } from '../../testkit/enzyme';
-import { mount } from 'enzyme';
 
 const cachedConsoleWarn = global.console.warn;
 
@@ -66,38 +62,37 @@ describe('Checkbox', () => {
     expect(driver.isIndeterminate()).toBeTruthy();
   });
 
+  it('should show error message when in error state with message', async () => {
+    const errorMessage = 'Error message';
+    const driver = createDriver(
+      <Checkbox hasError errorMessage={errorMessage} />,
+    );
+    expect(await driver.getErrorMessage()).toEqual(errorMessage);
+  });
+
+  it('should not show error message when disabled', async () => {
+    const errorMessage = 'Error message';
+    const driver = createDriver(
+      <Checkbox hasError errorMessage={errorMessage} disabled />,
+    );
+    expect(driver.getErrorMessage()).rejects.toThrow(Error);
+  });
+
+  it('should not show error message when no error message stated', async () => {
+    const driver = createDriver(<Checkbox hasError />);
+    expect(driver.getErrorMessage()).rejects.toThrow(Error);
+  });
+
+  it('should not show error message when not in error state', async () => {
+    const errorMessage = 'Error message';
+    const driver = createDriver(<Checkbox errorMessage={errorMessage} />);
+    expect(driver.getErrorMessage()).rejects.toThrow(Error);
+  });
+
   it('should not warn with deprecation warning, if no size', () => {
     global.console.warn = jest.fn();
     createDriver(<Checkbox />);
     expect(global.console.warn).not.toBeCalled();
     global.console.warn = cachedConsoleWarn;
-  });
-
-  describe('testkit', () => {
-    it('should exist', () => {
-      const div = document.createElement('div');
-      const dataHook = 'myDataHook';
-      const wrapper = div.appendChild(
-        ReactTestUtils.renderIntoDocument(
-          <div>
-            <Checkbox dataHook={dataHook} />
-          </div>,
-        ),
-      );
-      const checkboxTestkit = checkboxTestkitFactory({ wrapper, dataHook });
-      expect(checkboxTestkit.exists()).toBeTruthy();
-    });
-  });
-
-  describe('enzyme testkit', () => {
-    it('should exist', () => {
-      const dataHook = 'myDataHook';
-      const wrapper = mount(<Checkbox dataHook={dataHook} />);
-      const checkboxTestkit = enzymeCheckboxTestkitFactory({
-        wrapper,
-        dataHook,
-      });
-      expect(checkboxTestkit.exists()).toBeTruthy();
-    });
   });
 });

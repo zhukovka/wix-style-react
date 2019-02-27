@@ -1,5 +1,4 @@
 import React from 'react';
-import { consoleErrors } from 'wix-ui-test-utils/dist/src/jest-setup';
 import MessageBoxMarketerialLayout from './MessageBoxMarketerialLayout';
 import MessageBoxMarketerialLayoutFactory from './MessageBoxMarketerialLayout.driver';
 import sinon from 'sinon';
@@ -10,7 +9,6 @@ import {
 import { messageBoxMarketerialLayoutTestkitFactory } from '../../testkit';
 import { messageBoxMarketerialLayoutTestkitFactory as enzymeMessageBoxTestkitFactory } from '../../testkit/enzyme';
 import { mount } from 'enzyme';
-import { depLogger } from '../utils/deprecationLog';
 import { createRendererWithDriver, cleanup } from '../../test/utils/react';
 
 describe('MessageBoxMarketerialLayout', () => {
@@ -30,9 +28,7 @@ describe('MessageBoxMarketerialLayout', () => {
       const props = Object.assign({}, requiredProps, {
         primaryButtonLabel: 'primaryButtonLabel',
       });
-      const driver = createDriver(
-        <MessageBoxMarketerialLayout {...props} fixImagePosition />,
-      );
+      const driver = createDriver(<MessageBoxMarketerialLayout {...props} />);
       expect(driver.getPrimaryButtonText()).toBe(props.primaryButtonLabel);
     });
 
@@ -198,46 +194,6 @@ describe('MessageBoxMarketerialLayout', () => {
           '[data-hook="footer-layout-bottom-children"]',
         ),
       ).toBeNull();
-    });
-  });
-
-  describe('deprecationLog fixImagePosition', () => {
-    let depLogSpy;
-
-    beforeEach(() => {
-      depLogSpy = jest.spyOn(depLogger, 'log');
-    });
-
-    afterEach(() => depLogSpy.mockRestore());
-
-    it('should show deprecationLog', () => {
-      createDriver(
-        <MessageBoxMarketerialLayout {...requiredProps} imageUrl="blah" />,
-      );
-      expect(depLogSpy).toBeCalledWith(
-        'MessageBoxMarketerialLayout have issue with image positioning. Please use fixImagePosition prop to fix it. Next major version will have a fix by default.',
-      );
-    });
-
-    it('should show deprecationLog and warn of imageUrl not a string', () => {
-      createDriver(
-        <MessageBoxMarketerialLayout {...requiredProps} imageUrl={4} />,
-      );
-      expect(consoleErrors.get()).toHaveLength(1);
-      expect(consoleErrors.get()[0].includes('Invalid')).toBeTruthy();
-
-      consoleErrors.reset(); // prevent test from failing
-    });
-
-    it('should NOT show deprecationLog when fixImgPosition is provided', () => {
-      createDriver(
-        <MessageBoxMarketerialLayout
-          {...requiredProps}
-          imageUrl="blah"
-          fixImagePosition
-        />,
-      );
-      expect(depLogSpy).not.toHaveBeenCalled();
     });
   });
 

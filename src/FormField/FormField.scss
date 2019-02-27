@@ -2,6 +2,7 @@
 
 $suffixHorizontalPadding: 12px;
 $inlineLabelMinHeight: 36px;
+$childrenMargin: 6px;
 
 .root {
   display: inline-flex;
@@ -18,9 +19,16 @@ $inlineLabelMinHeight: 36px;
 
 .children {
   flex: 0 0 100%;
+  max-width: 100%;
 
   &.childrenWithInlineSuffixes {
     flex: 0 0 auto;
+    display: flex;
+    flex-direction: column;
+
+    .counter {
+      margin-bottom: $childrenMargin;
+    }
   }
 
   &.stretchContent{
@@ -41,7 +49,7 @@ $inlineLabelMinHeight: 36px;
   }
 
   .children {
-    padding-top: 6px;
+    padding-top: $childrenMargin;
   }
 }
 
@@ -80,6 +88,7 @@ $inlineLabelMinHeight: 36px;
 .asterisk {
   display: inline-block;
   color: $B20;
+  font-family: $FontLight;
   font-size: 22px;
   margin-left: 6px;
   margin-top: -4px;
@@ -92,6 +101,13 @@ $inlineLabelMinHeight: 36px;
 .suffixesInline {
   display: flex;
   align-items: center;
+
+  &.inlineWithCharCounter {
+    $charCounterHeight: 18px;
+    
+    // Aligns the inline label on the top in case the counter appears
+    margin-top: $charCounterHeight + $childrenMargin;
+  }
 }
 
 .counter {

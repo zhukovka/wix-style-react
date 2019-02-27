@@ -52,7 +52,7 @@ export class TableExample extends React.Component {
               render: row => <span>{row.name}</span>,
               width: '30%',
               minWidth: '150px',
-              infoTooltip: { content: 'This is the name column' },
+              infoTooltipProps: { content: 'This is the name column' },
             },
             {
               title: 'SKU',

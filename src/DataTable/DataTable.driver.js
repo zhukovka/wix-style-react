@@ -80,13 +80,7 @@ const dataTableDriverFactory = ({ element }) => {
     getRowDetailsText: index => getRowDetails(index).textContent,
     hasSortableTitle: index => !!getSortableTitle(index),
     hasInfoIcon: index => !!getTitleInfoIcon(index),
-    hasNewSortDescending: index => !!getSortableTitleArrowDesc(index),
-    hasSortDescending: index => {
-      const sortableTitle = getSortableTitle(index);
-      return (
-        !!sortableTitle && sortableTitle.classList.contains('sortArrowAsc')
-      );
-    },
+    hasSortDescending: index => !!getSortableTitleArrowDesc(index),
     clickSort: (index, eventData) =>
       ReactTestUtils.Simulate.click(getHeaderCell(index), eventData),
     getRowDetails: index => getRowDetails(index),

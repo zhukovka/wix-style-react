@@ -16,7 +16,7 @@ import Checkbox from 'wix-style-react/Checkbox';
 import Card from 'wix-style-react/Card';
 import Page from 'wix-style-react/Page';
 import Button from 'wix-style-react/Button';
-import TextLink from 'wix-style-react/TextLink';
+import TextButton from 'wix-style-react/TextButton';
 import Text from 'wix-style-react/Text';
 import { Edit, Duplicate, Upload } from 'wix-style-react/new-icons';
 import Highlighter from 'wix-style-react/Highlighter';
@@ -158,7 +158,8 @@ export class TablePageExample extends React.Component {
         <ItemGroup position="end">
           <Item layout="button">
             <Button
-              theme="whiteblueprimary"
+              skin="light"
+              priority="primary"
               prefixIcon={<Upload />}
               onClick={() =>
                 window.alert(`Exporting selectedIds=${props.getSelectedIds()}`)
@@ -169,7 +170,8 @@ export class TablePageExample extends React.Component {
           </Item>
           <Item layout="button">
             <Button
-              theme="whiteblueprimary"
+              skin="light"
+              priority="primary"
               prefixIcon={<Duplicate />}
               onClick={() =>
                 window.alert(
@@ -182,7 +184,8 @@ export class TablePageExample extends React.Component {
           </Item>
           <Item layout="button">
             <Button
-              theme="whiteblueprimary"
+              skin="light"
+              priority="primary"
               prefixIcon={<Edit />}
               onClick={() =>
                 window.alert(`Editing selectedIds=${props.getSelectedIds()}`)
@@ -299,9 +302,9 @@ export class TablePageExample extends React.Component {
                       )
                     }
                   >
-                    <TextLink onClick={() => this.clearSearch()}>
+                    <TextButton onClick={() => this.clearSearch()}>
                       Clear the search
-                    </TextLink>
+                    </TextButton>
                   </Table.EmptyState>
                 )}
               </Card>

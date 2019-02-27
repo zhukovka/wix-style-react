@@ -36,7 +36,6 @@
 | rowDetails | func | - | - | Function that returns React component that will be rendered in row details section. Example: `rowDetails={(row, rowNum) => <MyRowDetailsComponent {...row} />}` |
 | allowMultiDetailsExpansion | boolean | false | - | Allows to open multiple row details |
 | onSortClick | func | - | - | A callback function called on each column title click. Signature `onSortClick(colData, colNum)` |
-| newDesign | boolean | false | - | A flag specifying weather to apply the new layout/design update. Default will change to true in the next major release (version 5.0.0)|
 
 ### Column object props
 

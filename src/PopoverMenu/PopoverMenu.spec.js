@@ -5,13 +5,6 @@ import popoverMenuDriverFactory from './PopoverMenu.driver';
 import PopoverMenu from './PopoverMenu';
 import PopoverMenuItem from '../PopoverMenuItem/PopoverMenuItem';
 import { createDriverFactory } from 'wix-ui-test-utils/driver-factory';
-import {
-  isTestkitExists,
-  isEnzymeTestkitExists,
-} from '../../test/utils/testkit-sanity';
-import { popoverMenuTestkitFactory } from '../../testkit';
-import { popoverMenuTestkitFactory as enzymePopoverMenuTestkitFactory } from '../../testkit/enzyme';
-import { mount } from 'enzyme';
 
 const waitFor = fn => waitForCond.assert(fn, 5000);
 
@@ -108,9 +101,7 @@ describe('PopoverMenu', () => {
   it('should not render arrow when prop showArrow=false', async () => {
     const driver = createDriver(
       <PopoverMenu showArrow={false}>
-        <PopoverMenuItem
-          dataHook={menuItemDataHook}
-        />
+        <PopoverMenuItem dataHook={menuItemDataHook} />
       </PopoverMenu>,
     ).init.menuItemDataHook(menuItemDataHook);
     driver.click();
@@ -121,29 +112,62 @@ describe('PopoverMenu', () => {
 
     expect(driver.menu.hasArrow()).toBeFalsy();
   });
-});
 
-describe('Testkits', () => {
-  const genPopoverMenuElement = () => (
-    <PopoverMenu>
-      <PopoverMenuItem text="Menu Item #1" />
-      <PopoverMenuItem text="Menu Item #2" />
-    </PopoverMenu>
-  );
+  it('should invoke onShow property when menu is shows ', async () => {
+    const onShow = jest.fn();
+    const driver = createDriver(
+      <PopoverMenu onShow={onShow}>
+        <PopoverMenuItem dataHook={menuItemDataHook} />
+      </PopoverMenu>,
+    ).init.menuItemDataHook(menuItemDataHook);
+    driver.click();
 
-  it('Using ReactTestUtils testkit', () => {
-    expect(
-      isTestkitExists(genPopoverMenuElement(), popoverMenuTestkitFactory),
-    ).toBe(true);
+    await waitFor(() => {
+      expect(driver.menu.isShown()).toBe(true);
+      expect(onShow).toHaveBeenCalled();
+    });
   });
 
-  it('Using Enzyme testkit', () => {
-    expect(
-      isEnzymeTestkitExists(
-        genPopoverMenuElement(),
-        enzymePopoverMenuTestkitFactory,
-        mount,
-      ),
-    ).toBe(true);
+  it('should invoke onHide property when menu is hides ', async () => {
+    const onHide = jest.fn();
+    const driver = createDriver(
+      <PopoverMenu onHide={onHide}>
+        <PopoverMenuItem dataHook={menuItemDataHook} />
+      </PopoverMenu>,
+    ).init.menuItemDataHook(menuItemDataHook);
+    driver.click();
+
+    await waitFor(() => {
+      expect(driver.menu.isShown()).toBe(true);
+    });
+
+    driver.click();
+    await waitFor(() => {
+      expect(driver.menu.isShown()).toBe(false);
+      expect(onHide).toHaveBeenCalled();
+    });
+  });
+
+  it('should not invoke onHide and onShow properties when menu is hides ', async () => {
+    const onHide = jest.fn();
+    const onShow = jest.fn();
+
+    const driver = createDriver(
+      <PopoverMenu>
+        <PopoverMenuItem dataHook={menuItemDataHook} />
+      </PopoverMenu>,
+    ).init.menuItemDataHook(menuItemDataHook);
+    driver.click();
+
+    await waitFor(() => {
+      expect(driver.menu.isShown()).toBe(true);
+      expect(onShow).not.toHaveBeenCalled();
+    });
+
+    driver.click();
+    await waitFor(() => {
+      expect(driver.menu.isShown()).toBe(false);
+      expect(onHide).not.toHaveBeenCalled();
+    });
   });
 });

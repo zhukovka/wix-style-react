@@ -1,6 +1,6 @@
 import popoverMenuDriverFactory from '../PopoverMenu/PopoverMenu.driver';
 import tooltipDriverFactory from '../Tooltip/Tooltip.driver';
-import buttonDriverFactory from '../Backoffice/Button/Button.driver.js';
+import buttonDriverFactory from '../Deprecated/Button/Button.driver.js';
 import { INTERNAL_DRIVER_SYMBOL } from '../../test/utils/private-drivers';
 
 const tableActionCellDriverFactory = ({ element }) => {
@@ -48,6 +48,9 @@ const tableActionCellDriverFactory = ({ element }) => {
     getPrimaryActionButtonDriver,
     /** Click the primary action button from the action column */
     clickPrimaryActionButton: () => getPrimaryActionButtonDriver().click(),
+    /** Get whether the primary action button is disabled */
+    getIsPrimaryActionButtonDisabled: () =>
+      getPrimaryActionButtonDriver().isButtonDisabled(),
     /** Get the number of the visible secondary actions */
     getVisibleActionsCount: () => getVisibleActionsWrapper().childElementCount,
     /** Get the number of hidden secondary actions (in the <PopoverMenu/>, requires it to be open) */

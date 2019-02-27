@@ -2,11 +2,19 @@ import React from 'react';
 import WixComponent from '../BaseComponents/WixComponent';
 import styles from './PopoverMenu.scss';
 import Tooltip from '../Tooltip';
-import Button from '../Backoffice/Button';
+import Button from '../Deprecated/Button';
 import More from '../new-icons/More';
 import PopoverMenuItem from '../PopoverMenuItem';
 import classnames from 'classnames';
-import { oneOf, oneOfType, bool, element, number, string } from 'prop-types';
+import {
+  oneOf,
+  oneOfType,
+  bool,
+  element,
+  number,
+  string,
+  func,
+} from 'prop-types';
 
 class PopoverMenu extends WixComponent {
   static displayName = 'PopoverMenu';
@@ -39,6 +47,8 @@ class PopoverMenu extends WixComponent {
     /** Sets a zIndex to the popover  */
     zIndex: number,
     showArrow: bool,
+    onShow: func,
+    onHide: func,
   };
 
   static defaultProps = {
@@ -105,6 +115,8 @@ class PopoverMenu extends WixComponent {
         appendToParent={this.props.appendToParent}
         zIndex={this.props.zIndex}
         showArrow={this.props.showArrow}
+        onShow={this.props.onShow}
+        onHide={this.props.onHide}
       >
         <Button type="button" height={buttonHeight} theme={buttonTheme}>
           <More />

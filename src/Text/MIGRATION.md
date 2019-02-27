@@ -1,12 +1,30 @@
 # Text Migration Guide
 
+## Migration to version 4
+
+###<Text/>
+
+The `bold` prop is deprecated in favor of `weight`:
+
+`<Text bold="false">` -> `<Heading weight="thin">`
+
+`<Text bold="true">` -> `<Heading weight="normal">`
+
+### Testkit Deprecated methods:
+
+`isBold` --> `getWeight`
+
+----
+
 ## Migration to version 3
+
 Instead of having one Text component which can render `<span>`, `<div>`, `<h1>`, ..., `<h4>`, we have seperated the Text into 2 seperated components:
 
 1. `<Text>`
 2. `<Heading>`
 
 ## Best practice to use the colors in wix-style-react:
+
 Today there was no good way to get the colors from wix-style-react to display green or red text for example.
 Most of the users simply imported `common.scss` from wix-style-react and gets all the colors.
 
@@ -18,6 +36,7 @@ The new `Text` component tries to solve this bad practice. In order to stop impo
 * Note: The `common.scss` might be deprecated soon. We can’t guarantee it will remain exposed in the future versions.  
 
 ## <Text>
+
 The API for the `Text` typography have changed dramatically.
 We no longer have `appearance` prop, but many alternative more intuitive props:
 
@@ -27,9 +46,11 @@ We no longer have `appearance` prop, but many alternative more intuitive props:
 `light` - for when the text is rendered on top of a dark background. defaults to false.
 
 ### Default appearance
+
 Note that we used to have `appearance="T1.1"` by default. Now with the new API the default will be similar to `appearance="T1"`. Basically it means that by default the text is primary color, and not secondary.
 
 ### Appearances updates
+
 `<Text appearance="T1">` --> `<Text>`
 
 `<Text appearance="T1.1">` --> `<Text secondary>`
@@ -78,15 +99,18 @@ the Text)
 `T5.*` are deprecated. If you use them, you might want to use `<Badge type=“transparent”>`
 
 ### Testkit Deprecated methods:
+
 - `getClassName` is deprecated.
 - `getType` is deprecated in favor of `getTagName`
 
 ## Heading
+
 A lot have changed with the H.* appearances as well. Instead of having many H.* indexes, we have a new component `Heading` which also uses the `light` prop which helps us define the desired typography.
 we used to have a lot of options. All H0 - H4 values are now relevant only for the Heading component.
 We used to have `H0` - `H4`, which got mapped under the hood to html `h1` - `h5` respectively. Instead of doing it, we now support only `H1` - `H4` which will be mapped to `h1` - `h4`.
 
 ### Appearances updates
+
 `<Text appearance="H0">` -> DEPRECATED
 
 `<Text appearance="H1">` -> `<Heading appearance="H1">`
@@ -100,16 +124,3 @@ We used to have `H0` - `H4`, which got mapped under the hood to html `h1` - `h5`
 `<Text appearance="H3">` -> `<Heading appearance="H3">`
 
 `<Text appearance="H4">` -> `<Heading appearance="H4">`
-
-
-## Migration to version 4
-###<Text/>
-
-The `bold` prop is deprecated in favor of `weight`:
-
-`<Text bold="false">` -> `<Heading weight="thin">`
-
-`<Text bold="true">` -> `<Heading weight="normal">`
-
-### Testkit Deprecated methods:
-`isBold` --> `getWeight`

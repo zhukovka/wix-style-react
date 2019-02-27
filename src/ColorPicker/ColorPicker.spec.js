@@ -1,7 +1,7 @@
 import React from 'react';
 import color from 'color';
 import { createDriverFactory } from 'wix-ui-test-utils/driver-factory';
-import colorPickerDriverFactory from './ColorPicker.driver.private';
+import colorPickerDriverFactory from './ColorPicker.private.driver';
 
 import ColorPicker from './ColorPicker';
 
@@ -113,6 +113,25 @@ describe('ColorPicker', () => {
       driver.confirm();
       expect(color(driver.historyCurrentColor()).hex()).toBe('#000000');
       expect(color(driver.historyPreviousColor()).hex()).toBe('#000000');
+    });
+
+    it('`onCancel` should be called when cancel icon is clicked', () => {
+      const onChange = jest.fn();
+      const onCancel = jest.fn();
+      const onConfirm = jest.fn();
+      const value = '#00FF00';
+      createComponent({
+        value,
+        onChange,
+        onCancel,
+        onConfirm,
+        showHistory: true,
+      });
+      driver.selectBlackColor();
+      expect(color(driver.historyCurrentColor()).hex()).toBe('#000000');
+      expect(color(driver.historyPreviousColor()).hex()).toBe(value);
+      driver.cancel();
+      expect(onChange).toHaveBeenCalledTimes(1);
     });
   });
 });

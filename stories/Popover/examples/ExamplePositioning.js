@@ -27,7 +27,7 @@ class PositionedPopover extends React.Component {
           {...this.props}
         >
           <Popover.Element>
-            <Button height="x-small" matchParent>
+            <Button size="tiny" fullWidth>
               {this.props.placement}
             </Button>
           </Popover.Element>

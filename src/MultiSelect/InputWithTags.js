@@ -117,7 +117,6 @@ class InputWithTags extends React.Component {
             <Tag
               key={rest.id}
               dataHook="tag"
-              useOldMargins={false}
               disabled={disabled}
               onRemove={onRemoveTag}
               className={styles.tag}
@@ -195,7 +194,6 @@ class InputWithTags extends React.Component {
           className={classes}
           onRemove={onRemoveTag}
           {...itemProps}
-          useOldMargins={false}
           {...rest}
         >
           {label}

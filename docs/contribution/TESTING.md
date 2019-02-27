@@ -34,25 +34,28 @@ describe('Checkbox', () => {
 
 ### Browser (E2E) Tests
 
-#### General
+#### What Do We Test
 
-1. We test components in browser only if browser API is needed (e.g. position calculations, hovering, styling) or need to determine visual changes.
-1. Tests run with [`protractor`](http://www.protractortest.org/#/) which uses chrome browser.
-1. Visual regression tests are done with [`eyes`](https://github.com/wix/eyes.it) (powered by applitools).
+1. **Visual Testing:** Visual regression tests are done with [`eyes`](https://github.com/wix/eyes.it) (powered by applitools).
+1. **Browser API:** Anything that needs real browser API (e.g. position calculations, hovering, styling).
 
-#### File Structure
+#### The Tests
 
-1. Every component has test file with `e2e.js` extension, for example: `ComponentName.e2e.js`.
-1. Every component has a driver (read about [them here](./TEST_DRIVERS.md)). Naming convention is `ComponentName.protractor.driver.js`
+Tests run with [`protractor`](http://www.protractortest.org/#/) which uses chrome browser.
 
-#### Visual testing
+1. **Test File:** Every component has test file with `e2e.js` extension, for example: `ComponentName.e2e.js`.
+1. **Driver File:** Every component has a driver . Legacy driver name convention is `ComponentName.protractor.driver.js`, but the best-practice is to write a UniDriver. (read about [them here](./TEST_DRIVERS.md))
 
-1. Every test uses `eyes.it()` to automatically capture screenshots at the beginning and end of test.
+#### Visual Testing
+
+1. Every test uses `eyes.it()` to automatically capture screenshots at the beginning and end of test. (See `eyes.it`](https://github.com/wix/eyes.it) for full API)
 
 1. Use `eyes.checkWindow()` to capture a screenshot explicitly.
 
 ```js
-import eyes from 'eyes.it';
+import {eyesItInstance} from '../../test/utils/eyes-it';
+
+const eyes = new eyesItInstance();
 
 eyes.it('should test something with screenshot diff', async () => {
   expect(await assert).toEqual(expectation);
@@ -65,13 +68,10 @@ eyes.it('should test something with a screenshot on demand', async () => {
 });
 ```
 
-#### Test pages
+#### Test Pages
 
-1. Tests pages are the actual documentation done in `storybook`.
-
-1. You may run test on the story's Playground, or on it's examples.
-
-1. You may create a dedicated test story page and add it to the `Tests` category in the storybook. Use:
+1. **AutoExample Story:** Every component has corresponding documentation story (e.g. `stories/ComponentName/index.story.js`) in the Storybook. You may run the e2e test against the story's AutoExample (aka Playground), or the story examples.
+1. **Test Stories:** You may create a dedicated test story page and add it to the `Tests` category in the storybook. Use:
 
 ```js
 import {getTestStoryKind} from '../storyHierarchy';

@@ -41,7 +41,6 @@ class DataTableExample extends React.Component {
             row.firstName === baseData[1].firstName ? s.highlightRow : null
           }
           infiniteScroll
-          newDesign
           itemsPerPage={20}
           columns={[
             {

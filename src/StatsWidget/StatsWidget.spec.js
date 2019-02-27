@@ -1,9 +1,7 @@
 import React from 'react';
 import { createDriverFactory } from 'wix-ui-test-utils/driver-factory';
 import statsWidgetDriverFactory from './StatsWidget.driver';
-import StatsWidget, { deprecationMessage } from './StatsWidget';
-import ButtonWithOptions from '../ButtonWithOptions';
-import { depLogger } from '../utils/deprecationLog';
+import StatsWidget from './StatsWidget';
 
 describe('StatsWidget', () => {
   const createDriver = createDriverFactory(statsWidgetDriverFactory);
@@ -117,6 +115,17 @@ describe('StatsWidget', () => {
     ).toBe(true);
   });
 
+  it('should be able to transfer a suffix inside', () => {
+    createComponent({
+      title,
+      statistics: statisticsWithPercents,
+      suffix: <div data-hook="suffix-element-hook">some test</div>,
+    });
+    expect(driver.getSuffixElementByHook('suffix-element-hook')).toBe(
+      'some test',
+    );
+  });
+
   it('filters should have selectable options', () => {
     const onSelectStub = jest.fn();
 
@@ -199,12 +208,12 @@ describe('StatsWidget', () => {
         },
       ];
 
-      const PageRequiredChildrenArrayError =
-        'Warning: Failed prop type: Invalid prop `statistics[0].percent` of type `string` supplied to `StatsWidget`, expected `number`.\n    in StatsWidget';
       createComponent({ title, statistics: wrongStatistics });
 
       expect(consoleErrorSpy).toHaveBeenCalledWith(
-        PageRequiredChildrenArrayError,
+        expect.stringContaining(
+          'Warning: Failed prop type: Invalid prop `statistics[0].percent` of type `string` supplied to `StatsWidget`, expected `number`',
+        ),
       );
     });
 
@@ -216,7 +225,9 @@ describe('StatsWidget', () => {
       });
 
       expect(consoleErrorSpy).toHaveBeenCalledWith(
-        'Warning: Failed prop type: Invalid Prop children, maximum amount of filters are 3\n    in StatsWidget',
+        expect.stringContaining(
+          'Warning: Failed prop type: Invalid Prop children, maximum amount of filters are 3',
+        ),
       );
     });
 
@@ -226,90 +237,11 @@ describe('StatsWidget', () => {
         statistics,
         children: [<div key="1" />, <div key="2" />, <div key="3" />],
       });
-
       expect(consoleErrorSpy).toHaveBeenCalledWith(
-        'Warning: Failed prop type: StatsWidget: Invalid Prop children, only <StatsWidget.FilterButton/> is allowed\n    in StatsWidget',
+        expect.stringContaining(
+          'Warning: Failed prop type: StatsWidget: Invalid Prop children, only <StatsWidget.FilterButton/> is allowed',
+        ),
       );
-    });
-  });
-
-  describe('deprecated usage with ButtonWithOptions', () => {
-    let deprecationLogSpy;
-
-    beforeEach(() => {
-      deprecationLogSpy = jest
-        .spyOn(depLogger, 'log')
-        .mockImplementation(jest.fn());
-    });
-
-    afterEach(() => {
-      // We'll expect the prop types error to be thrown
-      expect(deprecationLogSpy).toHaveBeenCalledWith(deprecationMessage);
-
-      deprecationLogSpy.mockRestore();
-    });
-
-    it('should show filter with ButtonWithOptions inside', () => {
-      const children = (
-        <StatsWidget.Filter selectedId={1} dataHook="stats-widget-filter">
-          <ButtonWithOptions.Button />
-          {[
-            <ButtonWithOptions.Option key={1} id="1">
-              value
-            </ButtonWithOptions.Option>,
-          ]}
-        </StatsWidget.Filter>
-      );
-      createComponent({ title, statistics, children });
-      expect(
-        driver
-          .getFilterDriver('stats-widget-filter')
-          .dropdownLayoutDriver.exists(),
-      ).toBe(true);
-    });
-
-    it('filters should have selectable options', () => {
-      const onSelectStub = jest.fn();
-
-      const children = (
-        <StatsWidget.Filter
-          selectedId={1}
-          dataHook="stats-widget-filter"
-          onSelect={onSelectStub}
-        >
-          <ButtonWithOptions.Button />
-          {[
-            <ButtonWithOptions.Option id="1" key={1}>
-              value
-            </ButtonWithOptions.Option>,
-          ]}
-        </StatsWidget.Filter>
-      );
-      createComponent({ title, statistics, children });
-      driver
-        .getFilterDriver('stats-widget-filter')
-        .dropdownLayoutDriver.clickAtOption(0);
-      expect(onSelectStub).toHaveBeenCalled();
-    });
-
-    it('should show filters with option value specified', () => {
-      const value = 'Last Week';
-      const children = (
-        <StatsWidget.Filter selectedId={1} dataHook="stats-widget-filter">
-          <ButtonWithOptions.Button />
-          {[
-            <ButtonWithOptions.Option id="1" key={1}>
-              {value}
-            </ButtonWithOptions.Option>,
-          ]}
-        </StatsWidget.Filter>
-      );
-      createComponent({ title, statistics, children });
-      expect(
-        driver
-          .getFilterDriver('stats-widget-filter')
-          .dropdownLayoutDriver.optionsContent(),
-      ).toContain(value);
     });
   });
 });

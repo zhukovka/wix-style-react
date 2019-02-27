@@ -3,28 +3,20 @@ import React from 'react';
 import searchDriverFactory from './Search.driver';
 import Search from './Search';
 import { createDriverFactory } from 'wix-ui-test-utils/driver-factory';
-import {
-  isTestkitExists,
-  isEnzymeTestkitExists,
-} from '../../test/utils/testkit-sanity';
-import { searchTestkitFactory } from '../../testkit';
-import { searchTestkitFactory as enzymeSearchTestkitFactory } from '../../testkit/enzyme';
 import { makeControlled } from '../../test/utils';
-import { mount } from 'enzyme';
-
-const REGEXP_SPECIAL_CHARS = '^$\\.*+?)(][}{|';
-
-const options = [
-  'The quick',
-  'brown',
-  'fox',
-  'jumps over',
-  'the lazy',
-  'dog',
-  REGEXP_SPECIAL_CHARS,
-].map((value, index) => ({ id: index, value }));
 
 describe('Search', () => {
+  const REGEXP_SPECIAL_CHARS = '^$\\.*+?)(][}{|';
+
+  const options = [
+    'The quick',
+    'brown',
+    'fox',
+    'jumps over',
+    'the lazy',
+    'dog',
+    REGEXP_SPECIAL_CHARS,
+  ].map((value, index) => ({ id: index, value }));
   const createDriver = createDriverFactory(searchDriverFactory);
 
   describe('Controlled', () => {
@@ -131,6 +123,7 @@ describe('Search', () => {
     });
 
     // TODO: enhance Input component
+    // eslint-disable-next-line jest/no-disabled-tests
     it.skip('should focus search input if click on magnifying glass', () => {
       const driver = createDriver(
         <ControlledSearch options={options} value="fox" />,
@@ -138,6 +131,22 @@ describe('Search', () => {
 
       driver.inputDriver.clickSuffix();
       expect(driver.inputDriver.isFocus()).toBe(true);
+    });
+
+    it('should allow filtering options by predicate', () => {
+      const nodeOptions = [
+        { id: 1, value: <div>Found me</div>, keywords: ['Found'] },
+        { id: 2, value: <div>Filtered me</div>, keywords: ['Filtered'] },
+      ];
+      const predicate = jest.fn(option => {
+        return option.keywords.includes('Found');
+      });
+      const driver = createDriver(
+        <ControlledSearch options={nodeOptions} predicate={predicate} />,
+      );
+      driver.inputDriver.enterText('Some text value');
+      expect(predicate).toHaveBeenCalled();
+      expect(driver.dropdownLayoutDriver.optionsLength()).toBe(1);
     });
 
     it('should highlight the matched options text', () => {
@@ -239,23 +248,5 @@ describe('Search', () => {
       expect(driver.isExpandable()).toBeTruthy();
       expect(driver.isCollapsed()).toBeFalsy();
     });
-  });
-});
-
-describe('Testkits', () => {
-  it('Using ReactTestUtils testkit', () => {
-    expect(
-      isTestkitExists(<Search options={options} />, searchTestkitFactory),
-    ).toBe(true);
-  });
-
-  it('Using Enzyme testkit', () => {
-    expect(
-      isEnzymeTestkitExists(
-        <Search options={options} />,
-        enzymeSearchTestkitFactory,
-        mount,
-      ),
-    ).toBe(true);
   });
 });

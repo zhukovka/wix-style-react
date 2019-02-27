@@ -17,8 +17,10 @@ import {
   cleanup,
   render,
 } from '../../test/utils/unit';
+import Search from '../new-icons/Search';
 
 describe('Input', () => {
+  /* eslint-disable-next-line no-shadow */
   const render = createRendererWithDriver(inputDriverFactory);
   const createDriver = createDriverFactory(inputDriverFactory);
   const ControlledInput = makeControlled(Input);
@@ -583,6 +585,7 @@ describe('Input', () => {
       expect(onChange.mock.calls[0][0].target.value).toBe('');
     });
 
+    // eslint-disable-next-line jest/no-disabled-tests
     describe.skip('Uncontrolled', () => {
       // TODO
       it('should be displayed when using uncontrolled component with defaultValue', () => {
@@ -694,6 +697,57 @@ describe('Input', () => {
       const driver = createDriver(<Input prefix="hello" />);
       expect(driver.hasPrefixClass()).toBeTruthy();
     });
+
+    it('should invoke onInputClicked while click on custom affix', () => {
+      const onInputClicked = jest.fn();
+      const driver = createDriver(
+        <Input
+          prefix={<Input.Affix>$</Input.Affix>}
+          onInputClicked={onInputClicked}
+        />,
+      );
+      driver.clickCustomAffix();
+      expect(onInputClicked).toBeCalled();
+    });
+
+    it('should not fail while click on custom affix without passing onInputClicked', () => {
+      const driver = createDriver(
+        <Input prefix={<Input.Affix>$</Input.Affix>} />,
+      );
+      expect(() => {
+        driver.clickCustomAffix();
+      }).not.toThrowError(/onInputClicked is not a function/);
+    });
+    it('should invoke onInputClicked while click on icon affix', () => {
+      const onInputClicked = jest.fn();
+      const driver = createDriver(
+        <Input
+          prefix={
+            <Input.IconAffix dataHook="icon-affix">
+              <Search />
+            </Input.IconAffix>
+          }
+          onInputClicked={onInputClicked}
+        />,
+      );
+      driver.clickIconAffix();
+      expect(onInputClicked).toBeCalled();
+    });
+
+    it('should not fail while click on icon affix without passing onInputClicked', () => {
+      const driver = createDriver(
+        <Input
+          prefix={
+            <Input.IconAffix dataHook="icon-affix">
+              <Search />
+            </Input.IconAffix>
+          }
+        />,
+      );
+      expect(() => {
+        driver.clickIconAffix();
+      }).not.toThrowError(/onInputClicked is not a function/);
+    });
   });
 
   describe('suffix attribute', () => {
@@ -718,6 +772,58 @@ describe('Input', () => {
     it('should render menu arrow as the last suffix', () => {
       const driver = createDriver(<Input suffix="hello" menuArrow />);
       expect(driver.isMenuArrowLast()).toBeTruthy();
+    });
+
+    it('should invoke onInputClicked while click on custom affix', () => {
+      const onInputClicked = jest.fn();
+      const driver = createDriver(
+        <Input
+          suffix={<Input.Affix>$</Input.Affix>}
+          onInputClicked={onInputClicked}
+        />,
+      );
+      driver.clickCustomAffix();
+      expect(onInputClicked).toBeCalled();
+    });
+
+    it('should not fail while click on custom affix without passing onInputClicked', () => {
+      const driver = createDriver(
+        <Input suffix={<Input.Affix>$</Input.Affix>} />,
+      );
+      expect(() => {
+        driver.clickCustomAffix();
+      }).not.toThrowError(/onInputClicked is not a function/);
+    });
+
+    it('should invoke onInputClicked while click on icon affix', () => {
+      const onInputClicked = jest.fn();
+      const driver = createDriver(
+        <Input
+          suffix={
+            <Input.IconAffix dataHook="icon-affix">
+              <Search />
+            </Input.IconAffix>
+          }
+          onInputClicked={onInputClicked}
+        />,
+      );
+      driver.clickIconAffix();
+      expect(onInputClicked).toBeCalled();
+    });
+
+    it('should not fail while click on icon affix without passing onInputClicked', () => {
+      const driver = createDriver(
+        <Input
+          suffix={
+            <Input.IconAffix dataHook="icon-affix">
+              <Search />
+            </Input.IconAffix>
+          }
+        />,
+      );
+      expect(() => {
+        driver.clickIconAffix();
+      }).not.toThrowError(/onInputClicked is not a function/);
     });
   });
 

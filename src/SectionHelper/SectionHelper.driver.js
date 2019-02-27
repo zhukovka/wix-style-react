@@ -1,5 +1,5 @@
 import { testkitFactoryCreator } from 'wix-ui-test-utils/vanilla';
-import buttonDriverFactory from '../Backoffice/Button/Button.driver';
+import buttonDriverFactory from '../Deprecated/Button/Button.driver';
 
 import styles from './styles.scss';
 
@@ -31,8 +31,10 @@ const sectionHelperDriverFactory = ({ element }) => {
     isWarning: () => classExists(styles.warning),
     isStandard: () => classExists(styles.standard),
     isDanger: () => classExists(styles.danger),
+    isExperimentalDark: () => classExists(styles.experimentalDark),
     isSuccess: () => classExists(styles.success),
     isPremium: () => classExists(styles.premium),
+    isPreview: () => classExists(styles.preview),
   };
 };
 

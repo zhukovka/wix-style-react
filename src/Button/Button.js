@@ -8,6 +8,8 @@ class Button extends Component {
   static displayName = 'Button';
 
   static propTypes = {
+    /** render as some other component or DOM tag */
+    as: node,
     /** Additional classes */
     className: string,
     /** Skins of Button content */
@@ -19,6 +21,7 @@ class Button extends Component {
       'dark',
       'light',
       'transparent',
+      'premium-light',
     ]),
     /** Underline of Button content */
     priority: oneOf(['primary', 'secondary']),
@@ -38,15 +41,12 @@ class Button extends Component {
     children: node,
     /** String based data hook */
     dataHook: string,
-    /** Flag to enable new button API. IMPORTANT! - After upgrading, when you import the react/enzyme "buttonTestkitFactory", you will get an async testkit (all methods are async)*/
-    upgrade: bool,
   };
 
   static defaultProps = {
     skin: 'standard',
     priority: 'primary',
     size: 'medium',
-    upgrade: true,
   };
 
   render() {
@@ -58,7 +58,6 @@ class Button extends Component {
       children,
       className,
       dataHook,
-      upgrade,
       ...rest
     } = this.props;
 
@@ -66,12 +65,7 @@ class Button extends Component {
     const classNames = cx(className, button(fluid, skin, priority, size));
 
     return (
-      <ButtonNext
-        {...rest}
-        data-upgrade={upgrade}
-        data-hook={dataHook}
-        className={classNames}
-      >
+      <ButtonNext {...rest} data-hook={dataHook} className={classNames}>
         {children}
       </ButtonNext>
     );

@@ -14,6 +14,9 @@ const inputAreaWithLabelCompositeDriverFactory = ({ element }) => {
       }).getTooltipTestKit(),
     hasFieldLabelAttributes: () =>
       !!element.querySelectorAll('[data-hook="field-label-attributes"]').length,
+
+    hasInput: () => !!element.querySelector('input.input'),
+    hasInputArea: () => !!element.querySelector('textarea'),
   };
 };
 

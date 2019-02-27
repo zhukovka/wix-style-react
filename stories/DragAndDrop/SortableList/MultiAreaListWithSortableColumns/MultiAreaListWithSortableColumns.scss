@@ -32,6 +32,10 @@
   border: 1px solid #7a92a5;
   padding: 21px 24px;
   margin-bottom: 12px;
+
+  &:hover:not(.isListInDragState) {
+    background: red;
+  }
 }
 
 .itemPlaceholder {
@@ -44,7 +48,9 @@
 }
 
 .column {
+  box-sizing: border-box;
   min-height: 800px;
+  width: 100%;
   background: #f4fafe;
   border: 1px dashed #7a92a5;
   min-width: 210px;

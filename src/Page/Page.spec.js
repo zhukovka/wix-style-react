@@ -64,11 +64,11 @@ describe('Page', () => {
   });
 
   describe('gradient size', () => {
-    it('should be 39px by default', () => {
+    it('should be 36px by default', () => {
       const driver = createDriver(
         renderPageWithProps({ gradientClassName: 'class' }),
       );
-      expect(driver.gradientContainerHeight()).toBe('39px');
+      expect(driver.gradientContainerHeight()).toBe('36px');
     });
 
     it('should not render 0 when maximized but header height delta is 0', () => {
@@ -115,6 +115,7 @@ describe('Page', () => {
       expect(driver.tailExists()).toBeFalsy();
     });
   });
+
   describe('Scroll Header', () => {
     it('should scroll ScrollableContent when getting wheel event on Header', () => {
       const driver = PagePrivateDriver.fromJsxElement(
@@ -129,6 +130,17 @@ describe('Page', () => {
       driver.wheelOnFixedContainer(10);
       expect(driver.getScrollAmount()).toBe(10);
     });
+  });
+
+  describe('DOM calculations', () => {
+    // eslint-disable-next-line jest/no-disabled-tests
+    xit('should recalculate component heights when rerendered', () => {
+      // TODO:
+    });
+  });
+  describe('Header layer', () => {
+    it('should NOT block clicks on content close to header', () => {});
+    it('should NOT block clicks on content close to header when MiniHeader appears', () => {});
   });
 
   describe('Prop Validation', () => {
@@ -155,7 +167,9 @@ describe('Page', () => {
 
       createDriver(page);
       expect(stub).toHaveBeenCalledWith(
-        `${prefixWarning}Page: Invalid Prop children, must contain Page.Content${suffixWarning}`,
+        expect.stringContaining(
+          `${prefixWarning}Page: Invalid Prop children, must contain Page.Content${suffixWarning}`,
+        ),
       );
     });
 
@@ -171,7 +185,9 @@ describe('Page', () => {
 
       createDriver(page);
       expect(stub).toHaveBeenCalledWith(
-        `${prefixWarning}Page: Invalid Prop children, must contain Page.Header${suffixWarning}`,
+        expect.stringContaining(
+          `${prefixWarning}Page: Invalid Prop children, must contain Page.Header${suffixWarning}`,
+        ),
       );
     });
 
@@ -188,7 +204,9 @@ describe('Page', () => {
 
       createDriver(page);
       expect(stub).toHaveBeenCalledWith(
-        `${prefixWarning}Page: Invalid Prop children, unknown child div${suffixWarning}`,
+        expect.stringContaining(
+          `${prefixWarning}Page: Invalid Prop children, unknown child div${suffixWarning}`,
+        ),
       );
     });
   });

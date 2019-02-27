@@ -94,7 +94,9 @@ const target = {
         it required for case, when we moving item from 1 container to another
       )
     */
-    props.onHover(dragIndex, hoverIndex, {
+    props.onHover({
+      removedIndex: dragIndex,
+      addedIndex: hoverIndex,
       id: monitorItem.id,
       item: monitorItem.originalItem,
     });
@@ -103,9 +105,6 @@ const target = {
   },
 };
 
-@DropTarget(ItemTypes.DRAGGABLE, target, connect => ({
-  connectDropTarget: connect.dropTarget(),
-}))
 class Container extends WixComponent {
   setRootRef = node => (this.rootNode = node);
   setChildRef = node => (this.childNode = node);
@@ -132,4 +131,6 @@ Container.propTypes = {
   onHover: PropTypes.func,
 };
 
-export default Container;
+export default DropTarget(ItemTypes.DRAGGABLE, target, connect => ({
+  connectDropTarget: connect.dropTarget(),
+}))(Container);

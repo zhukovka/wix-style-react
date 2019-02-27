@@ -23,6 +23,7 @@ export default class Calendar extends WixComponent {
     filterDate: () => true,
     shouldCloseOnSelect: true,
     onClose: () => {},
+    autoFocus: true,
   };
 
   constructor(props) {
@@ -302,9 +303,8 @@ export default class Calendar extends WixComponent {
     9: this.props.onClose,
   };
 
-  _focusSelectedDay = dayPickerRef => {
-    if (dayPickerRef) {
-      this.dayPickerRef = dayPickerRef;
+  _focusSelectedDay = () => {
+    if (this.dayPickerRef) {
       const selectedDay = this.dayPickerRef.dayPicker.querySelector(
         '.DayPicker-Day--selected',
       );
@@ -316,7 +316,7 @@ export default class Calendar extends WixComponent {
     }
   };
 
-  _handleDayKeyDown = (_value, _modifiers = {}, event = null) => {
+  _handleDayKeyDown = (_value, _modifiers, event = null) => {
     this._preventActionEventDefault(event);
 
     const unfocusedDay = this.dayPickerRef.dayPicker.querySelector(
@@ -328,6 +328,18 @@ export default class Calendar extends WixComponent {
     }
   };
 
+  componentDidMount() {
+    super.componentDidMount();
+    this.props.autoFocus && this._focusSelectedDay();
+  }
+
+  componentDidUpdate(prevProps) {
+    super.componentDidUpdate(prevProps);
+    if (!prevProps.autoFocus && this.props.autoFocus) {
+      this._focusSelectedDay();
+    }
+  }
+
   render() {
     return (
       <div
@@ -335,7 +347,7 @@ export default class Calendar extends WixComponent {
         onClick={this._preventActionEventDefault}
       >
         <DayPicker
-          ref={this._focusSelectedDay}
+          ref={ref => (this.dayPickerRef = ref)}
           {...this._createDayPickerProps()}
         />
       </div>
@@ -344,6 +356,9 @@ export default class Calendar extends WixComponent {
 }
 
 Calendar.propTypes = {
+  /** Auto focus on selected day when component mounts or updates */
+  autoFocus: PropTypes.bool,
+
   /** Display multiple months, currently allowing only 1 or 2 */
   numOfMonths: PropTypes.oneOf([1, 2]),
 

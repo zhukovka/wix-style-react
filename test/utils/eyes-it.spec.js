@@ -1,5 +1,5 @@
 import eyes from 'eyes.it';
-import { eyesItInstance } from './eyes-it';
+import { eyesItInstance, defaultConfig } from './eyes-it';
 
 jest.mock('eyes.it');
 
@@ -10,9 +10,11 @@ describe('eyesItInstance', () => {
 
     instance.it('should do something', fn);
 
-    expect(eyes.it).toHaveBeenCalledWith('should do something', fn, {
-      enableSnapshotAtBrowserGet: false,
-    });
+    expect(eyes.it).toHaveBeenCalledWith(
+      'should do something',
+      fn,
+      defaultConfig,
+    );
   });
 
   it('should call the original module with predefined config', () => {
@@ -21,13 +23,10 @@ describe('eyesItInstance', () => {
 
     instance.it('should do something', fn);
 
-    expect(eyes.it).toHaveBeenCalledWith(
-      'should do something',
-      fn,
-      expect.objectContaining({
-        myConfigField: 'value',
-      }),
-    );
+    expect(eyes.it).toHaveBeenCalledWith('should do something', fn, {
+      ...defaultConfig,
+      myConfigField: 'value',
+    });
   });
 
   it('should allow overriding default config', () => {
@@ -40,6 +39,7 @@ describe('eyesItInstance', () => {
     instance.it('should do something', fn);
 
     expect(eyes.it).toHaveBeenCalledWith('should do something', fn, {
+      ...defaultConfig,
       myConfigField: 'value',
       enableSnapshotAtBrowserGet: true,
     });
@@ -49,15 +49,15 @@ describe('eyesItInstance', () => {
     const instance = eyesItInstance({ myConfigField: 'value' });
     const fn = jest.fn();
 
-    instance.it('should do something', fn, { myAnotherConfigField: 'value' });
+    instance.it('should do something', fn, {
+      myConfigField: 'value2',
+      myAnotherConfigField: 'value',
+    });
 
-    expect(eyes.it).toHaveBeenCalledWith(
-      'should do something',
-      fn,
-      expect.objectContaining({
-        myConfigField: 'value',
-        myAnotherConfigField: 'value',
-      }),
-    );
+    expect(eyes.it).toHaveBeenCalledWith('should do something', fn, {
+      ...defaultConfig,
+      myConfigField: 'value2',
+      myAnotherConfigField: 'value',
+    });
   });
 });

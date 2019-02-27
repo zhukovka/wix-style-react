@@ -10,14 +10,6 @@ export const inputTestkitFactory = puppeteerTestkitFactoryCreator(
   inputDriverFactory,
 );
 
-import buttonDriverFactory from '../src/Backoffice/Button/Button.puppeteer.driver';
-import { buttonDriverFactory as buttonNextDriverFactory } from '../src/Button/Button.driver';
-
-export const buttonTestkitFactory = obj =>
-  obj.wrapper && obj.wrapper.$(`[data-upgrade]`)
-    ? puppeteerUniTestkitFactoryCreator(buttonNextDriverFactory)(obj)
-    : puppeteerTestkitFactoryCreator(buttonDriverFactory)(obj);
-
 import formFieldDriverFactory from '../src/FormField/FormField.puppeteer.driver';
 
 export const formFieldTestkitFactory = puppeteerTestkitFactoryCreator(
@@ -107,8 +99,38 @@ export const boxTestkitFactory = puppeteerUniTestkitFactoryCreator(
   boxDriverFactory,
 );
 
+import { buttonDriverFactory } from '../src/Button/Button.driver';
+
+export const buttonTestkitFactory = puppeteerUniTestkitFactoryCreator(
+  buttonDriverFactory,
+);
+
 import { thumbnailDriverFactory } from '../src/Thumbnail/Thumbnail.driver';
 
 export const thumbnailTestkitFactory = puppeteerUniTestkitFactoryCreator(
   thumbnailDriverFactory,
+);
+
+import { segmentedToggleDriverFactory } from '../src/SegmentedToggle/SegmentedToggle.driver';
+
+export const segmentedToggleTestkitFactory = puppeteerUniTestkitFactoryCreator(
+  segmentedToggleDriverFactory,
+);
+
+import { richTextInputAreaDriverFactory } from '../src/RichTextInputArea/RichTextInputArea.driver';
+
+export const richTextInputAreaTestkitFactory = puppeteerUniTestkitFactoryCreator(
+  richTextInputAreaDriverFactory,
+);
+
+import { floatingNotificationDriverFactory } from '../src/FloatingNotification/FloatingNotification.driver';
+
+export const floatingNotificationTestkitFactory = puppeteerUniTestkitFactoryCreator(
+  floatingNotificationDriverFactory,
+);
+
+import { noBorderInputDriverFactory } from '../src/NoBorderInput/NoBorderInput.puppeteer.driver';
+
+export const noBorderInputTestkitFactory = puppeteerTestkitFactoryCreator(
+  noBorderInputDriverFactory,
 );
