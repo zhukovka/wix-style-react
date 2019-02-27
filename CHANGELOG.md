@@ -32,6 +32,7 @@ Types of changes:
 ### Fixed
 
 - `<Checkbox/>`: Fix `disabled` & `hasError` styling [#3037](https://github.com/wix/wix-style-react/pull/3037)
+- `<MultiSelect/>`: Fix `background-color` styling [#3027](https://github.com/wix/wix-style-react/pull/3027)
 
 ## 6.6.1 - 2019-02-26
 
