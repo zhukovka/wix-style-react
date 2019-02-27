@@ -15,9 +15,15 @@ Types of changes:
 1. **Lab** components and features that are still in a work in progress
 
 
-# Next
+## Next
+
+### Added
 
 - `<ColorInput/>` - new component for HEX color input [#2898](https://github.com/wix/wix-style-react/pull/2898)
+
+### Deprecated
+
+- `<RadioGroup/>` - deprecated prop `type="button"` [#2874](https://github.com/wix/wix-style-react/pull/2874)
 
 ## 6.6.1 - 2019-02-26
 
