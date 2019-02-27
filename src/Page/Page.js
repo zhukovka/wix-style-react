@@ -250,11 +250,11 @@ class Page extends WixComponent {
     return styles;
   }
 
-  hasBackgroundImage() {
+  _hasBackgroundImage() {
     return !!this.props.backgroundImageUrl;
   }
 
-  hasGradientClassName() {
+  _hasGradientClassName() {
     return !!this.props.gradientClassName && !this.props.backgroundImageUrl;
   }
 
@@ -307,7 +307,7 @@ class Page extends WixComponent {
           <div className={s.pageHeader} style={pageDimensionsStyle}>
             {React.cloneElement(PageHeaderChild, {
               minimized,
-              hasBackgroundImage: this.hasBackgroundImage(),
+              hasBackgroundImage: this._hasBackgroundImage(),
               upgrade: true,
             })}
           </div>
@@ -381,7 +381,7 @@ class Page extends WixComponent {
           (PageTail ? -HEADER_BOTTOM_PADDING : BACKGROUND_COVER_CONTENT_PX)}px`
       : imageHeight;
 
-    if (this.hasBackgroundImage()) {
+    if (this._hasBackgroundImage()) {
       return (
         <div
           className={s.imageBackgroundContainer}
@@ -396,7 +396,7 @@ class Page extends WixComponent {
       );
     }
 
-    if (this.hasGradientClassName()) {
+    if (this._hasGradientClassName()) {
       return (
         <div
           data-hook="page-gradient-class-name"
