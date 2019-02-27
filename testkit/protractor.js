@@ -368,7 +368,7 @@ export const colorPickerTestkitFactory = protractorTestkitFactoryCreator(
 /*
  * Component generator test component
  */
-import { generatedTestComponentDriverFactory } from '../src/GeneratedTestComponent/GeneratedTestComponent.driver';
+import { generatedTestComponentDriverFactory } from '../src/GeneratedTestComponent/GeneratedTestComponent.uni.driver';
 
 export const generatedTestComponentTestkitFactory = protractorUniTestkitFactoryCreator(
   generatedTestComponentDriverFactory,
