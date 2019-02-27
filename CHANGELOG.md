@@ -14,6 +14,11 @@ Types of changes:
 1. **Docs** for documentation changes
 1. **Lab** components and features that are still in a work in progress
 
+
+# Next
+
+- `<ColorInput/>` - new component for HEX color input [#2898](https://github.com/wix/wix-style-react/pull/2898)
+
 ## 6.6.1 - 2019-02-26
 
 ### Fixed

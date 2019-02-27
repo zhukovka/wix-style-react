@@ -49,6 +49,7 @@ export const carouselTestkitFactory = testkitFactoryCreator(load(require('../src
 export const checkboxTestkitFactory = testkitFactoryCreator(load(require('../src/Checkbox/Checkbox.driver')));
 export const circularProgressBarTestkitFactory = testkitFactoryCreator(load(require('../src/CircularProgressBar/CircularProgressBar.driver')));
 export const closeButtonTestkitFactory = uniTestkitFactoryCreator(load(require('../src/CloseButton/CloseButton.driver')));
+export const colorInputTestkitFactory = uniTestkitFactoryCreator(load(require('../src/ColorInput/ColorInput.driver')));
 export const colorPickerTestkitFactory = testkitFactoryCreator(load(require('../src/ColorPicker/ColorPicker.driver')));
 export const contactItemBuilderTestkitFactory = testkitFactoryCreator(load(require('../src/ContactItemBuilder/ContactItemBuilder.driver')));
 export const counterBadgeTestkitFactory = testkitFactoryCreator(load(require('../src/CounterBadge/CounterBadge.driver')));

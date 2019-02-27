@@ -3,10 +3,10 @@
  */
 module.exports = {
   Component: {
-    unidriver: true,
+    unidriver: true
   },
 
   MyNewComponent: {
-    unidriver: true,
-  },
+    unidriver: true
+  }
 };

@@ -3,6 +3,6 @@
  */
 module.exports = {
   Component: {
-    unidriver: true,
+    unidriver: true
   },
 };
