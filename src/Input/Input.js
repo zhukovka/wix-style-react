@@ -71,6 +71,14 @@ class Input extends Component {
     }
   }
 
+  extractRef = ref => {
+    const { inputRef } = this.props;
+    this.input = ref;
+    if (inputRef) {
+      inputRef(ref);
+    }
+  };
+
   render(props = {}) {
     const {
       id,
@@ -165,7 +173,7 @@ class Input extends Component {
       <input
         data-hook="wsr-input"
         style={{ textOverflow }}
-        ref={input => (this.input = input)}
+        ref={this.extractRef}
         className={inputClassNames}
         id={id}
         name={name}

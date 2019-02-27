@@ -29,7 +29,7 @@ export default {
 
   componentProps: {
     dateFormat: 'DD/MM/YYYY',
-    value: new Date().toString(),
+    value: new Date(),
   },
 
   sections: [
@@ -39,7 +39,7 @@ export default {
         'https://github.com/wix/wix-style-react/tree/master/src/DateInput',
       component: (
         <div style={{ width: '50%' }}>
-          <DateInput value={new Date().toString()} dateFormat="DD/MM/YYYY" />
+          <DateInput value={new Date()} dateFormat="DD/MM/YYYY" />
         </div>
       ),
     }),

@@ -3,7 +3,37 @@ import PropTypes from 'prop-types';
 import styles from './DateInput.scss';
 import Input from '../Input';
 import CalendarIcon from '../new-icons/Date';
-import { formatDate } from '../LocaleUtils';
+import { formatDate, parseDate } from '../LocaleUtils';
+import { IMaskMixin } from 'react-imask';
+import * as IMask from 'imask';
+
+export const formatBlocks = {
+  YYYY: {
+    mask: IMask.MaskedRange,
+    from: 0,
+    to: 2030,
+  },
+  MM: {
+    mask: IMask.MaskedRange,
+    from: 1,
+    to: 12,
+  },
+  DD: {
+    mask: IMask.MaskedRange,
+    from: 1,
+    to: 31,
+  },
+  HH: {
+    mask: IMask.MaskedRange,
+    from: 0,
+    to: 23,
+  },
+  mm: {
+    mask: IMask.MaskedRange,
+    from: 0,
+    to: 59,
+  },
+};
 
 class DateInput extends React.PureComponent {
   static displayName = 'DateInput';
@@ -26,14 +56,28 @@ class DateInput extends React.PureComponent {
     return formatDate(value, dateFormat, locale);
   };
 
+  format = date => {
+    const { dateFormat, locale } = this.props;
+    return formatDate(date, dateFormat, locale);
+  };
+
+  parse = (str, more) => {
+    const { dateFormat, locale } = this.props;
+    return parseDate(str, dateFormat, locale);
+  };
+
   render() {
     const {
       inputDataHook,
       value: initialValue,
       customInput,
       dataHook,
+      dateFormat,
       ...rest
     } = this.props;
+    const MaskedInput = IMaskMixin(({ inputRef, ...props }) => (
+      <Input inputRef={inputRef} {...props} />
+    ));
     const _inputProps = {
       dataHook: inputDataHook || 'date-input-input',
       value: this._formatDateValue(initialValue),
@@ -48,7 +92,19 @@ class DateInput extends React.PureComponent {
     };
     return (
       <div data-hook={dataHook} className={styles.root}>
-        {React.cloneElement(customInput || <Input />, _inputProps)}
+        {React.cloneElement(
+          customInput || (
+            <MaskedInput
+              placeholderChar={null}
+              parse={this.parse}
+              format={this.format}
+              blocks={formatBlocks}
+              pattern={dateFormat}
+              mask={Date}
+            />
+          ),
+          _inputProps,
+        )}
       </div>
     );
   }

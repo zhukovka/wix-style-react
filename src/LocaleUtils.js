@@ -1,5 +1,6 @@
 import setDay from 'date-fns/set_day';
 import format from 'date-fns/format';
+import parse from 'date-fns/parse';
 import en from 'date-fns/locale/en';
 import es from 'date-fns/locale/es';
 import pt from 'date-fns/locale/pt';
@@ -41,6 +42,9 @@ const getLocale = locale =>
 
 export const formatDate = (date, dateFormat, locale) =>
   format(date, dateFormat, { locale: getLocale(locale) });
+
+export const parseDate = (date, dateFormat, locale) =>
+  parse(date, dateFormat, { locale: getLocale(locale) });
 
 export default locale => ({
   formatMonthTitle: date =>
