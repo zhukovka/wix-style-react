@@ -25,6 +25,7 @@
   },
   "scripts": {
     "start": "./scripts/npm-start.sh",
+    "precommit": "lint-staged",
     "pretest": "npm run lint && ./scripts/ensure-dist.sh",
     "test": "npm run test:unit && npm run test:e2e",
     "test:unit": "yoshi test --jest",
@@ -213,7 +214,9 @@
     "setupFiles": [
       "<rootDir>/test/jest-setup.js"
     ],
-    "setupFilesAfterEnv": ["wix-ui-test-utils/jest-setup"],
+    "setupFilesAfterEnv": [
+      "wix-ui-test-utils/jest-setup"
+    ],
     "moduleNameMapper": {
       "\\.(?!\\st).(css|less|scss)$": "identity-obj-proxy"
     },
