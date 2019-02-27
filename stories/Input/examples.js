@@ -1,84 +1,161 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+export const standard = `
+<Layout>
+  <Cell>
+    <Input />
+  </Cell>
+  <Cell>
+    <Input forceHover />
+  </Cell>
+  <Cell>
+    <Input forceFocus />
+  </Cell>
+</Layout>
+`;
 
-import CodeExample from 'wix-storybook-utils/CodeExample';
+export const error = `
+<Layout>
+  <Cell>
+    <Input status="error"/>
+  </Cell>
+  <Cell>
+    <Input status="error" forceHover />
+  </Cell>
+  <Cell>
+    <Input status="error" forceFocus />
+  </Cell>
+</Layout>
+`;
 
-import ExampleStandard from './ExampleStandard';
-import ExampleStandardRaw from '!raw-loader!./ExampleStandard';
+export const loader = `
+<Layout>
+  <Cell>
+    <Input status="loading" />
+  </Cell>
+  <Cell>
+    <Input status="loading" statusMessage="Loading some data..." />
+  </Cell>
+</Layout>
+`;
 
-import ExampleError from './ExampleError';
-import ExampleErrorRaw from '!raw-loader!./ExampleError';
+export const affix = `
+<Layout>
+  <Cell>
+    <Input prefix={<Input.Affix>https://</Input.Affix>} />
+  </Cell>
+  <Cell>
+    <Input suffix={<Input.Affix>$</Input.Affix>} />
+  </Cell>
+  <Cell>
+    <Input
+      prefix={<Input.Affix>https://</Input.Affix>}
+      suffix={<Input.Affix>.com</Input.Affix>}
+    />
+  </Cell>
+  <Cell>
+    <Input
+      prefix={<Input.Affix>@</Input.Affix>}
+      suffix={<Input.Affix>$</Input.Affix>}
+      status="error"
+    />
+  </Cell>
+</Layout>
+`;
 
-import ExampleLoader from './ExampleLoader';
-import ExampleLoaderRaw from '!raw-loader!./ExampleLoader';
+export const iconAffix = `
+<Layout>
+  <Cell>
+    <Input
+      prefix={
+        <Input.IconAffix>
+          <Date />
+        </Input.IconAffix>
+      }
+    />
+  </Cell>
+  <Cell>
+    <Input
+      suffix={
+        <Input.IconAffix>
+          <Search />
+        </Input.IconAffix>
+      }
+    />
+  </Cell>
+  <Cell>
+    <Input
+      prefix={
+        <Input.IconAffix>
+          <Date />
+        </Input.IconAffix>
+      }
+      suffix={
+        <Input.IconAffix>
+          <Search />
+        </Input.IconAffix>
+      }
+    />
+  </Cell>
+  <Cell>
+    <Input
+      prefix={
+        <Input.IconAffix>
+          <Date />
+        </Input.IconAffix>
+      }
+      suffix={
+        <Input.IconAffix>
+          <Search />
+        </Input.IconAffix>
+      }
+      status="error"
+    />
+  </Cell>
+</Layout>
+`;
 
-import ExampleUnit from './ExampleUnit';
-import ExampleUnitRaw from '!raw-loader!./ExampleUnit';
+export const sizes = `
+<Layout>
+  <Cell>
+    <Input
+      size="small"
+      placeholder="They did not know it was impossible, so they did it!"
+    />
+  </Cell>
+  <Cell>
+    <Input
+      size="normal"
+      placeholder="They did not know it was impossible, so they did it!"
+    />
+  </Cell>
+  <Cell>
+    <Input
+      size="large"
+      placeholder="They did not know it was impossible, so they did it!"
+    />
+  </Cell>
+</Layout>
+`;
 
-import ExampleMagnifyingGlass from './ExampleMagnifyingGlass';
-import ExampleMagnifyingGlassRaw from '!raw-loader!./ExampleMagnifyingGlass';
-
-import ExampleControlled from './ExampleControlled';
-import ExampleControlledRaw from '!raw-loader!./ExampleControlled';
-
-import ExampleClearButton from './ExampleClearButton';
-import ExampleClearButtonRaw from '!raw-loader!./ExampleClearButton';
-
-import ExampleRefs from './ExampleRefs';
-import ExampleRefsRaw from '!raw-loader!./ExampleRefs';
-
-import ExampleSizes from './ExampleSizes';
-import ExampleSizesRaw from '!raw-loader!./ExampleSizes';
-
-import ExampleRoundInput from './ExampleRoundInput';
-import ExampleRoundInputRaw from '!raw-loader!./ExampleRoundInput';
-
-const Examples = ({ theme }) => (
-  <div>
-    <CodeExample title="Standard" code={ExampleStandardRaw}>
-      <ExampleStandard theme={theme} />
-    </CodeExample>
-
-    <CodeExample title="Error" code={ExampleErrorRaw}>
-      <ExampleError theme={theme} />
-    </CodeExample>
-
-    <CodeExample title="Loader" code={ExampleLoaderRaw}>
-      <ExampleLoader theme={theme} />
-    </CodeExample>
-
-    <CodeExample title="Unit" code={ExampleUnitRaw}>
-      <ExampleUnit theme={theme} />
-    </CodeExample>
-
-    <CodeExample title="MagnifyingGlass" code={ExampleMagnifyingGlassRaw}>
-      <ExampleMagnifyingGlass theme={theme} />
-    </CodeExample>
-
-    <CodeExample title="Clear button" code={ExampleClearButtonRaw}>
-      <ExampleClearButton theme={theme} />
-    </CodeExample>
-
-    <CodeExample title="Controlled input" code={ExampleControlledRaw}>
-      <ExampleControlled theme={theme} />
-    </CodeExample>
-
-    <CodeExample title="Sizes" code={ExampleSizesRaw}>
-      <ExampleSizes theme={theme} />
-    </CodeExample>
-
-    <CodeExample title="Rounded input" code={ExampleRoundInputRaw}>
-      <ExampleRoundInput theme={theme} />
-    </CodeExample>
-
-    <CodeExample title="Commands test" code={ExampleRefsRaw}>
-      <ExampleRefs theme={theme} />
-    </CodeExample>
-  </div>
-);
-
-Examples.propTypes = {
-  theme: PropTypes.string,
-};
-
-export default Examples;
+export const rounded = `
+<Layout>
+  <Cell>
+    <Input
+      size="small"
+      placeholder="They did not know it was impossible, so they did it!"
+      roundInput />
+  </Cell>
+  <Cell>
+    <Input
+      size="normal"
+      placeholder="They did not know it was impossible, so they did it!"
+      roundInput
+    />
+  </Cell>
+  <Cell>
+    <Input
+      size="large"
+      placeholder="They did not know it was impossible, so they did it!"
+      roundInput
+    />
+  </Cell>
+</Layout>`;
