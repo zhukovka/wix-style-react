@@ -6,10 +6,13 @@ meta.addSim({
   title: 'Normal_example',
   props: {
     theme: 'page',
-    title: 'Title!'
-  }
+    title: 'Title!',
+  },
 });
 
-meta.exportName = 'EmptyState'
-meta.compiledComponent = {cssPath: '/dist/statics/App.css', compPath: '/src/EmptyState'}
-meta.nonEventListenerTestCompliant = true 
+meta.exportInfo = {
+  exportName: 'EmptyState',
+  cssPath: '/dist/statics/App.css',
+  compPath: '/src/EmptyState',
+};
+meta.nonEventListenerTestCompliant = true;

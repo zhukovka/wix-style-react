@@ -7,10 +7,13 @@ meta.addSim({
   title: 'Normal_example',
   props: {
     theme: 'normal',
-    title: 'Title!'
-  }
+    title: 'Title!',
+  },
 });
 
-meta.exportName = 'Input'
-meta.compiledComponent = {cssPath: '/dist/statics/App.css', compPath: '/dist/src/Input'}
-meta.nonEventListenerTestCompliant = true 
+meta.exportInfo = {
+  exportName: 'Input',
+  cssPath: '/dist/statics/App.css',
+  compPath: '/dist/src/Input',
+};
+meta.nonEventListenerTestCompliant = true;

@@ -48,7 +48,7 @@
     "generate": "./scripts/component-generator/bin/component-generator.js",
     "generate-test-component": "./scripts/component-generator/bin/generate-test-component.js",
     "a11y": "autotools-a11y -f 'src/**/*.meta.js'",
-    "snap": "autotools-snap -f 'src/**/*.meta.js' -b",
+    "snap": "autotools-snap -f 'src/**/*.meta.js'",
     "sanity": "autotools-sanity -f 'src/**/*.meta.js'",
     "generate-testkit-exports": "node scripts/generate-testkit-exports"
   },

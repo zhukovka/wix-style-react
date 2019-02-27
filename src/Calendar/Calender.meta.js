@@ -8,10 +8,15 @@ meta.addSim({
   props: {
     theme: 'page',
     title: 'Title!',
-    onChange: () => {}
-  }
+    onChange: () => {},
+    value: new Date(1, 1, 1),
+  },
 });
 
-meta.exportName = 'Calender'
-meta.compiledComponent = {cssPath: '/dist/statics/App.css', compPath: '/src/Calendar'}
-meta.nonEventListenerTestCompliant = true
+meta.exportInfo = {
+  exportName: 'Calender',
+  cssPath: '/dist/statics/App.css',
+  compPath: '/src/Calendar',
+};
+
+meta.nonEventListenerTestCompliant = true;
