@@ -188,6 +188,6 @@ module.exports = {
   NoBorderInput: {},
 
   DateInput: {
-    unidriver: true
-  }
+    unidriver: true,
+  },
 };
