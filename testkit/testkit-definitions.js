@@ -159,7 +159,12 @@ module.exports = {
   },
 
   Proportion: { unidriver: true, drivers: ['enzyme'] },
-  GeneratedTestComponent: { unidriver: true, drivers: ['enzyme'] },
+  GeneratedTestComponent: {
+    testkitPath:
+      '../src/GeneratedTestComponent/GeneratedTestComponent.uni.driver',
+    unidriver: true,
+    drivers: ['enzyme'],
+  },
   DropdownBase: { unidriver: true },
 
   RadioButton: {
