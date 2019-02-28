@@ -1,8 +1,8 @@
 import React from 'react';
 import { bool } from 'prop-types';
-import { createHOC } from 'wix-ui-core/dist/src/createHOC';
+import { createHOC } from 'wix-ui-core/dist/es/src/createHOC';
 import Text from './Text';
-import { withEllipsedTooltip } from 'wix-ui-core/dist/src/hocs/EllipsedTooltip';
+import { withEllipsedTooltip } from 'wix-ui-core/dist/es/src/hocs/EllipsedTooltip';
 import ellipsedStyle from '../common/EllipsedTooltip/EllipsedTooltip.st.css';
 
 const EllipsedText = withEllipsedTooltip({ showTooltip: true })(Text);
