@@ -105,7 +105,6 @@ import './Highlighter.story.js'; // Highlighter
 
 // Components API
 import './Box/index.story.js';
-import './components/Page/index.story.js';
 import './components/Calendar/index.story';
 import './components/CalendarPanel/index.story';
 import './CalendarPanelFooter/index.story';
@@ -127,6 +126,7 @@ import './Layout/index.story.js';
 import './Layout';
 import './components/MultiSelect/index.story';
 import './components/Page/PageExampleStories.js';
+import './components/Page/index.story.js';
 import './components/PageHeader/index.story.js';
 import './Proportion/index.story.js';
 import './RichTextArea/api.story';
