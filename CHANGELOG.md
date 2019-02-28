@@ -16,6 +16,10 @@ Types of changes:
 
 ## Next
 
+### Added
+
+- `<MessageBoxFunctionalLayout/>`: Add prefix and suffix icons to modal confirm and cancel buttons [#2991](https://github.com/wix/wix-style-react/pull/2991)
+
 ### Fixed
 
 - `<Page/>` (Fix): Prevent Page FixedContainer form blocking `<Notification type="sticky"/>` [#2979](https://github.com/wix/wix-style-react/pull/2979)
