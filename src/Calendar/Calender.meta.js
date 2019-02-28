@@ -1,5 +1,5 @@
 import Registry from '@ui-autotools/registry';
-import Calendar from '../../Calendar';
+import Calendar from './Calendar';
 import { wsrPluginMetaKey } from '../../.autotools/plugins/wsr-plugin-meta-key';
 
 const meta = Registry.getComponentMetadata(Calendar);

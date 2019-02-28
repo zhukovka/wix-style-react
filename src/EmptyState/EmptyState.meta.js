@@ -1,5 +1,5 @@
 import Registry from '@ui-autotools/registry';
-import EmptyState from '../../EmptyState';
+import EmptyState from './EmptyState';
 import { wsrPluginMetaKey } from '../../.autotools/plugins/wsr-plugin-meta-key';
 
 const meta = Registry.getComponentMetadata(EmptyState);

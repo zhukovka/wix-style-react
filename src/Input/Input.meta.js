@@ -1,5 +1,5 @@
 import Registry from '@ui-autotools/registry';
-import Input from '../../Input';
+import Input from './Input';
 import { wsrPluginMetaKey } from '../../.autotools/plugins/wsr-plugin-meta-key';
 
 const meta = Registry.getComponentMetadata(Input);
