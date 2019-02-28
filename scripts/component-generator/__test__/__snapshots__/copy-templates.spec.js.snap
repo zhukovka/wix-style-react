@@ -104,9 +104,10 @@ import Registry from '@ui-autotools/registry';
 
 const metadata = Registry.getComponentMetadata(MyNewComponent);
 
-metadata.exportedFrom({
+metadata.exportInfo = {
   path: 'src/MyNewComponent/MyNewComponent.js',
-});
+  exportName: 'MyNewComponent',
+};
 ",
   "src/MyNewComponent/MyNewComponent.private.uni.driver.js": "import { myNewComponentDriverFactory as publicDriverFactory } from './MyNewComponent.uni.driver';
 
@@ -337,9 +338,10 @@ import Registry from '@ui-autotools/registry';
 
 const metadata = Registry.getComponentMetadata(MyNewComponent);
 
-metadata.exportedFrom({
+metadata.exportInfo = {
   path: 'src/MyNewComponent/MyNewComponent.js',
-});
+  exportName: 'MyNewComponent',
+};
 ",
   "src/MyNewComponent/MyNewComponent.private.uni.driver.js": "import { myNewComponentDriverFactory as publicDriverFactory } from './MyNewComponent.uni.driver';
 
@@ -574,9 +576,10 @@ import Registry from '@ui-autotools/registry';
 
 const metadata = Registry.getComponentMetadata(MyTestComponent);
 
-metadata.exportedFrom({
+metadata.exportInfo = {
   path: 'src/MyTestComponent/MyTestComponent.js',
-});
+  exportName: 'MyTestComponent',
+};
 ",
   "src/MyTestComponent/MyTestComponent.private.uni.driver.js": "import { myTestComponentDriverFactory as publicDriverFactory } from './MyTestComponent.uni.driver';
 
