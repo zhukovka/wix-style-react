@@ -18,7 +18,7 @@ Types of changes:
 
 ### Fixed
 
-- `<Page/>` (Fix): Prevent Page FixedContainer form blocking `<Notification type="sticky"/> [#2979](https://github.com/wix/wix-style-react/pull/2979)
+- `<Page/>` (Fix): Prevent Page FixedContainer form blocking `<Notification type="sticky"/>` [#2979](https://github.com/wix/wix-style-react/pull/2979)
 
 ## 6.7.0 - 2019-02-28
 
