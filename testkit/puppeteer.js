@@ -75,7 +75,7 @@ export const proportionTestkitFactory = puppeteerUniTestkitFactoryCreator(
 /*
  * Component generator test component
  */
-import { generatedTestComponentDriverFactory } from '../src/GeneratedTestComponent/GeneratedTestComponent.driver';
+import { generatedTestComponentDriverFactory } from '../src/GeneratedTestComponent/GeneratedTestComponent.uni.driver';
 
 export const generatedTestComponentTestkitFactory = puppeteerUniTestkitFactoryCreator(
   generatedTestComponentDriverFactory,

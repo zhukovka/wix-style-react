@@ -14,7 +14,7 @@ Types of changes:
 1. **Docs** for documentation changes
 1. **Lab** components and features that are still in a work in progress
 
-## Next
+## 6.7.1 - 2019-02-28
 
 ### Added
 
@@ -23,6 +23,7 @@ Types of changes:
 ### Fixed
 
 - `<Page/>` (Fix): Prevent Page FixedContainer form blocking `<Notification type="sticky"/>` [#2979](https://github.com/wix/wix-style-react/pull/2979)
+- `<GeneratedTestComponent>` - fix puppeteer testkit export
 
 ## 6.7.0 - 2019-02-28
 

@@ -40,7 +40,7 @@ const messageBoxFunctionalLayoutDriverFactory = ({ element }) => {
       cancellationButton().className.indexOf('disabled') === -1,
     isConfirmationEnable: () =>
       confirmationButton().className.indexOf('disabled') === -1,
-    toHaveBodyPadding: () => !body().classList.contains(`${styles.noPadding}`)
+    toHaveBodyPadding: () => !body().classList.contains(`${styles.noPadding}`),
   };
 };
 
