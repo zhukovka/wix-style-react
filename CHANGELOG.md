@@ -14,6 +14,12 @@ Types of changes:
 1. **Docs** for documentation changes
 1. **Lab** components and features that are still in a work in progress
 
+## Next
+
+### Fixed
+
+- `<Page/>` (Fix): Prevent Page FixedContainer form blocking `<Notification type="sticky"/> [#2979](https://github.com/wix/wix-style-react/pull/2979)
+
 ## 6.7.0 - 2019-02-28
 
 ### Added
