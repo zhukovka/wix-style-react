@@ -4,7 +4,6 @@ import classNames from 'classnames';
 import WixComponent from '../BaseComponents/WixComponent';
 import Arc from './Arc';
 import css from './Loader.scss';
-import Tooltip from '../Tooltip';
 import FormFieldError from '../new-icons/system/FormFieldError';
 import FormFieldErrorSmall from '../new-icons/system/FormFieldErrorSmall';
 import ToggleOn from '../new-icons/system/ToggleOn';
@@ -85,8 +84,34 @@ export default class Loader extends WixComponent {
     status: 'loading',
   };
 
+  state = {
+    Tooltip: null,
+  };
+
+  componentDidMount() {
+    if (this.props.statusMessage) {
+      this.loadTooltip();
+    }
+  }
+
+  componentWillReceiveProps(nextProps) {
+    if (
+      !this.state.Tooltip &&
+      nextProps.statusMessage &&
+      !this.props.statusMessage
+    ) {
+      this.loadTooltip();
+    }
+  }
+
+  loadTooltip = async () => {
+    const { default: Tooltip } = await import('../Tooltip');
+    this.setState({ Tooltip });
+  };
+
   render() {
     const { size, color, text, status, statusMessage } = this.props;
+    const { Tooltip } = this.state;
     const sizeInPx = sizesInPx[size];
     const shouldShowFullCircle = status !== 'loading';
     const lightArcAngle = !shouldShowFullCircle
@@ -138,7 +163,7 @@ export default class Loader extends WixComponent {
           css[status],
         )}
       >
-        {statusMessage ? (
+        {Tooltip && statusMessage ? (
           <Tooltip
             dataHook="loader-tooltip"
             placement="top"
