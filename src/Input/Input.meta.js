@@ -25,6 +25,7 @@ meta.staticResources = [
 ];
 
 meta.exportInfo = {
+  path: 'src/Input',
   exportName: 'Input',
 };
 

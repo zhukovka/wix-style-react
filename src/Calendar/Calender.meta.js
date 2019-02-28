@@ -27,6 +27,7 @@ meta.staticResources = [
 ];
 
 meta.exportInfo = {
+  path: 'src/Calendar',
   exportName: 'Calender',
 };
 

@@ -3,6 +3,7 @@ import Registry from '@ui-autotools/registry';
 
 const metadata = Registry.getComponentMetadata(ToggleButton);
 
-metadata.exportedFrom({
+metadata.exportInfo = {
   path: 'src/SegmentedToggle/ToggleButton/ToggleButton.js',
-});
+  exportName: 'ToggleButton',
+};

@@ -24,6 +24,7 @@ meta.staticResources = [
 ];
 
 meta.exportInfo = {
+  path: 'src/EmptyState',
   exportName: 'EmptyState',
 };
 

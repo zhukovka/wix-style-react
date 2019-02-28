@@ -21,8 +21,13 @@ async function generate() {
   const autodocsRegistry = {};
   const gatherAllPromises = [];
   Registry.default.metadata.components.forEach(async comp => {
+    const path = comp.exportInfo.path;
+    if (!path) {
+      // eslint-disable-next-line no-console
+      console.error('Export info must contain a path to the component.');
+    }
     gatherAllPromises.push(
-      gatherAll(comp.path).then(parsedSource => {
+      gatherAll(path).then(parsedSource => {
         // Registry.getCompName gets a unique component id.
         const key = Registry.getCompName(comp.component);
         autodocsRegistry[key] = parsedSource;
