@@ -7,6 +7,7 @@ import {
   tab,
   playground,
   testkit,
+  title,
   description,
 } from 'wix-storybook-utils/Sections';
 import { codeExampleFullWidth } from '../../utils/sections';
@@ -77,7 +78,7 @@ export default {
           ],
           importExample: `import Page from 'wix-style-react/Page';`,
         }),
-        description({ text: '## Examples' }),
+        title('Examples'),
         ...codeExampleFullWidth({
           title: 'Stretch Content Vertically',
           description: `Use Grid's <Container stretchVertically> to fill the viewport's height`,

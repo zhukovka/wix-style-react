@@ -73,78 +73,69 @@ export default {
       issueUrl: 'https://github.com/wix/wix-style-react/issues/new',
     }),
 
-    tabs({
-      tabs: [
-        tab({
-          title: 'Description',
-          sections: [
-            description({
-              text:
-                '🎨 ColorInput is an input which allows to write HEX color manually or pick it from color picker.',
-            }),
+    tabs([
+      tab({
+        title: 'Description',
+        sections: [
+          description(
+            '🎨 ColorInput is an input which allows to write HEX color manually or pick it from color picker.',
+          ),
 
-            importExample({
-              source: "import ColorInput from 'wix-style-react/ColorInput';",
-            }),
+          importExample({
+            source: "import ColorInput from 'wix-style-react/ColorInput';",
+          }),
 
-            divider(),
+          divider(),
 
-            description({
-              title: 'Usage',
-              text: usage,
-            }),
+          description({
+            title: 'Usage',
+            text: usage,
+          }),
 
-            columns({
-              items: [
-                description({
-                  text: '### Examples',
-                }),
-                description(),
-              ],
-            }),
+          columns([description('### Examples')]),
 
-            ...[
-              {
-                title: 'Controlled',
-                text: 'The component is used in controlled mode.',
-                source: examples.controlledExample,
-              },
-              {
-                title: 'Semi-Controlled',
-                text: 'The component returns only valid hex values.',
-                source: examples.semiControlledExample,
-              },
-              {
-                title: 'Size',
-                text:
-                  'ColorInput supports `small`, `medium` and `large` sizes.',
-                source: examples.sizes,
-              },
+          ...[
+            {
+              title: 'Controlled',
+              text: 'The component is used in controlled mode.',
+              source: examples.controlledExample,
+            },
+            {
+              title: 'Semi-Controlled',
+              text: 'The component returns only valid hex values.',
+              source: examples.semiControlledExample,
+            },
+            {
+              title: 'Size',
+              text: 'ColorInput supports `small`, `medium` and `large` sizes.',
+              source: examples.sizes,
+            },
 
-              {
-                title: 'Error, Null and Disabled',
-                text: 'ColorInput has `error`, `null` and `disabled` states.',
-                source: examples.states,
-              },
-            ].map(example),
-          ],
-        }),
+            {
+              title: 'Error, Null and Disabled',
+              text: 'ColorInput has `error`, `null` and `disabled` states.',
+              source: examples.states,
+            },
+          ].map(example),
+        ],
+      }),
 
-        tab({
+      ...[
+        {
           title: 'API',
           sections: [api()],
-        }),
+        },
 
-        tab({
+        {
           title: 'Testkit',
-          sections: [description({ text: testkit })],
-        }),
+          sections: [description(testkit)],
+        },
 
-        tab({
+        {
           title: 'Playground',
           sections: [playground()],
-        }),
-      ],
-    }),
+        },
+      ].map(tab),
+    ]),
   ],
 };

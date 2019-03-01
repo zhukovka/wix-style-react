@@ -1,6 +1,10 @@
 import { storySettings } from './storySettings';
 import { baseScope } from '../utils/Components/LiveCodeExample';
-import { description, code as baseCode } from 'wix-storybook-utils/Sections';
+import {
+  title,
+  description,
+  code as baseCode,
+} from 'wix-storybook-utils/Sections';
 import { halfWidth, exampleDescription } from '../utils/sections';
 
 import * as examples from './examples';
@@ -34,7 +38,9 @@ export default {
       ],
       importExample: examples.importExample,
     }),
-    description({ text: '## Examples' }),
+
+    title('Examples'),
+
     exampleDescription({
       pretitle: '2.1.A',
       title: 'General Layout',
