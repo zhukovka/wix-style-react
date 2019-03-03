@@ -11,7 +11,7 @@ class RichTextToolbarLinkButton extends React.PureComponent {
   };
 
   render() {
-    const { tooltipText, isActive, children } = this.props;
+    const { dataHook, tooltipText, isActive, children } = this.props;
     const { isPopoverShown } = this.state;
 
     return (
@@ -25,6 +25,7 @@ class RichTextToolbarLinkButton extends React.PureComponent {
       >
         <Popover.Element>
           <RichTextToolbarButton
+            dataHook={dataHook}
             onClick={() => this.setState({ isPopoverShown: !isPopoverShown })}
             tooltipText={tooltipText}
             isActive={isActive}

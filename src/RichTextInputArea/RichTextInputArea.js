@@ -70,6 +70,7 @@ class RichTextInputArea extends React.PureComponent {
     return (
       <div data-hook={dataHook} className={styles.root}>
         <RichTextToolbar
+          dataHook="richtextarea-toolbar"
           className={styles.toolbar}
           editorState={this.state.editorState}
           onBold={this._setEditorState}
