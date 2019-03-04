@@ -1,8 +1,8 @@
 import React from 'react';
-import Tag from './Tag';
+import Tag from '../Tag';
 import tagPrivateDriverFactory from './Tag.private.driver';
 import { createDriverFactory } from 'wix-ui-test-utils/driver-factory';
-import { SIZES, WEIGHTS } from '../Text/constants';
+import { SIZES, WEIGHTS } from '../../Text/constants';
 
 describe('Tag', () => {
   const createDriver = createDriverFactory(tagPrivateDriverFactory);

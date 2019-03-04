@@ -99,7 +99,7 @@ import './Badge/index.story'; // 12.1 Badge
 import './BadgeSelect/index.story.js'; // 12.2 BadgeSelect
 import './CounterBadge/CounterBadge.story'; //12.3 CounterBadge
 import './FullTextView.story.js'; //12.4 FullTextView
-import './Tag/Tag.story'; // 12.5 Tag
+import '../src/Tag/docs/Tag.story'; // 12.5 Tag
 import './Avatar/Avatar.story'; // 12.6 Avatar
 import './Highlighter.story.js'; // Highlighter
 
@@ -159,7 +159,7 @@ import './MultiSelect/MultiSelectTestStory'; // Tests/3. Inputs/3.8 Tags
 import './PopoverMenu/PopoverMenuRegressionTest.js'; // Tests/7.3. Popover Menu/
 import './Popover/testStory';
 import './TableToolbar/ToolbarTestStory'; // Tests/10. Table
-import './Tag/TagTestStory'; // Tests/12. Other/12.5 Tag
+import '../src/Tag/test/TagTestStory'; // Tests/12. Other/12.5 Tag
 import './Avatar/AvatarTestStory'; // Tests/12. Other/12.6 Avatar
 import './Box/testStory';
 import './Thumbnail/testStory';

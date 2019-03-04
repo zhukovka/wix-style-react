@@ -1,9 +1,9 @@
 import { testkitFactoryCreator } from 'wix-ui-test-utils/vanilla';
-import buttonLayoutDriverFactory from '../Deprecated/ButtonLayout/ButtonLayout.driver';
-import { dataHooks } from './Tag.helpers';
-import textDriverFactory from '../Text/Text.driver';
-import tagDriverFactory from './Tag.driver';
-import { isClassExists } from '../../test/utils';
+import buttonLayoutDriverFactory from '../../Deprecated/ButtonLayout/ButtonLayout.driver';
+import { dataHooks } from '../Tag.helpers';
+import textDriverFactory from '../../Text/Text.driver';
+import tagDriverFactory from '../Tag.driver';
+import { isClassExists } from '../../../test/utils';
 
 const buttonLayoutTestkitFactory = testkitFactoryCreator(
   buttonLayoutDriverFactory,
