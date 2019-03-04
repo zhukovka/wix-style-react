@@ -28,7 +28,7 @@ class RichTextToolbarLinkButton extends React.PureComponent {
             dataHook={dataHook}
             onClick={() => this.setState({ isFormShown: !isFormShown })}
             tooltipText={tooltipText}
-            isActive={isActive}
+            isActive={isActive || this.state.isFormShown}
           >
             {children}
           </RichTextToolbarButton>

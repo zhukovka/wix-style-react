@@ -104,7 +104,7 @@ const RichTextToolbar = ({
     onClick(RichUtils.toggleLink(newEditorState, newSelection, entityKey));
   };
 
-  const isActive = style => {
+  const isStyleActive = style => {
     return editorState && editorState.getCurrentInlineStyle().has(style);
   };
 
@@ -114,6 +114,7 @@ const RichTextToolbar = ({
       onClick: event => toggleStyle(event, onBold, inlineStyleTypes.bold),
       buttonComponent: RichTextToolbarButton,
       iconComponent: TextAreaBold,
+      isActive: () => isStyleActive(inlineStyleTypes.bold),
       tooltipText: 'Bold',
     },
     {
@@ -121,6 +122,7 @@ const RichTextToolbar = ({
       onClick: event => toggleStyle(event, onItalic, inlineStyleTypes.italic),
       buttonComponent: RichTextToolbarButton,
       iconComponent: TextAreaItalic,
+      isActive: () => isStyleActive(inlineStyleTypes.italic),
       tooltipText: 'Italic',
     },
     {
@@ -129,6 +131,7 @@ const RichTextToolbar = ({
         toggleStyle(event, onUnderline, inlineStyleTypes.underline),
       buttonComponent: RichTextToolbarButton,
       iconComponent: TextAreaUnderline,
+      isActive: () => isStyleActive(inlineStyleTypes.underline),
       tooltipText: 'Underline',
     },
     {
@@ -136,6 +139,7 @@ const RichTextToolbar = ({
       onClick: linkData => toggleEntity(linkData, onLink, entityTypes.link),
       buttonComponent: RichTextToolbarLinkButton,
       iconComponent: TextAreaLink,
+      isActive: () => {},
       tooltipText: 'Insert link',
     },
     {
@@ -144,6 +148,7 @@ const RichTextToolbar = ({
         toggleBlockType(event, onBulletedList, blockTypes.bulletedList),
       buttonComponent: RichTextToolbarButton,
       iconComponent: TextAreaBulletList,
+      isActive: () => {},
       tooltipText: 'Bulleted List',
     },
     {
@@ -152,6 +157,7 @@ const RichTextToolbar = ({
         toggleBlockType(event, onNumberedList, blockTypes.numberedList),
       buttonComponent: RichTextToolbarButton,
       iconComponent: TextAreaNumberedList,
+      isActive: () => {},
       tooltipText: 'Numbered List',
     },
   ];
@@ -162,9 +168,10 @@ const RichTextToolbar = ({
         const {
           type,
           onClick,
-          tooltipText,
           buttonComponent: Button,
           iconComponent: Icon,
+          isActive,
+          tooltipText,
         } = button;
 
         return (
@@ -172,8 +179,8 @@ const RichTextToolbar = ({
             key={`${index}-${type}`}
             dataHook={`richtextarea-button-${type.toLowerCase()}`}
             onClick={onClick}
+            isActive={isActive()}
             tooltipText={tooltipText}
-            isActive={isActive(type)}
           >
             <Icon />
           </Button>
