@@ -17,7 +17,7 @@ describe('RichTextInputArea', () => {
       const text = 'Some text';
       const driver = createDriver(<RichTextInputArea value={text} />);
 
-      expect(await driver.exists()).toBeTruthy();
+      expect(await driver.exists()).toBe(true);
       expect(await driver.getContent()).toBe(text);
     });
 
@@ -30,7 +30,7 @@ describe('RichTextInputArea', () => {
         />,
       );
 
-      expect(await driver.exists()).toBeTruthy();
+      expect(await driver.exists()).toBe(true);
       expect(await driver.getContent()).toBe(expectedText);
     });
 
@@ -126,6 +126,15 @@ describe('RichTextInputArea', () => {
       expect(currentValue).toBe(expectedText);
     });
 
+    it('should display a form for inserting link after clicking the link button', async () => {
+      const driver = createDriver(<RichTextInputArea />);
+
+      await driver.clickLinkButton();
+
+      expect(await driver.isFormDisplayed()).toBeDefined();
+      expect(await driver.isFormDisplayed()).not.toBe(null);
+    });
+
     it.skip('should render text as link after inserting required data', async () => {
       const driver = createDriver(
         <RichTextInputArea onChange={value => (currentValue = value)} />,
@@ -138,6 +147,26 @@ describe('RichTextInputArea', () => {
       await driver.insertLink(typedText, typedUrl);
 
       expect(currentValue).toBe(expectedText);
+    });
+
+    describe('Form', () => {
+      it('should disable the confirm button when url is empty', async () => {
+        const driver = createDriver(<RichTextInputArea />);
+
+        await driver.clickLinkButton();
+
+        expect(await driver.isFormConfirmButtonDisabled()).toBeDefined();
+        expect(await driver.isFormConfirmButtonDisabled()).not.toBe(null);
+      });
+
+      it.skip('should hide the form after clicking the cancel button', async () => {
+        const driver = createDriver(<RichTextInputArea />);
+
+        await driver.clickLinkButton();
+        await driver.clickFormCancelButton();
+
+        expect(await driver.isFormDisplayed()).toBe(false);
+      });
     });
   });
 });

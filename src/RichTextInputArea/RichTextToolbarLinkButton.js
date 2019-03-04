@@ -1,18 +1,18 @@
 import React from 'react';
 
 import RichTextToolbarButton from './RichTextToolbarButton';
-import RichTextAreaLinkForm from '../RichTextArea/RichTextAreaLinkForm';
+import RichTextInputAreaLinkForm from './RichTextInputAreaLinkForm';
 import Popover from '../Popover';
 import Box from '../Box';
 
 class RichTextToolbarLinkButton extends React.PureComponent {
   state = {
-    isPopoverShown: false,
+    isFormShown: false,
   };
 
   render() {
     const { dataHook, tooltipText, isActive, children } = this.props;
-    const { isPopoverShown } = this.state;
+    const { isFormShown } = this.state;
 
     return (
       <Popover
@@ -20,13 +20,13 @@ class RichTextToolbarLinkButton extends React.PureComponent {
         placement="bottom"
         showArrow
         animate
-        shown={isPopoverShown}
-        onClickOutside={this._hidePopover}
+        shown={isFormShown}
+        onClickOutside={this._hideForm}
       >
         <Popover.Element>
           <RichTextToolbarButton
             dataHook={dataHook}
-            onClick={() => this.setState({ isPopoverShown: !isPopoverShown })}
+            onClick={() => this.setState({ isFormShown: !isFormShown })}
             tooltipText={tooltipText}
             isActive={isActive}
           >
@@ -34,10 +34,11 @@ class RichTextToolbarLinkButton extends React.PureComponent {
           </RichTextToolbarButton>
         </Popover.Element>
         <Popover.Content>
-          <Box padding={'12px 24px'}>
-            <RichTextAreaLinkForm
+          <Box padding={'20px'}>
+            <RichTextInputAreaLinkForm
+              dataHook="richtextarea-form"
               onSubmit={this._handleSubmit}
-              onCancel={this._hidePopover}
+              onCancel={this._hideForm}
             />
           </Box>
         </Popover.Content>
@@ -45,9 +46,9 @@ class RichTextToolbarLinkButton extends React.PureComponent {
     );
   }
 
-  _hidePopover = () => {
+  _hideForm = () => {
     this.setState({
-      isPopoverShown: false,
+      isFormShown: false,
     });
   };
 
@@ -55,7 +56,7 @@ class RichTextToolbarLinkButton extends React.PureComponent {
     const { onClick } = this.props;
 
     onClick(linkData);
-    this._hidePopover();
+    this._hideForm();
   };
 }
 

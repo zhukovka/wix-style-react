@@ -11,6 +11,11 @@ export default base => {
       getButtons().map(async button =>
         (await button.attr('data-hook')).replace(/^richtextarea-button-/, ''),
       ),
+    isFormConfirmButtonDisabled: async () =>
+      (await base.$('[data-hook=richtextarea-form-confirm-button]').getNative())
+        .attributes.disabled,
+    isFormDisplayed: () =>
+      base.$('[data-hook=richtextarea-form]').isDisplayed(),
     clickBoldButton: () => getButtonByType('bold').click(),
     clickItalicButton: () => getButtonByType('italic').click(),
     clickUnderlineButton: () => getButtonByType('underline').click(),
@@ -18,6 +23,8 @@ export default base => {
       getButtonByType('unordered-list-item').click(),
     clickOrderedListButton: () => getButtonByType('ordered-list-item').click(),
     clickLinkButton: () => getButtonByType('link').click(),
+    clickFormCancelButton: () =>
+      base.$('[data-hook="richtextarea-form-cancel-button"]').click(),
     insertLink: async (text, url) => {
       const textInput = base.$('[data-hook="rich-text-area-link-text"]');
       const urlInput = base.$('[data-hook="rich-text-area-link-url"]');
