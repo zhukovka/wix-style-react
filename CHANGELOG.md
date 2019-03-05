@@ -21,6 +21,13 @@ Types of changes:
 - `<Layout/>` - add justifyItems and alignItems props [#3056](https://github.com/wix/wix-style-react/pull/3056)
 - `<PopoverMenu/>` - add `moveBy` prop [#3064](https://github.com/wix/wix-style-react/pull/3064)
 
+### Fixed
+
+- `<Button/>` - fix proptype definition [#3066](https://github.com/wix/wix-style-react/pull/3066)
+- `<TextButton/>` - fix proptype definition [#3066](https://github.com/wix/wix-style-react/pull/3066)
+- `<CloseButton/>` - fix proptype definition [#3066](https://github.com/wix/wix-style-react/pull/3066)
+- `<IconButton/>` - fix proptype definition [#3066](https://github.com/wix/wix-style-react/pull/3066)
+
 ## 6.7.2 - 2019-03-03
 
 No Changes (Patch version, only to re-publish Storybook, after failed publish)
