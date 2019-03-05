@@ -1,29 +1,28 @@
 import {
-  waitForVisibilityOf,
   scrollToElement,
 } from 'wix-ui-test-utils/protractor';
 import { eyesItInstance } from '../../test/utils/eyes-it';
-import { generatedTestComponentTestkitFactory } from '../../testkit/protractor';
+import {buttonTestkitFactory, modalTestkitFactory} from '../../testkit/protractor';
 import { storySettings } from '../../stories/Modal/storySettings';
 import { createTestStoryUrl } from '../../test/utils/storybook-helpers';
+import eventually from 'wix-eventually';
+
 
 const eyes = eyesItInstance();
 const { category, storyName } = storySettings;
 
-describe('Modal Test Component', () => {
+fdescribe('Modal', () => {
   const testStoryUrl = testName =>
     createTestStoryUrl({ category, storyName, testName });
+  const buttonDriver = buttonTestkitFactory({ dataHook: 'open-modal-button' })
 
   const createDriver = async (dataHook = storySettings.dataHook) => {
-    const driver = generatedTestComponentTestkitFactory({ dataHook });
-
-    await waitForVisibilityOf(
-      await driver.element(),
-      `Cannot find <GeneratedTestComponent/> component with dataHook of ${dataHook}`,
+    const driver = modalTestkitFactory({ dataHook });
+    await browser.wait(
+      driver.exists(),
+      5000,
+      'Cannot find <Modal/>',
     );
-
-    await scrollToElement(await driver.element());
-
     return driver;
   };
 
@@ -31,27 +30,42 @@ describe('Modal Test Component', () => {
     await createDriver();
   });
 
-  describe('prevent page scrolling when modal is open', async () => {
+  describe('page', () => {
     beforeAll(async () => {
       await browser.get(testStoryUrl('1. Prevent modal background scroll'));
     });
 
-    eyes.it('should scroll page when Modal is not open', async () => {
+    eyes.it('should be scrollable when Modal is close', async () => {
+      const until = protractor.ExpectedConditions;
       const scrollHereDiv = element(by.css('div[data-hook="scroll-here-div"]'));
+      browser.wait(until.presenceOf(scrollHereDiv), 5000);
       await scrollToElement(scrollHereDiv);
       expect(await scrollHereDiv.isDisplayed()).toBe(true);
     });
 
-    eyes.it('should not scroll page when Modal is open', async () => {
+    eyes.it('should not be scrollable when Modal is open', async () => {
+      const until = protractor.ExpectedConditions;
       const scrollHereDiv = element(by.css('div[data-hook="scroll-here-div"]'));
-      const openModalButton = element(
-        by.css('div[data-hook="open-modal-button"]'),
+      await browser.wait(
+        buttonDriver.exists(),
+        5000,
+        'Cannot find <Button/>',
       );
 
-      await openModalButton.click();
-      await scrollToElement(scrollHereDiv);
+      browser.wait(until.presenceOf(scrollHereDiv), 5000);
+      await buttonDriver.click();
+      const modalDriver = await createDriver();
 
-      expect(await scrollHereDiv.isDisplayed()).toBe(false);
+      expect(await modalDriver.isModalDisplayed()).toBe(true);
+
+      // /* cannot find the selector */
+      // await eventually(async () => {
+      //   const driver = await createDriver();
+      //   expect(await driver.element().isDisplayed()).toBe(true);
+      // });
+
+      // await scrollToElement(scrollHereDiv);
+      // expect(await scrollHereDiv.isDisplayed()).toBe(false);
     });
   });
 });

@@ -68,6 +68,7 @@ class Modal extends WixComponent {
       appElement,
       overlayPosition,
       parentSelector,
+      modalDataHook,
     } = this.props;
 
     let { maxHeight } = this.props;

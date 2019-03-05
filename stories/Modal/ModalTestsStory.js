@@ -22,17 +22,18 @@ class ModalToTest extends React.Component {
     const divStyle = { height: '110vh' };
 
     return (
-      <div>
-        <Button onClick={this.openModal} dataHook="open-modal-button" upgrade>
+      <div data-hook="container">
+        <Button onClick={this.openModal} dataHook="open-modal-button">
           Open Modal
         </Button>
         <Modal
-          dataHook="storybook-modal"
+          dataHook='storybook-modal'
           isOpen={this.state.modalIsOpen}
           onRequestClose={this.closeModal}
           shouldDisplayCloseButton
           contentLabel="Modal With Close Button Example"
           scrollableContent={false}
+          parentSelector={() => document.querySelector(`[data-hook="container"]`)}
         >
           <MessageBoxFunctionalLayout
             theme="blue"
