@@ -135,7 +135,7 @@ export const noBorderInputTestkitFactory = puppeteerTestkitFactoryCreator(
   noBorderInputDriverFactory,
 );
 
-import { dateInputDriverFactory } from '../src/DateInput/DateInput.driver';
+import { dateInputDriverFactory } from '../src/DateInput/DateInput.uni.driver';
 
 export const dateInputTestkitFactory = puppeteerUniTestkitFactoryCreator(
   dateInputDriverFactory,

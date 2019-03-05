@@ -2,17 +2,14 @@ import React from 'react';
 import { storySettings } from './storySettings';
 import {
   header,
-  divider,
   tabs,
   tab,
   code as baseCode,
-  description,
-  importExample,
   api,
   testkit,
   playground,
 } from 'wix-storybook-utils/Sections';
-import { baseScope } from '../utils/Components/LiveCodeExample';
+import { baseScope } from '../../utils/Components/LiveCodeExample';
 import DateInput from 'wix-style-react/DateInput';
 
 const code = config => baseCode({ components: baseScope, ...config });
@@ -21,7 +18,7 @@ export default {
   category: storySettings.kind,
   storyName: storySettings.storyName,
   component: DateInput,
-  componentPath: '../../src/DateInput/DateInput.js',
+  componentPath: '../../../src/DateInput/DateInput.js',
 
   componentProps: {
     theme: 'normal',

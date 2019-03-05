@@ -141,6 +141,7 @@ import './WIP';
 import './DragAndDrop/DragAndDrop.js';
 import './Builders/BadgeSelectItemBuilder';
 import './Builders/ContactItemBuilder';
+import './components/DateInput/index.story';
 
 // Tests
 import './Typography/TypographyTestStories';
@@ -169,6 +170,7 @@ import './SegmentedToggle/testStory'; // 4.5 SegmentedToggle
 import './FloatingNotification/FloatingNotificationTestStory'; // 8.2 FloatingNotification
 import './FormField/testStory';
 import './RichTextArea/testStory';
+import './components/DateInput/testStories';
 
 // The generated test component
 import './GeneratedTestComponent/index.story';
@@ -178,6 +180,3 @@ import './RichTextInputArea/index.story';
 
 // This import was added by the component generator
 import './NoBorderInput/index.story';
-
-// This import was added by the component generator
-import './DateInput/index.story';
