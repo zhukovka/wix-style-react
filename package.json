@@ -1,7 +1,7 @@
 {
   "name": "wix-style-react",
   "description": "wix-style-react",
-  "version": "6.6.1",
+  "version": "6.7.2",
   "main": "./dist/src/index.js",
   "module": "./dist/es/src/index.js",
   "sideEffects": [
@@ -25,9 +25,9 @@
   },
   "scripts": {
     "start": "./scripts/npm-start.sh",
-    "precommit": "lint-staged",
+    "_precommit": "lint-staged",
     "pretest": "npm run lint && ./scripts/ensure-dist.sh",
-    "test": "npm run test:unit",
+    "test": "npm run test:unit && npm run test:e2e",
     "test:unit": "yoshi test --jest",
     "test:watch": "yoshi test --jest --watch",
     "pretest:e2e": "./scripts/ensure-dist.sh",
@@ -40,14 +40,14 @@
     "prepublishOnly": "npm run bundle",
     "bundle": "webpack --config ./node_modules/yoshi/config/webpack.config.client.js --debug --display-error-details --progress",
     "transpile": "node ./scripts/transpile.js",
-    "transpile:watch": "babel src --out-dir dist/es/src --copy-files --watch",
+    "transpile:watch": "babel src --out-dir dist/es/src --copy-files --watch --plugins=@babel/plugin-syntax-dynamic-import",
     "postbuild": "npm run copy-public-styles && npm run export-components",
     "pr-postbuild": "npm install teamcity-surge-autorelease@^1.0.0 --no-save && teamcity-surge-autorelease",
     "prestorybook": "./scripts/ensure-dist.sh && npm run generate-autodocs-registry",
     "storybook:build": "npm run prestorybook && build-storybook",
     "storybook:static": "node scripts/e2e-server.js",
     "storybook": "npm run prestorybook && start-storybook -p 6006",
-    "postpublish": "npm install teamcity-surge-autorelease@^1.0.0 --no-save && teamcity-surge-autorelease",
+    "postpublish": "npm install @wix/teamcity-surge-autorelease@^1.0.0 --no-save && teamcity-surge-autorelease",
     "export-components": "import-path --path src",
     "lint": "yoshi lint --fix",
     "proxy-wix-ui-icons": "node scripts/proxy-wix-ui-icons",
@@ -129,6 +129,7 @@
     "react-docgen": "^2.15.0",
     "react-dom": "^15.5.4",
     "react-element-to-jsx-string": "^13.0.0",
+    "react-lifecycles-compat": "^3.0.4",
     "react-test-renderer": "^15.5.4",
     "react-test-utils": "^0.0.1",
     "react-testing-library": "5.5.2",
@@ -206,7 +207,9 @@
     "setupFiles": [
       "<rootDir>/test/jest-setup.js"
     ],
-    "setupTestFrameworkScriptFile": "wix-ui-test-utils/jest-setup",
+    "setupFilesAfterEnv": [
+      "wix-ui-test-utils/jest-setup"
+    ],
     "moduleNameMapper": {
       "\\.(?!\\st).(css|less|scss)$": "identity-obj-proxy"
     },

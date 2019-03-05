@@ -368,7 +368,7 @@ export const colorPickerTestkitFactory = protractorTestkitFactoryCreator(
 /*
  * Component generator test component
  */
-import { generatedTestComponentDriverFactory } from '../src/GeneratedTestComponent/GeneratedTestComponent.driver';
+import { generatedTestComponentDriverFactory } from '../src/GeneratedTestComponent/GeneratedTestComponent.uni.driver';
 
 export const generatedTestComponentTestkitFactory = protractorUniTestkitFactoryCreator(
   generatedTestComponentDriverFactory,
@@ -409,6 +409,12 @@ export const richTextInputAreaTestkitFactory = protractorUniTestkitFactoryCreato
   richTextInputAreaDriverFactory,
 );
 
+import { richTextToolbarDriverFactory } from '../src/RichTextInputArea/RichTextToolbar.driver';
+
+export const richTextToolbarTestkitFactory = protractorUniTestkitFactoryCreator(
+  richTextToolbarDriverFactory,
+);
+
 import { floatingNotificationDriverFactory } from '../src/FloatingNotification/FloatingNotification.driver';
 
 export const floatingNotificationTestkitFactory = protractorUniTestkitFactoryCreator(
@@ -419,6 +425,11 @@ import { noBorderInputDriverFactory } from '../src/NoBorderInput/NoBorderInput.p
 
 export const noBorderInputTestkitFactory = protractorTestkitFactoryCreator(
   noBorderInputDriverFactory,
+);
+import { colorInputDriverFactory } from '../src/ColorInput/ColorInput.driver';
+
+export const colorInputTestkitFactory = protractorUniTestkitFactoryCreator(
+  colorInputDriverFactory,
 );
 
 import { dateInputDriverFactory } from '../src/DateInput/DateInput.uni.driver';
