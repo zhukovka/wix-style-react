@@ -14,9 +14,9 @@ import {
 const load = module => {
   const MODULE_META_KEYS = ['__esModule'];
 
-  const moduleFields = Object.keys (module).reduce ((total, key) => {
-    if (!MODULE_META_KEYS.includes (key)) {
-      return total.concat (module[key]);
+  const moduleFields = Object.keys(module).reduce((total, key) => {
+    if (!MODULE_META_KEYS.includes(key)) {
+      return total.concat(module[key]);
     }
     return total;
   }, []);
@@ -54,6 +54,7 @@ export const colorPickerTestkitFactory = enzymeTestkitFactoryCreator(load(requir
 export const contactItemBuilderTestkitFactory = enzymeTestkitFactoryCreator(load(require('../src/ContactItemBuilder/ContactItemBuilder.driver')));
 export const counterBadgeTestkitFactory = enzymeTestkitFactoryCreator(load(require('../src/CounterBadge/CounterBadge.driver')));
 export const dataTableTestkitFactory = enzymeTestkitFactoryCreator(load(require('../src/DataTable/DataTable.driver')));
+export const dateInputTestkitFactory = enzymeUniTestkitFactoryCreator(load(require('../src/DateInput/DateInput.uni.driver')));
 export const datePickerTestkitFactory = enzymeTestkitFactoryCreator(load(require('../src/DatePicker/DatePicker.driver')));
 export const dropdownTestkitFactory = enzymeTestkitFactoryCreator(load(require('../src/Dropdown/Dropdown.driver')));
 export const dropdownBaseTestkitFactory = enzymeUniTestkitFactoryCreator(load(require('../src/DropdownBase/DropdownBase.driver')));
@@ -122,4 +123,3 @@ export const fieldWithSelectionCompositeTestkitFactory = enzymeTestkitFactoryCre
 export const radioButtonTestkitFactory = enzymeTestkitFactoryCreator(load(require('../src/RadioGroup/RadioButton/RadioButton.driver')));
 export const messageBoxMarketerialLayoutTestkitFactory = enzymeTestkitFactoryCreator(load(require('../src/MessageBox/MessageBoxMarketerialLayout.driver')));
 export const messageBoxFunctionalLayoutTestkitFactory = enzymeTestkitFactoryCreator(load(require('../src/MessageBox/MessageBoxFunctionalLayout.driver')));
-export const dateInputTestkitFactory = enzymeUniTestkitFactoryCreator(load(require ('../src/DateInput/DateInput.uni.driver')));

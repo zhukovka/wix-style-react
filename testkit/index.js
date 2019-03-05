@@ -14,9 +14,9 @@ import {
 const load = module => {
   const MODULE_META_KEYS = ['__esModule'];
 
-  const moduleFields = Object.keys (module).reduce ((total, key) => {
-    if (!MODULE_META_KEYS.includes (key)) {
-      return total.concat (module[key]);
+  const moduleFields = Object.keys(module).reduce((total, key) => {
+    if (!MODULE_META_KEYS.includes(key)) {
+      return total.concat(module[key]);
     }
     return total;
   }, []);
@@ -54,6 +54,7 @@ export const colorPickerTestkitFactory = testkitFactoryCreator(load(require('../
 export const contactItemBuilderTestkitFactory = testkitFactoryCreator(load(require('../src/ContactItemBuilder/ContactItemBuilder.driver')));
 export const counterBadgeTestkitFactory = testkitFactoryCreator(load(require('../src/CounterBadge/CounterBadge.driver')));
 export const dataTableTestkitFactory = testkitFactoryCreator(load(require('../src/DataTable/DataTable.driver')));
+export const dateInputTestkitFactory = uniTestkitFactoryCreator(load(require('../src/DateInput/DateInput.uni.driver')));
 export const datePickerTestkitFactory = testkitFactoryCreator(load(require('../src/DatePicker/DatePicker.driver')));
 export const dropdownTestkitFactory = testkitFactoryCreator(load(require('../src/Dropdown/Dropdown.driver')));
 export const dropdownBaseTestkitFactory = uniTestkitFactoryCreator(load(require('../src/DropdownBase/DropdownBase.driver')));
@@ -122,4 +123,3 @@ export const fieldWithSelectionCompositeTestkitFactory = testkitFactoryCreator(l
 export const radioButtonTestkitFactory = testkitFactoryCreator(load(require('../src/RadioGroup/RadioButton/RadioButton.driver')));
 export const messageBoxMarketerialLayoutTestkitFactory = testkitFactoryCreator(load(require('../src/MessageBox/MessageBoxMarketerialLayout.driver')));
 export const messageBoxFunctionalLayoutTestkitFactory = testkitFactoryCreator(load(require('../src/MessageBox/MessageBoxFunctionalLayout.driver')));
-export const dateInputTestkitFactory = uniTestkitFactoryCreator(load(require ('../src/DateInput/DateInput.uni.driver')));

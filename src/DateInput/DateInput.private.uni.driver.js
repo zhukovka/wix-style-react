@@ -1,4 +1,4 @@
-import { dateInputDriverFactory as publicDriverFactory } from './DateInput.driver';
+import { dateInputDriverFactory as publicDriverFactory } from './DateInput.uni.driver';
 
 export const dateInputPrivateDriverFactory = base => {
   return {
