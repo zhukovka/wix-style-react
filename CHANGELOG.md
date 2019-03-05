@@ -14,6 +14,12 @@ Types of changes:
 1. **Docs** for documentation changes
 1. **Lab** components and features that are still in a work in progress
 
+## Next 
+
+### Added
+
+- `<Layout/>` - add justifyItems and alignItems props [#3056](https://github.com/wix/wix-style-react/pull/3056)
+
 ## 6.7.2 - 2019-03-03
 
 No Changes (Patch version, only to re-publish Storybook, after failed publish)
