@@ -188,6 +188,7 @@ module.exports = {
   NoBorderInput: {},
 
   DateInput: {
-    unidriver: true
-  }
+    unidriver: true,
+    testkitPath: '../src/DateInput/DateInput.uni.driver',
+  },
 };
