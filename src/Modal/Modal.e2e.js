@@ -1,28 +1,24 @@
-import {
-  scrollToElement,
-} from 'wix-ui-test-utils/protractor';
+import { scrollToElement } from 'wix-ui-test-utils/protractor';
 import { eyesItInstance } from '../../test/utils/eyes-it';
-import {buttonTestkitFactory, modalTestkitFactory} from '../../testkit/protractor';
+import {
+  buttonTestkitFactory,
+  modalTestkitFactory,
+} from '../../testkit/protractor';
 import { storySettings } from '../../stories/Modal/storySettings';
 import { createTestStoryUrl } from '../../test/utils/storybook-helpers';
 import eventually from 'wix-eventually';
 
-
 const eyes = eyesItInstance();
 const { category, storyName } = storySettings;
 
-fdescribe('Modal', () => {
+describe('Modal', () => {
   const testStoryUrl = testName =>
     createTestStoryUrl({ category, storyName, testName });
-  const buttonDriver = buttonTestkitFactory({ dataHook: 'open-modal-button' })
+  const buttonDriver = buttonTestkitFactory({ dataHook: 'open-modal-button' });
 
   const createDriver = async (dataHook = storySettings.dataHook) => {
     const driver = modalTestkitFactory({ dataHook });
-    await browser.wait(
-      driver.exists(),
-      5000,
-      'Cannot find <Modal/>',
-    );
+    await browser.wait(driver.exists(), 5000, 'Cannot find <Modal/>');
     return driver;
   };
 
@@ -46,11 +42,7 @@ fdescribe('Modal', () => {
     eyes.it('should not be scrollable when Modal is open', async () => {
       const until = protractor.ExpectedConditions;
       const scrollHereDiv = element(by.css('div[data-hook="scroll-here-div"]'));
-      await browser.wait(
-        buttonDriver.exists(),
-        5000,
-        'Cannot find <Button/>',
-      );
+      await browser.wait(buttonDriver.exists(), 5000, 'Cannot find <Button/>');
 
       browser.wait(until.presenceOf(scrollHereDiv), 5000);
       await buttonDriver.click();
