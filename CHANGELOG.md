@@ -19,6 +19,7 @@ Types of changes:
 ### Added
 
 - `<Layout/>` - add justifyItems and alignItems props [#3056](https://github.com/wix/wix-style-react/pull/3056)
+- `<PopoverMenu/>` - add `moveBy` prop [#3064](https://github.com/wix/wix-style-react/pull/3064)
 
 ## 6.7.2 - 2019-03-03
 
