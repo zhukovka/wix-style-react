@@ -47,7 +47,6 @@ storiesOf(kind, module).add(testStories.dateInputVariations, () => {
       />
       <br />
       <DateInput dataHook={storySettings.dataHook} {...defaultProps} disabled />
-      <div className="fart">bar</div>
     </div>
   );
 });
