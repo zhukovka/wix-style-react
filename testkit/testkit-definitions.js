@@ -158,12 +158,14 @@ module.exports = {
   },
 
   Proportion: { unidriver: true, drivers: ['enzyme'] },
+
   GeneratedTestComponent: {
     testkitPath:
       '../src/GeneratedTestComponent/GeneratedTestComponent.uni.driver',
     unidriver: true,
     drivers: ['enzyme'],
   },
+
   DropdownBase: { unidriver: true },
 
   RadioButton: {
@@ -196,7 +198,13 @@ module.exports = {
     unidriver: true,
     testkitPath: '../src/DateInput/DateInput.uni.driver',
   },
+
   ColorInput: {
     unidriver: true,
+  },
+
+  DateRangeInput: {
+    unidriver: true,
+    testkitPath: '../src/DateRangeInput/DateRangeInput.uni.driver',
   },
 };

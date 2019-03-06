@@ -14,12 +14,16 @@ $material-gap: 8px;
   border-radius: 6px;
   @include BoxSizing();
   @include FontRoman();
+  &.hasFocus {
+    z-index: 2;
+  }
 }
 
 .input-wrapper {
   display: flex;
   width: 100%;
   padding: 0 $gap;
+
 }
 
 .size-large {

@@ -752,6 +752,13 @@ describe('Input', () => {
         expect(await driver.suffixComponentExists('.my-button')).toEqual(true);
       });
 
+      it('should allow hiding suffix using `hidSuffix` attribute', async () => {
+        const { driver } = render(
+          <Input hideSuffix suffix={<div className="my-button" />} />,
+        );
+        expect(await driver.hasSuffix()).toBeFalsy();
+      });
+
       it('should add `withSuffix` classname to input', async () => {
         const { driver } = render(<Input suffix="hello" />);
         expect(await driver.hasSuffixClass()).toBeTruthy();

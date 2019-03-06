@@ -4,6 +4,7 @@ import styles from './DateInput.scss';
 import Input from '../Input';
 import CalendarIcon from '../new-icons/Date';
 import { formatDate } from '../LocaleUtils';
+import classNames from 'classnames';
 
 class DateInput extends React.PureComponent {
   static displayName = 'DateInput';
@@ -32,9 +33,12 @@ class DateInput extends React.PureComponent {
       value: initialValue,
       customInput,
       dataHook,
+      className,
+      inputClassName,
       ...rest
     } = this.props;
     const _inputProps = {
+      className: inputClassName,
       dataHook: inputDataHook || 'date-input-input',
       value: this._formatDateValue(initialValue),
       prefix: (
@@ -46,8 +50,9 @@ class DateInput extends React.PureComponent {
       ...rest,
       ...(customInput ? customInput.props : {}),
     };
+    const containerClass = classNames(styles.root, className);
     return (
-      <div data-hook={dataHook} className={styles.root}>
+      <div data-hook={dataHook} className={containerClass}>
         {React.cloneElement(customInput || <Input />, _inputProps)}
       </div>
     );

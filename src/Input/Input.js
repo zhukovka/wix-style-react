@@ -103,6 +103,7 @@ class Input extends Component {
       onTooltipShow,
       autocomplete,
       required,
+      hideSuffix,
       error,
       errorMessage,
     } = this.props;
@@ -206,28 +207,30 @@ class Input extends Component {
           </div>
         )}
         {inputElement}
-        <InputContext.Provider value={{ ...this.props, inSuffix: true }}>
-          {visibleSuffixCount > 0 && (
-            <InputSuffix
-              status={suffixStatus}
-              statusMessage={suffixStatusMessage}
-              theme={theme}
-              disabled={disabled}
-              help={help}
-              helpMessage={helpMessage}
-              onIconClicked={onIconClicked}
-              magnifyingGlass={magnifyingGlass}
-              isClearButtonVisible={isClearButtonVisible}
-              onClear={this.handleSuffixOnClear}
-              menuArrow={menuArrow}
-              unit={unit}
-              focused={this.state.focus}
-              suffix={suffix}
-              tooltipPlacement={tooltipPlacement}
-              onTooltipShow={onTooltipShow}
-            />
-          )}
-        </InputContext.Provider>
+        {!hideSuffix && (
+          <InputContext.Provider value={{ ...this.props, inSuffix: true }}>
+            {visibleSuffixCount > 0 && (
+              <InputSuffix
+                status={suffixStatus}
+                statusMessage={suffixStatusMessage}
+                theme={theme}
+                disabled={disabled}
+                help={help}
+                helpMessage={helpMessage}
+                onIconClicked={onIconClicked}
+                magnifyingGlass={magnifyingGlass}
+                isClearButtonVisible={isClearButtonVisible}
+                onClear={this.handleSuffixOnClear}
+                menuArrow={menuArrow}
+                unit={unit}
+                focused={this.state.focus}
+                suffix={suffix}
+                tooltipPlacement={tooltipPlacement}
+                onTooltipShow={onTooltipShow}
+              />
+            )}
+          </InputContext.Provider>
+        )}
       </div>
     );
   }

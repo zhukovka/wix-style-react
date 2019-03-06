@@ -15,6 +15,7 @@ export const testkit = (base, body, document) => {
 
   const driver = {
     ...baseUniDriverFactory(base),
+    clickOnInput: () => input.click(),
     getInputElementClasses: async () => await reactBaseInput.getClassList(),
     suffixComponentExists: async className =>
       await base.$(`.${styles.suffix} ${className}`).exists(),
