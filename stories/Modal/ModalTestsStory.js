@@ -54,10 +54,3 @@ class ModalToTest extends React.Component {
     );
   }
 }
-
-//TODOs:
-/*
- * 1. Add imports for modal
- * 2. Add content to page (body) so that the page is scrollable
- * 3. Add button to open modal
- * */

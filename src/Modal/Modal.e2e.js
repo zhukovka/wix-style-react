@@ -1,75 +1,91 @@
-import { scrollToElement } from 'wix-ui-test-utils/protractor';
+import { protractorUniTestkitFactoryCreator } from 'wix-ui-test-utils/protractor';
 import { eyesItInstance } from '../../test/utils/eyes-it';
 import {
   buttonTestkitFactory,
-  modalTestkitFactory,
 } from '../../testkit/protractor';
 import { storySettings } from '../../stories/Modal/storySettings';
 import { createTestStoryUrl } from '../../test/utils/storybook-helpers';
-import eventually from 'wix-eventually';
+import { modalPrivateDriverFactory } from "./Modal.private.uni.driver";
 
 const eyes = eyesItInstance();
 const { category, storyName } = storySettings;
 
 describe('Modal', () => {
+  const modalTestkitFactory = protractorUniTestkitFactoryCreator(modalPrivateDriverFactory);
+
   const testStoryUrl = testName =>
     createTestStoryUrl({ category, storyName, testName });
-  const buttonDriver = buttonTestkitFactory({ dataHook: 'open-modal-button' });
-
+  //Runs under execute script by protractor
+  //const getButtonBoundingClientRect = () => document.querySelector(`[data-hook='open-modal-button']`).getBoundingClientRect();
   const createDriver = async (dataHook = storySettings.dataHook) => {
     const driver = modalTestkitFactory({ dataHook });
     await browser.wait(driver.exists(), 5000, 'Cannot find <Modal/>');
     return driver;
   };
 
+  const DATA_HOOKS = {
+      scrollHereDiv: 'scroll-here-div',
+      openModalButton: 'open-modal-button'
+  };
+
   eyes.it('should render', async () => {
     await createDriver();
   });
 
-  describe('page', () => {
+  describe('test stories', () => {
     beforeAll(async () => {
       await browser.get(testStoryUrl('1. Prevent modal background scroll'));
     });
 
+    eyes.it('should add overflow to body once Modal is open', async ()=>{
+      const buttonDriver = buttonTestkitFactory({ dataHook: DATA_HOOKS.openModalButton });
+      await browser.wait(buttonDriver.exists(), 5000, 'Cannot find <Button/>');
+
+      await buttonDriver.click();
+
+      const body = element(by.css('body'));
+      const bodyOverflow = await body.getCssValue('overflow');
+
+      expect(bodyOverflow).toBe('hidden');
+    })
+
+
+    // TODO: find a way to imitate wheel event since scrolling programmatically overrides overflow hidden
+
+    /*
     eyes.it('should be scrollable when Modal is close', async () => {
-      const until = protractor.ExpectedConditions;
-      const scrollHereDiv = element(by.css('div[data-hook="scroll-here-div"]'));
-      browser.wait(until.presenceOf(scrollHereDiv), 5000);
-      await scrollToElement(scrollHereDiv);
-      expect(await scrollHereDiv.isDisplayed()).toBe(true);
+      const buttonDriver = buttonTestkitFactory({ dataHook: DATA_HOOKS.openModalButton });
+      await browser.wait(buttonDriver.exists(), 5000, 'Cannot find <Button/>');
+
+      const beforeScroll = await browser.executeScript(getButtonBoundingClientRect);
+
+      await browser.executeScript(()=> {
+        const evt = new WheelEvent('WheelEvent', { deltaY: 10000 });
+        document.body.dispatchEvent(evt);
+      });
+
+      const afterScroll = await browser.executeScript(getButtonBoundingClientRect);
+      expect(beforeScroll).not.toEqual(afterScroll);
     });
 
     eyes.it('should not be scrollable when Modal is open', async () => {
-      const until = protractor.ExpectedConditions;
-      const scrollHereDiv = element(by.css('div[data-hook="scroll-here-div"]'));
+      const modalDriver = await createDriver();
+      const buttonDriver = buttonTestkitFactory({ dataHook: DATA_HOOKS.openModalButton });
+
       await browser.wait(buttonDriver.exists(), 5000, 'Cannot find <Button/>');
 
-      browser.wait(until.presenceOf(scrollHereDiv), 5000);
+      const beforeScroll = await browser.executeScript(getButtonBoundingClientRect);
       await buttonDriver.click();
-      const modalDriver = await createDriver();
-
       expect(await modalDriver.isModalDisplayed()).toBe(true);
 
-      // /* cannot find the selector */
-      // await eventually(async () => {
-      //   const driver = await createDriver();
-      //   expect(await driver.element().isDisplayed()).toBe(true);
-      // });
+      await browser.executeScript(()=> {
+        const evt = new WheelEvent('WheelEvent', { deltaY: 50 });
+        document.body.dispatchEvent(evt);
+      });
 
-      // await scrollToElement(scrollHereDiv);
-      // expect(await scrollHereDiv.isDisplayed()).toBe(false);
+      const afterScroll = await browser.executeScript(getButtonBoundingClientRect);
+      expect(beforeScroll).toEqual(afterScroll);
     });
+    */
   });
 });
-
-//TODOs: /* protractor API */
-/* https://www.protractortest.org/#/api
-1. scroll body (window.scroll)
-2. verify scrolled (checking position -?!)
-
----------------------------
-3. open modal
-4. scroll body (window.scroll??)
-5. verify not scrolled (checking position -?!) f
-* */
-//
