@@ -1,5 +1,5 @@
 :import {
-  -st-from: "wix-ui-backoffice/dist/src/components/Tooltip/Tooltip.es.st.css";
+  -st-from: "wix-ui-backoffice/dist/es/src/components/Tooltip/Tooltip.st.css";
   -st-default: Tooltip;
 }
 

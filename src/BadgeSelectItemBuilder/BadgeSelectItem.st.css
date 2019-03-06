@@ -1,5 +1,5 @@
 :import {
-  -st-from: "wix-ui-backoffice/dist/src/palette.st.css";
+  -st-from: "wix-ui-backoffice/dist/es/src/palette.st.css";
   -st-named: secondaryText, primaryLightText, danger, success, warning, urgent, general, standard, neutral, mainMutedHover, successMutedHover, dangerMutedHover, backgroundSecondary;
 }
 

@@ -5,7 +5,7 @@ import {
   SKIN,
   SIZE,
   TYPE,
-} from 'wix-ui-backoffice/dist/src/components/Badge/constants';
+} from 'wix-ui-backoffice/dist/es/src/components/Badge/constants';
 import { createRendererWithDriver, cleanup } from '../../test/utils/unit';
 
 describe('BadgeSelect', () => {

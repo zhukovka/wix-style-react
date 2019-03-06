@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { SKIN } from 'wix-ui-backoffice/dist/src/components/StylableCounterBadge/constants';
+import { SKIN } from 'wix-ui-backoffice/dist/es/src/components/StylableCounterBadge/constants';
 import { Email } from 'wix-ui-icons-common';
 
 import { storySettings } from './storySettings';
