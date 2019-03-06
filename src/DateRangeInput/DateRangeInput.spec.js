@@ -63,4 +63,10 @@ describe('DateRangeInput', () => {
     await driver.clickOnDateToInput();
     expect(onChange).toHaveBeenCalled();
   });
+
+  it('should set status to both inputs', async () => {
+    const onChange = jest.fn();
+    const driver = createDriver(<DateRangeInput status="error" />);
+    expect(await driver.getInputDriver('from')).toHaveBeenCalled();
+  });
 });
