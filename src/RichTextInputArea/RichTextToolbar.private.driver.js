@@ -11,6 +11,12 @@ export default base => {
       getButtons().map(async button =>
         (await button.attr('data-hook')).replace(/^richtextarea-button-/, ''),
       ),
+    getBoldButton: () => getButtonByType('bold'),
+    getItalicButton: () => getButtonByType('italic'),
+    getUnderlineButton: () => getButtonByType('underline'),
+    getBulletedListButton: () => getButtonByType('unordered-list-item'),
+    getNumberedListButton: () => getButtonByType('ordered-list-item'),
+    getLinkButton: () => getButtonByType('link'),
     isFormConfirmButtonDisabled: async () =>
       (await base.$('[data-hook=richtextarea-form-confirm-button]').getNative())
         .attributes.disabled,
@@ -19,9 +25,9 @@ export default base => {
     clickBoldButton: () => getButtonByType('bold').click(),
     clickItalicButton: () => getButtonByType('italic').click(),
     clickUnderlineButton: () => getButtonByType('underline').click(),
-    clickUnorderedListButton: () =>
+    clickBulletedListButton: () =>
       getButtonByType('unordered-list-item').click(),
-    clickOrderedListButton: () => getButtonByType('ordered-list-item').click(),
+    clickNumberedListButton: () => getButtonByType('ordered-list-item').click(),
     clickLinkButton: () => getButtonByType('link').click(),
     clickFormCancelButton: () =>
       base.$('[data-hook="richtextarea-form-cancel-button"]').click(),

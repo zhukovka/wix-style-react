@@ -14,12 +14,13 @@ Types of changes:
 1. **Docs** for documentation changes
 1. **Lab** components and features that are still in a work in progress
 
-## Next 
+## 6.7.3 - 2019-03-07
 
 ### Added
 
 - `<Layout/>` - add justifyItems and alignItems props [#3056](https://github.com/wix/wix-style-react/pull/3056)
 - `<PopoverMenu/>` - add `moveBy` prop [#3064](https://github.com/wix/wix-style-react/pull/3064)
+- `<FormField/>` - add `labelSize` prop [#3075](https://github.com/wix/wix-style-react/pull/3075)
 
 ### Fixed
 
