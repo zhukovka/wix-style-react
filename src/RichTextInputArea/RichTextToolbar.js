@@ -52,8 +52,8 @@ const RichTextToolbar = ({
     );
   };
 
-  const toggleEntity = (linkData, onClick) => {
-    const { href: url, text = 'bla' } = linkData;
+  const toggleEntity = (event, onClick, linkData) => {
+    const { href: url = '', text = '' } = linkData;
     const selection = editorState.getSelection();
     const contentState = editorState.getCurrentContent();
     const contentStateWithEntity = contentState.createEntity(
@@ -66,7 +66,7 @@ const RichTextToolbar = ({
     const entityKey = contentStateWithEntity.getLastCreatedEntityKey();
 
     let newEditorState;
-    let newSelection;
+    let newSelection = selection;
 
     // In case there is no selected text
     if (!selection.isCollapsed()) {
@@ -94,10 +94,10 @@ const RichTextToolbar = ({
         focusKey: blockKey,
       });
 
-      newEditorState = RichUtils.toggleLink(
-        EditorState.push(editorState, newContentState, 'insert-characters'),
-        newSelection,
-        entityKey,
+      newEditorState = EditorState.push(
+        editorState,
+        newContentState,
+        'insert-characters',
       );
     }
 
@@ -105,7 +105,60 @@ const RichTextToolbar = ({
   };
 
   const isStyleActive = style => {
-    return editorState && editorState.getCurrentInlineStyle().has(style);
+    if (editorState) {
+      const currentStyle = editorState.getCurrentInlineStyle();
+
+      return currentStyle.has(style);
+    }
+  };
+
+  const isBlockTypeActive = blockType => {
+    if (editorState) {
+      const selection = editorState.getSelection();
+      const currentBlockType = editorState
+        .getCurrentContent()
+        .getBlockForKey(selection.getStartKey())
+        .getType();
+
+      return currentBlockType === blockType;
+    }
+  };
+
+  const isEntityActive = entity => {
+    if (editorState) {
+      const selection = editorState.getSelection();
+      const contentState = editorState.getCurrentContent();
+      const currentKey = contentState
+        .getBlockForKey(selection.getStartKey())
+        .getEntityAt(selection.getStartOffset());
+
+      if (currentKey) {
+        const currentEntity = contentState.getEntity(currentKey);
+
+        return currentEntity.type === entity;
+      }
+    }
+  };
+
+  const getSelectedText = () => {
+    if (editorState) {
+      const selection = editorState.getSelection();
+      const currentContent = editorState.getCurrentContent();
+
+      // Resolves the current block of the selection
+      const anchorKey = selection.getAnchorKey();
+      const currentBlock = currentContent.getBlockForKey(anchorKey);
+
+      // Resolves the starting and ending position of current block
+      const startPosition = selection.getStartOffset();
+      const endPosition = selection.getEndOffset();
+
+      const selectedText = currentBlock
+        .getText()
+        .slice(startPosition, endPosition);
+
+      return selectedText;
+    }
   };
 
   const buttons = [
@@ -136,10 +189,15 @@ const RichTextToolbar = ({
     },
     {
       type: entityTypes.link,
-      onClick: linkData => toggleEntity(linkData, onLink, entityTypes.link),
+      onClick: (event, linkData) => toggleEntity(event, onLink, linkData),
       buttonComponent: RichTextToolbarLinkButton,
+      buttonProps: {
+        data: {
+          text: getSelectedText(),
+        },
+      },
       iconComponent: TextAreaLink,
-      isActive: () => {},
+      isActive: () => isEntityActive(entityTypes.link),
       tooltipText: 'Insert link',
     },
     {
@@ -148,7 +206,7 @@ const RichTextToolbar = ({
         toggleBlockType(event, onBulletedList, blockTypes.bulletedList),
       buttonComponent: RichTextToolbarButton,
       iconComponent: TextAreaBulletList,
-      isActive: () => {},
+      isActive: () => isBlockTypeActive(blockTypes.bulletedList),
       tooltipText: 'Bulleted List',
     },
     {
@@ -157,7 +215,7 @@ const RichTextToolbar = ({
         toggleBlockType(event, onNumberedList, blockTypes.numberedList),
       buttonComponent: RichTextToolbarButton,
       iconComponent: TextAreaNumberedList,
-      isActive: () => {},
+      isActive: () => isBlockTypeActive(blockTypes.numberedList),
       tooltipText: 'Numbered List',
     },
   ];
@@ -172,6 +230,7 @@ const RichTextToolbar = ({
           iconComponent: Icon,
           isActive,
           tooltipText,
+          buttonProps,
         } = button;
 
         return (
@@ -181,6 +240,7 @@ const RichTextToolbar = ({
             onClick={onClick}
             isActive={isActive()}
             tooltipText={tooltipText}
+            {...buttonProps}
           >
             <Icon />
           </Button>
