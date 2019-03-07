@@ -143,6 +143,7 @@ require('../src/DragAndDrop/docs/DragAndDrop.js');
 require('./Builders/BadgeSelectItemBuilder');
 require('./Builders/ContactItemBuilder');
 require('./components/DateInput/index.story');
+require('./components/DateRangeInput/index.story');
 
 // Tests
 require('../src/Typography/docs/TypographyTestStories');
@@ -173,6 +174,7 @@ require('../src/FormField/docs/testStory');
 require('../src/RichTextArea/docs/testStory');
 require('../src/ColorInput/docs/testStory');
 require('./components/DateInput/testStories');
+require('./components/DateRangeInput/testStories');
 
 // The generated test component
 require('../src/GeneratedTestComponent/docs/index.story');
@@ -183,6 +185,3 @@ require('../src/RichTextInputArea/docs/index.story');
 
 // This import was added by the component generator
 require('../src/NoBorderInput/docs/index.story');
-
-// This import was added by the component generator
-require('./DateRangeInput/index.story');
