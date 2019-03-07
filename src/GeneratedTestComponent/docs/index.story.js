@@ -1,18 +1,16 @@
 import React from 'react';
-import { storySettings } from './storySettings';
-import LiveCodeExample from '../utils/Components/LiveCodeExample';
-
-import {%ComponentName%} from '../../src/{%ComponentName%}';
+import LiveCodeExample from '../../../stories/utils/Components/LiveCodeExample';
+import { Category } from '../../../stories/storiesHierarchy';
+import GeneratedTestComponent from '..';
 
 export default {
-  category: storySettings.category,
-  storyName: storySettings.storyName,
+  category: Category.TESTS,
+  storyName: 'GeneratedTestComponent',
 
-  component: {%ComponentName%},
-  componentPath: '../../src/{%ComponentName%}/{%ComponentName%}.js',
+  component: GeneratedTestComponent,
+  componentPath: '..',
 
   componentProps: {
-    dataHook: storySettings.dataHook,
     buttonText: undefined,
   },
 
@@ -27,8 +25,8 @@ export default {
         compact
         title="Live code example"
         initialCode={`
-<{%ComponentName%}
-  dataHook="story-{%component-name%}-live-example"
+<GeneratedTestComponent
+  dataHook="story-generated-test-component-live-example"
   buttonText="Press me for a surprise"
   />
         `}
@@ -36,4 +34,3 @@ export default {
     </div>
   ),
 };
-

@@ -1,11 +1,7 @@
 import { storySettings } from './storySettings';
 import { baseScope } from '../utils/Components/LiveCodeExample';
-import {
-  title,
-  description,
-  code as baseCode,
-} from 'wix-storybook-utils/Sections';
-import { halfWidth, exampleDescription } from '../utils/sections';
+import { title, code as baseCode } from 'wix-storybook-utils/Sections';
+import { exampleDescription } from '../utils/sections';
 
 import * as examples from './examples';
 import UXStorySections from '../utils/UXStorySections';

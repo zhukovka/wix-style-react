@@ -173,7 +173,8 @@ import './RichTextArea/testStory';
 import './ColorInput/testStory';
 
 // The generated test component
-import './GeneratedTestComponent/index.story';
+require('../src/GeneratedTestComponent/docs/index.story');
+require('../src/GeneratedTestComponent/test/GeneratedTestComponentStories');
 
 // This import was added by the component generator
 import './RichTextInputArea/index.story';

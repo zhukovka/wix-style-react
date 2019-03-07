@@ -4,6 +4,7 @@ import LiveCodeExample from 'wix-storybook-utils/LiveCodeExample';
 
 import * as wsrScope from '../../../../src/index';
 import * as iconsScope from 'wix-ui-icons-common';
+import GeneratedTestComponent from '../../../../src/GeneratedTestComponent';
 
 import styles from './styles.scss';
 
@@ -43,6 +44,7 @@ export const createPropsArray = props =>
 export const baseScope = {
   ...wsrScope,
   ...iconsScope,
+  GeneratedTestComponent,
 };
 
 const Component = props => {
