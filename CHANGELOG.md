@@ -20,7 +20,7 @@ Types of changes:
 
 - `<Layout/>` - add justifyItems and alignItems props [#3056](https://github.com/wix/wix-style-react/pull/3056)
 - `<PopoverMenu/>` - add `moveBy` prop [#3064](https://github.com/wix/wix-style-react/pull/3064)
-- `<Label/>` - add `labelSize` prop [#3075](https://github.com/wix/wix-style-react/pull/3075)
+- `<FormField/>` - add `labelSize` prop [#3075](https://github.com/wix/wix-style-react/pull/3075)
 
 ### Fixed
 
