@@ -9,7 +9,7 @@ import { tagTestkitFactory } from '../../testkit/protractor';
 import { tooltipTestkitFactory } from 'wix-ui-core/dist/src/testkit/protractor';
 import { createAutoExampleProps } from '../../stories/AutoExampleWrapperContants';
 
-import { storySettings } from '../../stories/Tag/storySettings';
+import { storySettings } from './docs/storySettings';
 
 describe('Tag', () => {
   const eyes = eyesItInstance();
