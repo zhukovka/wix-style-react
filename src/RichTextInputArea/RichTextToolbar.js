@@ -52,7 +52,7 @@ const RichTextToolbar = ({
     );
   };
 
-  const toggleEntity = (linkData, onClick) => {
+  const toggleEntity = (event, onClick, linkData) => {
     const { href: url = '', text = '' } = linkData;
     const selection = editorState.getSelection();
     const contentState = editorState.getCurrentContent();
@@ -66,7 +66,7 @@ const RichTextToolbar = ({
     const entityKey = contentStateWithEntity.getLastCreatedEntityKey();
 
     let newEditorState;
-    let newSelection;
+    let newSelection = selection;
 
     // In case there is no selected text
     if (!selection.isCollapsed()) {
@@ -94,10 +94,10 @@ const RichTextToolbar = ({
         focusKey: blockKey,
       });
 
-      newEditorState = RichUtils.toggleLink(
-        EditorState.push(editorState, newContentState, 'insert-characters'),
-        newSelection,
-        entityKey,
+      newEditorState = EditorState.push(
+        editorState,
+        newContentState,
+        'insert-characters',
       );
     }
 
@@ -140,6 +140,27 @@ const RichTextToolbar = ({
     }
   };
 
+  const getSelectedText = () => {
+    if (editorState) {
+      const selection = editorState.getSelection();
+      const currentContent = editorState.getCurrentContent();
+
+      // Resolves the current block of the selection
+      const anchorKey = selection.getAnchorKey();
+      const currentBlock = currentContent.getBlockForKey(anchorKey);
+
+      // Resolves the starting and ending position of current block
+      const startPosition = selection.getStartOffset();
+      const endPosition = selection.getEndOffset();
+
+      const selectedText = currentBlock
+        .getText()
+        .slice(startPosition, endPosition);
+
+      return selectedText;
+    }
+  };
+
   const buttons = [
     {
       type: inlineStyleTypes.bold,
@@ -168,8 +189,13 @@ const RichTextToolbar = ({
     },
     {
       type: entityTypes.link,
-      onClick: linkData => toggleEntity(linkData, onLink, entityTypes.link),
+      onClick: (event, linkData) => toggleEntity(event, onLink, linkData),
       buttonComponent: RichTextToolbarLinkButton,
+      buttonProps: {
+        data: {
+          text: getSelectedText(),
+        },
+      },
       iconComponent: TextAreaLink,
       isActive: () => isEntityActive(entityTypes.link),
       tooltipText: 'Insert link',
@@ -204,6 +230,7 @@ const RichTextToolbar = ({
           iconComponent: Icon,
           isActive,
           tooltipText,
+          buttonProps,
         } = button;
 
         return (
@@ -213,6 +240,7 @@ const RichTextToolbar = ({
             onClick={onClick}
             isActive={isActive()}
             tooltipText={tooltipText}
+            {...buttonProps}
           >
             <Icon />
           </Button>

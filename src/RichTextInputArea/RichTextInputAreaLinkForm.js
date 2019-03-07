@@ -10,6 +10,18 @@ class RichTextInputAreaLinkForm extends React.PureComponent {
     url: '',
   };
 
+  constructor(props) {
+    super(props);
+
+    const { defaultData = {} } = props;
+    const { text = '', url = '' } = defaultData;
+
+    this.state = {
+      text,
+      url,
+    };
+  }
+
   render() {
     const { dataHook, onCancel } = this.props;
 
@@ -24,12 +36,14 @@ class RichTextInputAreaLinkForm extends React.PureComponent {
           <Input
             placeholder="Text to display"
             size="small"
+            value={this.state.text}
             onChange={event => this._setInputValue(event, 'text')}
           />
         </Box>
         <Input
           placeholder="URL this link should go"
           size="small"
+          value={this.state.url}
           onChange={event => this._setInputValue(event, 'url')}
         />
       </RichTextInputAreaForm>
@@ -48,7 +62,7 @@ class RichTextInputAreaLinkForm extends React.PureComponent {
     event.preventDefault();
 
     const { onSubmit } = this.props;
-    onSubmit && onSubmit(this.state);
+    onSubmit && onSubmit(event, this.state);
   };
 }
 

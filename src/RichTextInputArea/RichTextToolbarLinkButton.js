@@ -11,7 +11,7 @@ class RichTextToolbarLinkButton extends React.PureComponent {
   };
 
   render() {
-    const { dataHook, tooltipText, isActive, children } = this.props;
+    const { dataHook, tooltipText, isActive, children, data } = this.props;
     const { isFormShown } = this.state;
 
     return (
@@ -39,6 +39,7 @@ class RichTextToolbarLinkButton extends React.PureComponent {
               dataHook="richtextarea-form"
               onSubmit={this._handleSubmit}
               onCancel={this._hideForm}
+              defaultData={data}
             />
           </Box>
         </Popover.Content>
@@ -52,10 +53,10 @@ class RichTextToolbarLinkButton extends React.PureComponent {
     });
   };
 
-  _handleSubmit = linkData => {
+  _handleSubmit = (event, linkData) => {
     const { onClick } = this.props;
 
-    onClick(linkData);
+    onClick(event, linkData);
     this._hideForm();
   };
 }
