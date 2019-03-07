@@ -65,8 +65,34 @@ describe('DateRangeInput', () => {
   });
 
   it('should set status to both inputs', async () => {
-    const onChange = jest.fn();
     const driver = createDriver(<DateRangeInput status="error" />);
-    expect(await driver.getInputDriver('from')).toHaveBeenCalled();
+    expect(await driver.getInputDriver('from').hasError()).toEqual(true);
+    expect(await driver.getInputDriver('to').hasError()).toEqual(true);
+  });
+
+  it('error status should not add suffix to `from` input', async () => {
+    const driver = createDriver(<DateRangeInput status="error" />);
+    expect(await driver.getInputDriver('from').hasSuffix()).toEqual(false);
+  });
+
+  it('loading status should not add suffix to `from` input', async () => {
+    const driver = createDriver(<DateRangeInput status="loading" />);
+    expect(await driver.getInputDriver('from').hasSuffix()).toEqual(false);
+  });
+
+  it('error status should add suffix to `to` input', async () => {
+    const driver = createDriver(<DateRangeInput status="error" />);
+    expect(await driver.getInputDriver('to').hasSuffix()).toEqual(true);
+  });
+
+  it('loading status should add suffix to `to` input', async () => {
+    const driver = createDriver(<DateRangeInput status="loading" />);
+    expect(await driver.getInputDriver('to').hasSuffix()).toEqual(true);
+  });
+
+  it('should set suffix on `to` input', async () => {
+    const driver = createDriver(<DateRangeInput suffix={<div />} />);
+    expect(await driver.getInputDriver('from').hasSuffix()).toEqual(false);
+    expect(await driver.getInputDriver('to').hasSuffix()).toEqual(true);
   });
 });

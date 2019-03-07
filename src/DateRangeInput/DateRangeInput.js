@@ -23,7 +23,9 @@ class DateRangeInput extends React.PureComponent {
   render() {
     const {
       dataHook,
+      suffix,
       className,
+      status,
       value,
       dateFormat,
       onDateFromClicked,
@@ -39,6 +41,7 @@ class DateRangeInput extends React.PureComponent {
           onInputClicked={onDateFromClicked}
           placeholder="From"
           hideSuffix
+          status={status}
           dateFormat={dateFormat}
           value={value.from}
           suffix={null}
@@ -48,8 +51,10 @@ class DateRangeInput extends React.PureComponent {
           inputClassName={styles.input}
           className={styles.dateInput}
           value={value.to}
+          status={status}
           placeholder="To"
           dateFormat={dateFormat}
+          suffix={suffix}
           onInputClicked={onDateToClicked}
         />
       </div>
