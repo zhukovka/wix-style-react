@@ -1,7 +1,7 @@
 import React from 'react';
 import { storiesOf } from '@storybook/react';
 
-import { getTestStoryKind, Category } from '../../storiesHierarchy';
+import { getTestStoryKind } from '../../storiesHierarchy';
 
 import Input from '../../../src/Input';
 import { DateRangeInput } from '../../../src';
