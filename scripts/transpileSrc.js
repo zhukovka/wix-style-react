@@ -10,6 +10,7 @@ const { transformFromAstAsync } = require('@babel/core');
 
 const srcDir = path.resolve(__dirname, '../dist');
 const esDir = path.resolve(__dirname, '../dist/es');
+const srcToEsBabelPlugin = path.resolve(__dirname, './babel-plugin-src-to-es.js');
 
 const readFileAsync = fileLoc => {
   return new Promise((resolve, reject) => {
@@ -75,6 +76,7 @@ const run = () => {
           babelrc: true,
           ast: true,
           filename: fileLoc,
+          plugins: [srcToEsBabelPlugin],
         });
         const writeModules = writeFileAsync(
           fileLoc,
@@ -88,7 +90,10 @@ const run = () => {
             babelrc: false,
             ast: false,
             filename: fileLoc,
-            plugins: ['@babel/plugin-transform-modules-commonjs'],
+            plugins: [
+              [srcToEsBabelPlugin, { esToSrc: true }],
+              '@babel/plugin-transform-modules-commonjs',
+            ],
           },
         );
         return Promise.all([
