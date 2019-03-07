@@ -176,6 +176,7 @@ require('./components/DateInput/testStories');
 
 // The generated test component
 require('../src/GeneratedTestComponent/docs/index.story');
+require('../src/GeneratedTestComponent/test/GeneratedTestComponentStories');
 
 // This import was added by the component generator
 require('../src/RichTextInputArea/docs/index.story');
