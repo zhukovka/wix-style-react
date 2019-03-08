@@ -14,6 +14,14 @@ Types of changes:
 1. **Docs** for documentation changes
 1. **Lab** components and features that are still in a work in progress
 
+## Next
+
+### Added
+
+- `<Calendar/>` - new supported locales Thai, Chinese, and Chech.[#3078](https://github.com/wix/wix-style-react/pull/3078)
+- `<CalendarPanel/>` - new supported locales Thai, Chinese, and Chech.[#3078](https://github.com/wix/wix-style-react/pull/3078)
+- `<DatePicker/>` - new supported locales Thai, Chinese, and Chech.[#3078](https://github.com/wix/wix-style-react/pull/3078)
+
 ## 6.7.3 - 2019-03-07
 
 ### Added
