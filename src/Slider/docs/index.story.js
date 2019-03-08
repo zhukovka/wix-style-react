@@ -13,7 +13,7 @@ import {
   playground,
   code as baseLiveCode,
 } from 'wix-storybook-utils/Sections';
-import { baseScope } from '../../../stories/utils/Components/LiveCodeExample';
+import { baseScope } from '../../../stories/utils/LiveCodeExample';
 import * as examples from './examples';
 
 import Slider from '..';

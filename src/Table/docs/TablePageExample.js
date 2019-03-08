@@ -21,7 +21,7 @@ import Text from 'wix-style-react/Text';
 import { Edit, Duplicate, Upload } from 'wix-style-react/new-icons';
 import Highlighter from 'wix-style-react/Highlighter';
 
-import ImagePlaceholder from '../../../stories/assets/ImagePlaceholder';
+import ImagePlaceholder from '../../../stories/utils/ImagePlaceholder';
 
 const createDataSet = setIndex => [
   {

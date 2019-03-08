@@ -1,6 +1,6 @@
 import React from 'react';
 import { storySettings } from './storySettings';
-import LiveCodeExample from '../../../stories/utils/Components/LiveCodeExample';
+import LiveCodeExample from '../../../stories/utils/LiveCodeExample';
 
 import RichTextInputArea from '..';
 import ExampleRichTextInputArea from '!raw-loader!./examples/ExampleRichTextInputArea';

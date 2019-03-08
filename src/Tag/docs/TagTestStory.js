@@ -3,7 +3,7 @@ import { storiesOf } from '@storybook/react';
 
 import { getTestStoryKind } from '../../../stories/storiesHierarchy';
 import { storySettings } from './storySettings';
-import { RTLWrapper } from '../../../stories/utils';
+import { RTLWrapper } from '../../../stories/utils/RTLWrapper';
 import Tag from '..';
 
 const kind = getTestStoryKind({

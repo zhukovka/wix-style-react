@@ -4,7 +4,7 @@ import Markdown from 'wix-storybook-utils/Markdown';
 import TabbedView from 'wix-storybook-utils/TabbedView';
 import CodeExample from 'wix-storybook-utils/CodeExample';
 
-import LiveCodeExample from '../../../stories/utils/Components/LiveCodeExample';
+import LiveCodeExample from '../../../stories/utils/LiveCodeExample';
 import { Layout, Cell } from '../../Layout';
 
 import Readme from '../README.md';

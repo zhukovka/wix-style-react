@@ -9,7 +9,7 @@ import {
 } from 'wix-storybook-utils/Sections';
 import LinkTo from '@storybook/addon-links/react';
 
-import { baseScope } from '../../../stories/utils/Components/LiveCodeExample';
+import { baseScope } from '../../../stories/utils/LiveCodeExample';
 import { storySettings } from './storySettings';
 import * as examples from './examples';
 

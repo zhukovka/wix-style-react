@@ -10,7 +10,7 @@ require('./Playground/Playground');
 // 1. Foundations
 require('../src/Typography/docs/TypographyStory.js'); // 1.2 Typography
 require('../src/Label/docs/index.story.js'); // 1.2 + Label
-require('./NewIcons'); // 1.4 Icons
+require('../src/new-icons/docs'); // 1.4 Icons
 
 require('../src/Loader/docs/index.story.js'); // 1.5 Loader
 require('../src/LinearProgressBar/docs/index.story.js'); // 1.6 LinearProgressBar
@@ -105,29 +105,25 @@ require('../src/Highlighter/docs/index.story.js'); // Highlighter
 
 // Components API
 require('../src/Box/docs/index.story.js');
-require('./components/Calendar/index.story');
-require('./components/CalendarPanel/index.story');
 require('../src/CalendarPanelFooter/docs/index.story');
-require('./components/Card');
 require('../src/CardGalleryItem/docs/index.story');
 require('../src/Carousel/docs/index.story.js');
 require('../src/Collapse/docs/index.story');
-require('./components/Dropdown/Dropdown.story.js');
+require('./Dropdown/Dropdown.story.js');
 require('../src/DropdownBase/docs/index.story');
-require('./components/EmptyState/EmptyState.story');
 require('../src/FormField/docs/index.story.js');
 require('../src/GenericModalLayout/docs/index.story.js');
 require('../src/GoogleAddressInput/docs/index.story.js');
-require('./components/Grid');
+require('../src/Grid/docs');
 require('../src/Heading/docs/index.story');
 require('../src/Input/docs/index.story');
 require('../src/InputArea/docs/index.story.js');
 require('../src/Layout/docs/index.story.js');
 require('../src/Layout/docs');
-require('./components/MultiSelect/index.story');
-require('./components/Page/PageExampleStories.js');
-require('./components/Page/index.story.js');
-require('./components/PageHeader/index.story.js');
+require('./MultiSelect/index.story');
+require('../src/Page/docs/PageExampleStories.js');
+require('../src/Page/docs/index.story.js');
+require('../src/PageHeader/docs/index.story.js');
 require('../src/Proportion/docs/index.story.js');
 require('../src/RichTextArea/docs/api.story');
 require('../src/Skeleton/docs/index.story.js');
@@ -140,16 +136,16 @@ require('../src/Typography/docs/TypographyClassesStory');
 // WIP
 require('./WIP');
 require('../src/DragAndDrop/docs/DragAndDrop.js');
-require('./Builders/BadgeSelectItemBuilder');
-require('./Builders/ContactItemBuilder');
+require('../src/BadgeSelectItemBuilder/docs');
+require('../src/ContactItemBuilder/docs');
 
 // Tests
 require('../src/Typography/docs/TypographyTestStories');
 require('../src/Input/docs/InputTestStories');
 require('../src/TimeInput/docs/testStory');
-require('./components/Page/PageTestStories.js'); // Tests/2. Layout/2.5 + Page/
-require('./components/Page/PageTestStoriesDeprecated.js'); // Tests/2. Layout/2.5 + Page/Deprecated
-require('./components/PageHeader/PageHeaderTestStories.js'); // Tests/2. Layout/2.5 + PageHeader/
+require('../src/Page/docs/PageTestStories.js'); // Tests/2. Layout/2.5 + Page/
+require('../src/Page/docs/PageTestStoriesDeprecated.js'); // Tests/2. Layout/2.5 + Page/Deprecated
+require('../src/PageHeader/docs/PageHeaderTestStories.js'); // Tests/2. Layout/2.5 + PageHeader/
 require('../src/Button/docs/testButton'); // Tests/5. Button/5.1 Button
 require('../src/IconButton/docs/testStory'); // Tests/5. Button/5.2 IconButton
 require('../src/TextButton/docs/testStory'); // Tests/5. Button/5.3 TextButton
