@@ -3,8 +3,8 @@ import { storySettings } from './storySettings';
 import GoogleAddressInput from '..';
 
 import clients from '../../clients';
-import GoogleAPILoader from '../../../stories/utils/Components/GoogleAPILoader';
-import LiveCodeExample from '../../../stories/utils/Components/LiveCodeExample';
+import GoogleAPILoader from '../../../stories/utils/GoogleAPILoader';
+import LiveCodeExample from '../../../stories/utils/LiveCodeExample';
 
 const InFormExample = `
 class ExampleWithFormField extends React.Component {

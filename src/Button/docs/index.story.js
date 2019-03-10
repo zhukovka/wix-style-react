@@ -13,7 +13,7 @@ import {
 import Button from '..';
 import testkit from './README.TESTKIT.md';
 
-import { baseScope } from '../../../stories/utils/Components/LiveCodeExample';
+import { baseScope } from '../../../stories/utils/LiveCodeExample';
 import * as examples from './examples';
 import styles from './examples.scss';
 

@@ -3,7 +3,7 @@ import React from 'react';
 import { MessageBoxFunctionalLayout } from 'wix-style-react/MessageBox';
 import EmptyState from 'wix-style-react/EmptyState';
 
-import ImagePlaceholder from '../../../../stories/assets/ImagePlaceholder';
+import ImagePlaceholder from '../../../../stories/utils/ImagePlaceholder';
 
 export default () => (
   <MessageBoxFunctionalLayout

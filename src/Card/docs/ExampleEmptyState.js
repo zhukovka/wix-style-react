@@ -6,7 +6,7 @@ import TextButton from 'wix-style-react/TextButton';
 import Button from 'wix-style-react/Button';
 import EmptyState from 'wix-style-react/EmptyState';
 
-import ImagePlaceholder from '../../../stories/assets/ImagePlaceholder';
+import ImagePlaceholder from '../../../stories/utils/ImagePlaceholder';
 
 export default () => (
   <div

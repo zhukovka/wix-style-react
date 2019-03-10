@@ -5,7 +5,7 @@ import CodeExample from 'wix-storybook-utils/CodeExample';
 
 import Readme from '../README.md';
 import ReadmeTestKit from '../README.TESTKIT.md';
-import { RTLWrapper } from '../../../stories/utils';
+import { RTLWrapper } from '../../../stories/utils/RTLWrapper';
 
 import StandardAlert from './AlertExamples/Standard';
 import StandardAlertRaw from '!raw-loader!./AlertExamples/Standard';

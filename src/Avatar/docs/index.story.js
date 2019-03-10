@@ -5,7 +5,7 @@ import Avatar from '..';
 import { storySettings } from './storySettings';
 import styles from './AvatarStory.scss';
 
-import LiveCodeExample from '../../../stories/utils/Components/LiveCodeExample';
+import LiveCodeExample from '../../../stories/utils/LiveCodeExample';
 import { Layout, Cell } from '../../Layout';
 
 const IMG_REAL_URL = 'https://randomuser.me/api/portraits/women/39.jpg';

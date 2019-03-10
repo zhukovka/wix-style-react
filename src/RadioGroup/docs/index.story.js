@@ -1,6 +1,6 @@
 import React from 'react';
 import RadioGroup from '..';
-import { createAutoExampleWrapper } from '../../../stories/AutoExampleWrapper';
+import { createAutoExampleWrapper } from '../../../stories/utils/AutoExampleWrapper';
 
 const exampleChildren = [
   {

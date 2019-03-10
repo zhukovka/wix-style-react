@@ -2,7 +2,7 @@ import React from 'react';
 import { storiesOf } from '@storybook/react';
 
 import { getTestStoryKind } from '../../../stories/storiesHierarchy';
-import { RTLWrapper } from '../../../stories/utils';
+import { RTLWrapper } from '../../../stories/utils/RTLWrapper';
 
 import { storySettings } from './storySettings';
 import { StatusComplete } from '../../new-icons';
