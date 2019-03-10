@@ -7,5 +7,5 @@ export const storySettings = {
 };
 
 export const testStories = {
-  dateInputVariations: 'Date Range Input variations',
+  dateRangeInputVariations: 'Date Range Input variations',
 };

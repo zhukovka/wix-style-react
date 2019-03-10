@@ -16,7 +16,7 @@ const kind = getTestStoryKind({
   storyName: storySettings.storyName,
 });
 
-storiesOf(kind, module).add(testStories.dateInputVariations, () => {
+storiesOf(kind, module).add(testStories.dateRangeInputVariations, () => {
   return (
     <div>
       <br />
