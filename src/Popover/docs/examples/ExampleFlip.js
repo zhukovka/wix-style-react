@@ -5,7 +5,7 @@ import Markdown from 'wix-storybook-utils/Markdown';
 import { Layout, Cell } from 'wix-style-react/Layout';
 import LiveCodeExample, {
   createPropsArray,
-} from '../../../../stories/utils/Components/LiveCodeExample';
+} from '../../../../stories/utils/LiveCodeExample';
 
 const createStaticPopoverExample = props => `
 <div

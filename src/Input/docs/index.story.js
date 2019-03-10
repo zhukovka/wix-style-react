@@ -12,7 +12,7 @@ import {
   testkit,
   playground,
 } from 'wix-storybook-utils/Sections';
-import { baseScope } from '../../../stories/utils/Components/LiveCodeExample';
+import { baseScope } from '../../../stories/utils/LiveCodeExample';
 import * as examples from './examples';
 
 import Input from '..';
@@ -23,7 +23,7 @@ export default {
   category: storySettings.kind,
   storyName: storySettings.storyName,
   component: Input,
-  componentPath: '../index.js',
+  componentPath: '../Input.js',
 
   componentProps: {
     theme: 'normal',

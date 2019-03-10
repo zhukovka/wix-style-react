@@ -5,7 +5,7 @@ import { storiesOf } from '@storybook/react';
 
 import { getTestStoryKind } from '../../../stories/storiesHierarchy';
 import { storySettings, testStories } from './storySettings';
-import LiveCodeExample from '../../../stories/utils/Components/LiveCodeExample';
+import LiveCodeExample from '../../../stories/utils/LiveCodeExample';
 import ExampleEventItem from '!raw-loader!./examples/ExampleEventItem';
 
 const kind = getTestStoryKind(storySettings);

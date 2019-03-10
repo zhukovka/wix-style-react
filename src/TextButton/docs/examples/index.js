@@ -1,6 +1,6 @@
 import React from 'react';
 
-import LiveCodeExample from '../../../../stories/utils/Components/LiveCodeExample';
+import LiveCodeExample from '../../../../stories/utils/LiveCodeExample';
 
 import ExamplesAffixes from '!raw-loader!./ExamplesAffixes';
 import ExamplesNone from '!raw-loader!./ExamplesNone';

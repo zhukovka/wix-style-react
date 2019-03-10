@@ -98,7 +98,7 @@ export const myNewComponentDriverFactory = base => {
 };
 ",
   "src/MyNewComponent/docs/index.story.js": "import React from 'react';
-import LiveCodeExample from '../../../stories/utils/Components/LiveCodeExample';
+import LiveCodeExample from '../../../stories/utils/LiveCodeExample';
 import { Category } from '../../../stories/storiesHierarchy';
 import MyNewComponent from '..';
 
@@ -354,7 +354,7 @@ export const myNewComponentDriverFactory = base => {
 };
 ",
   "src/MyNewComponent/docs/index.story.js": "import React from 'react';
-import LiveCodeExample from '../../../stories/utils/Components/LiveCodeExample';
+import LiveCodeExample from '../../../stories/utils/LiveCodeExample';
 import { Category } from '../../../stories/storiesHierarchy';
 import MyNewComponent from '..';
 
@@ -608,7 +608,7 @@ export const myTestComponentDriverFactory = base => {
 };
 ",
   "src/MyTestComponent/docs/index.story.js": "import React from 'react';
-import LiveCodeExample from '../../../stories/utils/Components/LiveCodeExample';
+import LiveCodeExample from '../../../stories/utils/LiveCodeExample';
 import { Category } from '../../../stories/storiesHierarchy';
 import MyTestComponent from '..';
 

@@ -14,7 +14,7 @@ import Dropdown from 'wix-style-react/Dropdown';
 import TextButton from 'wix-style-react/TextButton';
 import { ExternalLink } from 'wix-style-react/new-icons';
 
-import ImagePlaceholder from '../../../stories/assets/ImagePlaceholder';
+import ImagePlaceholder from '../../../stories/utils/ImagePlaceholder';
 
 export class TableEmptyStateExample extends React.Component {
   render() {

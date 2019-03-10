@@ -6,7 +6,7 @@ import { Layout, Cell } from 'wix-style-react/Layout';
 
 import LiveCodeExample, {
   createPropsArray,
-} from '../../../../stories/utils/Components/LiveCodeExample';
+} from '../../../../stories/utils/LiveCodeExample';
 
 const createPopperWithStateExample = ({ shown = true, ...props }) => `
 class PopoverWithState extends React.Component {
