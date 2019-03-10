@@ -1,43 +1,33 @@
-import {
-  createStoryUrl,
-  waitForVisibilityOf,
-  scrollToElement,
-} from 'wix-ui-test-utils/protractor';
+import { createTestStoryUrl } from '../../test/utils/storybook-helpers';
 
 import { eyesItInstance } from '../../test/utils/eyes-it';
-import { dateRangeInputTestkitFactory } from '../../testkit/protractor';
-import { storySettings } from '../../stories/DateRangeInput/storySettings';
-
-const eyes = eyesItInstance();
+import { storySettings, testStories } from './docs/storySettings';
+import { protractorUniTestkitFactoryCreator } from 'wix-ui-test-utils/protractor';
+import { dateRangeInputPrivateDriverFactory } from './DateRangeInput.private.uni.driver';
 
 describe('DateRangeInput', () => {
-  const storyUrl = createStoryUrl({
-    kind: storySettings.category,
-    story: storySettings.storyName,
-  });
+  const eyes = eyesItInstance();
+  const dateRangeInputTestKitFactory = protractorUniTestkitFactoryCreator(
+    dateRangeInputPrivateDriverFactory,
+  );
 
   const createDriver = async (dataHook = storySettings.dataHook) => {
-    const driver = dateRangeInputTestkitFactory({ dataHook });
-
-    await waitForVisibilityOf(
-      await driver.element(),
-      `Cannot find <DateRangeInput/> component with dataHook of ${dataHook}`,
-    );
-
-    await scrollToElement(await driver.element());
-
+    const driver = dateRangeInputTestKitFactory({ dataHook });
+    await browser.wait(driver.exists(), 5000, 'Cannot find <DateRangeInput/>');
     return driver;
   };
 
-  beforeAll(async () => {
-    await browser.get(storyUrl);
+  const testStoryUrl = testName =>
+    createTestStoryUrl({ ...storySettings, testName });
+  eyes.it('should render DateRangeInput with variations', async () => {
+    await browser.get(testStoryUrl(testStories.dateRangeInputVariations));
+    await eyes.checkWindow(testStories.dateRangeInputVariations);
   });
 
-  eyes.it('should render', async () => {
-    await createDriver();
-  });
-
-  eyes.it('should render live example', async () => {
-    await createDriver('story-date-range-input-live-example');
+  eyes.it('should show focused `from` input above `to` input', async () => {
+    await browser.get(testStoryUrl(testStories.dateRangeInputVariations));
+    const driver = await createDriver();
+    await driver.clickOnDateFromInput();
+    expect(driver).toBeTruthy();
   });
 });

@@ -28,30 +28,16 @@ storiesOf(kind, module).add(testStories.dateRangeInputVariations, () => {
         {...defaultProps}
       />
       <br />
-      <DateRangeInput
-        dateFormat="HH:MM:SS"
-        dataHook={storySettings.dataHook}
-        {...defaultProps}
-      />
+      <DateRangeInput dateFormat="HH:MM:SS" {...defaultProps} />
       <br />
       <DateRangeInput
         dateFormat={date => date.toISOString()}
-        dataHook={storySettings.dataHook}
         {...defaultProps}
       />
       <br />
-      <DateRangeInput
-        dataHook={storySettings.dataHook}
-        {...defaultProps}
-        suffix={<Input.Affix>#</Input.Affix>}
-      />
+      <DateRangeInput {...defaultProps} suffix={<Input.Affix>#</Input.Affix>} />
       <br />
-      <DateRangeInput
-        dataHook={storySettings.dataHook}
-        {...defaultProps}
-        status={'error'}
-        disabled
-      />
+      <DateRangeInput {...defaultProps} status={'error'} disabled />
     </div>
   );
 });
