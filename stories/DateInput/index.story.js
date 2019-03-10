@@ -21,10 +21,6 @@ export default {
   componentPath: '../../src/DateInput/DateInput.js',
 
   componentProps: {
-    theme: 'normal',
-  },
-
-  componentProps: {
     dateFormat: 'DD/MM/YYYY',
     value: new Date().toString(),
   },
