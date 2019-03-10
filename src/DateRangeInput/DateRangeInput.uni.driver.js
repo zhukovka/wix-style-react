@@ -7,18 +7,19 @@ export const dateRangeInputDriverFactory = base => {
       base.$(`[data-hook="date-${inputName}-input"]`),
     );
   };
+  const dateFromInputDriver = getInputDriver('from');
+  const dateToInputDriver = getInputDriver('to');
   return {
     ...baseUniDriverFactory(base),
     /** Get the current count */
-    getDateFromValue: async () => await getInputDriver('from').getValue(),
-    getDateToValue: async () => await getInputDriver('to').getValue(),
-    clickOnDateFromInput: async () =>
-      await getInputDriver('from')
-        .getInputDriver()
-        .clickOnInput(),
-    clickOnDateToInput: async () =>
-      await getInputDriver('to')
-        .getInputDriver()
-        .clickOnInput(),
+    getDateFromValue: () => dateFromInputDriver.getValue(),
+    getDateToValue: () => dateToInputDriver.getValue(),
+    getDateFromPlaceholder: async () =>
+      await dateFromInputDriver.getInputDriver().input.attr('placeholder'),
+    getDateToPlaceholder: async () =>
+      await dateToInputDriver.getInputDriver().input.attr('placeholder'),
+    clickOnDateFromInput: () =>
+      dateFromInputDriver.getInputDriver().clickOnInput(),
+    clickOnDateToInput: () => dateToInputDriver.getInputDriver().clickOnInput(),
   };
 };

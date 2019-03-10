@@ -28,6 +28,8 @@ class DateRangeInput extends React.PureComponent {
       status,
       value,
       dateFormat,
+      dateFromPlaceholder,
+      dateToPlaceholder,
       onDateFromClicked,
       onDateToClicked,
     } = this.props;
@@ -39,7 +41,7 @@ class DateRangeInput extends React.PureComponent {
           inputClassName={styles.input}
           className={styles.dateInput}
           onInputClicked={onDateFromClicked}
-          placeholder="From"
+          placeholder={dateFromPlaceholder}
           hideSuffix
           status={status}
           dateFormat={dateFormat}
@@ -52,7 +54,7 @@ class DateRangeInput extends React.PureComponent {
           className={styles.dateInput}
           value={value.to}
           status={status}
-          placeholder="To"
+          placeholder={dateToPlaceholder}
           dateFormat={dateFormat}
           suffix={suffix}
           onInputClicked={onDateToClicked}

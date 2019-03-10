@@ -105,6 +105,7 @@ export const testkit = (base, body, document) => {
     isNarrowError: async () => await base.$(`.${styles.narrow}`).exists(),
     isRTL: async () => await base.hasClass(styles.rtl),
     getCursorLocation: async () => await reactBaseInput.selectionStart(),
+    input,
   };
 
   return driver;

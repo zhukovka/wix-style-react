@@ -95,4 +95,20 @@ describe('DateRangeInput', () => {
     expect(await driver.getInputDriver('from').hasSuffix()).toEqual(false);
     expect(await driver.getInputDriver('to').hasSuffix()).toEqual(true);
   });
+
+  it('should set placeholder to `from` input', async () => {
+    const placeHolder = 'Start Date';
+    const driver = createDriver(
+      <DateRangeInput dateFromPlaceholder={placeHolder} />,
+    );
+    expect(await driver.getDateFromPlaceholder()).toEqual(placeHolder);
+  });
+
+  it('should set placeholder to `to` input', async () => {
+    const placeHolder = 'End Date';
+    const driver = createDriver(
+      <DateRangeInput dateToPlaceholder={placeHolder} />,
+    );
+    expect(await driver.getDateToPlaceholder()).toEqual(placeHolder);
+  });
 });
