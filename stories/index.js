@@ -138,7 +138,7 @@ require ('./WIP');
 require ('../src/DragAndDrop/docs/DragAndDrop.js');
 require ('../src/BadgeSelectItemBuilder/docs');
 require ('../src/ContactItemBuilder/docs');
-require ('../src/DateInput/index.story');
+require ('../src/DateInput/docs/index.story');
 
 // Tests
 require ('../src/Typography/docs/TypographyTestStories');
