@@ -1,22 +1,15 @@
-import { createTestStoryUrl } from '../../test/utils/storybook-helpers';
+import {createTestStoryUrl} from '../../test/utils/storybook-helpers';
 
-import { eyesItInstance } from '../../test/utils/eyes-it';
-import {
-  storySettings,
-  testStories,
-} from '../../stories/components/DateInput/storySettings';
+import {eyesItInstance} from '../../test/utils/eyes-it';
+import {storySettings, testStories} from './docs/storySettings';
 
-describe('DateInput', () => {
-  const eyes = eyesItInstance();
+describe ('DateInput', () => {
+  const eyes = eyesItInstance ();
 
-  eyes.it('should render DateInput with variations', async () => {
+  eyes.it ('should render DateInput with variations', async () => {
     const testStoryUrl = testName =>
-      createTestStoryUrl({ ...storySettings, testName });
-
-    const checkTestStory = async testName => {
-      await browser.get(testStoryUrl(testName));
-      await eyes.checkWindow(testName);
-    };
-    await checkTestStory(testStories.dateInputVariations);
+      createTestStoryUrl ({...storySettings, testName});
+    await browser.get (testStoryUrl (testStories.dateInputVariations));
+    await eyes.checkWindow (testStories.dateInputVariations);
   });
 });

@@ -1,5 +1,5 @@
 import React from 'react';
-import { storySettings } from './storySettings';
+import {storySettings} from './storySettings';
 import {
   header,
   tabs,
@@ -9,40 +9,39 @@ import {
   testkit,
   playground,
 } from 'wix-storybook-utils/Sections';
-import { baseScope } from '../utils/LiveCodeExample';
+import {baseScope} from '../utils/LiveCodeExample';
 import DateInput from 'wix-style-react/DateInput';
 
-const code = config => baseCode({ components: baseScope, ...config });
+const code = config => baseCode ({components: baseScope, ...config});
 
 export default {
-  category: storySettings.kind,
+  category: storySettings.category,
   storyName: storySettings.storyName,
   component: DateInput,
   componentPath: '../../src/DateInput/DateInput.js',
 
   componentProps: {
     dateFormat: 'DD/MM/YYYY',
-    value: new Date().toString(),
+    value: new Date ().toString (),
   },
 
   sections: [
-    header({
+    header ({
       issueUrl: 'https://github.com/wix/wix-style-react/issues/new',
-      sourceUrl:
-        'https://github.com/wix/wix-style-react/tree/master/src/DateInput',
+      sourceUrl: 'https://github.com/wix/wix-style-react/tree/master/src/DateInput',
       component: (
-        <div style={{ width: '50%' }}>
-          <DateInput value={new Date().toString()} dateFormat="DD/MM/YYYY" />
+        <div style={{width: '50%'}}>
+          <DateInput value={new Date ().toString ()} dateFormat="DD/MM/YYYY" />
         </div>
       ),
     }),
-    tabs({
+    tabs ({
       tabs: [
         ...[
-          { title: 'API', sections: [api()] },
-          { title: 'TestKit', sections: [testkit()] },
-          { title: 'Playground', sections: [playground()] },
-        ].map(tab),
+          {title: 'API', sections: [api ()]},
+          {title: 'TestKit', sections: [testkit ()]},
+          {title: 'Playground', sections: [playground ()]},
+        ].map (tab),
       ],
     }),
   ],
