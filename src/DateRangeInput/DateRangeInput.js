@@ -4,25 +4,23 @@ import styles from './DateRangeInput.scss';
 import DateInput from '../DateInput/DateInput';
 import classNames from 'classnames';
 import Input from '../Input/Input';
+
 class DateRangeInput extends React.PureComponent {
   static displayName = 'DateRangeInput';
 
   static propTypes = {
     dataHook: PropTypes.string,
     /** The selected dates object */
-    value: PropTypes.shape ({
-      from: PropTypes.oneOfType ([
-        PropTypes.string,
-        PropTypes.instanceOf (Date),
-      ]),
-      to: PropTypes.oneOfType ([PropTypes.string, PropTypes.instanceOf (Date)]),
+    value: PropTypes.shape({
+      from: PropTypes.oneOfType([PropTypes.string, PropTypes.instanceOf(Date)]),
+      to: PropTypes.oneOfType([PropTypes.string, PropTypes.instanceOf(Date)]),
     }),
     /** Placeholder for date from input */
     dateFromPlaceholder: PropTypes.string,
     /** Placeholder for date to input */
     dateToPlaceholder: PropTypes.string,
     /** Input status - use to display an status indication for the user. for example: 'error' or 'loading' */
-    status: PropTypes.oneOf ([Input.StatusError, Input.StatusLoading]),
+    status: PropTypes.oneOf([Input.StatusError, Input.StatusLoading]),
     /** The status (error/loading) message to display when hovering the status icon, if not given or empty there will be no tooltip */
     statusMessage: PropTypes.node,
   };
@@ -38,7 +36,7 @@ class DateRangeInput extends React.PureComponent {
     },
   };
 
-  render () {
+  render() {
     const {
       dataHook,
       suffix,
@@ -52,8 +50,8 @@ class DateRangeInput extends React.PureComponent {
       onDateToClicked,
       statusMessage,
     } = this.props;
-    const containerClass = classNames (styles.root, className);
-    const {from, to} = value || {};
+    const containerClass = classNames(styles.root, className);
+    const { from, to } = value || {};
     const generalProps = {
       status,
       dateFormat,
