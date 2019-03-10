@@ -10,7 +10,6 @@ import { testStories, storySettings } from './storySettings';
 const defaultProps = {
   value: new Date(0),
 };
-1;
 const kind = getTestStoryKind({
   category: storySettings.category,
   storyName: storySettings.storyName,
