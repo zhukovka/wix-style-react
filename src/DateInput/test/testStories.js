@@ -5,7 +5,11 @@ import { getTestStoryKind } from '../../../stories/storiesHierarchy';
 
 import Input from 'wix-style-react/Input';
 import DateInput from 'wix-style-react/DateInput';
-import { testStories, storySettings } from './storySettings';
+import { storySettings } from '../docs/storySettings';
+
+export const testStories = {
+  dateInputVariations: 'Date Input variations',
+};
 
 const defaultProps = {
   value: new Date(0),
