@@ -1,5 +1,5 @@
 import { isClassExists } from '../../test/utils';
-import { labelDriverFactory } from 'wix-ui-backoffice/dist/es/src/components/Label/Label.driver';
+import { labelDriverFactory } from 'wix-ui-backoffice/dist/src/components/Label/Label.driver';
 import { testkitFactoryCreator } from 'wix-ui-test-utils/vanilla';
 import tooltipDriverFactory from '../Tooltip/Tooltip.driver';
 

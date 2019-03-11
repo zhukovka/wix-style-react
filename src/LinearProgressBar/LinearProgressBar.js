@@ -1,3 +1,3 @@
-import { LinearProgressBar } from 'wix-ui-backoffice/dist/es/src/components/LinearProgressBar';
+import { LinearProgressBar } from 'wix-ui-backoffice/dist/src/components/LinearProgressBar';
 
 export default LinearProgressBar;

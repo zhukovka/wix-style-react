@@ -1,10 +1,10 @@
 :import {
-  -st-from: "wix-ui-backoffice/dist/es/src/colors.st.css";
+  -st-from: "wix-ui-backoffice/dist/src/colors.st.css";
   -st-named: D10, D20, D50, WHITE
 }
 
 :import {
-  -st-from: "wix-ui-backoffice/dist/es/src/typography.st.css";
+  -st-from: "wix-ui-backoffice/dist/src/typography.st.css";
   -st-named: fontRoman, fontMedium;
 }
 

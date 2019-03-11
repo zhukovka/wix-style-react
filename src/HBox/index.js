@@ -1,1 +1,1 @@
-export { HBox } from 'wix-ui-backoffice/dist/es/src/components/HBox';
+export { HBox } from 'wix-ui-backoffice/dist/src/components/HBox';

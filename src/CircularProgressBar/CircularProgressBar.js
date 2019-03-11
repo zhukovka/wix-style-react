@@ -1,3 +1,3 @@
-import { CircularProgressBar } from 'wix-ui-backoffice/dist/es/src/components/CircularProgressBar';
+import { CircularProgressBar } from 'wix-ui-backoffice/dist/src/components/CircularProgressBar';
 
 export default CircularProgressBar;

@@ -4,7 +4,7 @@ import {
   SKIN,
   TYPE,
   SIZE,
-} from 'wix-ui-backoffice/dist/es/src/components/Badge/constants';
+} from 'wix-ui-backoffice/dist/src/components/Badge/constants';
 import { storySettings } from './storySettings';
 
 import CodeExample from 'wix-storybook-utils/CodeExample';

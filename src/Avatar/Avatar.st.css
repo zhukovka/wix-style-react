@@ -1,7 +1,7 @@
 @namespace "WSRAvatar";
 
 :import {
-  -st-from: "wix-ui-backoffice/dist/es/src/colors.st.css";
+  -st-from: "wix-ui-backoffice/dist/src/colors.st.css";
   -st-named: F00;
 }
 

@@ -325,7 +325,7 @@ export {
   floatingHelperTestkitFactory,
   linearProgressBarTestkitFactory,
   circularProgressBarTestkitFactory,
-} from 'wix-ui-backoffice/dist/es/src/testkit/protractor';
+} from 'wix-ui-backoffice/dist/src/testkit/protractor';
 
 // wix-ui-core (unidriver)
 
