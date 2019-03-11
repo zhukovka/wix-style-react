@@ -16,7 +16,7 @@ import {
 import testkit from './README.TESTKIT.md';
 import ColorInput from '..';
 import { placements } from '../../Popover';
-import { baseScope } from '../../../stories/utils/Components/LiveCodeExample';
+import { baseScope } from '../../../stories/utils/LiveCodeExample';
 
 import usage from './Usage.md';
 import * as examples from './examples';

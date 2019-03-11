@@ -13,7 +13,7 @@ import ExampleDisabledLarge from './ExampleDisabledLarge';
 import ExampleDisabledLargeRaw from '!raw-loader!./ExampleDisabledLarge';
 import ExampleWithDivider from './ExampleWithDivider';
 import ExampleWithDividerRaw from '!raw-loader!./ExampleWithDivider';
-import { createAutoExampleWrapper } from '../../../stories/AutoExampleWrapper';
+import { createAutoExampleWrapper } from '../../../stories/utils/AutoExampleWrapper';
 
 const exampleContainerStyle = {
   display: 'flex',

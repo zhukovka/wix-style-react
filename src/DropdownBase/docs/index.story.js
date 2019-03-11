@@ -1,7 +1,7 @@
 import React from 'react';
 import { storySettings } from './storySettings';
 
-import LiveCodeExample from '../../../stories/utils/Components/LiveCodeExample';
+import LiveCodeExample from '../../../stories/utils/LiveCodeExample';
 
 import DropdownBase from '..';
 import { Layout, Cell } from '../../Layout';

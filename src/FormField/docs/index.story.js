@@ -1,6 +1,6 @@
 import React from 'react';
 import { storySettings } from './storySettings';
-import { baseScope } from '../../../stories/utils/Components/LiveCodeExample';
+import { baseScope } from '../../../stories/utils/LiveCodeExample';
 import * as examples from './examples';
 import {
   header,

@@ -4,7 +4,7 @@ import { storiesOf } from '@storybook/react';
 import { getTestStoryKind } from '../../../stories/storiesHierarchy';
 import MainExample from './MainExample';
 import { storySettings } from './storySettings';
-import { RTLWrapper } from '../../../stories/utils';
+import { RTLWrapper } from '../../../stories/utils/RTLWrapper';
 
 const kind = getTestStoryKind({
   category: storySettings.category,

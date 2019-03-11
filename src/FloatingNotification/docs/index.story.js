@@ -10,7 +10,7 @@ import {
   importExample,
 } from 'wix-storybook-utils/Sections';
 
-import { baseScope } from '../../../stories/utils/Components/LiveCodeExample';
+import { baseScope } from '../../../stories/utils/LiveCodeExample';
 import FloatingNotification from '..';
 import { NOTIFICATION_TYPES } from '../constants';
 import examples from './examples';

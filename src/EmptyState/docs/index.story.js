@@ -8,7 +8,7 @@ import Heading from '../../Heading';
 
 import { Add, Download, StatusComplete } from 'wix-ui-icons-common';
 
-import ImagePlaceholder from '../../../stories/assets/ImagePlaceholder';
+import ImagePlaceholder from '../../../stories/utils/ImagePlaceholder';
 
 const singleAction = <TextButton prefixIcon={<Add />}>New Item</TextButton>;
 
@@ -30,7 +30,7 @@ const twoActions = (
 );
 
 export default {
-  category: storySettings.kind,
+  category: storySettings.category,
   storyName: storySettings.storyName,
 
   component: EmptyState,

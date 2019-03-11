@@ -1,6 +1,6 @@
 import React from 'react';
 import CodeExample from 'wix-storybook-utils/CodeExample';
-import LiveCodeExample from '../../../stories/utils/Components/LiveCodeExample';
+import LiveCodeExample from '../../../stories/utils/LiveCodeExample';
 import MultiSelect from '..';
 
 import {
@@ -16,7 +16,7 @@ import LinkTo from '@storybook/addon-links/react';
 import { Title } from '../../../stories/UXStoryTemplate';
 
 import readmeApi from '../README.API.md';
-import playgroundStoryConfig from '../../../stories/components/MultiSelect/MultiSelectPlaygroundConfig';
+import playgroundStoryConfig from '../../../stories/MultiSelect/MultiSelectPlaygroundConfig';
 
 import ExampleSelectSimpleRaw from '!raw-loader!./ExampleSelectSimple';
 import ExampleSelectAutocompleteRaw from '!raw-loader!./ExampleSelectAutocomplete';

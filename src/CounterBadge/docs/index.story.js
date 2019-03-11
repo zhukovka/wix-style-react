@@ -7,7 +7,7 @@ import { storySettings } from './storySettings';
 import { CounterBadge, Layout, Cell } from '../..';
 import LiveCodeExample, {
   createPropsArray,
-} from '../../../stories/utils/Components/LiveCodeExample';
+} from '../../../stories/utils/LiveCodeExample';
 
 const createCounterWithBadge = props => `
 <CounterBadge ${createPropsArray(props).join('\n       ')}>${

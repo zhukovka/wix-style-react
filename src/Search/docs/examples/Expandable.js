@@ -1,7 +1,7 @@
 import React from 'react';
 import * as wsrScope from '../../..';
 import { Layout, Cell } from '../../../Layout';
-import LiveCodeExample from '../../../../stories/utils/Components/LiveCodeExample';
+import LiveCodeExample from '../../../../stories/utils/LiveCodeExample';
 import { Section } from '../../../../stories/UXStoryTemplate';
 
 export default () => {
