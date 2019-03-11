@@ -99,16 +99,16 @@ export const dataTableTestkitFactory = enzymeTestkitFactoryCreator (
   load (require ('../src/DataTable/DataTable.driver'))
 );
 export const dateInputTestkitFactory = enzymeUniTestkitFactoryCreator (
-  load (require ('../src/DateInput/DateInput.uni.driver'))
+  load (require ('../src/DateInput/test/DateInput.uni.driver'))
 );
 export const datePickerTestkitFactory = enzymeTestkitFactoryCreator (
   load (require ('../src/DatePicker/DatePicker.driver'))
 );
-export const dateRangeInputTestkitFactory = enzymeUniTestkitFactoryCreator (
-  load (require ('../src/DateRangeInput/DateRangeInput.uni.driver'))
-);
 export const dropdownTestkitFactory = enzymeTestkitFactoryCreator (
   load (require ('../src/Dropdown/Dropdown.driver'))
+);
+export const dateRangeInputTestkitFactory = enzymeUniTestkitFactoryCreator (
+  load (require ('../src/DateRangeInput/DateRangeInput.uni.driver'))
 );
 export const dropdownBaseTestkitFactory = enzymeUniTestkitFactoryCreator (
   load (require ('../src/DropdownBase/DropdownBase.driver'))

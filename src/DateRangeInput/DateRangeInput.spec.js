@@ -1,5 +1,4 @@
 import React from 'react';
-import { createUniDriverFactory } from 'wix-ui-test-utils/uni-driver-factory';
 
 import DateRangeInput from './DateRangeInput';
 import { dateRangeInputPrivateDriverFactory } from './DateRangeInput.private.uni.driver';

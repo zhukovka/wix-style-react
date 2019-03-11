@@ -147,7 +147,7 @@ export const colorInputTestkitFactory = puppeteerUniTestkitFactoryCreator(
   colorInputDriverFactory,
 );
 
-import { dateInputDriverFactory } from '../src/DateInput/DateInput.uni.driver';
+import { dateInputDriverFactory } from '../src/DateInput/test/DateInput.uni.driver';
 
 export const dateInputTestkitFactory = puppeteerUniTestkitFactoryCreator(
   dateInputDriverFactory,
