@@ -168,7 +168,7 @@ require('../src/FloatingNotification/docs/FloatingNotificationTestStory'); // 8.
 require('../src/FormField/docs/testStory');
 require('../src/RichTextArea/docs/testStory');
 require('../src/ColorInput/docs/testStory');
-require('../src/DateInput/docs/testStories');
+require('../src/DateInput/test/testStories');
 
 // The generated test component
 require('../src/GeneratedTestComponent/docs/index.story');
