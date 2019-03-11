@@ -205,6 +205,6 @@ module.exports = {
 
   DateRangeInput: {
     unidriver: true,
-    testkitPath: '../src/DateRangeInput/DateRangeInput.uni.driver',
+    testkitPath: '../src/DateRangeInput/test/DateRangeInput.uni.driver',
   },
 };

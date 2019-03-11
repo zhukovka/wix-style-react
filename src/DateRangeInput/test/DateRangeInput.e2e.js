@@ -1,7 +1,7 @@
-import { createTestStoryUrl } from '../../test/utils/storybook-helpers';
+import { createTestStoryUrl } from '../../../test/utils/storybook-helpers';
 
-import { eyesItInstance } from '../../test/utils/eyes-it';
-import { storySettings, testStories } from './docs/storySettings';
+import { eyesItInstance } from '../../../test/utils/eyes-it';
+import { storySettings, testStories } from '../docs/storySettings';
 import { protractorUniTestkitFactoryCreator } from 'wix-ui-test-utils/protractor';
 import { dateRangeInputPrivateDriverFactory } from './DateRangeInput.private.uni.driver';
 

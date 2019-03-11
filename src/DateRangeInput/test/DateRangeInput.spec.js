@@ -1,8 +1,11 @@
 import React from 'react';
 
-import DateRangeInput from './DateRangeInput';
+import DateRangeInput from '../DateRangeInput';
 import { dateRangeInputPrivateDriverFactory } from './DateRangeInput.private.uni.driver';
-import { createRendererWithUniDriver, cleanup } from '../../test/utils/react';
+import {
+  createRendererWithUniDriver,
+  cleanup,
+} from '../../../test/utils/react';
 
 describe('DateRangeInput', () => {
   const render = createRendererWithUniDriver(

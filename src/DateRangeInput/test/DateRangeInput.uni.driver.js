@@ -1,6 +1,6 @@
 import { baseUniDriverFactory } from 'wix-ui-test-utils/base-driver';
-import { dateInputPrivateDriverFactory } from '../DateInput/test/DateInput.private.uni.driver';
-import DateRangeInput from './DateRangeInput';
+import { dateInputPrivateDriverFactory } from '../../DateInput/test/DateInput.private.uni.driver';
+import DateRangeInput from '../DateRangeInput';
 
 export const dateRangeInputDriverFactory = base => {
   const getInputDriver = inputName => {

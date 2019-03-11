@@ -139,7 +139,7 @@ require('../src/DragAndDrop/docs/DragAndDrop.js');
 require('../src/BadgeSelectItemBuilder/docs');
 require('../src/ContactItemBuilder/docs');
 require('../src/DateInput/docs/index.story');
-require('./DateRangeInput/index.story');
+require('../src/DateRangeInput/docs/index.story');
 
 // Tests
 require('../src/Typography/docs/TypographyTestStories');
@@ -170,7 +170,7 @@ require('../src/FormField/docs/testStory');
 require('../src/RichTextArea/docs/testStory');
 require('../src/ColorInput/docs/testStory');
 require('../src/DateInput/test/testStories');
-require('../src/DateRangeInput/docs/testStories');
+require('../src/DateRangeInput/test/testStories');
 
 // The generated test component
 require('../src/GeneratedTestComponent/docs/index.story');

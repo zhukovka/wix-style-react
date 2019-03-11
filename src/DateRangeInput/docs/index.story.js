@@ -1,5 +1,5 @@
 import React from 'react';
-import { storySettings } from './storySettings';
+import { storySettings } from '../test/storySettings';
 import {
   header,
   tabs,
@@ -9,7 +9,7 @@ import {
   testkit,
   playground,
 } from 'wix-storybook-utils/Sections';
-import { baseScope } from '../utils/LiveCodeExample';
+import { baseScope } from '../../../stories/utils/LiveCodeExample';
 import DateRangeInput from 'wix-style-react/DateRangeInput';
 
 const code = config => baseCode({ components: baseScope, ...config });
@@ -18,7 +18,7 @@ export default {
   category: storySettings.category,
   storyName: storySettings.storyName,
   component: DateRangeInput,
-  componentPath: '../../src/DateRangeInput/DateRangeInput.js',
+  componentPath: '../DateRangeInput.js',
 
   componentProps: {
     theme: 'normal',
