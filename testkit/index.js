@@ -107,8 +107,8 @@ export const datePickerTestkitFactory = testkitFactoryCreator(
 export const dropdownTestkitFactory = testkitFactoryCreator(
   load(require('../src/Dropdown/Dropdown.driver')),
 );
-export const dateRangeInputTestkitFactory = enzymeUniTestkitFactoryCreator (
-  load (require ('../src/DateRangeInput/DateRangeInput.uni.driver'))
+export const dateRangeInputTestkitFactory = enzymeUniTestkitFactoryCreator(
+  load(require('../src/DateRangeInput/test/DateRangeInput.uni.driver')),
 );
 export const dropdownBaseTestkitFactory = uniTestkitFactoryCreator(
   load(require('../src/DropdownBase/DropdownBase.driver')),

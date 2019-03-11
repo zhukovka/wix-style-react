@@ -153,7 +153,7 @@ export const dateInputTestkitFactory = puppeteerUniTestkitFactoryCreator(
   dateInputDriverFactory,
 );
 
-import { dateRangeInputDriverFactory } from '../src/DateRangeInput/DateRangeInput.uni.driver';
+import { dateRangeInputDriverFactory } from '../src/DateRangeInput/test/DateRangeInput.uni.driver';
 
 export const dateRangeInputTestkitFactory = puppeteerUniTestkitFactoryCreator(
   dateRangeInputDriverFactory,
