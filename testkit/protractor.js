@@ -409,6 +409,12 @@ export const richTextInputAreaTestkitFactory = protractorUniTestkitFactoryCreato
   richTextInputAreaDriverFactory,
 );
 
+import { richTextToolbarDriverFactory } from '../src/RichTextInputArea/RichTextToolbar.driver';
+
+export const richTextToolbarTestkitFactory = protractorUniTestkitFactoryCreator(
+  richTextToolbarDriverFactory,
+);
+
 import { floatingNotificationDriverFactory } from '../src/FloatingNotification/FloatingNotification.driver';
 
 export const floatingNotificationTestkitFactory = protractorUniTestkitFactoryCreator(
@@ -424,4 +430,10 @@ import { colorInputDriverFactory } from '../src/ColorInput/ColorInput.driver';
 
 export const colorInputTestkitFactory = protractorUniTestkitFactoryCreator(
   colorInputDriverFactory,
+);
+
+import { numberInputDriverFactory } from '../src/NumberInput/NumberInput.uni.driver';
+
+export const numberInputTestkitFactory = protractorUniTestkitFactoryCreator(
+  numberInputDriverFactory,
 );

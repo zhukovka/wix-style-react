@@ -1,10 +1,10 @@
 import React from 'react';
 import classNames from 'classnames';
-import { EditorState, SelectionState, Modifier, RichUtils } from 'draft-js';
 
 import styles from './RichTextToolbar.scss';
 import RichTextToolbarButton from './RichTextToolbarButton';
 import RichTextToolbarLinkButton from './RichTextToolbarLinkButton';
+import EditorUtilities from './EditorUtilities';
 import {
   inlineStyleTypes,
   blockTypes,
@@ -20,6 +20,7 @@ import {
 } from '../new-icons/system';
 
 const RichTextToolbar = ({
+  dataHook,
   className,
   editorState,
   onBold,
@@ -31,80 +32,16 @@ const RichTextToolbar = ({
 }) => {
   const toggleStyle = (event, onClick, toggledStyle) => {
     event.preventDefault();
-
-    onClick(
-      RichUtils.toggleInlineStyle(
-        EditorState.forceSelection(editorState, editorState.getSelection()),
-        toggledStyle,
-      ),
-    );
+    onClick(EditorUtilities.toggleStyle(editorState, toggledStyle));
   };
 
   const toggleBlockType = (event, onClick, toggledBlockType) => {
     event.preventDefault();
-
-    onClick(
-      RichUtils.toggleBlockType(
-        EditorState.forceSelection(editorState, editorState.getSelection()),
-        toggledBlockType,
-      ),
-    );
+    onClick(EditorUtilities.toggleBlockType(editorState, toggledBlockType));
   };
 
-  const toggleEntity = (linkData, onClick) => {
-    const { href: url, text = 'bla' } = linkData;
-    const selection = editorState.getSelection();
-    const contentState = editorState.getCurrentContent();
-    const contentStateWithEntity = contentState.createEntity(
-      'LINK',
-      'MUTABLE',
-      {
-        url,
-      },
-    );
-    const entityKey = contentStateWithEntity.getLastCreatedEntityKey();
-
-    let newEditorState;
-    let newSelection;
-
-    // In case there is no selected text
-    if (!selection.isCollapsed()) {
-      newEditorState = EditorState.set(editorState, {
-        currentContent: contentStateWithEntity,
-      });
-    } else {
-      const startPosition = selection.getStartOffset();
-      const endPosition = startPosition + text.length;
-
-      // A key for the block that containing the start of the selection range
-      const blockKey = selection.getStartKey();
-
-      // Replaces the content in specified selection range with text
-      const newContentState = Modifier.insertText(
-        contentState,
-        selection,
-        text,
-      );
-
-      newSelection = new SelectionState({
-        anchorOffset: startPosition,
-        anchorKey: blockKey,
-        focusOffset: endPosition,
-        focusKey: blockKey,
-      });
-
-      newEditorState = RichUtils.toggleLink(
-        EditorState.push(editorState, newContentState, 'insert-characters'),
-        newSelection,
-        entityKey,
-      );
-    }
-
-    onClick(RichUtils.toggleLink(newEditorState, newSelection, entityKey));
-  };
-
-  const isActive = style => {
-    return editorState && editorState.getCurrentInlineStyle().has(style);
+  const toggleEntity = (event, onClick, linkData) => {
+    onClick(EditorUtilities.toggleEntity(editorState, linkData));
   };
 
   const buttons = [
@@ -113,6 +50,9 @@ const RichTextToolbar = ({
       onClick: event => toggleStyle(event, onBold, inlineStyleTypes.bold),
       buttonComponent: RichTextToolbarButton,
       iconComponent: TextAreaBold,
+      isActive: () =>
+        editorState &&
+        EditorUtilities.hasStyle(editorState, inlineStyleTypes.bold),
       tooltipText: 'Bold',
     },
     {
@@ -120,6 +60,9 @@ const RichTextToolbar = ({
       onClick: event => toggleStyle(event, onItalic, inlineStyleTypes.italic),
       buttonComponent: RichTextToolbarButton,
       iconComponent: TextAreaItalic,
+      isActive: () =>
+        editorState &&
+        EditorUtilities.hasStyle(editorState, inlineStyleTypes.italic),
       tooltipText: 'Italic',
     },
     {
@@ -128,13 +71,23 @@ const RichTextToolbar = ({
         toggleStyle(event, onUnderline, inlineStyleTypes.underline),
       buttonComponent: RichTextToolbarButton,
       iconComponent: TextAreaUnderline,
+      isActive: () =>
+        editorState &&
+        EditorUtilities.hasStyle(editorState, inlineStyleTypes.underline),
       tooltipText: 'Underline',
     },
     {
       type: entityTypes.link,
-      onClick: linkData => toggleEntity(linkData, onLink, entityTypes.link),
+      onClick: (event, linkData) => toggleEntity(event, onLink, linkData),
       buttonComponent: RichTextToolbarLinkButton,
+      buttonProps: {
+        data: {
+          text: editorState && EditorUtilities.getSelectedText(editorState),
+        },
+      },
       iconComponent: TextAreaLink,
+      isActive: () =>
+        editorState && EditorUtilities.hasEntity(editorState, entityTypes.link),
       tooltipText: 'Insert link',
     },
     {
@@ -143,6 +96,10 @@ const RichTextToolbar = ({
         toggleBlockType(event, onBulletedList, blockTypes.bulletedList),
       buttonComponent: RichTextToolbarButton,
       iconComponent: TextAreaBulletList,
+      isActive: () =>
+        editorState &&
+        EditorUtilities.hasBlockType(editorState, blockTypes.bulletedList),
+
       tooltipText: 'Bulleted List',
     },
     {
@@ -151,27 +108,34 @@ const RichTextToolbar = ({
         toggleBlockType(event, onNumberedList, blockTypes.numberedList),
       buttonComponent: RichTextToolbarButton,
       iconComponent: TextAreaNumberedList,
+      isActive: () =>
+        editorState &&
+        EditorUtilities.hasBlockType(editorState, blockTypes.numberedList),
       tooltipText: 'Numbered List',
     },
   ];
 
   return (
-    <div className={classNames(className, styles.root)}>
+    <div data-hook={dataHook} className={classNames(className, styles.root)}>
       {buttons.map((button, index) => {
         const {
           type,
           onClick,
-          tooltipText,
           buttonComponent: Button,
           iconComponent: Icon,
+          isActive,
+          tooltipText,
+          buttonProps,
         } = button;
 
         return (
           <Button
             key={`${index}-${type}`}
+            dataHook={`richtextarea-button-${type.toLowerCase()}`}
             onClick={onClick}
+            isActive={isActive()}
             tooltipText={tooltipText}
-            isActive={isActive(type)}
+            {...buttonProps}
           >
             <Icon />
           </Button>

@@ -283,6 +283,9 @@ DatePicker.propTypes = {
       'no',
       'nl',
       'da',
+      'zh',
+      'th',
+      'cs',
     ]),
     PropTypes.shape({
       distanceInWords: PropTypes.object,

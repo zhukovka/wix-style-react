@@ -64,7 +64,13 @@ import {
  */
 
 /**
- * A page container which contains a header and scrollable content
+ * A page container which contains a header and scrollable content.
+ *
+ * NOTICE : Temp workaround for Bug that happens if all these are true:
+ *  - You are using the upgraded page `<Page upgrade/>`
+ *  - You are using `<Page.Sticky/>` OR `<Page.FixedContent/>`
+ *  - You are using a `<Modal/>`
+ * Workaround: You need to set the Modal's zIndex to something greater than 11000.
  */
 class Page extends WixComponent {
   static defaultProps = {
@@ -279,16 +285,12 @@ class Page extends WixComponent {
     };
   }
 
-  _renderHeader({ minimized, visible }) {
+  _renderHeader({ minimized }) {
     const { children } = this.props;
     const childrenObject = getChildrenObject(children);
     const { PageTail, PageHeader: PageHeaderChild } = childrenObject;
     const pageDimensionsStyle = this._getPageDimensionsStyle();
-    const invisibleStyle = {
-      visibility: 'hidden',
-      position: 'absolute',
-      top: '-5000px', // arbitrary out of screen so it doesn't block click events
-    };
+
     return (
       <div
         className={classNames(s.pageHeaderContainer, {
@@ -301,7 +303,6 @@ class Page extends WixComponent {
             this.headerContainerRef = ref;
           }
         }}
-        style={visible ? {} : invisibleStyle}
       >
         {PageHeaderChild && (
           <div className={s.pageHeader} style={pageDimensionsStyle}>
@@ -328,11 +329,19 @@ class Page extends WixComponent {
 
   _renderFixedContainer() {
     const { scrollBarWidth, displayMiniHeader } = this.state;
+    const invisibleStyle = displayMiniHeader
+      ? {}
+      : {
+          visibility: 'hidden',
+          position: 'absolute',
+          top: '-5000px', // arbitrary out of screen so it doesn't block click events
+        };
     return (
       <div
         data-hook="page-fixed-container"
         style={{
           width: scrollBarWidth ? `calc(100% - ${scrollBarWidth}px` : undefined,
+          ...invisibleStyle,
         }}
         className={classNames(s.fixedContainer)}
         onWheel={event => {
@@ -341,10 +350,7 @@ class Page extends WixComponent {
         }}
       >
         {// We render but with visibility none, in order to measure the height
-        this._renderHeader({
-          minimized: true,
-          visible: displayMiniHeader,
-        })}
+        this._renderHeader({ minimized: true })}
       </div>
     );
   }
@@ -359,10 +365,7 @@ class Page extends WixComponent {
         onScroll={this._handleScroll}
       >
         {this._renderScrollableBackground()}
-        {this._renderHeader({
-          minimized: false,
-          visible: true,
-        })}
+        {this._renderHeader({ minimized: false })}
         {this._renderContentWrapper()}
       </div>
     );

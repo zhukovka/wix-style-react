@@ -6,13 +6,15 @@ import styles from './RichTextToolbarButton.scss';
 import Tooltip from '../Tooltip';
 
 const RichTextToolbarButton = ({
+  dataHook,
   onClick,
   tooltipText,
   isActive,
   children,
 }) => (
-  <Tooltip content={tooltipText} theme="dark" appendToParent>
+  <Tooltip content={tooltipText} theme="dark">
     <button
+      data-hook={dataHook}
       className={classNames(styles.button, isActive ? styles.active : '')}
       onClick={onClick}
     >

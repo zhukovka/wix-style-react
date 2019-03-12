@@ -72,7 +72,16 @@ const run = () => {
   const esCopied = copyAsync(true, './src/**/!(*.js)', './dist/es/src');
   const srcCopied = copyAsync(false, './src/**/!(*.js)', './dist/src');
 
-  const files = glob.sync('./src/**/*.js');
+  const files = glob.sync('./src/**/*.js', {
+    ignore: [
+      './src/**/*.story.js',
+      './src/**/test/**/*',
+      './src/**/docs/**/*',
+      './src/**/*.meta.js',
+      './src/**/*.spec.js',
+      './src/**/*.e2e.js',
+    ],
+  });
 
   const result = Promise.all(
     files
