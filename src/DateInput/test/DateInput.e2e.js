@@ -1,8 +1,7 @@
 import { createTestStoryUrl } from '../../../test/utils/storybook-helpers';
 
 import { eyesItInstance } from '../../../test/utils/eyes-it';
-import { storySettings } from '../docs/storySettings';
-import { testStories } from './testStories';
+import { storySettings, testStories } from './storySettings';
 
 describe('DateInput', () => {
   const eyes = eyesItInstance();
