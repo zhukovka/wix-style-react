@@ -5,8 +5,7 @@ export const dateInputPrivateDriverFactory = base => {
   return {
     ...publicDriverFactory(base),
     hasDateIcon: () => base.$('[data-hook="date-input-date-icon"]').exists(),
-    getInputDriver: () =>
-      inputTestKit(base.$('[data-hook="date-input-input"]')),
+    getInputDriver: () => inputTestKit(base),
     // Add here driver methods that considered "private"
   };
 };
