@@ -4,15 +4,14 @@ import {
   header,
   tabs,
   tab,
-  code as baseCode,
   api,
   testkit,
   playground,
 } from 'wix-storybook-utils/Sections';
-import { baseScope } from '../../../stories/utils/LiveCodeExample';
 import DateRangeInput from 'wix-style-react/DateRangeInput';
-
-const code = config => baseCode({ components: baseScope, ...config });
+import Input from 'wix-style-react/Input';
+import { columns, importExample } from 'wix-storybook-utils/dist/src/Sections';
+import * as examples from './examples';
 
 export default {
   category: storySettings.category,
@@ -21,12 +20,18 @@ export default {
   componentPath: '../DateRangeInput.js',
 
   componentProps: {
-    theme: 'normal',
+    dateFormat: 'DD/MM/YYYY',
+    value: {
+      from: new Date(),
+      to: new Date(),
+    },
   },
 
-  componentProps: {
-    dateFormat: 'DD/MM/YYYY',
-    value: new Date().toString(),
+  exampleProps: {
+    status: [
+      { label: 'error', value: Input.StatusError },
+      { label: 'loading', value: Input.StatusLoading },
+    ],
   },
 
   sections: [
@@ -37,12 +42,17 @@ export default {
       component: (
         <div style={{ width: '50%' }}>
           <DateRangeInput
-            value={new Date().toString()}
+            value={{ from: new Date(0), to: new Date() }}
             dateFormat="DD/MM/YYYY"
           />
         </div>
       ),
     }),
+    columns([
+      importExample({
+        source: examples.importExample,
+      }),
+    ]),
     tabs({
       tabs: [
         ...[

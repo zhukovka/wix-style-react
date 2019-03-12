@@ -149,4 +149,14 @@ describe('DateRangeInput', () => {
     );
     expect(await driver.getDateToPlaceholder()).toEqual(placeHolder);
   });
+
+  it('should set both inputs as disabled', async () => {
+    const driver = createDriver(<DateRangeInput disabled />);
+    expect(
+      await driver.getInputDriver(DateRangeInput.InputFrom).isDisabled(),
+    ).toEqual(true);
+    expect(
+      await driver.getInputDriver(DateRangeInput.InputTo).isDisabled(),
+    ).toEqual(true);
+  });
 });

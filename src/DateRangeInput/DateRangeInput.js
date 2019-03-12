@@ -23,6 +23,8 @@ class DateRangeInput extends React.PureComponent {
     status: PropTypes.oneOf([Input.StatusError, Input.StatusLoading]),
     /** The status (error/loading) message to display when hovering the status icon, if not given or empty there will be no tooltip */
     statusMessage: PropTypes.node,
+    /** when set to true this component is disabled */
+    disabled: PropTypes.bool,
   };
 
   static InputFrom = 'from';
@@ -40,6 +42,7 @@ class DateRangeInput extends React.PureComponent {
     const {
       dataHook,
       suffix,
+      disabled,
       className,
       status,
       value,
@@ -55,6 +58,7 @@ class DateRangeInput extends React.PureComponent {
     const generalProps = {
       status,
       dateFormat,
+      disabled,
     };
     return (
       <div className={containerClass} data-hook={dataHook}>
