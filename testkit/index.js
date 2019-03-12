@@ -195,6 +195,9 @@ export const noBorderInputTestkitFactory = testkitFactoryCreator(
 export const notificationTestkitFactory = testkitFactoryCreator(
   load(require('../src/Notification/Notification.driver'))
 );
+export const numberInputTestkitFactory = uniTestkitFactoryCreator(
+  load(require('../src/NumberInput/NumberInput.uni.driver'))
+);
 export const pageTestkitFactory = testkitFactoryCreator(
   load(require('../src/Page/Page.driver'))
 );

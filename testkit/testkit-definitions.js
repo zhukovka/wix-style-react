@@ -151,6 +151,12 @@ module.exports = {
   },
 
   Notification: {},
+
+  NumberInput: {
+    unidriver: true,
+    testkitPath: '../src/NumberInput/NumberInput.uni.driver',
+  },
+
   FloatingNotification: { unidriver: true, drivers: ['enzyme'] },
 
   DatePicker: {
