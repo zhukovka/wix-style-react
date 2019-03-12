@@ -536,6 +536,10 @@ $material-gap: 8px;
   padding: 0 $double-gap;
 }
 
+.themedWrapper {
+	overflow-y: hidden;
+}
+
 .materialTitle {
   text-overflow: ellipsis;
   overflow: hidden;

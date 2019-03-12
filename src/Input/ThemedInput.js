@@ -57,6 +57,7 @@ class ThemedInput extends Input {
         className={classNames(
           classes,
           styles.root,
+          styles.themedWrapper,
           styles[`theme-${theme}`],
           styles[`size-${size}${withSelection ? '-with-selection' : ''}`],
           className,
