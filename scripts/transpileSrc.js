@@ -40,9 +40,9 @@ const writeFileAsync = (fileLoc, dir, code) => {
   });
 };
 
-const copyAsync = (withESTransform, ...args) => {
+const copyAsync = ({ src, dist, withESTransform }) => {
   return new Promise((resolve, reject) => {
-    copy(...args, function(err, files) {
+    copy(src, dist, function(err, files) {
       files.forEach(file => {
         if (withESTransform && file.dest.includes('st.css')) {
           fs.readFile(file.dest, 'utf-8', function(error, content) {
@@ -69,8 +69,15 @@ const copyAsync = (withESTransform, ...args) => {
 };
 
 const run = () => {
-  const esCopied = copyAsync(true, './src/**/!(*.js)', './dist/es/src');
-  const srcCopied = copyAsync(false, './src/**/!(*.js)', './dist/src');
+  const esCopied = copyAsync({
+    src: './src/**/!(*.js)',
+    dist: './dist/es/src',
+    withESTransform: true,
+  });
+  const srcCopied = copyAsync({
+    src: './src/**/!(*.js)',
+    dist: './dist/src',
+  });
 
   const files = glob.sync('./src/**/*.js', {
     ignore: [
