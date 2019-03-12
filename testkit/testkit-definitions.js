@@ -194,7 +194,7 @@ module.exports = {
 
   DateInput: {
     unidriver: true,
-    testkitPath: '../src/DateInput/test/DateInput.uni.driver',
+    testkitPath: '../src/DateInput/DateInput.uni.driver',
   },
   ColorInput: {
     unidriver: true,

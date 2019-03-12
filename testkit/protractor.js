@@ -432,7 +432,7 @@ export const colorInputTestkitFactory = protractorUniTestkitFactoryCreator(
   colorInputDriverFactory,
 );
 
-import { dateInputDriverFactory } from '../src/DateInput/test/DateInput.uni.driver';
+import { dateInputDriverFactory } from '../src/DateInput/DateInput.uni.driver';
 
 export const dateInputTestkitFactory = protractorUniTestkitFactoryCreator(
   dateInputDriverFactory,
