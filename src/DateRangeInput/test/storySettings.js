@@ -5,3 +5,7 @@ export const storySettings = {
   storyName: 'DateRangeInput',
   dataHook: 'story-date-range-input',
 };
+
+export const testStories = {
+  dateRangeInputVariations: 'Date Range Input variations',
+};

@@ -1,5 +1,5 @@
 import { dateInputDriverFactory as publicDriverFactory } from './DateInput.uni.driver';
-import { testkit as inputTestKit } from '../../Input/Input.uni.driver';
+import { testkit as inputTestKit } from '../Input/Input.uni.driver';
 
 export const dateInputPrivateDriverFactory = base => {
   return {

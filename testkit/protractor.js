@@ -438,7 +438,7 @@ export const dateInputTestkitFactory = protractorUniTestkitFactoryCreator(
   dateInputDriverFactory,
 );
 
-import { dateRangeInputDriverFactory } from '../src/DateRangeInput/test/DateRangeInput.uni.driver';
+import { dateRangeInputDriverFactory } from '../src/DateRangeInput/DateRangeInput.uni.driver';
 
 export const dateRangeInputTestkitFactory = protractorUniTestkitFactoryCreator(
   dateRangeInputDriverFactory,
