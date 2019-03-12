@@ -150,7 +150,7 @@
     "yoshi-config": "^4.1.0-alpha.1",
     "yoshi-helpers": "^4.1.0-alpha.1",
     "yoshi-runtime": "^1.0.42",
-    "yoshi-style-dependencies": "^3.16.0"
+    "yoshi-style-dependencies": "^4.1.0-alpha.6"
   },
   "peerDependencies": {
     "react": "^15.0.0",
@@ -197,7 +197,8 @@
     "wix-eventually": "^2.2.0",
     "wix-ui-backoffice": "^1.0.339",
     "wix-ui-core": "^2.0.1",
-    "wix-ui-icons-common": "^2.0.9"
+    "wix-ui-icons-common": "^2.0.9",
+    "wix-ui-test-utils": "^1.0.115"
   },
   "lint-staged": {
     "*.{js,scss}": "yoshi lint --fix"

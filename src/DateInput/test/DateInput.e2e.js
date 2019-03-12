@@ -1,7 +1,7 @@
 import { createTestStoryUrl } from '../../../test/utils/storybook-helpers';
 
 import { eyesItInstance } from '../../../test/utils/eyes-it';
-import { storySettings, testStories } from '../docs/storySettings';
+import { storySettings, testStories } from './storySettings';
 
 describe('DateInput', () => {
   const eyes = eyesItInstance();
@@ -10,6 +10,5 @@ describe('DateInput', () => {
     const testStoryUrl = testName =>
       createTestStoryUrl({ ...storySettings, testName });
     await browser.get(testStoryUrl(testStories.dateInputVariations));
-    await eyes.checkWindow(testStories.dateInputVariations);
   });
 });
