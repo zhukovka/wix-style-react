@@ -198,9 +198,13 @@ export const noBorderInputTestkitFactory = enzymeTestkitFactoryCreator (
 export const notificationTestkitFactory = enzymeTestkitFactoryCreator (
   load (require ('../src/Notification/Notification.driver'))
 );
-export const pageTestkitFactory = enzymeTestkitFactoryCreator (
-  load (require ('../src/Page/Page.driver'))
+export const numberInputTestkitFactory = enzymeUniTestkitFactoryCreator(
+  load(require('../src/NumberInput/NumberInput.uni.driver'))
 );
+export const pageTestkitFactory = enzymeTestkitFactoryCreator(
+  load(require('../src/Page/Page.driver'))
+);
+
 export const pageHeaderTestkitFactory = enzymeTestkitFactoryCreator (
   load (require ('../src/PageHeader/PageHeader.driver'))
 );

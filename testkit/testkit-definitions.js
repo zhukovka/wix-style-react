@@ -152,6 +152,13 @@ module.exports = {
   Notification: {},
   FloatingNotification: {unidriver: true, drivers: ['enzyme']},
 
+  NumberInput: {
+    unidriver: true,
+    testkitPath: '../src/NumberInput/NumberInput.uni.driver',
+  },
+
+  FloatingNotification: { unidriver: true, drivers: ['enzyme'] },
+
   DatePicker: {
     skipSanityTest: true, // testkit does not have root `exists` method
   },
@@ -196,7 +203,6 @@ module.exports = {
     unidriver: true,
     testkitPath: '../src/DateInput/DateInput.uni.driver',
   },
-
   ColorInput: {
     unidriver: true,
   },
