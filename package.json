@@ -150,7 +150,7 @@
     "yoshi-config": "^4.1.0-alpha.1",
     "yoshi-helpers": "^4.1.0-alpha.1",
     "yoshi-runtime": "^1.0.42",
-    "yoshi-style-dependencies": "^3.16.0"
+    "yoshi-style-dependencies": "^4.1.0-alpha.6"
   },
   "peerDependencies": {
     "react": "^15.0.0",
