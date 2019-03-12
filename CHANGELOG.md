@@ -23,6 +23,9 @@ Types of changes:
 - `<DatePicker/>` - new supported locales Thai, Chinese, and Chech.[#3078](https://github.com/wix/wix-style-react/pull/3078)
 - `<Slider/>` - add single track support [#3062](https://github.com/wix/wix-style-react/pull/3062)
 
+### Fixed
+- `<ImageViewer/>` - fix image position in Firefox [#3092](https://github.com/wix/wix-style-react/pull/3092)
+
 ### Docs
 
 - `<Slider/>` - docs redesign [#3062](https://github.com/wix/wix-style-react/pull/3062)
