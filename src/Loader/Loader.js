@@ -88,7 +88,7 @@ export default class Loader extends WixComponent {
     Tooltip: null,
   };
 
-  componentDidMount() {
+  componentWillMount() {
     if (this.props.statusMessage) {
       this.loadTooltip();
     }
