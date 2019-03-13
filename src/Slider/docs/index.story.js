@@ -73,7 +73,7 @@ export default {
         title: 'Description',
         sections: [
           description(
-            `🐍 Sliders allow users to make selections from a range of values.`,
+            `Sliders allow users to make selections from a range of values.`,
           ),
 
           importExample({
