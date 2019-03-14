@@ -53,22 +53,12 @@ storiesOf(kind, module).add(testStories.dateRangeInputVariations, () => {
   );
 });
 
-storiesOf(kind, module).add(testStories.dateRangeInputWithinLayout, () => {
+storiesOf(kind, module).add(testStories.tabTest, () => {
   return (
-    <Layout>
-      <Cell span={4}>
-        <Input
-          dataHook="input-for-initial-focus"
-          placeholder="Some Input"
-          tabIndex="1"
-        />
-      </Cell>
-      <Cell span={4}>
-        <DateRangeInput tabIndex="2" />
-      </Cell>
-      <Cell span={4}>
-        <Button tabIndex="3">Some Button</Button>
-      </Cell>
-    </Layout>
+    <div>
+      <input data-hook="input-1" />
+      <DateRangeInput dataHook={storySettings.dataHook} />
+      <input data-hook="input-2" />
+    </div>
   );
 });

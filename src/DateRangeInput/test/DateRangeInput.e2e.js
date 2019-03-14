@@ -7,7 +7,8 @@ import {
   isFocused,
 } from 'wix-ui-test-utils/protractor';
 import { dateRangeInputPrivateDriverFactory } from '../DateRangeInput.private.uni.driver';
-import { protractor } from 'protractor';
+import { protractor, browser, $ } from 'protractor';
+import DateRangeInput from '../DateRangeInput';
 
 describe('DateRangeInput', () => {
   const eyes = eyesItInstance();
@@ -36,6 +37,20 @@ describe('DateRangeInput', () => {
   const testStoryUrl = testName =>
     createTestStoryUrl({ ...storySettings, testName });
 
+  const focusOnFirstElementUsingTab = async () => {
+    const firstElement = $(`[data-hook="input-1"]`);
+    await pressTab();
+    expect(await isFocused(firstElement)).toEqual(true);
+  };
+
+  const isInputFocused = async inputDriver => {
+    // TODO - for some reason unidriver's implemenation of hasClass is broken due to classList returning null
+    // See - https://github.com/wix-incubator/unidriver/issues/53
+    return (await (await inputDriver.element()).getAttribute(
+      'className',
+    )).includes('hasFocus');
+  };
+
   eyes.it('should render DateRangeInput with variations', async () => {
     await browser.get(testStoryUrl(testStories.dateRangeInputVariations));
   });
@@ -62,5 +77,46 @@ describe('DateRangeInput', () => {
     const toInputDriver = driver.getInputDriver('to');
     const toZIndex = await getElementZIndex(await toInputDriver.element());
     expect(fromZIndex < toZIndex).toBe(true);
+  });
+
+  eyes.it('should focus on `from` input using TAB key', async () => {
+    await browser.get(testStoryUrl(testStories.tabTest));
+    const driver = await createDriver();
+    await focusOnFirstElementUsingTab();
+    await pressTab();
+    expect(
+      await isInputFocused(driver.getInputDriver(DateRangeInput.InputFrom)),
+    ).toEqual(true);
+  });
+
+  eyes.it('should focus on `to` input using TAB key', async () => {
+    await browser.get(testStoryUrl(testStories.tabTest));
+    const driver = await createDriver();
+    await focusOnFirstElementUsingTab();
+    await pressTab();
+    await pressTab();
+    expect(
+      await isInputFocused(driver.getInputDriver(DateRangeInput.InputFrom)),
+    ).toEqual(false);
+    expect(
+      await isInputFocused(driver.getInputDriver(DateRangeInput.InputTo)),
+    ).toEqual(true);
+  });
+
+  eyes.it('should focus out of element using TAB key', async () => {
+    await browser.get(testStoryUrl(testStories.tabTest));
+    const driver = await createDriver();
+    await focusOnFirstElementUsingTab();
+    await pressTab();
+    await pressTab();
+    await pressTab();
+    expect(
+      await isInputFocused(driver.getInputDriver(DateRangeInput.InputFrom)),
+    ).toEqual(false);
+    expect(
+      await isInputFocused(driver.getInputDriver(DateRangeInput.InputTo)),
+    ).toEqual(false);
+    const laseElement = $(`[data-hook="input-2"]`);
+    expect(await isFocused(laseElement)).toEqual(true);
   });
 });

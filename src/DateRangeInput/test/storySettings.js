@@ -8,5 +8,5 @@ export const storySettings = {
 
 export const testStories = {
   dateRangeInputVariations: 'Date Range Input variations',
-  dateRangeInputWithinLayout: 'Date Range Input within layout',
+  tabTest: 'Date Range Tab test',
 };
