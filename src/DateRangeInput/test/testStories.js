@@ -30,8 +30,8 @@ storiesOf(kind, module).add(testStories.dateRangeInputVariations, () => {
         {...defaultProps}
       />
       <br />
-      <h2>HH:MM:SS Format</h2>
-      <DateRangeInput dateFormat="HH:MM:SS" {...defaultProps} />
+      <h2>HH:mm:SS Format</h2>
+      <DateRangeInput dateFormat="HH:mm:SS" {...defaultProps} />
       <br />
       <h2>Date Format function (date.toISOString)</h2>
       <DateRangeInput
