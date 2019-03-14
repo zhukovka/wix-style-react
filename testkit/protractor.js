@@ -431,3 +431,9 @@ import { numberInputDriverFactory } from '../src/NumberInput/NumberInput.uni.dri
 export const numberInputTestkitFactory = protractorUniTestkitFactoryCreator(
   numberInputDriverFactory,
 );
+
+import { dateInputDriverFactory } from '../src/DateInput/DateInput.uni.driver';
+
+export const dateInputTestkitFactory = protractorUniTestkitFactoryCreator(
+  dateInputDriverFactory,
+);

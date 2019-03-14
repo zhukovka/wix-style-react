@@ -98,6 +98,9 @@ export const counterBadgeTestkitFactory = testkitFactoryCreator(
 export const dataTableTestkitFactory = testkitFactoryCreator(
   load(require('../src/DataTable/DataTable.driver'))
 );
+export const dateInputTestkitFactory = uniTestkitFactoryCreator(
+  load(require('../src/DateInput/DateInput.uni.driver'))
+);
 export const datePickerTestkitFactory = testkitFactoryCreator(
   load(require('../src/DatePicker/DatePicker.driver'))
 );
