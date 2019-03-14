@@ -26,7 +26,7 @@ class DateRangeInput extends React.PureComponent {
     /** when set to true this component is disabled */
     disabled: PropTypes.bool,
     /** Standard component tabIndex */
-    tabIndex: PropTypes.string,
+    tabIndex: PropTypes.number,
   };
 
   static InputFrom = 'from';

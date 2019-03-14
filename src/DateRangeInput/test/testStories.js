@@ -57,7 +57,11 @@ storiesOf(kind, module).add(testStories.dateRangeInputWithinLayout, () => {
   return (
     <Layout>
       <Cell span={4}>
-        <Input placeholer="Some Input" tabIndex="1" />
+        <Input
+          dataHook="input-for-initial-focus"
+          placeholder="Some Input"
+          tabIndex="1"
+        />
       </Cell>
       <Cell span={4}>
         <DateRangeInput tabIndex="2" />

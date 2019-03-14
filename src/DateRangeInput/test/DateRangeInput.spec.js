@@ -159,4 +159,15 @@ describe('DateRangeInput', () => {
       await driver.getInputDriver(DateRangeInput.InputTo).isDisabled(),
     ).toEqual(true);
   });
+
+  it('should set both inputs at same tabIndex', async () => {
+    const tabIndex = 5;
+    const driver = createDriver(<DateRangeInput tabIndex={tabIndex} />);
+    expect(
+      await driver.getInputDriver(DateRangeInput.InputFrom).getTabIndex(),
+    ).toEqual(tabIndex);
+    expect(
+      await driver.getInputDriver(DateRangeInput.InputTo).getTabIndex(),
+    ).toEqual(tabIndex);
+  });
 });
