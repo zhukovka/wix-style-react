@@ -16,6 +16,8 @@ Types of changes:
 
 ## Next
 
+## 6.8.0 - 2019-03-13
+
 ### Added
 
 - `<Calendar/>` - new supported locales Thai, Chinese, and Chech.[#3078](https://github.com/wix/wix-style-react/pull/3078)
