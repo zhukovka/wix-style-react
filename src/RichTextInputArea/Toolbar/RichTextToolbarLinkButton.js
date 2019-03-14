@@ -1,9 +1,9 @@
 import React from 'react';
 
 import RichTextToolbarButton from './RichTextToolbarButton';
-import RichTextInputAreaLinkForm from './RichTextInputAreaLinkForm';
-import Popover from '../Popover';
-import Box from '../Box';
+import RichTextInputAreaLinkForm from '../Form/RichTextInputAreaLinkForm';
+import Popover from '../../Popover';
+import Box from '../../Box';
 
 class RichTextToolbarLinkButton extends React.PureComponent {
   state = {

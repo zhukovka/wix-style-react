@@ -1,23 +1,23 @@
 import React from 'react';
 
 import styles from './RichTextInputAreaForm.scss';
-import Tooltip from '../Tooltip';
-import Box from '../Box';
-import IconButton from '../IconButton';
-import { Check, X } from '../new-icons';
+import Tooltip from '../../Tooltip';
+import Box from '../../Box';
+import IconButton from '../../IconButton';
+import Check from '../../new-icons/Check';
+import X from '../../new-icons/X';
 
 class RichTextInputAreaForm extends React.PureComponent {
   render() {
     const { dataHook, children, onSubmit, onCancel, isDisabled } = this.props;
 
     return (
-      <div data-hook={dataHook}>
+      <form data-hook={dataHook} onSubmit={onSubmit}>
         {children}
         <div className={styles.footer}>
           <Tooltip content="Cancel" theme="dark" appendToParent>
             <IconButton
               dataHook="richtextarea-form-cancel-button"
-              as="button"
               priority="secondary"
               size="small"
               onClick={onCancel}
@@ -29,7 +29,7 @@ class RichTextInputAreaForm extends React.PureComponent {
             <Tooltip content="Confirm" theme="dark" appendToParent>
               <IconButton
                 dataHook="richtextarea-form-confirm-button"
-                as="button"
+                type="submit"
                 size="small"
                 onClick={onSubmit}
                 disabled={isDisabled}
@@ -39,7 +39,7 @@ class RichTextInputAreaForm extends React.PureComponent {
             </Tooltip>
           </Box>
         </div>
-      </div>
+      </form>
     );
   }
 }

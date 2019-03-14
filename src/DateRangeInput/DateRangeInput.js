@@ -25,6 +25,7 @@ class DateRangeInput extends React.PureComponent {
     statusMessage: PropTypes.node,
     /** when set to true this component is disabled */
     disabled: PropTypes.bool,
+    tabIndex: PropTypes.string,
   };
 
   static InputFrom = 'from';
@@ -52,6 +53,7 @@ class DateRangeInput extends React.PureComponent {
       onDateFromClicked,
       onDateToClicked,
       statusMessage,
+      tabIndex,
     } = this.props;
     const containerClass = classNames(styles.root, className);
     const { from, to } = value || {};
@@ -59,6 +61,7 @@ class DateRangeInput extends React.PureComponent {
       status,
       dateFormat,
       disabled,
+      tabIndex,
     };
     return (
       <div className={containerClass} data-hook={dataHook}>

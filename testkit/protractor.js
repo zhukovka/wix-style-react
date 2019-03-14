@@ -409,12 +409,6 @@ export const richTextInputAreaTestkitFactory = protractorUniTestkitFactoryCreato
   richTextInputAreaDriverFactory,
 );
 
-import { richTextToolbarDriverFactory } from '../src/RichTextInputArea/RichTextToolbar.driver';
-
-export const richTextToolbarTestkitFactory = protractorUniTestkitFactoryCreator(
-  richTextToolbarDriverFactory,
-);
-
 import { floatingNotificationDriverFactory } from '../src/FloatingNotification/FloatingNotification.driver';
 
 export const floatingNotificationTestkitFactory = protractorUniTestkitFactoryCreator(

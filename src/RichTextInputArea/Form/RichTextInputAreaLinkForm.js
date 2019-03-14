@@ -1,8 +1,8 @@
 import React from 'react';
 
 import RichTextInputAreaForm from './RichTextInputAreaForm';
-import Box from '../Box';
-import Input from '../Input';
+import Box from '../../Box';
+import Input from '../../Input';
 
 class RichTextInputAreaLinkForm extends React.PureComponent {
   state = {
