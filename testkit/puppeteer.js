@@ -123,12 +123,6 @@ export const richTextInputAreaTestkitFactory = puppeteerUniTestkitFactoryCreator
   richTextInputAreaDriverFactory,
 );
 
-import { richTextToolbarDriverFactory } from '../src/RichTextInputArea/RichTextToolbar.driver';
-
-export const richTextToolbarTestkitFactory = puppeteerUniTestkitFactoryCreator(
-  richTextToolbarDriverFactory,
-);
-
 import { floatingNotificationDriverFactory } from '../src/FloatingNotification/FloatingNotification.driver';
 
 export const floatingNotificationTestkitFactory = puppeteerUniTestkitFactoryCreator(

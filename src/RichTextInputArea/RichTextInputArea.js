@@ -11,7 +11,7 @@ import {
 import draftToHtml from 'draftjs-to-html';
 
 import styles from './RichTextInputArea.scss';
-import RichTextToolbar from './RichTextToolbar';
+import RichTextToolbar from './Toolbar/RichTextToolbar';
 import EditorUtilities from './EditorUtilities';
 
 const decorator = new CompositeDecorator([
@@ -67,7 +67,7 @@ class RichTextInputArea extends React.PureComponent {
           onUnderline={this._setEditorState}
           onLink={newEditorState => {
             this._setEditorState(newEditorState, () =>
-              setTimeout(() => this.refs.editor.focus(), 0),
+              this.refs.editor.focus(),
             );
           }}
           onBulletedList={this._setEditorState}
