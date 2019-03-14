@@ -154,8 +154,7 @@ export default class DatePicker extends WixComponent {
 
     return (
       <DateInput
-        inputDataHook={inputDataHook}
-        dataHook="date-picker-date-input"
+        dataHook={inputDataHook}
         value={initialValue}
         onInputClicked={this.openCalendar}
         disabled={disabled}
