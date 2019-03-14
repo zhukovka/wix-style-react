@@ -6,6 +6,8 @@ import { getTestStoryKind } from '../../../stories/storiesHierarchy';
 import Input from 'wix-style-react/Input';
 import DateRangeInput from 'wix-style-react/DateRangeInput';
 import { testStories, storySettings } from './storySettings';
+import { Layout, Cell } from '../../Layout';
+import Button from '../../Button/Button';
 
 const defaultProps = {
   value: { from: new Date(0), to: new Date(0) },
@@ -48,5 +50,21 @@ storiesOf(kind, module).add(testStories.dateRangeInputVariations, () => {
       <h2>Disabled (with error)</h2>
       <DateRangeInput {...defaultProps} status={'error'} disabled />
     </div>
+  );
+});
+
+storiesOf(kind, module).add(testStories.dateRangeInputWithinLayout, () => {
+  return (
+    <Layout>
+      <Cell span={4}>
+        <Input placeholer="Some Input" tabIndex="1" />
+      </Cell>
+      <Cell span={4}>
+        <DateRangeInput tabIndex="2" />
+      </Cell>
+      <Cell span={4}>
+        <Button tabIndex="3">Some Button</Button>
+      </Cell>
+    </Layout>
   );
 });

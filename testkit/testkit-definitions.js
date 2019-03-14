@@ -41,7 +41,7 @@ module.exports = {
     testkitPath: '../src/SideMenu/DrillView/DrillView.driver',
   },
 
-  BadgeSelectItemBuilder: {skipSanityTest: true, noTestkit: true},
+  BadgeSelectItemBuilder: { skipSanityTest: true, noTestkit: true },
 
   MultiSelect: {
     skipSanityTest: true, // testkit does not have root `exists` method
@@ -51,8 +51,8 @@ module.exports = {
     skipSanityTest: true, // testkit does not have root `exists` method
   },
 
-  DragAndDrop: {skipSanityTest: true, noTestkit: true},
-  DragDropContextProvider: {skipSanityTest: true, noTestkit: true},
+  DragAndDrop: { skipSanityTest: true, noTestkit: true },
+  DragDropContextProvider: { skipSanityTest: true, noTestkit: true },
 
   EndorseContentLayout: {
     skipSanityTest: true,
@@ -68,10 +68,10 @@ module.exports = {
     noTestkit: true,
   },
 
-  Grid: {skipSanityTest: true, noTestkit: true},
-  HBox: {skipSanityTest: true, noTestkit: true},
-  Layout: {skipSanityTest: true, noTestkit: true},
-  MessageBox: {skipSanityTest: true, noTestkit: true},
+  Grid: { skipSanityTest: true, noTestkit: true },
+  HBox: { skipSanityTest: true, noTestkit: true },
+  Layout: { skipSanityTest: true, noTestkit: true },
+  MessageBox: { skipSanityTest: true, noTestkit: true },
 
   Header: {
     testkitPath: '../src/Card/Header/Header.driver',
@@ -79,22 +79,22 @@ module.exports = {
     skipSanityTest: true,
   },
 
-  Page: {skipSanityTest: true},
-  PageHeader: {skipSanityTest: true},
-  PopoverMenuItem: {skipSanityTest: true, noTestkit: true},
-  TableToolbar: {skipSanityTest: true, noTestkit: true},
-  Tooltip: {skipSanityTest: true},
-  VBox: {skipSanityTest: true, noTestkit: true},
-  Collapse: {skipSanityTest: true, noTestkit: true},
-  Card: {skipSanityTest: true, noTestkit: true},
-  Composite: {skipSanityTest: true, noTestkit: true},
-  FullTextView: {skipSanityTest: true, noTestkit: true},
+  Page: { skipSanityTest: true },
+  PageHeader: { skipSanityTest: true },
+  PopoverMenuItem: { skipSanityTest: true, noTestkit: true },
+  TableToolbar: { skipSanityTest: true, noTestkit: true },
+  Tooltip: { skipSanityTest: true },
+  VBox: { skipSanityTest: true, noTestkit: true },
+  Collapse: { skipSanityTest: true, noTestkit: true },
+  Card: { skipSanityTest: true, noTestkit: true },
+  Composite: { skipSanityTest: true, noTestkit: true },
+  FullTextView: { skipSanityTest: true, noTestkit: true },
 
   RichTextArea: {
     beforeAllHook: () => (window.getSelection = () => ({})),
   },
 
-  Avatar: {unidriver: true},
+  Avatar: { unidriver: true },
 
   TextButton: {
     unidriver: true,
@@ -117,13 +117,13 @@ module.exports = {
     testkitPath: '../src/SideMenu/core/SideMenu.driver',
   },
 
-  Button: {unidriver: true},
+  Button: { unidriver: true },
 
   CalendarPanelFooter: {
     unidriver: true,
   },
 
-  ContactItemBuilder: {skipSanityTest: true},
+  ContactItemBuilder: { skipSanityTest: true },
 
   Draggable: {
     testkitPath: '../src/DragAndDrop/Draggable/Draggable.driver',
@@ -141,7 +141,8 @@ module.exports = {
   },
 
   FieldWithSelectionComposite: {
-    testkitPath: '../src/Composite/FieldWithSelectionComposite/FieldWithSelectionComposite.driver',
+    testkitPath:
+      '../src/Composite/FieldWithSelectionComposite/FieldWithSelectionComposite.driver',
     skipSanityTest: true,
   },
 
@@ -150,7 +151,7 @@ module.exports = {
   },
 
   Notification: {},
-  FloatingNotification: {unidriver: true, drivers: ['enzyme']},
+  FloatingNotification: { unidriver: true, drivers: ['enzyme'] },
 
   NumberInput: {
     unidriver: true,
@@ -163,15 +164,16 @@ module.exports = {
     skipSanityTest: true, // testkit does not have root `exists` method
   },
 
-  Proportion: {unidriver: true, drivers: ['enzyme']},
+  Proportion: { unidriver: true, drivers: ['enzyme'] },
 
   GeneratedTestComponent: {
-    testkitPath: '../src/GeneratedTestComponent/GeneratedTestComponent.uni.driver',
+    testkitPath:
+      '../src/GeneratedTestComponent/GeneratedTestComponent.uni.driver',
     unidriver: true,
     drivers: ['enzyme'],
   },
 
-  DropdownBase: {unidriver: true},
+  DropdownBase: { unidriver: true },
 
   RadioButton: {
     testkitPath: '../src/RadioGroup/RadioButton/RadioButton.driver',
@@ -188,15 +190,15 @@ module.exports = {
     skipSanityTest: true,
   },
 
-  Box: {unidriver: true},
-  Thumbnail: {unidriver: true},
+  Box: { unidriver: true },
+  Thumbnail: { unidriver: true },
 
   SegmentedToggle: {
     testkitPath: '../src/SegmentedToggle/SegmentedToggle.driver',
     unidriver: true,
   },
 
-  RichTextInputArea: {unidriver: true},
+  RichTextInputArea: { unidriver: true },
   NoBorderInput: {},
 
   DateInput: {

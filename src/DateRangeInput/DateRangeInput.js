@@ -64,13 +64,14 @@ class DateRangeInput extends React.PureComponent {
       disabled,
       tabIndex,
     };
+    const dateFromClass = classNames(styles.input, styles.dateFrom);
+    const dateToClass = classNames(styles.input, styles.dateTo);
     return (
       <div className={containerClass} data-hook={dataHook}>
         <DateInput
           {...generalProps}
           dataHook={`date-${DateRangeInput.InputFrom}-input`}
-          inputClassName={styles.input}
-          className={styles.dateInput}
+          className={dateFromClass}
           onInputClicked={onDateFromClicked}
           placeholder={dateFromPlaceholder}
           hideSuffix
@@ -80,8 +81,7 @@ class DateRangeInput extends React.PureComponent {
         <DateInput
           {...generalProps}
           dataHook={`date-${DateRangeInput.InputTo}-input`}
-          inputClassName={styles.input}
-          className={styles.dateInput}
+          className={dateToClass}
           value={to}
           placeholder={dateToPlaceholder}
           suffix={suffix}

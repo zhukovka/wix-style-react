@@ -4,12 +4,19 @@ import { eyesItInstance } from '../../../test/utils/eyes-it';
 import { storySettings, testStories } from './storySettings';
 import { protractorUniTestkitFactoryCreator } from 'wix-ui-test-utils/protractor';
 import { dateRangeInputPrivateDriverFactory } from '../DateRangeInput.private.uni.driver';
+import { protractor } from 'protractor';
 
 describe('DateRangeInput', () => {
   const eyes = eyesItInstance();
   const dateRangeInputTestKitFactory = protractorUniTestkitFactoryCreator(
     dateRangeInputPrivateDriverFactory,
   );
+
+  const pressTab = () =>
+    browser
+      .actions()
+      .sendKeys(protractor.Key.TAB)
+      .perform();
 
   const getElementZIndex = elem => {
     return browser.executeScript(

@@ -1,21 +1,16 @@
 .root {
   width: 100%;
   display: flex;
-  .date-input {
+  .input {
     flex: 1;
-    &:nth-child(1){
+    &.date-from {
       margin-right: -1px;
-      .input {
-        border-top-right-radius: 0;
-        border-bottom-right-radius: 0;
-      }
+      border-top-right-radius: 0;
+      border-bottom-right-radius: 0;
     }
-    &:nth-child(2){
-      .input {
-        border-top-left-radius: 0;
-        border-bottom-left-radius: 0;
-      }
+    &.date-to {
+      border-top-left-radius: 0;
+      border-bottom-left-radius: 0;
     }
   }
 }
-
