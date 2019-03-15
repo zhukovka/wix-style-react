@@ -6,6 +6,8 @@ import MultiSelect from '..';
 import {
   tab,
   table,
+  title,
+  divider,
   importExample,
   description,
   playground,
@@ -13,7 +15,6 @@ import {
 } from 'wix-storybook-utils/Sections';
 
 import LinkTo from '@storybook/addon-links/react';
-import { Title } from '../../../stories/UXStoryTemplate';
 
 import readmeApi from '../README.API.md';
 import playgroundStoryConfig from '../../../stories/MultiSelect/MultiSelectPlaygroundConfig';
@@ -83,8 +84,6 @@ const defaultLiveCodeProps = {
 
 const examples = (
   <div>
-    <Title>Examples</Title>
-
     <LiveCodeExample
       {...defaultLiveCodeProps}
       title="Select"
@@ -183,9 +182,11 @@ export default {
           ],
         }),
 
-        importExample({
-          source: "import MultiSelect from 'wix-style-react/MultiSelect';",
-        }),
+        importExample("import MultiSelect from 'wix-style-react/MultiSelect';"),
+
+        divider(),
+
+        title('Examples'),
 
         description({ text: examples }),
       ],
