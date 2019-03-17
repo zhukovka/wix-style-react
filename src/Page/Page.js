@@ -307,6 +307,7 @@ class Page extends WixComponent {
         {PageHeaderChild && (
           <div className={s.pageHeader} style={pageDimensionsStyle}>
             {React.cloneElement(PageHeaderChild, {
+              dataHook: minimized ? undefined : PageHeaderChild.props.dataHook, // Hack? - https://github.com/wix/wix-style-react/issues/3088
               minimized,
               hasBackgroundImage: this._hasBackgroundImage(),
               upgrade: true,
