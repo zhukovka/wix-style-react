@@ -3,6 +3,25 @@ import GoogleMapsClient from './GoogleMapsClient';
 describe('GoogleMapsClient', () => {
   afterEach(() => delete window.google);
 
+  it('should add session token when autocompleting', async () => {
+    window.google = new GoogleMapsMock(
+      {
+        getPlacePredictions: (request, callback) => {
+          callback(null, window.google.maps.GeocoderStatus.ZERO_RESULTS);
+        },
+      },
+      null,
+      null,
+    );
+    const client = new GoogleMapsClient();
+    const spy = jest.spyOn(client._autocomplete, 'getPlacePredictions');
+    await client.autocomplete({ request: { placeId: 'my-id' } });
+    expect(spy).toHaveBeenCalledWith(
+      { placeId: 'my-id', sessionToken: { Pf: 'token' } },
+      expect.any(Function),
+    );
+  });
+
   it('should handle null when autocompleting and getting ZERO_RESULTS', () => {
     window.google = new GoogleMapsMock({
       getPlacePredictions: (request, callback) => {
@@ -54,6 +73,12 @@ function GoogleMapsMock(
     }
   }
 
+  class AutocompleteSessionToken {
+    constructor() {
+      this.Pf = 'token';
+    }
+  }
+
   class Geocoder {
     constructor() {
       return geocoderInstance;
@@ -73,6 +98,7 @@ function GoogleMapsMock(
       Map: Map,
       places: {
         AutocompleteService: AutocompleteService,
+        AutocompleteSessionToken: AutocompleteSessionToken,
         PlacesService: PlacesService,
         PlacesServiceStatus: {
           OK: 'OK',
