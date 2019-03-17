@@ -16,9 +16,9 @@ export const dateRangeInputDriverFactory = base => {
     getDateFromValue: () => dateFromInputDriver.getValue(),
     getDateToValue: () => dateToInputDriver.getValue(),
     getDateFromPlaceholder: async () =>
-      await dateFromInputDriver.getInputDriver().input.attr('placeholder'),
+      await dateFromInputDriver.getInputDriver().getPlaceHolder(),
     getDateToPlaceholder: async () =>
-      await dateToInputDriver.getInputDriver().input.attr('placeholder'),
+      await dateToInputDriver.getInputDriver().getPlaceHolder(),
     clickOnDateFromInput: () =>
       dateFromInputDriver.getInputDriver().clickOnInput(),
     clickOnDateToInput: () => dateToInputDriver.getInputDriver().clickOnInput(),

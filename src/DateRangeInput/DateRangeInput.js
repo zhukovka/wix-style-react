@@ -4,8 +4,9 @@ import styles from './DateRangeInput.scss';
 import DateInput from '../DateInput/DateInput';
 import classNames from 'classnames';
 import Input from '../Input/Input';
+import { DateRangeInputTypes } from './DateRangeInputTypes';
 
-class DateRangeInput extends React.PureComponent {
+class DateRangeInput extends React.Component {
   static displayName = 'DateRangeInput';
 
   static propTypes = {
@@ -20,7 +21,7 @@ class DateRangeInput extends React.PureComponent {
     /** Placeholder for date to input */
     dateToPlaceholder: PropTypes.string,
     /** Input status - use to display an status indication for the user. for example: 'error' or 'loading' */
-    status: PropTypes.oneOf([Input.StatusError, Input.StatusLoading]),
+    status: PropTypes.oneOf([Input.StatusError]),
     /** The status (error/loading) message to display when hovering the status icon, if not given or empty there will be no tooltip */
     statusMessage: PropTypes.node,
     /** when set to true this component is disabled */
@@ -29,8 +30,8 @@ class DateRangeInput extends React.PureComponent {
     tabIndex: PropTypes.number,
   };
 
-  static InputFrom = 'from';
-  static InputTo = 'to';
+  static InputFrom = DateRangeInputTypes.from;
+  static InputTo = DateRangeInputTypes.to;
 
   static defaultProps = {
     ...DateInput.defaultProps,

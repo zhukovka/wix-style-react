@@ -8,7 +8,8 @@ import {
 } from 'wix-ui-test-utils/protractor';
 import { dateRangeInputPrivateDriverFactory } from '../DateRangeInput.private.uni.driver';
 import { protractor, browser, $ } from 'protractor';
-import DateRangeInput from '../DateRangeInput';
+import { DateRangeInputTypes } from '../DateRangeInputTypes';
+import { isInputFocused } from '../../../test/utils/protractor-helpers';
 
 describe('DateRangeInput', () => {
   const eyes = eyesItInstance();
@@ -41,14 +42,6 @@ describe('DateRangeInput', () => {
     const firstElement = $(`[data-hook="input-1"]`);
     await pressTab();
     expect(await isFocused(firstElement)).toEqual(true);
-  };
-
-  const isInputFocused = async inputDriver => {
-    // TODO - for some reason unidriver's implemenation of hasClass is broken due to classList returning null
-    // See - https://github.com/wix-incubator/unidriver/issues/53
-    return (await (await inputDriver.element()).getAttribute(
-      'className',
-    )).includes('hasFocus');
   };
 
   eyes.it('should render DateRangeInput with variations', async () => {
@@ -85,7 +78,7 @@ describe('DateRangeInput', () => {
     await focusOnFirstElementUsingTab();
     await pressTab();
     expect(
-      await isInputFocused(driver.getInputDriver(DateRangeInput.InputFrom)),
+      await isInputFocused(driver.getInputDriver(DateRangeInputTypes.from)),
     ).toEqual(true);
   });
 
@@ -96,10 +89,10 @@ describe('DateRangeInput', () => {
     await pressTab();
     await pressTab();
     expect(
-      await isInputFocused(driver.getInputDriver(DateRangeInput.InputFrom)),
+      await isInputFocused(driver.getInputDriver(DateRangeInputTypes.from)),
     ).toEqual(false);
     expect(
-      await isInputFocused(driver.getInputDriver(DateRangeInput.InputTo)),
+      await isInputFocused(driver.getInputDriver(DateRangeInputTypes.to)),
     ).toEqual(true);
   });
 
@@ -111,10 +104,10 @@ describe('DateRangeInput', () => {
     await pressTab();
     await pressTab();
     expect(
-      await isInputFocused(driver.getInputDriver(DateRangeInput.InputFrom)),
+      await isInputFocused(driver.getInputDriver(DateRangeInputTypes.from)),
     ).toEqual(false);
     expect(
-      await isInputFocused(driver.getInputDriver(DateRangeInput.InputTo)),
+      await isInputFocused(driver.getInputDriver(DateRangeInputTypes.to)),
     ).toEqual(false);
     const laseElement = $(`[data-hook="input-2"]`);
     expect(await isFocused(laseElement)).toEqual(true);

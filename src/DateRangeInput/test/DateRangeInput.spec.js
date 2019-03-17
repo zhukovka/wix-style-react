@@ -6,6 +6,7 @@ import {
   createRendererWithUniDriver,
   cleanup,
 } from '../../../test/utils/react';
+import { DateRangeInputTypes } from '../DateRangeInputTypes';
 
 describe('DateRangeInput', () => {
   const render = createRendererWithUniDriver(
@@ -89,48 +90,34 @@ describe('DateRangeInput', () => {
   it('should set status to both inputs', async () => {
     const driver = createDriver(<DateRangeInput status="error" />);
     expect(
-      await driver.getInputDriver(DateRangeInput.InputFrom).hasError(),
+      await driver.getInputDriver(DateRangeInputTypes.from).hasError(),
     ).toEqual(true);
     expect(
-      await driver.getInputDriver(DateRangeInput.InputTo).hasError(),
+      await driver.getInputDriver(DateRangeInputTypes.to).hasError(),
     ).toEqual(true);
   });
 
   it('error status should not add suffix to `from` input', async () => {
     const driver = createDriver(<DateRangeInput status="error" />);
     expect(
-      await driver.getInputDriver(DateRangeInput.InputFrom).hasSuffix(),
-    ).toEqual(false);
-  });
-
-  it('loading status should not add suffix to `from` input', async () => {
-    const driver = createDriver(<DateRangeInput status="loading" />);
-    expect(
-      await driver.getInputDriver(DateRangeInput.InputFrom).hasSuffix(),
+      await driver.getInputDriver(DateRangeInputTypes.from).hasSuffix(),
     ).toEqual(false);
   });
 
   it('error status should add suffix to `to` input', async () => {
     const driver = createDriver(<DateRangeInput status="error" />);
     expect(
-      await driver.getInputDriver(DateRangeInput.InputTo).hasSuffix(),
-    ).toEqual(true);
-  });
-
-  it('loading status should add suffix to `to` input', async () => {
-    const driver = createDriver(<DateRangeInput status="loading" />);
-    expect(
-      await driver.getInputDriver(DateRangeInput.InputTo).hasSuffix(),
+      await driver.getInputDriver(DateRangeInputTypes.to).hasSuffix(),
     ).toEqual(true);
   });
 
   it('should set suffix on `to` input', async () => {
     const driver = createDriver(<DateRangeInput suffix={<div />} />);
     expect(
-      await driver.getInputDriver(DateRangeInput.InputFrom).hasSuffix(),
+      await driver.getInputDriver(DateRangeInputTypes.from).hasSuffix(),
     ).toEqual(false);
     expect(
-      await driver.getInputDriver(DateRangeInput.InputTo).hasSuffix(),
+      await driver.getInputDriver(DateRangeInputTypes.to).hasSuffix(),
     ).toEqual(true);
   });
 
@@ -153,10 +140,10 @@ describe('DateRangeInput', () => {
   it('should set both inputs as disabled', async () => {
     const driver = createDriver(<DateRangeInput disabled />);
     expect(
-      await driver.getInputDriver(DateRangeInput.InputFrom).isDisabled(),
+      await driver.getInputDriver(DateRangeInputTypes.from).isDisabled(),
     ).toEqual(true);
     expect(
-      await driver.getInputDriver(DateRangeInput.InputTo).isDisabled(),
+      await driver.getInputDriver(DateRangeInputTypes.to).isDisabled(),
     ).toEqual(true);
   });
 
@@ -164,10 +151,10 @@ describe('DateRangeInput', () => {
     const tabIndex = 5;
     const driver = createDriver(<DateRangeInput tabIndex={tabIndex} />);
     expect(
-      await driver.getInputDriver(DateRangeInput.InputFrom).getTabIndex(),
+      await driver.getInputDriver(DateRangeInputTypes.from).getTabIndex(),
     ).toEqual(tabIndex);
     expect(
-      await driver.getInputDriver(DateRangeInput.InputTo).getTabIndex(),
+      await driver.getInputDriver(DateRangeInputTypes.to).getTabIndex(),
     ).toEqual(tabIndex);
   });
 });
