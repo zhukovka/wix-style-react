@@ -19,7 +19,7 @@ Types of changes:
 ### Added
 - `<GoogleAddressInput/>` - allow passing fields to place details request [#3101](https://github.com/wix/wix-style-react/pull/3101)
 - `<InputArea/>` - add minRowsAutoGrow [#3105](https://github.com/wix/wix-style-react/pull/3105)
-<GoogleAddressInput/> - attach session token to api calls [#3112](https://github.com/wix/wix-style-react/pull/3112)
+- `<GoogleAddressInput/>` - attach session token to api calls [#3112](https://github.com/wix/wix-style-react/pull/3112)
 
 ### Fixed
 - `<Page/>` - Fix Multiple PageHeader dataHooks [#3111](https://github.com/wix/wix-style-react/pull/3111)
