@@ -16,6 +16,10 @@ Types of changes:
 
 ## Next
 
+### Fixed
+
+- `<Page/>` - Fix Multiple PageHeader dataHooks [#3111](https://github.com/wix/wix-style-react/pull/3111)
+
 ## 6.8.0 - 2019-03-13
 
 ### Added
