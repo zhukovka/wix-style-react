@@ -16,9 +16,13 @@ Types of changes:
 
 ## Next
 
-### Fixed
+### Added
+- `<GoogleAddressInput/>` - allow passing fields to place details request [#3101](https://github.com/wix/wix-style-react/pull/3101)
+- `<InputArea/>` - add minRowsAutoGrow [#3105](https://github.com/wix/wix-style-react/pull/3105)
 
+### Fixed
 - `<Page/>` - Fix Multiple PageHeader dataHooks [#3111](https://github.com/wix/wix-style-react/pull/3111)
+- `<Modal>` - disable page scrolling when modal is open [#3086](https://github.com/wix/wix-style-react/pull/3086)
 
 ## 6.8.0 - 2019-03-13
 
