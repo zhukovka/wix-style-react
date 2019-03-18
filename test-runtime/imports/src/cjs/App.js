@@ -2,10 +2,23 @@ const React = require('react');
 const Text = require('../../../../Text');
 
 class App extends React.Component {
+  state = {
+    text: 'hey',
+  };
   render() {
     return (
-      <div data-name="App">
-        <Text.default data-name="CJS-Text">Works!</Text.default>
+      <div data-name="App" style={{ width: 30 }}>
+        <Text.default ellipsis data-name="CJS-Text">
+          {this.state.text}
+        </Text.default>
+        <button
+          data-name="button"
+          onClick={() =>
+            this.setState({
+              text: 'heyheyheyheyheyheyheyheyheyheyheyheyheyhey',
+            })
+          }
+        />
       </div>
     );
   }

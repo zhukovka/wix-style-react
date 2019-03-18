@@ -15,4 +15,20 @@ describe('React application with ES6 imports', () => {
 
     expect(await page.$eval(selector, e => !!e)).toBe(true);
   });
+
+  it('should load Tooltip after statusMessage set', async () => {
+    const buttonSelector = '[data-name="button"]';
+    const tooltipSelector = '[data-hook="popover-content"]';
+    const textSelector = '[data-name="ES-Text"]';
+    await page.waitForSelector(buttonSelector);
+
+    expect((await page.$(tooltipSelector)) !== null).toBe(false);
+    await page.click(buttonSelector);
+    await page.waitForSelector(textSelector);
+    await page.waitFor(50);
+    await page.hover(textSelector);
+    await page.waitForSelector(tooltipSelector);
+
+    expect((await page.$(tooltipSelector)) !== null).toBe(true);
+  });
 });
