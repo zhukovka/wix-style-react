@@ -138,6 +138,37 @@ describe('Page', () => {
       // TODO:
     });
   });
+
+  describe('zIndex', () => {
+    it('should NOT have zIndex in inline style by default', () => {
+      const driver = PagePrivateDriver.fromJsxElement(
+        <Page>
+          <Page.Header title="title" />
+          <Page.Content>
+            <Content />
+          </Page.Content>
+        </Page>,
+      );
+
+      expect(driver.getStyle()['z-index']).toBe('');
+    });
+
+    it('should have provided zIndex in inline style', () => {
+      const driver = PagePrivateDriver.fromJsxElement(
+        <Page zIndex={7}>
+          <Page.Header title="title" />
+          <Page.Content>
+            <Content />
+          </Page.Content>
+        </Page>,
+      );
+
+      console.log('driver.getComputedStyle()= ', driver.getComputedStyle());
+
+      expect(driver.getStyle()['z-index']).toBe('7');
+    });
+  });
+
   describe('Header layer', () => {
     it('should NOT block clicks on content close to header', () => {});
     it('should NOT block clicks on content close to header when MiniHeader appears', () => {});

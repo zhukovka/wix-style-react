@@ -31,4 +31,8 @@ export class PagePrivateDriver {
   getScrollAmount() {
     return this.scrollableContainer.scrollTop;
   }
+
+  getStyle() {
+    return this.element.style;
+  }
 }
