@@ -388,7 +388,7 @@ Input.defaultProps = {
   maxLength: 524288,
   withSelection: false,
   clearButton: false,
-  autoSize: false
+  autoSize: false,
 };
 
 const ActualInput = props => {
@@ -396,7 +396,11 @@ const ActualInput = props => {
 
   if (autoSize) {
     return (
-      <AutosizeInput {...rest} inputRef={reactRef} inputClassName={styles.autoSizeInput} />
+      <AutosizeInput
+        {...rest}
+        inputRef={reactRef}
+        inputClassName={styles.autoSizeInput}
+      />
     );
   } else {
     return <input {...rest} className={className} ref={reactRef} />;
@@ -579,7 +583,7 @@ Input.propTypes = {
   step: PropTypes.number,
 
   /** Use AutosizeInput instead of the deafult html input tag (for cases where we need to start with a minimal input size and resize according to the input */
-  autoSize: PropTypes.bool
+  autoSize: PropTypes.bool,
 };
 
 export default Input;

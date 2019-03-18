@@ -56,7 +56,8 @@ $material-gap: 8px;
 }
 
 .autoSizeInput {
-  @extend .input
+  @extend .input;
+  min-width: 0px;
 }
 
 // Remove IE10+ automatically x button
