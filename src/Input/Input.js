@@ -396,7 +396,7 @@ const ActualInput = props => {
 
   if (autoSize) {
     return (
-      <AutosizeInput {...rest} inputClassName={className} inputRef={reactRef} />
+      <AutosizeInput {...rest} inputClassName={className} inputRef={reactRef} inputStyle={{minWidth: "0px"}} />
     );
   } else {
     return <input {...rest} className={className} ref={reactRef} />;

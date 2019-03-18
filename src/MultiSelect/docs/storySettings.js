@@ -8,4 +8,5 @@ export const storySettings = {
 
 export const testStories = {
   tabsSwitches: 'Tabs switches',
+  lineNotBraking: 'Line not braking',
 };

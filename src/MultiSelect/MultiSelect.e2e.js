@@ -117,6 +117,24 @@ describe('MultiSelect', () => {
       await driver.addTag();
       await mouseEnter(element);
     });
+
+    eyes.it('should fill input with tags without breaking a line', async () => {
+      const url = createTestStoryUrl({
+        category: storySettings.category,
+        storyName: storySettings.storyName,
+        testName: testStories.lineNotBraking,
+      });
+      await browser.get(url);
+      const driver = multiSelectTestkitFactory({
+        dataHook: 'multi-select-line-not-braking',
+      });
+      const element = driver.element();
+      await waitForVisibilityOf(element, 'Cannot find <MultiSelect/>');
+
+      const height = await driver.getHeight();
+      const INPUT_HEIGHT_FOR_ONE_LINE = 36;
+      expect(height).toBe(INPUT_HEIGHT_FOR_ONE_LINE);
+    });
   });
 });
 
