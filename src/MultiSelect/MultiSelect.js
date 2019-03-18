@@ -211,6 +211,7 @@ MultiSelect.defaultProps = {
   predicate: () => true,
   tags: [],
   delimiters: [','],
+  autoSize: true
 };
 
 export default MultiSelect;

@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
+import AutosizeInput from 'react-input-autosize';
 
 import Ticker from './Ticker';
 import Unit from './Unit';
@@ -116,6 +117,7 @@ class Input extends Component {
       required,
       error,
       errorMessage,
+      autoSize
     } = this.props;
     const onIconClicked = e => {
       if (!disabled) {
@@ -170,15 +172,14 @@ class Input extends Component {
 
     /* eslint-disable no-unused-vars */
     const { className, ...inputElementProps } = props;
-
     const inputElement = (
-      <input
+      <ActualInput
         min={min}
         max={max}
         step={step}
         data-hook="wsr-input"
         style={{ textOverflow }}
-        ref={this.extractRef}
+        reactRef={this.extractRef}
         className={inputClassNames}
         id={id}
         name={name}
@@ -204,6 +205,7 @@ class Input extends Component {
         autoComplete={autocomplete}
         onCompositionStart={() => this.onCompositionChange(true)}
         onCompositionEnd={() => this.onCompositionChange(false)}
+        autoSize={autoSize}
         {...ariaAttribute}
         {...inputElementProps}
       />
@@ -386,6 +388,19 @@ Input.defaultProps = {
   maxLength: 524288,
   withSelection: false,
   clearButton: false,
+  autoSize: false
+};
+
+const ActualInput = props => {
+  const { autoSize, className, reactRef, ...rest } = props;
+
+  if (autoSize) {
+    return (
+      <AutosizeInput {...rest} inputClassName={className} inputRef={reactRef} />
+    );
+  } else {
+    return <input {...rest} className={className} ref={reactRef} />;
+  }
 };
 
 const borderRadiusValidator = (props, propName) => {
@@ -562,6 +577,9 @@ Input.propTypes = {
 
   /** Step steps to increment/decrement - similar to html5 step attribute */
   step: PropTypes.number,
+
+  /** Use AutosizeInput instead of the deafult html input tag (for cases where we need to start with a minimal input size and resize according to the input */
+  autoSize: PropTypes.bool
 };
 
 export default Input;
