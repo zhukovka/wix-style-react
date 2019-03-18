@@ -1,10 +1,13 @@
 import eyes from 'eyes.it';
 import { datePickerTestkitFactory } from '../../testkit/protractor';
-import { getStoryUrl } from '../../test/utils/storybook-helpers';
+import { createStoryUrl } from '../../test/utils/storybook-helpers';
 import autoExampleDriver from 'wix-storybook-utils/AutoExampleDriver';
 
 describe('DatePicker', () => {
-  const storyUrl = getStoryUrl('3. Inputs', '3.6 DatePicker');
+  const storyUrl = createStoryUrl({
+    kind: '3. Inputs',
+    story: '3.6 DatePicker',
+  });
   const { inputDriver, calendarDriver } = datePickerTestkitFactory({
     dataHook: 'storybook-datepicker',
   });

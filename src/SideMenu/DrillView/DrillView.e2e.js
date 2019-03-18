@@ -1,10 +1,10 @@
 import eyes from 'eyes.it';
 import { drillViewTestkitFactory } from '../../../testkit/protractor';
 import { waitForVisibilityOf } from 'wix-ui-test-utils/protractor';
-import { getStoryUrl } from '../../../test/utils/storybook-helpers';
+import { createStoryUrl } from '../../../test/utils/storybook-helpers';
 
 describe('DrillView', () => {
-  const storyUrl = getStoryUrl('6. Navigation', '6.1 SideMenuDrill');
+  const storyUrl = createStoryUrl({ kind: '6. Navigation', story: '6.1 SideMenuDrill' });
 
   eyes.it('should clear transition classes', async () => {
     const dataHook = 'side-menu';

@@ -1,10 +1,13 @@
 import { multiSelectCheckboxTestkitFactory } from '../../testkit/protractor';
 import { waitForVisibilityOf } from 'wix-ui-test-utils/protractor';
-import { getStoryUrl } from '../../test/utils/storybook-helpers';
+import { createStoryUrl } from '../../test/utils/storybook-helpers';
 import eyes from 'eyes.it';
 
 describe('MultiSelectCheckbox', () => {
-  const storyUrl = getStoryUrl('4. Selection', '4.1 + MultiSelectCheckbox');
+  const storyUrl = createStoryUrl({
+    kind: '4. Selection',
+    story: '4.1 + MultiSelectCheckbox',
+  });
   const driver = multiSelectCheckboxTestkitFactory({
     dataHook: 'multi-select-checkbox',
   });

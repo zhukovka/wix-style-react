@@ -4,10 +4,10 @@ import {
   waitForVisibilityOf,
   scrollToElement,
 } from 'wix-ui-test-utils/protractor';
-import { getStoryUrl } from '../../test/utils/storybook-helpers';
+import { createStoryUrl } from '../../test/utils/storybook-helpers';
 
 describe('Data Table', () => {
-  const storyUrl = getStoryUrl('10. Tables', '10.1 DataTable (Legacy)');
+  const storyUrl = createStoryUrl({ kind: '10. Tables', story: '10.1 DataTable (Legacy)' });
 
   eyes.it('should call func on row click', async () => {
     const driver = dataTableTestkitFactory({
