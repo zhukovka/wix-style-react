@@ -55,6 +55,10 @@ $material-gap: 8px;
   }
 }
 
+.autoSizeInput {
+  @extend .input
+}
+
 // Remove IE10+ automatically x button
 .input::-ms-clear {
   display: none;
