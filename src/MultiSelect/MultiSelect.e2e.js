@@ -1,13 +1,17 @@
 import autoExampleDriver from 'wix-storybook-utils/AutoExampleDriver';
 import { eyesItInstance } from '../../test/utils/eyes-it';
 import { multiSelectTestkitFactory } from '../../testkit/protractor';
-import { waitForVisibilityOf, mouseEnter } from 'wix-ui-test-utils/protractor';
+import { $, browser } from 'protractor';
+import {
+  isFocused,
+  mouseEnter,
+  waitForVisibilityOf,
+} from 'wix-ui-test-utils/protractor';
 import {
   createStoryUrl,
   createTestStoryUrl,
 } from '../../test/utils/storybook-helpers';
-
-import { storySettings } from './docs/storySettings';
+import { storySettings, testStories } from './docs/storySettings';
 
 describe('MultiSelect', () => {
   describe('AutoExample', () => {
@@ -113,5 +117,65 @@ describe('MultiSelect', () => {
       await driver.addTag();
       await mouseEnter(element);
     });
+  });
+});
+
+describe('MultiSelect - Focus behaviour', () => {
+  let driver;
+
+  const storyUrl = createTestStoryUrl({
+    category: storySettings.category,
+    storyName: storySettings.storyName,
+    testName: testStories.tabsSwitches,
+  });
+
+  beforeEach(async () => {
+    browser.get(storyUrl);
+
+    driver = multiSelectTestkitFactory({
+      dataHook: 'multiselect-tabs-switches-test',
+    });
+
+    await waitForVisibilityOf(
+      driver.element(),
+      'Cant find muiltiselect-tabs-switches-test',
+    );
+  });
+
+  const pressTab = () =>
+    browser
+      .actions()
+      .sendKeys(protractor.Key.TAB)
+      .perform();
+
+  async function focusOnMultiSelect() {
+    const firstElement = $(`[data-hook="input-for-focus-1"]`);
+    await pressTab();
+    expect(await isFocused(firstElement)).toEqual(true);
+
+    await pressTab();
+    expect(await driver.isFocused()).toEqual(true);
+  }
+
+  it('should move out focus of multiselect only after 2 tab press when selecting an item', async () => {
+    await focusOnMultiSelect();
+
+    await driver.click();
+    await driver.hoverItemById('AL');
+    await pressTab();
+    expect(await driver.isFocused()).toEqual(true);
+    expect(await driver.isOptionsShown()).toEqual(true);
+
+    await pressTab();
+    expect(await driver.isFocused()).toEqual(false);
+    expect(await driver.isOptionsShown()).toEqual(false);
+  });
+
+  it('should move out focus of multiselect when pressing tab without any selection', async () => {
+    await focusOnMultiSelect();
+
+    await pressTab();
+    expect(await driver.isFocused()).toEqual(false);
+    expect(await driver.isOptionsShown()).toEqual(false);
   });
 });

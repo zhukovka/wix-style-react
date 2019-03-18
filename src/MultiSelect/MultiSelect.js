@@ -93,7 +93,7 @@ class MultiSelect extends InputWithOptions {
     this.onSelect(option);
   }
 
-  _onManuallyInput(inputValue) {
+  _onManuallyInput(inputValue, event) {
     const { value } = this.props;
 
     // FIXME: InputWithOptions is not updating it's inputValue state when the `value` prop changes.
@@ -103,6 +103,7 @@ class MultiSelect extends InputWithOptions {
     const _value = (value && value.trim()) || (inputValue && inputValue.trim());
 
     this.submitValue(_value);
+    _value && event.preventDefault();
 
     if (this.closeOnSelect()) {
       this.hideOptions();
@@ -147,7 +148,9 @@ class MultiSelect extends InputWithOptions {
       onSelect(this.props.options.find(o => o.id === option.id));
     }
 
-    this.input.focus();
+    setTimeout(() => {
+      this.input && this.input.focus();
+    }, 0);
   }
 
   submitValue(inputValue) {

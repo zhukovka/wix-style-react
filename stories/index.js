@@ -155,7 +155,7 @@ require('../src/IconButton/docs/testStory'); // Tests/5. Button/5.2 IconButton
 require('../src/TextButton/docs/testStory'); // Tests/5. Button/5.3 TextButton
 require('../src/CloseButton/docs/testStory'); // Tests/5. Button/5.4 CloseButton
 require('../src/Calendar/docs/CalendarTestStory'); // Tests/3. Inputs/3.13 Calendar
-require('../src/MultiSelect/docs/MultiSelectTestStory'); // Tests/3. Inputs/3.8 Tags
+require('../src/MultiSelect/docs/testStory'); // Tests/3. Inputs/3.8 Tags
 require('../src/PopoverMenu/docs/PopoverMenuRegressionTest'); // Tests/7.3. Popover Menu/
 require('../src/Popover/docs/testStory');
 require('../src/Modal/test/TestsStory'); //Tests/9. Modal
@@ -171,6 +171,8 @@ require('../src/SegmentedToggle/docs/testStory'); // 4.5 SegmentedToggle
 require('../src/FloatingNotification/docs/FloatingNotificationTestStory'); // 8.2 FloatingNotification
 require('../src/FormField/docs/testStory');
 require('../src/RichTextArea/docs/testStory');
+require('../src/DropdownLayout/docs/testStory');
+require('../src/InputWithOptions/docs/testStory');
 require('../src/ColorInput/docs/testStory');
 require('../src/DateInput/test/testStories');
 

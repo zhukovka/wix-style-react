@@ -152,6 +152,24 @@ describe('InputWithOptions', () => {
         driver.dropdownLayoutDriver.clickAtOption(0);
         expect(driver.dropdownLayoutDriver.isShown()).toBe(false);
       });
+
+      it('should not hide options on option select if closeOnSelect is set to false', () => {
+        const driver = createDriver(
+          <ControlledInputWithOptions
+            value="some value"
+            showOptionsIfEmptyInput={false}
+            options={options}
+            closeOnSelect={false}
+            onSelect={function(option) {
+              this.setState({ value: option.value });
+            }}
+          />,
+        );
+
+        driver.inputDriver.focus();
+        driver.dropdownLayoutDriver.clickAtOption(0);
+        expect(driver.dropdownLayoutDriver.isShown()).toBe(true);
+      });
     });
   });
 
@@ -242,7 +260,7 @@ describe('InputWithOptions', () => {
     expect(onManuallyInput).toBeCalledWith('my text', undefined);
   });
 
-  it('should close dropdown on press tab key', () => {
+  it('should select and close dropdown on press tab key', () => {
     const onManuallyInput = jest.fn();
     const { driver, inputDriver, dropdownLayoutDriver } = createDriver(
       <InputWithOptions options={options} onManuallyInput={onManuallyInput} />,
@@ -254,6 +272,17 @@ describe('InputWithOptions', () => {
     driver.pressKey('Tab');
     // todo: jest limitation of mimicking native Tab browser behaviour
     // expect(inputDriver.isFocus()).toBe(false);
+    expect(dropdownLayoutDriver.isShown()).toBe(false);
+  });
+
+  it('should focus out of the component and close dropdown for an empty input when pressing tab key', () => {
+    const { driver, inputDriver, dropdownLayoutDriver } = createDriver(
+      <InputWithOptions closeOnSelect={false} options={options} />,
+    );
+    inputDriver.click();
+    // expect(inputDriver.isFocus()).toBe(true);
+    expect(dropdownLayoutDriver.isShown()).toBe(true);
+    driver.pressKey('Tab');
     expect(dropdownLayoutDriver.isShown()).toBe(false);
   });
 
