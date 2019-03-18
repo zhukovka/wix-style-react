@@ -24,6 +24,8 @@ Types of changes:
 ### Fixed
 - `<Page/>` - Fix Multiple PageHeader dataHooks [#3111](https://github.com/wix/wix-style-react/pull/3111)
 - `<Modal>` - disable page scrolling when modal is open [#3086](https://github.com/wix/wix-style-react/pull/3086)
+- `<RichTextInputAreaLinkForm/>` - make component to be non-pure [#3113](https://github.com/wix/wix-style-react/pull/3113)
+- `<MultiSelect/>` - fix Tab behavior to focus out of the component [#3080](https://github.com/wix/wix-style-react/pull/3080)
 
 ## 6.8.0 - 2019-03-13
 
