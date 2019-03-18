@@ -14,7 +14,18 @@ Types of changes:
 1. **Docs** for documentation changes
 1. **Lab** components and features that are still in a work in progress
 
-## Next
+## 6.9.0 - 2019-03-18
+
+### Added
+- `<GoogleAddressInput/>` - allow passing fields to place details request [#3101](https://github.com/wix/wix-style-react/pull/3101)
+- `<InputArea/>` - add minRowsAutoGrow [#3105](https://github.com/wix/wix-style-react/pull/3105)
+- `<GoogleAddressInput/>` - attach session token to api calls [#3112](https://github.com/wix/wix-style-react/pull/3112)
+
+### Fixed
+- `<Page/>` - Fix Multiple PageHeader dataHooks [#3111](https://github.com/wix/wix-style-react/pull/3111)
+- `<Modal>` - disable page scrolling when modal is open [#3086](https://github.com/wix/wix-style-react/pull/3086)
+- `<RichTextInputAreaLinkForm/>` - make component to be non-pure [#3113](https://github.com/wix/wix-style-react/pull/3113)
+- `<MultiSelect/>` - fix Tab behavior to focus out of the component [#3080](https://github.com/wix/wix-style-react/pull/3080)
 
 ## 6.8.0 - 2019-03-13
 

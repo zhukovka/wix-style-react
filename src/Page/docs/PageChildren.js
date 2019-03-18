@@ -15,6 +15,7 @@ const ActionBar = props => {
 
 export const header = props => (
   <Page.Header
+    dataHook="example-page-header"
     title="Page Title"
     subtitle="Page subtitle"
     showBackButton

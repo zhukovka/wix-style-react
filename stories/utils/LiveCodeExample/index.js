@@ -2,10 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import LiveCodeExample from 'wix-storybook-utils/LiveCodeExample';
 
-import * as wsrScope from '../../../src/index';
-import * as iconsScope from 'wix-ui-icons-common';
-import GeneratedTestComponent from '../../../src/GeneratedTestComponent';
-
+import allComponents from '../allComponents';
 import styles from './styles.scss';
 
 /**
@@ -36,16 +33,7 @@ export const createPropsArray = props =>
     return `${key}={${JSON.stringify(value)}}`;
   });
 
-/*
- * The following object defines the globals that'll be available in the live
- * example's context. If a component is failed to render, make sure it's
- * available in the index file.
- */
-export const baseScope = {
-  ...wsrScope,
-  ...iconsScope,
-  GeneratedTestComponent,
-};
+export const baseScope = allComponents;
 
 const Component = props => {
   const { scope, title, ...rest } = props;

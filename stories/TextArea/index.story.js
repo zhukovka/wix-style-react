@@ -66,7 +66,7 @@ export default {
       }),
     ]),
 
-    columns([importExample({ source: examples.importExample })]),
+    columns([importExample(examples.importExample)]),
 
     title('Examples'),
 

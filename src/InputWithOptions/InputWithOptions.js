@@ -160,6 +160,7 @@ class InputWithOptions extends WixComponent {
           onClose={this.hideOptions}
           onSelect={this._onSelect}
           isComposing={this.state.isComposing}
+          tabIndex={-1}
         />
       </div>
     );
@@ -238,9 +239,6 @@ class InputWithOptions extends WixComponent {
     }
 
     inputValue = inputValue.trim();
-    if (this.closeOnSelect()) {
-      this.hideOptions();
-    }
 
     const suggestedOption = this.props.options.find(
       element => element.value === inputValue,
@@ -336,14 +334,17 @@ class InputWithOptions extends WixComponent {
     if (this.shouldDelegateKeyDown(key)) {
       // Delegate event and get result
       const eventWasHandled = this.dropdownLayout._onKeyDown(event);
-
       if (eventWasHandled || this.isReadOnly) {
         return;
       }
 
       // For editing mode, we want to *submit* only for specific keys.
       if (this.shouldPerformManualSubmit(key)) {
-        this._onManuallyInput(this.state.inputValue);
+        this._onManuallyInput(this.state.inputValue, event);
+        const inputIsEmpty = !event.target.value;
+        if (this.closeOnSelect() || (key === 'Tab' && inputIsEmpty)) {
+          this.hideOptions();
+        }
       }
     }
   }
