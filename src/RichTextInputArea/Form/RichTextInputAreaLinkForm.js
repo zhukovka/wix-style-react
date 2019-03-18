@@ -4,7 +4,7 @@ import RichTextInputAreaForm from './RichTextInputAreaForm';
 import Box from '../../Box';
 import Input from '../../Input';
 
-class RichTextInputAreaLinkForm extends React.PureComponent {
+class RichTextInputAreaLinkForm extends React.Component {
   state = {
     text: '',
     url: '',
@@ -13,8 +13,7 @@ class RichTextInputAreaLinkForm extends React.PureComponent {
   constructor(props) {
     super(props);
 
-    const { defaultData = {} } = props;
-    const { text = '', url = '' } = defaultData;
+    const { text = '', url = '' } = props.defaultData;
 
     this.state = {
       text,
@@ -59,6 +58,7 @@ class RichTextInputAreaLinkForm extends React.PureComponent {
   }
 
   _onSubmit = event => {
+    // Prevents form submission, but still enables submission when clicking `Enter`
     event.preventDefault();
 
     const { onSubmit } = this.props;
