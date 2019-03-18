@@ -7,6 +7,7 @@ import position from './TooltipPosition';
 import styles from './TooltipContent.scss';
 import { TooltipContainerStrategy } from './TooltipContainerStrategy';
 import throttle from 'lodash/throttle';
+import { ZIndex } from '../ZIndex';
 
 const renderSubtreeIntoContainer = ReactDOM.unstable_renderSubtreeIntoContainer;
 
@@ -146,7 +147,7 @@ class Tooltip extends WixComponent {
     hideTrigger: 'mouseleave',
     showDelay: 200,
     hideDelay: 0,
-    zIndex: 2000,
+    zIndex: ZIndex.TOOLTIP,
     maxWidth: '204px',
     onClickOutside: null,
     onShow: null,

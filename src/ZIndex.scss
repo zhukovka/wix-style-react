@@ -10,14 +10,19 @@ $zIndex_PAGE: 1;
  */
 $zIndex_MODAL: 11;
 
+$zIndex_TOOLTIP: 2001;
+
 :export {
   ZIndex_PAGE: $zIndex_PAGE;
   ZIndex_MODAL: $zIndex_MODAL;
+  ZIndex_TOOLTIP: $zIndex_TOOLTIP;
+  
 }
 
 $z-layers: (
   "PAGE": $zIndex_PAGE,
-  "MODAL": $zIndex_MODAL
+  "MODAL": $zIndex_MODAL,
+  "TOOLTIP": $zIndex_TOOLTIP
 );
 
 @function zIndex($layer) {

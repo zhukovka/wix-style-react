@@ -1,9 +1,10 @@
 @import './common.scss';
 @import '../common.scss';
+@import '../ZIndex.scss';
 
 .root {
   position: absolute;
-  z-index: 2000;
+  z-index: zIndex(TOOLTIP);
 }
 
 @mixin arrow($side, $color) {
