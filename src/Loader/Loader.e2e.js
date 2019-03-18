@@ -1,13 +1,13 @@
 import eyes from 'eyes.it';
 import { loaderTestkitFactory } from '../../testkit/protractor';
 import { waitForVisibilityOf } from 'wix-ui-test-utils/protractor';
-import { getStoryUrl } from '../../test/utils/storybook-helpers';
+import { createStoryUrl } from '../../test/utils/storybook-helpers';
 import { disableCSSAnimation } from '../../test/utils/protractor-helpers';
 import autoExampleDriver from 'wix-storybook-utils/AutoExampleDriver';
 import { ExpectedConditions as EC } from 'protractor';
 
 describe('Loader', () => {
-  const storyUrl = getStoryUrl('1. Foundation', '1.5 Loader');
+  const storyUrl = createStoryUrl({ kind: '1. Foundation', story: '1.5 Loader' });
   const loaderDriver = loaderTestkitFactory({ dataHook: 'storybook-loader' });
 
   beforeAll(() => {

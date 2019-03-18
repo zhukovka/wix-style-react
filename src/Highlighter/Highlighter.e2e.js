@@ -1,9 +1,9 @@
 import eyes from 'eyes.it';
 import { highlighterTestkitFactory } from '../../testkit/protractor';
-import { getStoryUrl } from '../../test/utils/storybook-helpers';
+import { createStoryUrl } from '../../test/utils/storybook-helpers';
 
 describe('Highlighter', () => {
-  const storyUrl = getStoryUrl('12. Other', 'Highlighter');
+  const storyUrl = createStoryUrl({ kind: '12. Other', story: 'Highlighter' });
   const dataHook = 'story-highlighter';
 
   eyes.it('should render', () => {

@@ -1,7 +1,7 @@
 import eyes from 'eyes.it';
 import { rangeTestkitFactory } from '../../testkit/protractor';
 import { waitForVisibilityOf } from 'wix-ui-test-utils/protractor';
-import { getStoryUrl } from '../../test/utils/storybook-helpers';
+import { createStoryUrl } from '../../test/utils/storybook-helpers';
 import settings from './docs/storySettings';
 import inputDriver from '../Input/Input.protractor.driver';
 import datePickerDriver from '../DatePicker/DatePicker.protractor.driver';
@@ -37,7 +37,7 @@ const rangeTestkitE2EFactory = rangeDriver => {
 };
 
 describe('Range', () => {
-  const storyUrl = getStoryUrl(settings.kind, settings.storyName);
+  const storyUrl = createStoryUrl({ kind: settings.kind, story: settings.storyName });
 
   const driverInput = rangeTestkitE2EFactory(
     rangeTestkitFactory({ dataHook: settings.dataHookInput }),

@@ -1,14 +1,17 @@
 import { eyesItInstance } from '../../test/utils/eyes-it';
 import { checkboxTestkitFactory } from '../../testkit/protractor';
 import { waitForVisibilityOf } from 'wix-ui-test-utils/protractor';
-import { getStoryUrl } from '../../test/utils/storybook-helpers';
+import { createStoryUrl } from '../../test/utils/storybook-helpers';
 import autoExampleDriver from 'wix-storybook-utils/AutoExampleDriver';
 import { runFocusTests } from '../common/Focusable/FocusableTestsE2E';
 
 const NO_DESCRIPTION = '';
 
 describe('Checkbox', () => {
-  const storyUrl = getStoryUrl('4. Selection', '4.2 Checkbox');
+  const storyUrl = createStoryUrl({
+    kind: '4. Selection',
+    story: '4.2 Checkbox',
+  });
   const checkboxDriver = checkboxTestkitFactory({
     dataHook: 'storybook-checkbox',
   });

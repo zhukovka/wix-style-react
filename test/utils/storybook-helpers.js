@@ -1,15 +1,9 @@
 import queryString from 'query-string';
-import {
-  getStoryUrl,
-  createStoryUrl as originalCreateStoryUrl,
-} from 'wix-ui-test-utils/protractor';
+import { createStoryUrl as originalCreateStoryUrl } from 'wix-ui-test-utils/protractor';
 import {
   TESTS_PREFIX,
   RTL_QUERY_PARAM_NAME,
 } from '../../stories/storiesHierarchy';
-
-/** @deprecated use createStoryUrl */
-export { getStoryUrl };
 
 export const createStoryUrl = ({ kind, story, withExamples, rtl }) => {
   const baseUrl = originalCreateStoryUrl({
