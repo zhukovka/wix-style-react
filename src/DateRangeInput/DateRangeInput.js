@@ -41,6 +41,13 @@ class DateRangeInput extends React.Component {
     },
   };
 
+  state = {
+    focus: null,
+  };
+  _onFocus = inputType => e => {
+    this.setState({ focus: inputType });
+  };
+
   render() {
     const {
       dataHook,
@@ -65,8 +72,12 @@ class DateRangeInput extends React.Component {
       disabled,
       tabIndex,
     };
-    const dateFromClass = classNames(styles.input, styles.dateFrom);
-    const dateToClass = classNames(styles.input, styles.dateTo);
+    const dateFromClass = classNames(styles.input, styles.dateFrom, {
+      [styles.focused]: this.state.focus === DateRangeInputTypes.from,
+    });
+    const dateToClass = classNames(styles.input, styles.dateTo, {
+      [styles.focused]: this.state.focus === DateRangeInputTypes.to,
+    });
     return (
       <div className={containerClass} data-hook={dataHook}>
         <DateInput
@@ -78,6 +89,7 @@ class DateRangeInput extends React.Component {
           hideSuffix
           value={from}
           suffix={null}
+          onFocus={this._onFocus(DateRangeInputTypes.from)}
         />
         <DateInput
           {...generalProps}
@@ -88,6 +100,7 @@ class DateRangeInput extends React.Component {
           suffix={suffix}
           onInputClicked={onDateToClicked}
           statusMessage={statusMessage}
+          onFocus={this._onFocus(DateRangeInputTypes.to)}
         />
       </div>
     );
