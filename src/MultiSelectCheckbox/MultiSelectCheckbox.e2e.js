@@ -3,7 +3,7 @@ import { waitForVisibilityOf } from 'wix-ui-test-utils/protractor';
 import { createStoryUrl } from '../../test/utils/storybook-helpers';
 import eyes from 'eyes.it';
 
-import { storySettings } from './docs/storySettings'
+import { storySettings } from './docs/storySettings';
 
 describe('MultiSelectCheckbox', () => {
   const storyUrl = createStoryUrl({
