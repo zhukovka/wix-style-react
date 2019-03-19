@@ -53,6 +53,6 @@ MultiSelectTests.add(testStories.tabsSwitches, () => (
 
 MultiSelectTests.add(testStories.lineNotBraking, () => (
   <div style={{ width: '400px' }}>
-    <TestLineNotBraking/>
+    <TestLineNotBraking />
   </div>
 ));
