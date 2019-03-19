@@ -24,11 +24,7 @@ storiesOf(kind, module).add(testStories.dateRangeInputVariations, () => {
       <DateRangeInput dataHook={storySettings.dataHook} {...defaultProps} />
       <br />
       <h2>DD/MM/YY Format</h2>
-      <DateRangeInput
-        dateFormat="DD/MM/YY"
-        dataHook={storySettings.dataHook}
-        {...defaultProps}
-      />
+      <DateRangeInput dateFormat="DD/MM/YY" {...defaultProps} />
       <br />
       <h2>HH:mm:SS Format</h2>
       <DateRangeInput dateFormat="HH:mm:SS" {...defaultProps} />
