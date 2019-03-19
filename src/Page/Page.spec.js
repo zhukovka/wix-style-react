@@ -163,8 +163,6 @@ describe('Page', () => {
         </Page>,
       );
 
-      console.log('driver.getComputedStyle()= ', driver.getComputedStyle());
-
       expect(driver.getStyle()['z-index']).toBe('7');
     });
   });
