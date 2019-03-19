@@ -2,7 +2,7 @@ import ZIndexVars from './ZIndex.scss';
 
 /* Creates an object like this:
 
- export const ZIndex = {
+ const ZIndex = {
    Page: 1,
    Modal: 11,
    Tooltip: 2000,
