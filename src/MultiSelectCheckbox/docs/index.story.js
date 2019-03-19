@@ -1,8 +1,11 @@
 import React from 'react';
 import CodeExample from 'wix-storybook-utils/CodeExample';
 
+import { storySettings } from './storySettings';
+
 import ExampleStandard from './ExampleStandard';
 import ExampleStandardRaw from '!raw-loader!./ExampleStandard';
+
 import MultiSelectCheckbox from '..';
 
 const options = [
@@ -20,8 +23,8 @@ const options = [
 ];
 
 export default {
-  category: '4. Selection',
-  storyName: '4.1 + MultiSelectCheckbox',
+  category: storySettings.category,
+  storyName: storySettings.storyName,
   component: MultiSelectCheckbox,
   componentPath: '..',
 

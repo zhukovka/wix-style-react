@@ -19,7 +19,9 @@ import ExampleControlledRaw from '!raw-loader!./ExampleControlled';
 import ExampleNoDropdownIfEmptyInput from './ExampleNoDropdownIfEmptyInput';
 import ExampleNoDropdownIfEmptyInputRaw from '!raw-loader!./ExampleNoDropdownIfEmptyInput';
 
-storiesOf('4. Selection', module).add('4.1 + InputWithOptions', () => (
+import { storySettings } from './storySettings';
+
+storiesOf(storySettings.category, module).add(storySettings.storyName, () => (
   <TabbedView tabs={['API', 'Testkit']}>
     <div>
       <Markdown source={Readme} />

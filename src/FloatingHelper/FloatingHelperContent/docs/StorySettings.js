@@ -1,6 +1,8 @@
+import { Category } from '../../../../stories/storiesHierarchy';
+
 export const storySettings = {
-  kind: '8. Notification Bars',
-  story: '8.6 + FloatingHelper.Content',
+  category: Category.COMPONENTS,
+  storyName: 'FloatingHelper.Content',
   dataHook: 'story-floating-helper-content',
   exampleDataHooks: [
     'example-body',

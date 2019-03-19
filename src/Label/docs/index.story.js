@@ -1,10 +1,28 @@
+import React from 'react';
 import Label from '..';
 
-const SIZES = ['small', 'medium'];
+import {
+  header,
+  tabs,
+  tab,
+  description,
+  importExample,
+  title,
+  code as baseCode,
+  divider,
+  api,
+  testkit,
+  playground,
+} from 'wix-storybook-utils/Sections';
+
+import allComponents from '../../../stories/utils/allComponents';
+import { storySettings } from '../test/storySettings';
+
+const code = config => baseCode({ components: allComponents, ...config });
 
 export default {
-  category: '1. Foundation',
-  storyName: '1.2 + Label',
+  category: storySettings.category,
+  storyName: storySettings.storyName,
 
   component: Label,
   componentPath: '..',
@@ -16,6 +34,43 @@ export default {
   },
 
   exampleProps: {
-    size: SIZES,
+    size: ['small', 'medium'],
   },
+
+  sections: [
+    header({
+      component: <Label>Label Component</Label>,
+    }),
+
+    tabs([
+      tab({
+        title: 'Description',
+        sections: [
+          description('General all purpose label component with Wix styling.'),
+
+          code({
+            description: 'Make sure you have Wix fonts loaded from CDN',
+            source: `<link rel="stylesheet" href="//static.parastorage.com/services/third-party/fonts/Helvetica/fontFace.css">`,
+            interactive: false,
+          }),
+
+          importExample("import Label from 'wix-style-react/Label';"),
+
+          divider(),
+
+          title('Examples'),
+
+          code({
+            source: `<Label size="medium">Hello World</Label>`,
+          }),
+        ],
+      }),
+
+      ...[
+        { title: 'Testkit', sections: [testkit()] },
+        { title: 'API', sections: [api()] },
+        { title: 'Playground', sections: [playground()] },
+      ].map(tab),
+    ]),
+  ],
 };

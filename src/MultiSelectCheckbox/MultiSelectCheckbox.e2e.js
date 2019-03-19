@@ -3,10 +3,12 @@ import { waitForVisibilityOf } from 'wix-ui-test-utils/protractor';
 import { createStoryUrl } from '../../test/utils/storybook-helpers';
 import eyes from 'eyes.it';
 
+import { storySettings } from './docs/storySettings'
+
 describe('MultiSelectCheckbox', () => {
   const storyUrl = createStoryUrl({
-    kind: '4. Selection',
-    story: '4.1 + MultiSelectCheckbox',
+    kind: storySettings.category,
+    story: storySettings.storyName,
   });
   const driver = multiSelectCheckboxTestkitFactory({
     dataHook: 'multi-select-checkbox',

@@ -9,7 +9,7 @@ import TestTabSwitches from './tests/TestTabSwitches';
 
 const kind = getTestStoryKind({
   storyName: storySettings.storyName,
-  category: storySettings.indexCategory,
+  category: storySettings.category,
 });
 
 const TestContainer = ({ children }) => (

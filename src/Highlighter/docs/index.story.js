@@ -1,7 +1,7 @@
 import Highlighter from '..';
 
 export default {
-  category: '12. Other',
+  category: 'Components',
   storyName: 'Highlighter',
 
   component: Highlighter,

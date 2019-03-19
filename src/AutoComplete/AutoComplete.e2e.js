@@ -6,8 +6,8 @@ import eventually from 'wix-eventually';
 
 describe('AutoComplete', () => {
   const storyUrl = createStoryUrl({
-    kind: '4. Selection',
-    story: '4.1 + AutoComplete',
+    kind: 'Components',
+    story: 'AutoComplete',
   });
   const dataHook = 'story-autocomplete';
 
