@@ -13,7 +13,7 @@ class RichTextInputAreaLinkForm extends React.Component {
   constructor(props) {
     super(props);
 
-    const { text = '', url = '' } = props.defaultData;
+    const { text = '', url = '' } = props.data;
 
     this.state = {
       text,
