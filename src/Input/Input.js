@@ -377,7 +377,7 @@ class Input extends Component {
     const { customizedInput, reactRef, ...rest } = props;
     if (customizedInput) {
       const CustomizedInputComponent = customizedInput;
-      return <CustomizedInputComponent {...props} />;
+      return <CustomizedInputComponent reactRef={reactRef} {...rest} />;
     } else {
       return <input {...rest} ref={reactRef} />;
     }
