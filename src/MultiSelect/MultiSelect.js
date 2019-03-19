@@ -218,6 +218,7 @@ MultiSelect.propTypes = {
    * `onSelect(option: Option): void` - Option is the original option from the provided `options` prop.
    */
   onSelect: PropTypes.func,
+  customizedInput: PropTypes.func
 };
 
 
