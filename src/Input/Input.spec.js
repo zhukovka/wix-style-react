@@ -873,5 +873,23 @@ describe('Input', () => {
         expect(await driver.suffixComponentExists('.my-button')).toBeTruthy();
       });
     });
+
+    describe('input render', () => {
+      it('should render customized input', async () => {
+        const className = 'foo';
+        const customizedInput = () => <input className={className} />;
+        const { driver } = render(<Input customizedInput={customizedInput} />);
+        const classes = await driver.getInputElementClasses();
+        expect(classes.contains(className)).toEqual(true);
+        expect(classes.length).toEqual(1);
+      });
+
+      it('should render default input', async () => {
+        const { driver } = render(<Input />);
+        const classes = await driver.getInputElementClasses();
+        expect(classes.contains('input')).toEqual(true);
+        expect(classes.length).toEqual(1);
+      });
+    });
   }
 });
