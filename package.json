@@ -208,7 +208,8 @@
       "<rootDir>/test/jest-setup.js"
     ],
     "setupFilesAfterEnv": [
-      "wix-ui-test-utils/jest-setup"
+      "wix-ui-test-utils/jest-setup",
+      "<rootDir>/test/jest-setup-after-env.js"
     ],
     "moduleNameMapper": {
       "\\.(?!\\st).(css|less|scss)$": "identity-obj-proxy"
