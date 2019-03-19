@@ -116,7 +116,7 @@ class Input extends Component {
       required,
       error,
       errorMessage,
-      customizedInput
+      customizedInput,
     } = this.props;
     const onIconClicked = e => {
       if (!disabled) {
@@ -171,8 +171,9 @@ class Input extends Component {
 
     /* eslint-disable no-unused-vars */
     const { className, ...inputElementProps } = props;
+    const ActualInputComponent = this._actualInput;
     const inputElement = (
-      <ActualInput
+      <ActualInputComponent
         min={min}
         max={max}
         step={step}
@@ -371,6 +372,16 @@ class Input extends Component {
 
     onClear && onClear();
   };
+
+  _actualInput = props => {
+    const { customizedInput, reactRef, ...rest } = props;
+    if (customizedInput) {
+      const CustomizedInputComponent = customizedInput;
+      return <CustomizedInputComponent {...props} />;
+    } else {
+      return <input {...rest} ref={reactRef} />;
+    }
+  };
 }
 
 Input.displayName = 'Input';
@@ -387,18 +398,6 @@ Input.defaultProps = {
   maxLength: 524288,
   withSelection: false,
   clearButton: false,
-};
-
-const ActualInput = props => {
-  const { customizedInput, reactRef, ...rest } = props;
-  if (customizedInput) {
-    const CustomizedInputComponent = customizedInput;
-    return (
-      <CustomizedInputComponent {...props} />
-    );
-  } else {
-    return <input {...rest} ref={reactRef} />;
-  }
 };
 
 const borderRadiusValidator = (props, propName) => {
@@ -581,23 +580,3 @@ Input.propTypes = {
 };
 
 export default Input;
-
-// const MyComp = ({children}) => {
-//   return (
-//     <div style={{background: 'red'}}>
-//       {
-//         typeof children === 'function' ? children({color: 'red'}) : children
-//       }
-//     </div>
-//   )
-// }
-//
-// <MyComp>
-//   {
-//     ({color}) => <div>color</div>
-//   }
-// </MyComp>
-//
-//
-//
-// // <Input customInput={(nativeInputProps) => <AutosizeInput />}
