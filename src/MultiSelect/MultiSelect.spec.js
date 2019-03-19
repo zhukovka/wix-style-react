@@ -85,6 +85,13 @@ describe('MultiSelect', () => {
     expect(dropdownLayoutDriver.optionsLength()).toBe(options.length);
   });
 
+  it('should render AutoSizeInput as the input element', () => {
+    const { inputDriver } = createDriver(<MultiSelect options={options} />);
+
+    const inputElementClasses = inputDriver.getInputElementClasses();
+    expect(inputElementClasses.contains('autoSizeInput')).toEqual(true);
+  });
+
   describe('click-outside', () => {
     it('should clear input when clicked-out-side given input is non-empty', () => {
       const onChange = jest.fn();
