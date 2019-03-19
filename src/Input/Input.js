@@ -116,7 +116,7 @@ class Input extends Component {
       required,
       error,
       errorMessage,
-      customizedInput,
+      customInput,
     } = this.props;
     const onIconClicked = e => {
       if (!disabled) {
@@ -205,7 +205,7 @@ class Input extends Component {
         autoComplete={autocomplete}
         onCompositionStart={() => this.onCompositionChange(true)}
         onCompositionEnd={() => this.onCompositionChange(false)}
-        customizedInput={customizedInput}
+        customInput={customInput}
         {...ariaAttribute}
         {...inputElementProps}
       />
@@ -374,10 +374,10 @@ class Input extends Component {
   };
 
   _actualInput = props => {
-    const { customizedInput, reactRef, ...rest } = props;
-    if (customizedInput) {
-      const CustomizedInputComponent = customizedInput;
-      return <CustomizedInputComponent reactRef={reactRef} {...rest} />;
+    const { customInput, reactRef, ...rest } = props;
+    if (customInput) {
+      const CustomInputComponent = customInput;
+      return <CustomInputComponent reactRef={reactRef} {...rest} />;
     } else {
       return <input {...rest} ref={reactRef} />;
     }
@@ -576,7 +576,7 @@ Input.propTypes = {
   step: PropTypes.number,
 
   /** Use a customized input component instead of the default html input tag */
-  customizedInput: PropTypes.func,
+  customInput: PropTypes.func,
 };
 
 export default Input;

@@ -218,7 +218,7 @@ MultiSelect.propTypes = {
    * `onSelect(option: Option): void` - Option is the original option from the provided `options` prop.
    */
   onSelect: PropTypes.func,
-  customizedInput: PropTypes.func,
+  customInput: PropTypes.func,
 };
 
 MultiSelect.defaultProps = {
@@ -228,7 +228,7 @@ MultiSelect.defaultProps = {
   predicate: () => true,
   tags: [],
   delimiters: [','],
-  customizedInput: MultiSelect.autoSizeInput,
+  customInput: MultiSelect.autoSizeInput,
 };
 
 export default MultiSelect;

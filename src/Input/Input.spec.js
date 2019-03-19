@@ -877,8 +877,8 @@ describe('Input', () => {
     describe('input render', () => {
       it('should render customized input', async () => {
         const className = 'foo';
-        const customizedInput = () => <input className={className} />;
-        const { driver } = render(<Input customizedInput={customizedInput} />);
+        const customInput = () => <input className={className} />;
+        const { driver } = render(<Input customInput={customInput} />);
         const classes = await driver.getInputElementClasses();
         expect(classes.contains(className)).toEqual(true);
         expect(classes.length).toEqual(1);
