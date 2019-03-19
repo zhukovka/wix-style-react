@@ -7,7 +7,10 @@ import {
 import { createStoryUrl } from '../../test/utils/storybook-helpers';
 
 describe('Data Table', () => {
-  const storyUrl = createStoryUrl({ kind: '10. Tables', story: '10.1 DataTable (Legacy)' });
+  const storyUrl = createStoryUrl({
+    kind: '10. Tables',
+    story: '10.1 DataTable (Legacy)',
+  });
 
   eyes.it('should call func on row click', async () => {
     const driver = dataTableTestkitFactory({

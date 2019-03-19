@@ -7,5 +7,5 @@ export const storySettings = {
 };
 
 export const testStories = {
-  tabsSwitches: 'Tabs switches'
+  tabsSwitches: 'Tabs switches',
 };

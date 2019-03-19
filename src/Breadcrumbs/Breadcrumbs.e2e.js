@@ -4,7 +4,10 @@ import { waitForVisibilityOf } from 'wix-ui-test-utils/protractor';
 import { createStoryUrl } from '../../test/utils/storybook-helpers';
 
 describe('Breadcrumbs', () => {
-  const storyUrl = createStoryUrl({ kind: '6. Navigation', story: '6.2 Breadcrumbs' });
+  const storyUrl = createStoryUrl({
+    kind: '6. Navigation',
+    story: '6.2 Breadcrumbs',
+  });
   const eyes = eyesItInstance();
 
   beforeAll(() => {
