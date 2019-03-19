@@ -29,9 +29,9 @@ storiesOf(kind, module).add(testStories.dateInputVariations, () => {
         {...defaultProps}
       />
       <br />
-      <h2>HH:MM:SS Format</h2>
+      <h2>HH:mm:SS Format</h2>
       <DateInput
-        dateFormat="HH:MM:SS"
+        dateFormat="HH:mm:SS"
         dataHook={storySettings.dataHook}
         {...defaultProps}
       />
