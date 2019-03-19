@@ -1,9 +1,15 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import AutosizeInput from 'react-input-autosize';
+import classNames from 'classnames';
+
+
 import InputWithOptions from '../InputWithOptions/InputWithOptions';
 import InputWithTags from './InputWithTags';
 import last from 'lodash/last';
 import difference from 'difference';
+
+import styles from "./MultiSelect.scss"
 
 class MultiSelect extends InputWithOptions {
   constructor(props) {
@@ -204,6 +210,13 @@ MultiSelect.propTypes = {
   onSelect: PropTypes.func,
 };
 
+const autoSizeInput = ({ className, reactRef, ...rest }) => {
+  const inputClassName = classNames(className, styles.autoSizeInput)
+  return (
+    <AutosizeInput {...rest} inputRef={reactRef} inputClassName={inputClassName}/>
+  );
+};
+
 MultiSelect.defaultProps = {
   ...InputWithOptions.defaultProps,
   highlight: true,
@@ -211,7 +224,7 @@ MultiSelect.defaultProps = {
   predicate: () => true,
   tags: [],
   delimiters: [','],
-  autoSize: true
+  customizedInput: autoSizeInput,
 };
 
 export default MultiSelect;
