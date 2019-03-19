@@ -3,10 +3,12 @@ import { storiesOf } from '@storybook/react';
 import InteractiveCodeExample from 'wix-storybook-utils/InteractiveCodeExample';
 import Markdown from 'wix-storybook-utils/Markdown';
 
+import { Category } from '../../../stories/storiesHierarchy';
+
 import Readme from '../README.md';
 import ExampleStandard from './ExampleStandard';
 
-storiesOf('3. Inputs', module).add('3.8 + MultiSelectComposite', () => (
+storiesOf(Category.COMPONENTS, module).add('MultiSelectComposite', () => (
   <div>
     <Markdown source={Readme} />
 

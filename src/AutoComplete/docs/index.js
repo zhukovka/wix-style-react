@@ -4,6 +4,8 @@ import Markdown from 'wix-storybook-utils/Markdown';
 import TabbedView from 'wix-storybook-utils/TabbedView';
 import CodeExample from 'wix-storybook-utils/CodeExample';
 
+import { Category } from '../../../stories/storiesHierarchy';
+
 import LiveCodeExample from '../../../stories/utils/LiveCodeExample';
 import { Layout, Cell } from '../../Layout';
 
@@ -20,7 +22,7 @@ import ExampleComplex from './ExampleComplex';
 import ExampleComplexRaw from '!raw-loader!./ExampleComplex';
 import EmptyMessageExampleRaw from '!raw-loader!./EmptyMessageExample';
 
-storiesOf('4. Selection', module).add('4.1 + AutoComplete', () => (
+storiesOf(Category.COMPONENTS, module).add('AutoComplete', () => (
   <TabbedView tabs={['API', 'TestKits']}>
     <div style={{ marginBottom: '200px' }}>
       <Markdown source={Readme} />
