@@ -177,7 +177,7 @@ class MultiSelect extends InputWithOptions {
     }
   }
 
-  static autoSizeInput = ({ className, dataRef, ...rest }) => {
+  static autoSizeInput = ({ className, 'data-ref': dataRef, ...rest }) => {
     const inputClassName = classNames(className, styles.autoSizeInput);
     return (
       <AutosizeInput

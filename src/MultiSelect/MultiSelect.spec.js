@@ -8,6 +8,8 @@ import { mount } from 'enzyme';
 import { createRendererWithDriver, cleanup } from '../../test/utils/unit';
 import eventually from '../../test/utils/eventually';
 
+import styles from "./MultiSelect.scss";
+
 describe('MultiSelect', () => {
   const render = createRendererWithDriver(multiSelectDriverFactory);
   const createDriver = jsx => render(jsx).driver;
@@ -89,7 +91,7 @@ describe('MultiSelect', () => {
     const { inputDriver } = createDriver(<MultiSelect options={options} />);
 
     const inputElementClasses = inputDriver.getInputElementClasses();
-    expect(inputElementClasses.contains('autoSizeInput')).toEqual(true);
+    expect(inputElementClasses.contains(styles.autoSizeInput)).toEqual(true);
   });
 
   describe('click-outside', () => {
