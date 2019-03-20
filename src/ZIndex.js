@@ -19,7 +19,18 @@ const ZIndexObj = Object.keys(ZIndexVars).reduce((acc, name) => {
   return acc;
 }, {});
 
+function isProduction() {
+  // If node-sass didn't work properly, then we are not in production,
+  // but probably in `generate-autodocs-registry`
+  return ZIndexVars.zIndexPage !== '$zIndex_PAGE';
+}
+
 export function ZIndex(layerName) {
+  if (!isProduction()) {
+    // This is a Hack for generate-autodocs-registry to work
+    // See this Issues: https://github.com/wix/yoshi/issues/1156
+    return '';
+  }
   const zIndexValue = ZIndexObj[layerName];
   if (!zIndexValue) {
     throw new Error(
@@ -29,4 +40,6 @@ export function ZIndex(layerName) {
     );
   }
   return zIndexValue;
+
+  // return '';
 }
