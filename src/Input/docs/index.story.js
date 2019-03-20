@@ -54,6 +54,7 @@ export default {
 
           ...[
             { title: 'Standard States', source: examples.standard },
+            { title: 'Read Only', source: examples.readOnly },
             { title: 'Error', source: examples.error },
             { title: 'Loader', source: examples.loader },
             { title: 'Affix', source: examples.affix },

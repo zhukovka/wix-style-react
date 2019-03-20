@@ -12,6 +12,14 @@ export const standard = `
 </Layout>
 `;
 
+export const readOnly = `
+<Layout>
+  <Cell>
+    <Input readOnly value="Read Only Input"/>
+  </Cell>
+</Layout>
+`;
+
 export const error = `
 <Layout>
   <Cell>

@@ -87,9 +87,9 @@ class Dropdown extends InputWithOptions {
   }
 
   inputClasses() {
-    const classes = { [styles.readonly]: true };
-    classes[styles.noBorder] = this.props.noBorder;
-    return classNames(classes);
+    return classNames(styles.showPointer, {
+      [styles.noBorder]: this.props.noBorder,
+    });
   }
 
   dropdownAdditionalProps() {
@@ -102,7 +102,8 @@ class Dropdown extends InputWithOptions {
 
   inputAdditionalProps() {
     return {
-      readOnly: true,
+      readOnly: false,
+      disableEditing: true,
       value: this.state.value,
     };
   }

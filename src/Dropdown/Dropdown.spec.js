@@ -31,7 +31,7 @@ describe('Dropdown', () => {
         <Dropdown options={getOptions()} initialSelectedId={0} />,
       );
 
-      expect(dropdownLayoutDriver.isOptionSelected(0)).toBeTruthy();
+      expect(dropdownLayoutDriver.isOptionSelected(0)).toBe(true);
       expect(inputDriver.getValue()).toBe('Option 1');
     });
 
@@ -41,7 +41,7 @@ describe('Dropdown', () => {
       );
       driver.focus();
       dropdownLayoutDriver.clickAtOption(0);
-      expect(dropdownLayoutDriver.isOptionSelected(0)).toBeTruthy();
+      expect(dropdownLayoutDriver.isOptionSelected(0)).toBe(true);
     });
 
     it('should enter the selected option text when selected', () => {
@@ -58,17 +58,17 @@ describe('Dropdown', () => {
         <Dropdown options={getOptions()} />,
       );
       inputDriver.click();
-      expect(dropdownLayoutDriver.isShown()).toBeTruthy();
+      expect(dropdownLayoutDriver.isShown()).toBe(true);
 
       return sleep(200).then(() => {
         inputDriver.click();
-        expect(dropdownLayoutDriver.isShown()).toBeFalsy();
+        expect(dropdownLayoutDriver.isShown()).toBe(false);
       });
     });
 
-    it('should be read only', () => {
+    it('should not be editable ', () => {
       const { driver } = createDriver(<Dropdown options={getOptions()} />);
-      expect(driver.isReadOnly()).toBeTruthy();
+      expect(driver.isEditable()).toBe(false);
     });
 
     describe('initiallySelected', () => {
@@ -77,9 +77,9 @@ describe('Dropdown', () => {
           <Dropdown options={getOptions()} initialSelectedId={0} />,
         );
         const { dropdownLayoutDriver } = _driver;
-        expect(dropdownLayoutDriver.isOptionSelected(0)).toBeTruthy();
+        expect(dropdownLayoutDriver.isOptionSelected(0)).toBe(true);
         rerender(<Dropdown options={getOptions()} initialSelectedId={1} />);
-        expect(dropdownLayoutDriver.isOptionSelected(0)).toBeTruthy();
+        expect(dropdownLayoutDriver.isOptionSelected(0)).toBe(true);
       });
     });
 
@@ -92,7 +92,7 @@ describe('Dropdown', () => {
       );
       const { inputDriver, dropdownLayoutDriver } = _driver;
 
-      expect(dropdownLayoutDriver.optionById(0).isSelected()).toBeTruthy();
+      expect(dropdownLayoutDriver.optionById(0).isSelected()).toBe(true);
       expect(inputDriver.getValue()).toBe('Option 1');
       rerender(<Dropdown options={[{ id: 1, value: 'Option 2' }]} />);
 
@@ -141,7 +141,8 @@ describe('Dropdown', () => {
       driver.focus();
       dropdownLayoutDriver.clickAtOption(1);
 
-      expect(dropdownLayoutDriver.isOptionSelected(0)).toBeTruthy();
+      expect(dropdownLayoutDriver.isOptionSelected(0)).toBe(true);
+
       expect(inputDriver.getValue()).toBe('Option 1');
     });
 
@@ -150,7 +151,8 @@ describe('Dropdown', () => {
         <Dropdown options={[{ id: 0, value: 'Option 1' }]} selectedId={99} />,
       );
 
-      expect(dropdownLayoutDriver.optionById(0).isSelected()).toBeFalsy();
+      expect(dropdownLayoutDriver.optionById(0).isSelected()).toBe(false);
+
     });
 
     it('should update selection and value when selectedId changes', () => {
@@ -159,12 +161,12 @@ describe('Dropdown', () => {
       );
       const { dropdownLayoutDriver, inputDriver } = _driver;
 
-      expect(dropdownLayoutDriver.isOptionSelected(0)).toBeTruthy();
+      expect(dropdownLayoutDriver.isOptionSelected(0)).toBe(true);
       expect(inputDriver.getValue()).toBe('Option 1');
 
       rerender(<Dropdown options={getOptions()} selectedId={1} />);
+      expect(dropdownLayoutDriver.isOptionSelected(1)).toBe(true);
 
-      expect(dropdownLayoutDriver.isOptionSelected(1)).toBeTruthy();
       expect(inputDriver.getValue()).toBe('Option 2');
     });
   });
@@ -196,9 +198,10 @@ describe('Dropdown', () => {
         ),
       );
       const dropdownTestkit = dropdownTestkitFactory({ wrapper, dataHook });
-      expect(dropdownTestkit.driver.exists()).toBeTruthy();
-      expect(dropdownTestkit.inputDriver.exists()).toBeTruthy();
-      expect(dropdownTestkit.dropdownLayoutDriver.exists()).toBeTruthy();
+      expect(dropdownTestkit.driver.exists()).toBe(true);
+      expect(dropdownTestkit.inputDriver.exists()).toBe(true);
+      expect(dropdownTestkit.dropdownLayoutDriver.exists()).toBe(true);
+
     });
   });
 
@@ -210,9 +213,10 @@ describe('Dropdown', () => {
         wrapper,
         dataHook,
       });
-      expect(dropdownTestkit.driver.exists()).toBeTruthy();
-      expect(dropdownTestkit.inputDriver.exists()).toBeTruthy();
-      expect(dropdownTestkit.dropdownLayoutDriver.exists()).toBeTruthy();
+      expect(dropdownTestkit.driver.exists()).toBe(true);
+      expect(dropdownTestkit.inputDriver.exists()).toBe(true);
+      expect(dropdownTestkit.dropdownLayoutDriver.exists()).toBe(true);
+
     });
   });
 });

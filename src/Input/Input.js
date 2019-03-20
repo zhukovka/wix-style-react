@@ -97,6 +97,7 @@ class Input extends Component {
       autoFocus,
       onKeyUp,
       onPaste,
+      disableEditing,
       readOnly,
       prefix,
       suffix,
@@ -198,7 +199,7 @@ class Input extends Component {
         autoFocus={autoFocus}
         onClick={this._onClick}
         onKeyUp={onKeyUp}
-        readOnly={readOnly}
+        readOnly={readOnly || disableEditing}
         type={type}
         required={required}
         autoComplete={autocomplete}
@@ -512,6 +513,9 @@ Input.propTypes = {
 
   /** Sets the input to readOnly */
   readOnly: PropTypes.bool,
+
+  /** When set to true, this input will not be editable */
+  disableEditing: PropTypes.bool,
 
   /** When set to true, this input will be rounded */
   roundInput: PropTypes.bool,

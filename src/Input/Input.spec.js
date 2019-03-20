@@ -217,6 +217,13 @@ describe('Input', () => {
       });
     });
 
+    describe('disableEditing attribute', () => {
+      it('should pass down to the wrapped input', async () => {
+        const { driver } = render(<Input disableEditing />);
+        expect(await driver.getReadOnly()).toBeTruthy();
+      });
+    });
+
     describe('textOverflow attribute', () => {
       it('should pass down to the wrapped input', async () => {
         const { driver } = render(<Input textOverflow="ellipsis" />);
