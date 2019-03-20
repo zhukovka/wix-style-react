@@ -1,24 +1,24 @@
-import { configure, storiesOf } from "@storybook/react";
-import { setOptions } from "@storybook/addon-options";
+import {configure} from '@storybook/react';
+import {setOptions} from '@storybook/addon-options';
 
-import { version } from "../package.json";
+import {version} from '../package.json';
 
-import "../src/assets/helvetica.scss";
+import '../src/assets/helvetica.scss';
 
-function loadStories() {
+function loadStories () {
   if (global.self === global.top) {
-    require("./e2e-styles.scss");
+    require ('./e2e-styles.scss');
   }
 
-  require("./stories.scss");
-  require("../stories");
+  require ('./stories.scss');
+  require ('../stories');
 }
 
-configure(loadStories, module);
+configure (loadStories, module);
 
-setOptions({
+setOptions ({
   showAddonPanel: false,
   name: `wix-style-react v${version}`,
-  url: "https://github.com/wix/wix-style-react",
-  sidebarAnimations: true
+  url: 'https://github.com/wix/wix-style-react',
+  sidebarAnimations: true,
 });
