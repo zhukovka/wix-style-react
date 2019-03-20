@@ -111,6 +111,9 @@ const inputDriverFactory = ({ element }) => {
       !element.classList.contains(styles.noRightBorderRadius),
     hasLeftBorderRadius: () =>
       !element.classList.contains(styles.noLeftBorderRadius),
+    isCustomInput: () => {
+      return input.getAttribute('data-hook') === 'wsr-custom-input';
+    },
   };
 
   return driver;

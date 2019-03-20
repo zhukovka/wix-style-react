@@ -179,7 +179,7 @@ class Input extends Component {
         step={step}
         data-hook="wsr-input"
         style={{ textOverflow }}
-        reactRef={this.extractRef}
+        dataRef={this.extractRef}
         className={inputClassNames}
         id={id}
         name={name}
@@ -374,12 +374,11 @@ class Input extends Component {
   };
 
   _actualInput = props => {
-    const { customInput, reactRef, ...rest } = props;
-    if (customInput) {
-      const CustomInputComponent = customInput;
-      return <CustomInputComponent reactRef={reactRef} {...rest} />;
+    const { customInput: CustomInputComponent, dataRef, ...rest } = props;
+    if (CustomInputComponent) {
+      return <CustomInputComponent data-ref={dataRef} {...rest} data-hook={"wsr-custom-input"}/>;
     } else {
-      return <input {...rest} ref={reactRef} />;
+      return <input {...rest} ref={dataRef} />;
     }
   };
 }

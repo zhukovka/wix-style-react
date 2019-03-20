@@ -877,18 +877,16 @@ describe('Input', () => {
     describe('input render', () => {
       it('should render customized input', async () => {
         const className = 'foo';
-        const customInput = () => <input className={className} />;
+        const customInput = (props) => {
+          return <input {...props} className={className}/>;
+        };
         const { driver } = render(<Input customInput={customInput} />);
-        const classes = await driver.getInputElementClasses();
-        expect(classes.contains(className)).toEqual(true);
-        expect(classes.length).toEqual(1);
+        expect(await driver.isCustomInput()).toEqual(true);
       });
 
-      it('should render default input', async () => {
-        const { driver } = render(<Input />);
-        const classes = await driver.getInputElementClasses();
-        expect(classes.contains('input')).toEqual(true);
-        expect(classes.length).toEqual(1);
+      it('should render input html by default', async () => {
+        const { driver } = render(<Input/>);
+        expect(await driver.isCustomInput()).toEqual(false);
       });
     });
   }
