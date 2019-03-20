@@ -9,7 +9,6 @@ require('./Playground/Playground');
 
 // 1. Foundations
 require('../src/Typography/docs/index.story'); // 1.2 Typography
-require('../src/Label/docs/index.story'); // 1.2 + Label
 require('../src/new-icons/docs'); // 1.4 Icons
 
 require('../src/Loader/docs/index.story'); // 1.5 Loader
@@ -29,22 +28,16 @@ require('./TextInput/index.story'); // 3.1. Text Input
 require('./TextArea/index.story'); // 3.2 Text Area
 require('../src/RichTextArea/docs/index.story'); // 3.2b + RichTextArea
 require('./FieldWithSelectionComposite'); // 3.3 Field With Selection
-require('../src/NumberInput/docs/index.story'); // 3.4 NumberInput
+require('./NumberInput/index.story'); // 3.4 NumberInput
 require('../src/TimeInput/docs/index.story'); // 3.4 TimeInput
 require('../src/DatePicker/docs/index.story'); // 3.6 DatePicker
 require('../src/Range/docs'); // 3.7 Range
 require('../src/MultiSelect/docs/index.story'); // 3.8 Tags
-require('../src/MultiSelectComposite/docs'); // 3.8 + MultiSelectComposite
 require('../src/Search/docs/index.story'); // 3.9 Search
 require('../src/ImageViewer/docs/index.story'); // 3.10 ImageViewer
-require('../src/FilePicker/docs/index.story'); // 3.10 + FilePicker
 
 // 4. Selection
 require('../src/Dropdown/docs/DropdownStory'); // 4.1 Dropdown
-require('../src/AutoComplete/docs'); // 4.1 + AutoComplete
-require('../src/AutoCompleteComposite/docs'); // 4.1 + AutoCompleteComposite
-require('../src/InputWithOptions/docs'); // 4.1 + InputWithOptions
-require('../src/MultiSelectCheckbox/docs/index.story'); // 4.1 + MultiSelectCheckbox
 require('../src/Checkbox/docs/index.story'); // 4.2 Checkbox
 require('../src/RadioGroup/docs/index.story'); // 4.3 RadioGroup
 require('../src/ToggleSwitch/docs/index.story'); // 4.4 ToggleSwitch
@@ -73,7 +66,6 @@ require('../src/PopoverMenu/docs/index.story'); // 7.3 Popover Menu
 require('../src/Notification/docs/index.story');
 require('../src/FloatingNotification/docs/index.story');
 require('../src/FloatingHelper/docs/index.story'); // 8.6 FloatingHelper
-require('../src/FloatingHelper/FloatingHelperContent/docs/index.story'); // 8.6 + FloatingHelper.Content
 require('../src/SectionHelper/docs/index.story'); // 8.7 SectionHelper
 
 // 9. Modals
@@ -102,35 +94,44 @@ require('../src/CounterBadge/docs/index.story'); //12.3 CounterBadge
 require('../src/FullTextView/docs/index.story'); //12.4 FullTextView
 require('../src/Tag/docs/index.story'); // 12.5 Tag
 require('../src/Avatar/docs/index.story'); // 12.6 Avatar
-require('../src/Highlighter/docs/index.story'); // Highlighter
 
 // Components API
+require('../src/AutoComplete/docs');
+require('../src/AutoCompleteComposite/docs');
 require('../src/Box/docs/index.story');
 require('../src/CalendarPanelFooter/docs/index.story');
 require('../src/CardGalleryItem/docs/index.story');
 require('../src/Carousel/docs/index.story');
 require('../src/Collapse/docs/index.story');
-require('./Dropdown/Dropdown.story');
 require('../src/DropdownBase/docs/index.story');
+require('../src/FilePicker/docs/index.story');
+require('../src/FloatingHelper/FloatingHelperContent/docs/index.story');
 require('../src/FormField/docs/index.story');
 require('../src/GenericModalLayout/docs/index.story');
 require('../src/GoogleAddressInput/docs/index.story');
 require('../src/Grid/docs');
 require('../src/Heading/docs/index.story');
+require('../src/Highlighter/docs/index.story');
 require('../src/Input/docs/index.story');
 require('../src/InputArea/docs/index.story');
-require('../src/Layout/docs/index.story');
+require('../src/InputWithOptions/docs');
+require('../src/Label/docs/index.story');
 require('../src/Layout/docs');
-require('./MultiSelect/index.story');
-require('./NumberInput/index.story');
+require('../src/Layout/docs/index.story');
+require('../src/MultiSelectCheckbox/docs/index.story');
+require('../src/MultiSelectComposite/docs');
+require('../src/NumberInput/docs/index.story');
 require('../src/Page/docs/PageExampleStories');
 require('../src/Page/docs/index.story');
 require('../src/PageHeader/docs/index.story');
 require('../src/Proportion/docs/index.story');
 require('../src/RichTextArea/docs/api.story');
+require('../src/SideMenu/docs/SideMenu');
 require('../src/Skeleton/docs/index.story');
 require('../src/Text/docs/index.story');
 require('../src/Thumbnail/docs/index.story');
+require('./Dropdown/Dropdown.story');
+require('./MultiSelect/index.story');
 
 // Styling
 require('../src/Typography/docs/cssClasses.story');
@@ -155,9 +156,10 @@ require('../src/IconButton/docs/testStory'); // Tests/5. Button/5.2 IconButton
 require('../src/TextButton/docs/testStory'); // Tests/5. Button/5.3 TextButton
 require('../src/CloseButton/docs/testStory'); // Tests/5. Button/5.4 CloseButton
 require('../src/Calendar/docs/CalendarTestStory'); // Tests/3. Inputs/3.13 Calendar
-require('../src/MultiSelect/docs/MultiSelectTestStory'); // Tests/3. Inputs/3.8 Tags
+require('../src/MultiSelect/docs/testStory'); // Tests/3. Inputs/3.8 Tags
 require('../src/PopoverMenu/docs/PopoverMenuRegressionTest'); // Tests/7.3. Popover Menu/
 require('../src/Popover/docs/testStory');
+require('../src/Modal/test/TestsStory'); //Tests/9. Modal
 require('../src/TableToolbar/docs/ToolbarTestStory'); // Tests/10. Table
 require('../src/Tag/docs/TagTestStory'); // Tests/12. Other/12.5 Tag
 require('../src/Avatar/docs/AvatarTestStory'); // Tests/12. Other/12.6 Avatar
@@ -170,6 +172,8 @@ require('../src/SegmentedToggle/docs/testStory'); // 4.5 SegmentedToggle
 require('../src/FloatingNotification/docs/FloatingNotificationTestStory'); // 8.2 FloatingNotification
 require('../src/FormField/docs/testStory');
 require('../src/RichTextArea/docs/testStory');
+require('../src/DropdownLayout/docs/testStory');
+require('../src/InputWithOptions/docs/testStory');
 require('../src/ColorInput/docs/testStory');
 require('../src/DateInput/test/testStories');
 
@@ -182,3 +186,6 @@ require('../src/RichTextInputArea/docs/index.story');
 
 // This import was added by the component generator
 require('../src/NoBorderInput/docs/index.story');
+
+// This import was added by the component generator
+require('../src/EditableTitle/docs/index.story');

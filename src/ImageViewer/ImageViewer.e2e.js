@@ -1,11 +1,14 @@
 import eyes from 'eyes.it';
 import { imageViewerTestkitFactory } from '../../testkit/protractor';
 import { waitForVisibilityOf } from 'wix-ui-test-utils/protractor';
-import { getStoryUrl } from '../../test/utils/storybook-helpers';
+import { createStoryUrl } from '../../test/utils/storybook-helpers';
 import autoExampleDriver from 'wix-storybook-utils/AutoExampleDriver';
 
 describe('ImageViewer', () => {
-  const storyUrl = getStoryUrl('3. Inputs', '3.10 ImageViewer');
+  const storyUrl = createStoryUrl({
+    kind: '3. Inputs',
+    story: '3.10 ImageViewer',
+  });
   const driver = imageViewerTestkitFactory({ dataHook: 'story-image-viewer' });
 
   beforeAll(async () => {

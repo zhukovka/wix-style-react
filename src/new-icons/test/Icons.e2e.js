@@ -1,9 +1,12 @@
 import eyes from 'eyes.it';
 import { waitForVisibilityOf } from 'wix-ui-test-utils/protractor';
-import { getStoryUrl } from '../../../test/utils/storybook-helpers';
+import { createStoryUrl } from '../../../test/utils/storybook-helpers';
 
 describe('Icons', () => {
-  const storyUrl = getStoryUrl('1. Foundation', '1.4 Icons');
+  const storyUrl = createStoryUrl({
+    kind: '1. Foundation',
+    story: '1.4 Icons',
+  });
   eyes.it('should show all icons', async () => {
     browser.get(storyUrl);
     await waitForVisibilityOf(

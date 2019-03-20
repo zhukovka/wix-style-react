@@ -6,6 +6,7 @@ import { multiSelectTestkitFactory } from '../../testkit';
 import { multiSelectTestkitFactory as enzymeMultiSelectTestkitFactory } from '../../testkit/enzyme';
 import { mount } from 'enzyme';
 import { createRendererWithDriver, cleanup } from '../../test/utils/unit';
+import eventually from '../../test/utils/eventually';
 
 describe('MultiSelect', () => {
   const render = createRendererWithDriver(multiSelectDriverFactory);
@@ -507,7 +508,7 @@ describe('MultiSelect', () => {
         );
         driver.selectOptionById(FIRST_OPTION_ID);
         expect(dropdownLayoutDriver.isShown()).toBeTruthy();
-        expect(inputDriver.isFocus());
+        expect(inputDriver.isFocus()).toBeTruthy();
       });
 
       it('should not lose Focus or close the options when options selected by pressing Enter', () => {
@@ -521,7 +522,7 @@ describe('MultiSelect', () => {
         expect(inputDriver.isFocus()).toBeTruthy();
       });
 
-      it('should not lose Focus or close the options when options selected by pressing Tab', () => {
+      it('should not lose Focus or close the options when options selected by pressing Tab', async () => {
         const onSelect = jest.fn();
         const { driver, inputDriver, dropdownLayoutDriver } = createDriver(
           <MultiSelect options={options} onSelect={onSelect} />,
@@ -531,7 +532,7 @@ describe('MultiSelect', () => {
         driver.pressKey('Tab');
         expect(onSelect).toHaveBeenCalledTimes(1);
         expect(dropdownLayoutDriver.isShown()).toBeTruthy();
-        expect(inputDriver.isFocus()).toBeTruthy();
+        await eventually(() => expect(inputDriver.isFocus()).toBeTruthy()); // Limitation - covered with e2e test
       });
     });
   });

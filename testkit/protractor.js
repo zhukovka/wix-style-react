@@ -153,6 +153,12 @@ export const popoverMenuTestkitFactory = protractorTestkitFactoryCreator(
   popoverMenuDriverFactory,
 );
 
+import inputWithOptionsDriverFactory from '../src/InputWithOptions/InputWithOptions.protractor.driver';
+
+export const inputWithOptionsTestkitFactory = protractorTestkitFactoryCreator(
+  inputWithOptionsDriverFactory,
+);
+
 import multiSelectDriverFactory from '../src/MultiSelect/MultiSelect.protractor.driver';
 
 export const multiSelectTestkitFactory = protractorTestkitFactoryCreator(
@@ -436,4 +442,10 @@ import { dateInputDriverFactory } from '../src/DateInput/DateInput.uni.driver';
 
 export const dateInputTestkitFactory = protractorUniTestkitFactoryCreator(
   dateInputDriverFactory,
+);
+
+import { editableTitleUniDriverFactory } from '../src/EditableTitle/EditableTitle.uni.driver';
+
+export const editableTitleTestkitFactory = protractorUniTestkitFactoryCreator(
+  editableTitleUniDriverFactory,
 );

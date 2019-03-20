@@ -5,11 +5,15 @@ class GoogleMapsClient {
 
     const map = new window.google.maps.Map(document.createElement('div'));
     this._placesServices = new window.google.maps.places.PlacesService(map);
+    this._sessionToken = new window.google.maps.places.AutocompleteSessionToken();
   }
 
   autocomplete({ request }) {
     return new Promise((resolve, reject) => {
       try {
+        if (this._sessionToken) {
+          request.sessionToken = this._sessionToken;
+        }
         this._autocomplete.getPlacePredictions(request, (results, status) => {
           if (
             status !== window.google.maps.GeocoderStatus.OK &&

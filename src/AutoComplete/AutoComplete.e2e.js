@@ -1,11 +1,14 @@
 import { eyesItInstance } from '../../test/utils/eyes-it';
 import { waitForVisibilityOf } from 'wix-ui-test-utils/protractor';
-import { getStoryUrl } from '../../test/utils/storybook-helpers';
+import { createStoryUrl } from '../../test/utils/storybook-helpers';
 import { autoCompleteTestkitFactory } from '../../testkit/protractor';
 import eventually from 'wix-eventually';
 
 describe('AutoComplete', () => {
-  const storyUrl = getStoryUrl('4. Selection', '4.1 + AutoComplete');
+  const storyUrl = createStoryUrl({
+    kind: 'Components',
+    story: 'AutoComplete',
+  });
   const dataHook = 'story-autocomplete';
 
   const eyes = eyesItInstance();

@@ -11,7 +11,7 @@ import {
   code as baseCode,
   playground,
   api,
-  testkit
+  testkit,
 } from 'wix-storybook-utils/Sections';
 
 import { storySettings } from '../test/storySettings';
@@ -42,7 +42,7 @@ export default {
       issueUrl: 'https://github.com/wix/wix-style-react/issues/new',
       sourceUrl:
         'https://github.com/wix/wix-style-react/tree/master/src/GeneratedTestComponent/',
-      component: <GeneratedTestComponent buttonText="Click me!"/>
+      component: <GeneratedTestComponent buttonText="Click me!" />,
     }),
 
     tabs([
@@ -52,12 +52,15 @@ export default {
           columns([
             description({
               title: 'Description',
-              text: 'This line here should briefly describe component in just a sentence or two. It should be short and easy to read.'
+              text:
+                'This line here should briefly describe component in just a sentence or two. It should be short and easy to read.',
             }),
           ]),
 
           columns([
-            importExample("import GeneratedTestComponent from 'wix-style-react/GeneratedTestComponent'"),
+            importExample(
+              "import GeneratedTestComponent from 'wix-style-react/GeneratedTestComponent'",
+            ),
           ]),
 
           divider(),
@@ -67,27 +70,27 @@ export default {
           columns([
             description({
               title: 'Simple Usage',
-              text: 'A simple example with compact preview'
+              text: 'A simple example with compact preview',
             }),
             code({
               compact: true,
-              source: '<GeneratedTestComponent buttonText="Hello World!"/>'
-            })
+              source: '<GeneratedTestComponent buttonText="Hello World!"/>',
+            }),
           ]),
 
           code({
             title: 'Full Interactive Preview',
             description: 'A non compact version of same code example as above',
-            source: '<GeneratedTestComponent buttonText="Hello World!"/>'
-          })
-        ]
+            source: '<GeneratedTestComponent buttonText="Hello World!"/>',
+          }),
+        ],
       }),
 
       ...[
         { title: 'API', sections: [api()] },
         { title: 'Testkit', sections: [testkit()] },
         { title: 'Playground', sections: [playground()] },
-      ].map(tab)
-    ])
+      ].map(tab),
+    ]),
   ],
 };

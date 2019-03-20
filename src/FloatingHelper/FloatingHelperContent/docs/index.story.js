@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import FloatingHelperContent from '..';
 import { storySettings } from './StorySettings';
 import Image from 'wix-ui-icons-common/Image';
@@ -13,17 +13,15 @@ const componentProps = {
 };
 
 export default {
-  category: storySettings.kind,
-  storyName: storySettings.story,
+  category: storySettings.category,
+  storyName: storySettings.storyName,
   component: FloatingHelperContent,
   componentPath:
     '../../../../node_modules/wix-ui-backoffice/src/components/FloatingHelper/FloatingHelperContent/FloatingHelperContent.tsx',
   displayName: 'FloatingHelper.Content',
   componentProps,
   exampleProps: {
-    onActionClick: () => {
-      /** see interactive preview*/
-    },
+    onActionClick: () => 'Action clicked!',
     actionTheme: ['white', 'premium'],
     image: [{ label: 'with image', value: image }],
   },

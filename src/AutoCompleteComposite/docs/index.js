@@ -3,10 +3,12 @@ import { storiesOf } from '@storybook/react';
 import Markdown from 'wix-storybook-utils/Markdown';
 import InteractiveCodeExample from 'wix-storybook-utils/InteractiveCodeExample';
 
+import { Category } from '../../../stories/storiesHierarchy';
+
 import Readme from '../README.md';
 import ExampleStandard from './ExampleStandard';
 
-storiesOf('4. Selection', module).add('4.1 + AutoCompleteComposite', () => {
+storiesOf(Category.COMPONENTS, module).add('AutoCompleteComposite', () => {
   return (
     <div>
       <Markdown source={Readme} />
