@@ -877,15 +877,15 @@ describe('Input', () => {
     describe('input render', () => {
       it('should render customized input', async () => {
         const className = 'foo';
-        const customInput = (props) => {
-          return <input {...props} className={className}/>;
+        const customInput = props => {
+          return <input {...props} className={className} />;
         };
         const { driver } = render(<Input customInput={customInput} />);
         expect(await driver.isCustomInput()).toEqual(true);
       });
 
       it('should render input html by default', async () => {
-        const { driver } = render(<Input/>);
+        const { driver } = render(<Input />);
         expect(await driver.isCustomInput()).toEqual(false);
       });
     });
