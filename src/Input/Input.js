@@ -171,45 +171,43 @@ class Input extends Component {
 
     /* eslint-disable no-unused-vars */
     const { className, ...inputElementProps } = props;
-    const ActualInputComponent = this._actualInput;
-    const inputElement = (
-      <ActualInputComponent
-        min={min}
-        max={max}
-        step={step}
-        data-hook="wsr-input"
-        style={{ textOverflow }}
-        dataRef={this.extractRef}
-        className={inputClassNames}
-        id={id}
-        name={name}
-        disabled={disabled}
-        defaultValue={defaultValue}
-        value={value}
-        onChange={this._onChange}
-        onKeyPress={this._onKeyPress}
-        maxLength={maxLength}
-        onFocus={this._onFocus}
-        onBlur={this._onBlur}
-        onKeyDown={this._onKeyDown}
-        onDoubleClick={this._onDoubleClick}
-        onPaste={onPaste}
-        placeholder={placeholder}
-        tabIndex={tabIndex}
-        autoFocus={autoFocus}
-        onClick={this._onClick}
-        onKeyUp={onKeyUp}
-        readOnly={readOnly}
-        type={type}
-        required={required}
-        autoComplete={autocomplete}
-        onCompositionStart={() => this.onCompositionChange(true)}
-        onCompositionEnd={() => this.onCompositionChange(false)}
-        customInput={customInput}
-        {...ariaAttribute}
-        {...inputElementProps}
-      />
-    );
+
+    const inputElement = this._renderInput({
+      min,
+      max,
+      step,
+      'data-hook': 'wsr-input',
+      style: { textOverflow },
+      dataRef: this.extractRef,
+      className: inputClassNames,
+      id,
+      name,
+      disabled,
+      defaultValue,
+      value,
+      onChange: this._onChange,
+      onKeyPress: this._onKeyPress,
+      maxLength,
+      onFocus: this._onFocus,
+      onBlur: this._onBlur,
+      onKeyDown: this._onKeyDown,
+      onDoubleClick: this._onDoubleClick,
+      onPaste,
+      placeholder,
+      tabIndex,
+      autoFocus,
+      onClick: this._onClick,
+      onKeyUp,
+      readOnly,
+      type,
+      required,
+      autoComplete: autocomplete,
+      onCompositionStart: () => this.onCompositionChange(true),
+      onCompositionEnd: () => this.onCompositionChange(false),
+      customInput,
+      ...ariaAttribute,
+      ...inputElementProps,
+    });
 
     return (
       <div className={styles.inputWrapper}>
@@ -373,13 +371,18 @@ class Input extends Component {
     onClear && onClear();
   };
 
-  _actualInput = props => {
+  _renderInput = props => {
     const { customInput: CustomInputComponent, dataRef, ...rest } = props;
-    if (CustomInputComponent) {
-      return <CustomInputComponent data-ref={dataRef} {...rest} data-hook={"wsr-custom-input"}/>;
-    } else {
-      return <input {...rest} ref={dataRef} />;
-    }
+    const inputProps = {
+      ...(CustomInputComponent
+        ? { 'data-ref': dataRef, ...rest, 'data-hook': 'wsr-custom-input' }
+        : { ref: dataRef, ...rest }),
+    };
+
+    return React.cloneElement(
+      CustomInputComponent ? <CustomInputComponent /> : <input />,
+      inputProps,
+    );
   };
 }
 
