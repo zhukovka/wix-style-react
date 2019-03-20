@@ -126,7 +126,7 @@ describe('MultiSelect', () => {
       });
       await browser.get(url);
       const driver = multiSelectTestkitFactory({
-        dataHook: 'multi-select-line-not-braking',
+        dataHook: storySettings.dataHook,
       });
       const element = driver.element();
       await waitForVisibilityOf(element, 'Cannot find <MultiSelect/>');

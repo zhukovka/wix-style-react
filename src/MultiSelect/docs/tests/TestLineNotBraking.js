@@ -1,10 +1,12 @@
 import MultiSelect from '../../MultiSelect';
+import { storySettings } from '../storySettings';
+
 import React from 'react';
 
 export default () => (
   <div style={{ width: '400px' }}>
     <MultiSelect
-      dataHook="multi-select-line-not-braking"
+      dataHook={storySettings.dataHook}
       tags={[
         { id: '1', label: 'a' },
         { id: '2', label: 'b' },
