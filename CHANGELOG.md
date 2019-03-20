@@ -14,6 +14,11 @@ Types of changes:
 1. **Docs** for documentation changes
 1. **Lab** components and features that are still in a work in progress
 
+## Next
+## Added
+- `<Input/>` - add styles for read-only state [#3096](https://github.com/wix/wix-style-react/pull/3096)
+- `<EditableTitle/>` - new editable input to compose in the PageHeader [#3074](https://github.com/wix/wix-style-react/pull/3074)
+
 ## 6.9.0 - 2019-03-18
 
 ### Added
