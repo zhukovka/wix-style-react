@@ -201,7 +201,7 @@
     "wix-ui-test-utils": "^1.0.142"
   },
   "lint-staged": {
-    "*.{js,scss}": "yoshi lint --fix"
+    "*.{js,scss}": "yoshi lint --fix --"
   },
   "jest": {
     "setupFiles": [
