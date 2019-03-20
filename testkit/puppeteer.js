@@ -153,6 +153,12 @@ export const dateInputTestkitFactory = puppeteerUniTestkitFactoryCreator(
   dateInputDriverFactory,
 );
 
+import { editableTitleUniDriverFactory } from '../src/EditableTitle/EditableTitle.uni.driver';
+
+export const editableTitleTestkitFactory = puppeteerUniTestkitFactoryCreator(
+  editableTitleUniDriverFactory,
+);
+
 import { dateRangeInputDriverFactory } from '../src/DateRangeInput/DateRangeInput.uni.driver';
 
 export const dateRangeInputTestkitFactory = puppeteerUniTestkitFactoryCreator(

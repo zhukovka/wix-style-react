@@ -444,6 +444,12 @@ export const dateInputTestkitFactory = protractorUniTestkitFactoryCreator(
   dateInputDriverFactory,
 );
 
+import { editableTitleUniDriverFactory } from '../src/EditableTitle/EditableTitle.uni.driver';
+
+export const editableTitleTestkitFactory = protractorUniTestkitFactoryCreator(
+  editableTitleUniDriverFactory,
+);
+
 import { dateRangeInputDriverFactory } from '../src/DateRangeInput/DateRangeInput.uni.driver';
 
 export const dateRangeInputTestkitFactory = protractorUniTestkitFactoryCreator(

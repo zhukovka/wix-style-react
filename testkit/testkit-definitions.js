@@ -151,7 +151,6 @@ module.exports = {
   },
 
   Notification: {},
-  FloatingNotification: { unidriver: true, drivers: ['enzyme'] },
 
   NumberInput: {
     unidriver: true,
@@ -205,7 +204,13 @@ module.exports = {
     unidriver: true,
     testkitPath: '../src/DateInput/DateInput.uni.driver',
   },
+
   ColorInput: {
+    unidriver: true,
+  },
+
+  EditableTitle: {
+    testkitPath: '../src/EditableTitle/EditableTitle.uni.driver',
     unidriver: true,
   },
 
