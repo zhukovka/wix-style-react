@@ -87,11 +87,9 @@ describe('MultiSelect', () => {
     expect(dropdownLayoutDriver.optionsLength()).toBe(options.length);
   });
 
-  it('should render AutoSizeInput as the input element', () => {
+  it('should render custom input as the input element', () => {
     const { inputDriver } = createDriver(<MultiSelect options={options} />);
-
-    const inputElementClasses = inputDriver.getInputElementClasses();
-    expect(inputElementClasses.contains(styles.autoSizeInput)).toEqual(true);
+    expect(inputDriver.isCustomInput()).toEqual(true);
   });
 
   describe('click-outside', () => {
