@@ -54,6 +54,7 @@ const inputDriverFactory = ({ element }) => {
     getDefaultValue: () => input.defaultValue,
     getTabIndex: () => input.tabIndex,
     getReadOnly: () => input.readOnly,
+    getDisabled: () => input.disabled,
     getTextOverflow: () => input.style['text-overflow'],
     getAriaLabel: () => input.getAttribute('aria-label'),
     getAriaControls: () => input.getAttribute('aria-controls'),
