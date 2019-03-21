@@ -21,7 +21,9 @@ Types of changes:
 - `<EditableTitle/>` - new editable input to compose in the PageHeader [#3074](https://github.com/wix/wix-style-react/pull/3074)
 
 ### Fixed
+
 - `<PopoverMenu/>` - Remove default zIndex [#3133](https://github.com/wix/wix-style-react/pull/3133)
+- `<Page/>` - Add `z-index: 1` to Page [#3136](https://github.com/wix/wix-style-react/pull/3136)
 
 ## 6.9.0 - 2019-03-18
 
