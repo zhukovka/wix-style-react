@@ -1,0 +1,1 @@
+import '../src/AddItem/tests/AddItem.visual.js'
