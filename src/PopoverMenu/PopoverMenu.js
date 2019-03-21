@@ -67,7 +67,6 @@ class PopoverMenu extends WixComponent {
     buttonHeight: 'medium',
     maxWidth: '378px',
     appendToParent: false,
-    zIndex: 0,
     showArrow: true,
   };
 
