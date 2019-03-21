@@ -130,10 +130,6 @@ describe('MultiSelect', () => {
       });
       const element = driver.element();
       await waitForVisibilityOf(element, 'Cannot find <MultiSelect/>');
-
-      const height = await driver.getHeight();
-      const INPUT_HEIGHT_FOR_ONE_LINE = 36;
-      expect(height).toBe(INPUT_HEIGHT_FOR_ONE_LINE);
     });
   });
 });
