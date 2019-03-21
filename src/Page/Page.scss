@@ -1,5 +1,6 @@
 @import '../common';
 @import '../Grid/GridConstants.scss';
+@import '../ZIndex';
 
 $page-side-padding: 48px;
 $headerBottomPadding: 24px;
@@ -11,16 +12,17 @@ $zIndexLayerStep: 100;
 /* z-index is needed so that non-sticky content with 'position: relative' would not overlay above the sticky content.
    Need to be height than any component that may fit into a sticky page content.
    Currently:
-    - InputErrorSuffix uses 10000 (Likely to appear in a sticky TableToolbar)
+    - InputErrorSuffix's content uses 10000 (Likely to appear in a sticky TableToolbar)
     - Tooltip uses 2000
     - ToggleButton uses 1000
    */
 $stickyZIndex: 11000;
 $fixedContainerZIndex: $stickyZIndex + $zIndexLayerStep;
-
+   
 .pageWrapper {
   overflow-x: auto;
   height: 100%;
+  z-index: $zIndex_PAGE;
 
   .page {
     position: relative;

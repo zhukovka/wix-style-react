@@ -459,12 +459,13 @@ class Page extends WixComponent {
   }
 
   render() {
-    const { className, minWidth } = this.props;
+    const { className, minWidth, zIndex } = this.props;
 
     return (
       <div
         data-hook="wsr-page-wrapper"
         className={classNames(s.pageWrapper, className)}
+        style={{ zIndex }}
       >
         <div
           data-hook="page"
@@ -539,6 +540,8 @@ Page.propTypes = {
     }
   }).isRequired,
 
+  /** z-index of the Page */
+  zIndex: PropTypes.number,
   /** When true the page will use height: 100% and not require a parent of `display: flex;flex-flow: column;`. Also Page.Content's may grow using `min-height: inherit`. Supports Page.Sticky. New header minimization approach.*/
   upgrade: PropTypes.bool, // This Upgrade prop is only for documentation, the actual use is in index.js
 };
