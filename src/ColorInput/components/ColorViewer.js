@@ -28,7 +28,7 @@ export class ColorViewer extends React.Component {
         shown={active}
         placement={placement}
         appendTo={appendTo}
-        onClickOutside={onClickOutside}
+        onClickOutside={active ? onClickOutside : null}
       >
         <Popover.Element>
           <div
