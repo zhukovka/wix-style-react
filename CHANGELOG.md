@@ -24,6 +24,7 @@ Types of changes:
 
 - `<PopoverMenu/>` - Remove default zIndex [#3133](https://github.com/wix/wix-style-react/pull/3133)
 - `<Page/>` - Add `z-index: 1` to Page [#3136](https://github.com/wix/wix-style-react/pull/3136)
+- `<ColorInput/>` - prevent unremitting `onConfirm` call when clicking outside [#3151](https://github.com/wix/wix-style-react/pull/3151)
 
 ## 6.9.0 - 2019-03-18
 
