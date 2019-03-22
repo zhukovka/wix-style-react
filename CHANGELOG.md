@@ -14,7 +14,7 @@ Types of changes:
 1. **Docs** for documentation changes
 1. **Lab** components and features that are still in a work in progress
 
-## Next
+## 6.10.0 - 2019-03-22
 
 ### Added
 - `<Input/>` - add styles for read-only state [#3096](https://github.com/wix/wix-style-react/pull/3096)
