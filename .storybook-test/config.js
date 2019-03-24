@@ -11,5 +11,5 @@ configure(loadStories, module);
 
 setOptions({
   showAddonPanel: false,
-  sidebarAnimations: true
+  sidebarAnimations: false
 });

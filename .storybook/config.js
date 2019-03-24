@@ -20,5 +20,5 @@ setOptions({
   showAddonPanel: false,
   name: `wix-style-react v${version}`,
   url: "https://github.com/wix/wix-style-react",
-  sidebarAnimations: true
+  sidebarAnimations: false
 });
