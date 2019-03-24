@@ -14,6 +14,12 @@ Types of changes:
 1. **Docs** for documentation changes
 1. **Lab** components and features that are still in a work in progress
 
+## Next
+
+### Fixed
+
+- `<Modal/>` (fix&change): Fix broken `zIndex` prop. Change default zIndex value from `11` to `5000` [#3153](https://github.com/wix/wix-style-react/pull/3153)
+
 ## 6.10.2 - 2019-03-24
 No Changes (Patch version, only to re-publish Storybook, after failed publish)
 
