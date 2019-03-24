@@ -1,7 +1,7 @@
 const ZIndexValues = {
   Page: 1,
-  Modal: 11,
   Tooltip: 2000,
+  Modal: 5000,
 };
 
 export function ZIndex(layerName) {

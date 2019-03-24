@@ -25,6 +25,7 @@ const modalDriverFactory = ({ element }) => {
     },
     getContentStyle: () => getContent().style,
     getContentLabel: () => getContent().getAttribute('aria-label'),
+    getZIndex: () => getOverlay().style['z-index'],
   };
 };
 

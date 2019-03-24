@@ -201,4 +201,16 @@ describe('Modal', () => {
       expect(appElemnt.getAttribute('aria-hidden')).toBe('true');
     });
   });
+
+  describe('zIndex', () => {
+    it('should have default z-index', () => {
+      const { driver } = render(<Modal {...props} />);
+      expect(driver.getZIndex()).toBe('5000');
+    });
+
+    it('should have custom z-index', () => {
+      const { driver } = render(<Modal {...props} zIndex={2500} />);
+      expect(driver.getZIndex()).toBe('2500');
+    });
+  });
 });
