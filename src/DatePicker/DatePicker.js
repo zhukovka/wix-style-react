@@ -167,6 +167,7 @@ export default class DatePicker extends WixComponent {
         errorMessage={errorMessage}
         autoSelect={false}
         dateFormat={dateFormat}
+        customInput={customInput}
         {...(customInput ? customInput.props : {})}
         {...inputProps}
       />
