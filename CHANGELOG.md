@@ -14,6 +14,9 @@ Types of changes:
 1. **Docs** for documentation changes
 1. **Lab** components and features that are still in a work in progress
 
+## 6.10.2 - 2019-03-24
+No Changes (Patch version, only to re-publish Storybook, after failed publish)
+
 ## 6.10.1 - 2019-03-24
 No Changes (Patch version, only to re-publish Storybook, after failed publish)
 
