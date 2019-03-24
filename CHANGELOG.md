@@ -14,7 +14,7 @@ Types of changes:
 1. **Docs** for documentation changes
 1. **Lab** components and features that are still in a work in progress
 
-## Next
+## 6.10.3 - 2019-03-24
 
 ### Fixed
 - `<Modal/>` (fix&change): Fix broken `zIndex` prop. Change default zIndex value from `11` to `5000` [#3153](https://github.com/wix/wix-style-react/pull/3153)
