@@ -54,9 +54,9 @@ class RichTextToolbarLinkButton extends React.Component {
   };
 
   _handleSubmit = (event, linkData) => {
-    const { onClick } = this.props;
+    const { onSubmit } = this.props;
 
-    onClick(event, linkData);
+    onSubmit(event, linkData);
     this._hideForm();
   };
 }

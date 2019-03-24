@@ -1,12 +1,9 @@
-import publicDriverFactory from './RichTextToolbar';
-
 export default base => {
   const getButtons = () => base.$$(`[data-hook*="richtextarea-button"]`);
   const getButtonByType = type =>
     base.$(`[data-hook*="richtextarea-button-${type}"]`);
 
   return {
-    ...publicDriverFactory(base),
     getButtonTypes: () =>
       getButtons().map(async button =>
         (await button.attr('data-hook')).replace(/^richtextarea-button-/, ''),
