@@ -40,6 +40,16 @@ describe('Search', () => {
       expect(driver.dropdownLayoutDriver.isShown()).toBe(false);
     });
 
+    it('should show search options when focusing empty input with showOptionsIfEmptyInput', () => {
+      const driver = createDriver(
+        <ControlledSearch options={options} showOptionsIfEmptyInput />,
+      );
+
+      expect(driver.dropdownLayoutDriver.isShown()).toBe(false);
+      driver.inputDriver.click();
+      expect(driver.dropdownLayoutDriver.isShown()).toBe(true);
+    });
+
     it('should filter search options if initial input value passed and input focused', () => {
       const driver = createDriver(
         <ControlledSearch options={options} value="fox" />,

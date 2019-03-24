@@ -155,7 +155,6 @@ export default class Search extends WixComponent {
           menuArrow={false}
           clearButton
           closeOnSelect
-          showOptionsIfEmptyInput={false}
           options={this._filteredOptions}
           onClear={this._onClear}
           onChange={this._onChange}
