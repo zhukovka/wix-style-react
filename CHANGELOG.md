@@ -19,6 +19,8 @@ Types of changes:
 ### Fixed
 - `<Modal/>` (fix&change): Fix broken `zIndex` prop. Change default zIndex value from `11` to `5000` [#3153](https://github.com/wix/wix-style-react/pull/3153)
 - `<DatePicker/>` - add missing customInput support [#3156](https://github.com/wix/wix-style-react/pull/3156)
+- `<EditableTitle/>` - fix margins [#3141](https://github.com/wix/wix-style-react/pull/3141)
+- `<Search/>` enable passing showOptionsIfEmptyInput prop [#3149](https://github.com/wix/wix-style-react/pull/3140)
 
 ## 6.10.2 - 2019-03-24
 No Changes (Patch version, only to re-publish Storybook, after failed publish)
