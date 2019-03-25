@@ -1,19 +1,19 @@
 import dataTableDriverFactory from './DataTable.driver';
 import React from 'react';
 import DataTable from './DataTable';
-import {createDriverFactory} from 'wix-ui-test-utils/driver-factory';
-import {mount} from 'enzyme';
+import { createDriverFactory } from 'wix-ui-test-utils/driver-factory';
+import { mount } from 'enzyme';
 
 describe('Table', () => {
   const createDriver = createDriverFactory(dataTableDriverFactory);
 
   const createDefaultProps = () => ({
     id: 'id',
-    data: [{a: 'value 1', b: 'value 2'}, {a: 'value 3', b: 'value 4'}],
+    data: [{ a: 'value 1', b: 'value 2' }, { a: 'value 3', b: 'value 4' }],
     columns: [
-      {title: 'Row Num', render: (row, rowNum) => rowNum},
-      {title: 'A', render: row => row.a},
-      {title: 'B', render: row => row.b},
+      { title: 'Row Num', render: (row, rowNum) => rowNum },
+      { title: 'A', render: row => row.a },
+      { title: 'B', render: row => row.b },
     ],
     rowClass: 'class-name',
   });
@@ -99,14 +99,14 @@ describe('Table', () => {
 
   describe('column width', () => {
     const columns = [
-      {title: 'Row Num', width: '30%', render: (row, rowNum) => rowNum},
-      {title: 'A', width: '40px', render: row => row.a},
-      {title: 'B', width: '50px', render: row => row.b},
+      { title: 'Row Num', width: '30%', render: (row, rowNum) => rowNum },
+      { title: 'A', width: '40px', render: row => row.a },
+      { title: 'B', width: '50px', render: row => row.b },
     ];
 
     it('should apply column.width', () => {
       const driver = createDriver(
-        <DataTable {...defaultProps} columns={columns}/>,
+        <DataTable {...defaultProps} columns={columns} />,
       );
       columns.forEach((column, colIndex) => {
         expect(driver.getHeaderCellWidth(colIndex)).toEqual(column.width);
@@ -118,7 +118,7 @@ describe('Table', () => {
 
     it('should apply column.width when header is hidden', () => {
       const driver = createDriver(
-        <DataTable {...defaultProps} columns={columns} hideHeader/>,
+        <DataTable {...defaultProps} columns={columns} hideHeader />,
       );
       columns.forEach((column, colIndex) => {
         for (let rowIndex = 0; rowIndex < driver.getRowsCount(); rowIndex++) {
@@ -155,7 +155,7 @@ describe('Table', () => {
   it('should assign a dynamic class to rows', () => {
     const getClass = rowData => rowData.a.replace(/[\s]+/g, '-');
     const driver = createDriver(
-      <DataTable {...defaultProps} dynamicRowClass={getClass}/>,
+      <DataTable {...defaultProps} dynamicRowClass={getClass} />,
     );
     expect(driver.getRowsWithClassCount('value-1')).toBe(1);
     expect(driver.getRowsWithClassCount('value-3')).toBe(1);
@@ -166,7 +166,7 @@ describe('Table', () => {
 
   it('should assign dataHook to rows', () => {
     const rowDataHook = 'row-data-hook';
-    const props = Object.assign({}, defaultProps, {rowDataHook});
+    const props = Object.assign({}, defaultProps, { rowDataHook });
     const driver = createDriver(<DataTable {...props} />);
     expect(driver.getRowsWithDataHook(rowDataHook)[0].textContent).toBe(
       '0value 1value 2',
@@ -221,13 +221,13 @@ describe('Table', () => {
     const getDynamicClass = (rowData, rowNum) =>
       rowNum === 1 ? 'rowNum1' : '';
     const driver = createDriver(
-      <DataTable {...defaultProps} dynamicRowClass={getDynamicClass}/>,
+      <DataTable {...defaultProps} dynamicRowClass={getDynamicClass} />,
     );
     expect(driver.getRowClasses(1).sort()).toEqual(['class-name', 'rowNum1']);
   });
 
   it('should hide table header', () => {
-    const driver = createDriver(<DataTable {...defaultProps} hideHeader/>);
+    const driver = createDriver(<DataTable {...defaultProps} hideHeader />);
     expect(driver.isDisplayingHeader()).toBe(false);
   });
 
@@ -280,7 +280,7 @@ describe('Table', () => {
 
   describe('clickableDataRow class', () => {
     it('should not assign the class to rows by default', () => {
-      const props = {...defaultProps};
+      const props = { ...defaultProps };
 
       const driver = createDriver(<DataTable {...props} />);
 
@@ -300,7 +300,7 @@ describe('Table', () => {
 
   describe('animatedDataRow class', () => {
     it('should not assign the class to rows by default', () => {
-      const props = {...defaultProps};
+      const props = { ...defaultProps };
 
       const driver = createDriver(<DataTable {...props} />);
 
@@ -320,12 +320,12 @@ describe('Table', () => {
 
   describe('Row event handlers', () => {
     const tests = [
-      {handler: 'onRowClick', driverMethod: 'clickRow'},
-      {handler: 'onMouseEnterRow', driverMethod: 'mouseEnterRow'},
-      {handler: 'onMouseLeaveRow', driverMethod: 'mouseLeaveRow'},
+      { handler: 'onRowClick', driverMethod: 'clickRow' },
+      { handler: 'onMouseEnterRow', driverMethod: 'mouseEnterRow' },
+      { handler: 'onMouseLeaveRow', driverMethod: 'mouseLeaveRow' },
     ];
 
-    tests.forEach(({handler, driverMethod}) => {
+    tests.forEach(({ handler, driverMethod }) => {
       it(`should call ${handler} with row data and index`, () => {
         const props = {
           ...defaultProps,
@@ -374,7 +374,10 @@ describe('Table', () => {
     it('should expand with correct content and collapse according to data id if exist', () => {
       const animationSpeed = 500;
       const tableProps = createDefaultProps();
-      tableProps.data = [{a: 'value 1', b: 'value 2', id: 1}, {a: 'value 3', b: 'value 4', id: 2}];
+      tableProps.data = [
+        { a: 'value 1', b: 'value 2', id: 1 },
+        { a: 'value 3', b: 'value 4', id: 2 },
+      ];
 
       const props = {
         ...tableProps,
@@ -422,14 +425,14 @@ describe('Table', () => {
       props = {
         ...defaultProps,
         columns: [
-          {title: 'Row Num', render: (row, rowNum) => rowNum},
+          { title: 'Row Num', render: (row, rowNum) => rowNum },
           {
             title: 'A',
             sortable: true,
             sortDescending: false,
             render: row => row.a,
           },
-          {title: 'B', render: row => row.b},
+          { title: 'B', render: row => row.b },
           {
             title: 'C',
             sortable: true,
@@ -441,28 +444,28 @@ describe('Table', () => {
     });
 
     it('should display sortable title', () => {
-      const _props = Object.assign({}, props, {onSortClick: jest.fn()});
+      const _props = Object.assign({}, props, { onSortClick: jest.fn() });
       const driver = createDriver(<DataTable {..._props} />);
       expect(driver.hasSortableTitle(0)).toBe(false);
       expect(driver.hasSortableTitle(1)).toBe(true);
     });
 
     it('should display sort asc/desc style', () => {
-      const _props = Object.assign({}, props, {onSortClick: jest.fn()});
+      const _props = Object.assign({}, props, { onSortClick: jest.fn() });
       const driver = createDriver(<DataTable {..._props} />);
       expect(driver.hasSortDescending(1)).toBe(false);
       expect(driver.hasSortDescending(3)).toBe(true);
     });
 
     it('should call on sort callback', () => {
-      const _props = Object.assign({}, props, {onSortClick: jest.fn()});
+      const _props = Object.assign({}, props, { onSortClick: jest.fn() });
       const driver = createDriver(<DataTable {..._props} />);
       driver.clickSort(1);
       expect(_props.onSortClick).toBeCalledWith(props.columns[1], 1);
     });
 
     it('should not call on sort callback when non-sortable column is clicked', () => {
-      const _props = Object.assign({}, props, {onSortClick: jest.fn()});
+      const _props = Object.assign({}, props, { onSortClick: jest.fn() });
       const driver = createDriver(<DataTable {..._props} />);
       driver.clickSort(2);
       expect(_props.onSortClick).not.toHaveBeenCalled();
@@ -474,13 +477,13 @@ describe('Table', () => {
       const props = {
         ...defaultProps,
         columns: [
-          {title: 'Row Num', render: (row, rowNum) => rowNum},
+          { title: 'Row Num', render: (row, rowNum) => rowNum },
           {
             title: 'A',
-            infoTooltipProps: {content: 'Vary informative tooltip text'},
+            infoTooltipProps: { content: 'Vary informative tooltip text' },
             render: row => row.a,
           },
-          {title: 'B', render: row => row.b},
+          { title: 'B', render: row => row.b },
         ],
       };
       const driver = createDriver(<DataTable {...props} />);

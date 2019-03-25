@@ -1,19 +1,19 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import styles from './DataTable.scss';
 import classNames from 'classnames';
 import InfiniteScroll from '../utils/InfiniteScroll';
 import SortByArrowUp from '../new-icons/system/SortByArrowUp';
 import SortByArrowDown from '../new-icons/system/SortByArrowDown';
-import {Animator} from 'wix-animations';
+import { Animator } from 'wix-animations';
 import Tooltip from '../Tooltip/Tooltip';
 import InfoIcon from '../common/InfoIcon';
 
 export const DataTableHeader = props => {
-  const {dataHook} = props;
+  const { dataHook } = props;
   return (
     <div data-hook={dataHook}>
-      <table style={{width: props.width}} className={styles.table}>
+      <table style={{ width: props.width }} className={styles.table}>
         <TableHeader {...props} />
       </table>
     </div>
@@ -27,9 +27,9 @@ DataTableHeader.propTypes = {
 class DataTable extends React.Component {
   constructor(props) {
     super(props);
-    let state = {selectedRows: {}};
+    let state = { selectedRows: {} };
     if (props.infiniteScroll) {
-      state = {...state, ...this.createInitialScrollingState(props)};
+      state = { ...state, ...this.createInitialScrollingState(props) };
     }
     this.state = state;
   }
@@ -55,7 +55,7 @@ class DataTable extends React.Component {
             this.state.currentPage < lastPage
               ? this.state.currentPage + 1
               : this.state.currentPage;
-          this.setState({lastPage, currentPage});
+          this.setState({ lastPage, currentPage });
         }
       }
       if (!isLoadingMore) {
@@ -71,7 +71,7 @@ class DataTable extends React.Component {
   }
 
   createInitialScrollingState(props) {
-    return {currentPage: 0, lastPage: this.calcLastPage(props)};
+    return { currentPage: 0, lastPage: this.calcLastPage(props) };
   }
 
   render() {
@@ -116,8 +116,8 @@ class DataTable extends React.Component {
   };
 
   renderTable = rowsToRender => {
-    const {dataHook} = this.props;
-    const style = {width: this.props.width};
+    const { dataHook } = this.props;
+    const style = { width: this.props.width };
     return (
       <div data-hook={dataHook}>
         <table
@@ -137,7 +137,7 @@ class DataTable extends React.Component {
   renderBody = rows => <tbody>{rows.map(this.renderRow)}</tbody>;
 
   onRowClick = (rowData, rowNum) => {
-    const {onRowClick, rowDetails} = this.props;
+    const { onRowClick, rowDetails } = this.props;
     onRowClick && onRowClick(rowData, rowNum);
     rowDetails && this.toggleRowDetails(rowData, rowNum);
   };
@@ -155,12 +155,12 @@ class DataTable extends React.Component {
     const optionalRowProps = {};
 
     const handlers = [
-      {rowEventHandler: this.onRowClick, eventHandler: 'onClick'},
-      {rowEventHandler: onMouseEnterRow, eventHandler: 'onMouseEnter'},
-      {rowEventHandler: onMouseLeaveRow, eventHandler: 'onMouseLeave'},
+      { rowEventHandler: this.onRowClick, eventHandler: 'onClick' },
+      { rowEventHandler: onMouseEnterRow, eventHandler: 'onMouseEnter' },
+      { rowEventHandler: onMouseLeaveRow, eventHandler: 'onMouseLeave' },
     ];
 
-    handlers.forEach(({rowEventHandler, eventHandler}) => {
+    handlers.forEach(({ rowEventHandler, eventHandler }) => {
       if (rowEventHandler) {
         optionalRowProps[eventHandler] = event => {
           if (event.isDefaultPrevented()) {
@@ -203,7 +203,10 @@ class DataTable extends React.Component {
     ];
 
     if (rowDetails) {
-      const showDetails =  typeof rowData.id !== 'undefined' ? !!this.state.selectedRows[rowData.id] : !!this.state.selectedRows[rowNum];
+      const showDetails =
+        typeof rowData.id !== 'undefined'
+          ? !!this.state.selectedRows[rowData.id]
+          : !!this.state.selectedRows[rowNum];
 
       rowsToRender.push(
         <tr
@@ -235,9 +238,9 @@ class DataTable extends React.Component {
     const classes = classNames({
       [this.style.important]: column.important,
       [this.style.largeVerticalPadding]:
-      this.props.rowVerticalPadding === 'large',
+        this.props.rowVerticalPadding === 'large',
       [this.style.mediumVerticalPadding]:
-      this.props.rowVerticalPadding !== 'large',
+        this.props.rowVerticalPadding !== 'large',
 
       [this.style.alignStart]: column.align === 'start',
       [this.style.alignCenter]: column.align === 'center',
@@ -254,12 +257,12 @@ class DataTable extends React.Component {
     );
   };
 
-  calcLastPage = ({data, itemsPerPage}) =>
+  calcLastPage = ({ data, itemsPerPage }) =>
     Math.ceil(data.length / itemsPerPage) - 1;
 
   loadMore = () => {
     if (this.state.currentPage < this.state.lastPage) {
-      this.setState({currentPage: this.state.currentPage + 1});
+      this.setState({ currentPage: this.state.currentPage + 1 });
     } else {
       this.props.loadMore && this.props.loadMore();
     }
@@ -267,13 +270,13 @@ class DataTable extends React.Component {
 
   toggleRowDetails = (rowData, rowNum) => {
     const selectedRow = typeof rowData.id === 'undefined' ? rowNum : rowData.id;
-    let selectedRows = {[selectedRow]: !this.state.selectedRows[selectedRow]};
+    let selectedRows = { [selectedRow]: !this.state.selectedRows[selectedRow] };
     if (this.props.allowMultiDetailsExpansion) {
       selectedRows = Object.assign({}, this.state.selectedRows, {
         [selectedRow]: !this.state.selectedRows[selectedRow],
       });
     }
-    this.setState({selectedRows});
+    this.setState({ selectedRows });
   };
 }
 
@@ -372,7 +375,7 @@ class TableHeader extends Component {
   render() {
     return (
       <thead>
-      <tr>{this.props.columns.map(this.renderHeaderCell)}</tr>
+        <tr>{this.props.columns.map(this.renderHeaderCell)}</tr>
       </thead>
     );
   }
@@ -410,7 +413,7 @@ DataTable.defaultProps = {
 };
 
 /* eslint-disable no-unused-vars */
-const {moveBy, dataHook, ...infoTooltipProps} = Tooltip.propTypes;
+const { moveBy, dataHook, ...infoTooltipProps } = Tooltip.propTypes;
 
 DataTable.propTypes = {
   dataHook: PropTypes.string,
