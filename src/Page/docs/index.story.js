@@ -46,7 +46,6 @@ export default {
     children: [header(), tail, content(false)],
     dataHook: 'story-page-playground',
     gradientClassName: 'background-gradient',
-    gradientCoverTail: false,
     upgrade: true,
   },
 

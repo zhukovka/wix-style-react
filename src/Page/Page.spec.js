@@ -76,8 +76,8 @@ describe('Page', () => {
       expect(driver.getPageHtml()).not.toContain('>0<');
     });
 
-    it('should be zero when Tail exist and gradientCoverTail is false', () => {
-      const props = { gradientClassName: 'class', gradientCoverTail: false };
+    it('should be zero when Tail exist', () => {
+      const props = { gradientClassName: 'class' };
       const driver = createDriver(
         <Page {...props}>
           <Page.Header />
@@ -117,7 +117,14 @@ describe('Page', () => {
   });
 
   describe('Scroll Header', () => {
-    it('should scroll ScrollableContent when getting wheel event on Header', () => {
+    it('should scroll ScrollableContent when getting wheel event on minimized Header', () => {
+      const mock = jest
+        .spyOn(Element.prototype, 'getBoundingClientRect')
+        .mockImplementation(() => {
+          return {
+            height: 120,
+          };
+        });
       const driver = PagePrivateDriver.fromJsxElement(
         <Page>
           <Page.Header title="title" />
@@ -127,8 +134,11 @@ describe('Page', () => {
         </Page>,
       );
       expect(driver.getScrollAmount()).toBe(0);
+      driver.setScrollAmount(200);
+      // There should be a minimized header now
       driver.wheelOnFixedContainer(10);
-      expect(driver.getScrollAmount()).toBe(10);
+      expect(driver.getScrollAmount()).toBe(210);
+      mock.mockRestore();
     });
   });
 

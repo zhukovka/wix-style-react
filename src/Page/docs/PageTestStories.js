@@ -82,17 +82,6 @@ PageTestStories.add('5. HTC-Image', () => (
   </PageContainer>
 ));
 
-PageTestStories.add('6. HTC-Gradient Cover Tail', () => (
-  <PageContainer>
-    <Page
-      {...defaultPageProps}
-      children={[header(), tail, content(false)]}
-      gradientClassName="background-gradient"
-      gradientCoverTail
-    />
-  </PageContainer>
-));
-
 PageTestStories.add('7. Default [min/max]-width', () => (
   <PageContainer>
     <Page {...defaultPageProps} />
@@ -257,6 +246,30 @@ class PageWithScroll extends React.Component {
       <PageContainer>
         <Page {...defaultPageProps}>
           {header()}
+          <Page.Content>
+            {[1, 2, 3, 4, 5, 6].map(i => {
+              return (
+                <div>
+                  <Page.Sticky style={{ height: '50px', background: 'grey' }}>
+                    Sticky {i}
+                  </Page.Sticky>
+                  <div style={{ height: '200px', background: 'white' }}>
+                    Gap {i}
+                  </div>
+                </div>
+              );
+            })}
+          </Page.Content>
+        </Page>
+      </PageContainer>
+    );
+  });
+  Stories.add(`${prefix(8)}Multiple Stickies + Tail`, () => {
+    return (
+      <PageContainer>
+        <Page {...defaultPageProps}>
+          {header()}
+          {tail}
           <Page.Content>
             {[1, 2, 3, 4, 5, 6].map(i => {
               return (

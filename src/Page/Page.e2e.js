@@ -87,15 +87,6 @@ describe('Page', () => {
       const storyUrl = testStoryUrl('5. HTC-Image');
       runChildrenCombinationTests({ storyUrl, dataHook });
     });
-
-    describe('With gradientCoverTail', () => {
-      const storyUrl = testStoryUrl('6. HTC-Gradient Cover Tail');
-      runChildrenCombinationTests({
-        storyUrl,
-        dataHook,
-        props: { backgroundImageUrl: '' },
-      });
-    });
   });
 
   describe('min/max width', () => {
