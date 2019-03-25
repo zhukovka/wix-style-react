@@ -1,6 +1,7 @@
 import ReactTestUtils from 'react-dom/test-utils';
 import eventually from 'wix-eventually';
 import last from 'lodash/last';
+import * as ReactDom from 'react-dom';
 
 const arrowDirectionToPlacement = {
   top: 'bottom',
@@ -9,7 +10,7 @@ const arrowDirectionToPlacement = {
   right: 'left',
 };
 
-const tooltipDriverFactory = ({ element }) => {
+const tooltipDriverFactory = ({ element, wrapper }) => {
   const getContentRoot = () => {
     const contentRootHook = element.getAttribute('data-content-hook');
     if (!contentRootHook) {
@@ -17,7 +18,22 @@ const tooltipDriverFactory = ({ element }) => {
         `Tooltip.driver: contentRootHook attribute must exist on the Toolrip's root element`,
       );
     }
-    return document.body.querySelector(`[data-hook="${contentRootHook}"]`);
+    const root = document.body.querySelector(
+      `[data-hook="${contentRootHook}"]`,
+    );
+    if (root) {
+      return root;
+    }
+
+    try {
+      const domInstance = ReactDom.findDOMNode(wrapper);
+      return (
+        domInstance &&
+        domInstance.querySelector(`[data-hook="${contentRootHook}"]`)
+      );
+    } catch (ignore) {
+      return null;
+    }
   };
 
   const getTooltipContent = () => getContentRoot().querySelector('.tooltip');
