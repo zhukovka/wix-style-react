@@ -31,6 +31,14 @@ describe('EmptyState', () => {
     expect(driver.getImageUrl()).toEqual('http://wix.com/some-image.png');
   });
 
+  it('should have a theme', () => {
+    const driver = createDriver(
+      <EmptyState {...defaultProps} theme="page-no-border" />,
+    );
+
+    expect(driver.hasTheme('page-no-border')).toBe(true);
+  });
+
   it('should support image passed as a node', () => {
     const driver = createDriver(
       <EmptyState {...defaultProps} image={<span>I am the image node</span>} />,

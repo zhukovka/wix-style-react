@@ -1,3 +1,5 @@
+import { isClassExists } from '../../test/utils';
+
 const emptyStateDriverFactory = ({ element }) => {
   const byDataHook = dataHook =>
     element.querySelector(`[data-hook="${dataHook}"]`);
@@ -28,6 +30,9 @@ const emptyStateDriverFactory = ({ element }) => {
 
     /** Returns the text of the subtitle */
     getSubtitleText: () => getSubtitle().textContent,
+
+    /** Returns true if the component was configured with given theme */
+    hasTheme: themeName => isClassExists(element, themeName),
 
     /** Returns the URL of the image element (if persist) */
     getImageUrl: () => getImageElement().src || '',
