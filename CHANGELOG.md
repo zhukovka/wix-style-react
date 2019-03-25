@@ -23,6 +23,7 @@ Types of changes:
 ### Fixed
 
 - `<DropdownLayout/>` (fix) - Fix reactDOM driver to use hashed class names #3161(https://github.com/wix/wix-style-react/pull/3161)
+- `<Tooltip>` (fix) - Sset default top/left css properties for tooltip content. [#3119](https://github.com/wix/wix-style-react/pull/3119)
 
 ### Docs
 
