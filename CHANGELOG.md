@@ -27,6 +27,7 @@ Types of changes:
 ### Docs
 
 - `<TextButton>` - improved documentation. [#3053](https://github.com/wix/wix-style-react/pull/3053)
+- `<IconButton>` - improved documentation. [#3082](https://github.com/wix/wix-style-react/pull/3082)
 
 ## 6.10.3 - 2019-03-24
 
