@@ -20,6 +20,10 @@ Types of changes:
 
 - `<Page/>` - With `upgrade` `<Page.Tail/>` will NOT receive `minimized` prop [#3140](https://github.com/wix/wix-style-react/pull/3140)
 
+### Fixed
+
+- `<DropdownLayout/>` (fix) - Fix reactDOM driver to use hashed class names #3161(https://github.com/wix/wix-style-react/pull/3161)
+
 ## 6.10.3 - 2019-03-24
 
 ### Fixed
