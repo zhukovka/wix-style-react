@@ -14,6 +14,12 @@ Types of changes:
 1. **Docs** for documentation changes
 1. **Lab** components and features that are still in a work in progress
 
+## Next
+
+### Changed
+
+- `<Page/>` - With `upgrade` `<Page.Tail/>` will NOT receive `minimized` prop [#3140](https://github.com/wix/wix-style-react/pull/3140)
+
 ## 6.10.3 - 2019-03-24
 
 ### Fixed
