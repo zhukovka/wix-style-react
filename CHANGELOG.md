@@ -24,7 +24,7 @@ Types of changes:
 
 - `<DropdownLayout/>` - Fix reactDOM driver to use hashed class names #3161(https://github.com/wix/wix-style-react/pull/3161)
 - `<Tooltip>` - Set default top/left css properties for tooltip content. [#3119](https://github.com/wix/wix-style-react/pull/3119)
-- `<EditableTitle/> - Prevent horizontal scrollbar [#3176](https://github.com/wix/wix-style-react/pull/3176)
+- `<EditableTitle/>` - Prevent horizontal scrollbar [#3176](https://github.com/wix/wix-style-react/pull/3176)
 - `<Page/>` (fix&refactor) - Fix Sticky z-index issue. Simplify Header styling and logic #3167(https://github.com/wix/wix-style-react/pull/3167)
 - `<EditableTitle/>` minor style fix [#3176](https://github.com/wix/wix-style-react/pull/3176)
 
