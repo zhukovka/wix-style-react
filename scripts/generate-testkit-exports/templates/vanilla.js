@@ -2,4 +2,4 @@
 import {
   testkitFactoryCreator,
   uniTestkitFactoryCreator,
-} from 'wix-ui-test-utils/vanilla';
+} from './creators/react-jsdom';
