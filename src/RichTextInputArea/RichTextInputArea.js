@@ -13,6 +13,8 @@ import draftToHtml from 'draftjs-to-html';
 import styles from './RichTextInputArea.scss';
 import RichTextToolbar from './Toolbar/RichTextToolbar';
 import EditorUtilities from './EditorUtilities';
+import { RichTextInputAreaContext } from './RichTextInputAreaContext';
+import { defaultTexts, textsPropType } from './RichTextInputAreaTexts';
 
 const decorator = new CompositeDecorator([
   {
@@ -36,16 +38,33 @@ class RichTextInputArea extends React.PureComponent {
     dataHook: PropTypes.string,
     value: PropTypes.string,
     onChange: PropTypes.func,
+    texts: textsPropType,
   };
 
   static defaultProps = {
     value: '',
+    texts: {},
   };
 
-  state = {
-    editorState: EditorState.createEmpty(decorator),
-  };
+  constructor(props) {
+    super(props);
 
+    const { texts: consumerTexts } = props;
+
+    this.state = {
+      editorState: EditorState.createEmpty(decorator),
+      texts: {
+        toolbarButtons: {
+          ...defaultTexts.toolbarButtons,
+          ...consumerTexts.toolbarButtons,
+        },
+        insertionForm: {
+          ...defaultTexts.insertionForm,
+          ...consumerTexts.insertionForm,
+        },
+      },
+    };
+  }
   componentDidMount() {
     const { value } = this.props;
 
@@ -58,21 +77,27 @@ class RichTextInputArea extends React.PureComponent {
 
     return (
       <div data-hook={dataHook} className={styles.root}>
-        <RichTextToolbar
-          dataHook="richtextarea-toolbar"
-          className={styles.toolbar}
-          editorState={this.state.editorState}
-          onBold={this._setEditorState}
-          onItalic={this._setEditorState}
-          onUnderline={this._setEditorState}
-          onLink={newEditorState => {
-            this._setEditorState(newEditorState, () =>
-              this.refs.editor.focus(),
-            );
+        <RichTextInputAreaContext.Provider
+          value={{
+            texts: this.state.texts,
           }}
-          onBulletedList={this._setEditorState}
-          onNumberedList={this._setEditorState}
-        />
+        >
+          <RichTextToolbar
+            dataHook="richtextarea-toolbar"
+            className={styles.toolbar}
+            editorState={this.state.editorState}
+            onBold={this._setEditorState}
+            onItalic={this._setEditorState}
+            onUnderline={this._setEditorState}
+            onLink={newEditorState => {
+              this._setEditorState(newEditorState, () =>
+                this.refs.editor.focus(),
+              );
+            }}
+            onBulletedList={this._setEditorState}
+            onNumberedList={this._setEditorState}
+          />
+        </RichTextInputAreaContext.Provider>
         <Editor
           ref="editor"
           editorState={this.state.editorState}

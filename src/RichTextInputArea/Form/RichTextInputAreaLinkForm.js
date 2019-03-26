@@ -1,6 +1,7 @@
 import React from 'react';
 
 import RichTextInputAreaForm from './RichTextInputAreaForm';
+import { RichTextInputAreaContext } from '../RichTextInputAreaContext';
 import Box from '../../Box';
 import Input from '../../Input';
 
@@ -25,27 +26,31 @@ class RichTextInputAreaLinkForm extends React.Component {
     const { dataHook, onCancel } = this.props;
 
     return (
-      <RichTextInputAreaForm
-        dataHook={dataHook}
-        onSubmit={this._onSubmit}
-        onCancel={onCancel}
-        isDisabled={this.state.url.length === 0}
-      >
-        <Box marginBottom={2}>
-          <Input
-            placeholder="Text to display"
-            size="small"
-            value={this.state.text}
-            onChange={event => this._setInputValue(event, 'text')}
-          />
-        </Box>
-        <Input
-          placeholder="URL this link should go"
-          size="small"
-          value={this.state.url}
-          onChange={event => this._setInputValue(event, 'url')}
-        />
-      </RichTextInputAreaForm>
+      <RichTextInputAreaContext.Consumer>
+        {({ texts }) => (
+          <RichTextInputAreaForm
+            dataHook={dataHook}
+            onSubmit={this._onSubmit}
+            onCancel={onCancel}
+            isDisabled={this.state.url.length === 0}
+          >
+            <Box marginBottom={2}>
+              <Input
+                placeholder={texts.insertionForm.link.textInputPlaceholder}
+                size="small"
+                value={this.state.text}
+                onChange={event => this._setInputValue(event, 'text')}
+              />
+            </Box>
+            <Input
+              placeholder={texts.insertionForm.link.urlInputPlaceholder}
+              size="small"
+              value={this.state.url}
+              onChange={event => this._setInputValue(event, 'url')}
+            />
+          </RichTextInputAreaForm>
+        )}
+      </RichTextInputAreaContext.Consumer>
     );
   }
 

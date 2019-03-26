@@ -4,6 +4,7 @@ import classNames from 'classnames';
 import styles from './RichTextToolbar.scss';
 import RichTextToolbarButton from './RichTextToolbarButton';
 import RichTextToolbarLinkButton from './RichTextToolbarLinkButton';
+import { RichTextInputAreaContext } from '../RichTextInputAreaContext';
 import EditorUtilities from '../EditorUtilities';
 import {
   inlineStyleTypes,
@@ -68,75 +69,101 @@ const RichTextToolbar = ({
   onBulletedList,
   onNumberedList,
 }) => {
-  const buttons = [
-    {
-      type: inlineStyleTypes.bold,
-      onClick: () => toggleStyle(editorState, onBold, inlineStyleTypes.bold),
-      iconComponent: TextAreaBold,
-      isActive: () =>
-        EditorUtilities.hasStyle(editorState, inlineStyleTypes.bold),
-      tooltipText: 'Bold',
-      render: (index, data) => renderButton(index, data),
-    },
-    {
-      type: inlineStyleTypes.italic,
-      onClick: () =>
-        toggleStyle(editorState, onItalic, inlineStyleTypes.italic),
-      iconComponent: TextAreaItalic,
-      isActive: () =>
-        EditorUtilities.hasStyle(editorState, inlineStyleTypes.italic),
-      tooltipText: 'Italic',
-      render: (index, data) => renderButton(index, data),
-    },
-    {
-      type: inlineStyleTypes.underline,
-      onClick: () =>
-        toggleStyle(editorState, onUnderline, inlineStyleTypes.underline),
-      iconComponent: TextAreaUnderline,
-      isActive: () =>
-        EditorUtilities.hasStyle(editorState, inlineStyleTypes.underline),
-      tooltipText: 'Underline',
-      render: (index, data) => renderButton(index, data),
-    },
-    {
-      type: entityTypes.link,
-      onSubmit: (event, linkData) =>
-        toggleEntity(editorState, onLink, linkData),
-      data: {
-        text: EditorUtilities.getSelectedText(editorState),
-      },
-      iconComponent: TextAreaLink,
-      isActive: () => EditorUtilities.hasEntity(editorState, entityTypes.link),
-      tooltipText: 'Insert link',
-      render: (index, data) => renderLinkButton(index, data),
-    },
-    {
-      type: blockTypes.bulletedList,
-      onClick: () =>
-        toggleBlockType(editorState, onBulletedList, blockTypes.bulletedList),
-      iconComponent: TextAreaBulletList,
-      isActive: () =>
-        EditorUtilities.hasBlockType(editorState, blockTypes.bulletedList),
-
-      tooltipText: 'Bulleted List',
-      render: (index, data) => renderButton(index, data),
-    },
-    {
-      type: blockTypes.numberedList,
-      onClick: () =>
-        toggleBlockType(editorState, onNumberedList, blockTypes.numberedList),
-      iconComponent: TextAreaNumberedList,
-      isActive: () =>
-        EditorUtilities.hasBlockType(editorState, blockTypes.numberedList),
-      tooltipText: 'Numbered List',
-      render: (index, data) => renderButton(index, data),
-    },
-  ];
-
   return (
-    <div data-hook={dataHook} className={classNames(className, styles.root)}>
-      {buttons.map(({ render, ...data }, index) => render(index, data))}
-    </div>
+    <RichTextInputAreaContext.Consumer>
+      {({ texts }) => {
+        const buttons = [
+          {
+            type: inlineStyleTypes.bold,
+            onClick: () =>
+              toggleStyle(editorState, onBold, inlineStyleTypes.bold),
+            iconComponent: TextAreaBold,
+            isActive: () =>
+              EditorUtilities.hasStyle(editorState, inlineStyleTypes.bold),
+            tooltipText: texts.toolbarButtons.boldButtonLabel,
+            render: (index, data) => renderButton(index, data),
+          },
+          {
+            type: inlineStyleTypes.italic,
+            onClick: () =>
+              toggleStyle(editorState, onItalic, inlineStyleTypes.italic),
+            iconComponent: TextAreaItalic,
+            isActive: () =>
+              EditorUtilities.hasStyle(editorState, inlineStyleTypes.italic),
+            tooltipText: texts.toolbarButtons.italicButtonLabel,
+            render: (index, data) => renderButton(index, data),
+          },
+          {
+            type: inlineStyleTypes.underline,
+            onClick: () =>
+              toggleStyle(editorState, onUnderline, inlineStyleTypes.underline),
+            iconComponent: TextAreaUnderline,
+            isActive: () =>
+              EditorUtilities.hasStyle(editorState, inlineStyleTypes.underline),
+            tooltipText: texts.toolbarButtons.underlineButtonLabel,
+            render: (index, data) => renderButton(index, data),
+          },
+          {
+            type: entityTypes.link,
+            onSubmit: (event, linkData) =>
+              toggleEntity(editorState, onLink, linkData),
+            data: {
+              text: EditorUtilities.getSelectedText(editorState),
+            },
+            iconComponent: TextAreaLink,
+            isActive: () =>
+              EditorUtilities.hasEntity(editorState, entityTypes.link),
+            tooltipText: texts.toolbarButtons.linkButtonLabel,
+            render: (index, data) => renderLinkButton(index, data),
+          },
+          {
+            type: blockTypes.bulletedList,
+            onClick: () =>
+              toggleBlockType(
+                editorState,
+                onBulletedList,
+                blockTypes.bulletedList,
+              ),
+            iconComponent: TextAreaBulletList,
+            isActive: () =>
+              EditorUtilities.hasBlockType(
+                editorState,
+                blockTypes.bulletedList,
+              ),
+
+            tooltipText: texts.toolbarButtons.bulletedListButtonLabel,
+            render: (index, data) => renderButton(index, data),
+          },
+          {
+            type: blockTypes.numberedList,
+            onClick: () =>
+              toggleBlockType(
+                editorState,
+                onNumberedList,
+                blockTypes.numberedList,
+              ),
+            iconComponent: TextAreaNumberedList,
+            isActive: () =>
+              EditorUtilities.hasBlockType(
+                editorState,
+                blockTypes.numberedList,
+              ),
+            tooltipText: texts.toolbarButtons.numberedListButtonLabel,
+            render: (index, data) => renderButton(index, data),
+          },
+        ];
+
+        return (
+          <div
+            data-hook={dataHook}
+            className={classNames(className, styles.root)}
+          >
+            {buttons.map(({ render, ...data }, index) => render(index, data))}
+          </div>
+        );
+      }}
+      )
+    </RichTextInputAreaContext.Consumer>
   );
 };
 
