@@ -152,7 +152,6 @@ describe('Dropdown', () => {
       );
 
       expect(dropdownLayoutDriver.optionById(0).isSelected()).toBe(false);
-
     });
 
     it('should update selection and value when selectedId changes', () => {
@@ -201,7 +200,6 @@ describe('Dropdown', () => {
       expect(dropdownTestkit.driver.exists()).toBe(true);
       expect(dropdownTestkit.inputDriver.exists()).toBe(true);
       expect(dropdownTestkit.dropdownLayoutDriver.exists()).toBe(true);
-
     });
   });
 
@@ -216,7 +214,6 @@ describe('Dropdown', () => {
       expect(dropdownTestkit.driver.exists()).toBe(true);
       expect(dropdownTestkit.inputDriver.exists()).toBe(true);
       expect(dropdownTestkit.dropdownLayoutDriver.exists()).toBe(true);
-
     });
   });
 });
