@@ -1,6 +1,3 @@
-import PropTypes from 'prop-types';
-import mapValues from 'lodash/mapValues';
-
 export const defaultTexts = {
   toolbarButtons: {
     boldButtonLabel: 'Bold',
@@ -19,15 +16,3 @@ export const defaultTexts = {
     },
   },
 };
-
-export const textsPropType = PropTypes.shape({
-  toolbarButtons: PropTypes.shape(
-    mapValues(defaultTexts.toolbarButtons, () => PropTypes.string),
-  ),
-  insertionForm: PropTypes.shape({
-    ...mapValues(defaultTexts.insertionForm, () => PropTypes.string),
-    link: PropTypes.shape(
-      mapValues(defaultTexts.toolbarButtons.link, () => PropTypes.string),
-    ),
-  }),
-});

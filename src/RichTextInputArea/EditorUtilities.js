@@ -59,7 +59,7 @@ const toggleBlockType = (editorState, toggledBlockType) => {
 };
 
 const toggleEntity = (editorState, linkData) => {
-  const { href: url = '', text = '' } = linkData;
+  const { url = '', text = '' } = linkData;
   const selection = editorState.getSelection();
   const contentState = editorState.getCurrentContent();
   const contentStateWithEntity = contentState.createEntity('LINK', 'MUTABLE', {

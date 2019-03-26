@@ -9,12 +9,13 @@ import {
   CompositeDecorator,
 } from 'draft-js';
 import draftToHtml from 'draftjs-to-html';
+import mapValues from 'lodash/mapValues';
 
 import styles from './RichTextInputArea.scss';
 import RichTextToolbar from './Toolbar/RichTextToolbar';
 import EditorUtilities from './EditorUtilities';
 import { RichTextInputAreaContext } from './RichTextInputAreaContext';
-import { defaultTexts, textsPropType } from './RichTextInputAreaTexts';
+import { defaultTexts } from './RichTextInputAreaTexts';
 
 const decorator = new CompositeDecorator([
   {
@@ -38,7 +39,17 @@ class RichTextInputArea extends React.PureComponent {
     dataHook: PropTypes.string,
     value: PropTypes.string,
     onChange: PropTypes.func,
-    texts: textsPropType,
+    texts: PropTypes.shape({
+      toolbarButtons: PropTypes.shape(
+        mapValues(defaultTexts.toolbarButtons, () => PropTypes.string),
+      ),
+      insertionForm: PropTypes.shape({
+        ...mapValues(defaultTexts.insertionForm, () => PropTypes.string),
+        link: PropTypes.shape(
+          mapValues(defaultTexts.toolbarButtons.link, () => PropTypes.string),
+        ),
+      }),
+    }),
   };
 
   static defaultProps = {

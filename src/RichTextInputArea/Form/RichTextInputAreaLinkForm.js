@@ -67,7 +67,9 @@ class RichTextInputAreaLinkForm extends React.Component {
     event.preventDefault();
 
     const { onSubmit } = this.props;
-    onSubmit && onSubmit(event, this.state);
+    const { text, url } = this.state;
+
+    onSubmit && onSubmit(event, { text, url });
   };
 }
 
