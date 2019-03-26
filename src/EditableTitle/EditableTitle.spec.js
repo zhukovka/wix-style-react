@@ -38,6 +38,24 @@ describe('EditableTitle', () => {
       expect(await driver.getInput().getValue()).toEqual(defaultValue);
     });
 
+    it('max input value length is 100 by default', async () => {
+      const { driver } = render(componentWithProps({}));
+
+      expect(await driver.getInput().getMaxLength()).toEqual('100');
+    });
+
+    it('max input value length is 50 when setting prop maxLength to be 50', async () => {
+      const { driver } = render(componentWithProps({ maxLength: 50 }));
+
+      expect(await driver.getInput().getMaxLength()).toEqual('50');
+    });
+
+    it('set input in focus on mount when setting autoFocus prop', async () => {
+      const { driver } = render(componentWithProps({ autoFocus: true }));
+
+      expect(await driver.getInput().isFocus()).toEqual(true);
+    });
+
     it('should return submitted value', async () => {
       const anotherTitle = 'Another Title';
       const onSubmit = jest.fn();

@@ -5,6 +5,8 @@ import Heading from '../Heading';
 import Input from '../Input/Input';
 import styles from './EditableTitle.scss';
 
+const DEFAULT_MAX_LENGTH = 100;
+
 class EditableTitle extends React.Component {
   constructor(props) {
     super(props);
@@ -13,6 +15,10 @@ class EditableTitle extends React.Component {
       focus: false,
       value: props.initialValue || '',
     };
+  }
+
+  componentDidMount() {
+    if (this.props.autoFocus) this.onFocus();
   }
 
   onChange = e => {
@@ -31,7 +37,7 @@ class EditableTitle extends React.Component {
     });
   };
   render() {
-    const { dataHook, className } = this.props;
+    const { dataHook, className, maxLength } = this.props;
 
     const conditionalClasses = {
       [styles.hasFocus]: this.state.focus,
@@ -84,7 +90,7 @@ class EditableTitle extends React.Component {
             autoSelect={false}
             className={styles.nbinput}
             textOverflow="clip"
-            maxLength={524288}
+            maxLength={maxLength || DEFAULT_MAX_LENGTH}
             onChange={this.onChange}
             value={this.state.value}
             ref={wsrInput => (this.wsrInput = wsrInput)}
@@ -119,6 +125,10 @@ EditableTitle.propTypes = {
   defaultValue: PropTypes.string,
   /** onSubmit - invoked when done editing */
   onSubmit: PropTypes.func,
+  /** length - maximum chars the input can get  */
+  maxLength: PropTypes.number,
+  /** autoFocus - focus element on mount  */
+  autoFocus: PropTypes.bool,
 };
 
 export default EditableTitle;
