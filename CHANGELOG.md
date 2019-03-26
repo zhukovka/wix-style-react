@@ -22,14 +22,13 @@ Types of changes:
 
 ### Fixed
 
-- `<DropdownLayout/>` (fix) - Fix reactDOM driver to use hashed class names #3161(https://github.com/wix/wix-style-react/pull/3161)
-- `<Tooltip>` (fix) - Sset default top/left css properties for tooltip content. [#3119](https://github.com/wix/wix-style-react/pull/3119)
+- `<DropdownLayout/>` - Fix reactDOM driver to use hashed class names #3161(https://github.com/wix/wix-style-react/pull/3161)
+- `<Tooltip>` - Set default top/left css properties for tooltip content. [#3119](https://github.com/wix/wix-style-react/pull/3119)
+- `<EditableTitle/> - Prevent horizontal scrollbar [#3176](https://github.com/wix/wix-style-react/pull/3176)
 
 ### Docs
 
-- `<TextButton>` - improved documentation. [#3053](https://github.com/wix/wix-style-react/pull/3053)
-- `<IconButton>` - improved documentation. [#3082](https://github.com/wix/wix-style-react/pull/3082)
-- `<CloseButton>` - improved documentation. [#3085](https://github.com/wix/wix-style-react/pull/3085)
+- `<TextButton>`, `<IconButton>`, `<CloseButton>` - improved documentation. [#3053](https://github.com/wix/wix-style-react/pull/3053), [#3082](https://github.com/wix/wix-style-react/pull/3082), [#3085](https://github.com/wix/wix-style-react/pull/3085)
 
 ## 6.10.3 - 2019-03-24
 
