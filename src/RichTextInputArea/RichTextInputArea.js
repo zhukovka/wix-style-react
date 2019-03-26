@@ -5,10 +5,8 @@ import {
   Editor,
   ContentState,
   convertFromHTML,
-  convertToRaw,
   CompositeDecorator,
 } from 'draft-js';
-import draftToHtml from 'draftjs-to-html';
 import mapValues from 'lodash/mapValues';
 
 import styles from './RichTextInputArea.scss';
@@ -112,28 +110,20 @@ class RichTextInputArea extends React.PureComponent {
         <Editor
           ref="editor"
           editorState={this.state.editorState}
-          onChange={this._onEditorChange}
+          onChange={this._setEditorState}
         />
       </div>
     );
   }
 
-  _setEditorState = (editorState, onDone) =>
-    this.setState({ editorState }, onDone);
-
-  _onEditorChange = newEditorState => {
-    this.setState({ editorState: newEditorState });
-
-    const currentContent = this.state.editorState.getCurrentContent();
-    const newContent = newEditorState.getCurrentContent();
-
-    if (currentContent !== newContent) {
+  _setEditorState = (newEditorState, onStateChanged = () => {}) => {
+    this.setState({ editorState: newEditorState }, () => {
       const { onChange = () => {} } = this.props;
-      const rawNewContent = convertToRaw(newContent);
-      const newContentAsHtml = draftToHtml(rawNewContent);
 
-      onChange(newContentAsHtml);
-    }
+      // Invoking the external `onChange` callback with the converted HTML value
+      onChange(EditorUtilities.convertToHtml(newEditorState));
+      onStateChanged();
+    });
   };
 
   _updateContentByValue = value => {

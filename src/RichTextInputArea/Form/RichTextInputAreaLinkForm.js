@@ -36,6 +36,7 @@ class RichTextInputAreaLinkForm extends React.Component {
           >
             <Box marginBottom={2}>
               <Input
+                dataHook="richtextarea-form-link-text"
                 placeholder={texts.insertionForm.link.textInputPlaceholder}
                 size="small"
                 value={this.state.text}
@@ -43,6 +44,7 @@ class RichTextInputAreaLinkForm extends React.Component {
               />
             </Box>
             <Input
+              dataHook="richtextarea-form-link-url"
               placeholder={texts.insertionForm.link.urlInputPlaceholder}
               size="small"
               value={this.state.url}
