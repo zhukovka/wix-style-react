@@ -14,6 +14,11 @@ Types of changes:
 1. **Docs** for documentation changes
 1. **Lab** components and features that are still in a work in progress
 
+## Next
+
+### Changed
+- `<Notification/>` (fix) - Add default zIndex so that Notification is displayed above the `<Page/>`'s minimized Header. overlay [#3181](https://github.com/wix/wix-style-react/pull/3181)
+
 ## 6.10.4 - 2019-03-26
 
 ### Changed
