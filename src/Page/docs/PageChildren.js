@@ -23,6 +23,7 @@ const ActionsBar = () => {
         >
           <PopoverMenuItem onClick={() => {}} text="Refresh" />
           <PopoverMenuItem onClick={() => {}} text="Trash" />
+          <PopoverMenuItem onClick={() => {}} text="Edit" />
         </PopoverMenu>
       </Box>
       <Box marginLeft="small" marginRight="small">

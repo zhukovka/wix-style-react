@@ -13,6 +13,7 @@ import {
   SHORT_SCROLL_TOP_THRESHOLD,
   TAIL_TOP_PADDING_PX,
   PAGE_SIDE_PADDING_PX,
+  BACKGROUND_COVER_CONTENT_PX,
 } from './constants';
 import {
   mainContainerMinWidthPx as GRID_MIN_WIDTH,
@@ -212,9 +213,10 @@ class Page extends WixComponent {
       : fixedContainerHeight - (78 - TAIL_TOP_PADDING_PX);
     const headerContainerHeight = fixedContainerHeight - fixedContentHeight;
     const imageHeight = `${headerContainerHeight +
-      (PageTail ? -tailHeight : 39)}px`;
+      (PageTail ? -tailHeight : BACKGROUND_COVER_CONTENT_PX)}px`;
     const gradientHeight = gradientCoverTail
-      ? `${headerContainerHeight + (PageTail ? -SCROLL_TOP_THRESHOLD : 39)}px`
+      ? `${headerContainerHeight +
+          (PageTail ? -SCROLL_TOP_THRESHOLD : BACKGROUND_COVER_CONTENT_PX)}px`
       : imageHeight;
 
     return {

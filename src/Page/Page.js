@@ -2,7 +2,6 @@ import React from 'react';
 
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import { ResizeSensor } from 'css-element-queries';
 import s from './Page.scss';
 import WixComponent from '../BaseComponents/WixComponent';
 import { PageContext } from './PageContext';
@@ -15,7 +14,8 @@ import {
   PAGE_SIDE_PADDING_PX,
   PAGE_BOTTOM_PADDING_PX,
   BACKGROUND_COVER_CONTENT_PX,
-  MINIMIZED_HEADER_CONTAINER_HEIGHT_PX,
+  MINIMIZED_HEADER_WRAPPER_HEIGHT_PX,
+  MINIMIZED_HEADER_WRAPPER_WITH_TAIL_HEIGHT_PX,
 } from './constants';
 import {
   mainContainerMinWidthPx as GRID_MIN_WIDTH,
@@ -32,9 +32,9 @@ import {
  * | | | | +-- Page.Header ------------
  * | | | | |
  * | | | | +---------------------------
- * | | | +-----------------------------
- * | | | +-- Page.Tail ----------------
- * | | | |
+ * | | | | +-- Page.Tail ----------------
+ * | | | | |
+ * | | | | +-----------------------------
  * | | | +-----------------------------
  * | | | +-- ContentWrapper------------
  * | | | | +-- Page.FixedContent (Deprecated)
@@ -53,13 +53,7 @@ import {
  */
 
 /**
- * A page container which contains a header and scrollable content.
- *
- * NOTICE : Temp workaround for Bug that happens if all these are true:
- *  - You are using the upgraded page `<Page upgrade/>`
- *  - You are using `<Page.Sticky/>` OR `<Page.FixedContent/>`
- *  - You are using a `<Modal/>`
- * Workaround: You need to set the Modal's zIndex to something greater than 11000.
+ * A page container which contains a sticky header and scrollable content.
  */
 class Page extends WixComponent {
   static defaultProps = {
@@ -78,20 +72,15 @@ class Page extends WixComponent {
     );
 
     this.state = {
+      headerContainerHeight: 0,
       headerWrapperHeight: 0,
       tailHeight: 0,
-      scrollBarWidth: 0,
-      displayMiniHeader: false,
+      minimized: false,
     };
   }
 
   componentDidMount() {
     super.componentDidMount();
-    this.contentResizeListener = new ResizeSensor(
-      this._getScrollContainer().childNodes[0],
-      this._handleWidthResize,
-    );
-
     this._calculateComponentsHeights();
     this._handleWidthResize();
     window.addEventListener('resize', this._handleWindowResize);
@@ -110,7 +99,6 @@ class Page extends WixComponent {
 
   componentWillUnmount() {
     super.componentWillUnmount();
-    this.contentResizeListener.detach(this._handleWidthResize);
     window.removeEventListener('resize', this._handleWindowResize);
   }
 
@@ -120,16 +108,22 @@ class Page extends WixComponent {
 
   _calculateComponentsHeights() {
     const {
+      headerContainerHeight,
       headerWrapperHeight,
       tailHeight,
       pageHeight,
-      displayMiniHeader,
+      minimized,
     } = this.state;
 
     const newHeaderWrapperHeight =
-      this.headerContainerRef && !displayMiniHeader
-        ? this.headerContainerRef.getBoundingClientRect().height
+      this.headerWrapperRef && !minimized
+        ? this.headerWrapperRef.getBoundingClientRect().height
         : headerWrapperHeight;
+
+    const newHeaderContainerHeight =
+      this.headerWrapperRef && !minimized
+        ? this.headerContainerRef.getBoundingClientRect().height
+        : headerContainerHeight;
 
     const newTailHeight = this.pageHeaderTailRef
       ? this.pageHeaderTailRef.offsetHeight
@@ -137,11 +131,13 @@ class Page extends WixComponent {
     const newPageHeight = this.pageRef ? this.pageRef.offsetHeight : 0;
 
     if (
+      headerContainerHeight !== newHeaderContainerHeight ||
       headerWrapperHeight !== newHeaderWrapperHeight ||
       tailHeight !== newTailHeight ||
       pageHeight !== newPageHeight
     ) {
       this.setState({
+        headerContainerHeight: newHeaderContainerHeight,
         headerWrapperHeight: newHeaderWrapperHeight,
         tailHeight: newTailHeight,
         pageHeight: newPageHeight,
@@ -160,40 +156,36 @@ class Page extends WixComponent {
     return this.scrollableContentRef;
   }
 
+  _getMinimizedHeaderWrapperHeight() {
+    return this._hasTail()
+      ? MINIMIZED_HEADER_WRAPPER_WITH_TAIL_HEIGHT_PX
+      : MINIMIZED_HEADER_WRAPPER_HEIGHT_PX;
+  }
+
   _getMinimizationDiff() {
     const { headerWrapperHeight } = this.state;
     return headerWrapperHeight
-      ? headerWrapperHeight - MINIMIZED_HEADER_CONTAINER_HEIGHT_PX
+      ? headerWrapperHeight - this._getMinimizedHeaderWrapperHeight()
       : null;
   }
 
   _handleScroll() {
     const containerScrollTop = this._getScrollContainer().scrollTop;
 
-    const { displayMiniHeader } = this.state;
+    const { minimized } = this.state;
 
     const minimizationDiff = this._getMinimizationDiff();
     const nextDisplayMiniHeader =
-      minimizationDiff && containerScrollTop >= this._getMinimizationDiff();
+      minimizationDiff && containerScrollTop >= minimizationDiff;
 
-    if (displayMiniHeader !== nextDisplayMiniHeader) {
+    if (minimized !== nextDisplayMiniHeader) {
       this.setState({
-        displayMiniHeader: nextDisplayMiniHeader,
+        minimized: nextDisplayMiniHeader,
       });
     }
   }
 
-  _handleWidthResize() {
-    // Fixes width issues when scroll bar is present in windows
-    const scrollContainer = this._getScrollContainer();
-    const scrollBarWidth =
-      scrollContainer &&
-      scrollContainer.offsetWidth - scrollContainer.clientWidth;
-
-    if (this.state.scrollBarWidth !== scrollBarWidth) {
-      this.setState({ scrollBarWidth });
-    }
-  }
+  _handleWidthResize() {}
 
   _handleWindowResize() {
     // TODO: Optimize : https://developer.mozilla.org/en-US/docs/Web/Events/resize
@@ -246,32 +238,41 @@ class Page extends WixComponent {
     return !!this.props.gradientClassName && !this.props.backgroundImageUrl;
   }
 
-  _getContentHorizontalLayoutProps() {
-    const { children } = this.props;
-    const childrenObject = getChildrenObject(children);
-    const { PageContent } = childrenObject;
+  _renderContentHorizontalLayout(props) {
+    const { PageContent } = this._getNamedChildren();
     const contentFullScreen = PageContent && PageContent.props.fullScreen;
-    const pageDimensionsStyle = this._getPageDimensionsStyle();
 
-    return {
-      className: classNames(s.contentHorizontalLayout, {
-        [s.contentFullWidth]: contentFullScreen,
-      }),
-      style: contentFullScreen ? null : pageDimensionsStyle,
-    };
+    const { className, ...rest } = props;
+    const mergedClassNames = classNames(className, s.contentHorizontalLayout, {
+      [s.contentFullWidth]: contentFullScreen,
+    });
+
+    const pageDimensionsStyle = this._getPageDimensionsStyle();
+    const style = contentFullScreen ? null : pageDimensionsStyle;
+
+    return (
+      <div className={mergedClassNames} style={style} {...rest}>
+        {props.children}
+      </div>
+    );
   }
 
-  _renderHeader({ minimized }) {
-    const { children } = this.props;
-    const childrenObject = getChildrenObject(children);
-    const { PageHeader: PageHeaderChild } = childrenObject;
-    const pageDimensionsStyle = this._getPageDimensionsStyle();
+  _renderHeader() {
+    const { minimized } = this.state;
+    const { PageHeader: PageHeaderChild } = this._getNamedChildren();
 
     return (
       PageHeaderChild && (
-        <div className={s.pageHeader} style={pageDimensionsStyle}>
+        <div
+          data-hook="page-header-wrapper"
+          className={classNames(s.headerWrapper, {
+            [s.minimized]: minimized,
+          })}
+          ref={ref => {
+            this.headerWrapperRef = ref;
+          }}
+        >
           {React.cloneElement(PageHeaderChild, {
-            dataHook: minimized ? undefined : PageHeaderChild.props.dataHook, // Hack? - https://github.com/wix/wix-style-react/issues/3088
             minimized,
             hasBackgroundImage: this._hasBackgroundImage(),
             upgrade: true,
@@ -281,68 +282,46 @@ class Page extends WixComponent {
     );
   }
 
-  /**
-   * +-- HeaderContainer ------
-   * | +-- Page.Header --------
-   * | |
-   * | |
-   * | +-----------------------
-   * +-------------------------
-   * +-- Placeholder ----------
-   * | Keeps total height when header is minimized
-   * +-------------------------
-   */
-  _renderHeaderElements() {
-    const {
-      scrollBarWidth,
-      displayMiniHeader,
-      headerWrapperHeight,
-    } = this.state;
+  _renderHeaderContainer() {
+    const { minimized } = this.state;
 
-    const minimizedProps = {
-      style: {
-        width: scrollBarWidth ? `calc(100% - ${scrollBarWidth}px` : undefined,
-        // ...invisibleStyle,
-      },
-      onWheel: event => {
-        this._getScrollContainer().scrollTop =
-          this._getScrollContainer().scrollTop + event.deltaY;
-      },
-    };
-
-    return [
+    // placeholder when header is minimized
+    const placeholder = (
       <div
-        className={classNames(s.pageHeaderContainer, {
-          [s.divider]: !this._hasTail(),
-        })}
-        data-hook="page-header-container"
-        ref={ref => {
-          this.headerContainerRef = ref;
-        }}
-        {...(displayMiniHeader ? minimizedProps : {})}
-      >
-        {this._renderHeader({ minimized: displayMiniHeader })}
-      </div>,
-      <div // placeholder when header is minimized
         style={{
-          height: `${
-            displayMiniHeader
-              ? headerWrapperHeight - MINIMIZED_HEADER_CONTAINER_HEIGHT_PX
-              : 0
-          }px`,
+          height: `${minimized ? this._getMinimizationDiff() : 0}px`,
         }}
-      />,
-    ];
+      />
+    );
+
+    /**
+     * HeaderContainer has position sticky. The `top` value is negative, in order to let
+     * the container scroll out of view before the minimization occurs.
+     */
+    const top = minimized ? `-${this._getMinimizationDiff()}px` : 0;
+
+    return (
+      <div
+        data-hook="page-header-container"
+        className={classNames(s.pageHeaderContainer, {
+          [s.minimized]: minimized,
+          [s.hasTail]: this._hasTail(),
+        })}
+        style={{ top }}
+        ref={ref => (this.headerContainerRef = ref)}
+      >
+        {this._renderContentHorizontalLayout({
+          children: [placeholder, this._renderHeader(), this._renderTail()],
+        })}
+      </div>
+    );
   }
 
   _renderScrollableContainer() {
-    const { displayMiniHeader } = this.state;
-
     return (
       <div
         className={classNames(s.scrollableContainer, {
           [s.hasTail]: this._hasTail(),
-          [s.minimized]: displayMiniHeader,
         })}
         data-hook="page-scrollable-content"
         data-class="page-scrollable-content"
@@ -350,9 +329,8 @@ class Page extends WixComponent {
         onScroll={this._handleScroll}
       >
         {this._renderScrollableBackground()}
-        {this._renderHeaderElements()}
-        {this._renderTail()}
-        {this._renderContentWrapper()}
+        {this._renderHeaderContainer()}
+        {this._renderContentContainer()}
       </div>
     );
   }
@@ -362,9 +340,10 @@ class Page extends WixComponent {
   }
 
   _renderScrollableBackground() {
-    const { headerWrapperHeight } = this.state;
+    const { headerContainerHeight, tailHeight } = this.state;
 
-    const backgroundHeight = `${headerWrapperHeight +
+    const backgroundHeight = `${headerContainerHeight -
+      tailHeight +
       (this._hasTail() ? 0 : BACKGROUND_COVER_CONTENT_PX)}px`;
 
     if (this._hasBackgroundImage()) {
@@ -395,69 +374,58 @@ class Page extends WixComponent {
 
   _renderTail() {
     const { PageTail } = this._getNamedChildren();
-    const pageDimensionsStyle = this._getPageDimensionsStyle();
     return (
       PageTail && (
         <div
           data-hook="page-tail"
-          className={classNames(s.tailContainer, s.divider)}
+          className={s.tail}
           ref={r => (this.pageHeaderTailRef = r)}
-          style={{
-            top: `${MINIMIZED_HEADER_CONTAINER_HEIGHT_PX}px`,
-          }}
         >
-          <div className={s.tail} style={pageDimensionsStyle}>
-            {PageTail}
-          </div>
+          {PageTail}
         </div>
       )
     );
   }
 
-  _renderContentWrapper() {
+  _renderContentContainer() {
     const { children } = this.props;
     const childrenObject = getChildrenObject(children);
     const { PageContent, PageFixedContent } = childrenObject;
 
-    const { headerWrapperHeight } = this.state;
+    const { headerWrapperHeight, tailHeight } = this.state;
 
     const { pageHeight } = this.state;
 
-    const contentHorizontalLayoutProps = this._getContentHorizontalLayoutProps();
     const stretchToHeight =
-      pageHeight - headerWrapperHeight - PAGE_BOTTOM_PADDING_PX;
+      pageHeight - headerWrapperHeight - tailHeight - PAGE_BOTTOM_PADDING_PX;
 
     return (
       <PageContext.Provider
         value={{
           stickyStyle: {
-            top: `${MINIMIZED_HEADER_CONTAINER_HEIGHT_PX +
+            top: `${this._getMinimizedHeaderWrapperHeight() +
               this.state.tailHeight}px`,
           },
         }}
       >
-        <div
-          className={classNames(contentHorizontalLayoutProps.className, [
-            s.contentWrapper,
-          ])}
-          style={{
-            ...contentHorizontalLayoutProps.style,
-          }}
-        >
-          <div
-            style={{
-              minHeight: `${stretchToHeight}px`,
-            }}
-            className={s.contentFloating}
-          >
-            {PageFixedContent && (
-              <PageSticky data-hook="page-fixed-content">
-                {React.cloneElement(PageFixedContent)}
-              </PageSticky>
-            )}
-            {this._safeGetChildren(PageContent)}
-          </div>
-        </div>
+        {this._renderContentHorizontalLayout({
+          className: s.contentContainer,
+          children: (
+            <div
+              style={{
+                minHeight: `${stretchToHeight}px`,
+              }}
+              className={s.contentFloating}
+            >
+              {PageFixedContent && (
+                <PageSticky data-hook="page-fixed-content">
+                  {React.cloneElement(PageFixedContent)}
+                </PageSticky>
+              )}
+              {this._safeGetChildren(PageContent)}
+            </div>
+          ),
+        })}
       </PageContext.Provider>
     );
   }
