@@ -6,7 +6,10 @@ import { getTestStoryKind } from '../../../stories/storiesHierarchy';
 
 import Page from 'wix-style-react/Page';
 import Card from 'wix-style-react/Card';
+import Box from 'wix-style-react/Box';
 import Notification from 'wix-style-react/Notification';
+import PopoverMenu from 'wix-style-react/PopoverMenu';
+import PopoverMenuItem from 'wix-style-react/PopoverMenuItem';
 
 import * as s from './PageTestStories.scss';
 import { header, tail, fixedContent, content } from './PageChildren';
@@ -82,17 +85,6 @@ PageTestStories.add('5. HTC-Image', () => (
   </PageContainer>
 ));
 
-PageTestStories.add('6. HTC-Gradient Cover Tail', () => (
-  <PageContainer>
-    <Page
-      {...defaultPageProps}
-      children={[header(), tail, content(false)]}
-      gradientClassName="background-gradient"
-      gradientCoverTail
-    />
-  </PageContainer>
-));
-
 PageTestStories.add('7. Default [min/max]-width', () => (
   <PageContainer>
     <Page {...defaultPageProps} />
@@ -138,6 +130,37 @@ PageTestStories.add('11. With Notification', () => (
       <Notification.TextLabel>Hello Notification</Notification.TextLabel>
       <Notification.CloseButton />
     </Notification>
+  </PageContainer>
+));
+
+PageTestStories.add('12. PopoverMenus', () => (
+  <PageContainer>
+    <Page {...defaultPageProps}>
+      {header()}
+      <Page.Content>
+        <Page.Sticky>
+          <div style={{ background: 'grey' }}>Sticky</div>
+        </Page.Sticky>
+        <Card>
+          <Card.Content>
+            <Box align="right">
+              <PopoverMenu
+                dataHook="popovermenu-in-content"
+                buttonTheme="icon-greybackground"
+                placement="top"
+                size="normal"
+                appendToParent
+              >
+                <PopoverMenuItem onClick={() => {}} text="Refresh" />
+                <PopoverMenuItem onClick={() => {}} text="Trash" />
+                <PopoverMenuItem onClick={() => {}} text="Edit" />
+              </PopoverMenu>
+            </Box>
+            <LongTextContent />
+          </Card.Content>
+        </Card>
+      </Page.Content>
+    </Page>
   </PageContainer>
 ));
 
@@ -257,6 +280,30 @@ class PageWithScroll extends React.Component {
       <PageContainer>
         <Page {...defaultPageProps}>
           {header()}
+          <Page.Content>
+            {[1, 2, 3, 4, 5, 6].map(i => {
+              return (
+                <div>
+                  <Page.Sticky style={{ height: '50px', background: 'grey' }}>
+                    Sticky {i}
+                  </Page.Sticky>
+                  <div style={{ height: '200px', background: 'white' }}>
+                    Gap {i}
+                  </div>
+                </div>
+              );
+            })}
+          </Page.Content>
+        </Page>
+      </PageContainer>
+    );
+  });
+  Stories.add(`${prefix(8)}Multiple Stickies + Tail`, () => {
+    return (
+      <PageContainer>
+        <Page {...defaultPageProps}>
+          {header()}
+          {tail}
           <Page.Content>
             {[1, 2, 3, 4, 5, 6].map(i => {
               return (

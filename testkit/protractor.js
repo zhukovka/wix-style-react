@@ -443,3 +443,15 @@ import { dateInputDriverFactory } from '../src/DateInput/DateInput.uni.driver';
 export const dateInputTestkitFactory = protractorUniTestkitFactoryCreator(
   dateInputDriverFactory,
 );
+
+import { editableTitleUniDriverFactory } from '../src/EditableTitle/EditableTitle.uni.driver';
+
+export const editableTitleTestkitFactory = protractorUniTestkitFactoryCreator(
+  editableTitleUniDriverFactory,
+);
+
+import { accordionDriverFactory } from '../src/Accordion/Accordion.driver';
+
+export const accordionTestkitFactory = protractorUniTestkitFactoryCreator(
+  accordionDriverFactory,
+);

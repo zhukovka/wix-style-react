@@ -56,6 +56,15 @@ describe('ColorInput', () => {
       });
     });
 
+    describe('value is not confirmed on', () => {
+      it('click outside when ColorViewer is not active', async () => {
+        const onConfirm = jest.fn();
+        const driver = createDriver(renderColorInput({ onConfirm }));
+        (await driver.popoverDriver()).clickOutside();
+        expect(onConfirm.mock.calls.length).toBe(0);
+      });
+    });
+
     describe('value is cancelled on', () => {
       it(`keyboard key 'Escape'`, async () => {
         const value = '#123456';

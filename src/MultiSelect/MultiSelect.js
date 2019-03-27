@@ -48,6 +48,8 @@ class MultiSelect extends InputWithOptions {
 
   inputAdditionalProps() {
     return {
+      readOnly: false,
+      disableEditing: true,
       inputElement: (
         <InputWithTags
           onReorder={this.props.onReorder}

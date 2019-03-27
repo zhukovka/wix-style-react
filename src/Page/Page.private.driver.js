@@ -17,7 +17,7 @@ export class PagePrivateDriver {
   }
 
   get fixedContainer() {
-    return this.byDataHook('page-fixed-container');
+    return this.byDataHook('page-header-container');
   }
 
   get scrollableContainer() {
@@ -30,5 +30,14 @@ export class PagePrivateDriver {
 
   getScrollAmount() {
     return this.scrollableContainer.scrollTop;
+  }
+
+  setScrollAmount(amount) {
+    this.scrollableContainer.scrollTop = amount;
+    this.eventTrigger.scroll(this.byDataHook('page-scrollable-content'));
+  }
+
+  getStyle() {
+    return this.element.style;
   }
 }

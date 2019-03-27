@@ -85,6 +85,18 @@ describe('MultiSelect', () => {
     expect(dropdownLayoutDriver.optionsLength()).toBe(options.length);
   });
 
+  it('should be editable', () => {
+    const { driver } = createDriver(<MultiSelect options={options} />);
+    expect(driver.isEditable()).toBe(true);
+  });
+
+  it('should NOT be editable on select mode', () => {
+    const { driver } = createDriver(
+      <MultiSelect mode="select" options={options} />,
+    );
+    expect(driver.isEditable()).toBe(false);
+  });
+
   describe('click-outside', () => {
     it('should clear input when clicked-out-side given input is non-empty', () => {
       const onChange = jest.fn();

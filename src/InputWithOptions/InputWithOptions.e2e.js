@@ -9,7 +9,7 @@ describe('InputWithOptions', () => {
 
   const navigateToTestUrl = async testName => {
     const testStoryUrl = createTestStoryUrl({
-      category: storySettings.indexCategory,
+      category: storySettings.category,
       storyName: storySettings.storyName,
       dataHook: storySettings.dataHook,
       testName,

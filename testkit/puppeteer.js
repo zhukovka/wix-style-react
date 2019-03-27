@@ -152,3 +152,15 @@ import { dateInputDriverFactory } from '../src/DateInput/DateInput.uni.driver';
 export const dateInputTestkitFactory = puppeteerUniTestkitFactoryCreator(
   dateInputDriverFactory,
 );
+
+import { editableTitleUniDriverFactory } from '../src/EditableTitle/EditableTitle.uni.driver';
+
+export const editableTitleTestkitFactory = puppeteerUniTestkitFactoryCreator(
+  editableTitleUniDriverFactory,
+);
+
+import { accordionDriverFactory } from '../src/Accordion/Accordion.driver';
+
+export const accordionTestkitFactory = puppeteerUniTestkitFactoryCreator(
+  accordionDriverFactory,
+);

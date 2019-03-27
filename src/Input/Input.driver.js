@@ -17,6 +17,7 @@ const inputDriverFactory = ({ element }) => {
     element && element.querySelector(`.${styles.menuArrow}`);
   const getName = () => input.getAttribute('name');
   const getType = () => input.getAttribute('type');
+  const getMaxLength = () => input.getAttribute('maxlength');
 
   const driver = {
     trigger: (trigger, event) => ReactTestUtils.Simulate[trigger](input, event),
@@ -29,6 +30,7 @@ const inputDriverFactory = ({ element }) => {
       ReactTestUtils.Simulate.blur(input);
     },
     getName,
+    getMaxLength,
     getType,
     keyDown: key => ReactTestUtils.Simulate.keyDown(input, { key }),
     click: () => ReactTestUtils.Simulate.click(input),
@@ -54,6 +56,7 @@ const inputDriverFactory = ({ element }) => {
     getDefaultValue: () => input.defaultValue,
     getTabIndex: () => input.tabIndex,
     getReadOnly: () => input.readOnly,
+    getDisabled: () => input.disabled,
     getTextOverflow: () => input.style['text-overflow'],
     getAriaLabel: () => input.getAttribute('aria-label'),
     getAriaControls: () => input.getAttribute('aria-controls'),

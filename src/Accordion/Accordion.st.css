@@ -1,0 +1,14 @@
+:import {
+  -st-from: "wix-ui-core/dist/src/themes/backoffice/colors.st.css";
+  -st-named: D60,D80;
+}
+
+.item {
+  -st-states: last;
+  border-bottom: 1px solid value(D60);
+  background-color: value(D80);
+}
+
+.item:last {
+  border-bottom-width: 0;
+}

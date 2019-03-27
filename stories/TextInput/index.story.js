@@ -62,7 +62,7 @@ export default {
       }),
     ]),
 
-    columns([importExample(examples.importExample)]),
+    importExample(examples.importExample),
 
     sectionTitle('Examples'),
 

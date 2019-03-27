@@ -5,7 +5,7 @@ import { Simulate } from 'react-dom/test-utils';
  *
  * @param {UniDriver} base
  */
-export function ReactBase(base, document) {
+export function ReactBase(base) {
   const htmlElement = () => {
     if (base.type !== 'react') {
       throw new Error('Supported only in React/DOM.');
@@ -64,9 +64,7 @@ export function ReactBase(base, document) {
       Simulate.focus(elm); // TODO: Is this redundant?
     },
     isFocus: async () => {
-      return (
-        (await document.getNative()).activeElement === (await htmlElement())
-      );
+      return document.activeElement === (await htmlElement());
     },
     blur: async () => {
       const elm = await htmlElement();

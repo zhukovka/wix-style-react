@@ -25,10 +25,10 @@ const dropdownLayoutDriverFactory = ({ element }) => {
 
   return {
     exists: () => !!element,
-    isShown: () => isClassExists(contentContainer, 'shown'),
-    isDown: () => isClassExists(contentContainer, 'down'),
-    isUp: () => isClassExists(contentContainer, 'up'),
-    hasTheme: theme => isClassExists(element, `theme-${theme}`),
+    isShown: () => isClassExists(contentContainer, styles.shown),
+    isDown: () => isClassExists(contentContainer, styles.down),
+    isUp: () => isClassExists(contentContainer, styles.up),
+    hasTheme: theme => isClassExists(element, styles[`theme-${theme}`]),
     tabIndex: () => element.tabIndex,
     optionsLength: () => optionsLength(),
     optionsScrollTop: () => optionElements.scrollTop,
@@ -50,11 +50,11 @@ const dropdownLayoutDriverFactory = ({ element }) => {
     /** returns if an option is hovered. notice that it checks by index and __not__ by id */
     isOptionHovered: position =>
       doIfOptionExists(position, () =>
-        isClassExists(optionElementAt(position), 'hovered'),
+        isClassExists(optionElementAt(position), styles.hovered),
       ),
     isOptionSelected: position =>
       doIfOptionExists(position, () =>
-        isClassExists(optionElementAt(position), 'selected'),
+        isClassExists(optionElementAt(position), styles.selected),
       ),
     isOptionHoveredWithGlobalClassName: position =>
       doIfOptionExists(position, () =>
@@ -66,11 +66,11 @@ const dropdownLayoutDriverFactory = ({ element }) => {
       ),
     isOptionHeightSmall: position =>
       doIfOptionExists(position, () =>
-        isClassExists(optionElementAt(position), 'smallHeight'),
+        isClassExists(optionElementAt(position), styles.smallHeight),
       ),
     isOptionHeightBig: position =>
       doIfOptionExists(position, () =>
-        isClassExists(optionElementAt(position), 'bigHeight'),
+        isClassExists(optionElementAt(position), styles.bigHeight),
       ),
     isLinkOption: position =>
       optionElementAt(position).tagName.toLowerCase() === 'a',
@@ -113,7 +113,7 @@ const dropdownLayoutDriverFactory = ({ element }) => {
     },
     isOptionADivider: position =>
       doIfOptionExists(position, () =>
-        isClassExists(optionElementAt(position), 'divider'),
+        isClassExists(optionElementAt(position), styles.divider),
       ),
     mouseEnter: () => ReactTestUtils.Simulate.mouseEnter(element),
     mouseLeave: () => ReactTestUtils.Simulate.mouseLeave(element),
@@ -136,16 +136,16 @@ const createOptionDriver = option => ({
   element: () => option,
   mouseEnter: () => ReactTestUtils.Simulate.mouseEnter(option),
   mouseLeave: () => ReactTestUtils.Simulate.mouseLeave(option),
-  isHovered: () => isClassExists(option, 'hovered'),
-  isSelected: () => isClassExists(option, 'selected'),
+  isHovered: () => isClassExists(option, styles.hovered),
+  isSelected: () => isClassExists(option, styles.selected),
   isHoveredWithGlobalClassName: () =>
     isClassExists(option, 'wixstylereactHovered'),
   isSelectedWithGlobalClassName: () =>
     isClassExists(option, 'wixstylereactSelected'),
   content: () => option.textContent,
   click: () => ReactTestUtils.Simulate.mouseDown(option),
-  isDivider: () => isClassExists(option, 'divider'),
-  isDisabled: () => isClassExists(option, 'disabled'),
+  isDivider: () => isClassExists(option, styles.divider),
+  isDisabled: () => isClassExists(option, styles.disabled),
 });
 
 export default dropdownLayoutDriverFactory;

@@ -6,6 +6,8 @@ import styles from './Modal.scss';
 import { colors, flexPositions, positions } from './ModalConstants';
 import WixComponent from '../BaseComponents/WixComponent';
 import X from '../new-icons/X';
+import { ZIndex } from '../ZIndex';
+import defaultTo from 'lodash/defaultTo';
 
 const CHILDREN_WRAPPER_DIV_ID = 'modal-children-container';
 
@@ -15,6 +17,7 @@ class Modal extends WixComponent {
     contentLabel: PropTypes.string,
     theme: PropTypes.oneOf(Object.keys(colors)),
     children: PropTypes.any,
+    /** z-index of the modal overlay */
     zIndex: PropTypes.number,
     shouldCloseOnOverlayClick: PropTypes.bool,
     shouldDisplayCloseButton: PropTypes.bool,
@@ -84,7 +87,7 @@ class Modal extends WixComponent {
         left: 0,
         right: 0,
         bottom: 0,
-        zIndex: 11 + (zIndex || 0),
+        zIndex: defaultTo(zIndex, ZIndex('Modal')),
         backgroundColor: null, // null disables the property, use css instead
         // Overriding defaults - END
         display: 'flex',

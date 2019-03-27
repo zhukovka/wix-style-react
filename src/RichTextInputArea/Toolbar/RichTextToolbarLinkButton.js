@@ -5,7 +5,7 @@ import RichTextInputAreaLinkForm from '../Form/RichTextInputAreaLinkForm';
 import Popover from '../../Popover';
 import Box from '../../Box';
 
-class RichTextToolbarLinkButton extends React.PureComponent {
+class RichTextToolbarLinkButton extends React.Component {
   state = {
     isFormShown: false,
   };
@@ -34,12 +34,12 @@ class RichTextToolbarLinkButton extends React.PureComponent {
           </RichTextToolbarButton>
         </Popover.Element>
         <Popover.Content>
-          <Box padding={'20px'}>
+          <Box padding={3}>
             <RichTextInputAreaLinkForm
               dataHook="richtextarea-form"
               onSubmit={this._handleSubmit}
               onCancel={this._hideForm}
-              defaultData={data}
+              data={data}
             />
           </Box>
         </Popover.Content>
@@ -54,9 +54,9 @@ class RichTextToolbarLinkButton extends React.PureComponent {
   };
 
   _handleSubmit = (event, linkData) => {
-    const { onClick } = this.props;
+    const { onSubmit } = this.props;
 
-    onClick(event, linkData);
+    onSubmit(event, linkData);
     this._hideForm();
   };
 }

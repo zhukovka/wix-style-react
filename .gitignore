@@ -33,3 +33,7 @@ autodocs-registry
 /new-icons/
 /src/new-icons/system
 /src/new-icons/*.js
+
+# applitools private config
+!applitools.config.js
+applitools.private.config.js

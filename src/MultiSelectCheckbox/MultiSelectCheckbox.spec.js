@@ -24,11 +24,9 @@ describe('multiSelectCheckbox', () => {
     { value: 'Two words', id: 'Two words' },
   ];
 
-  it('should have a readonly input', () => {
-    const { inputDriver } = createDriver(
-      <MultiSelectCheckbox options={options} />,
-    );
-    expect(inputDriver.getReadOnly()).toBeTruthy();
+  it('should not be editable', () => {
+    const { driver } = createDriver(<MultiSelectCheckbox options={options} />);
+    expect(driver.isEditable()).toBe(false);
   });
 
   it('should show dropdown on input click', () => {
@@ -36,7 +34,7 @@ describe('multiSelectCheckbox', () => {
       <MultiSelectCheckbox options={options} />,
     );
     inputDriver.click();
-    expect(dropdownLayoutDriver.isShown()).toBeTruthy();
+    expect(dropdownLayoutDriver.isShown()).toBe(true);
   });
 
   it('should not show dropdown on input click when disabled', () => {
@@ -44,7 +42,7 @@ describe('multiSelectCheckbox', () => {
       <MultiSelectCheckbox disabled options={options} />,
     );
     inputDriver.click();
-    expect(dropdownLayoutDriver.isShown()).toBeFalsy();
+    expect(dropdownLayoutDriver.isShown()).toBe(false);
   });
 
   it('should close dropdown on second input click', () => {
@@ -53,7 +51,7 @@ describe('multiSelectCheckbox', () => {
     );
     inputDriver.click();
     inputDriver.click();
-    expect(dropdownLayoutDriver.isShown()).toBeFalsy();
+    expect(dropdownLayoutDriver.isShown()).toBe(false);
   });
 
   it('should close dropdown on Escape', () => {
@@ -63,7 +61,8 @@ describe('multiSelectCheckbox', () => {
     inputDriver.click();
     inputDriver.focus();
     inputDriver.keyDown('Escape');
-    expect(dropdownLayoutDriver.isShown()).toBeFalsy();
+
+    expect(dropdownLayoutDriver.isShown()).toBe(false);
   });
 
   const OPEN_DROPDOWN_CHARS = [
@@ -80,7 +79,8 @@ describe('multiSelectCheckbox', () => {
       );
       inputDriver.focus();
       inputDriver.trigger('keyDown', charData);
-      expect(dropdownLayoutDriver.isShown()).toBeTruthy();
+
+      expect(dropdownLayoutDriver.isShown()).toBe(true);
     });
   });
 
@@ -91,7 +91,8 @@ describe('multiSelectCheckbox', () => {
 
     inputDriver.focus();
     dropdownLayoutDriver.clickAtOption(0);
-    expect(inputDriver.isFocus()).toBeTruthy();
+
+    expect(inputDriver.isFocus()).toBe(true);
   });
 
   it('should display a selectedOptions separetaed by default delimiter', () => {
@@ -171,7 +172,7 @@ describe('multiSelectCheckbox', () => {
     );
     inputDriver.click();
     dropdownLayoutDriver.clickAtOption(0);
-    expect(dropdownLayoutDriver.isShown()).toBeTruthy();
+    expect(dropdownLayoutDriver.isShown()).toBe(true);
   });
 
   it('should call onSelect when selecting unselected option', () => {
@@ -228,8 +229,8 @@ describe('multiSelectCheckbox', () => {
         wrapper,
         dataHook,
       });
-      expect(multiSelectCheckboxTestkit.driver.exists()).toBeTruthy();
-      expect(multiSelectCheckboxTestkit.inputDriver.exists()).toBeTruthy();
+      expect(multiSelectCheckboxTestkit.driver.exists()).toBe(true);
+      expect(multiSelectCheckboxTestkit.inputDriver.exists()).toBe(true);
       expect(
         multiSelectCheckboxTestkit.dropdownLayoutDriver.exists(),
       ).toBeTruthy();
@@ -250,8 +251,9 @@ describe('multiSelectCheckbox', () => {
       const multiSelectCheckboxTestkit = enzymeMultiSelectCheckboxTestkitFactory(
         { wrapper, dataHook },
       );
-      expect(multiSelectCheckboxTestkit.driver.exists()).toBeTruthy();
-      expect(multiSelectCheckboxTestkit.inputDriver.exists()).toBeTruthy();
+      expect(multiSelectCheckboxTestkit.driver.exists()).toBe(true);
+      expect(multiSelectCheckboxTestkit.inputDriver.exists()).toBe(true);
+
       expect(
         multiSelectCheckboxTestkit.dropdownLayoutDriver.exists(),
       ).toBeTruthy();

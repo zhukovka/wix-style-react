@@ -27,6 +27,7 @@ import ChildrenReadme from './Children.md';
 
 import ExampleStretchGridRaw from '!raw-loader!./ExampleStretchGrid';
 import ExampleStickyTableWithGapRaw from '!raw-loader!./ExampleStickyTableWithGap';
+import ExampleStickySideRaw from '!raw-loader!./ExampleStickySide';
 
 const code = config =>
   baseCode({ components: baseScope, compact: true, ...config });
@@ -45,7 +46,6 @@ export default {
     children: [header(), tail, content(false)],
     dataHook: 'story-page-playground',
     gradientClassName: 'background-gradient',
-    gradientCoverTail: false,
     upgrade: true,
   },
 
@@ -117,6 +117,14 @@ export default {
           title: 'Multiple Tables With Sticky Headers',
           description: `Use <Page.Sticky/> to wrap the Table's header`,
           source: sterilizeCode(ExampleStickyTableWithGapRaw),
+          compact: true,
+          autoRender: false,
+        }),
+
+        code({
+          title: 'Sticky Side Card',
+          description: `Use <Page.Sticky/> to wrap a <Card/> on a side`,
+          source: sterilizeCode(ExampleStickySideRaw),
           compact: true,
           autoRender: false,
         }),

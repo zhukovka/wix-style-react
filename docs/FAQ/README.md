@@ -20,31 +20,24 @@ import Button from 'wix-style-react/Button';
 `import`ing a component directly from `dist/src` is strongly disencouraged.
 
 
-#### universal `create-yoshi-app` and `wix-style-react` does not work!
+#### Making Server-Side-Rendering (SSR) work
 
-You may receive an error like this one: `TypeError: (0 , _TextSt2.default) is not a function`
+You may receive an error like this one: `TypeError: (0 , _TextSt2.default) is not a function`.
 
 In that case, ensure your generated `index.js` invokes `attachHook` from `@stylable/node`:
 
 ```diff
 modified: my-generated-project/index.js
-@@ -1,14 +1,16 @@
- const bootstrap = require('@wix/wix-bootstrap-ng');
- const { wixCssModulesRequireHook } = require('yoshi-runtime');
-+const { attachHook } = require('@stylable/node');
+ const { wixCssModulesRequireHook } = require('yoshi-runtime'); //hook to `.scss` files
++const { attachHook } = require('@stylable/node'); //hook to `.st.css` files
++const {name} = require('./package.json');
  
- const rootDir = './dist/src';
- const getPath = path =>
-   process.env.NODE_ENV === 'test' || process.env.DEBUGGER === 'true'
-     ? `./src/${path}`
-     : `${rootDir}/${path}`;
- 
- wixCssModulesRequireHook();
-+attachHook();
- 
- bootstrap()
-   .express(getPath('server'))
-   .start({ disableCluster: process.env.NODE_ENV === 'development' });
+wixCssModulesRequireHook();
++attachHook({
++  stylableConfig: {
++    resolveNamespace: resolveNamespaceFactory(name)
++  }
++});
 ```
 
 

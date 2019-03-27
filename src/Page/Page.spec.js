@@ -10,7 +10,7 @@ const Content = () => <div>content</div>;
 const Tail = () => <div>tail</div>;
 
 const renderPageWithProps = (props = {}) => (
-  <Page {...props}>
+  <Page {...props} upgrade>
     <Page.Header title="title" />
     <Page.Content>
       <Content />
@@ -76,8 +76,8 @@ describe('Page', () => {
       expect(driver.getPageHtml()).not.toContain('>0<');
     });
 
-    it('should be zero when Tail exist and gradientCoverTail is false', () => {
-      const props = { gradientClassName: 'class', gradientCoverTail: false };
+    it('should be zero when Tail exist', () => {
+      const props = { gradientClassName: 'class' };
       const driver = createDriver(
         <Page {...props}>
           <Page.Header />
@@ -116,8 +116,15 @@ describe('Page', () => {
     });
   });
 
-  describe('Scroll Header', () => {
-    it('should scroll ScrollableContent when getting wheel event on Header', () => {
+  describe('DOM calculations', () => {
+    // eslint-disable-next-line jest/no-disabled-tests
+    xit('should recalculate component heights when rerendered', () => {
+      // TODO:
+    });
+  });
+
+  describe('zIndex', () => {
+    it('should NOT have zIndex in inline style by default', () => {
       const driver = PagePrivateDriver.fromJsxElement(
         <Page>
           <Page.Header title="title" />
@@ -126,18 +133,24 @@ describe('Page', () => {
           </Page.Content>
         </Page>,
       );
-      expect(driver.getScrollAmount()).toBe(0);
-      driver.wheelOnFixedContainer(10);
-      expect(driver.getScrollAmount()).toBe(10);
+
+      expect(driver.getStyle()['z-index']).toBe('');
+    });
+
+    it('should have provided zIndex in inline style', () => {
+      const driver = PagePrivateDriver.fromJsxElement(
+        <Page zIndex={7}>
+          <Page.Header title="title" />
+          <Page.Content>
+            <Content />
+          </Page.Content>
+        </Page>,
+      );
+
+      expect(driver.getStyle()['z-index']).toBe('7');
     });
   });
 
-  describe('DOM calculations', () => {
-    // eslint-disable-next-line jest/no-disabled-tests
-    xit('should recalculate component heights when rerendered', () => {
-      // TODO:
-    });
-  });
   describe('Header layer', () => {
     it('should NOT block clicks on content close to header', () => {});
     it('should NOT block clicks on content close to header when MiniHeader appears', () => {});

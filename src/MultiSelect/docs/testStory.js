@@ -42,10 +42,28 @@ MultiSelectTests.add('2. Reorderable', () => (
   </RTLWrapper>
 ));
 
+MultiSelectTests.add(testStories.selectMode, () => (
+  <div style={{ width: '400px' }}>
+    <MultiSelect
+      dataHook="multi-select-mode"
+      tags={[
+        { id: '1', label: 'aaaaaaaaaaaa' },
+        { id: '2', label: 'aaaaaaaaaaaa' },
+        { id: '3', label: 'aaaaaaaaaaaa' },
+        { id: '4', label: 'aaaaaaaaaaaa' },
+        { id: '5', label: 'aaaaaaaaaaaa' },
+        { id: '6', label: 'aaaaaaaaaaaa' },
+      ]}
+      mode="select"
+      upgrade
+    />
+  </div>
+));
+
 MultiSelectTests.add(testStories.tabsSwitches, () => (
   <div>
-    <input data-hook="input-for-focus-1"/>
-    <TestTabsSwitches/>
-    <input data-hook="input-for-focus-2"/>
+    <input data-hook="input-for-focus-1" />
+    <TestTabsSwitches />
+    <input data-hook="input-for-focus-2" />
   </div>
 ));

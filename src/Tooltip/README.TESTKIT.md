@@ -56,7 +56,7 @@ import React from 'react';
 import eventually from 'wix-eventually';
 import {tooltipTestkitFactory as enzymeTooltipTestkitFactory} from 'wix-style-react/dist/testkit/enzyme';
 
-describe('my description', () => {
+describe('my description', async () => {
   it('my test', () =>{
     const dataHook = 'myDataHook';
     const wrapper = mount(<Tooltip dataHook={dataHook} {..._props}>{children}</Tooltip>);
@@ -64,8 +64,8 @@ describe('my description', () => {
 
     //Do tests
     testkit.mouseEnter();
-    expect(testkit.isShown()).toBeFalsy(); // This is just to demonstrate that you need to wait for it
-    return eventually(() => expect(testkit.isShown()).toBeTruthy());
+    expect(testkit.isShown()).toBe(false); // This is just to demonstrate that you need to wait for it
+    await eventually(() => expect(testkit.isShown()).toBe(true));
 
     // Cleanup
     wrapper.unmount();
@@ -83,7 +83,7 @@ We recommend using `react-testing-library`.
   import eventually from 'wix-eventually';
   import {tooltipTestkitFactory as tooltipTestkitFactory} from 'wix-style-react/dist/testkit';
 
-describe('my description', () => {
+describe('my description', async () => {
   it('my test', () => {
     const dataHook = 'myDataHook';
     const { container : wrapper } = render(
@@ -94,8 +94,8 @@ describe('my description', () => {
 
     // Do tests
     testkit.mouseEnter();
-    expect(testkit.isShown()).toBeFalsy(); // This is just to demonstrate that you need to wait for it
-    return eventually(() => expect(testkit.isShown()).toBeTruthy());
+    expect(testkit.isShown()).toBe(false); // This is just to demonstrate that you need to wait for it
+    await eventually(() => expect(testkit.isShown()).toBe(true));
 
     // Cleanup
     cleanup();
@@ -163,14 +163,14 @@ describe('Tooltip Example', () => {
       </div>
     );
 
-    // create testkits
+    // create tooltip testkit
     const tooltipTestkit = tooltipTestkitFactory({ wrapper: container, dataHook: 'my-tooltip' });
 
-    //open the tooltip
-    tooltipDriver.mouseEnter();
-    expect(modalDriver.isShown()).toBeTruthy();
+    // open the tooltip
+    tooltipTestkit.mouseEnter();
+    await eventually(() => expect(tooltipTestkit.isShown()).toBe(true));
 
-    // use textTestkit
+    // use textTestkit to test the content's <Text> element
     const textTestkit = textTestkitFactory({ wrapper: document.body, dataHook: 'my-text' });
     expect(textTestkit.getText()).toBe('Hello');
   });

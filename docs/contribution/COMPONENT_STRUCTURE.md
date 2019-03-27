@@ -1,94 +1,86 @@
 # Component structure
-The following structure is the basic structure for a component.
 
-## Component Specific Files
+Component consists of multiple files. The following structure is the basic structure for a component.
+
+## Component Files
+
 ```
-wix-style-react
-|
-|__src
-|  |__ComponentName
-|  |    index.js                              # entry file for the component
-|  |    ComponentName.js                      # the actual component
-|  |    ComponentName.scss                    # the component stylesheet
-|  |    ComponentName.spec.js                 # component tests
-|  |    ComponentName.driver.js               # vanilla js public driver to abstract common actions
-|  |    ComponentName.e2e.js                  # browser testing
-|  |    ComponentName.protractor.driver.js    # protractor public driver to abstract common actions
-|  |    README.md                             # (optional) additional information of the component
-|  |    README.TESTKIT.md                     # documention for the different driver methods
-|  |    README.DESIGN-SPEC.md                 # Component specification
-|__stories
-|  |__ComponentName
-|  |    index.story.js                        # entry file for all component documentation
+src/ComponentName
+├── index.js                                # entry file for component
+├── ComponentName.js                        # component implementation
+├── ComponentName.scss                      # component stylesheet
+├── ComponentName.uni.driver.js             # public testkit based on unidriver
+├── test
+│   ├── ComponentName.spec.js               # unit tests
+│   ├── ComponentName.e2e.js                # visual screenshot tests
+│   ├── ComponentNameStories.js             # optional test stories for visual screenshot tests
+│   ├── ComponentName.private.uni.driver.js # optional private testkit
+│   └── storySettings.js                    # optional file for reusable test story data
+└── docs
+    ├── index.story.js                      # entry file for documentation
+    ├── README.md                           # optional additional information
+    └── README.DESIGN-SPEC.md               # component specification
 ```
 
-### index.js
+### `index.js`
 
-1. Every component should have an index file  exporting the default entry for easy importing.
+1. Every component has index file exporting the default entry for easy importing.
 
-### ComponentName.js
+### `ComponentName.js`
 
-1. The actual component. A component can be either a simple standalone component or composition of other components.
-1. Read the [Component Guidelines section](./COMPONENT_GUIDELINES.md) for more information.
+1. Component implementation. It can either be standalone or composition of multiple components
+1. Read [Component Guidelines section](./COMPONENT_GUIDELINES.md) for more information.
 
-### ComponentName.scss
+### `ComponentName.scss`
 
-1. Almost every component will have a styling sheet.
-1. Read the [Styling section](./STYLING.md) for more information.
+1. Almost every component will have a stylesheet.
+1. Read [Styling section](./STYLING.md) for more information.
 
-### ComponentName.spec.js
+### `ComponentName.spec.js`
 
-1. Testing component behavior and methods wiring.
-1. Read the [Tests section](./TESTING.md) for more information.
+1. Unit tests of component behavior and methods.
+1. Read [Tests section](./TESTING.md) for more information.
 
-### ComponentName.driver.js
+### `ComponentName.driver.js`
 
-1. Every component exposes a public driver abstraction over common interactions. It is used also in the component tests in order to verify it works.
-1. Read the [Test Drivers section](./TEST_DRIVERS.md) for more information.
+1. Every component exposes a public driver It is also used in component tests (`ComponentName.spec.js`). This way driver itself is tested.
+1. Read [Test Drivers section](./TEST_DRIVERS.md) for more information.
 
-### ComponentName.e2e.js
+### `ComponentName.e2e.js`
 
-1. Actual browser tests for the component.
-1. Read the [Tests section](./TESTING.md) for more information.
+1. Browser tests for component.
+1. Read [Tests section](./TESTING.md) for more information.
 
-### ComponentName.protractor.driver.js
+### `docs/index.story.js`
 
-1. Same as the `ComponentName.driver.js` only with protractor syntax.
-1. Read the [Test Drivers section](./TEST_DRIVERS.md) for more information.
+1. Entry file for documentation. It uses `.story` convention in order to apply automated documentation tool.
+1. Read [Component Documentation section](./DOCUMENTING_COMPONENTS.md) for more information.
 
-### index.story.js
+### `docs/README.DESIGN-SPEC.md`
 
-1. The documentation of every component. It uses the `.story` convention in order to apply automated documentation tool.
-1. Read the [Component Documentation section](./DOCUMENTING_COMPONENTS.md) for more information.
-
-### README.DESIGN-SPEC.md
-
-This documents purpose is for planning the implementation of a new component.
-It is not a place for documentation (for consumers).
-Component specification, may include:
+The purpose of this document is to plan the implementation of a new component.
+It is not a place for documentation for consumers.
+Component specification may include:
 
 - Reference to UX spec
 - Props API definitions
 - Styling API definitions
 - Detailed behavior definitions
-- Implementation details
+- Any other implementation details
 
 See this [COMPONENT-SPEC-TEMPLATE](./COMPONENT-SPEC-EXAMPLE.md)
 
 ## Component Essentials
 
-Each component has also an "entry" in a few common files.
+Each component has also an "entry" in a few common files. Most of these are created during `npm run generate`.
 
 ```
 wix-style-react
-|
-|__.storybook
-|  |__stories.js      # loads all stories 
+|__stories
+|  |__index.js        # loads all stories
 |__testkit
 |  |__index.js        # all vanila drivers
 |  |__enzyme.js       # all enzyme drivers
-|  |__protractor.js   # all protractor drivers 
+|  |__protractor.js   # all protractor drivers
 |  |__puppeteer.js    # all puppeteer drivers
 ```
-
-When adding a new component, you need to also add an entry in each of these files.

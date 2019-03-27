@@ -56,7 +56,7 @@ class InputWithTags extends React.Component {
     const { inputHasFocus: hasFocus } = this.state;
     const isSelectMode = mode === 'select';
 
-    const className = classNames({
+    const className = classNames(styles.showPointer, {
       [styles.inputWithTagsContainer]: true,
       [styles.disabled]: disabled,
       [styles.error]: error,
@@ -145,7 +145,7 @@ class InputWithTags extends React.Component {
             {...desiredProps}
             dataHook="inputWithTags-input"
             disabled={disabled}
-            readOnly={isSelectMode}
+            disableEditing={isSelectMode}
             onChange={e => {
               if (!delimiters.includes(e.target.value)) {
                 this.setState({ inputValue: e.target.value });

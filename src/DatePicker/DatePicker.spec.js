@@ -69,6 +69,15 @@ describe('DatePicker', () => {
 
       expect(inputDriver.hasPrefix()).toBe(true);
     });
+
+    it('allow rendering custom input', () => {
+      const placeHolder = 'input date';
+      const customInput = <Input placeholder={placeHolder} />;
+      const { inputDriver } = createDriver(
+        <DatePicker onChange={noop} customInput={customInput} />,
+      );
+      expect(inputDriver.getPlaceholder()).toEqual(placeHolder);
+    });
   });
 
   describe('calendar', () => {

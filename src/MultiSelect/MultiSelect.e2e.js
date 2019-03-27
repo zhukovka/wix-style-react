@@ -117,6 +117,20 @@ describe('MultiSelect', () => {
       await driver.addTag();
       await mouseEnter(element);
     });
+
+    eyes.it('should render MultiSelect with "select" mode ', async () => {
+      const url = createTestStoryUrl({
+        category: storySettings.category,
+        storyName: storySettings.storyName,
+        testName: testStories.selectMode,
+      });
+      await browser.get(url);
+      const driver = multiSelectTestkitFactory({
+        dataHook: 'multi-select-mode',
+      });
+      const element = driver.element();
+      await waitForVisibilityOf(element, 'Cannot find <MultiSelect/>');
+    });
   });
 });
 

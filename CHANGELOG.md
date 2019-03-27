@@ -14,6 +14,59 @@ Types of changes:
 1. **Docs** for documentation changes
 1. **Lab** components and features that are still in a work in progress
 
+## Next
+
+### Added
+
+- `<Accordion/>` - new component for collapsable content [#2902](https://github.com/wix/wix-style-react/pull/2902)
+
+### Changed
+- `<Notification/>` (fix) - Add default zIndex so that Notification is displayed above the `<Page/>`'s minimized Header. overlay [#3181](https://github.com/wix/wix-style-react/pull/3181)
+
+## 6.10.4 - 2019-03-26
+
+### Changed
+
+- `<Page/>` - With `upgrade` `<Page.Tail/>` will NOT receive `minimized` prop [#3140](https://github.com/wix/wix-style-react/pull/3140)
+
+### Fixed
+
+- `<DropdownLayout/>` - Fix reactDOM driver to use hashed class names #3161(https://github.com/wix/wix-style-react/pull/3161)
+- `<Tooltip>` - Set default top/left css properties for tooltip content. [#3119](https://github.com/wix/wix-style-react/pull/3119)
+- `<EditableTitle/>` - Prevent horizontal scrollbar [#3176](https://github.com/wix/wix-style-react/pull/3176)
+- `<Page/>` (fix&refactor) - Fix Sticky z-index issue. Simplify Header styling and logic #3167(https://github.com/wix/wix-style-react/pull/3167)
+- `<EditableTitle/>` minor style fix [#3176](https://github.com/wix/wix-style-react/pull/3176)
+
+### Docs
+
+- `<TextButton>`, `<IconButton>`, `<CloseButton>` - improved documentation. [#3053](https://github.com/wix/wix-style-react/pull/3053), [#3082](https://github.com/wix/wix-style-react/pull/3082), [#3085](https://github.com/wix/wix-style-react/pull/3085)
+
+## 6.10.3 - 2019-03-24
+
+### Fixed
+- `<Modal/>` (fix&change): Fix broken `zIndex` prop. Change default zIndex value from `11` to `5000` [#3153](https://github.com/wix/wix-style-react/pull/3153)
+- `<DatePicker/>` - add missing customInput support [#3156](https://github.com/wix/wix-style-react/pull/3156)
+- `<EditableTitle/>` - fix margins [#3141](https://github.com/wix/wix-style-react/pull/3141)
+- `<Search/>` enable passing showOptionsIfEmptyInput prop [#3149](https://github.com/wix/wix-style-react/pull/3140)
+
+## 6.10.2 - 2019-03-24
+No Changes (Patch version, only to re-publish Storybook, after failed publish)
+
+## 6.10.1 - 2019-03-24
+No Changes (Patch version, only to re-publish Storybook, after failed publish)
+
+## 6.10.0 - 2019-03-22
+
+### Added
+- `<Input/>` - add styles for read-only state [#3096](https://github.com/wix/wix-style-react/pull/3096)
+- `<EditableTitle/>` - new editable input to compose in the PageHeader [#3074](https://github.com/wix/wix-style-react/pull/3074)
+
+### Fixed
+
+- `<PopoverMenu/>` - Remove default zIndex [#3133](https://github.com/wix/wix-style-react/pull/3133)
+- `<Page/>` - Add `z-index: 1` to Page [#3136](https://github.com/wix/wix-style-react/pull/3136)
+- `<ColorInput/>` - prevent unremitting `onConfirm` call when clicking outside [#3151](https://github.com/wix/wix-style-react/pull/3151)
+
 ## 6.9.0 - 2019-03-18
 
 ### Added

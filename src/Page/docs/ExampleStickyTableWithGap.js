@@ -13,6 +13,7 @@ import PopoverMenu from "wix-style-react/PopoverMenu";
 import PopoverMenuItem from "wix-style-react/PopoverMenuItem";
 import Search from "wix-style-react/Search";
 import Table from "wix-style-react/Table";
+import TableActionCell from 'wix-style-react/TableActionCell';
 import TableToolbar from "wix-style-react/TableToolbar";
 
 class Example extends React.Component {
@@ -118,7 +119,47 @@ class ProductTable extends React.Component {
         render: row => row.inventory,
         width: "20%",
         minWidth: "100px"
-      }
+      },
+      {
+        title: '',
+        width: '40%',
+        render: rowData => (
+          <TableActionCell
+            dataHook="action-cell-component-secondary"
+            primaryAction={{
+              text: 'Edit',
+              theme: 'fullblue',
+              onActionTrigger: () => primaryAction(rowData),
+            }}
+            secondaryActions={[
+              {
+                text: 'Star',
+                icon: <Star />,
+                onClick: () => window.alert(`Starring ${rowData.name}`),
+              },
+              {
+                text: 'Download',
+                icon: <Download />,
+                onClick: () =>
+                  window.alert(`Downloading ${rowData.name}`),
+              },
+              {
+                text: 'Duplicate',
+                icon: <Duplicate />,
+                onClick: () =>
+                  window.alert(`Duplicating ${rowData.name}`),
+              },
+              {
+                text: 'Print',
+                icon: <Print />,
+                onClick: () => window.alert(`Printing ${rowData.name}`),
+              },
+            ]}
+            numOfVisibleSecondaryActions={2}
+            alwaysShowSecondaryActions={false}
+          />
+        ),
+      },
     ];
   }
 
@@ -279,7 +320,6 @@ const renderPageHeader = () => {
             placement="bottom"
             size="normal"
             appendToParent
-            zIndex={1}
           >
             <PopoverMenuItem onClick={() => {}} text="Refresh" />
             <PopoverMenuItem onClick={() => {}} text="Trash" />
