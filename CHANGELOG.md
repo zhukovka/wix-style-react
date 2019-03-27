@@ -16,6 +16,10 @@ Types of changes:
 
 ## Next
 
+### Added
+
+- `<Accordion/>` - new component for collapsable content [#2902](https://github.com/wix/wix-style-react/pull/2902)
+
 ### Changed
 - `<Notification/>` (fix) - Add default zIndex so that Notification is displayed above the `<Page/>`'s minimized Header. overlay [#3181](https://github.com/wix/wix-style-react/pull/3181)
 
