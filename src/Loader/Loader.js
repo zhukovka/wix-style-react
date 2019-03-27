@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
+import { Loadable } from 'wix-ui-backoffice/dist/es/src/components/Loadable';
 import WixComponent from '../BaseComponents/WixComponent';
 import Arc from './Arc';
 import css from './Loader.scss';
@@ -84,34 +85,8 @@ export default class Loader extends WixComponent {
     status: 'loading',
   };
 
-  state = {
-    Tooltip: null,
-  };
-
-  componentWillMount() {
-    if (this.props.statusMessage) {
-      this.loadTooltip();
-    }
-  }
-
-  componentWillReceiveProps(nextProps) {
-    if (
-      !this.state.Tooltip &&
-      nextProps.statusMessage &&
-      !this.props.statusMessage
-    ) {
-      this.loadTooltip();
-    }
-  }
-
-  loadTooltip = async () => {
-    const { default: Tooltip } = await import('../Tooltip');
-    this.setState({ Tooltip });
-  };
-
   render() {
     const { size, color, text, status, statusMessage } = this.props;
-    const { Tooltip } = this.state;
     const sizeInPx = sizesInPx[size];
     const shouldShowFullCircle = status !== 'loading';
     const lightArcAngle = !shouldShowFullCircle
@@ -163,17 +138,31 @@ export default class Loader extends WixComponent {
           css[status],
         )}
       >
-        {Tooltip && statusMessage ? (
-          <Tooltip
-            dataHook="loader-tooltip"
-            placement="top"
-            textAlign="center"
-            alignment="center"
-            content={statusMessage}
-            theme="dark"
+        {statusMessage ? (
+          <Loadable
+            loader={() =>
+              this.props.shouldLoadAsync
+                ? import('../Tooltip')
+                : require('../Tooltip')
+            }
+            defaultComponent={loader}
+            shouldLoadComponent={!!statusMessage}
           >
-            {loader}
-          </Tooltip>
+            {Tooltip => {
+              return (
+                <Tooltip
+                  dataHook="loader-tooltip"
+                  placement="top"
+                  textAlign="center"
+                  alignment="center"
+                  content={statusMessage}
+                  theme="dark"
+                >
+                  {loader}
+                </Tooltip>
+              );
+            }}
+          </Loadable>
         ) : (
           loader
         )}
