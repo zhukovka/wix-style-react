@@ -23,6 +23,10 @@ Types of changes:
 ### Changed
 - `<Notification/>` (fix) - Add default zIndex so that Notification is displayed above the `<Page/>`'s minimized Header. overlay [#3181](https://github.com/wix/wix-style-react/pull/3181)
 
+### Fixed
+
+- `<EditableTitle/>` - Fix exists [#3190](https://github.com/wix/wix-style-react/pull/3190)
+
 ## 6.10.4 - 2019-03-26
 
 ### Changed
