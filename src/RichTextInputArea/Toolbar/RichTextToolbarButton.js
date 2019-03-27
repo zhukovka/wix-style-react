@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
 import styles from './RichTextToolbarButton.scss';
-import Tooltip from '../Tooltip';
+import Tooltip from '../../Tooltip';
 
 const RichTextToolbarButton = ({
   dataHook,

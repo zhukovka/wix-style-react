@@ -1,13 +1,13 @@
 import { modalSelectorLayoutTestkitFactory } from '../../testkit/protractor';
 import { waitForVisibilityOf } from 'wix-ui-test-utils/protractor';
-import { getStoryUrl } from '../../test/utils/storybook-helpers';
+import { createStoryUrl } from '../../test/utils/storybook-helpers';
 import autoExampleDriver from 'wix-storybook-utils/AutoExampleDriver';
 
 describe('ModalSelectorLayout', () => {
-  const storyUrl = getStoryUrl(
-    '11. Pickers and Selectors',
-    '11.3 ModalSelectorLayout',
-  );
+  const storyUrl = createStoryUrl({
+    kind: '11. Pickers and Selectors',
+    story: '11.3 ModalSelectorLayout',
+  });
   const modalSelectorLayoutDriver = modalSelectorLayoutTestkitFactory({
     dataHook: 'storybook-modal-selector-layout',
   });

@@ -98,19 +98,37 @@ export const myNewComponentDriverFactory = base => {
 };
 ",
   "src/MyNewComponent/docs/index.story.js": "import React from 'react';
-import LiveCodeExample from '../../../stories/utils/LiveCodeExample';
-import { Category } from '../../../stories/storiesHierarchy';
+import {
+  header,
+  tabs,
+  tab,
+  description,
+  importExample,
+  title,
+  columns,
+  divider,
+  code as baseCode,
+  playground,
+  api,
+  testkit
+} from 'wix-storybook-utils/Sections';
+
+import { storySettings } from '../test/storySettings';
+import allComponents from '../../../stories/utils/allComponents';
+
 import MyNewComponent from '..';
 
+const code = config => baseCode({ components: allComponents, ...config });
+
 export default {
-  category: Category.COMPONENTS,
+  category: storySettings.category,
   storyName: 'MyNewComponent',
 
   component: MyNewComponent,
   componentPath: '..',
 
   componentProps: {
-    buttonText: undefined,
+    buttonText: 'Hello World!',
   },
 
   exampleProps: {
@@ -118,20 +136,59 @@ export default {
     // https://github.com/wix/wix-ui/blob/master/packages/wix-storybook-utils/docs/usage.md#using-list
   },
 
-  examples: (
-    <div style={{ maxWidth: 627 }}>
-      <LiveCodeExample
-        compact
-        title=\\"Live code example\\"
-        initialCode={\`
-<MyNewComponent
-  dataHook=\\"story-my-new-component-live-example\\"
-  buttonText=\\"Press me for a surprise\\"
-  />
-        \`}
-      />
-    </div>
-  ),
+  sections: [
+    header({
+      issueUrl: 'https://github.com/wix/wix-style-react/issues/new',
+      sourceUrl:
+        'https://github.com/wix/wix-style-react/tree/master/src/MyNewComponent/',
+      component: <MyNewComponent buttonText=\\"Click me!\\"/>
+    }),
+
+    tabs([
+      tab({
+        title: 'Description',
+        sections: [
+          columns([
+            description({
+              title: 'Description',
+              text: 'This line here should briefly describe component in just a sentence or two. It should be short and easy to read.'
+            }),
+          ]),
+
+          columns([
+            importExample(\\"import MyNewComponent from 'wix-style-react/MyNewComponent'\\"),
+          ]),
+
+          divider(),
+
+          title('Examples'),
+
+          columns([
+            description({
+              title: 'Simple Usage',
+              text: 'A simple example with compact preview'
+            }),
+            code({
+              compact: true,
+              source: '<MyNewComponent buttonText=\\"Hello World!\\"/>'
+            })
+          ]),
+
+          code({
+            title: 'Full Interactive Preview',
+            description: 'A non compact version of same code example as above',
+            source: '<MyNewComponent buttonText=\\"Hello World!\\"/>'
+          })
+        ]
+      }),
+
+      ...[
+        { title: 'API', sections: [api()] },
+        { title: 'Testkit', sections: [testkit()] },
+        { title: 'Playground', sections: [playground()] },
+      ].map(tab)
+    ])
+  ],
 };
 ",
   "src/MyNewComponent/index.js": "export { default } from './MyNewComponent.js';
@@ -354,19 +411,37 @@ export const myNewComponentDriverFactory = base => {
 };
 ",
   "src/MyNewComponent/docs/index.story.js": "import React from 'react';
-import LiveCodeExample from '../../../stories/utils/LiveCodeExample';
-import { Category } from '../../../stories/storiesHierarchy';
+import {
+  header,
+  tabs,
+  tab,
+  description,
+  importExample,
+  title,
+  columns,
+  divider,
+  code as baseCode,
+  playground,
+  api,
+  testkit
+} from 'wix-storybook-utils/Sections';
+
+import { storySettings } from '../test/storySettings';
+import allComponents from '../../../stories/utils/allComponents';
+
 import MyNewComponent from '..';
 
+const code = config => baseCode({ components: allComponents, ...config });
+
 export default {
-  category: Category.COMPONENTS,
+  category: storySettings.category,
   storyName: 'MyNewComponent',
 
   component: MyNewComponent,
   componentPath: '..',
 
   componentProps: {
-    buttonText: undefined,
+    buttonText: 'Hello World!',
   },
 
   exampleProps: {
@@ -374,20 +449,59 @@ export default {
     // https://github.com/wix/wix-ui/blob/master/packages/wix-storybook-utils/docs/usage.md#using-list
   },
 
-  examples: (
-    <div style={{ maxWidth: 627 }}>
-      <LiveCodeExample
-        compact
-        title=\\"Live code example\\"
-        initialCode={\`
-<MyNewComponent
-  dataHook=\\"story-my-new-component-live-example\\"
-  buttonText=\\"Press me for a surprise\\"
-  />
-        \`}
-      />
-    </div>
-  ),
+  sections: [
+    header({
+      issueUrl: 'https://github.com/wix/wix-style-react/issues/new',
+      sourceUrl:
+        'https://github.com/wix/wix-style-react/tree/master/src/MyNewComponent/',
+      component: <MyNewComponent buttonText=\\"Click me!\\"/>
+    }),
+
+    tabs([
+      tab({
+        title: 'Description',
+        sections: [
+          columns([
+            description({
+              title: 'Description',
+              text: 'This line here should briefly describe component in just a sentence or two. It should be short and easy to read.'
+            }),
+          ]),
+
+          columns([
+            importExample(\\"import MyNewComponent from 'wix-style-react/MyNewComponent'\\"),
+          ]),
+
+          divider(),
+
+          title('Examples'),
+
+          columns([
+            description({
+              title: 'Simple Usage',
+              text: 'A simple example with compact preview'
+            }),
+            code({
+              compact: true,
+              source: '<MyNewComponent buttonText=\\"Hello World!\\"/>'
+            })
+          ]),
+
+          code({
+            title: 'Full Interactive Preview',
+            description: 'A non compact version of same code example as above',
+            source: '<MyNewComponent buttonText=\\"Hello World!\\"/>'
+          })
+        ]
+      }),
+
+      ...[
+        { title: 'API', sections: [api()] },
+        { title: 'Testkit', sections: [testkit()] },
+        { title: 'Playground', sections: [playground()] },
+      ].map(tab)
+    ])
+  ],
 };
 ",
   "src/MyNewComponent/index.js": "export { default } from './MyNewComponent.js';
@@ -608,19 +722,37 @@ export const myTestComponentDriverFactory = base => {
 };
 ",
   "src/MyTestComponent/docs/index.story.js": "import React from 'react';
-import LiveCodeExample from '../../../stories/utils/LiveCodeExample';
-import { Category } from '../../../stories/storiesHierarchy';
+import {
+  header,
+  tabs,
+  tab,
+  description,
+  importExample,
+  title,
+  columns,
+  divider,
+  code as baseCode,
+  playground,
+  api,
+  testkit
+} from 'wix-storybook-utils/Sections';
+
+import { storySettings } from '../test/storySettings';
+import allComponents from '../../../stories/utils/allComponents';
+
 import MyTestComponent from '..';
 
+const code = config => baseCode({ components: allComponents, ...config });
+
 export default {
-  category: Category.TESTS,
+  category: storySettings.category,
   storyName: 'MyTestComponent',
 
   component: MyTestComponent,
   componentPath: '..',
 
   componentProps: {
-    buttonText: undefined,
+    buttonText: 'Hello World!',
   },
 
   exampleProps: {
@@ -628,20 +760,59 @@ export default {
     // https://github.com/wix/wix-ui/blob/master/packages/wix-storybook-utils/docs/usage.md#using-list
   },
 
-  examples: (
-    <div style={{ maxWidth: 627 }}>
-      <LiveCodeExample
-        compact
-        title=\\"Live code example\\"
-        initialCode={\`
-<MyTestComponent
-  dataHook=\\"story-my-test-component-live-example\\"
-  buttonText=\\"Press me for a surprise\\"
-  />
-        \`}
-      />
-    </div>
-  ),
+  sections: [
+    header({
+      issueUrl: 'https://github.com/wix/wix-style-react/issues/new',
+      sourceUrl:
+        'https://github.com/wix/wix-style-react/tree/master/src/MyTestComponent/',
+      component: <MyTestComponent buttonText=\\"Click me!\\"/>
+    }),
+
+    tabs([
+      tab({
+        title: 'Description',
+        sections: [
+          columns([
+            description({
+              title: 'Description',
+              text: 'This line here should briefly describe component in just a sentence or two. It should be short and easy to read.'
+            }),
+          ]),
+
+          columns([
+            importExample(\\"import MyTestComponent from 'wix-style-react/MyTestComponent'\\"),
+          ]),
+
+          divider(),
+
+          title('Examples'),
+
+          columns([
+            description({
+              title: 'Simple Usage',
+              text: 'A simple example with compact preview'
+            }),
+            code({
+              compact: true,
+              source: '<MyTestComponent buttonText=\\"Hello World!\\"/>'
+            })
+          ]),
+
+          code({
+            title: 'Full Interactive Preview',
+            description: 'A non compact version of same code example as above',
+            source: '<MyTestComponent buttonText=\\"Hello World!\\"/>'
+          })
+        ]
+      }),
+
+      ...[
+        { title: 'API', sections: [api()] },
+        { title: 'Testkit', sections: [testkit()] },
+        { title: 'Playground', sections: [playground()] },
+      ].map(tab)
+    ])
+  ],
 };
 ",
   "src/MyTestComponent/index.js": "export { default } from './MyTestComponent.js';

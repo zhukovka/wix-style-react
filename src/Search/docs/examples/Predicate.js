@@ -3,7 +3,6 @@ import React from 'react';
 import * as wsrScope from '../../..';
 import { Layout, Cell } from '../../../Layout';
 import LiveCodeExample from '../../../../stories/utils/LiveCodeExample';
-import { Section } from '../../../../stories/UXStoryTemplate';
 
 const Example = `
 class SearchPredicate extends React.Component {
@@ -33,24 +32,20 @@ class SearchPredicate extends React.Component {
   }
 }`;
 
-export default () => {
-  return (
-    <Section title="Predicate">
-      <Layout>
-        <Cell span={6}>
-          <h3>
-            You may add data (e.g metadata key) to your options items, helpful
-            for searching using a custom predicate function
-          </h3>
-          <LiveCodeExample
-            scope={wsrScope}
-            compact
-            title="Using custom predicate function for filtering"
-            initialCode={Example}
-          />
-          <p>Try searching 'good', 'cowboy', 'emoji' and see what happens</p>
-        </Cell>
-      </Layout>
-    </Section>
-  );
-};
+export default () => (
+  <Layout>
+    <Cell span={6}>
+      <h3>
+        You may add data (e.g metadata key) to your options items, helpful for
+        searching using a custom predicate function
+      </h3>
+      <LiveCodeExample
+        scope={wsrScope}
+        compact
+        title="Using custom predicate function for filtering"
+        initialCode={Example}
+      />
+      <p>Try searching 'good', 'cowboy', 'emoji' and see what happens</p>
+    </Cell>
+  </Layout>
+);

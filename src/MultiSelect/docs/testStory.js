@@ -2,11 +2,12 @@ import React from 'react';
 import { storiesOf } from '@storybook/react';
 
 import { getTestStoryKind } from '../../../stories/storiesHierarchy';
-import { storySettings } from './storySettings';
+import { storySettings, testStories } from './storySettings';
 import { RTLWrapper } from '../../../stories/utils/RTLWrapper';
 import MultiSelect from '..';
 
 import ExampleReorderable from './ExampleReorderable';
+import TestTabsSwitches from './tests/TestTabsSwitches';
 
 const kind = getTestStoryKind({
   category: storySettings.category,
@@ -39,4 +40,12 @@ MultiSelectTests.add('2. Reorderable', () => (
   <RTLWrapper>
     <ExampleReorderable />
   </RTLWrapper>
+));
+
+MultiSelectTests.add(testStories.tabsSwitches, () => (
+  <div>
+    <input data-hook="input-for-focus-1"/>
+    <TestTabsSwitches/>
+    <input data-hook="input-for-focus-2"/>
+  </div>
 ));

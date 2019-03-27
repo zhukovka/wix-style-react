@@ -1,15 +1,15 @@
 import eyes from 'eyes.it';
 import { tooltipTestkitFactory } from '../../testkit/protractor';
 import { waitForVisibilityOf } from 'wix-ui-test-utils/protractor';
-import { getStoryUrl } from '../../test/utils/storybook-helpers';
+import { createStoryUrl } from '../../test/utils/storybook-helpers';
 import { SHORT_CONTENT, LONG_CONTENT } from './docs/content';
 import { Category } from '../../stories/storiesHierarchy';
 
 describe('Tooltip', () => {
-  const tooltipStoryUrl = getStoryUrl(
-    Category.TOOLTIP_AND_POPOVER,
-    '7.1. Tooltip',
-  );
+  const tooltipStoryUrl = createStoryUrl({
+    kind: Category.TOOLTIP_AND_POPOVER,
+    story: '7.1. Tooltip',
+  });
 
   const dataHook = 'tooltip-e2e-wrapper';
   const tooltipDataHook = 'tooltip-e2e-tooltip';

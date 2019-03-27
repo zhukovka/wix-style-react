@@ -1,4 +1,6 @@
 import React from 'react';
+import Markdown from 'wix-storybook-utils/Markdown';
+
 import Search from '..';
 import { Predicate, Expandable } from './examples';
 
@@ -55,7 +57,10 @@ export default {
 
   examples: (
     <div>
+      <Markdown source="## Expandable" />
       <Expandable />
+
+      <Markdown source="## Predicate" />
       <Predicate />
     </div>
   ),

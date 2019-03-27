@@ -1,7 +1,7 @@
 import eyes from 'eyes.it';
 import { fieldWithSelectionCompositeTestkitFactory } from '../../../testkit/protractor';
 import { waitForVisibilityOf } from 'wix-ui-test-utils/protractor';
-import { getStoryUrl } from '../../../test/utils/storybook-helpers';
+import { createStoryUrl } from '../../../test/utils/storybook-helpers';
 import settings from '../../../stories/FieldWithSelectionComposite/StorySettings';
 import inputDriverFactory from '../../Input/Input.protractor.driver';
 import checkboxDriverFactory from '../../Checkbox/Checkbox.protractor.driver';
@@ -33,7 +33,10 @@ const fieldWithSelectionCompositeTestkitE2EFactory = driver => {
 };
 
 describe('FieldWithSelectionComposite', () => {
-  const storyUrl = getStoryUrl(settings.kind, settings.storyName);
+  const storyUrl = createStoryUrl({
+    kind: settings.kind,
+    story: settings.storyName,
+  });
 
   const driverCheckbox = fieldWithSelectionCompositeTestkitE2EFactory(
     fieldWithSelectionCompositeTestkitFactory({

@@ -3,7 +3,7 @@ import { string, bool } from 'prop-types';
 import classNames from 'classnames';
 
 import typography from '..';
-import styles from './styles.scss';
+import styles from '../docs/styles.scss';
 
 /** Capitalize first character */
 function capitalize(str) {

@@ -196,8 +196,12 @@ module.exports = {
   },
 
   RichTextInputArea: { unidriver: true },
-
   NoBorderInput: {},
+
+  DateInput: {
+    unidriver: true,
+    testkitPath: '../src/DateInput/DateInput.uni.driver',
+  },
   ColorInput: {
     unidriver: true,
   },

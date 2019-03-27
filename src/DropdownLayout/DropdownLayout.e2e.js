@@ -1,13 +1,15 @@
 import eyes from 'eyes.it';
 import { sleep } from 'wix-ui-test-utils/react-helpers';
-
 import { dropdownLayoutTestkitFactory } from '../../testkit/protractor';
 import {
   createStoryUrl,
   scrollToElement,
   waitForVisibilityOf,
+  isFocused,
 } from 'wix-ui-test-utils/protractor';
-import { browser } from 'protractor';
+import { browser, $ } from 'protractor';
+import { createTestStoryUrl } from '../../test/utils/storybook-helpers';
+import { storySettings, testStories } from './docs/storySettings';
 
 async function waitForFetching() {
   await sleep(700);
@@ -57,5 +59,65 @@ describe('DropdownLayout', () => {
     await driver.scrollToElement(14);
 
     expect(await driver.loaderExists()).toBeTruthy();
+  });
+});
+
+describe('DropdownLayout - Focus behaviour', () => {
+  let driver;
+
+  const navigateToTestUrl = async testName => {
+    const testStoryUrl = createTestStoryUrl({
+      category: storySettings.indexCategory,
+      storyName: storySettings.storyName,
+      dataHook: storySettings.dataHook,
+      testName,
+    });
+    await browser.get(testStoryUrl);
+  };
+
+  beforeEach(async () => {
+    await navigateToTestUrl(testStories.tabsSwitches);
+
+    driver = dropdownLayoutTestkitFactory({
+      dataHook: storySettings.dataHook,
+    });
+
+    await waitForVisibilityOf(
+      driver.element(),
+      'Cant find dropdown-test-story',
+    );
+  });
+
+  const pressTab = () =>
+    browser
+      .actions()
+      .sendKeys(protractor.Key.TAB)
+      .perform();
+
+  async function focusOnDropdownLayout() {
+    const firstElement = $(`[data-hook="input-for-initial-focus"]`);
+    await pressTab();
+    expect(await isFocused(firstElement)).toEqual(true);
+
+    await pressTab();
+    expect(await driver.isFocused()).toEqual(true);
+  }
+
+  it('should move out focus of dropdown only after 2 tab press when selecting an item', async () => {
+    await focusOnDropdownLayout();
+
+    await driver.hoverItemById(0);
+    await pressTab();
+    expect(await driver.isFocused()).toEqual(true);
+
+    await pressTab();
+    expect(await driver.isFocused()).toEqual(false);
+  });
+
+  it('should move out focus of dropdown when pressing tab without any selection', async () => {
+    await focusOnDropdownLayout();
+
+    await pressTab();
+    expect(await driver.isFocused()).toEqual(false);
   });
 });

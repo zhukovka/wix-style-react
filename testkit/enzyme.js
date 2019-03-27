@@ -98,6 +98,9 @@ export const counterBadgeTestkitFactory = enzymeTestkitFactoryCreator(
 export const dataTableTestkitFactory = enzymeTestkitFactoryCreator(
   load(require('../src/DataTable/DataTable.driver'))
 );
+export const dateInputTestkitFactory = enzymeUniTestkitFactoryCreator(
+  load(require('../src/DateInput/DateInput.uni.driver'))
+);
 export const datePickerTestkitFactory = enzymeTestkitFactoryCreator(
   load(require('../src/DatePicker/DatePicker.driver'))
 );

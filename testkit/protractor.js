@@ -153,6 +153,12 @@ export const popoverMenuTestkitFactory = protractorTestkitFactoryCreator(
   popoverMenuDriverFactory,
 );
 
+import inputWithOptionsDriverFactory from '../src/InputWithOptions/InputWithOptions.protractor.driver';
+
+export const inputWithOptionsTestkitFactory = protractorTestkitFactoryCreator(
+  inputWithOptionsDriverFactory,
+);
+
 import multiSelectDriverFactory from '../src/MultiSelect/MultiSelect.protractor.driver';
 
 export const multiSelectTestkitFactory = protractorTestkitFactoryCreator(
@@ -409,12 +415,6 @@ export const richTextInputAreaTestkitFactory = protractorUniTestkitFactoryCreato
   richTextInputAreaDriverFactory,
 );
 
-import { richTextToolbarDriverFactory } from '../src/RichTextInputArea/RichTextToolbar.driver';
-
-export const richTextToolbarTestkitFactory = protractorUniTestkitFactoryCreator(
-  richTextToolbarDriverFactory,
-);
-
 import { floatingNotificationDriverFactory } from '../src/FloatingNotification/FloatingNotification.driver';
 
 export const floatingNotificationTestkitFactory = protractorUniTestkitFactoryCreator(
@@ -436,4 +436,10 @@ import { numberInputDriverFactory } from '../src/NumberInput/NumberInput.uni.dri
 
 export const numberInputTestkitFactory = protractorUniTestkitFactoryCreator(
   numberInputDriverFactory,
+);
+
+import { dateInputDriverFactory } from '../src/DateInput/DateInput.uni.driver';
+
+export const dateInputTestkitFactory = protractorUniTestkitFactoryCreator(
+  dateInputDriverFactory,
 );

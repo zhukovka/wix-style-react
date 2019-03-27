@@ -1,7 +1,7 @@
 {
   "name": "wix-style-react",
   "description": "wix-style-react",
-  "version": "6.7.3",
+  "version": "6.9.0",
   "main": "./dist/src/index.js",
   "module": "./dist/es/src/index.js",
   "sideEffects": [
@@ -198,7 +198,7 @@
     "wix-ui-backoffice": "^1.0.339",
     "wix-ui-core": "^2.0.1",
     "wix-ui-icons-common": "^2.0.9",
-    "wix-ui-test-utils": "^1.0.115"
+    "wix-ui-test-utils": "^1.0.142"
   },
   "lint-staged": {
     "*.{js,scss}": "yoshi lint --fix"

@@ -116,3 +116,4 @@ export { default as RichTextInputArea } from './RichTextInputArea';
 export { default as NoBorderInput } from './NoBorderInput';
 export { default as NumberInput } from './NumberInput';
 export { default as ColorInput } from './ColorInput';
+export { default as DateInput } from './DateInput';

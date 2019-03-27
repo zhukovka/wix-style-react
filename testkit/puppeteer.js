@@ -123,12 +123,6 @@ export const richTextInputAreaTestkitFactory = puppeteerUniTestkitFactoryCreator
   richTextInputAreaDriverFactory,
 );
 
-import { richTextToolbarDriverFactory } from '../src/RichTextInputArea/RichTextToolbar.driver';
-
-export const richTextToolbarTestkitFactory = puppeteerUniTestkitFactoryCreator(
-  richTextToolbarDriverFactory,
-);
-
 import { floatingNotificationDriverFactory } from '../src/FloatingNotification/FloatingNotification.driver';
 
 export const floatingNotificationTestkitFactory = puppeteerUniTestkitFactoryCreator(
@@ -151,4 +145,10 @@ import { colorInputDriverFactory } from '../src/ColorInput/ColorInput.driver';
 
 export const colorInputTestkitFactory = puppeteerUniTestkitFactoryCreator(
   colorInputDriverFactory,
+);
+
+import { dateInputDriverFactory } from '../src/DateInput/DateInput.uni.driver';
+
+export const dateInputTestkitFactory = puppeteerUniTestkitFactoryCreator(
+  dateInputDriverFactory,
 );

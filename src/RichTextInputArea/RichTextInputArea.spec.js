@@ -228,8 +228,7 @@ describe('RichTextInputArea', () => {
 
         await driver.clickLinkButton();
 
-        expect(await driver.isFormDisplayed()).toBeDefined();
-        expect(await driver.isFormDisplayed()).not.toBe(null);
+        expect(await driver.isFormDisplayed()).toBe(true);
       });
 
       it.skip('should render text as link after inserting required data', async () => {
@@ -263,8 +262,7 @@ describe('RichTextInputArea', () => {
 
       await driver.clickLinkButton();
 
-      expect(await driver.isFormConfirmButtonDisabled()).toBeDefined();
-      expect(await driver.isFormConfirmButtonDisabled()).not.toBe(null);
+      expect(await driver.isFormDisplayed()).toBe(true);
     });
 
     it.skip('should hide the form after clicking the cancel button', async () => {
