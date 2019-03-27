@@ -18,18 +18,11 @@ const tooltipDriverFactory = ({ element, wrapper }) => {
         `Tooltip.driver: contentRootHook attribute must exist on the Tooltip's root element`,
       );
     }
-    const root = document.body.querySelector(
-      `[data-hook="${contentRootHook}"]`,
-    );
-    if (root) {
-      return root;
-    }
 
     try {
-      const domInstance = ReactDom.findDOMNode(wrapper);
       return (
-        domInstance &&
-        domInstance.querySelector(`[data-hook="${contentRootHook}"]`)
+        document.body.querySelector(`[data-hook="${contentRootHook}"]`) ||
+        wrapper.getDOMNode().querySelector(`[data-hook="${contentRootHook}"]`)
       );
     } catch (ignore) {
       return null;
