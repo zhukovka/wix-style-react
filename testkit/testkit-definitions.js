@@ -213,4 +213,8 @@ module.exports = {
     testkitPath: '../src/EditableTitle/EditableTitle.uni.driver',
     unidriver: true,
   },
+
+  Accordion: {
+    unidriver: true,
+  },
 };

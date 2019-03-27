@@ -158,3 +158,9 @@ import { editableTitleUniDriverFactory } from '../src/EditableTitle/EditableTitl
 export const editableTitleTestkitFactory = puppeteerUniTestkitFactoryCreator(
   editableTitleUniDriverFactory,
 );
+
+import { accordionDriverFactory } from '../src/Accordion/Accordion.driver';
+
+export const accordionTestkitFactory = puppeteerUniTestkitFactoryCreator(
+  accordionDriverFactory,
+);

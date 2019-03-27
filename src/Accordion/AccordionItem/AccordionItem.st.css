@@ -1,0 +1,49 @@
+:import {
+  -st-from: "wix-ui-core/dist/src/themes/backoffice/colors.st.css";
+  -st-named: B60,B10,D10;
+}
+
+.header {
+  -st-states: hover, disabled;
+  box-sizing: border-box;
+  position: relative;
+  display: flex;
+  align-items: center;
+  padding: 24px;
+  height: 72px;
+  transition: background-color .3s;
+  outline: none;
+}
+
+.header:not(:disabled):hover {
+  background-color: value(B60);
+  cursor: pointer;
+}
+
+.header:disabled .arrow {
+  color: value(D10);
+}
+
+.icon {
+  margin-right: 12px;
+  height: 24px;
+}
+
+.title {
+  flex: 1 1 auto;
+  min-width: 0;
+}
+
+.children {
+  padding: 24px 30px 30px;
+  background-color: value(B60);
+}
+
+.toggleButton {
+  flex: 0 0 auto;
+  margin-left: auto;
+}
+
+.arrow {
+  color: value(B10);
+}

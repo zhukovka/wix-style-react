@@ -96,6 +96,7 @@ require('../src/Tag/docs/index.story'); // 12.5 Tag
 require('../src/Avatar/docs/index.story'); // 12.6 Avatar
 
 // Components API
+require('../src/Accordion/docs/index.story');
 require('../src/AutoComplete/docs');
 require('../src/AutoCompleteComposite/docs');
 require('../src/Box/docs/index.story');
@@ -181,11 +182,6 @@ require('../src/DateInput/test/testStories');
 require('../src/GeneratedTestComponent/docs/index.story');
 require('../src/GeneratedTestComponent/test/GeneratedTestComponentStories');
 
-// This import was added by the component generator
 require('../src/RichTextInputArea/docs/index.story');
-
-// This import was added by the component generator
 require('../src/NoBorderInput/docs/index.story');
-
-// This import was added by the component generator
 require('../src/EditableTitle/docs/index.story');
