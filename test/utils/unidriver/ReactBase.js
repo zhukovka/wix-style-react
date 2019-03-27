@@ -50,36 +50,49 @@ export function ReactBase(base) {
     },
   };
 
-  return {
-    ...pendingUnidriverFixes,
+  const pendingUnidriverFeatures = {
     pressKey: async key => Simulate.keyDown(await htmlElement(), { key }),
-    mouseLeave: async () => Simulate.mouseLeave(await htmlElement()),
+    isFocus: async () => {
+      return document.activeElement === (await htmlElement());
+    },
+    paste: async () => Simulate.paste(await htmlElement()),
+  };
+
+  const unidriverRejected = {
     tagName: async () => (await htmlElement()).tagName,
-    tabIndex: async () => (await htmlElement()).tabIndex,
-    readOnly: async () => (await htmlElement()).readOnly,
-    innerHtml: async () => (await htmlElement()).innerHTML,
     focus: async () => {
       const elm = await htmlElement();
       elm.focus();
       Simulate.focus(elm); // TODO: Is this redundant?
-    },
-    isFocus: async () => {
-      return document.activeElement === (await htmlElement());
     },
     blur: async () => {
       const elm = await htmlElement();
       elm.blur();
       Simulate.blur(elm); // TODO: Is this redundant?
     },
-    keyup: async () => Simulate.keyUp(await htmlElement()),
-    keydown: async key => Simulate.keyDown(await htmlElement(), key),
-    paste: async () => Simulate.paste(await htmlElement()),
+    tabIndex: async () => (await htmlElement()).tabIndex,
+    readOnly: async () => (await htmlElement()).readOnly,
+    innerHtml: async () => (await htmlElement()).innerHTML,
     required: async () => (await htmlElement()).required,
     defaultValue: async () => (await htmlElement()).defaultValue,
     textContent: async () => (await htmlElement()).textContent,
-    selectionStart: async () => (await htmlElement()).selectionStart,
     getStyle: async () => (await htmlElement()).style,
     getClassList: async () => (await htmlElement()).classList,
+  };
+
+  const shouldBePrivate = {
+    // TODO: replace methods that use Simulate with a single `simulate`/`eventTrigger` method
+    keyup: async () => Simulate.keyUp(await htmlElement()),
+    keydown: async key => Simulate.keyDown(await htmlElement(), key),
+    mouseLeave: async () => Simulate.mouseLeave(await htmlElement()),
+    selectionStart: async () => (await htmlElement()).selectionStart,
     children: async () => (await htmlElement()).children,
+  };
+
+  return {
+    ...pendingUnidriverFixes,
+    ...pendingUnidriverFeatures,
+    ...unidriverRejected,
+    ...shouldBePrivate,
   };
 }
