@@ -19,7 +19,5 @@ export const editableTitleUniDriverFactory = base => {
     getInput: inputDriver,
     getHeadingText: () => heading.text(),
     clickHeading: () => heading.click(),
-
-    exists: () => !!base.exists(),
   };
 };

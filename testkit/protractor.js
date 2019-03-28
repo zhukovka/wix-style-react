@@ -449,3 +449,9 @@ import { editableTitleUniDriverFactory } from '../src/EditableTitle/EditableTitl
 export const editableTitleTestkitFactory = protractorUniTestkitFactoryCreator(
   editableTitleUniDriverFactory,
 );
+
+import { accordionDriverFactory } from '../src/Accordion/Accordion.driver';
+
+export const accordionTestkitFactory = protractorUniTestkitFactoryCreator(
+  accordionDriverFactory,
+);

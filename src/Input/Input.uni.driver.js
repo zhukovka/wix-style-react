@@ -2,11 +2,11 @@ import { baseUniDriverFactory } from 'wix-ui-test-utils/base-driver';
 import styles from './Input.scss';
 import { ReactBase } from '../../test/utils/unidriver';
 
-export const testkit = (base, body, document) => {
+export const testkit = base => {
   const input = base.$('input');
 
   const reactBase = ReactBase(base);
-  const reactBaseInput = ReactBase(input, document);
+  const reactBaseInput = ReactBase(input);
 
   const clearButtonNode = base.$(`[data-hook=input-clear-button]`);
   const unitNode = base.$(`.${styles.unit}`);
@@ -23,6 +23,7 @@ export const testkit = (base, body, document) => {
       await reactBaseInput.attr('aria-describedby'),
     getAriaLabel: async () => await reactBaseInput.attr('aria-label'),
     getName: async () => await reactBaseInput.attr('name'),
+    getMaxLength: async () => await reactBaseInput.attr('maxLength'),
     getType: async () => await reactBaseInput.attr('type'),
     getAriaControls: async () => await reactBaseInput.attr('aria-controls'),
     clickIconAffix: async () =>

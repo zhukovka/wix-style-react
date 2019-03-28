@@ -6,7 +6,10 @@ import { getTestStoryKind } from '../../../stories/storiesHierarchy';
 
 import Page from 'wix-style-react/Page';
 import Card from 'wix-style-react/Card';
+import Box from 'wix-style-react/Box';
 import Notification from 'wix-style-react/Notification';
+import PopoverMenu from 'wix-style-react/PopoverMenu';
+import PopoverMenuItem from 'wix-style-react/PopoverMenuItem';
 
 import * as s from './PageTestStories.scss';
 import { header, tail, fixedContent, content } from './PageChildren';
@@ -127,6 +130,37 @@ PageTestStories.add('11. With Notification', () => (
       <Notification.TextLabel>Hello Notification</Notification.TextLabel>
       <Notification.CloseButton />
     </Notification>
+  </PageContainer>
+));
+
+PageTestStories.add('12. PopoverMenus', () => (
+  <PageContainer>
+    <Page {...defaultPageProps}>
+      {header()}
+      <Page.Content>
+        <Page.Sticky>
+          <div style={{ background: 'grey' }}>Sticky</div>
+        </Page.Sticky>
+        <Card>
+          <Card.Content>
+            <Box align="right">
+              <PopoverMenu
+                dataHook="popovermenu-in-content"
+                buttonTheme="icon-greybackground"
+                placement="top"
+                size="normal"
+                appendToParent
+              >
+                <PopoverMenuItem onClick={() => {}} text="Refresh" />
+                <PopoverMenuItem onClick={() => {}} text="Trash" />
+                <PopoverMenuItem onClick={() => {}} text="Edit" />
+              </PopoverMenu>
+            </Box>
+            <LongTextContent />
+          </Card.Content>
+        </Card>
+      </Page.Content>
+    </Page>
   </PageContainer>
 ));
 

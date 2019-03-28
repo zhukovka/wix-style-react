@@ -1,4 +1,5 @@
 import { EditorState, SelectionState, Modifier, RichUtils } from 'draft-js';
+import { stateToHTML } from 'draft-js-export-html';
 
 import { entityTypes } from './RichTextInputAreaTypes';
 
@@ -59,7 +60,7 @@ const toggleBlockType = (editorState, toggledBlockType) => {
 };
 
 const toggleEntity = (editorState, linkData) => {
-  const { href: url = '', text = '' } = linkData;
+  const { url = '', text = '' } = linkData;
   const selection = editorState.getSelection();
   const contentState = editorState.getCurrentContent();
   const contentStateWithEntity = contentState.createEntity('LINK', 'MUTABLE', {
@@ -132,6 +133,34 @@ const findLinkEntities = (contentBlock, callback, contentState) => {
   }, callback);
 };
 
+const convertToHtml = editorState => {
+  const markupConfig = {
+    inlineStyles: {
+      ITALIC: {
+        element: 'em',
+      },
+    },
+    entityStyleFn: entity => {
+      const entityType = entity.get('type').toLowerCase();
+
+      if (entityType === 'link') {
+        const { url } = entity.getData();
+
+        return {
+          element: 'a',
+          attributes: {
+            rel: 'noopener noreferrer',
+            target: '_blank',
+            href: url,
+          },
+        };
+      }
+    },
+  };
+
+  return stateToHTML(editorState.getCurrentContent(), markupConfig);
+};
+
 export default {
   hasStyle,
   hasBlockType,
@@ -141,4 +170,5 @@ export default {
   toggleEntity,
   getSelectedText,
   findLinkEntities,
+  convertToHtml,
 };

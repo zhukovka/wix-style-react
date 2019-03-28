@@ -8,6 +8,21 @@ $page-background-color: $D70;
 $image-container-offset: 30px;
 $pageBottomPadding: 48px; //  Should be synced with JS Page value
 
+$minimizedHeaderWrapperMinHeight: 30px;
+$minimizedHeaderWrapperTopPadding: 18px;
+$minimizedHeaderWrapperBottomPadding: 18px;
+$minimizedHeaderWrapperWithTailBottomPadding: 12px;
+/*
+ * These totals are also defined in constants.js
+ * TODO: Export values instead of defining them twice
+ *
+ * - minimizedHeight: 66
+ * - minimizedWithTailHeight: 60
+ */
+
+/**********************
+ *      Z-Indexs
+ **********************/
 $zIndexLayerStep: 100;
 /* z-index is needed so that non-sticky content with 'position: relative' would not overlay above the sticky content.
    Need to be height than any component that may fit into a sticky page content.
@@ -16,9 +31,8 @@ $zIndexLayerStep: 100;
     - Tooltip uses 2000
     - ToggleButton uses 1000
    */
-$stickyZIndex: 11000;
-$tailZIndex: $stickyZIndex + $zIndexLayerStep;
-$minimizedHeaderZIndex: $tailZIndex + $zIndexLayerStep;
+$stickyZIndex: 1100;
+$minimizedHeaderContainerZIndex: $stickyZIndex + $zIndexLayerStep;
 
 .pageWrapper {
   overflow-x: auto;
@@ -36,57 +50,48 @@ $minimizedHeaderZIndex: $tailZIndex + $zIndexLayerStep;
       width: 100%;
       position: relative;
       height: 100%;
-      box-sizing: border-box;
     
       .pageHeaderContainer {
+        position: relative;
+
         width: 100%;
         margin: 0 auto;
-        min-height: 30px;
         box-sizing: border-box;
-
-        position: relative;
-        padding-top: 30px;
-        padding-bottom: $headerBottomPadding;
         
-        .pageHeader {
-          padding: 0 $page-side-padding;
-          margin: 0 auto;
-        }
-      }
-
-      &.minimized {
-        .pageHeaderContainer {
-          position: sticky;
-          z-index: $minimizedHeaderZIndex;
-          left: 0;
-          top: 0;
+        .headerWrapper {
+          padding-top: 30px;
+          padding-bottom: $headerBottomPadding;
           
-          padding-top: 18px;
-          padding-bottom: 18px;
+          &.minimized {
+            box-sizing: content;
+            min-height: $minimizedHeaderWrapperMinHeight;
+            padding-top: $minimizedHeaderWrapperTopPadding;
+            padding-bottom: $minimizedHeaderWrapperBottomPadding;
+          }
+        }
+
+        &.hasTail .headerWrapper.minimized {
+          padding-bottom: $minimizedHeaderWrapperWithTailBottomPadding;
+        }
+        
+        .tail {
           background-color: $page-background-color;
         }
 
-        .divider {
+        &.minimized {
+          position: sticky;
+          z-index: $minimizedHeaderContainerZIndex;
+          background-color: $page-background-color;
           border-bottom: 1px solid $D60;
         }
       }
 
-      .tailContainer {
-        position: sticky;  
-        z-index: $tailZIndex;
-
-        .tail {
-          background-color: $page-background-color;
-          padding: 0 $page-side-padding 0;
-          margin: 0 auto;
-        }
-      }
-
-      .contentWrapper {
+      .contentContainer {
         padding-bottom: 48px;
+        position: relative;
       }
 
-      &.hasTail .contentWrapper {
+      &.hasTail .contentContainer {
         margin-top: $headerBottomPadding;
       }
     }

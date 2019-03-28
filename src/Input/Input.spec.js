@@ -149,6 +149,17 @@ describe('Input', () => {
       });
     });
 
+    describe('maxLength attribute', () => {
+      it('should pass down to the wrapped input', async () => {
+        const props = {
+          maxLength: 100,
+        };
+
+        const { driver } = render(<Input {...props} />);
+        expect(await driver.getMaxLength()).toEqual('' + props.maxLength);
+      });
+    });
+
     describe('type attribute', () => {
       it('should pass down to the wrapped input', async () => {
         const props = {

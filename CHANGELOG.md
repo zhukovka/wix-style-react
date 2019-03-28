@@ -16,13 +16,34 @@ Types of changes:
 
 ## Next
 
+### Added
+
+- `<Accordion/>` - new component for collapsable content [#2902](https://github.com/wix/wix-style-react/pull/2902)
+
+### Changed
+- `<Notification/>` (fix) - Add default zIndex so that Notification is displayed above the `<Page/>`'s minimized Header. overlay [#3181](https://github.com/wix/wix-style-react/pull/3181)
+
+### Fixed
+
+- `<EditableTitle/>` - Fix exists [#3190](https://github.com/wix/wix-style-react/pull/3190)
+
+## 6.10.4 - 2019-03-26
+
 ### Changed
 
 - `<Page/>` - With `upgrade` `<Page.Tail/>` will NOT receive `minimized` prop [#3140](https://github.com/wix/wix-style-react/pull/3140)
 
 ### Fixed
 
-- `<DropdownLayout/>` (fix) - Fix reactDOM driver to use hashed class names #3161(https://github.com/wix/wix-style-react/pull/3161)
+- `<DropdownLayout/>` - Fix reactDOM driver to use hashed class names #3161(https://github.com/wix/wix-style-react/pull/3161)
+- `<Tooltip>` - Set default top/left css properties for tooltip content. [#3119](https://github.com/wix/wix-style-react/pull/3119)
+- `<EditableTitle/>` - Prevent horizontal scrollbar [#3176](https://github.com/wix/wix-style-react/pull/3176)
+- `<Page/>` (fix&refactor) - Fix Sticky z-index issue. Simplify Header styling and logic #3167(https://github.com/wix/wix-style-react/pull/3167)
+- `<EditableTitle/>` minor style fix [#3176](https://github.com/wix/wix-style-react/pull/3176)
+
+### Docs
+
+- `<TextButton>`, `<IconButton>`, `<CloseButton>` - improved documentation. [#3053](https://github.com/wix/wix-style-react/pull/3053), [#3082](https://github.com/wix/wix-style-react/pull/3082), [#3085](https://github.com/wix/wix-style-react/pull/3085)
 
 ## 6.10.3 - 2019-03-24
 

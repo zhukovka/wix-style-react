@@ -1,6 +1,9 @@
 import { eyesItInstance } from '../../test/utils/eyes-it';
 import eventually from 'wix-eventually';
-import { pageTestkitFactory } from '../../testkit/protractor';
+import {
+  pageTestkitFactory,
+  popoverMenuTestkitFactory,
+} from '../../testkit/protractor';
 import { pagePrivateDriverFactory } from './Page.private.protractor.driver';
 import {
   waitForVisibilityOf,
@@ -142,10 +145,6 @@ describe('Page', () => {
     await browser.get(testStoryUrl('9. Empty State'));
   });
 
-  eyes.it('should have short content', async () => {
-    await browser.get(testStoryUrl('10. Page Example with short content'));
-  });
-
   eyes.it('should have sidePadding=0', async () => {
     await browser.get(testStoryUrl('10. Page Example with sidePadding=0'));
   });
@@ -163,6 +162,26 @@ describe('Page', () => {
     await eyes.checkWindow('With shown notification over a mini-header');
     // TODO: click to close notification, scroll down to trigger mini-header (notification should not reappear. It happens , I don't know why!)
   });
+
+  eyes.it(
+    'should have visible opened PopoverMenus',
+    async () => {
+      await browser.get(testStoryUrl('12. PopoverMenus'));
+
+      const headerMenu = popoverMenuTestkitFactory({
+        dataHook: 'example-page-header-popover-menu',
+      });
+      await headerMenu.click();
+      eyes.checkWindow('header PopoverMenu shuold be opened');
+
+      const contentMenu = popoverMenuTestkitFactory({
+        dataHook: 'popovermenu-in-content',
+      });
+      await contentMenu.click();
+      eyes.checkWindow('content PopoverMenu shuold be opened');
+    },
+    { enableSnapshotAtBrowserGet: false, enableSnapshotAtEnd: false },
+  );
 
   describe('Vertical Scroll', () => {
     const dataHook = storySettings.dataHook;

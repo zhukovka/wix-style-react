@@ -4,12 +4,10 @@
  */
 $zIndex_PAGE: 1;
 /* 
- * FIXME: Fix zIndex, make it above TOOLTIP.
- */
-$zIndex_MODAL: 11;
-/* 
- * This value is probably related to current BM header's z-index value.
- * Header is 2000
- * FIXME: Fix zIndex, make it above BM Header.
- */
+* This value is probably related to current BM header's z-index value.
+* Header is 2000
+* FIXME: Fix zIndex, make it above BM Header.
+*/
 $zIndex_TOOLTIP: 2000;
+$zIndex_NOTIFICATION: 4000;
+$zIndex_MODAL: 5000;

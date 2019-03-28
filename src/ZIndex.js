@@ -1,6 +1,7 @@
 const ZIndexValues = {
   Page: 1,
   Tooltip: 2000,
+  Notification: 4000,
   Modal: 5000,
 };
 

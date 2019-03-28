@@ -68,7 +68,6 @@ class Example extends React.Component {
               placement="bottom"
               size="normal"
               appendToParent
-              zIndex={1}
             >
               <PopoverMenuItem onClick={() => {}} text="Refresh" />
               <PopoverMenuItem onClick={() => {}} text="Trash" />

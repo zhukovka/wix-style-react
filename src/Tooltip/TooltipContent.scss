@@ -5,6 +5,8 @@
 .root {
   position: absolute;
   z-index: $zIndex_TOOLTIP;
+  top: 0;
+  left: -9000px;
 }
 
 @mixin arrow($side, $color) {
