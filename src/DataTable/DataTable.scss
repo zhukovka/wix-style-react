@@ -3,7 +3,7 @@
 
 $headerShadow: inset 0 1px 0 0 $B30, inset 0 -1px 0 0 $B30;
 $columnShadow: inset 0 -1px 0 0 $D60;
-$activeColumnShadow: inset 0 -1px 0 0 $D70;
+$activeColumnShadow: 0 1px 0 0 $D60;
 $rowShadow: inset 0 1px 0 0 $D70;
 
 .table {
@@ -102,7 +102,7 @@ $rowShadow: inset 0 1px 0 0 $D70;
 
 .table:not(.showLastRowDivider) {
   & tr:not(:last-child) {
-    td {
+    td:not(.details) {
       box-shadow: $columnShadow;
     }
   }

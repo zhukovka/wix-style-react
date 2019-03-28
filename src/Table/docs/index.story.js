@@ -28,6 +28,8 @@ import TableColumnAlignmentExampleRaw from '!raw-loader!./TableColumnAlignmentEx
 
 import { TableSelectionDisabledExample } from './TableSelectionDisabledExample';
 import TableSelectionDisabledExampleRaw from '!raw-loader!./TableSelectionDisabledExample';
+import { CollapsableTableExample } from './CollapsableTableExample';
+import CollapsableTableExampleRaw from '!raw-loader!./CollapsableTableExample';
 
 const data = [
   { firstName: 'Meghan', lastName: 'Bishop' },
@@ -137,6 +139,14 @@ export default {
             code={TableSelectionDisabledExampleRaw}
           >
             <TableSelectionDisabledExample />
+          </CodeExample>
+        </div>
+        <div className={s.example}>
+          <CodeExample
+            title="Collapsable table rows"
+            code={CollapsableTableExampleRaw}
+          >
+            <CollapsableTableExample />
           </CodeExample>
         </div>
       </div>
