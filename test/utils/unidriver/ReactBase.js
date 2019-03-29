@@ -1,5 +1,5 @@
 import { Simulate } from 'react-dom/test-utils';
-
+import { reactUniDriver } from 'unidriver';
 /**
  *Temporary workaround for implementing missing Unidriver methods in React/DOM only.
  *
@@ -42,8 +42,10 @@ export function ReactBase(base) {
         // setting button 0 is now needed in React 16+ as it's not set by react anymore
         // 15 - https://github.com/facebook/react/blob/v15.6.1/src/renderers/dom/client/syntheticEvents/SyntheticMouseEvent.js#L45
         // 16 - https://github.com/facebook/react/blob/master/packages/react-dom/src/events/SyntheticMouseEvent.js#L33
-
-        Simulate.click(await htmlElement(), { button: 0 });
+        const elm = await htmlElement();
+        Simulate.mouseDown(elm);
+        Simulate.mouseUp(elm);
+        Simulate.click(elm, { button: 0 });
       } else {
         return base.click();
       }
@@ -51,7 +53,11 @@ export function ReactBase(base) {
   };
 
   const pendingUnidriverFeatures = {
-    pressKey: async key => Simulate.keyDown(await htmlElement(), { key }),
+    pressKey: async key => {
+      const elm = await htmlElement();
+      Simulate.keyDown(elm, { key });
+      Simulate.keyUp(elm, { key });
+    },
     isFocus: async () => {
       return document.activeElement === (await htmlElement());
     },
@@ -75,9 +81,19 @@ export function ReactBase(base) {
     innerHtml: async () => (await htmlElement()).innerHTML,
     required: async () => (await htmlElement()).required,
     defaultValue: async () => (await htmlElement()).defaultValue,
+    // TODO: Remove this. use unidriver.text()
     textContent: async () => (await htmlElement()).textContent,
     getStyle: async () => (await htmlElement()).style,
     getClassList: async () => (await htmlElement()).classList,
+    /** @returns {array} array of children unidrivers */
+    children: async () => {
+      const ch = (await htmlElement()).children;
+      const uniChildren = [];
+      for (let i = 0; i < ch.length; i++) {
+        uniChildren.push(reactUniDriver(ch[i]));
+      }
+      return uniChildren;
+    },
   };
 
   const shouldBePrivate = {
@@ -85,8 +101,10 @@ export function ReactBase(base) {
     keyup: async () => Simulate.keyUp(await htmlElement()),
     keydown: async key => Simulate.keyDown(await htmlElement(), key),
     mouseLeave: async () => Simulate.mouseLeave(await htmlElement()),
+    // TODO: remove selectionStart and use 'prop' method
     selectionStart: async () => (await htmlElement()).selectionStart,
-    children: async () => (await htmlElement()).children,
+    /** Get a property of the HTMLElement by name */
+    prop: async propName => (await htmlElement())[propName],
   };
 
   return {
@@ -96,3 +114,6 @@ export function ReactBase(base) {
     ...shouldBePrivate,
   };
 }
+
+ReactBase.clickBody = () =>
+  document.body.dispatchEvent(new Event('mouseup', { cancelable: true }));

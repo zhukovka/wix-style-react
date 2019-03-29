@@ -14,10 +14,7 @@ import {
   cleanup,
 } from '../../test/utils/unit';
 import inputDriverFactory from './Input.driver';
-import { tooltipTestkitFactory } from '../../testkit';
 import { testkit } from './Input.uni.driver';
-import ReactTestUtils from 'react-dom/test-utils';
-import { ReactBase } from '../../test/utils/unidriver';
 
 describe('Input', () => {
   /* eslint-disable-next-line no-shadow */

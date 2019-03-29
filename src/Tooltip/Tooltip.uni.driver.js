@@ -37,7 +37,7 @@ export const teskitTooltip = (base, body) => {
     let content = await getTooltipContent();
 
     while ((await ReactBase(content).children()).length > 0) {
-      content = reactUniDriver((await ReactBase(content).children())[0]);
+      content = (await ReactBase(content).children())[0];
     }
     return ReactBase(content).innerHtml();
   };
