@@ -12,14 +12,48 @@ $rowShadow: inset 0 1px 0 0 $D70;
   font-family: HelveticaNeueW01-55Roma, HelveticaNeueW02-55Roma, HelveticaNeueW10-55Roma, sans-serif;
   table-layout: fixed;
   background-color: white;
+
+  &.virtualized {
+    display: block;
+
+    thead {
+      top: 0;
+      display: block;
+      position: sticky;
+      z-index: 2;
+
+      tr {
+        display: block;
+      }
+
+      th {
+        box-sizing: border-box;
+        display: inline-block;
+        padding-top: 12px;
+        padding-bottom: 12px;
+        height: 42px;
+      }
+    }
+
+    tbody {
+      display: block;
+      transform: translateY(0);
+
+      td {
+        box-sizing: border-box;
+        display: inline-block;
+      }
+    }
+
+  }
 }
 
-.table td,.table th {
+.table td, .table th {
   padding-left: 12px;
   padding-right: 12px;
 
   &:first-child {
-    padding-left:30px;
+    padding-left: 30px;
     padding-right: 12px;
   }
 

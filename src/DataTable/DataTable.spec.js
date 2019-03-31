@@ -457,4 +457,26 @@ describe('Table', () => {
       expect(driver.hasInfoIcon(1)).toBe(true);
     });
   });
+
+  describe('Virtualization', () => {
+    it('should render a small portion of the lines', () => {
+      const tableProps = createDefaultProps();
+      tableProps.data = [...Array(14)].map((_n, i) => ({
+        id: i,
+        a: `value a ${i}`,
+        b: `value b ${i}`,
+      }));
+      const props = {
+        ...tableProps,
+        virtualized: true,
+        virtualizedTableHeight: 350,
+        virtualizedLineHeight: 60,
+      };
+      const driver = createDriver(<DataTable {...props} />);
+      // 5 items can fit in fully.
+      // 1 item appear only partially
+      // 2 items are for better scrolling reasons
+      expect(driver.getRowsCount()).toBe(8);
+    });
+  });
 });

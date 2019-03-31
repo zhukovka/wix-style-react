@@ -29,6 +29,9 @@ import TableColumnAlignmentExampleRaw from '!raw-loader!./TableColumnAlignmentEx
 import { TableSelectionDisabledExample } from './TableSelectionDisabledExample';
 import TableSelectionDisabledExampleRaw from '!raw-loader!./TableSelectionDisabledExample';
 
+import { TableVirtualizationExample } from './TableVirtualizationExample';
+import TableVirtualizationExampleRaw from '!raw-loader!./TableVirtualizationExample';
+
 const data = [
   { firstName: 'Meghan', lastName: 'Bishop' },
   { firstName: 'Sara', lastName: 'Porter' },
@@ -137,6 +140,14 @@ export default {
             code={TableSelectionDisabledExampleRaw}
           >
             <TableSelectionDisabledExample />
+          </CodeExample>
+        </div>
+        <div className={s.example}>
+          <CodeExample
+            title="Table virtualization (experimental!)"
+            code={TableVirtualizationExampleRaw}
+          >
+            <TableVirtualizationExample />
           </CodeExample>
         </div>
       </div>
