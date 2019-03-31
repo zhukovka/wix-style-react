@@ -14,6 +14,11 @@ Types of changes:
 1. **Docs** for documentation changes
 1. **Lab** components and features that are still in a work in progress
 
+## Next
+### Fixed
+- `<MultiSelect/>` - avoid unnecessary line-breaks by adjusting input size [#3146](https://github.com/wix/wix-style-react/pull/3146)
+
+
 ## 6.11.0 - 2019-03-31
 
 ### Added
