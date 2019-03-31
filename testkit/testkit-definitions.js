@@ -98,29 +98,34 @@ module.exports = {
 
   TextButton: {
     unidriver: true,
+    testkitPath: '../src/TextButton/TextButton.uni.driver',
   },
 
   IconButton: {
     unidriver: true,
     skipSanityTest: true,
+    testkitPath: '../src/IconButton/IconButton.uni.driver',
   },
 
   CloseButton: {
     unidriver: true,
+    testkitPath: '../src/CloseButton/CloseButton.uni.driver',
   },
 
   CardGalleryItem: {
     unidriver: true,
+    testkitPath: '../src/CardGalleryItem/CardGalleryItem.uni.driver',
   },
 
   SideMenu: {
     testkitPath: '../src/SideMenu/core/SideMenu.driver',
   },
 
-  Button: { unidriver: true },
+  Button: { unidriver: true, testkitPath: '../src/Button/Button.uni.driver' },
 
   CalendarPanelFooter: {
     unidriver: true,
+    testkitPath: '../src/CalendarPanelFooter/CalendarPanelFooter.uni.driver',
   },
 
   ContactItemBuilder: { skipSanityTest: true },
@@ -157,13 +162,21 @@ module.exports = {
     testkitPath: '../src/NumberInput/NumberInput.uni.driver',
   },
 
-  FloatingNotification: { unidriver: true, drivers: ['enzyme'] },
+  FloatingNotification: {
+    unidriver: true,
+    drivers: ['enzyme'],
+    testkitPath: '../src/FloatingNotification/FloatingNotification.uni.driver',
+  },
 
   DatePicker: {
     skipSanityTest: true, // testkit does not have root `exists` method
   },
 
-  Proportion: { unidriver: true, drivers: ['enzyme'] },
+  Proportion: {
+    unidriver: true,
+    drivers: ['enzyme'],
+    testkitPath: '../src/Proportion/Proportion.uni.driver',
+  },
 
   GeneratedTestComponent: {
     testkitPath:
@@ -172,7 +185,10 @@ module.exports = {
     drivers: ['enzyme'],
   },
 
-  DropdownBase: { unidriver: true },
+  DropdownBase: {
+    unidriver: true,
+    testkitPath: '../src/DropdownBase/DropdownBase.uni.driver',
+  },
 
   RadioButton: {
     testkitPath: '../src/RadioGroup/RadioButton/RadioButton.driver',
@@ -189,15 +205,21 @@ module.exports = {
     skipSanityTest: true,
   },
 
-  Box: { unidriver: true },
-  Thumbnail: { unidriver: true },
-
-  SegmentedToggle: {
-    testkitPath: '../src/SegmentedToggle/SegmentedToggle.driver',
+  Box: { unidriver: true, testkitPath: '../src/Box/Box.uni.driver' },
+  Thumbnail: {
     unidriver: true,
+    testkitPath: '../src/Thumbnail/Thumbnail.uni.driver',
   },
 
-  RichTextInputArea: { unidriver: true },
+  SegmentedToggle: {
+    unidriver: true,
+    testkitPath: '../src/SegmentedToggle/SegmentedToggle.uni.driver',
+  },
+
+  RichTextInputArea: {
+    unidriver: true,
+    testkitPath: '../src/RichTextInputArea/RichTextInputArea.uni.driver',
+  },
   NoBorderInput: {},
 
   DateInput: {
@@ -207,6 +229,7 @@ module.exports = {
 
   ColorInput: {
     unidriver: true,
+    testkitPath: '../src/ColorInput/ColorInput.uni.driver',
   },
 
   EditableTitle: {
@@ -216,5 +239,6 @@ module.exports = {
 
   Accordion: {
     unidriver: true,
+    testkitPath: '../src/Accordion/Accordion.uni.driver',
   },
 };

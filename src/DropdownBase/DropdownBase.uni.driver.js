@@ -1,12 +1,12 @@
 import { baseUniDriverFactory } from 'wix-ui-test-utils/base-driver';
-import { dropdownLayoutDriverFactory } from '../DropdownLayout/DropdownLayout.uni.driver';
 
-// TODO: remove when implementation with UniDriver becomes possible
-import { Simulate } from 'react-dom/test-utils';
+import { ReactBase } from '../../test/utils/unidriver';
+
+import { dropdownLayoutDriverFactory } from '../DropdownLayout/DropdownLayout.uni.driver';
 
 export const dropdownBaseDriverFactory = base => {
   const byDataHook = dataHook => base.$(`[data-hook="${dataHook}"]`);
-
+  const reactBase = ReactBase(base);
   const getTargetElement = () => byDataHook('popover-element');
   const getContentElement = () => byDataHook('popover-content');
 
@@ -26,24 +26,9 @@ export const dropdownBaseDriverFactory = base => {
       createDropdownLayoutDriver().clickAtOption(index),
 
     /** Click outside of the component */
-    clickOutside: async () => {
-      if (base.type === 'react') {
-        document.dispatchEvent(new Event('mousedown'));
-      }
-    },
+    clickOutside: () => ReactBase.clickDocument(),
 
-    /** Perform a mouseEnter on the component */
-    mouseEnter: async () => {
-      if (base.type === 'react') {
-        Simulate.mouseEnter(await base.getNative());
-      }
-    },
-
-    /** Perform a mouseLeave on the component */
-    mouseLeave: async () => {
-      if (base.type === 'react') {
-        Simulate.mouseLeave(await base.getNative());
-      }
-    },
+    mouseEnter: () => base.hover(),
+    mouseLeave: () => reactBase.mouseLeave(),
   };
 };

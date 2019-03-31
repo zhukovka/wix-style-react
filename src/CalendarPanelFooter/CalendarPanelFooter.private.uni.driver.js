@@ -1,4 +1,4 @@
-import { calendarPanelFooterDriverFactory as publicDriverFactory } from './CalendarPanelFooter.driver';
+import { calendarPanelFooterDriverFactory as publicDriverFactory } from './CalendarPanelFooter.uni.driver';
 
 export const calendarPanelFooterPrivateDriverFactory = base => {
   return {

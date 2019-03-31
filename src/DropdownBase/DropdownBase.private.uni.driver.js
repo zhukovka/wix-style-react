@@ -1,4 +1,4 @@
-import { dropdownBaseDriverFactory as publicDriverFactory } from './DropdownBase.driver';
+import { dropdownBaseDriverFactory as publicDriverFactory } from './DropdownBase.uni.driver';
 import { dropdownLayoutDriverFactory } from '../DropdownLayout/DropdownLayout.uni.driver';
 
 // TODO: remove when implementation with UniDriver becomes possible

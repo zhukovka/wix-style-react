@@ -1,6 +1,6 @@
 import React from 'react';
 import { createRendererWithUniDriver, cleanup } from '../../test/utils/react';
-import { textButtonDriverFactory } from './TextButton.driver';
+import { textButtonDriverFactory } from './TextButton.uni.driver';
 import TextButton from '.';
 
 describe('TextButton', () => {

@@ -1,5 +1,5 @@
 import ReactTestUtils from 'react-dom/test-utils';
-import { thumbnailDriverFactory as publicDriverFactory } from './Thumbnail.driver';
+import { thumbnailDriverFactory as publicDriverFactory } from './Thumbnail.uni.driver';
 
 export const thumbnailPrivateDriverFactory = base => {
   const byHook = hook => base.$(`[data-hook*="${hook}"]`);

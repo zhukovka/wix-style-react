@@ -3,7 +3,7 @@ import { createUniDriverFactory } from 'wix-ui-test-utils/uni-driver-factory';
 import eventually from 'wix-eventually';
 
 import RichTextInputArea from './RichTextInputArea';
-import richTextInputAreaPrivateDriverFactory from './RichTextInputArea.private.driver';
+import richTextInputAreaPrivateDriverFactory from './RichTextInputArea.private.uni.driver';
 import toolbarButtonStyles from './RichTextToolbarButton.scss';
 
 describe('RichTextInputArea', () => {

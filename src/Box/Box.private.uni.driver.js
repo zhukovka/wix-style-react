@@ -1,4 +1,4 @@
-import { boxDriverFactory as publicDriverFactory } from './Box.driver';
+import { boxDriverFactory as publicDriverFactory } from './Box.uni.driver';
 
 export const boxPrivateDriverFactory = base => {
   return {

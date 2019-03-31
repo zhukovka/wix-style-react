@@ -1,4 +1,4 @@
-import { floatingNotificationDriverFactory as publicDriverFactory } from './FloatingNotification.driver';
+import { floatingNotificationDriverFactory as publicDriverFactory } from './FloatingNotification.uni.driver';
 
 export const floatingNotificationPrivateDriverFactory = base => {
   return {

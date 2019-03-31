@@ -1,7 +1,7 @@
 import React from 'react';
 import CardGalleryItem from '.';
 import { createUniDriverFactory } from 'wix-ui-test-utils/uni-driver-factory';
-import cardGalleryItemDriverFactory from './CardGalleryItem.driver';
+import cardGalleryItemDriverFactory from './CardGalleryItem.uni.driver';
 import ReactTestUtils from 'react-dom/test-utils';
 
 const hover = async driver =>

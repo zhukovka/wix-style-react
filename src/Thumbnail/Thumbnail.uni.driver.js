@@ -13,7 +13,7 @@ export const thumbnailDriverFactory = base => {
 
   const titleDriver = async () =>
     textTestkitFactory({
-      wrapper: await byHook('thumbnail-title').getNative(),
+      wrapper: await byHook('thumbnail-title').getNative(), // eslint-disable-line no-restricted-properties
       dataHook: 'thumbnail-title',
     });
 

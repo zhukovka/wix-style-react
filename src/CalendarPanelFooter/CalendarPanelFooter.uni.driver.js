@@ -1,5 +1,5 @@
 import { baseUniDriverFactory } from 'wix-ui-test-utils/base-driver';
-import { buttonDriverFactory } from '../Button/Button.driver';
+import { buttonDriverFactory } from '../Button/Button.uni.driver';
 
 export const calendarPanelFooterDriverFactory = base => {
   const getByDataHook = dataHook => base.$(`[data-hook=${dataHook}]`);

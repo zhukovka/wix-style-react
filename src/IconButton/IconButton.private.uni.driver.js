@@ -1,4 +1,4 @@
-import { iconButtonDriverFactory as publicDriverFactory } from './IconButton.driver';
+import { iconButtonDriverFactory as publicDriverFactory } from './IconButton.uni.driver';
 
 export const iconButtonPrivateDriverFactory = base => {
   return {

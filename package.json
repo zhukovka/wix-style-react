@@ -322,6 +322,20 @@
             }
           ]
         }
+      },
+      {
+        "files": [
+          "**/*private.uni.driver.js"
+        ],
+        "rules": {
+          "no-restricted-properties": [
+            "off",
+            {
+              "property": "getNative",
+              "message": "getNative is allowed in private drivers"
+            }
+          ]
+        }
       }
     ]
   }

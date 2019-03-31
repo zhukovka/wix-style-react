@@ -2,7 +2,7 @@ import React from 'react';
 import { createUniDriverFactory } from 'wix-ui-test-utils/uni-driver-factory';
 
 import ToggleButton from './ToggleButton';
-import { toggleButtonPrivateDriverFactory } from './ToggleButton.private.driver';
+import { toggleButtonPrivateDriverFactory } from './ToggleButton.private.uni.driver';
 
 describe('ToggleButton', () => {
   const createDriver = createUniDriverFactory(toggleButtonPrivateDriverFactory);

@@ -1,4 +1,4 @@
-import { closeButtonDriverFactory as publicDriverFactory } from './CloseButton.driver';
+import { closeButtonDriverFactory as publicDriverFactory } from './CloseButton.uni.driver';
 
 export const closeButtonPrivateDriverFactory = base => {
   return {

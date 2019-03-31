@@ -5,7 +5,7 @@ import {
 } from 'wix-ui-test-utils/protractor';
 import autoExampleDriver from 'wix-storybook-utils/AutoExampleDriver';
 import { eyesItInstance } from '../../test/utils/eyes-it';
-import { proportionPrivateDriverFactory } from './Proportion.private.driver';
+import { proportionPrivateDriverFactory } from './Proportion.private.uni.driver';
 import { storySettings } from './docs/storySettings';
 import { PREDEFINED_RATIOS } from './ratios';
 

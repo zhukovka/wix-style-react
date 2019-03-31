@@ -1,4 +1,4 @@
-import { proportionDriverFactory as publicDriverFactory } from './Proportion.driver';
+import { proportionDriverFactory as publicDriverFactory } from './Proportion.uni.driver';
 
 export const proportionPrivateDriverFactory = base => {
   return {

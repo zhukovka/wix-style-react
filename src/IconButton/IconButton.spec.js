@@ -1,6 +1,6 @@
 import React from 'react';
 import { createRendererWithUniDriver, cleanup } from '../../test/utils/react';
-import { iconButtonPrivateDriverFactory } from './IconButton.driver.private';
+import { iconButtonPrivateDriverFactory } from './IconButton.private.uni.driver';
 import IconButton from '.';
 
 import Add from 'wix-ui-icons-common/Add';

@@ -1,4 +1,4 @@
-import { colorInputDriverFactory as publicDriverFactory } from './ColorInput.driver';
+import { colorInputDriverFactory as publicDriverFactory } from './ColorInput.uni.driver';
 import { getStylableState } from '../../test/utils/stylable-uni-testkit';
 import hashStyles from './components/Hash.st.css';
 import viewerStyles from './components/ColorViewer.st.css';

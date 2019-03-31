@@ -1,4 +1,4 @@
-import publicDriverFactory from './Accordion.driver';
+import publicDriverFactory from './Accordion.uni.driver';
 import { getItemAt } from './utils';
 import { dataHooks } from './constants';
 

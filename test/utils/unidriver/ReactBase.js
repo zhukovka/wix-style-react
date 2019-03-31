@@ -117,3 +117,6 @@ export function ReactBase(base) {
 
 ReactBase.clickBody = () =>
   document.body.dispatchEvent(new Event('mouseup', { cancelable: true }));
+// TODO: Findout why some tests need clickOutSide to be on document and some on body
+ReactBase.clickDocument = () =>
+  document.dispatchEvent(new Event('mousedown', { cancelable: true }));
