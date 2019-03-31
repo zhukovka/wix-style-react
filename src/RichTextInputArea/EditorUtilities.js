@@ -161,6 +161,8 @@ const convertToHtml = editorState => {
   return stateToHTML(editorState.getCurrentContent(), markupConfig);
 };
 
+const isEditorFocused = editorState => editorState.getSelection().getHasFocus();
+
 export default {
   hasStyle,
   hasBlockType,
@@ -171,4 +173,5 @@ export default {
   getSelectedText,
   findLinkEntities,
   convertToHtml,
+  isEditorFocused,
 };

@@ -1,6 +1,6 @@
 import { testkit as inputTestkit } from '../../Input/Input.uni.driver';
 
-export default (base, body, document) => {
+export default base => {
   const getButtons = () => base.$$(`[data-hook*="richtextarea-button"]`);
   const getButtonByType = type =>
     base.$(`[data-hook*="richtextarea-button-${type}"]`);
@@ -32,13 +32,9 @@ export default (base, body, document) => {
     insertLink: async (text, url) => {
       const textInputDriver = inputTestkit(
         base.$('[data-hook="richtextarea-form-link-text"]'),
-        body,
-        document,
       );
       const urlInputDriver = inputTestkit(
         base.$('[data-hook="richtextarea-form-link-url"]'),
-        body,
-        document,
       );
       const submitButton = base.$(
         '[data-hook="richtextarea-form-confirm-button"]',

@@ -79,6 +79,7 @@ const RichTextToolbar = ({
               toggleStyle(editorState, onBold, inlineStyleTypes.bold),
             iconComponent: TextAreaBold,
             isActive: () =>
+              EditorUtilities.isEditorFocused(editorState) &&
               EditorUtilities.hasStyle(editorState, inlineStyleTypes.bold),
             tooltipText: texts.toolbarButtons.boldButtonLabel,
             render: (index, data) => renderButton(index, data),
@@ -89,6 +90,7 @@ const RichTextToolbar = ({
               toggleStyle(editorState, onItalic, inlineStyleTypes.italic),
             iconComponent: TextAreaItalic,
             isActive: () =>
+              EditorUtilities.isEditorFocused(editorState) &&
               EditorUtilities.hasStyle(editorState, inlineStyleTypes.italic),
             tooltipText: texts.toolbarButtons.italicButtonLabel,
             render: (index, data) => renderButton(index, data),
@@ -99,6 +101,7 @@ const RichTextToolbar = ({
               toggleStyle(editorState, onUnderline, inlineStyleTypes.underline),
             iconComponent: TextAreaUnderline,
             isActive: () =>
+              EditorUtilities.isEditorFocused(editorState) &&
               EditorUtilities.hasStyle(editorState, inlineStyleTypes.underline),
             tooltipText: texts.toolbarButtons.underlineButtonLabel,
             render: (index, data) => renderButton(index, data),
@@ -112,6 +115,7 @@ const RichTextToolbar = ({
             },
             iconComponent: TextAreaLink,
             isActive: () =>
+              EditorUtilities.isEditorFocused(editorState) &&
               EditorUtilities.hasEntity(editorState, entityTypes.link),
             tooltipText: texts.toolbarButtons.linkButtonLabel,
             render: (index, data) => renderLinkButton(index, data),
@@ -126,6 +130,7 @@ const RichTextToolbar = ({
               ),
             iconComponent: TextAreaBulletList,
             isActive: () =>
+              EditorUtilities.isEditorFocused(editorState) &&
               EditorUtilities.hasBlockType(
                 editorState,
                 blockTypes.bulletedList,
@@ -144,6 +149,7 @@ const RichTextToolbar = ({
               ),
             iconComponent: TextAreaNumberedList,
             isActive: () =>
+              EditorUtilities.isEditorFocused(editorState) &&
               EditorUtilities.hasBlockType(
                 editorState,
                 blockTypes.numberedList,
