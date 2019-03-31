@@ -19,6 +19,7 @@ Types of changes:
 ### Added
 
 - `<Accordion/>` - new component for collapsable content [#2902](https://github.com/wix/wix-style-react/pull/2902)
+- `<DataTable/>` - add virtualization capability [#3184](https://github.com/wix/wix-style-react/pull/3184)
 
 ### Changed
 
