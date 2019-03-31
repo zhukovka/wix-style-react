@@ -21,11 +21,17 @@ Types of changes:
 - `<Accordion/>` - new component for collapsable content [#2902](https://github.com/wix/wix-style-react/pull/2902)
 
 ### Changed
+
 - `<Notification/>` (fix) - Add default zIndex so that Notification is displayed above the `<Page/>`'s minimized Header. overlay [#3181](https://github.com/wix/wix-style-react/pull/3181)
+- `<DropdownLayout/>` - complete Unidriver implementation [#3199](https://github.com/wix/wix-style-react/pull/3199)
 
 ### Fixed
 
 - `<EditableTitle/>` - Fix exists [#3190](https://github.com/wix/wix-style-react/pull/3190)
+
+### Docs
+
+- `<Page/>` - add link to migration doc in component story [9692962](https://github.com/wix/wix-style-react/commit/969296256d9ad7286c8379adbb8a61e9d3370333)
 
 ## 6.10.4 - 2019-03-26
 
@@ -48,20 +54,24 @@ Types of changes:
 ## 6.10.3 - 2019-03-24
 
 ### Fixed
+
 - `<Modal/>` (fix&change): Fix broken `zIndex` prop. Change default zIndex value from `11` to `5000` [#3153](https://github.com/wix/wix-style-react/pull/3153)
 - `<DatePicker/>` - add missing customInput support [#3156](https://github.com/wix/wix-style-react/pull/3156)
 - `<EditableTitle/>` - fix margins [#3141](https://github.com/wix/wix-style-react/pull/3141)
 - `<Search/>` enable passing showOptionsIfEmptyInput prop [#3149](https://github.com/wix/wix-style-react/pull/3140)
 
 ## 6.10.2 - 2019-03-24
+
 No Changes (Patch version, only to re-publish Storybook, after failed publish)
 
 ## 6.10.1 - 2019-03-24
+
 No Changes (Patch version, only to re-publish Storybook, after failed publish)
 
 ## 6.10.0 - 2019-03-22
 
 ### Added
+
 - `<Input/>` - add styles for read-only state [#3096](https://github.com/wix/wix-style-react/pull/3096)
 - `<EditableTitle/>` - new editable input to compose in the PageHeader [#3074](https://github.com/wix/wix-style-react/pull/3074)
 
@@ -74,11 +84,13 @@ No Changes (Patch version, only to re-publish Storybook, after failed publish)
 ## 6.9.0 - 2019-03-18
 
 ### Added
+
 - `<GoogleAddressInput/>` - allow passing fields to place details request [#3101](https://github.com/wix/wix-style-react/pull/3101)
 - `<InputArea/>` - add minRowsAutoGrow [#3105](https://github.com/wix/wix-style-react/pull/3105)
 - `<GoogleAddressInput/>` - attach session token to api calls [#3112](https://github.com/wix/wix-style-react/pull/3112)
 
 ### Fixed
+
 - `<Page/>` - Fix Multiple PageHeader dataHooks [#3111](https://github.com/wix/wix-style-react/pull/3111)
 - `<Modal>` - disable page scrolling when modal is open [#3086](https://github.com/wix/wix-style-react/pull/3086)
 - `<RichTextInputAreaLinkForm/>` - make component to be non-pure [#3113](https://github.com/wix/wix-style-react/pull/3113)
@@ -95,6 +107,7 @@ No Changes (Patch version, only to re-publish Storybook, after failed publish)
 - `<NumberInput />` - add new NumberInput component [#3033](https://github.com/wix/wix-style-react/pull/3033)
 
 ### Fixed
+
 - `<ImageViewer/>` - fix image position in Firefox [#3092](https://github.com/wix/wix-style-react/pull/3092)
 
 ### Docs
