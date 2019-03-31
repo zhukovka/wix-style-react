@@ -8,6 +8,7 @@ import MultiSelect from '..';
 
 import ExampleReorderable from './ExampleReorderable';
 import TestTabsSwitches from './tests/TestTabsSwitches';
+import TestLineNotBraking from './tests/TestLineNotBraking';
 
 const kind = getTestStoryKind({
   category: storySettings.category,
@@ -65,5 +66,11 @@ MultiSelectTests.add(testStories.tabsSwitches, () => (
     <input data-hook="input-for-focus-1" />
     <TestTabsSwitches />
     <input data-hook="input-for-focus-2" />
+  </div>
+));
+
+MultiSelectTests.add(testStories.lineNotBraking, () => (
+  <div style={{ width: '400px' }}>
+    <TestLineNotBraking />
   </div>
 ));

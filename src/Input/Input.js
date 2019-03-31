@@ -117,6 +117,7 @@ class Input extends Component {
       required,
       error,
       errorMessage,
+      customInput,
     } = this.props;
     const onIconClicked = e => {
       if (!disabled) {
@@ -172,43 +173,42 @@ class Input extends Component {
     /* eslint-disable no-unused-vars */
     const { className, ...inputElementProps } = props;
 
-    const inputElement = (
-      <input
-        min={min}
-        max={max}
-        step={step}
-        data-hook="wsr-input"
-        style={{ textOverflow }}
-        ref={this.extractRef}
-        className={inputClassNames}
-        id={id}
-        name={name}
-        disabled={disabled}
-        defaultValue={defaultValue}
-        value={value}
-        onChange={this._onChange}
-        onKeyPress={this._onKeyPress}
-        maxLength={maxLength}
-        onFocus={this._onFocus}
-        onBlur={this._onBlur}
-        onKeyDown={this._onKeyDown}
-        onDoubleClick={this._onDoubleClick}
-        onPaste={onPaste}
-        placeholder={placeholder}
-        tabIndex={tabIndex}
-        autoFocus={autoFocus}
-        onClick={this._onClick}
-        onKeyUp={onKeyUp}
-        readOnly={readOnly || disableEditing}
-        type={type}
-        required={required}
-        autoComplete={autocomplete}
-        onCompositionStart={() => this.onCompositionChange(true)}
-        onCompositionEnd={() => this.onCompositionChange(false)}
-        {...ariaAttribute}
-        {...inputElementProps}
-      />
-    );
+    const inputElement = this._renderInput({
+      min,
+      max,
+      step,
+      'data-hook': 'wsr-input',
+      style: { textOverflow },
+      dataRef: this.extractRef,
+      className: inputClassNames,
+      id,
+      name,
+      disabled,
+      defaultValue,
+      value,
+      onChange: this._onChange,
+      onKeyPress: this._onKeyPress,
+      maxLength,
+      onFocus: this._onFocus,
+      onBlur: this._onBlur,
+      onKeyDown: this._onKeyDown,
+      onDoubleClick: this._onDoubleClick,
+      onPaste,
+      placeholder,
+      tabIndex,
+      autoFocus,
+      onClick: this._onClick,
+      onKeyUp,
+      readOnly: readOnly || disableEditing,
+      type,
+      required,
+      autoComplete: autocomplete,
+      onCompositionStart: () => this.onCompositionChange(true),
+      onCompositionEnd: () => this.onCompositionChange(false),
+      customInput,
+      ...ariaAttribute,
+      ...inputElementProps,
+    });
 
     return (
       <div className={styles.inputWrapper}>
@@ -370,6 +370,20 @@ class Input extends Component {
     }
 
     onClear && onClear();
+  };
+
+  _renderInput = props => {
+    const { customInput: CustomInputComponent, dataRef, ...rest } = props;
+    const inputProps = {
+      ...(CustomInputComponent
+        ? { 'data-ref': dataRef, ...rest, 'data-hook': 'wsr-custom-input' }
+        : { ref: dataRef, ...rest }),
+    };
+
+    return React.cloneElement(
+      CustomInputComponent ? <CustomInputComponent /> : <input />,
+      inputProps,
+    );
   };
 }
 
@@ -566,6 +580,9 @@ Input.propTypes = {
 
   /** Step steps to increment/decrement - similar to html5 step attribute */
   step: PropTypes.number,
+
+  /** Use a customized input component instead of the default html input tag */
+  customInput: PropTypes.oneOfType([PropTypes.func, PropTypes.node]),
 };
 
 export default Input;
