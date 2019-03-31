@@ -12,12 +12,10 @@ export default {
   component: RichTextInputArea,
   componentPath: '..',
 
-  componentProps: setProps => ({
+  componentProps: () => ({
     dataHook: storySettings.dataHook,
-    value: '',
-    onChange: value => {
-      setProps({ value });
-    },
+    initialValue: '',
+    onChange: value => value,
   }),
 
   exampleProps: {

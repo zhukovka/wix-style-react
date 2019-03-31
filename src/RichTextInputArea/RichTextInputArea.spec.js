@@ -17,7 +17,7 @@ describe('RichTextInputArea', () => {
   describe('Editor', () => {
     it('should render the text when `value` prop is plain text', async () => {
       const text = 'Some text';
-      const driver = createDriver(<RichTextInputArea value={text} />);
+      const driver = createDriver(<RichTextInputArea initialValue={text} />);
 
       expect(await driver.exists()).toBe(true);
       expect(await driver.getContent()).toBe(text);
@@ -28,7 +28,7 @@ describe('RichTextInputArea', () => {
       const expectedText = texts.join(' ');
       const driver = createDriver(
         <RichTextInputArea
-          value={`<p>${texts[0]} <strong>${texts[1]}</strong></p>`}
+          initialValue={`<p>${texts[0]} <strong>${texts[1]}</strong></p>`}
         />,
       );
 
