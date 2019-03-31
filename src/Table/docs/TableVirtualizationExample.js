@@ -42,7 +42,7 @@ const baseDataSet = [
 
 const generateData = count =>
   [...Array(count).fill(0)].map((_n, i) => ({
-    ...baseDataSet[Math.floor(Math.random() * 4)],
+    ...baseDataSet[Math.floor(i % 4)],
     id: i,
     SKU: i,
   }));
