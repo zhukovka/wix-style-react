@@ -20,8 +20,9 @@ Types of changes:
 - `<RichTextInputArea/>` - add `placeholder` prop [#3214](https://github.com/wix/wix-style-react/pull/3214)
 
 ### Fixed
-- `<MultiSelect/>` - avoid unnecessary line-breaks by adjusting input size [#3146](https://github.com/wix/wix-style-react/pull/3146)
 
+- `<MultiSelect/>` - avoid unnecessary line-breaks by adjusting input size [#3146](https://github.com/wix/wix-style-react/pull/3146)
+- `<DataTable/>` - fix style attribute rendering array [#3222](https://github.com/wix/wix-style-react/pull/3222)
 
 ## 6.11.0 - 2019-03-31
 
