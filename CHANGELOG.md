@@ -15,6 +15,9 @@ Types of changes:
 1. **Lab** components and features that are still in a work in progress
 
 ## Next
+## Added
+- `<RichTextInputArea/>` - add `placeholder` prop [#3214](https://github.com/wix/wix-style-react/pull/3214)
+
 ### Fixed
 - `<MultiSelect/>` - avoid unnecessary line-breaks by adjusting input size [#3146](https://github.com/wix/wix-style-react/pull/3146)
 
