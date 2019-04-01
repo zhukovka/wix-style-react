@@ -52,8 +52,8 @@
     "export-components": "import-path --path src",
     "lint": "yoshi lint --fix",
     "proxy-wix-ui-icons": "node scripts/proxy-wix-ui-icons",
-    "generate": "./scripts/component-generator/bin/component-generator.js",
-    "generate-test-component": "./scripts/component-generator/bin/generate-test-component.js",
+    "generate": "./scripts/generate-component/bin/generate-component.js",
+    "generate-test-component": "./scripts/generate-component/bin/generate-test-component.js",
     "generate-testkit-exports": "node scripts/generate-testkit-exports",
     "generate-autodocs-registry": "node scripts/generate-autodocs-registry",
     "eyes-storybook-debug": "start-storybook -c ./.storybook-test -p 6007"
@@ -112,7 +112,6 @@
     "execa": "^1.0.0",
     "express": "^4.16.4",
     "eyes.it": "^2.0.0",
-    "fs-extra": "^7.0.1",
     "globby": "^8.0.1",
     "husky": "~0.14.0",
     "identity-obj-proxy": "^3.0.0",
@@ -222,7 +221,7 @@
       "<rootDir>/dist/",
       "<rootDir>/node_modules/",
       "<rootDir>/test-runtime/",
-      "<rootDir>/scripts/component-generator/templates/"
+      "<rootDir>/scripts/generate-component/templates/"
     ]
   },
   "eslintConfig": {

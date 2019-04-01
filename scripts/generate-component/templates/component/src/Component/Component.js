@@ -3,13 +3,11 @@ import PropTypes from 'prop-types';
 
 import Text from '../Text';
 import Button from '../Button';
-import styles from './GeneratedTestComponent.st.css';
+import styles from './{%ComponentName%}.st.css';
 
-/**
- * This is an automatically generated test component
- */
-class GeneratedTestComponent extends React.PureComponent {
-  static displayName = 'GeneratedTestComponent';
+{%descriptionJSDoc%}
+class {%ComponentName%} extends React.PureComponent {
+  static displayName = '{%ComponentName%}';
 
   static propTypes = {
     dataHook: PropTypes.string,
@@ -39,7 +37,7 @@ class GeneratedTestComponent extends React.PureComponent {
 
     return (
       <div className={styles.root} data-hook={dataHook}>
-        <Text dataHook="generatedTestComponent-count">
+        <Text dataHook="{%componentName%}-count">
           You clicked this button {isEven ? 'even' : 'odd'} number (
           <span
             {...styles('number', { even: isEven, odd: !isEven }, this.props)}
@@ -52,7 +50,7 @@ class GeneratedTestComponent extends React.PureComponent {
         <div className={styles.button}>
           <Button
             onClick={this._handleClick}
-            dataHook="generatedTestComponent-button"
+            dataHook="{%componentName%}-button"
           >
             {buttonText}
           </Button>
@@ -62,4 +60,4 @@ class GeneratedTestComponent extends React.PureComponent {
   }
 }
 
-export default GeneratedTestComponent;
+export default {%ComponentName%};
