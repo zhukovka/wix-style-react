@@ -1,5 +1,5 @@
 import { Simulate } from 'react-dom/test-utils';
-import { reactUniDriver } from 'unidriver';
+import { jsdomReactUniDriver } from '@unidriver/jsdom-react';
 /**
  *Temporary workaround for implementing missing Unidriver methods in React/DOM only.
  *
@@ -90,7 +90,7 @@ export function ReactBase(base) {
       const ch = (await htmlElement()).children;
       const uniChildren = [];
       for (let i = 0; i < ch.length; i++) {
-        uniChildren.push(reactUniDriver(ch[i]));
+        uniChildren.push(jsdomReactUniDriver(ch[i]));
       }
       return uniChildren;
     },

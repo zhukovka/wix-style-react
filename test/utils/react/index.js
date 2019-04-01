@@ -1,6 +1,6 @@
 import { render } from 'react-testing-library';
 import { Simulate } from 'react-dom/test-utils';
-import { reactUniDriver } from 'unidriver';
+import { jsdomReactUniDriver } from '@unidriver/jsdom-react';
 
 const getElement = ({ rendered, dataHook }) => {
   return dataHook
@@ -55,9 +55,9 @@ export function createRendererWithUniDriver(
 ) {
   const createDriver = ({ element }) =>
     driverFactory(
-      reactUniDriver(element),
-      reactUniDriver(document.body),
-      reactUniDriver(document),
+      jsdomReactUniDriver(element),
+      jsdomReactUniDriver(document.body),
+      jsdomReactUniDriver(document),
     );
   return createRendererBase(createDriver, defaultOptions);
 }

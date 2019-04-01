@@ -100,6 +100,7 @@
     "@stylable/dom-test-kit": "^0.1.6",
     "@types/react": "^15.6.20",
     "@ui-autotools/registry": "^3.4.0",
+    "@unidriver/jsdom-react": "^1.2.1",
     "babel-core": "^7.0.0-bridge.0",
     "babel-loader": "^8.0.5",
     "chalk": "^2.4.1",
@@ -203,7 +204,7 @@
     "wix-ui-backoffice": "^1.0.339",
     "wix-ui-core": "^2.0.1",
     "wix-ui-icons-common": "^2.0.9",
-    "wix-ui-test-utils": "^1.0.142"
+    "wix-ui-test-utils": "^2.0.0"
   },
   "lint-staged": {
     "*.{js,scss}": "yoshi lint --fix --"
