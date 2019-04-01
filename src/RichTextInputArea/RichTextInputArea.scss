@@ -10,9 +10,18 @@ $borderRadius: 6px;
 $padding: 12px;
 
 .root {
+  min-height: $minHeight;
   min-width: $minWidth;
   background-color: $D80;
   border-radius: $borderRadius;
+
+  :global(.public-DraftEditorPlaceholder-root) {
+    @include Text($weight: normal, $size: medium, $light: true, $secondary: true);
+
+    padding: $padding;
+    position: absolute;
+    pointer-events: none;
+  }
 
   :global(.public-DraftEditor-content) { 
     min-height: $minHeight;

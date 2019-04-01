@@ -15,7 +15,7 @@ describe('RichTextInputArea', () => {
   let currentValue;
 
   describe('Editor', () => {
-    it('should render the text when `value` prop is plain text', async () => {
+    it('should render the text when `initialValue` prop is plain text', async () => {
       const text = 'Some text';
       const driver = createDriver(<RichTextInputArea initialValue={text} />);
 
@@ -45,6 +45,14 @@ describe('RichTextInputArea', () => {
       await driver.enterText(text);
 
       expect(callback).toHaveBeenCalledWith(expectedHtmlValue);
+    });
+
+    it('should render a placeholder', async () => {
+      const text = 'Some text';
+      const driver = createDriver(<RichTextInputArea placeholder={text} />);
+
+      expect(await driver.exists()).toBe(true);
+      expect(await driver.getContent()).toBe(text);
     });
   });
 

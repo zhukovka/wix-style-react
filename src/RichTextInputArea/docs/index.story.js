@@ -15,6 +15,7 @@ export default {
   componentProps: () => ({
     dataHook: storySettings.dataHook,
     initialValue: '',
+    placeholder: 'Default text goes here',
     onChange: value => value,
   }),
 

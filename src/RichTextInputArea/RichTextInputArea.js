@@ -36,6 +36,7 @@ class RichTextInputArea extends React.PureComponent {
   static propTypes = {
     dataHook: PropTypes.string,
     initialValue: PropTypes.string,
+    placeholder: PropTypes.string,
     onChange: PropTypes.func,
     texts: PropTypes.shape({
       toolbarButtons: PropTypes.shape(
@@ -82,7 +83,7 @@ class RichTextInputArea extends React.PureComponent {
   }
 
   render() {
-    const { dataHook } = this.props;
+    const { dataHook, placeholder } = this.props;
 
     return (
       <div data-hook={dataHook} className={styles.root}>
@@ -111,6 +112,7 @@ class RichTextInputArea extends React.PureComponent {
           ref="editor"
           editorState={this.state.editorState}
           onChange={this._setEditorState}
+          placeholder={placeholder}
         />
       </div>
     );
