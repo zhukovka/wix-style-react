@@ -14,6 +14,13 @@ Types of changes:
 1. **Docs** for documentation changes
 1. **Lab** components and features that are still in a work in progress
 
+## 6.12.1 - 2019-04-01
+
+### Fixed 
+
+- `<DataTable/>` - fix style attribute rendering array [#3222](https://github.com/wix/wix-style-react/pull/3222)
+
+
 ## 6.12.0 - 2019-04-01
 
 ### Added
@@ -22,7 +29,6 @@ Types of changes:
 ### Fixed
 
 - `<MultiSelect/>` - avoid unnecessary line-breaks by adjusting input size [#3146](https://github.com/wix/wix-style-react/pull/3146)
-- `<DataTable/>` - fix style attribute rendering array [#3222](https://github.com/wix/wix-style-react/pull/3222)
 
 ## 6.11.0 - 2019-03-31
 
