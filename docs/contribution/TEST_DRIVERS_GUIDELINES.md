@@ -16,6 +16,7 @@ An `<Search/>` input might have clear button (little `x`).
 
 A `<Dropdown/>` allows selection from options.
 The user needs to:
+
 - click on the Input (to focus it)
 - press key down (to open the options)
 - click on an option
@@ -101,8 +102,8 @@ Comp.propTypes = {
 ```js
 export const ComponentDriver = base => (
   {
-    getLeft: ()=> base.$(`[data-hook="left"]`).getNative();
-    getRight: ()=> base.$(`[data-hook="right"]`).getNative();
+    getLeft: ()=> (await ReactBase(base.$(`[data-hook="left"]`)).childNodes())[0].getNative();
+    getRight: ()=> (await ReactBase(base.$(`[data-hook="right"]`)).childNodes())[0].getNative();
   }
 )
 ```
@@ -110,3 +111,58 @@ export const ComponentDriver = base => (
 ### Do NOT Expose Internal Elements
 
 The only case where a Getter method would return an Element is to retrieve a **consumer's** element from a render slot. Apart from that, NEVER return an Element.
+
+## Composition
+
+### Avoid Nested Drivers
+
+The driver should reflect the heirarchy of the Component's props.
+> Component
+```js
+
+import CompA from '../CompA';
+
+export CompB = () = (
+  <CompA ... >
+)
+```
+
+> Driver
+
+```js
+import CompADriver from '../CompA/CompADriver';
+
+export CompBDriver = (base) = (
+  ...CompADriver(base)
+)
+```
+
+### Avoid Nested Objects
+
+> Driver
+
+```js
+export driver = (base) => {
+   const option = index => {
+      const opt = base.$$('.option').get(index);
+      return  {
+        getContent: ()=> opt.text();
+        getTheme: ()=> opt.attr('.theme');
+      }
+   }
+   return {
+     getOption: index => opt(index);
+   }
+```
+
+In the example above, avoid the `getOption` nested methods. It is hard to document, and maintain. Instead, have them as flat methods.
+
+```js
+export driver = (base) => {
+   const option = index => base.$$('.option').get(index);
+
+   return {
+     getOptionContent: index => option(index).text();
+     getOptionTheme: index => option(index).attr('.theme');
+   }
+```
