@@ -140,7 +140,11 @@ class DataTable extends React.Component {
     );
   };
 
-  renderBody = rows => <tbody>{rows.map(this.renderRow)}</tbody>;
+  renderBody = rows => (
+    <tbody>
+      {rows.map((rowData, index) => this.renderRow(rowData, index))}
+    </tbody>
+  );
 
   onRowClick = (rowData, rowNum) => {
     const { onRowClick, rowDetails } = this.props;
@@ -203,8 +207,8 @@ class DataTable extends React.Component {
     const rowsToRender = [
       <tr
         data-table-row="dataTableRow"
-        key={key}
         style={style}
+        key={key}
         {...optionalRowProps}
       >
         {this.props.columns.map((column, colNum) =>
