@@ -14,21 +14,22 @@ Types of changes:
 1. **Docs** for documentation changes
 1. **Lab** components and features that are still in a work in progress
 
-## Next
+## 6.12.2 - 2019-04-02
 
-### Fixed 
+### Fixed
 
 - `<RichTextToolbar/>` - remove unnecessary bracket [418ed84](https://github.com/wix/wix-style-react/commit/418ed84e462efb190f307d4fa9fe28813d8079c8)
 
 ## 6.12.1 - 2019-04-01
 
-### Fixed 
+### Fixed
 
 - `<DataTable/>` - fix style attribute rendering array [#3222](https://github.com/wix/wix-style-react/pull/3222)
 
 ## 6.12.0 - 2019-04-01
 
 ### Added
+
 - `<RichTextInputArea/>` - add `placeholder` prop [#3214](https://github.com/wix/wix-style-react/pull/3214)
 
 ### Fixed
