@@ -1,5 +1,5 @@
 import { Simulate } from 'react-dom/test-utils';
-import { reactUniDriver } from 'unidriver';
+import { reactUniDriver } from 'wix-ui-test-utils/vanilla';
 /**
  *Temporary workaround for implementing missing Unidriver methods in React/DOM only.
  *
