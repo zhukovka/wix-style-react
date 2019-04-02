@@ -168,7 +168,6 @@ const RichTextToolbar = ({
           </div>
         );
       }}
-      )
     </RichTextInputAreaContext.Consumer>
   );
 };
