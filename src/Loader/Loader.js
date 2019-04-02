@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import { Loadable } from 'wix-ui-backoffice/dist/es/src/components/Loadable';
+import { Loadable } from 'wix-ui-core/dist/es/src/components/loadable';
 import WixComponent from '../BaseComponents/WixComponent';
 import Arc from './Arc';
 import css from './Loader.scss';
