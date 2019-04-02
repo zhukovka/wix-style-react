@@ -14,7 +14,7 @@ Types of changes:
 1. **Docs** for documentation changes
 1. **Lab** components and features that are still in a work in progress
 
-## 6.12.3 - 2019-04-03
+## 6.12.3 - 2019-04-02
 
 - UniDriver: Upgrade - Use UniDriver from `wix-ui-test-utils` [#3229](https://github.com/wix/wix-style-react/pull/3229)
 
