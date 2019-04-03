@@ -67,6 +67,19 @@ $minimizedHeaderContainerZIndex: $stickyZIndex + $zIndexLayerStep;
             min-height: $minimizedHeaderWrapperMinHeight;
             padding-top: $minimizedHeaderWrapperTopPadding;
             padding-bottom: $minimizedHeaderWrapperBottomPadding;
+
+            position: relative;
+            @keyframes entrance {
+              0% {
+                opacity: 0;
+                bottom: -20px;
+              }
+              100% {
+                opacity: 1;
+                bottom: 0px;
+              }
+            }
+            animation: entrance 0.2s;
           }
         }
 
