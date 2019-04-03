@@ -14,7 +14,23 @@ Types of changes:
 1. **Docs** for documentation changes
 1. **Lab** components and features that are still in a work in progress
 
+## Next
+
+### Added
+
+- `<PopoverMenuItem/>` - allow `text` prop to accept react nodes [#3224](https://github.com/wix/wix-style-react/pull/3224)
+- `<GooglePreview/>` - add new component [#3179](https://github.com/wix/wix-style-react/pull/3179)
+
+### Changed
+- `<PageHeader/>` - change entrance animation [#3230](https://github.com/wix/wix-style-react/pull/3230)
+
+### Fixed
+
+- `<EditableTitle/>` - fix bug where onSubmit is called twice when pressing enter [#3227](https://github.com/wix/wix-style-react/pull/3227)
+
 ## 6.12.3 - 2019-04-02
+
+### Changed
 
 - UniDriver: Upgrade - Use UniDriver from `wix-ui-test-utils` [#3229](https://github.com/wix/wix-style-react/pull/3229)
 
