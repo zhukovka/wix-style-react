@@ -70,6 +70,7 @@ export const formFieldTestkitFactory = enzymeTestkitFactoryCreator(load(require(
 export const generatedTestComponentTestkitFactory = enzymeUniTestkitFactoryCreator(load(require('../src/GeneratedTestComponent/GeneratedTestComponent.uni.driver')));
 export const genericModalLayoutTestkitFactory = enzymeTestkitFactoryCreator(load(require('../src/GenericModalLayout/GenericModalLayout.driver')));
 export const googleAddressInputWithLabelTestkitFactory = enzymeTestkitFactoryCreator(load(require('../src/GoogleAddressInputWithLabel/GoogleAddressInputWithLabel.driver')));
+export const googlePreviewTestkitFactory = enzymeUniTestkitFactoryCreator(load(require('../src/GooglePreview/GooglePreview.uni.driver')));
 export const headingTestkitFactory = enzymeTestkitFactoryCreator(load(require('../src/Heading/Heading.driver')));
 export const highlighterTestkitFactory = enzymeTestkitFactoryCreator(load(require('../src/Highlighter/Highlighter.driver')));
 export const iconButtonTestkitFactory = enzymeUniTestkitFactoryCreator(load(require('../src/IconButton/IconButton.uni.driver')));

@@ -455,3 +455,9 @@ import { accordionDriverFactory } from '../src/Accordion/Accordion.uni.driver';
 export const accordionTestkitFactory = protractorUniTestkitFactoryCreator(
   accordionDriverFactory,
 );
+
+import { googlePreviewDriverFactory } from '../src/GooglePreview/GooglePreview.uni.driver';
+
+export const googlePreviewTestkitFactory = protractorUniTestkitFactoryCreator(
+  googlePreviewDriverFactory,
+);

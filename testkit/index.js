@@ -70,6 +70,7 @@ export const formFieldTestkitFactory = testkitFactoryCreator(load(require('../sr
 export const generatedTestComponentTestkitFactory = uniTestkitFactoryCreator(load(require('../src/GeneratedTestComponent/GeneratedTestComponent.uni.driver')));
 export const genericModalLayoutTestkitFactory = testkitFactoryCreator(load(require('../src/GenericModalLayout/GenericModalLayout.driver')));
 export const googleAddressInputWithLabelTestkitFactory = testkitFactoryCreator(load(require('../src/GoogleAddressInputWithLabel/GoogleAddressInputWithLabel.driver')));
+export const googlePreviewTestkitFactory = uniTestkitFactoryCreator(load(require('../src/GooglePreview/GooglePreview.uni.driver')));
 export const headingTestkitFactory = testkitFactoryCreator(load(require('../src/Heading/Heading.driver')));
 export const highlighterTestkitFactory = testkitFactoryCreator(load(require('../src/Highlighter/Highlighter.driver')));
 export const iconButtonTestkitFactory = uniTestkitFactoryCreator(load(require('../src/IconButton/IconButton.uni.driver')));

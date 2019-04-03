@@ -235,6 +235,11 @@ module.exports = {
   EditableTitle: {
     testkitPath: '../src/EditableTitle/EditableTitle.uni.driver',
     unidriver: true,
+  }, 
+  
+  GooglePreview: {
+    unidriver: true,
+    testkitPath: '../src/GooglePreview/GooglePreview.uni.driver',
   },
 
   Accordion: {
