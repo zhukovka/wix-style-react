@@ -3,30 +3,40 @@ import { storySettings } from './storySettings';
 import icons from '../../../stories/utils/icons-for-story';
 import {
   tab,
+  tabs,
   api,
-  code as baseCode,
+  header,
+  code as baseLiveCode,
+  divider,
+  columns,
+  title,
   playground,
   description,
   importExample,
+  testkit,
 } from 'wix-storybook-utils/Sections';
 
+import { Layout } from '../..';
 import Button from '..';
-import testkit from './README.TESTKIT.md';
 
 import { baseScope } from '../../../stories/utils/LiveCodeExample';
 import * as examples from './examples';
-import styles from './examples.scss';
+import skins from '!raw-loader!./Skins.md';
 
 const Link = ({ children, ...rest }) => <a {...rest}>{children}</a>;
 
-const code = config =>
-  baseCode({
-    components: { ...baseScope, Link },
+const liveCode = config =>
+  baseLiveCode({
     previewProps: {
-      className: styles.livePreview,
+      style: { backgroundColor: '#f0f4f7' },
     },
+    compact: true,
+    components: { ...baseScope, Link },
     ...config,
   });
+
+const example = ({ source, ...rest }) =>
+  columns([description({ ...rest }), liveCode({ source })]);
 
 export default {
   category: storySettings.kind,
@@ -52,80 +62,71 @@ export default {
   },
 
   sections: [
-    tab({
-      title: 'Description',
-      sections: [
-        description(`🔨 To trigger an operation.`),
-
-        importExample({
-          source: "import Button from 'wix-style-react/Button';",
-        }),
-
-        description({
-          title: `Primary (Filled Buttons)`,
-          text:
-            'Use primary buttons to give more prominence to actions in layouts with a lot of varying content.',
-        }),
-
-        code({
-          source: examples.primary,
-        }),
-
-        description({
-          title: `Secondary (Ghost Buttons)`,
-          text:
-            'Secondary button is best used for secondary or tertiary content, since it should not compete with your primary call to action.',
-        }),
-
-        code({
-          source: examples.secondary,
-        }),
-
-        description({
-          title: `Sizes`,
-          text:
-            'Button supports four main sizes: tiny, small,medium, large. Default size is medium',
-        }),
-
-        code({
-          source: examples.sizes,
-        }),
-
-        description({
-          title: `Affixes`,
-          text:
-            'Suffix and prefix icons can be added to a button by setting prefixIcon or suffixIcon props.',
-        }),
-
-        code({
-          source: examples.affixes,
-        }),
-
-        description({
-          title: `Loading state`,
-          text: `A button can show a loading indicator.`,
-        }),
-
-        code({
-          source: examples.loading,
-        }),
-
-        description({
-          title: `Custom rendering`,
-          text:
-            'Control the rendered HTML tag, or render Button component as another component.',
-        }),
-
-        code({
-          source: examples.custom,
-        }),
-      ],
+    header({
+      component: (
+        <Layout gap={0}>
+          <Button>Button</Button>
+        </Layout>
+      ),
+      sourceUrl:
+        'https://github.com/wix/wix-style-react/tree/master/src/Button/Button.js',
+      issueUrl: 'https://github.com/wix/wix-style-react/issues/new',
     }),
+    tabs([
+      tab({
+        title: 'Description',
+        sections: [
+          description(
+            `Button is a default component to display action in a page.`,
+          ),
 
-    ...[
-      { title: 'Playground', sections: [playground()] },
-      { title: 'API', sections: [api()] },
-      { title: 'Testkit', sections: [description(testkit)] },
-    ].map(tab),
+          importExample({
+            source: "import Button from 'wix-style-react/Button';",
+          }),
+
+          divider(),
+
+          columns([title('Examples')]),
+
+          ...[
+            {
+              title: 'Skin and Priority',
+              text: skins,
+              source: examples.primary,
+            },
+            {
+              title: 'Size',
+              text:
+                'Button supports four sizes – large for emphasized actions, medium as default, small as alternative to medium and tiny for very small layouts.',
+              source: examples.sizes,
+            },
+            {
+              title: 'Affix',
+              text:
+                'To emphasize button’s actions it is allowed to add prefix or suffix icon.',
+              source: examples.affixes,
+            },
+            {
+              title: 'States',
+              text:
+                'If action is submited, but still processing, button can display a loader.Button can be disabled when needed to indicate that action is available, but cannot be performed at the moment.',
+              source: examples.states,
+            },
+            {
+              title: 'Custom rendering',
+              text:
+                'Control the rendered HTML tag, or render Button component as another component.',
+              source: examples.custom,
+            },
+          ].map(example),
+        ],
+      }),
+
+      ...[
+        { title: 'API', sections: [api()] },
+        { title: 'Testkit', sections: [testkit({ unidriver: true })] },
+        { title: 'Playground', sections: [playground()] },
+      ].map(tab),
+    ]),
   ],
 };
