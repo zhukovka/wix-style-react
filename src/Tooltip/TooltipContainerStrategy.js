@@ -1,6 +1,7 @@
 export class TooltipContainerStrategy {
   constructor(appendTo, appendToParent, appendByPredicate) {
     this._predicates = [
+      element => element.classList.contains('ReactModal__Overlay'),
       element =>
         element.getAttribute('data-class') === 'page-scrollable-content',
       element => element === document.body,

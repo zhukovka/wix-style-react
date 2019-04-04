@@ -2,6 +2,7 @@ import React from 'react';
 import { TooltipContainerStrategy } from './TooltipContainerStrategy';
 import { mount } from 'enzyme';
 import Page from '../Page';
+import Modal from '../Modal';
 
 describe('TooltipContainerStrategy', () => {
   it('should return body when element is null', () => {
@@ -82,6 +83,27 @@ describe('TooltipContainerStrategy', () => {
     const container = tooltipContainerStrategy.getContainer(element);
     expect(container.getAttribute('data-class')).toBe(
       'page-scrollable-content',
+    );
+  });
+
+  it('should return Modal overlay container when element is rendered inside a Modal within a Page', () => {
+    const tooltipContainerStrategy = new TooltipContainerStrategy(null, false);
+    let element;
+
+    mount(
+      <Page>
+        <Page.Header title="title" />
+        <Page.Content>
+          <Modal isOpen contentLabel="Modal Example" scrollableContent={false}>
+            <div ref={ref => (element = ref)} />
+          </Modal>
+        </Page.Content>
+      </Page>,
+    );
+
+    const container = tooltipContainerStrategy.getContainer(element);
+    expect(container.getAttribute('class').split(' ')).toEqual(
+      expect.arrayContaining(['ReactModal__Overlay']),
     );
   });
 });
