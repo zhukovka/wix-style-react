@@ -28,6 +28,10 @@ Types of changes:
 
 - `<EditableTitle/>` - fix bug where onSubmit is called twice when pressing enter [#3227](https://github.com/wix/wix-style-react/pull/3227)
 
+### Docs
+
+- `<Button/>` - improved documentation. [#3084](https://github.com/wix/wix-style-react/pull/3084)
+
 ## 6.12.3 - 2019-04-02
 
 ### Changed
