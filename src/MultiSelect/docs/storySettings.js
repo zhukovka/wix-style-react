@@ -1,8 +1,8 @@
 import { Category } from '../../../stories/storiesHierarchy';
 
 export const storySettings = {
-  category: Category.INPUTS,
-  storyName: '3.8 Tags',
+  category: Category.COMPONENTS,
+  storyName: 'Multiselect',
   dataHook: 'storybook-multi-select',
 };
 

@@ -1,19 +1,15 @@
-# MultiSelect component
+# MultiSelect Testkits
 
-> General input container.
-
-## MultiSelect TestKit API
-
-### Exposed Drivers
+## Exposed Drivers
 The `<MultiSelect/>` TestKit is exposing the following drivers:
 * Its own driver (see examples below).
-* [inputDriver](https://wix-wix-style-react.surge.sh/?selectedKind=Core&selectedStory=Input&full=0&down=0&left=1&panelRight=0)
-* [dropdownLayoutDriver](https://wix-wix-style-react.surge.sh/?selectedKind=Core&selectedStory=DropdownLayout&full=0&down=0&left=1&panelRight=0)
-* [tagDriver](https://wix-wix-style-react.surge.sh/?selectedKind=Core&selectedStory=Tag&full=0&down=0&left=1&panelRight=0) using the `getTagDriverByTagId(id)` function
+* [inputDriver](/?activeTab=TestKit&addons=0&full=0&panelRight=0&selectedKind=Components&selectedStory=Input&stories=1)
+* [dropdownLayoutDriver](?activeTab=Testkit&addons=0&full=0&panelRight=0&selectedKind=11.%20Pickers%20and%20Selectors&selectedStory=11.1%20DropdownLayout&stories=1)
+* [tagDriver](?activeTab=Testkit&addons=0&full=0&panelRight=0&selectedKind=12.%20Other&selectedStory=12.5%20Tag&stories=1) using the `getTagDriverByTagId(id)` function
 
+## MultiSelect.driver.js
 
-### Enzyme / ReactTestUtils
-| method | arguments | returned value | description |
+| Property | arguments | returned value | description |
 |--------|-----------|----------------|-------------|
 | clickOnInputWrapper | - | - | click on the input element wrapper |
 | inputWrapperHasFocus | - | boolean | returns is the input is focused |
@@ -24,9 +20,7 @@ The `<MultiSelect/>` TestKit is exposing the following drivers:
 | setProps | json | element | returns a clone of this element with the new props from the json |
 | getMaxHeight | - | string | returns the max height of the component |
 
-## Usage Example
-
-> Unit testing example
+## Code Example
 
 ```javascript
   import React from 'react';
@@ -48,4 +42,28 @@ The `<MultiSelect/>` TestKit is exposing the following drivers:
   expect(multiSelectTestkit.inputDriver.exists()).toBeTruthy();
   expect(multiSelectTestkit.dropdownLayoutDriver.exists()).toBeTruthy();
   expect(multiSelectTestkit.driver.getTagDriverByTagId('Alabama').exists()).toBeTruthy();
+```
+
+## MultiSelect.protractor.driver.js
+
+| Property | arguments | returned value | description |
+|--------|-----------|----------------|-------------|
+| addTag | - | - | add a tag for the first item in the options |
+| element | - | element | return the element |
+| getHeight | - | string | returns the element height in px |
+| getWidth | - | string | returns the element width in px |
+
+## Code Example
+
+```javascript
+import {waitForVisibilityOf} from 'wix-ui-test-utils/protractor';
+import {multiSelectTestkitFactory as protractorMultiSelectTestkitFactory} from 'wix-style-react/dist/testkit/protractor';
+
+await browser.get(testPageUrl);
+
+const dataHook = 'myDataHook';
+const multiSelectDriver = protractorMultiSelectTestkitFactory({dataHook});
+
+await waitForVisibilityOf(multiSelecxtDriver.getElement());
+expect(await multiSelectDriver.exists()).toBeTruthy();
 ```
