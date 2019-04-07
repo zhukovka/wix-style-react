@@ -4,10 +4,11 @@
  */
 $zIndex_PAGE: 1;
 /* 
-* This value is probably related to current BM header's z-index value.
-* Header is 2000
-* FIXME: Fix zIndex, make it above BM Header.
+* The following values assume that the BM's Header has zIndex 2000
 */
-$zIndex_TOOLTIP: 2000;
 $zIndex_NOTIFICATION: 4000;
 $zIndex_MODAL: 5000;
+/*
+ * Making Tooltip higher than Modal, assumes that when a modal is Opened, then all Tooltip's are closed.
+ */ 
+$zIndex_TOOLTIP: 6000;
