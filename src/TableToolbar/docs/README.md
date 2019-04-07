@@ -34,10 +34,21 @@ A divider between `<Item/>` componenets.
 ## `<Title/>` (`<Toolbar.Title/>`)
 
 Applies "title" font styling to it's children.
+### Properties
+
+| propName | propType | defaultValue | isRequired | description |
+|----------|----------|--------------|------------|-------------|
+| dataHook | 'string' | - | false | Applies data hook to element |
 
 ## `<SelectedCount/>` (`<Toolbar.SelectedCount/>`)
 
 Applies "selected count" font styling to it's children.
+### Properties
+
+| propName | propType | defaultValue | isRequired | description |
+|----------|----------|--------------|------------|-------------|
+| dataHook | 'string' | - | false | Applies data hook to element |
+
 
 ## Styling guidelines
 
