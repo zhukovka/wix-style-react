@@ -23,7 +23,7 @@ Types of changes:
 - `<TableToolbar/>` - add dataHook props to <Title> and <SelectedCount> [#3198](https://github.com/wix/wix-style-react/pull/3198)
 
 ### Changed
-- `<PageHeader/>` - change entrance animation [#3230](https://github.com/wix/wix-style-react/pull/3230)
+- `<Page/>` - Change PageHeader animation [#3230](https://github.com/wix/wix-style-react/pull/3230)
 
 ### Fixed
 
