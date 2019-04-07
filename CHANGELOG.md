@@ -27,6 +27,7 @@ Types of changes:
 ### Fixed
 
 - `<EditableTitle/>` - fix bug where onSubmit is called twice when pressing enter [#3227](https://github.com/wix/wix-style-react/pull/3227)
+- `<RichTextInputArea/>` - hide placeholder after changing the block type [#3242](https://github.com/wix/wix-style-react/pull/3242)
 
 ### Docs
 
