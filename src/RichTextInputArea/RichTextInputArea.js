@@ -8,6 +8,7 @@ import {
   CompositeDecorator,
 } from 'draft-js';
 import mapValues from 'lodash/mapValues';
+import classNames from 'classnames';
 
 import styles from './RichTextInputArea.scss';
 import RichTextToolbar from './Toolbar/RichTextToolbar';
@@ -84,9 +85,16 @@ class RichTextInputArea extends React.PureComponent {
 
   render() {
     const { dataHook, placeholder } = this.props;
+    const isEditorEmpty = EditorUtilities.isEditorEmpty(this.state.editorState);
 
     return (
-      <div data-hook={dataHook} className={styles.root}>
+      <div
+        data-hook={dataHook}
+        className={classNames(
+          styles.root,
+          !isEditorEmpty && styles.hidePlaceholder,
+        )}
+      >
         <RichTextInputAreaContext.Provider
           value={{
             texts: this.state.texts,

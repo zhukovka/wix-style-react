@@ -1,5 +1,6 @@
 import publicDriverFactory, {
-  getTextArea,
+  getContent,
+  getPlaceholder,
 } from './RichTextInputArea.uni.driver';
 
 import richTextToolbarPrivateDriverFactory from './Toolbar/RichTextToolbar.private.uni.driver';
@@ -10,7 +11,8 @@ export default base => {
     ...richTextToolbarPrivateDriverFactory(
       base.$('[data-hook=richtextarea-toolbar]'),
     ),
-    hoverTextArea: async () => await getTextArea(base).hover(),
-    clickTextArea: async () => await getTextArea(base).click(),
+    hasPlaceholder: () => getPlaceholder(base).exists(),
+    hoverTextArea: async () => await getContent(base).hover(),
+    clickTextArea: async () => await getContent(base).click(),
   };
 };

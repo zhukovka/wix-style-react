@@ -1,7 +1,7 @@
 import { EditorState, SelectionState, Modifier, RichUtils } from 'draft-js';
 import { stateToHTML } from 'draft-js-export-html';
 
-import { entityTypes } from './RichTextInputAreaTypes';
+import { blockTypes, entityTypes } from './RichTextInputAreaTypes';
 
 /** Returns whether the specified style is applied on a block */
 const hasStyle = (editorState, style) => {
@@ -163,6 +163,17 @@ const convertToHtml = editorState => {
 
 const isEditorFocused = editorState => editorState.getSelection().getHasFocus();
 
+/** Returns true in case the editor's content doesn't contain any block which has a non-default type or text.
+    It means that if the user changes the block type before entering any text, the content will be considered as non-empty.
+ */
+const isEditorEmpty = editorState =>
+  !editorState.getCurrentContent().hasText() &&
+  editorState
+    .getCurrentContent()
+    .getBlockMap()
+    .first()
+    .getType() === blockTypes.unstyled;
+
 export default {
   hasStyle,
   hasBlockType,
@@ -174,4 +185,5 @@ export default {
   findLinkEntities,
   convertToHtml,
   isEditorFocused,
+  isEditorEmpty,
 };

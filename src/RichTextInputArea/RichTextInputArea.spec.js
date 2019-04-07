@@ -48,11 +48,25 @@ describe('RichTextInputArea', () => {
     });
 
     it('should render a placeholder', async () => {
-      const text = 'Some text';
-      const driver = createDriver(<RichTextInputArea placeholder={text} />);
+      const placeholderText = 'Placeholder';
+      const driver = createDriver(
+        <RichTextInputArea placeholder={placeholderText} />,
+      );
 
-      expect(await driver.exists()).toBe(true);
-      expect(await driver.getContent()).toBe(text);
+      expect(await driver.getContent()).toBe('');
+      expect(await driver.getPlaceholder()).toBe(placeholderText);
+    });
+
+    it('should not render the placeholder after inserting text', async () => {
+      const expectedText = 'Some text';
+      const driver = createDriver(
+        <RichTextInputArea placeholder="Placeholder" />,
+      );
+
+      await driver.enterText(expectedText);
+
+      expect(await driver.getContent()).toBe(expectedText);
+      expect(await driver.hasPlaceholder()).toBe(false);
     });
   });
 

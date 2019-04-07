@@ -46,6 +46,12 @@ $padding: 12px;
   }
 }
 
+.hidePlaceholder {
+  :global(.public-DraftEditorPlaceholder-root) {
+    display: none;
+  }
+}
+
 .toolbar {
   border: $border;
   border-bottom: 0;
