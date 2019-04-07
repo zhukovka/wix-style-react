@@ -20,6 +20,7 @@ Types of changes:
 
 - `<PopoverMenuItem/>` - allow `text` prop to accept react nodes [#3224](https://github.com/wix/wix-style-react/pull/3224)
 - `<GooglePreview/>` - add new component [#3179](https://github.com/wix/wix-style-react/pull/3179)
+- `<TableToolbar/>` - add dataHook props to <Title> and <SelectedCount> [#3198](https://github.com/wix/wix-style-react/pull/3198)
 
 ### Changed
 - `<PageHeader/>` - change entrance animation [#3230](https://github.com/wix/wix-style-react/pull/3230)
