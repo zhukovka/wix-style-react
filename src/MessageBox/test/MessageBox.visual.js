@@ -24,7 +24,8 @@ const announcementStories = {
   DisabledAction: require('../docs/AnnouncementExamples/DisabledAction')
     .default,
   PremiumAction: require('../docs/AnnouncementExamples/PremiumAction').default,
-  Celebratory: require('../docs/AnnouncementExamples/Celebratory').default,
+  // Disables due to an animated gif in the test - which causes a flaky screenshot
+  // Celebratory: require('../docs/AnnouncementExamples/Celebratory').default,
 };
 
 Object.entries(alertStories).forEach(([name, story]) =>
