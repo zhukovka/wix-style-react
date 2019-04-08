@@ -83,7 +83,7 @@ module.exports = {
   PageHeader: { skipSanityTest: true },
   PopoverMenuItem: { skipSanityTest: true, noTestkit: true },
   TableToolbar: { skipSanityTest: true, noTestkit: true },
-  Tooltip: { skipSanityTest: true },
+  Tooltip: { skipSanityTest: true, manualExport: true },
   VBox: { skipSanityTest: true, noTestkit: true },
   Collapse: { skipSanityTest: true, noTestkit: true },
   Card: { skipSanityTest: true, noTestkit: true },
@@ -237,8 +237,8 @@ module.exports = {
   EditableTitle: {
     testkitPath: '../src/EditableTitle/EditableTitle.uni.driver',
     unidriver: true,
-  }, 
-  
+  },
+
   GooglePreview: {
     unidriver: true,
     testkitPath: '../src/GooglePreview/GooglePreview.uni.driver',

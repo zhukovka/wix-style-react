@@ -34,12 +34,6 @@ export const textTestkitFactory = puppeteerTestkitFactoryCreator(
   textDriverFactory,
 );
 
-import tooltipDriverFactory from '../src/Tooltip/Tooltip.puppeteer.driver';
-
-export const tooltipTestkitFactory = puppeteerTestkitFactoryCreator(
-  tooltipDriverFactory,
-);
-
 // wix-ui-core (unidriver)
 
 import { textButtonDriverFactory } from '../src/TextButton/TextButton.uni.driver';
@@ -170,3 +164,11 @@ import { googlePreviewDriverFactory } from '../src/GooglePreview/GooglePreview.u
 export const googlePreviewTestkitFactory = puppeteerUniTestkitFactoryCreator(
   googlePreviewDriverFactory,
 );
+
+import tooltipDriverFactory from '../src/Tooltip/Tooltip.protractor.driver';
+import { tooltipDriverFactory as tooltipNextDriverFactory } from '../src/Tooltip/TooltipNext/Tooltip.uni.driver';
+
+export const tooltipTestkitFactory = obj =>
+  obj.wrapper && obj.wrapper.$(`[data-hook="popover-element"]`)
+    ? puppeteerUniTestkitFactoryCreator(tooltipNextDriverFactory)(obj)
+    : puppeteerTestkitFactoryCreator(tooltipDriverFactory)(obj);

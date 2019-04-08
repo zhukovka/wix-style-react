@@ -144,6 +144,7 @@ require('../src/DragAndDrop/docs/DragAndDrop');
 require('../src/BadgeSelectItemBuilder/docs');
 require('../src/ContactItemBuilder/docs');
 require('../src/DateInput/docs/index.story');
+require('../src/Tooltip/TooltipNext/docs/index.story');
 
 // Tests
 require('../src/Typography/test/TestStory');

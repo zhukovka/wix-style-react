@@ -1,0 +1,161 @@
+:import {
+  -st-from: "wix-ui-core/index.st.css";
+  -st-named: Tooltip;
+}
+
+:import {
+  -st-from: "wix-ui-core/src/mixins/calc";
+  -st-default: calc;
+}
+
+:import {
+  -st-from: "wix-ui-core/dist/src/themes/backoffice/colors.st.css";
+  -st-named: WHITE, D10;
+}
+
+:import {
+  -st-from: "wix-ui-core/dist/src/themes/backoffice/shadows.st.css";
+  -st-named: shadow30;
+}
+
+:vars {
+  contentArrowSize: 8px;
+}
+
+.root {
+  -st-extends: Tooltip;
+  -st-states: size(enum(small, medium));
+}
+
+.root[data-hook*="popover-portal"] {
+  /* This will cause the container's height to stay the same */
+  display: block;
+}
+
+/** Popover Content */
+
+.root::popoverContent {
+  border: none;
+
+  border-radius: 8px;
+  box-sizing: border-box;
+  box-shadow: value(shadow30);
+  -webkit-font-smoothing: antialiased;
+
+  font-size: 14px;
+  line-height: 18px;
+  padding: 12px 24px;
+
+  
+  color: value(WHITE);
+  background: value(D10);
+}
+
+.root:size(small)::popoverContent {
+  border: none;
+
+  border-radius: 8px;
+  box-sizing: border-box;
+  box-shadow: value(shadow30);
+  -webkit-font-smoothing: antialiased;
+
+  font-size: 14px;
+  line-height: 18px;
+  padding: 12px;
+
+  
+  color: value(WHITE);
+  background: value(D10);
+}
+
+/* Popover Arrow  */
+
+.root::popover::arrow {
+  box-sizing: border-box;
+
+  width: value(contentArrowSize);
+  height: value(contentArrowSize);
+
+  background: transparent;
+  border-color: transparent value(D10) value(D10) transparent;
+
+  transform: rotateZ(45deg);
+  box-shadow: 3px 3px 6px rgba(0, 0, 0, .1); 
+}
+
+.root::popover[data-placement]::arrow {
+  border-width: 5px;
+  border-color: transparent value(D10) value(D10) transparent;
+  margin: 0;
+}
+
+/* Right side */
+
+.root:size(small)::popover[data-placement*="right"]::arrow  {
+    display: none;
+}
+.root::popover[data-placement*="right"].root::withArrow {
+  padding-left: calc(value(contentArrowSize) - 2);
+}
+
+.root::popover[data-placement*="right"]::arrow {
+  transform: rotateZ(135deg);
+  left: calc(value(contentArrowSize) / 2 - 2);
+
+  margin-top: value(contentArrowSize);
+  margin-bottom: value(contentArrowSize);
+}
+
+/* Left side */
+
+.root:size(small)::popover[data-placement*="left"]::arrow  {
+  display: none;
+}
+
+.root::popover[data-placement*="left"].root::withArrow {
+  padding-right: calc(value(contentArrowSize) - 2);
+}
+
+.root::popover[data-placement*="left"]::arrow {
+  transform: rotateZ(-45deg);
+  right: calc(value(contentArrowSize) / 2 - 2);
+
+  margin-top: value(contentArrowSize);
+  margin-bottom: value(contentArrowSize);
+}
+
+/* Top arrow */
+
+.root:size(small)::popover[data-placement*="top"]::arrow  {
+  display: none;
+}
+
+.root::popover[data-placement*="top"].root::withArrow {
+  padding-bottom: calc(value(contentArrowSize) - 2);
+}
+
+.root::popover[data-placement*="top"]::arrow {
+  transform: rotateZ(45deg);
+  bottom: calc(value(contentArrowSize) / 2 - 2);
+
+  margin-left: value(contentArrowSize);
+  margin-right: value(contentArrowSize);
+}
+
+/* Bottom arrow */
+
+.root:size(small)::popover[data-placement*="bottom"]::arrow {
+  display: none;
+}
+
+.root::popover[data-placement*="bottom"].root::withArrow {
+  padding-top: calc(value(contentArrowSize) - 2);
+}
+
+.root::popover[data-placement*="bottom"]::arrow {
+  transform: rotateZ(-135deg);
+  top: calc(value(contentArrowSize) / 2 - 2);
+
+  margin-left: value(contentArrowSize);
+  margin-right: value(contentArrowSize);
+}

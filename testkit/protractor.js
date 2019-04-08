@@ -237,12 +237,6 @@ export const drillViewTestkitFactory = protractorTestkitFactoryCreator(
   drillViewDriverFactory,
 );
 
-import tooltipDriverFactory from '../src/Tooltip/Tooltip.protractor.driver';
-
-export const tooltipTestkitFactory = protractorTestkitFactoryCreator(
-  tooltipDriverFactory,
-);
-
 import formFieldDriverFactory from '../src/FormField/FormField.protractor.driver';
 
 export const formFieldTestkitFactory = protractorTestkitFactoryCreator(
@@ -461,3 +455,11 @@ import { googlePreviewDriverFactory } from '../src/GooglePreview/GooglePreview.u
 export const googlePreviewTestkitFactory = protractorUniTestkitFactoryCreator(
   googlePreviewDriverFactory,
 );
+
+import tooltipDriverFactory from '../src/Tooltip/Tooltip.protractor.driver';
+import { tooltipDriverFactory as tooltipNextDriverFactory } from '../src/Tooltip/TooltipNext/Tooltip.uni.driver';
+
+export const tooltipTestkitFactory = obj =>
+  obj.wrapper && obj.wrapper.$(`[data-hook="popover-element"]`)
+    ? protractorUniTestkitFactoryCreator(tooltipNextDriverFactory)(obj)
+    : protractorTestkitFactoryCreator(tooltipDriverFactory)(obj);
