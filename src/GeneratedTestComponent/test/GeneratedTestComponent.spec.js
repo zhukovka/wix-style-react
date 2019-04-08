@@ -27,7 +27,7 @@ describe('GeneratedTestComponent', () => {
     await driver.clickButton();
 
     expect(await driver.getCountText()).toEqual(
-      'You clicked this button 2 times',
+      'You clicked this button even number (2) of times',
     );
   });
 

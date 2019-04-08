@@ -177,7 +177,7 @@ describe('Calendar', () => {
             showMonthDropdown
           />
         </label>,
-        dataHook,
+        { dataHook },
       );
 
       driver.clickOnPrevMonthButton();
@@ -228,7 +228,7 @@ describe('Calendar', () => {
               dataHook={dataHook}
             />
           </div>,
-          dataHook,
+          { dataHook },
         );
 
         driver.clickDay(new Date(2018, 10, 1));
@@ -369,7 +369,7 @@ describe('Calendar', () => {
               dataHook={dataHook}
             />
           </div>,
-          dataHook,
+          { dataHook },
         );
 
         driver.clickOnNthDay(2);

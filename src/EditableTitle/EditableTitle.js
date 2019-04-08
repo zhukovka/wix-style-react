@@ -95,20 +95,24 @@ class EditableTitle extends React.Component {
             value={this.state.value}
             ref={wsrInput => (this.wsrInput = wsrInput)}
             onBlur={this.onValueSubmission}
-            onEnterPressed={this.onValueSubmission}
+            onEnterPressed={this.onEnterPressed}
           />
         </div>
       </div>
     );
   }
 
+  onEnterPressed = () => {
+    this.wsrInput.blur();
+  };
+
   onValueSubmission = () => {
     const value = this.state.value || this.props.defaultValue;
-    this.setState({ value, focus: false });
-
-    if (typeof this.props.onSubmit === 'function') {
-      this.props.onSubmit(value);
-    }
+    this.setState({ value, focus: false }, () => {
+      if (typeof this.props.onSubmit === 'function') {
+        this.props.onSubmit(value);
+      }
+    });
   };
 }
 

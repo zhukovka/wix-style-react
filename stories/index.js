@@ -110,6 +110,7 @@ require('../src/FloatingHelper/FloatingHelperContent/docs/index.story');
 require('../src/FormField/docs/index.story');
 require('../src/GenericModalLayout/docs/index.story');
 require('../src/GoogleAddressInput/docs/index.story');
+require('../src/GooglePreview/docs/index.story');
 require('../src/Grid/docs');
 require('../src/Heading/docs/index.story');
 require('../src/Highlighter/docs/index.story');

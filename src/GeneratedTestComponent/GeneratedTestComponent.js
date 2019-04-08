@@ -1,9 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import styles from './GeneratedTestComponent.scss';
 
 import Text from '../Text';
 import Button from '../Button';
+import styles from './GeneratedTestComponent.st.css';
 
 /**
  * This is an automatically generated test component
@@ -35,11 +35,18 @@ class GeneratedTestComponent extends React.PureComponent {
   render() {
     const { count } = this.state;
     const { dataHook, buttonText } = this.props;
+    const isEven = count % 2 === 0;
 
     return (
       <div className={styles.root} data-hook={dataHook}>
         <Text dataHook="generatedTestComponent-count">
-          You clicked this button {count} times
+          You clicked this button {isEven ? 'even' : 'odd'} number (
+          <span
+            {...styles('number', { even: isEven, odd: !isEven }, this.props)}
+          >
+            {count}
+          </span>
+          ) of times
         </Text>
 
         <div className={styles.button}>

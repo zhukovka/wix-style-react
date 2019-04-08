@@ -4,13 +4,14 @@
 
 ### TL;DR
 
-- Opt-In for new Page: `<Page upgrade/>`
-- **Flex Parent**: No need for Page parent to be a flex container with flow 'column'
-- **Content Stretch**: `<Page.Content/>` now allows it's children to stretch vertically.
-- **Bottom-Padding**: If you had any bottom-padding hacks, remove them!
+These changes are applied when you "Opt-In" for the new Page (`<Page upgrade/>`):
+
+- **Flex Parent**: No need for Page parent to be a flex container with flow 'column'.
 - **`<Page.FixedContent/>`**: Is now rendered as the new `<Page.Sticky/>` (See Exmples in docs).
 - **`<Page.Tail>`**: No longer receives a `minimized` prop.
-- **`gradientCoverTail`**: prop removed
+- **`gradientCoverTail`**: Prop removed. Gradient never covers tail.
+- **Content Stretch**: `<Page.Content/>` now allows it's children to stretch vertically.
+- **Bottom-Padding**: If you had any bottom-padding hacks, remove them!
 
 ### Page Container
 

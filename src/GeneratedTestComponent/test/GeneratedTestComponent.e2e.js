@@ -33,6 +33,8 @@ describe('GeneratedTestComponent', () => {
     await browser.get(createStoryUrl(testStoryNames.DEFAULT));
     const driver = await createDriver();
     await driver.clickButton();
-    expect(await driver.getCountText()).toBe('You clicked this button 1 times');
+    expect(await driver.getCountText()).toBe(
+      'You clicked this button odd number (1) of times',
+    );
   });
 });

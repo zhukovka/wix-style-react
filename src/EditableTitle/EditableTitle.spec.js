@@ -73,5 +73,23 @@ describe('EditableTitle', () => {
 
       expect(onSubmit).toHaveBeenCalledWith(anotherTitle);
     });
+
+    it('should submit once on enter', async () => {
+      const anotherTitle = 'Another Title';
+      const onSubmit = jest.fn();
+      const { driver } = render(
+        componentWithProps({
+          defaultValue: 'Some Title',
+          initialValue: '',
+          onSubmit,
+        }),
+      );
+
+      await driver.clickHeading();
+      await driver.getInput().enterText(anotherTitle);
+      await driver.getInput().keyDown({ keyCode: 13 /*Enter*/ });
+
+      expect(onSubmit).toHaveBeenCalledTimes(1);
+    });
   }
 });

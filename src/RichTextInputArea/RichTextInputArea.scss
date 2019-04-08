@@ -10,9 +10,18 @@ $borderRadius: 6px;
 $padding: 12px;
 
 .root {
+  min-height: $minHeight;
   min-width: $minWidth;
   background-color: $D80;
   border-radius: $borderRadius;
+
+  :global(.public-DraftEditorPlaceholder-root) {
+    @include Text($weight: normal, $size: medium, $light: true, $secondary: true);
+
+    padding: $padding;
+    position: absolute;
+    pointer-events: none;
+  }
 
   :global(.public-DraftEditor-content) { 
     min-height: $minHeight;
@@ -34,6 +43,12 @@ $padding: 12px;
       border-color: $B10;
       box-shadow: 0 0 0 3px $F00;
     }
+  }
+}
+
+.hidePlaceholder {
+  :global(.public-DraftEditorPlaceholder-root) {
+    display: none;
   }
 }
 

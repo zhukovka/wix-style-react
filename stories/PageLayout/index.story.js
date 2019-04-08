@@ -37,19 +37,47 @@ export default {
       table({
         title: 'Included Components',
         rows: [
-          ['Page', 'Business Manager’s root component'],
-          ['Page.Header', '`<Page/>` component’s child'],
-          ['Grid', 'Component that constructs a grid'],
-          ['Card', 'Light card component'],
-          ['EmptyState', 'Component that render Empty state layout'],
-        ].map(([story, text]) => [
-          <LinkTo kind="Components" story={story} children={`<${story} />`} />,
-          text,
-        ]),
+          [
+            <LinkTo kind="Components" story="Page" children="<Page/>" />,
+            'Business Manager’s root component',
+          ],
+
+          [
+            <LinkTo
+              kind="Components"
+              story="PageHeader"
+              children="<Page.Header/>"
+            />,
+            '`<Page/>` component’s child',
+          ],
+
+          [
+            <LinkTo kind="Components" story="Grid" children="<Grid/>" />,
+            'Component that constructs a grid',
+          ],
+
+          [
+            <LinkTo
+              kind="2. Layout"
+              story="2.2 Card Layout"
+              children="<Card/>"
+            />,
+            'Light card component',
+          ],
+
+          [
+            <LinkTo
+              kind="2. Layout"
+              story="2.4 EmptyState"
+              children="<EmptyState/>"
+            />,
+            'Component that render Empty state layout',
+          ],
+        ],
       }),
     ]),
 
-    columns([importExample({ source: examples.importExample })]),
+    importExample(examples.importExample),
 
     title('Examples'),
 

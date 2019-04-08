@@ -1,13 +1,20 @@
 import React from 'react';
 import { mount } from 'enzyme';
-import { createUniDriverFactory } from 'wix-ui-test-utils/uni-driver-factory';
+// import { createUniDriverFactory } from 'wix-ui-test-utils/uni-driver-factory';
+import { createRendererWithUniDriver, cleanup } from '../../test/utils/unit';
 import { enzymeUniTestkitFactoryCreator } from 'wix-ui-test-utils/enzyme';
 
 import DropdownBase from './DropdownBase';
-import { dropdownBasePrivateDriverFactory } from './DropdownBase.private.driver';
+import { dropdownBasePrivateDriverFactory } from './DropdownBase.private.uni.driver';
 
 describe('DropdownBase', () => {
-  const createDriver = createUniDriverFactory(dropdownBasePrivateDriverFactory);
+  const render = createRendererWithUniDriver(dropdownBasePrivateDriverFactory);
+
+  afterEach(() => {
+    cleanup();
+  });
+
+  const createDriver = jsx => render(jsx).driver;
 
   const dropdownBaseEnzymeDriver = enzymeUniTestkitFactoryCreator(
     dropdownBasePrivateDriverFactory,

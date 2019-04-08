@@ -1,25 +1,28 @@
 # Creating new components
 
-## Using the component generator
+`wix-style-react` includes a generator for scaffolding new components.
 
-A component generator is provided with the `wix-style-react` library to ease the process of adding
-new components to the library. You can initiate the generator while running the following in the
-root directory of the project:
+Run generator in root folder of the project:
 
-```console
-$ npm run generate
+```sh
+npm run generate
 ```
 
 ![](../assets/component-generator.png)
 
-The generator will ask you for the new component name (must be in `PascalCase`) and a description
-(which is optional). It'll generate a new component followed by the structure defined in the
-[Component Structure](./COMPONENT_STRUCTURE.md) document, and will add the necessary `export`s to
-the [index file](../../src/index.js) and to the [testkits](../../testkit/).
+---
 
-## Component story
+You will be asked for component name (which **must** be in `PascalCase`) and optional description.
 
-The generator will also add a simple story file for the generated component. It will be placed under
-the `Component` category by default. You should open the `storySettings.js` file of your new
-component and modify it if needed. Also, make sure to re-arrange the [Stories index
-file](../../stories/index.js) accordingly.
+Generator will:
+
+* create files according to structure defined in [Component Structure](./COMPONENT_STRUCTURE.md) document
+* add necessary `export`s to [index file](../../src/index.js), [testkits](../../testkit/) and [stories index](../../stories/index.js)
+
+---
+
+Generator will create a sample `.story.js`. Read [story.js usage document](https://github.com/wix/wix-ui/blob/master/packages/wix-storybook-utils/docs/usage.md) for details.
+
+By default documentation will be shown under `Component` category. To change it modify `category` value in `src/YourNewComponent/test/storySettings.js`.
+
+Make sure to re-arrange the [Stories index file](../../stories/index.js) as needed. The order of `require`s in that file is reflected in rendered storybook sidebar.

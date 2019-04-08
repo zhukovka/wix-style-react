@@ -1,34 +1,31 @@
 import React from 'react';
-import CodeExample from 'wix-storybook-utils/CodeExample';
 import LiveCodeExample from '../../../stories/utils/LiveCodeExample';
 import MultiSelect from '..';
 
 import {
-  tab,
-  table,
-  title,
-  divider,
-  importExample,
   description,
+  divider,
+  header,
+  importExample,
   playground,
+  tab,
+  tabs,
   testkit,
+  title,
 } from 'wix-storybook-utils/Sections';
 
-import LinkTo from '@storybook/addon-links/react';
-
 import readmeApi from '../README.API.md';
-import playgroundStoryConfig from '../../../stories/MultiSelect/MultiSelectPlaygroundConfig';
+import readmeTestkit from '../README.TESTKIT.md';
+import playgroundStoryConfig from './MultiSelectPlaygroundConfig';
 
 import ExampleSelectSimpleRaw from '!raw-loader!./ExampleSelectSimple';
 import ExampleSelectAutocompleteRaw from '!raw-loader!./ExampleSelectAutocomplete';
 import ExampleSuggestionsRaw from '!raw-loader!./ExampleSuggestions';
 import ExampleTagInputRaw from '!raw-loader!./ExampleTagInput';
 import ExampleTagInputSelectionRaw from '!raw-loader!./ExampleTagInputSelection';
+import ExampleForHeader from './ExampleForHeader';
 
 import ExampleReorderableRaw from '!raw-loader!./ExampleReorderable';
-
-import ExampleThumbVariations from './ExampleThumbVariations';
-import ExampleThumbVariationsRaw from '!raw-loader!./ExampleThumbVariations';
 
 import { storySettings } from './storySettings';
 
@@ -144,12 +141,6 @@ const examples = (
         'Reorderable Numbers',
       )}
     />
-
-    <CodeExample title="ThumbVariations" code={ExampleThumbVariationsRaw}>
-      <div className={styles.exampleContainer}>
-        <ExampleThumbVariations />
-      </div>
-    </CodeExample>
   </div>
 );
 
@@ -162,50 +153,47 @@ export default {
   ...playgroundStoryConfig,
 
   sections: [
-    tab({
-      title: 'Description',
-      sections: [
-        description(
-          'A component for selecting/creating multiple values, and displaying them as tags.',
-        ),
-
-        table({
-          title: 'Included Components',
-          rows: [
-            [
-              <LinkTo
-                kind="Components"
-                story="MultiSelect"
-              >{`<MultiSelect/>`}</LinkTo>,
-            ],
-            [<LinkTo kind="Components" story="Tag">{`<Tag/>`}</LinkTo>],
-          ],
-        }),
-
-        importExample("import MultiSelect from 'wix-style-react/MultiSelect';"),
-
-        divider(),
-
-        title('Examples'),
-
-        description({ text: examples }),
-      ],
+    header({
+      issueUrl: 'https://github.com/wix/wix-style-react/issues/new',
+      sourceUrl:
+        'https://github.com/wix/wix-style-react/tree/master/src/MultiSelect',
+      component: (
+        <div style={{ width: '50%' }}>
+          <ExampleForHeader />
+        </div>
+      ),
     }),
+    tabs([
+      tab({
+        title: 'Usage',
+        sections: [
+          importExample({
+            source: "import MultiSelect from 'wix-style-react/MultiSelect';",
+          }),
 
-    tab({
-      title: 'Playground',
-      sections: [playground()],
-    }),
+          divider(),
 
-    tab({
-      title: 'API',
-      // Not using built-in api because we can not override props' description of InputWithOptions
-      sections: [description(readmeApi)],
-    }),
+          title('Examples'),
 
-    tab({
-      title: 'Testkit',
-      sections: [testkit()],
-    }),
+          description({ text: examples }),
+        ],
+      }),
+
+      tab({
+        title: 'Playground',
+        sections: [playground()],
+      }),
+
+      tab({
+        title: 'API',
+        // Not using built-in api because we can not override props' description of InputWithOptions
+        sections: [description(readmeApi)],
+      }),
+
+      tab({
+        title: 'Testkit',
+        sections: [description(readmeTestkit)],
+      }),
+    ]),
   ],
 };

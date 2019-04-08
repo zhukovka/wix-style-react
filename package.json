@@ -1,7 +1,7 @@
 {
   "name": "wix-style-react",
   "description": "wix-style-react",
-  "version": "6.10.4",
+  "version": "6.13.0",
   "main": "./dist/src/index.js",
   "module": "./dist/es/src/index.js",
   "sideEffects": [
@@ -25,7 +25,7 @@
   },
   "scripts": {
     "start": "./scripts/npm-start.sh",
-    "precommit": "lint-staged",
+    "_precommit": "lint-staged",
     "pretest": "npm run lint && ./scripts/ensure-dist.sh",
     "test": "npm run test:unit && npm run test:eyes-storybook && npm run test:e2e",
     "test:unit": "yoshi test --jest",
@@ -52,8 +52,8 @@
     "export-components": "import-path --path src",
     "lint": "yoshi lint --fix",
     "proxy-wix-ui-icons": "node scripts/proxy-wix-ui-icons",
-    "generate": "./scripts/component-generator/bin/component-generator.js",
-    "generate-test-component": "./scripts/component-generator/bin/generate-test-component.js",
+    "generate": "./scripts/generate-component/bin/generate-component.js",
+    "generate-test-component": "./scripts/generate-component/bin/generate-test-component.js",
     "generate-testkit-exports": "node scripts/generate-testkit-exports",
     "generate-autodocs-registry": "node scripts/generate-autodocs-registry",
     "eyes-storybook-debug": "start-storybook -c ./.storybook-test -p 6007"
@@ -112,7 +112,6 @@
     "execa": "^1.0.0",
     "express": "^4.16.4",
     "eyes.it": "^2.0.0",
-    "fs-extra": "^7.0.1",
     "globby": "^8.0.1",
     "husky": "~0.14.0",
     "identity-obj-proxy": "^3.0.0",
@@ -149,7 +148,7 @@
     "webpack": "^4.29.3",
     "webpack-cli": "^3.2.3",
     "wix-storybook-utils": "^2.0.87",
-    "yoshi": "^4.1.0-alpha.1",
+    "yoshi": "^4.1.1",
     "yoshi-config": "^4.1.0-alpha.1",
     "yoshi-helpers": "^4.1.0-alpha.1",
     "yoshi-runtime": "^1.0.42",
@@ -190,10 +189,12 @@
     "react-day-picker": "^7.0.7",
     "react-dnd": "^2.5.1",
     "react-dnd-html5-backend": "^5.0.1",
+    "react-input-autosize": "^2.2.1",
     "react-modal": "^3.3.2",
     "react-motion": "^0.4.7",
     "react-portal": "^4.1.5",
     "react-transition-group": "^2.2.1",
+    "react-window": "^1.7.1",
     "shallowequal": "^1.1.0",
     "slate": "^0.20.3",
     "wix-animations": "^1.0.276",
@@ -220,7 +221,7 @@
       "<rootDir>/dist/",
       "<rootDir>/node_modules/",
       "<rootDir>/test-runtime/",
-      "<rootDir>/scripts/component-generator/templates/"
+      "<rootDir>/scripts/generate-component/templates/"
     ]
   },
   "eslintConfig": {
@@ -317,6 +318,20 @@
             {
               "property": "getNative",
               "message": "Do not use getNative() in Unidrivers unless a method needs to return an HTMLElement (In which case, that method also need to be deprecated!)."
+            }
+          ]
+        }
+      },
+      {
+        "files": [
+          "**/*private.uni.driver.js"
+        ],
+        "rules": {
+          "no-restricted-properties": [
+            "off",
+            {
+              "property": "getNative",
+              "message": "getNative is allowed in private drivers"
             }
           ]
         }

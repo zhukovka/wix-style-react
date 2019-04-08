@@ -42,7 +42,7 @@ export const tooltipTestkitFactory = puppeteerTestkitFactoryCreator(
 
 // wix-ui-core (unidriver)
 
-import { textButtonDriverFactory } from '../src/TextButton/TextButton.driver';
+import { textButtonDriverFactory } from '../src/TextButton/TextButton.uni.driver';
 
 export const textButtonTestkitFactory = puppeteerUniTestkitFactoryCreator(
   textButtonDriverFactory,
@@ -54,19 +54,19 @@ export const avatarTestkitFactory = puppeteerUniTestkitFactoryCreator(
   avatarDriverFactory,
 );
 
-import { iconButtonDriverFactory } from '../src/IconButton/IconButton.driver';
+import { iconButtonDriverFactory } from '../src/IconButton/IconButton.uni.driver';
 
 export const iconButtonTestkitFactory = puppeteerUniTestkitFactoryCreator(
   iconButtonDriverFactory,
 );
 
-import { closeButtonDriverFactory } from '../src/CloseButton/CloseButton.driver';
+import { closeButtonDriverFactory } from '../src/CloseButton/CloseButton.uni.driver';
 
 export const closeButtonTestkitFactory = puppeteerUniTestkitFactoryCreator(
   closeButtonDriverFactory,
 );
 
-import { proportionDriverFactory } from '../src/Proportion/Proportion.driver';
+import { proportionDriverFactory } from '../src/Proportion/Proportion.uni.driver';
 
 export const proportionTestkitFactory = puppeteerUniTestkitFactoryCreator(
   proportionDriverFactory,
@@ -81,49 +81,49 @@ export const generatedTestComponentTestkitFactory = puppeteerUniTestkitFactoryCr
   generatedTestComponentDriverFactory,
 );
 
-import { dropdownBaseDriverFactory } from '../src/DropdownBase/DropdownBase.driver';
+import { dropdownBaseDriverFactory } from '../src/DropdownBase/DropdownBase.uni.driver';
 
 export const dropdownBaseTestkitFactory = puppeteerUniTestkitFactoryCreator(
   dropdownBaseDriverFactory,
 );
 
-import { calendarPanelFooterDriverFactory } from '../src/CalendarPanelFooter/CalendarPanelFooter.driver';
+import { calendarPanelFooterDriverFactory } from '../src/CalendarPanelFooter/CalendarPanelFooter.uni.driver';
 
 export const calendarPanelFooterTestkitFactory = puppeteerUniTestkitFactoryCreator(
   calendarPanelFooterDriverFactory,
 );
 
-import { boxDriverFactory } from '../src/Box/Box.driver';
+import { boxDriverFactory } from '../src/Box/Box.uni.driver';
 
 export const boxTestkitFactory = puppeteerUniTestkitFactoryCreator(
   boxDriverFactory,
 );
 
-import { buttonDriverFactory } from '../src/Button/Button.driver';
+import { buttonDriverFactory } from '../src/Button/Button.uni.driver';
 
 export const buttonTestkitFactory = puppeteerUniTestkitFactoryCreator(
   buttonDriverFactory,
 );
 
-import { thumbnailDriverFactory } from '../src/Thumbnail/Thumbnail.driver';
+import { thumbnailDriverFactory } from '../src/Thumbnail/Thumbnail.uni.driver';
 
 export const thumbnailTestkitFactory = puppeteerUniTestkitFactoryCreator(
   thumbnailDriverFactory,
 );
 
-import { segmentedToggleDriverFactory } from '../src/SegmentedToggle/SegmentedToggle.driver';
+import { segmentedToggleDriverFactory } from '../src/SegmentedToggle/SegmentedToggle.uni.driver';
 
 export const segmentedToggleTestkitFactory = puppeteerUniTestkitFactoryCreator(
   segmentedToggleDriverFactory,
 );
 
-import { richTextInputAreaDriverFactory } from '../src/RichTextInputArea/RichTextInputArea.driver';
+import { richTextInputAreaDriverFactory } from '../src/RichTextInputArea/RichTextInputArea.uni.driver';
 
 export const richTextInputAreaTestkitFactory = puppeteerUniTestkitFactoryCreator(
   richTextInputAreaDriverFactory,
 );
 
-import { floatingNotificationDriverFactory } from '../src/FloatingNotification/FloatingNotification.driver';
+import { floatingNotificationDriverFactory } from '../src/FloatingNotification/FloatingNotification.uni.driver';
 
 export const floatingNotificationTestkitFactory = puppeteerUniTestkitFactoryCreator(
   floatingNotificationDriverFactory,
@@ -141,7 +141,7 @@ export const noBorderInputTestkitFactory = puppeteerTestkitFactoryCreator(
   noBorderInputDriverFactory,
 );
 
-import { colorInputDriverFactory } from '../src/ColorInput/ColorInput.driver';
+import { colorInputDriverFactory } from '../src/ColorInput/ColorInput.uni.driver';
 
 export const colorInputTestkitFactory = puppeteerUniTestkitFactoryCreator(
   colorInputDriverFactory,
@@ -159,8 +159,14 @@ export const editableTitleTestkitFactory = puppeteerUniTestkitFactoryCreator(
   editableTitleUniDriverFactory,
 );
 
-import { accordionDriverFactory } from '../src/Accordion/Accordion.driver';
+import { accordionDriverFactory } from '../src/Accordion/Accordion.uni.driver';
 
 export const accordionTestkitFactory = puppeteerUniTestkitFactoryCreator(
   accordionDriverFactory,
+);
+
+import { googlePreviewDriverFactory } from '../src/GooglePreview/GooglePreview.uni.driver';
+
+export const googlePreviewTestkitFactory = puppeteerUniTestkitFactoryCreator(
+  googlePreviewDriverFactory,
 );

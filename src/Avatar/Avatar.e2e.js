@@ -4,7 +4,7 @@ import { avatarTestkitFactory } from '../../testkit/protractor';
 import { storySettings } from './docs/storySettings';
 import { getTestStoryKind } from '../../stories/storiesHierarchy';
 
-describe('Avatar', () => {
+xdescribe('Avatar', () => {
   describe('AutoStory Page', () => {
     const avatarDriver = avatarTestkitFactory({
       dataHook: storySettings.dataHook,

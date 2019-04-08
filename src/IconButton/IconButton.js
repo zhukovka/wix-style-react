@@ -48,6 +48,7 @@ class IconButton extends Component {
     } = this.props;
 
     const classNames = cx(className, iconButton(skin, priority, size));
+    const childSize = size === 'small' ? '18px' : '24px';
 
     return (
       <ButtonNext
@@ -58,7 +59,9 @@ class IconButton extends Component {
       >
         {children &&
           React.cloneElement(children, {
-            size: size === 'small' ? '18px' : '24px',
+            size: childSize,
+            width: childSize,
+            height: childSize,
           })}
       </ButtonNext>
     );

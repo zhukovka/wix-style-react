@@ -4,7 +4,8 @@ import '../src/assets/helvetica.scss';
 import './stories.scss';
 
 function loadStories() {
-  require('./stories');
+  const req = require.context('../src', true, /\.visual\.js$/);
+  req.keys().forEach(filename => req(filename));
 }
 
 configure(loadStories, module);

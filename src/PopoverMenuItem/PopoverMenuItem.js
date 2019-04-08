@@ -12,7 +12,7 @@ class PopoverMenuItem extends WixComponent {
 
   static propTypes = {
     icon: PropTypes.node,
-    text: PropTypes.string,
+    text: PropTypes.node,
     onClick: PropTypes.func,
     size: PropTypes.oneOf(['normal', 'large']),
     disabled: PropTypes.bool,

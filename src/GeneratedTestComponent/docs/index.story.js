@@ -72,6 +72,7 @@ export default {
               title: 'Simple Usage',
               text: 'A simple example with compact preview',
             }),
+
             code({
               compact: true,
               source: '<GeneratedTestComponent buttonText="Hello World!"/>',

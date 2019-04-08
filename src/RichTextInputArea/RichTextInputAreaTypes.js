@@ -5,6 +5,7 @@ export const inlineStyleTypes = {
 };
 
 export const blockTypes = {
+  unstyled: 'unstyled',
   bulletedList: 'unordered-list-item',
   numberedList: 'ordered-list-item',
 };

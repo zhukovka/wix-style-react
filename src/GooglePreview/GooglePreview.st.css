@@ -1,0 +1,56 @@
+:import {
+  -st-from: '../Text/Text.st.css';
+  -st-default: Text;
+}
+
+:import {
+  -st-from: "wix-ui-backoffice/src/colors.st.css";
+  -st-named: WHITE, D60, D80, D20;
+}
+
+:vars {
+  googlePreivewBlue: #1a0dab;
+  googlePreivewGreen: #006621;
+}
+
+.root {
+  padding: 12px;
+  border: solid 1px value(D60);
+  background-color: value(D80);
+  box-sizing: border-box;
+} 
+
+.googlePreviewTitle {
+  -st-extends: Text;
+  display: block;
+}
+
+.googlePreviewTitle:size(medium) {
+  color: value(googlePreivewBlue);
+}
+
+.googlePreviewUrl {
+  -st-extends: Text;
+  display: block;
+}
+
+.googlePreviewUrl:size(tiny) {
+  color: value(googlePreivewGreen);
+}
+
+.googlePreviewDescriptionContainer {
+  /* TODO - multiline ellipisis is required instead */
+  display: block;
+  max-height: 35px;
+  overflow: hidden;
+  white-space: pre-wrap;
+}
+
+.googlePreviewDescription {
+  -st-extends: Text;
+}
+
+.googlePreviewDescription:size(tiny) {
+  color: value(D20);
+}
+

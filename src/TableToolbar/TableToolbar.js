@@ -1,20 +1,27 @@
 import React from 'react';
-import { node } from 'prop-types';
+import { node, string } from 'prop-types';
 import { Toolbar, ItemGroup, Item, Label, Divider } from './Toolbar';
 import Heading from '../Heading';
 import Text from '../Text';
 
 export const Title = props => {
-  return <Heading appearance="H3">{props.children}</Heading>;
+  const { dataHook } = props;
+  return (
+    <Heading dataHook={dataHook} appearance="H3">
+      {props.children}
+    </Heading>
+  );
 };
 Title.displayName = 'TableToolbar.Title';
 Title.propTypes = {
   children: node,
+  dataHook: string,
 };
 
 export const SelectedCount = props => {
+  const { dataHook } = props;
   return (
-    <Text weight="normal" size="medium">
+    <Text dataHook={dataHook} weight="normal" size="medium">
       {props.children}
     </Text>
   );
@@ -22,6 +29,7 @@ export const SelectedCount = props => {
 SelectedCount.displayName = 'TableToolbar.SelectedCount';
 SelectedCount.propTypes = {
   children: node,
+  dataHook: string,
 };
 
 export const TableToolbar = Toolbar;

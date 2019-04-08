@@ -61,6 +61,8 @@ export const testkit = base => {
       return await ReactBase(unitNode).textContent();
     },
     getTabIndex: async () => await reactBaseInput.tabIndex(),
+    isCustomInput: async () =>
+      (await reactBaseInput.attr('data-hook')) === 'wsr-custom-input',
     getReadOnly: async () => await reactBaseInput.readOnly(),
     getTextOverflow: async () =>
       (await reactBaseInput.getStyle())['text-overflow'],
@@ -73,7 +75,7 @@ export const testkit = base => {
     focus: async () => await reactBaseInput.focus(),
     blur: async () => await reactBaseInput.blur(),
     keyUp: async () => await reactBaseInput.keyup(),
-    keyDown: async () => await reactBaseInput.keydown(),
+    keyDown: async eventData => await reactBaseInput.keydown(eventData),
     paste: async () => await reactBaseInput.paste(),
     trigger: async (value, event) => {
       if (value === 'focus') {

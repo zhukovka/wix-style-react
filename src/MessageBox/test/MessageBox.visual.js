@@ -27,27 +27,29 @@ const announcementStories = {
 };
 
 Object.entries(alertStories).forEach(([name, story]) =>
-  storiesOf(`MessageBox/Alert`).add(name, () => React.createElement(story)),
+  storiesOf(`MessageBox/Alert`, module).add(name, () =>
+    React.createElement(story),
+  ),
 );
 
-storiesOf(`MessageBox/AlertRTL`).add('Actions', () => (
+storiesOf(`MessageBox/AlertRTL`, module).add('Actions', () => (
   <div dir="rtl">{React.createElement(alertStories.Actions)}</div>
 ));
 
 Object.entries(desctructiveStories).forEach(([name, story]) =>
-  storiesOf(`MessageBox/Destructive`).add(name, () =>
+  storiesOf(`MessageBox/Destructive`, module).add(name, () =>
     React.createElement(story),
   ),
 );
 
 Object.entries(announcementStories).forEach(([name, story]) =>
-  storiesOf(`MessageBox/Announcement`).add(name, () =>
+  storiesOf(`MessageBox/Announcement`, module).add(name, () =>
     React.createElement(story),
   ),
 );
 
 Object.entries(announcementStories).forEach(([name, story]) =>
-  storiesOf(`MessageBox/AnnouncementRTL`).add(name, () => (
+  storiesOf(`MessageBox/AnnouncementRTL`, module).add(name, () => (
     <div dir="rtl">{React.createElement(story)}</div>
   )),
 );

@@ -297,7 +297,7 @@ export const calendarPanelTestkitFactory = protractorTestkitFactoryCreator(
   calendarPanelDriverFactory,
 );
 
-import { calendarPanelFooterDriverFactory } from '../src/CalendarPanelFooter/CalendarPanelFooter.driver';
+import { calendarPanelFooterDriverFactory } from '../src/CalendarPanelFooter/CalendarPanelFooter.uni.driver';
 
 export const calendarPanelFooterTestkitFactory = protractorUniTestkitFactoryCreator(
   calendarPanelFooterDriverFactory,
@@ -315,7 +315,7 @@ export const carouselTestkitFactory = protractorTestkitFactoryCreator(
   carouselDriverFactory,
 );
 
-import { proportionDriverFactory } from '../src/Proportion/Proportion.driver';
+import { proportionDriverFactory } from '../src/Proportion/Proportion.uni.driver';
 
 export const proportionTestkitFactory = protractorUniTestkitFactoryCreator(
   proportionDriverFactory,
@@ -335,7 +335,7 @@ export {
 
 // wix-ui-core (unidriver)
 
-import { textButtonDriverFactory } from '../src/TextButton/TextButton.driver';
+import { textButtonDriverFactory } from '../src/TextButton/TextButton.uni.driver';
 
 export const textButtonTestkitFactory = protractorUniTestkitFactoryCreator(
   textButtonDriverFactory,
@@ -347,19 +347,19 @@ export const avatarTestkitFactory = protractorUniTestkitFactoryCreator(
   avatarDriverFactory,
 );
 
-import cardGalleryItemDriverFactory from '../src/CardGalleryItem/CardGalleryItem.driver';
+import cardGalleryItemDriverFactory from '../src/CardGalleryItem/CardGalleryItem.uni.driver';
 
 export const cardGalleryItemTestkitFactory = protractorUniTestkitFactoryCreator(
   cardGalleryItemDriverFactory,
 );
 
-import { iconButtonDriverFactory } from '../src/IconButton/IconButton.driver';
+import { iconButtonDriverFactory } from '../src/IconButton/IconButton.uni.driver';
 
 export const iconButtonTestkitFactory = protractorUniTestkitFactoryCreator(
   iconButtonDriverFactory,
 );
 
-import { closeButtonDriverFactory } from '../src/CloseButton/CloseButton.driver';
+import { closeButtonDriverFactory } from '../src/CloseButton/CloseButton.uni.driver';
 
 export const closeButtonTestkitFactory = protractorUniTestkitFactoryCreator(
   closeButtonDriverFactory,
@@ -380,42 +380,42 @@ export const generatedTestComponentTestkitFactory = protractorUniTestkitFactoryC
   generatedTestComponentDriverFactory,
 );
 
-import { dropdownBaseDriverFactory } from '../src/DropdownBase/DropdownBase.driver';
+import { dropdownBaseDriverFactory } from '../src/DropdownBase/DropdownBase.uni.driver';
 
 export const dropdownBaseTestkitFactory = protractorUniTestkitFactoryCreator(
   dropdownBaseDriverFactory,
 );
 
-import { boxDriverFactory } from '../src/Box/Box.driver';
+import { boxDriverFactory } from '../src/Box/Box.uni.driver';
 
 export const boxTestkitFactory = protractorUniTestkitFactoryCreator(
   boxDriverFactory,
 );
 
-import { buttonDriverFactory } from '../src/Button/Button.driver';
+import { buttonDriverFactory } from '../src/Button/Button.uni.driver';
 
 export const buttonTestkitFactory = protractorUniTestkitFactoryCreator(
   buttonDriverFactory,
 );
 
-import { thumbnailDriverFactory } from '../src/Thumbnail/Thumbnail.driver';
+import { thumbnailDriverFactory } from '../src/Thumbnail/Thumbnail.uni.driver';
 
 export const thumbnailTestkitFactory = protractorUniTestkitFactoryCreator(
   thumbnailDriverFactory,
 );
-import { segmentedToggleDriverFactory } from '../src/SegmentedToggle/SegmentedToggle.driver';
+import { segmentedToggleDriverFactory } from '../src/SegmentedToggle/SegmentedToggle.uni.driver';
 
 export const segmentedToggleTestkitFactory = protractorUniTestkitFactoryCreator(
   segmentedToggleDriverFactory,
 );
 
-import { richTextInputAreaDriverFactory } from '../src/RichTextInputArea/RichTextInputArea.driver';
+import { richTextInputAreaDriverFactory } from '../src/RichTextInputArea/RichTextInputArea.uni.driver';
 
 export const richTextInputAreaTestkitFactory = protractorUniTestkitFactoryCreator(
   richTextInputAreaDriverFactory,
 );
 
-import { floatingNotificationDriverFactory } from '../src/FloatingNotification/FloatingNotification.driver';
+import { floatingNotificationDriverFactory } from '../src/FloatingNotification/FloatingNotification.uni.driver';
 
 export const floatingNotificationTestkitFactory = protractorUniTestkitFactoryCreator(
   floatingNotificationDriverFactory,
@@ -426,7 +426,7 @@ import { noBorderInputDriverFactory } from '../src/NoBorderInput/NoBorderInput.p
 export const noBorderInputTestkitFactory = protractorTestkitFactoryCreator(
   noBorderInputDriverFactory,
 );
-import { colorInputDriverFactory } from '../src/ColorInput/ColorInput.driver';
+import { colorInputDriverFactory } from '../src/ColorInput/ColorInput.uni.driver';
 
 export const colorInputTestkitFactory = protractorUniTestkitFactoryCreator(
   colorInputDriverFactory,
@@ -450,8 +450,14 @@ export const editableTitleTestkitFactory = protractorUniTestkitFactoryCreator(
   editableTitleUniDriverFactory,
 );
 
-import { accordionDriverFactory } from '../src/Accordion/Accordion.driver';
+import { accordionDriverFactory } from '../src/Accordion/Accordion.uni.driver';
 
 export const accordionTestkitFactory = protractorUniTestkitFactoryCreator(
   accordionDriverFactory,
+);
+
+import { googlePreviewDriverFactory } from '../src/GooglePreview/GooglePreview.uni.driver';
+
+export const googlePreviewTestkitFactory = protractorUniTestkitFactoryCreator(
+  googlePreviewDriverFactory,
 );

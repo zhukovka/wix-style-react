@@ -5,7 +5,7 @@ import {
 } from 'wix-ui-test-utils/protractor';
 
 import { eyesItInstance } from '../../test/utils/eyes-it';
-import richTextInputAreaPrivateDriverFactory from './RichTextInputArea.private.driver';
+import richTextInputAreaPrivateDriverFactory from './RichTextInputArea.private.uni.driver';
 import { storySettings } from './docs/storySettings';
 
 const eyes = eyesItInstance();

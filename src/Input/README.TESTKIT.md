@@ -128,5 +128,5 @@
   const testkit = await inputTestkitFactory({dataHook: 'myDataHook', page});
   await page.goto(appUrl); //Your application url
 
-  expect(await testkit.getText()).to.equal('my test');
+  expect(await testkit.getValue()).to.equal('my test');
 ```

@@ -131,6 +131,20 @@ describe('MultiSelect', () => {
       const element = driver.element();
       await waitForVisibilityOf(element, 'Cannot find <MultiSelect/>');
     });
+
+    eyes.it('should fill input with tags without breaking a line', async () => {
+      const url = createTestStoryUrl({
+        category: storySettings.category,
+        storyName: storySettings.storyName,
+        testName: testStories.lineNotBraking,
+      });
+      await browser.get(url);
+      const driver = multiSelectTestkitFactory({
+        dataHook: storySettings.dataHook,
+      });
+      const element = driver.element();
+      await waitForVisibilityOf(element, 'Cannot find <MultiSelect/>');
+    });
   });
 });
 

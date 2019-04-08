@@ -2,7 +2,7 @@ import React from 'react';
 import { createUniDriverFactory } from 'wix-ui-test-utils/uni-driver-factory';
 
 import ColorInput from './ColorInput';
-import { colorInputPrivateDriverFactory } from './ColorInput.driver.private';
+import { colorInputPrivateDriverFactory } from './ColorInput.private.uni.driver';
 import { requestAnimationFramePolyfill } from '../../testkit/polyfills';
 import { extractHex } from './hex-helpers';
 

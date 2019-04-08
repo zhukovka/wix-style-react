@@ -108,7 +108,7 @@ const tests = [
 
 tests.forEach(({ describe, its }) => {
   its.forEach(({ it, props }) => {
-    storiesOf(`AddItem/${describe}`).add(it, () => (
+    storiesOf(`AddItem/${describe}`, module).add(it, () => (
       <AddItem {...defaultProps} {...props} />
     ));
   });

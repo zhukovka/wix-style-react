@@ -8,6 +8,7 @@ import {
   CompositeDecorator,
 } from 'draft-js';
 import mapValues from 'lodash/mapValues';
+import classNames from 'classnames';
 
 import styles from './RichTextInputArea.scss';
 import RichTextToolbar from './Toolbar/RichTextToolbar';
@@ -35,7 +36,8 @@ class RichTextInputArea extends React.PureComponent {
 
   static propTypes = {
     dataHook: PropTypes.string,
-    value: PropTypes.string,
+    initialValue: PropTypes.string,
+    placeholder: PropTypes.string,
     onChange: PropTypes.func,
     texts: PropTypes.shape({
       toolbarButtons: PropTypes.shape(
@@ -51,7 +53,7 @@ class RichTextInputArea extends React.PureComponent {
   };
 
   static defaultProps = {
-    value: '',
+    initialValue: '',
     texts: {},
   };
 
@@ -75,17 +77,24 @@ class RichTextInputArea extends React.PureComponent {
     };
   }
   componentDidMount() {
-    const { value } = this.props;
+    const { initialValue } = this.props;
 
     // TODO: currently it treats the value as an initial value
-    this._updateContentByValue(value);
+    this._updateContentByValue(initialValue);
   }
 
   render() {
-    const { dataHook } = this.props;
+    const { dataHook, placeholder } = this.props;
+    const isEditorEmpty = EditorUtilities.isEditorEmpty(this.state.editorState);
 
     return (
-      <div data-hook={dataHook} className={styles.root}>
+      <div
+        data-hook={dataHook}
+        className={classNames(
+          styles.root,
+          !isEditorEmpty && styles.hidePlaceholder,
+        )}
+      >
         <RichTextInputAreaContext.Provider
           value={{
             texts: this.state.texts,
@@ -111,6 +120,7 @@ class RichTextInputArea extends React.PureComponent {
           ref="editor"
           editorState={this.state.editorState}
           onChange={this._setEditorState}
+          placeholder={placeholder}
         />
       </div>
     );

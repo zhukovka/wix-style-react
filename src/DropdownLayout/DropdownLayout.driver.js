@@ -24,24 +24,27 @@ const dropdownLayoutDriverFactory = ({ element }) => {
     );
 
   return {
+    classes: () => optionElements.className,
+    clickAtOption: position =>
+      doIfOptionExists(position, () =>
+        ReactTestUtils.Simulate.mouseDown(optionElementAt(position)),
+      ),
+    clickAtOptionWithValue: value => {
+      const option = values(optionElements.childNodes).find(
+        _option => _option.innerHTML === value,
+      );
+      option && ReactTestUtils.Simulate.mouseDown(option);
+    },
     exists: () => !!element,
-    isShown: () => isClassExists(contentContainer, styles.shown),
-    isDown: () => isClassExists(contentContainer, styles.down),
-    isUp: () => isClassExists(contentContainer, styles.up),
     hasTheme: theme => isClassExists(element, styles[`theme-${theme}`]),
-    tabIndex: () => element.tabIndex,
-    optionsLength: () => optionsLength(),
-    optionsScrollTop: () => optionElements.scrollTop,
-    mouseEnterAtOption: position =>
+    hasTopArrow: () => !!element.querySelector(`.${styles.arrow}`),
+    isDown: () => isClassExists(contentContainer, styles.down),
+    isLinkOption: position =>
+      optionElementAt(position).tagName.toLowerCase() === 'a',
+    isOptionADivider: position =>
       doIfOptionExists(position, () =>
-        ReactTestUtils.Simulate.mouseEnter(optionElementAt(position)),
+        isClassExists(optionElementAt(position), styles.divider),
       ),
-    mouseLeaveAtOption: position =>
-      doIfOptionExists(position, () =>
-        ReactTestUtils.Simulate.mouseLeave(optionElementAt(position)),
-      ),
-    mouseClickOutside: () =>
-      document.body.dispatchEvent(new Event('mouseup', { cancelable: true })),
     isOptionExists: optionText =>
       [].filter.call(
         optionElements.childNodes,
@@ -72,23 +75,35 @@ const dropdownLayoutDriverFactory = ({ element }) => {
       doIfOptionExists(position, () =>
         isClassExists(optionElementAt(position), styles.bigHeight),
       ),
-    isLinkOption: position =>
-      optionElementAt(position).tagName.toLowerCase() === 'a',
-    classes: () => optionElements.className,
-    pressDownKey: () =>
-      ReactTestUtils.Simulate.keyDown(element, { key: 'ArrowDown' }),
-    pressUpKey: () =>
-      ReactTestUtils.Simulate.keyDown(element, { key: 'ArrowUp' }),
-    pressEnterKey: () =>
-      ReactTestUtils.Simulate.keyDown(element, { key: 'Enter' }),
-    pressSpaceKey: () => ReactTestUtils.Simulate.keyDown(element, { key: ' ' }),
-    pressTabKey: () => ReactTestUtils.Simulate.keyDown(element, { key: 'Tab' }),
-    pressEscKey: () =>
-      ReactTestUtils.Simulate.keyDown(element, { key: 'Escape' }),
-    optionContentAt: position =>
-      doIfOptionExists(position, () => optionElementAt(position).textContent),
+    isShown: () => isClassExists(contentContainer, styles.shown),
+    isUp: () => isClassExists(contentContainer, styles.up),
+    mouseClickOutside: () =>
+      document.body.dispatchEvent(new Event('mouseup', { cancelable: true })),
+    mouseEnter: () => ReactTestUtils.Simulate.mouseEnter(element),
+    mouseEnterAtOption: position =>
+      doIfOptionExists(position, () =>
+        ReactTestUtils.Simulate.mouseEnter(optionElementAt(position)),
+      ),
+    mouseLeave: () => ReactTestUtils.Simulate.mouseLeave(element),
+    mouseLeaveAtOption: position =>
+      doIfOptionExists(position, () =>
+        ReactTestUtils.Simulate.mouseLeave(optionElementAt(position)),
+      ),
     /** @deprecated Use optionDriver*/
     optionAt: optionElementAt,
+    /** @deprecated This should be a private method since the hook include internal parts ('dropdown-divider-{id}, dropdown-item-{id})') */
+    optionByHook: hook => {
+      const option = optionElements.querySelector(`[data-hook=${hook}]`);
+      if (!option) {
+        throw new Error(`an option with data-hook ${hook} was not found`);
+      }
+      return createOptionDriver(option);
+    },
+    optionById(optionId) {
+      return this.optionByHook(`dropdown-item-${optionId}`);
+    },
+    optionContentAt: position =>
+      doIfOptionExists(position, () => optionElementAt(position).textContent),
     /** Get option driver given an option index */
     optionDriver: createOptionDriver,
     /** Get an array of all options including dividers (drivers) */
@@ -101,34 +116,21 @@ const dropdownLayoutDriverFactory = ({ element }) => {
     },
     optionsContent: () =>
       values(optionElements.childNodes).map(option => option.textContent),
-    clickAtOption: position =>
-      doIfOptionExists(position, () =>
-        ReactTestUtils.Simulate.mouseDown(optionElementAt(position)),
-      ),
-    clickAtOptionWithValue: value => {
-      const option = values(optionElements.childNodes).find(
-        _option => _option.innerHTML === value,
-      );
-      option && ReactTestUtils.Simulate.mouseDown(option);
-    },
-    isOptionADivider: position =>
-      doIfOptionExists(position, () =>
-        isClassExists(optionElementAt(position), styles.divider),
-      ),
-    mouseEnter: () => ReactTestUtils.Simulate.mouseEnter(element),
-    mouseLeave: () => ReactTestUtils.Simulate.mouseLeave(element),
-    hasTopArrow: () => !!element.querySelector(`.${styles.arrow}`),
-    optionById(optionId) {
-      return this.optionByHook(`dropdown-item-${optionId}`);
-    },
-    /** @deprecated This should be a private method since the hook include internal parts ('dropdown-divider-{id}, dropdown-item-{id})') */
-    optionByHook: hook => {
-      const option = optionElements.querySelector(`[data-hook=${hook}]`);
-      if (!option) {
-        throw new Error(`an option with data-hook ${hook} was not found`);
-      }
-      return createOptionDriver(option);
-    },
+
+    optionsLength: () => optionsLength(),
+    /** @deprecated should be private */
+    optionsScrollTop: () => optionElements.scrollTop,
+    pressDownKey: () =>
+      ReactTestUtils.Simulate.keyDown(element, { key: 'ArrowDown' }),
+    pressUpKey: () =>
+      ReactTestUtils.Simulate.keyDown(element, { key: 'ArrowUp' }),
+    pressEnterKey: () =>
+      ReactTestUtils.Simulate.keyDown(element, { key: 'Enter' }),
+    pressSpaceKey: () => ReactTestUtils.Simulate.keyDown(element, { key: ' ' }),
+    pressTabKey: () => ReactTestUtils.Simulate.keyDown(element, { key: 'Tab' }),
+    pressEscKey: () =>
+      ReactTestUtils.Simulate.keyDown(element, { key: 'Escape' }),
+    tabIndex: () => element.tabIndex,
   };
 };
 

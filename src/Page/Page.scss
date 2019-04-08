@@ -2,6 +2,7 @@
 @import '../Grid/GridConstants.scss';
 @import '../ZIndex';
 
+
 $page-side-padding: 48px;
 $headerBottomPadding: 24px;
 $page-background-color: $D70;
@@ -44,6 +45,7 @@ $minimizedHeaderContainerZIndex: $stickyZIndex + $zIndexLayerStep;
     background-color: $page-background-color;
     min-width: $main-container-min-width;
     height: 100%;
+    transform: scale(1); // Make this the containing-block for position: fixed
 
     .scrollableContainer {
       overflow-y: auto;
@@ -67,6 +69,19 @@ $minimizedHeaderContainerZIndex: $stickyZIndex + $zIndexLayerStep;
             min-height: $minimizedHeaderWrapperMinHeight;
             padding-top: $minimizedHeaderWrapperTopPadding;
             padding-bottom: $minimizedHeaderWrapperBottomPadding;
+
+            position: relative;
+            @keyframes entrance {
+              0% {
+                opacity: 0;
+                bottom: -20px;
+              }
+              100% {
+                opacity: 1;
+                bottom: 0px;
+              }
+            }
+            animation: entrance 0.2s;
           }
         }
 
@@ -79,7 +94,8 @@ $minimizedHeaderContainerZIndex: $stickyZIndex + $zIndexLayerStep;
         }
 
         &.minimized {
-          position: sticky;
+          top: 0px;
+          position: fixed;
           z-index: $minimizedHeaderContainerZIndex;
           background-color: $page-background-color;
           border-bottom: 1px solid $D60;

@@ -1,6 +1,5 @@
 import { ReactBase } from '../../test/utils/unidriver/ReactBase';
 import eventually from '../../test/utils/eventually';
-import { reactUniDriver } from 'unidriver/react';
 
 const arrowDirection = {
   top: 'bottom',
@@ -37,7 +36,7 @@ export const teskitTooltip = (base, body) => {
     let content = await getTooltipContent();
 
     while ((await ReactBase(content).children()).length > 0) {
-      content = reactUniDriver((await ReactBase(content).children())[0]);
+      content = (await ReactBase(content).children())[0];
     }
     return ReactBase(content).innerHtml();
   };

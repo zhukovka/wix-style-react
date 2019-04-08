@@ -214,7 +214,9 @@ export default class PageHeader extends WixComponent {
             })}
             data-hook="page-header-actionbar"
           >
-            {React.cloneElement(actionsBar, { minimized, hasBackgroundImage })}
+            {typeof actionsBar === 'function'
+              ? actionsBar({ minimized, hasBackgroundImage })
+              : actionsBar}
           </div>
         )}
       </div>
@@ -242,7 +244,7 @@ PageHeader.propTypes = {
   /** The callback when back button is clicked */
   onBackClicked: PropTypes.func,
   /** A placeholder for a component that can contain actions / anything else. It should be a React component that receives `minimized` and `hasBackgroundImage` props. */
-  actionsBar: PropTypes.node,
+  actionsBar: PropTypes.oneOfType([PropTypes.node, PropTypes.func]),
 
   /** @hidden internal for new Page*/
   upgrade: PropTypes.bool,

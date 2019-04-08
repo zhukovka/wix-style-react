@@ -3,7 +3,7 @@ import { createUniDriverFactory } from 'wix-ui-test-utils/uni-driver-factory';
 
 import LockLocked from '../new-icons/LockLocked';
 import SegmentedToggle from './SegmentedToggle';
-import { segmentedToggleDriverFactory } from './SegmentedToggle.driver';
+import { segmentedToggleDriverFactory } from './SegmentedToggle.uni.driver';
 
 describe('SegmentedToggle', () => {
   const dataHook1 = 'clicked-button1';

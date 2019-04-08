@@ -97,6 +97,11 @@ describe('MultiSelect', () => {
     expect(driver.isEditable()).toBe(false);
   });
 
+  it('should render custom input as the input element', () => {
+    const { inputDriver } = createDriver(<MultiSelect options={options} />);
+    expect(inputDriver.isCustomInput()).toEqual(true);
+  });
+
   describe('click-outside', () => {
     it('should clear input when clicked-out-side given input is non-empty', () => {
       const onChange = jest.fn();

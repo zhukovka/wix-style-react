@@ -8,6 +8,7 @@ import SortByArrowDown from '../new-icons/system/SortByArrowDown';
 import { Animator } from 'wix-animations';
 import Tooltip from '../Tooltip/Tooltip';
 import InfoIcon from '../common/InfoIcon';
+import { VariableSizeList as List } from 'react-window';
 
 export const DataTableHeader = props => {
   const { dataHook } = props;
@@ -76,6 +77,7 @@ class DataTable extends React.Component {
 
   render() {
     const {
+      virtualized,
       data,
       showHeaderWhenEmpty,
       infiniteScroll,
@@ -84,6 +86,10 @@ class DataTable extends React.Component {
 
     if (!data.length && !showHeaderWhenEmpty) {
       return null;
+    }
+
+    if (virtualized) {
+      return this.renderVirtualizedTable(data);
     }
 
     const rowsToRender = infiniteScroll
@@ -134,7 +140,11 @@ class DataTable extends React.Component {
     );
   };
 
-  renderBody = rows => <tbody>{rows.map(this.renderRow)}</tbody>;
+  renderBody = rows => (
+    <tbody>
+      {rows.map((rowData, index) => this.renderRow(rowData, index))}
+    </tbody>
+  );
 
   onRowClick = (rowData, rowNum) => {
     const { onRowClick, rowDetails } = this.props;
@@ -142,7 +152,7 @@ class DataTable extends React.Component {
     rowDetails && this.toggleRowDetails(rowData, rowNum);
   };
 
-  renderRow = (rowData, rowNum) => {
+  renderRow = (rowData, rowNum, style) => {
     const {
       onRowClick,
       onMouseEnterRow,
@@ -195,7 +205,12 @@ class DataTable extends React.Component {
 
     const key = rowData.id === undefined ? rowNum : rowData.id;
     const rowsToRender = [
-      <tr data-table-row="dataTableRow" key={key} {...optionalRowProps}>
+      <tr
+        data-table-row="dataTableRow"
+        style={style}
+        key={key}
+        {...optionalRowProps}
+      >
         {this.props.columns.map((column, colNum) =>
           this.renderCell(rowData, column, rowNum, colNum),
         )}
@@ -235,6 +250,7 @@ class DataTable extends React.Component {
   };
 
   renderCell = (rowData, column, rowNum, colNum) => {
+    const { virtualized } = this.props;
     const classes = classNames({
       [this.style.important]: column.important,
       [this.style.largeVerticalPadding]:
@@ -248,7 +264,9 @@ class DataTable extends React.Component {
     });
 
     const width =
-      rowNum === 0 && this.props.hideHeader ? column.width : undefined;
+      (virtualized || rowNum === 0) && this.props.hideHeader
+        ? column.width
+        : undefined;
 
     return (
       <td style={column.style} width={width} className={classes} key={colNum}>
@@ -271,12 +289,45 @@ class DataTable extends React.Component {
   toggleRowDetails = (rowData, rowNum) => {
     const selectedRow = typeof rowData.id === 'undefined' ? rowNum : rowData.id;
     let selectedRows = { [selectedRow]: !this.state.selectedRows[selectedRow] };
-    if (this.props.allowMultiDetailsExpansion) {
+    if (this.props.allowMultiDetailsExpansion && !this.props.virtualized) {
       selectedRows = Object.assign({}, this.state.selectedRows, {
         [selectedRow]: !this.state.selectedRows[selectedRow],
       });
     }
     this.setState({ selectedRows });
+  };
+
+  renderVirtualizedRow = ({ index, style }) =>
+    this.renderRow(this.props.data[index], index, style)[0];
+
+  getVirtualRowHeight = () => this.props.virtualizedLineHeight;
+
+  renderVirtualizedTableElement = ({ children, ...rest }) => {
+    return (
+      <table {...rest}>
+        {<TableHeader {...this.props} />}
+        {children}
+      </table>
+    );
+  };
+
+  renderVirtualizedTable = () => {
+    const { dataHook, data, virtualizedTableHeight } = this.props;
+    return (
+      <div data-hook={dataHook}>
+        <List
+          className={classNames(this.style.table, this.style.virtualized)}
+          height={virtualizedTableHeight}
+          itemCount={data.length}
+          width={'100%'}
+          itemSize={this.getVirtualRowHeight}
+          outerElementType={this.renderVirtualizedTableElement}
+          innerElementType={'tbody'}
+        >
+          {this.renderVirtualizedRow}
+        </List>
+      </div>
+    );
   };
 }
 
@@ -410,6 +461,7 @@ DataTable.defaultProps = {
   useWindow: true,
   rowVerticalPadding: 'medium',
   showLastRowDivider: true,
+  virtualizedLineHeight: 60,
 };
 
 /* eslint-disable no-unused-vars */
@@ -504,6 +556,12 @@ DataTable.propTypes = {
   hideHeader: PropTypes.bool,
   /** A flag specifying weather to show a divider after the last row */
   showLastRowDivider: PropTypes.bool,
+  /** ++EXPERIMENTAL++ virtualize the table scrolling for long list items */
+  virtualized: PropTypes.bool,
+  /** ++EXPERIMENTAL++ Set virtualized table height */
+  virtualizedTableHeight: PropTypes.number,
+  /** ++EXPERIMENTAL++ Set virtualized table row height */
+  virtualizedLineHeight: PropTypes.number,
 };
 DataTable.displayName = 'DataTable';
 
