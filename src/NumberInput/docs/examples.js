@@ -1,19 +1,8 @@
-export const standard = `
-<Layout>
-  <Cell>
-    <NumberInput />
-  </Cell>
-</Layout>
-`;
+export const standard = `<NumberInput />`;
 
 export const error = `
-<Layout>
-  <Cell>
-    <NumberInput status={'error'}
-                 statusMessage="I'm an error message..."/>
-  </Cell>
-</Layout>
-`;
+<NumberInput status={'error'}
+              statusMessage="I'm an error message..."/>`;
 
 export const affix = `
 <Layout>
@@ -137,6 +126,13 @@ export const rounded = `
     />
   </Cell>
 </Layout>`;
+
+export const strict = `
+<NumberInput
+  min={-5}
+  max={5}
+  strict
+  placeholder="You can't type beyond 5 or -5 !"/>`;
 
 export const controlled = `
 class ControlledNumberInput extends React.PureComponent {

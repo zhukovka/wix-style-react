@@ -39,6 +39,7 @@ export default {
         code({ title: 'Icon Affix', source: examples.iconAffix }),
         code({ title: 'Sizes', source: examples.sizes }),
         code({ title: 'Rounded', source: examples.rounded }),
+        code({ title: 'Strict', source: examples.strict }),
         code({
           title: 'Controlled',
           source: examples.controlled,

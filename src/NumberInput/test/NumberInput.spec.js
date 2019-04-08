@@ -202,4 +202,50 @@ describe('NumberInput', () => {
     await driver.enterText('.');
     expect(onChange).toHaveBeenCalledWith(null);
   });
+
+  it('strict mode should prevent manually entering numbers above max value', async () => {
+    const onChange = jest.fn();
+    const max = 10;
+    const driver = createDriver(
+      <NumberInput max={max} strict onChange={onChange} />,
+    );
+    await driver.enterText('215');
+    expect(onChange).toHaveBeenCalledWith(max);
+    expect(await driver.getValue()).toEqual('10');
+  });
+
+  it('strict mode should prevent manually entering numbers below min value', async () => {
+    const onChange = jest.fn();
+    const min = 0;
+    const driver = createDriver(
+      <NumberInput min={min} strict onChange={onChange} />,
+    );
+    await driver.enterText('-215');
+    expect(onChange).toHaveBeenCalledWith(min);
+    expect(await driver.getValue()).toEqual('0');
+  });
+
+  it('strict mode should set value to max if value typed is closer', async () => {
+    const onChange = jest.fn();
+    const min = 0;
+    const max = 100;
+    const driver = createDriver(
+      <NumberInput min={min} max={max} strict onChange={onChange} />,
+    );
+    await driver.enterText('101');
+    expect(onChange).toHaveBeenCalledWith(max);
+    expect(await driver.getValue()).toEqual('100');
+  });
+
+  it('strict mode should set value to min if value typed is closer', async () => {
+    const onChange = jest.fn();
+    const min = 0;
+    const max = 100;
+    const driver = createDriver(
+      <NumberInput min={min} max={max} strict onChange={onChange} />,
+    );
+    await driver.enterText('-2');
+    expect(onChange).toHaveBeenCalledWith(min);
+    expect(await driver.getValue()).toEqual('0');
+  });
 });

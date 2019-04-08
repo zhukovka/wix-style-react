@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { PropTypes } from 'react';
 import _ from 'lodash';
 import Input from '../Input';
 
@@ -23,12 +23,16 @@ class NumberInput extends React.PureComponent {
     });
   }
 
+  _isInvalidNumber(value) {
+    return ['.', '-', undefined, ''].includes(value);
+  }
+
   _defaultValueNullIfEmpty(value) {
     return _.isNil(value) || value === '' ? null : +value;
   }
 
   _defaultValueToNullIfInvalidNumber(value) {
-    return ['.', '-', undefined, ''].includes(value) ? null : +value;
+    return this._isInvalidNumber(value) ? null : +value;
   }
 
   _getInputValueFromState() {
@@ -76,7 +80,27 @@ class NumberInput extends React.PureComponent {
     );
   }
 
+  _applyStrictValue(value) {
+    const { min, max } = this.props;
+    if (this._isInRange(value) || this._isInvalidNumber(value)) {
+      return value;
+    }
+    const dMax = max - value;
+    const dMin = min - value;
+    if (!dMax) {
+      return min;
+    }
+    if (!dMin) {
+      return max;
+    }
+    return Math.abs(dMax) < Math.abs(dMin) ? max : min;
+  }
+
   _inputValueChanged = e => {
+    const { strict } = this.props;
+    if (strict) {
+      return this._triggerOnChange(this._applyStrictValue(e.target.value));
+    }
     return this._triggerOnChange(e.target.value);
   };
 
@@ -115,9 +139,12 @@ class NumberInput extends React.PureComponent {
 
 NumberInput.propTypes = {
   ...Input.propTypes,
+  /** If set to true - typing values beyond `min`/`max` values will round to nearest range  */
+  strict: PropTypes.bool,
 };
 
 NumberInput.defaultProps = {
   step: 1,
+  strict: false,
 };
 export default NumberInput;
