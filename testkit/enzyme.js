@@ -125,5 +125,5 @@ export const editableRowTestkitFactory = enzymeTestkitFactoryCreator(load(requir
 export const fieldLabelAttributesTestkitFactory = enzymeTestkitFactoryCreator(load(require('../src/FieldLabelAttributes/FieldLabelAttributes.driver')));
 export const fieldWithSelectionCompositeTestkitFactory = enzymeTestkitFactoryCreator(load(require('../src/Composite/FieldWithSelectionComposite/FieldWithSelectionComposite.driver')));
 export const radioButtonTestkitFactory = enzymeTestkitFactoryCreator(load(require('../src/RadioGroup/RadioButton/RadioButton.driver')));
-export const messageBoxMarketerialLayoutTestkitFactory = enzymeTestkitFactoryCreator(load(require('../src/MessageBox/MessageBoxMarketerialLayout.driver')));
-export const messageBoxFunctionalLayoutTestkitFactory = enzymeTestkitFactoryCreator(load(require('../src/MessageBox/MessageBoxFunctionalLayout.driver')));
+export const messageBoxMarketerialLayoutTestkitFactory = enzymeTestkitFactoryCreator(load(require('../src/MessageBox/MarketerialLayout/MessageBoxMarketerialLayout.driver')));
+export const messageBoxFunctionalLayoutTestkitFactory = enzymeTestkitFactoryCreator(load(require('../src/MessageBox/FunctionalLayout/MessageBoxFunctionalLayout.driver')));

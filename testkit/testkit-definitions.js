@@ -196,12 +196,14 @@ module.exports = {
   },
 
   MessageBoxMarketerialLayout: {
-    testkitPath: '../src/MessageBox/MessageBoxMarketerialLayout.driver',
+    testkitPath:
+      '../src/MessageBox/MarketerialLayout/MessageBoxMarketerialLayout.driver',
     skipSanityTest: true,
   },
 
   MessageBoxFunctionalLayout: {
-    testkitPath: '../src/MessageBox/MessageBoxFunctionalLayout.driver',
+    testkitPath:
+      '../src/MessageBox/FunctionalLayout/MessageBoxFunctionalLayout.driver',
     skipSanityTest: true,
   },
 

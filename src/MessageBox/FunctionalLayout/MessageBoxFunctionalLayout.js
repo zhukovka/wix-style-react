@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import HeaderLayout from './HeaderLayout';
 import FooterLayout from './FooterLayout';
-import WixComponent from '../BaseComponents/WixComponent';
+import WixComponent from '../../BaseComponents/WixComponent';
 import classNames from 'classnames';
 import throttle from 'lodash/throttle';
 

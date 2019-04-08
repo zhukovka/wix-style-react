@@ -261,7 +261,7 @@ export const textTestkitFactory = protractorTestkitFactoryCreator(
   textDriverFactory,
 );
 
-import messageBoxFunctionalLayoutDriverFactory from '../src/MessageBox/MessageBoxFunctionalLayout.protractor.driver';
+import messageBoxFunctionalLayoutDriverFactory from '../src/MessageBox/FunctionalLayout/MessageBoxFunctionalLayout.protractor.driver';
 
 export const messageBoxFunctionalLayoutTestkitFactory = protractorTestkitFactoryCreator(
   messageBoxFunctionalLayoutDriverFactory,

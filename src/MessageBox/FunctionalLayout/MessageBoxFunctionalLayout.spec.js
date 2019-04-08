@@ -6,9 +6,9 @@ import sinon from 'sinon';
 import {
   isTestkitExists,
   isEnzymeTestkitExists,
-} from '../../test/utils/testkit-sanity';
-import { messageBoxFunctionalLayoutTestkitFactory } from '../../testkit';
-import { messageBoxFunctionalLayoutTestkitFactory as enzymeMessageBoxTestkitFactory } from '../../testkit/enzyme';
+} from '../../../test/utils/testkit-sanity';
+import { messageBoxFunctionalLayoutTestkitFactory } from '../../../testkit';
+import { messageBoxFunctionalLayoutTestkitFactory as enzymeMessageBoxTestkitFactory } from '../../../testkit/enzyme';
 import { mount } from 'enzyme';
 import ChevronDown from 'wix-style-react/new-icons/ChevronDown';
 

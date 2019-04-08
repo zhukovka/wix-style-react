@@ -8,6 +8,7 @@ export const colors = {
   blue: 'blue',
   red: 'red',
   green: 'green',
+  white: 'white',
 };
 
 export const positions = {

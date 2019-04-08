@@ -3,8 +3,8 @@ import { bool, func, node, number, oneOf, string } from 'prop-types';
 
 import WixComponent from '../BaseComponents/WixComponent';
 import Loader from '../Loader/Loader';
-import HeaderLayout from '../MessageBox/HeaderLayout';
-import FooterLayout from '../MessageBox/FooterLayout';
+import HeaderLayout from '../MessageBox/FunctionalLayout/HeaderLayout';
+import FooterLayout from '../MessageBox/FunctionalLayout/FooterLayout';
 import Selector from '../Selector/Selector';
 import Search from '../Search/Search';
 import InfiniteScroll from '../utils/InfiniteScroll';

@@ -7,7 +7,7 @@
 | propName | propType | defaultValue | isRequired | description |
 |----------|----------|--------------|------------|-------------|
 | borderRadius | number | 0 | - | Border radius of modal |
-| theme | blue, red, green | blue | - | |
+| theme | blue, red, green, white | blue | - | |
 | isOpen | bool | - | + | Is the modal open or not |
 | contentLabel | string | - | - | a11y: The value of contentLabel is set as an aria-label on the modal element. This helps assistive technology, like screen readers, to add a label to an element that would otherwise be anonymous |
 | maxHeight | string | - | - | maxHeight of modal(when it has scrollableContent) |

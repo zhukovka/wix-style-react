@@ -5,11 +5,11 @@ import sinon from 'sinon';
 import {
   isTestkitExists,
   isEnzymeTestkitExists,
-} from '../../test/utils/testkit-sanity';
-import { messageBoxMarketerialLayoutTestkitFactory } from '../../testkit';
-import { messageBoxMarketerialLayoutTestkitFactory as enzymeMessageBoxTestkitFactory } from '../../testkit/enzyme';
+} from '../../../test/utils/testkit-sanity';
+import { messageBoxMarketerialLayoutTestkitFactory } from '../../../testkit';
+import { messageBoxMarketerialLayoutTestkitFactory as enzymeMessageBoxTestkitFactory } from '../../../testkit/enzyme';
 import { mount } from 'enzyme';
-import { createRendererWithDriver, cleanup } from '../../test/utils/react';
+import { createRendererWithDriver, cleanup } from '../../../test/utils/react';
 
 describe('MessageBoxMarketerialLayout', () => {
   const render = createRendererWithDriver(MessageBoxMarketerialLayoutFactory);
@@ -32,7 +32,7 @@ describe('MessageBoxMarketerialLayout', () => {
       expect(driver.getPrimaryButtonText()).toBe(props.primaryButtonLabel);
     });
 
-    it('should display the primary button with custom them', () => {
+    it('should display the primary button with custom theme', () => {
       const props = Object.assign({}, requiredProps, {
         primaryButtonLabel: 'primaryButtonLabel',
         primaryButtonTheme: 'purple',
@@ -97,6 +97,14 @@ describe('MessageBoxMarketerialLayout', () => {
       const driver = createDriver(<MessageBoxMarketerialLayout {...props} />);
       driver.closeMessageBox();
       expect(props.onClose.calledOnce).toBeTruthy();
+    });
+
+    it(`should theme the close button as dark when general theme is white`, () => {
+      const props = Object.assign({}, requiredProps, {
+        theme: 'white',
+      });
+      const driver = createDriver(<MessageBoxMarketerialLayout {...props} />);
+      expect(driver.getHeaderCloseButton().className).toContain('dark');
     });
   });
 

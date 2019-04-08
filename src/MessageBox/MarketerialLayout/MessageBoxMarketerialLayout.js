@@ -1,12 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import WixComponent from '../BaseComponents/WixComponent';
-import Heading from '../Heading';
-import Text from '../Text';
+import WixComponent from '../../BaseComponents/WixComponent';
+import Heading from '../../Heading';
+import Text from '../../Text';
 import classNames from 'classnames';
-import CloseButton from '../CloseButton';
+import CloseButton from '../../CloseButton';
 
-import Button from '../Deprecated/Button';
+import Button from '../../Deprecated/Button';
 
 import * as styles from './MessageBoxMarketerialLayout.scss';
 
@@ -41,7 +41,7 @@ class MessageBoxMarketerialLayout extends WixComponent {
               dataHook="close-button"
               size="medium"
               onClick={onClose}
-              skin="lightFilled"
+              skin={theme === 'white' ? 'dark' : 'lightFilled'}
             />
           </div>
           {imageComponent ? (
@@ -108,7 +108,7 @@ MessageBoxMarketerialLayout.propTypes = {
   onClose: PropTypes.func.isRequired,
   imageComponent: PropTypes.node,
   footerBottomChildren: PropTypes.node,
-  theme: PropTypes.oneOf(['blue', 'purple']),
+  theme: PropTypes.oneOf(['blue', 'purple', 'white']),
   primaryButtonTheme: PropTypes.oneOf(['blue', 'purple']),
 };
 

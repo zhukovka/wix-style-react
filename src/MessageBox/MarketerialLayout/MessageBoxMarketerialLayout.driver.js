@@ -13,6 +13,7 @@ const messageBoxMarketerialLayoutDriverFactory = ({ element }) => {
     getPrimaryButton: primaryButton,
     getSecondaryButtonText: () => secondaryButton().textContent,
     getSecondaryButton: secondaryButton,
+    getHeaderCloseButton: closeButton,
     clickOnPrimaryButton: () => ReactTestUtils.Simulate.click(primaryButton()),
     clickOnSecondaryButton: () =>
       ReactTestUtils.Simulate.click(secondaryButton()),

@@ -1,5 +1,5 @@
-@import '../common';
-@import './MessageBoxCommon.scss';
+@import '../../common';
+@import '../MessageBoxCommon';
 
 .root {
   box-shadow: $Shadow40;
@@ -19,6 +19,11 @@ $headerImageHeight: 185px;
 .header-purple {
   background-color: $P10;
 }
+
+.header-white {
+  background-color: $D80;
+}
+
 .header-blue {
   background-color: $B10;
 }

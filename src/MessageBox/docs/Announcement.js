@@ -10,6 +10,9 @@ import { RTLWrapper } from '../../../stories/utils/RTLWrapper';
 import AnnouncementStandard from './AnnouncementExamples/Standard';
 import AnnouncementStandardRaw from '!raw-loader!./AnnouncementExamples/Standard';
 
+import Celebratory from './AnnouncementExamples/Celebratory';
+import CelebratoryRaw from '!raw-loader!./AnnouncementExamples/Celebratory';
+
 import PremiumAction from './AnnouncementExamples/PremiumAction';
 import PremiumActionRaw from '!raw-loader!./AnnouncementExamples/PremiumAction';
 
@@ -52,6 +55,11 @@ export default () => (
             title="Disabled Action"
             code={DisabledActionRaw}
             children={<DisabledAction />}
+          />
+          <CodeExample
+            title="Celebratory"
+            code={CelebratoryRaw}
+            children={<Celebratory />}
           />
         </div>
       </RTLWrapper>

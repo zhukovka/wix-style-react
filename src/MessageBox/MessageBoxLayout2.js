@@ -1,3 +1,3 @@
-import MessageBoxLayout2 from './MessageBoxFunctionalLayout';
+import MessageBoxLayout2 from './FunctionalLayout/MessageBoxFunctionalLayout';
 
 export default MessageBoxLayout2;

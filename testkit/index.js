@@ -125,5 +125,5 @@ export const editableRowTestkitFactory = testkitFactoryCreator(load(require('../
 export const fieldLabelAttributesTestkitFactory = testkitFactoryCreator(load(require('../src/FieldLabelAttributes/FieldLabelAttributes.driver')));
 export const fieldWithSelectionCompositeTestkitFactory = testkitFactoryCreator(load(require('../src/Composite/FieldWithSelectionComposite/FieldWithSelectionComposite.driver')));
 export const radioButtonTestkitFactory = testkitFactoryCreator(load(require('../src/RadioGroup/RadioButton/RadioButton.driver')));
-export const messageBoxMarketerialLayoutTestkitFactory = testkitFactoryCreator(load(require('../src/MessageBox/MessageBoxMarketerialLayout.driver')));
-export const messageBoxFunctionalLayoutTestkitFactory = testkitFactoryCreator(load(require('../src/MessageBox/MessageBoxFunctionalLayout.driver')));
+export const messageBoxMarketerialLayoutTestkitFactory = testkitFactoryCreator(load(require('../src/MessageBox/MarketerialLayout/MessageBoxMarketerialLayout.driver')));
+export const messageBoxFunctionalLayoutTestkitFactory = testkitFactoryCreator(load(require('../src/MessageBox/FunctionalLayout/MessageBoxFunctionalLayout.driver')));
