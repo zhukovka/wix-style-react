@@ -14,7 +14,7 @@ Types of changes:
 1. **Docs** for documentation changes
 1. **Lab** components and features that are still in a work in progress
 
-## Next
+## 6.13.0 - 2019-04-08
 
 ### Added
 
@@ -23,6 +23,7 @@ Types of changes:
 - `<TableToolbar/>` - add dataHook props to <Title> and <SelectedCount> [#3198](https://github.com/wix/wix-style-react/pull/3198)
 
 ### Changed
+
 - `<Page/>` - Change PageHeader animation [#3230](https://github.com/wix/wix-style-react/pull/3230)
 
 ### Fixed
