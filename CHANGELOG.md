@@ -14,6 +14,10 @@ Types of changes:
 1. **Docs** for documentation changes
 1. **Lab** components and features that are still in a work in progress
 
+## next
+
+`<MessegeBox/>` - add white theme [#3127](https://github.com/wix/wix-style-react/pull/3127)
+
 ## 6.13.0 - 2019-04-08
 
 ### Added
