@@ -19,6 +19,10 @@ Types of changes:
 - `<MessegeBox/>` - add white theme [#3127](https://github.com/wix/wix-style-react/pull/3127)
 - `<NumberInput/>` - add `strict` property [#3249](https://github.com/wix/wix-style-react/pull/3249)
 
+### Added 
+
+- `<Tooltip/>` - major refactor. Total rewrite of component. Follow [upgrade guidelines](https://github.com/wix/wix-style-react/blob/master/src/Tooltip/TooltipNext/MIGRATION-API.md) [#3110](https://github.com/wix/wix-style-react/pull/3110)
+
 ## 6.13.0 - 2019-04-08
 
 ### Added
