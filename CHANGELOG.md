@@ -16,8 +16,8 @@ Types of changes:
 
 ## next
 
-`<MessegeBox/>` - add white theme [#3127](https://github.com/wix/wix-style-react/pull/3127)
-`<NumberInput/>` - add `strict` property [#3249](https://github.com/wix/wix-style-react/pull/3249)
+- `<MessegeBox/>` - add white theme [#3127](https://github.com/wix/wix-style-react/pull/3127)
+- `<NumberInput/>` - add `strict` property [#3249](https://github.com/wix/wix-style-react/pull/3249)
 
 ## 6.13.0 - 2019-04-08
 
