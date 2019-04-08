@@ -12,6 +12,7 @@ import PopoverMenu from 'wix-style-react/PopoverMenu';
 import PopoverMenuItem from 'wix-style-react/PopoverMenuItem';
 
 import * as s from './PageTestStories.scss';
+import classNames from 'classnames';
 import { header, tail, fixedContent, content } from './PageChildren';
 import { storySettings } from './storySettings';
 import ExampleEmptyState from './ExampleEmptyState';
@@ -20,13 +21,19 @@ import { LongTextContent } from './SomeContentComponent';
 
 const PageContainer = props => {
   return (
-    <div className={s.pageContainer} {...props}>
+    <div
+      className={classNames(s.pageContainer, {
+        [s.withFixedScrollBar]: props.withFixedScrollBar,
+      })}
+      {...props}
+    >
       {props.children}
     </div>
   );
 };
 PageContainer.propTypes = {
   children: PropTypes.any,
+  withFixedScrollBar: PropTypes.bool,
 };
 
 const kind = getTestStoryKind(storySettings);
@@ -124,12 +131,12 @@ PageTestStories.add('11. With Notification', () => (
             <LongTextContent />
           </Card.Content>
         </Card>
+        <Notification type="sticky" show>
+          <Notification.TextLabel>Hello Notification</Notification.TextLabel>
+          <Notification.CloseButton />
+        </Notification>
       </Page.Content>
     </Page>
-    <Notification type="sticky" show>
-      <Notification.TextLabel>Hello Notification</Notification.TextLabel>
-      <Notification.CloseButton />
-    </Notification>
   </PageContainer>
 ));
 
@@ -177,6 +184,7 @@ class PageWithScroll extends React.Component {
     contentHeight: PropTypes.number,
     stretchVertically: PropTypes.bool,
     withFixedContent: PropTypes.bool,
+    withFixedScrollBar: PropTypes.bool,
   };
 
   static defaultProps = {
@@ -186,7 +194,12 @@ class PageWithScroll extends React.Component {
 
   render() {
     let heightProps;
-    const { stretchVertically, contentHeight, withFixedContent } = this.props;
+    const {
+      stretchVertically,
+      contentHeight,
+      withFixedContent,
+      withFixedScrollBar,
+    } = this.props;
 
     if (stretchVertically) {
       heightProps = {
@@ -207,6 +220,7 @@ class PageWithScroll extends React.Component {
     return (
       <PageContainer
         style={{ height: `${PageWithScroll.Constants.pageHeight}px` }}
+        withFixedScrollBar={withFixedScrollBar}
       >
         <Page {...defaultPageProps} ref={ref => (this.pageInstance = ref)}>
           {header()}
@@ -320,6 +334,17 @@ class PageWithScroll extends React.Component {
           </Page.Content>
         </Page>
       </PageContainer>
+    );
+  });
+
+  Stories.add(`${prefix(9)}Long With Fixed ScrollBar`, () => {
+    const arbitraryLong = PageWithScroll.Constants.pageHeight;
+    return (
+      <PageWithScroll
+        {...defaultProps}
+        extraScroll={arbitraryLong}
+        withFixedScrollBar
+      />
     );
   });
 });

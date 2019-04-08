@@ -263,7 +263,7 @@ describe('Page', () => {
     });
 
     describe('6. Long', () => {
-      eyes.it('should not have scroll', async () => {
+      eyes.it('should have scroll', async () => {
         await initTest({
           storyUrl: testScrollStoryUrl('6. Long'),
           dataHook,
@@ -294,6 +294,22 @@ describe('Page', () => {
         await privateDriver.scrollVertically(GAP_HEIGHT_PX / 2 + STICKY_HEIGHT);
         await eyes.checkWindow('second sticky at top');
       });
+    });
+
+    describe('9. Long With Fixed ScrollBar', () => {
+      eyes.it(
+        'should have minimized header with width that matches the scrollable container',
+        async () => {
+          await initTest({
+            storyUrl: testScrollStoryUrl('9. Long With Fixed ScrollBar'),
+            dataHook,
+          });
+          await privateDriver.scrollVertically(SCROLL_TO_BOTTOM);
+
+          await browser.sleep(ANIMATION_DURATION_MS + 100); // eslint-disable-line no-restricted-properties
+          expect((await privateDriver.getVeriticalScroll()) > 0).toBeTruthy();
+        },
+      );
     });
   });
 });

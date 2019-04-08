@@ -1,3 +1,10 @@
+@import '../../mixins.scss';
+
 .pageContainer {
   height: calc(100vh - 16px) ;
 }
+
+.pageContainer.withFixedScrollBar [data-class=page-scrollable-content] {
+  @include default-scroll-bar;
+}
+

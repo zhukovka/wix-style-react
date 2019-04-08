@@ -2,6 +2,7 @@ import React from 'react';
 
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
+import { ResizeSensor } from 'css-element-queries';
 import s from './Page.scss';
 import WixComponent from '../BaseComponents/WixComponent';
 import { PageContext } from './PageContext';
@@ -28,7 +29,10 @@ import {
  * + PageWrapper (Horizontal Scroll) --
  * | +- Page --------------------------
  * | | +--  ScrollableContainer (Vertical Scroll)
- * | | | +-- HeaderContainer ----------
+ * | | | +--  MinimizationPlaceholder
+ * | | | |
+ * | | | +---------------------------
+ * | | | +-- HeaderContainer ------ (position: fixed - when minimized)
  * | | | | +-- Page.Header ------------
  * | | | | |
  * | | | | +---------------------------
@@ -75,6 +79,7 @@ class Page extends WixComponent {
       headerContainerHeight: 0,
       headerWrapperHeight: 0,
       tailHeight: 0,
+      scrollBarWidth: 0,
       minimized: false,
     };
   }
@@ -82,6 +87,10 @@ class Page extends WixComponent {
   componentDidMount() {
     super.componentDidMount();
     this._calculateComponentsHeights();
+    this.contentResizeListener = new ResizeSensor(
+      this._getScrollContainer().childNodes[0],
+      this._handleWidthResize,
+    );
     this._handleWidthResize();
     window.addEventListener('resize', this._handleWindowResize);
 
@@ -100,6 +109,7 @@ class Page extends WixComponent {
   componentWillUnmount() {
     super.componentWillUnmount();
     window.removeEventListener('resize', this._handleWindowResize);
+    this.contentResizeListener.detach(this._handleResize);
   }
 
   _getNamedChildren() {
@@ -185,7 +195,17 @@ class Page extends WixComponent {
     }
   }
 
-  _handleWidthResize() {}
+  _handleWidthResize() {
+    // Fixes width issues when scroll bar is present in windows
+    const scrollContainer = this._getScrollContainer();
+    const scrollBarWidth =
+      scrollContainer &&
+      scrollContainer.offsetWidth - scrollContainer.clientWidth;
+
+    if (this.state.scrollBarWidth !== scrollBarWidth) {
+      this.setState({ scrollBarWidth });
+    }
+  }
 
   _handleWindowResize() {
     // TODO: Optimize : https://developer.mozilla.org/en-US/docs/Web/Events/resize
@@ -213,6 +233,7 @@ class Page extends WixComponent {
 
   _getPageDimensionsStyle() {
     const { maxWidth, sidePadding } = this.props;
+    // TODO: Simplify - maxWidth is always truthy (from defaultProp)
     if (!maxWidth && !sidePadding && sidePadding !== 0) {
       return null;
     }
@@ -283,22 +304,7 @@ class Page extends WixComponent {
   }
 
   _renderHeaderContainer() {
-    const { minimized } = this.state;
-
-    // placeholder when header is minimized
-    const placeholder = (
-      <div
-        style={{
-          height: `${minimized ? this._getMinimizationDiff() : 0}px`,
-        }}
-      />
-    );
-
-    /**
-     * HeaderContainer has position sticky. The `top` value is negative, in order to let
-     * the container scroll out of view before the minimization occurs.
-     */
-    const top = minimized ? `-${this._getMinimizationDiff()}px` : 0;
+    const { minimized, scrollBarWidth } = this.state;
 
     return (
       <div
@@ -307,11 +313,16 @@ class Page extends WixComponent {
           [s.minimized]: minimized,
           [s.hasTail]: this._hasTail(),
         })}
-        style={{ top }}
         ref={ref => (this.headerContainerRef = ref)}
+        onWheel={event => {
+          event.preventDefault();
+          this._getScrollContainer().scrollTop =
+            this._getScrollContainer().scrollTop + event.deltaY;
+        }}
+        style={{ width: `calc(100% - ${minimized ? scrollBarWidth : 0}px)` }}
       >
         {this._renderContentHorizontalLayout({
-          children: [placeholder, this._renderHeader(), this._renderTail()],
+          children: [this._renderHeader(), this._renderTail()],
         })}
       </div>
     );
@@ -329,6 +340,7 @@ class Page extends WixComponent {
         onScroll={this._handleScroll}
       >
         {this._renderScrollableBackground()}
+        {this._renderMinimizationPlaceholder()}
         {this._renderHeaderContainer()}
         {this._renderContentContainer()}
       </div>
@@ -337,6 +349,25 @@ class Page extends WixComponent {
 
   _hasTail() {
     return !!this._getNamedChildren().PageTail;
+  }
+
+  _fixedContainerStyle() {
+    const { scrollBarWidth } = this.state;
+    if (scrollBarWidth) {
+      return { width: `calc(100% - ${scrollBarWidth}px` };
+    }
+    return null;
+  }
+
+  _renderMinimizationPlaceholder() {
+    const { headerContainerHeight, minimized } = this.state;
+    return (
+      <div
+        style={{
+          height: `${minimized ? headerContainerHeight : 0}px`,
+        }}
+      />
+    );
   }
 
   _renderScrollableBackground() {
