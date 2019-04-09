@@ -2,7 +2,7 @@ import { Category } from '../../../stories/storiesHierarchy';
 
 export const storySettings = {
   storyName: 'DropdownLayout',
-  indexCategory: Category.PICKERS_AND_SELECTORS,
+  category: Category.COMPONENTS,
   dataHook: 'dropdown-layout-tabs-switches-test',
 };
 

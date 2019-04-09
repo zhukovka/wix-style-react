@@ -2,7 +2,6 @@ import browserLogs from 'protractor-browser-logs';
 import { eyesItInstance } from '../../test/utils/eyes-it';
 import autoExampleDriver from 'wix-storybook-utils/AutoExampleDriver';
 import { storySettings } from './docs/storySettings';
-import { Category } from '../../stories/storiesHierarchy';
 
 const EC = protractor.ExpectedConditions;
 
@@ -18,8 +17,8 @@ describe('PopoverMenu', () => {
 
   async function getPage({ rtl } = {}) {
     const storyUrl = createStoryUrl({
-      kind: Category.TOOLTIP_AND_POPOVER,
-      story: '7.3 Popover Menu',
+      kind: storySettings.category,
+      story: storySettings.storyName,
       withExamples: false,
       rtl,
     });
@@ -34,8 +33,8 @@ describe('PopoverMenu', () => {
 
   async function getPageWithDividerMenu({ rtl } = {}) {
     const storyUrl = createStoryUrl({
-      kind: Category.TOOLTIP_AND_POPOVER,
-      story: '7.3 Popover Menu',
+      kind: storySettings.category,
+      story: storySettings.storyName,
       withExamples: true,
       rtl,
     });

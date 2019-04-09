@@ -33,7 +33,7 @@ const CenterBadgeSelect = props => (
 CenterBadgeSelect.displayName = BadgeSelect.displayName;
 
 export default {
-  category: storySettings.kind,
+  category: storySettings.category,
   storyName: storySettings.storyName,
 
   component: CenterBadgeSelect,

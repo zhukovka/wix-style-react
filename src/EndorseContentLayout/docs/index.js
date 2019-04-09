@@ -11,7 +11,9 @@ import ErrorRaw from '!raw-loader!./examples/error';
 import Generic from './examples/generic';
 import GenericRaw from '!raw-loader!./examples/generic';
 
-storiesOf('9. Modals', module).add('EndorseContentLayout', () => (
+import { storySettings } from './storySettings';
+
+storiesOf(storySettings.category, module).add(storySettings.storyName, () => (
   <div>
     <Markdown source={Readme} />
 

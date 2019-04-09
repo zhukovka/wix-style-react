@@ -57,7 +57,7 @@ const exampleChildren = [
 ];
 
 export default {
-  category: storySettings.kind,
+  category: storySettings.category,
   storyName: storySettings.storyName,
   component: createAutoExampleWrapper(PopoverMenu),
   componentPath: '..',

@@ -10,7 +10,7 @@ import RangeTemplate from './RangeTemplate';
 // Use fixed date for DatePicker in order for eyes comparisons not to fail.
 const ARBITRARY_FIXED_DATE = new Date('2018/01/01');
 
-storiesOf(storySettings.kind, module).add(storySettings.storyName, () => (
+storiesOf(storySettings.category, module).add(storySettings.storyName, () => (
   <div>
     <Markdown source={Readme} />
     <InteractiveCodeExample title="Customize a <Range/>">

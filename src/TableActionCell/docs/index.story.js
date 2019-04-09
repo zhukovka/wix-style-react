@@ -87,7 +87,7 @@ const ExampleComponent = props => (
 ExampleComponent.displayName = 'TableActionCell';
 
 export default {
-  category: storySettings.kind,
+  category: storySettings.category,
   storyName: storySettings.storyName,
 
   component: ExampleComponent,

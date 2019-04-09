@@ -13,7 +13,7 @@ describe('BadgeSelect', () => {
   const eyes = eyesItInstance();
 
   const storyUrl = createStoryUrl({
-    kind: storySettings.kind,
+    kind: storySettings.category,
     story: storySettings.storyName,
     withExamples: false,
   });

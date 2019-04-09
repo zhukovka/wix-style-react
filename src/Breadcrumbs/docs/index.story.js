@@ -20,6 +20,8 @@ import ExampleWithChosenActiveElement from './ExampleWithChosenActiveElement';
 import ExampleUsingURLRaw from '!raw-loader!./ExampleUsingURL';
 import ExampleUsingURL from './ExampleUsingURL';
 
+import { storySettings } from './storySettings';
+
 const items = [
   {
     id: '1',
@@ -37,8 +39,8 @@ const items = [
 ];
 
 export default {
-  category: '6. Navigation',
-  storyName: '6.2 Breadcrumbs',
+  category: storySettings.category,
+  storyName: storySettings.storyName,
   component: Breadcrumbs,
   componentPath: '..',
   componentProps: {

@@ -2,6 +2,8 @@ import React from 'react';
 import RadioGroup from '..';
 import { createAutoExampleWrapper } from '../../../stories/utils/AutoExampleWrapper';
 
+import { storySettings } from './storySettings';
+
 const exampleChildren = [
   {
     label: '4 radios',
@@ -36,8 +38,8 @@ const exampleOptions = [
 ];
 
 export default {
-  category: '4. Selection',
-  storyName: '4.3 Radio Button Group',
+  category: storySettings.category,
+  storyName: storySettings.storyName,
   component: createAutoExampleWrapper(RadioGroup),
   componentPath: '..',
 

@@ -4,6 +4,8 @@ import Markdown from 'wix-storybook-utils/Markdown';
 import Search from '..';
 import { Predicate, Expandable } from './examples';
 
+import { storySettings } from './storySettings';
+
 const createOption = (value, id = 0) => ({ id, value });
 
 const options = [
@@ -21,23 +23,16 @@ const options = [
   'last Option',
 ].map(createOption);
 
-const settings = {
-  category: '3. Inputs',
-  storyName: '3.9 Search',
-  dataHook: 'storybook-search',
-  options,
-};
-
 export default {
-  category: settings.category,
-  storyName: settings.storyName,
+  category: storySettings.category,
+  storyName: storySettings.storyName,
   component: Search,
   componentPath: '..',
 
   componentProps: setState => ({
-    dataHook: settings.dataHook,
+    dataHook: storySettings.dataHook,
     value: '',
-    options: settings.options,
+    options,
     showOptionsIfEmptyInput: false,
     closeOnSelect: false,
 

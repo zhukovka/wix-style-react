@@ -2,7 +2,7 @@ import eyes from 'eyes.it';
 import { fieldWithSelectionCompositeTestkitFactory } from '../../../testkit/protractor';
 import { waitForVisibilityOf } from 'wix-ui-test-utils/protractor';
 import { createStoryUrl } from '../../../test/utils/storybook-helpers';
-import settings from '../../../stories/FieldWithSelectionComposite/StorySettings';
+import { storySettings } from '../../../stories/FieldWithSelectionComposite/storySettings';
 import inputDriverFactory from '../../Input/Input.protractor.driver';
 import checkboxDriverFactory from '../../Checkbox/Checkbox.protractor.driver';
 import dropdownDriverFactory from '../../Dropdown/Dropdown.protractor.driver';
@@ -11,7 +11,7 @@ const fieldWithSelectionCompositeTestkitE2EFactory = driver => {
   const inputDriver = () => inputDriverFactory(driver.getInput());
   const checkboxDriver = () =>
     checkboxDriverFactory(
-      driver.element().$(`[data-hook="${settings.dataHookCheckbox}"]`),
+      driver.element().$(`[data-hook="${storySettings.dataHookCheckbox}"]`),
     );
   const dropdownDriver = () => dropdownDriverFactory(driver.getSelection());
 
@@ -34,18 +34,18 @@ const fieldWithSelectionCompositeTestkitE2EFactory = driver => {
 
 describe('FieldWithSelectionComposite', () => {
   const storyUrl = createStoryUrl({
-    kind: settings.kind,
-    story: settings.storyName,
+    kind: storySettings.category,
+    story: storySettings.storyName,
   });
 
   const driverCheckbox = fieldWithSelectionCompositeTestkitE2EFactory(
     fieldWithSelectionCompositeTestkitFactory({
-      dataHook: settings.dataHookExampleCheckbox,
+      dataHook: storySettings.dataHookExampleCheckbox,
     }),
   );
   const driverDropdown = fieldWithSelectionCompositeTestkitE2EFactory(
     fieldWithSelectionCompositeTestkitFactory({
-      dataHook: settings.dataHookExampleDropdown,
+      dataHook: storySettings.dataHookExampleDropdown,
     }),
   );
   const pressTab = () =>

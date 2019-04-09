@@ -6,10 +6,12 @@ import {
 } from 'wix-ui-test-utils/protractor';
 import { createStoryUrl } from '../../test/utils/storybook-helpers';
 
+import { storySettings } from './docs/storySettings';
+
 describe('Data Table', () => {
   const storyUrl = createStoryUrl({
-    kind: '10. Tables',
-    story: '10.1 DataTable (Legacy)',
+    kind: storySettings.category,
+    story: storySettings.storyName,
   });
 
   eyes.it('should call func on row click', async () => {

@@ -1,5 +1,7 @@
+import { Category } from '../../../stories/storiesHierarchy';
+
 export const storySettings = {
-  kind: '10. Tables',
-  storyName: '10.1 Table',
+  category: Category.COMPONENTS,
+  storyName: 'Table',
   dataHook: 'storybook-table',
 };

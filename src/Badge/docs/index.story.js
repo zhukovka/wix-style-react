@@ -6,12 +6,14 @@ import ExampleBadgesRaw from '!raw-loader!./ExampleBadges';
 
 import { SIZE, SKIN, TYPE, default as Badge } from '..';
 
+import { storySettings } from './storySettings';
+
 import Facebook from 'wix-ui-icons-common/Facebook';
 import ChevronDown from 'wix-ui-icons-common/ChevronDown';
 
 export default {
-  category: '12. Other',
-  storyName: '12.1 Badge',
+  category: storySettings.category,
+  storyName: storySettings.storyName,
   component: Badge,
   componentPath: '..',
 
@@ -21,7 +23,7 @@ export default {
     type: 'solid',
     size: 'medium',
     uppercase: true,
-    dataHook: 'storybook-badge',
+    dataHook: storySettings.dataHook,
   },
 
   exampleProps: {

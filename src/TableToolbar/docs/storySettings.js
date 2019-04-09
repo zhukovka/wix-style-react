@@ -1,7 +1,7 @@
-import { storySettings as tableStorySettings } from '../../Table/docs/storySettings';
+import { Category } from '../../../stories/storiesHierarchy';
 
 export const storySettings = {
-  category: tableStorySettings.kind,
-  storyName: tableStorySettings.storyName + ' -> TableToolbar',
+  category: Category.COMPONENTS,
+  storyName: 'TableToolbar',
   dataHook: 'storybook-table-toolbar',
 };

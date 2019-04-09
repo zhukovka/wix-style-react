@@ -1,6 +1,8 @@
+import { Category } from '../../../stories/storiesHierarchy';
+
 export default {
-  kind: '3. Inputs',
-  storyName: '3.7 Range',
+  category: Category.COMPONENTS,
+  storyName: 'Range',
   dataHookInput: 'storybook-range-input',
   dataHookDatePicker: 'storybook-range-date',
 };

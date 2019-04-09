@@ -16,7 +16,7 @@ describe('Popover', () => {
   });
 
   const storyUrl = createStoryUrl({
-    kind: storySettings.kind,
+    kind: storySettings.category,
     story: storySettings.storyName,
   });
 

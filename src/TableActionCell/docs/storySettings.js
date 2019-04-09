@@ -1,5 +1,7 @@
+import { Category } from '../../../stories/storiesHierarchy';
+
 export const storySettings = {
-  kind: '10. Tables',
-  storyName: '10.1 Table -> TableActionCell',
+  category: Category.COMPONENTS,
+  storyName: 'TableActionCell',
   dataHook: 'storybook-table-action-cell',
 };

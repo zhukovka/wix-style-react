@@ -38,7 +38,7 @@ const rangeTestkitE2EFactory = rangeDriver => {
 
 describe('Range', () => {
   const storyUrl = createStoryUrl({
-    kind: settings.kind,
+    kind: settings.category,
     story: settings.storyName,
   });
 

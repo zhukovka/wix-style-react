@@ -7,8 +7,8 @@ import { Category } from '../../stories/storiesHierarchy';
 
 describe('Tooltip', () => {
   const tooltipStoryUrl = createStoryUrl({
-    kind: Category.TOOLTIP_AND_POPOVER,
-    story: '7.1. Tooltip',
+    kind: Category.COMPONENTS,
+    story: 'Tooltip',
   });
 
   const dataHook = 'tooltip-e2e-wrapper';
