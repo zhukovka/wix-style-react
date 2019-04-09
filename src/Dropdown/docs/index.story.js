@@ -11,7 +11,7 @@ import ExampleControlledRaw from '!raw-loader!./ExampleControlled';
 import ExampleWithCustomValue from './ExampleWithCustomValue';
 import ExampleWithCustomValueRaw from '!raw-loader!./ExampleWithCustomValue';
 
-import Dropdown from 'wix-style-react/Dropdown';
+import Dropdown from '..';
 import { storySettings } from './storySettings';
 
 const options = [
@@ -52,7 +52,7 @@ export default {
   storyName: storySettings.storyName,
 
   component: Dropdown,
-  componentPath: '../../src/Dropdown',
+  componentPath: '..',
 
   componentProps: {
     dataHook: storySettings.dataHook,

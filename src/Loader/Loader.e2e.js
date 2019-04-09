@@ -8,8 +8,8 @@ import { ExpectedConditions as EC } from 'protractor';
 
 describe('Loader', () => {
   const storyUrl = createStoryUrl({
-    kind: '1. Foundation',
-    story: '1.5 Loader',
+    kind: 'Components',
+    story: 'Loader',
   });
   const loaderDriver = loaderTestkitFactory({ dataHook: 'storybook-loader' });
 

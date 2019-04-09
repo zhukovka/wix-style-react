@@ -4,8 +4,8 @@ import { linkTo } from '@storybook/addon-links';
 import Markdown from 'wix-storybook-utils/Markdown';
 import TabbedView from 'wix-storybook-utils/TabbedView';
 
-import TextButton from '../../TextButton';
-import LiveCodeExample from '../../../stories/utils/LiveCodeExample';
+import TextButton from 'wix-style-react/TextButton';
+import LiveCodeExample from '../utils/LiveCodeExample';
 import ExampleRaw from '!raw-loader!./Example';
 
 storiesOf('4. Selection', module).add('4.1 Dropdown', () => (

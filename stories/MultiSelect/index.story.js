@@ -3,7 +3,14 @@ import CodeExample from 'wix-storybook-utils/CodeExample';
 import LiveCodeExample from '../utils/LiveCodeExample';
 import MultiSelect from '../../src/MultiSelect';
 
-import {description, divider, importExample, tab, table, title,} from 'wix-storybook-utils/Sections';
+import {
+  description,
+  divider,
+  importExample,
+  tab,
+  table,
+  title,
+} from 'wix-storybook-utils/Sections';
 
 import LinkTo from '@storybook/addon-links/react';
 import playgroundStoryConfig from '../../src/MultiSelect/docs/MultiSelectPlaygroundConfig';
@@ -19,7 +26,7 @@ import ExampleReorderableRaw from '!raw-loader!../../src/MultiSelect/docs/Exampl
 import ExampleThumbVariations from '../../src/MultiSelect/docs/ExampleThumbVariations';
 import ExampleThumbVariationsRaw from '!raw-loader!../../src/MultiSelect/docs/ExampleThumbVariations';
 
-import {storySettings} from './storySettings';
+import { storySettings } from './storySettings';
 
 import styles from '../../src/MultiSelect/docs/styles.scss';
 

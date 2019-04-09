@@ -27,9 +27,11 @@ import ExampleStatsWidgetEmptyStateRaw from '!raw-loader!./ExampleStatsWidgetEmp
 import ExampleStatsWidgetWithFilterWithNoBorder from './ExampleStatsWidgetWithFilterWithNoBorder';
 import ExampleStatsWidgetWithFilterWithNoBorderRaw from '!raw-loader!./ExampleStatsWidgetWithFilterWithNoBorder';
 
+import { storySettings } from './storySettings';
+
 export default {
-  category: '2. Layout',
-  storyName: '2.7 StatsWidget',
+  category: storySettings.category,
+  storyName: storySettings.storyName,
 
   component: StatsWidget,
   componentPath: '..',

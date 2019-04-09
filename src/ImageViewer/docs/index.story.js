@@ -21,8 +21,8 @@ const exampleImageUrl = [
 ];
 
 export default {
-  category: '3. Inputs',
-  storyName: '3.10 ImageViewer',
+  category: 'Components',
+  storyName: 'ImageViewer',
 
   component: ImageViewer,
   componentPath: '..',

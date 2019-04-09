@@ -1,8 +1,12 @@
+import React from 'react';
+import { header } from 'wix-storybook-utils/Sections';
+
 import LinearProgressBar from '..';
+import { Category } from '../../../stories/storiesHierarchy';
 
 export default {
-  category: '1. Foundation',
-  storyName: '1.6 LinearProgressBar',
+  category: Category.COMPONENTS,
+  storyName: 'LinearProgressBar',
 
   component: LinearProgressBar,
   componentPath: '..',
@@ -14,4 +18,14 @@ export default {
     error: false,
     showProgressIndication: false,
   },
+
+  sections: [
+    header({
+      component: (
+        <div style={{ width: '50%' }}>
+          <LinearProgressBar value={45} showProgressIndication />
+        </div>
+      ),
+    }),
+  ],
 };

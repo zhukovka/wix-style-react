@@ -11,7 +11,7 @@ import ExampleSideMenuDrillRaw from '!raw-loader!./ExampleSideMenuDrill';
 import ExampleSideMenuDrillRTL from './ExampleSideMenuDrillRTL';
 import ExampleSideMenuDrillRTLRaw from '!raw-loader!./ExampleSideMenuDrillRTL';
 
-storiesOf('6. Navigation', module).add('6.1 SideMenuDrill', () => (
+storiesOf('Components', module).add('SideMenuDrill', () => (
   <div>
     <Markdown source={SideMenuDrillReadme} />
 

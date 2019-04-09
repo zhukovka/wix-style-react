@@ -147,7 +147,7 @@
     "wait-for-cond": "^1.0.3",
     "webpack": "^4.29.3",
     "webpack-cli": "^3.2.3",
-    "wix-storybook-utils": "^2.0.87",
+    "wix-storybook-utils": "^3.0.0",
     "yoshi": "^4.1.1",
     "yoshi-config": "^4.1.0-alpha.1",
     "yoshi-helpers": "^4.1.0-alpha.1",

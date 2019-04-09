@@ -1,8 +1,10 @@
+import { Category } from '../../../stories/storiesHierarchy';
+
 import Loader from '..';
 
 export default {
-  category: '1. Foundation',
-  storyName: '1.5 Loader',
+  category: Category.COMPONENTS,
+  storyName: 'Loader',
 
   component: Loader,
   componentPath: '..',

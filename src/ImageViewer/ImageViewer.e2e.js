@@ -6,8 +6,8 @@ import autoExampleDriver from 'wix-storybook-utils/AutoExampleDriver';
 
 describe('ImageViewer', () => {
   const storyUrl = createStoryUrl({
-    kind: '3. Inputs',
-    story: '3.10 ImageViewer',
+    kind: 'Components',
+    story: 'ImageViewer',
   });
   const driver = imageViewerTestkitFactory({ dataHook: 'story-image-viewer' });
 

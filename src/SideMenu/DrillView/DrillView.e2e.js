@@ -5,8 +5,8 @@ import { createStoryUrl } from '../../../test/utils/storybook-helpers';
 
 describe('DrillView', () => {
   const storyUrl = createStoryUrl({
-    kind: '6. Navigation',
-    story: '6.1 SideMenuDrill',
+    kind: 'Components',
+    story: 'SideMenuDrill',
   });
 
   eyes.it('should clear transition classes', async () => {
