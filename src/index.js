@@ -119,4 +119,5 @@ export { default as ColorInput } from './ColorInput';
 export { default as DateInput } from './DateInput';
 export { default as EditableTitle } from './EditableTitle';
 export { default as Accordion } from './Accordion';
+export { default as SocialPreview } from './SocialPreview';
 export { default as GooglePreview } from './GooglePreview';

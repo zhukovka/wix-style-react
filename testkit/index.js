@@ -107,6 +107,7 @@ export const sideMenuTestkitFactory = testkitFactoryCreator(load(require('../src
 export const sideMenuDrillTestkitFactory = testkitFactoryCreator(load(require('../src/SideMenu/DrillView/DrillView.driver')));
 export const skeletonTestkitFactory = testkitFactoryCreator(load(require('../src/Skeleton/Skeleton.driver')));
 export const sliderTestkitFactory = testkitFactoryCreator(load(require('../src/Slider/Slider.driver')));
+export const socialPreviewTestkitFactory = uniTestkitFactoryCreator(load(require('../src/SocialPreview/SocialPreview.uni.driver')));
 export const sortableListTestkitFactory = testkitFactoryCreator(load(require('../src/SortableList/SortableList.driver')));
 export const statsWidgetTestkitFactory = testkitFactoryCreator(load(require('../src/StatsWidget/StatsWidget.driver')));
 export const tableTestkitFactory = testkitFactoryCreator(load(require('../src/Table/Table.driver')));

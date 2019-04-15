@@ -61,37 +61,39 @@ describe('ImageViewer', () => {
     expect(driver.isImageVisible()).toBeFalsy();
   });
 
-  describe('height and width', () => {
-    it('should be added to style attribute when image is not present', () => {
-      const props = {
-        imageUrl: '',
-        width: 300,
-        height: 300,
-      };
-      const driver = createDriver(<ImageViewer {...props} />);
-      expect(driver.getContainerStyles()).toEqual(
-        'width: 300px; height: 300px;',
-      );
-    });
+  describe('styles', () => {
+    describe('height and width', () => {
+      it('should be added to style attribute when image is not present', () => {
+        const props = {
+          imageUrl: '',
+          width: 300,
+          height: 300,
+        };
+        const driver = createDriver(<ImageViewer {...props} />);
+        expect(driver.getContainerStyles()).toEqual(
+          'width: 300px; height: 300px;',
+        );
+      });
 
-    it('should be added to style attribute when image is present', () => {
-      const props = {
-        imageUrl: IMAGE_URL,
-        width: 300,
-        height: 300,
-      };
-      const driver = createDriver(<ImageViewer {...props} />);
-      expect(driver.getContainerStyles()).toEqual(
-        'width: 300px; height: 300px;',
-      );
-    });
+      it('should be added to style attribute when image is present', () => {
+        const props = {
+          imageUrl: IMAGE_URL,
+          width: 300,
+          height: 300,
+        };
+        const driver = createDriver(<ImageViewer {...props} />);
+        expect(driver.getContainerStyles()).toEqual(
+          'width: 300px; height: 300px;',
+        );
+      });
 
-    it('should not add style attribute when width and height props are not passed', () => {
-      const props = {
-        imageUrl: IMAGE_URL,
-      };
-      const driver = createDriver(<ImageViewer {...props} />);
-      expect(driver.getContainerStyles()).toEqual(null);
+      it('should not add style attribute when width and height props are not passed', () => {
+        const props = {
+          imageUrl: IMAGE_URL,
+        };
+        const driver = createDriver(<ImageViewer {...props} />);
+        expect(driver.getContainerStyles()).toEqual(null);
+      });
     });
   });
 

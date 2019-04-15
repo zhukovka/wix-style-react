@@ -248,4 +248,9 @@ module.exports = {
     unidriver: true,
     testkitPath: '../src/Accordion/Accordion.uni.driver',
   },
+
+  SocialPreview: {
+    unidriver: true,
+    testkitPath: '../src/SocialPreview/SocialPreview.uni.driver',
+  },
 };

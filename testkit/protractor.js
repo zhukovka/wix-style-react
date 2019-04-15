@@ -444,6 +444,12 @@ export const editableTitleTestkitFactory = protractorUniTestkitFactoryCreator(
   editableTitleUniDriverFactory,
 );
 
+import { socialPreviewDriverFactory } from '../src/SocialPreview/SocialPreview.uni.driver';
+
+export const socialPreviewTestkitFactory = protractorUniTestkitFactoryCreator(
+  socialPreviewDriverFactory,
+);
+
 import { accordionDriverFactory } from '../src/Accordion/Accordion.uni.driver';
 
 export const accordionTestkitFactory = protractorUniTestkitFactoryCreator(

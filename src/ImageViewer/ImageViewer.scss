@@ -24,6 +24,10 @@
   transform: translate3d(0, 0, 0);
 }
 
+.remove-rounded-borders {
+  border-radius: 0;
+}
+
 .dashed-border {
   border: dashed 1px rgba(78, 183, 245, 0.5);
   border-radius: 3px;

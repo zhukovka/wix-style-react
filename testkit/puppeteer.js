@@ -159,6 +159,12 @@ export const accordionTestkitFactory = puppeteerUniTestkitFactoryCreator(
   accordionDriverFactory,
 );
 
+import { socialPreviewDriverFactory } from '../src/SocialPreview/SocialPreview.uni.driver';
+
+export const socialPreviewTestkitFactory = puppeteerUniTestkitFactoryCreator(
+  socialPreviewDriverFactory,
+);
+
 import { googlePreviewDriverFactory } from '../src/GooglePreview/GooglePreview.uni.driver';
 
 export const googlePreviewTestkitFactory = puppeteerUniTestkitFactoryCreator(

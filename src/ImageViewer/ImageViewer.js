@@ -35,11 +35,18 @@ class ImageViewer extends WixComponent {
       error,
       errorMessage,
       tooltipPlacement,
+      removeRoundedBorders,
+      className,
     } = this.props;
-    const classes = classNames(style.container, {
-      [style.hasLogo]: imageUrl,
-      [style.hasError]: error,
-    });
+    const classes = classNames(
+      style.container,
+      {
+        [style.hasLogo]: imageUrl,
+        [style.hasError]: error,
+        [style.removeRoundedBorders]: removeRoundedBorders,
+      },
+      className,
+    );
     const tooltipProps = {
       ...DEFAULT_TOOLTIP_PROPS,
       ...this.props.tooltipProps,
@@ -63,7 +70,11 @@ class ImageViewer extends WixComponent {
                 src={imageUrl}
               />
             </div>
-            <div className={style.imageBackground}>
+            <div
+              className={classNames(style.imageBackground, {
+                [style.removeRoundedBorders]: removeRoundedBorders,
+              })}
+            >
               <div className={style.buttons}>
                 {!!showUpdateButton && (
                   <Tooltip
@@ -147,6 +158,8 @@ ImageViewer.propTypes = {
   updateImageInfo: PropTypes.string,
   /** Remove image tooltip */
   removeImageInfo: PropTypes.string,
+  /** clear borders radius when displayed in sharp-edges containers */
+  removeRoundedBorders: PropTypes.bool,
   /** Element width */
   width: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
   /** Element height */

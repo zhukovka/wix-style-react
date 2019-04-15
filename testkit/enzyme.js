@@ -107,6 +107,7 @@ export const sideMenuTestkitFactory = enzymeTestkitFactoryCreator(load(require('
 export const sideMenuDrillTestkitFactory = enzymeTestkitFactoryCreator(load(require('../src/SideMenu/DrillView/DrillView.driver')));
 export const skeletonTestkitFactory = enzymeTestkitFactoryCreator(load(require('../src/Skeleton/Skeleton.driver')));
 export const sliderTestkitFactory = enzymeTestkitFactoryCreator(load(require('../src/Slider/Slider.driver')));
+export const socialPreviewTestkitFactory = enzymeUniTestkitFactoryCreator(load(require('../src/SocialPreview/SocialPreview.uni.driver')));
 export const sortableListTestkitFactory = enzymeTestkitFactoryCreator(load(require('../src/SortableList/SortableList.driver')));
 export const statsWidgetTestkitFactory = enzymeTestkitFactoryCreator(load(require('../src/StatsWidget/StatsWidget.driver')));
 export const tableTestkitFactory = enzymeTestkitFactoryCreator(load(require('../src/Table/Table.driver')));

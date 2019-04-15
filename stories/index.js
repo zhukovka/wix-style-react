@@ -114,6 +114,7 @@ require('../src/SectionHelper/docs/index.story');
 require('../src/SideMenu/docs');
 require('../src/SideMenu/docs/SideMenu');
 require('../src/Skeleton/docs/index.story');
+require('../src/SocialPreview/docs/index.story.js');
 require('../src/StatsWidget/docs/index.story');
 require('../src/Table/docs/index.story');
 require('../src/TableActionCell/docs/index.story');
