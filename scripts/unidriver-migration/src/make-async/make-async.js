@@ -3,6 +3,20 @@ module.exports = (file, api) => {
 
   const root = j(file.source);
   addAsync(root, j);
+
+  /* Knwon Issue #1 
+    In this case, we should NOT add an `await`:
+
+    expect(driver.getErrorMessage()).rejects.toThrow(Error);
+    */
+
+  /* Knwon Issue #2
+    In this case, we should NOT add an `await`:
+    
+    driver.someMethod().someOtherMethod()
+
+    We don't know id `someMethod` is async or not.
+    */
   addAwait('driver', root, j);
   return root.toSource();
 };
