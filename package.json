@@ -56,7 +56,8 @@
     "generate-test-component": "./scripts/generate-component/bin/generate-test-component.js",
     "generate-testkit-exports": "node scripts/generate-testkit-exports",
     "generate-autodocs-registry": "node scripts/generate-autodocs-registry",
-    "eyes-storybook-debug": "start-storybook -c ./.storybook-test -p 6007"
+    "eyes-storybook-debug": "start-storybook -c ./.storybook-test -p 6007",
+    "make-async-spec": "npx jscodeshift -t scripts/unidriver-migration/src/make-async/make-async.js"
   },
   "yoshi": {
     "entry": {
