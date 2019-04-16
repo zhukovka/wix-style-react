@@ -178,3 +178,21 @@ export const tooltipTestkitFactory = obj =>
   obj.wrapper && obj.wrapper.$(`[data-hook="popover-element"]`)
     ? puppeteerUniTestkitFactoryCreator(tooltipNextDriverFactory)(obj)
     : puppeteerTestkitFactoryCreator(tooltipDriverFactory)(obj);
+
+import { notificationUniDriverFactory } from '../src/Notification/Notification.uni.driver';
+
+export const notificationTestkitFactory = puppeteerUniTestkitFactoryCreator(
+  notificationUniDriverFactory,
+);
+
+import { checkboxUniDriverFactory } from '../src/Checkbox/Checkbox.uni.driver';
+
+export const checkboxTestkitFactory = puppeteerUniTestkitFactoryCreator(
+  checkboxUniDriverFactory,
+);
+
+import { loaderUniDriverFactory } from '../src/Loader/Loader.uni.driver';
+
+export const loaderTestkitFactory = puppeteerUniTestkitFactoryCreator(
+  loaderUniDriverFactory,
+);

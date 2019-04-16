@@ -469,3 +469,9 @@ export const tooltipTestkitFactory = obj =>
   obj.wrapper && obj.wrapper.$(`[data-hook="popover-element"]`)
     ? protractorUniTestkitFactoryCreator(tooltipNextDriverFactory)(obj)
     : protractorTestkitFactoryCreator(tooltipDriverFactory)(obj);
+
+import { notificationDriverFactory } from '../src/Notification/Notification.uni.driver';
+
+export const notificationTestkitFactory = protractorUniTestkitFactoryCreator(
+  notificationDriverFactory,
+);
