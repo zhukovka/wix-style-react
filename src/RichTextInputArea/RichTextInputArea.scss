@@ -5,6 +5,7 @@
 
 $minWidth: 378px;
 $minHeight: 132px;
+$backgroundColor: $D80;
 $border: 1px solid $B30;
 $borderRadius: 6px;
 $padding: 12px;
@@ -12,7 +13,7 @@ $padding: 12px;
 .root {
   min-height: $minHeight;
   min-width: $minWidth;
-  background-color: $D80;
+  background-color: $backgroundColor;
   border-radius: $borderRadius;
 
   :global(.public-DraftEditorPlaceholder-root) {
@@ -46,6 +47,33 @@ $padding: 12px;
   }
 }
 
+.disabled {
+  $color: $D55;
+  $borderColor: $D60;
+
+  .toolbar {
+    border-color: $borderColor;
+  }
+
+  :global(.public-DraftEditorPlaceholder-root) {
+    color: $D55;
+  }
+
+  :global(.public-DraftEditor-content) {
+    color: $D55;
+    border-color: $borderColor;
+
+    &:hover {
+      background-color: $backgroundColor;
+      cursor: default;
+    }
+  }
+
+  .link {
+    color: $D55;
+  }
+}
+
 .hidePlaceholder {
   :global(.public-DraftEditorPlaceholder-root) {
     display: none;
@@ -60,6 +88,7 @@ $padding: 12px;
 }
 
 .link {
-  color: $B10;
+  @include Text($weight: thin, $size: medium, $link: true);
+
   text-decoration: none;
 }

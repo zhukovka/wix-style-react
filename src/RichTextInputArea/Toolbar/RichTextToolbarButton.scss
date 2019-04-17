@@ -10,7 +10,7 @@
   border-radius: 6px;
   outline: none;
 
-  &:hover {
+  &:not(.disabled):hover {
     cursor: pointer;
     color: $B20;
   }
@@ -18,4 +18,8 @@
 
 .active {
   color: $B10;
+}
+
+.disabled {
+  color: $D50;
 }

@@ -10,13 +10,18 @@ const RichTextToolbarButton = ({
   onClick,
   tooltipText,
   isActive,
+  isDisabled,
   children,
 }) => (
   <Tooltip content={tooltipText} theme="dark">
     <button
       data-hook={dataHook}
-      className={classNames(styles.button, isActive ? styles.active : '')}
-      onClick={onClick}
+      className={classNames(
+        styles.button,
+        isDisabled && styles.disabled,
+        !isDisabled && isActive && styles.active,
+      )}
+      onClick={!isDisabled && onClick}
     >
       {children}
     </button>

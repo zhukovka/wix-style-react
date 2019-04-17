@@ -65,6 +65,18 @@ const tests = [
       },
     ],
   },
+  {
+    describe: 'Disabled',
+    its: [
+      {
+        it: 'Basic',
+        props: {
+          initialValue: 'Some text',
+          disabled: true,
+        },
+      },
+    ],
+  },
 ];
 
 tests.forEach(({ describe, its }) => {

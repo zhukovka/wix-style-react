@@ -70,6 +70,12 @@ describe('RichTextInputArea', () => {
     });
   });
 
+  it('should render as disabled', async () => {
+    const driver = createDriver(<RichTextInputArea disabled />);
+
+    expect(await driver.isDisabled()).toBe(true);
+  });
+
   describe('Toolbar', () => {
     it('should render all supported buttons', async () => {
       const buttons = [

@@ -38,6 +38,7 @@ class RichTextInputArea extends React.PureComponent {
     dataHook: PropTypes.string,
     initialValue: PropTypes.string,
     placeholder: PropTypes.string,
+    disabled: PropTypes.bool,
     onChange: PropTypes.func,
     texts: PropTypes.shape({
       toolbarButtons: PropTypes.shape(
@@ -84,7 +85,7 @@ class RichTextInputArea extends React.PureComponent {
   }
 
   render() {
-    const { dataHook, placeholder } = this.props;
+    const { dataHook, placeholder, disabled } = this.props;
     const isEditorEmpty = EditorUtilities.isEditorEmpty(this.state.editorState);
 
     return (
@@ -93,6 +94,7 @@ class RichTextInputArea extends React.PureComponent {
         className={classNames(
           styles.root,
           !isEditorEmpty && styles.hidePlaceholder,
+          disabled && styles.disabled,
         )}
       >
         <RichTextInputAreaContext.Provider
@@ -103,6 +105,7 @@ class RichTextInputArea extends React.PureComponent {
           <RichTextToolbar
             dataHook="richtextarea-toolbar"
             className={styles.toolbar}
+            isDisabled={disabled}
             editorState={this.state.editorState}
             onBold={this._setEditorState}
             onItalic={this._setEditorState}
@@ -121,6 +124,7 @@ class RichTextInputArea extends React.PureComponent {
           editorState={this.state.editorState}
           onChange={this._setEditorState}
           placeholder={placeholder}
+          readOnly={disabled}
         />
       </div>
     );

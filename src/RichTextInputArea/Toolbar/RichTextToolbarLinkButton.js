@@ -11,7 +11,14 @@ class RichTextToolbarLinkButton extends React.Component {
   };
 
   render() {
-    const { dataHook, tooltipText, isActive, children, data } = this.props;
+    const {
+      dataHook,
+      tooltipText,
+      isDisabled,
+      isActive,
+      children,
+      data,
+    } = this.props;
     const { isFormShown } = this.state;
 
     return (
@@ -28,6 +35,7 @@ class RichTextToolbarLinkButton extends React.Component {
             dataHook={dataHook}
             onClick={() => this.setState({ isFormShown: !isFormShown })}
             tooltipText={tooltipText}
+            isDisabled={isDisabled}
             isActive={isActive || this.state.isFormShown}
           >
             {children}
