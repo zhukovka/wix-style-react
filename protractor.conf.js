@@ -1,4 +1,4 @@
-const multiCapabilities = new Array(10).fill({
+const multiCapabilities = new Array(3).fill({
   browserName: 'chrome',
 });
 
