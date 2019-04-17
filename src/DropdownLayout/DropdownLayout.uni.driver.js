@@ -106,6 +106,10 @@ export const dropdownLayoutDriverFactory = base => {
 
       return createOptionDriver(option);
     },
+    /**
+     * Get Option by id
+     * @returns {Promise<any>}
+     */
     optionById(optionId) {
       return this.optionByHook(`dropdown-item-${optionId}`);
     },

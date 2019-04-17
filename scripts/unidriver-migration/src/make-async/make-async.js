@@ -1,5 +1,6 @@
-module.exports = (file, api) => {
+module.exports = (file, api, options) => {
   const j = api.jscodeshift;
+  const driverNames = options.driver ? options.driver.split(',') : ['driver'];
 
   const root = j(file.source);
   addAsync(root, j);
@@ -17,7 +18,7 @@ module.exports = (file, api) => {
 
     We don't know id `someMethod` is async or not.
     */
-  addAwait('driver', root, j);
+  driverNames.forEach(driverName => addAwait(driverName, root, j));
   return root.toSource();
 };
 

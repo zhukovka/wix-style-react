@@ -76,6 +76,7 @@ export function ReactBase(base) {
       elm.blur();
       Simulate.blur(elm); // TODO: Is this redundant?
     },
+    disabled: async () => (await htmlElement()).disabled,
     tabIndex: async () => (await htmlElement()).tabIndex,
     readOnly: async () => (await htmlElement()).readOnly,
     innerHtml: async () => (await htmlElement()).innerHTML,
@@ -97,10 +98,17 @@ export function ReactBase(base) {
   };
 
   const shouldBePrivate = {
+    /* Event Simulation */
     // TODO: replace methods that use Simulate with a single `simulate`/`eventTrigger` method
-    keyup: async () => Simulate.keyUp(await htmlElement()),
-    keydown: async key => Simulate.keyDown(await htmlElement(), key),
+    compositionStart: async () =>
+      Simulate.compositionStart(await htmlElement()),
+    compositionEnd: async () => Simulate.compositionEnd(await htmlElement()),
+    keyup: async eventData => Simulate.keyUp(await htmlElement(), eventData),
+    keydown: async eventData =>
+      Simulate.keyDown(await htmlElement(), eventData),
     mouseLeave: async () => Simulate.mouseLeave(await htmlElement()),
+
+    /* Access Element Props */
     // TODO: remove selectionStart and use 'prop' method
     selectionStart: async () => (await htmlElement()).selectionStart,
     /** Get a property of the HTMLElement by name */
