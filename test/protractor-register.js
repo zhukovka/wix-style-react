@@ -2,7 +2,7 @@ require('regenerator-runtime/runtime');
 const sass = require('node-sass');
 const { wixCssModulesRequireHook } = require('yoshi-runtime');
 
-require('yoshi/src/require-hooks');
+require('yoshi-helpers/require-hooks').setupRequireHooks();
 
 const rootDir = './src';
 
