@@ -5,19 +5,23 @@ module.exports = (file, api, options) => {
   const root = j(file.source);
   addAsync(root, j);
 
-  /* Knwon Issue #1 
-    In this case, we should NOT add an `await`:
+  /* Knwon Issue #1
+   * In this case, we should NOT add an `await`:
+   *
+   * expect(driver.getErrorMessage()).rejects.toThrow(Error);
+   */
 
-    expect(driver.getErrorMessage()).rejects.toThrow(Error);
-    */
-
-  /* Knwon Issue #2
-    In this case, we should NOT add an `await`:
-    
-    driver.someMethod().someOtherMethod()
-
-    We don't know id `someMethod` is async or not.
-    */
+  /* Known Issue #2
+   *In this case we should add paranthesis (assuming that driver's don't have nested methods)
+   *
+   *input:
+   *driver.someMethod()[0]
+   *driver.someMethod().someOtherMethod()
+   *
+   *output:
+   *(await driver.someMethod())[0]
+   *(await driver.someMethod()).someOtherMethod()
+   */
   driverNames.forEach(driverName => addAwait(driverName, root, j));
   return root.toSource();
 };
