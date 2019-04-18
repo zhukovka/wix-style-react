@@ -13,7 +13,7 @@ const checkboxDriverFactory = ({ element, eventTrigger }) => {
     labelTestkitFactory({ wrapper: element, dataHook: 'checkbox-label' });
   const tooltipDriver = () =>
     toolTipTestkitFactory({ wrapper: element, dataHook: 'checkbox-box' });
-  const isChecked = elm => isClassExists(elm, 'checked');
+  const isChecked = () => input().checked;
 
   const getErrorMessage = async () => {
     try {
@@ -27,7 +27,7 @@ const checkboxDriverFactory = ({ element, eventTrigger }) => {
     exists: () => !!element,
     click: () =>
       eventTrigger.change(input(), {
-        target: { checked: !isChecked(element) },
+        target: { checked: !isChecked() },
       }),
     /** trigger focus on the element */
     focus: () => eventTrigger.focus(checkbox()),
@@ -38,7 +38,7 @@ const checkboxDriverFactory = ({ element, eventTrigger }) => {
      * @deprecated
      */
     hasFocusState: () => element.getAttribute('data-focus'),
-    isChecked: () => isChecked(element),
+    isChecked: () => isChecked(),
     isDisabled: () => isClassExists(element, 'disabled'),
     isIndeterminate: () => isClassExists(element, 'indeterminate'),
     hasError: () => isClassExists(element, 'hasError'),
