@@ -21,6 +21,7 @@ Types of changes:
 
 - `<Checkbox/>` (Driver) - `isChecked()`: Use input value instead of style in driver [#3267](https://github.com/wix/wix-style-react/pull/3267)
 - `<ActionButton/>` - add `target` prop [#3204](https://github.com/wix/wix-style-react/pull/3204)
+- `<MultiSelect/>` `<Tag/>` - fix disabled state behavior [#3201](https://github.com/wix/wix-style-react/pull/3201)
 
 ## 6.14.0 - 2019-04-18
 
