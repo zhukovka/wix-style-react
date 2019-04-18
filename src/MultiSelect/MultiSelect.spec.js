@@ -153,6 +153,14 @@ describe('MultiSelect', () => {
       expect(driver.inputWrapperHasError()).toBeTruthy();
     });
 
+    it('should have disabled attribute on input if disabled', async () => {
+      const { driver } = createDriver(
+        <MultiSelect disabled options={options} />,
+      );
+      expect(driver.isDisabled()).toBe(true);
+      expect(driver.inputWrapperIsDisabled()).toBe(true);
+    });
+
     describe('Placeholder', () => {
       it('should display a placeholder if there are no tags', () => {
         const placeholder = 'myPlaceholder';
@@ -470,6 +478,28 @@ describe('MultiSelect', () => {
 
       expect(onSelect).toHaveBeenCalledTimes(1);
       expect(onSelect).toBeCalledWith(options[0]);
+    });
+
+    it('should NOT display dropdown options when MultiSelect is disabled (keyboard)', () => {
+      const onSelect = jest.fn();
+
+      const { driver, dropdownLayoutDriver } = createDriver(
+        <MultiSelect disabled options={options} onSelect={onSelect} />,
+      );
+      driver.pressKey('ArrowDown');
+      expect(dropdownLayoutDriver.isShown()).toBe(false);
+    });
+
+    it('should NOT display dropdown options when MultiSelect is disabled (mouse click)', () => {
+      const onSelect = jest.fn();
+
+      const { driver, dropdownLayoutDriver } = createDriver(
+        <MultiSelect disabled options={options} onSelect={onSelect} />,
+      );
+
+      driver.clickOnInputWrapper();
+
+      expect(dropdownLayoutDriver.isShown()).toBe(false);
     });
 
     // TODO: Disabled since in order to support this in new API, we better add ability for Dropdownlayout to accept custom "select" keys.

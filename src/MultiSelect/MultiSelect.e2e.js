@@ -145,6 +145,20 @@ describe('MultiSelect', () => {
       const element = driver.element();
       await waitForVisibilityOf(element, 'Cannot find <MultiSelect/>');
     });
+
+    eyes.it('should render disabled MultiSelect', async () => {
+      const url = createTestStoryUrl({
+        category: storySettings.category,
+        storyName: storySettings.storyName,
+        testName: testStories.disabled,
+      });
+      await browser.get(url);
+      const driver = multiSelectTestkitFactory({
+        dataHook: 'disabled-multiselect',
+      });
+      const element = driver.element();
+      await waitForVisibilityOf(element, 'Cannot find <MultiSelect/>');
+    });
   });
 });
 

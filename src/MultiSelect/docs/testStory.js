@@ -69,6 +69,22 @@ MultiSelectTests.add(testStories.tabsSwitches, () => (
   </div>
 ));
 
+MultiSelectTests.add(testStories.disabled, () => (
+  <div style={{ width: '500px' }}>
+    <MultiSelect
+      disabled
+      dataHook="disabled-multiselect"
+      tags={[
+        { id: '1', label: 'Alabama' },
+        { id: '2', label: 'Alaska' },
+        { id: '3', label: 'Arizona' },
+        { id: '4', label: 'Arkansas' },
+      ]}
+      upgrade
+    />
+  </div>
+));
+
 MultiSelectTests.add(testStories.lineNotBraking, () => (
   <div style={{ width: '400px' }}>
     <TestLineNotBraking />

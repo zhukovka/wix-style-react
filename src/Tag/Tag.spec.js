@@ -82,13 +82,13 @@ describe('Tag', () => {
     expect(driver.isRemovable()).toBeFalsy();
   });
 
-  it('should have not remove button if disabled is true', () => {
+  it('should have remove button if disabled is true', () => {
     const driver = createDriver(
       <Tag id={id} disabled>
         {label}
       </Tag>,
     );
-    expect(driver.isRemovable()).toBeFalsy();
+    expect(driver.isRemovable()).toBe(true);
   });
 
   it('should have disabled class if disabled is true', () => {
