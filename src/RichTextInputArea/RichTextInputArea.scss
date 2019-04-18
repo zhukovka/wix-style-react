@@ -25,11 +25,14 @@ $padding: 12px;
   }
 
   :global(.public-DraftEditor-content) { 
+    background-color: $backgroundColor;
     min-height: $minHeight;
+    max-height: var(--max-height);
     padding: $padding;
     border: $border;
     border-bottom-left-radius: $borderRadius;
     border-bottom-right-radius: $borderRadius;
+    overflow: auto;
 
     @include Text($weight: thin, $size: medium);
 

@@ -40,6 +40,7 @@ class RichTextInputArea extends React.PureComponent {
     placeholder: PropTypes.string,
     disabled: PropTypes.bool,
     onChange: PropTypes.func,
+    maxHeight: PropTypes.string,
     texts: PropTypes.shape({
       toolbarButtons: PropTypes.shape(
         mapValues(defaultTexts.toolbarButtons, () => PropTypes.string),
@@ -85,7 +86,7 @@ class RichTextInputArea extends React.PureComponent {
   }
 
   render() {
-    const { dataHook, placeholder, disabled } = this.props;
+    const { dataHook, placeholder, disabled, maxHeight } = this.props;
     const isEditorEmpty = EditorUtilities.isEditorEmpty(this.state.editorState);
 
     return (
@@ -96,6 +97,8 @@ class RichTextInputArea extends React.PureComponent {
           !isEditorEmpty && styles.hidePlaceholder,
           disabled && styles.disabled,
         )}
+        // Using CSS variable instead of applying maxHeight on each child, down to the editor's content
+        style={{ '--max-height': maxHeight }}
       >
         <RichTextInputAreaContext.Provider
           value={{
