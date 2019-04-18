@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import Button from '../../Button';
 import TextButton from '../../TextButton';
 
-const ActionButton = ({ children, onClick, type, link }) => {
+const ActionButton = ({ children, onClick, type, link, target }) => {
   const commonProps = {
     dataHook: 'notification-cta-button',
     onClick: e => onClick(e),
@@ -16,6 +16,7 @@ const ActionButton = ({ children, onClick, type, link }) => {
         skin="light"
         as="a"
         href={link}
+        target={target}
         {...commonProps}
       >
         {children}
@@ -35,11 +36,13 @@ ActionButton.propTypes = {
   onClick: PropTypes.func,
   link: PropTypes.string,
   type: PropTypes.string,
+  target: PropTypes.string,
 };
 
 ActionButton.defaultProps = {
   onClick: e => e.preventDefault(),
   type: 'button',
+  target: '_self',
 };
 
 ActionButton.displayName = 'Notification.ActionButton';

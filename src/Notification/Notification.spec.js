@@ -336,7 +336,7 @@ describe('Notification', () => {
       expect(component.find('Button')).toHaveLength(1);
     });
 
-    it('should display a TextButton explicitly required', async () => {
+    it('should display a TextButton when explicitly required', () => {
       const component = mount(
         <Notification.ActionButton type="textLink" link="some link">
           Action Button
@@ -344,6 +344,27 @@ describe('Notification', () => {
       );
 
       expect(component.find(TextButton)).toHaveLength(1);
+    });
+
+    it('should render TextButton with target received from props', () => {
+      const target = 'some target';
+      const component = mount(
+        <Notification.ActionButton type="textLink" link="some link" target={target}>
+          Action Button
+        </Notification.ActionButton>,
+      );
+
+      expect(component.find(TextButton).props().target).toEqual(target);
+    });
+
+    it('should render TextButton with target _self as default', () => {
+      const component = mount(
+        <Notification.ActionButton type="textLink" link="some link">
+          Action Button
+        </Notification.ActionButton>,
+      );
+
+      expect(component.find(TextButton).props().target).toEqual('_self');
     });
   });
 
