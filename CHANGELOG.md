@@ -14,13 +14,12 @@ Types of changes:
 1. **Docs** for documentation changes
 1. **Lab** components and features that are still in a work in progress
 
-## next
+## 6.14.0 - 2019-04-18
 
-- `<MessegeBox/>` - add white theme [#3127](https://github.com/wix/wix-style-react/pull/3127)
+### Added
+
+- `<MessageBox/>` - add white theme [#3127](https://github.com/wix/wix-style-react/pull/3127)
 - `<NumberInput/>` - add `strict` property [#3249](https://github.com/wix/wix-style-react/pull/3249)
-
-### Added 
-
 - `<Tooltip/>` - major refactor. Total rewrite of component. Follow [upgrade guidelines](https://github.com/wix/wix-style-react/blob/master/src/Tooltip/TooltipNext/MIGRATION-API.md) [#3110](https://github.com/wix/wix-style-react/pull/3110)
 - `<SocialPreview/>` - add new component [#3180](https://github.com/wix/wix-style-react/pull/3180)
 - Add Drivers: `<Notification/>`(Protractor, Puppeteer), `<Loader/>`(Puppeteer), `<Checkbox/>`(Puppeteer). [#3262](https://github.com/wix/wix-style-react/pull/3262)
