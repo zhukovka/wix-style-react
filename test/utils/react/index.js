@@ -1,6 +1,6 @@
 import { render } from 'react-testing-library';
 import { Simulate } from 'react-dom/test-utils';
-import { reactUniDriver } from 'unidriver';
+import { reactUniDriver } from 'wix-ui-test-utils/vanilla';
 
 const getElement = ({ rendered, dataHook }) => {
   return dataHook
