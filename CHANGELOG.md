@@ -25,6 +25,7 @@ Types of changes:
 - `<SocialPreview/>` - add new component [#3180](https://github.com/wix/wix-style-react/pull/3180)
 - Add Drivers: `<Notification/>`(Protractor, Puppeteer), `<Loader/>`(Puppeteer), `<Checkbox/>`(Puppeteer). [#3262](https://github.com/wix/wix-style-react/pull/3262)
 - `<RichTextInputAre/>` - add `disabled` prop [#3255](https://github.com/wix/wix-style-react/pull/3255)
+- `<DropdownBase/>` - add Popover's `appendTo` prop [#3266](https://github.com/wix/wix-style-react/pull/3266)
 
 ## 6.13.0 - 2019-04-08
 
