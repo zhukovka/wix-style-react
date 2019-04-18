@@ -20,6 +20,7 @@ Types of changes:
 ### Added
 
 - `<Checkbox/>` (Driver) - `isChecked()`: Use input value instead of style in driver [#3267](https://github.com/wix/wix-style-react/pull/3267)
+- `<ActionButton/>` - add `target` prop [#3204](https://github.com/wix/wix-style-react/pull/3204)
 
 ## 6.14.0 - 2019-04-18
 
