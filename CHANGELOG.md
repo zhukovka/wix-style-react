@@ -14,6 +14,13 @@ Types of changes:
 1. **Docs** for documentation changes
 1. **Lab** components and features that are still in a work in progress
 
+
+## Next 
+
+### Added
+
+- `<Checkbox/>` (Driver) - `isChecked()`: Use input value instead of style in driver [#3267](https://github.com/wix/wix-style-react/pull/3267)
+
 ## 6.14.0 - 2019-04-18
 
 ### Added
