@@ -23,7 +23,7 @@ Types of changes:
 - `<Tooltip/>` - major refactor. Total rewrite of component. Follow [upgrade guidelines](https://github.com/wix/wix-style-react/blob/master/src/Tooltip/TooltipNext/MIGRATION-API.md) [#3110](https://github.com/wix/wix-style-react/pull/3110)
 - `<SocialPreview/>` - add new component [#3180](https://github.com/wix/wix-style-react/pull/3180)
 - Add Drivers: `<Notification/>`(Protractor, Puppeteer), `<Loader/>`(Puppeteer), `<Checkbox/>`(Puppeteer). [#3262](https://github.com/wix/wix-style-react/pull/3262)
-- `<RichTextInputAre/>` - add `disabled` prop [#3255](https://github.com/wix/wix-style-react/pull/3255)
+- `<RichTextInputArea/>` - add `disabled` prop [#3255](https://github.com/wix/wix-style-react/pull/3255)
 - `<DropdownBase/>` - add Popover's `appendTo` prop [#3266](https://github.com/wix/wix-style-react/pull/3266)
 
 ## 6.13.0 - 2019-04-08
