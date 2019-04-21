@@ -16,7 +16,7 @@ DatePickerTests.add(testStories.propsChangeEffectOnCalendarRendering, () => (
     <DatePicker
       dateFormat="YYYY/MM/DD"
       isOpen
-      onChange={date => format_default()(date, 'YYYY/MM/DD')}
+      onChange={date => date}
       placeholderText="Select Date"
       value={new Date('2017-04-30T21:00:00.000Z')}
     />

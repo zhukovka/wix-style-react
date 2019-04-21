@@ -198,9 +198,9 @@ export default class DatePicker extends WixComponent {
 
   _isAmbiguous(isOpen, shouldCloseOnSelect) {
     if (isOpen && shouldCloseOnSelect) {
-      console.warn(
-        'isOpen and shouldCloseOnSelect is ambiguous. DatePicker renders Calendar when isOpen is true ',
-      );
+      // console.warn(
+      //   'isOpen and shouldCloseOnSelect is ambiguous. DatePicker renders Calendar when isOpen is true ',
+      // );
     }
   }
 
