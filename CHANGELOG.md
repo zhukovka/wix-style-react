@@ -24,6 +24,10 @@ Types of changes:
 - `<MultiSelect/>` `<Tag/>` - fix disabled state behavior [#3201](https://github.com/wix/wix-style-react/pull/3201)
 - `<RichTextInputArea/>` - add `maxHeight` prop [#3263](https://github.com/wix/wix-style-react/pull/3263)
 
+### Fixed
+
+- `<NumberInput/>` - add PropTypes import [#3279](https://github.com/wix/wix-style-react/pull/3279)
+
 ## 6.14.0 - 2019-04-18
 
 ### Added
