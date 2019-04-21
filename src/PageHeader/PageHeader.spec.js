@@ -253,25 +253,45 @@ describe('PageHeader', () => {
 
   describe('render actionsBar using render props', () => {
     it('should not pass minimized and hasBackgroundImage props to element', () => {
-      const actionBarDiv = <div data-hook="action-bar-div"></div>;
-      const pageHeader = <PageHeader minimized hasBackgroundImage title={title} actionsBar={actionBarDiv} />;
+      const actionBarDiv = <div data-hook="action-bar-div" />;
+      const pageHeader = (
+        <PageHeader
+          minimized
+          hasBackgroundImage
+          title={title}
+          actionsBar={actionBarDiv}
+        />
+      );
       const driver = PageHeaderPrivateDriver.fromJsxElement(pageHeader);
 
       expect(driver.existsByDataHook('action-bar-div')).toEqual(true);
       expect(driver.propExists('action-bar-div', 'minimized')).toEqual(false);
-      expect(driver.propExists('action-bar-div', 'hasBackgroundImage')).toEqual(false);
+      expect(driver.propExists('action-bar-div', 'hasBackgroundImage')).toEqual(
+        false,
+      );
     });
 
     it('should pass minimized and hasBackgroundImage props to function', () => {
-      const actionBarDiv = ({minimized, hasBackgroundImage}) =>
-        (minimized && hasBackgroundImage) ?
-        <div data-hook="action-bar-with-props"></div> :
-        <div data-hook="action-bar-with-no-props"></div>;
-      const pageHeader = <PageHeader minimized hasBackgroundImage title={title} actionsBar={actionBarDiv} />;
+      const actionBarDiv = ({ minimized, hasBackgroundImage }) =>
+        minimized && hasBackgroundImage ? (
+          <div data-hook="action-bar-with-props" />
+        ) : (
+          <div data-hook="action-bar-with-no-props" />
+        );
+      const pageHeader = (
+        <PageHeader
+          minimized
+          hasBackgroundImage
+          title={title}
+          actionsBar={actionBarDiv}
+        />
+      );
       const driver = PageHeaderPrivateDriver.fromJsxElement(pageHeader);
 
       expect(driver.existsByDataHook('action-bar-with-props')).toEqual(true);
-      expect(driver.existsByDataHook('action-bar-with-no-props')).toEqual(false);
+      expect(driver.existsByDataHook('action-bar-with-no-props')).toEqual(
+        false,
+      );
     });
   });
 });

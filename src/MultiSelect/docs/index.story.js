@@ -159,7 +159,7 @@ export default {
         'https://github.com/wix/wix-style-react/tree/master/src/MultiSelect',
       component: (
         <div style={{ width: '50%' }}>
-          <ExampleForHeader/>
+          <ExampleForHeader />
         </div>
       ),
     }),

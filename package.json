@@ -212,7 +212,9 @@
         "git add"
       ]
     },
-    "ignore": ["**/scripts/generate-component/**"]
+    "ignore": [
+      "**/scripts/generate-component/**"
+    ]
   },
   "jest": {
     "setupFiles": [

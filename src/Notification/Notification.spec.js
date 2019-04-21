@@ -349,7 +349,11 @@ describe('Notification', () => {
     it('should render TextButton with target received from props', () => {
       const target = 'some target';
       const component = mount(
-        <Notification.ActionButton type="textLink" link="some link" target={target}>
+        <Notification.ActionButton
+          type="textLink"
+          link="some link"
+          target={target}
+        >
           Action Button
         </Notification.ActionButton>,
       );
