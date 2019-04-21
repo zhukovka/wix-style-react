@@ -206,10 +206,13 @@
     "wix-ui-test-utils": "^1.0.151"
   },
   "lint-staged": {
-    "*.{js,scss}": [
-      "yoshi lint --fix",
-      "git add"
-    ]
+    "linters": {
+      "*.{js,scss}": [
+        "yoshi lint --fix",
+        "git add"
+      ]
+    },
+    "ignore": ["**/scripts/generate-component/**"]
   },
   "jest": {
     "setupFiles": [

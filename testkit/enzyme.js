@@ -11,6 +11,17 @@ import {
   enzymeUniTestkitFactoryCreator,
 } from 'wix-ui-test-utils/enzyme';
 
+import tooltipDriverFactory from '../src/Tooltip/Tooltip.driver';
+import { tooltipDriverFactory as tooltipNextDriverFactory } from '../src/Tooltip/TooltipNext/Tooltip.uni.driver';
+
+export const tooltipTestkitFactory = obj => {
+  const hasUpgrade = obj.wrapper.find('[data-hook="popover-element"]').length;
+
+  return hasUpgrade
+    ? enzymeUniTestkitFactoryCreator(tooltipNextDriverFactory)(obj)
+    : enzymeTestkitFactoryCreator(tooltipDriverFactory)(obj);
+};
+
 const load = module => {
   const MODULE_META_KEYS = ['__esModule'];
 
@@ -119,7 +130,6 @@ export const textButtonTestkitFactory = enzymeUniTestkitFactoryCreator(load(requ
 export const thumbnailTestkitFactory = enzymeUniTestkitFactoryCreator(load(require('../src/Thumbnail/Thumbnail.uni.driver')));
 export const timeInputTestkitFactory = enzymeTestkitFactoryCreator(load(require('../src/TimeInput/TimeInput.driver')));
 export const toggleSwitchTestkitFactory = enzymeTestkitFactoryCreator(load(require('../src/ToggleSwitch/ToggleSwitch.driver')));
-export const tooltipTestkitFactory = enzymeTestkitFactoryCreator(load(require('../src/Tooltip/Tooltip.driver')));
 export const headerTestkitFactory = enzymeTestkitFactoryCreator(load(require('../src/Card/Header/Header.driver')));
 export const draggableTestkitFactory = enzymeTestkitFactoryCreator(load(require('../src/DragAndDrop/Draggable/Draggable.driver')));
 export const editableRowTestkitFactory = enzymeTestkitFactoryCreator(load(require('../src/EditableSelector/EditableRow/EditableRow.driver')));
