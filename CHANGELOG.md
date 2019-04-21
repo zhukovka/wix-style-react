@@ -15,10 +15,12 @@ Types of changes:
 1. **Lab** components and features that are still in a work in progress
 
 
-## Next 
+## 6.15.0 - 2019-04-21 
 
 ### Added
 
+- `<MultiSelect/>` stop using autoSizeInput [#3277](https://github.com/wix/wix-style-react/pull/3277)
+- `<DataTable/>` (Driver) - Add UniDriver [#3268](https://github.com/wix/wix-style-react/pull/3268)
 - `<Checkbox/>` (Driver) - `isChecked()`: Use input value instead of style in driver [#3267](https://github.com/wix/wix-style-react/pull/3267)
 - `<ActionButton/>` - add `target` prop [#3204](https://github.com/wix/wix-style-react/pull/3204)
 - `<MultiSelect/>` `<Tag/>` - fix disabled state behavior [#3201](https://github.com/wix/wix-style-react/pull/3201)
