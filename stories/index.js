@@ -159,6 +159,7 @@ require('../src/IconButton/docs/testStory'); // Tests/5. Button/5.2 IconButton
 require('../src/TextButton/docs/testStory'); // Tests/5. Button/5.3 TextButton
 require('../src/CloseButton/docs/testStory'); // Tests/5. Button/5.4 CloseButton
 require('../src/Calendar/docs/CalendarTestStory'); // Tests/3. Inputs/3.13 Calendar
+require('../src/DatePicker/docs/testStory'); // Tests/3. Inputs/3.6 DatePicker
 require('../src/MultiSelect/docs/testStory'); // Tests/3. Inputs/3.8 Tags
 require('../src/PopoverMenu/docs/PopoverMenuRegressionTest'); // Tests/7.3. Popover Menu/
 require('../src/Popover/docs/testStory');

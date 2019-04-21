@@ -86,6 +86,16 @@ describe('DatePicker', () => {
       expect(calendarDriver.isVisible()).toBe(false);
     });
 
+    it('should be shown when getting isOpen prop', () => {
+      const { calendarDriver } = createDriver(
+        <DatePicker isOpen onChange={noop} />,
+      );
+      expect(calendarDriver.isVisible()).toBe(true);
+    });
+
+    //TODO: WIP
+    it('should display a warning message when both isOpen & shouldCloseOnSelect set to true', () => {});
+
     describe('should open', () => {
       it('on click on datePickerInput', () => {
         const { calendarDriver, inputDriver } = createDriver(

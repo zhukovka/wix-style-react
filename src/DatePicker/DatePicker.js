@@ -42,7 +42,6 @@ export default class DatePicker extends WixComponent {
 
   constructor(props) {
     super(props);
-
     this.state = {
       value: props.value || new Date(),
       isOpen: props.isOpen || false,
@@ -62,6 +61,25 @@ export default class DatePicker extends WixComponent {
     this._popper.destroy();
     super.componentWillUnmount();
   }
+
+  componentDidUpdate(prevProps, prevState, snapshot) {
+    super.componentDidUpdate(prevProps);
+    const { isOpen } = this.state;
+    const isControlled = this.props.hasOwnProperty('isOpen');
+    if (isControlled && isOpen !== this.props.isOpen) {
+      this.setState({ isOpen: this.props.isOpen });
+    }
+  }
+
+  /*
+   * 1. user pass <DatePicker isOpen={true}/> (before change, only on initial rendering. after change - always open)
+   * 2. if passed and if didn't pass
+   * 3. if (passed) => componentDidUpdate isOpen according to props
+   * 4. if didn't pass => componentDidUpdate shouldn't change the state according to props
+   * 5. backward compatability
+   *   1. prev - only initial (but no one uses it at the moment)
+   *   2. currently - controlled opening
+   */
 
   openCalendar = () => {
     if (!this.state.isOpen) {
@@ -178,6 +196,14 @@ export default class DatePicker extends WixComponent {
 
   _setCalendarRef = ref => (this.calendarRef = ref);
 
+  _isAmbiguous(isOpen, shouldCloseOnSelect) {
+    if (isOpen && shouldCloseOnSelect) {
+      console.warn(
+        'isOpen and shouldCloseOnSelect is ambiguous. DatePicker renders Calendar when isOpen is true ',
+      );
+    }
+  }
+
   render() {
     const {
       showMonthDropdown,
@@ -194,6 +220,9 @@ export default class DatePicker extends WixComponent {
     } = this.props;
 
     const { isOpen, value } = this.state;
+
+    //TODO: rename function
+    this._isAmbiguous(isOpen, shouldCloseOnSelect);
 
     const calendarProps = {
       locale,

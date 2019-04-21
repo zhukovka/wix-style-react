@@ -1,15 +1,20 @@
 import eyes from 'eyes.it';
 import { datePickerTestkitFactory } from '../../testkit/protractor';
-import { createStoryUrl } from '../../test/utils/storybook-helpers';
+import {
+  createStoryUrl,
+  createTestStoryUrl,
+} from '../../test/utils/storybook-helpers';
+import { eyesItInstance } from '../../test/utils/eyes-it';
 import autoExampleDriver from 'wix-storybook-utils/AutoExampleDriver';
+import { storySettings, testStories } from './docs/storySettings';
 
 describe('DatePicker', () => {
   const storyUrl = createStoryUrl({
-    kind: '3. Inputs',
-    story: '3.6 DatePicker',
+    kind: storySettings.category,
+    story: storySettings.storyName,
   });
   const { inputDriver, calendarDriver } = datePickerTestkitFactory({
-    dataHook: 'storybook-datepicker',
+    dataHook: storySettings.dataHook,
   });
 
   beforeAll(async () => {
@@ -26,7 +31,6 @@ describe('DatePicker', () => {
 
     expect(await calendarDriver.exists()).toBe(false);
   });
-
   eyes.it(
     'should not close calendar on selecting date with click when shouldCloseOnSelect prop set to false',
     async () => {
@@ -39,6 +43,24 @@ describe('DatePicker', () => {
       expect(await calendarDriver.isVisible()).toBe(true);
     },
   );
+
+  describe('Test Page', () => {
+    const eyes = eyesItInstance();
+
+    //TODO: WIP
+    eyes.it(
+      'should not close calendar on props change when isOpen prop set to true',
+      async () => {
+        const url = createTestStoryUrl({
+          category: storySettings.category,
+          storyName: storySettings.storyName,
+          testName: testStories.propsChangeEffectOnCalendarRendering,
+        });
+
+        await browser.get(url);
+      },
+    );
+  });
 
   describe('default', () => {
     eyes.it('should show inputDriver', async () => {
