@@ -64,7 +64,7 @@ module.exports = {
 ```
 
 ## How can I debug it?
-Just run `npm run eyes-storybok-debug`. This will open the tests storybook and navigate between pages.
+Just run `npm run eyes-storybook-debug`. This will open the tests storybook and navigate between pages.
 
 ## Is there a good example to see?
 Take a look at the `AddItem` visual [test file](https://github.com/wix/wix-style-react/blob/master/src/AddItem/tests/AddItem.visual.js).
