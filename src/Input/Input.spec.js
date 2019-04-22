@@ -1,11 +1,9 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
 import sinon from 'sinon';
 
 import Search from '../new-icons/Search';
 import Input from '.';
 
-import { makeControlled, resolveIn } from '../../test/utils';
 import { mount } from 'enzyme';
 
 import {
@@ -17,9 +15,6 @@ import inputDriverFactory from './Input.driver';
 import { testkit } from './Input.uni.driver';
 
 describe('Input', () => {
-  /* eslint-disable-next-line no-shadow */
-  const ControlledInput = makeControlled(Input);
-
   describe('[sync]', () => {
     runTests(createRendererWithDriver(inputDriverFactory));
   });
@@ -592,12 +587,9 @@ describe('Input', () => {
         expect(await driver.hasClearButton()).toBe(false);
       });
 
-      it('should clear input and focus it', async () => {
-        const { driver } = render(
-          <ControlledInput clearButton value="some value" />,
-        );
+      it('should focus on the Input', async () => {
+        const { driver } = render(<Input clearButton value="some value" />);
         await driver.clickClear();
-        expect(await driver.getValue()).toBe('');
         expect(await driver.isFocus()).toBe(true);
       });
 
@@ -609,6 +601,63 @@ describe('Input', () => {
         await driver.clickClear();
         expect(onChange).toHaveBeenCalledTimes(1);
         expect(onChange.mock.calls[0][0].target.value).toBe('');
+      });
+
+      it('should trigger onClear when clicking the clear button', async () => {
+        const onClear = jest.fn();
+        const { driver } = render(
+          <Input onClear={onClear} value="some value" />,
+        );
+        await driver.clickClear();
+        expect(onClear).toHaveBeenCalledTimes(1);
+        expect(onClear.mock.calls[0][0].target.value).toBe('');
+      });
+
+      describe('clear method', () => {
+        it('should call onChange with empty value after calling clear', async () => {
+          const spy = jest.fn();
+          const wrapper = mount(<Input value="foo" onChange={spy} />);
+          wrapper.instance().clear();
+          expect(spy.mock.calls[0][0].target.value).toBe('');
+        });
+
+        it('should NOT call onChange if the input was already empty', async () => {
+          const spy = jest.fn();
+          const wrapper = mount(<Input value="" onChange={spy} />);
+          wrapper.instance().clear();
+          expect(spy.mock.calls.length).toBe(0);
+        });
+      });
+
+      describe('updateControlledOnClear is true', () => {
+        it('should NOT trigger onChange on clearing', async () => {
+          const onChange = jest.fn();
+          const { driver } = render(
+            <Input
+              onChange={onChange}
+              value="some value"
+              clearButton
+              updateControlledOnClear
+            />,
+          );
+          await driver.clickClear();
+          expect(onChange).toHaveBeenCalledTimes(0);
+        });
+
+        it('should trigger onClear on clearing', async () => {
+          const onClear = jest.fn();
+          const { driver } = render(
+            <Input
+              onClear={onClear}
+              value="some value"
+              clearButton
+              updateControlledOnClear
+            />,
+          );
+          await driver.clickClear();
+          expect(onClear).toHaveBeenCalledTimes(1);
+          expect(onClear.mock.calls[0][0]).toBeTruthy;
+        });
       });
 
       describe.skip('Uncontrolled', () => {
@@ -665,30 +714,6 @@ describe('Input', () => {
         expect(await driver.hasClearButton()).toBe(true);
         await driver.clickClear();
         expect(onClear.calledOnce).toBe(true);
-      });
-    });
-
-    describe('clear method', () => {
-      it('should call onChange when changing the value text', async () => {
-        const spy = jest.fn();
-        const wrapper = mount(<Input value="" onChange={spy} />);
-        const driver = inputDriverFactory({ element: wrapper.getDOMNode() });
-        await driver.enterText('foo');
-        expect(spy.mock.calls[0][0].target.value).toBe('foo');
-      });
-
-      it('should call onChange with empty value after calling clear', async () => {
-        const spy = jest.fn();
-        const wrapper = mount(<Input value="foo" onChange={spy} />);
-        wrapper.instance().clear();
-        expect(spy.mock.calls[0][0].target.value).toBe('');
-      });
-
-      it('should not call onChange calling clear with no value', async () => {
-        const spy = jest.fn();
-        const wrapper = mount(<Input value="" onChange={spy} />);
-        wrapper.instance().clear();
-        expect(spy.mock.calls.length).toBe(0);
       });
     });
 

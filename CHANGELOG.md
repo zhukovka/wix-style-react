@@ -15,6 +15,13 @@ Types of changes:
 1. **Lab** components and features that are still in a work in progress
 
 
+## Next
+
+### Changed
+
+- `<Input>` - add `updateControlledOnClear` prop which if provided fixes an error thrown in the console [#3251](https://github.com/wix/wix-style-react/pull/3251)
+
+
 ## 6.15.0 - 2019-04-21 
 
 ### Added

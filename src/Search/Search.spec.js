@@ -169,6 +169,41 @@ describe('Search', () => {
           .textContent,
       ).toContain('The');
     });
+
+    describe('updateControlledOnClear is true', () => {
+      it('should NOT trigger onChange on clearing', async () => {
+        const onChange = jest.fn();
+        const { inputDriver } = createDriver(
+          <Search
+            value="fox"
+            onChange={onChange}
+            clearButton
+            updateControlledOnClear
+          />,
+        );
+        expect(onChange).toHaveBeenCalledTimes(0);
+        await inputDriver.clickClear();
+        expect(onChange).toHaveBeenCalledTimes(0);
+      });
+
+      it('should trigger onClear on clearing', async () => {
+        const onClear = jest.fn();
+        const { inputDriver } = createDriver(
+          <Search
+            options={options}
+            value="fox"
+            onChange={() => {}}
+            clearButton
+            onClear={onClear}
+            updateControlledOnClear
+          />,
+        );
+        expect(onClear).toHaveBeenCalledTimes(0);
+        await inputDriver.clickClear();
+        expect(onClear).toHaveBeenCalledTimes(1);
+        expect(onClear.mock.calls[0][0]).toBeTruthy;
+      });
+    });
   });
 
   describe('Uncontrolled', () => {

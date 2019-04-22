@@ -288,6 +288,18 @@ describe('ModalSelectorLayout', () => {
 
       expect(driver.showsNoResultsFoundState()).toBe(false);
     });
+
+    it('should clear search on clear button click', async () => {
+      const driver = createDriverWithProps({ dataSource: paginatedDataSource });
+
+      await flushPromises();
+
+      driver.searchDriver().inputDriver.enterText('foo');
+      expect(driver.searchDriver().inputDriver.getValue()).toBe('foo');
+
+      driver.searchDriver().inputDriver.clickClear();
+      expect(driver.searchDriver().inputDriver.getValue()).toBe('');
+    });
   });
 
   describe('pagination', () => {
