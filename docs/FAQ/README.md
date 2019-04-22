@@ -29,7 +29,7 @@ In that case, ensure your generated `index.js` invokes `attachHook` from `@styla
 ```diff
 modified: my-generated-project/index.js
  const { wixCssModulesRequireHook } = require('yoshi-runtime'); //hook to `.scss` files
-+const { attachHook } = require('@stylable/node'); //hook to `.st.css` files
++const { resolveNamespaceFactory, attachHook } = require('@stylable/node'); //hook to `.st.css` files
 +const {name} = require('./package.json');
  
 wixCssModulesRequireHook();
