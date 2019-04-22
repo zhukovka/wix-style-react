@@ -55,7 +55,7 @@ It’s like running a test in the browser, using our drivers.
 
 ## Can I run tests locally?
 Yes you can!
-Simply create a file called `applitools.private.config.js` and add our API key:
+Simply create a file called `applitools.private.config.js` (on the root level) and add our API key:
 
 ```js
 module.exports = {
