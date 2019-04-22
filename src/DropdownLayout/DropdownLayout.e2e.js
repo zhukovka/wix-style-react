@@ -19,8 +19,8 @@ describe('DropdownLayout', () => {
   let driver;
 
   const storyUrl = createStoryUrl({
-    kind: '11. Pickers and Selectors',
-    story: '11.1 DropdownLayout',
+    kind: storySettings.category,
+    story: storySettings.storyName,
     withExamples: false,
   });
 
@@ -67,7 +67,7 @@ describe('DropdownLayout - Focus behaviour', () => {
 
   const navigateToTestUrl = async testName => {
     const testStoryUrl = createTestStoryUrl({
-      category: storySettings.indexCategory,
+      category: storySettings.category,
       storyName: storySettings.storyName,
       dataHook: storySettings.dataHook,
       testName,

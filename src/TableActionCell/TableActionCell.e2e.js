@@ -16,7 +16,7 @@ const hoverElement = element =>
 
 describe('Table Action Cell', () => {
   const storyUrl = createStoryUrl({
-    kind: storySettings.kind,
+    kind: storySettings.category,
     story: storySettings.storyName,
   });
 

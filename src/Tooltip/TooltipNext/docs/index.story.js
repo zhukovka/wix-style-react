@@ -43,7 +43,7 @@ const example = ({ source, ...rest }) =>
 
 export default {
   category: storySettings.category,
-  storyName: 'Tooltip',
+  storyName: storySettings.storyName,
 
   component: Tooltip,
   componentPath: '..',

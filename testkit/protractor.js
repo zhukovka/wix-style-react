@@ -444,6 +444,12 @@ export const editableTitleTestkitFactory = protractorUniTestkitFactoryCreator(
   editableTitleUniDriverFactory,
 );
 
+import { socialPreviewDriverFactory } from '../src/SocialPreview/SocialPreview.uni.driver';
+
+export const socialPreviewTestkitFactory = protractorUniTestkitFactoryCreator(
+  socialPreviewDriverFactory,
+);
+
 import { accordionDriverFactory } from '../src/Accordion/Accordion.uni.driver';
 
 export const accordionTestkitFactory = protractorUniTestkitFactoryCreator(
@@ -463,3 +469,9 @@ export const tooltipTestkitFactory = obj =>
   obj.wrapper && obj.wrapper.$(`[data-hook="popover-element"]`)
     ? protractorUniTestkitFactoryCreator(tooltipNextDriverFactory)(obj)
     : protractorTestkitFactoryCreator(tooltipDriverFactory)(obj);
+
+import { notificationDriverFactory } from '../src/Notification/Notification.uni.driver';
+
+export const notificationTestkitFactory = protractorUniTestkitFactoryCreator(
+  notificationDriverFactory,
+);

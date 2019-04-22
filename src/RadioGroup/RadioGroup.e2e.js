@@ -5,16 +5,22 @@ import { createStoryUrl } from '../../test/utils/storybook-helpers';
 import autoExampleDriver from 'wix-storybook-utils/AutoExampleDriver';
 import { flattenInternalDriver } from '../../test/utils/private-drivers';
 
-const NUM_OF_BUTTONS_IN_EXAMPLE = 4;
+import { storySettings } from './docs/storySettings';
 
-const kind = '4. Selection';
-const story = '4.3 Radio Button Group';
+const NUM_OF_BUTTONS_IN_EXAMPLE = 4;
 
 describe('RadioGroup', () => {
   const dataHook = 'storybook-radiogroup';
   const radioGroupDriver = radioGroupTestkitFactory({ dataHook });
 
-  beforeAll(() => browser.get(createStoryUrl({ kind, story })));
+  beforeAll(() =>
+    browser.get(
+      createStoryUrl({
+        kind: storySettings.category,
+        story: storySettings.storyName,
+      }),
+    ),
+  );
 
   afterEach(async () => {
     await autoExampleDriver.reset();
@@ -104,7 +110,12 @@ describe('RadioGroup', () => {
 
     beforeEach(async () => {
       // Needed in order to reset the focus state
-      await browser.get(createStoryUrl({ kind, story }));
+      await browser.get(
+        createStoryUrl({
+          kind: storySettings.category,
+          story: storySettings.storyName,
+        }),
+      );
     });
 
     it('should to be selected but NOT to show focus styles when clicked by mouse', async () => {
@@ -139,7 +150,15 @@ describe('RadioGroup', () => {
   });
 
   describe('RTL', () => {
-    beforeAll(() => browser.get(createStoryUrl({ kind, story, rtl: true })));
+    beforeAll(() =>
+      browser.get(
+        createStoryUrl({
+          kind: storySettings.category,
+          story: storySettings.storyName,
+          rtl: true,
+        }),
+      ),
+    );
 
     eyes.it('should select the second option in a group', async () => {
       await waitForVisibilityOf(

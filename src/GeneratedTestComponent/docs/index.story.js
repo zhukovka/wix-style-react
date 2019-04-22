@@ -59,7 +59,7 @@ export default {
 
           columns([
             importExample(
-              "import GeneratedTestComponent from 'wix-style-react/GeneratedTestComponent'",
+              "import GeneratedTestComponent from 'wix-style-react/GeneratedTestComponent';",
             ),
           ]),
 

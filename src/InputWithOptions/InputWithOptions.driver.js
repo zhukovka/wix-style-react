@@ -37,6 +37,7 @@ const inputWithOptionsDriverFactory = ({ element }) => {
     isReadOnly: () =>
       inputDriver.getReadOnly() && inputWrapper.className.includes('readonly'),
     isEditable: () => !inputDriver.getReadOnly() && !inputDriver.getDisabled(),
+    isDisabled: () => !!inputDriver.getDisabled(),
     inputWrapper: () => inputWrapper,
     focus: () => inputDriver.focus(),
     blur: () => dropdownLayoutDriver.mouseClickOutside(),

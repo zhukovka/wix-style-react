@@ -15,6 +15,7 @@ export const testkit = base => {
 
   const driver = {
     ...baseUniDriverFactory(base),
+    click: reactBaseInput.click,
     getInputElementClasses: async () => await reactBaseInput.getClassList(),
     suffixComponentExists: async className =>
       await base.$(`.${styles.suffix} ${className}`).exists(),
@@ -64,6 +65,7 @@ export const testkit = base => {
     isCustomInput: async () =>
       (await reactBaseInput.attr('data-hook')) === 'wsr-custom-input',
     getReadOnly: async () => await reactBaseInput.readOnly(),
+    getDisabled: async () => await reactBaseInput.disabled(),
     getTextOverflow: async () =>
       (await reactBaseInput.getStyle())['text-overflow'],
     hasExclamation: async () => await base.$(`.${styles.exclamation}`).exists(),
@@ -107,6 +109,9 @@ export const testkit = base => {
     isNarrowError: async () => await base.$(`.${styles.narrow}`).exists(),
     isRTL: async () => await base.hasClass(styles.rtl),
     getCursorLocation: async () => await reactBaseInput.selectionStart(),
+    startComposing: () => reactBaseInput.compositionStart(),
+    endComposing: () => reactBaseInput.compositionEnd(),
+    clearText: () => driver.enterText(''),
   };
 
   return driver;

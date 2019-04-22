@@ -5,12 +5,14 @@ import { createStoryUrl } from '../../test/utils/storybook-helpers';
 import autoExampleDriver from 'wix-storybook-utils/AutoExampleDriver';
 import { runFocusTests } from '../common/Focusable/FocusableTestsE2E';
 
+import { storySettings } from './docs/storySettings';
+
 const NO_DESCRIPTION = '';
 
 describe('Checkbox', () => {
   const storyUrl = createStoryUrl({
-    kind: '4. Selection',
-    story: '4.2 Checkbox',
+    kind: storySettings.category,
+    story: storySettings.storyName,
   });
   const checkboxDriver = checkboxTestkitFactory({
     dataHook: 'storybook-checkbox',

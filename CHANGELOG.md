@@ -14,14 +14,33 @@ Types of changes:
 1. **Docs** for documentation changes
 1. **Lab** components and features that are still in a work in progress
 
-## next
 
-- `<MessegeBox/>` - add white theme [#3127](https://github.com/wix/wix-style-react/pull/3127)
+## 6.15.0 - 2019-04-21 
+
+### Added
+
+- `<MultiSelect/>` stop using autoSizeInput [#3277](https://github.com/wix/wix-style-react/pull/3277)
+- `<DataTable/>` (Driver) - Add UniDriver [#3268](https://github.com/wix/wix-style-react/pull/3268)
+- `<Checkbox/>` (Driver) - `isChecked()`: Use input value instead of style in driver [#3267](https://github.com/wix/wix-style-react/pull/3267)
+- `<ActionButton/>` - add `target` prop [#3204](https://github.com/wix/wix-style-react/pull/3204)
+- `<MultiSelect/>` `<Tag/>` - fix disabled state behavior [#3201](https://github.com/wix/wix-style-react/pull/3201)
+- `<RichTextInputArea/>` - add `maxHeight` prop [#3263](https://github.com/wix/wix-style-react/pull/3263)
+
+### Fixed
+
+- `<NumberInput/>` - add PropTypes import [#3279](https://github.com/wix/wix-style-react/pull/3279)
+
+## 6.14.0 - 2019-04-18
+
+### Added
+
+- `<MessageBox/>` - add white theme [#3127](https://github.com/wix/wix-style-react/pull/3127)
 - `<NumberInput/>` - add `strict` property [#3249](https://github.com/wix/wix-style-react/pull/3249)
-
-### Added 
-
 - `<Tooltip/>` - major refactor. Total rewrite of component. Follow [upgrade guidelines](https://github.com/wix/wix-style-react/blob/master/src/Tooltip/TooltipNext/MIGRATION-API.md) [#3110](https://github.com/wix/wix-style-react/pull/3110)
+- `<SocialPreview/>` - add new component [#3180](https://github.com/wix/wix-style-react/pull/3180)
+- Add Drivers: `<Notification/>`(Protractor, Puppeteer), `<Loader/>`(Puppeteer), `<Checkbox/>`(Puppeteer). [#3262](https://github.com/wix/wix-style-react/pull/3262)
+- `<RichTextInputArea/>` - add `disabled` prop [#3255](https://github.com/wix/wix-style-react/pull/3255)
+- `<DropdownBase/>` - add Popover's `appendTo` prop [#3266](https://github.com/wix/wix-style-react/pull/3266)
 
 ## 6.13.0 - 2019-04-08
 

@@ -28,60 +28,59 @@ import ExampleControlledRaw from '!raw-loader!./ExampleControlled';
 import ExampleControlledInContainer from './ExampleControlledInContainer';
 import ExampleControlledInContainerRaw from '!raw-loader!./ExampleControlledInContainer';
 
-storiesOf('11. Pickers and Selectors', module).add(
-  '11.1 DropdownLayout',
-  () => (
-    <TabbedView tabs={['API', 'Testkit']}>
-      <div>
-        <Markdown source={Readme} />
+import { storySettings } from './storySettings';
 
-        <h1>Usage examples</h1>
+storiesOf(storySettings.category, module).add(storySettings.storyName, () => (
+  <TabbedView tabs={['API', 'Testkit']}>
+    <div>
+      <Markdown source={Readme} />
 
-        <CodeExample title="Standard" code={ExampleStandardRaw}>
-          <ExampleStandard />
-        </CodeExample>
+      <h1>Usage examples</h1>
 
-        <div style={{ paddingTop: '230px' }} />
+      <CodeExample title="Standard" code={ExampleStandardRaw}>
+        <ExampleStandard />
+      </CodeExample>
 
-        <CodeExample title="Infinite Scroll" code={ExampleInfiniteScrollRaw}>
-          <ExampleInfiniteScroll />
-        </CodeExample>
+      <div style={{ paddingTop: '230px' }} />
 
-        <div style={{ paddingTop: '230px' }} />
+      <CodeExample title="Infinite Scroll" code={ExampleInfiniteScrollRaw}>
+        <ExampleInfiniteScroll />
+      </CodeExample>
 
-        <CodeExample title="Options Builder" code={ExampleBuilderRaw}>
-          <ExampleBuilder />
-        </CodeExample>
+      <div style={{ paddingTop: '230px' }} />
 
-        <div style={{ paddingTop: '230px' }} />
+      <CodeExample title="Options Builder" code={ExampleBuilderRaw}>
+        <ExampleBuilder />
+      </CodeExample>
 
-        <CodeExample title="Many options" code={ExampleManyOptionsRaw}>
-          <ExampleManyOptions />
-        </CodeExample>
+      <div style={{ paddingTop: '230px' }} />
 
-        <div style={{ paddingTop: '251px' }} />
+      <CodeExample title="Many options" code={ExampleManyOptionsRaw}>
+        <ExampleManyOptions />
+      </CodeExample>
 
-        <CodeExample title="React elements" code={ExampleReactElementRaw}>
-          <ExampleReactElement />
-        </CodeExample>
+      <div style={{ paddingTop: '251px' }} />
 
-        <div style={{ paddingTop: '143px' }} />
+      <CodeExample title="React elements" code={ExampleReactElementRaw}>
+        <ExampleReactElement />
+      </CodeExample>
 
-        <CodeExample title="Controlled" code={ExampleControlledRaw}>
-          <ExampleControlled />
-        </CodeExample>
+      <div style={{ paddingTop: '143px' }} />
 
-        <CodeExample
-          title="With custom container styles"
-          code={ExampleControlledInContainerRaw}
-        >
-          <ExampleControlledInContainer />
-        </CodeExample>
+      <CodeExample title="Controlled" code={ExampleControlledRaw}>
+        <ExampleControlled />
+      </CodeExample>
 
-        <div style={{ paddingTop: '230px' }} />
-      </div>
+      <CodeExample
+        title="With custom container styles"
+        code={ExampleControlledInContainerRaw}
+      >
+        <ExampleControlledInContainer />
+      </CodeExample>
 
-      <Markdown source={ReadmeTestkit} />
-    </TabbedView>
-  ),
-);
+      <div style={{ paddingTop: '230px' }} />
+    </div>
+
+    <Markdown source={ReadmeTestkit} />
+  </TabbedView>
+));

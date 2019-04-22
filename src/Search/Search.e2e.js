@@ -4,8 +4,13 @@ import { waitForVisibilityOf } from 'wix-ui-test-utils/protractor';
 import { createStoryUrl } from '../../test/utils/storybook-helpers';
 import autoExampleDriver from 'wix-storybook-utils/AutoExampleDriver';
 
+import { storySettings } from './docs/storySettings';
+
 describe('Search', () => {
-  const storyUrl = createStoryUrl({ kind: '3. Inputs', story: '3.9 Search' });
+  const storyUrl = createStoryUrl({
+    kind: storySettings.category,
+    story: storySettings.storyName,
+  });
   const driver = searchTestkitFactory({ dataHook: 'storybook-search' });
 
   beforeAll(() => {

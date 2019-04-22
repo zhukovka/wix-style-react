@@ -1,10 +1,8 @@
 import { Category } from '../../../stories/storiesHierarchy';
 
 export const storySettings = {
-  kind: Category.PICKERS_AND_SELECTORS,
-  category: Category.PICKERS_AND_SELECTORS,
-
-  storyName: '11.2 EditableSelector',
+  category: Category.COMPONENTS,
+  storyName: 'EditableSelector',
   dataHook: 'story-editable-selector',
 };
 

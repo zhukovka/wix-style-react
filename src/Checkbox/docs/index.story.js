@@ -6,6 +6,8 @@ import CodeExample from 'wix-storybook-utils/CodeExample';
 import ExampleFormField from './ExampleFormField';
 import ExampleFormFieldRaw from '!raw-loader!./ExampleFormField';
 
+import { storySettings } from './storySettings';
+
 const labelExamples = [
   { label: 'Simple string', value: 'Hello World!' },
   {
@@ -27,8 +29,8 @@ const labelExamples = [
 ];
 
 export default {
-  category: '4. Selection',
-  storyName: '4.2 Checkbox',
+  category: storySettings.category,
+  storyName: storySettings.storyName,
   component: Checkbox,
   componentPath: '..',
 

@@ -8,6 +8,8 @@ export const getPlaceholder = base =>
 export default base => {
   return {
     ...baseUniDriverFactory(base),
+    isDisabled: async () =>
+      Boolean(await getContent(base).attr('contenteditable')),
     getContent: () => getContent(base).text(),
     getPlaceholder: () => getPlaceholder(base).text(),
     enterText: async text => {

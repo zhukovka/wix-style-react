@@ -18,6 +18,7 @@ const multiSelectDriverFactory = ({ element }) => {
     clickOnInputWrapper: () => ReactTestUtils.Simulate.click(inputWrapper),
     inputWrapperHasFocus: () => inputWrapper.classList.contains('hasFocus'),
     inputWrapperHasError: () => inputWrapper.classList.contains('error'),
+    inputWrapperIsDisabled: () => inputWrapper.classList.contains('disabled'),
     numberOfTags: () => tags.length,
     getTagLabelAt: index => tags[index].textContent,
     pressCommaKey: () => inputDriver.keyDown(','),

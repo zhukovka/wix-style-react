@@ -32,12 +32,13 @@ const toggleEntity = (editorState, onClick, linkData) => {
 
 const renderButton = (
   index,
-  { type, iconComponent: Icon, isActive, ...buttonData },
+  { type, iconComponent: Icon, isDisabled, isActive, ...buttonData },
 ) => (
   <RichTextToolbarButton
     key={`${index}-${type}`}
     dataHook={`richtextarea-button-${type.toLowerCase()}`}
-    isActive={isActive()}
+    isDisabled={isDisabled}
+    isActive={!isDisabled && isActive()}
     {...buttonData}
   >
     <Icon />
@@ -46,12 +47,13 @@ const renderButton = (
 
 const renderLinkButton = (
   index,
-  { type, iconComponent: Icon, isActive, ...buttonData },
+  { type, iconComponent: Icon, isDisabled, isActive, ...buttonData },
 ) => (
   <RichTextToolbarLinkButton
     key={`${index}-${type}`}
     dataHook={`richtextarea-button-${type.toLowerCase()}`}
-    isActive={isActive()}
+    isDisabled={isDisabled}
+    isActive={!isDisabled && isActive()}
     {...buttonData}
   >
     <Icon />
@@ -61,6 +63,7 @@ const renderLinkButton = (
 const RichTextToolbar = ({
   dataHook,
   className,
+  isDisabled,
   editorState,
   onBold,
   onItalic,
@@ -78,6 +81,7 @@ const RichTextToolbar = ({
             onClick: () =>
               toggleStyle(editorState, onBold, inlineStyleTypes.bold),
             iconComponent: TextAreaBold,
+            isDisabled,
             isActive: () =>
               EditorUtilities.isEditorFocused(editorState) &&
               EditorUtilities.hasStyle(editorState, inlineStyleTypes.bold),
@@ -89,6 +93,7 @@ const RichTextToolbar = ({
             onClick: () =>
               toggleStyle(editorState, onItalic, inlineStyleTypes.italic),
             iconComponent: TextAreaItalic,
+            isDisabled,
             isActive: () =>
               EditorUtilities.isEditorFocused(editorState) &&
               EditorUtilities.hasStyle(editorState, inlineStyleTypes.italic),
@@ -100,6 +105,7 @@ const RichTextToolbar = ({
             onClick: () =>
               toggleStyle(editorState, onUnderline, inlineStyleTypes.underline),
             iconComponent: TextAreaUnderline,
+            isDisabled,
             isActive: () =>
               EditorUtilities.isEditorFocused(editorState) &&
               EditorUtilities.hasStyle(editorState, inlineStyleTypes.underline),
@@ -113,6 +119,7 @@ const RichTextToolbar = ({
             data: {
               text: EditorUtilities.getSelectedText(editorState),
             },
+            isDisabled,
             iconComponent: TextAreaLink,
             isActive: () =>
               EditorUtilities.isEditorFocused(editorState) &&
@@ -129,13 +136,13 @@ const RichTextToolbar = ({
                 blockTypes.bulletedList,
               ),
             iconComponent: TextAreaBulletList,
+            isDisabled,
             isActive: () =>
               EditorUtilities.isEditorFocused(editorState) &&
               EditorUtilities.hasBlockType(
                 editorState,
                 blockTypes.bulletedList,
               ),
-
             tooltipText: texts.toolbarButtons.bulletedListButtonLabel,
             render: (index, data) => renderButton(index, data),
           },
@@ -148,6 +155,7 @@ const RichTextToolbar = ({
                 blockTypes.numberedList,
               ),
             iconComponent: TextAreaNumberedList,
+            isDisabled,
             isActive: () =>
               EditorUtilities.isEditorFocused(editorState) &&
               EditorUtilities.hasBlockType(

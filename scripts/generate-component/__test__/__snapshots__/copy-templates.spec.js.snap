@@ -310,6 +310,36 @@ describe('MyNewComponent', () => {
   });
 });
 ",
+  "src/MyNewComponent/test/MyNewComponent.visual.js": "import React from 'react';
+import { storiesOf } from '@storybook/react';
+import MyNewComponent from '../MyNewComponent';
+
+const commonProps = {
+  //use for repeated props across the tests (e.g. {buttonText: 'example'})
+};
+
+const tests = [
+  {
+    describe: 'sanity', // prop name (e.g. size)
+    its: [
+      {
+        it: 'default', //prop vaiation (e.g. small)
+        props: {
+          // the simulation (e.g. {size: \\"small\\"})
+        },
+      },
+    ],
+  },
+];
+
+tests.forEach(({ describe, its }) => {
+  its.forEach(({ it, props }) => {
+    storiesOf(\`MyNewComponent/\${describe}\`, module).add(it, () => (
+      <MyNewComponent {...commonProps} {...props} />
+    ));
+  });
+});
+",
   "src/MyNewComponent/test/MyNewComponentStories.js": "import React from 'react';
 import { storiesOf } from '@storybook/react';
 import { getTestStoryKind } from '../../../stories/storiesHierarchy';
@@ -653,6 +683,36 @@ describe('MyNewComponent', () => {
   });
 });
 ",
+  "src/MyNewComponent/test/MyNewComponent.visual.js": "import React from 'react';
+import { storiesOf } from '@storybook/react';
+import MyNewComponent from '../MyNewComponent';
+
+const commonProps = {
+  //use for repeated props across the tests (e.g. {buttonText: 'example'})
+};
+
+const tests = [
+  {
+    describe: 'sanity', // prop name (e.g. size)
+    its: [
+      {
+        it: 'default', //prop vaiation (e.g. small)
+        props: {
+          // the simulation (e.g. {size: \\"small\\"})
+        },
+      },
+    ],
+  },
+];
+
+tests.forEach(({ describe, its }) => {
+  its.forEach(({ it, props }) => {
+    storiesOf(\`MyNewComponent/\${describe}\`, module).add(it, () => (
+      <MyNewComponent {...commonProps} {...props} />
+    ));
+  });
+});
+",
   "src/MyNewComponent/test/MyNewComponentStories.js": "import React from 'react';
 import { storiesOf } from '@storybook/react';
 import { getTestStoryKind } from '../../../stories/storiesHierarchy';
@@ -991,6 +1051,36 @@ describe('MyTestComponent', () => {
     const { driver } = render(<MyTestComponent buttonText=\\"Press me\\" />);
 
     expect(await driver.getButtonText()).toEqual('Press me');
+  });
+});
+",
+  "src/MyTestComponent/test/MyTestComponent.visual.js": "import React from 'react';
+import { storiesOf } from '@storybook/react';
+import MyTestComponent from '../MyTestComponent';
+
+const commonProps = {
+  //use for repeated props across the tests (e.g. {buttonText: 'example'})
+};
+
+const tests = [
+  {
+    describe: 'sanity', // prop name (e.g. size)
+    its: [
+      {
+        it: 'default', //prop vaiation (e.g. small)
+        props: {
+          // the simulation (e.g. {size: \\"small\\"})
+        },
+      },
+    ],
+  },
+];
+
+tests.forEach(({ describe, its }) => {
+  its.forEach(({ it, props }) => {
+    storiesOf(\`MyTestComponent/\${describe}\`, module).add(it, () => (
+      <MyTestComponent {...commonProps} {...props} />
+    ));
   });
 });
 ",

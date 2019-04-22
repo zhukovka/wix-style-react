@@ -214,9 +214,9 @@ export default class PageHeader extends WixComponent {
             })}
             data-hook="page-header-actionbar"
           >
-            {
-              typeof actionsBar === 'function'? actionsBar({ minimized, hasBackgroundImage }): actionsBar
-            }
+            {typeof actionsBar === 'function'
+              ? actionsBar({ minimized, hasBackgroundImage })
+              : actionsBar}
           </div>
         )}
       </div>

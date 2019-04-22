@@ -2,14 +2,16 @@ import DatePicker from '..';
 
 import format from 'date-fns/format';
 
+import { storySettings } from './storySettings';
+
 const defaultValue = new Date('2017/05/01');
 const today = new Date();
 const tomorrow = new Date();
 tomorrow.setDate(today.getDate() + 1);
 
 export default {
-  category: '3. Inputs',
-  storyName: '3.6 DatePicker',
+  category: storySettings.category,
+  storyName: storySettings.storyName,
   component: DatePicker,
   componentPath: '..',
 

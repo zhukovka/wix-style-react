@@ -1,4 +1,6 @@
+import { Category } from '../../../stories/storiesHierarchy';
+
 export const storySettings = {
-  category: '8. Notification Bars',
-  storyName: '8.7 SectionHelper',
+  category: Category.COMPONENTS,
+  storyName: 'SectionHelper',
 };

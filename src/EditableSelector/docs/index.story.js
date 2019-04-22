@@ -9,11 +9,13 @@ import CardWithEditableSelectorExample from './CardWithEditableSelector';
 import CardWithEditableSelectorExampleRaw from '!raw-loader!./CardWithEditableSelector';
 
 import PopoverWithEditableSelectorExample from './PopoverWithEditableSelector';
-import PopoverhEditableSelectorExampleRaw from '!raw-loader!./PopoverWithEditableSelector';
+import PopoverEditableSelectorExampleRaw from '!raw-loader!./PopoverWithEditableSelector';
+
+import { storySettings } from './storySettings';
 
 export default {
-  category: '11. Pickers and Selectors',
-  storyName: '11.2 EditableSelector',
+  category: storySettings.category,
+  storyName: storySettings.storyName,
 
   component: EditableSelector,
   componentPath: '..',
@@ -34,7 +36,7 @@ export default {
 
               <CodeExample
                 title="Popover With Editable Selector"
-                code={PopoverhEditableSelectorExampleRaw}
+                code={PopoverEditableSelectorExampleRaw}
               >
                 <PopoverWithEditableSelectorExample />
               </CodeExample>

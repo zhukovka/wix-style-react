@@ -10,7 +10,7 @@ import Dropdown from '../../src/Dropdown';
 import RadioGroup from '../../src/RadioGroup';
 import Text from '../../src/Text';
 
-import StorySettings from './StorySettings';
+import { storySettings } from './storySettings';
 
 const options = [{ id: 1, value: '1' }, { id: 2, value: '2' }];
 
@@ -52,7 +52,7 @@ export default class Form extends Component {
       case 'checkbox':
         selectionInput = (
           <Checkbox
-            dataHook={StorySettings.dataHookCheckbox}
+            dataHook={storySettings.dataHookCheckbox}
             size="medium"
             checked={this.state.checkboxValue}
             onChange={e => this.setState({ checkboxValue: e.target.checked })}
@@ -66,7 +66,7 @@ export default class Form extends Component {
       case 'dropdown':
         selectionInput = (
           <Dropdown
-            dataHook={StorySettings.dataHookDropdown}
+            dataHook={storySettings.dataHookDropdown}
             options={options}
             dropDirectionUp
             size="normal"

@@ -3,8 +3,13 @@ import { tabsTestkitFactory } from '../../testkit/protractor';
 import { waitForVisibilityOf } from 'wix-ui-test-utils/protractor';
 import { createStoryUrl } from '../../test/utils/storybook-helpers';
 
+import { storySettings } from './docs/storySettings';
+
 describe('Tabs', () => {
-  const storyUrl = createStoryUrl({ kind: '6. Navigation', story: '6.3 Tabs' });
+  const storyUrl = createStoryUrl({
+    kind: storySettings.category,
+    story: storySettings.storyName,
+  });
   const dataHook = 'story-tabs';
 
   eyes.it('renders enough tab items', () => {

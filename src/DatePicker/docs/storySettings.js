@@ -1,8 +1,8 @@
 import { Category } from '../../../stories/storiesHierarchy';
 
 export const storySettings = {
-  category: Category.INPUTS,
-  storyName: '3.6 DatePicker',
+  category: Category.COMPONENTS,
+  storyName: 'DatePicker',
   dataHook: 'storybook-datepicker',
 };
 

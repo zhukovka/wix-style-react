@@ -3,10 +3,12 @@ import { breadcrumbsTestkitFactory } from '../../testkit/protractor';
 import { waitForVisibilityOf } from 'wix-ui-test-utils/protractor';
 import { createStoryUrl } from '../../test/utils/storybook-helpers';
 
+import { storySettings } from './docs/storySettings';
+
 describe('Breadcrumbs', () => {
   const storyUrl = createStoryUrl({
-    kind: '6. Navigation',
-    story: '6.2 Breadcrumbs',
+    kind: storySettings.category,
+    story: storySettings.storyName,
   });
   const eyes = eyesItInstance();
 

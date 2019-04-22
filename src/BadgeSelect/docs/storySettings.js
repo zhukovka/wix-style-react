@@ -1,5 +1,7 @@
+import { Category } from '../../../stories/storiesHierarchy';
+
 export const storySettings = {
-  kind: '12. Other',
-  storyName: '12.2 BadgeSelect',
+  category: Category.COMPONENTS,
+  storyName: 'BadgeSelect',
   dataHook: 'storybook-badge-select',
 };

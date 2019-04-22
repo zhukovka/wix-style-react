@@ -3,10 +3,12 @@ import { waitForVisibilityOf } from 'wix-ui-test-utils/protractor';
 import { createStoryUrl } from '../../test/utils/storybook-helpers';
 import autoExampleDriver from 'wix-storybook-utils/AutoExampleDriver';
 
+import { storySettings } from './docs/storySettings';
+
 describe('ModalSelectorLayout', () => {
   const storyUrl = createStoryUrl({
-    kind: '11. Pickers and Selectors',
-    story: '11.3 ModalSelectorLayout',
+    kind: storySettings.category,
+    story: storySettings.storyName,
   });
   const modalSelectorLayoutDriver = modalSelectorLayoutTestkitFactory({
     dataHook: 'storybook-modal-selector-layout',

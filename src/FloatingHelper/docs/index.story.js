@@ -2,8 +2,8 @@ import * as React from 'react';
 import FloatingHelper from '..';
 import Image from 'wix-ui-icons-common/Image';
 
-import { storySettings } from './StorySettings';
-import { storySettings as helperStorySettings } from '../FloatingHelperContent/docs/StorySettings';
+import { storySettings } from './storySettings';
+import { storySettings as helperStorySettings } from '../FloatingHelperContent/docs/storySettings';
 
 import CodeExample from 'wix-storybook-utils/CodeExample';
 
@@ -22,7 +22,7 @@ import ControlledExampleRaw from '!raw-loader!./ControlledExample';
 const exampleWrapperStyle = { marginTop: 100, marginBottom: 100 };
 
 export default {
-  category: storySettings.kind,
+  category: storySettings.category,
   storyName: storySettings.story,
   component: FloatingHelper,
   componentPath: '..',

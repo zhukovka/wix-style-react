@@ -6,7 +6,9 @@ import InteractiveCodeExample from 'wix-storybook-utils/InteractiveCodeExample';
 import ReadMe from '../README.md';
 import TabsExample from './TabsExample';
 
-storiesOf('6. Navigation', module).add('6.3 Tabs', () => (
+import { storySettings } from './storySettings';
+
+storiesOf(storySettings.category, module).add(storySettings.storyName, () => (
   <div>
     <Markdown source={ReadMe} />
     <InteractiveCodeExample title="Customize a <Tabs/>">

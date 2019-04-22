@@ -1,0 +1,47 @@
+:import {
+  -st-from: '../Text/Text.st.css';
+  -st-default: Text;
+};
+
+:import {
+  -st-from: "wix-ui-backoffice/src/colors.st.css";
+  -st-named: D10, D20, D40, D60, D70, D80;
+}
+
+.root {
+  width: 100%;
+  border: solid 1px value(D60);
+  background-color: value(D70);
+  height: 100%;
+  box-sizing: border-box;
+}
+
+.container {
+  padding: 9px 12px 9px 12px;
+  border-top: solid 1px value(D60);
+}
+.socialPreviewUrl {
+  -st-extends: Text;
+}
+
+.socialPreviewUrl:size(tiny) {
+  color: value(D40);
+  display: block;
+}
+
+.socialPreviewTitle{
+  -st-extends: Text;
+}
+.socialPreviewTitle:size(small) {
+  color: value(D10);
+  display: block;
+}
+
+.socialPreviewDescription {
+  -st-extends: Text;
+}
+
+.socialPreviewDescription:size(tiny) {
+  color: value(D20);
+  display: block;
+}

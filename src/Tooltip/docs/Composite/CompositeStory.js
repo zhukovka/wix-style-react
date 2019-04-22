@@ -27,7 +27,7 @@ import ExampleMoveRaw from '!raw-loader!../Core/ExampleMove';
 
 import TooltipSource from '!raw-loader!../../Tooltip';
 
-storiesOf(Category.TOOLTIP_AND_POPOVER, module).add('7.1. Tooltip', () => (
+storiesOf(Category.COMPONENTS, module).add('Tooltip', () => (
   <TabbedView tabs={['Usage', 'API', 'Testkit']}>
     <div>
       <h1>Tooltip</h1>

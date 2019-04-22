@@ -9,9 +9,11 @@ import CodeExample from 'wix-storybook-utils/CodeExample';
 import ExampleFormField from './ExampleFormField';
 import ExampleFormFieldRaw from '!raw-loader!./ExampleFormField';
 
+import { storySettings } from './storySettings';
+
 export default {
-  category: '4. Selection',
-  storyName: '4.4 ToggleSwitch',
+  category: storySettings.category,
+  storyName: storySettings.storyName,
 
   component: ToggleSwitch,
   componentPath: '..',

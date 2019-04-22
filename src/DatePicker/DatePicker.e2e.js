@@ -8,6 +8,8 @@ import { eyesItInstance } from '../../test/utils/eyes-it';
 import autoExampleDriver from 'wix-storybook-utils/AutoExampleDriver';
 import { storySettings, testStories } from './docs/storySettings';
 
+import { storySettings } from './docs/storySettings';
+
 describe('DatePicker', () => {
   const storyUrl = createStoryUrl({
     kind: storySettings.category,

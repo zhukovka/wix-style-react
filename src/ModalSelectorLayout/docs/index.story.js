@@ -5,6 +5,8 @@ import ModalSelectorLayout from '..';
 import Button from '../../Button';
 import Text from '../../Text';
 
+import { storySettings } from './storySettings';
+
 const ITEMS = times(50, i => ({
   id: i,
   title: `Title ${i}`,
@@ -17,8 +19,8 @@ const ITEMS = times(50, i => ({
 }));
 
 export default {
-  category: '11. Pickers and Selectors',
-  storyName: '11.3 ModalSelectorLayout',
+  category: storySettings.category,
+  storyName: storySettings.storyName,
   component: ModalSelectorLayout,
   componentPath: '..',
 

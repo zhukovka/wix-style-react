@@ -1,7 +1,7 @@
 {
   "name": "wix-style-react",
   "description": "wix-style-react",
-  "version": "6.13.0",
+  "version": "6.15.0",
   "main": "./dist/src/index.js",
   "module": "./dist/es/src/index.js",
   "sideEffects": [
@@ -56,7 +56,8 @@
     "generate-test-component": "./scripts/generate-component/bin/generate-test-component.js",
     "generate-testkit-exports": "node scripts/generate-testkit-exports",
     "generate-autodocs-registry": "node scripts/generate-autodocs-registry",
-    "eyes-storybook-debug": "start-storybook -c ./.storybook-test -p 6007"
+    "eyes-storybook-debug": "start-storybook -c ./.storybook-test -p 6007",
+    "make-async-spec": "npx jscodeshift -t scripts/unidriver-migration/src/make-async/make-async.js"
   },
   "yoshi": {
     "entry": {
@@ -189,7 +190,6 @@
     "react-day-picker": "^7.0.7",
     "react-dnd": "^2.5.1",
     "react-dnd-html5-backend": "^5.0.1",
-    "react-input-autosize": "^2.2.1",
     "react-modal": "^3.3.2",
     "react-motion": "^0.4.7",
     "react-portal": "^4.1.5",
@@ -202,10 +202,18 @@
     "wix-ui-backoffice": "^1.0.339",
     "wix-ui-core": "^2.0.1",
     "wix-ui-icons-common": "^2.0.9",
-    "wix-ui-test-utils": "^1.0.150"
+    "wix-ui-test-utils": "^1.0.151"
   },
   "lint-staged": {
-    "*.{js,scss}": "yoshi lint --fix --"
+    "linters": {
+      "*.{js,scss}": [
+        "yoshi lint --fix",
+        "git add"
+      ]
+    },
+    "ignore": [
+      "**/scripts/generate-component/**"
+    ]
   },
   "jest": {
     "setupFiles": [

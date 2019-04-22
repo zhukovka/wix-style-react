@@ -15,6 +15,8 @@ class DropdownBase extends React.PureComponent {
     open: PropTypes.bool,
     /** The Popover's placement */
     placement: PropTypes.oneOf(placements),
+    /** The Popover's appendTo */
+    appendTo: PropTypes.oneOfType([PropTypes.string, PropTypes.node]),
     /** Whether to show the Popover's arrow */
     showArrow: PropTypes.bool,
     /** Callback function to be called on outside click */
@@ -87,6 +89,7 @@ class DropdownBase extends React.PureComponent {
 
   static defaultProps = {
     placement: 'bottom',
+    appendTo: 'parent',
     showArrow: false,
   };
 
@@ -276,6 +279,7 @@ class DropdownBase extends React.PureComponent {
     const {
       dataHook,
       placement,
+      appendTo,
       showArrow,
       options,
       minWidth,
@@ -289,6 +293,7 @@ class DropdownBase extends React.PureComponent {
         dataHook={dataHook}
         shown={open}
         placement={placement}
+        appendTo={appendTo}
         showArrow={showArrow}
         onKeyDown={this._handleKeyDown}
         onMouseEnter={this._handlePopoverMouseEnter}

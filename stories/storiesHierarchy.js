@@ -14,7 +14,7 @@ export const Category = {
   BUTTONS: '5. Buttons',
   INPUTS: '3. Inputs',
   SELECTION: '4. Selection',
-  TOOLTIP_AND_POPOVER: '7. Tooltip and Popover',
+  TOOLTIP: '7. Tooltip',
   MODALS: '9. Modals',
   PICKERS_AND_SELECTORS: '11. Pickers and Selectors',
   OTHER: '12. Other',
@@ -22,4 +22,5 @@ export const Category = {
   STYLING: 'Styling',
   WIP: 'WIP',
   TESTS: 'Tests',
+  DEPRECATED: 'Deprecated',
 };

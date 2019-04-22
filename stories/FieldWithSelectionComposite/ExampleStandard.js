@@ -8,7 +8,7 @@ import RadioGroup from '../../src/RadioGroup';
 import ToggleSwitch from '../../src/ToggleSwitch';
 
 import styles from './ExampleStandard.scss';
-import StorySettings from './StorySettings';
+import { storySettings } from './storySettings';
 
 class ExampleStandard extends Component {
   static propTypes = {
@@ -178,7 +178,7 @@ class ExampleStandard extends Component {
         </div>
         <div className={styles.output}>
           <FieldWithSelectionTemplate
-            dataHook={StorySettings.dataHookExampleCheckbox}
+            dataHook={storySettings.dataHookExampleCheckbox}
             {...this.state}
             onChange={this.props.onChange}
           />

@@ -6,9 +6,9 @@ import Markdown from 'wix-storybook-utils/Markdown';
 import Readme from '../../src/Composite/FieldWithSelectionComposite/README.md';
 import ExampleStandard from './ExampleStandard';
 import FieldWithSelectionTemplate from './FieldWithSelectionTemplate';
-import storySettings from './StorySettings';
+import { storySettings } from './storySettings';
 
-storiesOf(storySettings.kind, module).add(storySettings.storyName, () => (
+storiesOf(storySettings.category, module).add(storySettings.storyName, () => (
   <div>
     <Markdown source={Readme} />
 

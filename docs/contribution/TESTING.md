@@ -32,6 +32,10 @@ describe('Checkbox', () => {
 });
 ```
 
+### Visual Testing - new generation
+
+1. Visual testing implmementation becomes trivial using a new and simple methodology of Applitools' Visual Grid. [Read about it here](./VISUAL_TESTING.md)
+
 ### Browser (E2E) Tests
 
 #### What Do We Test

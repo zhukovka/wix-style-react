@@ -25,8 +25,10 @@ class InputWithTags extends React.Component {
   }
 
   handleClick(e) {
-    this.input.focus();
-    this.props.onInputClicked && this.props.onInputClicked(e);
+    if (!this.props.disabled) {
+      this.input.focus();
+      this.props.onInputClicked && this.props.onInputClicked(e);
+    }
   }
 
   handleInputFocus(e) {
@@ -56,12 +58,13 @@ class InputWithTags extends React.Component {
     const { inputHasFocus: hasFocus } = this.state;
     const isSelectMode = mode === 'select';
 
-    const className = classNames(styles.showPointer, {
+    const className = classNames({
+      [styles.showPointer]: !disabled,
       [styles.inputWithTagsContainer]: true,
       [styles.disabled]: disabled,
       [styles.error]: error,
       [styles.readOnly]: isSelectMode,
-      [styles.hasFocus]: hasFocus,
+      [styles.hasFocus]: hasFocus && !disabled,
       [styles.hasMaxHeight]:
         !isUndefined(this.props.maxHeight) ||
         !isUndefined(this.props.maxNumRows),

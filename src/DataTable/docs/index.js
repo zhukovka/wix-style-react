@@ -25,7 +25,9 @@ import ExampleSortableRaw from '!raw-loader!./ExampleSortable';
 import ExampleSortableOldDesign from './ExampleSortableOldDesign';
 import ExampleSortableOldDesignRaw from '!raw-loader!./ExampleSortableOldDesign';
 
-storiesOf('10. Tables', module).add('10.1 DataTable (Legacy)', () => (
+import { storySettings } from './storySettings';
+
+storiesOf(storySettings.category, module).add(storySettings.storyName, () => (
   <TabbedView tabs={['API', 'TestKits']}>
     <div>
       <Markdown source={Readme} />

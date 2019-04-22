@@ -54,7 +54,7 @@ const columnsOption2 = [
 ];
 
 export default {
-  category: storySettings.kind,
+  category: storySettings.category,
   storyName: storySettings.storyName,
 
   component: Table,

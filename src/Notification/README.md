@@ -33,4 +33,5 @@
   | type       | string (button, textLink) | -              | button                  | A Button component or TextLink component |
   | onClick    | function                  | -              | e => e.preventDefault() | -                                        |
   | link       | string                    | -              | -                       | A url to navigate to on click            |
+  | target   | string                    | `_self`              | -                       | The `target` attribute to be set on the `a` tag (for `textLink` type)                      |
 </details>

@@ -9,5 +9,6 @@ export const storySettings = {
 export const testStories = {
   tabsSwitches: 'Tabs switches',
   selectMode: 'Select Mode',
+  disabled: 'Disabled',
   lineNotBraking: 'Line not braking',
 };

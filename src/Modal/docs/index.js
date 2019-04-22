@@ -10,7 +10,9 @@ import Readme from '../README.md';
 import ExampleControlled from './ExampleControlled';
 import ExampleControlledRaw from '!raw-loader!./ExampleControlled';
 
-storiesOf('9. Modals', module).add('Modal', () => (
+import { storySettings } from '../test/storySettings';
+
+storiesOf(storySettings.category, module).add(storySettings.storyName, () => (
   <TabbedView tabs={['API', 'TestKits']}>
     <div>
       <Markdown source={Readme} />

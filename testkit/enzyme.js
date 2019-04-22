@@ -11,6 +11,17 @@ import {
   enzymeUniTestkitFactoryCreator,
 } from 'wix-ui-test-utils/enzyme';
 
+import tooltipDriverFactory from '../src/Tooltip/Tooltip.driver';
+import { tooltipDriverFactory as tooltipNextDriverFactory } from '../src/Tooltip/TooltipNext/Tooltip.uni.driver';
+
+export const tooltipTestkitFactory = obj => {
+  const hasUpgrade = obj.wrapper.find('[data-hook="popover-element"]').length;
+
+  return hasUpgrade
+    ? enzymeUniTestkitFactoryCreator(tooltipNextDriverFactory)(obj)
+    : enzymeTestkitFactoryCreator(tooltipDriverFactory)(obj);
+};
+
 const load = module => {
   const MODULE_META_KEYS = ['__esModule'];
 
@@ -107,6 +118,7 @@ export const sideMenuTestkitFactory = enzymeTestkitFactoryCreator(load(require('
 export const sideMenuDrillTestkitFactory = enzymeTestkitFactoryCreator(load(require('../src/SideMenu/DrillView/DrillView.driver')));
 export const skeletonTestkitFactory = enzymeTestkitFactoryCreator(load(require('../src/Skeleton/Skeleton.driver')));
 export const sliderTestkitFactory = enzymeTestkitFactoryCreator(load(require('../src/Slider/Slider.driver')));
+export const socialPreviewTestkitFactory = enzymeUniTestkitFactoryCreator(load(require('../src/SocialPreview/SocialPreview.uni.driver')));
 export const sortableListTestkitFactory = enzymeTestkitFactoryCreator(load(require('../src/SortableList/SortableList.driver')));
 export const statsWidgetTestkitFactory = enzymeTestkitFactoryCreator(load(require('../src/StatsWidget/StatsWidget.driver')));
 export const tableTestkitFactory = enzymeTestkitFactoryCreator(load(require('../src/Table/Table.driver')));
@@ -118,7 +130,6 @@ export const textButtonTestkitFactory = enzymeUniTestkitFactoryCreator(load(requ
 export const thumbnailTestkitFactory = enzymeUniTestkitFactoryCreator(load(require('../src/Thumbnail/Thumbnail.uni.driver')));
 export const timeInputTestkitFactory = enzymeTestkitFactoryCreator(load(require('../src/TimeInput/TimeInput.driver')));
 export const toggleSwitchTestkitFactory = enzymeTestkitFactoryCreator(load(require('../src/ToggleSwitch/ToggleSwitch.driver')));
-export const tooltipTestkitFactory = enzymeTestkitFactoryCreator(load(require('../src/Tooltip/Tooltip.driver')));
 export const headerTestkitFactory = enzymeTestkitFactoryCreator(load(require('../src/Card/Header/Header.driver')));
 export const draggableTestkitFactory = enzymeTestkitFactoryCreator(load(require('../src/DragAndDrop/Draggable/Draggable.driver')));
 export const editableRowTestkitFactory = enzymeTestkitFactoryCreator(load(require('../src/EditableSelector/EditableRow/EditableRow.driver')));

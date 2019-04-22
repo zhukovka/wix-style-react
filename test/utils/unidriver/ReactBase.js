@@ -37,7 +37,7 @@ export function ReactBase(base) {
      * Workaround Unidriver react adapter's implementation which dispatches a RAL event, that gets nullified by React.
      * Pending fix in unidriver.
      */
-    click: async () => {
+    click: async eventData => {
       if (base.type === 'react') {
         // setting button 0 is now needed in React 16+ as it's not set by react anymore
         // 15 - https://github.com/facebook/react/blob/v15.6.1/src/renderers/dom/client/syntheticEvents/SyntheticMouseEvent.js#L45
@@ -45,7 +45,7 @@ export function ReactBase(base) {
         const elm = await htmlElement();
         Simulate.mouseDown(elm);
         Simulate.mouseUp(elm);
-        Simulate.click(elm, { button: 0 });
+        Simulate.click(elm, eventData ? eventData : { button: 0 });
       } else {
         return base.click();
       }
@@ -76,14 +76,17 @@ export function ReactBase(base) {
       elm.blur();
       Simulate.blur(elm); // TODO: Is this redundant?
     },
+    disabled: async () => (await htmlElement()).disabled,
     tabIndex: async () => (await htmlElement()).tabIndex,
     readOnly: async () => (await htmlElement()).readOnly,
     innerHtml: async () => (await htmlElement()).innerHTML,
     required: async () => (await htmlElement()).required,
+    nodeType: async () => (await htmlElement()).nodeType,
     defaultValue: async () => (await htmlElement()).defaultValue,
     // TODO: Remove this. use unidriver.text()
     textContent: async () => (await htmlElement()).textContent,
     getStyle: async () => (await htmlElement()).style,
+    width: async () => (await htmlElement()).width,
     getClassList: async () => (await htmlElement()).classList,
     /** @returns {array} array of children unidrivers */
     children: async () => {
@@ -97,10 +100,20 @@ export function ReactBase(base) {
   };
 
   const shouldBePrivate = {
+    /* Event Simulation */
     // TODO: replace methods that use Simulate with a single `simulate`/`eventTrigger` method
-    keyup: async () => Simulate.keyUp(await htmlElement()),
-    keydown: async key => Simulate.keyDown(await htmlElement(), key),
-    mouseLeave: async () => Simulate.mouseLeave(await htmlElement()),
+    compositionStart: async () =>
+      Simulate.compositionStart(await htmlElement()),
+    compositionEnd: async () => Simulate.compositionEnd(await htmlElement()),
+    keyup: async eventData => Simulate.keyUp(await htmlElement(), eventData),
+    keydown: async eventData =>
+      Simulate.keyDown(await htmlElement(), eventData),
+    mouseEnter: async eventData =>
+      Simulate.mouseEnter(await htmlElement(), eventData),
+    mouseLeave: async eventData =>
+      Simulate.mouseLeave(await htmlElement(), eventData),
+
+    /* Access Element Props */
     // TODO: remove selectionStart and use 'prop' method
     selectionStart: async () => (await htmlElement()).selectionStart,
     /** Get a property of the HTMLElement by name */

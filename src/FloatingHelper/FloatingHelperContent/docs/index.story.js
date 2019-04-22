@@ -1,6 +1,6 @@
 import React from 'react';
 import FloatingHelperContent from '..';
-import { storySettings } from './StorySettings';
+import { storySettings } from './storySettings';
 import Image from 'wix-ui-icons-common/Image';
 
 const image = <Image width="102" height="102" />;
