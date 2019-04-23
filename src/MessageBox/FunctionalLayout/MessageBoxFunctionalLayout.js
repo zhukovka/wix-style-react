@@ -156,30 +156,55 @@ class MessageBoxFunctionalLayout extends WixComponent {
 }
 
 MessageBoxFunctionalLayout.propTypes = {
+  /** Hides the footer that contains the action buttons */
   hideFooter: PropTypes.bool,
+  /** Defines the main action button text */
   confirmText: PropTypes.node,
+  /** Add a prefix icon for the main action button */
   confirmPrefixIcon: PropTypes.element,
+  /** Add a suffix icon for the main action button */
   confirmSuffixIcon: PropTypes.element,
+  /** Defines the secondary action button text */
   cancelText: PropTypes.node,
+  /** Add a prefix icon for the secondary action button */
   cancelPrefixIcon: PropTypes.element,
+  /** Add a suffix icon for the secondary action button */
   cancelSuffixIcon: PropTypes.element,
-  theme: PropTypes.string,
+  /** modal theme color */
+  theme: PropTypes.oneOf(['red', 'blue', 'purple', 'green']),
+  /** Called when the main action (confirm) is clicked */
   onOk: PropTypes.func,
+  /** Called when the secondary action (cancel) is clicked */
   onCancel: PropTypes.func,
+  /** Called when the close button is clicked */
   onClose: PropTypes.func,
+  /** Specify exact width */
   width: PropTypes.string,
+  /** Defines the modals's header title */
   title: PropTypes.node,
+  /** The content to be displayed. can be text or some node */
   children: PropTypes.any,
+  /** Max height. When supplied - will allow internal scroll to the component */
   maxHeight: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
-  buttonsHeight: PropTypes.string,
+  /** Defines the buttons size */
+  buttonsHeight: PropTypes.oneOf(['tiny', 'small', 'medium', 'large']),
+  /** Show/hide the close button */
   closeButton: PropTypes.bool,
+  /** Defines the secondary action button */
   disableCancel: PropTypes.bool,
+  /** Defines the main action button */
   disableConfirmation: PropTypes.bool,
+  /** Removes the content padding. Used in custom modal that defines it's own padding*/
   noBodyPadding: PropTypes.bool,
+  /** A render slot to display a foot note */
   footerBottomChildren: PropTypes.node,
+  /** Stretches the component to a full screen mode (with some padding) */
   fullscreen: PropTypes.bool,
+  /** Changes the internal padding to be used with `<EmptyState/>` component */
   withEmptyState: PropTypes.bool,
+  /** Used to display some side component in the footer, for example `<Checkbox/>` */
   sideActions: PropTypes.node,
+  /** Used to display an illustration on the left side */
   image: PropTypes.node,
 };
 
