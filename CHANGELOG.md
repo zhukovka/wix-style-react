@@ -20,6 +20,7 @@ Types of changes:
 ### Changed
 
 - `<Input>` - add `updateControlledOnClear` prop which if provided fixes an error thrown in the console [#3251](https://github.com/wix/wix-style-react/pull/3251)
+- `<ContactItemBuilder/>` - add disable prop [#3248](https://github.com/wix/wix-style-react/pull/3248)
 
 
 ## 6.15.0 - 2019-04-21 
