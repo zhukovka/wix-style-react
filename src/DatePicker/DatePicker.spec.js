@@ -104,6 +104,26 @@ describe('DatePicker', () => {
         inputDriver.focus();
         expect(calendarDriver.isVisible()).toBe(true);
       });
+
+      it('on render when given `initialOpen` prop', () => {
+        const onChange = jest.fn();
+        const date = new Date(2015, 9, 2);
+        const { calendarDriver } = createDriver(
+          <DatePicker onChange={onChange} value={date} initialOpen />,
+        );
+
+        expect(calendarDriver.isVisible()).toBe(true);
+      });
+
+      it('on render when given `isOpen` prop', () => {
+        const onChange = jest.fn();
+        const date = new Date(2015, 9, 2);
+        const { calendarDriver } = createDriver(
+          <DatePicker onChange={onChange} value={date} isOpen />,
+        );
+
+        expect(calendarDriver.isVisible()).toBe(true);
+      });
     });
 
     describe('should close', () => {

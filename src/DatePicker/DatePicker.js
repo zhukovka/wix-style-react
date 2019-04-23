@@ -13,6 +13,8 @@ import Calendar from '../Calendar';
 import styles from './DatePicker.scss';
 import DateInput from '../DateInput';
 
+import deprecationLog from '../utils/deprecationLog';
+
 /**
  * DatePicker component
  *
@@ -43,9 +45,15 @@ export default class DatePicker extends WixComponent {
   constructor(props) {
     super(props);
 
+    if (props.isOpen !== undefined) {
+      deprecationLog('DatePicker isOpen is deprecated. Please use initialOpen');
+    }
+
+    const initialOpen = props.initialOpen || props.isOpen || false;
+
     this.state = {
       value: props.value || new Date(),
-      isOpen: props.isOpen || false,
+      isOpen: initialOpen,
       isDateInputFocusable: !props.isOpen,
     };
   }
@@ -293,8 +301,14 @@ DatePicker.propTypes = {
   /** The selected date */
   value: PropTypes.object,
 
-  /** controls the whether the calendar will be visible or not */
+  /**
+   * Controls the whether the calendar will be visible or not
+   * @deprecated
+   * */
   isOpen: PropTypes.bool,
+
+  /** Controls the whether the calendar will be initially visible or not*/
+  initialOpen: PropTypes.bool,
 
   /** will show exclamation icon when true **/
   error: PropTypes.bool,
