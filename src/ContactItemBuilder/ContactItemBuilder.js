@@ -48,8 +48,15 @@ ContactItem.propTypes = {
   imageUrl: PropTypes.string,
 };
 
-export const contactItemBuilder = ({ id, title, subtitle, imageUrl }) => ({
+export const contactItemBuilder = ({
   id,
+  title,
+  subtitle,
+  imageUrl,
+  disabled,
+}) => ({
+  id,
+  disabled,
   value: ({ selected }) => (
     <ContactItem
       title={title}
