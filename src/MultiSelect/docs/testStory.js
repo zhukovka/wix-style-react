@@ -6,7 +6,7 @@ import { storySettings, testStories } from './storySettings';
 import { RTLWrapper } from '../../../stories/utils/RTLWrapper';
 import MultiSelect from '..';
 
-import ExampleReorderable from './ExampleReorderable';
+import ExampleReorderable from './tests/Reorderable';
 import TestTabsSwitches from './tests/TestTabsSwitches';
 import TestLineNotBraking from './tests/TestLineNotBraking';
 

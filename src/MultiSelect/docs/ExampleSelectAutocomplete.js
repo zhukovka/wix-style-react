@@ -1,6 +1,9 @@
-/* eslint-disable no-console */
+/* eslint-disable no-undef */
+
 import React from 'react';
 import MultiSelect from 'wix-style-react/MultiSelect';
+import Card from 'wix-style-react/Card';
+import FormField from 'wix-style-react/FormField';
 
 const countries = [
   { name: 'Alabama', code: 'AL' },
@@ -49,7 +52,6 @@ class CountrySelection extends React.Component {
   }
 
   handleOnSelect(option) {
-    console.log('onSelect(option): option=', option);
     const newTag = this.createTag({
       countryName: option.name,
       countryCode: option.code,
@@ -58,14 +60,12 @@ class CountrySelection extends React.Component {
   }
 
   handleOnRemoveTag(tagId) {
-    console.log(`onRemoveTag(tagId): tagId=${tagId})`);
     this.setState({
       tags: this.state.tags.filter(currTag => currTag.id !== tagId),
     });
   }
 
   handleOnChange(event) {
-    console.log(`onChange('${event.target.value}')`);
     this.setState({ inputValue: event.target.value });
   }
 
@@ -93,4 +93,14 @@ class CountrySelection extends React.Component {
   }
 }
 
-export default CountrySelection;
+render(
+  <div style={{ width: '600px' }}>
+    <Card>
+      <Card.Content>
+        <FormField label="Select Countries">
+          <CountrySelection />
+        </FormField>
+      </Card.Content>
+    </Card>
+  </div>,
+);

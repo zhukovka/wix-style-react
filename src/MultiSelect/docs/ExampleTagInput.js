@@ -1,6 +1,9 @@
-/* eslint-disable no-console */
+/* eslint-disable no-undef */
+
 import React from 'react';
 import MultiSelect from 'wix-style-react/MultiSelect';
+import Card from 'wix-style-react/Card';
+import FormField from 'wix-style-react/FormField';
 
 class ExampleTagInput extends React.Component {
   constructor(props) {
@@ -18,19 +21,16 @@ class ExampleTagInput extends React.Component {
   }
 
   handleOnRemoveTag(tagId) {
-    console.log(`onRemoveTag(tagId): tagId=${tagId})`);
     this.setState({
       tags: this.state.tags.filter(currTag => currTag.id !== tagId),
     });
   }
 
   handleOnChange(event) {
-    console.log(`onChange('${event.target.value}')`);
     this.setState({ inputValue: event.target.value });
   }
 
   handleOnManuallyInput(values) {
-    console.log(`onManuallyInput(values): values=${values}`);
     const tags = values.map(value => {
       const tag = { id: String(this.nextId++), label: value };
       return tag;
@@ -53,4 +53,14 @@ class ExampleTagInput extends React.Component {
   }
 }
 
-export default ExampleTagInput;
+render(
+  <div style={{ width: '600px' }}>
+    <Card>
+      <Card.Content>
+        <FormField label="Enter Any Tag">
+          <ExampleTagInput />
+        </FormField>
+      </Card.Content>
+    </Card>
+  </div>,
+);

@@ -15,7 +15,6 @@ import {
 
 import Page from '..';
 import { storySettings } from './storySettings';
-import { sterilizeCode } from '../../../stories/utils/sterilizeCodeForLive';
 import { baseScope } from '../../../stories/utils/LiveCodeExample';
 import LinkTo from '@storybook/addon-links/react';
 
@@ -108,7 +107,7 @@ export default {
         code({
           title: 'Stretch Content Vertically',
           description: `Use Grid's <Container stretchVertically> to fill the viewport's height`,
-          source: sterilizeCode(ExampleStretchGridRaw),
+          source: ExampleStretchGridRaw,
           compact: true,
           autoRender: false,
         }),
@@ -116,7 +115,7 @@ export default {
         code({
           title: 'Multiple Tables With Sticky Headers',
           description: `Use <Page.Sticky/> to wrap the Table's header`,
-          source: sterilizeCode(ExampleStickyTableWithGapRaw),
+          source: ExampleStickyTableWithGapRaw,
           compact: true,
           autoRender: false,
         }),
@@ -124,7 +123,7 @@ export default {
         code({
           title: 'Sticky Side Card',
           description: `Use <Page.Sticky/> to wrap a <Card/> on a side`,
-          source: sterilizeCode(ExampleStickySideRaw),
+          source: ExampleStickySideRaw,
           compact: true,
           autoRender: false,
         }),

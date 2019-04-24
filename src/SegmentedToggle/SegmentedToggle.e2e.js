@@ -7,11 +7,15 @@ import {
 } from '../../test/utils/storybook-helpers';
 
 const testStoryUrl = testName =>
-  createTestStoryUrl({ ...storySettings, testName });
+  createTestStoryUrl({
+    kind: storySettings.category,
+    ...storySettings,
+    testName,
+  });
 
 describe('SegmentedToggle', () => {
   const storyUrl = createStoryUrl({
-    kind: storySettings.kind,
+    kind: storySettings.category,
     story: storySettings.storyName,
   });
 

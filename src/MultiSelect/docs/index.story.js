@@ -12,11 +12,13 @@ import {
   tabs,
   testkit,
   title,
+  code as baseCode,
 } from 'wix-storybook-utils/Sections';
 
 import readmeApi from '../README.API.md';
 import readmeTestkit from '../README.TESTKIT.md';
 import playgroundStoryConfig from './MultiSelectPlaygroundConfig';
+import allComponents from '../../../stories/utils/allComponents';
 
 import ExampleSelectSimpleRaw from '!raw-loader!./ExampleSelectSimple';
 import ExampleSelectAutocompleteRaw from '!raw-loader!./ExampleSelectAutocomplete';
@@ -29,120 +31,13 @@ import ExampleReorderableRaw from '!raw-loader!./ExampleReorderable';
 
 import { storySettings } from './storySettings';
 
-import styles from './styles.scss';
-
-/**
- * Strips imports and exports
- *
- */
-function processLive(code, ComponentName, label) {
-  const filteredCode = code
-    .split('\n')
-    .map(line => {
-      if (line.startsWith('import')) {
-        return '// ' + line;
-      } else {
-        return line;
-      }
-    })
-    .filter(
-      line =>
-        !line.startsWith('export') &&
-        !(line === '/* eslint-disable no-console */'),
-    )
-    .join('\n');
-
-  return filteredCode + '\n\n' + createExampleRender(ComponentName, label);
-}
-
-function createExampleRender(Component, label) {
-  return `
-render(
-  <div style={{ width: '600px' }}>
-    <Card>
-      <Card.Content>
-        <FormField label="${label}">
-          <${Component} />
-        </FormField>
-      </Card.Content>
-    </Card>
-  </div>,
-);
-`;
-}
-
-const defaultLiveCodeProps = {
-  compact: true,
-  autoRender: false,
-  previewProps: {
-    className: styles.livePreview,
-  },
-};
-
-const examples = (
-  <div>
-    <LiveCodeExample
-      {...defaultLiveCodeProps}
-      title="Select"
-      initialCode={processLive(
-        ExampleSelectSimpleRaw,
-        'CountrySelection',
-        'Select Countries',
-      )}
-    />
-
-    <LiveCodeExample
-      {...defaultLiveCodeProps}
-      title="Select + Autocomplete"
-      initialCode={processLive(
-        ExampleSelectAutocompleteRaw,
-        'CountrySelection',
-        'Select Countries',
-      )}
-    />
-
-    <LiveCodeExample
-      {...defaultLiveCodeProps}
-      title="Tag Input"
-      initialCode={processLive(
-        ExampleTagInputRaw,
-        'ExampleTagInput',
-        'Enter Any Tag',
-      )}
-    />
-
-    <LiveCodeExample
-      {...defaultLiveCodeProps}
-      compact
-      title="Tag Input + Suggestions"
-      initialCode={processLive(
-        ExampleSuggestionsRaw,
-        'ContactsInput',
-        'Enter Contact Emails',
-      )}
-    />
-
-    <LiveCodeExample
-      {...defaultLiveCodeProps}
-      title="Tag Input + Selection"
-      initialCode={processLive(
-        ExampleTagInputSelectionRaw,
-        'CountryInput',
-        'Enter Or Select Countries',
-      )}
-    />
-
-    <LiveCodeExample
-      {...defaultLiveCodeProps}
-      title="Reorderable"
-      initialCode={processLive(
-        ExampleReorderableRaw,
-        'ExampleReorderable',
-        'Reorderable Numbers',
-      )}
-    />
-  </div>
-);
+const code = config =>
+  baseCode({
+    components: allComponents,
+    compact: true,
+    autoRender: false,
+    ...config,
+  });
 
 export default {
   category: storySettings.category,
@@ -175,7 +70,20 @@ export default {
 
           title('Examples'),
 
-          description({ text: examples }),
+          ...[
+            { title: 'Select', source: ExampleSelectSimpleRaw },
+            {
+              title: 'Select + Autocomplete',
+              source: ExampleSelectAutocompleteRaw,
+            },
+            { title: 'Tag Input', source: ExampleTagInputRaw },
+            { title: 'Tag Input + Suggestions', source: ExampleSuggestionsRaw },
+            {
+              title: 'Tag Input + Selection',
+              source: ExampleTagInputSelectionRaw,
+            },
+            { title: 'Reorderable', source: ExampleReorderableRaw },
+          ].map(code),
         ],
       }),
 

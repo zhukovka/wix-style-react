@@ -13,7 +13,6 @@ import { storySettings } from './storySettings';
 import { baseScope } from '../utils/LiveCodeExample';
 
 import * as examples from './examples';
-import { sterilizeCode } from '../utils/sterilizeCodeForLive';
 
 import ExampleGeneralLayoutRaw from '!raw-loader!./ExampleGeneralLayout';
 import ExampleSplitLayoutRaw from '!raw-loader!./ExampleSplitLayout';
@@ -86,28 +85,28 @@ export default {
         pretitle: '2.1.A',
         title: 'General Layout',
         description: 'A classic layout for forms and lists',
-        source: sterilizeCode(ExampleGeneralLayoutRaw),
+        source: ExampleGeneralLayoutRaw,
       },
 
       {
         pretitle: '2.1.B',
         title: 'Split Layout',
         description: 'A Layout for forms item previews',
-        source: sterilizeCode(ExampleSplitLayoutRaw),
+        source: ExampleSplitLayoutRaw,
       },
 
       {
         pretitle: '2.1.C',
         title: 'Gallery Layout',
         description: 'Best for product category lists',
-        source: sterilizeCode(ExampleGalleryLayoutRaw),
+        source: ExampleGalleryLayoutRaw,
       },
 
       {
         pretitle: '2.1.D',
         title: 'Empty State',
         description: 'Best for initial call to action',
-        source: sterilizeCode(ExampleEmptyStateRaw),
+        source: ExampleEmptyStateRaw,
       },
     ].map(code),
   ],

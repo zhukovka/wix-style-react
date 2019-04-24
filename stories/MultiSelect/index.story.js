@@ -10,10 +10,12 @@ import {
   tab,
   table,
   title,
+  code as baseCode,
 } from 'wix-storybook-utils/Sections';
 
 import LinkTo from '@storybook/addon-links/react';
 import playgroundStoryConfig from '../../src/MultiSelect/docs/MultiSelectPlaygroundConfig';
+import allComponents from '../utils/allComponents';
 
 import ExampleSelectSimpleRaw from '!raw-loader!../../src/MultiSelect/docs/ExampleSelectSimple';
 import ExampleSelectAutocompleteRaw from '!raw-loader!../../src/MultiSelect/docs/ExampleSelectAutocomplete';
@@ -28,126 +30,13 @@ import ExampleThumbVariationsRaw from '!raw-loader!../../src/MultiSelect/docs/Ex
 
 import { storySettings } from './storySettings';
 
-import styles from '../../src/MultiSelect/docs/styles.scss';
-
-/**
- * Strips imports and exports
- *
- */
-function processLive(code, ComponentName, label) {
-  const filteredCode = code
-    .split('\n')
-    .map(line => {
-      if (line.startsWith('import')) {
-        return '// ' + line;
-      } else {
-        return line;
-      }
-    })
-    .filter(
-      line =>
-        !line.startsWith('export') &&
-        !(line === '/* eslint-disable no-console */'),
-    )
-    .join('\n');
-
-  return filteredCode + '\n\n' + createExampleRender(ComponentName, label);
-}
-
-function createExampleRender(Component, label) {
-  return `
-render(
-  <div style={{ width: '600px' }}>
-    <Card>
-      <Card.Content>
-        <FormField label="${label}">
-          <${Component} />
-        </FormField>
-      </Card.Content>
-    </Card>
-  </div>,
-);
-`;
-}
-
-const defaultLiveCodeProps = {
-  compact: true,
-  autoRender: false,
-  previewProps: {
-    className: styles.livePreview,
-  },
-};
-
-const examples = (
-  <div>
-    <LiveCodeExample
-      {...defaultLiveCodeProps}
-      title="Select"
-      initialCode={processLive(
-        ExampleSelectSimpleRaw,
-        'CountrySelection',
-        'Select Countries',
-      )}
-    />
-
-    <LiveCodeExample
-      {...defaultLiveCodeProps}
-      title="Select + Autocomplete"
-      initialCode={processLive(
-        ExampleSelectAutocompleteRaw,
-        'CountrySelection',
-        'Select Countries',
-      )}
-    />
-
-    <LiveCodeExample
-      {...defaultLiveCodeProps}
-      title="Tag Input"
-      initialCode={processLive(
-        ExampleTagInputRaw,
-        'ExampleTagInput',
-        'Enter Any Tag',
-      )}
-    />
-
-    <LiveCodeExample
-      {...defaultLiveCodeProps}
-      compact
-      title="Tag Input + Suggestions"
-      initialCode={processLive(
-        ExampleSuggestionsRaw,
-        'ContactsInput',
-        'Enter Contact Emails',
-      )}
-    />
-
-    <LiveCodeExample
-      {...defaultLiveCodeProps}
-      title="Tag Input + Selection"
-      initialCode={processLive(
-        ExampleTagInputSelectionRaw,
-        'CountryInput',
-        'Enter Or Select Countries',
-      )}
-    />
-
-    <LiveCodeExample
-      {...defaultLiveCodeProps}
-      title="Reorderable"
-      initialCode={processLive(
-        ExampleReorderableRaw,
-        'ExampleReorderable',
-        'Reorderable Numbers',
-      )}
-    />
-
-    <CodeExample title="ThumbVariations" code={ExampleThumbVariationsRaw}>
-      <div className={styles.exampleContainer}>
-        <ExampleThumbVariations />
-      </div>
-    </CodeExample>
-  </div>
-);
+const code = config =>
+  baseCode({
+    components: allComponents,
+    compact: true,
+    autoRender: false,
+    ...config,
+  });
 
 export default {
   category: storySettings.category,
@@ -184,7 +73,28 @@ export default {
 
         title('Examples'),
 
-        description({ text: examples }),
+        ...[
+          { title: 'Select', source: ExampleSelectSimpleRaw },
+          {
+            title: 'Select + Autocomplete',
+            source: ExampleSelectAutocompleteRaw,
+          },
+          { title: 'Tag Input', source: ExampleTagInputRaw },
+          { title: 'Tag Input + Suggestions', source: ExampleSuggestionsRaw },
+          {
+            title: 'Tag Input + Selection',
+            source: ExampleTagInputSelectionRaw,
+          },
+          { title: 'Reorderable', source: ExampleReorderableRaw },
+        ].map(code),
+
+        description(
+          <CodeExample title="ThumbVariations" code={ExampleThumbVariationsRaw}>
+            <div style={{ maxWidth: 720 }}>
+              <ExampleThumbVariations />
+            </div>
+          </CodeExample>,
+        ),
       ],
     }),
   ],
