@@ -1,11 +1,13 @@
+import { StylableUnidriverUtil } from 'wix-ui-test-utils/unidriver';
 import { baseUniDriverFactory } from 'wix-ui-test-utils/base-driver';
-import button from 'wix-ui-core/dist/src/components/button-next/button-next.st.css';
-import { getStylableState } from '../../test/utils/stylable-uni-testkit';
+import stylesheet from 'wix-ui-core/dist/src/components/button-next/button-next.st.css';
 
 export const iconButtonDriverFactory = base => {
+  const stylableUtil = new StylableUnidriverUtil(stylesheet);
+
   return {
     ...baseUniDriverFactory(base),
     isButtonDisabled: async () =>
-      (await getStylableState(base, button, 'disabled')) === 'true',
+      (await stylableUtil.getStyeState(base, 'disabled')) === 'true',
   };
 };

@@ -1,12 +1,13 @@
 import { baseUniDriverFactory } from 'wix-ui-test-utils/base-driver';
-import { getStylableState } from '../../test/utils/stylable-uni-testkit';
-import thumbnail from './Thumbnail.st.css';
+import { StylableUnidriverUtil } from 'wix-ui-test-utils/unidriver';
+import stylesheet from './Thumbnail.st.css';
 import textDriverFactory from '../Text/Text.driver';
 import { testkitFactoryCreator } from 'wix-ui-test-utils/vanilla';
 
 const textTestkitFactory = testkitFactoryCreator(textDriverFactory);
 
 export const thumbnailDriverFactory = base => {
+  const stylableUtil = new StylableUnidriverUtil(stylesheet);
   const byHook = hook => base.$(`[data-hook*="${hook}"]`);
   const getStyle = async rule =>
     (await base.attr('style')).match(new RegExp(`${rule}: (.*?);`))[1];
@@ -33,13 +34,13 @@ export const thumbnailDriverFactory = base => {
 
     /** Is Thumbnail selected */
     isSelected: async () => {
-      const stylableState = await getStylableState(base, thumbnail, 'selected');
+      const stylableState = await stylableUtil.getStyleState(base, 'selected');
       return stylableState === 'true';
     },
 
     /** Is Thumbnail disabled */
     isDisabled: async () => {
-      const stylableState = await getStylableState(base, thumbnail, 'disabled');
+      const stylableState = await stylableUtil.getStyleState(base, 'disabled');
       return stylableState === 'true';
     },
 

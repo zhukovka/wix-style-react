@@ -1,20 +1,21 @@
+import { StylableUnidriverUtil } from 'wix-ui-test-utils/unidriver';
 import { colorInputDriverFactory as publicDriverFactory } from './ColorInput.uni.driver';
-import { getStylableState } from '../../test/utils/stylable-uni-testkit';
 import hashStyles from './components/Hash.st.css';
 import viewerStyles from './components/ColorViewer.st.css';
 
 export const colorInputPrivateDriverFactory = base => {
+  const viewerStylableUtil = new StylableUnidriverUtil(viewerStyles);
+  const hashStylableUtil = new StylableUnidriverUtil(hashStyles);
+
   const isHashDisabled = async () =>
-    (await getStylableState(
+    (await hashStylableUtil.getStyleState(
       base.$('[data-hook="colorinput-hash"]'),
-      hashStyles,
       'disabled',
     )) === 'true';
 
   const getViewerSize = async () =>
-    await getStylableState(
+    await viewerStylableUtil.getStyleState(
       base.$('[data-hook="colorinput-viewer"]'),
-      viewerStyles,
       'size',
     );
   return {

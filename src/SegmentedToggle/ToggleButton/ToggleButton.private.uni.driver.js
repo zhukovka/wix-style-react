@@ -1,9 +1,12 @@
-import { getStylableState } from '../../../test/utils/stylable-uni-testkit';
-import toggleStyles from './ToggleButton.st.css';
+import { StylableUnidriverUtil } from 'wix-ui-test-utils/unidriver';
+import stylesheet from './ToggleButton.st.css';
 
 export const toggleButtonPrivateDriverFactory = base => {
+  const stylableUtil = new StylableUnidriverUtil(stylesheet);
+
   const isSelected = async () =>
-    (await getStylableState(base, toggleStyles, 'selected')) === 'true';
+    (await stylableUtil.getStyleState(base, 'selected')) === 'true';
+
   return {
     exists: async () => await base.exists(),
     getToggleText: async () => await base.text(),
