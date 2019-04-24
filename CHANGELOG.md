@@ -18,7 +18,9 @@ Types of changes:
 ## Next
 
 ### Added
+
 - `<RichTextInputArea/>` - add `status` & `statusMessage` props [#3281](https://github.com/wix/wix-style-react/pull/3281)
+- `<DropdownLayout/>` - Add onOptionMarked callback [#3155](https://github.com/wix/wix-style-react/pull/3155)
 
 ### Changed
 
