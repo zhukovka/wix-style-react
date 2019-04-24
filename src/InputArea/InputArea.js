@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import Exclamation from './Exclamation';
+import ErrorIndicator from '../ErrorIndicator';
 import WixComponent from '../BaseComponents/WixComponent';
 import debounce from 'lodash/debounce';
 import isNaN from 'lodash/isNaN';
@@ -149,7 +149,8 @@ class InputArea extends WixComponent {
         </div>
         <div className={styles.error}>
           {error && !disabled && (
-            <Exclamation
+            <ErrorIndicator
+              dataHook="inputArea-tooltip"
               errorMessage={errorMessage}
               tooltipPlacement={tooltipPlacement}
               onTooltipShow={onTooltipShow}

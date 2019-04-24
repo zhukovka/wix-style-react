@@ -2,12 +2,21 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import FormFieldError from '../new-icons/system/FormFieldError';
 import Tooltip from '../Tooltip';
-import styles from './InputArea.scss';
+import styles from './ErrorIndicator.scss';
 
-const Exclamation = ({ errorMessage, tooltipPlacement, onTooltipShow }) => (
-  <div className={styles.suffix}>
+export const tooltipDataHook = 'error-indicator-tooltip';
+
+// This component was exported out of <InputArea/>
+// TODO: Add tests and docs
+const ErrorIndicator = ({
+  dataHook,
+  errorMessage,
+  tooltipPlacement,
+  onTooltipShow,
+}) => (
+  <div data-hook={dataHook} className={styles.suffix}>
     <Tooltip
-      dataHook="inputArea-tooltip"
+      dataHook={tooltipDataHook}
       disabled={errorMessage.length === 0}
       placement={tooltipPlacement}
       onShow={onTooltipShow}
@@ -19,6 +28,7 @@ const Exclamation = ({ errorMessage, tooltipPlacement, onTooltipShow }) => (
       maxWidth="250px"
       textAlign="left"
       theme="dark"
+      appendToParent
     >
       <div className={styles.errorIcon}>
         <FormFieldError />
@@ -27,15 +37,15 @@ const Exclamation = ({ errorMessage, tooltipPlacement, onTooltipShow }) => (
   </div>
 );
 
-Exclamation.defaultProps = {
+ErrorIndicator.defaultProps = {
   errorMessage: '',
   tooltipPlacement: 'top',
 };
 
-Exclamation.propTypes = {
+ErrorIndicator.propTypes = {
   errorMessage: PropTypes.string,
   tooltipPlacement: PropTypes.oneOf(['right', 'left', 'top', 'bottom']),
   onTooltipShow: PropTypes.func,
 };
 
-export default Exclamation;
+export default ErrorIndicator;

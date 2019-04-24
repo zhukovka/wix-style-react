@@ -1,6 +1,6 @@
 import { testkit as inputTestkit } from '../../Input/Input.uni.driver';
 
-export default base => {
+export default (base, body) => {
   const getButtons = () => base.$$(`[data-hook*="richtextarea-button"]`);
   const getButtonByType = type =>
     base.$(`[data-hook*="richtextarea-button-${type}"]`);

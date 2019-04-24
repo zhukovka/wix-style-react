@@ -77,6 +77,7 @@ export const dropdownLayoutTestkitFactory = testkitFactoryCreator(load(require('
 export const editableSelectorTestkitFactory = testkitFactoryCreator(load(require('../src/EditableSelector/EditableSelector.driver')));
 export const editableTitleTestkitFactory = uniTestkitFactoryCreator(load(require('../src/EditableTitle/EditableTitle.uni.driver')));
 export const emptyStateTestkitFactory = testkitFactoryCreator(load(require('../src/EmptyState/EmptyState.driver')));
+export const errorIndicatorTestkitFactory = uniTestkitFactoryCreator(load(require('../src/ErrorIndicator/ErrorIndicator.uni.driver')));
 export const filePickerTestkitFactory = testkitFactoryCreator(load(require('../src/FilePicker/FilePicker.driver')));
 export const floatingHelperTestkitFactory = testkitFactoryCreator(load(require('../src/FloatingHelper/FloatingHelper.driver')));
 export const floatingNotificationTestkitFactory = uniTestkitFactoryCreator(load(require('../src/FloatingNotification/FloatingNotification.uni.driver')));

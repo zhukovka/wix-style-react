@@ -15,6 +15,7 @@ import RichTextToolbar from './Toolbar/RichTextToolbar';
 import EditorUtilities from './EditorUtilities';
 import { RichTextInputAreaContext } from './RichTextInputAreaContext';
 import { defaultTexts } from './RichTextInputAreaTexts';
+import ErrorIndicator from '../ErrorIndicator';
 
 const decorator = new CompositeDecorator([
   {
@@ -33,12 +34,15 @@ const decorator = new CompositeDecorator([
 
 class RichTextInputArea extends React.PureComponent {
   static displayName = 'RichTextInputArea';
+  static errorStatus = 'error';
 
   static propTypes = {
     dataHook: PropTypes.string,
     initialValue: PropTypes.string,
     placeholder: PropTypes.string,
     disabled: PropTypes.bool,
+    status: PropTypes.oneOf([RichTextInputArea.errorStatus]),
+    statusMessage: PropTypes.string,
     onChange: PropTypes.func,
     maxHeight: PropTypes.string,
     texts: PropTypes.shape({
@@ -86,8 +90,16 @@ class RichTextInputArea extends React.PureComponent {
   }
 
   render() {
-    const { dataHook, placeholder, disabled, maxHeight } = this.props;
+    const {
+      dataHook,
+      placeholder,
+      disabled,
+      maxHeight,
+      status,
+      statusMessage,
+    } = this.props;
     const isEditorEmpty = EditorUtilities.isEditorEmpty(this.state.editorState);
+    const hasError = !disabled && status === RichTextInputArea.errorStatus;
 
     return (
       <div
@@ -96,6 +108,7 @@ class RichTextInputArea extends React.PureComponent {
           styles.root,
           !isEditorEmpty && styles.hidePlaceholder,
           disabled && styles.disabled,
+          hasError && styles.error,
         )}
         // Using CSS variable instead of applying maxHeight on each child, down to the editor's content
         style={{ '--max-height': maxHeight }}
@@ -122,13 +135,23 @@ class RichTextInputArea extends React.PureComponent {
             onNumberedList={this._setEditorState}
           />
         </RichTextInputAreaContext.Provider>
-        <Editor
-          ref="editor"
-          editorState={this.state.editorState}
-          onChange={this._setEditorState}
-          placeholder={placeholder}
-          readOnly={disabled}
-        />
+        <div className={styles.editorWrapper}>
+          <Editor
+            ref="editor"
+            editorState={this.state.editorState}
+            onChange={this._setEditorState}
+            placeholder={placeholder}
+            readOnly={disabled}
+          />
+          {hasError && (
+            <span className={styles.errorIndicator}>
+              <ErrorIndicator
+                dataHook="richtextarea-error-indicator"
+                errorMessage={statusMessage}
+              />
+            </span>
+          )}
+        </div>
       </div>
     );
   }

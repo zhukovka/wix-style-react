@@ -475,3 +475,9 @@ import { notificationDriverFactory } from '../src/Notification/Notification.uni.
 export const notificationTestkitFactory = protractorUniTestkitFactoryCreator(
   notificationDriverFactory,
 );
+
+import { errorIndicatorDriverFactory } from '../src/ErrorIndicator/ErrorIndicator.uni.driver';
+
+export const errorIndicatorTestkitFactory = protractorUniTestkitFactoryCreator(
+  errorIndicatorDriverFactory,
+);

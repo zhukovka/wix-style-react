@@ -196,3 +196,9 @@ import { loaderUniDriverFactory } from '../src/Loader/Loader.uni.driver';
 export const loaderTestkitFactory = puppeteerUniTestkitFactoryCreator(
   loaderUniDriverFactory,
 );
+
+import { errorIndicatorDriverFactory } from '../src/ErrorIndicator/ErrorIndicator.uni.driver';
+
+export const errorIndicatorTestkitFactory = puppeteerUniTestkitFactoryCreator(
+  errorIndicatorDriverFactory,
+);

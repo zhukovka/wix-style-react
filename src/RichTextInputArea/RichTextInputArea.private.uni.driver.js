@@ -5,11 +5,12 @@ import publicDriverFactory, {
 
 import richTextToolbarPrivateDriverFactory from './Toolbar/RichTextToolbar.private.uni.driver';
 
-export default base => {
+export default (base, body) => {
   return {
-    ...publicDriverFactory(base),
+    ...publicDriverFactory(base, body),
     ...richTextToolbarPrivateDriverFactory(
       base.$('[data-hook=richtextarea-toolbar]'),
+      body,
     ),
     hasPlaceholder: () => getPlaceholder(base).exists(),
     hoverTextArea: async () => await getContent(base).hover(),

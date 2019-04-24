@@ -5,6 +5,7 @@ import eventually from 'wix-eventually';
 import RichTextInputArea from './RichTextInputArea';
 import richTextInputAreaPrivateDriverFactory from './RichTextInputArea.private.uni.driver';
 import toolbarButtonStyles from './RichTextToolbarButton.scss';
+import { createRendererWithUniDriver } from '../../test/utils/react';
 
 describe('RichTextInputArea', () => {
   const createDriver = createUniDriverFactory(
@@ -74,6 +75,34 @@ describe('RichTextInputArea', () => {
     const driver = createDriver(<RichTextInputArea disabled />);
 
     expect(await driver.isDisabled()).toBe(true);
+  });
+
+  describe('Error', () => {
+    it('should render the error indicator', async () => {
+      const driver = createDriver(<RichTextInputArea status="error" />);
+
+      expect(await driver.hasError()).toBe(true);
+    });
+
+    it('should not render the error indicator when disabled', async () => {
+      const driver = createDriver(
+        <RichTextInputArea disabled status="error" />,
+      );
+
+      expect(await driver.hasError()).toBe(false);
+    });
+
+    it('should render a tooltip with the error message', async () => {
+      const errorMessage = 'Some error';
+      const render = createRendererWithUniDriver(
+        richTextInputAreaPrivateDriverFactory,
+      );
+      const { driver } = render(
+        <RichTextInputArea status="error" statusMessage={errorMessage} />,
+      );
+
+      expect(await driver.getErrorMessage()).toEqual(errorMessage);
+    });
   });
 
   describe('Toolbar', () => {

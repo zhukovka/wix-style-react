@@ -90,6 +90,26 @@ const tests = [
       },
     ],
   },
+  {
+    describe: 'Error',
+    its: [
+      {
+        it: 'Display error desgin with indicator',
+        props: {
+          initialValue: 'Some text',
+          status: 'error',
+        },
+      },
+      {
+        it: 'Hide error design and indicator when disabled',
+        props: {
+          initialValue: 'Some text',
+          status: 'error',
+          disabled: true,
+        },
+      },
+    ],
+  },
 ];
 
 tests.forEach(({ describe, its }) => {

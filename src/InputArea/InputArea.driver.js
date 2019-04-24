@@ -1,11 +1,14 @@
 import ReactTestUtils from 'react-dom/test-utils';
+
 import styles from './InputArea.scss';
+import { tooltipDataHook } from '../ErrorIndicator/ErrorIndicator';
 
 const inputAreaDriverFactory = ({ element }) => {
   const textAreaElement = element && element.childNodes[0];
   const textArea = element.querySelector('textarea');
   const name = textArea.getAttribute('name');
   const counterSelector = '[data-hook="counter"]';
+
   return {
     trigger: (trigger, event) =>
       ReactTestUtils.Simulate[trigger](textArea, event),
@@ -40,7 +43,8 @@ const inputAreaDriverFactory = ({ element }) => {
     getAriaLabel: () => textArea.getAttribute('aria-label'),
     getAriaControls: () => textArea.getAttribute('aria-controls'),
     getAriaDescribedby: () => textArea.getAttribute('aria-describedby'),
-    getTooltipDataHook: () => 'inputArea-tooltip',
+    // TODO: get the dataHook using the <ErrorIndicator/> driver
+    getTooltipDataHook: () => tooltipDataHook,
     getTooltipElement: () => element,
   };
 };

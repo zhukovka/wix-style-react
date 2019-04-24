@@ -253,4 +253,9 @@ module.exports = {
     unidriver: true,
     testkitPath: '../src/SocialPreview/SocialPreview.uni.driver',
   },
+
+  ErrorIndicator: {
+    unidriver: true,
+    testkitPath: '../src/ErrorIndicator/ErrorIndicator.uni.driver',
+  },
 };

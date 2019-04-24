@@ -23,6 +23,10 @@ $padding: 12px;
     position: absolute;
     pointer-events: none;
   }
+}
+
+.editorWrapper {
+  position: relative;
 
   :global(.public-DraftEditor-content) { 
     background-color: $backgroundColor;
@@ -59,11 +63,11 @@ $padding: 12px;
   }
 
   :global(.public-DraftEditorPlaceholder-root) {
-    color: $D55;
+    color: $color;
   }
 
   :global(.public-DraftEditor-content) {
-    color: $D55;
+    color: $color;
     border-color: $borderColor;
 
     &:hover {
@@ -73,8 +77,33 @@ $padding: 12px;
   }
 
   .link {
-    color: $D55;
+    color: $color;
   }
+}
+
+.error {
+  $borderColor: $R10;
+
+  .toolbar {
+    border-color: $borderColor;
+  }
+
+  :global(.public-DraftEditor-content) {
+    border-left-color: $borderColor;
+    border-bottom-color: $borderColor;
+    border-right-color: $borderColor;
+
+    &:focus {
+      border-color: $borderColor;
+      box-shadow: 0 0 0 3px $R30;
+    }
+  }
+}
+
+.errorIndicator {
+  position: absolute;
+  top: 1px;
+  right: 5px;
 }
 
 .hidePlaceholder {
