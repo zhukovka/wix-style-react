@@ -27,12 +27,12 @@ describe('item picker option builder', () => {
   });
 
   it('should return item with disabled prop', () => {
-    const contactItem = contactItemBuilder({title, subtitle, disabled: true});
+    const contactItem = contactItemBuilder({ title, subtitle, disabled: true });
     expect(contactItem.disabled).toBeTruthy();
   });
 
   it('should return item without disabled prop when prop is not passed', () => {
-    const contactItem = contactItemBuilder({title, subtitle});
+    const contactItem = contactItemBuilder({ title, subtitle });
     expect(contactItem.disabled).toBeFalsy();
   });
 
