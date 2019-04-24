@@ -17,6 +17,9 @@ Types of changes:
 
 ## Next
 
+### Added
+- `<RichTextInputArea/>` - add `status` & `statusMessage` props [#3281](https://github.com/wix/wix-style-react/pull/3281)
+
 ### Changed
 
 - `<Input>` - add `updateControlledOnClear` prop which if provided fixes an error thrown in the console [#3251](https://github.com/wix/wix-style-react/pull/3251)
