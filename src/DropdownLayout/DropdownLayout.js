@@ -68,10 +68,16 @@ class DropdownLayout extends WixComponent {
     }
   }
 
+  _markOption(index) {
+    const { options, onOptionMarked } = this.props;
+
+    this.setState({ hovered: index });
+    onOptionMarked && onOptionMarked(options[index] || null);
+  }
+
   _onSelect(index) {
     const { options, onSelect } = this.props;
     const chosenOption = options[index];
-    const newState = { hovered: NOT_HOVERED_INDEX };
 
     if (chosenOption) {
       const sameOptionWasPicked = chosenOption.id === this.state.selectedId;
@@ -80,22 +86,20 @@ class DropdownLayout extends WixComponent {
       }
     }
     if (!this._isControlled()) {
-      newState.selectedId = chosenOption && chosenOption.id;
+      this.setState({ selectedId: chosenOption && chosenOption.id });
     }
-    this.setState(newState);
+    this._markOption(NOT_HOVERED_INDEX);
     return !!onSelect && chosenOption;
   }
 
   _onMouseEnter(index) {
     if (this._isSelectableOption(this.props.options[index])) {
-      this.setState({ hovered: index });
+      this._markOption(index);
     }
   }
 
   _onMouseLeave() {
-    this.setState({
-      hovered: NOT_HOVERED_INDEX,
-    });
+    this._markOption(NOT_HOVERED_INDEX);
   }
 
   _getMarkedIndex() {
@@ -131,7 +135,7 @@ class DropdownLayout extends WixComponent {
         modulu(Math.max(markedIndex + step, -1), options.length),
       );
     } while (!this._isSelectableOption(options[markedIndex]));
-    this.setState({ hovered: markedIndex });
+    this._markOption(markedIndex);
 
     const menuElement = this.options;
     const hoveredElement = this.options.childNodes[markedIndex];
@@ -199,9 +203,7 @@ class DropdownLayout extends WixComponent {
   }
 
   _onClose() {
-    this.setState({
-      hovered: NOT_HOVERED_INDEX,
-    });
+    this._markOption(NOT_HOVERED_INDEX);
 
     if (this.props.onClose) {
       this.props.onClose();
@@ -374,7 +376,7 @@ class DropdownLayout extends WixComponent {
 
   componentWillReceiveProps(nextProps) {
     if (this.props.visible !== nextProps.visible) {
-      this.setState({ hovered: NOT_HOVERED_INDEX });
+      this._markOption(NOT_HOVERED_INDEX);
     }
 
     if (this.props.selectedId !== nextProps.selectedId) {
@@ -388,12 +390,12 @@ class DropdownLayout extends WixComponent {
         this.props.options[this.state.hovered].id !==
           nextProps.options[this.state.hovered].id)
     ) {
-      this.setState({
-        hovered: this.findIndex(
+      this._markOption(
+        this.findIndex(
           nextProps.options,
           item => item.id === this.props.options[this.state.hovered].id,
         ),
-      });
+      );
     }
   }
 
@@ -452,6 +454,8 @@ DropdownLayout.propTypes = {
   onClose: PropTypes.func,
   /** Callback function called whenever the user selects a different option in the list */
   onSelect: PropTypes.func,
+  /** Callback function called whenever an option becomes focused (hovered/active). Receives the relevant option object from the original props.options array. */
+  onOptionMarked: PropTypes.func,
   visible: PropTypes.bool,
   /** Array of objects. Objects must have an Id and can can include value and node. If value is '-', a divider will be rendered instead (dividers do not require and id). */
   options: PropTypes.arrayOf(optionValidator),

@@ -452,6 +452,109 @@ describe('DropdownLayout', () => {
       });
     });
 
+    describe('onOptionMarked', () => {
+      it('should call onOptionMarked when option is hovered', async () => {
+        const onOptionMarked = jest.fn();
+        const driver = createDriver(
+          <DropdownLayout
+            visible
+            options={options}
+            onOptionMarked={onOptionMarked}
+          />,
+        );
+        await driver.mouseEnterAtOption(1);
+        expect(onOptionMarked).toBeCalledWith(options[1]);
+      });
+
+      it('should call onOptionMarked with null when mouse leaves a hovered option', async () => {
+        const onOptionMarked = jest.fn();
+        const driver = createDriver(
+          <DropdownLayout
+            visible
+            options={options}
+            onOptionMarked={onOptionMarked}
+          />,
+        );
+        await driver.mouseEnterAtOption(1);
+        await driver.mouseLeaveAtOption(1);
+        expect(onOptionMarked).toBeCalledWith(null);
+        expect(onOptionMarked).toHaveBeenCalledTimes(2);
+      });
+
+      it('should call onOptionMarked when down key is pressed', async () => {
+        const onOptionMarked = jest.fn();
+        const driver = createDriver(
+          <DropdownLayout
+            visible
+            options={options}
+            onOptionMarked={onOptionMarked}
+          />,
+        );
+        await driver.pressDownKey();
+        await driver.pressDownKey();
+        expect(onOptionMarked).toHaveBeenCalledTimes(2);
+        expect(onOptionMarked.mock.calls[0]).toEqual([options[0]]);
+        expect(onOptionMarked.mock.calls[1]).toEqual([options[1]]);
+      });
+
+      it('should call onOptionMarked with null when an option is selected', async () => {
+        const onOptionMarked = jest.fn();
+        const driver = createDriver(
+          <DropdownLayout
+            visible
+            options={options}
+            onOptionMarked={onOptionMarked}
+          />,
+        );
+        await driver.mouseEnterAtOption(1);
+        expect(onOptionMarked.mock.calls[0]).toEqual([options[1]]);
+        await driver.clickAtOption(1);
+        expect(onOptionMarked.mock.calls[1]).toEqual([null]);
+      });
+
+      it('should call onOptionMarked with null when options are closed', async () => {
+        const onOptionMarked = jest.fn();
+        const { driver, rerender } = render(
+          <DropdownLayout
+            visible
+            options={options}
+            onOptionMarked={onOptionMarked}
+          />,
+        );
+        await driver.mouseEnterAtOption(1);
+        expect(onOptionMarked.mock.calls[0]).toEqual([options[1]]);
+        rerender(
+          <DropdownLayout
+            visible={false}
+            options={options}
+            onOptionMarked={onOptionMarked}
+          />,
+        );
+        expect(onOptionMarked.mock.calls[1]).toEqual([null]);
+      });
+
+      it('should call onOptionMarked with undefined when options change and the marked option is removed', async () => {
+        const onOptionMarked = jest.fn();
+        const { driver, rerender } = render(
+          <DropdownLayout
+            visible
+            options={options}
+            onOptionMarked={onOptionMarked}
+          />,
+        );
+        await driver.mouseEnterAtOption(1);
+        expect(onOptionMarked.mock.calls[0]).toEqual([options[1]]);
+        rerender(
+          <DropdownLayout
+            visible
+            options={options.slice(2)}
+            onOptionMarked={onOptionMarked}
+          />,
+        );
+        expect(onOptionMarked.mock.calls[1]).toEqual([null]);
+      });
+    });
+
     describe('controlled and uncontrolled logic', () => {
       describe('controlled', () => {
         it('should work as a controlled component when selectedId an onSelect are given', async () => {
