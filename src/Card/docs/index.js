@@ -19,6 +19,9 @@ import ExampleCollapseRaw from '!raw-loader!./ExampleCollapse';
 import ExampleEmptyState from './ExampleEmptyState';
 import ExampleEmptyStateRaw from '!raw-loader!./ExampleEmptyState';
 
+import ExampleSubheader from './ExampleSubheader';
+import ExampleSubheaderRaw from '!raw-loader!./ExampleSubheader';
+
 storiesOf(storySettings.category, module).add(storySettings.storyName, () => (
   <div>
     <Markdown source={CardReadme} />
@@ -43,6 +46,10 @@ storiesOf(storySettings.category, module).add(storySettings.storyName, () => (
 
     <CodeExample title="Card with an EmptyState" code={ExampleEmptyStateRaw}>
       <ExampleEmptyState />
+    </CodeExample>
+
+    <CodeExample title="Card withSubheader" code={ExampleSubheaderRaw}>
+      <ExampleSubheader />
     </CodeExample>
   </div>
 ));

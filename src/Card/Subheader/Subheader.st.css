@@ -1,0 +1,23 @@
+:import {
+  -st-from: "wix-ui-core/dist/src/themes/backoffice/colors.st.css";
+  -st-named: B50,B30;
+}
+
+
+.container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 30px;
+  background-color: value(B50);
+  box-sizing: border-box;
+  border-top: 1px value(B30) solid;
+  border-bottom: 1px value(B30) solid;
+}
+
+.suffix {
+  height: 0;
+  margin-left: 12px;
+  display: flex;
+  align-items: center;
+}

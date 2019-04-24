@@ -124,6 +124,7 @@ export const sliderTestkitFactory = testkitFactoryCreator(load(require('../src/S
 export const socialPreviewTestkitFactory = uniTestkitFactoryCreator(load(require('../src/SocialPreview/SocialPreview.uni.driver')));
 export const sortableListTestkitFactory = testkitFactoryCreator(load(require('../src/SortableList/SortableList.driver')));
 export const statsWidgetTestkitFactory = testkitFactoryCreator(load(require('../src/StatsWidget/StatsWidget.driver')));
+export const subheaderTestkitFactory = uniTestkitFactoryCreator(load(require('../src/Card/Subheader/Subheader.uni.driver')));
 export const tableTestkitFactory = testkitFactoryCreator(load(require('../src/Table/Table.driver')));
 export const tableActionCellTestkitFactory = testkitFactoryCreator(load(require('../src/TableActionCell/TableActionCell.driver')));
 export const tabsTestkitFactory = testkitFactoryCreator(load(require('../src/Tabs/Tabs.driver')));

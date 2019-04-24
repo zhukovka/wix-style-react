@@ -4,6 +4,7 @@ import classNames from 'classnames';
 
 import Content from './Content';
 import Header from './Header';
+import Subheader from './Subheader';
 import Divider from './Divider';
 import styles from './Card.scss';
 
@@ -40,5 +41,6 @@ Card.defaultProps = {
 Card.Content = Content;
 Card.Header = Header;
 Card.Divider = Divider;
+Card.Subheader = Subheader;
 
 export default Card;

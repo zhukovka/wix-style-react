@@ -205,3 +205,9 @@ import { errorIndicatorDriverFactory } from '../src/ErrorIndicator/ErrorIndicato
 export const errorIndicatorTestkitFactory = puppeteerUniTestkitFactoryCreator(
   errorIndicatorDriverFactory,
 );
+
+import { subheaderDriverFactory } from '../src/Card/Subheader/Subheader.uni.driver';
+
+export const subheaderTestkitFactory = puppeteerUniTestkitFactoryCreator(
+  subheaderDriverFactory,
+);

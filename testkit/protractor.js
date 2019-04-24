@@ -484,3 +484,9 @@ import { errorIndicatorDriverFactory } from '../src/ErrorIndicator/ErrorIndicato
 export const errorIndicatorTestkitFactory = protractorUniTestkitFactoryCreator(
   errorIndicatorDriverFactory,
 );
+
+import { subheaderDriverFactory } from '../src/Card/Subheader/Subheader.uni.driver';
+
+export const subheaderTestkitFactory = protractorUniTestkitFactoryCreator(
+  subheaderDriverFactory,
+);
