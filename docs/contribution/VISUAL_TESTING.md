@@ -63,8 +63,17 @@ module.exports = {
 };
 ```
 
-## How can I debug it?
+## How can I debug a component rendered into a snapshot?
 Just run `npm run eyes-storybook-debug`. This will open the tests storybook and navigate between pages.
+
+## How can I debug the snapshots diff history?
+- Here's a [link](https://eyes.applitools.com/app/baselines/?accountId=mE99eP8CUn9UTSXSv98L3OSaJ0NZmAcY6Wndx6WSHODdY110&branch=wix%2Fwix-style-react%2Fmaster) to `master` branch in `wix-style-react`.
+- Select a repo/branch on the top right corner.
+- Filter by component/test name via the filter option (funnel icon).
+- Open the test's diff history clicking the the 3 dots icon on the right hand side of the test row, and select Show History.
 
 ## Is there a good example to see?
 Take a look at the `AddItem` visual [test file](https://github.com/wix/wix-style-react/blob/master/src/AddItem/tests/AddItem.visual.js).
+
+## I approved a change, but the build still fails in CI on the diff I approved
+Make sure you saved your selection after reviewing the diffs.
