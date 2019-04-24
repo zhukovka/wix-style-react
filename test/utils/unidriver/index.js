@@ -1,6 +1,5 @@
-export * from './StylableUnidriverUtil';
+export * from 'wix-ui-test-utils/unidriver';
 export * from './ReactBase';
-export { baseUniDriverFactory } from 'wix-ui-test-utils/base-driver';
 
 /**
  * Find element by `data-hook` (exact match)
