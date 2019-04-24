@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import deprecationLog from '../utils/deprecationLog';
 
 import PageDeprecated from './Page.deprecated';
 import PageNew from './Page';
@@ -12,20 +13,13 @@ const Page = props => {
 };
 
 Page.propTypes = {
-  upgrade: allValidators(
-    PropTypes.bool,
-    (/*props, propName, componentName*/) => {
-      /* depLog disabled until tests arr written and QA goes over it */
-      // if (!props[propName]) {
-      //       deprecationLog(`
-      // ${componentName}: New Layout API ! Please set upgrade=true prop to use new Layout API.
-      // When enabled, the page will use height: 100% and not require a parent of 'display: flex;flex-flow: column;'.
-      // Also Page.Content's may grow using 'min-height: inherit'. Supports Page.Sticky. New header minimization approach.
-      // See docs for more info: https://github.com/wix/wix-style-react/blob/master/src/Page/README.MIGRATION.md
-      // `);
-      // }
-    },
-  ),
+  upgrade: allValidators(PropTypes.bool, (props, propName, componentName) => {
+    if (!props[propName]) {
+      deprecationLog(`${componentName}: New API ! Please set upgrade=true prop to use new Layout API.
+See docs for more info: https://github.com/wix/wix-style-react/blob/master/src/Page/README.MIGRATION.md
+    `);
+    }
+  }),
 };
 
 Page.displayName = 'Page';
