@@ -11,7 +11,9 @@ import { tooltipDriverFactory as tooltipNextDriverFactory } from '../src/Tooltip
 
 export const tooltipTestkitFactory = obj => {
   const domInstance = ReactDOM.findDOMNode(obj.wrapper);
-  const hasUpgrade = domInstance.querySelector('[data-hook="popover-element"]');
+  const hasUpgrade = domInstance.querySelector(
+    `[data-hook="${obj.dataHook}"] [data-hook="popover-element"]`,
+  );
 
   return hasUpgrade
     ? uniTestkitFactoryCreator(tooltipNextDriverFactory)(obj)

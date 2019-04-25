@@ -8,7 +8,9 @@ import tooltipDriverFactory from '../src/Tooltip/Tooltip.driver';
 import { tooltipDriverFactory as tooltipNextDriverFactory } from '../src/Tooltip/TooltipNext/Tooltip.uni.driver';
 
 export const tooltipTestkitFactory = obj => {
-  const hasUpgrade = obj.wrapper.find('[data-hook="popover-element"]').length;
+  const hasUpgrade = obj.wrapper.find(
+    `[data-hook="${obj.dataHook}"] [data-hook="popover-element"]`,
+  ).length;
 
   return hasUpgrade
     ? enzymeUniTestkitFactoryCreator(tooltipNextDriverFactory)(obj)

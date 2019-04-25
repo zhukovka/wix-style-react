@@ -89,12 +89,14 @@ class Tooltip extends React.PureComponent {
       content,
       maxWidth,
       size,
+      dataHook,
       ...rest
     } = this.props;
     const disabled = children.props && children.props.disabled;
     return (
       <CoreTooltip
         {...rest}
+        {...(dataHook ? { 'data-hook': dataHook } : {})}
         {...styles('root', { size }, this.props)}
         content={this._renderContent()}
         hideDelay={exitDelay}

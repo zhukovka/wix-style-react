@@ -466,7 +466,8 @@ import tooltipDriverFactory from '../src/Tooltip/Tooltip.protractor.driver';
 import { tooltipDriverFactory as tooltipNextDriverFactory } from '../src/Tooltip/TooltipNext/Tooltip.uni.driver';
 
 export const tooltipTestkitFactory = obj =>
-  obj.wrapper && obj.wrapper.$(`[data-hook="popover-element"]`)
+  obj.wrapper &&
+  obj.wrapper.$(`[data-hook="${obj.dataHook}"] [data-hook="popover-element"]`)
     ? protractorUniTestkitFactoryCreator(tooltipNextDriverFactory)(obj)
     : protractorTestkitFactoryCreator(tooltipDriverFactory)(obj);
 
