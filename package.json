@@ -52,7 +52,7 @@
     "export-components": "import-path --path src",
     "lint": "yoshi lint --fix",
     "proxy-wix-ui-icons": "node scripts/proxy-wix-ui-icons",
-    "generate": "./scripts/generate-component/bin/generate-component.js",
+    "generate": "wuf && npm run generate-testkit-exports",
     "generate-test-component": "./scripts/generate-component/bin/generate-test-component.js",
     "generate-testkit-exports": "node scripts/generate-testkit-exports",
     "generate-autodocs-registry": "node scripts/generate-autodocs-registry",
