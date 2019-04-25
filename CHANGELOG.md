@@ -31,6 +31,10 @@ Types of changes:
 
 - `<Page/>` - Add deprecationLog, encouraging consumers to use Page upgrade [#3288](https://github.com/wix/wix-style-react/pull/3288)
 
+### Fixed
+
+- `<Tooltip/>` - make testkit upgrade toggle more specific[#3294](https://github.com/wix/wix-style-react/pull/3294)
+
 ## 6.15.0 - 2019-04-21 
 
 ### Added
