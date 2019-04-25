@@ -15,7 +15,7 @@ Types of changes:
 1. **Lab** components and features that are still in a work in progress
 
 
-## Next
+## 6.16.0
 
 ### Added
 
