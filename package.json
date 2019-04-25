@@ -53,7 +53,7 @@
     "lint": "yoshi lint --fix",
     "proxy-wix-ui-icons": "node scripts/proxy-wix-ui-icons",
     "generate": "wuf && npm run generate-testkit-exports",
-    "generate-test-component": "./scripts/generate-component/bin/generate-test-component.js",
+    "generate-test-component": "wuf --componentName GeneratedTestComponent",
     "generate-testkit-exports": "node scripts/generate-testkit-exports",
     "generate-autodocs-registry": "node scripts/generate-autodocs-registry",
     "eyes-storybook-debug": "start-storybook -c ./.storybook-test -p 6007",
