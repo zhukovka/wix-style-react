@@ -7,12 +7,10 @@ import {
 import tooltipDriverFactory from '../src/Tooltip/Tooltip.driver';
 import { tooltipDriverFactory as tooltipNextDriverFactory } from '../src/Tooltip/TooltipNext/Tooltip.uni.driver';
 
-export const tooltipTestkitFactory = obj => {
-  const hasUpgrade = obj.wrapper.find(
-    `[data-hook="${obj.dataHook}"] [data-hook="popover-element"]`,
-  ).length;
+export const tooltipTestkitFactory = enzymeTestkitFactoryCreator(
+  tooltipDriverFactory,
+);
 
-  return hasUpgrade
-    ? enzymeUniTestkitFactoryCreator(tooltipNextDriverFactory)(obj)
-    : enzymeTestkitFactoryCreator(tooltipDriverFactory)(obj);
-};
+export const TooltipTestkit = enzymeUniTestkitFactoryCreator(
+  tooltipNextDriverFactory,
+);

@@ -26,7 +26,7 @@ class Tooltip extends React.PureComponent {
     /**  time in milliseconds to wait before hiding the tooltip. Defaults to 0. */
     exitDelay: PropTypes.number,
     /** moves tooltip content relative to the parent */
-    moveTo: PropTypes.shape({ x: PropTypes.number, y: PropTypes.number }),
+    moveBy: PropTypes.shape({ x: PropTypes.number, y: PropTypes.number }),
     /** tooltips content relation to a dom element */
     appendTo: PropTypes.oneOf(['window', 'scrollParent', 'viewport', 'parent']),
     /** whether to enable the flip behaviour. This behaviour is used to flip the Tooltips placement when it starts to overlap the target element. */

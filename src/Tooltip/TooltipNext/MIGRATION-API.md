@@ -2,11 +2,12 @@
 
 ## TL;DR
 
-- react/enzyme testkit is now *async* !
+- react/enzyme testkit is now _async_ !
 
 ## Why API as changed
 
 Tooltip issues:
+
 - uses inhouse built positioning mechanism, which has several issues.
 - does not follow the UX guidelines.
 - is confusing because can be controlled and uncontrolled.
@@ -43,7 +44,7 @@ Tooltip issues:
 
 `lineHeight` - deprecated. Text alignment is fixed by internal constants.
 
-`minWidth` - deprecated. 
+`minWidth` - deprecated.
 
 `moveArrowTo` - deprecated. Not supported by UX guidelines. Use `placement` to achieve it different arrow position.
 
@@ -75,14 +76,23 @@ Tooltip issues:
 
 `fixed` - whether to enable the fixed behaviour. This behaviour is used to keep the Tooltip at it's original placement even when it's being positioned outside the boundary.
 
-`flip`  - whether to enable the flip behaviour. This behaviour is used to flip the Tooltips placement when it starts to overlap the target element.
+`flip` - whether to enable the flip behaviour. This behaviour is used to flip the Tooltips placement when it starts to overlap the target element.
 
 ## Testkit Deprecations
 
-****************************************************
-** New Unit (React/Enzyme) Testkits Are *Async* ! **
-****************************************************
+---
+
+** New Unit (React/Enzyme) Testkits Are _Async_ ! **
+
+---
+
 New tooltip testkit is written with UniDriver which means that ReactTestUtils, Enzyme, Puppeteer and Protractor are now supported by default.
+
+---
+
+** New Testkit import path. `import { TooltipTestkit } from 'wix-style-react/dist/...'` **
+
+---
 
 Deprecated Unit API
 
@@ -127,4 +137,3 @@ New Uni Testkit API
 - `mouseLeave` - mouse leaves the target element.
 
 - `getTooltipText` - returns tooltips content value in string.
-

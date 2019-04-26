@@ -27,6 +27,7 @@ import { Layout, Cell } from '../../../Layout';
 import { baseScope } from '../../../../stories/utils/LiveCodeExample';
 import usage from './Usage.md';
 import * as examples from './examples';
+import Readme from './README.TESTKIT.md';
 
 const liveCode = config =>
   code({
@@ -205,7 +206,7 @@ export default {
 
       ...[
         { title: 'API', sections: [api()] },
-        { title: 'Testkit', sections: [testkit({ unidriver: true })] },
+        { title: 'Testkit', sections: [description(Readme)] },
         { title: 'Playground', sections: [playground()] },
       ].map(tab),
     ]),

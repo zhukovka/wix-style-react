@@ -465,11 +465,13 @@ export const googlePreviewTestkitFactory = protractorUniTestkitFactoryCreator(
 import tooltipDriverFactory from '../src/Tooltip/Tooltip.protractor.driver';
 import { tooltipDriverFactory as tooltipNextDriverFactory } from '../src/Tooltip/TooltipNext/Tooltip.uni.driver';
 
-export const tooltipTestkitFactory = obj =>
-  obj.wrapper &&
-  obj.wrapper.$(`[data-hook="${obj.dataHook}"] [data-hook="popover-element"]`)
-    ? protractorUniTestkitFactoryCreator(tooltipNextDriverFactory)(obj)
-    : protractorTestkitFactoryCreator(tooltipDriverFactory)(obj);
+export const tooltipTestkitFactory = protractorTestkitFactoryCreator(
+  tooltipDriverFactory,
+);
+
+export const TooltipTestkit = protractorUniTestkitFactoryCreator(
+  tooltipNextDriverFactory,
+);
 
 import { notificationDriverFactory } from '../src/Notification/Notification.uni.driver';
 
