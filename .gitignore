@@ -19,9 +19,10 @@ package-lock.json
 .DS_Store
 autodocs-registry
 
-# we ignore all *.js and *.scss in root folder to avoid comitting component export
+# we ignore all *.js, *.d.ts and *.scss in root folder to avoid comitting component export
 # files that appear in root after build
 /*.js
+/*.d.ts
 !babel.config.js
 
 /*.scss

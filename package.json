@@ -1,7 +1,7 @@
 {
   "name": "wix-style-react",
   "description": "wix-style-react",
-  "version": "6.16.0",
+  "version": "6.16.1",
   "main": "./dist/src/index.js",
   "module": "./dist/es/src/index.js",
   "sideEffects": [
@@ -18,7 +18,8 @@
     "es",
     "new-icons",
     "*.scss",
-    "*.js"
+    "*.js",
+    "*.d.ts"
   ],
   "bin": {
     "migrate-to-icons-v2": "./scripts/migrate-to-icons-v2/runner.js"
@@ -27,7 +28,7 @@
     "start": "./scripts/npm-start.sh",
     "precommit": "lint-staged",
     "pretest": "npm run lint && ./scripts/ensure-dist.sh",
-    "test": "npm run test:unit && npm run test:eyes-storybook && npm run test:e2e",
+    "test": "npm run test:unit && npm run test:eyes-storybook && npm run test:e2e && npm run test:types",
     "test:unit": "yoshi test --jest",
     "test:watch": "yoshi test --jest --watch",
     "pretest:e2e": "./scripts/ensure-dist.sh",
@@ -35,6 +36,7 @@
     "test:e2e-only": "NODE_ENV=production yoshi test --protractor",
     "test:e2e-runtime": "cd ./test-runtime/imports && NODE_ENV=production npm run test",
     "test:eyes-storybook": "eyes-storybook -c ./.storybook-test",
+    "test:types": "tsc --noEmit -p tsconfig.declarations.json",
     "copy-public-styles": "cp src/*.scss .",
     "prebuild": "npm run generate-testkit-exports",
     "build": "npm run lint && npm run proxy-wix-ui-icons && npm run generate-test-component && npm run transpile && npm run storybook:build",
@@ -49,7 +51,7 @@
     "storybook:static": "node scripts/e2e-server.js",
     "storybook": "npm run prestorybook && start-storybook -p 6006",
     "postpublish": "npm install @wix/teamcity-surge-autorelease@^1.0.0 --no-save && teamcity-surge-autorelease",
-    "export-components": "import-path --path src",
+    "export-components": "import-path --path src --dts",
     "lint": "yoshi lint --fix",
     "proxy-wix-ui-icons": "node scripts/proxy-wix-ui-icons",
     "generate": "./scripts/generate-component/bin/generate-component.js",
@@ -143,6 +145,7 @@
     "tempy": "^0.2.1",
     "terser": "3.14.0",
     "thread-loader": "^2.1.2",
+    "typescript": "^2.8.4",
     "url-loader": "^1.1.2",
     "velocity": "^0.7.2",
     "wait-for-cond": "^1.0.3",

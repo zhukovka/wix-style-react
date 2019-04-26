@@ -14,6 +14,12 @@ Types of changes:
 1. **Docs** for documentation changes
 1. **Lab** components and features that are still in a work in progress
 
+## 6.16.1
+
+### Fixed
+
+- `<Tooltip/>` - fix broken upgrade prop for puppeteer & protractor testkits. [#3296](https://github.com/wix/wix-style-react/pull/3296)
+
 
 ## 6.16.0
 
