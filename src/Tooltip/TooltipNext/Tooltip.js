@@ -25,7 +25,7 @@ class Tooltip extends React.PureComponent {
     enterDelay: PropTypes.number,
     /**  time in milliseconds to wait before hiding the tooltip. Defaults to 0. */
     exitDelay: PropTypes.number,
-    /** moves tooltip content relative to the parent */
+    /** moves tooltip content relative to the parent by x or y */
     moveBy: PropTypes.shape({ x: PropTypes.number, y: PropTypes.number }),
     /** tooltips content relation to a dom element */
     appendTo: PropTypes.oneOf(['window', 'scrollParent', 'viewport', 'parent']),
