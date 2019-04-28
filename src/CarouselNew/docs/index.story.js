@@ -29,7 +29,9 @@ export default {
   componentPath: '..',
 
   componentProps: {
-    buttonText: 'Hello World!',
+    infinite: true,
+    autoplay: true,
+    dataHook: storySettings.dataHook,
   },
 
   exampleProps: {
@@ -42,7 +44,7 @@ export default {
       issueUrl: 'https://github.com/wix/wix-style-react/issues/new',
       sourceUrl:
         'https://github.com/wix/wix-style-react/tree/master/src/CarouselNew/',
-      component: <CarouselNew buttonText="Click me!" />,
+      component: <CarouselNew />,
     }),
 
     tabs([
@@ -75,14 +77,14 @@ export default {
 
             code({
               compact: true,
-              source: '<CarouselNew buttonText="Hello World!"/>',
+              source: '<CarouselNew />',
             }),
           ]),
 
           code({
             title: 'Full Interactive Preview',
             description: 'A non compact version of same code example as above',
-            source: '<CarouselNew buttonText="Hello World!"/>',
+            source: '<CarouselNew />',
           }),
         ],
       }),
