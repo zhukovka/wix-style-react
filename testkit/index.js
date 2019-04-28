@@ -60,6 +60,7 @@ export const calendarPanelTestkitFactory = testkitFactoryCreator(load(require('.
 export const calendarPanelFooterTestkitFactory = uniTestkitFactoryCreator(load(require('../src/CalendarPanelFooter/CalendarPanelFooter.uni.driver')));
 export const cardGalleryItemTestkitFactory = uniTestkitFactoryCreator(load(require('../src/CardGalleryItem/CardGalleryItem.uni.driver')));
 export const carouselTestkitFactory = testkitFactoryCreator(load(require('../src/Carousel/Carousel.driver')));
+export const carouselNewTestkitFactory = uniTestkitFactoryCreator(load(require('../src/CarouselNew/CarouselNew.uni.driver')));
 export const checkboxTestkitFactory = testkitFactoryCreator(load(require('../src/Checkbox/Checkbox.driver')));
 export const circularProgressBarTestkitFactory = testkitFactoryCreator(load(require('../src/CircularProgressBar/CircularProgressBar.driver')));
 export const closeButtonTestkitFactory = uniTestkitFactoryCreator(load(require('../src/CloseButton/CloseButton.uni.driver')));
