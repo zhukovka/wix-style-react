@@ -58,6 +58,7 @@ export const calendarPanelTestkitFactory = enzymeTestkitFactoryCreator(load(requ
 export const calendarPanelFooterTestkitFactory = enzymeUniTestkitFactoryCreator(load(require('../src/CalendarPanelFooter/CalendarPanelFooter.uni.driver')));
 export const cardGalleryItemTestkitFactory = enzymeUniTestkitFactoryCreator(load(require('../src/CardGalleryItem/CardGalleryItem.uni.driver')));
 export const carouselTestkitFactory = enzymeTestkitFactoryCreator(load(require('../src/Carousel/Carousel.driver')));
+export const carouselNewTestkitFactory = enzymeUniTestkitFactoryCreator(load(require('../src/CarouselNew/CarouselNew.uni.driver')));
 export const checkboxTestkitFactory = enzymeTestkitFactoryCreator(load(require('../src/Checkbox/Checkbox.driver')));
 export const circularProgressBarTestkitFactory = enzymeTestkitFactoryCreator(load(require('../src/CircularProgressBar/CircularProgressBar.driver')));
 export const closeButtonTestkitFactory = enzymeUniTestkitFactoryCreator(load(require('../src/CloseButton/CloseButton.uni.driver')));

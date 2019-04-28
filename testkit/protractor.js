@@ -484,3 +484,9 @@ import { errorIndicatorDriverFactory } from '../src/ErrorIndicator/ErrorIndicato
 export const errorIndicatorTestkitFactory = protractorUniTestkitFactoryCreator(
   errorIndicatorDriverFactory,
 );
+
+import { carouselNewDriverFactory } from '../src/CarouselNew/CarouselNew.uni.driver';
+
+export const carouselNewTestkitFactory = protractorUniTestkitFactoryCreator(
+  carouselNewDriverFactory,
+);
