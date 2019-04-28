@@ -7,19 +7,23 @@ export interface AvatarProps {
   imgProps?: React.ImgHTMLAttributes<HTMLImageElement>;
   ariaLabel?: string;
   title?: string;
-  size?:
-    | 'size90'
-    | 'size72'
-    | 'size60'
-    | 'size48'
-    | 'size36'
-    | 'size30'
-    | 'size24'
-    | 'size18';
-  color?: 'blue' | 'green' | 'grey' | 'red' | 'orange';
+  size?: AvatarSize;
+  color?: AvatarColor;
   className?: string;
   dataHook?: string;
 }
+
+export type AvatarSize =
+  | 'size90'
+  | 'size72'
+  | 'size60'
+  | 'size48'
+  | 'size36'
+  | 'size30'
+  | 'size24'
+  | 'size18';
+  
+export type AvatarColor = 'blue' | 'green' | 'grey' | 'red' | 'orange';
 
 declare const Avatar: React.SFC<AvatarProps>;
 export default Avatar;
