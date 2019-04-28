@@ -26,7 +26,6 @@
       }
     }
   }
-
 }
 
 .children {
@@ -42,7 +41,6 @@
     padding-right: 12px;
   }
 }
-
 
 .checkbox {
   position: relative;
@@ -73,7 +71,8 @@
 }
 
 /* Checked State */
-.checked, .indeterminate {
+.checked,
+.indeterminate {
   .checkbox {
     border: 1px solid $B10;
     background-color: $B10;
@@ -96,7 +95,8 @@
     }
   }
 
-  &.hover .checkbox, .checkbox:hover {
+  &.hover .checkbox,
+  .checkbox:hover {
     background-color: $B50;
   }
 }

@@ -2,13 +2,14 @@ import { isClassExists } from '../../test/utils';
 import { labelDriverFactory } from 'wix-ui-backoffice/dist/src/components/Label/Label.driver';
 import { testkitFactoryCreator } from 'wix-ui-test-utils/vanilla';
 import tooltipDriverFactory from '../Tooltip/Tooltip.driver';
+import styles from './Checkbox.scss';
 
 const labelTestkitFactory = testkitFactoryCreator(labelDriverFactory);
 const toolTipTestkitFactory = testkitFactoryCreator(tooltipDriverFactory);
 
 const checkboxDriverFactory = ({ element, eventTrigger }) => {
   const input = () => element.querySelector('input');
-  const checkbox = () => element.querySelector('.checkbox');
+  const checkbox = () => element.querySelector(styles.checkbox);
   const labelDriver = () =>
     labelTestkitFactory({ wrapper: element, dataHook: 'checkbox-label' });
   const tooltipDriver = () =>
@@ -39,9 +40,9 @@ const checkboxDriverFactory = ({ element, eventTrigger }) => {
      */
     hasFocusState: () => element.getAttribute('data-focus'),
     isChecked: () => isChecked(),
-    isDisabled: () => isClassExists(element, 'disabled'),
-    isIndeterminate: () => isClassExists(element, 'indeterminate'),
-    hasError: () => isClassExists(element, 'hasError'),
+    isDisabled: () => isClassExists(element, styles.disabled),
+    isIndeterminate: () => isClassExists(element, styles.indeterminate),
+    hasError: () => isClassExists(element, styles.hasError),
     getLabel: () => labelDriver().getLabelText(),
     getLabelDriver: () => labelDriver(),
     getErrorMessage,
