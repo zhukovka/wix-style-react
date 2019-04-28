@@ -198,6 +198,7 @@
     "react-window": "^1.7.1",
     "shallowequal": "^1.1.0",
     "slate": "^0.20.3",
+    "slick-carousel": "^1.8.1",
     "wix-animations": "^1.0.276",
     "wix-eventually": "^2.2.0",
     "wix-ui-backoffice": "^1.0.339",

@@ -182,3 +182,9 @@ require('../src/GeneratedTestComponent/test/GeneratedTestComponentStories');
 require('../src/RichTextInputArea/docs/index.story');
 require('../src/NoBorderInput/docs/index.story');
 require('../src/EditableTitle/docs/index.story');
+
+// TODO: move to correct position
+require('../src/CarouselNew/docs/index.story');
+
+// TODO: move to correct position
+require('../src/CarouselNew/test/CarouselNewStories');

@@ -205,3 +205,9 @@ import { errorIndicatorDriverFactory } from '../src/ErrorIndicator/ErrorIndicato
 export const errorIndicatorTestkitFactory = puppeteerUniTestkitFactoryCreator(
   errorIndicatorDriverFactory,
 );
+
+import { carouselNewDriverFactory } from '../src/CarouselNew/CarouselNew.uni.driver';
+
+export const carouselNewTestkitFactory = puppeteerUniTestkitFactoryCreator(
+  carouselNewDriverFactory,
+);
