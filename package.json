@@ -193,6 +193,7 @@
     "react-modal": "^3.3.2",
     "react-motion": "^0.4.7",
     "react-portal": "^4.1.5",
+    "react-slick": "^0.24.0",
     "react-transition-group": "^2.2.1",
     "react-window": "^1.7.1",
     "shallowequal": "^1.1.0",
