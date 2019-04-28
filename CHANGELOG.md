@@ -14,6 +14,10 @@ Types of changes:
 1. **Docs** for documentation changes
 1. **Lab** components and features that are still in a work in progress
 
+## Next
+
+- `<Checkbox/>` - use css-modules hashed class name instead hardcoded string in testkit [#3286](https://github.com/wix/wix-style-react/pull/3286)
+
 ## 6.16.1
 
 ### Fixed
