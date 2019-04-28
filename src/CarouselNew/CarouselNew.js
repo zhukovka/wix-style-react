@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 import Text from '../Text';
 import Button from '../Button';
-import styles from './CarouselNew.st.css';
+import styles from './CarouselNew.scss';
 
 /**
  *
