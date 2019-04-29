@@ -267,6 +267,7 @@ class DropdownLayout extends WixComponent {
         onMouseLeave={onMouseLeave}
       >
         <div
+          data-hook="content-container"
           className={contentContainerClassName}
           style={{
             maxHeight: this.props.maxHeightPixels + 'px',

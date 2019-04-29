@@ -65,7 +65,7 @@ export function ReactBase(base) {
   };
 
   const unidriverRejected = {
-    tagName: async () => (await htmlElement()).tagName,
+    // Event Simulation
     focus: async () => {
       const elm = await htmlElement();
       elm.focus();
@@ -76,6 +76,9 @@ export function ReactBase(base) {
       elm.blur();
       Simulate.blur(elm); // TODO: Is this redundant?
     },
+
+    // Access Element Properties
+    tagName: async () => (await htmlElement()).tagName,
     disabled: async () => (await htmlElement()).disabled,
     tabIndex: async () => (await htmlElement()).tabIndex,
     readOnly: async () => (await htmlElement()).readOnly,
@@ -87,6 +90,10 @@ export function ReactBase(base) {
     textContent: async () => (await htmlElement()).textContent,
     getStyle: async () => (await htmlElement()).style,
     width: async () => (await htmlElement()).width,
+  };
+
+  // These could be BAD implementations. We shold have a deprecation log and provide a better alternative.
+  const shouldBeDeprecated = {
     getClassList: async () => (await htmlElement()).classList,
     /** @returns {array} array of children unidrivers */
     children: async () => {
@@ -124,6 +131,7 @@ export function ReactBase(base) {
     ...pendingUnidriverFixes,
     ...pendingUnidriverFeatures,
     ...unidriverRejected,
+    ...shouldBeDeprecated,
     ...shouldBePrivate,
   };
 }
