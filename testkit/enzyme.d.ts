@@ -2,6 +2,7 @@ import {BaseUniDriver} from 'wix-ui-test-utils/base-driver';
 import {BaseDriver} from 'wix-ui-test-utils/driver-factory';
 import {ReactWrapper} from 'enzyme';
 import {AvatarDriver} from '../src/Avatar/Avatar.driver';
+import {BadgeDriver} from '../src/Badge/Badge.driver';
 
 declare namespace EnzymeTestkit {
   type EnzymeTestkitFactory<T extends BaseDriver> = (
@@ -18,6 +19,7 @@ declare namespace EnzymeTestkit {
   }
 
   export const avatarTestkitFactory: EnzymeUniTestkitFactory<AvatarDriver>;
+  export const badgeTestkitFactory: EnzymeTestkitFactory<BadgeDriver>
 }
 
 export = EnzymeTestkit;
