@@ -1,5 +1,5 @@
 import * as React from 'react';
-import {mount} from '../../node_modules/@types/enzyme';
+import {mount} from 'enzyme';
 import Avatar from '../../src/Avatar';
 import {avatarTestkitFactory} from '../../testkit';
 import {avatarTestkitFactory as avatarEnzymeTestkitFactory} from '../../testkit/enzyme';

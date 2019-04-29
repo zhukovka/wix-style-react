@@ -5,17 +5,18 @@ import {AvatarDriver} from '../src/Avatar/Avatar.driver';
 import {BadgeDriver} from '../src/Badge/Badge.driver';
 import {BadgeSelectDriver} from '../src/BadgeSelect/BadgeSelect.driver';
 import {BoxDriver} from '../src/Box/Box.uni.driver';
+import {TooltipDriver} from '../src/Tooltip/Tooltip.uni.driver';
 
 declare namespace EnzymeTestkit {
   type EnzymeTestkitFactory<T extends BaseDriver> = (
-    params: EnzymeTeskitParams
+    params: EnzymeTestkitParams
   ) => T;
 
   type EnzymeUniTestkitFactory<T extends BaseUniDriver> = (
-    params: EnzymeTeskitParams
+    params: EnzymeTestkitParams
   ) => T;
 
-  interface EnzymeTeskitParams {
+  interface EnzymeTestkitParams {
     wrapper: ReactWrapper;
     dataHook: string;
   }
@@ -24,6 +25,7 @@ declare namespace EnzymeTestkit {
   export const badgeTestkitFactory: EnzymeTestkitFactory<BadgeDriver>;
   export const badgeSelectTestkitFactory: EnzymeTestkitFactory<BadgeSelectDriver>;
   export const boxTestkitFactory: EnzymeUniTestkitFactory<BoxDriver>;
+  export const tooltipTestkitFactory: EnzymeUniTestkitFactory<TooltipDriver>;
 }
 
 export = EnzymeTestkit;
