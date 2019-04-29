@@ -1,4 +1,4 @@
-import { baseUniDriverFactory } from 'wix-ui-test-utils/base-driver';
+import { baseUniDriverFactory } from 'wix-ui-test-utils/unidriver';
 
 export const carouselNewDriverFactory = base => {
   return {
@@ -13,5 +13,15 @@ export const carouselNewDriverFactory = base => {
     /** Get the button's text */
     getButtonText: async () =>
       base.$('[data-hook="carouselNew-button"]').text(),
+
+    isLoading: () => {
+      base.$('[data-hook="loader"]').exists();
+    },
+
+    // getImages: () => {
+    //   return element
+    //     .querySelectorAll('[data-hook="carousel-img"]')
+    //     .map(img => img.src);
+    // },
   };
 };
