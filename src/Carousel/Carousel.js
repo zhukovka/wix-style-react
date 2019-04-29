@@ -136,7 +136,11 @@ class Carousel extends React.Component {
     return imagesArray.map((image, index) => {
       return (
         <div key={index} data-hook="images-container">
-          <img src={image.src} />
+          <img
+            src={image.src}
+            data-hook="carousel-img"
+            className={styles.image}
+          />
         </div>
       );
     });
