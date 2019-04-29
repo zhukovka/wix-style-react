@@ -1,8 +1,13 @@
 import React from 'react';
 import PageHeader from './PageHeader';
 import pageHeaderDriverFactory from './PageHeader.driver';
+import { pageHeaderUniDriverFactory } from './PageHeader.uni.driver';
 import { PageHeaderPrivateDriver } from './PageHeader.private.driver';
-import { createRendererWithDriver, cleanup } from '../../test/utils/unit';
+import {
+  createRendererWithDriver,
+  createRendererWithUniDriver,
+  cleanup,
+} from '../../test/utils/react';
 import Button from '../Button';
 import Breadcrumbs from '../Breadcrumbs/Breadcrumbs';
 import PropTypes from 'prop-types';
@@ -19,240 +24,19 @@ const generateBreadcrumbs = title => (
 
 const ActionBar = props => props.children;
 
+const title = 'This is a title';
+const subtitle = 'This is a subtitle';
+const breadcrumbs = generateBreadcrumbs(title);
+const actionsBar = (
+  <ActionBar>
+    <Button>Action</Button>
+  </ActionBar>
+);
+const onBackClicked = () => {};
+
 describe('PageHeader', () => {
-  const title = 'This is a title';
-  const subtitle = 'This is a subtitle';
-  const breadcrumbs = generateBreadcrumbs(title);
-  const actionsBar = (
-    <ActionBar>
-      <Button>Action</Button>
-    </ActionBar>
-  );
-  const onBackClicked = () => {};
-  const render = createRendererWithDriver(pageHeaderDriverFactory);
-  const createDriver = jsx => render(jsx).driver;
-
-  afterEach(() => {
-    cleanup();
-  });
-
-  it('should initialize component with title', () => {
-    const pageHeader = <PageHeader title={title} />;
-    const driver = createDriver(pageHeader);
-    expect(driver.titleText()).toBe(title);
-    expect(driver.isTitleExists()).toBeTruthy();
-    expect(driver.isSubtitleExists()).toBeFalsy();
-    expect(driver.isBreadcrumbsExists()).toBeFalsy();
-  });
-
-  it('should initialize component with minimized title', () => {
-    const pageHeader = <PageHeader minimized title={title} />;
-    const driver = createDriver(pageHeader);
-    expect(driver.isTitleExists()).toBeFalsy();
-    expect(driver.isSubtitleExists()).toBeFalsy();
-    expect(driver.isBreadcrumbsExists()).toBeTruthy();
-  });
-
-  it('should initialize component with title and subtitle', () => {
-    const pageHeader = <PageHeader title={title} subtitle={subtitle} />;
-    const driver = createDriver(pageHeader);
-    expect(driver.titleText()).toBe(title);
-    expect(driver.subtitleText()).toBe(subtitle);
-    expect(driver.isTitleExists()).toBeTruthy();
-    expect(driver.isSubtitleExists()).toBeTruthy();
-    expect(driver.isBreadcrumbsExists()).toBeFalsy();
-  });
-
-  it('should initialize component with title and subtitle with a special character', () => {
-    const someTextWithSpecialCharachters = 'tom & jerry';
-    const pageHeader = (
-      <PageHeader
-        title={someTextWithSpecialCharachters}
-        subtitle={someTextWithSpecialCharachters}
-      />
-    );
-    const driver = createDriver(pageHeader);
-    expect(driver.titleText()).toEqual(someTextWithSpecialCharachters);
-    expect(driver.subtitleText()).toEqual(someTextWithSpecialCharachters);
-  });
-
-  it('should initialize component with minimized title and subtitle', () => {
-    const pageHeader = (
-      <PageHeader minimized title={title} subtitle={subtitle} />
-    );
-    const driver = createDriver(pageHeader);
-    expect(driver.isTitleExists()).toBeFalsy();
-    expect(driver.isSubtitleExists()).toBeFalsy();
-    expect(driver.isBreadcrumbsExists()).toBeTruthy();
-  });
-
-  it('should initialize component with breadcrumbs and title', () => {
-    const pageHeader = <PageHeader breadcrumbs={breadcrumbs} title={title} />;
-    const driver = createDriver(pageHeader);
-    expect(driver.titleText()).toBe(title);
-    expect(driver.isTitleExists()).toBeTruthy();
-    expect(driver.isSubtitleExists()).toBeFalsy();
-    expect(driver.isBreadcrumbsExists()).toBeTruthy();
-  });
-
-  it('should initialize component with minimized breadcrumbs and title', () => {
-    const pageHeader = (
-      <PageHeader minimized breadcrumbs={breadcrumbs} title={title} />
-    );
-    const driver = createDriver(pageHeader);
-    expect(driver.isTitleExists()).toBeFalsy();
-    expect(driver.isSubtitleExists()).toBeFalsy();
-    expect(driver.isBreadcrumbsExists()).toBeTruthy();
-  });
-
-  it('should initialize component with breadcrumbs, title and subtitle', () => {
-    const pageHeader = (
-      <PageHeader breadcrumbs={breadcrumbs} title={title} subtitle={subtitle} />
-    );
-    const driver = createDriver(pageHeader);
-    expect(driver.titleText()).toBe(title);
-    expect(driver.subtitleText()).toBe(subtitle);
-    expect(driver.isTitleExists()).toBeTruthy();
-    expect(driver.isSubtitleExists()).toBeTruthy();
-    expect(driver.isBreadcrumbsExists()).toBeTruthy();
-  });
-
-  it('should initialize component with minimized breadcrumbs, title and subtitle', () => {
-    const pageHeader = (
-      <PageHeader
-        minimized
-        breadcrumbs={breadcrumbs}
-        title={title}
-        subtitle={subtitle}
-      />
-    );
-    const driver = createDriver(pageHeader);
-    expect(driver.isTitleExists()).toBeFalsy();
-    expect(driver.isSubtitleExists()).toBeFalsy();
-    expect(driver.isBreadcrumbsExists()).toBeTruthy();
-  });
-
-  it('should initialize component with title and actionsBar', () => {
-    const pageHeader = <PageHeader title={title} actionsBar={actionsBar} />;
-    const driver = createDriver(pageHeader);
-    expect(driver.isActionBarExists()).toBeTruthy();
-  });
-
-  it('should initialize component with minimized title and actionsBar', () => {
-    const pageHeader = (
-      <PageHeader minimized title={title} actionsBar={actionsBar} />
-    );
-    const driver = createDriver(pageHeader);
-    expect(driver.isActionBarExists()).toBeTruthy();
-  });
-
-  it('should initialize component with title and back button without callback', () => {
-    const pageHeader = <PageHeader title={title} showBackButton />;
-    const driver = createDriver(pageHeader);
-    expect(driver.isBackButtonExists()).toBeFalsy();
-  });
-
-  it('should initialize component with title and back button callback', () => {
-    const pageHeader = (
-      <PageHeader title={title} onBackClicked={onBackClicked} />
-    );
-    const driver = createDriver(pageHeader);
-    expect(driver.isBackButtonExists()).toBeFalsy();
-  });
-
-  it('should initialize component with title and back button callback and back button', () => {
-    const pageHeader = (
-      <PageHeader title={title} showBackButton onBackClicked={onBackClicked} />
-    );
-    const driver = createDriver(pageHeader);
-    expect(driver.isBackButtonExists()).toBeTruthy();
-  });
-
-  it('should initialize component with minimized title and back button callback and back button', () => {
-    const pageHeader = (
-      <PageHeader
-        minimized
-        title={title}
-        showBackButton
-        onBackClicked={onBackClicked}
-      />
-    );
-    const driver = createDriver(pageHeader);
-    expect(driver.isBackButtonExists()).toBeFalsy();
-  });
-
-  it('should execute the given back button callback once the back button is clicked', () => {
-    const backButtonCallback = jest.fn();
-    const pageHeader = (
-      <PageHeader
-        title={title}
-        showBackButton
-        onBackClicked={backButtonCallback}
-      />
-    );
-    const driver = createDriver(pageHeader);
-    driver.clickBackButton();
-
-    expect(backButtonCallback).toBeCalledTimes(1);
-  });
-
-  it('should have custom className', () => {
-    const pageHeader = <PageHeader title={title} className="myClass" />;
-    const driver = createDriver(pageHeader);
-    expect(driver.hasClass('myClass')).toBeTruthy();
-  });
-
-  describe('should initialize component with render props title', () => {
-    const altTitle = 'This is a different title';
-    const HeaderTitleComponent = props => (
-      <span>{props.minimized ? altTitle : title}</span>
-    );
-    HeaderTitleComponent.propTypes = { minimized: PropTypes.bool };
-
-    it('not minimized', () => {
-      const pageHeader = (
-        <PageHeader
-          title={minimized => <HeaderTitleComponent minimized={minimized} />}
-        />
-      );
-      const driver = createDriver(pageHeader);
-      expect(driver.titleText()).toBe(title);
-      expect(driver.isTitleExists()).toBeTruthy();
-      expect(driver.isSubtitleExists()).toBeFalsy();
-      expect(driver.isBreadcrumbsExists()).toBeFalsy();
-    });
-
-    it('minimized with breadcrumbs', () => {
-      const pageHeader = (
-        <PageHeader
-          minimized
-          breadcrumbs={breadcrumbs}
-          title={minimized => <HeaderTitleComponent minimized={minimized} />}
-        />
-      );
-      const driver = createDriver(pageHeader);
-      expect(driver.isTitleExists()).toBeFalsy();
-      expect(driver.isSubtitleExists()).toBeFalsy();
-      expect(driver.isBreadcrumbsExists()).toBeTruthy();
-    });
-
-    it('minimized without breadcrumbs', () => {
-      const pageHeader = (
-        <PageHeader
-          minimized
-          title={minimized => <HeaderTitleComponent minimized={minimized} />}
-        />
-      );
-      const driver = createDriver(pageHeader);
-      expect(driver.isTitleExists()).toBeFalsy();
-      expect(driver.isSubtitleExists()).toBeFalsy();
-      expect(driver.isBreadcrumbsExists()).toBeTruthy();
-      expect(driver.breadcrumbsText()).toBe(altTitle);
-    });
-  });
-
   describe('render actionsBar using render props', () => {
-    it('should not pass minimized and hasBackgroundImage props to element', () => {
+    it('should not pass minimized and hasBackgroundImage props to element', async () => {
       const actionBarDiv = <div data-hook="action-bar-div" />;
       const pageHeader = (
         <PageHeader
@@ -264,14 +48,16 @@ describe('PageHeader', () => {
       );
       const driver = PageHeaderPrivateDriver.fromJsxElement(pageHeader);
 
-      expect(driver.existsByDataHook('action-bar-div')).toEqual(true);
-      expect(driver.propExists('action-bar-div', 'minimized')).toEqual(false);
-      expect(driver.propExists('action-bar-div', 'hasBackgroundImage')).toEqual(
+      expect(await driver.existsByDataHook('action-bar-div')).toEqual(true);
+      expect(await driver.propExists('action-bar-div', 'minimized')).toEqual(
         false,
       );
+      expect(
+        await driver.propExists('action-bar-div', 'hasBackgroundImage'),
+      ).toEqual(false);
     });
 
-    it('should pass minimized and hasBackgroundImage props to function', () => {
+    it('should pass minimized and hasBackgroundImage props to function', async () => {
       const actionBarDiv = ({ minimized, hasBackgroundImage }) =>
         minimized && hasBackgroundImage ? (
           <div data-hook="action-bar-with-props" />
@@ -288,10 +74,239 @@ describe('PageHeader', () => {
       );
       const driver = PageHeaderPrivateDriver.fromJsxElement(pageHeader);
 
-      expect(driver.existsByDataHook('action-bar-with-props')).toEqual(true);
-      expect(driver.existsByDataHook('action-bar-with-no-props')).toEqual(
+      expect(await driver.existsByDataHook('action-bar-with-props')).toEqual(
+        true,
+      );
+      expect(await driver.existsByDataHook('action-bar-with-no-props')).toEqual(
         false,
       );
     });
   });
+  describe('[sync]', () => {
+    runTests(createRendererWithDriver(pageHeaderDriverFactory));
+  });
+
+  describe('[async]', () => {
+    runTests(createRendererWithUniDriver(pageHeaderUniDriverFactory));
+  });
 });
+function runTests(render) {
+  afterEach(() => {
+    cleanup();
+  });
+
+  it('should initialize component with title', async () => {
+    const pageHeader = <PageHeader title={title} />;
+    const { driver } = render(pageHeader);
+    expect(await driver.titleText()).toBe(title);
+    expect(await driver.isTitleExists()).toBeTruthy();
+    expect(await driver.isSubtitleExists()).toBeFalsy();
+    expect(await driver.isBreadcrumbsExists()).toBeFalsy();
+  });
+
+  it('should initialize component with minimized title', async () => {
+    const pageHeader = <PageHeader minimized title={title} />;
+    const { driver } = render(pageHeader);
+    expect(await driver.isTitleExists()).toBeFalsy();
+    expect(await driver.isSubtitleExists()).toBeFalsy();
+    expect(await driver.isBreadcrumbsExists()).toBeTruthy();
+  });
+
+  it('should initialize component with title and subtitle', async () => {
+    const pageHeader = <PageHeader title={title} subtitle={subtitle} />;
+    const { driver } = render(pageHeader);
+    expect(await driver.titleText()).toBe(title);
+    expect(await driver.subtitleText()).toBe(subtitle);
+    expect(await driver.isTitleExists()).toBeTruthy();
+    expect(await driver.isSubtitleExists()).toBeTruthy();
+    expect(await driver.isBreadcrumbsExists()).toBeFalsy();
+  });
+
+  it('should initialize component with title and subtitle with a special character', async () => {
+    const someTextWithSpecialCharachters = 'tom & jerry';
+    const pageHeader = (
+      <PageHeader
+        title={someTextWithSpecialCharachters}
+        subtitle={someTextWithSpecialCharachters}
+      />
+    );
+    const { driver } = render(pageHeader);
+    expect(await driver.titleText()).toEqual(someTextWithSpecialCharachters);
+    expect(await driver.subtitleText()).toEqual(someTextWithSpecialCharachters);
+  });
+
+  it('should initialize component with minimized title and subtitle', async () => {
+    const pageHeader = (
+      <PageHeader minimized title={title} subtitle={subtitle} />
+    );
+    const { driver } = render(pageHeader);
+    expect(await driver.isTitleExists()).toBeFalsy();
+    expect(await driver.isSubtitleExists()).toBeFalsy();
+    expect(await driver.isBreadcrumbsExists()).toBeTruthy();
+  });
+
+  it('should initialize component with breadcrumbs and title', async () => {
+    const pageHeader = <PageHeader breadcrumbs={breadcrumbs} title={title} />;
+    const { driver } = render(pageHeader);
+    expect(await driver.titleText()).toBe(title);
+    expect(await driver.isTitleExists()).toBeTruthy();
+    expect(await driver.isSubtitleExists()).toBeFalsy();
+    expect(await driver.isBreadcrumbsExists()).toBeTruthy();
+  });
+
+  it('should initialize component with minimized breadcrumbs and title', async () => {
+    const pageHeader = (
+      <PageHeader minimized breadcrumbs={breadcrumbs} title={title} />
+    );
+    const { driver } = render(pageHeader);
+    expect(await driver.isTitleExists()).toBeFalsy();
+    expect(await driver.isSubtitleExists()).toBeFalsy();
+    expect(await driver.isBreadcrumbsExists()).toBeTruthy();
+  });
+
+  it('should initialize component with breadcrumbs, title and subtitle', async () => {
+    const pageHeader = (
+      <PageHeader breadcrumbs={breadcrumbs} title={title} subtitle={subtitle} />
+    );
+    const { driver } = render(pageHeader);
+    expect(await driver.titleText()).toBe(title);
+    expect(await driver.subtitleText()).toBe(subtitle);
+    expect(await driver.isTitleExists()).toBeTruthy();
+    expect(await driver.isSubtitleExists()).toBeTruthy();
+    expect(await driver.isBreadcrumbsExists()).toBeTruthy();
+  });
+
+  it('should initialize component with minimized breadcrumbs, title and subtitle', async () => {
+    const pageHeader = (
+      <PageHeader
+        minimized
+        breadcrumbs={breadcrumbs}
+        title={title}
+        subtitle={subtitle}
+      />
+    );
+    const { driver } = render(pageHeader);
+    expect(await driver.isTitleExists()).toBeFalsy();
+    expect(await driver.isSubtitleExists()).toBeFalsy();
+    expect(await driver.isBreadcrumbsExists()).toBeTruthy();
+  });
+
+  it('should initialize component with title and actionsBar', async () => {
+    const pageHeader = <PageHeader title={title} actionsBar={actionsBar} />;
+    const { driver } = render(pageHeader);
+    expect(await driver.isActionBarExists()).toBeTruthy();
+  });
+
+  it('should initialize component with minimized title and actionsBar', async () => {
+    const pageHeader = (
+      <PageHeader minimized title={title} actionsBar={actionsBar} />
+    );
+    const { driver } = render(pageHeader);
+    expect(await driver.isActionBarExists()).toBeTruthy();
+  });
+
+  it('should initialize component with title and back button without callback', async () => {
+    const pageHeader = <PageHeader title={title} showBackButton />;
+    const { driver } = render(pageHeader);
+    expect(await driver.isBackButtonExists()).toBeFalsy();
+  });
+
+  it('should initialize component with title and back button callback', async () => {
+    const pageHeader = (
+      <PageHeader title={title} onBackClicked={onBackClicked} />
+    );
+    const { driver } = render(pageHeader);
+    expect(await driver.isBackButtonExists()).toBeFalsy();
+  });
+
+  it('should initialize component with title and back button callback and back button', async () => {
+    const pageHeader = (
+      <PageHeader title={title} showBackButton onBackClicked={onBackClicked} />
+    );
+    const { driver } = render(pageHeader);
+    expect(await driver.isBackButtonExists()).toBeTruthy();
+  });
+
+  it('should initialize component with minimized title and back button callback and back button', async () => {
+    const pageHeader = (
+      <PageHeader
+        minimized
+        title={title}
+        showBackButton
+        onBackClicked={onBackClicked}
+      />
+    );
+    const { driver } = render(pageHeader);
+    expect(await driver.isBackButtonExists()).toBeFalsy();
+  });
+
+  it('should execute the given back button callback once the back button is clicked', async () => {
+    const backButtonCallback = jest.fn();
+    const pageHeader = (
+      <PageHeader
+        title={title}
+        showBackButton
+        onBackClicked={backButtonCallback}
+      />
+    );
+    const { driver } = render(pageHeader);
+    await driver.clickBackButton();
+
+    expect(backButtonCallback).toBeCalledTimes(1);
+  });
+
+  it('should have custom className', async () => {
+    const pageHeader = <PageHeader title={title} className="myClass" />;
+    const { driver } = render(pageHeader);
+    expect(await driver.hasClass('myClass')).toBeTruthy();
+  });
+
+  describe('should initialize component with render props title', () => {
+    const altTitle = 'This is a different title';
+    const HeaderTitleComponent = props => (
+      <span>{props.minimized ? altTitle : title}</span>
+    );
+    HeaderTitleComponent.propTypes = { minimized: PropTypes.bool };
+
+    it('not minimized', async () => {
+      const pageHeader = (
+        <PageHeader
+          title={minimized => <HeaderTitleComponent minimized={minimized} />}
+        />
+      );
+      const { driver } = render(pageHeader);
+      expect(await driver.titleText()).toBe(title);
+      expect(await driver.isTitleExists()).toBeTruthy();
+      expect(await driver.isSubtitleExists()).toBeFalsy();
+      expect(await driver.isBreadcrumbsExists()).toBeFalsy();
+    });
+
+    it('minimized with breadcrumbs', async () => {
+      const pageHeader = (
+        <PageHeader
+          minimized
+          breadcrumbs={breadcrumbs}
+          title={minimized => <HeaderTitleComponent minimized={minimized} />}
+        />
+      );
+      const { driver } = render(pageHeader);
+      expect(await driver.isTitleExists()).toBeFalsy();
+      expect(await driver.isSubtitleExists()).toBeFalsy();
+      expect(await driver.isBreadcrumbsExists()).toBeTruthy();
+    });
+
+    it('minimized without breadcrumbs', async () => {
+      const pageHeader = (
+        <PageHeader
+          minimized
+          title={minimized => <HeaderTitleComponent minimized={minimized} />}
+        />
+      );
+      const { driver } = render(pageHeader);
+      expect(await driver.isTitleExists()).toBeFalsy();
+      expect(await driver.isSubtitleExists()).toBeFalsy();
+      expect(await driver.isBreadcrumbsExists()).toBeTruthy();
+      expect(await driver.breadcrumbsText()).toBe(altTitle);
+    });
+  });
+}
