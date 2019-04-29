@@ -1,5 +1,4 @@
-
-import {ReactElement} from 'react';
+import { ReactElement } from 'react';
 
 export interface InjectedFocusableProps {
   focusableOnFocus?: () => void;
@@ -8,7 +7,9 @@ export interface InjectedFocusableProps {
 
 export type IconElement = ReactElement<any>;
 
-export {default as Avatar, AvatarProps} from '../src/Avatar';
-export {default as Badge, BadgeProps} from '../src/Badge'
+export { default as Avatar, AvatarProps } from './Avatar';
+export { default as Badge, BadgeProps } from './Badge';
+export { default as VBox, VBoxProps } from './VBox';
+
 //   type Omit<T, K extends keyof T> = Pick<T, Exclude<keyof T, K>>;
 //   type Subtract<T, K extends T> = Pick<T, Exclude<keyof T, keyof K>>;

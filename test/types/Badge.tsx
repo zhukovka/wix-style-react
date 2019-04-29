@@ -2,7 +2,7 @@ import * as React from 'react';
 import Badge from '../../src/Badge';
 import {badgeTestkitFactory} from '../../testkit';
 import {badgeTestkitFactory as badgeEnzymeTestkitFactory} from '../../testkit/enzyme';
-import {mount} from '../../node_modules/@types/enzyme';
+import {mount} from 'enzyme';
 
 function testkits() {
   const vanilla = badgeTestkitFactory({
