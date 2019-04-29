@@ -135,7 +135,7 @@ class Carousel extends React.Component {
   _renderImages(imagesArray) {
     return imagesArray.map((image, index) => {
       return (
-        <div key={index}>
+        <div key={index} data-hook="images-container">
           <img src={image.src} />
         </div>
       );
@@ -145,11 +145,7 @@ class Carousel extends React.Component {
   render() {
     const prevButton = (
       <div>
-        <IconButton
-          dataHook="prev-button"
-          priority="secondary"
-          onClick={() => this._prev()}
-        >
+        <IconButton dataHook="prev-button" priority="secondary">
           <ChevronLeftLarge />
         </IconButton>
       </div>
@@ -157,11 +153,7 @@ class Carousel extends React.Component {
 
     const nextButton = (
       <div>
-        <IconButton
-          dataHook="next-button"
-          priority="secondary"
-          onClick={() => this._next()}
-        >
+        <IconButton dataHook="next-button" priority="secondary">
           <ChevronRightLarge />
         </IconButton>
       </div>
@@ -240,7 +232,7 @@ class Carousel extends React.Component {
     return (
       <div data-hook={dataHook}>
         <Slider {...settings}>
-          {images ? this._renderImages(this.props.images) : null}
+          {images && this._renderImages(this.props.images)}
         </Slider>
       </div>
     );

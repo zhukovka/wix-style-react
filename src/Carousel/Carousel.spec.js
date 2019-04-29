@@ -58,7 +58,7 @@ describe('Carousel', () => {
 
   describe('infinite functionallity', () => {
     describe('default behaviour', () => {
-      it('should show the last image when clicing `prev`', () => {
+      it('should show the last image when clicking `prev`', () => {
         const driver = createDriver(
           <Carousel
             images={[
@@ -72,7 +72,7 @@ describe('Carousel', () => {
         expect(driver.getCurrentImageIndex()).toBe(2);
       });
 
-      it('should show the first image when clicing `next` on the last image', () => {
+      it('should show the first image when clicking `next` on the last image', () => {
         const driver = createDriver(
           <Carousel
             images={[
