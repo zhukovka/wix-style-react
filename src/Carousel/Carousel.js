@@ -2,12 +2,14 @@ import classNames from 'classnames';
 import React from 'react';
 import PropTypes from 'prop-types';
 import styles from './Carousel.scss';
+import './Carousel.global.scss';
 import ChevronLeftLarge from '../new-icons/ChevronLeftLarge';
 import ChevronRightLarge from '../new-icons/ChevronRightLarge';
 import IconButton from '../IconButton/IconButton';
 import Pagination from './Pagination';
 import Loader from '../Loader';
 import Proportion from '../Proportion';
+import Slider from 'react-slick';
 
 const AUTOPLAY_SPEED = 2000;
 const TRANSITION_SPEED = 600;
@@ -224,11 +226,23 @@ Carousel.propTypes = {
   infinite: PropTypes.bool,
   /** Auto-playing of images */
   autoplay: PropTypes.bool,
+
+  // /** Slide/Fade animation speeds */
+  // speed: PropTypes.number,
+  // /** Number of slides to show */
+  // slidesToShow: PropTypes.number,
+  // /** Number of slides to scroll */
+  // slidesToScroll: PropTypes.number,
+  // /** Show dot indicators */
+  // dots: PropTypes.bool,
 };
 
 Carousel.defaultProps = {
   infinite: true,
   images: [],
+  // autoplay: true,
+  // speed: 500,
+  // dots: true,
 };
 Carousel.displayName = 'Carousel';
 
