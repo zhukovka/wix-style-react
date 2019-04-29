@@ -94,6 +94,7 @@ export const inputAreaTestkitFactory = testkitFactoryCreator(load(require('../sr
 export const inputWithOptionsTestkitFactory = testkitFactoryCreator(load(require('../src/InputWithOptions/InputWithOptions.driver')));
 export const labelTestkitFactory = testkitFactoryCreator(load(require('../src/Label/Label.driver')));
 export const linearProgressBarTestkitFactory = testkitFactoryCreator(load(require('../src/LinearProgressBar/LinearProgressBar.driver')));
+export const linearProgressBarNewTestkitFactory = uniTestkitFactoryCreator(load(require('../src/LinearProgressBarNew/LinearProgressBarNew.uni.driver')));
 export const loaderTestkitFactory = testkitFactoryCreator(load(require('../src/Loader/Loader.driver')));
 export const modalTestkitFactory = testkitFactoryCreator(load(require('../src/Modal/Modal.driver')));
 export const modalSelectorLayoutTestkitFactory = testkitFactoryCreator(load(require('../src/ModalSelectorLayout/ModalSelectorLayout.driver')));

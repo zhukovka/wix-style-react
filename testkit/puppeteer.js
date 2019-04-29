@@ -205,3 +205,9 @@ import { errorIndicatorDriverFactory } from '../src/ErrorIndicator/ErrorIndicato
 export const errorIndicatorTestkitFactory = puppeteerUniTestkitFactoryCreator(
   errorIndicatorDriverFactory,
 );
+
+import { linearProgressBarNewDriverFactory } from '../src/LinearProgressBarNew/LinearProgressBarNew.uni.driver';
+
+export const linearProgressBarNewTestkitFactory = puppeteerUniTestkitFactoryCreator(
+  linearProgressBarNewDriverFactory,
+);
