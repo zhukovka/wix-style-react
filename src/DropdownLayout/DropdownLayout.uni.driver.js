@@ -4,14 +4,16 @@ import styles from './DropdownLayout.scss';
 export const dropdownLayoutDriverFactory = base => {
   const byDataHook = dataHook => base.$(`[data-hook="${dataHook}"]`);
   const reactBase = ReactBase(base);
-  const contentContainer = async () => (await reactBase.children())[0];
-
-  const optionsElement = byDataHook('dropdown-layout-options');
+  const contentContainer = async () => byDataHook('content-container');
+  const optionsDataHook = 'dropdown-layout-options';
+  const optionsElement = byDataHook(optionsDataHook);
   const optionElementAt = async position =>
-    (await ReactBase(optionsElement).children())[position];
-
-  const optionsLength = async () =>
-    (await ReactBase(optionsElement).children()).length;
+    await base.$(
+      `[data-hook=${optionsDataHook}] > *:nth-child(${position + 1})`,
+    );
+  const options = () =>
+    base.$$(`[data-hook=${optionsDataHook}] > *`).map(i => i);
+  const optionsLength = async () => (await options()).length;
   const doIfOptionExists = (position, onSuccess) => {
     if (optionsLength() <= position) {
       throw new Error(
@@ -31,8 +33,7 @@ export const dropdownLayoutDriverFactory = base => {
     clickAtOption: async index =>
       ReactBase(await optionElementAt(index)).click(),
     clickAtOptionWithValue: async value => {
-      const children = await ReactBase(optionsElement).children();
-      for (const _option of children) {
+      for (const _option of await options()) {
         if ((await ReactBase(_option).innerHtml()) === value) {
           return ReactBase(_option).click();
         }
@@ -50,8 +51,7 @@ export const dropdownLayoutDriverFactory = base => {
         (await optionElementAt(position)).hasClass(styles.divider),
       ),
     isOptionExists: async optionText => {
-      const children = await ReactBase(optionsElement).children();
-      for (const _option of children) {
+      for (const _option of await options()) {
         if ((await _option.text()) === optionText) {
           return true;
         }
@@ -127,7 +127,7 @@ export const dropdownLayoutDriverFactory = base => {
     },
     optionsContent: async () => {
       const textArray = [];
-      for (const option of await ReactBase(optionsElement).children()) {
+      for (const option of await options()) {
         textArray.push(await option.text());
       }
       return textArray;
