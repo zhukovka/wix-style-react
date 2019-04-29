@@ -35,6 +35,7 @@ class SocialPreview extends React.Component {
             light={false}
             dataHook="socialPreview-url"
             className={style.socialPreviewUrl}
+            ellipsis
           >
             {previewUrl && previewUrl.toUpperCase()}
           </Text>
@@ -44,6 +45,7 @@ class SocialPreview extends React.Component {
             light={false}
             dataHook="socialPreview-title"
             className={style.socialPreviewTitle}
+            ellipsis
           >
             {title}
           </Text>
@@ -53,6 +55,7 @@ class SocialPreview extends React.Component {
             light={false}
             dataHook="socialPreview-description"
             className={style.socialPreviewDescription}
+            ellipsis
           >
             {description}
           </Text>
