@@ -5,8 +5,8 @@ export default ({ element }) => {
   return {
     ...publicDriver({ element }),
     getCurrentImageIndex: () => {
-      const imageContainers = element.querySelectorAll('.slick-current');
-      return imageContainers.attr('data-index');
+      const currentSlide = element.querySelector('.slick-current');
+      return Number(currentSlide.dataset.index);
     },
     loadImages: () => {
       element

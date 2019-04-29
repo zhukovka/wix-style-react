@@ -135,7 +135,7 @@ class Carousel extends React.Component {
   _renderImages(imagesArray) {
     return imagesArray.map((image, index) => {
       return (
-        <div key={index}>
+        <div key={index} data-hook="images-container">
           <img src={image.src} />
         </div>
       );
@@ -232,7 +232,7 @@ class Carousel extends React.Component {
     return (
       <div data-hook={dataHook}>
         <Slider {...settings}>
-          {images ? this._renderImages(this.props.images) : null}
+          {images && this._renderImages(this.props.images)}
         </Slider>
       </div>
     );
