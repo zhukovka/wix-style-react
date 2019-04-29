@@ -18,8 +18,20 @@ class CarouselNew extends React.PureComponent {
     );
   };
 
+  // _renderImagesElements(imagesArray) {
+  //
+  //   return (
+  //     imagesArray.map()
+  //     {/*<div style={{ width: 100 }}>*/}
+  //     <div key={image.src}>
+  //       <img src={image.src} />
+  //     </div>
+  //   );
+  //
+  // }
+
   render() {
-    const { dataHook, infinite, autoplay, dots } = this.props;
+    const { dataHook, infinite, autoplay, dots, images } = this.props;
 
     const settings = {
       dots,
