@@ -2,9 +2,6 @@ import * as React from 'react';
 import { createDriverFactory } from 'wix-ui-test-utils/driver-factory';
 import linearProgressBarDriverFactory from '../LinearProgressBar.driver';
 import LinearProgressBar from '../LinearProgressBar';
-import { linearProgressBarTestkitFactory } from '../../../testkit';
-import { linearProgressBarTestkitFactory as enzymeLinearProgressBarTestkitFactory } from '../../../testkit/enzyme';
-import { runTestkitExistsSuite } from 'wix-ui-backoffice/dist/src/common/testkitTests';
 
 describe('LinearProgressBar', () => {
   const createDriver = createDriverFactory(linearProgressBarDriverFactory);
@@ -62,11 +59,5 @@ describe('LinearProgressBar', () => {
     );
 
     expect(driverFactoryWrapper.createDriver).not.toThrow();
-  });
-
-  runTestkitExistsSuite({
-    Element: <LinearProgressBar {...defaultProps} />,
-    testkitFactory: linearProgressBarTestkitFactory,
-    enzymeTestkitFactory: enzymeLinearProgressBarTestkitFactory,
   });
 });
