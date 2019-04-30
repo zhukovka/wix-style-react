@@ -18,6 +18,7 @@ import {CheckboxDriver} from '../src/Checkbox/Checkbox.uni.driver';
 import {TextButtonDriver} from '../src/TextButton/TextButton.uni.driver';
 import {CircularProgressBarDriver} from '../src/CircularProgressBar/CircularProgressBar.driver';
 import {CloseButtonDriver} from '../src/CloseButton/CloseButton.uni.driver';
+import {TextDriver} from '../src/Text/Text.driver';
 
 declare namespace VanillaTestkit {
   type VanillaTestkitFactory<T extends BaseDriver> = (
@@ -47,6 +48,7 @@ declare namespace VanillaTestkit {
   export const circularProgressBarTestkitFactory: VanillaTestkitFactory<CircularProgressBarDriver>
   export const closeButtonTestkitFactory: VanillaUniTestkitFactory<CloseButtonDriver>;
 
+  export const textTestkitFactory: VanillaTestkitFactory<TextDriver>;
   export const textButtonTestkitFactory: VanillaUniTestkitFactory<TextButtonDriver>;
   export const thumbnailTestkitFactory: VanillaUniTestkitFactory<ThumbnailDriver>;
   export const timeInputTestkitFactory: VanillaTestkitFactory<TimeInputDriver>;
