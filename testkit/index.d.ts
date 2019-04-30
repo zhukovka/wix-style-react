@@ -45,7 +45,7 @@ declare namespace VanillaTestkit {
   export const cardGalleryItemTestkitFactory: VanillaUniTestkitFactory<CardGalleryItemDriver>
   export const checkboxTestkitFactory: VanillaUniTestkitFactory<CheckboxDriver>;
   export const circularProgressBarTestkitFactory: VanillaTestkitFactory<CircularProgressBarDriver>
-  export const closeButtonTestkitFactory: EnzymeUniTestkitFactory<CloseButtonDriver>;
+  export const closeButtonTestkitFactory: VanillaUniTestkitFactory<CloseButtonDriver>;
 
   export const textButtonTestkitFactory: VanillaUniTestkitFactory<TextButtonDriver>;
   export const thumbnailTestkitFactory: VanillaUniTestkitFactory<ThumbnailDriver>;
