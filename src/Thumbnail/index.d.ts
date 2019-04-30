@@ -5,12 +5,12 @@ export interface ThumbnailProps extends InjectedFocusableProps {
   dataHook?: string;
   title?: React.ReactNode;
   description?: React.ReactNode;
-  image?: React.ReactNode;
+  image?: React.ReactNode | string;
   size?: ThumbnailSize;
   selected?: boolean;
   disabled?: boolean;
   hideSelectedIcon?: boolean;
-  backgroundImage?: React.ReactNode;
+  backgroundImage?: React.ReactNode | string;
   onClick?: React.MouseEventHandler<HTMLDivElement>,
   width?: React.CSSProperties['width'];
   height?: React.CSSProperties['height'];
