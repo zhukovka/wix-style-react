@@ -1,11 +1,28 @@
 import React from 'react';
-import { header } from 'wix-storybook-utils/Sections';
+import {
+  header,
+  tabs,
+  tab,
+  description,
+  importExample,
+  title,
+  columns,
+  divider,
+  code as baseCode,
+  playground,
+  api,
+  testkit,
+} from 'wix-storybook-utils/Sections';
+
+import { storySettings } from '../test/storySettings';
+import allComponents from '../../../stories/utils/allComponents';
 
 import LinearProgressBar from '..';
-import { Category } from '../../../stories/storiesHierarchy';
+
+const code = config => baseCode({ components: allComponents, ...config });
 
 export default {
-  category: Category.COMPONENTS,
+  category: storySettings.category,
   storyName: 'LinearProgressBar',
 
   component: LinearProgressBar,
@@ -19,13 +36,70 @@ export default {
     showProgressIndication: false,
   },
 
+  exampleProps: {
+    // Put here presets of props, for more info:
+    // https://github.com/wix/wix-ui/blob/master/packages/wix-storybook-utils/docs/usage.md#using-list
+  },
+
   sections: [
     header({
+      issueUrl: 'https://github.com/wix/wix-style-react/issues/new',
+      sourceUrl:
+        'https://github.com/wix/wix-style-react/tree/master/src/LinearProgressBar/',
       component: (
         <div style={{ width: '50%' }}>
           <LinearProgressBar value={45} showProgressIndication />
         </div>
       ),
     }),
+
+    tabs([
+      tab({
+        title: 'Description',
+        sections: [
+          columns([
+            description({
+              title: 'Description',
+              text:
+                'This line here should briefly describe component in just a sentence or two. It should be short and easy to read.',
+            }),
+          ]),
+
+          columns([
+            importExample(
+              "import LinearProgressBar from 'wix-style-react/LinearProgressBar';",
+            ),
+          ]),
+
+          divider(),
+
+          title('Examples'),
+
+          columns([
+            description({
+              title: 'Simple Usage',
+              text: 'A simple example with compact preview',
+            }),
+
+            code({
+              compact: true,
+              source: '<LinearProgressBar showProgressIndication value={20} />',
+            }),
+          ]),
+
+          code({
+            title: 'Full Interactive Preview',
+            description: 'A non compact version of same code example as above',
+            source: '<LinearProgressBar showProgressIndication value={20} />',
+          }),
+        ],
+      }),
+
+      ...[
+        { title: 'API', sections: [api()] },
+        { title: 'Testkit', sections: [testkit()] },
+        { title: 'Playground', sections: [playground()] },
+      ].map(tab),
+    ]),
   ],
 };

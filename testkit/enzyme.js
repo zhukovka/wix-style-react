@@ -92,7 +92,6 @@ export const inputAreaTestkitFactory = enzymeTestkitFactoryCreator(load(require(
 export const inputWithOptionsTestkitFactory = enzymeTestkitFactoryCreator(load(require('../src/InputWithOptions/InputWithOptions.driver')));
 export const labelTestkitFactory = enzymeTestkitFactoryCreator(load(require('../src/Label/Label.driver')));
 export const linearProgressBarTestkitFactory = enzymeTestkitFactoryCreator(load(require('../src/LinearProgressBar/LinearProgressBar.driver')));
-export const linearProgressBarNewTestkitFactory = enzymeUniTestkitFactoryCreator(load(require('../src/LinearProgressBarNew/LinearProgressBarNew.uni.driver')));
 export const loaderTestkitFactory = enzymeTestkitFactoryCreator(load(require('../src/Loader/Loader.driver')));
 export const modalTestkitFactory = enzymeTestkitFactoryCreator(load(require('../src/Modal/Modal.driver')));
 export const modalSelectorLayoutTestkitFactory = enzymeTestkitFactoryCreator(load(require('../src/ModalSelectorLayout/ModalSelectorLayout.driver')));

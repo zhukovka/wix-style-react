@@ -121,4 +121,3 @@ export { default as EditableTitle } from './EditableTitle';
 export { default as Accordion } from './Accordion';
 export { default as SocialPreview } from './SocialPreview';
 export { default as GooglePreview } from './GooglePreview';
-export { default as LinearProgressBarNew } from './LinearProgressBarNew';

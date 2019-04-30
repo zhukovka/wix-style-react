@@ -484,9 +484,3 @@ import { errorIndicatorDriverFactory } from '../src/ErrorIndicator/ErrorIndicato
 export const errorIndicatorTestkitFactory = protractorUniTestkitFactoryCreator(
   errorIndicatorDriverFactory,
 );
-
-import { linearProgressBarNewDriverFactory } from '../src/LinearProgressBarNew/LinearProgressBarNew.uni.driver';
-
-export const linearProgressBarNewTestkitFactory = protractorUniTestkitFactoryCreator(
-  linearProgressBarNewDriverFactory,
-);

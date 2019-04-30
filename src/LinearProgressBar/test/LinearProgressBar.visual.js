@@ -1,6 +1,6 @@
 import React from 'react';
 import { storiesOf } from '@storybook/react';
-import LinearProgressBarNew from '../LinearProgressBarNew';
+import LinearProgressBar from '../LinearProgressBar';
 
 const commonProps = {
   //use for repeated props across the tests (e.g. {buttonText: 'example'})
@@ -22,8 +22,8 @@ const tests = [
 
 tests.forEach(({ describe, its }) => {
   its.forEach(({ it, props }) => {
-    storiesOf(`LinearProgressBarNew/${describe}`, module).add(it, () => (
-      <LinearProgressBarNew {...commonProps} {...props} />
+    storiesOf(`LinearProgressBar/${describe}`, module).add(it, () => (
+      <LinearProgressBar {...commonProps} {...props} />
     ));
   });
 });
