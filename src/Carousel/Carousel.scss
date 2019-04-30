@@ -79,7 +79,10 @@
 //  align-items: center;
 //}
 
-
 .image {
   width: 100%;
+}
+
+.slider-container[data-is-loading="true"] {
+  display: none;
 }

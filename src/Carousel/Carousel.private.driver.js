@@ -22,15 +22,11 @@ export default ({ element }) => {
       ReactTestUtils.Simulate.click(nextButton);
     },
     mouseOver: () => {
-      const imageContainer = element.querySelector(
-        '[data-hook="images-container"]',
-      );
+      const imageContainer = element.querySelector('.slick-current');
       ReactTestUtils.Simulate.mouseOver(imageContainer);
     },
     mouseOut: () => {
-      const imageContainer = element.querySelector(
-        '[data-hook="images-container"]',
-      );
+      const imageContainer = element.querySelector('.slick-current');
       ReactTestUtils.Simulate.mouseOut(imageContainer);
     },
   };

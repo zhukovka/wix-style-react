@@ -33,6 +33,7 @@ class Carousel extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      loading: true,
       activeIndex: 0,
       loadedImageCount: 0,
     };
@@ -133,35 +134,41 @@ class Carousel extends React.Component {
   // }
 
   _renderImages(imagesArray) {
-    return imagesArray.map((image, index) => {
-      return (
-        <div key={index} data-hook="images-container">
-          <img
-            src={image.src}
-            data-hook="carousel-img"
-            className={styles.image}
-          />
-        </div>
-      );
-    });
+    return imagesArray.map((image, index) => (
+      <div key={index} data-hook="images-container">
+        <img
+          src={image.src}
+          data-hook="carousel-img"
+          className={styles.image}
+        />
+      </div>
+    ));
   }
 
   render() {
-    const prevButton = (
-      <div>
-        <IconButton dataHook="prev-button" priority="secondary">
-          <ChevronLeftLarge />
-        </IconButton>
-      </div>
-    );
+    const PrevButton = props => {
+      const { currentSlide, slideCount, ...remainingProps } = props;
 
-    const nextButton = (
-      <div>
-        <IconButton dataHook="next-button" priority="secondary">
-          <ChevronRightLarge />
-        </IconButton>
-      </div>
-    );
+      return (
+        <div {...remainingProps}>
+          <IconButton dataHook="prev-button" priority="secondary">
+            <ChevronLeftLarge />
+          </IconButton>
+        </div>
+      );
+    };
+
+    const NextButton = props => {
+      const { currentSlide, slideCount, ...remainingProps } = props;
+
+      return (
+        <div {...remainingProps}>
+          <IconButton dataHook="next-button" priority="secondary">
+            <ChevronRightLarge />
+          </IconButton>
+        </div>
+      );
+    };
 
     // return (
     //   <div
@@ -221,23 +228,46 @@ class Carousel extends React.Component {
     //   </div>
     // );
 
-    const { dataHook, infinite, autoplay, dots, images } = this.props;
+    const {
+      dataHook,
+      infinite,
+      autoplay,
+      autoplaySpeed,
+      speed,
+      dots,
+      images,
+    } = this.props;
 
     const settings = {
       dots,
       infinite,
       autoplay,
+      autoplaySpeed,
+      speed,
+      lazyLoad: 'progressive',
       slidesToShow: 1,
       slidesToScroll: 1,
-      nextArrow: nextButton,
-      prevArrow: prevButton,
+      nextArrow: <NextButton />,
+      prevArrow: <PrevButton />,
+      onLazyLoad: () => this.setState({ loading: false }),
     };
 
     return (
       <div data-hook={dataHook}>
-        <Slider {...settings}>
-          {images && this._renderImages(this.props.images)}
-        </Slider>
+        <div
+          data-ready={!this.state.loading}
+          className={styles.sliderContainer}
+          data-is-loading={this.state.loading}
+        >
+          <Slider {...settings}>
+            {images && this._renderImages(this.props.images)}
+          </Slider>
+        </div>
+        {this.state.loading ? (
+          <div className={styles.loader}>
+            <Loader dataHook="loader" size="small" />
+          </div>
+        ) : null}
       </div>
     );
   }
@@ -266,8 +296,9 @@ Carousel.propTypes = {
 Carousel.defaultProps = {
   infinite: true,
   images: [],
-  // autoplay: true,
-  // speed: 500,
+  autoplay: false,
+  autoplaySpeed: AUTOPLAY_SPEED,
+  speed: TRANSITION_SPEED,
   dots: true,
 };
 Carousel.displayName = 'Carousel';

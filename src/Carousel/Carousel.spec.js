@@ -5,7 +5,6 @@ import { createDriverFactory } from 'wix-ui-test-utils/driver-factory';
 
 describe('Carousel', () => {
   const createDriver = createDriverFactory(carouselDriverFactory);
-  jest.useFakeTimers();
 
   it('should be rendered', () => {
     const driver = createDriver(<Carousel images={[]} />);
@@ -49,10 +48,13 @@ describe('Carousel', () => {
       const driver = createDriver(
         <Carousel images={[{ src: 'image1.jpg' }, { src: 'image2.jpg' }]} />,
       );
+
       driver.clickNext();
-      jest.runOnlyPendingTimers();
-      driver.clickPrevious();
-      expect(driver.getCurrentImageIndex()).toBe(0);
+      expect(driver.getCurrentImageIndex()).toBe(1);
+      setTimeout(() => {
+        driver.clickPrevious();
+        expect(driver.getCurrentImageIndex()).toBe(0);
+      }, 0);
     });
   });
 
@@ -84,12 +86,14 @@ describe('Carousel', () => {
         );
         driver.clickNext();
         expect(driver.getCurrentImageIndex()).toBe(1);
-        jest.runOnlyPendingTimers();
-        driver.clickNext();
-        expect(driver.getCurrentImageIndex()).toBe(2);
-        jest.runOnlyPendingTimers();
-        driver.clickNext();
-        expect(driver.getCurrentImageIndex()).toBe(0);
+        setTimeout(() => {
+          driver.clickNext();
+          expect(driver.getCurrentImageIndex()).toBe(2);
+          setTimeout(() => {
+            driver.clickNext();
+            expect(driver.getCurrentImageIndex()).toBe(0);
+          }, 0);
+        }, 0);
       });
     });
 
@@ -109,7 +113,7 @@ describe('Carousel', () => {
         expect(driver.getCurrentImageIndex()).toBe(0);
       });
 
-      it('should stay on the last image when clicing `next` on the last image', async () => {
+      it('should stay on the last image when clicking `next` on the last image', async () => {
         const driver = createDriver(
           <Carousel
             images={[
@@ -122,12 +126,14 @@ describe('Carousel', () => {
         );
         driver.clickNext();
         expect(driver.getCurrentImageIndex()).toBe(1);
-        jest.runOnlyPendingTimers();
-        driver.clickNext();
-        expect(driver.getCurrentImageIndex()).toBe(2);
-        jest.runOnlyPendingTimers();
-        driver.clickNext();
-        expect(driver.getCurrentImageIndex()).toBe(2);
+        setTimeout(() => {
+          driver.clickNext();
+          expect(driver.getCurrentImageIndex()).toBe(2);
+          setTimeout(() => {
+            driver.clickNext();
+            expect(driver.getCurrentImageIndex()).toBe(2);
+          }, 0);
+        });
       });
     });
   });
@@ -146,13 +152,15 @@ describe('Carousel', () => {
       const driver = createDriver(
         <Carousel
           autoplay
+          autoplaySpeed={100}
           images={[{ src: 'image1.jpg' }, { src: 'image2.jpg' }]}
         />,
       );
 
       expect(driver.getCurrentImageIndex()).toBe(0);
-      jest.runOnlyPendingTimers();
-      expect(driver.getCurrentImageIndex()).toBe(1);
+      setTimeout(() => {
+        expect(driver.getCurrentImageIndex()).toBe(1);
+      }, 1500);
     });
 
     it('should stop playing when mouse is on the image', () => {
@@ -179,9 +187,10 @@ describe('Carousel', () => {
 
       expect(driver.getCurrentImageIndex()).toBe(0);
       driver.mouseOver();
-      driver.mouseOut();
-      jest.runOnlyPendingTimers();
-      expect(driver.getCurrentImageIndex()).toBe(1);
+      setTimeout(() => {
+        driver.mouseOut();
+        expect(driver.getCurrentImageIndex()).toBe(1);
+      }, 0);
     });
   });
 });
