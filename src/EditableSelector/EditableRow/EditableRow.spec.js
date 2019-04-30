@@ -10,30 +10,33 @@ import EditableRow from './EditableRow';
 import { editableRowUniDriverFactory } from './EditableRow.uni.driver';
 
 describe('EditableRow', () => {
+  let props;
+
+  beforeEach(() => {
+    props = {};
+  });
+
   describe('[sync]', () => {
-    runTests(createRendererWithDriver(editableRowDriverFactory));
-  });
-  describe('[async]', () => {
-    //runTests(createRendererWithUniDriver(editableRowUniDriverFactory));
-  });
-  function runTests(render) {
-    afterEach(() => cleanup());
-    let props;
+    const render = createRendererWithDriver(editableRowDriverFactory);
+    runTests(render);
 
-    beforeEach(() => {
-      props = {};
-    });
-
-    it('should focus on input when mounted', async () => {
-      const { driver } = render(<EditableRow {...props} />);
-      expect(await driver.isInputFocused()).toEqual(true);
-    });
-
+    // TODO move this to runTests() once button is upgraded to ButtonNext (otherwise it fails)
     it('should toggle accept button disabled state according to input presence', async () => {
       const { driver } = render(<EditableRow {...props} />);
       expect(await driver.isApproveDisabled()).toBe(true);
       await driver.setText('new option');
       expect(await driver.isApproveDisabled()).toBe(false);
+    });
+  });
+  describe('[async]', () => {
+    runTests(createRendererWithUniDriver(editableRowUniDriverFactory));
+  });
+  function runTests(render) {
+    afterEach(() => cleanup());
+
+    it('should focus on input when mounted', async () => {
+      const { driver } = render(<EditableRow {...props} />);
+      expect(await driver.isInputFocused()).toEqual(true);
     });
 
     it('should set input text from props', async () => {
