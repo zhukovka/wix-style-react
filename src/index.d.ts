@@ -22,6 +22,7 @@ export {default as Checkbox, CheckboxProps} from './Checkbox';
 export {default as CircularProgressBar, CircularProgressBarProps} from './CircularProgressBar';
 export {default as CloseButton, CloseButtonProps} from './CloseButton';
 export {default as Collapse, CollapseProps} from './Collapse';
+export {default as ColorPicker, ColorPickerProps} from './ColorPicker';
 
 export {default as Tag, TagProps} from './Tag';
 export {defualt as Text, TextProps} from './Text';

@@ -21,6 +21,7 @@ import {CircularProgressBarDriver} from '../src/CircularProgressBar/CircularProg
 import {CloseButtonDriver} from '../src/CloseButton/CloseButton.uni.driver';
 import {TextDriver} from '../src/Text/Text.driver';
 import {TagDriver} from '../src/Tag/Tag.driver';
+import {ColorPickerDriver} from '../src/ColorPicker/ColorPicker.driver';
 
 declare namespace EnzymeTestkit {
   type EnzymeTestkitFactory<T extends BaseDriver> = (
@@ -49,6 +50,7 @@ declare namespace EnzymeTestkit {
   export const checkboxTestkitFactory: EnzymeUniTestkitFactory<CheckboxDriver>;
   export const circularProgressBarTestkitFactory: EnzymeTestkitFactory<CircularProgressBarDriver>
   export const closeButtonTestkitFactory: EnzymeUniTestkitFactory<CloseButtonDriver>;
+  export const colorPickerTestkitFactory: EnzymeTestkitFactory<ColorPickerDriver>;
 
   export const tagTestkitFactory: EnzymeTestkitFactory<TagDriver>;
   export const textTestkitFactory: EnzymeTestkitFactory<TextDriver>;

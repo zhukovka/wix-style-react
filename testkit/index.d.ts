@@ -20,6 +20,7 @@ import {CircularProgressBarDriver} from '../src/CircularProgressBar/CircularProg
 import {CloseButtonDriver} from '../src/CloseButton/CloseButton.uni.driver';
 import {TextDriver} from '../src/Text/Text.driver';
 import {TagDriver} from '../src/Tag/Tag.driver';
+import {ColorPickerDriver} from '../src/ColorPicker/ColorPicker.driver';
 
 declare namespace VanillaTestkit {
   type VanillaTestkitFactory<T extends BaseDriver> = (
@@ -48,6 +49,7 @@ declare namespace VanillaTestkit {
   export const checkboxTestkitFactory: VanillaUniTestkitFactory<CheckboxDriver>;
   export const circularProgressBarTestkitFactory: VanillaTestkitFactory<CircularProgressBarDriver>
   export const closeButtonTestkitFactory: VanillaUniTestkitFactory<CloseButtonDriver>;
+  export const colorPickerTestkitFactory: VanillaTestkitFactory<ColorPickerDriver>;
 
   export const tagTestkitFactory: VanillaTestkitFactory<TagDriver>;
   export const textTestkitFactory: VanillaTestkitFactory<TextDriver>;
