@@ -9,6 +9,7 @@ import {ToggleSwitchDriver} from '../src/ToggleSwitch/ToggleSwitch.driver';
 import {TimeInputDriver} from '../src/TimeInput/TimeInput.driver';
 import {BreadcrumbsDriver} from '../src/Breadcrumbs/Breadcrumbs.driver';
 import {ButtonDriver} from '../src/Button/Button.uni.driver';
+import {CalendarDriver} from '../src/Calendar/Calendar.driver';
 
 declare namespace VanillaTestkit {
   type VanillaTestkitFactory<T extends BaseDriver> = (
@@ -30,6 +31,7 @@ declare namespace VanillaTestkit {
   export const boxTestkitFactory: VanillaUniTestkitFactory<BoxDriver>;
   export const breadcrumbsTestkitFactory: VanillaTestkitFactory<BreadcrumbsDriver>;
   export const buttonTestkitFactory: VanillaUniTestkitFactory<ButtonDriver>;
+  export const calendarTestkitFactory: VanillaTestkitFactory<CalendarDriver>;
   export const timeInputTestkitFactory: VanillaTestkitFactory<TimeInputDriver>;
   export const toggleSwitchTestkitFactory: VanillaTestkitFactory<ToggleSwitchDriver>;
   export const tooltipTestkitFactory: VanillaUniTestkitFactory<TooltipDriver>;

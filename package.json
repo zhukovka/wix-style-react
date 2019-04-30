@@ -103,6 +103,7 @@
     "@stylable/dom-test-kit": "^0.1.6",
     "@types/enzyme": "^3.9.1",
     "@types/react": "^15.6.20",
+    "@types/react-dom": "^16.8.4",
     "@ui-autotools/registry": "^3.4.0",
     "babel-core": "^7.0.0-bridge.0",
     "babel-loader": "^8.0.5",
