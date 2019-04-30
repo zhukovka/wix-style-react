@@ -1,4 +1,5 @@
 import {BaseUniDriver} from "wix-ui-test-utils/unidriver";
+import {LabelDriver} from "../Label/Label.driver";
 
 export interface CheckboxDriver extends BaseUniDriver {
     focus: Promise<void>,
@@ -12,6 +13,6 @@ export interface CheckboxDriver extends BaseUniDriver {
     isIndeterminate: () => Promise<boolean>,
     hasError: () => Promise<boolean>,
     getLabel: () => Promise<string>,
-    getLabelDriver: () => any, // todo: fix once label types are implemented
+    getLabelDriver: () => LabelDriver,
     getErrorMessage: () => Promise<string>
 }
