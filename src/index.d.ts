@@ -29,6 +29,7 @@ export {default as DropdownBase, DropdownBaseProps} from './DropdownBase';
 
 export {default as Label, LabelProps} from './Label';
 
+export {TableToolbar} from './TableToolbar';
 export {default as Tabs, TabsProps} from './Tabs';
 export {default as Tag, TagProps} from './Tag';
 export {default as Text, TextProps} from './Text';
