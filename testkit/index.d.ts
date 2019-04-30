@@ -26,6 +26,7 @@ import {TabsDriver} from '../src/Tabs/Tabs.driver';
 import {DatePickerDriver} from '../src/DatePicker/DatePicker.driver';
 import {DropdownBaseDriver} from '../src/DropdownBase/DropdownBase.uni.driver';
 import {LabelDriver} from '../src/Label/Label.driver';
+import {DropdownLayoutDriver} from '../src/DropdownLayout/DropdownLayout.driver';
 
 declare namespace VanillaTestkit {
   type VanillaTestkitFactory<T extends BaseDriver> = (
@@ -58,6 +59,7 @@ declare namespace VanillaTestkit {
   export const counterBadgeTestkitFactory: VanillaTestkitFactory<CounterBadgeDriver>;
   export const datePickerTestkitFactory: VanillaTestkitFactory<DatePickerDriver>;
   export const dropdownBaseTestkitFactory: VanillaUniTestkitFactory<DropdownBaseDriver>;
+  export const dropdownLayoutTestkitFactory: VanillaTestkitFactory<DropdownLayoutDriver>;
 
   export const labelTestkitFactory: VanillaTestkitFactory<LabelDriver>;
 

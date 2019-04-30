@@ -5,11 +5,15 @@ import {
   CalendarLocale,
   CalendarProps
 } from '../Calendar';
+import {
+  DropdownLayoutValueOption,
+  DropdownLayoutDividerOption
+} from '../DropdownLayout';
 
 export interface CalendarPanelProps {
   dataHook?: string;
   className?: string;
-  onChange?: (d: SelectedDays) => void; 
+  onChange?: (d: SelectedDays) => void;
   onClose?: CalendarProps['onClose'];
   excludePastDates?: boolean;
   filterDate?: (date: Date) => boolean;
@@ -26,23 +30,20 @@ export interface CalendarPanelProps {
   }) => JSX.Element;
 }
 
-export default class CalendarPanel extends React.Component<CalendarPanelProps> {}
+export default class CalendarPanel extends React.Component<
+  CalendarPanelProps
+> {}
 
 export type CalendarPanelPreset =
   | {
       id: string | number;
-      value: React.ReactNode | string | RenderPresetFn;
-      selectedDays: SelectedDays;
-      disabled?: boolean;
-      overrideStyle?: boolean;
-    }
-  | {
-      id: string | number;
       selectedDays: SelectedDays;
     }
-  | DIVIDER_OPTION_VALUE;
+  | CalendarPanelPresetOption
+  | DropdownLayoutDividerOption;
 
-type DIVIDER_OPTION_VALUE = {value: '-'}; // todo: should be imported from dropdown layout
+export type CalendarPanelPresetOption =  {
+  selectedDays: SelectedDays;
+} & DropdownLayoutValueOption;
+
 type SelectedDays = Required<CalendarValue>;
-
-export type RenderPresetFn = (options: {selected: boolean}) => JSX.Element; // todo: should be imported from dropdown layout

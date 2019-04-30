@@ -1,4 +1,8 @@
 import * as React from 'react';
+import {
+  DropdownLayoutOption,
+  DropdownLayoutValueOption
+} from '../DropdownLayout';
 
 export interface DropdownBaseProps {
   dataHook?: string;
@@ -6,10 +10,13 @@ export interface DropdownBaseProps {
   placement?: PopoverPlacement; // todo: should be imported from Popover
   appendTo?: PopoverAppendTo; // todo: should be imported from Popover
   showArrow?: boolean;
-  onClickOutside?: () => void;
+  onClickOutside?: (e: TouchEvent | MouseEvent) => void;
   onMouseEnter?: () => void;
   onMouseLeave?: () => void;
-  onSelect?: (selectedOption: DropdownBaseOption) => void;
+  onSelect?: (
+    option: DropdownLayoutValueOption,
+    sameOptionWasPicked: boolean
+  ) => void;
   minWidth?: number;
   maxWidth?: number;
   children?:
@@ -19,9 +26,9 @@ export interface DropdownBaseProps {
         close: () => void;
         toggle: () => void;
         delegateKeyDown: React.KeyboardEventHandler<HTMLElement>;
-        selectedOption: DropdownBaseOption;
+        selectedOption: DropdownLayoutValueOption;
       }) => JSX.Element);
-  options?: DropdownBaseOption[];
+  options?: DropdownLayoutOption[];
   selectedId?: string | number;
   initialSelectedId?: string | number;
 }
@@ -29,19 +36,6 @@ export interface DropdownBaseProps {
 export default class DropdownBase extends React.PureComponent<
   DropdownBaseProps
 > {}
-
-export type DropdownBaseOption = DropdownBaseDivier | DropdownBaseValue;
-
-export type DropdownBaseDivier = {value: '-'};
-
-export type DropdownBaseValue = {
-  id: string | number;
-  value: React.ReactNode | string | RenderOptionFn;
-  disabled?: boolean;
-  overrideStyle?: boolean;
-};
-
-export type RenderOptionFn = (options: {selected: boolean}) => JSX.Element; // todo: should be imported from dropdown layout
 
 type PopoverAppendTo =
   | 'scrollParent'
