@@ -176,7 +176,7 @@ const cardTarget = {
     // dragging child item to another position with same parent
     if (nextPosition.length === prevPosition.length) {
       const last = nextPosition.length - 1;
-      const prevIndex = prevPosition[last];
+      const previousIndex = prevPosition[last];
       const nextIndex = nextPosition[last];
 
       // only perform the move when the mouse has crossed half of the items height
@@ -184,12 +184,12 @@ const cardTarget = {
       // when dragging upwards, only move when the cursor is above 50%
 
       // dragging downwards
-      if (prevIndex < nextIndex && hoverClientY < hoverMiddleY) {
+      if (previousIndex < nextIndex && hoverClientY < hoverMiddleY) {
         return;
       }
 
       // dragging upwards
-      if (prevIndex > nextIndex && hoverClientY > hoverMiddleY) {
+      if (previousIndex > nextIndex && hoverClientY > hoverMiddleY) {
         return;
       }
     } else if (

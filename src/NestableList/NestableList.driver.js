@@ -1,6 +1,6 @@
 // import ReactTestUtils from 'react-dom/test-utils';
 
-const nestableListFactory = ({ element, wrapper }) => {
+const nestableListFactory = ({ element /*, wrapper*/ }) => {
   // in case if wrapper is coming from enzyme, we want to get it instance
   // const vanillaWrapper = wrapper.instance ? wrapper.instance() : wrapper;
   // const isCompositeComponent = ReactTestUtils.isCompositeComponent(
