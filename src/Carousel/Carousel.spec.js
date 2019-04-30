@@ -194,12 +194,12 @@ describe('Carousel', () => {
     });
   });
   describe('dots pagination functionality', () => {
-    it('should show the second image when clicking the second dots', () => {
+    it('should not navigate to other image when clicking on the current dot', () => {
       const driver = createDriver(
         <Carousel images={[{ src: 'image1.jpg' }, { src: 'image2.jpg' }]} />,
       );
-      driver.clickPageNavigationDot(1);
-      expect(driver.getCurrentImageIndex()).toBe(1);
+      driver.clickPageNavigationDot(0);
+      expect(driver.getCurrentImageIndex()).toBe(0);
     });
 
     it('should show the initial image when clicking the second dots and then the first one', () => {
