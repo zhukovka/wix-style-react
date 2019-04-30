@@ -62,7 +62,7 @@ describe('Carousel', () => {
     });
   });
 
-  describe('infinite functionallity', () => {
+  describe('infinite functionality', () => {
     describe('default behaviour', () => {
       it('should show the last image when clicking `prev`', () => {
         const driver = createDriver(
@@ -195,6 +195,56 @@ describe('Carousel', () => {
         driver.mouseOut();
         expect(driver.getCurrentImageIndex()).toBe(1);
       }, 0);
+    });
+  });
+  describe('dots pagination functionality', () => {
+    it('should not navigate to other image when clicking on the current dot', () => {
+      const driver = createDriver(
+        <Carousel images={[{ src: 'image1.jpg' }, { src: 'image2.jpg' }]} />,
+      );
+      driver.clickPageNavigationDot(0);
+      expect(driver.getCurrentImageIndex()).toBe(0);
+    });
+
+    it('should show the initial image when clicking the second dots and then the first one', () => {
+      const driver = createDriver(
+        <Carousel images={[{ src: 'image1.jpg' }, { src: 'image2.jpg' }]} />,
+      );
+      driver.clickPageNavigationDot(1);
+      expect(driver.getCurrentImageIndex()).toBe(1);
+      setTimeout(() => {
+        driver.clickPageNavigationDot(0);
+        expect(driver.getCurrentImageIndex()).toBe(0);
+      }, 0);
+    });
+
+    it('should switch to the last image when clicking last dot', () => {
+      const driver = createDriver(
+        <Carousel
+          images={[
+            { src: 'image1.jpg' },
+            { src: 'image2.jpg' },
+            { src: 'image3.jpg' },
+          ]}
+        />,
+      );
+      driver.clickPageNavigationDot(2);
+      expect(driver.getCurrentImageIndex()).toBe(2);
+    });
+  });
+  describe('initial slide functionality', () => {
+    it('should start the slider at the second image and therefore show the second image', () => {
+      const driver = createDriver(
+        <Carousel
+          initialSlide={1}
+          images={[
+            { src: 'image1.jpg' },
+            { src: 'image2.jpg' },
+            { src: 'image3.jpg' },
+          ]}
+        />,
+      );
+      expect(driver.getCurrentImageIndex()).toBe(1);
     });
   });
 });

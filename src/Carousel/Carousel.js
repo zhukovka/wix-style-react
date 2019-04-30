@@ -55,6 +55,7 @@ class Carousel extends React.Component {
     autoplay,
     autoplaySpeed,
     speed,
+    initialSlide,
   }) => {
     const PrevButton = arrowProps => {
       const { currentSlide, slideCount, ...remainingProps } = arrowProps;
@@ -81,11 +82,12 @@ class Carousel extends React.Component {
     };
 
     return {
-      dots,
       infinite,
       autoplay,
       autoplaySpeed,
       speed,
+      dots,
+      initialSlide,
       lazyLoad: 'on-demand',
       slidesToShow: 1,
       slidesToScroll: 1,
@@ -141,12 +143,15 @@ Carousel.propTypes = {
   // slidesToScroll: PropTypes.number,
   /** Show dot indicators */
   dots: PropTypes.bool,
+  /** Index of the slide to start on */
+  initialSlide: PropTypes.number,
 };
 
 Carousel.defaultProps = {
   infinite: true,
   images: [],
   autoplay: false,
+  initialSlide: 0,
   autoplaySpeed: AUTOPLAY_SPEED,
   speed: TRANSITION_SPEED,
   dots: true,
