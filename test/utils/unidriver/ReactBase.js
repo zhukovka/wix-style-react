@@ -14,14 +14,6 @@ export function ReactBase(base) {
   };
 
   const pendingUnidriverFixes = {
-    attr: async key => {
-      if (base.type === 'react') {
-        const attr = await base.attr(key);
-        return attr ? attr : null;
-      } else {
-        return base.attr(key);
-      }
-    },
     enterValue: async value => {
       if (base.type === 'react') {
         const elem = await htmlElement();
@@ -53,11 +45,6 @@ export function ReactBase(base) {
   };
 
   const pendingUnidriverFeatures = {
-    pressKey: async key => {
-      const elm = await htmlElement();
-      Simulate.keyDown(elm, { key });
-      Simulate.keyUp(elm, { key });
-    },
     isFocus: async () => {
       return document.activeElement === (await htmlElement());
     },

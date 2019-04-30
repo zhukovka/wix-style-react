@@ -20,13 +20,12 @@ export const testkit = base => {
     suffixComponentExists: async className =>
       await base.$(`.${styles.suffix} ${className}`).exists(),
     getRootElementClasses: async () => await reactBase.getClassList(),
-    getAriaDescribedby: async () =>
-      await reactBaseInput.attr('aria-describedby'),
-    getAriaLabel: async () => await reactBaseInput.attr('aria-label'),
-    getName: async () => await reactBaseInput.attr('name'),
-    getMaxLength: async () => await reactBaseInput.attr('maxLength'),
-    getType: async () => await reactBaseInput.attr('type'),
-    getAriaControls: async () => await reactBaseInput.attr('aria-controls'),
+    getAriaDescribedby: async () => await input.attr('aria-describedby'),
+    getAriaLabel: async () => await input.attr('aria-label'),
+    getName: async () => await input.attr('name'),
+    getMaxLength: async () => await input.attr('maxLength'),
+    getType: async () => await input.attr('type'),
+    getAriaControls: async () => await input.attr('aria-controls'),
     clickIconAffix: async () =>
       await base.$(`[data-hook="icon-affix"]`).click(),
     clickCustomAffix: async () =>
@@ -56,14 +55,14 @@ export const testkit = base => {
     isFocusedStyle: async () => await base.hasClass(styles.hasFocus),
     getRequired: async () => await reactBaseInput.required(),
     enterText: async value => await reactBaseInput.enterValue(value),
-    getAutocomplete: async () => await reactBaseInput.attr('autocomplete'),
+    getAutocomplete: async () => await input.attr('autocomplete'),
     getDefaultValue: async () => await reactBaseInput.defaultValue(),
     getUnit: async () => {
       return await ReactBase(unitNode).textContent();
     },
     getTabIndex: async () => await reactBaseInput.tabIndex(),
     isCustomInput: async () =>
-      (await reactBaseInput.attr('data-hook')) === 'wsr-custom-input',
+      (await input.attr('data-hook')) === 'wsr-custom-input',
     getReadOnly: async () => await reactBaseInput.readOnly(),
     getDisabled: async () => await reactBaseInput.disabled(),
     getTextOverflow: async () =>

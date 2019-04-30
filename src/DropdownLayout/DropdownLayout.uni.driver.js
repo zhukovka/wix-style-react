@@ -135,12 +135,12 @@ export const dropdownLayoutDriverFactory = base => {
     optionsLength,
     /** @deprecated should be private */
     optionsScrollTop: () => ReactBase(optionsElement).prop('scrollTop'),
-    pressDownKey: () => reactBase.pressKey('ArrowDown'),
-    pressUpKey: () => reactBase.pressKey('ArrowUp'),
-    pressEnterKey: () => reactBase.pressKey('Enter'),
-    pressSpaceKey: () => reactBase.pressKey(' '),
-    pressTabKey: () => reactBase.pressKey('Tab'),
-    pressEscKey: () => reactBase.pressKey('Escape'),
+    pressDownKey: () => base.pressKey('ArrowDown'),
+    pressUpKey: () => base.pressKey('ArrowUp'),
+    pressEnterKey: () => base.pressKey('Enter'),
+    pressSpaceKey: () => base.pressKey(' '),
+    pressTabKey: () => base.pressKey('Tab'),
+    pressEscKey: () => base.pressKey('Escape'),
     tabIndex: () => reactBase.tabIndex(),
   };
 };
