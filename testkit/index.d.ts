@@ -16,6 +16,7 @@ import {CardGalleryItemDriver} from '../src/CardGalleryItem/CardGalleryItem.uni.
 import {ThumbnailDriver} from '../src/Thumbnail/Thumbnail.uni.driver';
 import {CheckboxDriver} from '../src/Checkbox/Checkbox.uni.driver';
 import {TextButtonDriver} from '../src/TextButton/TextButton.uni.driver';
+import {CircularProgressBarDriver} from '../src/CircularProgressBar/CircularProgressBar.driver';
 
 declare namespace VanillaTestkit {
   type VanillaTestkitFactory<T extends BaseDriver> = (
@@ -42,6 +43,7 @@ declare namespace VanillaTestkit {
   export const calendarPanelFooterTestkitFactory: VanillaUniTestkitFactory<CalendarPanelFooterDriver>;
   export const cardGalleryItemTestkitFactory: VanillaUniTestkitFactory<CardGalleryItemDriver>
   export const checkboxTestkitFactory: VanillaUniTestkitFactory<CheckboxDriver>;
+  export const circularProgressBarTestkitFactory: VanillaTestkitFactory<CircularProgressBarDriver>
 
   export const textButtonTestkitFactory: VanillaUniTestkitFactory<TextButtonDriver>;
   export const thumbnailTestkitFactory: VanillaUniTestkitFactory<ThumbnailDriver>;

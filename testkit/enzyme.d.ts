@@ -17,6 +17,7 @@ import {CardGalleryItemDriver} from '../src/CardGalleryItem/CardGalleryItem.uni.
 import {ThumbnailDriver} from '../src/Thumbnail/Thumbnail.uni.driver';
 import {CheckboxDriver} from '../src/Checkbox/Checkbox.uni.driver';
 import {TextButtonDriver} from '../src/TextButton/TextButton.uni.driver';
+import {CircularProgressBarDriver} from '../src/CircularProgressBar/CircularProgressBar.driver';
 
 declare namespace EnzymeTestkit {
   type EnzymeTestkitFactory<T extends BaseDriver> = (
@@ -43,6 +44,7 @@ declare namespace EnzymeTestkit {
   export const calendarPanelFooterTestkitFactory: EnzymeUniTestkitFactory<CalendarPanelFooterDriver>;
   export const cardGalleryItemTestkitFactory: EnzymeUniTestkitFactory<CardGalleryItemDriver>
   export const checkboxTestkitFactory: EnzymeUniTestkitFactory<CheckboxDriver>;
+  export const circularProgressBarTestkitFactory: EnzymeTestkitFactory<CircularProgressBarDriver>
 
   export const textButtonTestkitFactory: EnzymeUniTestkitFactory<TextButtonDriver>;
   export const thumbnailTestkitFactory: EnzymeUniTestkitFactory<ThumbnailDriver>;
