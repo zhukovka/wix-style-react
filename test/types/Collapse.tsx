@@ -1,11 +1,11 @@
 import * as React from 'react';
 import Collapse from '../../src/Collapse';
 
-function CalendarWithMandatoryProps() {
+function CollapseWithMandatoryProps() {
   return <Collapse />;
 }
 
-function CalendarWithAllProps() {
+function CollapseWithAllProps() {
   return (
     <Collapse
       dataHook="hook"

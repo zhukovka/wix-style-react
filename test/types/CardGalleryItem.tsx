@@ -18,11 +18,11 @@ function testkits() {
   });
 }
 
-function CalendarWithMandatoryProps() {
+function CardGalleryItemWithMandatoryProps() {
   return <CardGalleryItem primaryActionProps={{}} secondaryActionProps={{}} />;
 }
 
-function CalendarWithAllProps() {
+function CardGalleryItemWithAllProps() {
   return (
     <CardGalleryItem
       backgroundImageUrl="https://static.wixstatic.com/media/89ea07a19c3d415e99a8a8a3c0ab1de8.jpg/v1/fill/w_640,h_360,al_c,q_80,usm_0.66_1.00_0.01/89ea07a19c3d415e99a8a8a3c0ab1de8.jpg"

@@ -18,11 +18,11 @@ function testkits() {
   });
 }
 
-function CalendarWithMandatoryProps() {
+function CheckboxWithMandatoryProps() {
   return <Checkbox />;
 }
 
-function CalendarWithAllProps() {
+function CheckboxWithAllProps() {
   return (
     <Checkbox
       checked

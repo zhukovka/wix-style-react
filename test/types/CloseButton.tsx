@@ -18,11 +18,11 @@ function testkits() {
   });
 }
 
-function CalendarWithMandatoryProps() {
+function CloseButtonWithMandatoryProps() {
   return <CloseButton />;
 }
 
-function CalendarWithAllProps() {
+function CloseButtonWithAllProps() {
   return (
     <CloseButton
       as="button"

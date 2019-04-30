@@ -18,11 +18,11 @@ function testkits() {
   });
 }
 
-function CalendarWithMandatoryProps() {
+function CircularWithMandatoryProps() {
   return <CircularProgressBar />;
 }
 
-function CalendarWithAllProps() {
+function CircularWithAllProps() {
   return (
     <CircularProgressBar
       error
