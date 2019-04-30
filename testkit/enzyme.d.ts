@@ -30,6 +30,7 @@ import {LabelDriver} from '../src/Label/Label.driver';
 import {DropdownLayoutDriver} from '../src/DropdownLayout/DropdownLayout.driver';
 import {EditableSelectorDriver} from '../src/EditableSelector/EditableSelector.driver';
 import {EmptyStateDriver} from '../src/EmptyState/EmptyState.driver';
+import {FilePickerDriver} from '../src/FilePicker/FilePicker.driver';
 
 declare namespace EnzymeTestkit {
   type EnzymeTestkitFactory<T extends BaseDriver> = (
@@ -65,6 +66,7 @@ declare namespace EnzymeTestkit {
   export const dropdownLayoutTestkitFactory: EnzymeTestkitFactory<DropdownLayoutDriver>;
   export const editableSelectorTestkitFactory: EnzymeTestkitFactory<EditableSelectorDriver>;
   export const emptyStateTestkitFactory: EnzymeTestkitFactory<EmptyStateDriver>;
+  export const filePickerTestkitFactory: EnzymeTestkitFactory<FilePickerDriver>;
 
   export const labelTestkitFactory: EnzymeTestkitFactory<LabelDriver>;
   export const tabsTestkitFactory: EnzymeTestkitFactory<TabsDriver>;

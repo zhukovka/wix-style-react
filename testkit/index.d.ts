@@ -29,6 +29,7 @@ import {LabelDriver} from '../src/Label/Label.driver';
 import {DropdownLayoutDriver} from '../src/DropdownLayout/DropdownLayout.driver';
 import {EditableSelectorDriver} from '../src/EditableSelector/EditableSelector.driver';
 import {EmptyStateDriver} from '../src/EmptyState/EmptyState.driver';
+import {FilePickerDriver} from '../src/FilePicker/FilePicker.driver';
 
 declare namespace VanillaTestkit {
   type VanillaTestkitFactory<T extends BaseDriver> = (
@@ -64,6 +65,7 @@ declare namespace VanillaTestkit {
   export const dropdownLayoutTestkitFactory: VanillaTestkitFactory<DropdownLayoutDriver>;
   export const editableSelectorTestkitFactory: VanillaTestkitFactory<EditableSelectorDriver>;
   export const emptyStateTestkitFactory: VanillaTestkitFactory<EmptyStateDriver>;
+  export const filePickerTestkitFactory: VanillaTestkitFactory<FilePickerDriver>;
 
   export const labelTestkitFactory: VanillaTestkitFactory<LabelDriver>;
   export const tabsTestkitFactory: VanillaTestkitFactory<TabsDriver>;
