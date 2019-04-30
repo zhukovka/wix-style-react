@@ -16,6 +16,7 @@ export {default as Button, ButtonProps} from './Button';
 export {default as Calendar, CalendarProps} from './Calendar';
 export {default as CalendarPanel, CalendarPanelProps} from './CalendarPanel';
 export {default as CalendarPanelFooter, CalendarPanelFooterProps} from './CalendarPanelFooter';
+export {default as Card, CardProps} from './Card';
 
 export {default as TimeInput, TimeInputProps} from './TimeInput';
 export {default as ToggleSwitch, ToggleSwitchProps} from './ToggleSwitch';
