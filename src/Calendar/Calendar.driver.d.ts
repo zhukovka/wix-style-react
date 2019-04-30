@@ -24,7 +24,7 @@ export interface CalendarDriver extends BaseDriver {
   getMonthDropdownLabel: () => string;
   getSelectedYear: () => string;
   getFocusedDay: () => string | null;
-  getFocusedDayElement: () => HTMLElement;
+  getFocusedDayElement: () => HTMLElement | null;
   pressLeftArrow: () => void;
   pressRightArrow: () => void;
   getSelectedDay: () => string;

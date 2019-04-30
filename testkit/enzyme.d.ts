@@ -11,6 +11,7 @@ import {TooltipDriver} from '../src/Tooltip/Tooltip.uni.driver';
 import {BreadcrumbsDriver} from '../src/Breadcrumbs/Breadcrumbs.driver';
 import {ButtonDriver} from '../src/Button/Button.uni.driver';
 import {CalendarDriver} from '../src/Calendar/Calendar.driver';
+import {CanlendarPanelDriver} from '../CalendarPanel/CanlendarPanel.driver';
 
 declare namespace EnzymeTestkit {
   type EnzymeTestkitFactory<T extends BaseDriver> = (
@@ -33,6 +34,8 @@ declare namespace EnzymeTestkit {
   export const buttonTestkitFactory: EnzymeUniTestkitFactory<ButtonDriver>;
   export const breadcrumbsTestkitFactory: EnzymeTestkitFactory<BreadcrumbsDriver>;
   export const calendarTestkitFactory: EnzymeTestkitFactory<CalendarDriver>;
+  export const calendarPanelTestkitFactory: EnzymeTestkitFactory<CanlendarPanelDriver>
+
   export const timeInputTestkitFactory: EnzymeTestkitFactory<TimeInputDriver>;
   export const toggleSwitchTestkitFactory: EnzymeTestkitFactory<ToggleSwitchDriver>;
   export const tooltipTestkitFactory: EnzymeUniTestkitFactory<TooltipDriver>;

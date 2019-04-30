@@ -10,7 +10,7 @@ export interface CalendarProps extends WixComponentProps {
   excludePastDates?: boolean;
   filterDate?: (date: Date) => boolean;
   value?: CalendarValue;
-  selectionMode?: CalenderSelectionMode;
+  selectionMode?: CalendarSelectionMode;
   showYearDropdown?: boolean;
   showMonthDropdown?: boolean;
   shouldCloseOnSelect?: boolean;
@@ -25,13 +25,13 @@ export type CalendarValue =
 
 type DateValue = string | Date;
 
-export type CalenderSelectionMode = 'day' | 'range';
+export type CalendarSelectionMode = 'day' | 'range';
 
 export type CalendarLocale =
-  | CalenderLocaleString
+  | CalendarLocaleString
   | {distanceInWords: any; format: any};
 
-export type CalenderLocaleString =
+export type CalendarLocaleString =
   | 'en'
   | 'es'
   | 'pt'
