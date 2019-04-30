@@ -11,6 +11,7 @@ export {default as Avatar, AvatarProps} from './Avatar';
 export {default as Badge, BadgeProps} from './Badge';
 export {default as BadgeSelect, BadgeSelectProps} from './BadgeSelect';
 export {default as Box, BoxProps} from './Box';
+export {default as TimeInput, TimeInputProps} from './TimeInput';
 export {default as ToggleSwitch, ToggleSwitchProps} from './ToggleSwitch';
 export {default as Tooltip, TooltipProps} from './Tooltip';
 export {default as VBox, VBoxProps} from './VBox';

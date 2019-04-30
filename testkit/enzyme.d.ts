@@ -5,8 +5,9 @@ import {AvatarDriver} from '../src/Avatar/Avatar.driver';
 import {BadgeDriver} from '../src/Badge/Badge.driver';
 import {BadgeSelectDriver} from '../src/BadgeSelect/BadgeSelect.driver';
 import {BoxDriver} from '../src/Box/Box.uni.driver';
+import {ToggleSwitchDriver} from '../src/ToggleSwitch/ToggleSwitch.driver';
+import {TimeInputDriver} from '../src/TimeInput/TimeInput.driver';
 import {TooltipDriver} from '../src/Tooltip/Tooltip.uni.driver';
-import { ToggleSwitchDriver } from '../src/ToggleSwitch/ToggleSwitch.driver';
 
 declare namespace EnzymeTestkit {
   type EnzymeTestkitFactory<T extends BaseDriver> = (
@@ -26,6 +27,7 @@ declare namespace EnzymeTestkit {
   export const badgeTestkitFactory: EnzymeTestkitFactory<BadgeDriver>;
   export const badgeSelectTestkitFactory: EnzymeTestkitFactory<BadgeSelectDriver>;
   export const boxTestkitFactory: EnzymeUniTestkitFactory<BoxDriver>;
+  export const timeInputTestkitFactory: EnzymeTestkitFactory<TimeInputDriver>;
   export const toggleSwitchTestkitFactory: EnzymeTestkitFactory<ToggleSwitchDriver>;
   export const tooltipTestkitFactory: EnzymeUniTestkitFactory<TooltipDriver>;
 }
