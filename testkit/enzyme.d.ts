@@ -13,6 +13,7 @@ import {ButtonDriver} from '../src/Button/Button.uni.driver';
 import {CalendarDriver} from '../src/Calendar/Calendar.driver';
 import {CalendarPanelDriver} from '../src/CalendarPanel/CalendarPanel.driver';
 import {CalendarPanelFooterDriver} from '../src/CalendarPanelFooter/CalendarPanelFooter.uni.driver';
+import {CardGalleryItemDriver} from '../src/CardGalleryItem/CardGalleryItem.uni.driver';
 
 declare namespace EnzymeTestkit {
   type EnzymeTestkitFactory<T extends BaseDriver> = (
@@ -37,6 +38,7 @@ declare namespace EnzymeTestkit {
   export const calendarTestkitFactory: EnzymeTestkitFactory<CalendarDriver>;
   export const calendarPanelTestkitFactory: EnzymeTestkitFactory<CalendarPanelDriver>
   export const calendarPanelFooterTestkitFactory: EnzymeUniTestkitFactory<CalendarPanelFooterDriver>;
+  export const cardGalleryItemTestkitFactory: EnzymeUniTestkitFactory<CardGalleryItemDriver>
 
   export const timeInputTestkitFactory: EnzymeTestkitFactory<TimeInputDriver>;
   export const toggleSwitchTestkitFactory: EnzymeTestkitFactory<ToggleSwitchDriver>;
