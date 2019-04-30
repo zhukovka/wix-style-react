@@ -1,4 +1,4 @@
-import {BaseUniDriver} from "../../test/utils/unidriver";
+import {BaseUniDriver} from "wix-ui-test-utils/unidriver";
 
 export interface CheckboxDriver extends BaseUniDriver {
     focus: Promise<void>,
