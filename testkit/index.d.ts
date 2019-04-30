@@ -4,7 +4,8 @@ import {AvatarDriver} from '../src/Avatar/Avatar.driver';
 import {BadgeDriver} from '../src/Badge/Badge.driver';
 import {BadgeSelectDriver} from '../src/BadgeSelect/BadgeSelect.driver';
 import {BoxDriver} from '../src/Box/Box.uni.driver';
-import { TooltipDriver } from '../src/Tooltip/Tooltip.uni.driver';
+import {TooltipDriver} from '../src/Tooltip/Tooltip.uni.driver';
+import {ToggleSwitchDriver} from '../src/ToggleSwitch/ToggleSwitch.driver';
 
 declare namespace VanillaTestkit {
   type VanillaTestkitFactory<T extends BaseDriver> = (
@@ -24,6 +25,7 @@ declare namespace VanillaTestkit {
   export const badgeTestkitFactory: VanillaTestkitFactory<BadgeDriver>;
   export const badgeSelectTestkitFactory: VanillaTestkitFactory<BadgeSelectDriver>;
   export const boxTestkitFactory: VanillaUniTestkitFactory<BoxDriver>;
+  export const toggleSwitchTestkitFactory: VanillaTestkitFactory<ToggleSwitchDriver>;
   export const tooltipTestkitFactory: VanillaUniTestkitFactory<TooltipDriver>;
 }
 
