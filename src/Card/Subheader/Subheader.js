@@ -10,8 +10,10 @@ class Subheader extends PureComponent {
   static displayName = 'Card.Subheader';
 
   static propTypes = {
-    /** required card title */
+    /** card title */
     title: node.isRequired,
+
+    /** suffix node that will be rendered on the right side */
     suffix: node,
   };
 
