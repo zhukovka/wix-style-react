@@ -8,8 +8,7 @@ export interface CardProps {
   children?: React.ReactNode
 }
 
-declare const Card: {
-  (props: CardProps): JSX.Element | null;
+declare const Card: React.SFC<CardProps> & {
   Content: typeof Content;
   Header: typeof Header;
   Divider: typeof Divider;
