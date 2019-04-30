@@ -25,6 +25,7 @@ export {default as Collapse, CollapseProps} from './Collapse';
 export {default as ColorPicker, ColorPickerProps} from './ColorPicker';
 export {default as CounterBadge, CounterBadgeProps} from './CounterBadge';
 export {default as DatePicker, DatePickerProps} from './DatePicker';
+export {default as DropdownBase, DropdownBaseProps} from './DropdownBase';
 
 export {default as Tabs, TabsProps} from './Tabs';
 export {default as Tag, TagProps} from './Tag';

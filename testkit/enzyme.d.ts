@@ -25,6 +25,7 @@ import {ColorPickerDriver} from '../src/ColorPicker/ColorPicker.driver';
 import {CounterBadgeDriver} from '../src/CounterBadge/CounterBadge.driver';
 import {TabsDriver} from '../src/Tabs/Tabs.driver';
 import {DatePickerDriver} from '../src/DatePicker/DatePicker.driver';
+import {DropdownBaseDriver} from '../src/DropdownBase/DropdownBase.uni.driver';
 
 declare namespace EnzymeTestkit {
   type EnzymeTestkitFactory<T extends BaseDriver> = (
@@ -56,6 +57,7 @@ declare namespace EnzymeTestkit {
   export const colorPickerTestkitFactory: EnzymeTestkitFactory<ColorPickerDriver>;
   export const counterBadgeTestkitFactory: EnzymeTestkitFactory<CounterBadgeDriver>;
   export const datePickerTestkitFactory: EnzymeTestkitFactory<DatePickerDriver>;
+  export const dropdownBaseTestkitFactory: EnzymeUniTestkitFactory<DropdownBaseDriver>;
 
   export const tabsTestkitFactory: EnzymeTestkitFactory<TabsDriver>;
   export const tagTestkitFactory: EnzymeTestkitFactory<TagDriver>;
