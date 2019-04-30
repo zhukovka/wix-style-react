@@ -15,19 +15,19 @@ const AUTOPLAY_SPEED = 2000;
 const TRANSITION_SPEED = 600;
 
 // because lodash throttle is not compatible with jest timeout mocks
-function throttle(callback, time) {
-  let pause;
-
-  return function(...args) {
-    if (!pause) {
-      pause = true;
-      setTimeout(() => {
-        pause = false;
-      }, time);
-      callback(...args);
-    }
-  };
-}
+// function throttle(callback, time) {
+//   let pause;
+//
+//   return function(...args) {
+//     if (!pause) {
+//       pause = true;
+//       setTimeout(() => {
+//         pause = false;
+//       }, time);
+//       callback(...args);
+//     }
+//   };
+// }
 
 class Carousel extends React.Component {
   constructor(props) {
