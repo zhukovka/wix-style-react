@@ -16,6 +16,7 @@ import {CalendarPanelFooterDriver} from '../src/CalendarPanelFooter/CalendarPane
 import {CardGalleryItemDriver} from '../src/CardGalleryItem/CardGalleryItem.uni.driver';
 import {ThumbnailDriver} from '../src/Thumbnail/Thumbnail.uni.driver';
 import {CheckboxDriver} from '../src/Checkbox/Checkbox.uni.driver';
+import {TextButtonDriver} from '../src/TextButton/TextButton.uni.driver';
 
 declare namespace EnzymeTestkit {
   type EnzymeTestkitFactory<T extends BaseDriver> = (
@@ -43,6 +44,7 @@ declare namespace EnzymeTestkit {
   export const cardGalleryItemTestkitFactory: EnzymeUniTestkitFactory<CardGalleryItemDriver>
   export const checkboxTestkitFactory: EnzymeUniTestkitFactory<CheckboxDriver>;
 
+  export const textButtonTestkitFactory: EnzymeUniTestkitFactory<TextButtonDriver>;
   export const thumbnailTestkitFactory: EnzymeUniTestkitFactory<ThumbnailDriver>;
   export const timeInputTestkitFactory: EnzymeTestkitFactory<TimeInputDriver>;
   export const toggleSwitchTestkitFactory: EnzymeTestkitFactory<ToggleSwitchDriver>;
