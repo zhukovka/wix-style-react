@@ -22,6 +22,7 @@ import {TextDriver} from '../src/Text/Text.driver';
 import {TagDriver} from '../src/Tag/Tag.driver';
 import {ColorPickerDriver} from '../src/ColorPicker/ColorPicker.driver';
 import {CounterBadgeDriver} from '../src/CounterBadge/CounterBadge.driver';
+import {TabsDriver} from '../src/Tabs/Tabs.driver';
 
 declare namespace VanillaTestkit {
   type VanillaTestkitFactory<T extends BaseDriver> = (
@@ -53,6 +54,7 @@ declare namespace VanillaTestkit {
   export const colorPickerTestkitFactory: VanillaTestkitFactory<ColorPickerDriver>;
   export const counterBadgeTestkitFactory: VanillaTestkitFactory<CounterBadgeDriver>;
 
+  export const tabsTestkitFactory: VanillaTestkitFactory<TabsDriver>;
   export const tagTestkitFactory: VanillaTestkitFactory<TagDriver>;
   export const textTestkitFactory: VanillaTestkitFactory<TextDriver>;
   export const textButtonTestkitFactory: VanillaUniTestkitFactory<TextButtonDriver>;

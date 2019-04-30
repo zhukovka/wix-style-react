@@ -23,6 +23,7 @@ import {TextDriver} from '../src/Text/Text.driver';
 import {TagDriver} from '../src/Tag/Tag.driver';
 import {ColorPickerDriver} from '../src/ColorPicker/ColorPicker.driver';
 import {CounterBadgeDriver} from '../src/CounterBadge/CounterBadge.driver';
+import {TabsDriver} from '../src/Tabs/Tabs.driver';
 
 declare namespace EnzymeTestkit {
   type EnzymeTestkitFactory<T extends BaseDriver> = (
@@ -54,6 +55,7 @@ declare namespace EnzymeTestkit {
   export const colorPickerTestkitFactory: EnzymeTestkitFactory<ColorPickerDriver>;
   export const counterBadgeTestkitFactory: EnzymeTestkitFactory<CounterBadgeDriver>;
 
+  export const tabsTestkitFactory: EnzymeTestkitFactory<TabsDriver>;
   export const tagTestkitFactory: EnzymeTestkitFactory<TagDriver>;
   export const textTestkitFactory: EnzymeTestkitFactory<TextDriver>;
   export const textButtonTestkitFactory: EnzymeUniTestkitFactory<TextButtonDriver>;
