@@ -1,4 +1,14 @@
-// AutoDocs does not support `export from` syntax
-import { linearProgressBarDriverFactory } from 'wix-ui-backoffice/dist/src/components/LinearProgressBar/LinearProgressBar.protractor.driver';
+import { promise, browser, $, ElementFinder } from 'protractor';
+import { linearProgressBarDriverFactory as coreLinearProgressBarDriverFactory } from 'wix-ui-core/drivers/protractor';
 
-export default linearProgressBarDriverFactory;
+export const linearProgressBarDriverFactory = element => {
+  const errorIcon = () => element.$(`[data-hook='error-icon']`);
+  return {
+    ...coreLinearProgressBarDriverFactory(element),
+    showError: () =>
+      browser
+        .actions()
+        .mouseMove(errorIcon())
+        .perform(),
+  };
+};

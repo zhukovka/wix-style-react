@@ -1,19 +1,57 @@
 import React from 'react';
 import { storiesOf } from '@storybook/react';
 import LinearProgressBar from '../LinearProgressBar';
+import { storySettings } from './storySettings';
 
 const commonProps = {
-  //use for repeated props across the tests (e.g. {buttonText: 'example'})
+  dataHook: storySettings.dataHook,
 };
 
 const tests = [
   {
-    describe: 'sanity', // prop name (e.g. size)
+    describe: 'basic',
     its: [
       {
-        it: 'default', //prop vaiation (e.g. small)
+        it: 'default render',
+        props: { value: 20 },
+      },
+      {
+        it: 'error',
+        props: { value: 20, error: true },
+      },
+      {
+        it: 'showProgressIndication',
+        props: { value: 20, showProgressIndication: true },
+      },
+    ],
+  },
+  {
+    describe: 'light theme',
+    its: [
+      {
+        it: 'regular state',
+        props: { value: 20, light: true },
+      },
+      {
+        it: 'with error',
+        props: { value: 20, light: true, error: true },
+      },
+    ],
+  },
+  {
+    describe: 'icons',
+    its: [
+      {
+        it: 'success state',
+        props: { value: 100, showProgressIndication: true },
+      },
+      {
+        it: 'error state',
         props: {
-          // the simulation (e.g. {size: "small"})
+          value: 30,
+          showProgressIndication: true,
+          error: true,
+          errorMessage: 'Some error',
         },
       },
     ],
@@ -23,7 +61,9 @@ const tests = [
 tests.forEach(({ describe, its }) => {
   its.forEach(({ it, props }) => {
     storiesOf(`LinearProgressBar/${describe}`, module).add(it, () => (
-      <LinearProgressBar {...commonProps} {...props} />
+      <div style={{ width: '40%' }}>
+        <LinearProgressBar {...commonProps} {...props} />
+      </div>
     ));
   });
 });
