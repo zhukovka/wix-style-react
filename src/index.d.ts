@@ -21,6 +21,7 @@ export {default as CardGalleryItem, CardGalleryItemProps} from './CardGalleryIte
 export {default as Checkbox, CheckboxProps} from './Checkbox';
 export {default as CircularProgressBar, CircularProgressBarProps} from './CircularProgressBar';
 export {default as CloseButton, CloseButtonProps} from './CloseButton';
+export {default as Collapse, CollapseProps} from './Collapse';
 
 export {default as TextButton, TextButtonProps} from './TextButton';
 export {default as Thumbnail, ThumbnailProps} from './Thumbnail';
