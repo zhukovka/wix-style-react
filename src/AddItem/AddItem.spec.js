@@ -76,9 +76,11 @@ describe('AddItem', () => {
 
   describe('Tooltip', () => {
     const tooltipContent = 'I am ToolTip';
-    it('should render tooltip with given tooltip content', async () => {
-      const driver = createDriver(renderAddItem({ tooltipContent }));
-      expect(await driver.getTooltipContent()).toEqual(tooltipContent);
+    it('should render tooltip with given tooltip content', () => {
+      const driver = createDriver(
+        renderAddItem({ tooltipContent, theme: 'image' }),
+      );
+      expect(driver.getTooltipContent()).toEqual(tooltipContent);
     });
 
     it(`should not render when disabled`, () => {
