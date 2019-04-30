@@ -14,7 +14,7 @@ describe('RadioButton', () => {
   });
 
   describe('[async]', () => {
-    //runTests(createRendererWithUniDriver(RadioButtonUniDriverFactory));
+    runTests(createRendererWithUniDriver(RadioButtonUniDriverFactory));
   });
 
   function runTests(render) {
@@ -69,7 +69,7 @@ describe('RadioButton', () => {
     describe('given `content` prop', () => {
       it('should render node from that prop', async () => {
         const { driver } = render(<RadioButton content={<span>Hello</span>} />);
-        expect(await driver.getContent().textContent).toBe('Hello');
+        expect((await driver.getContent()).textContent).toBe('Hello');
       });
     });
   }

@@ -106,6 +106,7 @@ export function ReactBase(base) {
       Simulate.mouseEnter(await htmlElement(), eventData),
     mouseLeave: async eventData =>
       Simulate.mouseLeave(await htmlElement(), eventData),
+    change: async eventData => Simulate.change(await htmlElement(), eventData),
 
     /* Access Element Props */
     // TODO: remove selectionStart and use 'prop' method
