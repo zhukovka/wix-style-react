@@ -29,5 +29,11 @@ export default ({ element }) => {
       const imageContainer = element.querySelector('.slick-current');
       ReactTestUtils.Simulate.mouseOut(imageContainer);
     },
+    navigateToPage: i => {
+      const pageNavigator = element.querySelector(
+        `[data-hook="page-navigation-${i}"]`,
+      );
+      ReactTestUtils.Simulate.click(pageNavigator);
+    },
   };
 };

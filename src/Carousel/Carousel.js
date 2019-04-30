@@ -33,7 +33,7 @@ class Carousel extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      loading: true,
+      loading: false,
       activeIndex: 0,
       loadedImageCount: 0,
     };
@@ -249,7 +249,13 @@ class Carousel extends React.Component {
       slidesToScroll: 1,
       nextArrow: <NextButton />,
       prevArrow: <PrevButton />,
-      onLazyLoad: () => this.setState({ loading: false }),
+      appendDots: pages => <Pagination>{pages}</Pagination>,
+      customPaging: i => (
+        <div className={styles.dotNavigator} data-hook={`page-navigation-${i}`}>
+          {i}
+        </div>
+      ),
+      // onLazyLoad: () => this.setState({ loading: false }),
     };
 
     return (

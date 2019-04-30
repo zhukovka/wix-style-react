@@ -1,30 +1,23 @@
 import React from 'react';
 import classNames from 'classnames';
 import styles from './Pagination.scss';
+import './Pagination.global.scss';
 import PropTypes from 'prop-types';
 
 const Pagination = props => (
   <div className={classNames(props.className, styles.pagination)}>
-    {props.totalPages &&
-      Array.from({ length: props.totalPages }, (_, currentIndex) => {
-        return (
-          <div
-            key={currentIndex}
-            className={styles.dot}
-            data-active={currentIndex === props.currentPage}
-          />
-        );
-      })}
+    {React.Children.map(props.children, child => _withDotClass(child))}
   </div>
 );
 
-//update images on imageUpdate
+const _withDotClass = child => {
+  const props = { className: classNames(child.props.className, styles.dot) };
+
+  return React.cloneElement(child, props);
+};
+
 Pagination.propTypes = {
   className: PropTypes.string,
-  /** The amount of pages to show */
-  totalPages: PropTypes.number.isRequired,
-  /** The active page index (zero based) */
-  currentPage: PropTypes.number.isRequired,
 };
 
 Pagination.displayName = 'Pagination';
