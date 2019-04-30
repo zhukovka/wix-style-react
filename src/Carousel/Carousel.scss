@@ -68,16 +68,16 @@
 //  justify-content: center;
 //}
 //
-//.loader {
-//  overflow: hidden;
-//  position: relative;
-//  width: 100%;
-//  height: 100%;
-//  background-color: $paletteB5;
-//  display: flex;
-//  justify-content: center;
-//  align-items: center;
-//}
+.loader {
+ overflow: hidden;
+ position: relative;
+ width: 100%;
+ height: 100%;
+ background-color: $paletteB5;
+ display: flex;
+ justify-content: center;
+ align-items: center;
+}
 
 .image {
   width: 100%;

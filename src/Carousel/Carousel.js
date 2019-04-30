@@ -23,7 +23,7 @@ class Carousel extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      loadedSlides: [],
+      loadedImageCount: 0,
     };
   }
 
@@ -34,20 +34,28 @@ class Carousel extends React.Component {
   _renderImages = images => {
     return images.map((image, index) => (
       <div key={index} data-hook={dataHooks.imagesContainer}>
-        {this.state.loadedSlides.includes(index) ? (
-          <img
-            src={image.src}
-            data-hook={dataHooks.carouselImage}
-            className={styles.image}
-          />
-        ) : (
-          <div className={styles.loader}>
-            <Loader dataHook={dataHooks.loader} size="small" />
-          </div>
-        )}
+        <img
+          src={image.src}
+          data-hook={dataHooks.carouselImage}
+          className={styles.image}
+          onLoad={() => this._onImageLoad()}
+        />
       </div>
     ));
   };
+
+  _onImageLoad() {
+    this.setState(state => {
+      const loadedImageCount = state.loadedImageCount + 1;
+      return {
+        loadedImageCount,
+      };
+    });
+  }
+
+  _isLoading() {
+    return this.state.loadedImageCount < this.props.images.length;
+  }
 
   _resolveSliderSettings = ({
     dots,
@@ -88,7 +96,6 @@ class Carousel extends React.Component {
       speed,
       dots,
       initialSlide,
-      lazyLoad: 'on-demand',
       slidesToShow: 1,
       slidesToScroll: 1,
       nextArrow: <NextButton />,
@@ -99,15 +106,13 @@ class Carousel extends React.Component {
           {i}
         </div>
       ),
-      onLazyLoad: this._setLoadedSlides,
     };
   };
 
-  _setLoadedSlides = slides => {
-    // TODO: remove this condition while preventing re-rendering
-    if (slides.some(slide => !this.state.loadedSlides.includes(slide))) {
-      this.setState({ loadedSlides: [...this.state.loadedSlides, ...slides] });
-    }
+  _setLoadedSlides = () => {
+    this.setState(state => ({
+      loadedImageCount: state.loadedImageCount + 1,
+    }));
   };
 
   render() {
@@ -115,11 +120,19 @@ class Carousel extends React.Component {
 
     return (
       <div data-hook={dataHook}>
-        <div className={styles.sliderContainer}>
+        <div
+          className={styles.sliderContainer}
+          data-is-loading={this._isLoading()}
+        >
           <Slider {...this.sliderSettings}>
-            {images ? this._renderImages(images) : this.props.children}
+            {images ? this._renderImages(images) : null}
           </Slider>
         </div>
+        {this._isLoading() ? (
+          <div className={styles.loader}>
+            <Loader dataHook="loader" size="small" />
+          </div>
+        ) : null}
       </div>
     );
   }
@@ -134,13 +147,6 @@ Carousel.propTypes = {
   infinite: PropTypes.bool,
   /** Auto-playing of images */
   autoplay: PropTypes.bool,
-
-  // /** Slide/Fade animation speeds */
-  // speed: PropTypes.number,
-  // /** Number of slides to show */
-  // slidesToShow: PropTypes.number,
-  // /** Number of slides to scroll */
-  // slidesToScroll: PropTypes.number,
   /** Show dot indicators */
   dots: PropTypes.bool,
   /** Index of the slide to start on */
