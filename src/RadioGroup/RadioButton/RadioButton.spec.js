@@ -1,88 +1,76 @@
 import React from 'react';
 import RadioButton from './RadioButton';
 import radioButtonDriverFactory from './RadioButton.driver';
-import { createDriverFactory } from 'wix-ui-test-utils/driver-factory';
-import { radioButtonTestkitFactory } from '../../../testkit';
 import {
-  isTestkitExists,
-  isEnzymeTestkitExists,
-} from '../../../test/utils/testkit-sanity';
-import { radioButtonTestkitFactory as enzymeRadioButtonTestkitFactory } from '../../../testkit/enzyme';
-import { mount } from 'enzyme';
+  createRendererWithDriver,
+  createRendererWithUniDriver,
+  cleanup,
+} from '../../../test/utils/react';
+import { RadioButtonUniDriverFactory } from './RadioButton.driver.uni';
 
 describe('RadioButton', () => {
-  const createDriver = createDriverFactory(radioButtonDriverFactory);
-
-  it('should have a label', () => {
-    const label = 'myLabel';
-    const driver = createDriver(<RadioButton value="1">{label}</RadioButton>);
-    expect(driver.getLabel()).toBe(label);
+  describe('[sync]', () => {
+    runTests(createRendererWithDriver(radioButtonDriverFactory));
   });
 
-  it('should be disabled', () => {
-    const driver = createDriver(<RadioButton value="1" disabled />);
-    expect(driver.isDisabled()).toBe(true);
+  describe('[async]', () => {
+    //runTests(createRendererWithUniDriver(RadioButtonUniDriverFactory));
   });
 
-  it('should be checked', () => {
-    const driver = createDriver(<RadioButton value="1" checked />);
-    expect(driver.isChecked()).toBe(true);
-  });
+  function runTests(render) {
+    afterEach(() => cleanup());
 
-  it('should call onChange', () => {
-    const onChange = jest.fn();
-    const value = 1;
-    const driver = createDriver(
-      <RadioButton value={value} onChange={onChange} />,
-    );
-    driver.check();
-    expect(onChange).toBeCalledWith(value);
-  });
-
-  it('should not call onChange if already checked', () => {
-    const onChange = jest.fn();
-    const value = 1;
-    const driver = createDriver(
-      <RadioButton value={value} onChange={onChange} checked />,
-    );
-    driver.check();
-    expect(onChange).not.toBeCalledWith(value);
-  });
-
-  it('should not call onChange if disabled', () => {
-    const onChange = jest.fn();
-    const value = 1;
-    const driver = createDriver(
-      <RadioButton value={value} onChange={onChange} disabled />,
-    );
-    driver.check();
-    expect(onChange).not.toBeCalledWith(value);
-  });
-
-  describe('given `content` prop', () => {
-    it('should render node from that prop', () => {
-      const driver = createDriver(<RadioButton content={<span>Hello</span>} />);
-      expect(driver.getContent().textContent).toBe('Hello');
+    it('should have a label', async () => {
+      const label = 'myLabel';
+      const { driver } = render(<RadioButton value="1">{label}</RadioButton>);
+      expect(await driver.getLabel()).toBe(label);
     });
-  });
 
-  describe('testkit', () => {
-    it('should exist', () => {
-      expect(isTestkitExists(<RadioButton />, radioButtonTestkitFactory)).toBe(
-        true,
+    it('should be disabled', async () => {
+      const { driver } = render(<RadioButton value="1" disabled />);
+      expect(await driver.isDisabled()).toBe(true);
+    });
+
+    it('should be checked', async () => {
+      const { driver } = render(<RadioButton value="1" checked />);
+      expect(await driver.isChecked()).toBe(true);
+    });
+
+    it('should call onChange', async () => {
+      const onChange = jest.fn();
+      const value = 1;
+      const { driver } = render(
+        <RadioButton value={value} onChange={onChange} />,
       );
+      await driver.check();
+      expect(onChange).toBeCalledWith(value);
     });
-  });
 
-  describe('enzyme testkit', () => {
-    it('should exist', () => {
-      expect(
-        isEnzymeTestkitExists(
-          <RadioButton />,
-          enzymeRadioButtonTestkitFactory,
-          mount,
-        ),
-      ).toBe(true);
+    it('should not call onChange if already checked', async () => {
+      const onChange = jest.fn();
+      const value = 1;
+      const { driver } = render(
+        <RadioButton value={value} onChange={onChange} checked />,
+      );
+      await driver.check();
+      expect(onChange).not.toBeCalledWith(value);
     });
-  });
+
+    it('should not call onChange if disabled', async () => {
+      const onChange = jest.fn();
+      const value = 1;
+      const { driver } = render(
+        <RadioButton value={value} onChange={onChange} disabled />,
+      );
+      await driver.check();
+      expect(onChange).not.toBeCalledWith(value);
+    });
+
+    describe('given `content` prop', () => {
+      it('should render node from that prop', async () => {
+        const { driver } = render(<RadioButton content={<span>Hello</span>} />);
+        expect(await driver.getContent().textContent).toBe('Hello');
+      });
+    });
+  }
 });

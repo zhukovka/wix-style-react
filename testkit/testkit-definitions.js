@@ -192,7 +192,7 @@ module.exports = {
 
   RadioButton: {
     testkitPath: '../src/RadioGroup/RadioButton/RadioButton.driver',
-    skipSanityTest: true,
+    unidriver: true,
   },
 
   MessageBoxMarketerialLayout: {
