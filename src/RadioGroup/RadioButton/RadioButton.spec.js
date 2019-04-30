@@ -6,7 +6,7 @@ import {
   createRendererWithUniDriver,
   cleanup,
 } from '../../../test/utils/react';
-import { RadioButtonUniDriverFactory } from './RadioButton.driver.uni';
+import { radioButtonUniDriverFactory } from './RadioButton.uni.driver';
 
 describe('RadioButton', () => {
   describe('[sync]', () => {
@@ -14,7 +14,7 @@ describe('RadioButton', () => {
   });
 
   describe('[async]', () => {
-    runTests(createRendererWithUniDriver(RadioButtonUniDriverFactory));
+    runTests(createRendererWithUniDriver(radioButtonUniDriverFactory));
   });
 
   function runTests(render) {

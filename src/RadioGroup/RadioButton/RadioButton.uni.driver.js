@@ -1,6 +1,6 @@
 import { baseUniDriverFactory, ReactBase } from '../../../test/utils/unidriver';
 
-export const RadioButtonUniDriverFactory = base => {
+export const radioButtonUniDriverFactory = base => {
   const reactBase = ReactBase(base);
 
   const getRadioButton = async () => (await reactBase.children())[0];
