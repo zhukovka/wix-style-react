@@ -100,6 +100,7 @@ export const modalSelectorLayoutTestkitFactory = testkitFactoryCreator(load(requ
 export const multiSelectTestkitFactory = testkitFactoryCreator(load(require('../src/MultiSelect/MultiSelect.driver')));
 export const multiSelectCheckboxTestkitFactory = testkitFactoryCreator(load(require('../src/MultiSelectCheckbox/MultiSelectCheckbox.driver')));
 export const multiSelectCompositeTestkitFactory = testkitFactoryCreator(load(require('../src/MultiSelectComposite/MultiSelectComposite.driver')));
+export const nestableListTestkitFactory = testkitFactoryCreator(load(require('../src/NestableList/NestableList.driver')));
 export const noBorderInputTestkitFactory = testkitFactoryCreator(load(require('../src/NoBorderInput/NoBorderInput.driver')));
 export const notificationTestkitFactory = testkitFactoryCreator(load(require('../src/Notification/Notification.driver')));
 export const numberInputTestkitFactory = uniTestkitFactoryCreator(load(require('../src/NumberInput/NumberInput.uni.driver')));

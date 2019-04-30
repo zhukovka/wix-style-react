@@ -11,6 +11,7 @@ import {
   SingleAreaList,
   SingleAreaListWithAnimation,
   ListWithDelay,
+  NestableListExample,
   MultiAreaList,
   MultiAreaListWithSortableColumns,
   MultiAreaListWithSortableColumnsWithAnimations,
@@ -24,7 +25,8 @@ import DragDropContextProvider from './DragDropContextProvider';
 storiesOf('WIP/Drag And Drop', module)
   .add('Introduction', () => <Introduction />)
   .add('Styles', () => <Styles />)
-  .add('DragDropContextProvider', () => <DragDropContextProvider />);
+  .add('DragDropContextProvider', () => <DragDropContextProvider />)
+  .add('NestableList', () => <NestableListExample />);
 
 storiesOf('WIP/Drag And Drop/SortableList', module)
   .add('API', () => (

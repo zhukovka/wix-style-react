@@ -1,4 +1,5 @@
 export { default as SingleAreaList } from './SingleAreaList';
+export { default as NestableListExample } from './NestableListExample';
 export {
   default as SingleAreaListWithAnimation,
 } from './SingleAreaListWithAnimation';
