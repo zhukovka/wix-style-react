@@ -1,8 +1,8 @@
 import {ReactElement} from 'react';
 
 export interface InjectedFocusableProps {
-  focusableOnFocus?: () => void;
-  focusableOnBlur?: () => void;
+  onBlur?: () => void;
+  onFocus?: () => void;
 }
 
 export type IconElement = ReactElement<any>;
@@ -19,6 +19,7 @@ export {default as CalendarPanelFooter, CalendarPanelFooterProps} from './Calend
 export {default as Card, CardProps} from './Card';
 export {default as CardGalleryItem, CardGalleryItemProps} from './CardGalleryItem';
 
+export {default as Thumbnail, ThumbnailProps} from './Thumbnail';
 export {default as TimeInput, TimeInputProps} from './TimeInput';
 export {default as ToggleSwitch, ToggleSwitchProps} from './ToggleSwitch';
 export {default as Tooltip, TooltipProps} from './Tooltip';

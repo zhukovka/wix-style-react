@@ -31,8 +31,8 @@ function BadgeWithAllProps() {
       size="medium"
       prefixIcon={<div />}
       suffixIcon={<div />}
-      focusableOnBlur={() => undefined}
-      focusableOnFocus={() => undefined}
+      onBlur={() => undefined}
+      onFocus={() => undefined}
       onClick={e => undefined}
       uppercase
     />
