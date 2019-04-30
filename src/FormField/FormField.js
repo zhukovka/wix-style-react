@@ -120,12 +120,11 @@ class FormField extends React.Component {
     return (
       infoContent && (
         <InfoIcon
-          dataHook="formfield-infoicon"
+          dataHook="formfield-infotooltip"
           className={styles.infoIcon}
           tooltipProps={{
             content: infoContent,
             ...infoTooltipProps,
-            dataHook: 'formfield-infotooltip',
           }}
         />
       )

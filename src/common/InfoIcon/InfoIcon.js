@@ -1,29 +1,23 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import classnames from 'classnames';
+import cx from 'classnames';
 
 import InfoCircle from 'wix-ui-icons-common/InfoCircle';
 import Tooltip from '../../Tooltip';
 
-import styles from './InfoIcon.scss';
+import styles from './InfoIcon.st.css';
 
-const rootHelper = (props, stylesObject) => ({
-  className: classnames(stylesObject.root, props.className),
-  'data-hook': props.dataHook,
-});
-
-const InfoIcon = props => (
-  <div {...rootHelper(props, styles)}>
+const InfoIcon = ({ dataHook, tooltipProps, className }) => (
+  <div className={cx(styles.color, className)}>
     <Tooltip
       upgrade
       flip={false}
       appendTo="window"
-      enterDelay={200}
-      {...props.tooltipProps}
+      enterDelay={0}
+      {...tooltipProps}
+      dataHook={dataHook}
     >
-      <div>
-        <InfoCircle size="24px" />
-      </div>
+      <InfoCircle size="24px" />
     </Tooltip>
   </div>
 );
@@ -32,7 +26,7 @@ InfoIcon.displayName = 'InfoIcon';
 
 InfoIcon.propTypes = {
   tooltipProps: PropTypes.shape(Tooltip.propTypes),
-  dataHook: PropTypes.string,
+  dataHook: PropTypes.string.isRequired,
   className: PropTypes.string,
 };
 

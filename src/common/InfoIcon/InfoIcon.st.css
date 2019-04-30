@@ -1,0 +1,9 @@
+:import {
+  -st-from: "wix-ui-core/dist/src/themes/backoffice/colors.st.css";
+  -st-named: B10;
+}
+
+.color {
+  color: value(B10);
+  height: 24px;
+}

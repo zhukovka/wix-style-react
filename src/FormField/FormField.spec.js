@@ -93,7 +93,7 @@ describe('FormField', () => {
       showDelay: 0,
     };
 
-    it('should display `infoContent` value in tooltip', async () => {
+    it.skip('should display `infoContent` value in tooltip', async () => {
       const driver = createDriver(
         renderFormField({ infoContent, tooltipProps }),
       );
@@ -103,7 +103,7 @@ describe('FormField', () => {
     describe('given `label`', () => {
       const props = { label, infoContent, tooltipProps };
 
-      it('should display `infoContent` value in tooltip', async () => {
+      it.skip('should display `infoContent` value in tooltip', async () => {
         const driver = createDriver(renderFormField(props));
         expect(await driver.getInfoContent()).toBe(infoContent);
       });

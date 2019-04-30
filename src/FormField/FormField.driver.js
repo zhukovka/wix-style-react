@@ -1,4 +1,4 @@
-import tooltipDriverFactory from '../Tooltip/Tooltip.driver';
+import { tooltipDriverFactory } from 'wix-ui-core/dist/src/components/tooltip/Tooltip.driver';
 
 const formFieldDriver = ({ element }) => {
   const byHook = hook => element.querySelector(`[data-hook*="${hook}"]`);
@@ -24,8 +24,8 @@ const formFieldDriver = ({ element }) => {
     },
     getInfoContent: () =>
       tooltipDriverFactory({
-        element: byHook('formfield-infotooltip'),
-      }).hoverAndGetContent(),
+        element,
+      }).getContentElement().textContent,
   };
 };
 
