@@ -29,9 +29,9 @@ export default ({ element }) => {
       const imageContainer = element.querySelector('.slick-current');
       ReactTestUtils.Simulate.mouseOut(imageContainer);
     },
-    navigateToPage: i => {
+    clickPageNavigationDot: index => {
       const pageNavigator = element.querySelector(
-        `[data-hook="page-navigation-${i}"]`,
+        `[data-hook="page-navigation-${index}"]`,
       );
       ReactTestUtils.Simulate.click(pageNavigator);
     },
