@@ -16,7 +16,6 @@ const imageViewerDriverFactory = ({ element, eventTrigger }) => {
     element,
     eventTrigger,
   });
-  const tooltipDriver = addItemDriver.getTooltipDriver();
   const addItemClick = () =>
     addItemDriverFactory({
       element: byHook('add-image'),
@@ -38,7 +37,7 @@ const imageViewerDriverFactory = ({ element, eventTrigger }) => {
       tooltipDriverFactory({
         element: errorIcon(),
       }).hoverAndGetContent(),
-    getAddTooltipContent: () => tooltipDriver.hoverAndGetContent(),
+    getAddTooltipContent: () => addItemDriver.getTooltipContent(),
     getUpdateTooltipContent: () =>
       tooltipDriverFactory({
         element: updateIcon(),
