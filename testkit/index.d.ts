@@ -11,6 +11,7 @@ import {BreadcrumbsDriver} from '../src/Breadcrumbs/Breadcrumbs.driver';
 import {ButtonDriver} from '../src/Button/Button.uni.driver';
 import {CalendarDriver} from '../src/Calendar/Calendar.driver';
 import {CalendarPanelDriver} from '../src/CalendarPanel/CalendarPanel.driver';
+import {CalendarPanelFooterDriver} from '../src/CalendarPanelFooter/CalendarPanelFooter.uni.driver';
 
 declare namespace VanillaTestkit {
   type VanillaTestkitFactory<T extends BaseDriver> = (
@@ -34,6 +35,7 @@ declare namespace VanillaTestkit {
   export const buttonTestkitFactory: VanillaUniTestkitFactory<ButtonDriver>;
   export const calendarTestkitFactory: VanillaTestkitFactory<CalendarDriver>;
   export const calendarPanelTestkitFactory: VanillaTestkitFactory<CalendarPanelDriver>
+  export const calendarPanelFooterTestkitFactory: VanillaUniTestkitFactory<CalendarPanelFooterDriver>;
 
   export const timeInputTestkitFactory: VanillaTestkitFactory<TimeInputDriver>;
   export const toggleSwitchTestkitFactory: VanillaTestkitFactory<ToggleSwitchDriver>;
