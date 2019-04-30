@@ -28,13 +28,6 @@ const ICONS = {
   custom: <AddMedia data-hook="additem-icon" width="31" height="31" />,
 };
 
-const DEFAULT_TOOLTIP_PROPS = {
-  showDelay: 0,
-  hideDelay: 0,
-  align: 'center',
-  placement: 'top',
-};
-
 class AddItem extends Component {
   static displayName = 'AddItem';
   static propTypes = {
@@ -118,7 +111,7 @@ class AddItem extends Component {
       </div>
     );
     const tooltipProps = {
-      ...DEFAULT_TOOLTIP_PROPS,
+      placement: 'top',
       content: tooltipContent,
       ...this.props.tooltipProps,
     };
