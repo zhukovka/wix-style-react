@@ -60,7 +60,9 @@ export interface TooltipOldProps extends WixComponentProps {
   showArrow?: boolean;
 }
 
-export default class Tooltip extends React.PureComponent<TooltipNewProps | TooltipOldProps> {}
+export type TooltipProps = TooltipNewProps | TooltipOldProps;
+
+export default class Tooltip extends React.PureComponent<TooltipProps> {}
 
 export type TooltipNewAppendTo = 'window' | 'scrollParent' | 'viewport' | 'parent';
 export type TooltipNewTextAlign = 'center' | 'start';
