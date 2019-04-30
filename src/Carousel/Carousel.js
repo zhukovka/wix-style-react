@@ -151,7 +151,11 @@ class Carousel extends React.Component {
 
       return (
         <div {...remainingProps}>
-          <IconButton dataHook="prev-button" priority="secondary">
+          <IconButton
+            dataHook="prev-button"
+            priority="secondary"
+            skin={this.props.navigationArrowsWithBorder ? '' : 'inverted'}
+          >
             <ChevronLeftLarge />
           </IconButton>
         </div>
@@ -163,7 +167,11 @@ class Carousel extends React.Component {
 
       return (
         <div {...remainingProps}>
-          <IconButton dataHook="next-button" priority="secondary">
+          <IconButton
+            dataHook="next-button"
+            priority="secondary"
+            skin={this.props.navigationArrowsWithBorder ? '' : 'inverted'}
+          >
             <ChevronRightLarge />
           </IconButton>
         </div>
@@ -237,6 +245,7 @@ class Carousel extends React.Component {
       dots,
       images,
       initialSlide,
+      navigationArrowsWithBorder,
     } = this.props;
 
     const settings = {
@@ -290,27 +299,31 @@ Carousel.propTypes = {
   infinite: PropTypes.bool,
   /** Auto-playing of images */
   autoplay: PropTypes.bool,
-
-  // /** Slide/Fade animation speeds */
-  // speed: PropTypes.number,
-  // /** Number of slides to show */
-  // slidesToShow: PropTypes.number,
-  // /** Number of slides to scroll */
-  // slidesToScroll: PropTypes.number,
+  /** Slide/Fade animation speeds */
+  speed: PropTypes.number,
+  /** Number of slides to show */
+  slidesToShow: PropTypes.number,
+  /** Number of slides to scroll */
+  slidesToScroll: PropTypes.number,
   /** Show dot indicators */
   dots: PropTypes.bool,
   /** Index of the slide to start on */
   initialSlide: PropTypes.number,
+  /** Add circle around navigation arrows */
+  navigationArrowsWithBorder: PropTypes.bool,
 };
 
 Carousel.defaultProps = {
-  infinite: true,
   images: [],
+  infinite: true,
   autoplay: false,
+  speed: TRANSITION_SPEED,
+  slidesToShow: 1,
+  slidesToScroll: 1,
+  dots: true,
   initialSlide: 0,
   autoplaySpeed: AUTOPLAY_SPEED,
-  speed: TRANSITION_SPEED,
-  dots: true,
+  navigationArrowsWithBorder: true,
 };
 Carousel.displayName = 'Carousel';
 
