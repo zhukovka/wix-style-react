@@ -80,6 +80,13 @@ export default {
       },
 
       {
+        title: 'Icon Affix',
+        text:
+          "When using icons you should match icon's size to input's` size. For normal sized input use normal icons. For small/large inputs use icons which ends with the proper prefix of Small/Large.",
+        source: examples.iconAffix,
+      },
+
+      {
         title: 'Char limit',
         text: 'It is allowed to set maximum number of characters',
         source: examples.charLimit,

@@ -39,6 +39,24 @@ export const affix = `
 </Layout>
 `;
 
+export const iconAffix = `
+<Layout>
+  <C      <Input size="small" placeholder="Placeholder" prefix={<Input.ChevronRightSmall><MoreSmall/></Input.IconAffix>}/>
+      </FormField>
+  </Cell>  
+  <Cell>
+    <FormField label="Field label">
+      <Input size="normal" placeholder="Placeholder" prefix={<Input.ChevronRight><More/></Input.IconAffix>}/>
+      </FormField>
+  </Cell>
+  <Cell>
+    <FormField label="Field label">
+      <Input size="large" placeholder="Placeholder" prefix={<Input.IconAffix><ChevronRightLarge/></Input.IconAffix>}/>
+      </FormField>
+  </Cell>
+</Layout>
+`;
+
 export const charLimit = `
 <FormField label="Field label">
   {({setCharactersLeft}) =>

@@ -110,7 +110,7 @@ export default {
               {
                 title: 'Affix',
                 text:
-                  'TextButton allows using any icon before or after the text.',
+                  "TextButton allows using any icon before or after the text. For medium sized buttons use normal icons. For small buttons use small icons which ends with the 'Small' prefix",
                 source: examples.affixes,
               },
               {

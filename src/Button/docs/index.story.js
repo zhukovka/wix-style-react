@@ -103,7 +103,7 @@ export default {
             {
               title: 'Affix',
               text:
-                'To emphasize button’s actions it is allowed to add prefix or suffix icon.',
+                'To emphasize button’s actions it is allowed to add prefix or suffix icon. When adding an icon you should match the icon size to the button size. If your button is small, use a small size icon which ends with Small prefix. *Normal sized icons have no prefix.',
               source: examples.affixes,
             },
             {

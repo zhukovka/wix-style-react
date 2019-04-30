@@ -105,7 +105,7 @@ export default {
               {
                 title: 'Size',
                 text:
-                  'Its size can be `small` or `medium`. Smaller layout container should contain small buttons.',
+                  'Its size can be `small` or `medium`. Smaller layout container should contain small buttons. Icon should be set according to IconButton size. Small sized IconButton should use small icons, which ends with the Small prefix, while medium sized icon buttons should use the normal icons which has no prefix.',
                 source: examples.size,
               },
               {

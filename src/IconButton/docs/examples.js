@@ -51,7 +51,7 @@ export const size = `
     <More />
   </IconButton>
   <IconButton size="small">
-    <More />
+    <MoreSmall />
   </IconButton>
 </Layout>
 `;
