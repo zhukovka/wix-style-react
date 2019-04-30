@@ -228,4 +228,19 @@ describe('Carousel', () => {
       expect(driver.getCurrentImageIndex()).toBe(2);
     });
   });
+  describe('initial slide functionality', () => {
+    it('should start the slider at the second image and therefore show the second image', () => {
+      const driver = createDriver(
+        <Carousel
+          initialSlide={1}
+          images={[
+            { src: 'image1.jpg' },
+            { src: 'image2.jpg' },
+            { src: 'image3.jpg' },
+          ]}
+        />,
+      );
+      expect(driver.getCurrentImageIndex()).toBe(1);
+    });
+  });
 });
