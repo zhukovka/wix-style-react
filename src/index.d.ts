@@ -23,6 +23,7 @@ export {default as CircularProgressBar, CircularProgressBarProps} from './Circul
 export {default as CloseButton, CloseButtonProps} from './CloseButton';
 export {default as Collapse, CollapseProps} from './Collapse';
 
+export {default as Tag, TagProps} from './Tag';
 export {defualt as Text, TextProps} from './Text';
 export {default as TextButton, TextButtonProps} from './TextButton';
 export {default as Thumbnail, ThumbnailProps} from './Thumbnail';
