@@ -1,17 +1,17 @@
-import React, { Component } from 'react';
-import { node, string, oneOfType } from 'prop-types';
-import Text from '../../Text/ProxyText';
+import React, { PureComponent } from 'react';
+import { node, string } from 'prop-types';
+import Text from '../../Text';
 import Box from '../../Box';
 import styles from './Subheader.st.css';
 
 const isString = a => typeof a === 'string';
 
-class Subheader extends Component {
+class Subheader extends PureComponent {
   static displayName = 'Card.Subheader';
 
   static propTypes = {
     /** required card title */
-    title: oneOfType([node, string]).isRequired,
+    title: node.isRequired,
     suffix: node,
   };
 
@@ -26,13 +26,11 @@ class Subheader extends Component {
               {title}
             </Text>
           ) : (
-            <span data-hook="title-node">{title}</span>
+            title
           )}
         </Box>
 
-        {suffix && (
-          <div data-hook="suffix" className={styles.suffix} children={suffix} />
-        )}
+        {suffix && <div className={styles.suffix}>{suffix}</div>}
       </div>
     );
   }

@@ -7,6 +7,7 @@
 .container {
   display: flex;
   align-items: center;
+  min-height: 48px;
   justify-content: space-between;
   padding: 12px 30px;
   background-color: value(B50);
@@ -17,6 +18,7 @@
 
 .suffix {
   height: 0;
+  flex-shrink: 0;
   margin-left: 12px;
   display: flex;
   align-items: center;

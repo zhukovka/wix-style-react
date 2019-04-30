@@ -24,8 +24,26 @@ describe('Subheader', () => {
     });
 
     it('should render as component', async () => {
-      const { driver } = render(<Subheader title={<span>hello world</span>} />);
-      expect(await (await driver.titleNode()).text()).toBe('hello world');
+      const { driver } = render(
+        <Subheader title={<span data-hook="custom-node">hello world</span>} />,
+      );
+      expect(
+        await (await driver.titleNodeByDataHook('custom-node')).text(),
+      ).toBe('hello world');
+    });
+  });
+
+  describe('`suffix` prop', () => {
+    it('should render as component', async () => {
+      const { driver } = render(
+        <Subheader
+          title="hi there"
+          suffix={<span data-hook="custom-node">hello world</span>}
+        />,
+      );
+      expect(
+        await (await driver.suffixNodeByDataHook('custom-node')).text(),
+      ).toBe('hello world');
     });
   });
 });

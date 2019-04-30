@@ -13,7 +13,7 @@ import Card from 'wix-style-react/Card';
 export default () =>
   <Card>
     <Card.Header title="Catchy Header"/>
-
+    <Card.Subheader title="This is the subheader"/>
     <Card.Content>
       Anything goes
     </Card.Content>
@@ -40,6 +40,16 @@ export default () =>
   | suffix         | node     | -            | -          | A component to be displayed on the right side of header |
   | withoutDivider | bool     | false        | -          | Whether to show divider or not                          |
 </details>
+
+<details>
+  <summary>`Card.Subheader`</summary>
+
+  | propName       | propType | defaultValue | isRequired | description                                                |
+  | ---            | ---      | ---          | ---        | ---                                                        |
+  | title          | string / node   | -            | +          | The title of the subheader                                 |
+  | suffix         | node     | -            | -          | A component to be displayed on the right side of subheader |
+</details>
+
 
 <details>
   <summary>`Card.Content`</summary>
