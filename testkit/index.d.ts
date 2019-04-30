@@ -28,6 +28,7 @@ import {DropdownBaseDriver} from '../src/DropdownBase/DropdownBase.uni.driver';
 import {LabelDriver} from '../src/Label/Label.driver';
 import {DropdownLayoutDriver} from '../src/DropdownLayout/DropdownLayout.driver';
 import {EditableSelectorDriver} from '../src/EditableSelector/EditableSelector.driver';
+import {EmptyStateDriver} from '../src/EmptyState/EmptyState.driver';
 
 declare namespace VanillaTestkit {
   type VanillaTestkitFactory<T extends BaseDriver> = (
@@ -62,9 +63,9 @@ declare namespace VanillaTestkit {
   export const dropdownBaseTestkitFactory: VanillaUniTestkitFactory<DropdownBaseDriver>;
   export const dropdownLayoutTestkitFactory: VanillaTestkitFactory<DropdownLayoutDriver>;
   export const editableSelectorTestkitFactory: VanillaTestkitFactory<EditableSelectorDriver>;
+  export const emptyStateTestkitFactory: VanillaTestkitFactory<EmptyStateDriver>;
 
   export const labelTestkitFactory: VanillaTestkitFactory<LabelDriver>;
-
   export const tabsTestkitFactory: VanillaTestkitFactory<TabsDriver>;
   export const tagTestkitFactory: VanillaTestkitFactory<TagDriver>;
   export const textTestkitFactory: VanillaTestkitFactory<TextDriver>;

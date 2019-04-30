@@ -28,6 +28,7 @@ export {default as DatePicker, DatePickerProps} from './DatePicker';
 export {default as DropdownBase, DropdownBaseProps} from './DropdownBase';
 export {default as DropdownLayout, DropdownLayoutProps} from './DropdownLayout';
 export {default as EditableSelector, EditableSelectorProps} from './EditableSelector';
+export {default as EmptyState, EmptyStateProps} from './EmptyState';
 
 export {default as Label, LabelProps} from './Label';
 

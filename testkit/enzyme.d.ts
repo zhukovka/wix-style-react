@@ -29,6 +29,7 @@ import {DropdownBaseDriver} from '../src/DropdownBase/DropdownBase.uni.driver';
 import {LabelDriver} from '../src/Label/Label.driver';
 import {DropdownLayoutDriver} from '../src/DropdownLayout/DropdownLayout.driver';
 import {EditableSelectorDriver} from '../src/EditableSelector/EditableSelector.driver';
+import {EmptyStateDriver} from '../src/EmptyState/EmptyState.driver';
 
 declare namespace EnzymeTestkit {
   type EnzymeTestkitFactory<T extends BaseDriver> = (
@@ -63,9 +64,9 @@ declare namespace EnzymeTestkit {
   export const dropdownBaseTestkitFactory: EnzymeUniTestkitFactory<DropdownBaseDriver>;
   export const dropdownLayoutTestkitFactory: EnzymeTestkitFactory<DropdownLayoutDriver>;
   export const editableSelectorTestkitFactory: EnzymeTestkitFactory<EditableSelectorDriver>;
+  export const emptyStateTestkitFactory: EnzymeTestkitFactory<EmptyStateDriver>;
 
   export const labelTestkitFactory: EnzymeTestkitFactory<LabelDriver>;
-
   export const tabsTestkitFactory: EnzymeTestkitFactory<TabsDriver>;
   export const tagTestkitFactory: EnzymeTestkitFactory<TagDriver>;
   export const textTestkitFactory: EnzymeTestkitFactory<TextDriver>;
