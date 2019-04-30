@@ -1,10 +1,10 @@
 import {BaseUniDriver} from 'wix-ui-test-utils/unidriver';
 
 export interface CalendarPanelFooterDriver extends BaseUniDriver {
-  isPrimaryButtonDisabled: boolean;
-  getSelectedDaysText: () => string;
-  getPrimaryActionButtonLabel: () => string;
-  getSecondaryActionButtonLabel: () => string;
-  clickOnPrimaryButton: () => void;
-  clickOnSecondaryButton: () => void;
+  isPrimaryButtonDisabled: Promise<boolean>;
+  getSelectedDaysText: () => Promise<string>;
+  getPrimaryActionButtonLabel: () => Promise<string>;
+  getSecondaryActionButtonLabel: () => Promise<string>;
+  clickOnPrimaryButton: () => Promise<void>;
+  clickOnSecondaryButton: () => Promise<void>;
 }
