@@ -125,6 +125,7 @@ export const socialPreviewTestkitFactory = uniTestkitFactoryCreator(load(require
 export const sortableListTestkitFactory = testkitFactoryCreator(load(require('../src/SortableList/SortableList.driver')));
 export const statsWidgetTestkitFactory = testkitFactoryCreator(load(require('../src/StatsWidget/StatsWidget.driver')));
 export const tableTestkitFactory = testkitFactoryCreator(load(require('../src/Table/Table.driver')));
+export const tableTestkitUniFactory = uniTestkitFactoryCreator(load(require('../src/Table/Table.uni.driver')));
 export const tableActionCellTestkitFactory = testkitFactoryCreator(load(require('../src/TableActionCell/TableActionCell.driver')));
 export const tabsTestkitFactory = testkitFactoryCreator(load(require('../src/Tabs/Tabs.driver')));
 export const tagTestkitFactory = testkitFactoryCreator(load(require('../src/Tag/Tag.driver')));
