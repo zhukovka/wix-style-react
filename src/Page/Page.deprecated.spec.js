@@ -158,40 +158,6 @@ describe('Page Deprecated', () => {
       stub.mockReset();
     });
 
-    it('should not initialize without a PageContent component', () => {
-      const page = (
-        <Page>
-          <Page.Header title="title" />
-          <div />
-        </Page>
-      );
-
-      createDriver(page);
-      expect(stub).toHaveBeenCalledWith(
-        expect.stringContaining(
-          `${prefixWarning}Page: Invalid Prop children, must contain Page.Content${suffixWarning}`,
-        ),
-      );
-    });
-
-    it('should not initialize without a PageHeader component', () => {
-      const page = (
-        <Page>
-          <Page.Content>
-            <div />
-          </Page.Content>
-          <div />
-        </Page>
-      );
-
-      createDriver(page);
-      expect(stub).toHaveBeenCalledWith(
-        expect.stringContaining(
-          `${prefixWarning}Page: Invalid Prop children, must contain Page.Header${suffixWarning}`,
-        ),
-      );
-    });
-
     it('should not initialize component with an unknown type', () => {
       const page = (
         <Page>
@@ -209,6 +175,22 @@ describe('Page Deprecated', () => {
           `${prefixWarning}Page: Invalid Prop children, unknown child div${suffixWarning}`,
         ),
       );
+    });
+
+    it('should NOT throw an error if a falsy child provided', () => {
+      const page = (
+        <Page>
+          <Page.Header title="title" />
+          {false && (
+            <Page.Content>
+              <div />
+            </Page.Content>
+          )}
+        </Page>
+      );
+      createDriver(page);
+
+      expect(stub).toHaveBeenCalledTimes(0);
     });
   });
 });

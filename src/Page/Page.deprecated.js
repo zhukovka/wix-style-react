@@ -369,6 +369,13 @@ Page.Content = Content;
 Page.FixedContent = FixedContent;
 Page.Tail = Tail;
 
+const allowedChildren = [
+  Page.Header,
+  Page.Content,
+  Page.FixedContent,
+  Page.Tail,
+];
+
 Page.propTypes = {
   /** Background image url of the header beackground */
   backgroundImageUrl: PropTypes.string,
@@ -388,26 +395,16 @@ Page.propTypes = {
   scrollableContentRef: PropTypes.func,
 
   children: PropTypes.arrayOf((children, key) => {
-    const childrenObj = getChildrenObject(children);
-
-    if (!childrenObj.PageHeader) {
-      return new Error(`Page: Invalid Prop children, must contain Page.Header`);
+    const child = children[key];
+    if (!child) {
+      return;
     }
 
-    if (!childrenObj.PageContent) {
+    const allowedDisplayNames = allowedChildren.map(c => c.displayName);
+    const childDisplayName = child.type.displayName;
+    if (!allowedDisplayNames.includes(childDisplayName)) {
       return new Error(
-        `Page: Invalid Prop children, must contain Page.Content`,
-      );
-    }
-
-    if (
-      children[key].type.displayName !== Page.Header.displayName &&
-      children[key].type.displayName !== Page.Content.displayName &&
-      children[key].type.displayName !== Page.FixedContent.displayName &&
-      children[key].type.displayName !== Page.Tail.displayName
-    ) {
-      return new Error(
-        `Page: Invalid Prop children, unknown child ${children[key].type}`,
+        `Page: Invalid Prop children, unknown child ${child.type}`,
       );
     }
   }).isRequired,
