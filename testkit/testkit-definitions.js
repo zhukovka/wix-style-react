@@ -138,6 +138,7 @@ module.exports = {
   EditableRow: {
     testkitPath: '../src/EditableSelector/EditableRow/EditableRow.driver',
     unidriver: true,
+    skipSanityTest: true,
   },
 
   FieldLabelAttributes: {
