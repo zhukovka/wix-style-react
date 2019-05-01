@@ -14,6 +14,12 @@ Types of changes:
 1. **Docs** for documentation changes
 1. **Lab** components and features that are still in a work in progress
 
+## Next
+
+## Fixed
+
+- `<Page/>` - allow falsy children (for conditional rendering)
+
 ## 6.16.2 - 2019-04-28
 
 ### Fixed
