@@ -13,6 +13,7 @@ class LinearProgressBar extends React.PureComponent {
   static displayName = 'LinearProgressBar';
 
   static propTypes = {
+    /** Use to apply error styles*/
     error: PropTypes.bool,
 
     /** Message to display when an error happens */
@@ -24,7 +25,8 @@ class LinearProgressBar extends React.PureComponent {
     /** Use to display a percentage progress.*/
     showProgressIndication: PropTypes.bool,
 
-    value: PropTypes.number,
+    /** The number of the percentage progress */
+    value: PropTypes.number || PropTypes.string,
   };
 
   render() {

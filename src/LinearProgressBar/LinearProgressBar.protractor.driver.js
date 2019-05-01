@@ -1,4 +1,4 @@
-import { promise, browser, $, ElementFinder } from 'protractor';
+import { browser } from 'protractor';
 import { linearProgressBarDriverFactory as coreLinearProgressBarDriverFactory } from 'wix-ui-core/drivers/protractor';
 
 export const linearProgressBarDriverFactory = element => {

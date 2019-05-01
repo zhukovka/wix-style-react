@@ -1,11 +1,11 @@
-export const defaultRender = `<LinearProgressBar value={20} />`;
-
 export const errors = `<Layout>
   <Cell>
     <LinearProgressBar error value={20} />
   </Cell>
-      <Cell>
-    <LinearProgressBar light error value={20} />
+  <Cell>
+    <Box backgroundColor="D10">
+       <LinearProgressBar light error value={20} />
+    </Box>
   </Cell>
     <Cell>
     <LinearProgressBar showProgressIndication error errorMessage="some error" value={20} />
@@ -29,6 +29,8 @@ export const themes = `<Layout>
     <LinearProgressBar value={20} />
   </Cell>
     <Cell>
-    <LinearProgressBar light value={20} />
+    <Box backgroundColor="D10">
+        <LinearProgressBar light value={20} />
+    </Box>
   </Cell>
 </Layout>`;

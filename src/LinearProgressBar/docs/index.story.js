@@ -38,11 +38,6 @@ export default {
     showProgressIndication: false,
   },
 
-  exampleProps: {
-    // Put here presets of props, for more info:
-    // https://github.com/wix/wix-ui/blob/master/packages/wix-storybook-utils/docs/usage.md#using-list
-  },
-
   sections: [
     header({
       issueUrl: 'https://github.com/wix/wix-style-react/issues/new',
@@ -76,28 +71,16 @@ export default {
 
           title('Examples'),
 
-          columns([
-            description({
-              title: 'Simple Usage',
-              text: 'A simple example with compact preview',
-            }),
-
-            code({
-              compact: true,
-              source: examples.defaultRender,
-            }),
-          ]),
+          code({
+            title: 'Progress Indication',
+            description: 'Displaying a progress indicator in percentage.',
+            source: examples.progressIndication,
+          }),
 
           code({
             title: 'Themes',
             description: 'Appear in all different themes.',
             source: examples.themes,
-          }),
-
-          code({
-            title: 'Progress Indication',
-            description: 'Displaying a progress indicator in percentage.',
-            source: examples.progressIndication,
           }),
 
           code({
