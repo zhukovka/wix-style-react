@@ -246,27 +246,25 @@ describe('RichTextInputArea', () => {
     });
 
     describe('Link', () => {
-      it('should display a form for inserting link after clicking the link button', async () => {
-        const driver = createDriver(<RichTextInputArea />);
+      const sampleText = 'Link';
+      const sampleUrl = 'http://wix.com';
+      window.scrollTo = jest.fn();
 
-        await driver.clickLinkButton();
-
-        expect(await driver.isFormDisplayed()).toBe(true);
-      });
-
-      it('should render text as link after inserting required data', async () => {
+      it('should render text as link after clicking the button and inserting required data', async () => {
         const driver = createDriver(
           <RichTextInputArea onChange={value => (currentValue = value)} />,
         );
-        const typedText = 'Link';
-        const typedUrl = 'http://wix.com';
-        const expectedText = `<p><a rel=\"noopener noreferrer\" target=\"_blank\" href=\"${typedUrl}\">${typedText}</a></p>`;
-        window.scrollTo = jest.fn();
+        const sampleValue = `<p><a rel=\"noopener noreferrer\" target=\"_blank\" href=\"${sampleUrl}\">${sampleText}</a></p>`;
 
         await driver.clickLinkButton();
-        await driver.insertLink(typedText, typedUrl);
+        const isFormDisplayed = await driver.isFormDisplayed();
+        await driver.insertLink(sampleText, sampleUrl);
 
-        expect(currentValue).toBe(expectedText);
+        expect(isFormDisplayed).toBe(true);
+        expect(currentValue).toBe(sampleValue);
+        await eventually(async () => {
+          expect(await driver.isFormDisplayed()).toBe(false);
+        });
       });
 
       it('should render the link button as active after clicking the button', async () => {
@@ -277,19 +275,33 @@ describe('RichTextInputArea', () => {
 
         expect(await button.hasClass(toolbarButtonStyles.active)).toBe(true);
       });
-    });
-  });
 
-  describe('Form', () => {
-    it('should disable the confirm button when url is empty', async () => {
+      it('should render text without link after clicking the button, when the selected text contains a link', async () => {
+        const driver = createDriver(
+          <RichTextInputArea onChange={value => (currentValue = value)} />,
+        );
+        const sampleValue = `<p>${sampleText}</p>`;
+        await driver.clickLinkButton();
+        await driver.insertLink(sampleText, sampleUrl);
+
+        await driver.clickLinkButton();
+
+        await eventually(async () => {
+          expect(await driver.isFormDisplayed()).toBe(false);
+        });
+        expect(currentValue).toBe(sampleValue);
+      });
+    });
+
+    it('should disable the confirm button within the insertion form when url is empty', async () => {
       const driver = createDriver(<RichTextInputArea />);
 
       await driver.clickLinkButton();
 
-      expect(await driver.isFormDisplayed()).toBe(true);
+      expect(await driver.isFormConfirmButtonDisabled()).toBe(true);
     });
 
-    it('should hide the form after clicking the cancel button', async () => {
+    it('should hide the insertion form after clicking the cancel button', async () => {
       const driver = createDriver(<RichTextInputArea />);
 
       await driver.clickLinkButton();

@@ -73,7 +73,7 @@ describe('EditorUtilities', () => {
 
   describe('hasEntity', () => {
     it('should return true when editor contains an entity', () => {
-      const newEditorState = EditorUtilities.toggleEntity(
+      const newEditorState = EditorUtilities.toggleLink(
         editorState,
         linkEntity,
       );
@@ -84,10 +84,7 @@ describe('EditorUtilities', () => {
     });
 
     it(`should return false when editor contains an entity but the selection doesn't`, () => {
-      let newEditorState = EditorUtilities.toggleEntity(
-        editorState,
-        linkEntity,
-      );
+      let newEditorState = EditorUtilities.toggleLink(editorState, linkEntity);
 
       newEditorState = EditorState.moveSelectionToEnd(editorState);
 
@@ -119,9 +116,9 @@ describe('EditorUtilities', () => {
     ).toBe(true);
   });
 
-  describe('triggerEntity', () => {
+  describe('toggleLink', () => {
     it('should attach the specified entity to a block', () => {
-      const newEditorState = EditorUtilities.toggleEntity(
+      const newEditorState = EditorUtilities.toggleLink(
         editorState,
         linkEntity,
       );
@@ -134,7 +131,7 @@ describe('EditorUtilities', () => {
     it('should insert the text of the specified entity to a block', () => {
       const initialText = editorState.getCurrentContent().getPlainText();
 
-      const newEditorState = EditorUtilities.toggleEntity(
+      const newEditorState = EditorUtilities.toggleLink(
         editorState,
         linkEntity,
       );

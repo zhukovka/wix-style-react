@@ -20,6 +20,7 @@ class RichTextToolbarLinkButton extends React.Component {
       data,
     } = this.props;
     const { isFormShown } = this.state;
+    const { selectedText } = data;
 
     return (
       <Popover
@@ -28,12 +29,12 @@ class RichTextToolbarLinkButton extends React.Component {
         showArrow
         animate
         shown={isFormShown}
-        onClickOutside={this._hideForm}
+        onClickOutside={this._onHide}
       >
         <Popover.Element>
           <RichTextToolbarButton
             dataHook={dataHook}
-            onClick={() => this.setState({ isFormShown: !isFormShown })}
+            onClick={this._onButtonClick}
             tooltipText={tooltipText}
             isDisabled={isDisabled}
             isActive={isActive || this.state.isFormShown}
@@ -45,9 +46,9 @@ class RichTextToolbarLinkButton extends React.Component {
           <Box padding={3}>
             <RichTextInputAreaLinkForm
               dataHook="richtextarea-form"
-              onSubmit={this._handleSubmit}
-              onCancel={this._hideForm}
-              data={data}
+              onSubmit={this._onSubmit}
+              onCancel={this._onHide}
+              data={{ text: selectedText }}
             />
           </Box>
         </Popover.Content>
@@ -55,17 +56,32 @@ class RichTextToolbarLinkButton extends React.Component {
     );
   }
 
-  _hideForm = () => {
-    this.setState({
-      isFormShown: false,
-    });
+  /*
+  When clicking the button, one of the following occurs:
+  1. If the selected text doesn't contain a link, it will show the link insertion form
+  2. If the selected text contains a link, it will detach that link from the text
+  */
+  _onButtonClick = () => {
+    const { onRemove, data } = this.props;
+    const { hasRemovableEntityInSelection } = data;
+
+    // Checks if the selected text doesn't contain a link
+    if (!hasRemovableEntityInSelection) {
+      this.setState({ isFormShown: true });
+    } else {
+      onRemove();
+    }
   };
 
-  _handleSubmit = (event, linkData) => {
+  _onSubmit = (event, linkData) => {
     const { onSubmit } = this.props;
 
     onSubmit(event, linkData);
-    this._hideForm();
+    this._onHide();
+  };
+
+  _onHide = () => {
+    this.setState({ isFormShown: false });
   };
 }
 

@@ -38,6 +38,21 @@ const hasEntity = (editorState, entity) => {
   return false;
 };
 
+/** Returns whether the block of the selected text is linked to an entity */
+const hasRemovableEntityInSelection = editorState => {
+  if (_hasSelectedText(editorState)) {
+    const { contentBlock, startOffset } = _getSelectedBlock(editorState);
+    // Finds the entity that's related to the selected text
+    const entity = contentBlock.getEntityAt(startOffset);
+
+    if (entity) {
+      return true;
+    }
+  }
+
+  return false;
+};
+
 /** Returns an EditorState with the rendered selection.
  * Mainly useful in order to maintain the selection after creating new state */
 const keepCurrentSelection = editorState =>
@@ -59,67 +74,23 @@ const toggleBlockType = (editorState, toggledBlockType) => {
   );
 };
 
-const toggleEntity = (editorState, linkData) => {
-  const { url = '', text = '' } = linkData;
-  const selection = editorState.getSelection();
-  const contentState = editorState.getCurrentContent();
-  const contentStateWithEntity = contentState.createEntity('LINK', 'MUTABLE', {
-    url,
-  });
-  const entityKey = contentStateWithEntity.getLastCreatedEntityKey();
+const toggleLink = (editorState, linkData) => {
+  if (hasRemovableEntityInSelection(editorState)) {
+    const { contentBlock, startOffset } = _getSelectedBlock(editorState);
+    const entity = contentBlock.getEntityAt(startOffset);
 
-  let newEditorState;
-  let newSelection = selection;
-
-  // In case there is selected text
-  if (!selection.isCollapsed()) {
-    newEditorState = EditorState.set(editorState, {
-      currentContent: contentStateWithEntity,
-    });
-
-    // TODO: Add logic for editing existing entity
-  } else {
-    const startPosition = selection.getStartOffset();
-    const endPosition = startPosition + text.length;
-
-    // A key for the block that containing the start of the selection range
-    const blockKey = selection.getStartKey();
-
-    // Replaces the content in specified selection range with text
-    const newContentState = Modifier.insertText(contentState, selection, text);
-
-    newSelection = new SelectionState({
-      anchorOffset: startPosition,
-      anchorKey: blockKey,
-      focusOffset: endPosition,
-      focusKey: blockKey,
-    });
-
-    newEditorState = EditorState.push(
-      editorState,
-      newContentState,
-      'insert-characters',
-    );
+    return _removeEntityFromBlock(editorState, contentBlock, entity);
   }
 
-  return RichUtils.toggleLink(newEditorState, newSelection, entityKey);
+  return _attachLinkEntityToText(editorState, linkData);
 };
 
 const getSelectedText = editorState => {
-  const selection = editorState.getSelection();
-  const currentContent = editorState.getCurrentContent();
+  const { contentBlock, startOffset, endOffset } = _getSelectedBlock(
+    editorState,
+  );
 
-  // Resolves the current block of the selection
-  const anchorKey = selection.getAnchorKey();
-  const currentBlock = currentContent.getBlockForKey(anchorKey);
-
-  // Resolves the starting and ending position of current block
-  const startPosition = selection.getStartOffset();
-  const endPosition = selection.getEndOffset();
-
-  const selectedText = currentBlock.getText().slice(startPosition, endPosition);
-
-  return selectedText;
+  return contentBlock.getText().slice(startOffset, endOffset);
 };
 
 const findLinkEntities = (contentBlock, callback, contentState) => {
@@ -174,13 +145,105 @@ const isEditorEmpty = editorState =>
     .first()
     .getType() === blockTypes.unstyled;
 
+// Returns whether a text is selected
+const _hasSelectedText = editorState =>
+  !editorState.getSelection().isCollapsed();
+
+const _getSelectedBlock = editorState => {
+  const selection = editorState.getSelection();
+  const currentContent = editorState.getCurrentContent();
+
+  // Resolves the current block of the selection
+  const anchorKey = selection.getAnchorKey();
+  const currentBlock = currentContent.getBlockForKey(anchorKey);
+
+  // Resolves the current block with extra information
+  return {
+    contentBlock: currentBlock,
+    startOffset: selection.getStartOffset(),
+    endOffset: selection.getEndOffset(),
+    startKey: selection.getStartKey(),
+    endKey: selection.getEndKey(),
+  };
+};
+
+const _attachLinkEntityToText = (editorState, { text, url }) => {
+  const contentState = editorState.getCurrentContent();
+  const selectionState = editorState.getSelection();
+  const contentStateWithEntity = contentState.createEntity('LINK', 'MUTABLE', {
+    url,
+  });
+  const entityKey = contentStateWithEntity.getLastCreatedEntityKey();
+  const startPosition = selectionState.getStartOffset();
+  const endPosition = startPosition + text.length;
+
+  // A key for the block that containing the start of the selection range
+  const blockKey = selectionState.getStartKey();
+
+  // Replaces the content in specified selection range with text
+  const contentStateWithText = Modifier.replaceText(
+    contentState,
+    selectionState,
+    text,
+  );
+
+  const newSelectionState = new SelectionState({
+    anchorOffset: startPosition,
+    anchorKey: blockKey,
+    focusOffset: endPosition,
+    focusKey: blockKey,
+  });
+
+  const newEditorState = EditorState.push(
+    editorState,
+    contentStateWithText,
+    'insert-characters',
+  );
+
+  return RichUtils.toggleLink(newEditorState, newSelectionState, entityKey);
+};
+
+const _removeEntityFromBlock = (editorState, contentBlock, entity) => {
+  const contentState = editorState.getCurrentContent();
+  const selectionState = editorState.getSelection();
+
+  let selectionWithEntity = null;
+
+  contentBlock.findEntityRanges(
+    character => character.getEntity() === entity,
+    (start, end) => {
+      // Creates a selection state that contains the whole text that's linked to the entity
+      selectionWithEntity = selectionState.merge({
+        anchorOffset: start,
+        focusOffset: end,
+      });
+    },
+  );
+
+  // Removes the linking between the text and entity
+  const contentStateWithoutEntity = Modifier.applyEntity(
+    contentState,
+    selectionWithEntity,
+    null,
+  );
+
+  const newEditorState = EditorState.push(
+    editorState,
+    contentStateWithoutEntity,
+    'apply-entity',
+  );
+
+  return RichUtils.toggleLink(newEditorState, selectionState, null);
+};
+
 export default {
   hasStyle,
   hasBlockType,
   hasEntity,
+  hasRemovableEntityInSelection,
   toggleStyle,
   toggleBlockType,
-  toggleEntity,
+  toggleLink,
   getSelectedText,
   findLinkEntities,
   convertToHtml,
