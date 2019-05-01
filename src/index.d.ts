@@ -1,7 +1,3 @@
-import * as React from 'react';
-
-export type IconElement = React.ReactElement<any>;
-
 export {default as AddItem, AddItemProps} from './AddItem';
 export {default as Avatar, AvatarProps} from './Avatar';
 export {default as Button, ButtonProps} from './Button';
@@ -190,9 +186,3 @@ export {default as EditableTitle, EditableTitleProps} from './EditableTitle';
 export {default as Accordion, AccordionProps} from './Accordion';
 export {default as SocialPreview, SocialPreviewProps} from './SocialPreview';
 export {default as GooglePreview, GooglePreviewProps} from './GooglePreview';
-
-export interface IconProps {
-  className?: string;
-  size?: string;
-  style?: React.CSSProperties;
-}

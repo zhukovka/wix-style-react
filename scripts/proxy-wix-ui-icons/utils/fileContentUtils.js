@@ -47,19 +47,8 @@ const prepareIndexFileContentForNamedExport = icons => {
   return `/*eslint-disable*/Object.defineProperty(exports, '__esModule', {value: true});\n${indexFileContent}function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : {default: obj};}`;
 };
 
-/* named exports for all available icons */
-const prepareIndexDefinitionFileContentForNamedExport = icons => {
-  return Object
-    .keys(icons)
-    .reduce((res, iconName) => {
-      const name = iconName.replace('.js', '');
-      return res + `export {default as ${name}} from './${name}';\n`;
-    }, '');
-};
-
 module.exports = {
   prepareIndexFileContentForNamedExport,
-  prepareIndexDefinitionFileContentForNamedExport,
   prepareGeneralIconsContentMap,
   prepareSystemIconsContentMap
 };

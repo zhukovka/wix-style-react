@@ -22,31 +22,12 @@ const writeIconsFilesToFolderOnDisk = (iconsFilesContentMap, iconsDir, prefix = 
     .forEach(iconName => {
       createFile(iconName, iconsFilesContentMap[iconName], `${iconsDir}/${prefix}`);
       console.log('\x1b[36m', `"${prefix}${iconName}" was created`);
-      const definitionFilename = iconName.replace('.js', '.d.ts');
-      createFile(
-        definitionFilename,
-        [
-          `import * as React from 'react';`,
-          prefix ?
-            `import {IconProps} from '../../dist/src';` :
-            `import {IconProps} from '../dist/src';`,
-          `declare const Icon: React.SFC<IconProps>;`,
-          `export default Icon;`,
-        ].join('\n') + '\n',
-        `${iconsDir}/${prefix}`
-      );
-      console.log('\x1b[36m', `"${prefix}${definitionFilename}" was created`);
     });
 };
 
 const writeIndexFileToDisk = (indexFileContent, iconsDir) => {
   createFile('index.js', indexFileContent, iconsDir + '/');
   console.log('\x1b[36m', `"index.js was created`);
-};
-
-const writeIndexDefinitionFileToDisk = (indexDefinitionFileContent, iconsDir) => {
-  createFile('index.d.js', indexDefinitionFileContent, iconsDir + '/');
-  console.log('\x1b[36m', `"index.d.ts was created`);
 };
 
 const readArrayOfFilesInFolderOnDisk = dirname => fs.readdirSync(dirname);
@@ -56,6 +37,5 @@ module.exports = {
   createFolderForIconsOnDisk,
   writeIconsFilesToFolderOnDisk,
   writeIndexFileToDisk,
-  writeIndexDefinitionFileToDisk,
   readArrayOfFilesInFolderOnDisk
 };
