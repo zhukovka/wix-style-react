@@ -5,6 +5,9 @@ import { createDriverFactory } from 'wix-ui-test-utils/driver-factory';
 
 describe('Carousel', () => {
   const createDriver = createDriverFactory(carouselDriverFactory);
+  jest.useFakeTimers();
+
+  afterEach(() => jest.clearAllTimers());
 
   it('should be rendered', () => {
     const driver = createDriver(<Carousel images={[]} />);
