@@ -33,6 +33,7 @@ import {EmptyStateDriver} from '../src/EmptyState/EmptyState.driver';
 import {FilePickerDriver} from '../src/FilePicker/FilePicker.driver';
 import {FloatingHelperDriver} from '../src/FloatingHelper/FloatingHelper.driver';
 import {FloatingNotificationDriver} from '../src/FloatingNotification/FloatingNotification.uni.driver';
+import {FormFieldDriver} from '../src/FormField/FormField.driver';
 
 declare namespace EnzymeTestkit {
   type EnzymeTestkitFactory<T extends BaseDriver> = (
@@ -71,6 +72,7 @@ declare namespace EnzymeTestkit {
   export const filePickerTestkitFactory: EnzymeTestkitFactory<FilePickerDriver>;
   export const floatingHelperTestkitFactory: EnzymeTestkitFactory<FloatingHelperDriver>;
   export const floatingNotificationTestkitFactory: EnzymeUniTestkitFactory<FloatingNotificationDriver>;
+  export const formFieldTestkitFactory: EnzymeTestkitFactory<FormFieldDriver>;
 
   export const labelTestkitFactory: EnzymeTestkitFactory<LabelDriver>;
   export const tabsTestkitFactory: EnzymeTestkitFactory<TabsDriver>;
