@@ -31,6 +31,7 @@ import {EditableSelectorDriver} from '../src/EditableSelector/EditableSelector.d
 import {EmptyStateDriver} from '../src/EmptyState/EmptyState.driver';
 import {FilePickerDriver} from '../src/FilePicker/FilePicker.driver';
 import {FloatingHelperDriver} from '../src/FloatingHelper/FloatingHelper.driver';
+import {FloatingNotificationDriver} from '../src/FloatingNotification/FloatingNotification.uni.driver';
 
 declare namespace VanillaTestkit {
   type VanillaTestkitFactory<T extends BaseDriver> = (
@@ -68,6 +69,7 @@ declare namespace VanillaTestkit {
   export const emptyStateTestkitFactory: VanillaTestkitFactory<EmptyStateDriver>;
   export const filePickerTestkitFactory: VanillaTestkitFactory<FilePickerDriver>;
   export const floatingHelperTestkitFactory: VanillaTestkitFactory<FloatingHelperDriver>;
+  export const floatingNotificationTestkitFactory: VanillaUniTestkitFactory<FloatingNotificationDriver>;
 
   export const labelTestkitFactory: VanillaTestkitFactory<LabelDriver>;
   export const tabsTestkitFactory: VanillaTestkitFactory<TabsDriver>;
