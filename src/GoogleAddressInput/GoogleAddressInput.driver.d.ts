@@ -1,0 +1,1 @@
+export type GoogleAddressInputDriver = any;

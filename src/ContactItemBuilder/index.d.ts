@@ -1,0 +1,1 @@
+export function contactItemBuilder(options: any): any;
