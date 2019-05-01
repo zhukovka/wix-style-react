@@ -79,8 +79,14 @@
 //  align-items: center;
 //}
 
+.carousel-container {
+  width: 66%;
+  margin: 0 auto;
+}
+
 .image {
   width: 100%;
+  display: inline-block;
 }
 
 .slider-container[data-is-loading="true"] {
@@ -102,3 +108,6 @@
  .dot-navigator {
   color: transparent
 }
+
+
+

@@ -270,7 +270,7 @@ class Carousel extends React.Component {
     };
 
     return (
-      <div data-hook={dataHook}>
+      <div data-hook={dataHook} className={styles.carouselContainer}>
         <div
           data-ready={!this.state.loading}
           className={styles.sliderContainer}
