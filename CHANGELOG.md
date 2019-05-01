@@ -16,9 +16,9 @@ Types of changes:
 
 ## Next
 
-## Fixed
+### Fixed
 
-- `<Page/>` - allow falsy children (for conditional rendering)
+- `<Page/>` - allow falsy children (for conditional rendering) [#3311](https://github.com/wix/wix-style-react/pull/3311)
 
 ## 6.16.2 - 2019-04-28
 
