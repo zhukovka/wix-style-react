@@ -35,6 +35,7 @@ import {FloatingHelperDriver} from '../src/FloatingHelper/FloatingHelper.driver'
 import {FloatingNotificationDriver} from '../src/FloatingNotification/FloatingNotification.uni.driver';
 import {FormFieldDriver} from '../src/FormField/FormField.driver';
 import {GenericModalLayoutDriver} from '../src/GenericModalLayout/GenericModalLayout.driver';
+import {HeadingDriver} from '../src/Heading/Heading.driver';
 
 declare namespace EnzymeTestkit {
   type EnzymeTestkitFactory<T extends BaseDriver> = (
@@ -75,6 +76,7 @@ declare namespace EnzymeTestkit {
   export const floatingNotificationTestkitFactory: EnzymeUniTestkitFactory<FloatingNotificationDriver>;
   export const formFieldTestkitFactory: EnzymeTestkitFactory<FormFieldDriver>;
   export const genericModalLayoutTestkitFactory: EnzymeTestkitFactory<GenericModalLayoutDriver>;
+  export const headingTestkitFactory: EnzymeTestkitFactory<HeadingDriver>;
 
   export const labelTestkitFactory: EnzymeTestkitFactory<LabelDriver>;
   export const tabsTestkitFactory: EnzymeTestkitFactory<TabsDriver>;
