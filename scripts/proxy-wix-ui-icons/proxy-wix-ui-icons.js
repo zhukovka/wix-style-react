@@ -2,13 +2,15 @@ const {
   copyFolderWithIconsToSrcForStorybookOnDisk,
   createFolderForIconsOnDisk,
   writeIconsFilesToFolderOnDisk,
-  writeIndexFileToDisk
+  writeIndexFileToDisk,
+  writeIndexDefinitionFileToDisk
 } = require('./utils/diskUtils.js');
 
 const {
   prepareGeneralIconsContentMap,
   prepareSystemIconsContentMap,
-  prepareIndexFileContentForNamedExport
+  prepareIndexFileContentForNamedExport,
+  prepareIndexDefinitionFileContentForNamedExport
 } = require('./utils/fileContentUtils.js');
 
 
@@ -27,6 +29,8 @@ const proxyWixUiIconsCommon = (moduleName, iconsDir) => {
   const systemIconsFilesContentMap = prepareSystemIconsContentMap(moduleName);
   /* content of index.js file with named exports of all icons */
   const indexFileContent = prepareIndexFileContentForNamedExport(generalIconsFilesContentMap);
+  /* content of index.d.ts file with named exports of all icons */
+  const indexDefinitionFileCOntent = prepareIndexDefinitionFileContentForNamedExport(generalIconsFilesContentMap);
 
   /* here we creating folder where we will put icons files */
   createFolderForIconsOnDisk(iconsDir);
@@ -35,6 +39,7 @@ const proxyWixUiIconsCommon = (moduleName, iconsDir) => {
   writeIconsFilesToFolderOnDisk(generalIconsFilesContentMap, iconsDir);
   writeIconsFilesToFolderOnDisk(systemIconsFilesContentMap, iconsDir, 'system/');
   writeIndexFileToDisk(indexFileContent, iconsDir);
+  writeIndexDefinitionFileToDisk(indexDefinitionFileCOntent, iconsDir);
 
   /* as storybook has ../src alias, to make icons workable their, we need to copy them from root to src */
   copyFolderWithIconsToSrcForStorybookOnDisk(iconsDir);
