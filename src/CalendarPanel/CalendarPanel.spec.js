@@ -1,7 +1,13 @@
 import React from 'react';
+import {
+  createRendererWithDriver,
+  createRendererWithUniDriver,
+  cleanup,
+} from '../../test/utils/react';
+
 import CalendarPanel from './CalendarPanel';
 import calendarPanelDriverFactory from './CalendarPanel.driver';
-import { createRendererWithDriver, cleanup } from '../../test/utils/unit';
+import { calendarPanelUniDriverFactory } from './CalendarPanel.uni.driver';
 import isSameDay from 'date-fns/is_same_day';
 
 const A_DAY = new Date(2019, 4, 29);
@@ -59,190 +65,205 @@ const presets = [
 ];
 
 describe('CalendarPanel', () => {
-  const render = createRendererWithDriver(calendarPanelDriverFactory);
-  afterEach(() => cleanup());
-
-  it('should show the calendar in two month view by default', () => {
-    const { driver } = render(
-      <CalendarPanel onChange={() => null} presets={presets} />,
-    );
-    expect(driver.calendarDriver().getNumOfVisibleMonths()).toBe(2);
+  describe('[sync]', () => {
+    runTests(createRendererWithDriver(calendarPanelDriverFactory));
   });
 
-  it('should show the presets dropdown layout', () => {
-    const { driver } = render(
-      <CalendarPanel onChange={() => null} presets={presets} />,
-    );
-    expect(driver.presetsDropdownLayoutDriver().exists()).toBe(true);
-    expect(driver.presetsDropdownLayoutDriver().isShown()).toBe(true);
+  describe('[async]', () => {
+    runTests(createRendererWithUniDriver(calendarPanelUniDriverFactory));
   });
 
-  it('should show the correct presets', () => {
-    const { driver } = render(
-      <CalendarPanel onChange={() => null} presets={presets} />,
-    );
-    expect(driver.presetsDropdownLayoutDriver().optionsLength()).toBe(
-      presets.length,
-    );
-    const optionsContent = driver
-      .presetsDropdownLayoutDriver()
-      .optionsContent();
-    presets
-      .map(preset => preset.value)
-      .forEach(presetValue => {
-        expect(optionsContent).toContain(presetValue);
-      });
-  });
+  function runTests(render) {
+    afterEach(() => cleanup());
 
-  describe('driver.getNumOfVisibleMonths()', () => {
-    it('should return 2 also when showMonthDropdown=true', () => {
+    it('should show the calendar in two month view by default', async () => {
       const { driver } = render(
-        <CalendarPanel
-          showMonthDropdown
-          onChange={() => null}
-          presets={presets}
-        />,
+        <CalendarPanel onChange={() => null} presets={presets} />,
       );
-      expect(driver.calendarDriver().getNumOfVisibleMonths()).toBe(2);
-    });
-  });
-
-  it('should call onChange with the selected preset dates', () => {
-    const selectedPreset = presets[2];
-    const onChange = jest.fn();
-    const { driver } = render(
-      <CalendarPanel onChange={onChange} presets={presets} />,
-    );
-
-    driver
-      .presetsDropdownLayoutDriver()
-      .clickAtOptionWithValue(selectedPreset.value);
-    expect(onChange).toHaveBeenCalledTimes(1);
-    expect(
-      isSameDay(
-        onChange.mock.calls[0][0].from,
-        selectedPreset.selectedDays.from,
-      ),
-    ).toBe(true);
-    expect(
-      isSameDay(onChange.mock.calls[0][0].to, selectedPreset.selectedDays.to),
-    ).toBe(true);
-  });
-
-  describe('no presets', () => {
-    it('should not display the dropdown layout when the presets props is empty array', () => {
-      const { driver } = render(
-        <CalendarPanel
-          onChange={jest.fn()}
-          value={A_DAY_NOT_IN_PRESETS}
-          selectionMode={'range'}
-          presets={[]}
-        />,
-      );
-      expect(driver.isDropdownExists()).toBe(false);
+      expect(
+        await (await driver.calendarDriver()).getNumOfVisibleMonths(),
+      ).toBe(2);
     });
 
-    it('should not display the dropdown layout when the is no presets prop', () => {
+    it('should show the presets dropdown layout', async () => {
       const { driver } = render(
-        <CalendarPanel
-          onChange={jest.fn()}
-          value={A_DAY_NOT_IN_PRESETS}
-          selectionMode={'range'}
-        />,
+        <CalendarPanel onChange={() => null} presets={presets} />,
       );
-      expect(driver.isDropdownExists()).toBe(false);
-    });
-  });
-
-  describe('footer', () => {
-    it('should render a given footer content', () => {
-      const compDataHook = 'given-comp';
-      const renderProp = () => <div data-hook={compDataHook} />;
-      const { driver } = render(
-        <CalendarPanel onChange={jest.fn()} footer={renderProp} />,
+      expect(await (await driver.presetsDropdownLayoutDriver()).exists()).toBe(
+        true,
       );
-      expect(driver.findByDataHook(compDataHook)).toBeTruthy();
+      expect(await (await driver.presetsDropdownLayoutDriver()).isShown()).toBe(
+        true,
+      );
     });
 
-    describe('renderProp arguments', () => {
-      describe('selectedDays', () => {
-        it('should have selectedDays prop', () => {
-          const renderProp = jest.fn();
-          render(
-            <CalendarPanel
-              value={A_DAY}
-              onChange={jest.fn()}
-              footer={renderProp}
-            />,
-          );
-
-          const renderPropFirstArgument = renderProp.mock.calls[0][0];
-
-          expect(renderProp).toHaveBeenCalledTimes(1);
-          expect(Object.keys(renderPropFirstArgument)).toContain(
-            'selectedDays',
-          );
-          expect(renderPropFirstArgument.selectedDays).toBe(A_DAY);
+    it('should show the correct presets', async () => {
+      const { driver } = render(
+        <CalendarPanel onChange={() => null} presets={presets} />,
+      );
+      expect(
+        await (await driver.presetsDropdownLayoutDriver()).optionsLength(),
+      ).toBe(presets.length);
+      const optionsContent = await (await driver.presetsDropdownLayoutDriver()).optionsContent();
+      presets
+        .map(preset => preset.value)
+        .forEach(presetValue => {
+          expect(optionsContent).toContain(presetValue);
         });
+    });
+
+    describe('driver.getNumOfVisibleMonths()', () => {
+      it('should return 2 also when showMonthDropdown=true', async () => {
+        const { driver } = render(
+          <CalendarPanel
+            showMonthDropdown
+            onChange={() => null}
+            presets={presets}
+          />,
+        );
+        expect(
+          await (await driver.calendarDriver()).getNumOfVisibleMonths(),
+        ).toBe(2);
+      });
+    });
+
+    it('should call onChange with the selected preset dates', async () => {
+      const selectedPreset = presets[2];
+      const onChange = jest.fn();
+      const { driver } = render(
+        <CalendarPanel onChange={onChange} presets={presets} />,
+      );
+
+      await (await driver.presetsDropdownLayoutDriver()).clickAtOptionWithValue(
+        selectedPreset.value,
+      );
+      expect(onChange).toHaveBeenCalledTimes(1);
+      expect(
+        isSameDay(
+          onChange.mock.calls[0][0].from,
+          selectedPreset.selectedDays.from,
+        ),
+      ).toBe(true);
+      expect(
+        isSameDay(onChange.mock.calls[0][0].to, selectedPreset.selectedDays.to),
+      ).toBe(true);
+    });
+
+    describe('no presets', () => {
+      it('should not display the dropdown layout when the presets props is empty array', async () => {
+        const { driver } = render(
+          <CalendarPanel
+            onChange={jest.fn()}
+            value={A_DAY_NOT_IN_PRESETS}
+            selectionMode={'range'}
+            presets={[]}
+          />,
+        );
+        expect(await driver.isDropdownExists()).toBe(false);
       });
 
-      describe('submitDisabled', () => {
-        const noop = () => {};
-        function testCase({ props, expectedValue }) {
-          const renderProp = jest.fn();
-          render(
-            <CalendarPanel onChange={noop} footer={renderProp} {...props} />,
-          );
+      it('should not display the dropdown layout when the is no presets prop', async () => {
+        const { driver } = render(
+          <CalendarPanel
+            onChange={jest.fn()}
+            value={A_DAY_NOT_IN_PRESETS}
+            selectionMode={'range'}
+          />,
+        );
+        expect(await driver.isDropdownExists()).toBe(false);
+      });
+    });
 
-          const renderPropFirstArgument = renderProp.mock.calls[0][0];
+    describe('footer', () => {
+      it('should render a given footer content', async () => {
+        const compDataHook = 'given-comp';
+        const renderProp = () => <div data-hook={compDataHook} />;
+        const { driver } = render(
+          <CalendarPanel onChange={jest.fn()} footer={renderProp} />,
+        );
+        expect(await driver.findByDataHook(compDataHook)).toBeTruthy();
+      });
 
-          expect(renderPropFirstArgument.submitDisabled).toBe(expectedValue);
-        }
-        describe('selectionMode=day', () => {
-          it('should be false', () => {
-            testCase({
-              props: { value: A_DAY, selectionMode: 'day' },
-              expectedValue: false,
-            });
-          });
+      describe('renderProp arguments', () => {
+        describe('selectedDays', () => {
+          it('should have selectedDays prop', async () => {
+            const renderProp = jest.fn();
+            render(
+              <CalendarPanel
+                value={A_DAY}
+                onChange={jest.fn()}
+                footer={renderProp}
+              />,
+            );
 
-          it('should be true', () => {
-            testCase({
-              props: { value: undefined, selectionMode: 'day' },
-              expectedValue: true,
-            });
+            const renderPropFirstArgument = renderProp.mock.calls[0][0];
+
+            expect(renderProp).toHaveBeenCalledTimes(1);
+            expect(Object.keys(renderPropFirstArgument)).toContain(
+              'selectedDays',
+            );
+            expect(renderPropFirstArgument.selectedDays).toBe(A_DAY);
           });
         });
 
-        describe('selectionMode=range', () => {
-          it('should be enabled when a range is selected', () => {
-            testCase({
-              props: {
-                value: { from: A_DAY_BEFORE, to: A_DAY },
-                selectionMode: 'range',
-              },
-              expectedValue: false,
+        describe('submitDisabled', () => {
+          const noop = () => {};
+          function testCase({ props, expectedValue }) {
+            const renderProp = jest.fn();
+            render(
+              <CalendarPanel onChange={noop} footer={renderProp} {...props} />,
+            );
+
+            const renderPropFirstArgument = renderProp.mock.calls[0][0];
+
+            expect(renderPropFirstArgument.submitDisabled).toBe(expectedValue);
+          }
+          describe('selectionMode=day', () => {
+            it('should be false', async () => {
+              testCase({
+                props: { value: A_DAY, selectionMode: 'day' },
+                expectedValue: false,
+              });
+            });
+
+            it('should be true', async () => {
+              testCase({
+                props: { value: undefined, selectionMode: 'day' },
+                expectedValue: true,
+              });
             });
           });
 
-          it('should be disabled given no selection', () => {
-            testCase({
-              props: { value: undefined, selectionMode: 'range' },
-              expectedValue: true,
+          describe('selectionMode=range', () => {
+            it('should be enabled when a range is selected', async () => {
+              testCase({
+                props: {
+                  value: { from: A_DAY_BEFORE, to: A_DAY },
+                  selectionMode: 'range',
+                },
+                expectedValue: false,
+              });
             });
-          });
 
-          it(`should be disabled given only a 'from' date`, () => {
-            testCase({
-              props: {
-                value: { from: new Date(2018, 1, 1) },
-                selectionMode: 'range',
-              },
-              expectedValue: true,
+            it('should be disabled given no selection', async () => {
+              testCase({
+                props: { value: undefined, selectionMode: 'range' },
+                expectedValue: true,
+              });
+            });
+
+            it(`should be disabled given only a 'from' date`, async () => {
+              testCase({
+                props: {
+                  value: { from: new Date(2018, 1, 1) },
+                  selectionMode: 'range',
+                },
+                expectedValue: true,
+              });
             });
           });
         });
       });
     });
-  });
+  }
 });
