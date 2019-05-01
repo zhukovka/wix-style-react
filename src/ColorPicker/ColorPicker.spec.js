@@ -1,137 +1,178 @@
 import React from 'react';
+import {
+  createRendererWithDriver,
+  createRendererWithUniDriver,
+  cleanup,
+} from '../../test/utils/react';
 import color from 'color';
-import { createDriverFactory } from 'wix-ui-test-utils/driver-factory';
 import colorPickerDriverFactory from './ColorPicker.private.driver';
+import { colorPickerUniDriverFactory } from './ColorPicker.uni.driver';
 
 import ColorPicker from './ColorPicker';
 
 describe('ColorPicker', () => {
-  const createDriver = createDriverFactory(colorPickerDriverFactory);
-  let driver;
-
-  function createComponent(props) {
-    driver = createDriver(<ColorPicker {...props} />);
-  }
-
-  it('should successfully render a component', () => {
-    const onChange = jest.fn();
-    const onCancel = jest.fn();
-    const onConfirm = jest.fn();
-    createComponent({ value: '#000000', onChange, onCancel, onConfirm });
-    expect(driver.exists()).toBeTruthy();
-    expect(driver.historyPanelExists()).toBeFalsy();
+  describe('[sync]', () => {
+    runTests(createRendererWithDriver(colorPickerDriverFactory));
   });
 
-  it('should update the color after clicking Enter', () => {
+  describe('[async]', () => {
+    runTests(createRendererWithUniDriver(colorPickerUniDriverFactory));
+  });
+
+  function runTests(render) {
+    afterEach(() => cleanup());
+
+    it('should successfully render a component', async () => {
+      const onChange = jest.fn();
+      const onCancel = jest.fn();
+      const onConfirm = jest.fn();
+      const { driver } = render(
+        <ColorPicker
+          {...{ value: '#000000', onChange, onCancel, onConfirm }}
+        />,
+      );
+      expect(await driver.exists()).toBeTruthy();
+      expect(await driver.historyPanelExists()).toBeFalsy();
+    });
+
+    describe('History', () => {
+      it('should show history panel with current color selected as previous', async () => {
+        const onChange = jest.fn();
+        const onCancel = jest.fn();
+        const onConfirm = jest.fn();
+        const value = '#000000';
+        const { driver } = render(
+          <ColorPicker
+            {...{
+              value,
+              onChange,
+              onCancel,
+              onConfirm,
+              showHistory: true,
+            }}
+          />,
+        );
+        expect(await driver.historyPanelExists()).toBeTruthy();
+        expect(color(await driver.historyCurrentColor()).hex()).toBe(value);
+        expect(color(await driver.historyPreviousColor()).hex()).toBe(value);
+      });
+
+      it('should not update previous color after current color change but not confirm', async () => {
+        const onChange = jest.fn();
+        const onCancel = jest.fn();
+        const onConfirm = jest.fn();
+        const value = '#00FF00';
+        const { driver } = render(
+          <ColorPicker
+            {...{
+              value,
+              onChange,
+              onCancel,
+              onConfirm,
+              showHistory: true,
+            }}
+          />,
+        );
+        await driver.selectBlackColor();
+        expect(color(await driver.historyCurrentColor()).hex()).toBe('#000000');
+        expect(color(await driver.historyPreviousColor()).hex()).toBe(value);
+      });
+
+      it('should set previous color to be active color', async () => {
+        const onChange = jest.fn();
+        const onCancel = jest.fn();
+        const onConfirm = jest.fn();
+        const value = '#00FF00';
+        const { driver } = render(
+          <ColorPicker
+            {...{
+              value,
+              onChange,
+              onCancel,
+              onConfirm,
+              showHistory: true,
+            }}
+          />,
+        );
+        await driver.selectBlackColor();
+        expect(color(await driver.historyCurrentColor()).hex()).toBe('#000000');
+        expect(color(await driver.historyPreviousColor()).hex()).toBe(value);
+        await driver.clickOnPreviousColor();
+        expect(color(await driver.historyCurrentColor()).hex()).toBe(value);
+      });
+
+      it('should update previous color after confirm click', async () => {
+        const onChange = jest.fn();
+        const onCancel = jest.fn();
+        const onConfirm = jest.fn();
+        const value = '#00FF00';
+        const { driver } = render(
+          <ColorPicker
+            {...{
+              value,
+              onChange,
+              onCancel,
+              onConfirm,
+              showHistory: true,
+            }}
+          />,
+        );
+        await driver.selectBlackColor();
+        expect(color(await driver.historyCurrentColor()).hex()).toBe('#000000');
+        expect(color(await driver.historyPreviousColor()).hex()).toBe(value);
+        await driver.confirm();
+        expect(color(await driver.historyCurrentColor()).hex()).toBe('#000000');
+        expect(color(await driver.historyPreviousColor()).hex()).toBe(
+          '#000000',
+        );
+      });
+
+      it('`onCancel` should be called when cancel icon is clicked', async () => {
+        const onChange = jest.fn();
+        const onCancel = jest.fn();
+        const onConfirm = jest.fn();
+        const value = '#00FF00';
+        const { driver } = render(
+          <ColorPicker
+            {...{
+              value,
+              onChange,
+              onCancel,
+              onConfirm,
+              showHistory: true,
+            }}
+          />,
+        );
+        await driver.selectBlackColor();
+        expect(color(await driver.historyCurrentColor()).hex()).toBe('#000000');
+        expect(color(await driver.historyPreviousColor()).hex()).toBe(value);
+        await driver.cancel();
+        expect(onChange).toHaveBeenCalledTimes(1);
+      });
+    });
+  }
+
+  //private driver test only
+  it('should update the color after clicking Enter', async () => {
+    const render = createRendererWithDriver(colorPickerDriverFactory);
     const onChange = jest.fn();
     const onCancel = jest.fn();
     const onConfirm = jest.fn();
     const sampleColor = '#000000';
     const expectedColor = { color: [0, 0, 0], model: 'rgb', valpha: 1 };
-
-    createComponent({
-      value: '',
-      onChange,
-      onCancel,
-      onConfirm,
-    });
-    driver.typeValueOnHexInput(sampleColor);
-    driver.keyDownOnHexInput('Enter');
+    const { driver } = render(
+      <ColorPicker
+        {...{
+          value: '',
+          onChange,
+          onCancel,
+          onConfirm,
+        }}
+      />,
+    );
+    await driver.typeValueOnHexInput(sampleColor);
+    await driver.keyDownOnHexInput('Enter');
 
     expect(onConfirm).toHaveBeenCalledWith(expectedColor);
-  });
-
-  describe('History', () => {
-    it('should show history panel with current color selected as previous', () => {
-      const onChange = jest.fn();
-      const onCancel = jest.fn();
-      const onConfirm = jest.fn();
-      const value = '#000000';
-      createComponent({
-        value,
-        onChange,
-        onCancel,
-        onConfirm,
-        showHistory: true,
-      });
-      expect(driver.historyPanelExists()).toBeTruthy();
-      expect(color(driver.historyCurrentColor()).hex()).toBe(value);
-      expect(color(driver.historyPreviousColor()).hex()).toBe(value);
-    });
-
-    it('should not update previous color after current color change but not confirm', () => {
-      const onChange = jest.fn();
-      const onCancel = jest.fn();
-      const onConfirm = jest.fn();
-      const value = '#00FF00';
-      createComponent({
-        value,
-        onChange,
-        onCancel,
-        onConfirm,
-        showHistory: true,
-      });
-      driver.selectBlackColor();
-      expect(color(driver.historyCurrentColor()).hex()).toBe('#000000');
-      expect(color(driver.historyPreviousColor()).hex()).toBe(value);
-    });
-
-    it('should set previous color to be active color', () => {
-      const onChange = jest.fn();
-      const onCancel = jest.fn();
-      const onConfirm = jest.fn();
-      const value = '#00FF00';
-      createComponent({
-        value,
-        onChange,
-        onCancel,
-        onConfirm,
-        showHistory: true,
-      });
-      driver.selectBlackColor();
-      expect(color(driver.historyCurrentColor()).hex()).toBe('#000000');
-      expect(color(driver.historyPreviousColor()).hex()).toBe(value);
-      driver.clickOnPreviousColor();
-      expect(color(driver.historyCurrentColor()).hex()).toBe(value);
-    });
-
-    it('should update previous color after confirm click', () => {
-      const onChange = jest.fn();
-      const onCancel = jest.fn();
-      const onConfirm = jest.fn();
-      const value = '#00FF00';
-      createComponent({
-        value,
-        onChange,
-        onCancel,
-        onConfirm,
-        showHistory: true,
-      });
-      driver.selectBlackColor();
-      expect(color(driver.historyCurrentColor()).hex()).toBe('#000000');
-      expect(color(driver.historyPreviousColor()).hex()).toBe(value);
-      driver.confirm();
-      expect(color(driver.historyCurrentColor()).hex()).toBe('#000000');
-      expect(color(driver.historyPreviousColor()).hex()).toBe('#000000');
-    });
-
-    it('`onCancel` should be called when cancel icon is clicked', () => {
-      const onChange = jest.fn();
-      const onCancel = jest.fn();
-      const onConfirm = jest.fn();
-      const value = '#00FF00';
-      createComponent({
-        value,
-        onChange,
-        onCancel,
-        onConfirm,
-        showHistory: true,
-      });
-      driver.selectBlackColor();
-      expect(color(driver.historyCurrentColor()).hex()).toBe('#000000');
-      expect(color(driver.historyPreviousColor()).hex()).toBe(value);
-      driver.cancel();
-      expect(onChange).toHaveBeenCalledTimes(1);
-    });
   });
 });
