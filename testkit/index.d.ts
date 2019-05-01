@@ -35,6 +35,7 @@ import {FloatingNotificationDriver} from '../src/FloatingNotification/FloatingNo
 import {FormFieldDriver} from '../src/FormField/FormField.driver';
 import {GenericModalLayoutDriver} from '../src/GenericModalLayout/GenericModalLayout.driver';
 import {HeadingDriver} from '../src/Heading/Heading.driver';
+import {HighlighterDriver} from '../src/Highlighter/Highlighter.driver';
 
 declare namespace VanillaTestkit {
   type VanillaTestkitFactory<T extends BaseDriver> = (
@@ -76,6 +77,7 @@ declare namespace VanillaTestkit {
   export const formFieldTestkitFactory: VanillaTestkitFactory<FormFieldDriver>;
   export const genericModalLayoutTestkitFactory: VanillaTestkitFactory<GenericModalLayoutDriver>;
   export const headingTestkitFactory: VanillaTestkitFactory<HeadingDriver>;
+  export const highlighterTestkitFactory: VanillaTestkitFactory<HighlighterDriver>;
 
   export const labelTestkitFactory: VanillaTestkitFactory<LabelDriver>;
   export const tabsTestkitFactory: VanillaTestkitFactory<TabsDriver>;
