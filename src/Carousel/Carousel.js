@@ -141,7 +141,6 @@ class Carousel extends React.Component {
   }
 }
 
-//update images on imageUpdate
 Carousel.propTypes = {
   dataHook: PropTypes.string,
   /** Array of strings where each string is a src of an image (in \<img src="your_src" /\>) */
