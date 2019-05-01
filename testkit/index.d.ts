@@ -33,6 +33,7 @@ import {FilePickerDriver} from '../src/FilePicker/FilePicker.driver';
 import {FloatingHelperDriver} from '../src/FloatingHelper/FloatingHelper.driver';
 import {FloatingNotificationDriver} from '../src/FloatingNotification/FloatingNotification.uni.driver';
 import {FormFieldDriver} from '../src/FormField/FormField.driver';
+import {GenericModalLayoutDriver} from '../src/GenericModalLayout/GenericModalLayout.driver';
 
 declare namespace VanillaTestkit {
   type VanillaTestkitFactory<T extends BaseDriver> = (
@@ -72,6 +73,7 @@ declare namespace VanillaTestkit {
   export const floatingHelperTestkitFactory: VanillaTestkitFactory<FloatingHelperDriver>;
   export const floatingNotificationTestkitFactory: VanillaUniTestkitFactory<FloatingNotificationDriver>;
   export const formFieldTestkitFactory: VanillaTestkitFactory<FormFieldDriver>;
+  export const genericModalLayoutTestkitFactory: VanillaTestkitFactory<GenericModalLayoutDriver>;
 
   export const labelTestkitFactory: VanillaTestkitFactory<LabelDriver>;
   export const tabsTestkitFactory: VanillaTestkitFactory<TabsDriver>;
