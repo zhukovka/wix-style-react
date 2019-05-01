@@ -14,7 +14,6 @@ const layerStyles = {
 
 function getItemStyles(props, clientRect, handleOffset) {
   const { initialOffset, currentOffset } = props;
-  // const { initialOffset, currentOffset, offsetOfHandle } = props;
   if (!initialOffset || !currentOffset) {
     return { display: 'none' };
   }
@@ -35,12 +34,6 @@ function getItemStyles(props, clientRect, handleOffset) {
 const noopConnectDragSource = el => el;
 
 class CustomDragLayer extends Component {
-  componentWillReceiveProps(nextProps) {
-    if (this.props.isPlaceholder !== nextProps.isPlaceholder) {
-      document.body.classList.toggle('dnd-dragging');
-    }
-  }
-
   getChildren = (items, depth) => {
     const { renderItem, childrenProperty, childrenStyle } = this.props;
 
@@ -49,9 +42,9 @@ class CustomDragLayer extends Component {
     }
 
     return (
-      <ul style={childrenStyle}>
+      <div style={childrenStyle}>
         {items.map((item, i) => (
-          <li data-hook="dragging-nestable-item" key={i}>
+          <div data-hook="dragging-nestable-item" key={i}>
             {renderItem({
               item,
               isPlaceholder: false,
@@ -60,9 +53,9 @@ class CustomDragLayer extends Component {
               connectDragSource: noopConnectDragSource,
             })}
             {this.getChildren(item[childrenProperty], depth + 1)}
-          </li>
+          </div>
         ))}
-      </ul>
+      </div>
     );
   };
 

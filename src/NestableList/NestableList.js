@@ -37,6 +37,9 @@ function replaceNegativeIndex(items, nextPosition, childrenProperty) {
   });
 }
 
+// fixing a bug where the new path is increased in nesting
+// and the first position jumps too far by 2, and that's why it decreased by 1
+// need to check if the jump can become more severe
 function getRealNextPosition(prev, next) {
   // moving up a level
   if (prev.length < next.length) {
@@ -99,7 +102,7 @@ class NestableList extends Component {
 
   moveItem = ({ dragItem, prevPosition, nextPosition }) => {
     const { childrenProperty } = this.props;
-    let newItems = this.state.items;
+    let newItems = this.state.items.slice();
 
     // the remove action might affect the next position,
     // so update next coordinates accordingly
@@ -131,7 +134,7 @@ class NestableList extends Component {
 
     this.setState({ items: newItems });
 
-    return Promise.resolve(realNextPosition);
+    return realNextPosition;
   };
 
   dropItem = () => {

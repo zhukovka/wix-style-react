@@ -1,6 +1,8 @@
-import React, { Component, PropTypes } from 'react';
+import React, { PropTypes } from 'react';
+import WixComponent from '../BaseComponents/WixComponent';
 import { findDOMNode } from 'react-dom';
 import shallowCompare from 'react-addons-shallow-compare';
+import shallowEqual from 'shallowequal';
 import compose from 'recompose/compose';
 import getContext from 'recompose/getContext';
 import { DragSource, DropTarget } from 'react-dnd';
@@ -11,16 +13,6 @@ import itemTypes from './itemTypes';
 const mouse = {
   lastX: 0,
 };
-
-function isSamePosition(prevPosition, nextPosition) {
-  for (let i = 0; i < prevPosition.length; i++) {
-    if (prevPosition[i] !== nextPosition[i]) {
-      return false;
-    }
-  }
-
-  return true;
-}
 
 function increaseHorizontalLevel(prevPosition, prevIndex) {
   const nextPosition = prevPosition.slice(0, -1);
@@ -122,7 +114,7 @@ const cardTarget = {
     // rect for item without children
     const hoverItemClientRect = hoverNode.children[0].getBoundingClientRect();
 
-    const isOverSelf = isSamePosition(prevPosition, hoverPosition);
+    const isOverSelf = shallowEqual(prevPosition, hoverPosition);
 
     // set mouse.lastX if it isn't set yet (first hover event)
     mouse.lastX = mouse.lastX || initialClientOffset.x;
@@ -163,7 +155,7 @@ const cardTarget = {
     }
 
     // don't replace items with themselves
-    if (isSamePosition(prevPosition, nextPosition)) {
+    if (shallowEqual(prevPosition, nextPosition)) {
       return;
     }
 
@@ -211,24 +203,21 @@ const cardTarget = {
     }
 
     // this is where the actual move happens
-    props
-      .moveItem({
-        dragItem,
-        prevPosition,
-        nextPosition,
-      })
-      .then(nextPos => {
-        // note: we're mutating the monitor item here!
-        // generally it's better to avoid mutations,
-        // but it's good here for the sake of performance
-        // to avoid expensive index searches
-        item.position = nextPos;
-        item.index = nextPos[nextPos.length - 1];
-      });
+    const nextPos = props.moveItem({
+      dragItem,
+      prevPosition,
+      nextPosition,
+    });
+    // note: we're mutating the monitor item here!
+    // generally it's better to avoid mutations,
+    // but it's good here for the sake of performance
+    // to avoid expensive index searches
+    item.position = nextPos;
+    item.index = nextPos[nextPos.length - 1];
   },
 };
 
-class Item extends Component {
+class Item extends WixComponent {
   componentDidMount() {
     // use empty image as a drag preview so browsers don't draw it
     // and we can draw whatever we want on the custom drag layer instead.
