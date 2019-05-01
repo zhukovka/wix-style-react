@@ -190,3 +190,9 @@ export {default as EditableTitle, EditableTitleProps} from './EditableTitle';
 export {default as Accordion, AccordionProps} from './Accordion';
 export {default as SocialPreview, SocialPreviewProps} from './SocialPreview';
 export {default as GooglePreview, GooglePreviewProps} from './GooglePreview';
+
+export interface IconProps {
+  className?: string;
+  size?: string;
+  style?: React.CSSProperties;
+}
