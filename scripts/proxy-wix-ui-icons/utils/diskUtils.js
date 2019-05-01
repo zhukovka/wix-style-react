@@ -19,19 +19,16 @@ const createFolderForIconsOnDisk = iconsDir => {
 
 const writeIconsFilesToFolderOnDisk = (iconsFilesContentMap, iconsDir, prefix = '') => {
   Object.keys(iconsFilesContentMap)
-    .forEach(iconName => {
-      createFile(iconName, iconsFilesContentMap[iconName], `${iconsDir}/${prefix}`);
-      console.log('\x1b[36m', `"${prefix}${iconName}" was created`);
-      const definitionFilename = iconName.replace('.js', '.d.ts');
+    .forEach(fileName => {
+      createFile(fileName, iconsFilesContentMap[fileName], `${iconsDir}/${prefix}`);
+      console.log('\x1b[36m', `"${prefix}${fileName}" was created`);
+      const iconName = fileName.replace('.js', '');
+      const definitionFilename = `${iconName}.d.ts`;
       createFile(
         definitionFilename,
         [
-          `import * as React from 'react';`,
-          prefix ?
-            `import {IconProps} from '../../dist/src';` :
-            `import {IconProps} from '../dist/src';`,
-          `declare const Icon: React.SFC<IconProps>;`,
-          `export default Icon;`,
+          `import {${iconName}} from 'wix-ui-icons-common';`,
+          `export default ${iconName};`,
         ].join('\n') + '\n',
         `${iconsDir}/${prefix}`
       );
