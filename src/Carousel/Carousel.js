@@ -27,7 +27,6 @@ class Carousel extends React.Component {
     this.state = {
       loadedImageCount: 0,
     };
-    // this._slide = throttle(this._slide.bind(this), TRANSITION_SPEED);
   }
 
   componentWillMount() {
@@ -121,7 +120,7 @@ class Carousel extends React.Component {
         aspectRatio={Proportion.PREDEFINED_RATIOS.landscape}
         className={styles.imagesContainerLayout}
       >
-        <div data-hook={dataHook} className={styles.carouselContainer}>
+        <div data-hook={dataHook}>
           <div
             className={styles.sliderContainer}
             data-is-loading={this._isLoading()}

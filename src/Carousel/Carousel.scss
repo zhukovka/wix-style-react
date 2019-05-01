@@ -1,19 +1,24 @@
 @import '../colors.scss';
 
-.loader {
- overflow: hidden;
- position: relative;
- width: 100%;
- height: 100%;
- background-color: $paletteB5;
- display: flex;
- justify-content: center;
- align-items: center;
+.full-size {
+  width: 66%;
+  height: 100%;
 }
 
-.carousel-container {
-  width: 66%;
+.images-container-layout {
+  @extend .full-size;
   margin: 0 auto;
+}
+
+.loader {
+  overflow: hidden;
+  position: relative;
+  width: 100%;
+  height: 100%;
+  background-color: $paletteB5;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .image {
@@ -22,7 +27,7 @@
 }
 
 .slider-container {
- position: relative;
+  position: relative;
 }
 
 .slider-container[data-is-loading="true"] {
@@ -36,12 +41,12 @@
   border-radius: 6px;
   margin: 0 6px;
 
-   &[data-active="true"] {
+  &[data-active="true"] {
     background-color: $B10;
   }
 }
 
- .dot-navigator {
+.dot-navigator {
   color: transparent
 }
 
