@@ -4,7 +4,6 @@ import styles from './Carousel.scss';
 import './Carousel.global.scss';
 import ChevronLeftLarge from '../new-icons/ChevronLeftLarge';
 import ChevronRightLarge from '../new-icons/ChevronRightLarge';
-import IconButton from '../IconButton/IconButton';
 import Pagination from './Pagination';
 import Loader from '../Loader';
 import Proportion from '../Proportion';

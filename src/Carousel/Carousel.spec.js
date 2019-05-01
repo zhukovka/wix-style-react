@@ -1,13 +1,19 @@
 import React from 'react';
-import carouselDriverFactory from './Carousel.private.driver';
+import '../../testkit/polyfills/match-media-register';
 import Carousel from './Carousel';
+import carouselDriverFactory from './Carousel.private.driver';
 import { createDriverFactory } from 'wix-ui-test-utils/driver-factory';
 
 describe('Carousel', () => {
-  const createDriver = createDriverFactory(carouselDriverFactory);
-  jest.useFakeTimers();
+  beforeEach(() => {
+    jest.useFakeTimers();
+  });
 
-  afterEach(() => jest.clearAllTimers());
+  afterEach(() => {
+    jest.clearAllTimers();
+  });
+
+  const createDriver = createDriverFactory(carouselDriverFactory);
 
   it('should be rendered', () => {
     const driver = createDriver(<Carousel images={[]} />);
