@@ -1,4 +1,3 @@
-import classNames from 'classnames';
 import React from 'react';
 import PropTypes from 'prop-types';
 import styles from './Carousel.scss';
@@ -9,6 +8,7 @@ import IconButton from '../IconButton/IconButton';
 import Pagination from './Pagination';
 import Loader from '../Loader';
 import Proportion from '../Proportion';
+import ArrowButton from './ArrowButton';
 import Slider from 'react-slick';
 
 const AUTOPLAY_SPEED = 2000;
@@ -67,30 +67,22 @@ class Carousel extends React.Component {
     autoplaySpeed,
     speed,
     initialSlide,
+    arrowSkin,
+    arrowSize,
   }) => {
-    const PrevButton = arrowProps => {
-      const { currentSlide, slideCount, ...remainingProps } = arrowProps;
+    const PrevButton = ArrowButton({
+      icon: <ChevronLeftLarge />,
+      dataHook: dataHooks.prevButton,
+      arrowSkin,
+      arrowSize,
+    });
 
-      return (
-        <div {...remainingProps}>
-          <IconButton dataHook={dataHooks.prevButton} priority="secondary">
-            <ChevronLeftLarge />
-          </IconButton>
-        </div>
-      );
-    };
-
-    const NextButton = arrowProps => {
-      const { currentSlide, slideCount, ...remainingProps } = arrowProps;
-
-      return (
-        <div {...remainingProps}>
-          <IconButton dataHook={dataHooks.nextButton} priority="secondary">
-            <ChevronRightLarge />
-          </IconButton>
-        </div>
-      );
-    };
+    const NextButton = ArrowButton({
+      icon: <ChevronRightLarge />,
+      dataHook: dataHooks.nextButton,
+      arrowSkin,
+      arrowSize,
+    });
 
     return {
       infinite,
@@ -154,8 +146,10 @@ Carousel.propTypes = {
   dots: PropTypes.bool,
   /** Index of the slide to start on */
   initialSlide: PropTypes.number,
-  /** Add circle around navigation arrows */
-  navigationArrowsWithBorder: PropTypes.bool,
+  /** Arrows buttons skin */
+  arrowSkin: PropTypes.oneOf(['standard', 'inverted', 'light']),
+  /** Arrows buttons sizes */
+  arrowSize: PropTypes.oneOf(['small', 'medium']),
 };
 
 Carousel.defaultProps = {
@@ -166,7 +160,8 @@ Carousel.defaultProps = {
   autoplaySpeed: AUTOPLAY_SPEED,
   dots: true,
   initialSlide: 0,
-  navigationArrowsWithBorder: true,
+  arrowSkin: 'standard',
+  arrowSize: 'medium',
 };
 Carousel.displayName = 'Carousel';
 
