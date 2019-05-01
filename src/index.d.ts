@@ -31,6 +31,7 @@ export {default as EditableSelector, EditableSelectorProps} from './EditableSele
 export {default as EmptyState, EmptyStateProps} from './EmptyState';
 export {default as EndorseContentLayout, EndorseContentLayoutProps} from './EndorseContentLayout'
 export {default as FilePicker, FilePickerProps} from './FilePicker';
+export {default as FloatingHelper, FloatingHelperProps} from './FloatingHelper';
 
 export {default as Label, LabelProps} from './Label';
 export {TableToolbar} from './TableToolbar';
