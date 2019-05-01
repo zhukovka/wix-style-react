@@ -22,6 +22,7 @@ Types of changes:
 ### Fixed
 
 - `<Page/>` - allow falsy children (for conditional rendering) [#3311](https://github.com/wix/wix-style-react/pull/3311)
+- `<RichTextInputArea/>` - fix list incorrect style [#3337](https://github.com/wix/wix-style-react/pull/3337)
 
 ## 6.16.2 - 2019-04-28
 
