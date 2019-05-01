@@ -121,7 +121,7 @@ class Carousel extends React.Component {
         aspectRatio={Proportion.PREDEFINED_RATIOS.landscape}
         className={styles.imagesContainerLayout}
       >
-        <div data-hook={dataHook}>
+        <div data-hook={dataHook} className={styles.carouselContainer}>
           <div
             className={styles.sliderContainer}
             data-is-loading={this._isLoading()}
@@ -162,6 +162,8 @@ Carousel.defaultProps = {
   images: [],
   infinite: true,
   autoplay: false,
+  speed: TRANSITION_SPEED,
+  autoplaySpeed: AUTOPLAY_SPEED,
   dots: true,
   initialSlide: 0,
   navigationArrowsWithBorder: true,
