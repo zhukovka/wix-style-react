@@ -16,6 +16,9 @@ Types of changes:
 
 ## Next
 
+### Added
+- `<RichTextInputArea/>` - support removing links by toggling the link button [#3323](https://github.com/wix/wix-style-react/pull/3323)
+
 ### Fixed
 
 - `<Page/>` - allow falsy children (for conditional rendering) [#3311](https://github.com/wix/wix-style-react/pull/3311)
