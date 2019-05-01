@@ -19,6 +19,8 @@ import allComponents from '../../../stories/utils/allComponents';
 
 import LinearProgressBar from '..';
 
+import * as examples from './examples';
+
 const code = config => baseCode({ components: allComponents, ...config });
 
 export default {
@@ -60,8 +62,7 @@ export default {
           columns([
             description({
               title: 'Description',
-              text:
-                'This line here should briefly describe component in just a sentence or two. It should be short and easy to read.',
+              text: 'Component for indicating a progress along a process.',
             }),
           ]),
 
@@ -83,14 +84,26 @@ export default {
 
             code({
               compact: true,
-              source: '<LinearProgressBar showProgressIndication value={20} />',
+              source: examples.defaultRender,
             }),
           ]),
 
           code({
-            title: 'Full Interactive Preview',
-            description: 'A non compact version of same code example as above',
-            source: '<LinearProgressBar showProgressIndication value={20} />',
+            title: 'Themes',
+            description: 'Appear in all different themes.',
+            source: examples.themes,
+          }),
+
+          code({
+            title: 'Progress Indication',
+            description: 'Displaying a progress indicator in percentage.',
+            source: examples.progressIndication,
+          }),
+
+          code({
+            title: 'Error',
+            description: 'Error state',
+            source: examples.errors,
           }),
         ],
       }),

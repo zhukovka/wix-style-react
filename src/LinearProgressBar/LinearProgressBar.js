@@ -7,10 +7,8 @@ import FormFieldError from 'wix-ui-icons-common/system/FormFieldError';
 //TODO: convert to WSR Tooltip
 import { Tooltip } from 'wix-ui-backoffice/Tooltip';
 
-//TODO: description of the component
 /**
- * new LinearProgressBar component migrated from wix-ui-backoffice
- */
+ * This component is used for indicating a progress along a process.*/
 class LinearProgressBar extends React.PureComponent {
   static displayName = 'LinearProgressBar';
 
@@ -23,6 +21,7 @@ class LinearProgressBar extends React.PureComponent {
     /** Use light theme instead of dark theme */
     light: PropTypes.bool,
 
+    /** Use to display a percentage progress.*/
     showProgressIndication: PropTypes.bool,
 
     value: PropTypes.number,
