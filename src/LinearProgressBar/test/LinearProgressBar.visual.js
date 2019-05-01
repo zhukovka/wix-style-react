@@ -15,40 +15,62 @@ const tests = [
         it: 'default render',
         props: { value: 20 },
       },
+    ],
+  },
+  {
+    describe: 'progress indication',
+    its: [
       {
-        it: 'error',
-        props: { value: 20, error: true },
+        it: 'shown',
+        props: { value: 20, showProgressIndication: true },
       },
       {
-        it: 'showProgressIndication',
-        props: { value: 20, showProgressIndication: true },
+        it: 'hidden',
+        props: { value: 20 },
+      },
+      {
+        it: 'success icon is shown when progress is 100%',
+        props: { value: 100, showProgressIndication: true },
+      },
+      {
+        it: 'error icon is shown when there is an error',
+        props: {
+          value: 20,
+          showProgressIndication: true,
+          error: true,
+          errorMessage: 'Some error',
+        },
       },
     ],
   },
   {
-    describe: 'light theme',
+    describe: 'theme',
     its: [
       {
-        it: 'regular state',
+        it: 'light regular',
         props: { value: 20, light: true },
       },
       {
-        it: 'with error',
+        it: 'light with an error',
         props: { value: 20, light: true, error: true },
       },
     ],
   },
   {
-    describe: 'icons',
+    describe: 'error',
     its: [
       {
-        it: 'success state',
-        props: { value: 100, showProgressIndication: true },
+        it: 'exists',
+        props: { value: 20, error: true },
       },
       {
-        it: 'error state',
+        it: 'does not exist',
+        props: { value: 20, error: false },
+      },
+      {
+        it: 'display an error icon',
         props: {
-          value: 30,
+          value: 20,
           showProgressIndication: true,
           error: true,
           errorMessage: 'Some error',
