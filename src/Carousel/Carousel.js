@@ -8,6 +8,7 @@ import IconButton from '../IconButton/IconButton';
 import Pagination from './Pagination';
 import Loader from '../Loader';
 import Slider from 'react-slick';
+import Proportion from '../Proportion';
 
 const AUTOPLAY_SPEED = 2000;
 const TRANSITION_SPEED = 600;
@@ -119,21 +120,26 @@ class Carousel extends React.Component {
     const { dataHook, images } = this.props;
 
     return (
-      <div data-hook={dataHook}>
-        <div
-          className={styles.sliderContainer}
-          data-is-loading={this._isLoading()}
-        >
-          <Slider {...this.sliderSettings}>
-            {images ? this._renderImages(images) : null}
-          </Slider>
+      <Proportion
+        aspectRatio={Proportion.PREDEFINED_RATIOS.landscape}
+        className={styles.imagesContainerLayout}
+      >
+        <div data-hook={dataHook}>
+          <div
+            className={styles.sliderContainer}
+            data-is-loading={this._isLoading()}
+          >
+            <Slider {...this.sliderSettings}>
+              {images ? this._renderImages(images) : null}
+            </Slider>
+          </div>
         </div>
         {this._isLoading() ? (
           <div className={styles.loader}>
             <Loader dataHook="loader" size="small" />
           </div>
         ) : null}
-      </div>
+      </Proportion>
     );
   }
 }

@@ -83,6 +83,10 @@
   width: 100%;
 }
 
+.slider-container {
+ position: relative;
+}
+
 .slider-container[data-is-loading="true"] {
   display: none;
 }
