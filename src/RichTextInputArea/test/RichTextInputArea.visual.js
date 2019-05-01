@@ -1,9 +1,33 @@
 import React from 'react';
 import { storiesOf } from '@storybook/react';
+import { uniTestkitFactoryCreator } from 'wix-ui-test-utils/vanilla';
 
 import RichTextInputArea from '..';
+import richTextInputAreaPrivateDriverFactory from '../RichTextInputArea.private.uni.driver';
 
 const placeholderText = 'Default text goes here';
+const interactiveDataHook = 'interactive-richtextinputarea';
+
+const richTextInputAreaUniTestkitFactory = uniTestkitFactoryCreator(
+  richTextInputAreaPrivateDriverFactory,
+);
+const createDriver = dataHook =>
+  richTextInputAreaUniTestkitFactory({
+    wrapper: document.body,
+    dataHook,
+  });
+
+class InteractiveEyeTest extends React.Component {
+  async componentDidMount() {
+    this.props.componentDidMount();
+  }
+
+  render() {
+    const { componentDidMount, ...restProps } = this.props;
+
+    return <RichTextInputArea dataHook={interactiveDataHook} {...restProps} />;
+  }
+}
 
 const tests = [
   {
@@ -112,10 +136,41 @@ const tests = [
   },
 ];
 
+const interactiveTests = [
+  {
+    describe: 'Link insertion form',
+    its: [
+      {
+        it: 'Disabled submit button when URL is empty',
+        componentDidMount: async () => {
+          const driver = createDriver(interactiveDataHook);
+          await driver.clickLinkButton();
+        },
+      },
+      {
+        it: 'Enabled submit button when URL is not empty',
+        componentDidMount: async () => {
+          const driver = createDriver(interactiveDataHook);
+          await driver.clickLinkButton();
+          await driver.insertUrl('Some URL');
+        },
+      },
+    ],
+  },
+];
+
 tests.forEach(({ describe, its }) => {
   its.forEach(({ it, props }) => {
     storiesOf(`RichTextInputArea/${describe}`, module).add(it, () => (
       <RichTextInputArea {...props} />
+    ));
+  });
+});
+
+interactiveTests.forEach(({ describe, its }) => {
+  its.forEach(({ it, props, componentDidMount }) => {
+    storiesOf(`RichTextInputArea/${describe}`, module).add(it, () => (
+      <InteractiveEyeTest {...props} componentDidMount={componentDidMount} />
     ));
   });
 });

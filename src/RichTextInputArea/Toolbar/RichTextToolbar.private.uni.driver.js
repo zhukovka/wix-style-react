@@ -4,6 +4,13 @@ export default (base, body) => {
   const getButtons = () => base.$$(`[data-hook*="richtextarea-button"]`);
   const getButtonByType = type =>
     base.$(`[data-hook*="richtextarea-button-${type}"]`);
+  const insertUrl = url => {
+    const urlInputDriver = inputTestkit(
+      base.$('[data-hook="richtextarea-form-link-url"]'),
+    );
+
+    return urlInputDriver.enterText(url);
+  };
 
   return {
     getButtonTypes: () =>
@@ -17,8 +24,11 @@ export default (base, body) => {
     getNumberedListButton: () => getButtonByType('ordered-list-item'),
     getLinkButton: () => getButtonByType('link'),
     isFormConfirmButtonDisabled: async () =>
-      (await base.$('[data-hook=richtextarea-form-confirm-button]').getNative())
-        .attributes.disabled,
+      Boolean(
+        (await base
+          .$('[data-hook=richtextarea-form-confirm-button]')
+          .getNative()).attributes.disabled,
+      ),
     isFormDisplayed: () => base.$('[data-hook=richtextarea-form]').exists(),
     clickBoldButton: () => getButtonByType('bold').click(),
     clickItalicButton: () => getButtonByType('italic').click(),
@@ -29,19 +39,17 @@ export default (base, body) => {
     clickLinkButton: () => getButtonByType('link').click(),
     clickFormCancelButton: () =>
       base.$('[data-hook="richtextarea-form-cancel-button"]').click(),
+    insertUrl,
     insertLink: async (text, url) => {
       const textInputDriver = inputTestkit(
         base.$('[data-hook="richtextarea-form-link-text"]'),
-      );
-      const urlInputDriver = inputTestkit(
-        base.$('[data-hook="richtextarea-form-link-url"]'),
       );
       const submitButton = base.$(
         '[data-hook="richtextarea-form-confirm-button"]',
       );
 
       await textInputDriver.enterText(text);
-      await urlInputDriver.enterText(url);
+      await insertUrl(url);
       await submitButton.click();
     },
   };

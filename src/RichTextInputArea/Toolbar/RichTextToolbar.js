@@ -18,28 +18,16 @@ import TextAreaLink from '../../new-icons/system/TextAreaLink';
 import TextAreaBulletList from '../../new-icons/system/TextAreaBulletList';
 import TextAreaNumberedList from '../../new-icons/system/TextAreaNumberedList';
 
-const toggleStyle = (editorState, onClick, toggledStyle) => {
-  onClick(EditorUtilities.toggleStyle(editorState, toggledStyle));
-};
-
-const toggleBlockType = (editorState, onClick, toggledBlockType) => {
-  onClick(EditorUtilities.toggleBlockType(editorState, toggledBlockType));
-};
-
-const toggleEntity = (editorState, onClick, linkData) => {
-  onClick(EditorUtilities.toggleEntity(editorState, linkData));
-};
-
 const renderButton = (
   index,
-  { type, iconComponent: Icon, isDisabled, isActive, ...buttonData },
+  { type, iconComponent: Icon, isDisabled, isActive, ...restProps },
 ) => (
   <RichTextToolbarButton
     key={`${index}-${type}`}
     dataHook={`richtextarea-button-${type.toLowerCase()}`}
     isDisabled={isDisabled}
     isActive={!isDisabled && isActive()}
-    {...buttonData}
+    {...restProps}
   >
     <Icon />
   </RichTextToolbarButton>
@@ -47,14 +35,14 @@ const renderButton = (
 
 const renderLinkButton = (
   index,
-  { type, iconComponent: Icon, isDisabled, isActive, ...buttonData },
+  { type, iconComponent: Icon, isDisabled, isActive, ...restProps },
 ) => (
   <RichTextToolbarLinkButton
     key={`${index}-${type}`}
     dataHook={`richtextarea-button-${type.toLowerCase()}`}
     isDisabled={isDisabled}
     isActive={!isDisabled && isActive()}
-    {...buttonData}
+    {...restProps}
   >
     <Icon />
   </RichTextToolbarLinkButton>
@@ -78,64 +66,80 @@ const RichTextToolbar = ({
         const buttons = [
           {
             type: inlineStyleTypes.bold,
-            onClick: () =>
-              toggleStyle(editorState, onBold, inlineStyleTypes.bold),
             iconComponent: TextAreaBold,
+            render: (index, buttonProps) => renderButton(index, buttonProps),
             isDisabled,
             isActive: () =>
               EditorUtilities.isEditorFocused(editorState) &&
               EditorUtilities.hasStyle(editorState, inlineStyleTypes.bold),
             tooltipText: texts.toolbarButtons.boldButtonLabel,
-            render: (index, data) => renderButton(index, data),
+            onClick: () =>
+              onBold(
+                EditorUtilities.toggleStyle(editorState, inlineStyleTypes.bold),
+              ),
           },
           {
             type: inlineStyleTypes.italic,
-            onClick: () =>
-              toggleStyle(editorState, onItalic, inlineStyleTypes.italic),
             iconComponent: TextAreaItalic,
+            render: (index, buttonProps) => renderButton(index, buttonProps),
             isDisabled,
             isActive: () =>
               EditorUtilities.isEditorFocused(editorState) &&
               EditorUtilities.hasStyle(editorState, inlineStyleTypes.italic),
             tooltipText: texts.toolbarButtons.italicButtonLabel,
-            render: (index, data) => renderButton(index, data),
+            onClick: () =>
+              onItalic(
+                EditorUtilities.toggleStyle(
+                  editorState,
+                  inlineStyleTypes.italic,
+                ),
+              ),
           },
           {
             type: inlineStyleTypes.underline,
-            onClick: () =>
-              toggleStyle(editorState, onUnderline, inlineStyleTypes.underline),
             iconComponent: TextAreaUnderline,
+            render: (index, buttonProps) => renderButton(index, buttonProps),
             isDisabled,
             isActive: () =>
               EditorUtilities.isEditorFocused(editorState) &&
               EditorUtilities.hasStyle(editorState, inlineStyleTypes.underline),
             tooltipText: texts.toolbarButtons.underlineButtonLabel,
-            render: (index, data) => renderButton(index, data),
+            onClick: () =>
+              onUnderline(
+                EditorUtilities.toggleStyle(
+                  editorState,
+                  inlineStyleTypes.underline,
+                ),
+              ),
           },
           {
             type: entityTypes.link,
-            onSubmit: (event, linkData) =>
-              toggleEntity(editorState, onLink, linkData),
-            data: {
-              text: EditorUtilities.getSelectedText(editorState),
-            },
-            isDisabled,
             iconComponent: TextAreaLink,
+            render: (index, buttonProps) =>
+              renderLinkButton(index, buttonProps),
+            isDisabled,
             isActive: () =>
               EditorUtilities.isEditorFocused(editorState) &&
               EditorUtilities.hasEntity(editorState, entityTypes.link),
             tooltipText: texts.toolbarButtons.linkButtonLabel,
-            render: (index, data) => renderLinkButton(index, data),
+            // The data which is passed and being used within the insertion form
+            data: {
+              selectedText: EditorUtilities.getSelectedText(editorState),
+              hasRemovableEntityInSelection: EditorUtilities.hasRemovableEntityInSelection(
+                editorState,
+              ),
+            },
+            onSubmit: (event, linkData) => {
+              onLink(EditorUtilities.toggleLink(editorState, linkData));
+            },
+            onRemove: () => {
+              onLink(EditorUtilities.toggleLink(editorState));
+            },
           },
           {
             type: blockTypes.bulletedList,
-            onClick: () =>
-              toggleBlockType(
-                editorState,
-                onBulletedList,
-                blockTypes.bulletedList,
-              ),
             iconComponent: TextAreaBulletList,
+            render: (index, buttonProps) => renderButton(index, buttonProps),
             isDisabled,
             isActive: () =>
               EditorUtilities.isEditorFocused(editorState) &&
@@ -144,17 +148,18 @@ const RichTextToolbar = ({
                 blockTypes.bulletedList,
               ),
             tooltipText: texts.toolbarButtons.bulletedListButtonLabel,
-            render: (index, data) => renderButton(index, data),
+            onClick: () =>
+              onBulletedList(
+                EditorUtilities.toggleBlockType(
+                  editorState,
+                  blockTypes.bulletedList,
+                ),
+              ),
           },
           {
             type: blockTypes.numberedList,
-            onClick: () =>
-              toggleBlockType(
-                editorState,
-                onNumberedList,
-                blockTypes.numberedList,
-              ),
             iconComponent: TextAreaNumberedList,
+            render: (index, buttonProps) => renderButton(index, buttonProps),
             isDisabled,
             isActive: () =>
               EditorUtilities.isEditorFocused(editorState) &&
@@ -163,7 +168,13 @@ const RichTextToolbar = ({
                 blockTypes.numberedList,
               ),
             tooltipText: texts.toolbarButtons.numberedListButtonLabel,
-            render: (index, data) => renderButton(index, data),
+            onClick: () =>
+              onNumberedList(
+                EditorUtilities.toggleBlockType(
+                  editorState,
+                  blockTypes.numberedList,
+                ),
+              ),
           },
         ];
 
@@ -172,7 +183,7 @@ const RichTextToolbar = ({
             data-hook={dataHook}
             className={classNames(className, styles.root)}
           >
-            {buttons.map(({ render, ...data }, index) => render(index, data))}
+            {buttons.map(({ render, ...props }, index) => render(index, props))}
           </div>
         );
       }}

@@ -1,9 +1,15 @@
 /* eslint-disable no-console */
 import React from 'react';
+import {
+  createRendererWithDriver,
+  createRendererWithUniDriver,
+  cleanup,
+} from '../../test/utils/react';
+
 import Page from './Page';
 import pageDriverFactory from './Page.driver';
+import { pageUniDriverFactory } from './Page.uni.driver';
 import { PagePrivateDriver } from './Page.private.driver';
-import { createDriverFactory } from 'wix-ui-test-utils/driver-factory';
 
 const Content = () => <div>content</div>;
 
@@ -19,156 +25,140 @@ const renderPageWithProps = (props = {}) => (
 );
 
 describe('Page', () => {
-  const createDriver = createDriverFactory(pageDriverFactory);
-
-  it('should initialize component', () => {
-    const driver = createDriver(renderPageWithProps());
-    expect(driver.exists()).toBeTruthy();
+  const stub = (console.error = jest.fn());
+  beforeEach(() => {
+    require('react');
   });
 
-  describe('backgroundImage', () => {
-    it('should initialize component with background image', () => {
-      const driver = createDriver(
-        renderPageWithProps({ backgroundImageUrl: '/some/image' }),
-      );
-      expect(driver.backgroundImageExists()).toBeTruthy();
-    });
-
-    it('should not initialize component with background image', () => {
-      const driver = createDriver(renderPageWithProps());
-      expect(driver.backgroundImageExists()).toBeFalsy();
-    });
+  afterEach(() => {
+    jest.resetModules();
+    stub.mockReset();
   });
 
-  describe('customClassName', () => {
-    it('should have custom className', () => {
-      const driver = createDriver(
-        renderPageWithProps({ className: 'myClass' }),
-      );
-      expect(driver.hasClass('myClass')).toBeTruthy();
-    });
+  describe('[sync]', () => {
+    runTests(createRendererWithDriver(pageDriverFactory));
   });
 
-  describe('gradientClassName', () => {
-    it('should initialize component with gradient class name', () => {
-      const driver = createDriver(
-        renderPageWithProps({ gradientClassName: 'class' }),
-      );
-      expect(driver.gradientClassNameExists()).toBeTruthy();
-    });
-
-    it('should not initialize component with gradiet class name by default', () => {
-      const driver = createDriver(renderPageWithProps());
-      expect(driver.gradientClassNameExists()).toBeFalsy();
-    });
+  describe('[async]', () => {
+    runTests(createRendererWithUniDriver(pageUniDriverFactory));
   });
 
-  describe('gradient size', () => {
-    it('should be 36px by default', () => {
-      const driver = createDriver(
-        renderPageWithProps({ gradientClassName: 'class' }),
-      );
-      expect(driver.gradientContainerHeight()).toBe('36px');
+  function runTests(render) {
+    afterEach(() => cleanup());
+
+    it('should initialize component', async () => {
+      const { driver } = render(renderPageWithProps());
+      expect(await driver.exists()).toBeTruthy();
     });
 
-    it('should not render 0 when maximized but header height delta is 0', () => {
-      const driver = createDriver(renderPageWithProps());
-      expect(driver.getPageHtml()).not.toContain('>0<');
+    describe('backgroundImage', () => {
+      it('should initialize component with background image', async () => {
+        const { driver } = render(
+          renderPageWithProps({ backgroundImageUrl: '/some/image' }),
+        );
+        expect(await driver.backgroundImageExists()).toBeTruthy();
+      });
+
+      it('should not initialize component with background image', async () => {
+        const { driver } = render(renderPageWithProps());
+        expect(await driver.backgroundImageExists()).toBeFalsy();
+      });
     });
 
-    it('should be zero when Tail exist', () => {
-      const props = { gradientClassName: 'class' };
-      const driver = createDriver(
-        <Page {...props}>
-          <Page.Header />
-          <Page.Tail>
-            <Tail />
-          </Page.Tail>
-          <Page.Content>
-            <Content />
-          </Page.Content>
-        </Page>,
-      );
-      expect(driver.gradientContainerHeight()).toBe('0px');
-    });
-  });
-
-  describe('Page.Tail', () => {
-    it('should attach a tail component', () => {
-      const driver = createDriver(
-        <Page>
-          <Page.Header title="title" />
-          <Page.Tail>
-            <Tail />
-          </Page.Tail>
-          <Page.Content>
-            <Content />
-          </Page.Content>
-        </Page>,
-      );
-
-      expect(driver.tailExists()).toBeTruthy();
+    describe('customClassName', () => {
+      it('should have custom className', async () => {
+        const { driver } = render(
+          renderPageWithProps({ className: 'myClass' }),
+        );
+        expect(await driver.hasClass('myClass')).toBeTruthy();
+      });
     });
 
-    it('should not attach a tail component', () => {
-      const driver = createDriver(renderPageWithProps());
-      expect(driver.tailExists()).toBeFalsy();
-    });
-  });
+    describe('gradientClassName', () => {
+      it('should initialize component with gradient class name', async () => {
+        const { driver } = render(
+          renderPageWithProps({ gradientClassName: 'class' }),
+        );
+        expect(await driver.gradientClassNameExists()).toBeTruthy();
+      });
 
-  describe('DOM calculations', () => {
-    // eslint-disable-next-line jest/no-disabled-tests
-    xit('should recalculate component heights when rerendered', () => {
-      // TODO:
-    });
-  });
-
-  describe('zIndex', () => {
-    it('should NOT have zIndex in inline style by default', () => {
-      const driver = PagePrivateDriver.fromJsxElement(
-        <Page>
-          <Page.Header title="title" />
-          <Page.Content>
-            <Content />
-          </Page.Content>
-        </Page>,
-      );
-
-      expect(driver.getStyle()['z-index']).toBe('');
+      it('should not initialize component with gradiet class name by default', async () => {
+        const { driver } = render(renderPageWithProps());
+        expect(await driver.gradientClassNameExists()).toBeFalsy();
+      });
     });
 
-    it('should have provided zIndex in inline style', () => {
-      const driver = PagePrivateDriver.fromJsxElement(
-        <Page zIndex={7}>
-          <Page.Header title="title" />
-          <Page.Content>
-            <Content />
-          </Page.Content>
-        </Page>,
-      );
+    describe('gradient size', () => {
+      it('should be 36px by default', async () => {
+        const { driver } = render(
+          renderPageWithProps({ gradientClassName: 'class' }),
+        );
+        expect(await driver.gradientContainerHeight()).toBe('36px');
+      });
 
-      expect(driver.getStyle()['z-index']).toBe('7');
+      it('should not render 0 when maximized but header height delta is 0', async () => {
+        const { driver } = render(renderPageWithProps());
+        expect(await driver.getPageHtml()).not.toContain('>0<');
+      });
+
+      it('should be zero when Tail exist', async () => {
+        const props = { gradientClassName: 'class' };
+        const { driver } = render(
+          <Page {...props}>
+            <Page.Header />
+            <Page.Tail>
+              <Tail />
+            </Page.Tail>
+            <Page.Content>
+              <Content />
+            </Page.Content>
+          </Page>,
+        );
+        expect(await driver.gradientContainerHeight()).toBe('0px');
+      });
     });
-  });
 
-  describe('Header layer', () => {
-    it('should NOT block clicks on content close to header', () => {});
-    it('should NOT block clicks on content close to header when MiniHeader appears', () => {});
-  });
+    describe('Page.Tail', () => {
+      it('should attach a tail component', async () => {
+        const { driver } = render(
+          <Page>
+            <Page.Header title="title" />
+            <Page.Tail>
+              <Tail />
+            </Page.Tail>
+            <Page.Content>
+              <Content />
+            </Page.Content>
+          </Page>,
+        );
+
+        expect(await driver.tailExists()).toBeTruthy();
+      });
+
+      it('should not attach a tail component', async () => {
+        const { driver } = render(renderPageWithProps());
+        expect(await driver.tailExists()).toBeFalsy();
+      });
+    });
+
+    describe('DOM calculations', () => {
+      // eslint-disable-next-line jest/no-disabled-tests
+      xit('should recalculate component heights when rerendered', () => {
+        // TODO:
+      });
+    });
+
+    describe('Header layer', () => {
+      it('should NOT block clicks on content close to header', async () => {});
+      it('should NOT block clicks on content close to header when MiniHeader appears', async () => {});
+    });
+  }
 
   describe('Prop Validation', () => {
-    const stub = (console.error = jest.fn());
+    //Please notice that Prop Validation tests are running on the Page Driver only (and not Page UniDriver).
+    const render = createRendererWithDriver(pageDriverFactory);
     const prefixWarning = 'Warning: Failed prop type: ';
     const suffixWarning = '\n    in Page';
-
-    beforeEach(() => {
-      require('react');
-    });
-
-    afterEach(() => {
-      jest.resetModules();
-      stub.mockReset();
-    });
 
     it('should not initialize component with an unknown type', () => {
       const page = (
@@ -181,7 +171,7 @@ describe('Page', () => {
         </Page>
       );
 
-      createDriver(page);
+      render(page);
       expect(stub).toHaveBeenCalledWith(
         expect.stringContaining(
           `${prefixWarning}Page: Invalid Prop children, unknown child div${suffixWarning}`,
@@ -201,9 +191,37 @@ describe('Page', () => {
         </Page>
       );
 
-      createDriver(page);
+      render(page);
 
       expect(stub).toHaveBeenCalledTimes(0);
+    });
+  });
+
+  describe('zIndex', () => {
+    it('should NOT have zIndex in inline style by default', async () => {
+      const driver = PagePrivateDriver.fromJsxElement(
+        <Page>
+          <Page.Header title="title" />
+          <Page.Content>
+            <Content />
+          </Page.Content>
+        </Page>,
+      );
+
+      expect(await driver.getStyle()['z-index']).toBe('');
+    });
+
+    it('should have provided zIndex in inline style', async () => {
+      const driver = PagePrivateDriver.fromJsxElement(
+        <Page zIndex={7}>
+          <Page.Header title="title" />
+          <Page.Content>
+            <Content />
+          </Page.Content>
+        </Page>,
+      );
+
+      expect(await driver.getStyle()['z-index']).toBe('7');
     });
   });
 });
