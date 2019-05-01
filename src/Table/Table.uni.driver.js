@@ -1,4 +1,4 @@
-import { baseUniDriverFactory, ReactBase } from '../../test/utils/unidriver';
+import { baseUniDriverFactory } from '../../test/utils/unidriver';
 import { dataTableUniDriverFactory } from '../DataTable/DataTable.uni.driver';
 import { checkboxUniDriverFactory } from '../Checkbox/Checkbox.uni.driver';
 
