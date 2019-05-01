@@ -59,7 +59,7 @@ class RichTextInputArea extends React.PureComponent {
   };
 
   static defaultProps = {
-    initialValue: '',
+    initialValue: '<p></p>',
     texts: {},
   };
 
