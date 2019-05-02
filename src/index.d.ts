@@ -7,6 +7,9 @@ export interface InjectedFocusableProps {
 
 export type IconElement = ReactElement<any>;
 
+export type Omit<T, K extends keyof T> =  T extends any ? Pick<T, Exclude<keyof T, K>> : never;
+//   type Subtract<T, K extends T> = Pick<T, Exclude<keyof T, keyof K>>;
+
 export {default as Avatar, AvatarProps} from './Avatar';
 export {default as Badge, BadgeProps} from './Badge';
 export {default as BadgeSelect, BadgeSelectProps} from './BadgeSelect';
@@ -45,5 +48,3 @@ export {default as ToggleSwitch, ToggleSwitchProps} from './ToggleSwitch';
 export {default as Tooltip, TooltipProps} from './Tooltip';
 export {default as VBox, VBoxProps} from './VBox';
 
-//   type Omit<T, K extends keyof T> = Pick<T, Exclude<keyof T, K>>;
-//   type Subtract<T, K extends T> = Pick<T, Exclude<keyof T, keyof K>>;
